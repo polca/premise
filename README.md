@@ -2,7 +2,7 @@
 
 ## Install
 
-Download and install [miniconda] (https://conda.io/miniconda.html), create and activate a new environment and run
+Download and install [miniconda](https://conda.io/miniconda.html), create and activate a new environment and run
 ```
 conda install -y -q -c conda-forge -c cmutel -c haasad -c konstantinstadler brightway2 jupyter wurst
 ```
