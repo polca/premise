@@ -1,0 +1,250 @@
+X;CountryCode;RegionCode
+Aruba;ABW;LAM
+Afghanistan;AFG;OAS
+Angola;AGO;SSA
+Anguilla;AIA;LAM
+Aland Islands;ALA;EUR
+Albania;ALB;NEU
+Andorra;AND;NEU
+United Arab Emirates;ARE;MEA
+Argentina;ARG;LAM
+Armenia;ARM;REF
+American Samoa;ASM;OAS
+Antarctica;ATA;LAM
+French Southern Territories;ATF;OAS
+Antigua and Barbuda;ATG;LAM
+Australia;AUS;CAZ
+Austria;AUT;EUR
+Azerbaijan;AZE;REF
+Burundi;BDI;SSA
+Belgium;BEL;EUR
+Benin;BEN;SSA
+Bonaire, Sint Eustatius and Saba;BES;LAM
+Burkina Faso;BFA;SSA
+Bangladesh;BGD;OAS
+Bulgaria;BGR;EUR
+Bahrain;BHR;MEA
+Bahamas;BHS;LAM
+Bosnia and Herzegovina;BIH;NEU
+Saint Barthelemy;BLM;LAM
+Belarus;BLR;REF
+Belize;BLZ;LAM
+Bermuda;BMU;LAM
+Bolivia, Plurinational State of;BOL;LAM
+Brazil;BRA;LAM
+Barbados;BRB;LAM
+Brunei Darussalam;BRN;OAS
+Bhutan;BTN;OAS
+Bouvet Island;BVT;LAM
+Botswana;BWA;SSA
+Central African Republic;CAF;SSA
+Canada;CAN;CAZ
+Cocos (Keeling) Islands;CCK;OAS
+China;CHN;CHA
+Switzerland;CHE;NEU
+Chile;CHL;LAM
+Cote d Ivoire;CIV;SSA
+Cameroon;CMR;SSA
+Congo, the Democratic Republic of the;COD;SSA
+Congo;COG;SSA
+Cook Islands;COK;OAS
+Colombia;COL;LAM
+Comoros;COM;SSA
+Cape Verde;CPV;SSA
+Costa Rica;CRI;LAM
+Cuba;CUB;LAM
+Curacao;CUW;LAM
+Christmas Island;CXR;OAS
+Cayman Islands;CYM;LAM
+Cyprus;CYP;EUR
+Czech Republic;CZE;EUR
+Germany;DEU;EUR
+Djibouti;DJI;SSA
+Dominica;DMA;LAM
+Denmark;DNK;EUR
+Dominican Republic;DOM;LAM
+Algeria;DZA;MEA
+Ecuador;ECU;LAM
+Egypt;EGY;MEA
+Eritrea;ERI;SSA
+Western Sahara;ESH;MEA
+Spain;ESP;EUR
+Estonia;EST;EUR
+Ethiopia;ETH;SSA
+Finland;FIN;EUR
+Fiji;FJI;OAS
+Falkland Islands (Malvinas);FLK;LAM
+France;FRA;EUR
+Faroe Islands;FRO;EUR
+Micronesia, Federated States of;FSM;OAS
+Gabon;GAB;SSA
+United Kingdom;GBR;EUR
+Georgia;GEO;REF
+Guernsey;GGY;EUR
+Ghana;GHA;SSA
+Gibraltar;GIB;EUR
+Guinea;GIN;SSA
+Guadeloupe;GLP;LAM
+Gambia;GMB;SSA
+Guinea-Bissau;GNB;SSA
+Equatorial Guinea;GNQ;SSA
+Greece;GRC;EUR
+Grenada;GRD;LAM
+Greenland;GRL;NEU
+Guatemala;GTM;LAM
+French Guiana;GUF;LAM
+Guam;GUM;OAS
+Guyana;GUY;LAM
+Hong Kong;HKG;CHA
+Heard Island and McDonald Islands;HMD;CAZ
+Honduras;HND;LAM
+Croatia;HRV;EUR
+Haiti;HTI;LAM
+Hungary;HUN;EUR
+Indonesia;IDN;OAS
+Isle of Man;IMN;EUR
+India;IND;IND
+British Indian Ocean Territory;IOT;OAS
+Ireland;IRL;EUR
+Iran, Islamic Republic of;IRN;MEA
+Iraq;IRQ;MEA
+Iceland;ISL;NEU
+Israel;ISR;MEA
+Italy;ITA;EUR
+Jamaica;JAM;LAM
+Jersey;JEY;EUR
+Jordan;JOR;MEA
+Japan;JPN;JPN
+Kazakhstan;KAZ;REF
+Kenya;KEN;SSA
+Kyrgyzstan;KGZ;REF
+Cambodia;KHM;OAS
+Kiribati;KIR;OAS
+Saint Kitts and Nevis;KNA;LAM
+Korea, Republic of;KOR;OAS
+Kuwait;KWT;MEA
+Lao People's Democratic Republic;LAO;OAS
+Lebanon;LBN;MEA
+Liberia;LBR;SSA
+Libya;LBY;MEA
+Saint Lucia;LCA;LAM
+Liechtenstein;LIE;NEU
+Sri Lanka;LKA;OAS
+Lesotho;LSO;SSA
+Lithuania;LTU;EUR
+Luxembourg;LUX;EUR
+Latvia;LVA;EUR
+Macao;MAC;CHA
+Saint Martin (French part);MAF;LAM
+Morocco;MAR;MEA
+Monaco;MCO;NEU
+Moldova, Republic of;MDA;REF
+Madagascar;MDG;SSA
+Maldives;MDV;OAS
+Mexico;MEX;LAM
+Marshall Islands;MHL;OAS
+Macedonia, the former Yugoslav Republic of;MKD;NEU
+Mali;MLI;SSA
+Malta;MLT;EUR
+Myanmar;MMR;OAS
+Montenegro;MNE;NEU
+Mongolia;MNG;OAS
+Northern Mariana Islands;MNP;OAS
+Mozambique;MOZ;SSA
+Mauritania;MRT;SSA
+Montserrat;MSR;LAM
+Martinique;MTQ;LAM
+Mauritius;MUS;SSA
+Malawi;MWI;SSA
+Malaysia;MYS;OAS
+Mayotte;MYT;SSA
+Namibia;NAM;SSA
+New Caledonia;NCL;OAS
+Niger;NER;SSA
+Norfolk Island;NFK;OAS
+Nigeria;NGA;SSA
+Nicaragua;NIC;LAM
+Niue;NIU;OAS
+Netherlands;NLD;EUR
+Norway;NOR;NEU
+Nepal;NPL;OAS
+Nauru;NRU;OAS
+New Zealand;NZL;CAZ
+Oman;OMN;MEA
+Pakistan;PAK;OAS
+Panama;PAN;LAM
+Pitcairn;PCN;OAS
+Peru;PER;LAM
+Philippines;PHL;OAS
+Palau;PLW;OAS
+Papua New Guinea;PNG;OAS
+Poland;POL;EUR
+Puerto Rico;PRI;LAM
+Korea, Democratic People's Republic of;PRK;OAS
+Portugal;PRT;EUR
+Paraguay;PRY;LAM
+Palestine, State of;PSE;MEA
+French Polynesia;PYF;OAS
+Qatar;QAT;MEA
+Reunion;REU;SSA
+Romania;ROU;EUR
+Russian Federation;RUS;REF
+Rwanda;RWA;SSA
+Saudi Arabia;SAU;MEA
+Sudan;SDN;MEA
+Senegal;SEN;SSA
+Singapore;SGP;OAS
+South Georgia and the South Sandwich Islands;SGS;LAM
+Saint Helena, Ascension and Tristan da Cunha;SHN;SSA
+Svalbard and Jan Mayen;SJM;NEU
+Solomon Islands;SLB;OAS
+Sierra Leone;SLE;SSA
+El Salvador;SLV;LAM
+San Marino;SMR;NEU
+Somalia;SOM;SSA
+Saint Pierre and Miquelon;SPM;CAZ
+Serbia;SRB;NEU
+South Sudan;SSD;SSA
+Sao Tome and Principe;STP;SSA
+Suriname;SUR;LAM
+Slovakia;SVK;EUR
+Slovenia;SVN;EUR
+Sweden;SWE;EUR
+Swaziland;SWZ;SSA
+Sint Maarten (Dutch part);SXM;LAM
+Seychelles;SYC;SSA
+Syrian Arab Republic;SYR;MEA
+Turks and Caicos Islands;TCA;LAM
+Chad;TCD;SSA
+Togo;TGO;SSA
+Thailand;THA;OAS
+Tajikistan;TJK;REF
+Tokelau;TKL;OAS
+Turkmenistan;TKM;REF
+Timor-Leste;TLS;OAS
+Tonga;TON;OAS
+Trinidad and Tobago;TTO;LAM
+Tunisia;TUN;MEA
+Turkey;TUR;NEU
+Tuvalu;TUV;OAS
+Taiwan, Province of China;TWN;CHA
+Tanzania, United Republic of;TZA;SSA
+Uganda;UGA;SSA
+Ukraine;UKR;REF
+United States Minor Outlying Islands;UMI;OAS
+Uruguay;URY;LAM
+United States;USA;USA
+Uzbekistan;UZB;REF
+Holy See (Vatican City State);VAT;NEU
+Saint Vincent and the Grenadines;VCT;LAM
+Venezuela, Bolivarian Republic of;VEN;LAM
+Virgin Islands, British;VGB;LAM
+Virgin Islands, U.S.;VIR;LAM
+Viet Nam;VNM;OAS
+Vanuatu;VUT;OAS
+Wallis and Futuna;WLF;OAS
+Samoa;WSM;OAS
+Yemen;YEM;MEA
+South Africa;ZAF;SSA
+Zambia;ZMB;SSA
+Zimbabwe;ZWE;SSA
