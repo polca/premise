@@ -268,7 +268,7 @@ available_electricity_generating_technologies={
                     'heat and power co-generation, biogas, gas engine'],
 
     'Coal PC':['electricity production, hard coal',
-                'electricity production, lignite'
+                'electricity production, lignite',
               'electricity production, hard coal, conventional',
               'electricity production, hard coal, supercritical'],
 

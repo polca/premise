@@ -3,6 +3,37 @@
 import brightway2 as bw
 from helpers.eimod import geomatcher
 
+
+def multi_lca_average(actvts, demand=1.):
+    """ Perform LCA calculations for multiple technologies (activities).
+        The demand is distributed evenly over all found activities (average).
+    """
+
+    share = 1./len(actvts)
+
+    lca = bw.LCA({act: demand*share for act in actvts})
+    lca.lci()
+
+    return lca
+
+
+def find_activities_by_name(techname, db):
+    return [act for act in db if act["name"] == techname]
+
+
+def find_activities_in_regions(techname, regions, db):
+    actvts = find_activities_by_name(techname, db)
+    if len(actvts) == 0:
+        actvts = [act for act in db if act["name"] == techname and
+                  act["location"] == "RoW"]
+        if len(actvts) == 0:
+            actvts = [act for act in db if act["name"] == techname and
+                      act["location"] == "GLO"]
+            if len(actvts) == 0:
+                print("Could not find any activities matching {}".format(techname))
+    return actvts
+
+
 def lca_for_multiple_techs_and_regions(techs, regions, db, units_and_conversions={}):
     """ Perform LCA calculations for multiple technologies (activities) and regions.
         The demand is distributed evenly over all found activities (average).
