@@ -3,6 +3,32 @@
 import brightway2 as bw
 from helpers.eimod import geomatcher
 
+def remove_double_counting(lca, activities_of_interest, all_activities):
+    """Modify the LCA inventory by excluding ``all_activities`` that are not
+    ``activities_of_interest``.
+
+    * ``lca`` is an ``LCA`` object for which LCI and LCIA have already been calculated
+    * ``activities_of_interest`` is an iterable of activity objects
+    * ``all_activities`` is an iterable of *all* activity objects
+
+    Returns the LCA object.
+    """
+
+    to_key = lambda x: x if isinstance(x, tuple) else x.key
+
+    exclude = set([to_key(o) for o in all_activities]).difference(
+              set([to_key(o) for o in activities_of_interest]))
+
+    for activity in exclude:
+        row = lca.product_dict[activity]
+        col = lca.activity_dict[activity]
+        production_amount = lca.technosphere_matrix[row, col]
+        lca.technosphere_matrix[row, :] *= 0
+        lca.technosphere_matrix[row, col] = production_amount
+
+    lca.lci_calculation()
+    return lca
+
 
 def multi_lca_average(actvts, demand=1.):
     """ Perform LCA calculations for multiple technologies (activities).
@@ -32,6 +58,7 @@ def find_activities_in_regions(techname, regions, db):
             if len(actvts) == 0:
                 print("Could not find any activities matching {}".format(techname))
     return actvts
+
 
 
 def multiregion_lca_without_double_counting(activity_name, all_activities, regions, db, demand=1.):
