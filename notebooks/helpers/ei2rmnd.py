@@ -34,6 +34,44 @@ def find_activities_in_regions(techname, regions, db):
     return actvts
 
 
+def multiregion_lca_without_double_counting(activity_name, all_activities, regions, db, demand=1.):
+    """Calculate inventory for ``activity_of_interest`` but excluding
+    contributions from ``activities_to_exclude``.
+
+    * ``activity_name`` is a string identifiying an ecoinvent activity without specifying the location.
+    * ``all_activities`` is a full list of ``activities``.
+        Those that are not found using ``activity_name`` are excluded.
+    * ``demand`` is the demand for the activity.
+    * ``regions`` is a list of region codes.
+
+    Returns the LCA object.
+    """
+
+    to_key = lambda x: x if isinstance(x, tuple) else x.key
+
+    # find all relevant activities
+    activities_of_interest = find_activities_in_regions(activity_name, regions, db)
+
+    # activities that are not of interest are excluded
+    exclude = set([to_key(o) for o in all_activities]).difference(
+                  set([to_key(o) for o in activities_of_interest]))
+
+    # perform LCA to obtain technosphere matrix
+    lca = multi_lca_average(activities_of_interest, demand)
+    lca.lci()
+
+    # adjust technosphere matrix
+    for activity in exclude:
+        row = lca.product_dict[activity]
+        col = lca.activity_dict[activity]
+        production_amount = lca.technosphere_matrix[row, col]
+        lca.technosphere_matrix[row, :] *= 0
+        lca.technosphere_matrix[row, col] = production_amount
+
+    lca.lci_calculation()
+    return lca
+
+
 def lca_for_multiple_techs_and_regions(techs, regions, db, units_and_conversions={}):
     """ Perform LCA calculations for multiple technologies (activities) and regions.
         The demand is distributed evenly over all found activities (average).
