@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 
 from constructive_geometries import Geomatcher
+import wurst
 from wurst import searching as ws
 from wurst.ecoinvent.electricity_markets import \
     empty_low_voltage_markets, empty_high_voltage_markets, empty_medium_voltage_markets
@@ -84,7 +85,7 @@ fix_names= {#'CSG' : 'CN-CSG',
 fix_names_back = {v: k for k,v in fix_names.items()}
 
 
-def rename_locations(db, name_dict):
+def rename_locations(db, name_dict=fix_names):
     for ds in db:
         if ds['location'] in name_dict:
             ds['location'] = name_dict[ds['location']]
@@ -882,7 +883,7 @@ def update_electricity_datasets_with_remind_data(
                 # Modify using remind efficiency values:
                 scaling_factor = md['eff_func'](ds, year, remind_efficiency, agg_func)
                 update_ecoinvent_efficiency_parameter(ds, scaling_factor)
-                change_exchanges_by_constant_factor(ds, scaling_factor, md['technosphere excludes'],
+                wurst.change_exchanges_by_constant_factor(ds, scaling_factor, md['technosphere excludes'],
                                                 [ws.doesnt_contain_any('name', remind_air_pollutants)])
 
             # we use this bit of code to explicitly rewrite the value for certain emissions.
@@ -898,15 +899,15 @@ def update_electricity_datasets_with_remind_data(
                     #if new amount isn't a number:
                     if np.isnan(amount):
                         print('Not a number! Setting exchange to zero' + ds['name'], exc['name'], ds['location'])
-                        rescale_exchange(exc, 0)
+                        wurst.rescale_exchange(exc, 0)
 
                     #if old amound was zero:
                     elif exc['amount'] ==0:
                         exc['amount'] = 1
-                        rescale_exchange(exc, amount / exc['amount'], remove_uncertainty = True)
+                        wurst.rescale_exchange(exc, amount / exc['amount'], remove_uncertainty = True)
 
                     else:
-                        rescale_exchange(exc, amount / exc['amount'])
+                        wurst.rescale_exchange(exc, amount / exc['amount'])
 
             changes[ds['code']].update( {('updated exchanges', k) :v for k,v in get_exchange_amounts(ds).items()})
 
