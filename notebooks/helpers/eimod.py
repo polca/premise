@@ -207,9 +207,6 @@ remind_electricity_market_labels = {
 rename_remind_electricity_market_labels = {v:k for k, v in remind_electricity_market_labels.items()}
 
 
-# In[69]:
-
-
 def get_remind_markets(remind_data, year, drop_hydrogen=True):
     if year < 2005 or year >2150:
         print('year not valid, must be between 2005 and 2150')
@@ -233,9 +230,6 @@ def get_remind_markets(remind_data, year, drop_hydrogen=True):
 
 
 # ## Define technology matching between remind and ecoinvent
-
-# In[70]:
-
 
 available_electricity_generating_technologies={
 
@@ -316,9 +310,6 @@ available_electricity_generating_technologies={
 
 # ## Functions for modifying ecoinvent electricity markets
 
-# In[71]:
-
-
 electricity_market_filter_high_voltage= [ws.contains('name', 'market for electricity, high voltage'),
                                 ws.doesnt_contain_any('name', ['aluminium industry','internal use in coal mining'])]
 
@@ -326,9 +317,6 @@ electricity_market_filter_medium_voltage= [ws.contains('name', 'market for elect
                                 ws.doesnt_contain_any('name', ['aluminium industry','electricity, from municipal waste incineration'])]
 
 electricity_market_filter_low_voltage= [ws.contains('name', 'market for electricity, low voltage')]
-
-
-# In[72]:
 
 
 def delete_electricity_inputs_from_market(ds):
@@ -340,16 +328,10 @@ def delete_electricity_inputs_from_market(ds):
                                                                            ws.contains('name', 'electricity voltage transformation')])])]
 
 
-# In[73]:
-
-
 def find_average_mix(df):
     #This function considers that there might be several remind regions that match the ecoinvent region. This function returns the average mix across all regions.
     #note that this function doesn't do a weighted average based on electricity production, but rather treats all regions equally.
     return df.mean(axis=1).divide(df.mean(axis=1).sum())
-
-
-# In[74]:
 
 
 def find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(tech, location, db):
@@ -361,9 +343,6 @@ def find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(tech, locatio
         try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in available_electricity_generating_technologies[tech]]),
                                             ws.equals('location', ecoinvent_to_remind_locations(location)), ws.equals('unit', 'kilowatt hour')])]
         except: return []
-
-
-# In[75]:
 
 
 def find_other_ecoinvent_regions_in_remind_region(loc):
@@ -387,9 +366,6 @@ def find_other_ecoinvent_regions_in_remind_region(loc):
     return set(result)
 
 
-# In[76]:
-
-
 def find_ecoinvent_electricity_datasets_in_remind_location(tech, location, db):
     try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in available_electricity_generating_technologies[tech]]),
                                             ws.either(*[ws.equals('location', loc) for loc in find_other_ecoinvent_regions_in_remind_region(location)]),
@@ -398,14 +374,8 @@ def find_ecoinvent_electricity_datasets_in_remind_location(tech, location, db):
     except: return []
 
 
-# In[77]:
-
-
 def find_ecoinvent_electricity_datasets_in_all_locations(tech, db):
        return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in available_electricity_generating_technologies[tech]]),ws.equals('unit', 'kilowatt hour')])]
-
-
-# In[78]:
 
 
 def add_new_datasets_to_electricity_market(ds, db, remind_electricity_market_df, year):
@@ -475,9 +445,6 @@ def add_new_datasets_to_electricity_market(ds, db, remind_electricity_market_df,
     return
 
 
-# In[79]:
-
-
 def update_electricity_markets(db, year, remind_data):
 
     #import the remind market mix from the remind result files:
@@ -503,9 +470,6 @@ def update_electricity_markets(db, year, remind_data):
 # # Modify Fossil Electricity Generation Technologies
 
 # ## get remind technology efficiencies
-
-# In[80]:
-
 
 def get_remind_fossil_electricity_efficiency(remind_data, year, technology):
 
@@ -558,9 +522,6 @@ def get_remind_fossil_electricity_efficiency(remind_data, year, technology):
 
 # ## get ecoinvent efficiencies
 
-# In[81]:
-
-
 def find_ecoinvent_coal_efficiency(ds):
     # Nearly all coal power plant datasets have the efficiency as a parameter.
     # If this isn't available, we back calculate it using the amount of coal used and
@@ -588,9 +549,6 @@ def find_ecoinvent_coal_efficiency(ds):
     ds['parameters']['efficiency'] = ws.reference_product(ds)['amount'] / energy_in
     #print(ds['parameters']['efficiency'])
     return ws.reference_product(ds)['amount'] / energy_in
-
-
-# In[82]:
 
 
 def find_ecoinvent_gas_efficiency(ds):
@@ -624,9 +582,6 @@ def find_ecoinvent_gas_efficiency(ds):
     return ws.reference_product(ds)['amount'] / energy_in
 
 
-# In[83]:
-
-
 def find_ecoinvent_oil_efficiency(ds):
 
     #Nearly all oil power plant datasets have the efficiency as a parameter. If this isn't available, we use global average values to calculate it.
@@ -647,9 +602,6 @@ def find_ecoinvent_oil_efficiency(ds):
     return ws.reference_product(ds)['amount'] /energy_in
 
 
-# In[84]:
-
-
 def find_ecoinvent_biomass_efficiency(ds):
     #Nearly all power plant datasets have the efficiency as a parameter. If this isn't available, we excl.
     try: return ds['parameters']['efficiency_electrical']
@@ -667,9 +619,6 @@ def find_ecoinvent_biomass_efficiency(ds):
     return 0
 
 
-# In[85]:
-
-
 def update_ecoinvent_efficiency_parameter(ds, scaling_factor):
     parameters = ds['parameters']
     possibles = ['efficiency', 'efficiency_oil_country', 'efficiency_electrical']
@@ -683,9 +632,6 @@ def update_ecoinvent_efficiency_parameter(ds, scaling_factor):
 
 
 # ## Find efficiency scaling factors:
-
-# In[86]:
-
 
 def find_coal_efficiency_scaling_factor(ds, year, remind_efficiency, agg_func=np.average):
     #input a coal electricity dataset and year. We look up the efficiency for this region and year from the remind model and return the scaling factor by which to multiply all efficiency dependent exchanges.
@@ -721,9 +667,6 @@ def find_biomass_efficiency_scaling_factor(ds, year, remind_efficiency, agg_func
 
 
 # ## Get remind emissions
-
-# In[87]:
-
 
 def get_emission_factors(scenario = "SSP2"):
     file_name = os.path.join("../data", "GAINS emission factors.csv")
@@ -771,9 +714,6 @@ def get_remind_emissions(remind_emissions_factors, year, region, tech):
 
 
 # ## Modify ecoinvent fossil electricity generation technologies
-
-# In[88]:
-
 
 remind_air_pollutants = { # for now we don't have any emissions data from remind, so we scale everything by efficiency.
     'Sulfur dioxide': 'SO2',
@@ -919,9 +859,6 @@ def update_electricity_datasets_with_remind_data(
 
 # # Modifying Carma datasets
 
-# In[90]:
-
-
 carma_electricity_ds_name_dict = {
  'Electricity, at BIGCC power plant 450MW, no CCS/2025': 'Biomass IGCC',
 
@@ -939,9 +876,6 @@ carma_electricity_ds_name_dict = {
 
  'Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m/2025': 'Gas CCS',
  'Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025': 'Gas CCS'}
-
-
-# In[91]:
 
 
 def modify_all_carma_electricity_datasets(db, remind_data, year, update_efficiency = True, update_emissions = True):
@@ -1018,9 +952,6 @@ def modify_carma_BIGCC_efficiency(ds, remind_efficiency):
     for exc in ws.technosphere(ds):
         exc['amount'] = exc['amount']*old_efficiency/remind_efficiency
         return
-
-
-# In[94]:
 
 
 def modify_standard_carma_dataset_efficiency(ds, remind_efficiency):
