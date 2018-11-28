@@ -13,5 +13,18 @@ The LCA database ecoinvent, version 3.5, is used in this project. This is commer
 
 ### Input Files
 
-... will be put online asap. 
+The following files are missing from the repository at the moment because the legal situation is not clear:
+```
+REMIND scenario data:
+
+./data/Remind output files/BAU.mif
+./data/Remind output files/RCP37.mif
+./data/Remind output files/RCP26.mif
+
+GAINS emission factors:
+
+./data/GAINS emission factors.csv
+```
+
+These files will be put online asap. 
 
