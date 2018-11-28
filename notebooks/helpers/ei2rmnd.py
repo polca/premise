@@ -9,14 +9,18 @@ from helpers.eimod import geomatcher
 from helpers import activitymaps
 
 
-def rmnd_bioflows(region, scenario="BAU", year=2030, tech_primers={}, double_counting=False):
+def rmnd_bioflows(techmap, region, scenario="BAU", year=2030, double_counting=False):
     """ Extract bioflows for the REMIND electricity sector in a REMIND region.
 
-    In this version, for every REMIND technology, we exclude all other technologies
-    when performing the LCA to avoid double counting.
+    Args:
+      `techmap`: maps REMIND technolgies to activity names for which
+        the biosphere flows are calculated.
+      `region`, `scenario`, `year`: REMIND output specifications.
+      `double_counting`: if `False`, exclude all other technologies
+        when performing the LCA to avoid double counting.
 
-    A dict with primers {x: y} can be given to specify ecoinvent technology y to represent
-    REMIND technology x.
+    Returns:
+      A pandas dataframe with the the REMIND tech and biosphere flows as multi-index.
     """
     eidb_name = get_REMIND_database_name(scenario, year)
     eidb = bw.Database(eidb_name)
@@ -31,8 +35,8 @@ def rmnd_bioflows(region, scenario="BAU", year=2030, tech_primers={}, double_cou
     # populate activity dictionary
     print("Collecting ecoinvent activities:")
     for tech, act_list in progressbar(
-        activitymaps.powerplants.items(),
-        prefix="Collecting ecoinvent activities: "):
+            techmap.items,
+            prefix="Collecting ecoinvent activities: "):
 
         actvts_by_tech[tech] = find_activities_by_name(act_list, eidb)
 
