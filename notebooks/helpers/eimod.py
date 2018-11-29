@@ -10,6 +10,7 @@ from wurst.ecoinvent.electricity_markets import \
 from bw2data import Database
 
 import os.path
+from helper import activitymaps
 
 ## Functions to clean up Wurst import and additional technologies
 def fix_unset_technosphere_and_production_exchange_locations(db, matching_fields=('name', 'unit')):
@@ -230,86 +231,6 @@ def get_remind_markets(remind_data, year, drop_hydrogen=True):
         print('Excluding hydrogen from electricity markets.\nHydrogen had a maximum share of '+ str(round(result.loc['Hydrogen'].max() * 100, 2)) + ' %')
         return result.drop('Hydrogen', axis = 0).divide(result.drop('Hydrogen', axis = 0).sum())
 
-
-# ## Define technology matching between remind and ecoinvent
-
-available_electricity_generating_technologies={
-
-    #From Carma project
-    'Biomass IGCC CCS':['Electricity, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m/2025',
-                    'Electricity, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m/2025',
-                    'Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025'],
-
-    #From Carma project
-    'Biomass IGCC': ['Electricity, at BIGCC power plant 450MW, no CCS/2025'],
-
-
-    #From Carma project
-    'Coal IGCC':['Electricity, at power plant/hard coal, IGCC, no CCS/2025',
-                'Electricity, at power plant/lignite, IGCC, no CCS/2025'],
-
-    'Coal IGCC CCS':['Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025',
-                      'Electricity, at power plant/lignite, pre, pipeline 200km, storage 1000m/2025',],
-
-    #From Carma project
-     'Coal PC CCS':[ 'Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m/2025',
-                 'Electricity, at power plant/lignite, post, pipeline 200km, storage 1000m/2025'],
-
-    #From Carma project
-    'Gas CCS':['Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025',
-                        'Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m/2025'],
-
-    # only Biomass CHP available
-    'Biomass CHP':['heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014',
-                    'heat and power co-generation, wood chips, 6667 kW',
-                    'heat and power co-generation, biogas, gas engine'],
-
-    'Coal PC':['electricity production, hard coal',
-                'electricity production, lignite',
-              'electricity production, hard coal, conventional',
-              'electricity production, hard coal, supercritical'],
-
-    'Coal CHP': ['heat and power co-generation, hard coal',
-                'heat and power co-generation, lignite'],
-
-
-    'Gas OC':['electricity production, natural gas, conventional power plant'],
-
-    'Gas CC': ['electricity production, natural gas, combined cycle power plant'],
-
-    'Gas CHP': ['heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical',
-            'heat and power co-generation, natural gas, conventional power plant, 100MW electrical'],
-
-    'Geothermal':['electricity production, deep geothermal'],
-
-    'Hydro':['electricity production, hydro, reservoir, alpine region',
-            'electricity production, hydro, reservoir, non-alpine region',
-            'electricity production, hydro, reservoir, tropical region',
-            'electricity production, hydro, run-of-river'],
-
-    'Hydrogen':[],
-
-    'Nuclear':['electricity production, nuclear, boiling water reactor',
-                'electricity production, nuclear, pressure water reactor, heavy water moderated',
-                'electricity production, nuclear, pressure water reactor'],
-
-    'Oil':['electricity production, oil',
-          'heat and power co-generation, oil'],
-
-    'Solar CSP': ['electricity production, solar thermal parabolic trough, 50 MW',
-               'electricity production, solar tower power plant, 20 MW'],
-
-    'Solar PV':['electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted',
-                    'electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted',
-                    'electricity production, photovoltaic, 570kWp open ground installation, multi-Si'],
-
-    'Wind':['electricity production, wind, <1MW turbine, onshore',
-            'electricity production, wind, 1-3MW turbine, onshore',
-            'electricity production, wind, >3MW turbine, onshore',
-            'electricity production, wind, 1-3MW turbine, offshore']
-}
-
-
 # ## Functions for modifying ecoinvent electricity markets
 
 electricity_market_filter_high_voltage= [ws.contains('name', 'market for electricity, high voltage'),
@@ -338,11 +259,11 @@ def find_average_mix(df):
 
 def find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(tech, location, db):
     #first try ecoinvent location code:
-    try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in available_electricity_generating_technologies[tech]]),
+    try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps.powerplants[tech]]),
                                             ws.equals('location', location), ws.equals('unit', 'kilowatt hour')])]
     #otherwise try remind location code (for new datasets)
     except:
-        try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in available_electricity_generating_technologies[tech]]),
+        try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps.powerplants[tech]]),
                                             ws.equals('location', ecoinvent_to_remind_locations(location)), ws.equals('unit', 'kilowatt hour')])]
         except: return []
 
@@ -369,7 +290,7 @@ def find_other_ecoinvent_regions_in_remind_region(loc):
 
 
 def find_ecoinvent_electricity_datasets_in_remind_location(tech, location, db):
-    try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in available_electricity_generating_technologies[tech]]),
+    try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps.powerplants[tech]]),
                                             ws.either(*[ws.equals('location', loc) for loc in find_other_ecoinvent_regions_in_remind_region(location)]),
                                         ws.equals('unit', 'kilowatt hour')
                           ])]
@@ -377,7 +298,7 @@ def find_ecoinvent_electricity_datasets_in_remind_location(tech, location, db):
 
 
 def find_ecoinvent_electricity_datasets_in_all_locations(tech, db):
-       return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in available_electricity_generating_technologies[tech]]),ws.equals('unit', 'kilowatt hour')])]
+       return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps.powerplants[tech]]),ws.equals('unit', 'kilowatt hour')])]
 
 
 def add_new_datasets_to_electricity_market(ds, db, remind_electricity_market_df, year):
