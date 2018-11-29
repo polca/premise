@@ -8,7 +8,7 @@ from wurst.ecoinvent.electricity_markets import \
     empty_low_voltage_markets, empty_high_voltage_markets, empty_medium_voltage_markets
 
 from bw2data import Database
-
+from wurst.ecoinvent import filters
 import os.path
 
 ## Functions to clean up Wurst import and additional technologies
@@ -735,15 +735,18 @@ no_imports = [ws.exclude(ws.contains('name', 'import'))]
 generic_excludes = no_al + no_ccs + no_markets
 
 
-def get_remind_mapping():
-    from wurst.ecoinvent import filters
-    #there are some problems with the Wurst filter functions - we create a quick fix here:
-    gas_open_cycle_electricity = [
+#there are some problems with the Wurst filter functions - we create a quick fix here:
+gas_open_cycle_electricity = [
         ws.equals('name', 'electricity production, natural gas, conventional power plant')]
-    biomass_chp_electricity = [
+
+
+biomass_chp_electricity = [
         ws.either(ws.contains('name', ' wood'), ws.contains('name', 'bio')),
         ws.equals('unit', 'kilowatt hour'),
         ws.contains('name', 'heat and power co-generation')]
+
+def get_remind_mapping():
+   
     return {
         'Coal PC': {
             'eff_func': find_coal_efficiency_scaling_factor,
