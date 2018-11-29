@@ -760,7 +760,7 @@ def get_remind_mapping():
         },
         'Gas OC': {
             'eff_func': find_gas_efficiency_scaling_factor,
-            'technology filters': filters.gas_open_cycle_electricity + generic_excludes + no_imports,
+            'technology filters': gas_open_cycle_electricity + generic_excludes + no_imports,
             'technosphere excludes': [],  # which technosphere exchanges to not change at all
         },
         'Gas CC': {
@@ -788,7 +788,7 @@ def get_remind_mapping():
         #},
         'Biomass CHP': {
             'eff_func': find_biomass_efficiency_scaling_factor,
-            'technology filters': filters.biomass_chp_electricity + generic_excludes,
+            'technology filters': biomass_chp_electricity + generic_excludes,
             'technosphere excludes': [],# which technosphere exchanges to not change at all
         },
         #    'Biomass CC': {
