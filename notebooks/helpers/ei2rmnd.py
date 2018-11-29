@@ -1,7 +1,91 @@
 """Construct LCAs for REMIND technologies and regions."""
 
+import pandas as pd
+
+from progressbar import progressbar
+
 import brightway2 as bw
 from helpers.eimod import geomatcher
+from helpers import activitymaps
+
+
+def rmnd_bioflows(techmap, region, scenario="BAU", year=2030, double_counting=False):
+    """ Extract bioflows for the REMIND electricity sector in a REMIND region.
+
+    Args:
+      `techmap`: maps REMIND technolgies to activity names for which
+        the biosphere flows are calculated.
+      `region`, `scenario`, `year`: REMIND output specifications.
+      `double_counting`: if `False`, exclude all other technologies
+        when performing the LCA to avoid double counting.
+
+    Returns:
+      A pandas dataframe with the the REMIND tech and biosphere flows as multi-index.
+    """
+    eidb_name = get_REMIND_database_name(scenario, year)
+    eidb = bw.Database(eidb_name)
+
+    result = {}
+    bio_names = []
+    regions = ei_locations_in_remind_region(region)
+    print("Found following regions for {}: {}".format(region, regions))
+
+    actvts_by_tech = {}
+
+    # populate activity dictionary
+    print("Collecting ecoinvent activities:")
+    for tech, act_list in progressbar(
+            techmap.items,
+            prefix="Collecting ecoinvent activities: "):
+
+        actvts_by_tech[tech] = find_activities_by_name(act_list, eidb)
+
+    # flat activity list (needed for excludes)
+    all_actvts = [
+        act
+        for act_lst in actvts_by_tech.values()
+        for act in act_lst]
+
+    for tech, all_tech_actvts in actvts_by_tech.items():
+        print("Processing RMND tech `{}`".format(tech))
+
+        # region specific techs that are adressed
+        actvts = [act for act in all_tech_actvts if act["location"] in regions]
+
+        if len(actvts) == 0:
+            print("No activities found for {}".format(tech))
+            continue
+
+        demand = 1.
+
+        # CHP plants are a problem, not only because they provide energy in megajoule units
+        # find out which part is electric energy
+        if "CHP" in tech:
+            demand = 1./3.6
+
+        # normal multi-region and multi-tech lca
+        lca = multi_lca_average(actvts, demand)
+
+        if not double_counting:
+            # ... and remove the double-counting
+            lca = remove_double_counting(lca, actvts, all_actvts)
+
+        # bionames are only generated once. This takes some time.
+        # probably these never change...
+        if len(bio_names) != lca.inventory.shape[0]:
+            print("Bionames changed, old length: {}".format(len(bio_names)))
+            bio_names = [bw.get_activity(key)["name"] for key in lca.biosphere_dict]
+            print("new length: {}".format(len(bio_names)))
+
+        # flows are aggregated by the resp. material
+        # we do not care *where* the material flows to
+        result[tech] = pd.DataFrame.from_dict({
+            "flow": bio_names,
+            "amount": [lca.inventory[n, :].sum() for n in range(len(bio_names))]
+        }).groupby("flow").agg({"amount": sum})
+
+    return pd.concat(result)
+
 
 def remove_double_counting(lca, activities_of_interest, all_activities):
     """Modify the LCA inventory by excluding ``all_activities`` that are not
@@ -44,7 +128,11 @@ def multi_lca_average(actvts, demand=1.):
 
 
 def find_activities_by_name(techname, db):
-    return [act for act in db if act["name"] == techname]
+    """Provide string or list of strings to search for activities (exact matches)."""
+    if type(techname) in [set, list]:
+        return [act for act in db if act["name"] in techname]
+    else:
+        return [act for act in db if act["name"] == techname]
 
 
 def find_activities_in_regions(techname, regions, db):
@@ -148,93 +236,6 @@ def get_REMIND_database_name(scenario, year):
     return "_".join(["ecoinvent", "Remind", scenario, str(year)])
 
 
-def act_fltr(db, fltr={}, mask={}, filter_exact=False, mask_exact=False):
-    """Filter `db` for activities matching field contents given by `fltr` excluding strings in `mask`.
-
-    Args:
-      `db`: brightway database object.
-      `fltr`: string, list of strings or dictionary.
-        If a string is provided, it is used to match the name field from the start (*startswith*).
-        If a list is provided, all strings in the lists are used and results are joined (*or*).
-        A dict can be given in the form <fieldname>: <str> to filter for <str> in <fieldname>.
-      `mask`: used in the same way as `fltr`, but filters add up with each other (*and*).
-      `filter_exact` and `mask_exact`: boolean, set `True` to only allow for exact matches.
-
-    Returns:
-      list of brightway activities
-    """
-    result = []
-
-    # default field is name
-    if type(fltr) == list or type(fltr) == str:
-        fltr = {
-            "name": fltr
-        }
-    if type(mask) == list or type(mask) == str:
-        mask = {
-            "name": mask
-        }
-
-    def like(a, b):
-        if filter_exact:
-            return a == b
-        else:
-            return a.startswith(b)
-
-    def notlike(a, b):
-        if mask_exact:
-            return a != b
-        else:
-            return b not in a
-
-    assert len(fltr) > 0, "Filter dict must not be empty."
-    for field in fltr:
-        condition = fltr[field]
-        if type(condition) == list:
-            for el in condition:
-                # this is effectively connecting the statements by *or*
-                result.extend([act for act in db if like(act[field], el)])
-        else:
-            result.extend([act for act in db if like(act[field], condition)])
-
-    for field in mask:
-        condition = mask[field]
-        if type(condition) == list:
-            for el in condition:
-                # this is effectively connecting the statements by *and*
-                result = [act for act in result if notlike(act[field], el)]
-        else:
-            result = [act for act in result if notlike(act[field], condition)]
-    return result
-
-
-techno_filters = {
-    "steel": {
-        "fltr": "market for steel,",
-        "mask": "hot rolled"},
-    "concrete": {"fltr": "market for concrete,"},
-    "copper": {
-        "fltr": "market for copper",
-        "filter_exact": True},
-    "aluminium": {
-        "fltr": ["market for aluminium, primary",
-                 "market for aluminium alloy,"]},
-    "electricity": {"fltr": "market for electricity"},
-    "gas": {
-        "fltr": "market for natural gas,",
-        "mask": ["network", "burned"]},
-    "diesel": {
-        "fltr": "market for diesel",
-        "mask": ["burned", "electric"]},
-    "petrol": {
-        "fltr": "market for petrol,",
-        "mask": "burned"},
-    "freight": {"fltr": "market for transport, freight"},
-    "cement": {"fltr": "market for cement,"},
-    "heat": {"fltr": "market for heat,"}
-}
-
-
 def add_REMIND_technosphere_flows(reset_flows=False):
     """Add material flows within ecoinvent as biosphere endpoints to account
     for these flows in REMIND scenarios.
@@ -244,13 +245,20 @@ def add_REMIND_technosphere_flows(reset_flows=False):
     """
 
     available_tech_markets = []
+
+    inv_name = "Inventory flows"
+    inv_db = bw.Database(inv_name)
+    if inv_name not in bw.databases:
+        inv_db.register()
+
     for db in bw.databases:
         if db.startswith("ecoinvent_Remind_"):
             print("Search tech markets for {}.".format(db))
             eidb = bw.Database(db)
 
-            techno_markets = {
-                tech: act_fltr(eidb, **conditions) for tech, conditions in techno_filters.items()}
+            techno_markets = {}
+            for tech, namelist in progressbar(activitymaps.materials.items()):
+                techno_markets[tech] = find_activities_by_name(namelist, eidb)
 
             print("Check for consistent units across technologies.")
             for kind, actlst in techno_markets.items():
@@ -260,29 +268,30 @@ def add_REMIND_technosphere_flows(reset_flows=False):
                         raise("Units are not aligned!")
 
             print("Add inventory flows to database.")
-            inventory = bw.Database("Inventory flows")
+
             for kind in techno_markets:
-                if not [act for act in inventory if act["name"] == kind]:
-                    inventory.new_activity(kind, **{
+                if not [act for act in inv_db if act["name"] == kind]:
+                    inv_db.new_activity(kind, **{
                         "name": kind,
                         "unit": techno_markets[kind][0]["unit"],
-                        "type": "inventory flow",
+                        "type": "biosphere",
                         "categories": ("inventory",),
-                    })
+                    }).save()
                 else:
                     print("Inventory flows already present.")
                     # let's assume they are all there
                     break
+            inv_db.process()
 
             print("Add flows to activities.")
             for kind, actlst in techno_markets.items():
                 for act in actlst:
                     # clear exsiting exchanges
                     if reset_flows:
-                        [ex.delete() for ex in act.exchanges() if ex["input"] == ("Inventory flows", kind)]
-                    if not [ex for ex in act.exchanges() if ex["input"] == ("Inventory flows", kind)]:
+                        [ex.delete() for ex in act.exchanges() if ex["input"] == (inv_name, kind)]
+                    if not [ex for ex in act.exchanges() if ex["input"] == (inv_name, kind)]:
                         act.new_exchange(**{
-                            'input': ('Inventory flows', kind),
+                            'input': (inv_name, kind),
                             'type': 'biosphere',
                             'amount': 1
                         }).save()
