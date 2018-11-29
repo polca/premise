@@ -7,6 +7,8 @@ from wurst import searching as ws
 from wurst.ecoinvent.electricity_markets import \
     empty_low_voltage_markets, empty_high_voltage_markets, empty_medium_voltage_markets
 
+from bw2data import Database
+
 import os.path
 
 ## Functions to clean up Wurst import and additional technologies
@@ -876,6 +878,43 @@ carma_electricity_ds_name_dict = {
 
  'Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m/2025': 'Gas CCS',
  'Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025': 'Gas CCS'}
+
+carma_biomass_ccs_dataset_names =[
+ '100% SNG, burned in CC plant, truck 25km, post, pipeline 200km, storage 1000m/2025',
+ '100% SNG, burned in CC plant, truck 25km, post, pipeline 400km, storage 3000m/2025',
+ 'Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m/2025',
+ 'Syngas, from biomass gasification, pre, pipeline 200km, storage 1000m/2025',
+ 'Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m/2025',
+ 'Hydrogen, from steam reforming of biomassgas, at reforming plant, pre, pipeline 200km, storage 1000m/2025',
+ 'Syngas, from biomass gasification, pre, pipeline 400km, storage 3000m/2025']
+
+
+
+def add_negative_CO2_flows_for_biomass_CCS(db):
+    """All CO2 capture and storage in the Carma datasets is assumed to be 90% efficient. 
+    Thus, we can simply find out what the new CO2 emission is and then we know how much gets stored in the ground.
+    It's very important that we ONLY do this for biomass CCS plants, as only they will have negative emissions!
+    """
+    
+    carbon_to_ccs = [x for x in Database("biosphere3") if 'CO2 to geological storage, non-fossil' in x['name']][0]
+    
+    
+    for ds in ws.get_many(db, *[ws.either(*[ws.equals('name', dataset_name) for dataset_name in carma_biomass_ccs_dataset_names])]):
+        for exc in ws.biosphere(ds):
+            if 'Carbon dioxide, non-fossil' == exc['name']:
+                new_exc = exc.copy()
+                break
+        if 'Carbon dioxide, non-fossil' not in exc['name']:
+            print('no CO2 exchange found in dataset: {}'.format(ds['name']))
+            print([(exc['name'], exc['amount']) for exc in ds['exchanges'] if exc['type'] == 'biosphere'])
+            return
+              
+        new_exc['input'] = (carbon_to_ccs['database'], carbon_to_ccs['code'])
+        new_exc['name'] = carbon_to_ccs['name']
+        new_exc['categories'] = carbon_to_ccs['categories']
+        wurst.rescale_exchange(new_exc, (0.9 / 0.1), remove_uncertainty = True)
+        ds['exchanges'].append(new_exc)
+    return
 
 
 def modify_all_carma_electricity_datasets(db, remind_data, year, update_efficiency = True, update_emissions = True):
