@@ -10,7 +10,7 @@ from wurst.ecoinvent.electricity_markets import \
 from bw2data import Database
 from wurst.ecoinvent import filters
 import os.path
-from helper import activitymaps
+from helpers import activitymaps
 
 ## Functions to clean up Wurst import and additional technologies
 def fix_unset_technosphere_and_production_exchange_locations(db, matching_fields=('name', 'unit')):
