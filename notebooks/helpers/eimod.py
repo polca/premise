@@ -119,18 +119,23 @@ def get_remind_geomatcher():
 geomatcher = get_remind_geomatcher()
 
 
-def ecoinvent_to_remind_locations(loc):
+def ecoinvent_to_remind_locations(loc, fixnames=True):
     """Find REMIND locations for a valid Geomatcher location."""
     if loc == 'RoW':
         loc = 'GLO'
 
-    if loc in fix_names.keys():
-        loc = fix_names[loc]
+    if fixnames:
+        if loc in fix_names.keys():
+            loc = fix_names[loc]
 
     if loc == 'IAI Area, Russia & RER w/o EU27 & EFTA':
         loc = 'RU'
 
-    remind_loc = [r[1] for r in geomatcher.intersects(loc) if r[0]=='REMIND']
+    try:
+        remind_loc = [r[1] for r in geomatcher.intersects(loc) if r[0] == 'REMIND']
+    except KeyError as e:
+        print("Can't find location {} using the geomatcher.".format(loc))
+        remind_loc = ""
 
     ei_35_new_locs = {'XK': ['NEU']}
 
