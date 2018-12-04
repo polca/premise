@@ -149,9 +149,13 @@ def get_remind_data(scenario_name):
     """Reads the REMIND csv result file and returns a dataframe 
     containing all the information.
     """
-    file_name = os.path.join("../data/Remind output files", scenario_name + ".mif")
+    from glob import glob
+    file_name = os.path.join("../data/Remind output files", scenario_name + "_*.mif")
+    files = glob(file_name)
+    if len(files) != 1:
+        raise FileExistsError("No or more then one file found for {}.".format(file_name))
     df = pd.read_csv(
-        file_name,sep=';',
+        files[0], sep=';',
         index_col=['Region', 'Variable', 'Unit']
     ).drop(columns=['Model', 'Scenario', 'Unnamed: 24'])
     df.columns = df.columns.astype(int)
