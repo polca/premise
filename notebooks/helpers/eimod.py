@@ -1,12 +1,13 @@
 import pandas as pd
 import numpy as np
 
+import pyprind
 from constructive_geometries import Geomatcher
 import wurst
 from wurst import searching as ws
 from wurst.ecoinvent.electricity_markets import \
     empty_low_voltage_markets, empty_high_voltage_markets, empty_medium_voltage_markets
-
+import brightway2 as bw
 from bw2data import Database
 from wurst.ecoinvent import filters
 import os.path
@@ -941,3 +942,73 @@ def modify_standard_carma_dataset_efficiency(ds, remind_efficiency):
         exc['amount'] = 3.6/remind_efficiency
 
     return
+
+def modify_electricity_generation_datasets(database_dict):
+    """Modify all ecoinvent processes that are mapped to a REMIND technology
+    for all scenarios specified in the database_dict.
+    """
+    for key in pyprind.prog_bar(database_dict.keys()):
+
+        db = wurst.extract_brightway2_databases(['Carma CCS', 'ecoinvent_3.5'])
+        wurst.default_global_location(db)
+        fix_unset_technosphere_and_production_exchange_locations(db)
+        #set_global_location_for_additional_datasets(db)
+        remove_nones(db)
+        rename_locations(db, fix_names)
+        add_negative_CO2_flows_for_biomass_CCS(db)
+
+        year = database_dict[key]['year']
+        scenario = database_dict[key]['scenario']
+        remind_data = get_remind_data(scenario)
+        print(key)
+
+        # Electricity generation datasets:
+        print('Changing ecoinvent electricity generation datasets')
+        technology_changes = update_electricity_datasets_with_remind_data(
+            db, remind_data, year,
+            agg_func=np.average,
+            update_efficiency=True,
+            update_emissions=True)
+
+        # Electricity markets:
+        print('Changing electricity Markets')
+        market_changes = update_electricity_markets(db, year, remind_data)
+
+        # Electricity generation datasets from project Carma
+        print('Changing Carma electricity datasets')
+        modify_all_carma_electricity_datasets(
+            db, remind_data, year,
+            update_efficiency=True,
+            update_emissions=True)
+
+        print('Saving changes to excel')
+        tech_df = pd.DataFrame.from_dict(technology_changes)
+        tech_df.index = pd.MultiIndex.from_tuples(tech_df.index)
+        tech_df = tech_df.T
+        tech_df = tech_df.set_index(
+            [('meta data', 'remind technology'),('meta data', 'name'),('meta data', 'location')],
+            drop=True).sort_index()
+        market_df = pd.DataFrame.from_dict(market_changes).T
+        market_df = market_df.set_index(
+            [('meta data', 'name'), ('meta data', 'location')],
+            drop=True).sort_index().T
+
+        writer = pd.ExcelWriter('electricity changes ' + str(year) + ' ' + scenario + '.xlsx')
+        market_df.to_excel(writer, sheet_name='markets')
+        for tech in tech_df.index.levels[0]:
+            tech_df \
+                .loc[tech] \
+                .dropna(how='all', axis=1) \
+                .swaplevel(i=0, j=1, axis=1) \
+                .T \
+                .to_excel(writer, sheet_name=tech)
+            writer.save()
+            del tech_df
+            del market_df
+            del writer
+
+        rename_locations(db, fix_names_back)
+        if key in bw.databases:
+            del bw.databases[key]
+
+        wurst.write_brightway2_database(db, key)
