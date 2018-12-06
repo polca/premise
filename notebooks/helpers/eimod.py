@@ -152,7 +152,7 @@ def ecoinvent_to_remind_locations(loc, fixnames=True):
 # # Import Remind data
 
 def get_remind_data(scenario_name):
-    """Reads the REMIND csv result file and returns a dataframe 
+    """Reads the REMIND csv result file and returns a dataframe
     containing all the information.
     """
     from glob import glob
@@ -677,7 +677,7 @@ biomass_chp_electricity = [
         ws.contains('name', 'heat and power co-generation')]
 
 def get_remind_mapping():
-   
+
     return {
         'Coal PC': {
             'eff_func': find_coal_efficiency_scaling_factor,
@@ -737,7 +737,7 @@ def update_electricity_datasets_with_remind_data(
         update_efficiency = True,
         update_emissions = True):
     """
-    This function modifies each ecoinvent coal, gas, 
+    This function modifies each ecoinvent coal, gas,
     oil and biomass dataset using data from the remind model.
     """
     print("Don't forget that we aren't modifying PM emissions!")
@@ -825,14 +825,14 @@ carma_biomass_ccs_dataset_names =[
 
 
 def add_negative_CO2_flows_for_biomass_CCS(db):
-    """All CO2 capture and storage in the Carma datasets is assumed to be 90% efficient. 
+    """All CO2 capture and storage in the Carma datasets is assumed to be 90% efficient.
     Thus, we can simply find out what the new CO2 emission is and then we know how much gets stored in the ground.
     It's very important that we ONLY do this for biomass CCS plants, as only they will have negative emissions!
     """
-    
+
     carbon_to_ccs = [x for x in Database("biosphere3") if 'CO2 to geological storage, non-fossil' in x['name']][0]
-    
-    
+
+
     for ds in ws.get_many(db, *[ws.either(*[ws.equals('name', dataset_name) for dataset_name in carma_biomass_ccs_dataset_names])]):
         for exc in ws.biosphere(ds):
             if 'Carbon dioxide, non-fossil' == exc['name']:
@@ -842,7 +842,7 @@ def add_negative_CO2_flows_for_biomass_CCS(db):
             print('no CO2 exchange found in dataset: {}'.format(ds['name']))
             print([(exc['name'], exc['amount']) for exc in ds['exchanges'] if exc['type'] == 'biosphere'])
             return
-              
+
         new_exc['input'] = (carbon_to_ccs['database'], carbon_to_ccs['code'])
         new_exc['name'] = carbon_to_ccs['name']
         new_exc['categories'] = carbon_to_ccs['categories']
@@ -885,8 +885,8 @@ def modify_all_carma_electricity_datasets(db, remind_data, year, update_efficien
 
 
 def modify_carma_dataset_emissions(db, ds, remind_emissions_factors, year, remind_technology):
-    """ The dataset passed to this function doesn't have the biosphere flows directly. 
-    Rather, it has an exchange (with unit MJ) that contains 
+    """ The dataset passed to this function doesn't have the biosphere flows directly.
+    Rather, it has an exchange (with unit MJ) that contains
     the biosphere flows per unit fuel input.
     """
 
@@ -920,7 +920,9 @@ def modify_carma_BIGCC_efficiency(ds, remind_efficiency):
     remind_locations = ecoinvent_to_remind_locations(ds['location'])
     remind_efficiency = np.average(remind_efficiency[remind_locations])
 
-    old_efficiency = 3.6/ws.get_one(ws.technosphere(ds), *[ws.contains('name', 'Hydrogen, from steam reforming')])['amount']
+    old_efficiency = 3.6 / ws.get_one(
+        ws.technosphere(ds),
+        *[ws.contains('name', 'Hydrogen, from steam reforming')])['amount']
 
     for exc in ws.technosphere(ds):
         exc['amount'] = exc['amount']*old_efficiency/remind_efficiency
@@ -929,19 +931,22 @@ def modify_carma_BIGCC_efficiency(ds, remind_efficiency):
 
 def modify_standard_carma_dataset_efficiency(ds, remind_efficiency):
     if 'Electricity, at BIGCC power plant 450MW' in ds['name']:
-        print("This function can't modify dataset: ",ds['name'], "It's got a different format.")
+        print("This function can't modify dataset {}. " +
+              "It's got a different format.".format(ds['name']))
         return
 
     remind_locations = ecoinvent_to_remind_locations(ds['location'])
     remind_efficiency = np.average(remind_efficiency[remind_locations])
 
-    #All other carma electricity datasets have a single exchange that is the combustion of a fuel in MJ.
-    #We can just scale this exchange and efficiency related changes will be done
+    # All other carma electricity datasets have a single exchange
+    # that is the combustion of a fuel in MJ.
+    # We can just scale this exchange and efficiency related changes will be done
 
     for exc in ws.technosphere(ds):
         exc['amount'] = 3.6/remind_efficiency
 
     return
+
 
 def modify_electricity_generation_datasets(database_dict):
     """Modify all ecoinvent processes that are mapped to a REMIND technology
@@ -952,7 +957,7 @@ def modify_electricity_generation_datasets(database_dict):
         db = wurst.extract_brightway2_databases(['Carma CCS', 'ecoinvent_3.5'])
         wurst.default_global_location(db)
         fix_unset_technosphere_and_production_exchange_locations(db)
-        #set_global_location_for_additional_datasets(db)
+
         remove_nones(db)
         rename_locations(db, fix_names)
         add_negative_CO2_flows_for_biomass_CCS(db)
@@ -986,7 +991,9 @@ def modify_electricity_generation_datasets(database_dict):
         tech_df.index = pd.MultiIndex.from_tuples(tech_df.index)
         tech_df = tech_df.T
         tech_df = tech_df.set_index(
-            [('meta data', 'remind technology'),('meta data', 'name'),('meta data', 'location')],
+            [('meta data', 'remind technology'),
+             ('meta data', 'name'),
+             ('meta data', 'location')],
             drop=True).sort_index()
         market_df = pd.DataFrame.from_dict(market_changes).T
         market_df = market_df.set_index(
@@ -1002,13 +1009,35 @@ def modify_electricity_generation_datasets(database_dict):
                 .swaplevel(i=0, j=1, axis=1) \
                 .T \
                 .to_excel(writer, sheet_name=tech)
-            writer.save()
-            del tech_df
-            del market_df
-            del writer
+        writer.save()
+        del tech_df
+        del market_df
+        del writer
 
         rename_locations(db, fix_names_back)
         if key in bw.databases:
             del bw.databases[key]
 
         wurst.write_brightway2_database(db, key)
+
+    print("Add ecoinvent version with all technolgies.")
+    key = 'ecoinvent_added_technologies'
+
+    if key not in bw.databases:
+
+        db = wurst.extract_brightway2_databases(['Carma CCS', 'ecoinvent_3.5'])
+        wurst.default_global_location(db)
+        fix_unset_technosphere_and_production_exchange_locations(db)
+
+        remove_nones(db)
+        rename_locations(db, fix_names)
+        add_negative_CO2_flows_for_biomass_CCS(db)
+
+        rename_locations(db, fix_names_back)
+        if key in bw.databases:
+            del bw.databases[key]
+
+        wurst.write_brightway2_database(db, key)
+
+    else:
+        print('Database already exists')
