@@ -13,6 +13,10 @@ from wurst.ecoinvent import filters
 import os.path
 from helpers import activitymaps
 
+DEFAULT_DATA_DIR = "../data"
+DEFAULT_EMI_FILE = os.path.join(DEFAULT_DATA_DIR, "GAINS emission factors.csv")
+DEFAULT_GAINS_MAPPING = os.path.join(DEFAULT_DATA_DIR, "GAINStoREMINDtechmap.csv")
+
 ## Functions to clean up Wurst import and additional technologies
 def fix_unset_technosphere_and_production_exchange_locations(db, matching_fields=('name', 'unit')):
     for ds in db:
@@ -99,10 +103,10 @@ def rename_locations(db, name_dict=fix_names):
                 exc['location'] = name_dict[exc['location']]
 
 
-def get_remind_geomatcher():
+def get_remind_geomatcher(mapping="../data/regionmappingH12.csv"):
     """Return geomatcher object which includes REMIND regions."""
 
-    regionmapping = pd.read_csv("../data/regionmappingH12.csv", sep=";")
+    regionmapping = pd.read_csv(mapping, sep=";")
     iso_2_rmnd = regionmapping.set_index("CountryCode").to_dict()["RegionCode"]
     rmnd_2_iso = regionmapping.groupby("RegionCode")["CountryCode"].apply(list).to_dict()
 
@@ -117,7 +121,10 @@ def get_remind_geomatcher():
     return geomatcher
 
 
-geomatcher = get_remind_geomatcher()
+def init(mapping="../data/regionmappingH12.csv"):
+    """Module initialization."""
+    global geomatcher
+    geomatcher = get_remind_geomatcher(mapping)
 
 
 def ecoinvent_to_remind_locations(loc, fixnames=True):
@@ -138,7 +145,7 @@ def ecoinvent_to_remind_locations(loc, fixnames=True):
         print("Can't find location {} using the geomatcher.".format(loc))
         remind_loc = ""
 
-    ei_35_new_locs = {'XK': ['NEU']}
+    ei_35_new_locs = {'XK': ['EUR']}
 
     if not remind_loc:
         if loc in ei_35_new_locs:
@@ -601,15 +608,17 @@ def find_biomass_efficiency_scaling_factor(ds, year, remind_efficiency, agg_func
 
 # ## Get remind emissions
 
-def get_emission_factors(scenario = "SSP2"):
-    file_name = os.path.join("../data", "GAINS emission factors.csv")
-    gains_emi = pd.read_csv(file_name, skiprows=4,
+def get_emission_factors(
+        scenario="SSP2",
+        fname=DEFAULT_EMI_FILE,
+        mappingfile=DEFAULT_GAINS_MAPPING):
+
+    gains_emi = pd.read_csv(fname, skiprows=4,
                             names=["year", "region", "GAINS", "pollutant", "scenario", "factor"])
     gains_emi["unit"] = "Mt/TWa"
     gains_emi = gains_emi[gains_emi.scenario == scenario]
 
-    file_name = os.path.join("../data", "GAINStoREMINDtechmap.csv")
-    sector_mapping = pd.read_csv(file_name).drop(["noef", "elasticity"], axis=1)
+    sector_mapping = pd.read_csv(mappingfile).drop(["noef", "elasticity"], axis=1)
 
     return gains_emi.join(sector_mapping.set_index("GAINS"), on="GAINS").dropna().drop(['scenario', 'REMIND'], axis=1).set_index(['year', 'region','GAINS', 'pollutant'])['factor'].unstack(level = [0,1,3]) /8760 #kg / kWh
 
@@ -735,7 +744,8 @@ def update_electricity_datasets_with_remind_data(
         db, remind_data, year,
         agg_func=np.average,
         update_efficiency = True,
-        update_emissions = True):
+        update_emissions = True,
+        emi_fname=DEFAULT_EMI_FILE):
     """
     This function modifies each ecoinvent coal, gas,
     oil and biomass dataset using data from the remind model.
@@ -748,7 +758,7 @@ def update_electricity_datasets_with_remind_data(
         print('Changing ', remind_technology)
         md = remind_mapping[remind_technology]
         remind_efficiency = get_remind_fossil_electricity_efficiency(remind_data, year, remind_technology)
-        remind_emissions_factors = get_emission_factors()
+        remind_emissions_factors = get_emission_factors(fname=emi_fname)
 
         for ds in ws.get_many(db, *md['technology filters']):
             changes[ds['code']]={}
@@ -851,8 +861,14 @@ def add_negative_CO2_flows_for_biomass_CCS(db):
     return
 
 
-def modify_all_carma_electricity_datasets(db, remind_data, year, update_efficiency = True, update_emissions = True):
-    remind_emissions_factors = get_emission_factors()
+def modify_all_carma_electricity_datasets(
+        db,
+        remind_data,
+        year,
+        update_efficiency=True,
+        update_emissions=True,
+        emi_fname=DEFAULT_EMI_FILE):
+    remind_emissions_factors = get_emission_factors(fname=emi_fname)
     changes ={}
 
     for name, remind_technology in carma_electricity_ds_name_dict.items():
@@ -948,10 +964,15 @@ def modify_standard_carma_dataset_efficiency(ds, remind_efficiency):
     return
 
 
-def modify_electricity_generation_datasets(database_dict):
+def modify_electricity_generation_datasets(
+        database_dict,
+        emi_fname=DEFAULT_EMI_FILE,
+        write_changeset=False):
+
     """Modify all ecoinvent processes that are mapped to a REMIND technology
     for all scenarios specified in the database_dict.
     """
+
     for key in pyprind.prog_bar(database_dict.keys()):
 
         db = wurst.extract_brightway2_databases(['Carma CCS', 'ecoinvent_3.5'])
@@ -973,7 +994,8 @@ def modify_electricity_generation_datasets(database_dict):
             db, remind_data, year,
             agg_func=np.average,
             update_efficiency=True,
-            update_emissions=True)
+            update_emissions=True,
+            emi_fname=emi_fname)
 
         # Electricity markets:
         print('Changing electricity Markets')
@@ -984,7 +1006,8 @@ def modify_electricity_generation_datasets(database_dict):
         modify_all_carma_electricity_datasets(
             db, remind_data, year,
             update_efficiency=True,
-            update_emissions=True)
+            update_emissions=True,
+            emi_fname=emi_fname)
 
         print('Saving changes to excel')
         tech_df = pd.DataFrame.from_dict(technology_changes)
@@ -1000,16 +1023,17 @@ def modify_electricity_generation_datasets(database_dict):
             [('meta data', 'name'), ('meta data', 'location')],
             drop=True).sort_index().T
 
-        writer = pd.ExcelWriter('electricity changes ' + str(year) + ' ' + scenario + '.xlsx')
-        market_df.to_excel(writer, sheet_name='markets')
-        for tech in tech_df.index.levels[0]:
-            tech_df \
-                .loc[tech] \
-                .dropna(how='all', axis=1) \
-                .swaplevel(i=0, j=1, axis=1) \
-                .T \
-                .to_excel(writer, sheet_name=tech)
-        writer.save()
+        if write_changeset:
+            writer = pd.ExcelWriter('electricity changes ' + str(year) + ' ' + scenario + '.xlsx')
+            market_df.to_excel(writer, sheet_name='markets')
+            for tech in tech_df.index.levels[0]:
+                tech_df \
+                    .loc[tech] \
+                    .dropna(how='all', axis=1) \
+                    .swaplevel(i=0, j=1, axis=1) \
+                    .T \
+                    .to_excel(writer, sheet_name=tech)
+            writer.save()
         del tech_df
         del market_df
         del writer
