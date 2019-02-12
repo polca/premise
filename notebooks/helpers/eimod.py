@@ -1034,9 +1034,9 @@ def modify_electricity_generation_datasets(
                     .T \
                     .to_excel(writer, sheet_name=tech)
             writer.save()
+            del writer
         del tech_df
         del market_df
-        del writer
 
         rename_locations(db, fix_names_back)
         if key in bw.databases:
