@@ -1,0 +1,35 @@
+package:
+  name: rmnd-lca-dev
+  version: {{ environ['VERSION'] }}
+
+source:
+  path: ..
+
+build:
+  noarch_python: True
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+  script_env:
+   - VERSION
+   - CONDA_BLD_PATH
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - numpy
+    - python
+    - xarray
+    - wurst
+    - bw2data
+
+test:
+  imports:
+    - rmnd_lca
+
+about:
+  home: https://github.com/romainsacchi/rmnd-lca
+  license: BSD License
+  summary: 'Coupling REMIND output to ecoinvent LCA databases.'
+license_family: BSD

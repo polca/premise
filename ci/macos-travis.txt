@@ -1,0 +1,5 @@
+numpy
+python
+xarray
+wurst
+bw2data
