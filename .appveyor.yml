@@ -16,9 +16,8 @@ install:
   - call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
   - python --version
   - conda config --set always_yes yes
-  - conda config --append channels pascallesage
   - conda update -y conda
-  - conda install -y -c conda-forge -c cmutel xarray numpy pytest-cov coveralls bw2data wurst
+  - conda install -y -c conda-forge -c cmutel numpy pytest pytest-cov coveralls
   - pip install -e .
 
 test_script:

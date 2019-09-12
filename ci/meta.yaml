@@ -20,9 +20,7 @@ requirements:
   run:
     - numpy
     - python
-    - xarray
-    - wurst
-    - bw2data
+
 
 test:
   imports:
