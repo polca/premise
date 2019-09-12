@@ -59,7 +59,7 @@ def act_fltr(db, fltr={}, mask={}, filter_exact=False, mask_exact=False):
     if type(mask) == list or type(mask) == str:
         mask = {
             "name": mask
-        }c
+        }
 
     def like(a, b):
         if filter_exact:
