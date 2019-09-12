@@ -3,18 +3,13 @@
 
 """
 import os
-import pyprind
 import wurst
 from wurst import searching as ws
 import pprint
 import csv
 
-
 DEFAULT_DATA_DIR = "data"
-DEFAULT_EMI_FILE = os.path.join(DEFAULT_DATA_DIR, "GAINS emission factors.csv")
 FILEPATH_FIX_NAMES = os.path.join(DEFAULT_DATA_DIR, "fix_names.csv")
-
-
 
 class DatabaseCleaner:
     """
@@ -143,7 +138,7 @@ class DatabaseCleaner:
 
 
 
-    def prepare_datasets(self, emi_fname = DEFAULT_EMI_FILE, write_changeset=False):
+    def prepare_datasets(self, write_changeset=False):
         """
         Clean datasets for all databases listed in scenarios: fix location names, remove
         empty exchanges, etc.
@@ -155,22 +150,22 @@ class DatabaseCleaner:
 
         """
 
-        for key in pyprind.prog_bar(self.scenarios.keys()):
+        # Load to ecoinvent database in wurst
+        db = wurst.extract_brightway2_databases(self.destination)
+        # Set missing locations to ```GLO``` for datasets in ``database``
+        wurst.default_global_location(db)
+        # Set missing locations to ```GLO``` for exchanges in ``datasets``
+        self.fix_unset_technosphere_and_production_exchange_locations(db)
+        # Remove empty exchanges
+        self.remove_nones(db)
+        # Change specific location names
+        self.rename_locations(db, fix_names = self.get_fix_names_dict())
 
-            # Load to ecoinvent database in wurst
-            db = wurst.extract_brightway2_databases(self.destination)
-            # Set missing locations to ```GLO``` for datasets in ``database``
-            wurst.default_global_location(db)
-            # Set missing locations to ```GLO``` for exchanges in ``datasets``
-            self.fix_unset_technosphere_and_production_exchange_locations(db)
-            # Remove empty exchanges
-            self.remove_nones(db)
-            # Change specific location names
-            self.rename_locations(db, fix_names = self.get_fix_names_dict())
+        if 'carma' in key.lower():
+            # Add negative CO2 exchanges for CCS using biomass
+            self.add_negative_CO2_flows_for_biomass_CCS(db)
 
-            if 'carma' in key.lower():
-                # Add negative CO2 exchanges for CCS using biomass
-                self.add_negative_CO2_flows_for_biomass_CCS(db)
+        return db
 
 
 
