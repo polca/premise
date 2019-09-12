@@ -1,5 +1,8 @@
 # Coupling Brightway2 & Wurst Future Ecoinvent Toolset to the REMIND IAM.
 
+[![Build Status](https://travis-ci.org/romainsacchi/rmnd-lca.svg?branch=master)](https://travis-ci.org/romainsacchi/rmnd-lca) [![Coverage Status](https://coveralls.io/github/romainsacchi/rmnd-lca/badge.svg)](https://coveralls.io/github/romainsacchi/rmnd-lca) [![Documentation](https://readthedocs.org/projects/rmnd-lca/badge/?version=latest)](https://rmnd-lca.readthedocs.io/en/latest/)
+
+
 ## Install
 
 Download and install [miniconda](https://conda.io/miniconda.html), create and activate a new environment and run
