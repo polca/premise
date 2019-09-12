@@ -5,10 +5,18 @@
 
 ## Install
 
-Download and install [miniconda](https://conda.io/miniconda.html), create and activate a new environment and run
-```
-conda install -y -q -c conda-forge -c cmutel -c haasad -c konstantinstadler brightway2 jupyter wurst
-```
+This package is a work in progress. You may directly fork the repo or install the development version.
+
+In a terminal, from Github::
+
+    pip install git+https://github.com/romainsacchi/rmnd-lca.git
+
+will install the package and the required dependencies.
+
+Alternatively, from Conda::
+
+    conda install -c romainsacchi/label/nightly rmnd-lca-dev
+
 
 ### Ecoinvent
 
