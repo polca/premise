@@ -1,5 +1,8 @@
-numpy
-python
 xarray
-wurst
+numpy
+pytest
+pytest-cov
+coveralls
+numexpr
 bw2data
+wurst
