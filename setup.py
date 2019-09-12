@@ -38,7 +38,8 @@ setup(
         'numpy',
         'xarray',
         'bw2data',
-        'wurst'
+        'wurst',
+
 
     ],
     url="https://github.com/Loisel/rmnd-lca",
