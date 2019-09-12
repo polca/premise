@@ -18,6 +18,7 @@ In a terminal, from Github::
 will install the package and the required dependencies.
 
 Alternatively, from Conda::
+
     conda install -c romainsacchi/label/nightly rmnd-lca-dev
 
 How to use it?
