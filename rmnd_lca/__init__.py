@@ -1,6 +1,7 @@
 
 __all__ = (
     'generate_sets_from_filters',
+    'DatabaseCleaner'
 )
 __version__ = (0, 0, 1)
 
@@ -13,4 +14,5 @@ from pathlib import Path
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
 from .activity_maps import generate_sets_from_filters
+from .clean_datasets import DatabaseCleaner
 

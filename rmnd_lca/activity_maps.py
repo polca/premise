@@ -95,7 +95,7 @@ def act_fltr(db, fltr={}, mask={}, filter_exact=False, mask_exact=False):
 
 
 def generate_sets_from_filters(db):
-    """Generate sets of activity names for technologies from the filter specifications.
+    """Generate a dictionary with sets of activity names for technologies from the filter specifications.
 
     :param db: A life cycle inventory database
     :type db: brightway2 database object
