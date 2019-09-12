@@ -3,6 +3,3 @@ numpy
 pytest
 pytest-cov
 coveralls
-numexpr
-bw2data
-wurst

@@ -36,9 +36,8 @@ setup(
     package_data={'rmnd-lca': package_files(os.path.join('rmnd-lca', 'data'))},
     install_requires=[
         'numpy',
-        'xarray',
-        'bw2data',
-        'wurst',
+        'pytest-cov',
+        'coveralls'
 
 
     ],
