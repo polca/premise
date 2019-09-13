@@ -1,5 +1,5 @@
 """
-.. ecoinvent_modification: model.py
+.. module: clean_datasets.py
 
 """
 import os
@@ -7,17 +7,21 @@ import wurst
 from wurst import searching as ws
 import pprint
 import csv
+from pathlib import Path
+from inspect import currentframe, getframeinfo
 
-DEFAULT_DATA_DIR = "data"
-FILEPATH_FIX_NAMES = os.path.join(DEFAULT_DATA_DIR, "fix_names.csv")
+FILEPATH_FIX_NAMES = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'fix_names.csv')
 
 class DatabaseCleaner:
     """
     Class that cleans the datasets contained in the inventory database for further processing.
+
+    :ivar destination_db: name of the source database
+    :vartype destination_db: str
+
     """
 
-    def __init__(self, database_dict, destination_db):
-        self.scenarios = database_dict
+    def __init__(self, destination_db):
         self.destination = destination_db
 
     def add_negative_CO2_flows_for_biomass_CCS(self, db):
@@ -74,7 +78,7 @@ class DatabaseCleaner:
         :rtype: dict
         """
         with open(FILEPATH_FIX_NAMES) as f:
-            return dict(filter(None, csv.reader(f)))
+            return dict(filter(None, csv.reader(f, delimiter=';')))
 
     def remove_nones(self, db):
         """
@@ -159,9 +163,9 @@ class DatabaseCleaner:
         # Remove empty exchanges
         self.remove_nones(db)
         # Change specific location names
-        self.rename_locations(db, fix_names = self.get_fix_names_dict())
+        self.rename_locations(db, self.get_fix_names_dict())
 
-        if 'carma' in key.lower():
+        if 'carma' in self.destination:
             # Add negative CO2 exchanges for CCS using biomass
             self.add_negative_CO2_flows_for_biomass_CCS(db)
 
