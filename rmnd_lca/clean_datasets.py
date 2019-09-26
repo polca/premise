@@ -2,7 +2,6 @@
 .. module: clean_datasets.py
 
 """
-import os
 import wurst
 from wurst import searching as ws
 import pprint
@@ -72,7 +71,7 @@ class DatabaseCleaner:
     def get_fix_names_dict(self):
         """
         Loads a csv file into a dictionary. This dictionary contains a few location names
-        that need correction in teh wurst inventory database.
+        that need correction in the wurst inventory database.
 
         :return: dictionary that contains names equivalence
         :rtype: dict
@@ -139,8 +138,6 @@ class DatabaseCleaner:
                 else:
                     print("No unique location found for exchange:\n{}\nFound: {}".format(
                         pprint.pformat(e), locs))
-
-
 
     def prepare_datasets(self, write_changeset=False):
         """
