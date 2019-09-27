@@ -331,12 +331,13 @@ class Electricity:
                                                                    ecoinvent_technologies))
                         number_of_suppliers = len(list(suppliers))
 
+                    # TODO: something' wrong with Biomass IGCC and Coal IGCC
                     cumul_amount = 0
                     for supplier in suppliers:
 
-                        cumul_amount += (amount * share)
-
                         share = self.get_pop_weighted_share(supplier, suppliers)
+
+                        cumul_amount += (amount * share)
 
                         new_exchanges.append(
                             {
@@ -357,7 +358,7 @@ class Electricity:
             total = 0
             for e in new_exchanges:
                 total += e['amount']
-         
+
 
             new_dataset['exchanges'] = new_exchanges
 
