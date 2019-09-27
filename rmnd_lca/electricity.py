@@ -16,22 +16,30 @@ from wurst.geo import geomatcher
 #from constructive_geometries import geomatcher
 from .clean_datasets import DatabaseCleaner as dbclean
 from .activity_maps import InventorySet
+import uuid
+import pprint as pp
+
+
 
 REGION_MAPPING_FILEPATH = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'regionmappingH12.csv')
+POPULATION_PER_COUNTRY = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'population_per_country.csv')
 
 class Electricity:
     """
-    Class that modifies electricity markets in ecoinvent base don REMIND output data.
+    Class that modifies electricity markets in ecoinvent based on REMIND output data.
 
     :ivar scenario: name of a Remind scenario
     :vartype scenario: str
 
     """
 
-    def __init__(self, db, rmd):
+    def __init__(self, db, rmd, scenario, year):
         self.db = db
         self.rmd = rmd
         self.geo = self.get_REMIND_geomatcher()
+        self.population = self.get_population_dict()
+        self.scenario = scenario
+        self.year = year
 
         mapping = InventorySet(self.db)
 
@@ -67,6 +75,27 @@ class Electricity:
         geo.add_definitions(rmnd_to_iso, "REMIND")
 
         return geo
+
+    def remind_to_ecoinvent_location(self, location):
+
+        if location != "World":
+            location = ('REMIND', location)
+
+            ecoinvent_locations =[]
+            try:
+                for r in self.geo.intersects(location):
+                    if r!= 'GLO':
+                        if not isinstance(r, tuple):
+                            ecoinvent_locations.append(r)
+                        #else:
+                        #    if r[0] == 'ecoinvent':
+                        #        ecoinvent_locations.append(r[1])
+                return ecoinvent_locations
+            except KeyError as e:
+                print("Can't find location {} using the geomatcher.".format(location))
+
+        else:
+            return "GLO"
 
     def ecoinvent_to_remind_location(self, location):
         """
@@ -152,44 +181,48 @@ class Electricity:
 
         remind_locations = self.ecoinvent_to_remind_location(ds['location'])
 
+        print(remind_locations, ds['location'])
+
         # here we find the mix of technologies in the new market and how much they contribute:
         mix = self.rmd.markets.loc[:,remind_locations,:].mean(axis=1)
 
+        print(mix)
+
         # here we find the datasets that will make up the mix for each technology
-        datasets = {}
-        for i in mix.coords['variable'].values:
-            if mix.loc[i] != 0:
+        #datasets = {}
+        #for i in mix.coords['variable'].values:
+        #    if mix.loc[i] != 0:
 
                 # First try to find a dataset that is from that location (or remind region for new datasets):
-                datasets[i] = self.find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(i, ds['location'])
+        #        datasets[i] = self.find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(i, ds['location'])
+        #
+        #         #print('First round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
+        #
+        #         # If this doesn't work, we try to take a dataset from another ecoinvent region within the same remind region
+        #         if len(datasets[i]) == 0:
+        #             datasets[i] = self.find_ecoinvent_electricity_datasets_in_remind_location(i, ds['location'])
+        #             #print('Second round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
+        #         #
+        #         # If even this doesn't work, try taking a global datasets
+        #         if len(datasets[i]) == 0:
+        #             datasets[i] = self.find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(i, 'GLO')
+        #             #print('Third round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
+        #         #
+        #         #if no global dataset available, we just take the average of all datasets we have:
+        #         #if len(datasets[i]) == 0:
+        #         #    datasets[i] = self.find_ecoinvent_electricity_datasets_in_all_locations(i)
+        #         #    print('Fourth round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
+        #         #
+        #         # # If we still can't find a dataset, we just take the global market group
+        #         # if len(datasets[i]) == 0:
+        #         #     print('No match found for location: ', ds['location'], ' Technology: ', i,
+        #         #           '. Taking global market group for electricity')
+        #         #     datasets[i] = [x for x in ws.get_many(db, *[
+        #         #         ws.equals('name', 'market group for electricity, high voltage'), ws.equals('location', 'GLO')])]
+        #         print(i, [(ds['name'], ds['location']) for ds in datasets[i] if len(datasets[i]) == 0])
 
-                #print('First round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
-
-                # If this doesn't work, we try to take a dataset from another ecoinvent region within the same remind region
-                if len(datasets[i]) == 0:
-                    datasets[i] = self.find_ecoinvent_electricity_datasets_in_remind_location(i, ds['location'])
-                    #print('Second round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
-                #
-                # If even this doesn't work, try taking a global datasets
-                if len(datasets[i]) == 0:
-                    datasets[i] = self.find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(i, 'GLO')
-                    #print('Third round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
-                #
-                #if no global dataset available, we just take the average of all datasets we have:
-                #if len(datasets[i]) == 0:
-                #    datasets[i] = self.find_ecoinvent_electricity_datasets_in_all_locations(i)
-                #    print('Fourth round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
-                #
-                # # If we still can't find a dataset, we just take the global market group
-                # if len(datasets[i]) == 0:
-                #     print('No match found for location: ', ds['location'], ' Technology: ', i,
-                #           '. Taking global market group for electricity')
-                #     datasets[i] = [x for x in ws.get_many(db, *[
-                #         ws.equals('name', 'market group for electricity, high voltage'), ws.equals('location', 'GLO')])]
-                print(i, [(ds['name'], ds['location']) for ds in datasets[i] if len(datasets[i]) == 0])
-
-        # # Now we add the new exchanges:
-        # for i in mix.index:
+         # Now we add the new exchanges:
+        #for i in mix.coords['variable'].values:
         #     if mix[i] != 0:
         #         total_amount = mix[i]
         #         amount = total_amount / len(datasets[i])
@@ -210,16 +243,131 @@ class Electricity:
         # if round(sum, 4) != 1.00:  print(ds['location'], " New exchanges don't add to one! something is wrong!", sum)
         # return
 
+    def get_suppliers_of_a_region(self, ecoinvent_regions, ecoinvent_technologies):
+
+        return ws.get_many(self.db,
+                                 *[ws.either(*[ws.equals('name', supplier) for supplier in ecoinvent_technologies]),
+                                   ws.either(*[ws.equals('location', loc) for loc in ecoinvent_regions]),
+                                   ws.equals('unit', 'kilowatt hour')])
+
+    def get_population_dict(self):
+
+        if not POPULATION_PER_COUNTRY.is_file():
+            raise FileNotFoundError('The population per country dictionary file could not be found.')
+
+        with open(POPULATION_PER_COUNTRY) as f:
+            return dict(filter(None, csv.reader(f, delimiter=';')))
+
+    def get_pop_weighted_share(self, supplier, suppliers):
+        loc_population = int(self.population.get(supplier['location'],0))
+
+        locs_population = 0
+
+        for loc in suppliers:
+            locs_population += int(self.population.get(loc['location'],0))
+
+        return loc_population/locs_population
+
+
     def update_electricity_markets(self):
         # ## Functions for modifying ecoinvent electricity markets
 
-        electricity_market_filter_high_voltage = [ws.contains('name', 'market for electricity, high voltage'),
-                                                  ws.doesnt_contain_any('name', ['aluminium industry',
-                                                                                 'internal use in coal mining'])]
+        electricity_market_filter = [ws.either(ws.contains('name', 'market for electricity,'),
+                                                ws.contains('name', 'market group for electricity')),
+                                      ws.doesnt_contain_any('name', ['aluminium industry',
+                                                                     'internal use in coal mining',
+                                                                     'municipal'])]
 
-        for ds in ws.get_many(self.db, *electricity_market_filter_high_voltage):
-            self.delete_electricity_inputs_from_market(ds)  # This function will delete the markets.
-            self.add_new_datasets_to_electricity_market(ds)
+        # We first need to delete 'market for electricity' and 'market group for electricity' datasets
+        for ds in ws.get_many(self.db, *electricity_market_filter):
+            del ds
+
+        # We then need to create high voltage REMIND electricity markets
+
+        # Loop through REMIND regions, except "World"
+        gen = (region for region in self.rmd.markets.coords['region'].values if region != "World")
+
+        for region in gen:
+
+            # Fetch ecoinvent regions contained in the REMIND region
+            ecoinvent_regions = self.remind_to_ecoinvent_location(region)
+
+            # Create an empty dataset
+            new_dataset = {}
+            new_dataset['location'] = region
+            new_dataset['name'] = 'market group for electricity, high voltage, ' + self.scenario + ', ' + str(self.year)
+            new_dataset['reference product'] = 'electricity, high voltage'
+            new_dataset['unit'] = 'kilowatt hour'
+            new_dataset['database'] = self.db[1]['database']
+            new_dataset['code'] = str(uuid.uuid1())
+            new_dataset['comment'] = 'Dataset produced from REMIND scenario output results'
+
+            new_exchanges = []
+
+            # Loop through the REMIND technologies
+            for technology in self.rmd.markets.coords['variable'].values:
+
+                # If the given technology contributes to the mix
+                if self.rmd.markets.loc[technology,region,0] != 0.0:
+
+                    # Contribution in supply
+                    amount = self.rmd.markets.loc[technology, region, 0].values
+
+
+                    # Get the possible names of ecoinvent datasets
+                    ecoinvent_technologies = self.powerplant_map[self.rmd.rev_market_labels[technology]]
+
+                    # Fetch electricity-producing technologies contained in the REMIND region
+                    #print(ecoinvent_regions, ecoinvent_technologies)
+
+                    suppliers = list(self.get_suppliers_of_a_region(ecoinvent_regions, ecoinvent_technologies))
+                    number_of_suppliers = len(suppliers)
+
+
+                    # If no technology is available for the REMIND region
+                    if number_of_suppliers == 0:
+                        # We fetch European technologies instead
+                        suppliers = list(self.get_suppliers_of_a_region(self.remind_to_ecoinvent_location('EUR'),
+                                                                   ecoinvent_technologies))
+                        number_of_suppliers = len(list(suppliers))
+
+                    cumul_amount = 0
+                    for supplier in suppliers:
+
+                        cumul_amount += (amount * share)
+
+                        share = self.get_pop_weighted_share(supplier, suppliers)
+
+                        new_exchanges.append(
+                            {
+                                'uncertainty type': 0,
+                                'loc': (amount * share),
+                                'amount': (amount * share) ,
+                                'type': 'technosphere',
+                                'production volume': 0,
+                                'product': supplier['reference product'],
+                                'name': supplier['name'],
+                                'unit': supplier['unit'],
+                                'location': supplier['location']
+                            }
+                        )
+                    print(region, technology, amount, cumul_amount)
+
+
+            total = 0
+            for e in new_exchanges:
+                total += e['amount']
+         
+
+            new_dataset['exchanges'] = new_exchanges
+
+
+
+            #pp.pprint(new_dataset)
+
+
+
+
 
 
 

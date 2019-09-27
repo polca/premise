@@ -35,8 +35,8 @@ class NewDatabase:
             scenario, year = s
             rdc = RemindDataCollection(scenario, year)
 
-            el = Electricity(self.db, rdc)
-            el.update_electricity_markets()
+            electricity = Electricity(self.db, rdc, scenario, year)
+            electricity.update_electricity_markets()
 
             #self.db = rdc.empty_low_voltage_markets(self.db)
             #self.db = rdc.empty_medium_voltage_markets(self.db)

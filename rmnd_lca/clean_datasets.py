@@ -46,7 +46,7 @@ class DatabaseCleaner:
 
     def rename_locations(self, db, name_dict):
         """
-        This function loops through dataset and exchange location names and correct them if needed,
+        This function loops through dataset and exchange location names and correct them if needed or if missing,
         based on a dictionary located in 'data/fix_names.csv'.
 
         :param db: wurst inventory database
@@ -57,16 +57,18 @@ class DatabaseCleaner:
         :rtype: list
         """
         for ds in db:
+            # If the dataset does not have a location defined
+            ds['location'] = ds.get('location', 'GLO')
+
             # If the location name of the dataset is found in the dictionary
-            if ds['location'] in name_dict:
-                # Change to the new location name
-                ds['location'] = name_dict[ds['location']]
+            ds['location'] = name_dict.get(ds['location'], ds['location'])
 
             for exc in ws.technosphere(ds):
+                # If the exchange does not have a location defined
+                exc['location'] = exc.get('location', 'GLO')
+
                 # If the location name of the exchange is found in the dictionary
-                if exc['location'] in name_dict:
-                    # Change to the new location name
-                    exc['location'] = name_dict[exc['location']]
+                exc['location'] = name_dict.get(exc['location'], exc['location'])
 
     def get_fix_names_dict(self):
         """
