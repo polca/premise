@@ -56,7 +56,7 @@ class Electricity:
             l = [(x[1], x[2]) for x in csv_list]
 
         # List of countries not found
-        countries_not_found = ["CC", "CX", 'GG', 'JE', 'BL', 'MA']
+        countries_not_found = ["CC", "CX", 'GG', 'JE', 'BL']
 
         rmnd_to_iso = {}
         iso_to_rmnd = {}
@@ -109,12 +109,13 @@ class Electricity:
         if location == 'RoW':
             location = 'GLO'
 
-        location = dbclean('').get_fix_names_dict().get(location, location)
+        location = dbclean('').get_rev_fix_names_dict().get(location, location)
 
         try:
             remind_location = [r[1] for r in self.geo.intersects(location) if r[0] == 'REMIND']
+
         except KeyError as e:
-            print("Can't find location {} using the geomatcher.".format(remind_location))
+            print("Can't find location {} using the geomatcher.".format(location))
 
         return remind_location
 
@@ -268,26 +269,273 @@ class Electricity:
 
         return loc_population/locs_population
 
-
-    def update_electricity_markets(self):
-        # ## Functions for modifying ecoinvent electricity markets
-
-        electricity_market_filter = [ws.either(ws.contains('name', 'market for electricity,'),
-                                                ws.contains('name', 'market group for electricity')),
-                                      ws.doesnt_contain_any('name', ['aluminium industry',
-                                                                     'internal use in coal mining',
-                                                                     'municipal'])]
-
-        # We first need to delete 'market for electricity' and 'market group for electricity' datasets
-        for ds in ws.get_many(self.db, *electricity_market_filter):
-            del ds
-
-        # We then need to create high voltage REMIND electricity markets
-
+    def create_new_markets_low_voltage(self):
         # Loop through REMIND regions, except "World"
-        gen = (region for region in self.rmd.markets.coords['region'].values if region != "World")
+        gen_region = (region for region in self.rmd.markets.coords['region'].values if region != "World")
 
-        for region in gen:
+        for region in gen_region:
+            # Create an empty dataset
+            new_dataset = {}
+            new_dataset['location'] = region
+            new_dataset['name'] = 'market group for electricity, low voltage, ' + self.scenario + ', ' + str(self.year)
+            new_dataset['reference product'] = 'electricity, low voltage'
+            new_dataset['unit'] = 'kilowatt hour'
+            new_dataset['database'] = self.db[1]['database']
+            new_dataset['code'] = str(uuid.uuid1())
+            new_dataset['comment'] = 'Dataset produced from REMIND scenario output results'
+
+            # First, add the reference product exchange
+            new_exchanges = []
+            new_exchanges.append(
+                {
+                    'uncertainty type': 0,
+                    'loc': 1,
+                    'amount': 1,
+                    'type': 'production',
+                    'production volume': 0,
+                    'product': 'electricity, low voltage',
+                    'name': 'electricity, low voltage',
+                    'unit': 'kilowatt hour',
+                    'location': region
+                }
+            )
+
+            # Second, add an input to of sulfur hexafluoride emission to compensate the transformer's leakage
+            # And an emission of a corresponding amount
+            new_exchanges.append(
+                    {
+                    'uncertainty type': 0,
+                    'loc': 2.99e-9,
+                    'amount': 2.99e-9,
+                    'type': 'technosphere',
+                    'production volume': 0,
+                    'product': 'sulfur hexafluoride, liquid',
+                    'name': 'market for sulfur hexafluoride, liquid',
+                    'unit': 'kilogram',
+                    'location': 'RoW'
+                    }
+                )
+            new_exchanges.append(
+                    {
+                    'uncertainty type': 0,
+                    'loc': 2.99e-9,
+                    'amount': 2.99e-9,
+                    'type': 'biosphere',
+                    'input': ('biosphere3', '35d1dff5-b535-4628-9826-4a8fce08a1f2'),
+                   'name': 'Sulfur hexafluoride',
+                   'unit': 'kilogram',
+                   'categories': ('air', 'non-urban air or from high stacks')
+                    }
+                )
+
+            # Third, transmission line
+            new_exchanges.append(
+                    {
+                    'uncertainty type': 0,
+                    'loc': 8.74e-8,
+                    'amount': 8.74e-8,
+                    'type': 'technosphere',
+                    'production volume': 0,
+                    'product': 'transmission network construction, electricity, low voltage',
+                    'name': 'transmission network construction, electricity, low voltage' ,
+                    'unit': 'kilometer',
+                    'location': 'RoW'
+                    }
+                )
+
+            # Fourth, add the contribution of solar power
+            solar_amount = 0
+            gen_tech = list((tech for tech in self.rmd.markets.coords['variable'].values if "Solar" in tech))
+            for technology in gen_tech:
+                # If the solar power technology contributes to the mix
+                    if self.rmd.markets.loc[technology,region,0] != 0.0:
+                        # Fetch ecoinvent regions contained in the REMIND region
+                        ecoinvent_regions = self.remind_to_ecoinvent_location(region)
+
+                        # Contribution in supply
+                        amount = self.rmd.markets.loc[technology, region, 0].values
+                        solar_amount += amount
+
+
+
+                        # Get the possible names of ecoinvent datasets
+                        ecoinvent_technologies = self.powerplant_map[self.rmd.rev_market_labels[technology]]
+
+                        # Fetch electricity-producing technologies contained in the REMIND region
+                        suppliers = list(self.get_suppliers_of_a_region(ecoinvent_regions, ecoinvent_technologies))
+
+                        # If no technology is available for the REMIND region
+                        if len(suppliers) == 0:
+                            # We fetch European technologies instead
+                            suppliers = list(self.get_suppliers_of_a_region(['RER'], ecoinvent_technologies))
+
+                        # If, after looking for European technologies, no technology is available
+                        if len(suppliers) == 0:
+                            # We fetch RoW technologies instead
+                            suppliers = list(self.get_suppliers_of_a_region(['RoW'], ecoinvent_technologies))
+
+                        for supplier in suppliers:
+                            share = self.get_pop_weighted_share(supplier, suppliers)
+                            new_exchanges.append(
+                                    {
+                                        'uncertainty type': 0,
+                                        'loc': (amount * share),
+                                        'amount': (amount * share) ,
+                                        'type': 'technosphere',
+                                        'production volume': 0,
+                                        'product': supplier['reference product'],
+                                        'name': supplier['name'],
+                                        'unit': supplier['unit'],
+                                        'location': supplier['location']
+                                    }
+                                )
+            # Fifth, add:
+            # * an input from the medium voltage market minus solar contribution, including transformation loss
+            # * an self-consuming input for transmission loss
+            new_exchanges.append(
+                {
+                'uncertainty type': 0,
+                'loc': (1- solar_amount) * 1.0276,
+                'amount': (1- solar_amount) * 1.0276,
+                'type': 'technosphere',
+                'production volume': 0,
+                'product': 'electricity, medium voltage',
+                'name': 'market group for electricity, medium voltage, ' + self.scenario + ', ' + str(self.year) ,
+                'unit': 'kilowatt hour',
+                'location': region
+                }
+            )
+
+            new_exchanges.append(
+                {
+                'uncertainty type': 0,
+                'loc': 0.0298,
+                'amount': 0.0298,
+                'type': 'technosphere',
+                'production volume': 0,
+                'product': 'electricity, low voltage',
+                'name': 'market group for electricity, low voltage, ' + self.scenario + ', ' + str(self.year) ,
+                'unit': 'kilowatt hour',
+                'location': region
+                }
+            )
+
+            new_dataset['exchanges'] = new_exchanges
+            self.db.append(new_dataset)
+
+    def create_new_markets_medium_voltage(self):
+        # Loop through REMIND regions, except "World"
+        gen_region = (region for region in self.rmd.markets.coords['region'].values if region != "World")
+
+        for region in gen_region:
+            # Create an empty dataset
+            new_dataset = {}
+            new_dataset['location'] = region
+            new_dataset['name'] = 'market group for electricity, medium voltage, ' + self.scenario + ', ' + str(self.year)
+            new_dataset['reference product'] = 'electricity, medium voltage'
+            new_dataset['unit'] = 'kilowatt hour'
+            new_dataset['database'] = self.db[1]['database']
+            new_dataset['code'] = str(uuid.uuid1())
+            new_dataset['comment'] = 'Dataset produced from REMIND scenario output results'
+
+            # First, add the reference product exchange
+            new_exchanges = []
+            new_exchanges.append(
+                {
+                    'uncertainty type': 0,
+                    'loc': 1,
+                    'amount': 1,
+                    'type': 'production',
+                    'production volume': 0,
+                    'product': 'electricity, medium voltage',
+                    'name': 'electricity, medium voltage',
+                    'unit': 'kilowatt hour',
+                    'location': region
+                }
+            )
+
+            # Second, add:
+            # * an input from the high voltage market, including voltage transformation loss
+            # * an self-consuming input for transmission loss
+            new_exchanges.append(
+                {
+                'uncertainty type': 0,
+                'loc': 1.0062,
+                'amount': 1.0062,
+                'type': 'technosphere',
+                'production volume': 0,
+                'product': 'electricity, high voltage',
+                'name': 'market group for electricity, high voltage, ' + self.scenario + ', ' + str(self.year) ,
+                'unit': 'kilowatt hour',
+                'location': region
+                }
+            )
+
+            new_exchanges.append(
+                {
+                'uncertainty type': 0,
+                'loc': 0.0041,
+                'amount': 0.0041,
+                'type': 'technosphere',
+                'production volume': 0,
+                'product': 'electricity, medium voltage',
+                'name': 'market group for electricity, medium voltage, ' + self.scenario + ', ' + str(self.year) ,
+                'unit': 'kilowatt hour',
+                'location': region
+                }
+            )
+
+            # Third, add an input to of sulfur hexafluoride emission to compensate the transformer's leakage
+            # And an emission of a corresponding amount
+            new_exchanges.append(
+                    {
+                    'uncertainty type': 0,
+                    'loc': 5.4e-8,
+                    'amount': 5.4e-8,
+                    'type': 'technosphere',
+                    'production volume': 0,
+                    'product': 'sulfur hexafluoride, liquid',
+                    'name': 'market for sulfur hexafluoride, liquid' ,
+                    'unit': 'kilogram',
+                    'location': 'RoW'
+                    }
+                )
+            new_exchanges.append(
+                    {
+                    'uncertainty type': 0,
+                    'loc': 5.4e-8,
+                    'amount': 5.4e-8,
+                    'type': 'biosphere',
+                    'input': ('biosphere3', '35d1dff5-b535-4628-9826-4a8fce08a1f2'),
+                   'name': 'Sulfur hexafluoride',
+                   'unit': 'kilogram',
+                   'categories': ('air', 'non-urban air or from high stacks')
+                    }
+                )
+
+            # Fourth, transmission line
+            new_exchanges.append(
+                    {
+                    'uncertainty type': 0,
+                    'loc': 1.8628e-8,
+                    'amount': 1.8628e-8,
+                    'type': 'technosphere',
+                    'production volume': 0,
+                    'product': 'transmission network construction, electricity, medium voltage',
+                    'name': 'transmission network construction, electricity, medium voltage' ,
+                    'unit': 'kilometer',
+                    'location': 'RoW'
+                    }
+                )
+
+            new_dataset['exchanges'] = new_exchanges
+            self.db.append(new_dataset)
+
+    def create_new_markets_high_voltage(self):
+        # Loop through REMIND regions, except "World"
+        gen_region = (region for region in self.rmd.markets.coords['region'].values if region != "World")
+        gen_tech = list((tech for tech in self.rmd.markets.coords['variable'].values if "Solar" not in tech))
+        for region in gen_region:
 
             # Fetch ecoinvent regions contained in the REMIND region
             ecoinvent_regions = self.remind_to_ecoinvent_location(region)
@@ -304,8 +552,23 @@ class Electricity:
 
             new_exchanges = []
 
+            # First, add the reference product exchange
+            new_exchanges.append(
+                        {
+                            'uncertainty type': 0,
+                            'loc': 1,
+                            'amount': 1,
+                            'type': 'production',
+                            'production volume': 0,
+                            'product': 'electricity, high voltage',
+                            'name': 'electricity, high voltage',
+                            'unit': 'kilowatt hour',
+                            'location': region
+                        }
+                    )
+
             # Loop through the REMIND technologies
-            for technology in self.rmd.markets.coords['variable'].values:
+            for technology in gen_tech:
 
                 # If the given technology contributes to the mix
                 if self.rmd.markets.loc[technology,region,0] != 0.0:
@@ -313,58 +576,92 @@ class Electricity:
                     # Contribution in supply
                     amount = self.rmd.markets.loc[technology, region, 0].values
 
-
                     # Get the possible names of ecoinvent datasets
                     ecoinvent_technologies = self.powerplant_map[self.rmd.rev_market_labels[technology]]
 
                     # Fetch electricity-producing technologies contained in the REMIND region
-                    #print(ecoinvent_regions, ecoinvent_technologies)
-
                     suppliers = list(self.get_suppliers_of_a_region(ecoinvent_regions, ecoinvent_technologies))
-                    number_of_suppliers = len(suppliers)
-
 
                     # If no technology is available for the REMIND region
-                    if number_of_suppliers == 0:
+                    if len(suppliers) == 0:
                         # We fetch European technologies instead
-                        suppliers = list(self.get_suppliers_of_a_region(self.remind_to_ecoinvent_location('EUR'),
-                                                                   ecoinvent_technologies))
-                        number_of_suppliers = len(list(suppliers))
+                        suppliers = list(self.get_suppliers_of_a_region(['RER'], ecoinvent_technologies))
 
-                    # TODO: something' wrong with Biomass IGCC and Coal IGCC
-                    cumul_amount = 0
+                    # If, after looking for European technologies, no technology is available
+                    if len(suppliers) == 0:
+                        # We fetch RoW technologies instead
+                        suppliers = list(self.get_suppliers_of_a_region(['RoW'], ecoinvent_technologies))
+
                     for supplier in suppliers:
-
                         share = self.get_pop_weighted_share(supplier, suppliers)
-
-                        cumul_amount += (amount * share)
-
                         new_exchanges.append(
-                            {
-                                'uncertainty type': 0,
-                                'loc': (amount * share),
-                                'amount': (amount * share) ,
-                                'type': 'technosphere',
-                                'production volume': 0,
-                                'product': supplier['reference product'],
-                                'name': supplier['name'],
-                                'unit': supplier['unit'],
-                                'location': supplier['location']
-                            }
-                        )
-                    print(region, technology, amount, cumul_amount)
-
-
-            total = 0
-            for e in new_exchanges:
-                total += e['amount']
-
-
+                                {
+                                    'uncertainty type': 0,
+                                    'loc': (amount * share),
+                                    'amount': (amount * share) ,
+                                    'type': 'technosphere',
+                                    'production volume': 0,
+                                    'product': supplier['reference product'],
+                                    'name': supplier['name'],
+                                    'unit': supplier['unit'],
+                                    'location': supplier['location']
+                                }
+                            )
             new_dataset['exchanges'] = new_exchanges
+            self.db.append(new_dataset)
+
+    def relink_activities_to_new_markets(self):
+
+        # Filter all activities that consume high voltage electricity
+        #electricity_market_filter = [ws.either(*[ws.doesnt_contain('name', 'market group for electricity')])]
+
+        for ds in ws.get_many(self.db, ws.exclude(ws.contains('name', 'market group for electricity'))):
+            for exc in ws.get_many(ds['exchanges'],
+               *[ws.either(*[ws.contains('unit', 'kilowatt hour'),
+                    ws.contains('name','market for electricity'),
+                      ws.contains('name','electricity voltage transformation'),
+                             ws.contains('name', 'market group for electricity')])]):
+
+                if "high" in exc['name']:
+                    exc['name'] = 'market group for electricity, high voltage, ' + self.scenario + ', ' + str(self.year)
+                if "medium" in exc['name']:
+                    exc['name'] = 'market group for electricity, medium voltage, ' + self.scenario + ', ' + str(self.year)
+                if "low" in exc['name']:
+                    exc['name'] = 'market group for electricity, low voltage, ' + self.scenario + ', ' + str(self.year)
+
+                dataset_loc = exc['location']
+                exc['location'] = self.ecoinvent_to_remind_location(dataset_loc)
+
+                if len(exc['location'])>1:
+                    print(dataset_loc, exc['location'])
+
+    def update_electricity_markets(self):
+        # Functions for modifying ecoinvent electricity markets
+
+        electricity_market_filter = [ws.either( ws.contains('name', 'market for electricity,'),
+                                                ws.contains('name', 'market group for electricity'),
+                                                ws.contains('name', 'electricity, high voltage, import'),
+                                                ws.contains('name', 'electricity voltage transformation')),
+                                                ws.doesnt_contain_any('name', ['aluminium industry',
+                                                                     'internal use in coal mining',
+                                                                     'municipal'])]
+
+        # We first need to delete 'market for electricity' and 'market group for electricity' datasets
+        for ds in ws.get_many(self.db, *electricity_market_filter):
+            del ds
+
+        # We then need to create high voltage REMIND electricity markets
+        self.create_new_markets_high_voltage()
+        self.create_new_markets_medium_voltage()
+        self.create_new_markets_low_voltage()
+        self.relink_activities_to_new_markets()
+
+        # Finally, we need to relink all electricity-consuming activities to the new electricity markets
 
 
 
-            #pp.pprint(new_dataset)
+
+
 
 
 

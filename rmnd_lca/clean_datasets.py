@@ -81,6 +81,16 @@ class DatabaseCleaner:
         with open(FILEPATH_FIX_NAMES) as f:
             return dict(filter(None, csv.reader(f, delimiter=';')))
 
+    def get_rev_fix_names_dict(self):
+        """
+        Reverse the fix_names dicitonary.
+
+        :return: dictionary that contains names equivalence
+        :rtype: dict
+        """
+
+        return {v: k for k, v in self.get_fix_names_dict().items()}
+
     def remove_nones(self, db):
         """
         Remove empty exchanges in the datasets of the wurst inventory database.
