@@ -7,6 +7,7 @@ import pyprind
 from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .electricity import Electricity
+import wurst
 
 
 
@@ -26,22 +27,23 @@ class NewDatabase:
         self.destination = destination_db
         self.db = self.clean_database()
 
-
     def clean_database(self):
         return DatabaseCleaner(self.destination).prepare_datasets()
 
-    def extract_remind_data(self):
+    def update_electricity_to_remind_data(self):
         for s in pyprind.prog_bar(self.scenarios.items()):
             scenario, year = s
             rdc = RemindDataCollection(scenario, year)
+            self.db = Electricity(self.db, rdc, scenario, year).update_electricity_markets()
 
-            electricity = Electricity(self.db, rdc, scenario, year)
-            electricity.update_electricity_markets()
+    def write_db_to_brightway(self):
+        for s in pyprind.prog_bar(self.scenarios.items()):
+            scenario, year = s
+            print('Writing new database to Brightway2.')
+            wurst.write_brightway2_database(self.db, "ecoinvent_"+ scenario + "_" + str(year))
 
-            #self.db = rdc.empty_low_voltage_markets(self.db)
-            #self.db = rdc.empty_medium_voltage_markets(self.db)
-            #self.db = rdc.empty_high_voltage_markets(self.db)
-            #rdc.update_electricity_markets(self.db)
+
+
 
 
 

@@ -76,8 +76,7 @@ class RemindDataCollection:
         df = df.loc[(df.index.get_level_values('Variable').str.contains('SE')) |
                     (df.index.get_level_values('Variable').str.contains('Tech'))]
         variables = df.index.get_level_values('Variable').unique()
-        #variables = [','.join(v.split("|")[-2:]) for v in variables]
-        #print(variables)
+
         regions = df.index.get_level_values('Region').unique()
         years = df.columns
         array = xr.DataArray(

@@ -35,7 +35,6 @@ Brazil;BR;LAM
 Barbados;BB;LAM
 Brunei Darussalam;BN;OAS
 Bhutan;BT;OAS
-Bouvet Island;BV;LAM
 Botswana;BW;SSA
 Central African Republic;CF;SSA
 Canada;CA;CAZ
@@ -96,7 +95,6 @@ French Guiana;GF;LAM
 Guam;GU;OAS
 Guyana;GY;LAM
 Hong Kong;HK;CHA
-Heard Island and McDonald Islands;HM;CAZ
 Honduras;HN;LAM
 Croatia;HR;EUR
 Haiti;HT;LAM
@@ -202,7 +200,6 @@ Sierra Leone;SL;SSA
 El Salvador;SV;LAM
 San Marino;SM;NEU
 Somalia;SO;SSA
-Saint Pierre and Miquelon;PM;CAZ
 Serbia;RS;NEU
 South Sudan;SS;SSA
 Sao Tome and Principe;ST;SSA
@@ -219,13 +216,12 @@ Chad;TD;SSA
 Togo;TG;SSA
 Thailand;TH;OAS
 Tajikistan;TJ;REF
-Tokelau;TK;OAS
 Turkmenistan;TM;REF
 Timor-Leste;TL;OAS
 Tonga;TO;OAS
 Trinidad and Tobago;TT;LAM
 Tunisia;TN;MEA
-Turkey;TR;NEU
+Turkey;TR;MEA
 Tuvalu;TV;OAS
 Taiwan, Province of China;TW;CHA
 Tanzania, United Republic of;TZ;SSA
@@ -249,3 +245,11 @@ South Africa;ZA;SSA
 Zambia;ZM;SSA
 Zimbabwe;ZW;SSA
 Kosovo;XK;EUR
+Rest of the world;RoW;CAZ
+Europe;RER;EUR
+Northern America;RNA;USA
+Latin America;RLA;LAM
+Africa;RAF;SSA
+Asia;RAS;OAS
+Oceania;UN-OCEANIA;CAZ
+World;GLO;World

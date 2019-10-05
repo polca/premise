@@ -13,13 +13,8 @@ from wurst.ecoinvent.electricity_markets import \
     empty_low_voltage_markets, empty_high_voltage_markets, empty_medium_voltage_markets
 from wurst import searching as ws
 from wurst.geo import geomatcher
-#from constructive_geometries import geomatcher
-from .clean_datasets import DatabaseCleaner as dbclean
 from .activity_maps import InventorySet
 import uuid
-import pprint as pp
-
-
 
 REGION_MAPPING_FILEPATH = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'regionmappingH12.csv')
 POPULATION_PER_COUNTRY = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'population_per_country.csv')
@@ -55,6 +50,7 @@ class Electricity:
             csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
             l = [(x[1], x[2]) for x in csv_list]
 
+
         # List of countries not found
         countries_not_found = ["CC", "CX", 'GG', 'JE', 'BL']
 
@@ -84,12 +80,8 @@ class Electricity:
             ecoinvent_locations =[]
             try:
                 for r in self.geo.intersects(location):
-                    if r!= 'GLO':
-                        if not isinstance(r, tuple):
-                            ecoinvent_locations.append(r)
-                        #else:
-                        #    if r[0] == 'ecoinvent':
-                        #        ecoinvent_locations.append(r[1])
+                    if not isinstance(r, tuple):
+                        ecoinvent_locations.append(r)
                 return ecoinvent_locations
             except KeyError as e:
                 print("Can't find location {} using the geomatcher.".format(location))
@@ -106,18 +98,51 @@ class Electricity:
         :rtype: str
         """
 
+        if location == 'GLO':
+            return ['World']
+
         if location == 'RoW':
-            location = 'GLO'
+            return ['CAZ']
 
-        location = dbclean('').get_rev_fix_names_dict().get(location, location)
+        if location == 'IAI Area, Russia & RER w/o EU27 & EFTA':
+            return ['REF']
 
-        try:
-            remind_location = [r[1] for r in self.geo.intersects(location) if r[0] == 'REMIND']
+        remind_location = [r[1] for r in self.geo.within(location) if r[0] == 'REMIND' and r[1] != 'World']
 
-        except KeyError as e:
-            print("Can't find location {} using the geomatcher.".format(location))
+        # If we have more than one REMIND region
+        if len(remind_location)>1:
+            # TODO: find a more elegant way to do that
+            # We need to find the most specific REMIND region
+            if len(set(remind_location).intersection(set(('EUR', 'NEU')))) == 2:
+                remind_location.remove('EUR')
+            if len(set(remind_location).intersection(set(('EUR', 'REF')))) == 2:
+                remind_location.remove('EUR')
+            if len(set(remind_location).intersection(set(('OAS', 'IND')))) == 2:
+                remind_location.remove('OAS')
+            if len(set(remind_location).intersection(set(('OAS', 'JPN')))) == 2:
+                remind_location.remove('OAS')
+            if len(set(remind_location).intersection(set(('AFR', 'SSA')))) == 2:
+                remind_location.remove('AFR')
+            if len(set(remind_location).intersection(set(('USA', 'CAZ')))) == 2:
+                remind_location.remove('USA')
+            if len(set(remind_location).intersection(set(('OAS', 'CHA')))) == 2:
+                remind_location.remove('OAS')
+            if len(set(remind_location).intersection(set(('AFR', 'MEA')))) == 2:
+                remind_location.remove('AFR')
+            if len(set(remind_location).intersection(set(('OAS', 'MEA')))) == 2:
+                remind_location.remove('OAS')
+            if len(set(remind_location).intersection(set(('OAS', 'REF')))) == 2:
+                remind_location.remove('OAS')
+            if len(set(remind_location).intersection(set(('OAS', 'EUR')))) == 2:
+                remind_location.remove('OAS')
 
-        return remind_location
+            return remind_location
+
+        elif len(remind_location) == 0:
+            print('no loc for {}'.format(location))
+
+        else:
+            return remind_location
 
 
     def empty_electricity_markets(self, db):
@@ -156,7 +181,7 @@ class Electricity:
         if loc == 'RoW':
             loc = 'GLO'
 
-        loc = dbclean('').get_fix_names_dict().get(loc, loc)
+
         remind_regions = [r for r in geomatcher.intersects(loc) if r[0] == 'REMIND']
         temp = [r for region in remind_regions for r in geomatcher.contained(region)]
         result = [t[1] if isinstance(t, tuple) else t for t in temp]
@@ -189,7 +214,8 @@ class Electricity:
 
         print(mix)
 
-        # here we find the datasets that will make up the mix for each technology
+        # here w
+        #e find the datasets that will make up the mix for each technology
         #datasets = {}
         #for i in mix.coords['variable'].values:
         #    if mix.loc[i] != 0:
@@ -271,7 +297,7 @@ class Electricity:
 
     def create_new_markets_low_voltage(self):
         # Loop through REMIND regions, except "World"
-        gen_region = (region for region in self.rmd.markets.coords['region'].values if region != "World")
+        gen_region = (region for region in self.rmd.markets.coords['region'].values)
 
         for region in gen_region:
             # Create an empty dataset
@@ -281,7 +307,7 @@ class Electricity:
             new_dataset['reference product'] = 'electricity, low voltage'
             new_dataset['unit'] = 'kilowatt hour'
             new_dataset['database'] = self.db[1]['database']
-            new_dataset['code'] = str(uuid.uuid1())
+            new_dataset['code'] = str(uuid.uuid4().hex)
             new_dataset['comment'] = 'Dataset produced from REMIND scenario output results'
 
             # First, add the reference product exchange
@@ -294,7 +320,7 @@ class Electricity:
                     'type': 'production',
                     'production volume': 0,
                     'product': 'electricity, low voltage',
-                    'name': 'electricity, low voltage',
+                    'name': 'market group for electricity, low voltage, ' + self.scenario + ', ' + str(self.year),
                     'unit': 'kilowatt hour',
                     'location': region
                 }
@@ -336,8 +362,8 @@ class Electricity:
                     'amount': 8.74e-8,
                     'type': 'technosphere',
                     'production volume': 0,
-                    'product': 'transmission network construction, electricity, low voltage',
-                    'name': 'transmission network construction, electricity, low voltage' ,
+                    'product': 'distribution network, electricity, low voltage',
+                    'name': 'distribution network construction, electricity, low voltage' ,
                     'unit': 'kilometer',
                     'location': 'RoW'
                     }
@@ -424,8 +450,8 @@ class Electricity:
             self.db.append(new_dataset)
 
     def create_new_markets_medium_voltage(self):
-        # Loop through REMIND regions, except "World"
-        gen_region = (region for region in self.rmd.markets.coords['region'].values if region != "World")
+        # Loop through REMIND regions
+        gen_region = (region for region in self.rmd.markets.coords['region'].values)
 
         for region in gen_region:
             # Create an empty dataset
@@ -435,7 +461,7 @@ class Electricity:
             new_dataset['reference product'] = 'electricity, medium voltage'
             new_dataset['unit'] = 'kilowatt hour'
             new_dataset['database'] = self.db[1]['database']
-            new_dataset['code'] = str(uuid.uuid1())
+            new_dataset['code'] = str(uuid.uuid1().hex)
             new_dataset['comment'] = 'Dataset produced from REMIND scenario output results'
 
             # First, add the reference product exchange
@@ -448,7 +474,7 @@ class Electricity:
                     'type': 'production',
                     'production volume': 0,
                     'product': 'electricity, medium voltage',
-                    'name': 'electricity, medium voltage',
+                    'name': 'market group for electricity, medium voltage, ' + self.scenario + ', ' + str(self.year),
                     'unit': 'kilowatt hour',
                     'location': region
                 }
@@ -521,7 +547,7 @@ class Electricity:
                     'amount': 1.8628e-8,
                     'type': 'technosphere',
                     'production volume': 0,
-                    'product': 'transmission network construction, electricity, medium voltage',
+                    'product': 'transmission network, electricity, medium voltage',
                     'name': 'transmission network construction, electricity, medium voltage' ,
                     'unit': 'kilometer',
                     'location': 'RoW'
@@ -532,11 +558,12 @@ class Electricity:
             self.db.append(new_dataset)
 
     def create_new_markets_high_voltage(self):
-        # Loop through REMIND regions, except "World"
-        gen_region = (region for region in self.rmd.markets.coords['region'].values if region != "World")
+        # Loop through REMIND regions
+        #gen_region = (region for region in self.rmd.markets.coords['region'].values if region != "World")
+        gen_region = (region for region in self.rmd.markets.coords['region'].values)
         gen_tech = list((tech for tech in self.rmd.markets.coords['variable'].values if "Solar" not in tech))
+        
         for region in gen_region:
-
             # Fetch ecoinvent regions contained in the REMIND region
             ecoinvent_regions = self.remind_to_ecoinvent_location(region)
 
@@ -547,7 +574,7 @@ class Electricity:
             new_dataset['reference product'] = 'electricity, high voltage'
             new_dataset['unit'] = 'kilowatt hour'
             new_dataset['database'] = self.db[1]['database']
-            new_dataset['code'] = str(uuid.uuid1())
+            new_dataset['code'] = str(uuid.uuid4().hex)
             new_dataset['comment'] = 'Dataset produced from REMIND scenario output results'
 
             new_exchanges = []
@@ -561,7 +588,7 @@ class Electricity:
                             'type': 'production',
                             'production volume': 0,
                             'product': 'electricity, high voltage',
-                            'name': 'electricity, high voltage',
+                            'name': 'market group for electricity, high voltage, ' + self.scenario + ', ' + str(self.year),
                             'unit': 'kilowatt hour',
                             'location': region
                         }
@@ -616,67 +643,66 @@ class Electricity:
         #electricity_market_filter = [ws.either(*[ws.doesnt_contain('name', 'market group for electricity')])]
 
         for ds in ws.get_many(self.db, ws.exclude(ws.contains('name', 'market group for electricity'))):
+
             for exc in ws.get_many(ds['exchanges'],
                *[ws.either(*[ws.contains('unit', 'kilowatt hour'),
                     ws.contains('name','market for electricity'),
                       ws.contains('name','electricity voltage transformation'),
                              ws.contains('name', 'market group for electricity')])]):
+                if exc['type'] != 'production' and exc['unit'] == 'kilowatt hour':
+                    if "high" in exc['product']:
+                        exc['name'] = 'market group for electricity, high voltage, ' + self.scenario + ', ' + str(self.year)
+                        exc['product'] = 'electricity, high voltage'
+                        exc['location'] = self.ecoinvent_to_remind_location(exc['location'])[0]
+                    if "medium" in exc['product']:
+                        exc['name'] = 'market group for electricity, medium voltage, ' + self.scenario + ', ' + str(self.year)
+                        exc['product'] = 'electricity, medium voltage'
+                        exc['location'] = self.ecoinvent_to_remind_location(exc['location'])[0]
+                    if "low" in exc['product']:
+                        exc['name'] = 'market group for electricity, low voltage, ' + self.scenario + ', ' + str(self.year)
+                        exc['product'] = 'electricity, low voltage'
+                        exc['location'] = self.ecoinvent_to_remind_location(exc['location'])[0]
 
-                if "high" in exc['name']:
-                    exc['name'] = 'market group for electricity, high voltage, ' + self.scenario + ', ' + str(self.year)
-                if "medium" in exc['name']:
-                    exc['name'] = 'market group for electricity, medium voltage, ' + self.scenario + ', ' + str(self.year)
-                if "low" in exc['name']:
-                    exc['name'] = 'market group for electricity, low voltage, ' + self.scenario + ', ' + str(self.year)
-
-                dataset_loc = exc['location']
-                exc['location'] = self.ecoinvent_to_remind_location(dataset_loc)
-
-                if len(exc['location'])>1:
-                    print(dataset_loc, exc['location'])
 
     def update_electricity_markets(self):
         # Functions for modifying ecoinvent electricity markets
 
-        electricity_market_filter = [ws.either( ws.contains('name', 'market for electricity,'),
-                                                ws.contains('name', 'market group for electricity'),
+        electricity_market_filter = [ws.either(ws.contains('name', 'market for electricity, low voltage'),
+                                                ws.contains('name', 'market for electricity, medium voltage'),
+                                                ws.contains('name', 'market for electricity, high voltage'),
+                                                ws.contains('name', 'market group for electricity, low voltage'),
+                                                ws.contains('name', 'market group for electricity, medium voltage'),
+                                                ws.contains('name', 'market group for electricity, high voltage'),
                                                 ws.contains('name', 'electricity, high voltage, import'),
                                                 ws.contains('name', 'electricity voltage transformation')),
                                                 ws.doesnt_contain_any('name', ['aluminium industry',
                                                                      'internal use in coal mining',
                                                                      'municipal'])]
-
         # We first need to delete 'market for electricity' and 'market group for electricity' datasets
-        for ds in ws.get_many(self.db, *electricity_market_filter):
-            del ds
+        print('Removing old electricity datasets')
+        list_to_remove = ['market group for electricity, high voltage',
+                          'market group for electricity, medium voltage',
+                          'market group for electricity, low voltage',
+                          'market for electricity, high voltage',
+                          'market for electricity, medium voltage',
+                          'market for electricity, low voltage',
+                            'electricity, high voltage, import',
+                          'electricity, high voltage, production mix']
+        self.db = [i for i in self.db if not any(stop in i['name'] for stop in list_to_remove)]
 
         # We then need to create high voltage REMIND electricity markets
+        print('Create high voltage markets.')
         self.create_new_markets_high_voltage()
+        print('Create medium voltage markets.')
         self.create_new_markets_medium_voltage()
+        print('Create low voltage markets.')
         self.create_new_markets_low_voltage()
-        self.relink_activities_to_new_markets()
+
 
         # Finally, we need to relink all electricity-consuming activities to the new electricity markets
+        print('Linking activities to new electricity markets.')
+        self.relink_activities_to_new_markets()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return self.db
 
 
