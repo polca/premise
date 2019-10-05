@@ -34,12 +34,14 @@ class NewDatabase:
         for s in pyprind.prog_bar(self.scenarios.items()):
             scenario, year = s
             rdc = RemindDataCollection(scenario, year)
-            self.db = Electricity(self.db, rdc, scenario, year).update_electricity_markets()
+            El = Electricity(self.db, rdc, scenario, year)
+            self.db = El.update_electricity_markets()
+            self.db = El.update_electricity_efficiency()
 
     def write_db_to_brightway(self):
         for s in pyprind.prog_bar(self.scenarios.items()):
             scenario, year = s
-            print('Writing new database to Brightway2.')
+            print('Write new database to Brightway2.')
             wurst.write_brightway2_database(self.db, "ecoinvent_"+ scenario + "_" + str(year))
 
 

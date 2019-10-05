@@ -12,12 +12,14 @@ import csv
 from wurst.ecoinvent.electricity_markets import \
     empty_low_voltage_markets, empty_high_voltage_markets, empty_medium_voltage_markets
 from wurst import searching as ws
+from wurst.ecoinvent import filters
 from wurst.geo import geomatcher
 from .activity_maps import InventorySet
 import uuid
 
 REGION_MAPPING_FILEPATH = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'regionmappingH12.csv')
 POPULATION_PER_COUNTRY = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'population_per_country.csv')
+LHV_FUELS = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'fuels_lower_heating_value.txt')
 
 class Electricity:
     """
@@ -35,11 +37,26 @@ class Electricity:
         self.population = self.get_population_dict()
         self.scenario = scenario
         self.year = year
+        self.fuels_lhv = self.get_lower_heating_values()
 
         mapping = InventorySet(self.db)
 
         self.activities_map = mapping.activities_map
         self.powerplant_map = mapping.powerplants_map
+
+    def get_lower_heating_values(self):
+        """
+        Loads a csv file into a dictionary. This dictionary contains lower heating values for a number of fuel types.
+        Taken from: https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html
+
+        :return: dictionary that contains lower heating values
+        :rtype: dict
+        """
+        if not LHV_FUELS.is_file():
+            raise FileNotFoundError('The dictionary of lower heating values could not be found.')
+
+        with open(LHV_FUELS) as f:
+            return dict(filter(None, csv.reader(f, delimiter=';')))
 
     def get_REMIND_geomatcher(self):
         if not REGION_MAPPING_FILEPATH.is_file():
@@ -199,77 +216,6 @@ class Electricity:
         except:
             return []
 
-    def add_new_datasets_to_electricity_market(self, ds):
-        # This function adds new electricity datasets to a market based on remind results.
-        # We pass not only a dataset to modify, but also a pandas dataframe containing the new electricity mix information,
-        # and the db from which we should find the datasets
-        # find out which remind regions correspond to our dataset:
-
-        remind_locations = self.ecoinvent_to_remind_location(ds['location'])
-
-        print(remind_locations, ds['location'])
-
-        # here we find the mix of technologies in the new market and how much they contribute:
-        mix = self.rmd.markets.loc[:,remind_locations,:].mean(axis=1)
-
-        print(mix)
-
-        # here w
-        #e find the datasets that will make up the mix for each technology
-        #datasets = {}
-        #for i in mix.coords['variable'].values:
-        #    if mix.loc[i] != 0:
-
-                # First try to find a dataset that is from that location (or remind region for new datasets):
-        #        datasets[i] = self.find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(i, ds['location'])
-        #
-        #         #print('First round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
-        #
-        #         # If this doesn't work, we try to take a dataset from another ecoinvent region within the same remind region
-        #         if len(datasets[i]) == 0:
-        #             datasets[i] = self.find_ecoinvent_electricity_datasets_in_remind_location(i, ds['location'])
-        #             #print('Second round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
-        #         #
-        #         # If even this doesn't work, try taking a global datasets
-        #         if len(datasets[i]) == 0:
-        #             datasets[i] = self.find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(i, 'GLO')
-        #             #print('Third round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
-        #         #
-        #         #if no global dataset available, we just take the average of all datasets we have:
-        #         #if len(datasets[i]) == 0:
-        #         #    datasets[i] = self.find_ecoinvent_electricity_datasets_in_all_locations(i)
-        #         #    print('Fourth round: ',i, [(ds['name'], ds['location']) for ds in datasets[i]])
-        #         #
-        #         # # If we still can't find a dataset, we just take the global market group
-        #         # if len(datasets[i]) == 0:
-        #         #     print('No match found for location: ', ds['location'], ' Technology: ', i,
-        #         #           '. Taking global market group for electricity')
-        #         #     datasets[i] = [x for x in ws.get_many(db, *[
-        #         #         ws.equals('name', 'market group for electricity, high voltage'), ws.equals('location', 'GLO')])]
-        #         print(i, [(ds['name'], ds['location']) for ds in datasets[i] if len(datasets[i]) == 0])
-
-         # Now we add the new exchanges:
-        #for i in mix.coords['variable'].values:
-        #     if mix[i] != 0:
-        #         total_amount = mix[i]
-        #         amount = total_amount / len(datasets[i])
-        #         for dataset in datasets[i]:
-        #             ds['exchanges'].append({
-        #                 'amount': amount,
-        #                 'unit': dataset['unit'],
-        #                 'input': (dataset['database'], dataset['code']),
-        #                 'type': 'technosphere',
-        #                 'name': dataset['name'],
-        #                 'location': dataset['location']
-        #             })
-        #
-        # # confirm that exchanges sum to 1!
-        # sum = np.sum([exc['amount'] for exc in ws.technosphere(ds, *[ws.equals('unit', 'kilowatt hour'),
-        #                                                              ws.doesnt_contain_any('name', [
-        #                                                                  'market for electricity, high voltage'])])])
-        # if round(sum, 4) != 1.00:  print(ds['location'], " New exchanges don't add to one! something is wrong!", sum)
-        # return
-
     def get_suppliers_of_a_region(self, ecoinvent_regions, ecoinvent_technologies):
 
         return ws.get_many(self.db,
@@ -297,7 +243,7 @@ class Electricity:
 
     def create_new_markets_low_voltage(self):
         # Loop through REMIND regions, except "World"
-        gen_region = (region for region in self.rmd.markets.coords['region'].values)
+        gen_region = (region for region in self.rmd.electricity_markets.coords['region'].values)
 
         for region in gen_region:
             # Create an empty dataset
@@ -371,15 +317,15 @@ class Electricity:
 
             # Fourth, add the contribution of solar power
             solar_amount = 0
-            gen_tech = list((tech for tech in self.rmd.markets.coords['variable'].values if "Solar" in tech))
+            gen_tech = list((tech for tech in self.rmd.electricity_markets.coords['variable'].values if "Solar" in tech))
             for technology in gen_tech:
                 # If the solar power technology contributes to the mix
-                    if self.rmd.markets.loc[technology,region,0] != 0.0:
+                    if self.rmd.electricity_markets.loc[technology,region,0] != 0.0:
                         # Fetch ecoinvent regions contained in the REMIND region
                         ecoinvent_regions = self.remind_to_ecoinvent_location(region)
 
                         # Contribution in supply
-                        amount = self.rmd.markets.loc[technology, region, 0].values
+                        amount = self.rmd.electricity_markets.loc[technology, region, 0].values
                         solar_amount += amount
 
 
@@ -451,7 +397,7 @@ class Electricity:
 
     def create_new_markets_medium_voltage(self):
         # Loop through REMIND regions
-        gen_region = (region for region in self.rmd.markets.coords['region'].values)
+        gen_region = (region for region in self.rmd.electricity_markets.coords['region'].values)
 
         for region in gen_region:
             # Create an empty dataset
@@ -559,9 +505,8 @@ class Electricity:
 
     def create_new_markets_high_voltage(self):
         # Loop through REMIND regions
-        #gen_region = (region for region in self.rmd.markets.coords['region'].values if region != "World")
-        gen_region = (region for region in self.rmd.markets.coords['region'].values)
-        gen_tech = list((tech for tech in self.rmd.markets.coords['variable'].values if "Solar" not in tech))
+        gen_region = (region for region in self.rmd.electricity_markets.coords['region'].values)
+        gen_tech = list((tech for tech in self.rmd.electricity_markets.coords['variable'].values if "Solar" not in tech))
         
         for region in gen_region:
             # Fetch ecoinvent regions contained in the REMIND region
@@ -598,10 +543,10 @@ class Electricity:
             for technology in gen_tech:
 
                 # If the given technology contributes to the mix
-                if self.rmd.markets.loc[technology,region,0] != 0.0:
+                if self.rmd.electricity_markets.loc[technology,region,0] != 0.0:
 
                     # Contribution in supply
-                    amount = self.rmd.markets.loc[technology, region, 0].values
+                    amount = self.rmd.electricity_markets.loc[technology, region, 0].values
 
                     # Get the possible names of ecoinvent datasets
                     ecoinvent_technologies = self.powerplant_map[self.rmd.rev_market_labels[technology]]
@@ -663,23 +608,96 @@ class Electricity:
                         exc['product'] = 'electricity, low voltage'
                         exc['location'] = self.ecoinvent_to_remind_location(exc['location'])[0]
 
+    def find_ecoinvent_fuel_efficiency(self, ds, fuel_sources):
+        # Nearly all coal power plant datasets have the efficiency as a parameter.
+        # If this isn't available, we back calculate it using the amount of coal used and
+        # an average energy content of coal.
+
+        key = list(key for key in ds['parameters'] if 'efficiency' in key)[0]
+        if key is not None:
+            return ds['parameters'][key]
+        else:
+
+            energy_input = np.sum([(self.fuels_lhv[k] / 3.6 * exc['amount'] for exc in fuel_sources
+                                    if k in exc['name']) for k in self.fuels_lhv])
+
+            ds['parameters']['efficiency'] = ws.reference_product(ds)['amount'] / energy_input
+            return ds['parameters']['efficiency']
+
+    def find_fuel_efficiency_scaling_factor(self, ds, technology, fuel_sources):
+        # input a electricity dataset and year. We look up the efficiency for this region and year from the remind
+        # model and return the scaling factor by which to multiply all efficiency dependent exchanges.
+        # If the ecoinvent region corresponds to multiple remind regions we simply average them.
+
+        ecoinvent_eff = self.find_ecoinvent_fuel_efficiency(ds, fuel_sources)
+        remind_locations= self.ecoinvent_to_remind_locations(ds['location'])
+        remind_eff = self.rmd.electricity_efficiencies.loc[self.rmd.electricity_efficiency_labels[technology],
+                                                           remind_locations,
+                                                           self.year].mean(axis=1)
+        return ecoinvent_eff / remind_eff
+
+
+
+
+    def get_remind_mapping(self):
+
+        #define filter functions that decide which ecoinvent processes to modify
+        no_al = [ws.exclude(ws.contains('name', 'aluminium industry'))]
+        no_ccs = [ws.exclude(ws.contains('name', 'carbon capture and storage'))]
+        no_markets = [ws.exclude(ws.contains('name', 'market'))]
+        generic_excludes = no_al + no_ccs + no_markets
+
+        gas_open_cycle_electricity = [
+            ws.equals('name', 'electricity production, natural gas, conventional power plant')]
+
+        biomass_chp_electricity = [
+                ws.either(ws.contains('name', ' wood'), ws.contains('name', 'bio')),
+                ws.equals('unit', 'kilowatt hour'),
+                ws.contains('name', 'heat and power co-generation')]
+
+        return {
+            'Coal PC': {
+                'eff_func': self.find_fuel_efficiency_scaling_factor,
+                'technology filters': filters.coal_electricity + generic_excludes,
+                'technosphere excludes': [],
+            },
+            'Coal CHP': {
+                'eff_func': self.find_fuel_efficiency_scaling_factor,
+                'technology filters': filters.coal_chp_electricity + generic_excludes,
+                'technosphere excludes': [],
+            },
+            'Gas OC': {
+                'eff_func': self.find_fuel_efficiency_scaling_factor,
+                'technology filters': gas_open_cycle_electricity + generic_excludes + no_imports,
+                'technosphere excludes': [],
+            },
+            'Gas CC': {
+                'eff_func': self.find_fuel_efficiency_scaling_factor,
+                'technology filters': filters.gas_combined_cycle_electricity + generic_excludes + no_imports,
+                'technosphere excludes': [],
+            },
+            'Gas CHP': {
+                'eff_func': self.find_fuel_efficiency_scaling_factor,
+                'technology filters': filters.gas_chp_electricity + generic_excludes + no_imports,
+                'technosphere excludes': [],
+            },
+            'Oil': {
+                'eff_func': self.find_fuel_efficiency_scaling_factor,
+                'technology filters': (filters.oil_open_cycle_electricity
+                                       + generic_excludes
+                                       + [ws.exclude(ws.contains('name', 'nuclear'))]),
+                'technosphere excludes': [],
+            },
+            'Biomass CHP': {
+                'eff_func': self.find_fuel_efficiency_scaling_factor,
+                'technology filters': biomass_chp_electricity + generic_excludes,
+                'technosphere excludes': [],
+            },
+        }
 
     def update_electricity_markets(self):
-        # Functions for modifying ecoinvent electricity markets
-
-        electricity_market_filter = [ws.either(ws.contains('name', 'market for electricity, low voltage'),
-                                                ws.contains('name', 'market for electricity, medium voltage'),
-                                                ws.contains('name', 'market for electricity, high voltage'),
-                                                ws.contains('name', 'market group for electricity, low voltage'),
-                                                ws.contains('name', 'market group for electricity, medium voltage'),
-                                                ws.contains('name', 'market group for electricity, high voltage'),
-                                                ws.contains('name', 'electricity, high voltage, import'),
-                                                ws.contains('name', 'electricity voltage transformation')),
-                                                ws.doesnt_contain_any('name', ['aluminium industry',
-                                                                     'internal use in coal mining',
-                                                                     'municipal'])]
         # We first need to delete 'market for electricity' and 'market group for electricity' datasets
-        print('Removing old electricity datasets')
+        print('Remove old electricity datasets')
         list_to_remove = ['market group for electricity, high voltage',
                           'market group for electricity, medium voltage',
                           'market group for electricity, low voltage',
@@ -700,9 +718,12 @@ class Electricity:
 
 
         # Finally, we need to relink all electricity-consuming activities to the new electricity markets
-        print('Linking activities to new electricity markets.')
+        print('Link activities to new electricity markets.')
         self.relink_activities_to_new_markets()
 
         return self.db
+
+
+
 
 

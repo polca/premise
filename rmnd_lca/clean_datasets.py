@@ -223,22 +223,22 @@ class DatabaseCleaner:
 
 
         # Set missing locations to ```GLO``` for datasets in ``database``
-        print('Setting missing location of datasets to global scope.')
+        print('Set missing location of datasets to global scope.')
         wurst.default_global_location(self.db)
         # Set missing locations to ```GLO``` for exchanges in ``datasets``
-        print('Setting missing location of production exchanges to scope of dataset.')
-        print('Correcting missing location of technosphere exchanges.')
+        print('Set missing location of production exchanges to scope of dataset.')
+        print('Correct missing location of technosphere exchanges.')
         self.fix_unset_technosphere_and_production_exchange_locations()
         # Remove empty exchanges
-        print('Removing empty exchanges.')
+        print('Remove empty exchanges.')
         self.remove_nones(self.db)
 
         # Add Carma CCS inventories
-        print('Adding Carma CCS inventories')
+        print('Add Carma CCS inventories')
         self.add_carma_inventories()
 
         # Add carbon storage for CCS technologies
-        print('Adding fossil carbon dioxide storage for CCS technologies.')
+        print('Add fossil carbon dioxide storage for CCS technologies.')
         self.add_negative_CO2_flows_for_biomass_CCS(self.db)
 
 
