@@ -200,11 +200,11 @@ class RemindDataCollection:
         )
         for r in regions:
             for s in sectors:
-                val = gains_emi.loc[(gains_emi.index.get_level_values('region') == r)&
+                val = gains_emi.loc[(gains_emi.index.get_level_values('region') == r) &
                                     (gains_emi.index.get_level_values('GAINS') == s), :]
-                array.loc[dict(region = r, sector = s, value=0)] = val
+                array.loc[dict(region=r, sector=s, value=0)] = val
 
-        return array
+        return array / 8760 # per TWha --> per TWh
 
     def get_remind_electricity_markets(self, drop_hydrogen = True):
         """
@@ -258,7 +258,7 @@ class RemindDataCollection:
             list_technologies = [l for l in list(self.electricity_efficiency_labels.values()) if 'Hydrogen' not in l]
         else:
             list_technologies = list(self.electricity_efficiency_labels.values())
- 
+
         # If the year specified is not contained within the range of years given by REMIND
         if self.year < self.data.year.values.min() or self.year > self.data.year.values.max():
             raise KeyError('year not valid, must be between 2005 and 2150')
@@ -266,15 +266,15 @@ class RemindDataCollection:
         # Otherwise, if the year specified corresponds exactly to a year given by REMIND
         elif self.year in self.data.coords['year']:
             # The contribution of each technologies, for a specified year, for a specified region is normalized to 1.
-            return self.data.loc[list_technologies,:,self.year]
+            return self.data.loc[list_technologies,:,self.year] / 100 # Percentage to ratio
 
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
             data_to_interp_from = self.data.loc[list_technologies,:,:]
-            return data_to_interp_from.interp(year=self.year)
+            return data_to_interp_from.interp(year=self.year) / 100 # Percentage to ratio
 
-    def get_remind_electricity_emissions(self, drop_hydrogen = True):
+    def get_remind_electricity_emissions(self):
         """
         This method retrieves emission values for electricity-producing technology, for a specified year,
         for each region provided by REMIND.

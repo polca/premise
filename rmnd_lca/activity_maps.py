@@ -1,4 +1,11 @@
 
+from pathlib import Path
+from inspect import currentframe, getframeinfo
+import csv
+
+REMIND_TO_ECOINVENT_EMISSION_FILEPATH = Path(getframeinfo(currentframe()).filename)\
+                                .resolve().parent.joinpath('data/'+ 'remind_to_ecoinvent_emission_mappping.csv')
+
 class InventorySet:
 
     def __init__(self, db):
@@ -92,11 +99,31 @@ class InventorySet:
                 "fltr" : "electricity production, wind"}
         }
 
+
+
         self.activities_map = self.generate_sets_from_filters(db, material_filters)
         self.powerplants_map = self.generate_sets_from_filters(db, powerplant_filters)
+        self.emissions_map = self.get_remind_to_ecoinvent_emissions()
 
 
+    def get_remind_to_ecoinvent_emissions(self):
+        """
+        Retrieve the correspondence between REMIND and ecoinvent emission labels.
+        :return: REMIND emission labels as keys and ecoinvent emission labels as values
+        :rtype: dict
+        """
 
+        if not REMIND_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
+            raise FileNotFoundError('The dictionary of emission labels correspondences could not be found.')
+
+        csv_dict = {}
+
+        with open(REMIND_TO_ECOINVENT_EMISSION_FILEPATH) as f:
+            input_dict = csv.reader(f, delimiter=';')
+            for row in input_dict:
+                csv_dict[row[0]] = row[1]
+
+        return csv_dict
 
     def act_fltr(self, db, fltr={}, mask={}, filter_exact=False, mask_exact=False):
         """Filter `db` for activities matching field contents given by `fltr` excluding strings in `mask`.

@@ -143,8 +143,8 @@ class DatabaseCleaner:
     def get_biosphere_code(self):
         """
         Retrieve biosphere uuid for biosphere flows imported from Excel inventory.
-        :return: uuid
-        :rtype: str
+        :return: dictionary with biosphere flow names as keys and uuid code as values
+        :rtype: dict
         """
 
         if not FILEPATH_BIOSPHERE_FLOWS.is_file():

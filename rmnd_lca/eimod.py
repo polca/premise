@@ -771,6 +771,7 @@ def update_electricity_datasets_with_remind_data(
             if update_efficiency == True:
                 # Modify using remind efficiency values:
                 scaling_factor = md['eff_func'](ds, year, remind_efficiency, agg_func)
+                print(scaling_factor, type(scaling_factor))
                 update_ecoinvent_efficiency_parameter(ds, scaling_factor)
                 wurst.change_exchanges_by_constant_factor(ds, scaling_factor, md['technosphere excludes'],
                                                 [ws.doesnt_contain_any('name', remind_air_pollutants)])
