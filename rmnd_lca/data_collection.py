@@ -9,11 +9,11 @@ import xarray as xr
 import numpy as np
 import csv
 
-DEFAULT_REMIND_DATA_DIR = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'Remind output files')
+#DEFAULT_REMIND_DATA_DIR = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'Remind output files')
 REMIND_ELEC_MARKETS = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'remind_electricity_markets.csv')
 REMIND_ELEC_EFFICIENCIES = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'remind_electricity_efficiencies.csv')
 REMIND_ELEC_EMISSIONS = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'remind_electricity_emissions.csv')
-GAINS_EMISSIONS_FILEPATH = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'GAINS emission factors.csv')
+#GAINS_EMISSIONS_FILEPATH = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'GAINS emission factors.csv')
 GAINS_TO_REMIND_FILEPATH = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath('data/'+ 'GAINStoREMINDtechmap.csv')
 
 class RemindDataCollection:
@@ -25,9 +25,10 @@ class RemindDataCollection:
 
     """
 
-    def __init__(self, scenario, year):
+    def __init__(self, scenario, year, filepath_remind_files):
         self.scenario = scenario
         self.year = year
+        self.filepath_remind_files = filepath_remind_files
         self.data = self.get_remind_data()
         self.gains_data = self.get_gains_data()
         self.electricity_market_labels = self.get_remind_electricity_market_labels()
@@ -38,6 +39,7 @@ class RemindDataCollection:
         self.electricity_markets = self.get_remind_electricity_markets()
         self.electricity_efficiencies = self.get_remind_electricity_efficiencies()
         self.electricity_emissions = self.get_remind_electricity_emissions()
+
 
     def get_remind_electricity_emission_labels(self):
         """
@@ -91,7 +93,7 @@ class RemindDataCollection:
         return {v: k for k, v in self.electricity_efficiency_labels.items()}
 
 
-    def get_remind_data(self, directory = DEFAULT_REMIND_DATA_DIR):
+    def get_remind_data(self):
         """
         Read the REMIND csv result file and return an `xarray` with dimensions:
         * region
@@ -104,7 +106,8 @@ class RemindDataCollection:
         """
 
         filename = self.scenario + ".mif"
-        filepath = Path(getframeinfo(currentframe()).filename).resolve().parent.joinpath(directory, filename)
+
+        filepath = Path(self.filepath_remind_files).joinpath(filename)
         if not filepath.is_file():
             raise FileNotFoundError('The REMIND data outputs file could not be found.')
 
@@ -144,7 +147,7 @@ class RemindDataCollection:
 
         return array
 
-    def get_gains_data(self, directory = DEFAULT_REMIND_DATA_DIR):
+    def get_gains_data(self):
         """
         Read the GAINS emissions csv file and return an `xarray` with dimensions:
         * region
@@ -156,10 +159,13 @@ class RemindDataCollection:
         :rtype: xarray.core.dataarray.DataArray
 
         """
-        if not GAINS_EMISSIONS_FILEPATH.is_file():
+        filename = "GAINS emission factors.csv"
+        filepath = Path(self.filepath_remind_files).joinpath(filename)
+
+        if not filepath.is_file():
             raise FileNotFoundError('The GAINS emissions file could not be found.')
 
-        gains_emi = pd.read_csv(GAINS_EMISSIONS_FILEPATH, skiprows=4,
+        gains_emi = pd.read_csv(filepath, skiprows=4,
                             names=["year", "region", "GAINS", "pollutant", "scenario", "factor"])
         gains_emi["unit"] = "Mt/TWa"
         gains_emi = gains_emi[gains_emi.scenario == 'SSP2']

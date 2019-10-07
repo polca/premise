@@ -8,6 +8,8 @@ from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .electricity import Electricity
 import wurst
+from pathlib import Path
+from inspect import currentframe, getframeinfo
 
 
 
@@ -22,10 +24,16 @@ class NewDatabase:
 
     """
 
-    def __init__(self, database_dict, destination_db):
+    def __init__(self, database_dict, destination_db, filepath_to_remind_files = None):
         self.scenarios = database_dict
         self.destination = destination_db
         self.db = self.clean_database()
+
+        if filepath_to_remind_files == None:
+            self.filepath_to_remind_files = Path(getframeinfo(currentframe()).filename).resolve()\
+                .parent.joinpath('data/'+ 'Remind output files')
+        else:
+            self.filepath_to_remind_files = filepath_to_remind_files
 
     def clean_database(self):
         return DatabaseCleaner(self.destination).prepare_datasets()
@@ -33,7 +41,7 @@ class NewDatabase:
     def update_electricity_to_remind_data(self):
         for s in pyprind.prog_bar(self.scenarios.items()):
             scenario, year = s
-            rdc = RemindDataCollection(scenario, year)
+            rdc = RemindDataCollection(scenario, year, self.filepath_to_remind_files)
             El = Electricity(self.db, rdc, scenario, year)
             self.db = El.update_electricity_markets()
             self.db = El.update_electricity_efficiency()
