@@ -295,7 +295,7 @@ class RemindDataCollection:
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
-            return self.gains_data.interp(year=self.year)
+            return self.gains_data.loc[dict(value = 0)].interp(year=self.year)
 
 
 
