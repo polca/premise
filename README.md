@@ -34,13 +34,13 @@ otherwise, the library will look for them in its subdirectory "/data/Remind outp
 How to install this package?
 ----------------------------
 
-In a terminal, from Github::
+In a terminal, from Github:
 
     pip install git+https://github.com/romainsacchi/rmnd-lca.git
 
 will install the package and the required dependencies.
 
-Alternatively, from Conda::
+Alternatively, from Conda:
 
     conda install -c romainsacchi/label/nightly rmnd-lca-dev
 
@@ -48,11 +48,13 @@ How to use it?
 --------------
 
 A preliminary requirement to the use this library is to have a `brightway2` project created and opened, with the
-`ecoinvent 3.5 cutoff` database registered, so that::
+`ecoinvent 3.5 cutoff` database registered, so that:
 
     import brightway2 as bw
     bw.projects.set_current('remind')
     bw.databases
+    
+returns
 
     Databases dictionary with 2 object(s):
 	biosphere3
@@ -66,10 +68,12 @@ Then, for a chosen policy and year between 2005 and 2150, the following two line
 * update the efficiency of electricity-producing technologies, according to the projections given by REMIND
 
 
-For example, here with the year 2011 and the policy "Business-as-usual"::
+For example, here with the year 2011 and the policy "Business-as-usual":
 
     ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff')
     ndb.update_electricity_to_remind_data()
+    
+returns
 
     Getting activity data
     100%|█████████████████████████████████| 16022/16022 [00:00<00:00, 45140.97it/s]
@@ -109,9 +113,11 @@ the correct directory, as such::
 
     ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff', r"C:\Users\username\Documents\Remind output files")
 
-Once the process is completed, the resulting database is registered back into the current Brightway2 project::
+Once the process is completed, the resulting database is registered back into the current Brightway2 project:
 
     ndb.write_db_to_brightway()
+    
+returns
 
     Write new database to Brightway2.
     15223 datasets
