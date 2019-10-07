@@ -20,7 +20,7 @@ fake_db = [{'name': 'Electricity, at BIGCC power plant 450MW, pre, pipeline 200k
  {'name': 'electricity production, solar thermal parabolic trough, 50 MW'},
  {'name': 'electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated'},
  {'name': 'electricity production, wind, 2.3MW turbine, precast concrete tower, onshore'}, {'name': 'steel production'},
-{'name':'market for aluminium, primary'}]
+ {'name':'market for aluminium, primary'}]
 
 def test_presence_of_dict():
     maps = InventorySet(fake_db)
