@@ -1,5 +1,6 @@
 # Data directories #
 Remind output files/
+rmnd_lca.egg-info/
 
 *.pyc
 
@@ -43,4 +44,3 @@ Remind output files/
 .Trashes
 ehthumbs.db
 Thumbs.db
-*.xml

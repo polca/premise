@@ -7,16 +7,9 @@ import wurst
 
 
 FILEPATH_FIX_NAMES = (DATA_DIR / "fix_names.csv")
-FILEPATH_CARMA_INVENTORIES = (
-    Path(getframeinfo(currentframe()).filename)
-    .resolve()
-    .parent.joinpath("data/" + "lci-Carma-CCS.xlsx")
-)
-FILEPATH_BIOSPHERE_FLOWS = (
-    Path(getframeinfo(currentframe()).filename)
-    .resolve()
-    .parent.joinpath("data/" + "dict_biosphere.txt")
-)
+FILEPATH_CARMA_INVENTORIES = (DATA_DIR / "lci-Carma-CCS.xlsx")
+FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
+
 
 
 class DatabaseCleaner:

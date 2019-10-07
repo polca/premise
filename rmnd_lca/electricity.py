@@ -1106,19 +1106,17 @@ class Electricity:
                             pollutant=remind_emission_label,
                             sector=self.rmd.electricity_emission_labels[
                                 remind_technology
-                            ],
+                            ]
                         )
-                    ].values
-                    if np.isnan(remind_emission):
-                        print(remind_emission, remind_emission_label, ds["name"])
+                    ].values.item(0)
 
                     if exc["amount"] == 0:
                         wurst.rescale_exchange(
-                            exc, remind_emission[0] / 1, remove_uncertainty=True
+                            exc, remind_emission / 1, remove_uncertainty=True
                         )
 
                     else:
-                        wurst.rescale_exchange(exc, remind_emission[0] / exc["amount"])
+                        wurst.rescale_exchange(exc, remind_emission / exc["amount"])
 
         return self.db
 

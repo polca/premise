@@ -2,12 +2,12 @@ from . import DATA_DIR
 import pandas as pd
 import xarray as xr
 import numpy as np
+from pathlib import Path
 import csv
 
 REMIND_ELEC_MARKETS = (DATA_DIR / "remind_electricity_markets.csv")
 REMIND_ELEC_EFFICIENCIES = (DATA_DIR / "remind_electricity_efficiencies.csv")
 REMIND_ELEC_EMISSIONS = (DATA_DIR / "remind_electricity_emissions.csv")
-# GAINS_EMISSIONS_FILEPATH = Path(DATA_DIR / 'GAINS emission factors.csv')
 GAINS_TO_REMIND_FILEPATH = (DATA_DIR / "GAINStoREMINDtechmap.csv")
 
 
