@@ -147,11 +147,11 @@ class Electricity:
                 # We need to find the most specific REMIND region
                 if len(set(remind_location).intersection(set(key))) == 2:
                     remind_location.remove(value)
-            return remind_location
+            return remind_location[0]
         elif len(remind_location) == 0:
             print("no location for {}".format(location))
         else:
-            return remind_location
+            return remind_location[0]
 
     def get_suppliers_of_a_region(self, ecoinvent_regions, ecoinvent_technologies):
         """
@@ -704,7 +704,7 @@ class Electricity:
                         exc["product"] = "electricity, high voltage"
                         exc["location"] = self.ecoinvent_to_remind_location(
                             exc["location"]
-                        )[0]
+                        )
                     if "medium" in exc["product"]:
                         exc["name"] = (
                             "market group for electricity, medium voltage, "
@@ -715,7 +715,7 @@ class Electricity:
                         exc["product"] = "electricity, medium voltage"
                         exc["location"] = self.ecoinvent_to_remind_location(
                             exc["location"]
-                        )[0]
+                        )
                     if "low" in exc["product"]:
                         exc["name"] = (
                             "market group for electricity, low voltage, "
@@ -726,7 +726,7 @@ class Electricity:
                         exc["product"] = "electricity, low voltage"
                         exc["location"] = self.ecoinvent_to_remind_location(
                             exc["location"]
-                        )[0]
+                        )
 
     def find_ecoinvent_fuel_efficiency(self, ds, fuel_filters):
         """
