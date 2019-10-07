@@ -11,11 +11,30 @@ import brightway2 as bw
 from bw2data import Database
 from wurst.ecoinvent import filters
 import os.path
-from helpers import activitymaps
+from helpers.activitymaps import activitymaps
 
 DEFAULT_DATA_DIR = "../data"
 DEFAULT_EMI_FILE = os.path.join(DEFAULT_DATA_DIR, "GAINS emission factors.csv")
 DEFAULT_GAINS_MAPPING = os.path.join(DEFAULT_DATA_DIR, "GAINStoREMINDtechmap.csv")
+
+def get_activitymaps(actype, ecoinvent_version):
+    actmap = activitymaps[actype]
+    if ecoinvent_version == "3.6":
+        # for the newer version, we have to replace activity names
+        convmap = pd.read_csv(
+            os.path.join(DEFAULT_DATA_DIR, "ei35_36_names.csv"))
+        for k, al in actmap.items():
+            nwlst = []
+            for act in al:
+                newname = convmap.loc[convmap.ei35 == act, "ei36"]
+                if len(newname) > 0:
+                    print("Updating {} by {}".format(act, newname.iloc[0]))
+                    nwlst.append(newname[0])
+                else:
+                    nwlst.append(act)
+            actmap[k] = nwlst
+    return actmap
+
 
 ## Functions to clean up Wurst import and additional technologies
 def fix_unset_technosphere_and_production_exchange_locations(db, matching_fields=('name', 'unit')):
@@ -170,7 +189,7 @@ def get_remind_data(scenario_name):
     df = pd.read_csv(
         files[0], sep=';',
         index_col=['Region', 'Variable', 'Unit']
-    ).drop(columns=['Model', 'Scenario', 'Unnamed: 24'])
+    ).drop(columns=['Model', 'Scenario', 'Unnamed: 24', 'V25'], errors="ignore")
     df.columns = df.columns.astype(int)
 
     return df
@@ -276,11 +295,11 @@ def find_average_mix(df):
 
 def find_ecoinvent_electricity_datasets_in_same_ecoinvent_location(tech, location, db):
     #first try ecoinvent location code:
-    try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps.powerplants[tech]]),
+    try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps["powerplants"][tech]]),
                                             ws.equals('location', location), ws.equals('unit', 'kilowatt hour')])]
     #otherwise try remind location code (for new datasets)
     except:
-        try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps.powerplants[tech]]),
+        try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps["powerplants"][tech]]),
                                             ws.equals('location', ecoinvent_to_remind_locations(location)), ws.equals('unit', 'kilowatt hour')])]
         except: return []
 
@@ -307,7 +326,7 @@ def find_other_ecoinvent_regions_in_remind_region(loc):
 
 
 def find_ecoinvent_electricity_datasets_in_remind_location(tech, location, db):
-    try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps.powerplants[tech]]),
+    try: return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps["powerplants"][tech]]),
                                             ws.either(*[ws.equals('location', loc) for loc in find_other_ecoinvent_regions_in_remind_region(location)]),
                                         ws.equals('unit', 'kilowatt hour')
                           ])]
@@ -315,7 +334,7 @@ def find_ecoinvent_electricity_datasets_in_remind_location(tech, location, db):
 
 
 def find_ecoinvent_electricity_datasets_in_all_locations(tech, db):
-       return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps.powerplants[tech]]),ws.equals('unit', 'kilowatt hour')])]
+       return [x for x in ws.get_many(db, *[ws.either(*[ws.equals('name', name) for name in activitymaps["powerplants"][tech]]),ws.equals('unit', 'kilowatt hour')])]
 
 
 def add_new_datasets_to_electricity_market(ds, db, remind_electricity_market_df, year):
@@ -966,6 +985,7 @@ def modify_standard_carma_dataset_efficiency(ds, remind_efficiency):
 
 def modify_electricity_generation_datasets(
         database_dict,
+        ecoinvent_db="ecoinvent_3.5",
         emi_fname=DEFAULT_EMI_FILE,
         write_changeset=False):
 
@@ -975,7 +995,7 @@ def modify_electricity_generation_datasets(
 
     for key in pyprind.prog_bar(database_dict.keys()):
 
-        db = wurst.extract_brightway2_databases(['Carma CCS', 'ecoinvent_3.5'])
+        db = wurst.extract_brightway2_databases(['Carma CCS', ecoinvent_db])
         wurst.default_global_location(db)
         fix_unset_technosphere_and_production_exchange_locations(db)
 
@@ -1049,7 +1069,7 @@ def modify_electricity_generation_datasets(
 
     if key not in bw.databases:
 
-        db = wurst.extract_brightway2_databases(['Carma CCS', 'ecoinvent_3.5'])
+        db = wurst.extract_brightway2_databases(['Carma CCS', ecoinvent_db])
         wurst.default_global_location(db)
         fix_unset_technosphere_and_production_exchange_locations(db)
 

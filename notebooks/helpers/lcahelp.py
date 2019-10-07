@@ -178,9 +178,13 @@ def LCA_to_df(datasets, cats=['CC', 'R_Total'], amount=1, names=['name', 'locati
     results = {}
     index_dict = {}
 
+    mets = cats
+    # check for method shortcuts
+    if set(cats).issubset(set(lcia_methods.keys())):
+        mets = [lcia_methods[cat] for cat in cats]
     # create lca object
-    if datasets and cats:
-        lca = bw.LCA({datasets[0]: 1}, method=lcia_methods[cats[0]])
+    if datasets and mets:
+        lca = bw.LCA({datasets[0]: 1}, method=mets[0])
         lca.lci()
         lca.lcia()
     else:
@@ -190,13 +194,14 @@ def LCA_to_df(datasets, cats=['CC', 'R_Total'], amount=1, names=['name', 'locati
     for ds in datasets:
         index_dict[ds['code']] = tuple(ds[i] for i in names)
 
-    for cat in cats:
-        print(cat)
-        lca.switch_method(lcia_methods[cat])
-        results[cat] = {}
+    for met in mets:
+        met_name = met[1]
+        print(met_name)
+        lca.switch_method(met)
+        results[met_name] = {}
         for dataset in pyprind.prog_bar(datasets):
             lca.redo_lcia({dataset: amount})
-            results[cat][dataset['code']] = lca.score
+            results[met_name][dataset['code']] = lca.score
 
     # We group all energy into one category:
     for cat in category_group:
@@ -338,17 +343,84 @@ def cm2in(*tupl):
         return tuple(i/inch for i in tupl)
 
 
-def import_karma(path_to_karma="../data/lci-Carma-CCS.xlsx"):
+def import_karma(ecoinvent_db, path_to_karma="../data/lci-Carma-CCS.xlsx"):
     db_name = "Carma CCS"
     if db_name not in bw.databases:
-
         sp = bw.ExcelImporter(path_to_karma)
         sp.apply_strategies()
         sp.match_database(fields=["name", "unit", "location"])
-        sp.match_database('ecoinvent_3.5',
+        if(ecoinvent_db == "ecoinvent_3.6"):
+            # apply some updates to comply with ei 3.6
+            new_technosphere_data = {
+                'fields': ['name', 'reference product', 'location'],
+                'data': [
+                    (
+                        ('market for water, decarbonised, at user', (), 'GLO'),
+                        {
+                            'name': ('market for water, decarbonised'),
+                            'reference product': ('water, decarbonised'),
+                            'location': ('DE'),
+                        }
+                    ),
+                    (
+                        ('market for water, completely softened, from decarbonised water, at user', (), 'GLO'),
+                        {
+                            'name': ('market for water, completely softened'),
+                            'reference product': ('water, completely softened'),
+                            'location': ('RER'),
+                        }
+                    ),
+                    (
+                        ('market for steam, in chemical industry', (), 'GLO'),
+                        {
+                            'location': ('RER'),
+                            'reference product': ('steam, in chemical industry'),
+                        }
+                    ),
+                    (
+                        ('market for steam, in chemical industry', (), 'RER'),
+                        {
+                            'reference product': ('steam, in chemical industry'),
+                        }
+                    ),
+                    (
+                        ('zinc-lead mine operation', ('zinc concentrate',), 'GLO'),
+                        {
+                            'name': ('zinc mine operation'),
+                            'reference product': ('bulk lead-zinc concentrate'),
+                        }
+                    ),
+                    (
+                        ('market for aluminium oxide', ('aluminium oxide',), 'GLO'),
+                        {
+                            'name': ('market for aluminium oxide, non-metallurgical'),
+                            'reference product': ('aluminium oxide, non-metallurgical'),
+                            'location': ('IAI Area, EU27 & EFTA'),
+                        }
+                    ),
+                    (
+                        ('platinum group metal mine operation, ore with high rhodium content', ('nickel, 99.5%',), 'ZA'),
+                        {
+                            'name': ('platinum group metal, extraction and refinery operations'),
+                        }
+                    )
+
+                ]
+            }
+
+            Migration("migration_alois").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            sp.migrate("migration_alois")
+            sp.match_database("ecoinvent_3.6", fields=['name','location','reference product','unit'])
+            sp.statistics()
+
+        sp.match_database(ecoinvent_db,
                           fields=["reference product", "name", "unit", "location"])
-        sp.match_database('ecoinvent_3.5',
+        sp.match_database(ecoinvent_db,
                           fields=["name", "unit", "location"])
+        sp.statistics()
         sp.write_database()
         del sp
     else:
