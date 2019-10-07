@@ -224,11 +224,7 @@ class Electricity:
         Does not return anything. Modifies the database in place.
         """
         # Loop through REMIND regions
-        gen_region = (
-            region for region in self.rmd.electricity_markets.coords["region"].values
-        )
-
-        for region in gen_region:
+        for region in self.rmd.electricity_markets.coords["region"].values:
             # Create an empty dataset
             new_dataset = {}
             new_dataset["location"] = region

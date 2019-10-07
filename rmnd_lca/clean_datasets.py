@@ -41,12 +41,8 @@ class DatabaseCleaner:
         :type db: list
 
         """
-
-
         for ds in ws.get_many(db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
             for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
-
-
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
     def get_fix_names_dict(self):
@@ -67,7 +63,6 @@ class DatabaseCleaner:
         :return: dictionary that contains names equivalence
         :rtype: dict
         """
-
         return {v: k for k, v in self.get_fix_names_dict().items()}
 
     def remove_nones(self, db):
