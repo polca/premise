@@ -28,7 +28,7 @@ Requirements
 * Brightway2 library
 * License for ecoinvent 3.5
 * REMIND IAM output files ("xxx.mif" and "GAINS emission factors.csv") are not installed with this library. They need
-to be queried from Alois Dirnaichner <aloisdir@pik-potsdam.de>_ and placed together in a folder. If not specified
+to be queried from Alois Dirnaichner <aloisdir@pik-potsdam.de> and placed together in a folder. If not specified
 otherwise, the library will look for them in its subdirectory "/data/Remind output files".
 
 How to install this package?
