@@ -43,3 +43,4 @@ Remind output files/
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.xml
