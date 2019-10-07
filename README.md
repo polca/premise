@@ -16,6 +16,10 @@ electricity production technologies, including Carbon Capture and Storage techno
 
 In upcoming versions, important sectors such as cement and steel will also be updated.
 
+Documentation
+-------------
+https://rmnd-lca.readthedocs.io/en/latest/
+
 Objective
 ---------
 
