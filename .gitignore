@@ -1,6 +1,11 @@
 # Data directories #
 Remind output files/
 
+*.pyc
+
+*.xml
+*.iml
+
 # Compiled source #
 ###################
 *.com
