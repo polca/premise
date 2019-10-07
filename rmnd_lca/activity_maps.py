@@ -1,10 +1,8 @@
-
-from pathlib import Path
-from inspect import currentframe, getframeinfo
+from . import DATA_DIR
 import csv
 
-REMIND_TO_ECOINVENT_EMISSION_FILEPATH = Path(getframeinfo(currentframe()).filename)\
-                                .resolve().parent.joinpath('data/'+ 'remind_to_ecoinvent_emission_mappping.csv')
+REMIND_TO_ECOINVENT_EMISSION_FILEPATH = (DATA_DIR / "remind_to_ecoinvent_emission_mappping.csv")
+
 
 class InventorySet:
     """
@@ -17,103 +15,120 @@ class InventorySet:
 
     """
 
+
+class InventorySet:
     def __init__(self, db):
 
         material_filters = {
-            "steel": {
-                "fltr": "market for steel,",
-                "mask": "hot rolled"},
+            "steel": {"fltr": "market for steel,", "mask": "hot rolled"},
             "concrete": {"fltr": "market for concrete,"},
-            "copper": {
-                "fltr": "market for copper",
-                "filter_exact": True},
+            "copper": {"fltr": "market for copper", "filter_exact": True},
             "aluminium": {
-                "fltr": ["market for aluminium, primary",
-                         "market for aluminium alloy,"]},
+                "fltr": ["market for aluminium, primary", "market for aluminium alloy,"]
+            },
             "electricity": {"fltr": "market for electricity"},
-            "gas": {
-                "fltr": "market for natural gas,",
-                "mask": ["network", "burned"]},
-            "diesel": {
-                "fltr": "market for diesel",
-                "mask": ["burned", "electric"]},
-            "petrol": {
-                "fltr": "market for petrol,",
-                "mask": "burned"},
+            "gas": {"fltr": "market for natural gas,", "mask": ["network", "burned"]},
+            "diesel": {"fltr": "market for diesel", "mask": ["burned", "electric"]},
+            "petrol": {"fltr": "market for petrol,", "mask": "burned"},
             "freight": {"fltr": "market for transport, freight"},
             "cement": {"fltr": "market for cement,"},
-            "heat": {"fltr": "market for heat,"}
+            "heat": {"fltr": "market for heat,"},
         }
 
         powerplant_filters = {
             "Biomass IGCC CCS": {
-                "fltr": ['Electricity, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m/2025',
-                    'Electricity, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m/2025',
-                    'Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025']
+                "fltr": [
+                    "Electricity, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m/2025",
+                    "Electricity, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m/2025",
+                    "Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025",
+                ]
             },
             "Biomass IGCC": {
-                "fltr": 'Electricity, at BIGCC power plant 450MW, no CCS/2025'
+                "fltr": "Electricity, at BIGCC power plant 450MW, no CCS/2025"
             },
             "Coal IGCC": {
-                "fltr": ['Electricity, at power plant/hard coal, IGCC, no CCS/2025',
-                        'Electricity, at power plant/lignite, IGCC, no CCS/2025']
+                "fltr": [
+                    "Electricity, at power plant/hard coal, IGCC, no CCS/2025",
+                    "Electricity, at power plant/lignite, IGCC, no CCS/2025",
+                ]
             },
             "Coal IGCC CCS": {
-                "fltr": ['Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025',
-                      'Electricity, at power plant/lignite, pre, pipeline 200km, storage 1000m/2025']
+                "fltr": [
+                    "Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025",
+                    "Electricity, at power plant/lignite, pre, pipeline 200km, storage 1000m/2025",
+                ]
             },
             "Coal PC CCS": {
-                "fltr": ['Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m/2025',
-                            'Electricity, at power plant/lignite, post, pipeline 200km, storage 1000m/2025']
+                "fltr": [
+                    "Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m/2025",
+                    "Electricity, at power plant/lignite, post, pipeline 200km, storage 1000m/2025",
+                ]
             },
             "Gas CCS": {
-                "fltr": ['Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025',
-                        'Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m/2025']
+                "fltr": [
+                    "Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025",
+                    "Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m/2025",
+                ]
             },
             "Biomass CHP": {
-                "fltr": ['heat and power co-generation, wood chips',
-                         'heat and power co-generation, biogas']},
+                "fltr": [
+                    "heat and power co-generation, wood chips",
+                    "heat and power co-generation, biogas",
+                ]
+            },
             "Coal PC": {
-                "fltr": ['electricity production, hard coal',
-                        'electricity production, lignite'],
-                "mask":'mine'},
+                "fltr": [
+                    "electricity production, hard coal",
+                    "electricity production, lignite",
+                ],
+                "mask": "mine",
+            },
             "Coal CHP": {
-                "fltr": ['heat and power co-generation, hard coal',
-                'heat and power co-generation, lignite']},
+                "fltr": [
+                    "heat and power co-generation, hard coal",
+                    "heat and power co-generation, lignite",
+                ]
+            },
             "Gas OC": {
-                "fltr": 'electricity production, natural gas, conventional power plant'},
+                "fltr": "electricity production, natural gas, conventional power plant"
+            },
             "Gas CC": {
-                "fltr": 'electricity production, natural gas, combined cycle power plant'},
+                "fltr": "electricity production, natural gas, combined cycle power plant"
+            },
             "Gas CHP": {
-                "fltr": ['heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical',
-                        'heat and power co-generation, natural gas, conventional power plant, 100MW electrical']},
-            "Geothermal" : {
-                "fltr":'electricity production, deep geothermal'},
-            "Hydro" : {
-                "fltr": ['electricity production, hydro, reservoir',
-                        'electricity production, hydro, run-of-river']},
-            "Nuclear" : {
-                "fltr": 'electricity production, nuclear',
-                "mask": "aluminium"},
-            "Oil" : {
-                "fltr" : ['electricity production, oil',
-                        'heat and power co-generation, oil'],
-                "mask": "aluminium"},
-            "Solar CSP" : {
-                "fltr": ['electricity production, solar thermal parabolic trough, 50 MW',
-                        'electricity production, solar tower power plant, 20 MW']},
-            "Solar PV": {
-                "fltr": "electricity production, photovoltaic"},
-            "Wind": {
-                "fltr" : "electricity production, wind"}
+                "fltr": [
+                    "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+                    "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                ]
+            },
+            "Geothermal": {"fltr": "electricity production, deep geothermal"},
+            "Hydro": {
+                "fltr": [
+                    "electricity production, hydro, reservoir",
+                    "electricity production, hydro, run-of-river",
+                ]
+            },
+            "Nuclear": {"fltr": "electricity production, nuclear", "mask": "aluminium"},
+            "Oil": {
+                "fltr": [
+                    "electricity production, oil",
+                    "heat and power co-generation, oil",
+                ],
+                "mask": "aluminium",
+            },
+            "Solar CSP": {
+                "fltr": [
+                    "electricity production, solar thermal parabolic trough, 50 MW",
+                    "electricity production, solar tower power plant, 20 MW",
+                ]
+            },
+            "Solar PV": {"fltr": "electricity production, photovoltaic"},
+            "Wind": {"fltr": "electricity production, wind"},
         }
-
-
 
         self.activities_map = self.generate_sets_from_filters(db, material_filters)
         self.powerplants_map = self.generate_sets_from_filters(db, powerplant_filters)
         self.emissions_map = self.get_remind_to_ecoinvent_emissions()
-
 
     def get_remind_to_ecoinvent_emissions(self):
         """
@@ -123,12 +138,14 @@ class InventorySet:
         """
 
         if not REMIND_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
-            raise FileNotFoundError('The dictionary of emission labels correspondences could not be found.')
+            raise FileNotFoundError(
+                "The dictionary of emission labels correspondences could not be found."
+            )
 
         csv_dict = {}
 
         with open(REMIND_TO_ECOINVENT_EMISSION_FILEPATH) as f:
-            input_dict = csv.reader(f, delimiter=';')
+            input_dict = csv.reader(f, delimiter=";")
             for row in input_dict:
                 csv_dict[row[0]] = row[1]
 
@@ -161,13 +178,9 @@ class InventorySet:
 
         # default field is name
         if type(fltr) == list or type(fltr) == str:
-            fltr = {
-                "name": fltr
-            }
+            fltr = {"name": fltr}
         if type(mask) == list or type(mask) == str:
-            mask = {
-                "name": mask
-            }
+            mask = {"name": mask}
 
         def like(a, b):
             if filter_exact:
@@ -201,7 +214,6 @@ class InventorySet:
                 result = [act for act in result if notlike(act[field], condition)]
         return result
 
-
     def generate_sets_from_filters(self, db, filter):
         """Generate a dictionary with sets of activity names for technologies from the filter specifications.
 
@@ -211,4 +223,6 @@ class InventorySet:
         :rtype: dict
         """
         techs = {tech: self.act_fltr(db, **fltr) for tech, fltr in filter.items()}
-        return {tech: set([act["name"] for act in actlst]) for tech, actlst in techs.items()}
+        return {
+            tech: set([act["name"] for act in actlst]) for tech, actlst in techs.items()
+        }

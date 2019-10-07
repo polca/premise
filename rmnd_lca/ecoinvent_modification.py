@@ -1,16 +1,9 @@
-"""
-.. module: ecoinvent_modification.py
-
-"""
-
-import pyprind
+from . import DATA_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .electricity import Electricity
+import pyprind
 import wurst
-from pathlib import Path
-from inspect import currentframe, getframeinfo
-
 
 
 class NewDatabase:
@@ -26,16 +19,11 @@ class NewDatabase:
 
     """
 
-    def __init__(self, database_dict, destination_db, filepath_to_remind_files = None):
+    def __init__(self, database_dict, destination_db, filepath_to_remind_files=None):
         self.scenarios = database_dict
         self.destination = destination_db
         self.db = self.clean_database()
-
-        if filepath_to_remind_files == None:
-            self.filepath_to_remind_files = Path(getframeinfo(currentframe()).filename).resolve()\
-                .parent.joinpath('data/'+ 'Remind output files')
-        else:
-            self.filepath_to_remind_files = filepath_to_remind_files
+        self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "Remind output files")
 
     def clean_database(self):
         return DatabaseCleaner(self.destination).prepare_datasets()
@@ -51,5 +39,7 @@ class NewDatabase:
     def write_db_to_brightway(self):
         for s in pyprind.prog_bar(self.scenarios.items()):
             scenario, year = s
+
             print('Write new database to Brightway2.')
             wurst.write_brightway2_database(self.db, "ecoinvent_"+ scenario + "_" + str(year))
+
