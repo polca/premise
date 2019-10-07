@@ -1,21 +1,21 @@
 Introduction
 ============
 
-**rmnd-lca** allows to align the life cycle inventories contained in the *ecoinvent* database with the output results of
-the *REMIND IAM*, in order to produce life cycle inventories under future policy scenarios for any year between 2005
+**rmnd-lca** allows to align the life cycle inventories contained in the **ecoinvent 3.5 cutoff** database with the output results of
+the **REMIND IAM**, in order to produce life cycle inventories under future policy scenarios for any year between 2005
 and 2150.
 
 In the latest version, this includes:
-* electricity generation: alignment of regional electricity production mix as well as efficiencies for a number of
-electricity production technologies.
+* electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
+electricity production technologies, including Carbon Capture and Storage technologies.
 
 In upcoming versions, important sectors such as cement and steel will also be updated.
 
 Objective
 ---------
 
-The objective is to produce life cycle inventories under future energy policies, by modifying the ecoinvent 3.5 version
-to reflect projected energy policy trajectories.
+The objective is to produce life cycle inventories under future energy policies, by modifying the inventory database
+ecoinvent 3.5 to reflect projected energy policy trajectories.
 
 Requirements
 ------------
@@ -23,7 +23,7 @@ Requirements
 * Brightway2 library
 * License for ecoinvent 3.5
 * REMIND IAM output files ("xxx.mif" and "GAINS emission factors.csv") are not installed with this library. They need
-to be queried from Alois Dirnaichner <aloisdir@pik-potsdam.de>_ and placed together in a folder. If not specified
+to be queried from Alois Dirnaichner <aloisdir@pik-potsdam.de> and placed together in a folder. If not specified
 otherwise, the library will look for them in its subdirectory "/data/Remind output files".
 
 How to install this package?
@@ -48,6 +48,8 @@ A preliminary requirement to the use this library is to have a `brightway2` proj
     import brightway2 as bw
     bw.projects.set_current('remind')
     bw.databases
+
+returns::
 
     Databases dictionary with 2 object(s):
 	biosphere3
