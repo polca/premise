@@ -44,7 +44,7 @@ class DatabaseCleaner:
 
         """
 
-        for ds in ws.get_many(db, ws.contains('name', 'storage')):
+        for ds in ws.get_many(db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
             for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 

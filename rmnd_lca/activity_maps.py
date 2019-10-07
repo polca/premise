@@ -7,6 +7,15 @@ REMIND_TO_ECOINVENT_EMISSION_FILEPATH = Path(getframeinfo(currentframe()).filena
                                 .resolve().parent.joinpath('data/'+ 'remind_to_ecoinvent_emission_mappping.csv')
 
 class InventorySet:
+    """
+    This class is used as a container for various dictionaries.
+
+    It stores:
+    * activities_map: ecoinvent commodities as keys, ecoinvent dataset names as values
+    * powerplants_map: ecoinvent electricity technology as keys, dataset names as values
+    * emissions_map: REMIND emission labels as keys, ecoinvent emission labels as values
+
+    """
 
     def __init__(self, db):
 

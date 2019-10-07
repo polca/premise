@@ -21,6 +21,8 @@ class NewDatabase:
     :vartype database_dict: dict
     :ivar destination_db: name of the source database
     :vartype destination_db: str
+    :ivar filepath_to_remind_files: Filepath to the directory that contains REMIND output files.
+    :vartype filepath_to_remind_file: pathlib.Path
 
     """
 
@@ -51,18 +53,3 @@ class NewDatabase:
             scenario, year = s
             print('Write new database to Brightway2.')
             wurst.write_brightway2_database(self.db, "ecoinvent_"+ scenario + "_" + str(year))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

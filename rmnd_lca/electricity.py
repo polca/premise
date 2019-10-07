@@ -640,6 +640,8 @@ class Electricity:
 
         else:
 
+            # Carma inventories have their fuel inputs directly expressed in megajoules.
+
             energy_input = np.sum([exc['amount'] / 3.6 for exc in ws.technosphere(ds, *fuel_filters)])
 
             ds['parameters'] = {}
