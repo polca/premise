@@ -1,4 +1,8 @@
 numpy
+pandas
+bw2io
+wurst
+xarray
 pytest
 pytest-cov
 coveralls

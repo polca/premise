@@ -2,7 +2,6 @@
 .. module: data_collection.py
 
 """
-import os
 from pathlib import Path
 from inspect import currentframe, getframeinfo
 import pandas as pd
