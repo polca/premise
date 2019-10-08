@@ -1,5 +1,5 @@
 from . import DATA_DIR
-from bw2io import ExcelImporter
+from bw2io import ExcelImporter, Migration
 from wurst import searching as ws
 import csv
 import pprint
@@ -17,13 +17,13 @@ class DatabaseCleaner:
     Class that cleans the datasets contained in the inventory database for further processing.
 
     :ivar destination_db: name of the source database
-    :vartype destination_db: str
+    :vartype destination_db: Ecoinvent_Database
 
     """
 
     def __init__(self, destination_db):
         self.destination = destination_db
-        self.db = wurst.extract_brightway2_databases(self.destination)
+        self.db = wurst.extract_brightway2_databases(self.destination.name)
         self.biosphere_dict = self.get_biosphere_code()
 
     def add_negative_CO2_flows_for_biomass_CCS(self, db):
@@ -191,6 +191,74 @@ class DatabaseCleaner:
 
         i = ExcelImporter(FILEPATH_CARMA_INVENTORIES)
 
+        if(self.destination.version == 3.6):
+            # apply some updates to comply with ei 3.6
+            new_technosphere_data = {
+                'fields': ['name', 'reference product', 'location'],
+                'data': [
+                    (
+                        ('market for water, decarbonised, at user', (), 'GLO'),
+                        {
+                            'name': ('market for water, decarbonised'),
+                            'reference product': ('water, decarbonised'),
+                            'location': ('DE'),
+                        }
+                    ),
+                    (
+                        ('market for water, completely softened, from decarbonised water, at user', (), 'GLO'),
+                        {
+                            'name': ('market for water, completely softened'),
+                            'reference product': ('water, completely softened'),
+                            'location': ('RER'),
+                        }
+                    ),
+                    (
+                        ('market for steam, in chemical industry', (), 'GLO'),
+                        {
+                            'location': ('RER'),
+                            'reference product': ('steam, in chemical industry'),
+                        }
+                    ),
+                    (
+                        ('market for steam, in chemical industry', (), 'RER'),
+                        {
+                            'reference product': ('steam, in chemical industry'),
+                        }
+                    ),
+                    (
+                        ('zinc-lead mine operation', ('zinc concentrate',), 'GLO'),
+                        {
+                            'name': ('zinc mine operation'),
+                            'reference product': ('bulk lead-zinc concentrate'),
+                        }
+                    ),
+                    (
+                        ('market for aluminium oxide', ('aluminium oxide',), 'GLO'),
+                        {
+                            'name': ('market for aluminium oxide, non-metallurgical'),
+                            'reference product': ('aluminium oxide, non-metallurgical'),
+                            'location': ('IAI Area, EU27 & EFTA'),
+                        }
+                    ),
+                    (
+                        ('platinum group metal mine operation, ore with high rhodium content', ('nickel, 99.5%',), 'ZA'),
+                        {
+                            'name': ('platinum group metal, extraction and refinery operations'),
+                        }
+                    )
+                ]
+            }
+
+            Migration("migration_36").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            i.migrate("migration_36")
+            i.match_database(
+                self.destination.name,
+                fields=['name', 'location', 'reference product', 'unit'])
+            i.statistics()
+
         # Add the `product` key to the production exchange and format the category field for biosphere exchanges
         for x in i.data:
             for y in x["exchanges"]:
@@ -248,6 +316,7 @@ class DatabaseCleaner:
                             and a["unit"] == y["unit"]
                         ]
                     y["product"] = possibles[0]
+
 
         self.db.extend(i)
 
