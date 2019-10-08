@@ -191,6 +191,8 @@ class DatabaseCleaner:
             raise FileNotFoundError("The Carma inventory file could not be found.")
 
         i = ExcelImporter(FILEPATH_CARMA_INVENTORIES)
+        i.apply_strategies()
+        i.match_database(fields=["name", "unit", "location"])
 
         if(self.destination.version == 3.6):
             # apply some updates to comply with ei 3.6
@@ -255,9 +257,10 @@ class DatabaseCleaner:
                 description="Change technosphere names due to change from 3.5 to 3.6"
             )
             i.migrate("migration_36")
-            i.match_database(
-                self.destination.name,
-                fields=['name', 'location', 'reference product', 'unit'])
+            i.match_database(self.destination.name,
+                             fields=["reference product", "name", "unit", "location"])
+            i.match_database(self.destination.name,
+                              fields=["name", "unit", "location"])
             i.statistics()
 
         # Add the `product` key to the production exchange and format the category field for biosphere exchanges
@@ -266,32 +269,32 @@ class DatabaseCleaner:
                 if y["type"] == "production" and "product" not in y:
                     y["product"] = x["reference product"]
 
-                if y["type"] == "biosphere":
-                    y["categories"] = tuple(y["categories"].split("::"))
-                    if len(y["categories"]) > 1:
-                        y["input"] = (
-                            "biosphere3",
-                            self.biosphere_dict[
-                                (
-                                    y["name"],
-                                    y["categories"][0],
-                                    y["categories"][1],
-                                    y["unit"],
-                                )
-                            ],
-                        )
-                    else:
-                        y["input"] = (
-                            "biosphere3",
-                            self.biosphere_dict[
-                                (
-                                    y["name"],
-                                    y["categories"][0],
-                                    "unspecified",
-                                    y["unit"],
-                                )
-                            ],
-                        )
+                # if y["type"] == "biosphere":
+                #     y["categories"] = tuple(y["categories"].split("::"))
+                #     if len(y["categories"]) > 1:
+                #         y["input"] = (
+                #             "biosphere3",
+                #             self.biosphere_dict[
+                #                 (
+                #                     y["name"],
+                #                     y["categories"][0],
+                #                     y["categories"][1],
+                #                     y["unit"],
+                #                 )
+                #             ],
+                #         )
+                #     else:
+                #         y["input"] = (
+                #             "biosphere3",
+                #             self.biosphere_dict[
+                #                 (
+                #                     y["name"],
+                #                     y["categories"][0],
+                #                     "unspecified",
+                #                     y["unit"],
+                #                 )
+                #             ],
+                #         )
 
         # Add a `product` field to technosphere exchanges
         for x in i.data:
