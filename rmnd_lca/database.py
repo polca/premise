@@ -2,9 +2,9 @@ class EcoinventDatabase():
     """Hosts ecoinvent database name and version.
 
     :ivar name: name of the ecoinvent database
-    :vartype destination_db: str
+    :vartype name: str
     :ivar version: version of the ecoinvent database
-    :vartype destination_db: float
+    :vartype version: float
 
     """
     def __init__(self, name, version):
