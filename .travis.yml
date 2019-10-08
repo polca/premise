@@ -4,7 +4,7 @@ matrix:
     - language: generic-covered
       python: 3.7
       os: osx
-    - python: 3.7
+    - python: 3.6
       dist: xenial
       os: linux
 python:
