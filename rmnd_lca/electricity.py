@@ -10,7 +10,7 @@ import wurst
 
 
 REGION_MAPPING_FILEPATH = (DATA_DIR /  "regionmappingH12.csv")
-POPULATION_PER_COUNTRY = (DATA_DIR / "population_per_country.csv")
+PRODUCTION_PER_COUNTRY = (DATA_DIR / "electricity_production_volumes_per_country.csv")
 LHV_FUELS = (DATA_DIR / "fuels_lower_heating_value.txt")
 
 
@@ -27,7 +27,7 @@ class Electricity:
         self.db = db
         self.rmd = rmd
         self.geo = self.get_REMIND_geomatcher()
-        self.population = self.get_population_dict()
+        self.production = self.get_production_dict()
         self.scenario = scenario
         self.year = year
         self.fuels_lhv = self.get_lower_heating_values()
@@ -180,41 +180,41 @@ class Electricity:
             ]
         )
 
-    def get_population_dict(self):
+    def get_production_dict(self):
         """
-        Create a dictionnary with ISO country codes as keys and population count as values.
-        :return: ISO country code to population count dictionnary
+        Create a dictionnary with ISO country codes as keys and production volumes as values.
+        :return: ISO country code to production volume dictionnary
         :rtype: dict
         """
 
-        if not POPULATION_PER_COUNTRY.is_file():
+        if not PRODUCTION_PER_COUNTRY.is_file():
             raise FileNotFoundError(
-                "The population per country dictionary file could not be found."
+                "The production per country dictionary file could not be found."
             )
 
-        with open(POPULATION_PER_COUNTRY) as f:
+        with open(PRODUCTION_PER_COUNTRY) as f:
             return dict(filter(None, csv.reader(f, delimiter=";")))
 
-    def get_pop_weighted_share(self, supplier, suppliers):
+    def get_production_weighted_share(self, supplier, suppliers):
         """
-        Return the share of population of a region where an electricity-producing dataset is located,
-        relative to the summed population of regions of a list of datasets.
+        Return the share of production of a region where an electricity-producing dataset is located,
+        relative to the summed production of regions of a list of datasets.
 
         :param supplier: electricity-producing dataset
         :type supplier: wurst dataset
         :param suppliers: list of electricity-producing datasets
         :type suppliers: list of wurst datasets
-        :return: share of population relative to the total population
+        :return: share of production relative to the total population
         :rtype: float
         """
-        loc_population = int(self.population.get(supplier["location"], 0))
+        loc_production = int(self.population.get(supplier["location"], 0))
 
-        locs_population = 0
+        locs_production = 0
 
         for loc in suppliers:
-            locs_population += int(self.population.get(loc["location"], 0))
+            locs_production += int(self.production.get(loc["location"], 0))
 
-        return loc_population / locs_population
+        return loc_production / locs_production
 
     def create_new_markets_low_voltage(self):
         """

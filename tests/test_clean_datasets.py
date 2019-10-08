@@ -3,8 +3,18 @@ from bw2data.database import DatabaseChooser
 import pytest
 from rmnd_lca.clean_datasets import DatabaseCleaner
 
-db = DatabaseChooser('dummy_db')
-db.write(
+db_act = DatabaseChooser('dummy_db')
+db_bio = DatabaseChooser('dummy_bio')
+
+db_bio.write({
+    ('dummy_bio', '123'): {
+        'name' : '1,4-Butanediol',
+        'categories': ('air', 'urban air close to ground'),
+        'unit':'kilogram',
+    }
+})
+
+db_act.write(
 {
     ('dummy_db', '6543541'): {
         'name':'fake activity',
@@ -23,7 +33,7 @@ db.write(
              'amount': 1,
              'type': 'biosphere',
              'unit':'kilogram',
-             'input':('biosphere3', '38a622c6-f086-4763-a952-7c6b3b1c42ba'),
+             'input':('dummy_bio', '123'),
              },
         ]
     }
