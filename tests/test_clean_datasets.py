@@ -15,13 +15,16 @@ db.write(
             {'name' : 'fake activity',
              'product': 'fake product',
              'amount': 1,
-             'type': 'production'},
+             'type': 'production',
+             'unit':'kilogram',
+            'input':('dummy_db', '6543541'),},
             {'name' : '1,4-Butanediol',
-            'categories': ('air', 'urban air close to ground'),
+             'categories': ('air', 'urban air close to ground'),
              'amount': 1,
              'type': 'biosphere',
-            'unit':'kilogram'
-             }
+             'unit':'kilogram',
+             'input':('biosphere3', '38a622c6-f086-4763-a952-7c6b3b1c42ba'),
+             },
         ]
     }
 })
