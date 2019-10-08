@@ -1,4 +1,4 @@
-class Ecoinvent_Database():
+class EcoinventDatabase():
     """Hosts ecoinvent database name and version.
 
     :ivar name: name of the ecoinvent database

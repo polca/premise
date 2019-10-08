@@ -18,14 +18,14 @@ class DatabaseCleaner:
     Class that cleans the datasets contained in the inventory database for further processing.
 
     :ivar destination_db: name of the source database
-    :vartype destination_db: Ecoinvent_Database
+    :vartype destination_db: EcoinventDatabase
 
     """
 
     def __init__(self, destination_db):
 
         # Check that database exists
-        if len(DatabaseChooser(destination_db)) == 0:
+        if len(DatabaseChooser(destination_db.name)) == 0:
             raise NameError('The database selected is empty. Make sure the name is correct and that the current'
                             ' brightway2 project contains the database.')
         self.destination = destination_db
