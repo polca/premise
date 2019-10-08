@@ -4,6 +4,7 @@ from wurst import searching as ws
 import csv
 import pprint
 import wurst
+from bw2data.database import DatabaseChooser
 
 
 FILEPATH_FIX_NAMES = (DATA_DIR / "fix_names.csv")
@@ -22,6 +23,11 @@ class DatabaseCleaner:
     """
 
     def __init__(self, destination_db):
+
+        # Check that database exists
+        if len(DatabaseChooser(destination_db)) == 0:
+            raise NameError('The database selected is empty. Make sure the name is correct and that the current'
+                            ' brightway2 project contains the database.')
         self.destination = destination_db
         self.db = wurst.extract_brightway2_databases(self.destination)
         self.biosphere_dict = self.get_biosphere_code()
