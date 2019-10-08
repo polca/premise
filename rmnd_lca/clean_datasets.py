@@ -248,7 +248,11 @@ class DatabaseCleaner:
                             and a["location"] == y["location"]
                             and a["unit"] == y["unit"]
                         ]
-                    y["product"] = possibles[0]
+                    if len(possibles) > 0:
+                        y["product"] = possibles[0]
+                    else:
+                        raise IndexError('Some Carma inventory exchanges cannot be linked to the biosphere or the'
+                                            ' ecoinvent database. Check the validity of the ecoinvent database.')
 
         self.db.extend(i)
 
