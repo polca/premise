@@ -33,7 +33,7 @@ install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       conda create -n test-environment python=$TRAVIS_PYTHON_VERSION numpy xarray pandas pytest pytest-cov coveralls bw2io bw2data country_converter constructive_geometries;
       source activate test-environment;
-      pip install https://github.com/IndEcol/wurst/archive/master.zip
+      pip install https://github.com/IndEcol/wurst/archive/master.zip;
       pip3 install -e .;
     else
       pip3 install -r ci/macos-travis.txt;
