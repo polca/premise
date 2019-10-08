@@ -4,7 +4,7 @@ matrix:
     - language: generic-covered
       python: 3.7
       os: osx
-    - python: 3.6
+    - python: 3.7
       dist: xenial
       os: linux
 python:
@@ -31,9 +31,8 @@ before_install:
     fi
 install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      conda create -n test-environment python=$TRAVIS_PYTHON_VERSION numpy xarray pandas pytest pytest-cov coveralls bw2io bw2data country_converter constructive_geometries;
+      conda create -n test-environment python=$TRAVIS_PYTHON_VERSION numpy xarray pandas pytest pytest-cov coveralls bw2io bw2data wurst;
       source activate test-environment;
-      pip install https://github.com/IndEcol/wurst/archive/master.zip;
       pip3 install -e .;
     else
       pip3 install -r ci/macos-travis.txt;
