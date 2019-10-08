@@ -1,6 +1,6 @@
 # Data directories #
 Remind output files/
-rmnd_lca.egg-info/
+*.egg-info/
 
 *.pyc
 
