@@ -10,7 +10,9 @@ import wurst
 
 
 REGION_MAPPING_FILEPATH = (DATA_DIR /  "regionmappingH12.csv")
-PRODUCTION_PER_COUNTRY = (DATA_DIR / "electricity_production_volumes_per_country.csv")
+#PRODUCTION_PER_COUNTRY = (DATA_DIR / "electricity_production_volumes_per_country.csv")
+PRODUCTION_PER_TECH = (DATA_DIR / "electricity_production_volumes_per_tech.csv")
+LOSS_PER_COUNTRY = (DATA_DIR / "losses_per_country.csv")
 LHV_FUELS = (DATA_DIR / "fuels_lower_heating_value.txt")
 
 
@@ -27,7 +29,9 @@ class Electricity:
         self.db = db
         self.rmd = rmd
         self.geo = self.get_REMIND_geomatcher()
-        self.production = self.get_production_dict()
+        #self.production_per_country = self.get_production_per_country_dict()
+        self.production_per_tech = self.get_production_per_tech_dict()
+        self.losses = self.get_losses_per_country_dict()
         self.scenario = scenario
         self.year = year
         self.fuels_lhv = self.get_lower_heating_values()
@@ -180,25 +184,53 @@ class Electricity:
             ]
         )
 
-    def get_production_dict(self):
+    def get_losses_per_country_dict(self):
         """
-        Create a dictionnary with ISO country codes as keys and production volumes as values.
-        :return: ISO country code to production volume dictionnary
+        Create a dictionary with ISO country codes as keys and loss ratios as values.
+        :return: ISO country code to loss ratio dictionary
         :rtype: dict
         """
 
-        if not PRODUCTION_PER_COUNTRY.is_file():
+        if not LOSS_PER_COUNTRY.is_file():
             raise FileNotFoundError(
                 "The production per country dictionary file could not be found."
             )
 
-        with open(PRODUCTION_PER_COUNTRY) as f:
-            return dict(filter(None, csv.reader(f, delimiter=";")))
+        with open(LOSS_PER_COUNTRY) as f:
+            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
+
+        (_, *header), *data = csv_list
+        csv_dict = {}
+        for row in data:
+            key, *values = row
+            csv_dict[key] = {key: float(value) for key, value in zip(header, values)}
+
+        return csv_dict
+
+
+    def get_production_per_tech_dict(self):
+        """
+        Create a dictionary with tuples (technology, country) as keys and production volumes as values.
+        :return: technology to production volume dictionary
+        :rtype: dict
+        """
+
+        if not PRODUCTION_PER_TECH.is_file():
+            raise FileNotFoundError(
+                "The production per technology dictionary file could not be found."
+            )
+        csv_dict = {}
+        with open(PRODUCTION_PER_TECH) as f:
+            input_dict = csv.reader(f, delimiter=";")
+            for row in input_dict:
+                csv_dict[(row[0], row[1])] = row[2]
+
+        return csv_dict
 
     def get_production_weighted_share(self, supplier, suppliers):
         """
-        Return the share of production of a region where an electricity-producing dataset is located,
-        relative to the summed production of regions of a list of datasets.
+        Return the share of production of an electricity-producing dataset in a specific location,
+        relative to the summed production of similar technologies in locations contained in the same REMIND region.
 
         :param supplier: electricity-producing dataset
         :type supplier: wurst dataset
@@ -207,14 +239,95 @@ class Electricity:
         :return: share of production relative to the total population
         :rtype: float
         """
-        loc_production = int(self.population.get(supplier["location"], 0))
 
-        locs_production = 0
+        # Fetch the production volume of the supplier
+        loc_production = float(self.production_per_tech.get((supplier["name"], supplier["location"]), 0))
+        print('Prod volume of {} in {}: {}'.format(supplier['name'], supplier['location'], loc_production))
 
+        # Fetch the total production volume of similar technologies in other locations
+        # contained within the REMIND region.
+
+        total_production = 0
         for loc in suppliers:
-            locs_production += int(self.production.get(loc["location"], 0))
+            total_production += float(self.production_per_tech.get((loc['name'], loc["location"]), 0))
 
-        return loc_production / locs_production
+        # If a corresponding production volume is found.
+        if total_production != 0:
+            return loc_production / total_production
+        else:
+            # If not, we allocate an equal share of supply
+            return 1 / len(suppliers)
+
+
+
+    def get_production_weighted_losses(self, voltage, remind_region):
+        """
+        Return the transformation, transmission and distribution losses at a given voltage level for a given location.
+        A weighted average is made of the locations contained in the REMIND region.
+
+        :param voltage: voltage level (high, medium or low)
+        :type voltage: str
+        :param remind_region: Remind region
+        :type remind_region: str
+        :return: tuple that contains transformation and distribution losses
+        :rtype: tuple
+        """
+
+        # Fetch locations contained in REMIND region
+        locations = self.remind_to_ecoinvent_location(remind_region)
+
+        if voltage == 'high':
+
+            cumul_prod, transf_loss = 0 ,0
+
+
+            for loc in locations:
+                dict_loss = self.losses.get(loc, {
+                    'Transformation loss, high voltage':0,
+                    'Production volume':0
+                })
+                transf_loss += dict_loss['Transformation loss, high voltage']\
+                        * dict_loss['Production volume']
+                cumul_prod += dict_loss['Production volume']
+            transf_loss /= cumul_prod
+            return transf_loss
+
+        if voltage == 'medium':
+
+            cumul_prod, transf_loss, distr_loss = 0, 0, 0
+            for loc in locations:
+                dict_loss = self.losses.get(loc, {
+                    'Transformation loss, medium voltage': 0,
+                    'Transmission loss to medium voltage': 0,
+                    'Production volume': 0
+                })
+                transf_loss += dict_loss['Transformation loss, medium voltage']\
+                        * dict_loss['Production volume']
+                distr_loss += dict_loss['Transmission loss to medium voltage']\
+                        * dict_loss['Production volume']
+                cumul_prod += dict_loss['Production volume']
+            transf_loss /= cumul_prod
+            distr_loss /= cumul_prod
+            return transf_loss, distr_loss
+
+        if voltage == 'low':
+
+            cumul_prod, transf_loss, distr_loss = 0, 0, 0
+
+            for loc in locations:
+                dict_loss = self.losses.get(loc, {
+                    'Transformation loss, low voltage': 0,
+                    'Transmission loss to low voltage': 0,
+                    'Production volume': 0
+                })
+                transf_loss += dict_loss['Transformation loss, low voltage']\
+                        * dict_loss['Production volume']
+                distr_loss += dict_loss['Transmission loss to low voltage']\
+                        * dict_loss['Production volume']
+                cumul_prod += dict_loss['Production volume']
+            transf_loss /= cumul_prod
+            distr_loss /= cumul_prod
+            return transf_loss, distr_loss
 
     def create_new_markets_low_voltage(self):
         """
@@ -356,7 +469,8 @@ class Electricity:
                         )
 
                     for supplier in suppliers:
-                        share = self.get_pop_weighted_share(supplier, suppliers)
+                        share = self.get_production_weighted_share(supplier, suppliers)
+                        print('share of {} for {} in {}'.format(share, supplier, region))
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
@@ -371,13 +485,17 @@ class Electricity:
                             }
                         )
             # Fifth, add:
-            # * an input from the medium voltage market minus solar contribution, including transformation loss
-            # * an self-consuming input for transmission loss
+            # * an input from the medium voltage market minus solar contribution, including distribution loss
+            # * an self-consuming input for transformation loss
+
+            transf_loss, distr_loss = self.get_production_weighted_losses('low', region)
+            print('Transf loss {}, distr. loss {} for {}, low voltage'.format(transf_loss, distr_loss, region))
+
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": (1 - solar_amount) * 1.0276,
-                    "amount": (1 - solar_amount) * 1.0276,
+                    "loc": 0,
+                    "amount": (1 - solar_amount) * (1 + distr_loss),
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, medium voltage",
@@ -393,8 +511,8 @@ class Electricity:
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0.0298,
-                    "amount": 0.0298,
+                    "loc": 0,
+                    "amount": transf_loss,
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, low voltage",
@@ -460,13 +578,16 @@ class Electricity:
             )
 
             # Second, add:
-            # * an input from the high voltage market, including voltage transformation loss
-            # * an self-consuming input for transmission loss
+            # * an input from the high voltage market, including transmission loss
+            # * an self-consuming input for transformation loss
+
+            transf_loss, distr_loss = self.get_production_weighted_losses('medium', region)
+            print('Transf loss {}, distr. loss {} for {}, medium voltage'.format(transf_loss, distr_loss, region))
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 1.0062,
-                    "amount": 1.0062,
+                    "loc": 0,
+                    "amount": 1 + distr_loss,
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, high voltage",
@@ -482,8 +603,8 @@ class Electricity:
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0.0041,
-                    "amount": 0.0041,
+                    "loc": 0,
+                    "amount": transf_loss,
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, medium voltage",
@@ -601,6 +722,26 @@ class Electricity:
                 }
             )
 
+            # Second, add transformation loss
+            transf_loss = self.get_production_weighted_losses('high', region)
+            print('Transf loss {} for {}, high voltage'.format(transf_loss, region))
+            new_exchanges.append(
+                {
+                    "uncertainty type": 0,
+                    "loc": 1,
+                    "amount": transf_loss,
+                    "type": "technosphere",
+                    "production volume": 0,
+                    "product": "electricity, high voltage",
+                    "name": "market group for electricity, high voltage, "
+                            + self.scenario
+                            + ", "
+                            + str(self.year),
+                    "unit": "kilowatt hour",
+                    "location": region,
+                }
+            )
+
             # Loop through the REMIND technologies
             for technology in gen_tech:
 
@@ -643,7 +784,8 @@ class Electricity:
                         )
 
                     for supplier in suppliers:
-                        share = self.get_pop_weighted_share(supplier, suppliers)
+                        share = self.get_production_weighted_share(supplier, suppliers)
+                        print('share of {} for {} in {}'.format(share, supplier['name'], region))
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
