@@ -26,8 +26,6 @@ db.write(
     }
 })
 
-38a622c6-f086-4763-a952-7c6b3b1c42ba
-
 def test_presence_db():
     with pytest.raises(NameError) as wrapped_error:
         DatabaseCleaner("bla")
