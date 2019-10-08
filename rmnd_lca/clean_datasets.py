@@ -4,6 +4,7 @@ from wurst import searching as ws
 import csv
 import pprint
 import wurst
+from bw2data.database import DatabaseChooser
 
 
 FILEPATH_FIX_NAMES = (DATA_DIR / "fix_names.csv")
@@ -22,6 +23,11 @@ class DatabaseCleaner:
     """
 
     def __init__(self, destination_db):
+
+        # Check that database exists
+        if len(DatabaseChooser(destination_db)) == 0:
+            raise NameError('The database selected is empty. Make sure the name is correct and that the current'
+                            ' brightway2 project contains the database.')
         self.destination = destination_db
         self.db = wurst.extract_brightway2_databases(self.destination.name)
         self.biosphere_dict = self.get_biosphere_code()
@@ -41,12 +47,8 @@ class DatabaseCleaner:
         :type db: list
 
         """
-
-
         for ds in ws.get_many(db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
             for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
-
-
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
     def get_fix_names_dict(self):
@@ -67,7 +69,6 @@ class DatabaseCleaner:
         :return: dictionary that contains names equivalence
         :rtype: dict
         """
-
         return {v: k for k, v in self.get_fix_names_dict().items()}
 
     def remove_nones(self, db):

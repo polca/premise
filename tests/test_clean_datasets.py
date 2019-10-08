@@ -1,41 +1,18 @@
 # content of test_activity_maps.py
-from rmnd_lca.activity_maps import InventorySet
+from bw2data.database import DatabaseChooser
+import pytest
+from rmnd_lca.clean_datasets import DatabaseCleaner
 
-fake_db = [{'name': 'Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025'},
- {'name': 'Electricity, at BIGCC power plant 450MW, no CCS/2025'},
- {'name': 'Electricity, at power plant/lignite, IGCC, no CCS/2025'},
- {'name': 'Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025'},
- {'name': 'Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m/2025'},
- {'name': 'Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025'},
- {'name': 'heat and power co-generation, biogas, gas engine, label-certified'},
- {'name': 'electricity production, hard coal'},
- {'name': 'heat and power co-generation, hard coal'},
- {'name': 'electricity production, natural gas, conventional power plant'},
- {'name': 'electricity production, natural gas, combined cycle power plant'},
- {'name': 'heat and power co-generation, natural gas, conventional power plant, 100MW electrical'},
- {'name': 'electricity production, deep geothermal'},
- {'name': 'electricity production, hydro, reservoir, tropical region'},
- {'name': 'electricity production, nuclear, pressure water reactor'},
- {'name': 'electricity production, oil'},
- {'name': 'electricity production, solar thermal parabolic trough, 50 MW'},
- {'name': 'electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated'},
- {'name': 'electricity production, wind, 2.3MW turbine, precast concrete tower, onshore'}, {'name': 'steel production'},
-           {'name':'market for aluminium, primary'}]
+db = DatabaseChooser('dummy_db')
+db.write({
+    ('dummy_db', '6543541'): {
+        'name':'fake activity',
+        'location':'GLO',
+        'unit':'kilogram',
+    }
+})
 
-def test_presence_of_dict():
-    maps = InventorySet(fake_db)
-    assert isinstance(maps.activities_map, dict)
-    assert isinstance(maps.powerplants_map, dict)
-    assert isinstance(maps.emissions_maps, dict)
-
-def test_length_dict():
-    maps = InventorySet(fake_db)
-    assert len(maps.activities_map) > 0
-    assert len(maps.powerplants_map) > 0
-    assert len(maps.emissions_map) > 0
-
-def test_content_dict():
-    maps = InventorySet(fake_db)
-    assert maps.activities_map['aluminium'] == 'market for aluminium, primary'
-    assert maps.powerplants_map['Coal IGCC'] == 'Electricity, at power plant/lignite, IGCC, no CCS/2025'
-    assert maps.emissions_map['Sulfur dioxide'] == 'SO2'
+def test_presence_db():
+    with pytest.raises(NameError) as wrapped_error:
+        DatabaseCleaner("bla")
+    assert wrapped_error.type == NameError

@@ -1,7 +1,7 @@
 # content of test_activity_maps.py
 from rmnd_lca.activity_maps import InventorySet
 
-fake_db = [{'name': 'Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025'},
+dummy_minimal_db = [{'name': 'Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025'},
  {'name': 'Electricity, at BIGCC power plant 450MW, no CCS/2025'},
  {'name': 'Electricity, at power plant/lignite, IGCC, no CCS/2025'},
  {'name': 'Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025'},
@@ -20,22 +20,22 @@ fake_db = [{'name': 'Electricity, at BIGCC power plant 450MW, pre, pipeline 200k
  {'name': 'electricity production, solar thermal parabolic trough, 50 MW'},
  {'name': 'electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated'},
  {'name': 'electricity production, wind, 2.3MW turbine, precast concrete tower, onshore'}, {'name': 'steel production'},
-           {'name':'market for aluminium, primary'}]
+ {'name':'market for aluminium, primary'}]
 
 def test_presence_of_dict():
-    maps = InventorySet(fake_db)
+    maps = InventorySet(dummy_minimal_db)
     assert isinstance(maps.activities_map, dict)
     assert isinstance(maps.powerplants_map, dict)
-    assert isinstance(maps.emissions_maps, dict)
+    assert isinstance(maps.emissions_map, dict)
 
 def test_length_dict():
-    maps = InventorySet(fake_db)
+    maps = InventorySet(dummy_minimal_db)
     assert len(maps.activities_map) > 0
     assert len(maps.powerplants_map) > 0
     assert len(maps.emissions_map) > 0
 
 def test_content_dict():
-    maps = InventorySet(fake_db)
-    assert maps.activities_map['aluminium'] == 'market for aluminium, primary'
-    assert maps.powerplants_map['Coal IGCC'] == 'Electricity, at power plant/lignite, IGCC, no CCS/2025'
+    maps = InventorySet(dummy_minimal_db)
+    assert maps.activities_map['aluminium'] == {'market for aluminium, primary'}
+    assert maps.powerplants_map['Coal IGCC'] == {'Electricity, at power plant/lignite, IGCC, no CCS/2025'}
     assert maps.emissions_map['Sulfur dioxide'] == 'SO2'
