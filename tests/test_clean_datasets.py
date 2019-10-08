@@ -64,7 +64,7 @@ def test_biosphere_dict_2():
     for act in dbc.db:
         for exc in act['exchanges']:
             if exc['type'] == 'biosphere':
-                assert exc.biosphere_dict[(
+                assert dbc.biosphere_dict[(
                     exc['name'],
                     exc['categories'][0],
                     exc['categories'][1],
