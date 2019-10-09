@@ -107,7 +107,7 @@ class Electricity:
                 print("Can't find location {} using the geomatcher.".format(location))
 
         else:
-            return "GLO"
+            return ["GLO"]
 
     def ecoinvent_to_remind_location(self, location):
         """
@@ -207,7 +207,6 @@ class Electricity:
 
         return csv_dict
 
-
     def get_production_per_tech_dict(self):
         """
         Create a dictionary with tuples (technology, country) as keys and production volumes as values.
@@ -242,7 +241,6 @@ class Electricity:
 
         # Fetch the production volume of the supplier
         loc_production = float(self.production_per_tech.get((supplier["name"], supplier["location"]), 0))
-        print('Prod volume of {} in {}: {}'.format(supplier['name'], supplier['location'], loc_production))
 
         # Fetch the total production volume of similar technologies in other locations
         # contained within the REMIND region.
@@ -279,13 +277,12 @@ class Electricity:
         if voltage == 'high':
 
             cumul_prod, transf_loss = 0 ,0
-
-
             for loc in locations:
                 dict_loss = self.losses.get(loc, {
                     'Transformation loss, high voltage':0,
                     'Production volume':0
                 })
+
                 transf_loss += dict_loss['Transformation loss, high voltage']\
                         * dict_loss['Production volume']
                 cumul_prod += dict_loss['Production volume']
@@ -337,7 +334,11 @@ class Electricity:
         Does not return anything. Modifies the database in place.
         """
         # Loop through REMIND regions
+
+
+
         for region in self.rmd.electricity_markets.coords["region"].values:
+            created_markets = []
             # Create an empty dataset
             new_dataset = {}
             new_dataset["location"] = region
@@ -469,8 +470,9 @@ class Electricity:
                         )
 
                     for supplier in suppliers:
+
                         share = self.get_production_weighted_share(supplier, suppliers)
-                        print('share of {} for {} in {}'.format(share, supplier, region))
+
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
@@ -484,12 +486,22 @@ class Electricity:
                                 "location": supplier["location"],
                             }
                         )
+                        created_markets.append([
+                            "low voltage, " + self.scenario + ", " + str(self.year),
+                            "n/a",
+                            region,
+                            0,
+                            0,
+                            supplier['name'],
+                            supplier['location'],
+                            share,
+                            (share * amount)
+                        ])
             # Fifth, add:
             # * an input from the medium voltage market minus solar contribution, including distribution loss
             # * an self-consuming input for transformation loss
 
             transf_loss, distr_loss = self.get_production_weighted_losses('low', region)
-            print('Transf loss {}, distr. loss {} for {}, low voltage'.format(transf_loss, distr_loss, region))
 
             new_exchanges.append(
                 {
@@ -525,6 +537,27 @@ class Electricity:
                 }
             )
 
+            created_markets.append([
+                "low voltage, " + self.scenario + ", " + str(self.year),
+                "n/a",
+                region,
+                transf_loss,
+                distr_loss,
+                "low voltage, " + self.scenario + ", " + str(self.year),
+                region,
+                1,
+                (1 - solar_amount) * (1 + distr_loss)
+            ])
+
+            with open(DATA_DIR / "logs/log created markets.csv", "a") as csv_file:
+                writer = csv.writer(csv_file,
+                                    delimiter=';',
+                                    lineterminator='\n')
+                for line in created_markets:
+                    writer.writerow(line)
+
+
+
             new_dataset["exchanges"] = new_exchanges
             self.db.append(new_dataset)
 
@@ -540,7 +573,10 @@ class Electricity:
             region for region in self.rmd.electricity_markets.coords["region"].values
         )
 
+
+
         for region in gen_region:
+            created_markets = []
             # Create an empty dataset
             new_dataset = {}
             new_dataset["location"] = region
@@ -582,7 +618,6 @@ class Electricity:
             # * an self-consuming input for transformation loss
 
             transf_loss, distr_loss = self.get_production_weighted_losses('medium', region)
-            print('Transf loss {}, distr. loss {} for {}, medium voltage'.format(transf_loss, distr_loss, region))
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
@@ -661,7 +696,27 @@ class Electricity:
             )
 
             new_dataset["exchanges"] = new_exchanges
+
+            created_markets.append([
+                "medium voltage, " + self.scenario + ", " + str(self.year),
+                "n/a",
+                region,
+                transf_loss,
+                distr_loss,
+                "medium voltage, " + self.scenario + ", " + str(self.year),
+                region,
+                1,
+                1 + distr_loss
+            ])
+
             self.db.append(new_dataset)
+
+        with open(DATA_DIR / "logs/log created markets.csv", "a") as csv_file:
+            writer = csv.writer(csv_file,
+                                delimiter=';',
+                                lineterminator='\n')
+            for line in created_markets:
+                writer.writerow(line)
 
     def create_new_markets_high_voltage(self):
         """
@@ -681,7 +736,10 @@ class Electricity:
             )
         )
 
+
+
         for region in gen_region:
+            created_markets = []
             # Fetch ecoinvent regions contained in the REMIND region
             ecoinvent_regions = self.remind_to_ecoinvent_location(region)
 
@@ -724,7 +782,6 @@ class Electricity:
 
             # Second, add transformation loss
             transf_loss = self.get_production_weighted_losses('high', region)
-            print('Transf loss {} for {}, high voltage'.format(transf_loss, region))
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
@@ -785,7 +842,7 @@ class Electricity:
 
                     for supplier in suppliers:
                         share = self.get_production_weighted_share(supplier, suppliers)
-                        print('share of {} for {} in {}'.format(share, supplier['name'], region))
+
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
@@ -799,7 +856,40 @@ class Electricity:
                                 "location": supplier["location"],
                             }
                         )
+
+                        created_markets.append([
+                            "high voltage, " + self.scenario + ", " + str(self.year),
+                            technology,
+                            region,
+                            transf_loss,
+                            0.0,
+                            supplier['name'],
+                            supplier['location'],
+                            share,
+                            (amount * share)
+                            ])
             new_dataset["exchanges"] = new_exchanges
+
+
+
+            # Writing log of created markets
+
+            with open(DATA_DIR / "logs/log created markets.csv", "w") as csv_file:
+                writer = csv.writer(csv_file,
+                                    delimiter=';',
+                                    lineterminator='\n')
+                writer.writerow(['dataset name',
+                                'energy type',
+                                'REMIND location',
+                                'Transformation loss',
+                                'Distr./Transmission loss',
+                                'Supplier name',
+                                'Supplier location',
+                                'Contribution within energy type',
+                                'Final contribution'])
+                for line in created_markets:
+                    writer.writerow(line)
+
             self.db.append(new_dataset)
 
     def relink_activities_to_new_markets(self):
@@ -909,15 +999,10 @@ class Electricity:
 
         else:
 
-
             # Carma inventories have their fuel inputs directly expressed in megajoules.
-
-
-
             energy_input = np.sum(
                 [exc["amount"] / 3.6 for exc in ws.technosphere(ds, *fuel_filters)]
             )
-
 
             ds["parameters"] = {}
             ds["parameters"]["efficiency"] = (
@@ -1279,6 +1364,20 @@ class Electricity:
             "electricity, high voltage, import",
             "electricity, high voltage, production mix",
         ]
+
+        # Writing log of deleted markets
+        markets_to_delete = [
+            [i['name'], i['location']] for i in self.db
+            if any(stop in i["name"] for stop in list_to_remove)
+        ]
+        with open(DATA_DIR / "logs/log deleted markets.csv", "w") as csv_file:
+            writer = csv.writer(csv_file,
+                                delimiter=';',
+                                lineterminator = '\n')
+            writer.writerow(['dataset name', 'location'])
+            for line in markets_to_delete:
+                writer.writerow(line)
+
         self.db = [
             i for i in self.db if not any(stop in i["name"] for stop in list_to_remove)
         ]
@@ -1294,5 +1393,8 @@ class Electricity:
         # Finally, we need to relink all electricity-consuming activities to the new electricity markets
         print("Link activities to new electricity markets.")
         self.relink_activities_to_new_markets()
+
+        print('Log of deleted electricity markets saved in {}'.format(DATA_DIR / 'logs'))
+        print('Log of created electricity markets saved in {}'.format(DATA_DIR / 'logs'))
 
         return self.db

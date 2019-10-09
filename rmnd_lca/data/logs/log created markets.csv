@@ -1,0 +1,278 @@
+dataset name;energy type;REMIND location;Transformation loss;Distr./Transmission loss;Supplier name;Supplier location;Contribution within energy type;Final contribution
+high voltage, RCP26, 2014;SE|Electricity|Biomass|CHP|w/o CCS;World;0.033456496;0.0;heat and power co-generation, biogas, gas engine;RoW;0.4877533856267486;0.0037058575316319653
+high voltage, RCP26, 2014;SE|Electricity|Biomass|CHP|w/o CCS;World;0.033456496;0.0;heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;RoW;0.5121436295291876;0.0038911699696954137
+high voltage, RCP26, 2014;SE|Electricity|Biomass|CHP|w/o CCS;World;0.033456496;0.0;heat and power co-generation, wood chips, 6667 kW;RoW;0.00010298484406378195;7.824592740187843e-07
+high voltage, RCP26, 2014;SE|Electricity|Biomass|IGCC|w/o CCS;World;0.033456496;0.0;Electricity, at BIGCC power plant 450MW, no CCS/2025;RER;1.0;0.006305994814595034
+high voltage, RCP26, 2014;SE|Electricity|Coal|PC|w/o CCS;World;0.033456496;0.0;electricity production, hard coal;RoW;0.7736401338816986;0.258701328256324
+high voltage, RCP26, 2014;SE|Electricity|Coal|PC|w/o CCS;World;0.033456496;0.0;electricity production, lignite;RoW;0.2263598661183014;0.0756935886132336
+high voltage, RCP26, 2014;SE|Electricity|Coal|IGCC|w/o CCS;World;0.033456496;0.0;Electricity, at power plant/hard coal, IGCC, no CCS/2025;RER;0.5;0.0010835995809374396
+high voltage, RCP26, 2014;SE|Electricity|Coal|IGCC|w/o CCS;World;0.033456496;0.0;Electricity, at power plant/lignite, IGCC, no CCS/2025;RER;0.5;0.0010835995809374396
+high voltage, RCP26, 2014;SE|Electricity|Coal|CHP|w/o CCS;World;0.033456496;0.0;heat and power co-generation, hard coal;RoW;0.8660031717759804;0.017202149700543047
+high voltage, RCP26, 2014;SE|Electricity|Coal|CHP|w/o CCS;World;0.033456496;0.0;heat and power co-generation, lignite;RoW;0.1339968282240196;0.002661691750828608
+high voltage, RCP26, 2014;SE|Electricity|Gas|GT;World;0.033456496;0.0;electricity production, natural gas, conventional power plant;RoW;1.0;0.012579890587149747
+high voltage, RCP26, 2014;SE|Electricity|Gas|CC|w/o CCS;World;0.033456496;0.0;electricity production, natural gas, combined cycle power plant;RoW;1.0;0.17662630091703263
+high voltage, RCP26, 2014;SE|Electricity|Gas|CHP|w/o CCS;World;0.033456496;0.0;heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;RoW;0.37886522316069915;0.014696318356697729
+high voltage, RCP26, 2014;SE|Electricity|Gas|CHP|w/o CCS;World;0.033456496;0.0;heat and power co-generation, natural gas, conventional power plant, 100MW electrical;RoW;0.6211347768393009;0.02409404153459309
+high voltage, RCP26, 2014;SE|Electricity|Geothermal;World;0.033456496;0.0;electricity production, deep geothermal;RoW;1.0;0.0065770256447150125
+high voltage, RCP26, 2014;SE|Electricity|Hydro;World;0.033456496;0.0;electricity production, hydro, reservoir, alpine region;RoW;0.13754773578081625;0.024148030195448485
+high voltage, RCP26, 2014;SE|Electricity|Hydro;World;0.033456496;0.0;electricity production, hydro, reservoir, non-alpine region;RoW;0.33100472430589156;0.05811154965220131
+high voltage, RCP26, 2014;SE|Electricity|Hydro;World;0.033456496;0.0;electricity production, hydro, reservoir, tropical region;RoW;0.001392679157722676;0.00024450026866926715
+high voltage, RCP26, 2014;SE|Electricity|Hydro;World;0.033456496;0.0;electricity production, hydro, run-of-river;RoW;0.5300548607555695;0.09305700824596864
+high voltage, RCP26, 2014;SE|Electricity|Nuclear;World;0.033456496;0.0;electricity production, nuclear, pressure water reactor, heavy water moderated;RoW;0.028102466324619827;0.003422210901825267
+high voltage, RCP26, 2014;SE|Electricity|Nuclear;World;0.033456496;0.0;electricity production, nuclear, boiling water reactor;RoW;0.2899940302970991;0.035314364244164065
+high voltage, RCP26, 2014;SE|Electricity|Nuclear;World;0.033456496;0.0;electricity production, nuclear, pressure water reactor;RoW;0.6819035033782811;0.08303960144628215
+high voltage, RCP26, 2014;SE|Electricity|Oil|w/o CCS;World;0.033456496;0.0;electricity production, oil;RoW;0.9267280040617092;0.0367513225964341
+high voltage, RCP26, 2014;SE|Electricity|Oil|w/o CCS;World;0.033456496;0.0;heat and power co-generation, oil;RoW;0.07327199593829085;0.002905753088511853
+high voltage, RCP26, 2014;SE|Electricity|Wind;World;0.033456496;0.0;electricity production, wind, 1-3MW turbine, onshore;RoW;0.7703114109321985;0.033977786405421866
+high voltage, RCP26, 2014;SE|Electricity|Wind;World;0.033456496;0.0;electricity production, wind, <1MW turbine, onshore;RoW;0.11117989756032126;0.004904051476155248
+high voltage, RCP26, 2014;SE|Electricity|Wind;World;0.033456496;0.0;electricity production, wind, 1-3MW turbine, offshore;RoW;0.005312675318991284;0.00023433762588508607
+high voltage, RCP26, 2014;SE|Electricity|Wind;World;0.033456496;0.0;electricity production, wind, >3MW turbine, onshore;RoW;0.11319601618848898;0.004992980767794554
+medium voltage, RCP26, 2014;n/a;World;0.004713377;0.007467043;medium voltage, RCP26, 2014;World;1;1.007467043
+low voltage, RCP26, 2014;n/a;CAZ;0;0;electricity production, solar tower power plant, 20 MW;AU;1.0;1.8839038355676762e-05
+low voltage, RCP26, 2014;n/a;CAZ;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;AU;0.6666666666666666;0.0076500526860710846
+low voltage, RCP26, 2014;n/a;CAZ;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;AU;0.3333333333333333;0.0038250263430355423
+low voltage, RCP26, 2014;n/a;CAZ;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;AU;0.0;0.0
+low voltage, RCP26, 2014;n/a;CAZ;0.03487890832060193;0.0333892781567414;low voltage, RCP26, 2014;CAZ;1;1.0215115864618138
+low voltage, RCP26, 2014;n/a;CHA;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;7.391675170273172e-06
+low voltage, RCP26, 2014;n/a;CHA;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;7.391675170273172e-06
+low voltage, RCP26, 2014;n/a;CHA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TW;0.5542857142857143;0.006358929518297597
+low voltage, RCP26, 2014;n/a;CHA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TW;0.44571428571428573;0.005113366004404254
+low voltage, RCP26, 2014;n/a;CHA;0.03459046650598066;0.03311864762641919;low voltage, RCP26, 2014;CHA;1;1.0212511322359237
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, solar tower power plant, 20 MW;ES;0.5;0.0009793055991308157
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, solar thermal parabolic trough, 50 MW;ES;0.5;0.0009793055991308157
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;PL;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;HU;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CIS, panel, mounted;CH;9.23266990677986e-05;3.47769232477126e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;AT;0.005402128882198883;0.0002034833080867791
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated;CH;0.0003998752592196176;1.5062199059372698e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;HR;0.0002354438738004356;8.868521902087225e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;LT;0.0004970481780231418;1.8722435126628588e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;AT;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;PT;0.0009025348495683364;3.3996000624667694e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SE;0.0002485240890115709;9.361217563314294e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, laminated, integrated;CH;0.0002652994650198519;9.993099748838007e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SE;0.00030084494985611215;1.1332000208222565e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, laminated, integrated;CH;0.0002614473416401726;9.848000876606636e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;BE;1.308021521113531e-05;4.92695661227068e-07
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CY;0.0003662460259117887;1.3795478514357905e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;FI;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;DK;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, single-Si;CH;0.0007997505184392352;3.0124398118745397e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;IE;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SI;3.9240645633405934e-05;1.4780869836812042e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;DE;0.18464031792038604;0.006954891953881292
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;GB;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;BE;1.308021521113531e-05;4.92695661227068e-07
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RS;3.9240645633405934e-05;1.4780869836812042e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SI;5.232086084454124e-05;1.970782644908272e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, panel, mounted;CH;0.0004306922462570524;1.622299003722367e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;NL;0.00010464172168908248;3.941565289816544e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, laminated, integrated;CH;4.6101218511646404e-05;1.7365058579948014e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CY;0.00043164710196746524;1.6258956820493244e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;IT;0.04536218635221726;0.001708668553135472
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RU;0.001098738077735366;4.1386435543073714e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;GR;0.02613426999184835;0.000984405931131682
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, panel, mounted;CH;0.0003998752592196176;1.5062199059372698e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;LV;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;FR;0.008162054291748435;0.0003074420926056905
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, laminated, integrated;CH;0.0003998752592196176;1.5062199059372698e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RO;0.006880193201057173;0.00025915791780543776
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;BG;0.0069325140619017145;0.00026112870045034607
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CH;0.0015827060405473727;5.9616175008475234e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;MT;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;UA;0.0023675189532154912;8.917791468209931e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;FI;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;PL;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;NL;0.00013080215211135312;4.9269566122706806e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;SE;3.9240645633405934e-05;1.4780869836812042e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;FR;0.013080215211135312;0.000492695661227068
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;LU;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;MK;7.848129126681187e-05;2.9561739673624084e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted, label-certified;CH;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;NL;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;PT;0.0021713157250484614;8.178747976369329e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;ES;0.033681554168673425;0.0012686913276597001
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si;CH;0.0012150342711775702;4.576699266704358e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RO;0.008567540963293629;0.0003227156581037296
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;GB;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;DE;0.1482511592030076;0.005584212624347589
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;MK;0.00010464172168908248;3.941565289816544e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, laminated, integrated;CH;3.081698703743479e-05;1.1607909778509722e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;DK;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RU;0.0008894546343572011;3.350330496344062e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;LU;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;FR;0.01051649302975279;0.00039612731162656274
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;MT;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CH;0.0031000110050390687;0.00011676887171081512
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;IT;0.05649344949689341;0.002127952560839707
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CZ;0.014636760821260413;0.0005513264449130891
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;DE;0.11515821471883528;0.004337692601443107
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;HR;0.00019620322816702967;7.39043491840602e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;HU;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BG;0.00861986182413817;0.00032468644074863786
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;GB;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CdTe, laminated, integrated;CH;0.0007382408064088715;2.780749677182511e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BE;2.616043042227062e-05;9.85391322454136e-07
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;AT;0.004355711665308059;0.00016406765518861365
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;ES;0.027049885056627823;0.0010188946274175767
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;IT;0.17534028490526885;0.006604585338748847
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;GR;0.020993745413872174;0.0007907765362694442
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SK;0.0007848129126681187;2.956173967362408e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RS;3.9240645633405934e-05;1.4780869836812042e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CZ;0.01174603325959951;0.0004424407037819071
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, panel, mounted;CH;0.0002652994650198519;9.993099748838007e-06
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;ES;0.04103263511733147;0.0015455862892693123
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;LT;0.00040548667154519466;1.527356549803911e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted, label-certified;CH;0.0;0.0
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;UA;0.0029299682072943096;0.00011036382811486324
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;PT;0.0011248985081576367;4.237182686552785e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SK;0.0006278503301344949;2.3649391738899267e-05
+low voltage, RCP26, 2014;n/a;EUR;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, panel, mounted;CH;0.0006767310943785076;2.549059542490482e-05
+low voltage, RCP26, 2014;n/a;EUR;0.034624297949888624;0.03316284237060486;low voltage, RCP26, 2014;EUR;1;0.9922228809222058
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;0.0004975248157347458
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;0.0004975248157347458
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, panel, mounted;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, laminated, integrated;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, laminated, integrated;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CIS, panel, mounted;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, laminated, integrated;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CdTe, laminated, integrated;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, laminated, integrated;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, panel, mounted;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, laminated, integrated;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, panel, mounted;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, single-Si;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, panel, mounted;RoW;0.058823529411764705;0.0004491395944979766
+low voltage, RCP26, 2014;n/a;IND;0.03607435705173322;0.034450605842907434;low voltage, RCP26, 2014;IND;1;1.0255228598129702
+low voltage, RCP26, 2014;n/a;JPN;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;1.2244600365276184e-05
+low voltage, RCP26, 2014;n/a;JPN;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;1.2244600365276184e-05
+low voltage, RCP26, 2014;n/a;JPN;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;JP;0.047058823529411764;0.0017596924743484477
+low voltage, RCP26, 2014;n/a;JPN;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;JP;0.4235294117647059;0.01583723226913603
+low voltage, RCP26, 2014;n/a;JPN;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;JP;0.5294117647058824;0.019796540336420036
+low voltage, RCP26, 2014;n/a;JPN;0.034600356894085665;0.033124398383939956;low voltage, RCP26, 2014;JPN;1;0.9944669968790011
+low voltage, RCP26, 2014;n/a;LAM;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;6.056128399316612e-06
+low voltage, RCP26, 2014;n/a;LAM;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;6.056128399316612e-06
+low voltage, RCP26, 2014;n/a;LAM;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BR;0.0;0.0
+low voltage, RCP26, 2014;n/a;LAM;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;MX;0.021321961620469083;4.024541045709621e-05
+low voltage, RCP26, 2014;n/a;LAM;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CL;0.43710021321961623;0.0008250309143704724
+low voltage, RCP26, 2014;n/a;LAM;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CL;0.535181236673774;0.001010159802473115
+low voltage, RCP26, 2014;n/a;LAM;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;MX;0.0042643923240938165;8.049082091419242e-06
+low voltage, RCP26, 2014;n/a;LAM;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;MX;0.0021321961620469083;4.024541045709621e-06
+low voltage, RCP26, 2014;n/a;LAM;0.03582503519203073;0.03421611089421692;low voltage, RCP26, 2014;LAM;1;1.0322514912097238
+low voltage, RCP26, 2014;n/a;MEA;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;0.0007110868808767241
+low voltage, RCP26, 2014;n/a;MEA;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;0.0007110868808767241
+low voltage, RCP26, 2014;n/a;MEA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TR;0.4444444444444444;0.0006837497591246929
+low voltage, RCP26, 2014;n/a;MEA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TR;0.5;0.0007692184790152796
+low voltage, RCP26, 2014;n/a;MEA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SA;0.05555555555555555;8.546871989058661e-05
+low voltage, RCP26, 2014;n/a;MEA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SA;0.0;0.0
+low voltage, RCP26, 2014;n/a;MEA;0.0357017487806815;0.034050286705236035;low voltage, RCP26, 2014;MEA;1;1.030988866341621
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;1.4253873498703052e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;1.4253873498703052e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CIS, panel, mounted;CH;0.008419599888589556;2.5960373909615783e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated;CH;0.036466046354618024;0.00011243672037838976
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, laminated, integrated;CH;0.024193601294937684;7.459676755993228e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, laminated, integrated;CH;0.023842312470514705;7.351362948294966e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, single-Si;CH;0.07293209270923605;0.00022487344075677952
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RS;0.00357849396695738;1.1033664621215179e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, panel, mounted;CH;0.03927635695000188;0.00012110182499425072
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, laminated, integrated;CH;0.004204133995513762;1.29627169858243e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, panel, mounted;CH;0.036466046354618024;0.00011243672037838976
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, laminated, integrated;CH;0.036466046354618024;0.00011243672037838976
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CH;0.14433259000061432;0.00044502447305567886
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;MK;0.00715698793391476;2.2067329242430358e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted, label-certified;CH;0.0;0.0
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si;CH;0.110803294361546;0.00034164271344309976
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;MK;0.009542650578553014;2.9423105656573815e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, laminated, integrated;CH;0.0028103105953838623;8.665104615860987e-06
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CH;0.28270102338963304;0.0008716595050759993
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CdTe, laminated, integrated;CH;0.06732280341603035;0.0002075781714630247
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RS;0.00357849396695738;1.1033664621215179e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, panel, mounted;CH;0.024193601294937684;7.459676755993228e-05
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted, label-certified;CH;0.0;0.0
+low voltage, RCP26, 2014;n/a;NEU;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, panel, mounted;CH;0.06171351412282466;0.0001902829021692699
+low voltage, RCP26, 2014;n/a;NEU;0.03489069110180163;0.03339553849253098;low voltage, RCP26, 2014;NEU;1;1.03017978305494
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;1.3080417015670583e-05
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;1.3080417015670583e-05
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TH;0.04342653182629387;0.00026203656315640264
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;JP;0.001189767995240928;7.179083922093224e-06
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;MY;0.03569303985722784;0.0002153725176627967
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CY;0.008328375966686495;5.0253587454652565e-05
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;ID;0.001189767995240928;7.179083922093224e-06
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TW;0.08655562165377752;0.0005222783553322821
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;JP;0.010707911957168352;6.461175529883901e-05
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;KR;0.05859607376561571;0.0003535698831630913
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;KR;0.47352766210588937;0.002857275400993103
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;MY;0.028554431885782272;0.00017229801413023735
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CY;0.009815585960737656;5.9227442357269095e-05
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RU;0.024985127900059488;0.0001507607623639577
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TR;0.002379535990481856;1.4358167844186448e-05
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;ID;0.000892325996430696;5.384312941569917e-06
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TH;0.034800713860797146;0.0002099882047212268
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TR;0.002676977989292088;1.6152938824709753e-05
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;KR;0.07287328970850684;0.00043971889022820996
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TW;0.06960142772159429;0.0004199764094424536
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;JP;0.01338488994646044;8.076469412354876e-05
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;NP;0.000297441998810232;1.794770980523306e-06
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RU;0.020226055919095775;0.0001220444266755848
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SA;0.000297441998810232;1.794770980523306e-06
+low voltage, RCP26, 2014;n/a;OAS;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SA;0.0;0.0
+low voltage, RCP26, 2014;n/a;OAS;0.03591534773884482;0.03428063018932105;low voltage, RCP26, 2014;OAS;1;1.0280127024994665
+low voltage, RCP26, 2014;n/a;REF;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;1.25792533548036e-05
+low voltage, RCP26, 2014;n/a;REF;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;1.25792533548036e-05
+low voltage, RCP26, 2014;n/a;REF;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RU;0.15080789946140036;0.00015590435680799586
+low voltage, RCP26, 2014;n/a;REF;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;UA;0.3249551166965889;0.0003359367688362768
+low voltage, RCP26, 2014;n/a;REF;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RU;0.12208258527827648;0.00012620828884456808
+low voltage, RCP26, 2014;n/a;REF;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;UA;0.4021543985637343;0.000415744951487989
+low voltage, RCP26, 2014;n/a;REF;0.03516883747281559;0.03365903162631518;low voltage, RCP26, 2014;REF;1;1.0325644354253962
+low voltage, RCP26, 2014;n/a;SSA;0;0;electricity production, solar tower power plant, 20 MW;ZA;0.5;0.0006436959351752042
+low voltage, RCP26, 2014;n/a;SSA;0;0;electricity production, solar thermal parabolic trough, 50 MW;ZA;0.5;0.0006436959351752042
+low voltage, RCP26, 2014;n/a;SSA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;ZA;0.25;0.0014482084063287414
+low voltage, RCP26, 2014;n/a;SSA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TZ;0.25;0.0014482084063287414
+low voltage, RCP26, 2014;n/a;SSA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TZ;0.25;0.0014482084063287414
+low voltage, RCP26, 2014;n/a;SSA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;ZA;0.25;0.0014482084063287414
+low voltage, RCP26, 2014;n/a;SSA;0.035670247451964496;0.034036609417139325;low voltage, RCP26, 2014;SSA;1;1.026715397051693
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;0.0010470554509304955
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;0.0010470554509304955
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, panel, mounted;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, laminated, integrated;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, laminated, integrated;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CIS, panel, mounted;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, laminated, integrated;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CdTe, laminated, integrated;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, laminated, integrated;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, panel, mounted;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, laminated, integrated;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, panel, mounted;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, single-Si;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, panel, mounted;RoW;0.058823529411764705;0.0004880250197265392
+low voltage, RCP26, 2014;n/a;USA;0.03414372860739589;0.032714745466684535;low voltage, RCP26, 2014;USA;1;1.0219842854812096
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, solar tower power plant, 20 MW;RoW;0.5;0.00040877112759164986
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, solar thermal parabolic trough, 50 MW;RoW;0.5;0.00040877112759164986
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, panel, mounted;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, laminated, integrated;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, laminated, integrated;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 570kWp open ground installation, multi-Si;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CIS, panel, mounted;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp facade installation, single-Si, laminated, integrated;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, CdTe, laminated, integrated;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, laminated, integrated;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, panel, mounted;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, laminated, integrated;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, panel, mounted;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp flat-roof installation, single-Si;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0;0;electricity production, photovoltaic, 3kWp facade installation, multi-Si, panel, mounted;RoW;0.058823529411764705;0.0007750365606980043
+low voltage, RCP26, 2014;n/a;World;0.034894454;0.033398271;low voltage, RCP26, 2014;World;1;1.0189377597366434

@@ -1,0 +1,985 @@
+dataset name;location
+electricity, high voltage, import from SE;NO
+market for electricity, low voltage;MK
+market for electricity, medium voltage;CA-NF
+electricity, high voltage, import from IE;GB
+electricity, high voltage, production mix;CA-NU
+electricity, high voltage, production mix;IN-Eastern grid
+electricity, high voltage, production mix;CY
+market for electricity, low voltage;CZ
+market group for electricity, low voltage;RAF
+market for electricity, high voltage;CM
+electricity, high voltage, import from IN-Eastern grid;IN-Southern grid
+electricity, high voltage, import from LV;LT
+electricity, high voltage, production mix;SI
+electricity, high voltage, production mix;CN-GX
+market group for electricity, high voltage;CN
+market group for electricity, low voltage;RLA
+electricity, high voltage, production mix;KR
+market for electricity, medium voltage;CY
+market for electricity, low voltage;EG
+electricity, high voltage, import from CA-ON;CA-MB
+market for electricity, medium voltage;RoW
+electricity, high voltage, import from IN-North-eastern grid;IN-Eastern grid
+electricity, high voltage, production mix;DK
+electricity, high voltage, import from IN-Western grid;IN-Southern grid
+market for electricity, low voltage;RU
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;RS
+market for electricity, high voltage;ZW
+market for electricity, low voltage;CU
+market for electricity, medium voltage;KH
+market for electricity, medium voltage;AL
+market for electricity, medium voltage, aluminium industry;RoW
+market for electricity, medium voltage;PA
+electricity, high voltage, production mix;CN-GS
+market for electricity, medium voltage;NL
+market for electricity, medium voltage;LU
+electricity, high voltage, import from HR;BA
+market for electricity, low voltage;VN
+market for electricity, high voltage;RO
+market for electricity, high voltage;TR
+electricity, high voltage, import from DE;CZ
+market for electricity, low voltage;XK
+market for electricity, low voltage;TW
+market for electricity, low voltage;US-NPCC
+electricity, high voltage, import from LT;BY
+market for electricity, low voltage;OM
+market for electricity, high voltage;MY
+electricity, high voltage, import from BE;LU
+market for electricity, high voltage;IN-North-eastern grid
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;RoW
+market for electricity, medium voltage;ID
+market for electricity, medium voltage;NZ
+market for electricity, medium voltage;DK
+market for electricity, medium voltage;CN-CSG
+market for electricity, medium voltage;IL
+market for electricity, medium voltage, aluminium industry;IAI Area, Asia, without China and GCC
+electricity, high voltage, import from GT;SV
+market for electricity, medium voltage;ES
+electricity, high voltage, import from SK;UA
+market group for electricity, low voltage;CA
+market for electricity, high voltage;ZA
+market for electricity, low voltage;YE
+electricity, high voltage, import from NL;GB
+electricity, high voltage, production mix;US-ASCC
+market group for electricity, high voltage;RAS
+market for electricity, low voltage;TM
+market for electricity, low voltage;KR
+market for electricity, high voltage;SD
+market for electricity, low voltage;AZ
+market for electricity, low voltage;SS
+market for electricity, high voltage;JP
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;CA-PE
+electricity, high voltage, import from NO;NL
+market for electricity, medium voltage;US-FRCC
+electricity, high voltage, import from FR;ES
+electricity, high voltage, import from RO;UA
+market for electricity, low voltage;GB
+electricity, high voltage, import from IT;CH
+electricity, high voltage, import from GH;TG
+electricity, high voltage, import from UA;RU
+electricity, high voltage, import from EE;FI
+electricity, high voltage, import from CA-MB;US-MRO
+electricity, high voltage, import from SI;AT
+electricity, high voltage, import from IN-Northern grid;IN-Western grid
+electricity, high voltage, production mix;CN-NX
+market for electricity, low voltage;IN-Northern grid
+market for electricity, medium voltage;JO
+market for electricity, high voltage;MK
+market for electricity, low voltage;US-MRO
+market for electricity, high voltage;GA
+electricity, high voltage, import from RS;ME
+electricity, high voltage, import from NPCC, US only;CA-NB
+market group for electricity, high voltage;CA
+market for electricity, low voltage;RO
+market for electricity, medium voltage;IN-North-eastern grid
+electricity, high voltage, import from SI;HR
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;IS
+market for electricity, low voltage;KH
+market for electricity, high voltage;IT
+electricity, high voltage, import from IN-Northern grid;IN-Southern grid
+electricity, high voltage, import from PL;SK
+market for electricity, medium voltage;TT
+electricity, high voltage, import from GB;FR
+market for electricity, medium voltage;KE
+market for electricity, low voltage;US-WECC
+electricity, high voltage, import from FR;IT
+electricity, high voltage, import from RO;BG
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;CH
+market for electricity, high voltage;BN
+electricity, high voltage, production mix;GR
+market for electricity, high voltage;CG
+electricity, high voltage, production mix;MK
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;CA-AB
+market for electricity, low voltage;KP
+market for electricity, medium voltage;ER
+market for electricity, low voltage;MZ
+electricity, high voltage, production mix;CENTREL
+electricity, high voltage, import from DE;NL
+market for electricity, high voltage;TZ
+electricity, high voltage, production mix;LT
+electricity, high voltage, production mix;AU
+electricity, high voltage, import from HR;HU
+market for electricity, medium voltage;PY
+electricity, high voltage, import from IN-Western grid;IN-Northern grid
+electricity, high voltage, import from ME;BA
+market for electricity, high voltage;UZ
+market for electricity, low voltage;GI
+market for electricity, high voltage;AR
+market for electricity, low voltage;KG
+market for electricity, high voltage;TW
+market for electricity, medium voltage;GR
+market for electricity, medium voltage, aluminium industry;IAI Area, Africa
+electricity, high voltage, production mix;BG
+market for electricity, medium voltage;VN
+market for electricity, high voltage;DK
+market for electricity, low voltage;EE
+electricity, high voltage, import from AT;CZ
+market for electricity, high voltage;IL
+market for electricity, low voltage;AM
+market for electricity, low voltage;CA-BC
+market for electricity, high voltage;CA-NU
+market for electricity, high voltage;US-WECC
+electricity, high voltage, import from ID;MY
+electricity, high voltage, import from RU;BY
+electricity, high voltage, production mix;MY
+electricity, high voltage, production mix;TW
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;FI
+market for electricity, high voltage, for Swiss Federal Railways;CH
+market for electricity, low voltage;CA-SK
+electricity, high voltage, import from GR;BG
+market for electricity, high voltage;NL
+electricity, high voltage, import from AZ;TR
+electricity, high voltage, import from AT;HU
+market for electricity, high voltage;MM
+electricity, high voltage, import from BG;MK
+market for electricity, medium voltage;IN-Southern grid
+market for electricity, low voltage;DZ
+market for electricity, high voltage, aluminium industry;IAI Area, South America
+market for electricity, low voltage;BH
+electricity, high voltage, production mix;CA-YK
+market for electricity, high voltage;PL
+market for electricity, high voltage;KP
+market for electricity, low voltage;IN-North-eastern grid
+electricity, high voltage, import from DK;NO
+market for electricity, medium voltage;TM
+market for electricity, low voltage;UZ
+electricity, high voltage, production mix;CN-SH
+market for electricity, high voltage;IN-Southern grid
+market for electricity, medium voltage;KW
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;GR
+market for electricity, medium voltage;AR
+electricity, high voltage, import from BA;RS
+market for electricity, medium voltage;LY
+electricity, high voltage, production mix;CN-HN
+market for electricity, low voltage;GR
+market for electricity, low voltage;CW
+market for electricity, low voltage;TZ
+electricity, high voltage, production mix;CN-HB
+electricity, high voltage, import from MY;ID
+market group for electricity, medium voltage;IN
+electricity, high voltage, production mix;CN-HU
+market for electricity, high voltage;BR
+market for electricity, high voltage;PT
+market for electricity, medium voltage;KR
+market for electricity, medium voltage;MX
+electricity, high voltage, production mix;CZ
+market for electricity, low voltage;ES
+electricity, high voltage, import from RU;FI
+electricity, high voltage, production mix;CN-XZ
+market for electricity, medium voltage, aluminium industry;IAI Area, EU27 & EFTA
+electricity, high voltage, import from VE;BR
+market for electricity, low voltage;MA
+market for electricity, low voltage;KZ
+electricity, high voltage, import from GR;IT
+market group for electricity, low voltage;GLO
+market for electricity, medium voltage;BD
+market for electricity, low voltage;MM
+electricity, high voltage, import from CH;AT
+electricity, high voltage, import from EE;RU
+electricity, high voltage, import from UY;BR
+market for electricity, medium voltage;SV
+market for electricity, medium voltage;CA-SK
+market for electricity, low voltage;CL
+market for electricity, medium voltage;CA-AB
+market for electricity, low voltage;CG
+electricity, high voltage, production mix;US-MRO
+electricity, high voltage, import from GE;AM
+market group for electricity, medium voltage;RAF
+market for electricity, medium voltage;HN
+market for electricity, medium voltage;IN-Western grid
+electricity, high voltage, import from RS;AL
+market for electricity, medium voltage;MD
+market for electricity, medium voltage;CA-YK
+market for electricity, high voltage;NE
+electricity, high voltage, import from IN-Eastern grid;IN-Western grid
+market for electricity, low voltage;NL
+electricity, high voltage, import from CA-ON;US-NPCC
+market group for electricity, low voltage;CN
+market for electricity, medium voltage;KP
+market for electricity, low voltage;PH
+market group for electricity, low voltage;US
+market for electricity, medium voltage;RU
+electricity, high voltage, production mix;CN-JS
+electricity, high voltage, import from DE;PL
+electricity, high voltage, import from FR;BE
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;CA-NS
+market for electricity, medium voltage;GE
+market for electricity, medium voltage;CM
+electricity, high voltage, import from UZ;TJ
+market for electricity, high voltage;CA-AB
+market for electricity, high voltage;NP
+market for electricity, high voltage;RU
+market for electricity, high voltage;LK
+electricity, high voltage, production mix;CN-ZJ
+market for electricity, low voltage;BD
+market for electricity, high voltage;LT
+electricity, high voltage, production mix;CN-JX
+market group for electricity, low voltage;RAS
+electricity, high voltage, import from SI;IT
+electricity, high voltage, import from CA-AB;US-WECC
+market for electricity, high voltage;LB
+electricity, high voltage, import from IN-Eastern grid;IN-Northern grid
+market for electricity, medium voltage, aluminium industry;IAI Area, South America
+market for electricity, low voltage;SN
+electricity, high voltage, import from DE;AT
+market for electricity, high voltage;CA-MB
+market for electricity, low voltage;NG
+electricity, high voltage, import from DE;FR
+market for electricity, medium voltage;BW
+market for electricity, high voltage;SS
+electricity, high voltage, import from GE;TR
+market for electricity, high voltage;MX
+market for electricity, high voltage;US-TRE
+market for electricity, low voltage;BW
+electricity, high voltage, import from WECC, US only;CA-AB
+electricity, high voltage, import from AR;BR
+market for electricity, high voltage, aluminium industry;RNA
+market for electricity, medium voltage;SD
+electricity, high voltage, production mix;IT
+market for electricity, high voltage;MA
+market for electricity, medium voltage;BE
+market for electricity, low voltage;TN
+electricity, high voltage, import from LU;BE
+electricity, high voltage, import from NO;FI
+market for electricity, high voltage;IQ
+market for electricity, high voltage;KW
+electricity, high voltage, import from BA;HR
+electricity, high voltage, import from CH;DE
+electricity, high voltage, import from ZA;BW
+market for electricity, high voltage;ET
+electricity, high voltage, production mix;CN-AH
+market for electricity, medium voltage;NE
+market for electricity, medium voltage;JM
+market for electricity, high voltage;PK
+market group for electricity, low voltage;ENTSO-E
+market for electricity, high voltage;SI
+market for electricity, high voltage;UY
+electricity, high voltage, import from KZ;UZ
+market for electricity, high voltage;IN-Eastern grid
+market for electricity, high voltage;SN
+electricity, high voltage, production mix;FI
+market for electricity, medium voltage;MZ
+electricity, high voltage, production mix;NL
+market for electricity, low voltage;AL
+market group for electricity, high voltage;UCTE
+market for electricity, high voltage;AT
+electricity, high voltage, production mix;HR
+market for electricity, medium voltage;ZW
+electricity, high voltage, import from MK;GR
+electricity, high voltage, import from AT;SI
+market for electricity, high voltage;GB
+market group for electricity, medium voltage;RER
+electricity, high voltage, import from DZ;MA
+electricity, high voltage, production mix;CN-CQ
+electricity, high voltage, production mix;CA-SK
+electricity, high voltage, production mix;NORDEL
+market for electricity, medium voltage;US-WECC
+market for electricity, low voltage;SG
+electricity, high voltage, import from DE;SE
+market for electricity, high voltage;BH
+electricity, high voltage, import from RU;LT
+market for electricity, low voltage;MD
+electricity, high voltage, production mix;CA-PE
+electricity, high voltage, production mix;AT
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;NO
+market for electricity, low voltage;GA
+electricity, high voltage, production mix;CN-SC
+market for electricity, high voltage;US-SERC
+market for electricity, high voltage;BW
+market for electricity, medium voltage;CA-ON
+electricity, high voltage, production mix;CA-NF
+market for electricity, high voltage;GI
+electricity, high voltage, import from GB;IE
+market for electricity, high voltage;CA-YK
+market for electricity, low voltage;IQ
+market for electricity, medium voltage;US-HICC
+market for electricity, high voltage;AE
+market for electricity, high voltage;MD
+market for electricity, high voltage;KG
+electricity, high voltage, import from NL;BE
+market for electricity, medium voltage;SN
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;IT
+market for electricity, low voltage;IN-Southern grid
+electricity, high voltage, import from RO;RS
+electricity, high voltage, import from NG;BJ
+electricity, high voltage, production mix;CN-FJ
+electricity, high voltage, import from HU;UA
+market group for electricity, medium voltage;CA
+market for electricity, medium voltage;NG
+market for electricity, medium voltage;CA-QC
+electricity, high voltage, import from VE;CO
+market for electricity, low voltage;TR
+electricity, high voltage, import from SA;JO
+electricity, high voltage, production mix;CN-LN
+electricity, high voltage, production mix;UA
+market for electricity, medium voltage;CA-NS
+electricity, high voltage, import from CD;CG
+market for electricity, medium voltage;BY
+electricity, high voltage, import from RU;GE
+market for electricity, medium voltage;CA-PE
+market for electricity, medium voltage;TH
+market for electricity, medium voltage;LT
+electricity, high voltage, import from NPCC, US only;CA-NS
+market for electricity, low voltage;ME
+market for electricity, low voltage;NO
+electricity, high voltage, production mix;CH
+market for electricity, low voltage;MN
+market for electricity, medium voltage;DE
+electricity, high voltage, production mix;CN-SA
+market for electricity, low voltage;BA
+electricity, high voltage, production mix;CA-NS
+market for electricity, low voltage;DK
+market for electricity, high voltage;FI
+market for electricity, low voltage;RS
+market for electricity, low voltage;DO
+market for electricity, low voltage;IT
+electricity, high voltage, import from SE;DE
+market for electricity, low voltage;VE
+market for electricity, high voltage;CA-QC
+electricity, high voltage, import from UA;BY
+market for electricity, medium voltage;SG
+market group for electricity, medium voltage;UCTE
+electricity, high voltage, import from RS;HR
+electricity, high voltage, import from PT;ES
+market for electricity, low voltage;PK
+electricity, high voltage, import from RS;RO
+market for electricity, high voltage;PA
+electricity, high voltage, import from IQ;TR
+market for electricity, medium voltage;GT
+market for electricity, medium voltage;YE
+market for electricity, low voltage;CR
+market for electricity, low voltage;GT
+market for electricity, high voltage;TN
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;BG
+market for electricity, medium voltage;GH
+electricity, high voltage, import from TG;GH
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;NL
+electricity, high voltage, production mix;IN-North-eastern grid
+market for electricity, medium voltage;US-ASCC
+market for electricity, low voltage;PT
+market for electricity, high voltage;KR
+electricity, high voltage, production mix;US-SPP
+electricity, high voltage, import from AO;CD
+electricity, high voltage, import from ZA;ZW
+market for electricity, low voltage;MU
+market for electricity, medium voltage;IR
+electricity, high voltage, import from CA-QC;CA-NF
+market for electricity, medium voltage;HR
+market for electricity, high voltage;ZM
+electricity, high voltage, production mix;RS
+market for electricity, high voltage;QA
+electricity, high voltage, import from TN;LY
+market group for electricity, high voltage;ENTSO-E
+market for electricity, low voltage;SE
+electricity, high voltage, import from IN-Eastern grid;IN-North-eastern grid
+market for electricity, high voltage;JM
+market for electricity, low voltage;LY
+market for electricity, medium voltage;UY
+market for electricity, medium voltage;SS
+electricity, high voltage, production mix;SA
+market for electricity, high voltage;KZ
+electricity, high voltage, import from CA-BC;US-WECC
+market for electricity, medium voltage;CI
+electricity, high voltage, production mix;CA-NT
+market for electricity, high voltage;US-NPCC
+market for electricity, medium voltage;MN
+electricity, high voltage, import from CA-NB;CA-QC
+electricity, high voltage, production mix;PL
+market for electricity, high voltage;BY
+market for electricity, low voltage;AU
+market for electricity, low voltage;CA-PE
+market for electricity, medium voltage;AE
+market for electricity, low voltage;US-HICC
+market for electricity, high voltage;BE
+electricity, high voltage, import from ZA;MZ
+electricity, high voltage, import from AL;RS
+electricity, high voltage, import from LT;RU
+market group for electricity, medium voltage;GLO
+market for electricity, medium voltage;CA-NT
+electricity, high voltage, import from ME;RS
+market for electricity, medium voltage, aluminium industry;UN-OCEANIA
+market for electricity, medium voltage, label-certified;CH
+market for electricity, high voltage;CA-NS
+market for electricity, medium voltage;NI
+market for electricity, high voltage;CA-NB
+market for electricity, high voltage;DE
+electricity, high voltage, import from CH;IT
+market for electricity, low voltage, label-certified;CH
+market for electricity, medium voltage;PL
+electricity, high voltage, import from NL;DE
+market for electricity, high voltage;CI
+market for electricity, low voltage;BG
+market for electricity, medium voltage;CD
+market for electricity, medium voltage;BR
+electricity, high voltage, production mix;PE
+market for electricity, low voltage;HT
+electricity, high voltage, production mix;EE
+electricity, high voltage, import from IN-Southern grid;IN-Northern grid
+market for electricity, high voltage;CU
+electricity, high voltage, import from GR;AL
+electricity, high voltage, import from VN;KH
+market for electricity, low voltage;DE
+market for electricity, low voltage;CA-NF
+market for electricity, medium voltage;US-NPCC
+market for electricity, medium voltage;US-SPP
+electricity, high voltage, import from CZ;AT
+electricity, high voltage, import from MA;DZ
+market for electricity, low voltage;CA-AB
+electricity, high voltage, production mix;MT
+market for electricity, low voltage;CA-MB
+market group for electricity, high voltage;RNA
+electricity, high voltage, production mix;CA-AB
+electricity, high voltage, import from BE;NL
+electricity, high voltage, import from TZ;KE
+electricity, high voltage, production mix;CN-HE
+market for electricity, medium voltage;US-RFC
+market for electricity, medium voltage;TW
+electricity, high voltage, import from FR;DE
+market for electricity, high voltage;CY
+electricity, high voltage, production mix;US-TRE
+market for electricity, low voltage;ID
+market for electricity, medium voltage;KZ
+market for electricity, low voltage;SV
+electricity, high voltage, import from TM;TR
+market for electricity, medium voltage;TZ
+electricity, high voltage, import from FI;EE
+electricity, high voltage, import from CA-PE;CA-NB
+electricity, high voltage, import from BE;FR
+market for electricity, low voltage;CA-NT
+electricity, high voltage, production mix;PT
+electricity, high voltage, import from CZ;PL
+electricity, high voltage, production mix;US-WECC
+electricity, high voltage, production mix;TH
+market for electricity, high voltage;AU
+market for electricity, high voltage;BJ
+electricity, high voltage, import from HN;GT
+electricity, high voltage, production mix;JP
+market for electricity, low voltage;JM
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;ES
+market for electricity, low voltage;BY
+electricity, high voltage, import from UA;PL
+market for electricity, low voltage;NE
+electricity, high voltage, import from CR;PA
+electricity, high voltage, import from TR;BG
+market for electricity, low voltage;CM
+electricity, high voltage, import from SE;PL
+market for electricity, high voltage;JO
+electricity, high voltage, import from FR;GB
+market for electricity, low voltage;CA-NS
+electricity, high voltage, production mix;CL
+market for electricity, medium voltage;GI
+market for electricity, medium voltage;OM
+electricity, high voltage, production mix;CN-SGCC
+electricity, high voltage, import from BG;RS
+market for electricity, medium voltage;HU
+market for electricity, low voltage;PY
+market group for electricity, low voltage;RME
+electricity, high voltage, import from RS;HU
+market for electricity, medium voltage;AZ
+electricity, high voltage, import from CA-NF;CA-QC
+electricity, high voltage, import from RU;LV
+market for electricity, low voltage;JP
+market for electricity, medium voltage;SI
+market group for electricity, medium voltage;CN
+electricity, high voltage, import from GT;MX
+market for electricity, high voltage, aluminium industry;IAI Area, Gulf Cooperation Council
+electricity, high voltage, import from ES;PT
+market for electricity, high voltage;GH
+electricity, high voltage, import from IN-Northern grid;IN-Eastern grid
+market for electricity, high voltage;CO
+market for electricity, medium voltage;PK
+market for electricity, high voltage;OM
+market for electricity, low voltage;UA
+electricity, high voltage, import from FI;NO
+market group for electricity, low voltage;UCTE
+market for electricity, low voltage;NA
+market for electricity, medium voltage;UA
+electricity, high voltage, import from HU;RO
+electricity, high voltage, production mix;ZA
+market for electricity, low voltage;US-TRE
+electricity, high voltage, production mix;IN-Northern grid
+market for electricity, low voltage;UY
+market for electricity, high voltage;NI
+electricity, high voltage, production mix;FR
+electricity, high voltage, production mix;IN-Western grid
+market for electricity, low voltage;PA
+electricity, high voltage, import from BY;LT
+market for electricity, medium voltage;CA-NU
+market group for electricity, low voltage;RER
+electricity, high voltage, import from CA-AB;CA-BC
+electricity, high voltage, import from RS;BA
+electricity, high voltage, import from IT;AT
+electricity, high voltage, import from CZ;SK
+market for electricity, medium voltage;ET
+market for electricity, high voltage;ER
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;CA-ON
+market for electricity, medium voltage;CO
+market for electricity, medium voltage;AU
+market group for electricity, medium voltage;ENTSO-E
+market for electricity, low voltage;JO
+electricity, high voltage, import from CA-NB;CA-NS
+electricity, high voltage, import from CA-SK;CA-MB
+electricity, high voltage, production mix;CN-CSG
+market for electricity, high voltage;PY
+electricity, high voltage, production mix;BE
+market for electricity, low voltage;SK
+electricity, high voltage, import from SK;CZ
+electricity, high voltage, import from IN-North-eastern grid;IN-Northern grid
+market for electricity, low voltage;BE
+market for electricity, high voltage;AO
+market group for electricity, high voltage;US
+market group for electricity, medium voltage;Europe without Switzerland
+electricity, high voltage, production mix;CA-BC
+market for electricity, high voltage, aluminium industry;IAI Area, EU27 & EFTA
+electricity, high voltage, import from DK;DE
+market for electricity, low voltage;KE
+market group for electricity, high voltage;Canada without Quebec
+electricity, high voltage, import from PA;CR
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;HU
+market for electricity, medium voltage;AM
+electricity, high voltage, import from HU;RS
+market for electricity, high voltage;RS
+market for electricity, high voltage;EC
+market for electricity, high voltage;IN-Western grid
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;SK
+electricity, high voltage, production mix;BA
+electricity, high voltage, import from CA-NB;CA-PE
+electricity, high voltage, import from FR;LU
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;ID
+electricity, high voltage, production mix;ES
+market for electricity, high voltage;HT
+market for electricity, high voltage;CA-ON
+market for electricity, medium voltage;JP
+market for electricity, high voltage;ES
+market for electricity, medium voltage;BA
+electricity, high voltage, import from HU;HR
+electricity, high voltage, import from AT;DE
+electricity, high voltage, import from CD;GA
+electricity, high voltage, import from SK;HU
+market for electricity, high voltage;HU
+electricity, high voltage, import from IN-Northern grid;IN-North-eastern grid
+market for electricity, high voltage;MZ
+market for electricity, low voltage;ER
+electricity, high voltage, import from CA-BC;CA-AB
+market for electricity, low voltage;AR
+market for electricity, low voltage;BN
+market for electricity, high voltage;BO
+market for electricity, medium voltage;SK
+market for electricity, medium voltage;MY
+market for electricity, high voltage, aluminium industry;UN-OCEANIA
+market for electricity, low voltage;PE
+market for electricity, medium voltage;FR
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;CA-NB
+market for electricity, high voltage;NA
+market for electricity, high voltage;TM
+market for electricity, medium voltage;MM
+electricity, high voltage, import from BR;AR
+electricity, high voltage, production mix;TZ
+market for electricity, medium voltage;EE
+electricity, high voltage, production mix;IS
+market for electricity, high voltage;CA-BC
+market for electricity, low voltage;HR
+market for electricity, high voltage;LY
+market group for electricity, low voltage;Europe without Switzerland
+electricity, high voltage, import from NG;NE
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;MY
+electricity, high voltage, import from CA-ON;CA-QC
+electricity, high voltage, production mix;ID
+electricity, high voltage, import from LU;DE
+market for electricity, medium voltage;QA
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;DK
+market for electricity, low voltage;SI
+market for electricity, medium voltage;KG
+electricity, high voltage, import from IT;SI
+electricity, high voltage, import from RS;MK
+electricity, high voltage, import from NL;NO
+market for electricity, low voltage;IR
+market for electricity, low voltage;SY
+electricity, high voltage, import from FI;SE
+market for electricity, high voltage;DZ
+market for electricity, low voltage;NP
+electricity, high voltage, import from HR;SI
+market for electricity, low voltage;US-SPP
+market for electricity, high voltage;BD
+electricity, high voltage, production mix;US-HICC
+market for electricity, medium voltage;GB
+market for electricity, low voltage;FI
+market for electricity, medium voltage;MA
+market for electricity, low voltage;US-RFC
+market for electricity, high voltage;GE
+market for electricity, high voltage;ME
+market for electricity, high voltage;AL
+market for electricity, medium voltage;AO
+electricity, high voltage, import from SY;LB
+market for electricity, medium voltage;CL
+market for electricity, medium voltage;HK
+electricity, high voltage, import from AL;GR
+market for electricity, low voltage;SA
+electricity, high voltage, import from AT;CH
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;PL
+market for electricity, medium voltage;ME
+market for electricity, medium voltage;IT
+electricity, high voltage, import from IN-Northern grid;NP
+electricity, high voltage, production mix;CN-TJ
+electricity, high voltage, import from PY;BR
+market for electricity, medium voltage;US-SERC
+electricity, high voltage, import from UA;SK
+electricity, high voltage, production mix;TR
+market for electricity, high voltage;CN-CSG
+electricity, high voltage, production mix;RO
+electricity, high voltage, import from UA;RO
+market for electricity, high voltage;GR
+electricity, high voltage, import from CA-AB;CA-SK
+electricity, high voltage, import from NPCC, US only;CA-ON
+market for electricity, medium voltage;SA
+market for electricity, low voltage;US-SERC
+market for electricity, medium voltage;TR
+electricity, high voltage, production mix;MX
+market for electricity, medium voltage;ZM
+electricity, high voltage, import from BT;IN-Eastern grid
+electricity, high voltage, import from CA-MB;CA-SK
+market for electricity, high voltage;US-HICC
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;DE
+electricity, high voltage, import from CZ;DE
+market for electricity, high voltage;SA
+market group for electricity, high voltage;RLA
+market group for electricity, low voltage;Canada without Quebec
+electricity, high voltage, production mix;DE
+market for electricity, low voltage;BR
+electricity, high voltage, production mix;CN-QH
+market for electricity, low voltage;PL
+electricity, high voltage, import from MK;RS
+electricity, high voltage, import from UZ;KZ
+market for electricity, high voltage;UA
+electricity, high voltage, import from CSG;HK
+market for electricity, medium voltage;NP
+electricity, high voltage, import from ZA;NA
+market for electricity, medium voltage;CR
+market for electricity, medium voltage;CH
+market for electricity, low voltage;CA-NU
+electricity, high voltage, production mix;CA-ON
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;FR
+market for electricity, high voltage;LU
+market for electricity, high voltage;US-RFC
+market for electricity, low voltage;RoW
+market for electricity, medium voltage;XK
+market for electricity, medium voltage;TJ
+market for electricity, low voltage;HK
+market for electricity, high voltage;BG
+market for electricity, high voltage;TJ
+market for electricity, medium voltage;CG
+market for electricity, low voltage;EC
+electricity, high voltage, production mix;CN-SD
+electricity, high voltage, production mix;CN-YN
+market for electricity, low voltage;ZW
+market for electricity, low voltage;BJ
+market for electricity, high voltage;MU
+electricity, high voltage, production mix;LU
+market for electricity, medium voltage;LK
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;LU
+market for electricity, high voltage;HK
+market for electricity, high voltage;KH
+market for electricity, high voltage;BA
+market for electricity, high voltage, aluminium industry;CN
+market for electricity, high voltage;SY
+electricity, high voltage, import from SE;FI
+market for electricity, medium voltage;IS
+market group for electricity, high voltage;Europe without Switzerland
+market for electricity, high voltage;VE
+market for electricity, medium voltage;DZ
+market for electricity, high voltage;DO
+electricity, high voltage, import from UA;HU
+market for electricity, low voltage;CN-SGCC
+market group for electricity, medium voltage;Canada without Quebec
+market for electricity, high voltage;YE
+electricity, high voltage, import from NI;HN
+market for electricity, medium voltage;ZA
+electricity, high voltage, import from BG;TR
+market for electricity, medium voltage;US-MRO
+market for electricity, low voltage;NZ
+electricity, high voltage, import from LA;TH
+market for electricity, medium voltage, aluminium industry;IAI Area, Gulf Cooperation Council
+electricity, high voltage, import from CA-NS;US-NPCC
+market for electricity, medium voltage;CN-SGCC
+electricity, high voltage, import from AL;ME
+market for electricity, medium voltage;NO
+market for electricity, low voltage;CD
+market for electricity, high voltage;SE
+market for electricity, medium voltage;IQ
+market for electricity, high voltage;CW
+market for electricity, low voltage;IL
+market for electricity, medium voltage;IN-Northern grid
+market for electricity, low voltage;CN-CSG
+market for electricity, low voltage;NI
+market for electricity, high voltage;TT
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;IE
+market for electricity, medium voltage;IN-Eastern grid
+electricity, high voltage, import from BG;GR
+market for electricity, medium voltage;CU
+market for electricity, medium voltage;EC
+market group for electricity, medium voltage;RNA
+electricity, high voltage, production mix;CA-MB
+market group for electricity, medium voltage;RME
+electricity, high voltage, import from CA-QC;CA-NB
+electricity, high voltage, import from SA;BH
+electricity, high voltage, import from IT;GR
+market for electricity, low voltage;AE
+market group for electricity, low voltage;RNA
+electricity, high voltage, import from UZ;KG
+market for electricity, medium voltage;EG
+market for electricity, high voltage;ID
+electricity, high voltage, import from CA-NB;US-NPCC
+market for electricity, medium voltage;CW
+electricity, high voltage, production mix;CN-GZ
+market for electricity, low voltage;IN-Eastern grid
+market for electricity, high voltage;EE
+electricity, high voltage, import from ZW;ZM
+market for electricity, low voltage;TJ
+electricity, high voltage, production mix;CA-NB
+market for electricity, low voltage;GH
+market for electricity, high voltage;IN-Northern grid
+electricity, high voltage, production mix;SE
+market for electricity, high voltage;SK
+market for electricity, medium voltage;RO
+market for electricity, medium voltage;BJ
+market for electricity, low voltage;KW
+market for electricity, high voltage;US-SPP
+market for electricity, high voltage;EG
+market for electricity, high voltage;CA-PE
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;JP
+electricity, high voltage, import from DZ;TN
+market for electricity, medium voltage;HT
+electricity, high voltage, production mix;IN-Southern grid
+electricity, high voltage, import from DE;CH
+market for electricity, high voltage;PE
+market for electricity, medium voltage;AT
+market for electricity, medium voltage, aluminium industry;RNA
+electricity, high voltage, import from CA-SK;US-MRO
+market for electricity, medium voltage;SE
+market for electricity, low voltage;CI
+electricity, high voltage, production mix;CN-XJ
+electricity, high voltage, import from NO;SE
+market for electricity, medium voltage;PH
+market for electricity, high voltage;AZ
+electricity, high voltage, import from TRE;MX
+electricity, high voltage, import from FR;CH
+market for electricity, medium voltage;CA-BC
+electricity, high voltage, import from HU;AT
+market for electricity, high voltage;LV
+market for electricity, high voltage;SG
+market for electricity, low voltage;CO
+market for electricity, medium voltage;BH
+market for electricity, low voltage;ET
+market for electricity, high voltage;US-FRCC
+market for electricity, medium voltage;BG
+market for electricity, low voltage;CA-NB
+market for electricity, low voltage;CA-ON
+electricity, high voltage, production mix;US-NPCC
+market for electricity, low voltage;TG
+market for electricity, low voltage;US-ASCC
+market for electricity, low voltage;ZA
+market for electricity, low voltage;IN-Western grid
+market for electricity, high voltage;US-MRO
+electricity, high voltage, import from EE;LV
+electricity, high voltage, import from PL;DE
+market for electricity, medium voltage;RS
+electricity, high voltage, import from ME;AL
+market for electricity, low voltage;HN
+electricity, high voltage, production mix;CN-BJ
+market group for electricity, high voltage;RAF
+electricity, high voltage, import from TR;GR
+market for electricity, medium voltage;TG
+market for electricity, low voltage;AT
+market for electricity, high voltage;IE
+market for electricity, high voltage;XK
+market for electricity, low voltage;TH
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;KR
+market for electricity, high voltage;NO
+electricity, high voltage, production mix;LV
+electricity, high voltage, import from CA-SK;CA-AB
+market for electricity, high voltage;CA-SK
+electricity, high voltage, import from RO;HU
+market for electricity, medium voltage;CA-NB
+electricity, high voltage, import from IN-Western grid;IN-North-eastern grid
+electricity, high voltage, import from GR;MK
+market for electricity, high voltage;CR
+electricity, high voltage, import from IN-Southern grid;IN-North-eastern grid
+electricity, high voltage, production mix;IR
+market for electricity, low voltage;CA-YK
+electricity, high voltage, import from RS;XK
+market for electricity, low voltage;LT
+market for electricity, high voltage;MT
+electricity, high voltage, production mix;CN-GD
+market for electricity, medium voltage;US-TRE
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;PT
+electricity, high voltage, import from IR;IQ
+market for electricity, medium voltage;BO
+market for electricity, low voltage;IE
+market for electricity, medium voltage;CZ
+market for electricity, high voltage, label-certified;CH
+electricity, high voltage, import from BA;ME
+electricity, high voltage, import from SE;DK
+market group for electricity, medium voltage;RLA
+market for electricity, high voltage;CH
+market for electricity, medium voltage;NA
+electricity, high voltage, import from NO;DK
+market for electricity, low voltage;LV
+electricity, high voltage, import from MZ;ZA
+electricity, high voltage, production mix;CN-NM
+electricity, high voltage, import from PL;SE
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;CZ
+electricity, high voltage, production mix;NO
+electricity, high voltage, production mix;CN-HL
+market for electricity, high voltage;RoW
+market group for electricity, medium voltage;US
+electricity, high voltage, import from CA-NS;CA-NB
+market for electricity, high voltage;IS
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;BE
+electricity, high voltage, import from BG;RO
+electricity, high voltage, production mix;CN-HA
+electricity, high voltage, import from MZ;TZ
+market for electricity, low voltage;TT
+market for electricity, low voltage;GE
+market for electricity, low voltage;LB
+electricity, high voltage, import from ES;FR
+electricity, high voltage, import from AT;IT
+market for electricity, medium voltage;MK
+electricity, high voltage, import from SGCC;MN
+market for electricity, low voltage;BO
+market for electricity, medium voltage;LB
+market for electricity, high voltage;CN-SGCC
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;AT
+electricity, high voltage, import from HR;RS
+market for electricity, high voltage;NG
+market for electricity, low voltage;AO
+electricity, high voltage, import from RU;NO
+market for electricity, low voltage;LK
+market group for electricity, medium voltage;RAS
+market for electricity, medium voltage;TN
+electricity, high voltage, import from PL;CZ
+electricity, high voltage, import from CA-QC;CA-ON
+electricity, high voltage, import from NPCC, US only;CA-QC
+market for electricity, high voltage;CL
+market for electricity, high voltage;CA-NF
+market group for electricity, high voltage;RME
+electricity, high voltage, import from IN-Southern grid;IN-Western grid
+electricity, high voltage, import from LT;LV
+market for electricity, low voltage;FR
+market for electricity, low voltage;MX
+electricity, high voltage, import from MRO, US only;CA-SK
+market for electricity, medium voltage;PT
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;SE
+electricity, high voltage, production mix;GB
+market for electricity, medium voltage;CA-MB
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;GB
+market for electricity, low voltage;HU
+market for electricity, medium voltage;SY
+electricity, high voltage, import from CO;EC
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;TW
+electricity, high voltage, import from DE;DK
+electricity, high voltage, import from IN-Western grid;IN-Eastern grid
+market for electricity, high voltage;CD
+market for electricity, high voltage;NZ
+market for electricity, medium voltage;LV
+market for electricity, low voltage;CH
+market for electricity, high voltage, aluminium industry;IAI Area, Africa
+market for electricity, low voltage;SD
+electricity, high voltage, production mix;CA-QC
+market group for electricity, high voltage;RER
+market for electricity, high voltage, for internal use in coal mining;GLO
+market for electricity, low voltage;ZM
+electricity, high voltage, production mix;CN-SX
+electricity, high voltage, import from GR;TR
+electricity, high voltage, production mix;HU
+market for electricity, high voltage;KE
+market for electricity, high voltage;CA-NT
+market for electricity, high voltage;HN
+market for electricity, low voltage;MY
+market for electricity, medium voltage;FI
+electricity, high voltage, import from TH;VN
+electricity, high voltage, import from DE;LU
+electricity, high voltage, import from IT;FR
+market for electricity, low voltage;US-FRCC
+electricity, high voltage, import from DK;SE
+electricity, high voltage, import from TR;IR
+electricity, high voltage, import from MRO, US only;CA-MB
+market for electricity, high voltage;AM
+market for electricity, high voltage;GT
+market for electricity, low voltage;QA
+electricity, high voltage, production mix;BR
+market for electricity, medium voltage, aluminium industry;IAI Area, Russia & RER w/o EU27 & EFTA
+electricity, high voltage, import from GB;NL
+electricity, high voltage, production mix;IE
+market for electricity, medium voltage;PE
+electricity, high voltage, import from RU;EE
+market for electricity, high voltage;IR
+market for electricity, high voltage;FR
+market for electricity, medium voltage;IE
+market group for electricity, high voltage;GLO
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;TR
+market group for electricity, low voltage;IN
+market for electricity, high voltage;MN
+electricity, high voltage, import from CH;FR
+electricity, high voltage, import from RO;MD
+market group for electricity, high voltage;IN
+electricity, high voltage, production mix;RU
+market for electricity, medium voltage, aluminium industry;CN
+market for electricity, high voltage;TH
+electricity, high voltage, import from EE;LT
+market for electricity, high voltage;TG
+electricity, high voltage, import from CR;NI
+market for electricity, medium voltage;GA
+market for electricity, high voltage;CZ
+market for electricity, high voltage;US-ASCC
+market for electricity, high voltage, aluminium industry;IAI Area, Russia & RER w/o EU27 & EFTA
+market for electricity, high voltage;HR
+electricity, high voltage, import from CA-ON;RoW
+electricity, high voltage, import from GE;AZ
+electricity, high voltage, production mix;US-FRCC
+electricity, high voltage, import from CA-MB;CA-ON
+market for electricity, high voltage;PH
+market for electricity, medium voltage;BN
+market for electricity, medium voltage;VE
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;SI
+market for electricity, low voltage;CA-QC
+market for electricity, high voltage;SV
+market for electricity, medium voltage;UZ
+market for electricity, low voltage;MT
+electricity, high voltage, import from LV;EE
+market for electricity, low voltage;LU
+market for electricity, high voltage, aluminium industry;IAI Area, Asia, without China and GCC
+electricity, high voltage, production mix;US-RFC
+market for electricity, high voltage;VN
+market for electricity, low voltage;IS
+electricity, high voltage, production mix;SK
+electricity, high voltage, import from SK;PL
+market for electricity, medium voltage;MT
+electricity, from municipal waste incineration to generic market for electricity, medium voltage;RU
+market for electricity, medium voltage;MU
+electricity, high voltage, production mix;CN-JL
+electricity, high voltage, import from NPCC, US only;RoW
+market for electricity, medium voltage;DO
+electricity, high voltage, production mix;US-SERC
+electricity, high voltage, import from WECC, US only;CA-BC
+market for electricity, low voltage;CY
