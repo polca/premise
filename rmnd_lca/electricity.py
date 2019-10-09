@@ -573,10 +573,10 @@ class Electricity:
             region for region in self.rmd.electricity_markets.coords["region"].values
         )
 
-
+        created_markets = []
 
         for region in gen_region:
-            created_markets = []
+
             # Create an empty dataset
             new_dataset = {}
             new_dataset["location"] = region
@@ -736,10 +736,10 @@ class Electricity:
             )
         )
 
-
+        created_markets = []
 
         for region in gen_region:
-            created_markets = []
+
             # Fetch ecoinvent regions contained in the REMIND region
             ecoinvent_regions = self.remind_to_ecoinvent_location(region)
 
@@ -870,27 +870,25 @@ class Electricity:
                             ])
             new_dataset["exchanges"] = new_exchanges
 
-
-
-            # Writing log of created markets
-
-            with open(DATA_DIR / "logs/log created markets.csv", "w") as csv_file:
-                writer = csv.writer(csv_file,
-                                    delimiter=';',
-                                    lineterminator='\n')
-                writer.writerow(['dataset name',
-                                'energy type',
-                                'REMIND location',
-                                'Transformation loss',
-                                'Distr./Transmission loss',
-                                'Supplier name',
-                                'Supplier location',
-                                'Contribution within energy type',
-                                'Final contribution'])
-                for line in created_markets:
-                    writer.writerow(line)
-
             self.db.append(new_dataset)
+
+        # Writing log of created markets
+
+        with open(DATA_DIR / "logs/log created markets.csv", "w") as csv_file:
+            writer = csv.writer(csv_file,
+                                delimiter=';',
+                                lineterminator='\n')
+            writer.writerow(['dataset name',
+                             'energy type',
+                             'REMIND location',
+                             'Transformation loss',
+                             'Distr./Transmission loss',
+                             'Supplier name',
+                             'Supplier location',
+                             'Contribution within energy type',
+                             'Final contribution'])
+            for line in created_markets:
+                writer.writerow(line)
 
     def relink_activities_to_new_markets(self):
         """
