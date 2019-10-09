@@ -32,7 +32,7 @@ class DatabaseCleaner:
         self.db = wurst.extract_brightway2_databases(self.destination.name)
         self.biosphere_dict = self.get_biosphere_code()
 
-    def add_negative_CO2_flows_for_biomass_CCS(self, db):
+    def add_negative_CO2_flows_for_biomass_CCS(self):
         """
         Rescale the amount of all exchanges of carbon dioxide, non-fossil by a factor -9 (.9/-.1),
         to account for sequestered CO2.
@@ -43,11 +43,8 @@ class DatabaseCleaner:
 
         Modifies in place (does not return anything).
 
-        :param db: wurst inventory database
-        :type db: list
-
         """
-        for ds in ws.get_many(db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
+        for ds in ws.get_many(self.db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
             for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
@@ -349,6 +346,6 @@ class DatabaseCleaner:
 
         # Add carbon storage for CCS technologies
         print("Add fossil carbon dioxide storage for CCS technologies.")
-        self.add_negative_CO2_flows_for_biomass_CCS(self.db)
+        self.add_negative_CO2_flows_for_biomass_CCS()
 
         return self.db
