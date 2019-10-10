@@ -2,8 +2,13 @@ from . import DATA_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .electricity import Electricity
+from .inventory_imports import CarmaCCSInventory
 import pyprind
 import wurst
+
+
+FILEPATH_CARMA_INVENTORIES = (DATA_DIR / "lci-Carma-CCS.xlsx")
+FILEPATH_BIO_INVENTORIES = (DATA_DIR / "bioenergy_cozzolini_2018.csv")
 
 
 class NewDatabase:
@@ -26,10 +31,17 @@ class NewDatabase:
         self.destination = destination_db
         self.version = destination_version
         self.db = self.clean_database()
+        self.import_inventories()
         self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "Remind output files")
 
     def clean_database(self):
         return DatabaseCleaner(self.destination).prepare_datasets()
+
+    def import_inventories(self):
+        # Add Carma CCS inventories
+        print("Add Carma CCS inventories")
+        carma = CarmaCCSInventory(self, FILEPATH_CARMA_INVENTORIES)
+        carma.merge_inventory()
 
     def update_electricity_to_remind_data(self):
         for s in pyprind.prog_bar(self.scenarios.items()):
@@ -45,4 +57,3 @@ class NewDatabase:
 
             print('Write new database to Brightway2.')
             wurst.write_brightway2_database(self.db, "ecoinvent_"+ scenario + "_" + str(year))
-

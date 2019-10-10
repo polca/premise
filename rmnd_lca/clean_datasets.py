@@ -8,9 +8,7 @@ from bw2data.database import DatabaseChooser
 
 
 FILEPATH_FIX_NAMES = (DATA_DIR / "fix_names.csv")
-FILEPATH_CARMA_INVENTORIES = (DATA_DIR / "lci-Carma-CCS.xlsx")
 FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
-
 
 
 class DatabaseCleaner:
@@ -156,166 +154,6 @@ class DatabaseCleaner:
                             )
                         )
 
-    def get_biosphere_code(self):
-        """
-        Retrieve biosphere uuid for biosphere flows imported from Excel inventory.
-        :return: dictionary with biosphere flow names as keys and uuid code as values
-        :rtype: dict
-        """
-
-        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flows could not be found."
-            )
-
-        csv_dict = {}
-
-        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
-            input_dict = csv.reader(f, delimiter=";")
-            for row in input_dict:
-                csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
-
-        return csv_dict
-
-    def add_carma_inventories(self):
-        """
-        Add CCS technologies from Carma project.
-        The inventories are contained in an Excel file within the library `data` directory.
-        Modifies the database in place. Does not return anything.
-
-        """
-        if not FILEPATH_CARMA_INVENTORIES.is_file():
-            raise FileNotFoundError("The Carma inventory file could not be found.")
-
-        i = ExcelImporter(FILEPATH_CARMA_INVENTORIES)
-
-        if(self.destination.version == 3.6):
-            # apply some updates to comply with ei 3.6
-            new_technosphere_data = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
-                    (
-                        ('market for water, decarbonised, at user', (), 'GLO'),
-                        {
-                            'name': ('market for water, decarbonised'),
-                            'reference product': ('water, decarbonised'),
-                            'location': ('DE'),
-                        }
-                    ),
-                    (
-                        ('market for water, completely softened, from decarbonised water, at user', (), 'GLO'),
-                        {
-                            'name': ('market for water, completely softened'),
-                            'reference product': ('water, completely softened'),
-                            'location': ('RER'),
-                        }
-                    ),
-                    (
-                        ('market for steam, in chemical industry', (), 'GLO'),
-                        {
-                            'location': ('RER'),
-                            'reference product': ('steam, in chemical industry'),
-                        }
-                    ),
-                    (
-                        ('market for steam, in chemical industry', (), 'RER'),
-                        {
-                            'reference product': ('steam, in chemical industry'),
-                        }
-                    ),
-                    (
-                        ('zinc-lead mine operation', ('zinc concentrate',), 'GLO'),
-                        {
-                            'name': ('zinc mine operation'),
-                            'reference product': ('bulk lead-zinc concentrate'),
-                        }
-                    ),
-                    (
-                        ('market for aluminium oxide', ('aluminium oxide',), 'GLO'),
-                        {
-                            'name': ('market for aluminium oxide, non-metallurgical'),
-                            'reference product': ('aluminium oxide, non-metallurgical'),
-                            'location': ('IAI Area, EU27 & EFTA'),
-                        }
-                    ),
-                    (
-                        ('platinum group metal mine operation, ore with high rhodium content', ('nickel, 99.5%',), 'ZA'),
-                        {
-                            'name': ('platinum group metal, extraction and refinery operations'),
-                        }
-                    )
-                ]
-            }
-
-            Migration("migration_36").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5 to 3.6"
-            )
-            i.migrate("migration_36")
-
-        # Add the `product` key to the production exchange and format the category field for biosphere exchanges
-        for x in i.data:
-            for y in x["exchanges"]:
-                if y["type"] == "production" and "product" not in y:
-                    y["product"] = x["reference product"]
-
-                if y["type"] == "biosphere":
-                    y["categories"] = tuple(y["categories"].split("::"))
-                    if len(y["categories"]) > 1:
-                        y["input"] = (
-                            "biosphere3",
-                            self.biosphere_dict[
-                                (
-                                    y["name"],
-                                    y["categories"][0],
-                                    y["categories"][1],
-                                    y["unit"],
-                                )
-                            ],
-                        )
-                    else:
-                        y["input"] = (
-                            "biosphere3",
-                            self.biosphere_dict[
-                                (
-                                    y["name"],
-                                    y["categories"][0],
-                                    "unspecified",
-                                    y["unit"],
-                                )
-                            ],
-                        )
-
-        # Add a `product` field to technosphere exchanges
-        for x in i.data:
-            for y in x["exchanges"]:
-                if y["type"] == "technosphere":
-
-                    # Look first in the Carma inventories
-                    possibles = [
-                        a["reference product"]
-                        for a in i.data
-                        if a["name"] == y["name"]
-                        and a["location"] == y["location"]
-                        and a["unit"] == y["unit"]
-                    ]
-
-                    # If not, look in the ecoinvent inventories
-                    if len(possibles) == 0:
-                        possibles = [
-                            a["reference product"]
-                            for a in self.db
-                            if a["name"] == y["name"]
-                            and a["location"] == y["location"]
-                            and a["unit"] == y["unit"]
-                        ]
-                    if len(possibles) > 0:
-                        y["product"] = possibles[0]
-                    else:
-                        raise IndexError('Some Carma inventory exchanges cannot be linked to the biosphere or the'
-                                            ' ecoinvent database. Check the validity of the ecoinvent database.')
-
-        self.db.extend(i)
 
     def prepare_datasets(self, write_changeset=False):
         """
@@ -339,13 +177,5 @@ class DatabaseCleaner:
         # Remove empty exchanges
         print("Remove empty exchanges.")
         self.remove_nones(self.db)
-
-        # Add Carma CCS inventories
-        print("Add Carma CCS inventories")
-        self.add_carma_inventories()
-
-        # Add carbon storage for CCS technologies
-        print("Add fossil carbon dioxide storage for CCS technologies.")
-        self.add_negative_CO2_flows_for_biomass_CCS()
 
         return self.db
