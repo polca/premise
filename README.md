@@ -74,7 +74,7 @@ Then, for a chosen policy and year between 2005 and 2150, the following two line
 
 For example, here with the year 2011 and the policy "Business-as-usual":
 
-    ndb = NewDatabase({'BAU':2011}, EcoinventDatabase('ecoinvent 3.5 cutoff', 3.5))
+    ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff', 3.5)
     ndb.update_electricity_to_remind_data()
     
 returns

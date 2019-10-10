@@ -15,4 +15,4 @@ from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .ecoinvent_modification import NewDatabase
 from .electricity import Electricity
-from .database import EcoinventDatabase
+
