@@ -16,19 +16,18 @@ class DatabaseCleaner:
     Class that cleans the datasets contained in the inventory database for further processing.
 
     :ivar destination_db: name of the source database
-    :vartype destination_db: EcoinventDatabase
+    :vartype destination_db: str
 
     """
 
     def __init__(self, destination_db):
 
         # Check that database exists
-        if len(DatabaseChooser(destination_db.name)) == 0:
+        if len(DatabaseChooser(destination_db)) == 0:
             raise NameError('The database selected is empty. Make sure the name is correct and that the current'
                             ' brightway2 project contains the database.')
         self.destination = destination_db
-        self.db = wurst.extract_brightway2_databases(self.destination.name)
-        self.biosphere_dict = self.get_biosphere_code()
+        self.db = wurst.extract_brightway2_databases(self.destination)
 
     def add_negative_CO2_flows_for_biomass_CCS(self):
         """
