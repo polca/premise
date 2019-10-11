@@ -2,7 +2,7 @@ from . import DATA_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .electricity import Electricity
-from .inventory_imports import CarmaCCSInventory
+from .inventory_imports import CarmaCCSInventory, BiofuelInventory
 import pyprind
 import wurst
 
@@ -42,6 +42,10 @@ class NewDatabase:
         print("Add Carma CCS inventories")
         carma = CarmaCCSInventory(self, FILEPATH_CARMA_INVENTORIES)
         carma.merge_inventory()
+
+        print("Add Biofuel inventories")
+        bio = BiofuelInventory(self, FILEPATH_BIO_INVENTORIES)
+        bio.merge_inventory()
 
     def update_electricity_to_remind_data(self):
         for s in pyprind.prog_bar(self.scenarios.items()):

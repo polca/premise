@@ -1,5 +1,5 @@
 from . import DATA_DIR
-
+import re
 import wurst
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration, SimaProCSVImporter
@@ -24,7 +24,7 @@ class BaseInventoryImport():
         self.biosphere_dict = self.get_biosphere_code()
 
         if not path.is_file():
-            raise FileNotFoundError("The Carma inventory file could not be found.")
+            raise FileNotFoundError("The inventory file {} could not be found.".format(path))
         self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
@@ -36,6 +36,24 @@ class BaseInventoryImport():
     def merge_inventory(self):
         self.prepare_inventory()
         self.db.extend(self.import_db)
+
+    def search_exchanges(self, srchdict):
+        results = []
+        for act in self.import_db.data:
+            for ex in act["exchanges"]:
+                if len(srchdict.items() - ex.items()) == 0:
+                   results.append(act)
+        return results
+
+    def search_missing_field(self, field):
+        results = []
+        for act in self.import_db.data:
+            if field not in act:
+                results.append(act)
+            for ex in act["exchanges"]:
+                if ex["type"] == "technosphere" and field not in ex:
+                   results.append(ex)
+        return results
 
     def get_biosphere_code(self):
         """
@@ -76,30 +94,50 @@ class BaseInventoryImport():
         for x in self.import_db.data:
             for y in x["exchanges"]:
                 if y["type"] == "technosphere" and "product" not in y:
-
-                    # Look first in the imported inventories
-                    possibles = [
-                        a["reference product"]
-                        for a in self.import_db.data
-                        if a["name"] == y["name"]
-                        and a["location"] == y["location"]
-                        and a["unit"] == y["unit"]
-                    ]
-
-                    # If not, look in the ecoinvent inventories
-                    if len(possibles) == 0:
+                    if "reference product" in y:
+                        y["product"] = y["reference product"]
+                    else:
+                        # Look first in the imported inventories
                         possibles = [
                             a["reference product"]
-                            for a in self.db
+                            for a in self.import_db.data
                             if a["name"] == y["name"]
                             and a["location"] == y["location"]
                             and a["unit"] == y["unit"]
                         ]
-                    if len(possibles) > 0:
-                        y["product"] = possibles[0]
-                    else:
-                        raise IndexError(
-                            'Some inventory exchanges in {} cannot be linked to the biosphere or the ecoinvent database.'.format(self.import_db.name))
+
+                        # If not, look in the ecoinvent inventories
+                        if len(possibles) == 0:
+                            possibles = [
+                                a["reference product"]
+                                for a in self.db
+                                if a["name"] == y["name"]
+                                and a["location"] == y["location"]
+                                and a["unit"] == y["unit"]
+                            ]
+                        if len(possibles) > 0:
+                            y["product"] = possibles[0]
+                        else:
+                            raise IndexError(
+                                'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'.format(self.import_db.db_name, y))
+
+    def remove_ds_and_modifiy_exchanges(self, name, ex_data):
+        """
+        Remove a dataset from the inventory and replace the corresponding
+        technosphere exchanges by what is given as second argument.
+
+        :param name: name of activity to be removed
+        :type name: str
+        :param ex_data: data to replace the corresponding exchanges
+        :type name: dict
+        """
+
+        self.import_db.data = [act for act in self.import_db.data if not act["name"] == name]
+
+        for act in self.import_db.data:
+            for ex in act["exchanges"]:
+                if ex["type"] == "technosphere" and ex["name"] == name:
+                    ex.update(ex_data)
 
 
 class CarmaCCSInventory(BaseInventoryImport):
@@ -223,162 +261,205 @@ class CarmaCCSInventory(BaseInventoryImport):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
 
-# class BioenergyInventory(BaseInventoryImport):
+class BiofuelInventory(BaseInventoryImport):
+    """
+    Biofuel datasets from the master thesis of Francesco Cozzolino (2018).
+    """
 
-#     def add_bioenergy_inventories(self):
-#         """Add bioenergy datasets from the master thesis of Francesco Cozzolino (2018).
+    def load_inventory(self, path):
+        return SimaProCSVImporter(path, name="biofuels_attributional")
 
-#         Modifies the database in place.
-#         """
-#         if not FILEPATH_BIO_INVENTORIES.is_file():
-#             raise FileNotFoundError("The Bioenergy Inventory could not be found: {}".format(FILEPATH_BIO_INVENTORIES))
+    def prepare_inventory(self):
 
-#         bio = SimaProCSVImporter(FILEPATH_BIO_INVENTORIES, name="biofuels attributional")
+        self.import_db.migrate("simapro-ecoinvent-3.3")
+        self.import_db.apply_strategies()
 
-#         bio.migrate("simapro-ecoinvent-3.3")
-#         bio.apply_strategies()
+        # the JRC dataset is not considered, since it can not be integrated with ecoinvent
+        todel = [
+            "Electricty, low voltage",
+            "Electricity, medium voltage",
+            "Electricity, high voltage",
+            "Diesel",
+            "Gasoline",
+            "Steam",
+            "Heavy Fuel Oil",
+            "Hard Coal, combustion",
+            "Hard Coal, supply",
+            "Natural Gas, combustion",
+            "Natural Gas, provision, at medium pressure grid",
+            "40 t truck, fuel consumption",
+            "CaCO3",
+            "CaO",
+            "NH3",
+            "H2SO4",
+            "NaOH",
+            "Truck Transport",
+            "Transportation 40 t truck",
+            "Wheat seeds",
+            "Limestone, mining",
+            "Ethanol, sugarbeet fermentation, (CHP NG), biogas, JRC",
+            "Electricity, CHP natural gas",
+            "Steam (Heat), CHP natural gas",
+            "Sugarbeet, JRC",
+            "Nitrogen fertilizer, mix used in EU",
+            "K2O, potassium oxide, supply",
+            "P2O5 fertilizer, phosphorus pentoxide, supply",
+            "Pesticides, supply chain",
+            "Sugar beet seeds",
+            "Ethanol, sugarbeet fermentation (NG boiler), yes  biogas, JRC",
+            "Steam (Heat), from NG boiler",
+            "ethanol production"
+        ]
 
-#         # Remove electricity datasets
-#         bio.data = [a for a in bio.data if not a["name"].startswith("Electricity, ")]
+        self.remove_ds_and_modifiy_exchanges("woodchips from forest residues", {
+            "name": "woodchips from forestry residues"
+        })
 
-#         for ds in bio.data:
-#             for ex in ds["exchanges"]:
-#                 if ex["name"] == 'Electricity, medium voltage':
-#                     ex["name"] = 'market group for electricity, medium voltage'
-#                     ex["location"] = 'RER'
-        
+        self.import_db.data = [a for a in self.import_db.data if not a["name"] in todel]
 
-#         migrations = {
-#             'fields': ['name','reference product', 'location'],
-#             'data': [
-#                 (
-#                     ('market for transport, freight, lorry >32 metric ton, EURO6', ('transport, freight, lorry >32 metric ton, EURO6',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                     ('market for transport, freight, inland waterways, barge', ('transport, freight, inland waterways, barge',),'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                 ('market for heat, in chemical industry', ('heat, in chemical industry',), 'RER' ),
-#                     {
-#                         'name': ('market for heat, from steam, in chemical industry'),
-#                         'reference product': ('heat, from steam, in chemical industry')
-#                     }
-#                 ),
-#                 (
-#                     ('market for transport, pipeline, onshore, petroleum', ('transport, pipeline, onshore, petroleum',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                     ('market for ethanol, without water, in 99.7% solution state, from ethylene', ('ethanol, without water, in 99.7% solution state, from ethylene',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                     ('market for sulfuric acid', ('sulfuric acid',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                     ('market for transport, freight, lorry 7.5-16 metric ton, EURO6', ('transport, freight, lorry 7.5-16 metric ton, EURO6',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                     ('market for quicklime, milled, packed', ('quicklime, milled, packed',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                     ('market for transport, freight, inland waterways, barge', ('transport, freight, inland waterways, barge',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                     ('citric acid production', ('lime',), 'CN' ),
-#                     {
-#                         'reference product': ('citric acid'), # not needed in migration to cut-off db
-#                     }
-#                 ),
-#                 (
-#                     ('market for dolomite', ('dolomite',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#                 (
-#                     ('market for calcium chloride', ('calcium chloride',), 'GLO' ),
-#                     {
-#                         'location': ('RER'),
-#                     }
-#                 ),
-#             ]
-#         }
+        migrations = {
+            'fields': ['name','reference product', 'location'],
+            'data': [
+                (
+                    ('market for transport, freight, lorry >32 metric ton, EURO6', ('transport, freight, lorry >32 metric ton, EURO6',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                    ('market for transport, freight, inland waterways, barge', ('transport, freight, inland waterways, barge',),'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                ('market for heat, in chemical industry', ('heat, in chemical industry',), 'RER' ),
+                    {
+                        'name': ('market for heat, from steam, in chemical industry'),
+                        'reference product': ('heat, from steam, in chemical industry')
+                    }
+                ),
+                (
+                    ('market for transport, pipeline, onshore, petroleum', ('transport, pipeline, onshore, petroleum',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                    ('market for ethanol, without water, in 99.7% solution state, from ethylene', ('ethanol, without water, in 99.7% solution state, from ethylene',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                    ('market for sulfuric acid', ('sulfuric acid',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                    ('market for transport, freight, lorry 7.5-16 metric ton, EURO6', ('transport, freight, lorry 7.5-16 metric ton, EURO6',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                    ('market for quicklime, milled, packed', ('quicklime, milled, packed',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                    ('market for transport, freight, inland waterways, barge', ('transport, freight, inland waterways, barge',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                    ('citric acid production', ('lime',), 'CN' ),
+                    {
+                        'reference product': ('citric acid'), # not needed in migration to cut-off db
+                    }
+                ),
+                (
+                    ('market for dolomite', ('dolomite',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+                (
+                    ('market for calcium chloride', ('calcium chloride',), 'GLO' ),
+                    {
+                        'location': ('RER'),
+                    }
+                ),
+            ]
+        }
 
-#         Migration("ecoinvent_35").write(
-#             migrations,
-#             description="Change technosphere names due to change from 3.4 to 3.5"
-#         )
-#         bio.migrate("ecoinvent_35")
+        Migration("ecoinvent_35").write(
+            migrations,
+            description="Change technosphere names due to change from 3.4 to 3.5"
+        )
+        self.import_db.migrate("ecoinvent_35")
 
-#         # Migrations for 3.6
-#         if(self.destination.version == 3.6):
-#             migrations = {
-#                 'fields': ['name','reference product', 'location'],
-#                 'data': [
-#                     (
-#                         ('market for transport, freight, sea, transoceanic tanker', ('transport, freight, sea, transoceanic tanker',), 'GLO' ),
-#                         {
-#                             'name': ('market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
-#                             'reference product': ('transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
-#                         }
-#                     ),
-#                     (
-#                         ('market for water, decarbonised, at user', ('water, decarbonised, at user',), 'GLO'),
-#                         {
-#                             'name': ('market for water, decarbonised'),
-#                             'reference product': ('water, decarbonised'),
-#                             'location': ('DE'),
-#                         }
-#                     ),
-#                     (
-#                         ('market for water, completely softened, from decarbonised water, at user', ('water, completely softened, from decarbonised water, at user',), 'GLO'),
-#                         {
-#                             'name': ('market for water, completely softened'),
-#                             'reference product': ('water, completely softened'),
-#                             'location': ('RER'),
-#                         }
-#                     ),
-#                     (
-#                         ('market for concrete block', ('concrete block',), 'GLO'),
-#                         {
-#                             'location': ('DE'),
-#                         }
-#                     )
-#                 ]
-#             }
+        # Migrations for 3.6
+        if(self.version == 3.6):
+            migrations = {
+                'fields': ['name','reference product', 'location'],
+                'data': [
+                    (
+                        ('market for transport, freight, sea, transoceanic tanker', ('transport, freight, sea, transoceanic tanker',), 'GLO' ),
+                        {
+                            'name': ('market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
+                            'reference product': ('transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
+                        }
+                    ),
+                    (
+                        ('market for water, decarbonised, at user', ('water, decarbonised, at user',), 'GLO'),
+                        {
+                            'name': ('market for water, decarbonised'),
+                            'reference product': ('water, decarbonised'),
+                            'location': ('DE'),
+                        }
+                    ),
+                    (
+                        ('market for water, completely softened, from decarbonised water, at user', ('water, completely softened, from decarbonised water, at user',), 'GLO'),
+                        {
+                            'name': ('market for water, completely softened'),
+                            'reference product': ('water, completely softened'),
+                            'location': ('RER'),
+                        }
+                    ),
+                    (
+                        ('market for concrete block', ('concrete block',), 'GLO'),
+                        {
+                            'location': ('DE'),
+                        }
+                    )
+                ]
+            }
 
-#             Migration("ecoinvent_36").write(
-#                 migrations,
-#                 description="Change technosphere names due to change from 3.5 to 3.6"
-#             )
-#             bio.migrate("ecoinvent_36")
+            Migration("ecoinvent_36").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("ecoinvent_36")
 
-#         # Add default locations
-#         print("Set default locations on bioenergy inventory.")
-#         wurst.default_global_location(bio.data)
+        # Add default locations
+        for act in self.import_db.data:
+            if "location" not in act:
+                # print("Ping: {}".format(act["name"]))
+                loc = re.search('{(.+)}', act["name"])
+                if loc:
+                    act["location"] = loc.group(1)
+                else:
+                    act["location"] = 'RER'
+            for ex in act["exchanges"]:
+                if "location" not in ex:
+                    loc = re.search('{(.+)}', act["name"])
+                    if loc:
+                        ex["location"] = loc.group(1)
+                    else:
+                        ex["location"] = 'RER'
 
-#         self.add_product_field_to_exchanges(bio)
-#         self.db.extend(bio)
+        self.add_product_field_to_exchanges()
