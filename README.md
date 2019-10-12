@@ -61,7 +61,7 @@ A preliminary requirement to the use this library is to have a `brightway2` proj
     bw.databases
 ```
 returns
-```python
+```
     Databases dictionary with 2 object(s):
 	biosphere3
 	ecoinvent 3.5 cutoff
@@ -80,7 +80,7 @@ For example, here with the year 2011 and the policy "Business-as-usual":
     ndb.update_electricity_to_remind_data()
 ```
 returns
-```python
+```
     Getting activity data
     100%|█████████████████████████████████| 16022/16022 [00:00<00:00, 45140.97it/s]
     Adding exchange data to activities
@@ -124,7 +124,7 @@ Once the process is completed, the resulting database is registered back into th
     ndb.write_db_to_brightway()
 ```
 returns
-```python
+```
     Write new database to Brightway2.
     15223 datasets
     540424 exchanges
