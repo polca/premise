@@ -1,0 +1,1260 @@
+dataset;location;Sum of production volume
+electricity production, deep geothermal;CR;1476
+electricity production, deep geothermal;DE;94
+electricity production, deep geothermal;ET;18
+electricity production, deep geothermal;GLO;84431
+electricity production, deep geothermal;GT;237
+electricity production, deep geothermal;ID;4114
+electricity production, deep geothermal;IS;5028
+electricity production, deep geothermal;IT;5679
+electricity production, deep geothermal;JP;2322
+electricity production, deep geothermal;KE;3897
+electricity production, deep geothermal;MX;5760
+electricity production, deep geothermal;NI;636
+electricity production, deep geothermal;NZ;6913
+electricity production, deep geothermal;PH;9896
+electricity production, deep geothermal;PT;197
+electricity production, deep geothermal;RU;437
+electricity production, deep geothermal;SV;1496
+electricity production, deep geothermal;TH;1
+electricity production, deep geothermal;TR;2269
+electricity production, deep geothermal;RoW;33961
+electricity production, hard coal;DO;2303
+electricity production, hard coal;FR;8444
+electricity production, hard coal;AR;3285
+electricity production, hard coal;AT;2396
+electricity production, hard coal;AU;62338
+electricity production, hard coal;BD;1023
+electricity production, hard coal;BE;2083
+electricity production, hard coal;BG;901
+electricity production, hard coal;BR;8895
+electricity production, hard coal;BW;2105
+electricity production, hard coal;CA-AB;604
+electricity production, hard coal;CA-NB;2481
+electricity production, hard coal;CA-NS;5114
+electricity production, hard coal;CA-ON;202
+electricity production, hard coal;CA-PE;2
+electricity production, hard coal;CL;23926
+electricity production, hard coal;CO;5361
+electricity production, hard coal;CZ;1923
+electricity production, hard coal;DE;97366
+electricity production, hard coal;EE;4
+electricity production, hard coal;ES;38755
+electricity production, hard coal;FI;3783
+electricity production, hard coal;GB;93147
+electricity production, hard coal;GLO;7347045.87
+electricity production, hard coal;GT;1725
+electricity production, hard coal;HK;28273
+electricity production, hard coal;HN;33
+electricity production, hard coal;HR;2184
+electricity production, hard coal;IE;3815
+electricity production, hard coal;IL;27990
+electricity production, hard coal;IT;40256
+electricity production, hard coal;JP;269824
+electricity production, hard coal;KP;3587
+electricity production, hard coal;KR;164600
+electricity production, hard coal;LK;2978
+electricity production, hard coal;MA;14711
+electricity production, hard coal;MM;266
+electricity production, hard coal;MX;12888
+electricity production, hard coal;MY;51919
+electricity production, hard coal;NL;21114
+electricity production, hard coal;PA;639
+electricity production, hard coal;PE;121
+electricity production, hard coal;PH;26358
+electricity production, hard coal;PK;153
+electricity production, hard coal;PT;11474
+electricity production, hard coal;SG;504
+electricity production, hard coal;TH;15131
+electricity production, hard coal;TR;33812
+electricity production, hard coal;TW;64741
+electricity production, hard coal;UA;63326
+electricity production, hard coal;VN;31255
+electricity production, hard coal;ZW;4074
+electricity production, hard coal;RoW;6082853.87
+electricity production, hydro, pumped storage;FR;5797
+electricity production, hydro, pumped storage;AE;843
+electricity production, hydro, pumped storage;AR;326
+electricity production, hydro, pumped storage;AT;3826
+electricity production, hydro, pumped storage;AU;35
+electricity production, hydro, pumped storage;BE;1233
+electricity production, hydro, pumped storage;BG;558
+electricity production, hydro, pumped storage;CA-ON;784
+electricity production, hydro, pumped storage;CZ;1052
+electricity production, hydro, pumped storage;DE;5857
+electricity production, hydro, pumped storage;ES;3801
+electricity production, hydro, pumped storage;GLO;87772
+electricity production, hydro, pumped storage;GR;131
+electricity production, hydro, pumped storage;HR;118
+electricity production, hydro, pumped storage;IE;279
+electricity production, hydro, pumped storage;IT;1711
+electricity production, hydro, pumped storage;JP;5146
+electricity production, hydro, pumped storage;KR;5068
+electricity production, hydro, pumped storage;LT;689
+electricity production, hydro, pumped storage;LU;1061
+electricity production, hydro, pumped storage;MA;396
+electricity production, hydro, pumped storage;NO;742
+electricity production, hydro, pumped storage;PL;551
+electricity production, hydro, pumped storage;PT;843
+electricity production, hydro, pumped storage;RO;474
+electricity production, hydro, pumped storage;RS;614
+electricity production, hydro, pumped storage;RU;1874
+electricity production, hydro, pumped storage;SI;274
+electricity production, hydro, pumped storage;SK;253
+electricity production, hydro, pumped storage;SY;1665
+electricity production, hydro, pumped storage;TJ;3121
+electricity production, hydro, pumped storage;UY;20054
+electricity production, hydro, pumped storage;RoW;18596
+electricity production, hydro, reservoir, alpine region;FR;9825
+electricity production, hydro, reservoir, alpine region;AT;10006
+electricity production, hydro, reservoir, alpine region;BA;2056
+electricity production, hydro, reservoir, alpine region;CA-AB;1190
+electricity production, hydro, reservoir, alpine region;CA-BC;54147
+electricity production, hydro, reservoir, alpine region;CH;18947
+electricity production, hydro, reservoir, alpine region;GLO;542686.2032
+electricity production, hydro, reservoir, alpine region;HR;8732
+electricity production, hydro, reservoir, alpine region;IT;36627
+electricity production, hydro, reservoir, alpine region;JP;12892
+electricity production, hydro, reservoir, alpine region;MK;980
+electricity production, hydro, reservoir, alpine region;NO;129887
+electricity production, hydro, reservoir, alpine region;PE;21384
+electricity production, hydro, reservoir, alpine region;RS;1743
+electricity production, hydro, reservoir, alpine region;RoW;234270.2032
+electricity production, hydro, reservoir, non-alpine region;CA-MB;34082
+electricity production, hydro, reservoir, non-alpine region;CA-NB;2669
+electricity production, hydro, reservoir, non-alpine region;CA-NF;37498
+electricity production, hydro, reservoir, non-alpine region;CA-NS;626
+electricity production, hydro, reservoir, non-alpine region;CA-NT;102
+electricity production, hydro, reservoir, non-alpine region;CA-ON;32986
+electricity production, hydro, reservoir, non-alpine region;CA-QC;111041
+electricity production, hydro, reservoir, non-alpine region;CA-SK;4519
+electricity production, hydro, reservoir, non-alpine region;CZ;333
+electricity production, hydro, reservoir, non-alpine region;DE;3077
+electricity production, hydro, reservoir, non-alpine region;ES;12826
+electricity production, hydro, reservoir, non-alpine region;FI;3087
+electricity production, hydro, reservoir, non-alpine region;GLO;891511.5984
+electricity production, hydro, reservoir, non-alpine region;KR;545
+electricity production, hydro, reservoir, non-alpine region;PT;5232
+electricity production, hydro, reservoir, non-alpine region;RU;42997
+electricity production, hydro, reservoir, non-alpine region;SE;12623
+electricity production, hydro, reservoir, non-alpine region;SK;1014
+electricity production, hydro, reservoir, non-alpine region;TR;19926
+electricity production, hydro, reservoir, non-alpine region;TZ;2564
+electricity production, hydro, reservoir, non-alpine region;RoW;563764.5984
+electricity production, hydro, reservoir, tropical region;BR;347837
+electricity production, hydro, reservoir, tropical region;GLO;380000
+electricity production, hydro, reservoir, tropical region;ID;11052
+electricity production, hydro, reservoir, tropical region;MY;13254
+electricity production, hydro, reservoir, tropical region;TH;5485
+electricity production, hydro, reservoir, tropical region;RoW;2372
+electricity production, hydro, run-of-river;DO;1568
+electricity production, hydro, run-of-river;FR;51584
+electricity production, hydro, run-of-river;AL;4677
+electricity production, hydro, run-of-river;AM;1972
+electricity production, hydro, run-of-river;AO;4991
+electricity production, hydro, run-of-river;AR;40562
+electricity production, hydro, run-of-river;AT;30015
+electricity production, hydro, run-of-river;AU;18202
+electricity production, hydro, run-of-river;AZ;1287
+electricity production, hydro, run-of-river;BA;3819
+electricity production, hydro, run-of-river;BD;582
+electricity production, hydro, run-of-river;BE;271
+electricity production, hydro, run-of-river;BG;4559
+electricity production, hydro, run-of-river;BO;2228
+electricity production, hydro, run-of-river;BY;113
+electricity production, hydro, run-of-river;CA-AB;613
+electricity production, hydro, run-of-river;CA-BC;2850
+electricity production, hydro, run-of-river;CA-MB;68
+electricity production, hydro, run-of-river;CA-NB;264
+electricity production, hydro, run-of-river;CA-NF;1160
+electricity production, hydro, run-of-river;CA-NS;492
+electricity production, hydro, run-of-river;CA-NT;130
+electricity production, hydro, run-of-river;CA-ON;5045
+electricity production, hydro, run-of-river;CA-QC;65216
+electricity production, hydro, run-of-river;CA-SK;140
+electricity production, hydro, run-of-river;CA-YK;421
+electricity production, hydro, run-of-river;CD;8732
+electricity production, hydro, run-of-river;CG;942
+electricity production, hydro, run-of-river;CH;17175
+electricity production, hydro, run-of-river;CI;1894
+electricity production, hydro, run-of-river;CL;22711
+electricity production, hydro, run-of-river;CM;5017
+electricity production, hydro, run-of-river;CO;49216
+electricity production, hydro, run-of-river;CR;6650
+electricity production, hydro, run-of-river;CU;103
+electricity production, hydro, run-of-river;CZ;999
+electricity production, hydro, run-of-river;DE;16154
+electricity production, hydro, run-of-river;DK;15
+electricity production, hydro, run-of-river;DZ;251
+electricity production, hydro, run-of-river;EC;10802
+electricity production, hydro, run-of-river;EG;13839
+electricity production, hydro, run-of-river;ES;24898
+electricity production, hydro, run-of-river;ET;9103
+electricity production, hydro, run-of-river;FI;9259
+electricity production, hydro, run-of-river;GA;787
+electricity production, hydro, run-of-river;GE;8252
+electricity production, hydro, run-of-river;GH;8303
+electricity production, hydro, run-of-river;GLO;2161273.198
+electricity production, hydro, run-of-river;GR;4431
+electricity production, hydro, run-of-river;GT;4772
+electricity production, hydro, run-of-river;HN;2576
+electricity production, hydro, run-of-river;HR;178
+electricity production, hydro, run-of-river;HT;89
+electricity production, hydro, run-of-river;HU;299
+electricity production, hydro, run-of-river;IE;702
+electricity production, hydro, run-of-river;IL;8
+electricity production, hydro, run-of-river;IQ;2902
+electricity production, hydro, run-of-river;IR;13723
+electricity production, hydro, run-of-river;IT;20602
+electricity production, hydro, run-of-river;JM;135
+electricity production, hydro, run-of-river;JO;57
+electricity production, hydro, run-of-river;JP;51566
+electricity production, hydro, run-of-river;KE;3275
+electricity production, hydro, run-of-river;KG;13165
+electricity production, hydro, run-of-river;KH;1833
+electricity production, hydro, run-of-river;KP;12870
+electricity production, hydro, run-of-river;KR;2180
+electricity production, hydro, run-of-river;KZ;8180
+electricity production, hydro, run-of-river;LB;191
+electricity production, hydro, run-of-river;LK;3614
+electricity production, hydro, run-of-river;LU;101
+electricity production, hydro, run-of-river;MA;1621
+electricity production, hydro, run-of-river;MD;314
+electricity production, hydro, run-of-river;ME;1734
+electricity production, hydro, run-of-river;MK;215
+electricity production, hydro, run-of-river;MM;8741
+electricity production, hydro, run-of-river;MU;90
+electricity production, hydro, run-of-river;MX;37764
+electricity production, hydro, run-of-river;MZ;15733
+electricity production, hydro, run-of-river;NG;5185
+electricity production, hydro, run-of-river;NI;390
+electricity production, hydro, run-of-river;NL;111
+electricity production, hydro, run-of-river;NP;3599
+electricity production, hydro, run-of-river;NZ;24080
+electricity production, hydro, run-of-river;PA;4984
+electricity production, hydro, run-of-river;PH;9046
+electricity production, hydro, run-of-river;PK;31114
+electricity production, hydro, run-of-river;PL;2158
+electricity production, hydro, run-of-river;PT;10158
+electricity production, hydro, run-of-river;PY;54723
+electricity production, hydro, run-of-river;RO;18294
+electricity production, hydro, run-of-river;RS;9150
+electricity production, hydro, run-of-river;RU;128987
+electricity production, hydro, run-of-river;SD;8824
+electricity production, hydro, run-of-river;SE;50491
+electricity production, hydro, run-of-river;SK;3038
+electricity production, hydro, run-of-river;SN;320
+electricity production, hydro, run-of-river;SV;1701
+electricity production, hydro, run-of-river;SY;2970
+electricity production, hydro, run-of-river;TG;119
+electricity production, hydro, run-of-river;TJ;15840
+electricity production, hydro, run-of-river;TN;55
+electricity production, hydro, run-of-river;TR;19926
+electricity production, hydro, run-of-river;UA;8371
+electricity production, hydro, run-of-river;UY;9553
+electricity production, hydro, run-of-river;VE;86322
+electricity production, hydro, run-of-river;VN;57959
+electricity production, hydro, run-of-river;XK;149
+electricity production, hydro, run-of-river;ZM;13902
+electricity production, hydro, run-of-river;ZW;5377
+electricity production, hydro, run-of-river;RoW;902785.1984
+electricity production, lignite;AU;77069
+electricity production, lignite;BA;8930
+electricity production, lignite;BG;16496
+electricity production, lignite;BR;7174
+electricity production, lignite;CA-AB;41502
+electricity production, lignite;CA-MB;67
+electricity production, lignite;CA-NS;268
+electricity production, lignite;CA-ON;690
+electricity production, lignite;CA-SK;9912
+electricity production, lignite;CZ;22428
+electricity production, lignite;DE;137918
+electricity production, lignite;ES;2816
+electricity production, lignite;GLO;2347046.14
+electricity production, lignite;GR;13820
+electricity production, lignite;HU;5524
+electricity production, lignite;ID;78191
+electricity production, lignite;IT;900
+electricity production, lignite;KH;803
+electricity production, lignite;KP;432
+electricity production, lignite;KR;14282
+electricity production, lignite;ME;1322
+electricity production, lignite;MK;3474
+electricity production, lignite;MX;18940
+electricity production, lignite;NE;419
+electricity production, lignite;NZ;1222
+electricity production, lignite;PH;4382
+electricity production, lignite;RO;11207
+electricity production, lignite;RS;10276
+electricity production, lignite;SI;85
+electricity production, lignite;TH;16133
+electricity production, lignite;TR;35005
+electricity production, lignite;TW;18567
+electricity production, lignite;UZ;2105
+electricity production, lignite;XK;4901
+electricity production, lignite;RoW;1779786.14
+electricity production, natural gas, combined cycle power plant;FR;2449
+electricity production, natural gas, combined cycle power plant;SA;3487
+electricity production, natural gas, combined cycle power plant;AE;57744
+electricity production, natural gas, combined cycle power plant;AR;32005
+electricity production, natural gas, combined cycle power plant;AT;224
+electricity production, natural gas, combined cycle power plant;AU;6530
+electricity production, natural gas, combined cycle power plant;AZ;3225
+electricity production, natural gas, combined cycle power plant;BD;5067
+electricity production, natural gas, combined cycle power plant;BE;7353
+electricity production, natural gas, combined cycle power plant;BH;9235
+electricity production, natural gas, combined cycle power plant;BN;362
+electricity production, natural gas, combined cycle power plant;BO;851
+electricity production, natural gas, combined cycle power plant;BR;22128
+electricity production, natural gas, combined cycle power plant;BY;1726
+electricity production, natural gas, combined cycle power plant;CA-ON;1950
+electricity production, natural gas, combined cycle power plant;CA-SK;582
+electricity production, natural gas, combined cycle power plant;CL;6841
+electricity production, natural gas, combined cycle power plant;CO;5958
+electricity production, natural gas, combined cycle power plant;CU;914
+electricity production, natural gas, combined cycle power plant;CZ;5
+electricity production, natural gas, combined cycle power plant;DE;5304
+electricity production, natural gas, combined cycle power plant;DZ;9124
+electricity production, natural gas, combined cycle power plant;EG;43940
+electricity production, natural gas, combined cycle power plant;ES;21673
+electricity production, natural gas, combined cycle power plant;FI;41
+electricity production, natural gas, combined cycle power plant;GLO;1806120.908
+electricity production, natural gas, combined cycle power plant;GR;3898
+electricity production, natural gas, combined cycle power plant;HR;2
+electricity production, natural gas, combined cycle power plant;HU;519
+electricity production, natural gas, combined cycle power plant;ID;26323
+electricity production, natural gas, combined cycle power plant;IE;7051
+electricity production, natural gas, combined cycle power plant;IL;11216
+electricity production, natural gas, combined cycle power plant;IR;60027
+electricity production, natural gas, combined cycle power plant;IT;23713
+electricity production, natural gas, combined cycle power plant;JO;699
+electricity production, natural gas, combined cycle power plant;JP;173260
+electricity production, natural gas, combined cycle power plant;KR;32668
+electricity production, natural gas, combined cycle power plant;KW;6425
+electricity production, natural gas, combined cycle power plant;LY;7010
+electricity production, natural gas, combined cycle power plant;MA;3620
+electricity production, natural gas, combined cycle power plant;MM;2438
+electricity production, natural gas, combined cycle power plant;MX;108682
+electricity production, natural gas, combined cycle power plant;MY;42128
+electricity production, natural gas, combined cycle power plant;NG;2087
+electricity production, natural gas, combined cycle power plant;NL;12896
+electricity production, natural gas, combined cycle power plant;NO;854
+electricity production, natural gas, combined cycle power plant;NZ;4152
+electricity production, natural gas, combined cycle power plant;OM;5852
+electricity production, natural gas, combined cycle power plant;PE;2394
+electricity production, natural gas, combined cycle power plant;PH;15052
+electricity production, natural gas, combined cycle power plant;PK;9280
+electricity production, natural gas, combined cycle power plant;PT;1546
+electricity production, natural gas, combined cycle power plant;QA;1852
+electricity production, natural gas, combined cycle power plant;SG;33778
+electricity production, natural gas, combined cycle power plant;SK;174
+electricity production, natural gas, combined cycle power plant;SY;4713
+electricity production, natural gas, combined cycle power plant;TH;62674
+electricity production, natural gas, combined cycle power plant;TN;5758
+electricity production, natural gas, combined cycle power plant;TR;97063
+electricity production, natural gas, combined cycle power plant;TT;735
+electricity production, natural gas, combined cycle power plant;UA;25
+electricity production, natural gas, combined cycle power plant;VE;1998
+electricity production, natural gas, combined cycle power plant;VN;38836
+electricity production, natural gas, combined cycle power plant;RoW;746004.9081
+electricity production, natural gas, conventional power plant;DO;3713
+electricity production, natural gas, conventional power plant;FR;471
+electricity production, natural gas, conventional power plant;SA;72145
+electricity production, natural gas, conventional power plant;AE;42887
+electricity production, natural gas, conventional power plant;AR;20604
+electricity production, natural gas, conventional power plant;AT;105
+electricity production, natural gas, conventional power plant;AU;28823
+electricity production, natural gas, conventional power plant;AZ;8944
+electricity production, natural gas, conventional power plant;BD;23188
+electricity production, natural gas, conventional power plant;BE;1714
+electricity production, natural gas, conventional power plant;BG;6
+electricity production, natural gas, conventional power plant;BH;5884
+electricity production, natural gas, conventional power plant;BN;2535
+electricity production, natural gas, conventional power plant;BO;4848
+electricity production, natural gas, conventional power plant;BR;43039
+electricity production, natural gas, conventional power plant;BY;10679
+electricity production, natural gas, conventional power plant;CA-AB;7730
+electricity production, natural gas, conventional power plant;CA-BC;1100
+electricity production, natural gas, conventional power plant;CA-MB;24
+electricity production, natural gas, conventional power plant;CA-NB;1275
+electricity production, natural gas, conventional power plant;CA-NS;1423
+electricity production, natural gas, conventional power plant;CA-NT;7
+electricity production, natural gas, conventional power plant;CA-ON;9929
+electricity production, natural gas, conventional power plant;CA-SK;2489
+electricity production, natural gas, conventional power plant;CI;5050
+electricity production, natural gas, conventional power plant;CL;4211
+electricity production, natural gas, conventional power plant;CO;3915
+electricity production, natural gas, conventional power plant;CU;1684
+electricity production, natural gas, conventional power plant;CZ;21
+electricity production, natural gas, conventional power plant;DE;3276
+electricity production, natural gas, conventional power plant;DZ;46673
+electricity production, natural gas, conventional power plant;EC;2062
+electricity production, natural gas, conventional power plant;EG;81775
+electricity production, natural gas, conventional power plant;ES;694
+electricity production, natural gas, conventional power plant;FI;3
+electricity production, natural gas, conventional power plant;GA;741
+electricity production, natural gas, conventional power plant;GB;78326
+electricity production, natural gas, conventional power plant;GE;1893
+electricity production, natural gas, conventional power plant;GH;2194
+electricity production, natural gas, conventional power plant;GLO;2362236.786
+electricity production, natural gas, conventional power plant;GR;1189
+electricity production, natural gas, conventional power plant;HK;8529
+electricity production, natural gas, conventional power plant;HU;331
+electricity production, natural gas, conventional power plant;ID;19537
+electricity production, natural gas, conventional power plant;IE;3349
+electricity production, natural gas, conventional power plant;IL;14172
+electricity production, natural gas, conventional power plant;IQ;13833
+electricity production, natural gas, conventional power plant;IR;105566
+electricity production, natural gas, conventional power plant;IT;6367
+electricity production, natural gas, conventional power plant;JO;506
+electricity production, natural gas, conventional power plant;JP;201912
+electricity production, natural gas, conventional power plant;KR;58981
+electricity production, natural gas, conventional power plant;KW;14020
+electricity production, natural gas, conventional power plant;LY;11833
+electricity production, natural gas, conventional power plant;MA;1588
+electricity production, natural gas, conventional power plant;MM;2190
+electricity production, natural gas, conventional power plant;MX;26238
+electricity production, natural gas, conventional power plant;MY;22559
+electricity production, natural gas, conventional power plant;MZ;1459
+electricity production, natural gas, conventional power plant;NG;16114
+electricity production, natural gas, conventional power plant;NL;6496
+electricity production, natural gas, conventional power plant;NO;669
+electricity production, natural gas, conventional power plant;NZ;1112
+electricity production, natural gas, conventional power plant;OM;20533
+electricity production, natural gas, conventional power plant;PE;16298
+electricity production, natural gas, conventional power plant;PH;2330
+electricity production, natural gas, conventional power plant;PK;15316
+electricity production, natural gas, conventional power plant;QA;1405
+electricity production, natural gas, conventional power plant;RO;152
+electricity production, natural gas, conventional power plant;SG;5573
+electricity production, natural gas, conventional power plant;SI;4
+electricity production, natural gas, conventional power plant;SK;132
+electricity production, natural gas, conventional power plant;SN;145
+electricity production, natural gas, conventional power plant;SY;8074
+electricity production, natural gas, conventional power plant;TH;28851
+electricity production, natural gas, conventional power plant;TN;10401
+electricity production, natural gas, conventional power plant;TR;8271
+electricity production, natural gas, conventional power plant;TT;8248
+electricity production, natural gas, conventional power plant;TW;15351
+electricity production, natural gas, conventional power plant;TZ;2442
+electricity production, natural gas, conventional power plant;UA;1310
+electricity production, natural gas, conventional power plant;UY;3
+electricity production, natural gas, conventional power plant;UZ;20676
+electricity production, natural gas, conventional power plant;VE;17678
+electricity production, natural gas, conventional power plant;VN;3992
+electricity production, natural gas, conventional power plant;YE;2742
+electricity production, natural gas, conventional power plant;RoW;1107679.786
+electricity production, nuclear, boiling water reactor;CH;11022
+electricity production, nuclear, boiling water reactor;DE;19459
+electricity production, nuclear, boiling water reactor;ES;10749
+electricity production, nuclear, boiling water reactor;FI;14175
+electricity production, nuclear, boiling water reactor;GLO;690916.4656
+electricity production, nuclear, boiling water reactor;MX;9096
+electricity production, nuclear, boiling water reactor;RU;73439
+electricity production, nuclear, boiling water reactor;SE;18076
+electricity production, nuclear, boiling water reactor;TW;25113
+electricity production, nuclear, boiling water reactor;RoW;509787.4656
+electricity production, nuclear, pressure water reactor;FR;410286
+electricity production, nuclear, pressure water reactor;AM;2317
+electricity production, nuclear, pressure water reactor;BE;31681
+electricity production, nuclear, pressure water reactor;BG;14915
+electricity production, nuclear, pressure water reactor;BR;14455
+electricity production, nuclear, pressure water reactor;CH;12258
+electricity production, nuclear, pressure water reactor;CZ;28506
+electricity production, nuclear, pressure water reactor;DE;71843
+electricity production, nuclear, pressure water reactor;ES;43118
+electricity production, nuclear, pressure water reactor;FI;7990
+electricity production, nuclear, pressure water reactor;GLO;2248759.534
+electricity production, nuclear, pressure water reactor;HU;14710
+electricity production, nuclear, pressure water reactor;IR;4204
+electricity production, nuclear, pressure water reactor;KR;127979
+electricity production, nuclear, pressure water reactor;NL;3846
+electricity production, nuclear, pressure water reactor;PK;4161
+electricity production, nuclear, pressure water reactor;RU;96472
+electricity production, nuclear, pressure water reactor;SE;42908
+electricity production, nuclear, pressure water reactor;SI;5988
+electricity production, nuclear, pressure water reactor;SK;14569
+electricity production, nuclear, pressure water reactor;TW;14733
+electricity production, nuclear, pressure water reactor;UA;83086
+electricity production, nuclear, pressure water reactor;RoW;1198734.534
+electricity production, nuclear, pressure water reactor, heavy water moderated;AR;5411
+electricity production, nuclear, pressure water reactor, heavy water moderated;CA-NB;4711
+electricity production, nuclear, pressure water reactor, heavy water moderated;CA-ON;90424
+electricity production, nuclear, pressure water reactor, heavy water moderated;GLO;180591
+electricity production, nuclear, pressure water reactor, heavy water moderated;KR;19044
+electricity production, nuclear, pressure water reactor, heavy water moderated;PK;624
+electricity production, nuclear, pressure water reactor, heavy water moderated;RO;10975
+electricity production, nuclear, pressure water reactor, heavy water moderated;RoW;49402
+electricity production, oil;DO;6233
+electricity production, oil;FR;722
+electricity production, oil;SA;123934
+electricity production, oil;AE;1370
+electricity production, oil;AO;3620
+electricity production, oil;AR;17653
+electricity production, oil;AT;5
+electricity production, oil;AU;833
+electricity production, oil;AZ;5
+electricity production, oil;BA;28
+electricity production, oil;BD;7634
+electricity production, oil;BE;11
+electricity production, oil;BG;16
+electricity production, oil;BH;7
+electricity production, oil;BJ;140
+electricity production, oil;BN;40
+electricity production, oil;BO;163
+electricity production, oil;BR;27296
+electricity production, oil;BW;92
+electricity production, oil;BY;119
+electricity production, oil;CA-AB;19
+electricity production, oil;CA-BC;57
+electricity production, oil;CA-MB;2
+electricity production, oil;CA-NB;1421
+electricity production, oil;CA-NF;1430
+electricity production, oil;CA-NS;1428
+electricity production, oil;CA-NT;99
+electricity production, oil;CA-NU;153
+electricity production, oil;CA-ON;114
+electricity production, oil;CA-PE;3
+electricity production, oil;CA-QC;2
+electricity production, oil;CA-SK;9
+electricity production, oil;CA-YK;22
+electricity production, oil;CD;4
+electricity production, oil;CI;472
+electricity production, oil;CL;3802
+electricity production, oil;CM;377
+electricity production, oil;CO;153
+electricity production, oil;CR;970
+electricity production, oil;CU;14501
+electricity production, oil;CW;360
+electricity production, oil;CY;3732
+electricity production, oil;CZ;19
+electricity production, oil;DE;1254
+electricity production, oil;DK;21
+electricity production, oil;DZ;232
+electricity production, oil;EC;5531
+electricity production, oil;EE;8755
+electricity production, oil;EG;19557
+electricity production, oil;ER;332
+electricity production, oil;ES;10935
+electricity production, oil;ET;8
+electricity production, oil;FI;72
+electricity production, oil;GA;540
+electricity production, oil;GB;493
+electricity production, oil;GH;2058
+electricity production, oil;GI;184
+electricity production, oil;GLO;814920.24
+electricity production, oil;GR;4123
+electricity production, oil;GT;1310
+electricity production, oil;HK;215
+electricity production, oil;HN;4161
+electricity production, oil;HR;4
+electricity production, oil;HT;793
+electricity production, oil;HU;45
+electricity production, oil;ID;23933
+electricity production, oil;IE;149
+electricity production, oil;IL;63
+electricity production, oil;IQ;46466
+electricity production, oil;IR;55275
+electricity production, oil;IS;3
+electricity production, oil;IT;2437
+electricity production, oil;JM;2026
+electricity production, oil;JO;15322
+electricity production, oil;JP;85137
+electricity production, oil;KE;1594
+electricity production, oil;KH;304
+electricity production, oil;KP;546
+electricity production, oil;KR;7316
+electricity production, oil;KW;40135
+electricity production, oil;LB;11340
+electricity production, oil;LK;4068
+electricity production, oil;LY;16246
+electricity production, oil;MA;2390
+electricity production, oil;MK;139
+electricity production, oil;MM;60
+electricity production, oil;MN;219
+electricity production, oil;MT;2018
+electricity production, oil;MU;1003
+electricity production, oil;MX;25481
+electricity production, oil;MY;3163
+electricity production, oil;NE;151
+electricity production, oil;NI;1857
+electricity production, oil;NP;1
+electricity production, oil;NZ;3
+electricity production, oil;OM;704
+electricity production, oil;PA;3179
+electricity production, oil;PE;288
+electricity production, oil;PH;5308
+electricity production, oil;PK;38846
+electricity production, oil;PT;829
+electricity production, oil;RO;20
+electricity production, oil;SD;2291
+electricity production, oil;SE;15
+electricity production, oil;SG;39
+electricity production, oil;SI;7
+electricity production, oil;SN;2513
+electricity production, oil;SS;217
+electricity production, oil;SV;2101
+electricity production, oil;SY;3948
+electricity production, oil;TG;10
+electricity production, oil;TH;1576
+electricity production, oil;TN;297
+electricity production, oil;TR;1660
+electricity production, oil;TT;22
+electricity production, oil;TW;6169
+electricity production, oil;TZ;896
+electricity production, oil;UA;128
+electricity production, oil;UY;1074
+electricity production, oil;UZ;90
+electricity production, oil;VE;16652
+electricity production, oil;VN;248
+electricity production, oil;XK;14
+electricity production, oil;YE;4146
+electricity production, oil;ZM;381
+electricity production, oil;ZW;47
+electricity production, oil;RoW;92667.24004
+electricity production, peat;BY;20
+electricity production, peat;EE;46
+electricity production, peat;FI;2842
+electricity production, peat;GLO;6434
+electricity production, peat;IE;2320
+electricity production, peat;LT;2
+electricity production, peat;RU;1118
+electricity production, peat;SE;200
+electricity production, peat;RoW;1
+electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated;CH;30.571
+electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated;GLO;30.571
+electricity production, photovoltaic, 3kWp facade installation, multi-Si, laminated, integrated;RoW;1
+electricity production, photovoltaic, 3kWp facade installation, multi-Si, panel, mounted;CH;30.571
+electricity production, photovoltaic, 3kWp facade installation, multi-Si, panel, mounted;GLO;30.571
+electricity production, photovoltaic, 3kWp facade installation, multi-Si, panel, mounted;RoW;1
+electricity production, photovoltaic, 3kWp facade installation, single-Si, laminated, integrated;CH;20.2825
+electricity production, photovoltaic, 3kWp facade installation, single-Si, laminated, integrated;GLO;20.2825
+electricity production, photovoltaic, 3kWp facade installation, single-Si, laminated, integrated;RoW;1
+electricity production, photovoltaic, 3kWp facade installation, single-Si, panel, mounted;CH;20.2825
+electricity production, photovoltaic, 3kWp facade installation, single-Si, panel, mounted;GLO;20.2825
+electricity production, photovoltaic, 3kWp facade installation, single-Si, panel, mounted;RoW;1
+electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si;CH;92.891
+electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si;GLO;92.891
+electricity production, photovoltaic, 3kWp flat-roof installation, multi-Si;RoW;1
+electricity production, photovoltaic, 3kWp flat-roof installation, single-Si;CH;61.142
+electricity production, photovoltaic, 3kWp flat-roof installation, single-Si;GLO;61.142
+electricity production, photovoltaic, 3kWp flat-roof installation, single-Si;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, laminated, integrated;CH;3.5245
+electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, laminated, integrated;GLO;3.5245
+electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, laminated, integrated;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, panel, mounted;CH;51.737
+electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, panel, mounted;GLO;51.737
+electricity production, photovoltaic, 3kWp slanted-roof installation, a-Si, panel, mounted;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, CdTe, laminated, integrated;CH;56.4395
+electricity production, photovoltaic, 3kWp slanted-roof installation, CdTe, laminated, integrated;GLO;56.4395
+electricity production, photovoltaic, 3kWp slanted-roof installation, CdTe, laminated, integrated;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, CIS, panel, mounted;CH;7.0585
+electricity production, photovoltaic, 3kWp slanted-roof installation, CIS, panel, mounted;GLO;7.0585
+electricity production, photovoltaic, 3kWp slanted-roof installation, CIS, panel, mounted;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, laminated, integrated;CH;30.571
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, laminated, integrated;GLO;30.571
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, laminated, integrated;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;DO;124
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;FR;1000
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SA;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;AE;30
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;AR;9
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;AT;413
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;AU;2
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;AZ;2
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BD;76
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BE;2
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BG;659
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BN;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;BY;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CA-ON;273
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CH;237
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CL;251
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CR;2
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CSG;2224
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CU;10
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CY;33
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;CZ;1119
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;DE;14116
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;EC;9
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;EG;129
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;ER;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;ES;2575
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;US-FRCC;33.14795244
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;GH;2
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;GLO;36535
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;GR;1998
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;GT;4
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;US-HICC;11.24147952
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;HK;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;HR;18
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;ID;4
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;IN-TN;13108
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;IT;4319
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;JP;45
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;KE;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;KH;2
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;KR;245
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;LK;10
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;LT;38
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;MK;8
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;US-MRO;1.152972259
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;MX;2
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;MY;120
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;NL;10
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;NP;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;US-NPCC;120.197358
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;PA;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;PH;9
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;PT;86
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;US-RFC;231.1709379
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RO;655
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RS;3
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RU;84
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SE;23
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;US-SERC;232.6121532
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SG;19
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SGCC;1905
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SI;4
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SK;60
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;SS;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TH;146
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TR;9
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;US-TRE;80.70805812
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;TW;291
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;UA;224
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;US-WECC;3574.214003
+electricity production, photovoltaic, 3kWp slanted-roof installation, multi-Si, panel, mounted;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, laminated, integrated;CH;2.356
+electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, laminated, integrated;GLO;2.356
+electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, laminated, integrated;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, panel, mounted;CH;32.927
+electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, panel, mounted;GLO;32.927
+electricity production, photovoltaic, 3kWp slanted-roof installation, ribbon-Si, panel, mounted;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, laminated, integrated;CH;19.988
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, laminated, integrated;GLO;19.988
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, laminated, integrated;RoW;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;DO;102
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;FR;804
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;AE;25
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;AR;7
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;AT;333
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;AU;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;AZ;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;BD;62
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;BE;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;BG;530
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;BN;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CH;121
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CL;205
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CR;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CSG;1785
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CU;9
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CY;28
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;CZ;898
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;DE;11334
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;EC;7
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;EG;105
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;ER;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;ES;2068
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;US-FRCC;26.61558785
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;GH;2
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;GLO;29344
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;GR;1605
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;GT;3
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;US-HICC;9.026155878
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;HR;15
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;ID;3
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;IT;3468
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;JP;36
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;KH;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;KR;197
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;LK;9
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;LT;31
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;MK;6
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;US-MRO;0.925759577
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;MX;1
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;MY;96
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;NL;8
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;US-NPCC;96.51043593
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;PH;8
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;PT;69
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;US-RFC;185.6147952
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RO;526
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RS;3
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RU;68
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SE;19
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;US-SERC;186.7719947
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SG;15
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SGCC;1530
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SI;3
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;SK;48
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TH;117
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TR;8
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;US-TRE;64.80317041
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;TW;234
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;UA;181
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;US-WECC;2869.85469
+electricity production, photovoltaic, 3kWp slanted-roof installation, single-Si, panel, mounted;RoW;1
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;FR;624
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;BE;1
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;CSG;8018
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;DE;8804
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;ES;3137
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;US-FRCC;55.23645971
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;GLO;35909
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;US-HICC;18.7323646
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;IT;13405
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;JP;4
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;KR;1592
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;US-MRO;1.921268164
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;MX;10
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;US-NPCC;200.2922061
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;PT;166
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;US-RFC;385.2142668
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;SE;3
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;US-SERC;387.615852
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;SGCC;6870
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;US-TRE;134.4887715
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;US-WECC;5955.931308
+electricity production, photovoltaic, 570kWp open ground installation, multi-Si;RoW;1
+electricity production, wind, <1MW turbine, onshore;FR;949
+electricity production, wind, <1MW turbine, onshore;AT;128
+electricity production, wind, <1MW turbine, onshore;AU;111
+electricity production, wind, <1MW turbine, onshore;BE;65
+electricity production, wind, <1MW turbine, onshore;BG;218
+electricity production, wind, <1MW turbine, onshore;BR;715
+electricity production, wind, <1MW turbine, onshore;CA-AB;115
+electricity production, wind, <1MW turbine, onshore;CA-BC;27
+electricity production, wind, <1MW turbine, onshore;CA-MB;30
+electricity production, wind, <1MW turbine, onshore;CA-NF;26
+electricity production, wind, <1MW turbine, onshore;CA-NS;24
+electricity production, wind, <1MW turbine, onshore;CA-NT;1
+electricity production, wind, <1MW turbine, onshore;CA-ON;114
+electricity production, wind, <1MW turbine, onshore;CA-PE;20
+electricity production, wind, <1MW turbine, onshore;CA-QC;263
+electricity production, wind, <1MW turbine, onshore;CA-SK;20
+electricity production, wind, <1MW turbine, onshore;CH;4
+electricity production, wind, <1MW turbine, onshore;CL;23
+electricity production, wind, <1MW turbine, onshore;CY;11
+electricity production, wind, <1MW turbine, onshore;CZ;51
+electricity production, wind, <1MW turbine, onshore;DE;7783
+electricity production, wind, <1MW turbine, onshore;DK;5236
+electricity production, wind, <1MW turbine, onshore;EE;16
+electricity production, wind, <1MW turbine, onshore;ES;18242
+electricity production, wind, <1MW turbine, onshore;FI;62
+electricity production, wind, <1MW turbine, onshore;GLO;108088.4878
+electricity production, wind, <1MW turbine, onshore;GR;1163
+electricity production, wind, <1MW turbine, onshore;HR;104
+electricity production, wind, <1MW turbine, onshore;HU;12
+electricity production, wind, <1MW turbine, onshore;IE;937
+electricity production, wind, <1MW turbine, onshore;IR;313
+electricity production, wind, <1MW turbine, onshore;IT;4215
+electricity production, wind, <1MW turbine, onshore;JP;5
+electricity production, wind, <1MW turbine, onshore;KR;80
+electricity production, wind, <1MW turbine, onshore;LT;33
+electricity production, wind, <1MW turbine, onshore;LU;16
+electricity production, wind, <1MW turbine, onshore;LV;72
+electricity production, wind, <1MW turbine, onshore;MX;290
+electricity production, wind, <1MW turbine, onshore;NL;1251
+electricity production, wind, <1MW turbine, onshore;NO;44
+electricity production, wind, <1MW turbine, onshore;PE;1
+electricity production, wind, <1MW turbine, onshore;PL;281
+electricity production, wind, <1MW turbine, onshore;PT;435
+electricity production, wind, <1MW turbine, onshore;RO;151
+electricity production, wind, <1MW turbine, onshore;RU;95
+electricity production, wind, <1MW turbine, onshore;SE;1563
+electricity production, wind, <1MW turbine, onshore;TR;596
+electricity production, wind, <1MW turbine, onshore;TW;48
+electricity production, wind, <1MW turbine, onshore;UA;101
+electricity production, wind, <1MW turbine, onshore;RoW;62028.48783
+electricity production, wind, >3MW turbine, onshore;FR;61
+electricity production, wind, >3MW turbine, onshore;AT;126
+electricity production, wind, >3MW turbine, onshore;AU;429
+electricity production, wind, >3MW turbine, onshore;BE;282
+electricity production, wind, >3MW turbine, onshore;BG;277
+electricity production, wind, >3MW turbine, onshore;BR;269
+electricity production, wind, >3MW turbine, onshore;CA-AB;3
+electricity production, wind, >3MW turbine, onshore;CA-MB;1
+electricity production, wind, >3MW turbine, onshore;CA-NS;1
+electricity production, wind, >3MW turbine, onshore;CA-ON;3
+electricity production, wind, >3MW turbine, onshore;CA-PE;1
+electricity production, wind, >3MW turbine, onshore;CA-QC;4345
+electricity production, wind, >3MW turbine, onshore;CA-SK;1
+electricity production, wind, >3MW turbine, onshore;CH;7
+electricity production, wind, >3MW turbine, onshore;DE;4676
+electricity production, wind, >3MW turbine, onshore;DK;1264
+electricity production, wind, >3MW turbine, onshore;EE;23
+electricity production, wind, >3MW turbine, onshore;ES;88
+electricity production, wind, >3MW turbine, onshore;FI;500
+electricity production, wind, >3MW turbine, onshore;GLO;81312.30259
+electricity production, wind, >3MW turbine, onshore;GR;512
+electricity production, wind, >3MW turbine, onshore;HU;24
+electricity production, wind, >3MW turbine, onshore;IE;165
+electricity production, wind, >3MW turbine, onshore;IT;1287
+electricity production, wind, >3MW turbine, onshore;JP;4
+electricity production, wind, >3MW turbine, onshore;KR;106
+electricity production, wind, >3MW turbine, onshore;LT;33
+electricity production, wind, >3MW turbine, onshore;MX;113
+electricity production, wind, >3MW turbine, onshore;NL;791
+electricity production, wind, >3MW turbine, onshore;NO;72
+electricity production, wind, >3MW turbine, onshore;PL;97
+electricity production, wind, >3MW turbine, onshore;RO;1238
+electricity production, wind, >3MW turbine, onshore;SE;52
+electricity production, wind, >3MW turbine, onshore;TR;1158
+electricity production, wind, >3MW turbine, onshore;UA;150
+electricity production, wind, >3MW turbine, onshore;RoW;63153.30259
+electricity production, wind, 1-3MW turbine, offshore;FR;9
+electricity production, wind, 1-3MW turbine, offshore;BE;1803
+electricity production, wind, 1-3MW turbine, offshore;DE;1624
+electricity production, wind, 1-3MW turbine, offshore;DK;2869
+electricity production, wind, 1-3MW turbine, offshore;ES;10
+electricity production, wind, 1-3MW turbine, offshore;FI;37
+electricity production, wind, 1-3MW turbine, offshore;GLO;10218
+electricity production, wind, 1-3MW turbine, offshore;IE;57
+electricity production, wind, 1-3MW turbine, offshore;JP;1
+electricity production, wind, 1-3MW turbine, offshore;KR;18
+electricity production, wind, 1-3MW turbine, offshore;NL;368
+electricity production, wind, 1-3MW turbine, offshore;NO;5
+electricity production, wind, 1-3MW turbine, offshore;PT;5
+electricity production, wind, 1-3MW turbine, offshore;SE;448
+electricity production, wind, 1-3MW turbine, offshore;RoW;2964
+electricity production, wind, 1-3MW turbine, onshore;DO;602
+electricity production, wind, 1-3MW turbine, onshore;FR;14766
+electricity production, wind, 1-3MW turbine, onshore;AM;4
+electricity production, wind, 1-3MW turbine, onshore;AR;723
+electricity production, wind, 1-3MW turbine, onshore;AT;3553
+electricity production, wind, 1-3MW turbine, onshore;AU;9609
+electricity production, wind, 1-3MW turbine, onshore;AZ;2
+electricity production, wind, 1-3MW turbine, onshore;BD;4
+electricity production, wind, 1-3MW turbine, onshore;BE;2390
+electricity production, wind, 1-3MW turbine, onshore;BG;823
+electricity production, wind, 1-3MW turbine, onshore;BO;8
+electricity production, wind, 1-3MW turbine, onshore;BR;11103
+electricity production, wind, 1-3MW turbine, onshore;BY;7
+electricity production, wind, 1-3MW turbine, onshore;CA-AB;3365
+electricity production, wind, 1-3MW turbine, onshore;CA-BC;776
+electricity production, wind, 1-3MW turbine, onshore;CA-MB;872
+electricity production, wind, 1-3MW turbine, onshore;CA-NF;752
+electricity production, wind, 1-3MW turbine, onshore;CA-NS;716
+electricity production, wind, 1-3MW turbine, onshore;CA-NT;19
+electricity production, wind, 1-3MW turbine, onshore;CA-ON;3327
+electricity production, wind, 1-3MW turbine, onshore;CA-PE;585
+electricity production, wind, 1-3MW turbine, onshore;CA-QC;1975
+electricity production, wind, 1-3MW turbine, onshore;CA-SK;588
+electricity production, wind, 1-3MW turbine, onshore;CH;62
+electricity production, wind, 1-3MW turbine, onshore;CL;1387
+electricity production, wind, 1-3MW turbine, onshore;CO;57
+electricity production, wind, 1-3MW turbine, onshore;CR;728
+electricity production, wind, 1-3MW turbine, onshore;CU;17
+electricity production, wind, 1-3MW turbine, onshore;CW;32
+electricity production, wind, 1-3MW turbine, onshore;CY;169
+electricity production, wind, 1-3MW turbine, onshore;CZ;421
+electricity production, wind, 1-3MW turbine, onshore;DE;42700
+electricity production, wind, 1-3MW turbine, onshore;DK;3579
+electricity production, wind, 1-3MW turbine, onshore;EC;79
+electricity production, wind, 1-3MW turbine, onshore;EE;545
+electricity production, wind, 1-3MW turbine, onshore;EG;1302
+electricity production, wind, 1-3MW turbine, onshore;ES;33140
+electricity production, wind, 1-3MW turbine, onshore;ET;388
+electricity production, wind, 1-3MW turbine, onshore;FI;497
+electricity production, wind, 1-3MW turbine, onshore;GLO;645235.2096
+electricity production, wind, 1-3MW turbine, onshore;GR;1977
+electricity production, wind, 1-3MW turbine, onshore;HK;2
+electricity production, wind, 1-3MW turbine, onshore;HN;394
+electricity production, wind, 1-3MW turbine, onshore;HR;619
+electricity production, wind, 1-3MW turbine, onshore;HU;614
+electricity production, wind, 1-3MW turbine, onshore;IE;3929
+electricity production, wind, 1-3MW turbine, onshore;IL;6
+electricity production, wind, 1-3MW turbine, onshore;IR;42
+electricity production, wind, 1-3MW turbine, onshore;IT;9524
+electricity production, wind, 1-3MW turbine, onshore;JM;118
+electricity production, wind, 1-3MW turbine, onshore;JO;2
+electricity production, wind, 1-3MW turbine, onshore;JP;24
+electricity production, wind, 1-3MW turbine, onshore;KE;38
+electricity production, wind, 1-3MW turbine, onshore;KR;920
+electricity production, wind, 1-3MW turbine, onshore;KZ;13
+electricity production, wind, 1-3MW turbine, onshore;LK;269
+electricity production, wind, 1-3MW turbine, onshore;LT;569
+electricity production, wind, 1-3MW turbine, onshore;LU;63
+electricity production, wind, 1-3MW turbine, onshore;LV;64
+electricity production, wind, 1-3MW turbine, onshore;MA;1905
+electricity production, wind, 1-3MW turbine, onshore;MD;1
+electricity production, wind, 1-3MW turbine, onshore;MK;70
+electricity production, wind, 1-3MW turbine, onshore;MN;168
+electricity production, wind, 1-3MW turbine, onshore;MU;3
+electricity production, wind, 1-3MW turbine, onshore;MX;1653
+electricity production, wind, 1-3MW turbine, onshore;NI;838
+electricity production, wind, 1-3MW turbine, onshore;NL;2319
+electricity production, wind, 1-3MW turbine, onshore;NO;2073
+electricity production, wind, 1-3MW turbine, onshore;NP;6
+electricity production, wind, 1-3MW turbine, onshore;NZ;2192
+electricity production, wind, 1-3MW turbine, onshore;PA;115
+electricity production, wind, 1-3MW turbine, onshore;PE;203
+electricity production, wind, 1-3MW turbine, onshore;PH;150
+electricity production, wind, 1-3MW turbine, onshore;PK;393
+electricity production, wind, 1-3MW turbine, onshore;PL;7221
+electricity production, wind, 1-3MW turbine, onshore;PT;11550
+electricity production, wind, 1-3MW turbine, onshore;RO;4395
+electricity production, wind, 1-3MW turbine, onshore;SE;9059
+electricity production, wind, 1-3MW turbine, onshore;TN;502
+electricity production, wind, 1-3MW turbine, onshore;TR;6678
+electricity production, wind, 1-3MW turbine, onshore;TW;1437
+electricity production, wind, 1-3MW turbine, onshore;UA;868
+electricity production, wind, 1-3MW turbine, onshore;UY;726
+electricity production, wind, 1-3MW turbine, onshore;VN;86
+electricity production, wind, 1-3MW turbine, onshore;RoW;429765.2096
+heat and power co-generation, biogas, gas engine;FR;303
+heat and power co-generation, biogas, gas engine;AT;557
+heat and power co-generation, biogas, gas engine;AU;1004
+heat and power co-generation, biogas, gas engine;BE;254
+heat and power co-generation, biogas, gas engine;BG;28
+heat and power co-generation, biogas, gas engine;BR;277
+heat and power co-generation, biogas, gas engine;BY;1
+heat and power co-generation, biogas, gas engine;CA-AB;41
+heat and power co-generation, biogas, gas engine;CA-ON;118
+heat and power co-generation, biogas, gas engine;CA-QC;29
+heat and power co-generation, biogas, gas engine;CH;1304
+heat and power co-generation, biogas, gas engine;CL;40
+heat and power co-generation, biogas, gas engine;CY;13
+heat and power co-generation, biogas, gas engine;CZ;88
+heat and power co-generation, biogas, gas engine;DE;31266
+heat and power co-generation, biogas, gas engine;DK;310
+heat and power co-generation, biogas, gas engine;EE;27
+heat and power co-generation, biogas, gas engine;ES;372
+heat and power co-generation, biogas, gas engine;FI;190
+heat and power co-generation, biogas, gas engine;GLO;81089
+heat and power co-generation, biogas, gas engine;GR;198
+heat and power co-generation, biogas, gas engine;HR;102
+heat and power co-generation, biogas, gas engine;HU;102
+heat and power co-generation, biogas, gas engine;ID;719
+heat and power co-generation, biogas, gas engine;IE;169
+heat and power co-generation, biogas, gas engine;IR;47
+heat and power co-generation, biogas, gas engine;IT;12173
+heat and power co-generation, biogas, gas engine;JO;6
+heat and power co-generation, biogas, gas engine;KR;1090
+heat and power co-generation, biogas, gas engine;LT;19
+heat and power co-generation, biogas, gas engine;LV;215
+heat and power co-generation, biogas, gas engine;NL;60
+heat and power co-generation, biogas, gas engine;NO;13
+heat and power co-generation, biogas, gas engine;NZ;152
+heat and power co-generation, biogas, gas engine;PE;80
+heat and power co-generation, biogas, gas engine;RO;5
+heat and power co-generation, biogas, gas engine;SE;53
+heat and power co-generation, biogas, gas engine;SI;105
+heat and power co-generation, biogas, gas engine;SK;76
+heat and power co-generation, biogas, gas engine;SV;34
+heat and power co-generation, biogas, gas engine;TR;1032
+heat and power co-generation, biogas, gas engine;RoW;28417
+heat and power co-generation, hard coal;AT;216
+heat and power co-generation, hard coal;BG;1256
+heat and power co-generation, hard coal;CZ;2596
+heat and power co-generation, hard coal;DE;11925
+heat and power co-generation, hard coal;DK;10288
+heat and power co-generation, hard coal;FI;3723
+heat and power co-generation, hard coal;GLO;286212
+heat and power co-generation, hard coal;IT;112
+heat and power co-generation, hard coal;KG;677
+heat and power co-generation, hard coal;KZ;70271
+heat and power co-generation, hard coal;MN;1429
+heat and power co-generation, hard coal;NL;7191
+heat and power co-generation, hard coal;NO;36
+heat and power co-generation, hard coal;PL;66352
+heat and power co-generation, hard coal;RU;83865
+heat and power co-generation, hard coal;SE;360
+heat and power co-generation, hard coal;SK;493
+heat and power co-generation, hard coal;TR;267
+heat and power co-generation, hard coal;TW;3395
+heat and power co-generation, hard coal;UA;1135
+heat and power co-generation, hard coal;RoW;20625
+heat and power co-generation, lignite;AU;1813
+heat and power co-generation, lignite;BA;175
+heat and power co-generation, lignite;BG;1160
+heat and power co-generation, lignite;CZ;8471
+heat and power co-generation, lignite;DE;3856
+heat and power co-generation, lignite;GLO;155038.31
+heat and power co-generation, lignite;GR;8579
+heat and power co-generation, lignite;HU;49
+heat and power co-generation, lignite;KG;302
+heat and power co-generation, lignite;KZ;32
+heat and power co-generation, lignite;MN;3187
+heat and power co-generation, lignite;PL;48562
+heat and power co-generation, lignite;RO;4594
+heat and power co-generation, lignite;RS;10251
+heat and power co-generation, lignite;RU;55010
+heat and power co-generation, lignite;SI;3184
+heat and power co-generation, lignite;SK;1679
+heat and power co-generation, lignite;TR;219
+heat and power co-generation, lignite;UZ;724
+heat and power co-generation, lignite;RoW;3191.31
+heat and power co-generation, natural gas, 500kW electrical, lean burn;CH;6.72
+heat and power co-generation, natural gas, 500kW electrical, lean burn;GLO;6.72
+heat and power co-generation, natural gas, 500kW electrical, lean burn;RoW;1
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;AM;3032
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;AT;2568
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;BE;1688
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;BG;113
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;DE;462
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;DK;72
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;FI;651
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;GLO;198282.4144
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;HR;540
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;HU;224
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;IR;502
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;IT;29351
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;KR;3941
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;LT;51
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;LU;1048
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;LV;1013
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;MK;154
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;NL;9086
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;NO;529
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;NZ;95
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;PL;2646
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;RO;282
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;RU;22017
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;SK;485
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;TR;1232
+heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical;RoW;116500.4144
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;FR;4661
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;AM;27
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;AT;783
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;AU;3075
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;AZ;7718
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;BE;3930
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;BG;1790
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;BN;790
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;BY;16615
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;CA-AB;5903
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;CA-BC;98
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;CA-NB;387
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;CA-ON;2047
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;CA-SK;575
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;CI;337
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;CZ;1242
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;DE;27851
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;DK;1526
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;EE;47
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;FI;3338
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;GLO;891093.8918
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;HR;161
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;HU;2584
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;IR;10758
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;IT;18091
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;KG;109
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;KR;16538
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;KZ;18761
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;LT;1274
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;LU;255
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;LV;1117
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;MD;4614
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;MK;28
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;NL;7526
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;NO;445
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;NZ;1099
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;PL;881
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;RO;3698
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;RS;70
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;RU;428197
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;SE;345
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;SI;211
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;SK;333
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;SY;218
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;TJ;439
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;TM;18972
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;TR;4423
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;TT;121
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;TW;49884
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;UA;8840
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;UZ;17364
+heat and power co-generation, natural gas, conventional power plant, 100MW electrical;RoW;190997.8918
+heat and power co-generation, oil;FR;118
+heat and power co-generation, oil;AT;13
+heat and power co-generation, oil;AZ;11
+heat and power co-generation, oil;BE;1
+heat and power co-generation, oil;BG;180
+heat and power co-generation, oil;BY;100
+heat and power co-generation, oil;CZ;13
+heat and power co-generation, oil;DE;337
+heat and power co-generation, oil;DK;81
+heat and power co-generation, oil;EE;245
+heat and power co-generation, oil;FI;70
+heat and power co-generation, oil;GLO;26959.75996
+heat and power co-generation, oil;GR;56
+heat and power co-generation, oil;HR;62
+heat and power co-generation, oil;HU;8
+heat and power co-generation, oil;IT;8845
+heat and power co-generation, oil;KG;78
+heat and power co-generation, oil;KR;618
+heat and power co-generation, oil;KZ;952
+heat and power co-generation, oil;LT;47
+heat and power co-generation, oil;MN;7
+heat and power co-generation, oil;NL;873
+heat and power co-generation, oil;NZ;4
+heat and power co-generation, oil;PL;420
+heat and power co-generation, oil;PT;184
+heat and power co-generation, oil;RO;198
+heat and power co-generation, oil;RU;5377
+heat and power co-generation, oil;SE;122
+heat and power co-generation, oil;SI;30
+heat and power co-generation, oil;SK;263
+heat and power co-generation, oil;TR;208
+heat and power co-generation, oil;UA;16
+heat and power co-generation, oil;UZ;96
+heat and power co-generation, oil;RoW;7326.759962
+heat and power co-generation, wood chips, 6667 kW;BG;22
+heat and power co-generation, wood chips, 6667 kW;BO;1
+heat and power co-generation, wood chips, 6667 kW;BY;79
+heat and power co-generation, wood chips, 6667 kW;CL;82
+heat and power co-generation, wood chips, 6667 kW;EE;704
+heat and power co-generation, wood chips, 6667 kW;GLO;4399
+heat and power co-generation, wood chips, 6667 kW;GT;1467
+heat and power co-generation, wood chips, 6667 kW;HN;177
+heat and power co-generation, wood chips, 6667 kW;HR;50
+heat and power co-generation, wood chips, 6667 kW;KH;14
+heat and power co-generation, wood chips, 6667 kW;LK;41
+heat and power co-generation, wood chips, 6667 kW;LT;293
+heat and power co-generation, wood chips, 6667 kW;LV;255
+heat and power co-generation, wood chips, 6667 kW;MY;345
+heat and power co-generation, wood chips, 6667 kW;PE;334
+heat and power co-generation, wood chips, 6667 kW;PH;130
+heat and power co-generation, wood chips, 6667 kW;SG;155
+heat and power co-generation, wood chips, 6667 kW;TR;24
+heat and power co-generation, wood chips, 6667 kW;TZ;22
+heat and power co-generation, wood chips, 6667 kW;UY;191
+heat and power co-generation, wood chips, 6667 kW;VN;7
+heat and power co-generation, wood chips, 6667 kW;RoW;6
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;FR;723
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;AT;1457
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;AU;194
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;BE;1490
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;BR;586
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;CA-AB;490
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;CA-BC;376
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;CA-NS;75
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;CA-ON;402
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;CA-PE;2
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;CA-QC;1695
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;CH;310
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;CZ;1018
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;DE;7715
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;DK;2866
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;ES;2076
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;FI;4244
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;GB;13235
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;GLO;96488
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;HU;1694
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;IE;248
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;IT;3807
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;JP;7489
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;KR;83
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;LU;21
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;NL;1618
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;PL;7890
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;PT;704
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;RO;176
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;SE;3631
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;SI;54
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;SK;281
+heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014;RoW;29838
