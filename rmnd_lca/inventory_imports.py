@@ -12,15 +12,18 @@ class BaseInventoryImport():
     """
     Base class for inventories that are to be merged with the ecoinvent database.
 
-    :ivar new_database: the target database for the import
-    :vartype new_database: NewDatabase
+    :ivar database: the target database for the import (the Ecoinvent database),
+                    unpacked to a list of dicts
+    :vartype database: list
+    :ivar version: the target Ecoinvent database version
+    :vartype version: str
     :ivar path: Path to the imported inventory.
     :vartype path: Path
     """
 
-    def __init__(self, new_database, path):
-        self.db = new_database.db
-        self.version = new_database.version
+    def __init__(self, database, version, path):
+        self.db = database
+        self.version = version
         self.biosphere_dict = self.get_biosphere_code()
 
         if not path.is_file():
