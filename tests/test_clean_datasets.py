@@ -28,8 +28,14 @@ def get_dict():
                     ]
                 }
             }
-    return dummy_db
-    
+    dummy_bio = {
+                ('dummy_bio', '123'): {
+                    'name' : '1,4-Butanediol',
+                    'categories': ('air', 'urban air close to ground'),
+                    'unit':'kilogram',
+                }
+            }
+    return dummy_db, dummy_bio
 
 
 def test_presence_db():
@@ -38,11 +44,12 @@ def test_presence_db():
     assert wrapped_error.type == NameError
 
 def test_validity_db():
-    dummy_db = get_dict()
+    dummy_db, dummy_bio = get_dict()
+    db_bio = DatabaseChooser('dummy_bio')
+    db_bio.write(dummy_bio)
 
     db_act = DatabaseChooser('dummy_db')
     db_act.write(dummy_db)
 
     dbc = DatabaseCleaner("dummy_db")
     assert dbc.db[0]['name'] == 'fake activity'
-
