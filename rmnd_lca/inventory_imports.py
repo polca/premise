@@ -121,6 +121,39 @@ class BaseInventoryImport():
                             raise IndexError(
                                 'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'.format(self.import_db.db_name, y))
 
+    def add_biosphere_links(self):
+        """Add links for biosphere exchanges"""
+        for x in self.import_db.data:
+            for y in x["exchanges"]:
+                if y["type"] == "biosphere":
+                    if isinstance(y["categories"], str):
+                        y["categories"] = tuple(y["categories"].split("::"))
+                    if len(y["categories"]) > 1:
+                        y["input"] = (
+                            "biosphere3",
+                            self.biosphere_dict[
+                                (
+                                    y["name"],
+                                    y["categories"][0],
+                                    y["categories"][1],
+                                    y["unit"],
+                                )
+                            ],
+                        )
+                    else:
+                        y["input"] = (
+                            "biosphere3",
+                            self.biosphere_dict[
+                                (
+                                    y["name"],
+                                    y["categories"][0],
+                                    "unspecified",
+                                    y["unit"],
+                                )
+                            ],
+                        )
+
+
     def remove_ds_and_modifiy_exchanges(self, name, ex_data):
         """
         Remove a dataset from the inventory and replace the corresponding
@@ -138,6 +171,9 @@ class BaseInventoryImport():
             for ex in act["exchanges"]:
                 if ex["type"] == "technosphere" and ex["name"] == name:
                     ex.update(ex_data)
+                    # make sure there is no existing link
+                    if "input" in ex:
+                        del(ex["input"])
 
 
 class CarmaCCSInventory(BaseInventoryImport):
@@ -209,35 +245,7 @@ class CarmaCCSInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_36")
 
-        # Fix biosphere exchanges
-        for x in self.import_db.data:
-            for y in x["exchanges"]:
-                if y["type"] == "biosphere":
-                    y["categories"] = tuple(y["categories"].split("::"))
-                    if len(y["categories"]) > 1:
-                        y["input"] = (
-                            "biosphere3",
-                            self.biosphere_dict[
-                                (
-                                    y["name"],
-                                    y["categories"][0],
-                                    y["categories"][1],
-                                    y["unit"],
-                                )
-                            ],
-                        )
-                    else:
-                        y["input"] = (
-                            "biosphere3",
-                            self.biosphere_dict[
-                                (
-                                    y["name"],
-                                    y["categories"][0],
-                                    "unspecified",
-                                    y["unit"],
-                                )
-                            ],
-                        )
+        self.add_biosphere_links()
         self.add_product_field_to_exchanges()
 
         # Add carbon storage for CCS technologies
@@ -402,8 +410,9 @@ class BiofuelInventory(BaseInventoryImport):
         )
         self.import_db.migrate("biofuels_ecoinvent_35")
 
+
         # Migrations for 3.6
-        if(self.version == 3.6):
+        if self.version == 3.6:
             migrations = {
                 'fields': ['name','reference product', 'location'],
                 'data': [
@@ -445,6 +454,20 @@ class BiofuelInventory(BaseInventoryImport):
             )
             self.import_db.migrate("biofuels_ecoinvent_36")
 
+        # change units for electricity exchanges and non-fossil methane flows
+        for act in self.import_db:
+            for ex in act["exchanges"]:
+                if(ex["type"] == "technosphere" and
+                   ex["name"].startswith("market group for electricity") and
+                   "megajoule" == ex["unit"]):
+                    ex["unit"] = "kilowatt hour"
+                    ex["amount"] = ex["amount"] * 0.278
+                if(ex["type"] == "biosphere" and
+                   ex["name"] == "Methane" and
+                   ex["categories"] == ("air",)):
+                    ex["name"] = "Methane, non-fossil"
+
+
         # Add default locations, this is RER in case no {CODE} is found in the name
         for act in self.import_db.data:
             if "location" not in act:
@@ -454,11 +477,12 @@ class BiofuelInventory(BaseInventoryImport):
                 else:
                     act["location"] = 'RER'
             for ex in act["exchanges"]:
-                if "location" not in ex:
+                if ex["type"] != "biosphere" and "location" not in ex:
                     loc = re.search('{(.+)}', act["name"])
                     if loc:
                         ex["location"] = loc.group(1)
                     else:
                         ex["location"] = 'RER'
 
+        self.add_biosphere_links()
         self.add_product_field_to_exchanges()
