@@ -54,7 +54,7 @@ How to use it?
 A preliminary requirement to the use this library is to have a `brightway2` project created and opened, with the
 `ecoinvent 3.5 cutoff` database registered, so that:
 
-```
+```python
 
     import brightway2 as bw
     bw.projects.set_current('remind')
@@ -75,7 +75,7 @@ Then, for a chosen policy and year between 2005 and 2150, the following two line
 
 
 For example, here with the year 2011 and the policy "Business-as-usual":
-```
+```python
     ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff', 3.5)
     ndb.update_electricity_to_remind_data()
 ```
@@ -116,7 +116,7 @@ returns
 Note that, by default, the library will look for REMIND output files ("xxx.mif" files and "GAINS emission factors.csv") in the
 "data/Remind output files" subdirectory. If those are not located there, you need to specify the path to
 the correct directory, as such::
-```
+```python
     ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff', r"C:\Users\username\Documents\Remind output files")
 ```
 Once the process is completed, the resulting database is registered back into the current Brightway2 project:
