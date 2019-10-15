@@ -54,16 +54,18 @@ How to use it?
 A preliminary requirement to the use this library is to have a `brightway2` project created and opened, with the
 `ecoinvent 3.5 cutoff` database registered, so that:
 
+```
+
     import brightway2 as bw
     bw.projects.set_current('remind')
     bw.databases
-    
+```
 returns
-
+```
     Databases dictionary with 2 object(s):
 	biosphere3
 	ecoinvent 3.5 cutoff
-
+```
 Then, for a chosen policy and year between 2005 and 2150, the following two lines will:
 * extract the ecoinvent database, clean it, add additional inventories for carbon capture and storage,
 * remove existing electricity markets and replace them by regional markets with a geographical scope and production mix
@@ -73,12 +75,12 @@ Then, for a chosen policy and year between 2005 and 2150, the following two line
 
 
 For example, here with the year 2011 and the policy "Business-as-usual":
-
+```
     ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff', 3.5)
     ndb.update_electricity_to_remind_data()
-    
+```
 returns
-
+```
     Getting activity data
     100%|█████████████████████████████████| 16022/16022 [00:00<00:00, 45140.97it/s]
     Adding exchange data to activities
@@ -110,19 +112,19 @@ returns
     Rescale inventories and emissions for  Biomass CHP
     Rescale inventories and emissions for  Biomass IGCC CCS
     Rescale inventories and emissions for  Biomass IGCC
-
+```
 Note that, by default, the library will look for REMIND output files ("xxx.mif" files and "GAINS emission factors.csv") in the
 "data/Remind output files" subdirectory. If those are not located there, you need to specify the path to
 the correct directory, as such::
-
+```
     ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff', r"C:\Users\username\Documents\Remind output files")
-
+```
 Once the process is completed, the resulting database is registered back into the current Brightway2 project:
-
+```python
     ndb.write_db_to_brightway()
-    
+```
 returns
-
+```
     Write new database to Brightway2.
     15223 datasets
     540424 exchanges
@@ -130,3 +132,4 @@ returns
 
     Writing activities to SQLite3 database:
     Created database: ecoinvent_BAU_2011
+```
