@@ -451,6 +451,8 @@ class Electricity:
                         )
                     )
 
+                    suppliers = self.check_for_production_volume(suppliers)
+
                     # If no technology is available for the REMIND region
                     if len(suppliers) == 0:
                         # We fetch European technologies instead
@@ -460,6 +462,8 @@ class Electricity:
                             )
                         )
 
+                    suppliers = self.check_for_production_volume(suppliers)
+
                     # If, after looking for European technologies, no technology is available
                     if len(suppliers) == 0:
                         # We fetch RoW technologies instead
@@ -468,6 +472,8 @@ class Electricity:
                                 ["RoW"], ecoinvent_technologies
                             )
                         )
+
+                    suppliers = self.check_for_production_volume(suppliers)
 
                     for supplier in suppliers:
 
@@ -799,6 +805,12 @@ class Electricity:
                 }
             )
 
+            # Fetch solar contribution in the mix, to subtract it
+            # as solar energy is an input of low-voltage markets
+
+            index_solar = [ind for ind in self.rmd.rev_electricity_market_labels if "solar" in ind.lower()]
+            solar_amount = self.rmd.electricity_markets.loc[index_solar, region, 0].values.sum()
+
             # Loop through the REMIND technologies
             for technology in gen_tech:
 
@@ -822,6 +834,9 @@ class Electricity:
                         )
                     )
 
+                    suppliers = self.check_for_production_volume(suppliers)
+
+
                     # If no technology is available for the REMIND region
                     if len(suppliers) == 0:
                         # We fetch European technologies instead
@@ -830,6 +845,8 @@ class Electricity:
                                 ["RER"], ecoinvent_technologies
                             )
                         )
+
+                    suppliers = self.check_for_production_volume(suppliers)
 
                     # If, after looking for European technologies, no technology is available
                     if len(suppliers) == 0:
@@ -840,14 +857,19 @@ class Electricity:
                             )
                         )
 
+                    suppliers = self.check_for_production_volume(suppliers)
+
+                    if len(suppliers) == 0:
+                        print('no suppliers for {} in {} with ecoinvent names {}'.format(technology, region, ecoinvent_technologies))
+
                     for supplier in suppliers:
                         share = self.get_production_weighted_share(supplier, suppliers)
 
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
-                                "loc": (amount * share),
-                                "amount": (amount * share),
+                                "loc": (amount * share) / (1 - solar_amount),
+                                "amount": (amount * share) / (1 - solar_amount),
                                 "type": "technosphere",
                                 "production volume": 0,
                                 "product": supplier["reference product"],
@@ -866,7 +888,7 @@ class Electricity:
                             supplier['name'],
                             supplier['location'],
                             share,
-                            (amount * share)
+                            (amount * share) / (1 - solar_amount)
                             ])
             new_dataset["exchanges"] = new_exchanges
 
@@ -889,6 +911,12 @@ class Electricity:
                              'Final contribution'])
             for line in created_markets:
                 writer.writerow(line)
+
+    def check_for_production_volume(self, suppliers):
+
+        # Remove suppliers that do not have a production volume
+        return [supplier for supplier in suppliers
+        if self.get_production_weighted_share(supplier, suppliers) != 0]
 
     def relink_activities_to_new_markets(self):
         """
