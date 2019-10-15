@@ -17,9 +17,9 @@ class NewDatabase:
 
     :ivar database_dict: dictionary with scenarios to create
     :vartype database_dict: dict
-    :ivar destination_db: the ecoinvent source database
+    :ivar destination_db: name of the ecoinvent source database
     :vartype destination_db: str
-    :ivar destination_version: the version of the ecoinvent source database
+    :ivar destination_version: version of the ecoinvent source database
     :vartype destination_db: float
     :ivar filepath_to_remind_files: Filepath to the directory that contains REMIND output files.
     :vartype filepath_to_remind_file: pathlib.Path

@@ -1,5 +1,5 @@
 from . import DATA_DIR
-from bw2io import ExcelImporter, Migration
+
 from wurst import searching as ws
 import csv
 import pprint

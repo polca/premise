@@ -1300,10 +1300,10 @@ class Electricity:
             dict_technology = technologies_map[remind_technology]
             print("Rescale inventories and emissions for", remind_technology)
 
-            datsets = ws.get_many(self.db, *dict_technology["technology filters"])
+            datsets = list(ws.get_many(self.db, *dict_technology["technology filters"]))
 
             # no activities found? Check filters!
-            assert (len([ds for ds in datsets]) > 0), "No dataset found for {}".format(remind_technology)
+            assert (len(datsets) > 0), "No dataset found for {}".format(remind_technology)
             for ds in datsets:
                 # Modify using remind efficiency values:
                 scaling_factor = dict_technology["eff_func"](

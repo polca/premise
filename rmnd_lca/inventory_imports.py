@@ -396,11 +396,11 @@ class BiofuelInventory(BaseInventoryImport):
             ]
         }
 
-        Migration("ecoinvent_35").write(
+        Migration("biofuels_ecoinvent_35").write(
             migrations,
             description="Change technosphere names due to change from 3.4 to 3.5"
         )
-        self.import_db.migrate("ecoinvent_35")
+        self.import_db.migrate("biofuels_ecoinvent_35")
 
         # Migrations for 3.6
         if(self.version == 3.6):
@@ -439,16 +439,15 @@ class BiofuelInventory(BaseInventoryImport):
                 ]
             }
 
-            Migration("ecoinvent_36").write(
+            Migration("biofuels_ecoinvent_36").write(
                 migrations,
                 description="Change technosphere names due to change from 3.5 to 3.6"
             )
-            self.import_db.migrate("ecoinvent_36")
+            self.import_db.migrate("biofuels_ecoinvent_36")
 
-        # Add default locations
+        # Add default locations, this is RER in case no {CODE} is found in the name
         for act in self.import_db.data:
             if "location" not in act:
-                # print("Ping: {}".format(act["name"]))
                 loc = re.search('{(.+)}', act["name"])
                 if loc:
                     act["location"] = loc.group(1)
