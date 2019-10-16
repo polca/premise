@@ -30,6 +30,13 @@ def get_db():
     return db, version
 
 
+def test_file_exists():
+    db, version = get_db()
+    with pytest.raises(FileNotFoundError) as wrapped_error:
+        BaseInventoryImport(db, version, "testfile")
+    assert wrapped_error.type == FileNotFoundError
+
+
 def test_biosphere_dict():
     db, version = get_db()
     testpath = Path("testfile")

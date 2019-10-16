@@ -3,6 +3,7 @@ import re
 import wurst
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration, SimaProCSVImporter
+from pathlib import Path
 import csv
 
 FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
