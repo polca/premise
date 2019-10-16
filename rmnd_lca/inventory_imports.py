@@ -13,16 +13,28 @@ class BaseInventoryImport():
     """
     Base class for inventories that are to be merged with the ecoinvent database.
 
-    :ivar database: the target database for the import (the Ecoinvent database),
-                    unpacked to a list of dicts
-    :vartype database: list
+    :ivar db: the target database for the import (the Ecoinvent database),
+              unpacked to a list of dicts
+    :vartype db: list
     :ivar version: the target Ecoinvent database version
     :vartype version: str
-    :ivar path: Path to the imported inventory.
-    :vartype path: str or Path
+    :ivar import_db: the database to be merged with ecoinvent
+    :vartype import_db: LCIImporter
     """
 
     def __init__(self, database, version, path):
+        """Create a BaseInventoryImport instance.
+
+        :param list database: the target database for the import (the Ecoinvent database),
+                              unpacked to a list of dicts
+        :param float version: the version of the target database
+        :param path: Path to the imported inventory.
+        :type path: str or Path
+
+        :returns: An instance of ´BaseInventoryImport´
+        :rtype: BaseInventoryImport
+
+        """
         self.db = database
         self.version = version
         self.biosphere_dict = self.get_biosphere_code()
@@ -33,16 +45,45 @@ class BaseInventoryImport():
         self.load_inventory(path)
 
     def load_inventory(self, path):
+        """Load an inventory from a specified path.
+
+        Should set the `import_db` attribute.
+
+        :param str path: Path to the inventory file
+        :returns: Nothing.
+
+        """
         pass
 
     def prepare_inventory(self):
+        """Prepare the inventory for the merger with Ecoinvent.
+
+        The modification are all in-place.
+
+        :returns: Nothing
+
+        """
         pass
 
     def merge_inventory(self):
+        """Prepare the inventory and merge the inventory to the ecoinvent db.
+
+        Calls :meth:`prepare_inventory`. Changes the :attr:`db` attribute.
+
+        :returns: Nothing
+
+        """
         self.prepare_inventory()
         self.db.extend(self.import_db)
 
     def search_exchanges(self, srchdict):
+        """Search the imported database by field values.
+
+        :param dict srchdict: dict with the name of the fields and the values.
+        :returns: the activities with the exchanges that match the search.
+        :rtype: dict
+
+        """
         results = []
         for act in self.import_db.data:
             for ex in act["exchanges"]:
@@ -51,6 +92,13 @@ class BaseInventoryImport():
         return results
 
     def search_missing_field(self, field):
+        """Find exchanges and activities that do not contain a specific field.
+
+        :param str field: label of the field to search for.
+        :returns: a list of dictionaries, activities and exchanges
+        :rtype: list
+
+        """
         results = []
         for act in self.import_db.data:
             if field not in act:
@@ -85,10 +133,8 @@ class BaseInventoryImport():
         """Add the `product` key to the production exchange
         and format the category field for biosphere exchanges
 
-        Modifies the imported DB in place.
+        Modifies the :attr:`import_db` attribute in place.
 
-        :param ext_db: Imported database to be merged with self.db
-        :type ext_db: LCIImporter
         """
         for x in self.import_db.data:
             for y in x["exchanges"]:
@@ -127,7 +173,10 @@ class BaseInventoryImport():
                                 'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'.format(self.import_db.db_name, y))
 
     def add_biosphere_links(self):
-        """Add links for biosphere exchanges"""
+        """Add links for biosphere exchanges
+
+        Modifies the :attr:`import_db` attribute in place.
+        """
         for x in self.import_db.data:
             for y in x["exchanges"]:
                 if y["type"] == "biosphere":
@@ -161,13 +210,15 @@ class BaseInventoryImport():
 
     def remove_ds_and_modifiy_exchanges(self, name, ex_data):
         """
-        Remove a dataset from the inventory and replace the corresponding
+        Remove an activity dataset from the inventory and replace the corresponding
         technosphere exchanges by what is given as second argument.
 
         :param name: name of activity to be removed
         :type name: str
         :param ex_data: data to replace the corresponding exchanges
         :type name: dict
+
+        :return: Nothing
         """
 
         self.import_db.data = [act for act in self.import_db.data if not act["name"] == name]
