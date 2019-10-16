@@ -43,6 +43,7 @@ def test_biosphere_dict():
                    'kilogram'
                )] == '38a622c6-f086-4763-a952-7c6b3b1c42ba'
 
+    testpath.unlink()
 
 def test_biosphere_dict_2():
     db, version = get_db()
@@ -59,3 +60,5 @@ def test_biosphere_dict_2():
                     exc['categories'][1],
                     exc['unit']
                 )] == '38a622c6-f086-4763-a952-7c6b3b1c42ba'
+
+    testpath.unlink()
