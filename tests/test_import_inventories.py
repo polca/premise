@@ -1,7 +1,12 @@
 # content of test_activity_maps.py
 import pytest
-from rmnd_lca.inventory_imports import BaseInventoryImport
+from rmnd_lca.inventory_imports import \
+    BaseInventoryImport, CarmaCCSInventory, BiofuelInventory
 from pathlib import Path
+
+DATA_DIR = Path(__file__).resolve().parent.parent / "rmnd_lca" / "data"
+FILEPATH_CARMA_INVENTORIES = (DATA_DIR / "lci-Carma-CCS.xlsx")
+FILEPATH_BIO_INVENTORIES = (DATA_DIR / "bioenergy_cozzolini_2018.csv")
 
 
 def get_db():
@@ -69,3 +74,17 @@ def test_biosphere_dict_2():
                 )] == '38a622c6-f086-4763-a952-7c6b3b1c42ba'
 
     testpath.unlink()
+
+
+def test_load_carma():
+    db, version = get_db()
+    carma = CarmaCCSInventory(db, version, FILEPATH_CARMA_INVENTORIES)
+
+    assert len(carma.import_db.data) == 146
+
+
+def test_load_biofuel():
+    db, version = get_db()
+    bio = BiofuelInventory(db, version, FILEPATH_BIO_INVENTORIES)
+
+    assert len(bio.import_db.data) == 61
