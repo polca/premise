@@ -18,7 +18,7 @@ class BaseInventoryImport():
     :ivar version: the target Ecoinvent database version
     :vartype version: str
     :ivar path: Path to the imported inventory.
-    :vartype path: Path
+    :vartype path: str or Path
     """
 
     def __init__(self, database, version, path):
@@ -26,9 +26,10 @@ class BaseInventoryImport():
         self.version = version
         self.biosphere_dict = self.get_biosphere_code()
 
+        path = Path(path)
         if not path.is_file():
             raise FileNotFoundError("The inventory file {} could not be found.".format(path))
-        self.import_db = self.load_inventory(path)
+        self.load_inventory(path)
 
     def load_inventory(self, path):
         pass
@@ -181,7 +182,7 @@ class BaseInventoryImport():
 
 class CarmaCCSInventory(BaseInventoryImport):
     def load_inventory(self, path):
-        return ExcelImporter(path)
+        self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
         if(self.version == 3.6):
@@ -278,7 +279,7 @@ class BiofuelInventory(BaseInventoryImport):
     """
 
     def load_inventory(self, path):
-        return SimaProCSVImporter(path, name="biofuels_attributional")
+        self.import_db = SimaProCSVImporter(path, name="biofuels_attributional")
 
     def prepare_inventory(self):
 
