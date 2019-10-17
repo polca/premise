@@ -31,9 +31,6 @@ class BaseInventoryImport():
         :param path: Path to the imported inventory.
         :type path: str or Path
 
-        :returns: An instance of ´BaseInventoryImport´
-        :rtype: BaseInventoryImport
-
         """
         self.db = database
         self.version = version
@@ -220,10 +217,8 @@ class BaseInventoryImport():
         Remove an activity dataset from :attr:`import_db` and replace the corresponding
         technosphere exchanges by what is given as second argument.
 
-        :param name: name of activity to be removed
-        :type name: str
-        :param ex_data: data to replace the corresponding exchanges
-        :type name: dict
+        :param str name: name of activity to be removed
+        :param dict ex_data: data to replace the corresponding exchanges
 
         :returns: Nothing
         """
