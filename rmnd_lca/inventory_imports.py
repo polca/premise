@@ -23,7 +23,7 @@ class BaseInventoryImport():
     """
 
     def __init__(self, database, version, path):
-        """Create a BaseInventoryImport instance.
+        """Create a :class:`BaseInventoryImport` instance.
 
         :param list database: the target database for the import (the Ecoinvent database),
                               unpacked to a list of dicts
@@ -47,7 +47,7 @@ class BaseInventoryImport():
     def load_inventory(self, path):
         """Load an inventory from a specified path.
 
-        Should set the `import_db` attribute.
+        Sets the :attr:`import_db` attribute.
 
         :param str path: Path to the inventory file
         :returns: Nothing.
@@ -58,7 +58,7 @@ class BaseInventoryImport():
     def prepare_inventory(self):
         """Prepare the inventory for the merger with Ecoinvent.
 
-        The modification are all in-place.
+        Modifies :attr:`import_db` in-place.
 
         :returns: Nothing
 
@@ -66,7 +66,7 @@ class BaseInventoryImport():
         pass
 
     def merge_inventory(self):
-        """Prepare the inventory and merge the inventory to the ecoinvent db.
+        """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`db`.
 
         Calls :meth:`prepare_inventory`. Changes the :attr:`db` attribute.
 
@@ -77,7 +77,7 @@ class BaseInventoryImport():
         self.db.extend(self.import_db)
 
     def search_exchanges(self, srchdict):
-        """Search the imported database by field values.
+        """Search :attr:`import_db` by field values.
 
         :param dict srchdict: dict with the name of the fields and the values.
         :returns: the activities with the exchanges that match the search.
@@ -92,7 +92,8 @@ class BaseInventoryImport():
         return results
 
     def search_missing_field(self, field):
-        """Find exchanges and activities that do not contain a specific field.
+        """Find exchanges and activities that do not contain a specific field
+        in :attr:`imort_db`
 
         :param str field: label of the field to search for.
         :returns: a list of dictionaries, activities and exchanges
@@ -110,8 +111,9 @@ class BaseInventoryImport():
 
     def get_biosphere_code(self):
         """
-        Retrieve biosphere uuid for biosphere flows imported from Excel inventory.
-        :return: dictionary with biosphere flow names as keys and uuid code as values
+        Retrieve a dictionary with biosphere flow names and uuid codes.
+
+        :returns: dictionary with biosphere flow names as keys and uuid code as values
         :rtype: dict
         """
 
@@ -130,10 +132,15 @@ class BaseInventoryImport():
         return csv_dict
 
     def add_product_field_to_exchanges(self):
-        """Add the `product` key to the production exchange
-        and format the category field for biosphere exchanges
+        """Add the `product` key to the production and
+        technosphere exchanges in :attr:`import_db`.
 
+        For production exchanges, use the value of the `reference_product` field.
+        For technosphere exchanges, search the activities in :attr:`import_db` and
+        use the reference product. If none is found, search the Ecoinvent :attr:`db`.
         Modifies the :attr:`import_db` attribute in place.
+
+        :raises IndexError: if no corresponding activity (and reference product) can be found.
 
         """
         for x in self.import_db.data:
@@ -173,7 +180,7 @@ class BaseInventoryImport():
                                 'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'.format(self.import_db.db_name, y))
 
     def add_biosphere_links(self):
-        """Add links for biosphere exchanges
+        """Add links for biosphere exchanges to :attr:`import_db`
 
         Modifies the :attr:`import_db` attribute in place.
         """
@@ -210,7 +217,7 @@ class BaseInventoryImport():
 
     def remove_ds_and_modifiy_exchanges(self, name, ex_data):
         """
-        Remove an activity dataset from the inventory and replace the corresponding
+        Remove an activity dataset from :attr:`import_db` and replace the corresponding
         technosphere exchanges by what is given as second argument.
 
         :param name: name of activity to be removed
@@ -218,7 +225,7 @@ class BaseInventoryImport():
         :param ex_data: data to replace the corresponding exchanges
         :type name: dict
 
-        :return: Nothing
+        :returns: Nothing
         """
 
         self.import_db.data = [act for act in self.import_db.data if not act["name"] == name]

@@ -83,8 +83,8 @@ def test_load_carma():
     assert len(carma.import_db.data) == 146
 
 
-def test_load_biofuel():
-    db, version = get_db()
-    bio = BiofuelInventory(db, version, FILEPATH_BIO_INVENTORIES)
+# def test_load_biofuel():
+#     db, version = get_db()
+#     bio = BiofuelInventory(db, version, FILEPATH_BIO_INVENTORIES)
 
-    assert len(bio.import_db.data) == 61
+#     assert len(bio.import_db.data) == 61
