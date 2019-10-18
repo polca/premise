@@ -1111,7 +1111,6 @@ class Electricity:
         coal_IGCC = [
             ws.either(ws.contains("name", "coal"), ws.contains("name", "lignite")),
             ws.contains("name", "IGCC"),
-            ws.contains("name", "pre"),
             ws.contains("name", "no CCS"),
             ws.equals("unit", "kilowatt hour"),
         ]
@@ -1324,11 +1323,16 @@ class Electricity:
         """
 
         technologies_map = self.get_remind_mapping()
+
         for remind_technology in technologies_map:
             dict_technology = technologies_map[remind_technology]
             print("Rescale inventories and emissions for", remind_technology)
 
-            for ds in ws.get_many(self.db, *dict_technology["technology filters"]):
+            datsets = list(ws.get_many(self.db, *dict_technology["technology filters"]))
+
+            # no activities found? Check filters!
+            assert (len(datsets) > 0), "No dataset found for {}".format(remind_technology)
+            for ds in datsets:
                 # Modify using remind efficiency values:
                 scaling_factor = dict_technology["eff_func"](
                     ds, dict_technology["fuel filters"], remind_technology

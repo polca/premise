@@ -36,7 +36,6 @@ def get_dict():
                 }
             }
     return dummy_db, dummy_bio
-    
 
 
 def test_presence_db():
@@ -48,45 +47,9 @@ def test_validity_db():
     dummy_db, dummy_bio = get_dict()
     db_bio = DatabaseChooser('dummy_bio')
     db_bio.write(dummy_bio)
-    
+
     db_act = DatabaseChooser('dummy_db')
     db_act.write(dummy_db)
-    
+
     dbc = DatabaseCleaner("dummy_db")
     assert dbc.db[0]['name'] == 'fake activity'
-
-def test_biosphere_dict():
-    dummy_db, dummy_bio = get_dict()
-    db_bio = DatabaseChooser('dummy_bio')
-    db_bio.write(dummy_bio)
-    
-    db_act = DatabaseChooser('dummy_db')
-    db_act.write(dummy_db)
-    
-    dbc = DatabaseCleaner("dummy_db")
-    assert dbc.biosphere_dict[
-               (
-                   '1,4-Butanediol',
-                   'air',
-                   'urban air close to ground',
-                   'kilogram'
-               )] == '38a622c6-f086-4763-a952-7c6b3b1c42ba'
-
-
-def test_biosphere_dict_2():
-    dummy_db, dummy_bio = get_dict()
-    db_bio = DatabaseChooser('dummy_bio')
-    db_bio.write(dummy_bio)
-    
-    db_act = DatabaseChooser('dummy_db')
-    db_act.write(dummy_db)
-    dbc = DatabaseCleaner("dummy_db")
-    for act in dbc.db:
-        for exc in act['exchanges']:
-            if exc['type'] == 'biosphere':
-                assert dbc.biosphere_dict[(
-                    exc['name'],
-                    exc['categories'][0],
-                    exc['categories'][1],
-                    exc['unit']
-                )] == '38a622c6-f086-4763-a952-7c6b3b1c42ba'
