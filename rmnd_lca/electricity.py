@@ -10,7 +10,6 @@ import wurst
 
 
 REGION_MAPPING_FILEPATH = (DATA_DIR /  "regionmappingH12.csv")
-#PRODUCTION_PER_COUNTRY = (DATA_DIR / "electricity_production_volumes_per_country.csv")
 PRODUCTION_PER_TECH = (DATA_DIR / "electricity_production_volumes_per_tech.csv")
 LOSS_PER_COUNTRY = (DATA_DIR / "losses_per_country.csv")
 LHV_FUELS = (DATA_DIR / "fuels_lower_heating_value.txt")
@@ -29,7 +28,6 @@ class Electricity:
         self.db = db
         self.rmd = rmd
         self.geo = self.get_REMIND_geomatcher()
-        #self.production_per_country = self.get_production_per_country_dict()
         self.production_per_tech = self.get_production_per_tech_dict()
         self.losses = self.get_losses_per_country_dict()
         self.scenario = scenario
