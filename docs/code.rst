@@ -10,6 +10,14 @@ Database Cleaner
 .. autoclass:: rmnd_lca.clean_datasets.DatabaseCleaner
     :members:
 
+Inventory Imports
+================
+
+.. autoclass:: rmnd_lca.inventory_imports.BaseInventoryImport
+   :members:
+
+   .. automethod:: __init__
+
 Remind Data Collection
 ======================
 
@@ -27,5 +35,3 @@ Electricity markets modelling
 
 .. autoclass:: rmnd_lca.electricity.Electricity
     :members:
-
-
