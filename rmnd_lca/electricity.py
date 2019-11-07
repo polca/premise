@@ -1365,7 +1365,6 @@ class Electricity:
                         wurst.rescale_exchange(
                             exc, remind_emission / 1, remove_uncertainty=True
                         )
-
                     else:
                         wurst.rescale_exchange(exc, remind_emission / exc["amount"])
 

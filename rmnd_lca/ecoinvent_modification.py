@@ -8,7 +8,7 @@ import wurst
 
 
 FILEPATH_CARMA_INVENTORIES = (DATA_DIR / "lci-Carma-CCS.xlsx")
-FILEPATH_BIO_INVENTORIES = (DATA_DIR / "bioenergy_cozzolini_2018.csv")
+FILEPATH_BIO_INVENTORIES = (DATA_DIR / "lci-biodiesel_Cozzolini_2018.xlsx")
 
 
 class NewDatabase:
