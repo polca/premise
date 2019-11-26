@@ -216,6 +216,7 @@ class RemindDataCollection:
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
+            print(self.data.coords)
             data_to_interp_from = self.data.loc[
                 list_technologies, :, :
             ] / self.data.loc[list_technologies, :, :].groupby("region").sum(axis=0)
