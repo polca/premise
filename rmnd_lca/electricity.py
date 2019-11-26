@@ -274,7 +274,7 @@ class Electricity:
 
         if voltage == 'high':
 
-            cumul_prod, transf_loss = 0 ,0
+            cumul_prod, transf_loss = 0, 0
             for loc in locations:
                 dict_loss = self.losses.get(loc, {
                     'Transformation loss, high voltage':0,
@@ -1083,9 +1083,6 @@ class Electricity:
         :return: dictionary that contains filters and functions
         :rtype: dict
         """
-
-        #
-
         generic_excludes = [
             ws.exclude(ws.contains("name", "aluminium industry")),
             ws.exclude(ws.contains("name", "carbon capture and storage")),

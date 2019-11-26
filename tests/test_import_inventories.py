@@ -6,7 +6,7 @@ from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "rmnd_lca" / "data"
 FILEPATH_CARMA_INVENTORIES = (DATA_DIR / "lci-Carma-CCS.xlsx")
-FILEPATH_BIO_INVENTORIES = (DATA_DIR / "bioenergy_cozzolini_2018.csv")
+FILEPATH_BIO_INVENTORIES = (DATA_DIR / "lci-biodiesel_Cozzolini_2018.xlsx")
 
 
 def get_db():
@@ -79,12 +79,9 @@ def test_biosphere_dict_2():
 def test_load_carma():
     db, version = get_db()
     carma = CarmaCCSInventory(db, version, FILEPATH_CARMA_INVENTORIES)
-
     assert len(carma.import_db.data) == 146
 
-
-# def test_load_biofuel():
-#     db, version = get_db()
-#     bio = BiofuelInventory(db, version, FILEPATH_BIO_INVENTORIES)
-
-#     assert len(bio.import_db.data) == 61
+def test_load_biofuel():
+    db, version = get_db()
+    bio = BiofuelInventory(db, version, FILEPATH_BIO_INVENTORIES)
+    assert len(bio.import_db.data) == 27
