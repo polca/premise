@@ -208,7 +208,7 @@ class RemindDataCollection:
 
         # Otherwise, if the year specified corresponds exactly to a year given by REMIND
         elif self.year in self.data.coords["year"]:
-            # The contribution of each technologies, for a specified year, for a specified region is normalized to 1.
+            # The contribution of each technology, for a specified year, for a specified region is normalized to 1.
             return self.data.loc[list_technologies, :, self.year] / self.data.loc[
                 list_technologies, :, self.year
             ].groupby("region").sum(axis=0)
