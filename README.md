@@ -6,11 +6,11 @@
 Introduction
 ============
 
-**rmnd-lca** allows to align the life cycle inventories contained in the **ecoinvent 3.5 cutoff** database with the output results of
+**rmnd-lca** allows to align the life cycle inventories contained in the **ecoinvent 3.5 and 3.6 cutoff** databases with the output results of
 the **REMIND IAM**, in order to produce life cycle inventories under future policy scenarios for any year between 2005
 and 2150.
 
-In the latest version, this includes:
+In the current version, this includes:
 * electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
 electricity production technologies, including Carbon Capture and Storage technologies.
 
@@ -24,16 +24,16 @@ Objective
 ---------
 
 The objective is to produce life cycle inventories under future energy policies, by modifying the inventory database
-ecoinvent 3.5 to reflect projected energy policy trajectories.
+ecoinvent 3 to reflect projected energy policy trajectories.
 
 Requirements
 ------------
 * Python language interpreter 3.x
-* Brightway2 library
-* License for ecoinvent 3.5
-* REMIND IAM output files ("xxx.mif" and "GAINS emission factors.csv") are not installed with this library. They need
-to be queried from Alois Dirnaichner <aloisdir@pik-potsdam.de> and placed together in a folder. If not specified
-otherwise, the library will look for them in its subdirectory "/data/Remind output files".
+* License for ecoinvent 3
+* Brightway2
+* REMIND IAM output files come with the library ("xxx.mif" and "GAINS emission factors.csv")
+ and are located by default in the subdirectory "/data/Remind output files".
+ A file path can be specified to fetch the REMIND IAM output files elsewhere on your computer.
 
 How to install this package?
 ----------------------------
@@ -51,8 +51,10 @@ Alternatively, from Conda:
 How to use it?
 --------------
 
+### Extract
+
 A preliminary requirement to the use this library is to have a `brightway2` project created and opened, with the
-`ecoinvent 3.5 cutoff` database registered, so that:
+`ecoinvent 3.5 cutoff` or `ecoinvent 3.6 cutoff` database registered, so that:
 
 ```python
 
@@ -66,59 +68,76 @@ returns
 	biosphere3
 	ecoinvent 3.5 cutoff
 ```
-Then, for a chosen policy and year between 2005 and 2150, the following two lines will:
-* extract the ecoinvent database, clean it, add additional inventories for carbon capture and storage,
-* remove existing electricity markets and replace them by regional markets with a geographical scope and production mix
-  defined by the REMIND model for that year,
-* relink electricity consuming activities to the newly created electricity markets,
-* update the efficiency of electricity-producing technologies, according to the projections given by REMIND
+Then, for a chosen policy and year between 2005 and 2150, the following function will:
+* extract the ecoinvent database, clean it, add additional inventories for carbon capture and storage, biofuels, etc.
 
-
-For example, here with the year 2011 and the policy "Business-as-usual":
+For example, here with the year 2028 and the policy "Business-as-usual":
 ```python
-    ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff', 3.5)
+    ndb = NewDatabase(scenario = 'BAU',
+              year = 2028,
+              source_db = 'ecoinvent 3.6 cutoff',
+              source_version = 3.6,
+             )
+```
+
+Note that, by default, the library will look for REMIND output files ("xxx.mif" files and "GAINS emission factors.csv") in the
+"data/Remind output files" subdirectory. If those are not located there, you need to specify the path to
+the correct directory, as such::
+```python
+    ndb = NewDatabase(scenario = 'BAU',
+              year = 2028,
+              source_db = 'ecoinvent 3.6 cutoff',
+              source_version = 3.6,
+              r"C:\Users\username\Documents\Remind output files"
+             )
+```
+
+### Transform
+
+A series of transformations can be performed on the extracted database.
+Currently, only the transformation regarding electricity generation and distribution is implemented.
+
+#### Electricity
+
+The following function will:
+* remove existing electricity markets
+* replace them by regional markets (high, medium and low voltage) with a geographical scope and production mix
+  defined by the REMIND model for that year,
+* relink electricity-consuming activities to the newly created electricity markets,
+* update the efficiency of electricity-producing technologies (fuel-input-to-energy-output ratio),
+according to the projections given by REMIND,
+* and rescale fuel-related emissions of electricity-producing technologies according to their newly defined efficiency.
+
+
+```python
     ndb.update_electricity_to_remind_data()
 ```
 returns
-```
-    Getting activity data
-    100%|█████████████████████████████████| 16022/16022 [00:00<00:00, 45140.97it/s]
-    Adding exchange data to activities
-    100%|███████████████████████████████| 544735/544735 [00:39<00:00, 13837.57it/s]
-    Filling out exchange data
-    100%|██████████████████████████████████| 16022/16022 [00:03<00:00, 5132.14it/s]
-    Set missing location of datasets to global scope.
-    Set missing location of production exchanges to scope of dataset.
-    Correct missing location of technosphere exchanges.
-    Remove empty exchanges.
-    Add Carma CCS inventories
-    Extracted 1 worksheets in 0.98 seconds
-    Add fossil carbon dioxide storage for CCS technologies.
+```python
     Remove old electricity datasets
     Create high voltage markets.
     Create medium voltage markets.
     Create low voltage markets.
     Link activities to new electricity markets.
-    Rescale inventories and emissions for  Coal IGCC
-    Rescale inventories and emissions for  Coal IGCC CCS
-    Rescale inventories and emissions for  Coal PC
-    Rescale inventories and emissions for  Coal PC CCS
-    Rescale inventories and emissions for  Coal CHP
-    Rescale inventories and emissions for  Gas OC
-    Rescale inventories and emissions for  Gas CC
-    Rescale inventories and emissions for  Gas CHP
-    Rescale inventories and emissions for  Gas CCS
-    Rescale inventories and emissions for  Oil
-    Rescale inventories and emissions for  Biomass CHP
-    Rescale inventories and emissions for  Biomass IGCC CCS
-    Rescale inventories and emissions for  Biomass IGCC
+    Log of deleted electricity markets saved in C:\Users\username\Documents\GitHub\rmnd-lca\rmnd_lca\data\logs
+    Log of created electricity markets saved in C:\Users\username\Documents\GitHub\rmnd-lca\rmnd_lca\data\logs
+    Rescale inventories and emissions for Coal IGCC
+    Rescale inventories and emissions for Coal IGCC CCS
+    Rescale inventories and emissions for Coal PC
+    Rescale inventories and emissions for Coal PC CCS
+    Rescale inventories and emissions for Coal CHP
+    Rescale inventories and emissions for Gas OC
+    Rescale inventories and emissions for Gas CC
+    Rescale inventories and emissions for Gas CHP
+    Rescale inventories and emissions for Gas CCS
+    Rescale inventories and emissions for Oil
+    Rescale inventories and emissions for Biomass CHP
+    Rescale inventories and emissions for Biomass IGCC CCS
+    Rescale inventories and emissions for Biomass IGCC
 ```
-Note that, by default, the library will look for REMIND output files ("xxx.mif" files and "GAINS emission factors.csv") in the
-"data/Remind output files" subdirectory. If those are not located there, you need to specify the path to
-the correct directory, as such::
-```python
-    ndb = NewDatabase({'BAU':2011}, 'ecoinvent 3.5 cutoff', r"C:\Users\username\Documents\Remind output files")
-```
+
+### Load
+
 Once the process is completed, the resulting database is registered back into the current Brightway2 project:
 ```python
     ndb.write_db_to_brightway()
@@ -131,5 +150,5 @@ returns
     0 unlinked exchanges
 
     Writing activities to SQLite3 database:
-    Created database: ecoinvent_BAU_2011
+    Created database: ecoinvent_BAU_2028
 ```

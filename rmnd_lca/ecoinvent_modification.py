@@ -15,12 +15,14 @@ class NewDatabase:
     """
     Class that represents a new wurst inventory database, modified according to IAM data.
 
-    :ivar database_dict: dictionary with scenarios to create
-    :vartype database_dict: dict
-    :ivar destination_db: name of the ecoinvent source database
-    :vartype destination_db: str
-    :ivar destination_version: version of the ecoinvent source database
-    :vartype destination_db: float
+    :ivar scenario: name of the REMIND scenario, e.g., 'BAU', 'SCP26'.
+    :vartype scenario: str
+    :ivar year: year of the REMIND scenario to consider, between 2005 and 2150.
+    :vartype year: int
+    :ivar source_db: name of the ecoinvent source database
+    :vartype source_db: str
+    :ivar source_version: version of the ecoinvent source database. Currently works with ecoinvent 3.5 and 3.6.
+    :vartype source_version: float
     :ivar filepath_to_remind_files: Filepath to the directory that contains REMIND output files.
     :vartype filepath_to_remind_file: pathlib.Path
 
