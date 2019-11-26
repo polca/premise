@@ -1014,7 +1014,6 @@ class Electricity:
                         )
                     )
                 )
-
                 ds["parameters"]["efficiency"] = (
                     float(ws.reference_product(ds)["amount"]) / energy_input
                 )

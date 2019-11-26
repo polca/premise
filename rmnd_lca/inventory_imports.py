@@ -143,8 +143,12 @@ class BaseInventoryImport():
         # Add a `product` field to the production exchange
         for x in self.import_db.data:
             for y in x["exchanges"]:
-                if y["type"] == "production" and "product" not in y:
-                    y["product"] = x["reference product"]
+                if y["type"] == "production":
+                    if "product" not in y:
+                        y["product"] = x["reference product"]
+
+                    if y["name"] != x["name"]:
+                        y["name"] = x["name"]
 
         # Add a `product` field to technosphere exchanges
         for x in self.import_db.data:

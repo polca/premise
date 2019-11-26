@@ -4,6 +4,7 @@ from wurst import searching as ws
 import csv
 import pprint
 import wurst
+import bw2io
 from bw2data.database import DatabaseChooser
 
 
@@ -20,14 +21,26 @@ class DatabaseCleaner:
 
     """
 
-    def __init__(self, destination_db):
+    def __init__(self, source_db, source_type, source_file_path):
 
-        # Check that database exists
-        if len(DatabaseChooser(destination_db)) == 0:
-            raise NameError('The database selected is empty. Make sure the name is correct and that the current'
-                            ' brightway2 project contains the database.')
-        self.destination = destination_db
-        self.db = wurst.extract_brightway2_databases(self.destination)
+        if source_type == 'brightway':
+            # Check that database exists
+            if len(DatabaseChooser(source_db)) == 0:
+                raise NameError('The database selected is empty. Make sure the name is correct')
+            self.db = wurst.extract_brightway2_databases(source_db)
+
+        if source_type == 'ecospold':
+            # The ecospold data needs to be formatted
+            ei = bw2io.SingleOutputEcospold2Importer(source_file_path, source_db)
+            ei.apply_strategies()
+            self.db = ei.data
+            # Location field is added to exchanges
+            self.add_location_field_to_exchanges()
+            # Product field is added to exchanges
+            self.add_product_field_to_exchanges()
+            # Parameter field is converted from a list to a dictionary
+            self.transform_parameter_field()
+
 
     def add_negative_CO2_flows_for_biomass_CCS(self):
         """
@@ -114,6 +127,65 @@ class DatabaseCleaner:
             )
         ]
 
+    def add_location_field_to_exchanges(self):
+        """Add the `location` key to the production and
+        technosphere exchanges in :attr:`db`.
+
+        :raises IndexError: if no corresponding activity (and reference product) can be found.
+
+        """
+        d_location = {(a['database'],a['code']):a['location'] for a in self.db}
+        for a in self.db:
+            for e in a['exchanges']:
+                if e['type'] == 'technosphere':
+                    input = e['input']
+                    e['location'] = d_location[input]
+
+    def add_product_field_to_exchanges(self):
+        """Add the `product` key to the production and
+        technosphere exchanges in :attr:`db`.
+
+        For production exchanges, use the value of the `reference_product` field.
+        For technosphere exchanges, search the activities in :attr:`db` and
+        use the reference product.
+
+        :raises IndexError: if no corresponding activity (and reference product) can be found.
+
+        """
+        # Create a dictionary that contains the 'code' field as key and the 'product' field as value
+        d_product = {a['code']:a['reference product'] for a in self.db}
+        # Add a `product` field to the production exchange
+        for x in self.db:
+            for y in x["exchanges"]:
+                if y["type"] == "production":
+                    if "product" not in y:
+                        y["product"] = x["reference product"]
+
+                    if y["name"] != x["name"]:
+                        y["name"] = x["name"]
+
+        # Add a `product` field to technosphere exchanges
+        for x in self.db:
+            for y in x["exchanges"]:
+                if y["type"] == "technosphere":
+                    # Check if the field 'product' is present
+                    if not 'product' in y:
+                        y['product'] = d_product[y['input'][1]]
+
+                    # If a 'reference product' field is present, we make sure it matches with the new 'product' field
+                    if 'reference product' in y:
+                        try:
+                            assert y['product'] == y['reference product']
+                        except AssertionError:
+                            y['product'] = d_product[y['input'][1]]
+
+    def transform_parameter_field(self):
+        # When handling ecospold files directly, the parameter field is a list.
+        # It is here transformed into a dictionary
+        for x in self.db:
+            x['parameters'] = {k['name']:k['amount'] for k in x['parameters']}
+
+
     # Functions to clean up Wurst import and additional technologies
     def fix_unset_technosphere_and_production_exchange_locations(
         self, matching_fields=("name", "unit")
@@ -136,14 +208,12 @@ class DatabaseCleaner:
             for exc in wurst.production(ds):
                 if "location" not in exc:
                     exc["location"] = ds["location"]
-                    print(exc)
 
             for exc in wurst.technosphere(ds):
                 if "location" not in exc:
                     locs = self.find_location_given_lookup_dict(
                         self.db, {k: exc.get(k) for k in matching_fields}
                     )
-
                     if len(locs) == 1:
                         exc["location"] = locs[0]
                     else:

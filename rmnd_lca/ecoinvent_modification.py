@@ -28,17 +28,26 @@ class NewDatabase:
 
     """
 
-    def __init__(self, scenario, year, source_db, source_version=3.5, filepath_to_remind_files=None):
+    def __init__(self, scenario, year, source_db,
+                 source_version=3.5,
+                 source_type='brightway',
+                 source_file_path = None,
+                 filepath_to_remind_files=None):
         self.scenario = scenario
         self.year = year
         self.source = source_db
         self.version = source_version
+        self.source_type = source_type
+        self.source_file_path = source_file_path
         self.db = self.clean_database()
         self.import_inventories()
         self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "Remind output files")
 
     def clean_database(self):
-        return DatabaseCleaner(self.source).prepare_datasets()
+        return DatabaseCleaner(self.source,
+                               self.source_type,
+                               self.source_file_path
+                               ).prepare_datasets()
 
     def import_inventories(self):
         # Add Carma CCS inventories
