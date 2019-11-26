@@ -1,5 +1,4 @@
 # Data directories #
-Remind output files/
 *.egg-info/
 logs/
 

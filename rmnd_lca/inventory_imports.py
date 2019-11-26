@@ -140,6 +140,7 @@ class BaseInventoryImport():
         :raises IndexError: if no corresponding activity (and reference product) can be found.
 
         """
+        # Add a `product` field to the production exchange
         for x in self.import_db.data:
             for y in x["exchanges"]:
                 if y["type"] == "production" and "product" not in y:
@@ -148,33 +149,50 @@ class BaseInventoryImport():
         # Add a `product` field to technosphere exchanges
         for x in self.import_db.data:
             for y in x["exchanges"]:
-                if y["type"] == "technosphere" and "product" not in y:
-                    if "reference product" in y:
-                        y["product"] = y["reference product"]
-                    else:
-                        # Look first in the imported inventories
-                        possibles = [
-                            a["reference product"]
-                            for a in self.import_db.data
-                            if a["name"] == y["name"]
-                            and a["location"] == y["location"]
-                            and a["unit"] == y["unit"]
-                        ]
+                if y["type"] == "technosphere":
+                    # Check if the field 'product' is present
+                    if not 'product' in y:
+                        y['product'] = self.correct_product_field(y)
 
-                        # If not, look in the ecoinvent inventories
-                        if len(possibles) == 0:
-                            possibles = [
-                                a["reference product"]
-                                for a in self.db
-                                if a["name"] == y["name"]
-                                and a["location"] == y["location"]
-                                and a["unit"] == y["unit"]
-                            ]
-                        if len(possibles) > 0:
-                            y["product"] = possibles[0]
-                        else:
-                            raise IndexError(
-                                'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'.format(self.import_db.db_name, y))
+                    # If a 'reference product' field is present, we make sure it matches with the new 'product' field
+                    if 'reference product' in y:
+                        try:
+                            assert y['product'] == y['reference product']
+                        except AssertionError:
+                            y['product'] = self.correct_product_field(y)
+
+    def correct_product_field(self, exc):
+        """
+        Find the correct name for the `product` filed of the exchange
+        :param exc: a dataset exchange
+        :return: name of the product field of the exchange
+        :rtype: str
+        """
+        # Look first in the imported inventories
+        possibles = [
+            a["reference product"]
+            for a in self.import_db.data
+            if a["name"] == exc["name"]
+            and a["location"] == exc["location"]
+            and a["unit"] == exc["unit"]
+        ]
+
+        # If not, look in the ecoinvent inventories
+        if len(possibles) == 0:
+            possibles = [
+                a["reference product"]
+                for a in self.db
+                if a["name"] == exc["name"]
+                and a["location"] == exc["location"]
+                and a["unit"] == exc["unit"]
+            ]
+        if len(possibles) > 0:
+           return possibles[0]
+        else:
+            raise IndexError(
+                'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'\
+                    .format(self.import_db.db_name, exc['name']))
+
 
     def add_biosphere_links(self):
         """Add links for biosphere exchanges to :attr:`import_db`

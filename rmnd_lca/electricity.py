@@ -1,3 +1,4 @@
+import os
 from . import DATA_DIR
 from .activity_maps import InventorySet
 from wurst import searching as ws
@@ -7,7 +8,6 @@ import csv
 import numpy as np
 import uuid
 import wurst
-
 
 REGION_MAPPING_FILEPATH = (DATA_DIR /  "regionmappingH12.csv")
 PRODUCTION_PER_TECH = (DATA_DIR / "electricity_production_volumes_per_tech.csv")
@@ -1397,6 +1397,10 @@ class Electricity:
             [i['name'], i['location']] for i in self.db
             if any(stop in i["name"] for stop in list_to_remove)
         ]
+
+        if not os.path.exists(DATA_DIR / "logs"):
+            os.makedirs(DATA_DIR / "logs")
+
         with open(DATA_DIR / "logs/log deleted markets.csv", "w") as csv_file:
             writer = csv.writer(csv_file,
                                 delimiter=';',

@@ -26,16 +26,17 @@ class NewDatabase:
 
     """
 
-    def __init__(self, database_dict, destination_db, destination_version=3.5, filepath_to_remind_files=None):
-        self.scenarios = database_dict
-        self.destination = destination_db
-        self.version = destination_version
+    def __init__(self, scenario, year, source_db, source_version=3.5, filepath_to_remind_files=None):
+        self.scenario = scenario
+        self.year = year
+        self.source = source_db
+        self.version = source_version
         self.db = self.clean_database()
         self.import_inventories()
         self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "Remind output files")
 
     def clean_database(self):
-        return DatabaseCleaner(self.destination).prepare_datasets()
+        return DatabaseCleaner(self.source).prepare_datasets()
 
     def import_inventories(self):
         # Add Carma CCS inventories
@@ -48,16 +49,11 @@ class NewDatabase:
         bio.merge_inventory()
 
     def update_electricity_to_remind_data(self):
-        for s in pyprind.prog_bar(self.scenarios.items()):
-            scenario, year = s
-            rdc = RemindDataCollection(scenario, year, self.filepath_to_remind_files)
-            El = Electricity(self.db, rdc, scenario, year)
-            self.db = El.update_electricity_markets()
-            self.db = El.update_electricity_efficiency()
+        rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
+        El = Electricity(self.db, rdc, self.scenario, self.year)
+        self.db = El.update_electricity_markets()
+        self.db = El.update_electricity_efficiency()
 
     def write_db_to_brightway(self):
-        for s in pyprind.prog_bar(self.scenarios.items()):
-            scenario, year = s
-
-            print('Write new database to Brightway2.')
-            wurst.write_brightway2_database(self.db, "ecoinvent_"+ scenario + "_" + str(year))
+        print('Write new database to Brightway2.')
+        wurst.write_brightway2_database(self.db, "ecoinvent_"+ self.scenario + "_" + str(self.year))
