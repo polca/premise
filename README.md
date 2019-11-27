@@ -51,7 +51,7 @@ Alternatively, from Conda:
 How to use it?
 --------------
 
-### Extract
+### Extract (using brightway2)
 
 A preliminary requirement to the use this library is to have a `brightway2` project created and opened, with the
 `ecoinvent 3.5 cutoff` or `ecoinvent 3.6 cutoff` database registered, so that:
@@ -73,6 +73,7 @@ Then, for a chosen policy and year between 2005 and 2150, the following function
 
 For example, here with the year 2028 and the policy "Business-as-usual":
 ```python
+    from rmnd_lca import *
     ndb = NewDatabase(scenario = 'BAU',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
@@ -84,6 +85,7 @@ Note that, by default, the library will look for REMIND output files ("xxx.mif" 
 "data/Remind output files" subdirectory. If those are not located there, you need to specify the path to
 the correct directory, as such::
 ```python
+    from rmnd_lca import *
     ndb = NewDatabase(scenario = 'BAU',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
@@ -91,6 +93,25 @@ the correct directory, as such::
               r"C:\Users\username\Documents\Remind output files"
              )
 ```
+
+### Extract (without brightway2)
+
+If you are not using brightway2, you may load the ecoinvent database
+from its *ecospold2* files (available from the ecoinvent website),
+like shown in the example below, by specifying `source_type = 'ecospold'`
+and the file path to the ecospold files in `source_file_path`.
+
+```python
+    from rmnd_lca import *
+    ndb = NewDatabase(scenario = 'BAU',
+                  year = 2028,
+                  source_db = 'ecoinvent 3.5 cutoff',
+                  source_version = 3.5,
+                  source_type = 'ecospold',
+                  source_file_path = r"C:\Users\path\ecoinvent 3.5_cutoff_ecoSpold02\datasets"
+                 )
+```
+
 
 ### Transform
 

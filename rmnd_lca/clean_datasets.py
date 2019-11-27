@@ -153,7 +153,7 @@ class DatabaseCleaner:
 
         """
         # Create a dictionary that contains the 'code' field as key and the 'product' field as value
-        d_product = {a['code']:a['reference product'] for a in self.db}
+        d_product = {a['code']:(a['reference product'], a['name']) for a in self.db}
         # Add a `product` field to the production exchange
         for x in self.db:
             for y in x["exchanges"]:
@@ -170,14 +170,17 @@ class DatabaseCleaner:
                 if y["type"] == "technosphere":
                     # Check if the field 'product' is present
                     if not 'product' in y:
-                        y['product'] = d_product[y['input'][1]]
+                        y['product'] = d_product[y['input'][1]][0]
 
                     # If a 'reference product' field is present, we make sure it matches with the new 'product' field
                     if 'reference product' in y:
                         try:
                             assert y['product'] == y['reference product']
                         except AssertionError:
-                            y['product'] = d_product[y['input'][1]]
+                            y['product'] = d_product[y['input'][1]][0]
+
+                    # Ensure the name is correct
+                    y['name'] = d_product[y['input'][1]][1]
 
     def transform_parameter_field(self):
         # When handling ecospold files directly, the parameter field is a list.

@@ -978,6 +978,8 @@ class Electricity:
                         exc["location"] = self.ecoinvent_to_remind_location(
                             exc["location"]
                         )
+                if 'input' in exc:
+                    exc.pop('input')
 
     def find_ecoinvent_fuel_efficiency(self, ds, fuel_filters):
         """
