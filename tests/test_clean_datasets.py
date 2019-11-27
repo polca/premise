@@ -40,7 +40,7 @@ def get_dict():
 
 def test_presence_db():
     with pytest.raises(NameError) as wrapped_error:
-        DatabaseCleaner("bla", _, _)
+        DatabaseCleaner("bla", 'brightway', 'x')
     assert wrapped_error.type == NameError
 
 def test_validity_db():
@@ -51,5 +51,5 @@ def test_validity_db():
     db_act = DatabaseChooser('dummy_db')
     db_act.write(dummy_db)
 
-    dbc = DatabaseCleaner("dummy_db", _, _)
+    dbc = DatabaseCleaner("dummy_db", 'brightway', 'x')
     assert dbc.db[0]['name'] == 'fake activity'
