@@ -157,7 +157,10 @@ returns
     Rescale inventories and emissions for Biomass IGCC
 ```
 
-### Load
+Note that logs of deleted and created electricity markets are created in
+the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
+
+### Load (back to brightway2)
 
 Once the process is completed, the resulting database is registered back into the current Brightway2 project:
 ```python
