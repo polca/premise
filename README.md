@@ -160,7 +160,7 @@ returns
 Note that logs of deleted and created electricity markets are created in
 the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
 
-### Load (back to brightway2)
+### Load (export back to brightway2)
 
 Once the process is completed, the resulting database is registered back into the current Brightway2 project:
 ```python
@@ -176,3 +176,27 @@ returns
     Writing activities to SQLite3 database:
     Created database: ecoinvent_BAU_2028
 ```
+
+### Load (export to matrices)
+
+If you do not use brightway2, it is possible to export the transformed database into matrices.
+
+```python
+    ndb.write_db_to_matrices()
+```
+returns
+```
+    Write new database to matrix.
+    Matrices saved in C:\Users\username\Documents\GitHub\rmnd-lca\rmnd_lca\data\matrices.
+```
+
+
+Two matrices are created:
+* matrix A: contains product exchanges
+* matrix B: contains exchanges between activities and the biosphere
+
+Two other files are exported:
+* A_matrix_index: maps row/column index of A_matrix to activity label
+* B_matrix_index: maps row index of B_matrix to biosphere flow label
+
+The column indices of B_matrix are similar to the row/column indices of A_matrix.
