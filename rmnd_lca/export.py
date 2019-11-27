@@ -39,7 +39,7 @@ class Export:
         # Export A matrix
         with open(filepath / 'A_matrix.csv','w') as f:
             writer=csv.writer(f, delimiter=';',lineterminator='\n',)
-            writer.writerow(['index of activity', 'index of product'])
+            writer.writerow(['index of activity', 'index of product', 'value'])
             for ds in self.db:
                 for exc in ds['exchanges']:
                     if exc['type'] == 'production':
@@ -66,7 +66,7 @@ class Export:
         # Export B matrix
         with open(filepath / 'B_matrix.csv','w') as f:
             writer=csv.writer(f, delimiter=';',lineterminator='\n',)
-            writer.writerow(['index of activity', 'index of biosphere flow'])
+            writer.writerow(['index of activity', 'index of biosphere flow', 'value'])
             for ds in self.db:
                 for exc in ds['exchanges']:
                     if exc['type'] == 'biosphere':
