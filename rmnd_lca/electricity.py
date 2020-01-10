@@ -341,10 +341,7 @@ class Electricity:
             new_dataset = {}
             new_dataset["location"] = region
             new_dataset["name"] = (
-                "market group for electricity, low voltage, "
-                + self.scenario
-                + ", "
-                + str(self.year)
+                "market group for electricity, low voltage"
             )
             new_dataset["reference product"] = "electricity, low voltage"
             new_dataset["unit"] = "kilowatt hour"
@@ -364,10 +361,7 @@ class Electricity:
                     "type": "production",
                     "production volume": 0,
                     "product": "electricity, low voltage",
-                    "name": "market group for electricity, low voltage, "
-                    + self.scenario
-                    + ", "
-                    + str(self.year),
+                    "name": "market group for electricity, low voltage",
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -515,10 +509,7 @@ class Electricity:
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage, "
-                    + self.scenario
-                    + ", "
-                    + str(self.year),
+                    "name": "market group for electricity, medium voltage",
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -532,10 +523,7 @@ class Electricity:
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, low voltage",
-                    "name": "market group for electricity, low voltage, "
-                    + self.scenario
-                    + ", "
-                    + str(self.year),
+                    "name": "market group for electricity, low voltage",
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -585,10 +573,7 @@ class Electricity:
             new_dataset = {}
             new_dataset["location"] = region
             new_dataset["name"] = (
-                "market group for electricity, medium voltage, "
-                + self.scenario
-                + ", "
-                + str(self.year)
+                "market group for electricity, medium voltage"
             )
             new_dataset["reference product"] = "electricity, medium voltage"
             new_dataset["unit"] = "kilowatt hour"
@@ -608,10 +593,7 @@ class Electricity:
                     "type": "production",
                     "production volume": 0,
                     "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage, "
-                    + self.scenario
-                    + ", "
-                    + str(self.year),
+                    "name": "market group for electricity, medium voltage",
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -630,10 +612,7 @@ class Electricity:
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, high voltage",
-                    "name": "market group for electricity, high voltage, "
-                    + self.scenario
-                    + ", "
-                    + str(self.year),
+                    "name": "market group for electricity, high voltage",
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -647,10 +626,7 @@ class Electricity:
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage, "
-                    + self.scenario
-                    + ", "
-                    + str(self.year),
+                    "name": "market group for electricity, medium voltage",
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -751,10 +727,7 @@ class Electricity:
             new_dataset = {}
             new_dataset["location"] = region
             new_dataset["name"] = (
-                "market group for electricity, high voltage, "
-                + self.scenario
-                + ", "
-                + str(self.year)
+                "market group for electricity, high voltage"
             )
             new_dataset["reference product"] = "electricity, high voltage"
             new_dataset["unit"] = "kilowatt hour"
@@ -775,10 +748,7 @@ class Electricity:
                     "type": "production",
                     "production volume": 0,
                     "product": "electricity, high voltage",
-                    "name": "market group for electricity, high voltage, "
-                    + self.scenario
-                    + ", "
-                    + str(self.year),
+                    "name": "market group for electricity, high voltage",
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -794,10 +764,7 @@ class Electricity:
                     "type": "technosphere",
                     "production volume": 0,
                     "product": "electricity, high voltage",
-                    "name": "market group for electricity, high voltage, "
-                            + self.scenario
-                            + ", "
-                            + str(self.year),
+                    "name": "market group for electricity, high voltage",
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -947,10 +914,7 @@ class Electricity:
                 if exc["type"] != "production" and exc["unit"] == "kilowatt hour":
                     if "high" in exc["product"]:
                         exc["name"] = (
-                            "market group for electricity, high voltage, "
-                            + self.scenario
-                            + ", "
-                            + str(self.year)
+                            "market group for electricity, high voltage"
                         )
                         exc["product"] = "electricity, high voltage"
                         exc["location"] = self.ecoinvent_to_remind_location(
@@ -958,10 +922,7 @@ class Electricity:
                         )
                     if "medium" in exc["product"]:
                         exc["name"] = (
-                            "market group for electricity, medium voltage, "
-                            + self.scenario
-                            + ", "
-                            + str(self.year)
+                            "market group for electricity, medium voltage"
                         )
                         exc["product"] = "electricity, medium voltage"
                         exc["location"] = self.ecoinvent_to_remind_location(
@@ -969,10 +930,7 @@ class Electricity:
                         )
                     if "low" in exc["product"]:
                         exc["name"] = (
-                            "market group for electricity, low voltage, "
-                            + self.scenario
-                            + ", "
-                            + str(self.year)
+                            "market group for electricity, low voltage"
                         )
                         exc["product"] = "electricity, low voltage"
                         exc["location"] = self.ecoinvent_to_remind_location(
