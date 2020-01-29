@@ -1,15 +1,14 @@
 import os
 from . import DATA_DIR
 from .activity_maps import InventorySet
+from .geomap import Geomap
 from wurst import searching as ws
 from wurst.ecoinvent import filters
-from wurst.geo import geomatcher
 import csv
 import numpy as np
 import uuid
 import wurst
 
-REGION_MAPPING_FILEPATH = (DATA_DIR /  "regionmappingH12.csv")
 PRODUCTION_PER_TECH = (DATA_DIR / "electricity_production_volumes_per_tech.csv")
 LOSS_PER_COUNTRY = (DATA_DIR / "losses_per_country.csv")
 LHV_FUELS = (DATA_DIR / "fuels_lower_heating_value.txt")
@@ -27,7 +26,7 @@ class Electricity:
     def __init__(self, db, rmd, scenario, year):
         self.db = db
         self.rmd = rmd
-        self.geo = self.get_REMIND_geomatcher()
+        self.geo = Geomap()
         self.production_per_tech = self.get_production_per_tech_dict()
         self.losses = self.get_losses_per_country_dict()
         self.scenario = scenario
@@ -49,111 +48,6 @@ class Electricity:
         with open(LHV_FUELS) as f:
             return dict(filter(None, csv.reader(f, delimiter=";")))
 
-    def get_REMIND_geomatcher(self):
-        """
-        Load a geomatcher object from the `constructive_geometries`library and add definitions.
-        It is used to find correspondences between REMIND and ecoinvent region names.
-        :return: geomatcher object
-        :rtype: wurst.geo.geomatcher
-        """
-        with open(REGION_MAPPING_FILEPATH) as f:
-            f.readline()
-            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-            l = [(x[1], x[2]) for x in csv_list]
-
-        # List of countries not found
-        countries_not_found = ["CC", "CX", "GG", "JE", "BL"]
-
-        rmnd_to_iso = {}
-        iso_to_rmnd = {}
-        # Build a dictionary that maps region names (used by REMIND) to ISO country codes
-        # And a reverse dictionary that maps ISO country codes to region names
-        for ISO, region in l:
-            if ISO not in countries_not_found:
-                try:
-                    rmnd_to_iso[region].append(ISO)
-                except KeyError:
-                    rmnd_to_iso[region] = [ISO]
-
-                iso_to_rmnd[region] = ISO
-
-        geo = geomatcher
-        geo.add_definitions(rmnd_to_iso, "REMIND")
-
-        return geo
-
-    def remind_to_ecoinvent_location(self, location):
-        """
-        Find the corresponding ecoinvent region given a REMIND region.
-
-        :param location: name of a REMIND region
-        :type location: str
-        :return: name of an ecoinvent region
-        :rtype: str
-        """
-
-        if location != "World":
-            location = ("REMIND", location)
-
-            ecoinvent_locations = []
-            try:
-                for r in self.geo.intersects(location):
-                    if not isinstance(r, tuple):
-                        ecoinvent_locations.append(r)
-                return ecoinvent_locations
-            except KeyError as e:
-                print("Can't find location {} using the geomatcher.".format(location))
-
-        else:
-            return ["GLO"]
-
-    def ecoinvent_to_remind_location(self, location):
-        """
-        Return a REMIND region name for a 2-digit ISO country code given.
-        Set rules in case two REMIND regions are within the ecoinvent region.
-
-        :param location: 2-digit ISO country code
-        :type location: str
-        :return: REMIND region name
-        :rtype: str
-        """
-
-        mapping = {"GLO": "World", "RoW": "CAZ", "IAI Area, Russia & RER w/o EU27 & EFTA": "REF"}
-        if location in mapping:
-            return mapping[location]
-
-        remind_location = [
-            r[1]
-            for r in self.geo.within(location)
-            if r[0] == "REMIND" and r[1] != "World"
-        ]
-
-        mapping = {
-            ("AFR", "MEA"): "AFR",
-            ("AFR", "SSA"): "AFR",
-            ("EUR", "NEU"): "EUR",
-            ("EUR", "REF"): "EUR",
-            ("OAS", "CHA"): "OAS",
-            ("OAS", "EUR"): "OAS",
-            ("OAS", "IND"): "OAS",
-            ("OAS", "JPN"): "OAS",
-            ("OAS", "MEA"): "OAS",
-            ("OAS", "REF"): "OAS",
-            ("USA", "CAZ"): "USA",
-        }
-
-        # If we have more than one REMIND region
-        if len(remind_location) > 1:
-            # TODO: find a more elegant way to do that
-            for key, value in mapping.items():
-                # We need to find the most specific REMIND region
-                if len(set(remind_location).intersection(set(key))) == 2:
-                    remind_location.remove(value)
-            return remind_location[0]
-        elif len(remind_location) == 0:
-            print("no location for {}".format(location))
-        else:
-            return remind_location[0]
 
     def get_suppliers_of_a_region(self, ecoinvent_regions, ecoinvent_technologies):
         """
@@ -270,7 +164,7 @@ class Electricity:
         """
 
         # Fetch locations contained in REMIND region
-        locations = self.remind_to_ecoinvent_location(remind_region)
+        locations = self.geo.remind_to_ecoinvent_location(remind_region)
 
         if voltage == 'high':
 
@@ -423,7 +317,7 @@ class Electricity:
                 # If the solar power technology contributes to the mix
                 if self.rmd.electricity_markets.loc[technology, region, 0] != 0.0:
                     # Fetch ecoinvent regions contained in the REMIND region
-                    ecoinvent_regions = self.remind_to_ecoinvent_location(region)
+                    ecoinvent_regions = self.geo.remind_to_ecoinvent_location(region)
 
                     # Contribution in supply
                     amount = self.rmd.electricity_markets.loc[
@@ -721,7 +615,7 @@ class Electricity:
         for region in gen_region:
 
             # Fetch ecoinvent regions contained in the REMIND region
-            ecoinvent_regions = self.remind_to_ecoinvent_location(region)
+            ecoinvent_regions = self.geo.remind_to_ecoinvent_location(region)
 
             # Create an empty dataset
             new_dataset = {}
@@ -917,7 +811,7 @@ class Electricity:
                             "market group for electricity, high voltage"
                         )
                         exc["product"] = "electricity, high voltage"
-                        exc["location"] = self.ecoinvent_to_remind_location(
+                        exc["location"] = self.geo.ecoinvent_to_remind_location(
                             exc["location"]
                         )
                     if "medium" in exc["product"]:
@@ -925,7 +819,7 @@ class Electricity:
                             "market group for electricity, medium voltage"
                         )
                         exc["product"] = "electricity, medium voltage"
-                        exc["location"] = self.ecoinvent_to_remind_location(
+                        exc["location"] = self.geo.ecoinvent_to_remind_location(
                             exc["location"]
                         )
                     if "low" in exc["product"]:
@@ -933,7 +827,7 @@ class Electricity:
                             "market group for electricity, low voltage"
                         )
                         exc["product"] = "electricity, low voltage"
-                        exc["location"] = self.ecoinvent_to_remind_location(
+                        exc["location"] = self.geo.ecoinvent_to_remind_location(
                             exc["location"]
                         )
                 if 'input' in exc:
@@ -1006,7 +900,7 @@ class Electricity:
         """
 
         ecoinvent_eff = self.find_ecoinvent_fuel_efficiency(ds, fuel_filters)
-        remind_locations = self.ecoinvent_to_remind_location(ds["location"])
+        remind_locations = self.geo.ecoinvent_to_remind_location(ds["location"])
         remind_eff = (
             self.rmd.electricity_efficiencies.loc[
                 dict(
@@ -1308,7 +1202,7 @@ class Electricity:
 
                     remind_emission = self.rmd.electricity_emissions.loc[
                         dict(
-                            region=self.ecoinvent_to_remind_location(ds["location"]),
+                            region=self.geo.ecoinvent_to_remind_location(ds["location"]),
                             pollutant=remind_emission_label,
                             sector=self.rmd.electricity_emission_labels[
                                 remind_technology
