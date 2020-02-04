@@ -24,18 +24,20 @@ dummy_minimal_db = [{'name': 'Electricity, at BIGCC power plant 450MW, pre, pipe
 
 def test_presence_of_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert isinstance(maps.activities_map, dict)
-    assert isinstance(maps.powerplants_map, dict)
     assert isinstance(maps.emissions_map, dict)
+    assert isinstance(maps.generate_material_map(), dict)
+    assert isinstance(maps.generate_powerplant_map(), dict)
 
 def test_length_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert len(maps.activities_map) > 0
-    assert len(maps.powerplants_map) > 0
     assert len(maps.emissions_map) > 0
+    assert len(maps.generate_material_map()) > 0
+    assert len(maps.generate_powerplant_map()) > 0
 
 def test_content_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert maps.activities_map['aluminium'] == {'market for aluminium, primary'}
-    assert maps.powerplants_map['Coal IGCC'] == {'Electricity, at power plant/lignite, IGCC, no CCS/2025'}
+    materials = maps.generate_material_map()
+    assert materials['aluminium'] == {'market for aluminium, primary'}
+    plants = maps.generate_powerplant_map()
+    assert plants['Coal IGCC'] == {'Electricity, at power plant/lignite, IGCC, no CCS/2025'}
     assert maps.emissions_map['Sulfur dioxide'] == 'SO2'

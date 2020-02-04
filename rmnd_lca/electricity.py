@@ -32,10 +32,10 @@ class Electricity:
         self.scenario = scenario
         self.year = year
         self.fuels_lhv = self.get_lower_heating_values()
+
         mapping = InventorySet(self.db)
-        self.activities_map = mapping.activities_map
-        self.powerplant_map = mapping.powerplants_map
         self.emissions_map = mapping.emissions_map
+        self.powerplant_map = mapping.generate_powerplant_map()
 
     def get_lower_heating_values(self):
         """
@@ -55,7 +55,7 @@ class Electricity:
         respectively.
 
         :param ecoinvent_regions: an ecoinvent region
-        :type ecoinvent_regions: str
+        :type ecoinvent_regions: list
         :param ecoinvent_technologies: name of ecoinvent dataset
         :type ecoinvent_technologies: str
         :return: list of wurst datasets

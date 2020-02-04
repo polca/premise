@@ -18,7 +18,18 @@ class InventorySet:
 
 class InventorySet:
     def __init__(self, db):
+        self.emissions_map = self.get_remind_to_ecoinvent_emissions()
+        self.db = db
 
+    def generate_material_map(self):
+        """
+        Filter ecoinvent processes related to different material demands.
+
+        :return: dictionary with materials as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
         material_filters = {
             "steel": {"fltr": "market for steel,", "mask": "hot rolled"},
             "concrete": {"fltr": "market for concrete,"},
@@ -35,6 +46,17 @@ class InventorySet:
             "heat": {"fltr": "market for heat,"},
         }
 
+        return self.generate_sets_from_filters(material_filters)
+
+    def generate_powerplant_map(self):
+        """
+        Filter ecoinvent processes related to electricity production.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
         powerplant_filters = {
             "Biomass IGCC CCS": {
                 "fltr": [
@@ -125,10 +147,7 @@ class InventorySet:
             "Solar PV": {"fltr": "electricity production, photovoltaic"},
             "Wind": {"fltr": "electricity production, wind"},
         }
-
-        self.activities_map = self.generate_sets_from_filters(db, material_filters)
-        self.powerplants_map = self.generate_sets_from_filters(db, powerplant_filters)
-        self.emissions_map = self.get_remind_to_ecoinvent_emissions()
+        return self.generate_sets_from_filters(powerplant_filters)
 
     def get_remind_to_ecoinvent_emissions(self):
         """
@@ -214,15 +233,18 @@ class InventorySet:
                 result = [act for act in result if notlike(act[field], condition)]
         return result
 
-    def generate_sets_from_filters(self, db, filter):
-        """Generate a dictionary with sets of activity names for technologies from the filter specifications.
+    def generate_sets_from_filters(self, filtr):
+        """
+        Generate a dictionary with sets of activity names for
+        technologies from the filter specifications.
 
-        :param db: A life cycle inventory database
-        :type db: brightway2 database object
-        :return: dictionary with material types as keys and list of activity data set names as values.
+        :param fltr: A dictionary with labels and filter conditions as given to
+            :func:`activity_maps.InventorySet.act_fltr`.
+        :return: dictionary with the same keys as provided in filter
+            and a set of activity data set names as values.
         :rtype: dict
         """
-        techs = {tech: self.act_fltr(db, **fltr) for tech, fltr in filter.items()}
+        techs = {tech: self.act_fltr(self.db, **fltr) for tech, fltr in filtr.items()}
         return {
             tech: set([act["name"] for act in actlst]) for tech, actlst in techs.items()
         }
