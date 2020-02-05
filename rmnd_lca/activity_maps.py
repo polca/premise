@@ -126,7 +126,6 @@ class InventorySet:
     }
 
     def __init__(self, db):
-        self.emissions_map = self.get_remind_to_ecoinvent_emissions()
         self.db = db
 
     def generate_material_map(self):

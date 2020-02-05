@@ -34,7 +34,7 @@ class Electricity:
         self.fuels_lhv = self.get_lower_heating_values()
 
         mapping = InventorySet(self.db)
-        self.emissions_map = mapping.emissions_map
+        self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
         self.powerplant_map = mapping.generate_powerplant_map()
 
     def get_lower_heating_values(self):
