@@ -22,6 +22,11 @@ dummy_minimal_db = [{'name': 'Electricity, at BIGCC power plant 450MW, pre, pipe
  {'name': 'electricity production, wind, 2.3MW turbine, precast concrete tower, onshore'}, {'name': 'steel production'},
  {'name':'market for aluminium, primary'}]
 
+for act in dummy_minimal_db:
+    act["location"] = "DE"
+    act["unit"] = "kilowatt hour"
+    act["reference product"] = "electricity"
+
 def test_presence_of_dict():
     maps = InventorySet(dummy_minimal_db)
     assert isinstance(maps.get_remind_to_ecoinvent_emissions(), dict)
