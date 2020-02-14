@@ -3,7 +3,7 @@ pandas
 bw2io
 bw2data
 wurst
-xarray = 0.13.0
+xarray == 0.13.0
 pytest
 pytest-cov
 coveralls
