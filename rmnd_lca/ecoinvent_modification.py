@@ -4,6 +4,7 @@ from .data_collection import RemindDataCollection
 from .electricity import Electricity
 from .inventory_imports import CarmaCCSInventory, BiofuelInventory
 from .export import Export
+from .utils import eidb_label
 import pyprind
 import wurst
 import os
@@ -69,7 +70,7 @@ class NewDatabase:
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')
-        wurst.write_brightway2_database(self.db, "ecoinvent_"+ self.scenario + "_" + str(self.year))
+        wurst.write_brightway2_database(self.db, eidb_label(self.scenario, self.year))
 
     def write_db_to_matrices(self):
         print("Write new database to matrix.")

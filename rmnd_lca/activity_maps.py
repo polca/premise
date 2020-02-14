@@ -6,129 +6,162 @@ REMIND_TO_ECOINVENT_EMISSION_FILEPATH = (DATA_DIR / "remind_to_ecoinvent_emissio
 
 class InventorySet:
     """
-    This class is used as a container for various dictionaries.
+    Hosts different filter sets to for ecoinvent activities and exchanges.
 
     It stores:
-    * activities_map: ecoinvent commodities as keys, ecoinvent dataset names as values
-    * powerplants_map: ecoinvent electricity technology as keys, dataset names as values
+    * material_filters: filters for activities related to materials.
+    * powerplant_filters: filters for activities related to power generation technologies.
     * emissions_map: REMIND emission labels as keys, ecoinvent emission labels as values
 
+    The functions :func:`generate_material_map` and :func:`generate_powerplant_map` can
+    be used to extract the actual activity objects as dictionaries.
+    These functions return the result of applying :func:`act_fltr` to the filter dictionaries.
     """
 
+    material_filters = {
+        "steel": {"fltr": "market for steel,", "mask": "hot rolled"},
+        "concrete": {"fltr": "market for concrete,"},
+        "copper": {"fltr": "market for copper", "filter_exact": True},
+        "aluminium": {
+            "fltr": ["market for aluminium, primary", "market for aluminium alloy,"]
+        },
+        "electricity": {"fltr": "market for electricity"},
+        "gas": {"fltr": "market for natural gas,", "mask": ["network", "burned"]},
+        "diesel": {"fltr": "market for diesel", "mask": ["burned", "electric"]},
+        "petrol": {"fltr": "market for petrol,", "mask": "burned"},
+        "freight": {"fltr": "market for transport, freight"},
+        "cement": {"fltr": "market for cement,"},
+        "heat": {"fltr": "market for heat,"},
+    }
 
-class InventorySet:
-    def __init__(self, db):
-
-        material_filters = {
-            "steel": {"fltr": "market for steel,", "mask": "hot rolled"},
-            "concrete": {"fltr": "market for concrete,"},
-            "copper": {"fltr": "market for copper", "filter_exact": True},
-            "aluminium": {
-                "fltr": ["market for aluminium, primary", "market for aluminium alloy,"]
-            },
-            "electricity": {"fltr": "market for electricity"},
-            "gas": {"fltr": "market for natural gas,", "mask": ["network", "burned"]},
-            "diesel": {"fltr": "market for diesel", "mask": ["burned", "electric"]},
-            "petrol": {"fltr": "market for petrol,", "mask": "burned"},
-            "freight": {"fltr": "market for transport, freight"},
-            "cement": {"fltr": "market for cement,"},
-            "heat": {"fltr": "market for heat,"},
-        }
-
-        powerplant_filters = {
-            "Biomass IGCC CCS": {
-                "fltr": [
-                    "Electricity, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m/2025",
-                    "Electricity, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m/2025",
-                    "Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025",
-                ]
-            },
-            "Biomass IGCC": {
-                "fltr": "Electricity, at BIGCC power plant 450MW, no CCS/2025"
-            },
-            "Coal IGCC": {
-                "fltr": [
-                    "Electricity, at power plant/hard coal, IGCC, no CCS/2025",
-                    "Electricity, at power plant/lignite, IGCC, no CCS/2025",
-                ]
-            },
-            "Coal IGCC CCS": {
-                "fltr": [
-                    "Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025",
-                    "Electricity, at power plant/lignite, pre, pipeline 200km, storage 1000m/2025",
-                ]
-            },
-            "Coal PC CCS": {
-                "fltr": [
-                    "Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m/2025",
-                    "Electricity, at power plant/lignite, post, pipeline 200km, storage 1000m/2025",
-                ]
-            },
-            "Gas CCS": {
-                "fltr": [
-                    "Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025",
-                    "Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m/2025",
-                ]
-            },
-            "Biomass CHP": {
-                "fltr": [
+    powerplant_filters = {
+        "Biomass IGCC CCS": {
+            "fltr": [
+                "Electricity, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m/2025",
+                "Electricity, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m/2025",
+                "Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025",
+            ]
+        },
+        "Biomass IGCC": {
+            "fltr": "Electricity, at BIGCC power plant 450MW, no CCS/2025"
+        },
+        "Coal IGCC": {
+            "fltr": [
+                "Electricity, at power plant/hard coal, IGCC, no CCS/2025",
+                "Electricity, at power plant/lignite, IGCC, no CCS/2025",
+            ]
+        },
+        "Coal IGCC CCS": {
+            "fltr": [
+                "Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025",
+                "Electricity, at power plant/lignite, pre, pipeline 200km, storage 1000m/2025",
+            ]
+        },
+        "Coal PC CCS": {
+            "fltr": [
+                "Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m/2025",
+                "Electricity, at power plant/lignite, post, pipeline 200km, storage 1000m/2025",
+            ]
+        },
+        "Gas CCS": {
+            "fltr": [
+                "Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025",
+                "Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m/2025",
+            ]
+        },
+        "Biomass CHP": {
+            "fltr": {
+                "name":[
                     "heat and power co-generation, wood chips",
                     "heat and power co-generation, biogas",
-                ]
-            },
-            "Coal PC": {
-                "fltr": [
-                    "electricity production, hard coal",
-                    "electricity production, lignite",
                 ],
-                "mask": "mine",
-            },
-            "Coal CHP": {
-                "fltr": [
+                "reference product": "electricity"
+            }
+        },
+        "Coal PC": {
+            "fltr": [
+                "electricity production, hard coal",
+                "electricity production, lignite",
+            ],
+            "mask": "mine",
+        },
+        "Coal CHP": {
+            "fltr": {
+                "name": [
                     "heat and power co-generation, hard coal",
                     "heat and power co-generation, lignite",
-                ]
-            },
-            "Gas OC": {
-                "fltr": "electricity production, natural gas, conventional power plant"
-            },
-            "Gas CC": {
-                "fltr": "electricity production, natural gas, combined cycle power plant"
-            },
-            "Gas CHP": {
-                "fltr": [
+                ],
+                "reference product": "electricity"
+            }
+        },
+        "Gas OC": {
+            "fltr": "electricity production, natural gas, conventional power plant"
+        },
+        "Gas CC": {
+            "fltr": "electricity production, natural gas, combined cycle power plant"
+        },
+        "Gas CHP": {
+            "fltr": {
+                "name": [
                     "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
                     "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
-                ]
-            },
-            "Geothermal": {"fltr": "electricity production, deep geothermal"},
-            "Hydro": {
-                "fltr": [
-                    "electricity production, hydro, reservoir",
-                    "electricity production, hydro, run-of-river",
-                ]
-            },
-            "Nuclear": {"fltr": "electricity production, nuclear", "mask": "aluminium"},
-            "Oil": {
-                "fltr": [
-                    "electricity production, oil",
-                    "heat and power co-generation, oil",
                 ],
-                "mask": "aluminium",
+                "reference product": "electricity"
+            }
+        },
+        "Geothermal": {"fltr": "electricity production, deep geothermal"},
+        "Hydro": {
+            "fltr": [
+                "electricity production, hydro, reservoir",
+                "electricity production, hydro, run-of-river",
+            ]
+        },
+        "Nuclear": {"fltr": "electricity production, nuclear", "mask": "aluminium"},
+        "Oil": {
+            "fltr": {
+                "name": [
+                "electricity production, oil",
+                "heat and power co-generation, oil",
+                ],
+                "reference product": "electricity"
             },
-            "Solar CSP": {
-                "fltr": [
-                    "electricity production, solar thermal parabolic trough, 50 MW",
-                    "electricity production, solar tower power plant, 20 MW",
-                ]
-            },
-            "Solar PV": {"fltr": "electricity production, photovoltaic"},
-            "Wind": {"fltr": "electricity production, wind"},
-        }
+            "mask": "aluminium",
+        },
+        "Solar CSP": {
+            "fltr": [
+                "electricity production, solar thermal parabolic trough, 50 MW",
+                "electricity production, solar tower power plant, 20 MW",
+            ]
+        },
+        "Solar PV": {"fltr": "electricity production, photovoltaic"},
+        "Wind": {"fltr": "electricity production, wind"},
+    }
 
-        self.activities_map = self.generate_sets_from_filters(db, material_filters)
-        self.powerplants_map = self.generate_sets_from_filters(db, powerplant_filters)
-        self.emissions_map = self.get_remind_to_ecoinvent_emissions()
+    def __init__(self, db):
+        self.db = db
+
+    def generate_material_map(self):
+        """
+        Filter ecoinvent processes related to different material demands.
+
+        :return: dictionary with materials as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+
+        return self.generate_sets_from_filters(self.material_filters)
+
+    def generate_powerplant_map(self):
+        """
+        Filter ecoinvent processes related to electricity production.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.powerplant_filters)
 
     def get_remind_to_ecoinvent_emissions(self):
         """
@@ -214,15 +247,18 @@ class InventorySet:
                 result = [act for act in result if notlike(act[field], condition)]
         return result
 
-    def generate_sets_from_filters(self, db, filter):
-        """Generate a dictionary with sets of activity names for technologies from the filter specifications.
+    def generate_sets_from_filters(self, filtr):
+        """
+        Generate a dictionary with sets of activity names for
+        technologies from the filter specifications.
 
-        :param db: A life cycle inventory database
-        :type db: brightway2 database object
-        :return: dictionary with material types as keys and list of activity data set names as values.
+        :param fltr: A dictionary with labels and filter conditions as given to
+            :func:`activity_maps.InventorySet.act_fltr`.
+        :return: dictionary with the same keys as provided in filter
+            and a set of activity data set names as values.
         :rtype: dict
         """
-        techs = {tech: self.act_fltr(db, **fltr) for tech, fltr in filter.items()}
+        techs = {tech: self.act_fltr(self.db, **fltr) for tech, fltr in filtr.items()}
         return {
             tech: set([act["name"] for act in actlst]) for tech, actlst in techs.items()
         }

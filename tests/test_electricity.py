@@ -46,10 +46,6 @@ def test_losses():
 def test_fuels_lhv():
     assert float(el.fuels_lhv['hard coal']) == 20.1
 
-def test_activities_map():
-    s = el.activities_map['steel']
-    assert isinstance(s, set)
-
 def test_powerplant_map():
     s = el.powerplant_map['Biomass IGCC CCS']
     assert isinstance(s, set)
