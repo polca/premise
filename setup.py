@@ -17,6 +17,9 @@ for dirpath, dirnames, filenames in os.walk('rmnd_lca'):
         packages.append(pkg)
 
 
+
+
+
 def package_files(directory):
     paths = []
     for (path, directories, filenames) in os.walk(directory):

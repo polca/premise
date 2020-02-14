@@ -56,41 +56,40 @@ How to use it?
 A preliminary requirement to the use this library is to have a `brightway2` project created and opened, with the
 `ecoinvent 3.5 cutoff` or `ecoinvent 3.6 cutoff` database registered, so that:
 
-```python
+.. code-block:: python
 
     import brightway2 as bw
     bw.projects.set_current('remind')
     bw.databases
-```
+
 returns
-```
+
+.. code-block:: python
     Databases dictionary with 2 object(s):
 	biosphere3
 	ecoinvent 3.5 cutoff
-```
+
 Then, for a chosen policy and year between 2005 and 2150, the following function will:
 * extract the ecoinvent database, clean it, add additional inventories for carbon capture and storage, biofuels, etc.
 
 For example, here with the year 2028 and the policy "Business-as-usual":
-```python
+.. code-block:: python
     ndb = NewDatabase(scenario = 'BAU',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
               source_version = 3.6,
              )
-```
 
 Note that, by default, the library will look for REMIND output files ("xxx.mif" files and "GAINS emission factors.csv") in the
 "data/Remind output files" subdirectory. If those are not located there, you need to specify the path to
 the correct directory, as such::
-```python
+.. code-block:: python
     ndb = NewDatabase(scenario = 'BAU',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
               source_version = 3.6,
               r"C:\Users\username\Documents\Remind output files"
              )
-```
 
 ### Transform
 
@@ -109,11 +108,12 @@ according to the projections given by REMIND,
 * and rescale fuel-related emissions of electricity-producing technologies according to their newly defined efficiency.
 
 
-```python
+.. code-block:: python
     ndb.update_electricity_to_remind_data()
-```
+
 returns
-```python
+
+.. code-block:: python
     Remove old electricity datasets
     Create high voltage markets.
     Create medium voltage markets.
@@ -134,16 +134,16 @@ returns
     Rescale inventories and emissions for Biomass CHP
     Rescale inventories and emissions for Biomass IGCC CCS
     Rescale inventories and emissions for Biomass IGCC
-```
 
 ### Load
 
 Once the process is completed, the resulting database is registered back into the current Brightway2 project:
-```python
+.. code-block:: python
     ndb.write_db_to_brightway()
-```
+
 returns
-```
+
+.. code-block:: python
     Write new database to Brightway2.
     15223 datasets
     540424 exchanges
@@ -151,4 +151,3 @@ returns
 
     Writing activities to SQLite3 database:
     Created database: ecoinvent_BAU_2028
-```
