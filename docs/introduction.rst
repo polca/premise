@@ -51,7 +51,8 @@ Alternatively, from Conda:
 How to use it?
 --------------
 
-### Extract
+Extract
+*******
 
 A preliminary requirement to the use this library is to have a `brightway2` project created and opened, with the
 `ecoinvent 3.5 cutoff` or `ecoinvent 3.6 cutoff` database registered, so that:
@@ -65,6 +66,7 @@ A preliminary requirement to the use this library is to have a `brightway2` proj
 returns
 
 .. code-block:: python
+
     Databases dictionary with 2 object(s):
 	biosphere3
 	ecoinvent 3.5 cutoff
@@ -73,7 +75,9 @@ Then, for a chosen policy and year between 2005 and 2150, the following function
 * extract the ecoinvent database, clean it, add additional inventories for carbon capture and storage, biofuels, etc.
 
 For example, here with the year 2028 and the policy "Business-as-usual":
+
 .. code-block:: python
+
     ndb = NewDatabase(scenario = 'BAU',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
@@ -82,8 +86,10 @@ For example, here with the year 2028 and the policy "Business-as-usual":
 
 Note that, by default, the library will look for REMIND output files ("xxx.mif" files and "GAINS emission factors.csv") in the
 "data/Remind output files" subdirectory. If those are not located there, you need to specify the path to
-the correct directory, as such::
+the correct directory, such as:
+
 .. code-block:: python
+
     ndb = NewDatabase(scenario = 'BAU',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
@@ -91,12 +97,14 @@ the correct directory, as such::
               r"C:\Users\username\Documents\Remind output files"
              )
 
-### Transform
+Transform
+*********
 
 A series of transformations can be performed on the extracted database.
 Currently, only the transformation regarding electricity generation and distribution is implemented.
 
-#### Electricity
+Electricity
++++++++++++
 
 The following function will:
 * remove existing electricity markets
@@ -109,11 +117,13 @@ according to the projections given by REMIND,
 
 
 .. code-block:: python
+
     ndb.update_electricity_to_remind_data()
 
 returns
 
 .. code-block:: python
+
     Remove old electricity datasets
     Create high voltage markets.
     Create medium voltage markets.
@@ -135,15 +145,18 @@ returns
     Rescale inventories and emissions for Biomass IGCC CCS
     Rescale inventories and emissions for Biomass IGCC
 
-### Load
+Load
+****
 
 Once the process is completed, the resulting database is registered back into the current Brightway2 project:
 .. code-block:: python
+
     ndb.write_db_to_brightway()
 
 returns
 
 .. code-block:: python
+
     Write new database to Brightway2.
     15223 datasets
     540424 exchanges
