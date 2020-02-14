@@ -5,7 +5,8 @@ __all__ = (
     "NewDatabase",
     "Electricity",
     "BiofuelInventory",
-    "CarmaCCSInventory"
+    "CarmaCCSInventory",
+    "Geomap"
 )
 __version__ = (0, 0, 1)
 
@@ -18,4 +19,5 @@ from .data_collection import RemindDataCollection
 from .ecoinvent_modification import NewDatabase
 from .electricity import Electricity
 from .inventory_imports import CarmaCCSInventory, BiofuelInventory
+from .geomap import Geomap
 
