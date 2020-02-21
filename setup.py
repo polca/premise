@@ -38,7 +38,7 @@ setup(
         'pytest-cov',
         'coveralls',
         'wurst',
-        'xarray=0.13.0'
+        'xarray==0.13.0'
     ],
     url="https://github.com/Loisel/rmnd-lca",
     long_description=open('README.md').read(),
