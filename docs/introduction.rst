@@ -46,6 +46,8 @@ will install the package and the required dependencies.
 
 Alternatively, from Conda:
 
+    conda config --append channels cmutel
+    conda config --append channels konstantinstadler
     conda install -c romainsacchi/label/nightly rmnd-lca-dev
 
 How to use it?
