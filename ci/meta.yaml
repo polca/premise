@@ -17,8 +17,8 @@ requirements:
   build:
     - python
     - setuptools
+    - wurst
   run:
-    - numpy
     - python
 
 
