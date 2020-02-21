@@ -1,0 +1,7 @@
+include data/*.txt
+include data/*.xlsx
+include data/*.csv
+include data/Remind output files/*.mif
+include data/Remind output files/*.csv
+
+

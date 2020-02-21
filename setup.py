@@ -33,7 +33,6 @@ setup(
     license=open('LICENSE').read(),
     # Only if you have non-python data (CSV, etc.). Might need to change the directory name as well.
     include_package_data=True,
-    package_data={'rmnd-lca': package_files(os.path.join('rmnd-lca', 'data'))},
     install_requires=[
         'numpy',
         'pytest-cov',
