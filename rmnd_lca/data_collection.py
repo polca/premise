@@ -218,7 +218,7 @@ class RemindDataCollection:
             # Interpolation between two periods
             data_to_interp_from = self.data.loc[
                 list_technologies, :, :
-            ] / self.data.loc[list_technologies, :, :].groupby(["region"]).sum(axis=0)
+            ] / self.data.loc[list_technologies, :, :].groupby("region").sum(axis=0)
             return data_to_interp_from.interp(year=self.year)
 
     def get_remind_electricity_efficiencies(self, drop_hydrogen=True):
