@@ -1,5 +1,5 @@
 package:
-  name: rmnd-lca
+  name: rmnd-lca-dev
   version: {{ environ['VERSION'] }}
 
 source:
@@ -17,7 +17,6 @@ requirements:
   build:
     - python
     - setuptools
-    - wurst
   run:
     - python
 
