@@ -1,5 +1,5 @@
 package:
-  name: rmnd-lca-dev
+  name: rmnd-lca
   version: {{ environ['VERSION'] }}
 
 source:

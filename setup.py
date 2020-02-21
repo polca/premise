@@ -16,10 +16,6 @@ for dirpath, dirnames, filenames in os.walk('rmnd_lca'):
             pkg = pkg.replace(os.path.altsep, '.')
         packages.append(pkg)
 
-
-
-
-
 def package_files(directory):
     paths = []
     for (path, directories, filenames) in os.walk(directory):
@@ -44,8 +40,6 @@ setup(
         'coveralls',
         'wurst',
         'xarray'
-
-
     ],
     url="https://github.com/Loisel/rmnd-lca",
     long_description=open('README.md').read(),
