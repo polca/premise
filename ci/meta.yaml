@@ -8,7 +8,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: python -m pip install .
+  script: python setup.py install --single-version-externally-managed --record=record.txt
   script_env:
    - VERSION
    - CONDA_BLD_PATH
