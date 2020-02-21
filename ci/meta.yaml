@@ -8,7 +8,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: python pip install .
+  script: python -m pip install .
   script_env:
    - VERSION
    - CONDA_BLD_PATH
