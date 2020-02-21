@@ -21,9 +21,9 @@ requirements:
   run:
     - python
 
-
 test:
   imports:
+    - wurst
     - rmnd_lca
 
 about:
