@@ -20,10 +20,6 @@ requirements:
   run:
     - python
 
-test:
-  imports:
-    - rmnd_lca
-
 about:
   home: https://github.com/romainsacchi/rmnd-lca
   license: BSD License
