@@ -6,3 +6,4 @@ natural gas, high pressure;47.1
 natural gas, low pressure;39.5
 heavy fuel oil;38.5
 biogas;21.5
+waste;14

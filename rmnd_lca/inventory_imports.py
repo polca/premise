@@ -1,10 +1,10 @@
 from . import DATA_DIR
-import re
 import wurst
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration, SimaProCSVImporter
 from pathlib import Path
 import csv
+import uuid
 
 FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
 
@@ -131,6 +131,7 @@ class BaseInventoryImport():
     def add_product_field_to_exchanges(self):
         """Add the `product` key to the production and
         technosphere exchanges in :attr:`import_db`.
+        Also add `code` field if missing.
 
         For production exchanges, use the value of the `reference_product` field.
         For technosphere exchanges, search the activities in :attr:`import_db` and
@@ -165,9 +166,14 @@ class BaseInventoryImport():
                         except AssertionError:
                             y['product'] = self.correct_product_field(y)
 
+        # Add a `code` field if missing
+        for x in self.import_db.data:
+            if "code" not in x:
+                x["code"] =  str(uuid.uuid4().hex)
+
     def correct_product_field(self, exc):
         """
-        Find the correct name for the `product` filed of the exchange
+        Find the correct name for the `product` field of the exchange
         :param exc: a dataset exchange
         :return: name of the product field of the exchange
         :rtype: str
@@ -402,6 +408,123 @@ class BiofuelInventory(BaseInventoryImport):
             )
             self.import_db.migrate("biofuels_ecoinvent_36")
 
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class HydrogenInventory(BaseInventoryImport):
+    """
+    Hydrogen datasets from the ELEGANCY project (2019).
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        # Migrations for 3.5
+        if self.version == 3.5:
+            migrations = {
+                'fields': ['name','reference product', 'location'],
+                'data': [
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland' ),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',), 'IAI Area, EU27 & EFTA'),
+                        {
+                            'name': ('market for aluminium oxide'),
+                            'reference product': ('aluminium oxide'),
+                            'location': ('GLO'),
+                        }
+                    ),
+                    (
+                        ('market for flat glass, coated', ('flat glass, coated',), 'RER'),
+                        {
+                            'location': ('GLO'),
+                        }
+                    )
+                ]
+            }
+
+            Migration("hydrogen_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("hydrogen_ecoinvent_35")
+
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class BiogasInventory(BaseInventoryImport):
+    """
+    Biogas datasets from the SCCER project (2019).
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        # Migrations for 3.5
+        if self.version == 3.5:
+            migrations = {
+                'fields': ['name','reference product', 'location'],
+                'data': [
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'CH' ),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland' ),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    )
+                ]
+            }
+
+            Migration("biogas_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("biogas_ecoinvent_35")
+
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class SyngasInventory(BaseInventoryImport):
+    """
+    Synthetic fuel datasets from the PSI project (2019).
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class SynfuelInventory(BaseInventoryImport):
+    """
+    Synthetic fuel datasets from the PSI project (2019).
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()

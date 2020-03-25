@@ -2,16 +2,18 @@ from . import DATA_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .electricity import Electricity
-from .inventory_imports import CarmaCCSInventory, BiofuelInventory
+from .inventory_imports import CarmaCCSInventory, BiofuelInventory, HydrogenInventory, BiogasInventory, SynfuelInventory, SyngasInventory
 from .export import Export
 from .utils import eidb_label
-import pyprind
 import wurst
-import os
 
 
 FILEPATH_CARMA_INVENTORIES = (DATA_DIR / "lci-Carma-CCS.xlsx")
-FILEPATH_BIO_INVENTORIES = (DATA_DIR / "lci-biodiesel_Cozzolini_2018.xlsx")
+FILEPATH_BIOFUEL_INVENTORIES = (DATA_DIR / "lci-biofuels.xlsx")
+FILEPATH_BIOGAS_INVENTORIES = (DATA_DIR / "lci-biogas.xlsx")
+FILEPATH_HYDROGEN_INVENTORIES = (DATA_DIR / "lci-hydrogen.xlsx")
+FILEPATH_SYNFUEL_INVENTORIES = (DATA_DIR / "lci-synfuel.xlsx")
+FILEPATH_SYNGAS_INVENTORIES = (DATA_DIR / "lci-syngas.xlsx")
 
 
 class NewDatabase:
@@ -59,8 +61,24 @@ class NewDatabase:
         carma.merge_inventory()
 
         print("Add Biofuel inventories")
-        bio = BiofuelInventory(self.db, self.version, FILEPATH_BIO_INVENTORIES)
+        bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
         bio.merge_inventory()
+
+        print("Add Hydrogen inventories")
+        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_INVENTORIES)
+        hydro.merge_inventory()
+
+        print("Add Biogas inventories")
+        biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
+        biogas.merge_inventory()
+
+        print("Add Synthetic gas inventories")
+        syngas = SyngasInventory(self.db, self.version, FILEPATH_SYNGAS_INVENTORIES)
+        syngas.merge_inventory()
+
+        print("Add Synthetic fuels inventories")
+        synfuel = SynfuelInventory(self.db, self.version, FILEPATH_SYNFUEL_INVENTORIES)
+        synfuel.merge_inventory()
 
     def update_electricity_to_remind_data(self):
         rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
