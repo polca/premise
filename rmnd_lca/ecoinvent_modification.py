@@ -1,19 +1,25 @@
-from . import DATA_DIR
+from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .electricity import Electricity
-from .inventory_imports import CarmaCCSInventory, BiofuelInventory, HydrogenInventory, BiogasInventory, SynfuelInventory, SyngasInventory
+from .inventory_imports import CarmaCCSInventory,\
+    BiofuelInventory,\
+    HydrogenInventory,\
+    BiogasInventory,\
+    SynfuelInventory,\
+    SyngasInventory,\
+    HydrogenCoalInventory
 from .export import Export
 from .utils import eidb_label
 import wurst
 
-
-FILEPATH_CARMA_INVENTORIES = (DATA_DIR / "lci-Carma-CCS.xlsx")
-FILEPATH_BIOFUEL_INVENTORIES = (DATA_DIR / "lci-biofuels.xlsx")
-FILEPATH_BIOGAS_INVENTORIES = (DATA_DIR / "lci-biogas.xlsx")
-FILEPATH_HYDROGEN_INVENTORIES = (DATA_DIR / "lci-hydrogen.xlsx")
-FILEPATH_SYNFUEL_INVENTORIES = (DATA_DIR / "lci-synfuel.xlsx")
-FILEPATH_SYNGAS_INVENTORIES = (DATA_DIR / "lci-syngas.xlsx")
+FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
+FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
+FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
+FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen.xlsx")
+FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel.xlsx")
+FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
+FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
 
 
 class NewDatabase:
@@ -79,6 +85,10 @@ class NewDatabase:
         print("Add Synthetic fuels inventories")
         synfuel = SynfuelInventory(self.db, self.version, FILEPATH_SYNFUEL_INVENTORIES)
         synfuel.merge_inventory()
+
+        print("Add Hydrogen from coal gasification inventories")
+        hydrogen_coal = HydrogenCoalInventory(self.db, self.version, FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES)
+        hydrogen_coal.merge_inventory()
 
     def update_electricity_to_remind_data(self):
         rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)

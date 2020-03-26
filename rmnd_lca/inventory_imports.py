@@ -201,7 +201,7 @@ class BaseInventoryImport():
         else:
             raise IndexError(
                 'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'\
-                    .format(self.import_db.db_name, exc['name']))
+                    .format(self.import_db.db_name, exc['name'], exc["location"]))
 
 
     def add_biosphere_links(self):
@@ -435,6 +435,13 @@ class HydrogenInventory(BaseInventoryImport):
                         }
                     ),
                     (
+                        ('market for water, deionised', ('water, deionised',), 'RoW' ),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
                         ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',), 'IAI Area, EU27 & EFTA'),
                         {
                             'name': ('market for aluminium oxide'),
@@ -489,6 +496,13 @@ class BiogasInventory(BaseInventoryImport):
                             'name': ('market for water, deionised, from tap water, at user'),
                             'reference product': ('water, deionised, from tap water, at user'),
                         }
+                    ),
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'RoW' ),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
                     )
                 ]
             }
@@ -525,6 +539,62 @@ class SynfuelInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class HydrogenCoalInventory(BaseInventoryImport):
+    """
+    Hydrogen production from coal gasification from Wokaun A, Wilhelm E, Schenler W, Simons A, Bauer C, Bond S, et al.
+    Transition to hydrogen - pathways toward clean transportation. New York: Cambridge University Press; 2011
+.
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        # Migrations for 3.5
+        if self.version == 3.5:
+            migrations = {
+                'fields': ['name','reference product', 'location'],
+                'data': [
+                    (
+                        ('water production, deionised', ('water, deionised',), 'RoW' ),
+                        {
+                            'name': ('water production, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('water production, deionised', ('water, deionised',), 'Europe without Switzerland' ),
+                        {
+                            'name': ('water production, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for transport, freight train', ('transport, freight train',), 'ZA' ),
+                        {
+                            'location': ('RoW')
+                        }
+                    ),
+                    (
+                        ('market for transport, freight train', ('transport, freight train',), 'IN' ),
+                        {
+                            'location': ('RoW')
+                        }
+                    )
+                ]
+            }
+
+            Migration("hydrogen_coal_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("hydrogen_coal_ecoinvent_35")
+
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
