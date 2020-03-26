@@ -7,3 +7,7 @@ natural gas, low pressure;39.5
 heavy fuel oil;38.5
 biogas;21.5
 waste;14
+methane;35.8
+diesel;48
+hydrogen;120
+bioethanol;26.8
