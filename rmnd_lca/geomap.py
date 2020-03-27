@@ -27,6 +27,7 @@ class Geomap():
 
         rmnd_to_iso = {}
         iso_to_rmnd = {}
+
         # Build a dictionary that maps region names (used by REMIND) to ISO country codes
         # And a reverse dictionary that maps ISO country codes to region names
         for ISO, region in l:
@@ -61,6 +62,15 @@ class Geomap():
                 for r in self.geo.intersects(location):
                     if not isinstance(r, tuple):
                         ecoinvent_locations.append(r)
+
+                # TODO: Dirty trick. In the future, "CA" should be removed from "RNA". Also, "GLO" should not appear.
+                if location == ("REMIND", "USA"):
+                    ecoinvent_locations = [e for e in ecoinvent_locations if e != "CA"]
+
+                # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
+                if location != ("REMIND", "World"):
+                    ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
+
                 return ecoinvent_locations
             except KeyError as e:
                 print("Can't find location {} using the geomatcher.".format(location))

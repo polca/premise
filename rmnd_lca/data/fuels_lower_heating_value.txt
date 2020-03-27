@@ -5,6 +5,7 @@ wood pellet;16.2
 natural gas, high pressure;47.1
 natural gas, low pressure;39.5
 heavy fuel oil;38.5
+light fuel oi;40.6
 biogas;21.5
 waste;14
 methane;35.8
