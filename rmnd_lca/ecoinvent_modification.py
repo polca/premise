@@ -8,7 +8,12 @@ from .inventory_imports import CarmaCCSInventory,\
     BiogasInventory,\
     SynfuelInventory,\
     SyngasInventory,\
-    HydrogenCoalInventory
+    HydrogenCoalInventory,\
+    GeothermalInventory,\
+    SyngasCoalInventory,\
+    SynfuelCoalInventory,\
+    LPGInventory
+
 from .export import Export
 from .utils import eidb_label
 import wurst
@@ -20,6 +25,10 @@ FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen.xlsx")
 FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel.xlsx")
 FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
+FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = (INVENTORY_DIR / "lci-geothermal.xlsx")
+FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.xlsx")
+FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xlsx")
+FILEPATH_LPG_INVENTORIES = (INVENTORY_DIR / "lci-lpg-from-methanol.xlsx")
 
 
 class NewDatabase:
@@ -89,6 +98,22 @@ class NewDatabase:
         print("Add Hydrogen from coal gasification inventories")
         hydrogen_coal = HydrogenCoalInventory(self.db, self.version, FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES)
         hydrogen_coal.merge_inventory()
+
+        print("Add Geothermal heat inventories")
+        geo_heat = GeothermalInventory(self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES)
+        geo_heat.merge_inventory()
+
+        print("Add Syngas from coal gasification inventories")
+        syngas_coal = SyngasCoalInventory(self.db, self.version, FILEPATH_SYNGAS_FROM_COAL_INVENTORIES)
+        syngas_coal.merge_inventory()
+
+        print("Add Synfuel from coal gasification inventories")
+        synfuel_coal = SynfuelCoalInventory(self.db, self.version, FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES)
+        synfuel_coal.merge_inventory()
+
+        print("Add LPG inventories")
+        lpg = LPGInventory(self.db, self.version, FILEPATH_LPG_INVENTORIES)
+        lpg.merge_inventory()
 
     def update_electricity_to_remind_data(self):
         rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)

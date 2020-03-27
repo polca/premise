@@ -12,3 +12,4 @@ methane;35.8
 diesel;48
 hydrogen;120
 bioethanol;26.8
+liquified petroleum gas;45.5

@@ -201,7 +201,7 @@ class BaseInventoryImport():
         else:
             raise IndexError(
                 'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'\
-                    .format(self.import_db.db_name, exc['name'], exc["location"]))
+                    .format(self.import_db.db_name, exc))
 
 
     def add_biosphere_links(self):
@@ -595,6 +595,59 @@ class HydrogenCoalInventory(BaseInventoryImport):
             )
             self.import_db.migrate("hydrogen_coal_ecoinvent_35")
 
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class GeothermalInventory(BaseInventoryImport):
+    """
+    Geothermal heat production, adapted from geothermal power production dataset from ecoinvent 3.6.
+.
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class SyngasCoalInventory(BaseInventoryImport):
+    """
+    Synthetic fuel datasets from the PSI project (2019), with hydrogen from coal gasification.
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class SynfuelCoalInventory(BaseInventoryImport):
+    """
+    Synthetic fuel datasets from the PSI project (2019), with hydrogen from coal gasification.
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+class LPGInventory(BaseInventoryImport):
+    """
+    Liquified Petroleum Gas (LPG) from methanol distillation, the PSI project (2020), with hydrogen from electrolysis.
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()

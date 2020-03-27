@@ -1633,6 +1633,7 @@ Diatomite, in ground;natural resource;in ground;kilogram;9877ce00-65f8-4c0c-9fcf
 Dolomite, in ground;natural resource;in ground;kilogram;c7aee986-b7d8-4ad9-ad45-1ac0d68e6b78
 Energy, gross calorific value, in biomass;natural resource;biotic;megajoule;01c12fca-ad8b-4902-8b48-2d5afe3d3a0f
 Energy, gross calorific value, in biomass, primary forest;natural resource;biotic;megajoule;8842042d-7f07-45f8-bf43-fa83833d75de
+Energy, geothermal, converted;natural resource;in ground;megajoule;8bc09c04-2190-4ee2-9ee2-ae988ccd4e0c
 Europium, 0.06% in bastnasite, 0.006% in crude ore, in ground;natural resource;in ground;kilogram;7c954971-4bce-41db-9e8b-2b2f049539d7
 Feldspar, in ground;natural resource;in ground;kilogram;26296ec9-ff93-41e6-bbbf-6175af04284d
 Fluorine, 4.5% in apatite, 1% in crude ore, in ground;natural resource;in ground;kilogram;e5fadc0b-1d79-4604-ac32-fd3321f27933
