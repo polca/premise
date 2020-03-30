@@ -21,3 +21,6 @@ Hashes:
 3.  **NDC**: All emission reductions and other mitigation commitments of the *N*ationally*D*etermined *C*ontributions under the Paris Agreement are implemented. See CD-LINKS modelling protocol for details ([https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol\_secondround\_for-website.pdf](https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf))
 4.  **PkBudg 1300/1100/900**: Climate policies to limit cumulative 2011-2100 CO2 emissions to 1300 / 1100 / 900 over the entire time horizon (“not-to-exceed”). Other greenhouse gases are priced with the CO2e-price using 100year global warming potentials.
 
+## COPYRIGHT
+Copyright 2006-2020 Potsdam Institute for Climate Impact Research (PIK)
+
