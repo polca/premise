@@ -2,7 +2,7 @@
 
 https://github.com/remindmodel/remind
 
-- [![DOI: (https://zenodo.org/badge/DOI/10.5281/zenodo.3730919.svg)](https://doi.org/10.5281/zenodo.3730919)
+- DOI: [10.5281/zenodo.3730919](https://doi.org/10.5281/zenodo.3730919)
 - TAG: https://github.com/remindmodel/remind/releases/tag/v2.1.0
 
 Hashes:
@@ -17,9 +17,9 @@ Hashes:
 
 ## Descrition of the scenarios along the climate policy dimension
 1.  **Baseline:** counterfactual scenario with no climate policy implement
-2.  **NPi** (*N*ational *P*olicies *i*mplemented): scenario  describes energy,  climate  and  economic  projections for the  period  until 2030, and equivalent efforts thereafter. See CD-LINKS modelling protocol for details (https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol\_secondround\_for-website.pdf )
-3.  **NDC**: All emission reductions and other mitigation commitments of the *N*ationally*D*etermined *C*ontributions under the Paris Agreement are implemented. See CD-LINKS modelling protocol for details ([https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol\_secondround\_for-website.pdf](https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf))
-4.  **PkBudg 1300/1100/900**: Climate policies to limit cumulative 2011-2100 CO2 emissions to 1300 / 1100 / 900 over the entire time horizon (“not-to-exceed”). Other greenhouse gases are priced with the CO2e-price using 100year global warming potentials.
+2.  **NPi** (*N*ational *P*olicies *i*mplemented): scenario  describes energy,  climate  and  economic  projections for the  period  until 2030, and equivalent efforts thereafter. See [CD-LINKS modelling protocol](https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf) for details. 
+3.  **NDC**: All emission reductions and other mitigation commitments of the *N*ationally*D*etermined *C*ontributions under the Paris Agreement are implemented. See [CD-LINKS modelling protocol](https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf) for details.
+4.  **PkBudg 1300/1100/900**: Climate policies to limit cumulative 2011-2100 CO2 emissions to 1300 / 1100 / 900 over the entire time horizon (“not-to-exceed”). Correspond to 2°, well-below 2° and 1.5° targets. Other greenhouse gases are priced with the CO2e-price using 100year global warming potentials.
 
 ## COPYRIGHT
 Copyright 2006-2020 Potsdam Institute for Climate Impact Research (PIK)
