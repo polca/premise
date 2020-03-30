@@ -35,9 +35,9 @@ def get_db():
     version = 3.5
     return db, version
 
-rdc = RemindDataCollection('BAU', 2012, DATA_DIR / "Remind output files")
+rdc = RemindDataCollection('SSP2-Base', 2012, DATA_DIR / "Remind output files")
 db, _ = get_db()
-el = Electricity(db, rdc, 'BAU', 2012)
+el = Electricity(db, rdc, 'SSP2-Base', 2012)
 
 def test_losses():
     assert len(el.losses) == 174
