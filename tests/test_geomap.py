@@ -15,5 +15,5 @@ def test_REMIND_to_ecoinvent():
     assert "CH" in geomap.remind_to_ecoinvent_location("EUR")
     # Hongkong is in China (really?)
     assert "HK" in geomap.remind_to_ecoinvent_location("CHA")
-    # in Japan there is only GLO and JP
-    assert "JP" == geomap.remind_to_ecoinvent_location("JPN")
+    # in Japan there is only JP
+    assert ["JP"] == geomap.remind_to_ecoinvent_location("JPN")
