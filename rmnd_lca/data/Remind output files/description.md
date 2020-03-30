@@ -2,7 +2,7 @@
 
 https://github.com/remindmodel/remind
 
-- [![DOI: (https://zenodo.org/badge/DOI/10.5281/zenodo.3730919.svg)](https://doi.org/10.5281/zenodo.3730919)]
+- DOI: [10.5281/zenodo.3730919](https://doi.org/10.5281/zenodo.3730919)
 - TAG: https://github.com/remindmodel/remind/releases/tag/v2.1.0
 
 Hashes:
