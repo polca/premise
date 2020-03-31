@@ -103,18 +103,13 @@ class RemindDataCollection:
             (df.index.get_level_values("Variable").str.contains("SE"))
             | (df.index.get_level_values("Variable").str.contains("Tech"))
         ]
-        variables = df.index.get_level_values("Variable").unique()
+        df = df.reset_index()
+        df = df.rename(columns={"Region":"region", "Variable":"variables", "Unit":"unit"})
 
-        regions = df.index.get_level_values("Region").unique()
-        years = df.columns
-        array = xr.DataArray(
-            np.zeros((len(variables), len(regions), len(years), 1)),
-            coords=[variables, regions, years, np.arange(1)],
-            dims=["variable", "region", "year", "value"],
-        )
-        for r in regions:
-            val = df.loc[(df.index.get_level_values("Region") == r), :]
-            array.loc[dict(region=r, value=0)] = val
+        array = df.melt(id_vars=["region", "variables", "unit"],
+                var_name="year",
+                value_name="value")[["region", "variables", 'year',"value"]]\
+                .groupby(["region", "variables",'year'])["value"].mean().to_xarray()
 
         return array
 
@@ -156,24 +151,14 @@ class RemindDataCollection:
             )
         )
 
-        regions = gains_emi.index.get_level_values("region").unique()
-        years = gains_emi.columns.values
-        pollutants = gains_emi.index.get_level_values("pollutant").unique()
-        sectors = gains_emi.index.get_level_values("GAINS").unique()
+        gains_emi = gains_emi.reset_index()
 
-        array = xr.DataArray(
-            np.zeros((len(pollutants), len(sectors), len(regions), len(years), 1)),
-            coords=[pollutants, sectors, regions, years, np.arange(1)],
-            dims=["pollutant", "sector", "region", "year", "value"],
-        )
-        for r in regions:
-            for s in sectors:
-                val = gains_emi.loc[
-                    (gains_emi.index.get_level_values("region") == r)
-                    & (gains_emi.index.get_level_values("GAINS") == s),
-                    :,
-                ]
-                array.loc[dict(region=r, sector=s, value=0)] = val
+        gains_emi = gains_emi.melt(id_vars=["region", "pollutant", "unit", 'GAINS'],
+            var_name="year",
+            value_name="value")[["region", "pollutant", 'GAINS', 'year', 'value']]
+        gains_emi = gains_emi.rename(columns={'GAINS':'sector'})
+
+        array = gains_emi.groupby(["region", "pollutant",'year', 'sector'])["value"].mean().to_xarray()
 
         return array / 8760  # per TWha --> per TWh
 
@@ -209,16 +194,16 @@ class RemindDataCollection:
         # Otherwise, if the year specified corresponds exactly to a year given by REMIND
         elif self.year in self.data.coords["year"]:
             # The contribution of each technology, for a specified year, for a specified region is normalized to 1.
-            return self.data.loc[list_technologies, :, self.year] / self.data.loc[
-                list_technologies, :, self.year
+            return self.data.loc[:, list_technologies, self.year] / self.data.loc[
+                :,list_technologies, self.year
             ].groupby("region").sum(axis=0)
 
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
             data_to_interp_from = self.data.loc[
-                list_technologies, :, :
-            ] / self.data.loc[list_technologies, :, :].groupby("region").sum(axis=0)
+                :, list_technologies, :
+            ] / self.data.loc[:, list_technologies, :].groupby("region").sum(axis=0)
             return data_to_interp_from.interp(year=self.year)
 
     def get_remind_electricity_efficiencies(self, drop_hydrogen=True):
@@ -254,13 +239,13 @@ class RemindDataCollection:
         elif self.year in self.data.coords["year"]:
             # The contribution of each technologies, for a specified year, for a specified region is normalized to 1.
             return (
-                self.data.loc[list_technologies, :, self.year] / 100
+                self.data.loc[:, list_technologies, self.year] / 100
             )  # Percentage to ratio
 
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
-            data_to_interp_from = self.data.loc[list_technologies, :, :]
+            data_to_interp_from = self.data.loc[:, list_technologies, :]
             return (
                 data_to_interp_from.interp(year=self.year) / 100
             )  # Percentage to ratio
@@ -284,9 +269,9 @@ class RemindDataCollection:
         # Otherwise, if the year specified corresponds exactly to a year given by REMIND
         elif self.year in self.gains_data.coords["year"]:
             # The contribution of each technologies, for a specified year, for a specified region is normalized to 1.
-            return self.gains_data.loc[dict(year=self.year, value=0)]
+            return self.gains_data.loc[dict(year=self.year)]
 
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
-            return self.gains_data.loc[dict(value=0)].interp(year=self.year)
+            return self.gains_data.interp(year=self.year)
