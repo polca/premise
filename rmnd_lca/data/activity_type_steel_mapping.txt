@@ -1,0 +1,5 @@
+steel production, electric, low-alloyed;Secondary
+steel production, electric, chromium steel 18/8;Secondary
+steel production, converter, low-alloyed;Primary
+steel production, converter, unalloyed;Primary
+steel production, converter, chromium steel 18/8;Primary

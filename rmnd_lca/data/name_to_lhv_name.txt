@@ -1,0 +1,21 @@
+Solids|Coal;hard coal
+Solids|Biomass;wood pellet
+Solids|Traditional Biomass;wood pellet
+Heat|Biomass;biogas
+Heat|Coal;natural gas, low pressure
+Heat|Gas;natural gas, high pressure
+Heat|Geothermal;natural gas, low pressure
+Liquids|Biomass;bioethanol
+Liquids|Coal;heavy fuel oil
+Liquids|Hydrogen;heavy fuel oil
+Liquids|Oil;diesel
+Liquids|Gas;heavy fuel oil
+Hydrogen|Biomass;hydrogen
+Hydrogen|Coal;hydrogen
+Hydrogen|Gas;hydrogen
+Hydrogen|Electricity;hydrogen
+Gases|Biomass;biogas
+Gases|Natural Gas;natural gas, high pressure
+Gases|Coal;natural gas, high pressure
+Gases|Hydrogen;natural gas, high pressure
+Gases|Waste;waste
