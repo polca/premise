@@ -3,5 +3,5 @@ include rmnd_lca/data/*.xlsx
 include rmnd_lca/data/*.csv
 include rmnd_lca/data/Remind output files/*.mif
 include rmnd_lca/data/Remind output files/*.csv
-
+include rmnd_lca/data/additional_inventories/*.xlsx
 
