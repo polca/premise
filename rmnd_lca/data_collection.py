@@ -1,14 +1,13 @@
 from . import DATA_DIR
 import pandas as pd
-import xarray as xr
-import numpy as np
 from pathlib import Path
 import csv
 
-REMIND_ELEC_MARKETS = (DATA_DIR / "remind_electricity_markets.csv")
-REMIND_ELEC_EFFICIENCIES = (DATA_DIR / "remind_electricity_efficiencies.csv")
-REMIND_ELEC_EMISSIONS = (DATA_DIR / "remind_electricity_emissions.csv")
+REMIND_ELEC_MARKETS = (DATA_DIR / "electricity" / "remind_electricity_markets.csv")
+REMIND_ELEC_EFFICIENCIES = (DATA_DIR / "electricity" / "remind_electricity_efficiencies.csv")
+REMIND_ELEC_EMISSIONS = (DATA_DIR / "electricity" / "remind_electricity_emissions.csv")
 GAINS_TO_REMIND_FILEPATH = (DATA_DIR / "GAINStoREMINDtechmap.csv")
+GNR_DATA = (DATA_DIR / "cement" / "additional_data_GNR.csv")
 
 
 class RemindDataCollection:
@@ -26,6 +25,7 @@ class RemindDataCollection:
         self.filepath_remind_files = filepath_remind_files
         self.data = self.get_remind_data()
         self.gains_data = self.get_gains_data()
+        self.gnr_data = self.get_gnr_data()
         self.electricity_market_labels = self.get_remind_electricity_market_labels()
         self.electricity_efficiency_labels = (
             self.get_remind_electricity_efficiency_labels()
@@ -37,9 +37,11 @@ class RemindDataCollection:
         )
         self.electricity_markets = self.get_remind_electricity_markets()
         self.electricity_efficiencies = self.get_remind_electricity_efficiencies()
-        self.electricity_emissions = self.get_remind_electricity_emissions()
+        self.electricity_emissions = self.get_gains_electricity_emissions()
+        self.cement_emissions = self.get_gains_cement_emissions()
 
-    def get_remind_electricity_emission_labels(self):
+    @staticmethod
+    def get_remind_electricity_emission_labels():
         """
         Loads a csv file into a dictionary. This dictionary contains labels of electricity emissions
         in Remind.
@@ -50,7 +52,8 @@ class RemindDataCollection:
         with open(REMIND_ELEC_EMISSIONS) as f:
             return dict(filter(None, csv.reader(f, delimiter=";")))
 
-    def get_remind_electricity_market_labels(self):
+    @staticmethod
+    def get_remind_electricity_market_labels():
         """
         Loads a csv file into a dictionary. This dictionary contains labels of electricity markets
         in Remind.
@@ -61,7 +64,8 @@ class RemindDataCollection:
         with open(REMIND_ELEC_MARKETS) as f:
             return dict(filter(None, csv.reader(f, delimiter=";")))
 
-    def get_remind_electricity_efficiency_labels(self):
+    @staticmethod
+    def get_remind_electricity_efficiency_labels():
         """
         Loads a csv file into a dictionary. This dictionary contains labels of electricity technologies efficiency
         in Remind.
@@ -97,19 +101,28 @@ class RemindDataCollection:
             filepath, sep=";", index_col=["Region", "Variable", "Unit"]
         ).drop(columns=["Model", "Scenario", "Unnamed: 24"])
         df.columns = df.columns.astype(int)
+        df = df.reset_index()
 
         # Filter the dataframe
+        list_var = (
+            "SE",
+            "Tech",
+            "FE",
+            "Production",
+            "Emi|CCO2",
+            "Emi|CO2"
+        )
+
         df = df.loc[
-            (df.index.get_level_values("Variable").str.contains("SE"))
-            | (df.index.get_level_values("Variable").str.contains("Tech"))
+            df["Variable"].str.startswith(list_var)
         ]
-        df = df.reset_index()
-        df = df.rename(columns={"Region":"region", "Variable":"variables", "Unit":"unit"})
+
+        df = df.rename(columns={"Region": "region", "Variable": "variables", "Unit": "unit"})
 
         array = df.melt(id_vars=["region", "variables", "unit"],
-                var_name="year",
-                value_name="value")[["region", "variables", 'year',"value"]]\
-                .groupby(["region", "variables",'year'])["value"].mean().to_xarray()
+                        var_name="year",
+                        value_name="value")[["region", "variables", 'year', "value"]] \
+            .groupby(["region", "variables", 'year'])["value"].mean().to_xarray()
 
         return array
 
@@ -142,9 +155,9 @@ class RemindDataCollection:
 
         gains_emi = (
             gains_emi.join(sector_mapping.set_index("GAINS"), on="GAINS")
-            .dropna()
-            .drop(["scenario", "REMIND"], axis=1)
-            .pivot_table(
+                .dropna()
+                .drop(["scenario", "REMIND"], axis=1)
+                .pivot_table(
                 index=["region", "GAINS", "pollutant", "unit"],
                 values="factor",
                 columns="year",
@@ -152,15 +165,36 @@ class RemindDataCollection:
         )
 
         gains_emi = gains_emi.reset_index()
-
         gains_emi = gains_emi.melt(id_vars=["region", "pollutant", "unit", 'GAINS'],
-            var_name="year",
-            value_name="value")[["region", "pollutant", 'GAINS', 'year', 'value']]
-        gains_emi = gains_emi.rename(columns={'GAINS':'sector'})
-
-        array = gains_emi.groupby(["region", "pollutant",'year', 'sector'])["value"].mean().to_xarray()
+                                   var_name="year",
+                                   value_name="value")[["region", "pollutant", 'GAINS', 'year', 'value']]
+        gains_emi = gains_emi.rename(columns={'GAINS': 'sector'})
+        array = gains_emi.groupby(["region", "pollutant", 'year', 'sector'])["value"].mean().to_xarray()
 
         return array / 8760  # per TWha --> per TWh
+
+    def get_gnr_data(self):
+        """
+        Read the GNR csv file on cement production and return an `xarray` with dimensions:
+        * region
+        * year
+        * variables
+
+        :return: an multi-dimensional array with GNR data
+        :rtype: xarray.core.dataarray.DataArray
+
+        :return:
+        """
+        df = pd.read_csv(
+            GNR_DATA)
+        df = df[["region", "year", "variables", "value"]]
+
+        gnr_array = df.groupby(["region", "year", "variables"]).mean()["value"].to_xarray()
+        gnr_array = gnr_array.interpolate_na(dim='year', method='linear', fill_value='extrapolate')
+        gnr_array = gnr_array.interp(year=self.year)
+        gnr_array = gnr_array.fillna(0)
+
+        return gnr_array
 
     def get_remind_electricity_markets(self, drop_hydrogen=True):
         """
@@ -186,24 +220,17 @@ class RemindDataCollection:
 
         # If the year specified is not contained within the range of years given by REMIND
         if (
-            self.year < self.data.year.values.min()
-            or self.year > self.data.year.values.max()
+                self.year < self.data.year.values.min()
+                or self.year > self.data.year.values.max()
         ):
             raise KeyError("year not valid, must be between 2005 and 2150")
-
-        # Otherwise, if the year specified corresponds exactly to a year given by REMIND
-        elif self.year in self.data.coords["year"]:
-            # The contribution of each technology, for a specified year, for a specified region is normalized to 1.
-            return self.data.loc[:, list_technologies, self.year] / self.data.loc[
-                :,list_technologies, self.year
-            ].groupby("region").sum(axis=0)
 
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
             data_to_interp_from = self.data.loc[
-                :, list_technologies, :
-            ] / self.data.loc[:, list_technologies, :].groupby("region").sum(axis=0)
+                                  :, list_technologies, :
+                                  ] / self.data.loc[:, list_technologies, :].groupby("region").sum(axis=0)
             return data_to_interp_from.interp(year=self.year)
 
     def get_remind_electricity_efficiencies(self, drop_hydrogen=True):
@@ -230,30 +257,23 @@ class RemindDataCollection:
 
         # If the year specified is not contained within the range of years given by REMIND
         if (
-            self.year < self.data.year.values.min()
-            or self.year > self.data.year.values.max()
+                self.year < self.data.year.values.min()
+                or self.year > self.data.year.values.max()
         ):
             raise KeyError("year not valid, must be between 2005 and 2150")
-
-        # Otherwise, if the year specified corresponds exactly to a year given by REMIND
-        elif self.year in self.data.coords["year"]:
-            # The contribution of each technologies, for a specified year, for a specified region is normalized to 1.
-            return (
-                self.data.loc[:, list_technologies, self.year] / 100
-            )  # Percentage to ratio
 
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
             data_to_interp_from = self.data.loc[:, list_technologies, :]
             return (
-                data_to_interp_from.interp(year=self.year) / 100
+                    data_to_interp_from.interp(year=self.year) / 100
             )  # Percentage to ratio
 
-    def get_remind_electricity_emissions(self):
+    def get_gains_electricity_emissions(self):
         """
         This method retrieves emission values for electricity-producing technology, for a specified year,
-        for each region provided by REMIND.
+        for each region provided by GAINS.
 
         :return: an multi-dimensional array with emissions for different technologies for a given year, for all regions.
         :rtype: xarray.core.dataarray.DataArray
@@ -261,17 +281,34 @@ class RemindDataCollection:
         """
         # If the year specified is not contained within the range of years given by REMIND
         if (
-            self.year < self.gains_data.year.values.min()
-            or self.year > self.gains_data.year.values.max()
+                self.year < self.gains_data.year.values.min()
+                or self.year > self.gains_data.year.values.max()
         ):
             raise KeyError("year not valid, must be between 2005 and 2150")
-
-        # Otherwise, if the year specified corresponds exactly to a year given by REMIND
-        elif self.year in self.gains_data.coords["year"]:
-            # The contribution of each technologies, for a specified year, for a specified region is normalized to 1.
-            return self.gains_data.loc[dict(year=self.year)]
 
         # Finally, if the specified year falls in between two periods provided by REMIND
         else:
             # Interpolation between two periods
-            return self.gains_data.interp(year=self.year)
+            return self.gains_data.sel(sector=[v for v in self.electricity_emission_labels.values()]) \
+                .interp(year=self.year)
+
+    def get_gains_cement_emissions(self):
+        """
+        This method retrieves emission values for cement production, for a specified year,
+        for each region provided by GAINS.
+
+        :return: an multi-dimensional array with emissions for different technologies for a given year, for all regions.
+        :rtype: xarray.core.dataarray.DataArray
+
+        """
+        # If the year specified is not contained within the range of years given by REMIND
+        if (
+                self.year < self.gains_data.year.values.min()
+                or self.year > self.gains_data.year.values.max()
+        ):
+            raise KeyError("year not valid, must be between 2005 and 2150")
+
+        # Finally, if the specified year falls in between two periods provided by REMIND
+        else:
+            # Interpolation between two periods
+            return self.gains_data.sel(sector='CEMENT').interp(year=self.year)

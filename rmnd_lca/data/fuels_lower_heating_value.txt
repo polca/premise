@@ -5,11 +5,15 @@ wood pellet;16.2
 natural gas, high pressure;47.1
 natural gas, low pressure;39.5
 heavy fuel oil;38.5
-light fuel oi;40.6
+light fuel oil;40.6
 biogas;21.5
 waste;14
-methane;35.8
+methane, fossil;35.8
+methane, biogenic;35.8
 diesel;48
+gasoline;42
 hydrogen;120
 bioethanol;26.8
-liquified petroleum gas;45.5
+biodiesel;37.8
+liquified petroleum gas, natural;45.5
+liquified petroleum gas, synthetic;45.5

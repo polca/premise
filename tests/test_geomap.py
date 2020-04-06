@@ -3,11 +3,13 @@ from rmnd_lca.geomap import Geomap
 
 geomap = Geomap()
 
+
 def test_ecoinvent_to_REMIND():
     # DE is in EUR
     assert geomap.ecoinvent_to_remind_location("DE") == "EUR"
     # CN is in CHA
     assert geomap.ecoinvent_to_remind_location("CN") == "CHA"
+
 
 def test_REMIND_to_ecoinvent():
     # DE and CH are in EUR (at least for now)

@@ -6,11 +6,13 @@ __all__ = (
     "Electricity",
     "BiofuelInventory",
     "CarmaCCSInventory",
-    "Geomap"
+    "Geomap",
+    "DATA_DIR"
 )
 __version__ = (0, 0, 1)
 
 from pathlib import Path
+
 DATA_DIR = Path(__file__).resolve().parent / "data"
 INVENTORY_DIR = Path(__file__).resolve().parent / "data" / "additional_inventories"
 

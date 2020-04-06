@@ -230,7 +230,7 @@
 ('pulverised lignite production', 'pulverised lignite', 'megajoule', 'RoW');229
 ('plug production, inlet and outlet, for computer cable', 'plug, inlet and outlet, for computer cable', 'unit', 'GLO');230
 ('market for machine operation, diesel, < 18.64 kW, generators', 'machine operation, diesel, < 18.64 kW, generators', 'hour', 'GLO');231
-"(""storage production, 10'000 l"", ""storage, 10'000 l"", 'unit', 'RER')";232
+("storage production, 10'000 l", "storage, 10'000 l", 'unit', 'RER');232
 ('anaerobic digestion plant construction, for sewage sludge', 'anaerobic digestion plant, for sewage sludge', 'unit', 'RoW');233
 ('welding, gas, steel', 'welding, gas, steel', 'meter', 'RoW');234
 ('maize grain production', 'maize grain', 'kilogram', 'AR');235
@@ -1674,7 +1674,7 @@
 ('market for aluminium in car shredder residue', 'aluminium in car shredder residue', 'kilogram', 'CH');1673
 ('aluminium oxide production', 'aluminium oxide, non-metallurgical', 'kilogram', 'CN');1674
 ('aluminium oxide production', 'aluminium oxide, metallurgical', 'kilogram', 'CN');1675
-('aluminium production, primary, liquid, Söderberg', 'aluminium, primary, liquid', 'kilogram', 'IAI Area, South America');1676
+('aluminium production, primary, liquid, Sï¿½derberg', 'aluminium, primary, liquid', 'kilogram', 'IAI Area, South America');1676
 ('market for red meat, live weight', 'red meat, live weight', 'kilogram', 'GLO');1677
 ('ferrite production', 'ferrite', 'kilogram', 'GLO');1678
 ('cleaning consumables, without water, in 13.6% solution state', 'cleaning consumables, without water, in 13.6% solution state', 'kilogram', 'GLO');1679
@@ -1721,7 +1721,7 @@
 ('ground granulated blast furnace slag production', 'ground granulated blast furnace slag', 'kilogram', 'US');1720
 ('electricity production, hard coal', 'electricity, high voltage', 'kilowatt hour', 'CN-HL');1721
 ('market for land use change, perennial crop', 'land use change, perennial crop', 'hectare', 'BR-AM');1722
-('market for roundwood, paraná pine from sustainable forest management, under bark', 'roundwood, paraná pine from sustainable forest management, under bark', 'cubic meter', 'GLO');1723
+('market for roundwood, paranï¿½ pine from sustainable forest management, under bark', 'roundwood, paranï¿½ pine from sustainable forest management, under bark', 'cubic meter', 'GLO');1723
 ('electricity production, lignite', 'electricity, high voltage', 'kilowatt hour', 'TH');1724
 ('irrigation, drip', 'irrigation', 'cubic meter', 'BR');1725
 ('electricity production, wind, <1MW turbine, onshore', 'electricity, high voltage', 'kilowatt hour', 'RU');1726
@@ -2043,7 +2043,7 @@
 ('photovoltaic laminate production, single-Si wafer', 'photovoltaic laminate, single-Si wafer', 'square meter', 'RoW');2042
 ('clear-cutting, primary forest to arable land, perennial crop', 'land tenure, arable land, measured as carbon net primary productivity, perennial crop', 'kilogram', 'BR-PI');2043
 ('maintenance, container ship', 'maintenance, container ship', 'unit', 'GLO');2044
-('aluminium production, primary, liquid, Söderberg', 'aluminium, primary, liquid', 'kilogram', 'RNA');2045
+('aluminium production, primary, liquid, Sï¿½derberg', 'aluminium, primary, liquid', 'kilogram', 'RNA');2045
 ('packing, cement', 'packing, cement', 'kilogram', 'CH');2046
 ('tower silo production, plastic', 'tower silo, plastic', 'cubic meter', 'CH');2047
 ('market for maintenance, bus', 'maintenance, bus', 'unit', 'GLO');2048
@@ -4415,7 +4415,7 @@
 ('market for waste packaging paper', 'waste packaging paper', 'kilogram', 'GR');4414
 ('market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas', 'transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas', 'ton kilometer', 'GLO');4415
 ('electricity production, wind, 1-3MW turbine, onshore', 'electricity, high voltage', 'kilowatt hour', 'RU');4416
-('market for sawnwood, paraná pine from sustainable forest management, kiln dried', 'sawnwood, paraná pine from sustainable forest management, kiln dried', 'cubic meter', 'GLO');4417
+('market for sawnwood, paranï¿½ pine from sustainable forest management, kiln dried', 'sawnwood, paranï¿½ pine from sustainable forest management, kiln dried', 'cubic meter', 'GLO');4417
 ('market for waste concrete, not reinforced', 'waste concrete, not reinforced', 'kilogram', 'CH');4418
 ('market for land tenure, arable land, measured as carbon net primary productivity, perennial crop', 'land tenure, arable land, measured as carbon net primary productivity, perennial crop', 'kilogram', 'BR-PR');4419
 ('bromopropane production', 'bromopropane', 'kilogram', 'RER');4420
@@ -4860,7 +4860,7 @@
 ('fava bean seed production, for sowing', 'fava bean seed, for sowing', 'kilogram', 'RoW');4859
 ('precious metal refinery construction', 'precious metal refinery', 'unit', 'RoW');4860
 ('market for anionic resin', 'anionic resin', 'kilogram', 'RER');4861
-('aluminium production, primary, liquid, Söderberg', 'aluminium, primary, liquid', 'kilogram', 'IAI Area, Russia & RER w/o EU27 & EFTA');4862
+('aluminium production, primary, liquid, Sï¿½derberg', 'aluminium, primary, liquid', 'kilogram', 'IAI Area, Russia & RER w/o EU27 & EFTA');4862
 ('green manure growing, organic, until January', 'green manure, organic, until January', 'hectare', 'RoW');4863
 ('market for waste cement, hydrated', 'waste cement, hydrated', 'kilogram', 'RoW');4864
 ('electricity production, wind, >3MW turbine, onshore', 'electricity, high voltage', 'kilowatt hour', 'CN-JS');4865
@@ -4920,7 +4920,7 @@
 ('clear-cutting, primary forest to arable land, perennial crop', 'land tenure, arable land, measured as carbon net primary productivity, perennial crop', 'kilogram', 'CI');4919
 ('treatment of lignite ash, municipal incineration with fly ash extraction', 'lignite ash', 'kilogram', 'CH');4920
 ('wire drawing, steel', 'wire drawing, steel', 'kilogram', 'RER');4921
-('import of sawnwood, paraná pine from sustainable forest management, kiln dried', 'sawnwood, paraná pine from sustainable forest management, kiln dried', 'cubic meter', 'RER');4922
+('import of sawnwood, paranï¿½ pine from sustainable forest management, kiln dried', 'sawnwood, paranï¿½ pine from sustainable forest management, kiln dried', 'cubic meter', 'RER');4922
 ('trichloroacetic acid production', 'trichloroacetic acid', 'kilogram', 'RoW');4923
 ('market for transport, freight, lorry 16-32 metric ton, EURO3', 'transport, freight, lorry 16-32 metric ton, EURO3', 'ton kilometer', 'RoW');4924
 ('room-connecting overflow element production, steel, approx. 40 m3/h', 'room-connecting overflow element, steel, approx. 40 m3/h', 'unit', 'RER');4925
@@ -5519,7 +5519,7 @@
 ('heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014', 'electricity, high voltage', 'kilowatt hour', 'LU');5518
 ('heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014', 'heat, district or industrial, other than natural gas', 'megajoule', 'LU');5519
 ('market for waste paperboard', 'waste paperboard', 'kilogram', 'GR');5520
-('ventilation duct production, elbow 90°, steel, 100x50 mm', 'ventilation duct, elbow 90°, steel, 100x50 mm', 'unit', 'RER');5521
+('ventilation duct production, elbow 90ï¿½, steel, 100x50 mm', 'ventilation duct, elbow 90ï¿½, steel, 100x50 mm', 'unit', 'RER');5521
 ('treatment of ash from paper production sludge, residual material landfill', 'ash from paper production sludge', 'kilogram', 'RoW');5522
 ('electricity production, oil', 'electricity, high voltage', 'kilowatt hour', 'CN-NX');5523
 ('allyl chloride production, reaction of propylene and chlorine', 'hydrochloric acid, without water, in 30% solution state', 'kilogram', 'RoW');5524
@@ -7254,7 +7254,7 @@
 ('market for transport, passenger car, medium size, petrol, EURO 5', 'transport, passenger car, medium size, petrol, EURO 5', 'kilometer', 'GLO');7253
 ('treatment of waste polypropylene, open dump, wet infiltration class (500mm)', 'waste polypropylene', 'kilogram', 'GLO');7254
 ('treatment of inert waste, sanitary landfill', 'inert waste', 'kilogram', 'Europe without Switzerland');7255
-('rare earth concentrate production, 70% REO, from bastnäsite', 'rare earth concentrate, 70% REO, from bastnäsite', 'kilogram', 'RoW');7256
+('rare earth concentrate production, 70% REO, from bastnï¿½site', 'rare earth concentrate, 70% REO, from bastnï¿½site', 'kilogram', 'RoW');7256
 ('aluminium turning, average, conventional', 'aluminium removed by turning, average, conventional', 'kilogram', 'RoW');7257
 ('propylene production, pipeline system', 'propylene, pipeline system', 'kilogram', 'RoW');7258
 ('market for waste paint on metal', 'waste paint on metal', 'kilogram', 'CH');7259
@@ -7647,7 +7647,7 @@
 ('market for iodine', 'iodine', 'kilogram', 'GLO');7646
 ('electricity production, hydro, run-of-river', 'electricity, high voltage', 'kilowatt hour', 'IN-GJ');7647
 ('market for cement, blast furnace slag 36-65%', 'cement, blast furnace slag 36-65%', 'kilogram', 'ZA');7648
-('aluminium production, primary, liquid, Söderberg', 'aluminium, primary, liquid', 'kilogram', 'IAI Area, Asia, without China and GCC');7649
+('aluminium production, primary, liquid, Sï¿½derberg', 'aluminium, primary, liquid', 'kilogram', 'IAI Area, Asia, without China and GCC');7649
 ('kerosene production, petroleum refinery operation', 'kerosene', 'kilogram', 'PE');7650
 ('cement production, limestone 6-10%', 'cement, limestone 6-10%', 'kilogram', 'BR');7651
 ('trichloroethylene production', 'trichloroethylene', 'kilogram', 'RER');7652
@@ -7863,8 +7863,8 @@
 ('heat and power co-generation, oil', 'heat, district or industrial, other than natural gas', 'megajoule', 'US-NPCC');7862
 ('electricity voltage transformation from medium to low voltage', 'electricity, low voltage', 'kilowatt hour', 'BH');7863
 ('packaging box factory construction', 'packaging box factory', 'unit', 'RoW');7864
-('market for ventilation duct, elbow 90°, steel, 100x50 mm', 'ventilation duct, elbow 90°, steel, 100x50 mm', 'unit', 'GLO');7865
-('aluminium production, primary, liquid, Söderberg', 'aluminium, primary, liquid', 'kilogram', 'IAI Area, EU27 & EFTA');7866
+('market for ventilation duct, elbow 90ï¿½, steel, 100x50 mm', 'ventilation duct, elbow 90ï¿½, steel, 100x50 mm', 'unit', 'GLO');7865
+('aluminium production, primary, liquid, Sï¿½derberg', 'aluminium, primary, liquid', 'kilogram', 'IAI Area, EU27 & EFTA');7866
 ('electricity voltage transformation from high to medium voltage', 'electricity, medium voltage', 'kilowatt hour', 'DO');7867
 ('glider production, passenger car', 'glider, passenger car', 'kilogram', 'GLO');7868
 ('treatment of waste polystyrene, sanitary landfill', 'waste polystyrene', 'kilogram', 'RoW');7869
@@ -8231,7 +8231,7 @@
 ('market for petroleum slack wax', 'petroleum slack wax', 'kilogram', 'GLO');8230
 ('potato seed production, Swiss integrated production, at farm', 'potato seed, Swiss integrated production, at farm', 'kilogram', 'CH');8231
 ('gravel and sand quarry operation', 'sand', 'kilogram', 'RoW');8232
-('rare earth concentrate production, 70% REO, from bastnäsite', 'rare earth concentrate, 70% REO, from bastnäsite', 'kilogram', 'CN');8233
+('rare earth concentrate production, 70% REO, from bastnï¿½site', 'rare earth concentrate, 70% REO, from bastnï¿½site', 'kilogram', 'CN');8233
 ('chipper production, mobile, diesel', 'chipper, mobile, diesel', 'unit', 'RER');8234
 ('ventilation system production, decentralized, 6 x 120 m3/h, steel ducts', 'ventilation system, decentralized, 6 x 120 m3/h, steel ducts', 'unit', 'CH');8235
 ('stibnite mine operation, 70% stibnite', 'stibnite ore, 70% stibnite', 'kilogram', 'CA-QC');8236
@@ -9832,10 +9832,10 @@
 ('electricity voltage transformation from medium to low voltage', 'electricity, low voltage', 'kilowatt hour', 'SV');9831
 ('impact extrusion of steel, warm, 4 strokes', 'impact extrusion of steel, warm, 4 strokes', 'kilogram', 'RoW');9832
 ('cement production, fly ash 21-35%', 'hard coal ash', 'kilogram', 'RoW');9833
-('sawing and planing, paraná pine, kiln dried', 'residual wood, dry', 'cubic meter', 'RoW');9834
-('sawing and planing, paraná pine, kiln dried', 'sawnwood, paraná pine from sustainable forest management, kiln dried', 'cubic meter', 'RoW');9835
-('sawing and planing, paraná pine, kiln dried', 'wood chips, dry, measured as dry mass', 'kilogram', 'RoW');9836
-('sawing and planing, paraná pine, kiln dried', 'electricity, low voltage', 'kilowatt hour', 'RoW');9837
+('sawing and planing, paranï¿½ pine, kiln dried', 'residual wood, dry', 'cubic meter', 'RoW');9834
+('sawing and planing, paranï¿½ pine, kiln dried', 'sawnwood, paranï¿½ pine from sustainable forest management, kiln dried', 'cubic meter', 'RoW');9835
+('sawing and planing, paranï¿½ pine, kiln dried', 'wood chips, dry, measured as dry mass', 'kilogram', 'RoW');9836
+('sawing and planing, paranï¿½ pine, kiln dried', 'electricity, low voltage', 'kilowatt hour', 'RoW');9837
 ('ethylene hydration', 'ethanol, without water, in 99.7% solution state, from ethylene', 'kilogram', 'RoW');9838
 ('ethylene hydration', 'diethyl ether, without water, in 99.95% solution state', 'kilogram', 'RoW');9839
 ('market for tap water', 'tap water', 'kilogram', 'CO');9840
@@ -11372,11 +11372,11 @@
 ('rye production', 'straw', 'kilogram', 'RER');11371
 ('rye production', 'rye grain', 'kilogram', 'RER');11372
 ('electricity production, photovoltaic, 570kWp open ground installation, multi-Si', 'electricity, low voltage', 'kilowatt hour', 'CA-PE');11373
-('rare earth oxides production from bastnäsite concentrate', 'neodymium oxide', 'kilogram', 'RoW');11374
-('rare earth oxides production from bastnäsite concentrate', 'samarium europium gadolinium concentrate, 94% rare earth oxide', 'kilogram', 'RoW');11375
-('rare earth oxides production from bastnäsite concentrate', 'lanthanum oxide', 'kilogram', 'RoW');11376
-('rare earth oxides production from bastnäsite concentrate', 'cerium concentrate, 60% cerium oxide', 'kilogram', 'RoW');11377
-('rare earth oxides production from bastnäsite concentrate', 'praseodymium oxide', 'kilogram', 'RoW');11378
+('rare earth oxides production from bastnï¿½site concentrate', 'neodymium oxide', 'kilogram', 'RoW');11374
+('rare earth oxides production from bastnï¿½site concentrate', 'samarium europium gadolinium concentrate, 94% rare earth oxide', 'kilogram', 'RoW');11375
+('rare earth oxides production from bastnï¿½site concentrate', 'lanthanum oxide', 'kilogram', 'RoW');11376
+('rare earth oxides production from bastnï¿½site concentrate', 'cerium concentrate, 60% cerium oxide', 'kilogram', 'RoW');11377
+('rare earth oxides production from bastnï¿½site concentrate', 'praseodymium oxide', 'kilogram', 'RoW');11378
 ('market for municipal solid waste', 'municipal solid waste', 'kilogram', 'SE');11379
 ('compressed air production, 600 kPa gauge, >30kW, best generation', 'compressed air, 600 kPa gauge', 'cubic meter', 'RoW');11380
 ('market group for tap water', 'tap water', 'kilogram', 'GLO');11381
@@ -14007,7 +14007,7 @@
 ('board, softwood, raw, kiln drying to u=10%', 'sawnwood, board, softwood, raw, dried (u=10%)', 'cubic meter', 'CH');14006
 ('ethanol production from sugar beet', 'sugar beet pulp', 'kilogram', 'RoW');14007
 ('ethanol production from sugar beet', 'ethanol, without water, in 95% solution state, from fermentation', 'kilogram', 'RoW');14008
-('market for rare earth concentrate, 70% REO, from bastnäsite', 'rare earth concentrate, 70% REO, from bastnäsite', 'kilogram', 'GLO');14009
+('market for rare earth concentrate, 70% REO, from bastnï¿½site', 'rare earth concentrate, 70% REO, from bastnï¿½site', 'kilogram', 'GLO');14009
 ('train production, passenger, high speed', 'train, passenger, high speed', 'unit', 'DE');14010
 ('copper mine operation, sulfide ore', 'copper concentrate, sulfide ore', 'kilogram', 'RNA');14011
 ('copper mine operation, sulfide ore', 'molybdenite', 'kilogram', 'RNA');14012
@@ -14142,7 +14142,7 @@
 ('pump station construction', 'pump station', 'unit', 'CH');14141
 ('catch crop growing, sunflower, August-October, organic fertiliser 20 kg N', 'sunflower silage', 'kilogram', 'RoW');14142
 ('land already in use, perennial cropland to annual crop', 'land tenure, arable land, measured as carbon net primary productivity, annual crop', 'kilogram', 'FI');14143
-('softwood forestry, paraná pine, sustainable forest management', 'roundwood, paraná pine from sustainable forest management, under bark', 'cubic meter', 'BR');14144
+('softwood forestry, paranï¿½ pine, sustainable forest management', 'roundwood, paranï¿½ pine from sustainable forest management, under bark', 'cubic meter', 'BR');14144
 ('market for copper sulfate', 'copper sulfate', 'kilogram', 'GLO');14145
 ('fibre cement facing tile production, large format', 'fibre cement facing tile, large format', 'kilogram', 'RoW');14146
 ('heat and power co-generation, natural gas, conventional power plant, 100MW electrical', 'heat, district or industrial, natural gas', 'megajoule', 'CA-PE');14147
@@ -14173,7 +14173,7 @@
 ('electricity voltage transformation from high to medium voltage', 'electricity, medium voltage', 'kilowatt hour', 'BR-Southern grid');14172
 ('C3 hydrocarbon production, mixture, petroleum refinery operation', 'C3 hydrocarbon mixture', 'kilogram', 'PE');14173
 ('electricity production, oil', 'electricity, high voltage', 'kilowatt hour', 'CN-SX');14174
-('ventilation duct production, elbow 90°, steel, 100x50 mm', 'ventilation duct, elbow 90°, steel, 100x50 mm', 'unit', 'RoW');14175
+('ventilation duct production, elbow 90ï¿½, steel, 100x50 mm', 'ventilation duct, elbow 90ï¿½, steel, 100x50 mm', 'unit', 'RoW');14175
 ('electricity production, nuclear, pressure water reactor', 'electricity, high voltage', 'kilowatt hour', 'ZA');14176
 ('sealing tape production, aluminium/PE, 50 mm wide', 'sealing tape, aluminium/PE, 50 mm wide', 'meter', 'RoW');14177
 ('power block installation, solar thermal parabolic trough, 50 MW', 'power block, solar thermal parabolic trough, 50 MW', 'unit', 'ZA');14178
@@ -14451,7 +14451,7 @@
 ('market for fibre cement roof slate', 'fibre cement roof slate', 'kilogram', 'GLO');14450
 ('heat production, wood chips from industry, at furnace 1000kW, state-of-the-art 2014', 'heat, district or industrial, other than natural gas', 'megajoule', 'CH');14451
 ('brass turning, primarily dressing, conventional', 'brass removed by turning, primarily dressing, conventional', 'kilogram', 'RoW');14452
-('softwood forestry, paraná pine, sustainable forest management', 'roundwood, paraná pine from sustainable forest management, under bark', 'cubic meter', 'RoW');14453
+('softwood forestry, paranï¿½ pine, sustainable forest management', 'roundwood, paranï¿½ pine from sustainable forest management, under bark', 'cubic meter', 'RoW');14453
 ('sodium hydroxide to generic market for neutralising agent', 'neutralising agent, sodium hydroxide-equivalent', 'kilogram', 'GLO');14454
 ('treatment of waste paperboard, open dump, moist infiltration class (300mm)', 'waste paperboard', 'kilogram', 'GLO');14455
 ('market for acetone, liquid', 'acetone, liquid', 'kilogram', 'RoW');14456
@@ -14851,10 +14851,10 @@
 ('hake, capture by trawler and landing whole, fresh', 'landed hake, fresh', 'kilogram', 'RoW');14850
 ('hake, capture by trawler and landing whole, fresh', 'demersal fish, fresh', 'kilogram', 'RoW');14851
 ('market for used air filter decentralized unit, 180-250 m3/h', 'used air filter decentralized unit, 180-250 m3/h', 'unit', 'RoW');14852
-('sawing and planing, paraná pine, kiln dried', 'residual wood, dry', 'cubic meter', 'BR');14853
-('sawing and planing, paraná pine, kiln dried', 'sawnwood, paraná pine from sustainable forest management, kiln dried', 'cubic meter', 'BR');14854
-('sawing and planing, paraná pine, kiln dried', 'wood chips, dry, measured as dry mass', 'kilogram', 'BR');14855
-('sawing and planing, paraná pine, kiln dried', 'electricity, low voltage', 'kilowatt hour', 'BR');14856
+('sawing and planing, paranï¿½ pine, kiln dried', 'residual wood, dry', 'cubic meter', 'BR');14853
+('sawing and planing, paranï¿½ pine, kiln dried', 'sawnwood, paranï¿½ pine from sustainable forest management, kiln dried', 'cubic meter', 'BR');14854
+('sawing and planing, paranï¿½ pine, kiln dried', 'wood chips, dry, measured as dry mass', 'kilogram', 'BR');14855
+('sawing and planing, paranï¿½ pine, kiln dried', 'electricity, low voltage', 'kilowatt hour', 'BR');14856
 ('market for used bus', 'used bus', 'unit', 'GLO');14857
 ('operation, computer, laptop, 23% active work', 'operation, computer, laptop, 23% active work', 'hour', 'CA-QC');14858
 ('market for tetrafluoroethane', 'tetrafluoroethane', 'kilogram', 'GLO');14859
@@ -15302,11 +15302,11 @@
 ('fertilising, by broadcaster', 'fertilising, by broadcaster', 'hectare', 'CH');15301
 ('treatment of coal gas, in power plant', 'electricity, high voltage', 'kilowatt hour', 'BG');15302
 ('treatment of coal gas, in power plant', 'heat, district or industrial, other than natural gas', 'megajoule', 'BG');15303
-('rare earth oxides production from bastnäsite concentrate', 'neodymium oxide', 'kilogram', 'CN');15304
-('rare earth oxides production from bastnäsite concentrate', 'samarium europium gadolinium concentrate, 94% rare earth oxide', 'kilogram', 'CN');15305
-('rare earth oxides production from bastnäsite concentrate', 'lanthanum oxide', 'kilogram', 'CN');15306
-('rare earth oxides production from bastnäsite concentrate', 'cerium concentrate, 60% cerium oxide', 'kilogram', 'CN');15307
-('rare earth oxides production from bastnäsite concentrate', 'praseodymium oxide', 'kilogram', 'CN');15308
+('rare earth oxides production from bastnï¿½site concentrate', 'neodymium oxide', 'kilogram', 'CN');15304
+('rare earth oxides production from bastnï¿½site concentrate', 'samarium europium gadolinium concentrate, 94% rare earth oxide', 'kilogram', 'CN');15305
+('rare earth oxides production from bastnï¿½site concentrate', 'lanthanum oxide', 'kilogram', 'CN');15306
+('rare earth oxides production from bastnï¿½site concentrate', 'cerium concentrate, 60% cerium oxide', 'kilogram', 'CN');15307
+('rare earth oxides production from bastnï¿½site concentrate', 'praseodymium oxide', 'kilogram', 'CN');15308
 ('market for zinc in car shredder residue', 'zinc in car shredder residue', 'kilogram', 'RoW');15309
 ('chromium steel drilling, conventional', 'chromium steel removed by drilling, conventional', 'kilogram', 'RoW');15310
 ('sulfur production, petroleum refinery operation', 'sulfur', 'kilogram', 'PE');15311

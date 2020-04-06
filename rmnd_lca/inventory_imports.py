@@ -9,7 +9,7 @@ import uuid
 FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
 
 
-class BaseInventoryImport():
+class BaseInventoryImport:
     """
     Base class for inventories that are to be merged with the ecoinvent database.
 
@@ -85,7 +85,7 @@ class BaseInventoryImport():
         for act in self.import_db.data:
             for ex in act["exchanges"]:
                 if len(srchdict.items() - ex.items()) == 0:
-                   results.append(act)
+                    results.append(act)
         return results
 
     def search_missing_field(self, field):
@@ -103,10 +103,11 @@ class BaseInventoryImport():
                 results.append(act)
             for ex in act["exchanges"]:
                 if ex["type"] == "technosphere" and field not in ex:
-                   results.append(ex)
+                    results.append(ex)
         return results
 
-    def get_biosphere_code(self):
+    @staticmethod
+    def get_biosphere_code():
         """
         Retrieve a dictionary with biosphere flow names and uuid codes.
 
@@ -169,7 +170,7 @@ class BaseInventoryImport():
         # Add a `code` field if missing
         for x in self.import_db.data:
             if "code" not in x:
-                x["code"] =  str(uuid.uuid4().hex)
+                x["code"] = str(uuid.uuid4().hex)
 
     def correct_product_field(self, exc):
         """
@@ -183,8 +184,8 @@ class BaseInventoryImport():
             a["reference product"]
             for a in self.import_db.data
             if a["name"] == exc["name"]
-            and a["location"] == exc["location"]
-            and a["unit"] == exc["unit"]
+               and a["location"] == exc["location"]
+               and a["unit"] == exc["unit"]
         ]
 
         # If not, look in the ecoinvent inventories
@@ -193,16 +194,15 @@ class BaseInventoryImport():
                 a["reference product"]
                 for a in self.db
                 if a["name"] == exc["name"]
-                and a["location"] == exc["location"]
-                and a["unit"] == exc["unit"]
+                   and a["location"] == exc["location"]
+                   and a["unit"] == exc["unit"]
             ]
         if len(possibles) > 0:
-           return possibles[0]
+            return possibles[0]
         else:
             raise IndexError(
-                'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}'\
+                'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}' \
                     .format(self.import_db.db_name, exc))
-
 
     def add_biosphere_links(self):
         """Add links for biosphere exchanges to :attr:`import_db`
@@ -239,7 +239,6 @@ class BaseInventoryImport():
                             ],
                         )
 
-
     def remove_ds_and_modifiy_exchanges(self, name, ex_data):
         """
         Remove an activity dataset from :attr:`import_db` and replace the corresponding
@@ -259,7 +258,7 @@ class BaseInventoryImport():
                     ex.update(ex_data)
                     # make sure there is no existing link
                     if "input" in ex:
-                        del(ex["input"])
+                        del (ex["input"])
 
 
 class CarmaCCSInventory(BaseInventoryImport):
@@ -267,7 +266,7 @@ class CarmaCCSInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-        if(self.version == 3.6):
+        if self.version == 3.6:
             # apply some updates to comply with ei 3.6
             new_technosphere_data = {
                 'fields': ['name', 'reference product', 'location'],
@@ -275,51 +274,53 @@ class CarmaCCSInventory(BaseInventoryImport):
                     (
                         ('market for water, decarbonised, at user', (), 'GLO'),
                         {
-                            'name': ('market for water, decarbonised'),
-                            'reference product': ('water, decarbonised'),
-                            'location': ('DE'),
+                            'name': 'market for water, decarbonised',
+                            'reference product': 'water, decarbonised',
+                            'location': 'DE',
                         }
                     ),
                     (
                         ('market for water, completely softened, from decarbonised water, at user', (), 'GLO'),
                         {
-                            'name': ('market for water, completely softened'),
-                            'reference product': ('water, completely softened'),
-                            'location': ('RER'),
+                            'name': 'market for water, completely softened',
+                            'reference product': 'water, completely softened',
+                            'location': 'RER',
                         }
                     ),
                     (
                         ('market for steam, in chemical industry', (), 'GLO'),
                         {
-                            'location': ('RER'),
-                            'reference product': ('steam, in chemical industry'),
+                            'location': 'RER',
+                            'reference product': 'steam, in chemical industry',
                         }
                     ),
                     (
                         ('market for steam, in chemical industry', (), 'RER'),
                         {
-                            'reference product': ('steam, in chemical industry'),
+                            'reference product': 'steam, in chemical industry',
                         }
                     ),
                     (
                         ('zinc-lead mine operation', ('zinc concentrate',), 'GLO'),
                         {
-                            'name': ('zinc mine operation'),
-                            'reference product': ('bulk lead-zinc concentrate'),
+                            'name': 'zinc mine operation',
+                            'reference product': 'bulk lead-zinc concentrate',
                         }
                     ),
                     (
                         ('market for aluminium oxide', ('aluminium oxide',), 'GLO'),
                         {
-                            'name': ('market for aluminium oxide, non-metallurgical'),
-                            'reference product': ('aluminium oxide, non-metallurgical'),
-                            'location': ('IAI Area, EU27 & EFTA'),
+                            'name': 'market for aluminium oxide, non-metallurgical',
+                            'reference product': 'aluminium oxide, non-metallurgical',
+                            'location': 'IAI Area, EU27 & EFTA',
                         }
                     ),
                     (
-                        ('platinum group metal mine operation, ore with high rhodium content', ('nickel, 99.5%',), 'ZA'),
+                        (
+                            'platinum group metal mine operation, ore with high rhodium content', ('nickel, 99.5%',),
+                            'ZA'),
                         {
-                            'name': ('platinum group metal, extraction and refinery operations'),
+                            'name': 'platinum group metal, extraction and refinery operations',
                         }
                     )
                 ]
@@ -364,17 +365,19 @@ class BiofuelInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         # Migrations for 3.6
         if self.version == 3.6:
             migrations = {
-                'fields': ['name','reference product', 'location'],
+                'fields': ['name', 'reference product', 'location'],
                 'data': [
                     (
-                        ('market for transport, freight, sea, transoceanic tanker', ('transport, freight, sea, transoceanic tanker',), 'GLO' ),
+                        ('market for transport, freight, sea, transoceanic tanker',
+                         ('transport, freight, sea, transoceanic tanker',), 'GLO'),
                         {
-                            'name': ('market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
-                            'reference product': ('transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
+                            'name': (
+                                'market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
+                            'reference product': (
+                                'transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
                         }
                     ),
                     (
@@ -386,7 +389,8 @@ class BiofuelInventory(BaseInventoryImport):
                         }
                     ),
                     (
-                        ('market for water, completely softened, from decarbonised water, at user', ('water, completely softened, from decarbonised water, at user',), 'GLO'),
+                        ('market for water, completely softened, from decarbonised water, at user',
+                         ('water, completely softened, from decarbonised water, at user',), 'GLO'),
                         {
                             'name': ('market for water, completely softened'),
                             'reference product': ('water, completely softened'),
@@ -408,9 +412,9 @@ class BiofuelInventory(BaseInventoryImport):
             )
             self.import_db.migrate("biofuels_ecoinvent_36")
 
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class HydrogenInventory(BaseInventoryImport):
     """
@@ -421,28 +425,28 @@ class HydrogenInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name','reference product', 'location'],
+                'fields': ['name', 'reference product', 'location'],
                 'data': [
                     (
-                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland' ),
+                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
                         {
                             'name': ('market for water, deionised, from tap water, at user'),
                             'reference product': ('water, deionised, from tap water, at user'),
                         }
                     ),
                     (
-                        ('market for water, deionised', ('water, deionised',), 'RoW' ),
+                        ('market for water, deionised', ('water, deionised',), 'RoW'),
                         {
                             'name': ('market for water, deionised, from tap water, at user'),
                             'reference product': ('water, deionised, from tap water, at user'),
                         }
                     ),
                     (
-                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',), 'IAI Area, EU27 & EFTA'),
+                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',),
+                         'IAI Area, EU27 & EFTA'),
                         {
                             'name': ('market for aluminium oxide'),
                             'reference product': ('aluminium oxide'),
@@ -464,9 +468,9 @@ class HydrogenInventory(BaseInventoryImport):
             )
             self.import_db.migrate("hydrogen_ecoinvent_35")
 
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class BiogasInventory(BaseInventoryImport):
     """
@@ -477,28 +481,27 @@ class BiogasInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name','reference product', 'location'],
+                'fields': ['name', 'reference product', 'location'],
                 'data': [
                     (
-                        ('market for water, deionised', ('water, deionised',), 'CH' ),
+                        ('market for water, deionised', ('water, deionised',), 'CH'),
                         {
                             'name': ('market for water, deionised, from tap water, at user'),
                             'reference product': ('water, deionised, from tap water, at user'),
                         }
                     ),
                     (
-                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland' ),
+                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
                         {
                             'name': ('market for water, deionised, from tap water, at user'),
                             'reference product': ('water, deionised, from tap water, at user'),
                         }
                     ),
                     (
-                        ('market for water, deionised', ('water, deionised',), 'RoW' ),
+                        ('market for water, deionised', ('water, deionised',), 'RoW'),
                         {
                             'name': ('market for water, deionised, from tap water, at user'),
                             'reference product': ('water, deionised, from tap water, at user'),
@@ -513,9 +516,9 @@ class BiogasInventory(BaseInventoryImport):
             )
             self.import_db.migrate("biogas_ecoinvent_35")
 
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class SyngasInventory(BaseInventoryImport):
     """
@@ -526,9 +529,9 @@ class SyngasInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class SynfuelInventory(BaseInventoryImport):
     """
@@ -539,9 +542,9 @@ class SynfuelInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class HydrogenCoalInventory(BaseInventoryImport):
     """
@@ -554,34 +557,33 @@ class HydrogenCoalInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name','reference product', 'location'],
+                'fields': ['name', 'reference product', 'location'],
                 'data': [
                     (
-                        ('water production, deionised', ('water, deionised',), 'RoW' ),
+                        ('water production, deionised', ('water, deionised',), 'RoW'),
                         {
                             'name': ('water production, deionised, from tap water, at user'),
                             'reference product': ('water, deionised, from tap water, at user'),
                         }
                     ),
                     (
-                        ('water production, deionised', ('water, deionised',), 'Europe without Switzerland' ),
+                        ('water production, deionised', ('water, deionised',), 'Europe without Switzerland'),
                         {
                             'name': ('water production, deionised, from tap water, at user'),
                             'reference product': ('water, deionised, from tap water, at user'),
                         }
                     ),
                     (
-                        ('market for transport, freight train', ('transport, freight train',), 'ZA' ),
+                        ('market for transport, freight train', ('transport, freight train',), 'ZA'),
                         {
                             'location': ('RoW')
                         }
                     ),
                     (
-                        ('market for transport, freight train', ('transport, freight train',), 'IN' ),
+                        ('market for transport, freight train', ('transport, freight train',), 'IN'),
                         {
                             'location': ('RoW')
                         }
@@ -595,9 +597,9 @@ class HydrogenCoalInventory(BaseInventoryImport):
             )
             self.import_db.migrate("hydrogen_coal_ecoinvent_35")
 
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class GeothermalInventory(BaseInventoryImport):
     """
@@ -609,9 +611,9 @@ class GeothermalInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class SyngasCoalInventory(BaseInventoryImport):
     """
@@ -622,9 +624,9 @@ class SyngasCoalInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class SynfuelCoalInventory(BaseInventoryImport):
     """
@@ -635,9 +637,9 @@ class SynfuelCoalInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
-
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
 
 class LPGInventory(BaseInventoryImport):
     """
@@ -648,6 +650,35 @@ class LPGInventory(BaseInventoryImport):
         self.import_db = ExcelImporter(path)
 
     def prepare_inventory(self):
+
+        # Migrations for 3.5
+        if self.version == 3.5:
+            migrations = {
+                'fields': ['name', 'reference product', 'location'],
+                'data': [
+                    (
+                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',), 'IAI Area, EU27 & EFTA'),
+                        {
+                            'name': ('market for aluminium oxide'),
+                            'reference product': ('aluminium oxide'),
+                            'location': ('GLO')
+                        }
+                    ),
+                    (
+                        ('market for flat glass, uncoated', ('flat glass, uncoated',), 'RER'),
+                        {
+                            'location': ('GLO')
+                        }
+                    )
+
+                ]
+            }
+
+            Migration("LPG_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("LPG_ecoinvent_35")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()

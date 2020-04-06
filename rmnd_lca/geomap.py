@@ -1,16 +1,20 @@
 from wurst.geo import geomatcher
 
 from rmnd_lca import DATA_DIR
-REGION_MAPPING_FILEPATH = (DATA_DIR /  "regionmappingH12.csv")
 
-class Geomap():
+REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
+
+
+class Geomap:
     """
     Map ecoinvent locations to REMIND regions and vice-versa.
     """
+
     def __init__(self):
         self.geo = self.get_REMIND_geomatcher()
 
-    def get_REMIND_geomatcher(self):
+    @staticmethod
+    def get_REMIND_geomatcher():
         """
         Load a geomatcher object from the `constructive_geometries`library and add definitions.
         It is used to find correspondences between REMIND and ecoinvent region names.
@@ -62,17 +66,20 @@ class Geomap():
                 for r in self.geo.intersects(location):
                     if not isinstance(r, tuple):
                         ecoinvent_locations.append(r)
+                    else:
+                        if r[0] != "REMIND":
+                            ecoinvent_locations.append(r[1])
 
                 # TODO: Dirty trick. In the future, "CA" should be removed from "RNA". Also, "GLO" should not appear.
                 if location == ("REMIND", "USA"):
-                    ecoinvent_locations = [e for e in ecoinvent_locations if e != "CA"]
+                    ecoinvent_locations = [e for e in ecoinvent_locations if "CA" not in e]
 
                 # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
                 if location != ("REMIND", "World"):
                     ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
 
                 return ecoinvent_locations
-            except KeyError as e:
+            except KeyError:
                 print("Can't find location {} using the geomatcher.".format(location))
 
         else:
