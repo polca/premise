@@ -124,14 +124,14 @@ class NewDatabase:
         self.db = electricity.update_electricity_efficiency()
 
     def update_cement_to_remind_data(self):
-        cement = Cement(self.db, self.rdc, self.scenario, self.year, self.version)
+        cement = Cement(self.db, self.rdc, self.year, self.version)
         self.db = cement.add_datasets_to_database()
 
     def update_all(self):
         electricity = Electricity(self.db, self.rdc, self.scenario, self.year)
         self.db = electricity.update_electricity_markets()
         self.db = electricity.update_electricity_efficiency()
-        cement = Cement(self.db, self.rdc, self.scenario, self.year, self.version)
+        cement = Cement(self.db, self.rdc, self.year, self.version)
         self.db = cement.add_datasets_to_database()
 
     def write_db_to_brightway(self):

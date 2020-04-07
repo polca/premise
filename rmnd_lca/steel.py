@@ -4,10 +4,10 @@ from wurst.transformations.utils import copy_dataset
 from . import DATA_DIR
 from .geomap import Geomap
 from .data_collection import RemindDataCollection
-import wurst
-import numpy as np
 
-LHV_FUELS = (DATA_DIR / "fuels_lower_heating_value.txt")
+from .utils import *
+
+
 STEEL_TYPE_ACT = (DATA_DIR / "activity_type_steel_mapping.txt")
 FIND_ACT_EI = (DATA_DIR / "fuel_type_activity_mapping.txt")
 NAME_TO_LHV_NAME = (DATA_DIR / "name_to_lhv_name.txt")
@@ -22,67 +22,17 @@ class Steel:
     
     """
     
-    def __init__(self, db, scenario, year):
+
+    def __init__(self, db, rmd, scenario, year):
         self.db = db
         self.scenario = scenario
+        self.rmd = rmd
         self.year = year
-        
-        self.fuels_lhv = self.get_lower_heating_values()
-        self.fuel_type_to_ei_act = self.fuel_type_to_activity_mapping()
-        self.determine_prim_sec_steel = self.activity_to_steel_type_mapping()
-        self.fuel_type_to_lhv_name = self.fuel_type_to_lhv_mapping()       
-        
-        self.geo = Geomap()  
-        self.rdc = RemindDataCollection()
-        self.steel_xarray = self.rdc.get_remind_data_steel()
-        
-        self.generate_activities = self.generate_activities()
-        
-    def activity_to_steel_type_mapping(self):
-        """
-        Loads a csv file into a dictionary to map an ecoinvent activity to steel type, i.e. if it is "Primary" or "Secondary" steel
-        :return: dictionary that contains steel type
-        :rtype: dict
-        """
-        with open(STEEL_TYPE_ACT) as f:
-            return dict(filter(None, csv.reader(f, delimiter=";")))   
-        
-    def fuel_type_to_activity_mapping(self):
-        """
-        Loads a csv file into a dictionary to map a fuel type to an ecoinvent activity
-        :return: dictionary that contains ecoinvent actities per fuel type
-        :rtype: dict
-        """
-        with open(FIND_ACT_EI) as f:
-            return dict(filter(None, csv.reader(f, delimiter=";")))            
+        self.fuels_lhv = get_lower_heating_values()
+        self.geo = Geomap()
+        #self.generate_activities = self.generate_activities()
 
-    def fuel_type_to_lhv_mapping(self):
-        """
-        Loads a csv file into a dictionary to map the fuel type to lhv name
-        :return: dictionary that contains name to be used to obtain lhv value
-        :rtype: dict
-        """
-        with open(NAME_TO_LHV_NAME) as f:
-            return dict(filter(None, csv.reader(f, delimiter=";")))
-    
-    def get_lower_heating_values(self):
-        """
-        Loads a csv file into a dictionary. This dictionary contains lower heating values for a number of fuel types.
-        Taken from: https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html
-        :return: dictionary that contains lower heating values
-        :rtype: dict
-        """
-        with open(LHV_FUELS) as f:
-            return dict(filter(None, csv.reader(f, delimiter=";"))) 
-        
-    def pref_remind_to_ei_region(self):
-        """
-        Loads a csv file into a dictionary to map an ecoinvent activity to steel type, i.e. if it is "Primary" or "Secondary" steel
-        :return: dictionary that contains steel type
-        :rtype: dict
-        """
-        with open(PREF_REMIND_TO_EI_REGION) as f:
-            return dict(filter(None, csv.reader(f, delimiter=";")))   
+
     
     def get_abs_fuel(self, r, prim_sec, fuel_state, fuel_spec, logging=False):
         """
@@ -818,4 +768,6 @@ class Steel:
                     d_act_steel[r]["exchanges"] += new_exchanges
 
                 #14. Add the new steel activity for Remind region r to the db.
+
                 self.db.append(d_act_steel[r])
+
