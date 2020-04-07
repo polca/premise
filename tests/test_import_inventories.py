@@ -16,6 +16,7 @@ FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen
 
 def get_db():
     db = [{
+<<<<<<< Updated upstream
             'name':'fake activity',
             'reference product': 'fake product',
             'location':'IAI Area, Africa',
@@ -36,6 +37,29 @@ def get_db():
                 },
             ]
         }]
+=======
+        'code':'argsthyfujgyftdgr',
+        'name': 'fake activity',
+        'reference product': 'fake product',
+        'location': 'IAI Area, Africa',
+        'unit': 'kilogram',
+        'exchanges': [
+            {'name': 'fake activity',
+             'product': 'fake product',
+             'amount': 1,
+             'type': 'production',
+             'unit': 'kilogram',
+             'input': ('dummy_db', '6543541'), },
+            {'name': '1,4-Butanediol',
+             'categories': ('air', 'urban air close to ground'),
+             'amount': 1,
+             'type': 'biosphere',
+             'unit': 'kilogram',
+             'input': ('dummy_bio', '123'),
+             },
+        ]
+    }]
+>>>>>>> Stashed changes
     version = 3.5
     return db, version
 

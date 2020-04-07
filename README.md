@@ -10,9 +10,10 @@ Introduction
 the **REMIND IAM**, in order to produce life cycle inventories under future policy scenarios for any year between 2005
 and 2150.
 
-In the current version, this includes:
+In the latest version, this includes:
 * electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
 electricity production technologies, including Carbon Capture and Storage technologies.
+* clinker and cement production: alignment of regional performance for clinker production, including Carbon Capture and Storage, clinker-to-cement ratio and cement grinding.
 
 In upcoming versions, important sectors such as cement and steel will also be updated.
 
