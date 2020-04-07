@@ -33,6 +33,7 @@ class BaseInventoryImport:
 
         """
         self.db = database
+        self.db_code = [x['code'] for x in self.db]
         self.version = version
         self.biosphere_dict = self.get_biosphere_code()
 
@@ -61,6 +62,10 @@ class BaseInventoryImport:
 
         """
         pass
+
+    def check_for_duplicates(self):
+        """Check whether the inventories to be imported are not already in the source database."""
+        self.import_db.data = [x for x in self.import_db.data if x['code'] not in self.db_code]
 
     def merge_inventory(self):
         """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`db`.
@@ -339,6 +344,9 @@ class CarmaCCSInventory(BaseInventoryImport):
         print("Add fossil carbon dioxide storage for CCS technologies.")
         self.add_negative_CO2_flows_for_biomass_CCS()
 
+        # Check for duplicates
+        self.check_for_duplicates()
+
     def add_negative_CO2_flows_for_biomass_CCS(self):
         """
         Rescale the amount of all exchanges of carbon dioxide, non-fossil by a factor -9 (.9/-.1),
@@ -415,6 +423,9 @@ class BiofuelInventory(BaseInventoryImport):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
 
+        # Check for duplicates
+        self.check_for_duplicates()
+
 
 class HydrogenInventory(BaseInventoryImport):
     """
@@ -471,6 +482,9 @@ class HydrogenInventory(BaseInventoryImport):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
 
+        # Check for duplicates
+        self.check_for_duplicates()
+
 
 class BiogasInventory(BaseInventoryImport):
     """
@@ -519,6 +533,9 @@ class BiogasInventory(BaseInventoryImport):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
 
+        # Check for duplicates
+        self.check_for_duplicates()
+
 
 class SyngasInventory(BaseInventoryImport):
     """
@@ -544,6 +561,8 @@ class SynfuelInventory(BaseInventoryImport):
     def prepare_inventory(self):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
 
 
 class HydrogenCoalInventory(BaseInventoryImport):
@@ -599,6 +618,8 @@ class HydrogenCoalInventory(BaseInventoryImport):
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
 
 
 class GeothermalInventory(BaseInventoryImport):
@@ -613,6 +634,8 @@ class GeothermalInventory(BaseInventoryImport):
     def prepare_inventory(self):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
 
 
 class SyngasCoalInventory(BaseInventoryImport):
@@ -626,6 +649,8 @@ class SyngasCoalInventory(BaseInventoryImport):
     def prepare_inventory(self):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
 
 
 class SynfuelCoalInventory(BaseInventoryImport):
@@ -639,6 +664,8 @@ class SynfuelCoalInventory(BaseInventoryImport):
     def prepare_inventory(self):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
 
 
 class LPGInventory(BaseInventoryImport):
@@ -682,3 +709,5 @@ class LPGInventory(BaseInventoryImport):
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()

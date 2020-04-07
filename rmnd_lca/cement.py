@@ -398,6 +398,8 @@ class Cement:
             )
             )
 
+
+
             for fuel in [('waste', 'waste plastic, mixture', 'EUR'),
                          ('wood pellet', 'wood pellet, measured as dry mass', 'EUR'),
                          ('hard coal', 'hard coal', 'REF')]:
@@ -521,6 +523,8 @@ class Cement:
                 }
                 v["exchanges"].append(biogenic_co2_exc)
 
+            v['exchanges'] = [v for v in v["exchanges"] if v]
+
 
         d_act_clinker = {k:self.update_pollutant_emissions(v) for k,v in d_act_clinker.items()}
 
@@ -541,6 +545,10 @@ class Cement:
 
         for act in self.db:
             for exc in act['exchanges']:
+                try:
+                    exc["name"]
+                except:
+                    print(exc)
                 if (exc['name'], exc.get('product')) == (name, ref_product) and exc['type'] == 'technosphere':
                     if not exc['location'] in list_remind_regions:
                         old_location = exc['location']
@@ -625,20 +633,37 @@ class Cement:
 
         :return:
         """
+        d_act = self.remove_exchanges(d_act, ['electricity'])
 
         for act in d_act:
-            for exc in ws.technosphere(d_act[act]):
-                if exc['unit'] == 'kilowatt hour':
-                    exc['amount'] = (self.rmd.gnr_data.loc[dict(
-                        variables='Power consumption',
-                        region=act
-                    )].values - self.rmd.gnr_data.loc[dict(
-                        variables='Power generation',
-                        region=act
-                    )].values) / 1000
+
+            new_exchanges = []
+            new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 1,
+                            "amount": (self.rmd.gnr_data.loc[dict(
+                                            variables='Power consumption',
+                                            region=act
+                                        )].values - self.rmd.gnr_data.loc[dict(
+                                            variables='Power generation',
+                                            region=act
+                                        )].values) / 1000,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": 'electricity, medium voltage',
+                            "name": 'market group for electricity, medium voltage',
+                            "unit": 'kilowatt hour',
+                            "location": act,
+                        }
+                    )
+
+            d_act[act]["exchanges"].extend(new_exchanges)
+
+            d_act[act]['exchanges'] = [v for v in d_act[act]["exchanges"] if v]
+
+
         return d_act
-
-
 
     def add_datasets_to_database(self):
 
