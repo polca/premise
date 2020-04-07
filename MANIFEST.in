@@ -6,5 +6,3 @@ include rmnd_lca/data/Remind output files/*.csv
 include rmnd_lca/data/additional_inventories/*.xlsx
 include rmnd_lca/data/electricity/*.csv
 include rmnd_lca/data/cement/*.csv
-
-
