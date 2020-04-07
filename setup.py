@@ -6,7 +6,6 @@ root_dir = os.path.dirname(__file__)
 if root_dir:
     os.chdir(root_dir)
 
-
 # Probably should be changed, __init__.py is no longer required for Python 3
 for dirpath, dirnames, filenames in os.walk('rmnd_lca'):
     # Ignore dirnames that start with '.'
@@ -15,6 +14,7 @@ for dirpath, dirnames, filenames in os.walk('rmnd_lca'):
         if os.path.altsep:
             pkg = pkg.replace(os.path.altsep, '.')
         packages.append(pkg)
+
 
 def package_files(directory):
     paths = []
@@ -26,10 +26,10 @@ def package_files(directory):
 
 setup(
     name='rmnd-lca',
-    version="0.0.1",
+    version="0.0.2",
     packages=packages,
-    author="Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Brian Cox <brianlcox@gmail.com>, Romain Sacchi <romain.sacchi@psi.ch>",
-    #author_email="cmutel@gmail.com",
+    author="Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>, Tom Terlouw <tom.terlouw@psi.ch>, Romain Sacchi <romain.sacchi@psi.ch>",
+    # author_email="cmutel@gmail.com",
     license=open('LICENSE').read(),
     # Only if you have non-python data (CSV, etc.). Might need to change the directory name as well.
     include_package_data=True,
@@ -38,11 +38,14 @@ setup(
         'pytest-cov',
         'coveralls',
         'wurst',
+        'bw2io',
+        'pandas',
+        'bw2data',
         'xarray==0.13.0'
     ],
-    url="https://github.com/Loisel/rmnd-lca",
+    url="https://github.com/romainsacchi/rmnd-lca",
     long_description=open('README.md').read(),
-    description='Coupling REMIND output to ecoinvent LCA database ecoinvent',
+    description='Coupling REMIND output to ecoinvent LCA database ecoinvent for prospective LCA',
     classifiers=[
         'Intended Audience :: End Users/Desktop',
         'Intended Audience :: Developers',

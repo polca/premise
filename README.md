@@ -10,9 +10,10 @@ Introduction
 the **REMIND IAM**, in order to produce life cycle inventories under future policy scenarios for any year between 2005
 and 2150.
 
-In the current version, this includes:
+In the latest version, this includes:
 * electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
 electricity production technologies, including Carbon Capture and Storage technologies.
+* clinker and cement production: alignment of regional performance for clinker production, including Carbon Capture and Storage, clinker-to-cement ratio and cement grinding.
 
 In upcoming versions, important sectors such as cement and steel will also be updated.
 
@@ -43,10 +44,6 @@ In a terminal, from Github:
     pip install git+https://github.com/romainsacchi/rmnd-lca.git
 
 will install the package and the required dependencies.
-
-Alternatively, from Conda:
-
-    conda install -c romainsacchi/label/nightly rmnd-lca-dev
 
 How to use it?
 --------------
@@ -116,7 +113,18 @@ and the file path to the ecospold files in `source_file_path`.
 ### Transform
 
 A series of transformations can be performed on the extracted database.
-Currently, only the transformation regarding electricity generation and distribution is implemented.
+Currently, only the transformation regarding:
+* electricity generation and distribution
+* clinker and cement production
+are implemented.
+
+All the transformation functions can be executed like so:
+
+```python
+    ndb.update_all()
+```
+
+But they can also be executed separately, as the following subsections show.
 
 #### Electricity
 
@@ -158,6 +166,43 @@ returns
 ```
 
 Note that logs of deleted and created electricity markets are created in
+the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
+
+#### Cement
+
+The following function will:
+* remove existing datasets for clinker production, clinker markets, cement production and cement markets
+* replace them by regional production and market datasets
+* for the new clinker production datasets, the following aspects are adjusted:
+  * the kiln technology mix (wet vs. semi-wet vs. dry, with or without pre-heater and pre-calciner),
+  * the kiln thermal efficiency,
+  * the fuel mix (fossil vs. biogenic),
+  * the fossil and biogenic CO2 emissions,
+  * the emission of pollutants (BC, CO, Hg, etc.)
+  * and the application of carbon capture, if needed
+* for the new cement production datasets, the following aspects are adjusted: the power consumption (for grinding)
+* for the new market datasets for average cement, the clinker-to-cement ratio is adjusted
+* and relink cement-consuming activities to the newly created cement markets.
+
+```python
+    ndb.update_cement_to_remind_data()
+```
+returns
+```python
+    Log of deleted cement datasets saved in C:\Users\romai\Documents\GitHub\rmnd-lca\rmnd_lca\data\logs
+    Log of created cement datasets saved in C:\Users\romai\Documents\GitHub\rmnd-lca\rmnd_lca\data\logs
+    Create new clinker production datasets and delete old datasets
+    Create new clinker market datasets and delete old datasets
+    Adjust clinker-to-cement ratio in "unspecified cement" datasets
+    Create new cement production datasets and adjust electricity consumption
+    Create new cement market datasets
+    Relink cement production datasets to new clinker production datasets
+    Relink cement production datasets to new clinker market datasets
+    Relink cement market datasets to new cement production datasets
+    Relink activities to new cement datasets
+```
+
+Note that logs of deleted and created clinker and cement datasets are created in
 the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
 
 ### Load (export back to brightway2)

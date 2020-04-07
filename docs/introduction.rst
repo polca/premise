@@ -73,7 +73,7 @@ returns
 	biosphere3
 	ecoinvent 3.5 cutoff
 
-Then, for a chosen policy and year between 2005 and 2150, the following function will:
+Then, for a chosen scenario (for example: "BAU","RCP26" or "RCP37"; full list of scenarios are listed under \data\Remind output files) and a year between 2005 and 2150 (a year is available at 5-year interval), the following function will:
 * extract the ecoinvent database, clean it, add additional inventories for carbon capture and storage, biofuels, etc.
 
 For example, here with the year 2028 and the policy "Business-as-usual":

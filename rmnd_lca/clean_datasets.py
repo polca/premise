@@ -7,7 +7,6 @@ import wurst
 import bw2io
 from bw2data.database import DatabaseChooser
 
-
 FILEPATH_FIX_NAMES = (DATA_DIR / "fix_names.csv")
 FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
 
@@ -41,8 +40,7 @@ class DatabaseCleaner:
             # Parameter field is converted from a list to a dictionary
             self.transform_parameter_field()
 
-
-    def add_negative_CO2_flows_for_biomass_CCS(self):
+    def add_negative_CO2_flows_for_biomass_ccs(self):
         """
         Rescale the amount of all exchanges of carbon dioxide, non-fossil by a factor -9 (.9/-.1),
         to account for sequestered CO2.
@@ -58,7 +56,8 @@ class DatabaseCleaner:
             for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
-    def get_fix_names_dict(self):
+    @staticmethod
+    def get_fix_names_dict():
         """
         Loads a csv file into a dictionary. This dictionary contains a few location names
         that need correction in the wurst inventory database.
@@ -78,7 +77,8 @@ class DatabaseCleaner:
         """
         return {v: k for k, v in self.get_fix_names_dict().items()}
 
-    def remove_nones(self, db):
+    @staticmethod
+    def remove_nones(db):
         """
         Remove empty exchanges in the datasets of the wurst inventory database.
         Modifies in place (does not return anything).
@@ -91,7 +91,7 @@ class DatabaseCleaner:
         for ds in db:
             ds["exchanges"] = [exists(exc) for exc in ds["exchanges"]]
 
-    def find_product_given_lookup_dict(self, db, lookup_dict):
+    def find_product_given_lookup_dict(self, lookup_dict):
         """
         Return a list of location names, given the filtering conditions given in `lookup_dict`.
         It is, for example, used to return a list of location names based on the name and the unit of a dataset.
@@ -109,7 +109,7 @@ class DatabaseCleaner:
             )
         ]
 
-    def find_location_given_lookup_dict(self, db, lookup_dict):
+    def find_location_given_lookup_dict(self, lookup_dict):
         """
         Return a list of location names, given the filtering conditions given in `lookup_dict`.
         It is, for example, used to return a list of location names based on the name and the unit of a dataset.
@@ -134,7 +134,7 @@ class DatabaseCleaner:
         :raises IndexError: if no corresponding activity (and reference product) can be found.
 
         """
-        d_location = {(a['database'],a['code']):a['location'] for a in self.db}
+        d_location = {(a['database'], a['code']): a['location'] for a in self.db}
         for a in self.db:
             for e in a['exchanges']:
                 if e['type'] == 'technosphere':
@@ -153,7 +153,7 @@ class DatabaseCleaner:
 
         """
         # Create a dictionary that contains the 'code' field as key and the 'product' field as value
-        d_product = {a['code']:(a['reference product'], a['name']) for a in self.db}
+        d_product = {a['code']: (a['reference product'], a['name']) for a in self.db}
         # Add a `product` field to the production exchange
         for x in self.db:
             for y in x["exchanges"]:
@@ -186,20 +186,17 @@ class DatabaseCleaner:
         # When handling ecospold files directly, the parameter field is a list.
         # It is here transformed into a dictionary
         for x in self.db:
-            x['parameters'] = {k['name']:k['amount'] for k in x['parameters']}
-
+            x['parameters'] = {k['name']: k['amount'] for k in x['parameters']}
 
     # Functions to clean up Wurst import and additional technologies
     def fix_unset_technosphere_and_production_exchange_locations(
-        self, matching_fields=("name", "unit")
+            self, matching_fields=("name", "unit")
     ):
         """
         Give all the production and technopshere exchanges with a missing location name the location of the dataset
         they belong to.
         Modifies in place (does not return anything).
 
-        :param db: wurst inventory database
-        :type db: list
         :param matching_fields: filter conditions
         :type matching_fields: tuple
 
@@ -226,14 +223,11 @@ class DatabaseCleaner:
                             )
                         )
 
-
-    def prepare_datasets(self, write_changeset=False):
+    def prepare_datasets(self):
         """
         Clean datasets for all databases listed in scenarios: fix location names, remove
         empty exchanges, etc.
 
-        :param emi_fname: dictionary that lists scenarios
-        :type emi_fname: dict
         :param write_changeset: indicates if changes in datasets should be logged.
         :type write_changeset: bool
 

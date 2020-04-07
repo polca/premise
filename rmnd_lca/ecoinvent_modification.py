@@ -2,17 +2,18 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import RemindDataCollection
 from .electricity import Electricity
-from .inventory_imports import CarmaCCSInventory,\
-    BiofuelInventory,\
-    HydrogenInventory,\
-    BiogasInventory,\
-    SynfuelInventory,\
-    SyngasInventory,\
-    HydrogenCoalInventory,\
-    GeothermalInventory,\
-    SyngasCoalInventory,\
-    SynfuelCoalInventory,\
+from .inventory_imports import CarmaCCSInventory, \
+    BiofuelInventory, \
+    HydrogenInventory, \
+    BiogasInventory, \
+    SynfuelInventory, \
+    SyngasInventory, \
+    HydrogenCoalInventory, \
+    GeothermalInventory, \
+    SyngasCoalInventory, \
+    SynfuelCoalInventory, \
     LPGInventory
+from .cement import Cement
 
 from .export import Export
 from .utils import eidb_label
@@ -51,7 +52,7 @@ class NewDatabase:
     def __init__(self, scenario, year, source_db,
                  source_version=3.5,
                  source_type='brightway',
-                 source_file_path = None,
+                 source_file_path=None,
                  filepath_to_remind_files=None):
         self.scenario = scenario
         self.year = year
@@ -62,6 +63,8 @@ class NewDatabase:
         self.db = self.clean_database()
         self.import_inventories()
         self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "Remind output files")
+
+        self.rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
 
     def clean_database(self):
         return DatabaseCleaner(self.source,
@@ -116,10 +119,20 @@ class NewDatabase:
         lpg.merge_inventory()
 
     def update_electricity_to_remind_data(self):
-        rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
-        El = Electricity(self.db, rdc, self.scenario, self.year)
-        self.db = El.update_electricity_markets()
-        self.db = El.update_electricity_efficiency()
+        electricity = Electricity(self.db, self.rdc, self.scenario, self.year)
+        self.db = electricity.update_electricity_markets()
+        self.db = electricity.update_electricity_efficiency()
+
+    def update_cement_to_remind_data(self):
+        cement = Cement(self.db, self.rdc, self.scenario, self.year, self.version)
+        self.db = cement.add_datasets_to_database()
+
+    def update_all(self):
+        electricity = Electricity(self.db, self.rdc, self.scenario, self.year)
+        self.db = electricity.update_electricity_markets()
+        self.db = electricity.update_electricity_efficiency()
+        cement = Cement(self.db, self.rdc, self.scenario, self.year, self.version)
+        self.db = cement.add_datasets_to_database()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')
@@ -128,4 +141,3 @@ class NewDatabase:
     def write_db_to_matrices(self):
         print("Write new database to matrix.")
         Export(self.db, self.scenario, self.year).export_db_to_matrices()
-
