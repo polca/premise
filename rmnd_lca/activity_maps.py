@@ -19,7 +19,8 @@ class InventorySet:
     """
 
     material_filters = {
-        "steel": {"fltr": "market for steel,", "mask": "hot rolled"},
+        "steel, primary": {"fltr": "steel production, converter", "mask": "hot rolled"},
+        "steel, secondary": {"fltr": "steel production, electric", "mask": "hot rolled"},
         "concrete": {"fltr": "market for concrete,"},
         "copper": {"fltr": "market for copper", "filter_exact": True},
         "aluminium": {

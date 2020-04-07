@@ -34,7 +34,7 @@ class BaseInventoryImport:
         """
         self.db = database
         self.db_code = [x['code'] for x in self.db]
-        self.db_names = [(x['name'], x['reference product']) for x in self.db]
+        self.db_names = [(x['name'], x['reference product'], x['location']) for x in self.db]
         self.version = version
         self.biosphere_dict = self.get_biosphere_code()
 
@@ -67,7 +67,7 @@ class BaseInventoryImport:
     def check_for_duplicates(self):
         """Check whether the inventories to be imported are not already in the source database."""
         self.import_db.data = [x for x in self.import_db.data if x['code'] not in self.db_code]
-        self.import_db.data = [x for x in self.import_db.data if (x['name'], x['reference product']) not in self.db_names]
+        self.import_db.data = [x for x in self.import_db.data if (x['name'], x['reference product'], x['location']) not in self.db_names]
 
     def merge_inventory(self):
         """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`db`.

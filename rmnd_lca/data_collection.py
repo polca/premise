@@ -40,6 +40,7 @@ class RemindDataCollection:
         self.electricity_emissions = self.get_gains_electricity_emissions()
         self.cement_emissions = self.get_gains_cement_emissions()
 
+
     @staticmethod
     def get_remind_electricity_emission_labels():
         """
@@ -125,7 +126,7 @@ class RemindDataCollection:
             .groupby(["region", "variables", 'year'])["value"].mean().to_xarray()
 
         return array
-
+    
     def get_gains_data(self):
         """
         Read the GAINS emissions csv file and return an `xarray` with dimensions:
