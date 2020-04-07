@@ -4,6 +4,7 @@ import csv
 
 FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "flows_biosphere.csv")
 
+
 class Export:
     """
     Class that exports the transformed data into matrices:
@@ -37,8 +38,8 @@ class Export:
             os.makedirs(filepath)
 
         # Export A matrix
-        with open(filepath / 'A_matrix.csv','w') as f:
-            writer=csv.writer(f, delimiter=';',lineterminator='\n',)
+        with open(filepath / 'A_matrix.csv', 'w') as f:
+            writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             writer.writerow(['index of activity', 'index of product', 'value'])
             for ds in self.db:
                 for exc in ds['exchanges']:
@@ -50,13 +51,12 @@ class Export:
                     if exc['type'] == 'technosphere':
                         row = [index_A[(ds['name'], ds['reference product'], ds['unit'], ds['location'])],
                                index_A[(exc['name'], exc['product'], exc['unit'], exc['location'])],
-                               exc['amount']*-1]
+                               exc['amount'] * -1]
                         writer.writerow(row)
 
         # Export A index
-        csv_columns = ['(Activity name, Product, unit, location)', 'index']
-        with open(filepath / 'A_matrix_index.csv','w') as f:
-            writer = csv.writer(f, delimiter=';',lineterminator='\n',)
+        with open(filepath / 'A_matrix_index.csv', 'w') as f:
+            writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             for d in index_A:
                 writer.writerow([d, index_A[d]])
 
@@ -64,8 +64,8 @@ class Export:
         rev_index_B = self.create_rev_index_of_B_matrix()
 
         # Export B matrix
-        with open(filepath / 'B_matrix.csv','w') as f:
-            writer=csv.writer(f, delimiter=';',lineterminator='\n',)
+        with open(filepath / 'B_matrix.csv', 'w') as f:
+            writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             writer.writerow(['index of activity', 'index of biosphere flow', 'value'])
             for ds in self.db:
                 for exc in ds['exchanges']:
@@ -81,9 +81,8 @@ class Export:
                         writer.writerow(row)
 
         # Export B index
-        csv_columns = ['(Flow name, Flow main category, Flow sub-category, unit)', 'index']
-        with open(filepath / 'B_matrix_index.csv','w') as f:
-            writer = csv.writer(f, delimiter=';',lineterminator='\n',)
+        with open(filepath / 'B_matrix_index.csv', 'w') as f:
+            writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             for d in index_B:
                 writer.writerow([d, index_B[d]])
 
@@ -97,12 +96,13 @@ class Export:
         :rtype: dict
         """
         return {(self.db[i]['name'],
-                    self.db[i]['reference product'],
-                    self.db[i]['unit'],
-                    self.db[i]['location'],):i
-                     for i in range(0,len(self.db))}
+                 self.db[i]['reference product'],
+                 self.db[i]['unit'],
+                 self.db[i]['location'],): i
+                for i in range(0, len(self.db))}
 
-    def create_index_of_B_matrix(self):
+    @staticmethod
+    def create_index_of_B_matrix():
         if not FILEPATH_BIOSPHERE_FLOWS.is_file():
             raise FileNotFoundError(
                 "The dictionary of biosphere flows could not be found."
@@ -112,13 +112,14 @@ class Export:
 
         with open(FILEPATH_BIOSPHERE_FLOWS) as f:
             input_dict = csv.reader(f, delimiter=";")
-            i=0
+            i = 0
             for row in input_dict:
                 csv_dict[row[1]] = i
-                i+=1
+                i += 1
         return csv_dict
 
-    def create_rev_index_of_B_matrix(self):
+    @staticmethod
+    def create_rev_index_of_B_matrix():
         if not FILEPATH_BIOSPHERE_FLOWS.is_file():
             raise FileNotFoundError(
                 "The dictionary of biosphere flows could not be found."

@@ -1,7 +1,7 @@
 from . import DATA_DIR
 import csv
 
-REMIND_TO_ECOINVENT_EMISSION_FILEPATH = (DATA_DIR / "remind_to_ecoinvent_emission_mappping.csv")
+REMIND_TO_ECOINVENT_EMISSION_FILEPATH = (DATA_DIR / "ecoinvent_to_gains_emission_mappping.csv")
 
 
 class InventorySet:
@@ -32,6 +32,28 @@ class InventorySet:
         "freight": {"fltr": "market for transport, freight"},
         "cement": {"fltr": "market for cement,"},
         "heat": {"fltr": "market for heat,"},
+    }
+
+    fuel_filters = {
+        "gas": {"fltr": "market for natural gas,", "mask": ["network", "burned"]},
+        "diesel": {"fltr": "market for diesel", "mask": ["burned", "electric"]},
+        "petrol": {"fltr": "market for petrol,", "mask": "burned"},
+        "hard coal": {"fltr": 'market for hard coal', 'mask': ['factory', 'plant', 'briquettes', 'ash']},
+        "lignite": {"fltr": 'market for lignite', 'mask': ['factory', 'plant', 'briquettes', 'ash']},
+        "petroleum coke": {"fltr": 'market for petroleum coke'},
+        "wood pellet": {"fltr": 'market for wood pellet', 'mask': ['factory']},
+        "natural gas, high pressure": {"fltr": 'market for natural gas, high pressure'},
+        "natural gas, low pressure": {"fltr": 'market for natural gas, low pressure'},
+        "heavy fuel oil": {"fltr": 'market for heavy fuel oil', 'mask': ['burned']},
+        "light fuel oil": {"fltr": 'market for light fuel oil'},
+        "biogas": {"fltr": 'biogas', 'mask': ['burned']},
+        "waste": {"fltr": {'reference product': ['waste plastic, mixture']},
+                  'mask': ['market for', 'treatment', 'market group']},
+        "syngas": {"fltr": 'methane, from electrochemical methanation'},
+        "synfuel": {"fltr": 'Diesel production, Fischer Tropsch process'},
+        "hydrogen": {"fltr": 'Hydrogen, gaseous'},
+        "bioethanol": {"fltr": 'Ethanol from'},
+        "liquified petroleum gas": {"fltr": 'Liquefied petroleum gas production, from methanol-to-gas process'}
     }
 
     powerplant_filters = {
@@ -71,7 +93,7 @@ class InventorySet:
         },
         "Biomass CHP": {
             "fltr": {
-                "name":[
+                "name": [
                     "heat and power co-generation, wood chips",
                     "heat and power co-generation, biogas",
                 ],
@@ -120,8 +142,8 @@ class InventorySet:
         "Oil": {
             "fltr": {
                 "name": [
-                "electricity production, oil",
-                "heat and power co-generation, oil",
+                    "electricity production, oil",
+                    "heat and power co-generation, oil",
                 ],
                 "reference product": "electricity"
             },
@@ -163,7 +185,19 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.powerplant_filters)
 
-    def get_remind_to_ecoinvent_emissions(self):
+    def generate_fuel_map(self):
+        """
+        Filter ecoinvent processes related to fuel supply.
+
+        :return: dictionary with fuel names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.fuel_filters)
+
+    @staticmethod
+    def get_remind_to_ecoinvent_emissions():
         """
         Retrieve the correspondence between REMIND and ecoinvent emission labels.
         :return: REMIND emission labels as keys and ecoinvent emission labels as values
@@ -184,7 +218,8 @@ class InventorySet:
 
         return csv_dict
 
-    def act_fltr(self, db, fltr={}, mask={}, filter_exact=False, mask_exact=False):
+    @staticmethod
+    def act_fltr(db, fltr=None, mask=None, filter_exact=False, mask_exact=False):
         """Filter `db` for activities matching field contents given by `fltr` excluding strings in `mask`.
         `fltr`: string, list of strings or dictionary.
         If a string is provided, it is used to match the name field from the start (*startswith*).
@@ -207,6 +242,10 @@ class InventorySet:
         :rtype: list
 
         """
+        if fltr is None:
+            fltr = {}
+        if mask is None:
+            mask = {}
         result = []
 
         # default field is name
@@ -252,7 +291,7 @@ class InventorySet:
         Generate a dictionary with sets of activity names for
         technologies from the filter specifications.
 
-        :param fltr: A dictionary with labels and filter conditions as given to
+            :param filtr:
             :func:`activity_maps.InventorySet.act_fltr`.
         :return: dictionary with the same keys as provided in filter
             and a set of activity data set names as values.
