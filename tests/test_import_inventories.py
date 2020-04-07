@@ -16,28 +16,6 @@ FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen
 
 def get_db():
     db = [{
-<<<<<<< Updated upstream
-            'name':'fake activity',
-            'reference product': 'fake product',
-            'location':'IAI Area, Africa',
-            'unit':'kilogram',
-            'exchanges': [
-                {'name' : 'fake activity',
-                 'product': 'fake product',
-                 'amount': 1,
-                 'type': 'production',
-                 'unit':'kilogram',
-                 'input':('dummy_db', '6543541'),},
-                {'name' : '1,4-Butanediol',
-                 'categories': ('air', 'urban air close to ground'),
-                 'amount': 1,
-                 'type': 'biosphere',
-                 'unit':'kilogram',
-                 'input':('dummy_bio', '123'),
-                },
-            ]
-        }]
-=======
         'code':'argsthyfujgyftdgr',
         'name': 'fake activity',
         'reference product': 'fake product',
@@ -59,7 +37,6 @@ def get_db():
              },
         ]
     }]
->>>>>>> Stashed changes
     version = 3.5
     return db, version
 
@@ -86,6 +63,7 @@ def test_biosphere_dict():
 
     testpath.unlink()
 
+
 def test_biosphere_dict_2():
     db, version = get_db()
     testpath = Path("testfile")
@@ -109,6 +87,7 @@ def test_load_carma():
     db, version = get_db()
     carma = CarmaCCSInventory(db, version, FILEPATH_CARMA_INVENTORIES)
     assert len(carma.import_db.data) == 146
+
 
 def test_load_biofuel():
     db, version = get_db()

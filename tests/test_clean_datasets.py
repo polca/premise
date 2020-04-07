@@ -6,35 +6,35 @@ from rmnd_lca.clean_datasets import DatabaseCleaner
 
 def get_dict():
     dummy_db = {
-                ('dummy_db', '6543541'): {
-                    'name':'fake activity',
-                    'reference product': 'fake product',
-                    'location':'IAI Area, Africa',
-                    'unit':'kilogram',
-                    'exchanges': [
-                        {'name' : 'fake activity',
-                         'product': 'fake product',
-                         'amount': 1,
-                         'type': 'production',
-                         'unit':'kilogram',
-                        'input':('dummy_db', '6543541'),},
-                        {'name' : '1,4-Butanediol',
-                         'categories': ('air', 'urban air close to ground'),
-                         'amount': 1,
-                         'type': 'biosphere',
-                         'unit':'kilogram',
-                         'input':('dummy_bio', '123'),
-                         },
-                    ]
-                }
-            }
+        ('dummy_db', '6543541'): {
+            'name': 'fake activity',
+            'reference product': 'fake product',
+            'location': 'IAI Area, Africa',
+            'unit': 'kilogram',
+            'exchanges': [
+                {'name': 'fake activity',
+                 'product': 'fake product',
+                 'amount': 1,
+                 'type': 'production',
+                 'unit': 'kilogram',
+                 'input': ('dummy_db', '6543541'), },
+                {'name': '1,4-Butanediol',
+                 'categories': ('air', 'urban air close to ground'),
+                 'amount': 1,
+                 'type': 'biosphere',
+                 'unit': 'kilogram',
+                 'input': ('dummy_bio', '123'),
+                 },
+            ]
+        }
+    }
     dummy_bio = {
-                ('dummy_bio', '123'): {
-                    'name' : '1,4-Butanediol',
-                    'categories': ('air', 'urban air close to ground'),
-                    'unit':'kilogram',
-                }
-            }
+        ('dummy_bio', '123'): {
+            'name': '1,4-Butanediol',
+            'categories': ('air', 'urban air close to ground'),
+            'unit': 'kilogram',
+        }
+    }
     return dummy_db, dummy_bio
 
 
@@ -42,6 +42,7 @@ def test_presence_db():
     with pytest.raises(NameError) as wrapped_error:
         DatabaseCleaner("bla", 'brightway', 'x')
     assert wrapped_error.type == NameError
+
 
 def test_validity_db():
     dummy_db, dummy_bio = get_dict()
