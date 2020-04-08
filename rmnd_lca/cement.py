@@ -591,6 +591,8 @@ class Cement:
 
     def add_datasets_to_database(self):
 
+        print("The validity of the datasets produced from the integration of the cement sector is not yet fully tested. Consider the results with caution.")
+
         print('Log of deleted cement datasets saved in {}'.format(DATA_DIR / 'logs'))
         print('Log of created cement datasets saved in {}'.format(DATA_DIR / 'logs'))
 

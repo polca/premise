@@ -239,6 +239,8 @@ class Steel:
         :return: NOTHING. Returns a modified database with newly added steel activities for the corresponding year
         """
 
+        print("The validity of the datasets produced from the integration of the steel sector is not yet fully tested. Consider the results with caution.")
+
         print('Log of deleted cement datasets saved in {}'.format(DATA_DIR / 'logs'))
         print('Log of created cement datasets saved in {}'.format(DATA_DIR / 'logs'))
 
