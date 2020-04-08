@@ -14,6 +14,7 @@ from .inventory_imports import CarmaCCSInventory, \
     SynfuelCoalInventory, \
     LPGInventory
 from .cement import Cement
+from .steel import Steel
 
 from .export import Export
 from .utils import eidb_label
@@ -127,12 +128,18 @@ class NewDatabase:
         cement = Cement(self.db, self.rdc, self.year, self.version)
         self.db = cement.add_datasets_to_database()
 
+    def update_steel_to_remind_data(self):
+        steel = Steel(self.db, self.rdc, self.year)
+        self.db = steel.generate_activities()
+
     def update_all(self):
         electricity = Electricity(self.db, self.rdc, self.scenario, self.year)
         self.db = electricity.update_electricity_markets()
         self.db = electricity.update_electricity_efficiency()
         cement = Cement(self.db, self.rdc, self.year, self.version)
         self.db = cement.add_datasets_to_database()
+        steel = Steel(self.db, self.rdc, self.year)
+        self.db = steel.generate_activities()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')

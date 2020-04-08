@@ -39,6 +39,7 @@ class RemindDataCollection:
         self.electricity_efficiencies = self.get_remind_electricity_efficiencies()
         self.electricity_emissions = self.get_gains_electricity_emissions()
         self.cement_emissions = self.get_gains_cement_emissions()
+        self.steel_emissions = self.get_gains_steel_emissions()
 
 
     @staticmethod
@@ -313,3 +314,24 @@ class RemindDataCollection:
         else:
             # Interpolation between two periods
             return self.gains_data.sel(sector='CEMENT').interp(year=self.year)
+
+    def get_gains_steel_emissions(self):
+        """
+        This method retrieves emission values for steel production, for a specified year,
+        for each region provided by GAINS.
+
+        :return: an multi-dimensional array with emissions for different technologies for a given year, for all regions.
+        :rtype: xarray.core.dataarray.DataArray
+
+        """
+        # If the year specified is not contained within the range of years given by REMIND
+        if (
+                self.year < self.gains_data.year.values.min()
+                or self.year > self.gains_data.year.values.max()
+        ):
+            raise KeyError("year not valid, must be between 2005 and 2150")
+
+        # Finally, if the specified year falls in between two periods provided by REMIND
+        else:
+            # Interpolation between two periods
+            return self.gains_data.sel(sector='STEEL').interp(year=self.year)

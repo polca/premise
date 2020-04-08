@@ -187,7 +187,7 @@ class Cement:
                 ].values.item(0)
             except KeyError:
                 # TODO: fix this.
-                # GAINS does not have a 'World' region, hence w euse China as a temporary fix
+                # GAINS does not have a 'World' region, hence we use China as a temporary fix
                 remind_emission = self.rmd.cement_emissions.loc[
                     dict(
                         region='CHA',
@@ -432,7 +432,7 @@ class Cement:
                 biogenic_co2_exc = [e for e in v["exchanges"] if e['name'] == 'Carbon dioxide, non-fossil'][0]
                 biogenic_co2_exc['amount'] = (fuel_biogenic_co2_per_type.sum().values / 1000) * (1 - carbon_capture_rate)
                 biogenic_co2_exc['uncertainty type'] = 0
-            except:
+            except IndexError:
                 # There isn't a biogenic CO2 emissions exchange
                 biogenic_co2_exc = {
                     "uncertainty type": 0,
@@ -590,6 +590,8 @@ class Cement:
         return d_act
 
     def add_datasets_to_database(self):
+
+        print("The validity of the datasets produced from the integration of the cement sector is not yet fully tested. Consider the results with caution.")
 
         print('Log of deleted cement datasets saved in {}'.format(DATA_DIR / 'logs'))
         print('Log of created cement datasets saved in {}'.format(DATA_DIR / 'logs'))
