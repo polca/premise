@@ -17,3 +17,24 @@ bioethanol;26.8
 biodiesel;37.8
 liquified petroleum gas, natural;45.5
 liquified petroleum gas, synthetic;45.5
+heat, from hard coal;1
+heat, from lignite;1
+heat, from petroleum coke;1
+heat, from wood pellet;1
+heat, from natural gas, high pressure;1
+heat, from natural gas, low pressure;1
+heat, from heavy fuel oil;1
+heat, from light fuel oil;1
+heat, from biogas;1
+heat, from waste;1
+heat, from methane, fossil;1
+heat, from methane, biogenic;1
+heat, from diesel;1
+heat, from gasoline;1
+heat, from hydrogen;1
+heat, from bioethanol;1
+heat, from biodiesel;1
+heat, from liquified petroleum gas, natural;1
+heat, from liquified petroleum gas, synthetic;1
+heat, from underground;1
+
