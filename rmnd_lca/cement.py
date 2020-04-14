@@ -70,6 +70,7 @@ class Cement:
                 d_act[d]["location"] = d
                 d_act[d]["code"] = str(uuid.uuid4().hex)
             except ws.NoResults:
+                print('No dataset {} found for the REMIND region {}'.format(name, d))
                 continue
 
             for prod in ws.production(d_act[d]):
@@ -474,9 +475,13 @@ class Cement:
                 except:
                     print(exc)
                 if (exc['name'], exc.get('product')) == (name, ref_product) and exc['type'] == 'technosphere':
-                    if not exc['location'] in list_remind_regions:
-                        old_location = exc['location']
-                        exc['location'] = self.geo.ecoinvent_to_remind_location(old_location)
+                    if act['location'] not in list_remind_regions:
+                        if act['location'] == "North America without Quebec":
+                            exc['location'] = 'USA'
+                        else:
+                            exc['location'] = self.geo.ecoinvent_to_remind_location(act['location'])
+                    else:
+                        exc['location'] = act['location']
 
     def adjust_clinker_ratio(self, d_act):
         """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
@@ -608,19 +613,7 @@ class Cement:
                                 lineterminator='\n')
             writer.writerow(['dataset name', 'reference product', 'location'])
 
-        print('Create new clinker production datasets and delete old datasets')
-        clinker_prod_datasets = [d for d in self.build_clinker_production_datasets().values()]
-        self.db.extend(clinker_prod_datasets)
-
-        created_datasets = [(act['name'], act['reference product'], act['location'])
-                            for act in clinker_prod_datasets]
-
-        print('Create new clinker market datasets and delete old datasets')
-        clinker_market_datasets = [d for d in self.build_clinker_market_datasets().values()]
-        self.db.extend(clinker_market_datasets)
-
-        created_datasets.extend([(act['name'], act['reference product'], act['location'])
-                            for act in clinker_market_datasets])
+        created_datasets = list()
 
         print('Adjust clinker-to-cement ratio in "unspecified cement" datasets')
 
@@ -635,7 +628,6 @@ class Cement:
         act_cement_unspecified = self.fetch_proxies(name, ref_prod)
         act_cement_unspecified = self.adjust_clinker_ratio(act_cement_unspecified)
         self.db.extend([v for v in act_cement_unspecified.values()])
-        self.relink_datasets(name, ref_prod)
 
         created_datasets.extend([(act['name'], act['reference product'], act['location'])
                             for act in act_cement_unspecified.values()])
@@ -776,6 +768,20 @@ class Cement:
 
                 self.relink_datasets(i[0], i[1])
 
+        print('Create new clinker production datasets and delete old datasets')
+        clinker_prod_datasets = [d for d in self.build_clinker_production_datasets().values()]
+        self.db.extend(clinker_prod_datasets)
+
+        created_datasets.extend([(act['name'], act['reference product'], act['location'])
+                            for act in clinker_prod_datasets])
+
+        print('Create new clinker market datasets and delete old datasets')
+        clinker_market_datasets = [d for d in self.build_clinker_market_datasets().values()]
+        self.db.extend(clinker_market_datasets)
+
+        created_datasets.extend([(act['name'], act['reference product'], act['location'])
+                            for act in clinker_market_datasets])
+
 
         with open(DATA_DIR / "logs/log created cement datasets.csv", "a") as csv_file:
                 writer = csv.writer(csv_file,
@@ -784,10 +790,7 @@ class Cement:
                 for line in created_datasets:
                     writer.writerow(line)
 
-        print('Relink cement production datasets to new clinker production datasets')
-        self.relink_datasets('clinker production', 'clinker')
-        print('Relink cement production datasets to new clinker market datasets')
-        self.relink_datasets('market for clinker', 'clinker')
+
 
         print('Relink cement market datasets to new cement production datasets')
         self.relink_datasets('market for cement', 'cement')
@@ -795,5 +798,13 @@ class Cement:
         print('Relink activities to new cement datasets')
         self.relink_datasets('cement, all types to generic market for cement, unspecified',
                              'cement, unspecified')
+
+        print('Relink cement production datasets to new clinker market datasets')
+        self.relink_datasets('market for clinker', 'clinker')
+
+        print('Relink clinker market datasets to new clinker production datasets')
+        self.relink_datasets('clinker production', 'clinker')
+
+
 
         return self.db

@@ -54,7 +54,10 @@ class Steel:
             if type(c) == tuple and c[0] == "REMIND"
         ]
 
-        d_remind_to_eco = {r: d_map.get(r, "RoW") for r in list_remind_regions}
+        if 'market' in name:
+            d_remind_to_eco = {r: d_map.get(r, "GLO") for r in list_remind_regions}
+        else:
+            d_remind_to_eco = {r: d_map.get(r, "RoW") for r in list_remind_regions}
 
         d_act = {}
 
@@ -70,6 +73,7 @@ class Steel:
                 d_act[d]["location"] = d
                 d_act[d]["code"] = str(uuid.uuid4().hex)
             except ws.NoResults:
+                print('No dataset {} found for the REMIND region {}'.format(name, d))
                 continue
 
             for prod in ws.production(d_act[d]):
@@ -190,9 +194,13 @@ class Steel:
                 except:
                     print(exc)
                 if (exc['name'], exc.get('product')) == (name, ref_product) and exc['type'] == 'technosphere':
-                    if not exc['location'] in list_remind_regions:
-                        old_location = exc['location']
-                        exc['location'] = self.geo.ecoinvent_to_remind_location(old_location)
+                    if act['location'] not in list_remind_regions:
+                        if act['location'] == "North America without Quebec":
+                            exc['location'] = 'USA'
+                        else:
+                            exc['location'] = self.geo.ecoinvent_to_remind_location(act['location'])
+                    else:
+                        exc['location'] = act['location']
 
     def update_pollutant_emissions(self, ds):
         """
@@ -231,7 +239,75 @@ class Steel:
             else:
                 wurst.rescale_exchange(exc, remind_emission / exc["amount"])
         return ds
-        
+
+    def adjust_recycled_steel_share(self, dict_act):
+        """
+        Adjust the supply shares of primary and secondary steel, based on REMIND data.
+
+        :param dict_act: dictionary with REMIND region as keys and datasets as values.
+        :type dict_act: dict
+        :return: same dictionary, with modified exchanges
+        :rtype: dict
+        """
+
+        dict_act = self.remove_exchanges(dict_act, ['steel production'])
+
+        for d in dict_act:
+            print(d, dict_act[d]['name'], dict_act[d]['reference product'])
+
+        for d, act in dict_act.items():
+            remind_region = d
+
+            total_production_volume = self.steel_data.sel(region=remind_region, variables='Production|Industry|Steel')
+            primary_share = (self.steel_data.sel(region=remind_region, variables='Production|Industry|Steel|Primary') / total_production_volume).values
+            secondary_share = 1 - primary_share
+
+            print(remind_region, primary_share, secondary_share)
+
+            ds = ws.get_one(self.db,
+                       ws.equals('reference product', act['reference product']),
+                       ws.contains('name', 'steel production'),
+                       ws.contains('name', 'converter'),
+                        ws.contains('location', 'RoW'))
+
+
+
+            act['exchanges'].append(
+                {
+                    "uncertainty type": 0,
+                    "loc": 1,
+                    "amount": primary_share,
+                    "type": "technosphere",
+                    "production volume": 1,
+                    "product": ds['reference product'],
+                    "name": ds['name'],
+                    "unit": ds['unit'],
+                    "location": remind_region,
+                }
+            )
+
+            ds = ws.get_one(self.db,
+                       ws.equals('reference product', act['reference product']),
+                       ws.contains('name', 'steel production'),
+                       ws.contains('name', 'electric'),
+                       ws.contains('location', 'RoW'))
+
+            act['exchanges'].append(
+                {
+                    "uncertainty type": 0,
+                    "loc": 1,
+                    "amount": secondary_share,
+                    "type": "technosphere",
+                    "production volume": 1,
+                    "product": ds['reference product'],
+                    "name": ds['name'],
+                    "unit": ds['unit'],
+                    "location": remind_region,
+                }
+            )
+
+        return dict_act
+
     def generate_activities(self):
         """
         This function generates new activities for primary and secondary steel production and add them to the ecoinvent db.
@@ -255,6 +331,40 @@ class Steel:
                                 delimiter=';',
                                 lineterminator='\n')
             writer.writerow(['dataset name', 'reference product', 'location'])
+
+
+        print('Create steel markets for differention regions')
+        print('Adjust primary and secondary steel supply shares in  steel markets')
+
+        created_datasets = list()
+        for i in (
+                  ("market for steel, low-alloyed", "steel, low-alloyed"),
+                  ("market for steel, chromium steel 18/8", "steel, chromium steel 18/8")
+                  ):
+            act_steel = self.fetch_proxies(i[0])
+            act_steel = self.adjust_recycled_steel_share(act_steel)
+            self.db.extend([v for v in act_steel.values()])
+
+            created_datasets.extend([(act['name'], act['reference product'], act['location'])
+                            for act in act_steel.values()])
+
+            self.relink_datasets(i[0], i[1])
+
+
+        for i in (
+                  ("market for steel, unalloyed", "steel, unalloyed"),
+                  ("market for steel, chromium steel 18/8, hot rolled", "steel, chromium steel 18/8, hot rolled"),
+                  ("market for steel, low-alloyed, hot rolled", "steel, low-alloyed, hot rolled")
+                  ):
+            act_steel = self.fetch_proxies(i[0])
+            self.db.extend([v for v in act_steel.values()])
+
+            created_datasets.extend([(act['name'], act['reference product'], act['location'])
+                            for act in act_steel.values()])
+
+            self.relink_datasets(i[0], i[1])
+
+        print('Relink new steel markets to steel-consuming activities')
 
         # Determine all steel activities in the db. Delete old datasets.
         print('Create new steel production datasets and delete old datasets')
@@ -424,14 +534,29 @@ class Steel:
 
                 # Relink all activities to the newly created activities
 
-                self.relink_datasets(d_act_steel[d][k]['name'],
-                                     d_act_steel[d][k]['reference product'])
+                name = d_act_steel[d][k]['name']
+                ref_prod = d_act_steel[d][k]['reference product']
+
+
 
             # Update non fuel-related emissions according to GAINS
             d_act_steel[d] = {k: self.update_pollutant_emissions(v) for k, v in d_act_steel[d].items()}
 
             self.db.extend([v for v in d_act_steel[d].values()])
 
-        print('Relink activities to new cement datasets')
+            # Relink new steel activities to steel-consuming activities
+            self.relink_datasets(name, ref_prod)
+
+            created_datasets.extend([(act['name'], act['reference product'], act['location'])
+                                for act in d_act_steel[d].values()])
+
+        print('Relink new steel production activities to specialty steel markets and other steel-consuming activities ')
+
+        with open(DATA_DIR / "logs/log created steel datasets.csv", "a") as csv_file:
+            writer = csv.writer(csv_file,
+                                delimiter=';',
+                                lineterminator='\n')
+            for line in created_datasets:
+                writer.writerow(line)
 
         return self.db
