@@ -252,9 +252,6 @@ class Steel:
 
         dict_act = self.remove_exchanges(dict_act, ['steel production'])
 
-        for d in dict_act:
-            print(d, dict_act[d]['name'], dict_act[d]['reference product'])
-
         for d, act in dict_act.items():
             remind_region = d
 
@@ -262,15 +259,11 @@ class Steel:
             primary_share = (self.steel_data.sel(region=remind_region, variables='Production|Industry|Steel|Primary') / total_production_volume).values
             secondary_share = 1 - primary_share
 
-            print(remind_region, primary_share, secondary_share)
-
             ds = ws.get_one(self.db,
                        ws.equals('reference product', act['reference product']),
                        ws.contains('name', 'steel production'),
                        ws.contains('name', 'converter'),
                         ws.contains('location', 'RoW'))
-
-
 
             act['exchanges'].append(
                 {
