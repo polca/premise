@@ -35,7 +35,7 @@ def get_db():
     return db, version
 
 
-rdc = RemindDataCollection('SSP2-Base', 2012, DATA_DIR / "remind_outputs_files")
+rdc = RemindDataCollection('SSP2-Base', 2012, DATA_DIR / "remind_output_files")
 db, _ = get_db()
 el = Electricity(db, rdc, 'SSP2-Base', 2012)
 
