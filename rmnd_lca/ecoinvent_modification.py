@@ -55,7 +55,19 @@ class NewDatabase:
                  source_type='brightway',
                  source_file_path=None,
                  filepath_to_remind_files=None):
-        self.scenario = scenario
+
+        if scenario not in [
+            "SSP2-Base",
+            "SSP2-NDC",
+            "SSP2-NPi",
+            "SSP2-PkBudg900",
+            "SSP2-PkBudg1100",
+            "SSP2-PkBudg1300",
+        ]:
+            raise NameError('The scenario chosen is not any of "SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", "SSP2-PkBudg1100", "SSP2-PkBudg1300".')
+        else:
+            self.scenario = scenario
+
         self.year = year
         self.source = source_db
         self.version = source_version

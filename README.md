@@ -68,15 +68,22 @@ returns
 Then, for a chosen policy and year between 2005 and 2150, the following function will:
 * extract the ecoinvent database, clean it, add additional inventories for carbon capture and storage, biofuels, etc.
 
-For example, here with the year 2028 and the policy "Business-as-usual":
+For example, here with the year 2028 and a "Business-as-usual" policy called "SSP2-Base":
 ```python
     from rmnd_lca import *
-    ndb = NewDatabase(scenario = 'BAU',
+    ndb = NewDatabase(scenario = 'SSP2-Base',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
               source_version = 3.6,
              )
 ```
+The current scenarios available are:
+* "SSP2-Base": counterfactual scenario with no climate policy implementation.
+* "SSP2-NPi": NPi (National Policies implemented) scenario  describes energy, climate and economic projections for the period until 2030, and equivalent efforts thereafter.
+* "SSP2-NDC": All emission reductions and other mitigation commitments of the Nationally Determined Contributions under the Paris Agreement are implemented.
+* "SSP2-PkBudg900", "SSP2-PkBudg1100", "SSP2-PkBudg1300": PkBudg 1300/1100/900: Climate policies to limit cumulative 2011-2100 CO2 emissions to 1300/1100/900 gigatons over the entire time horizon (“not-to-exceed”). Correspond to 2°, well-below 2° and 1.5° targets respectively. Other greenhouse gases are priced with the CO2e-price using 100year global warming potentials.
+
+Further description of those scenarios is provided [here](https://github.com/romainsacchi/rmnd-lca/blob/master/rmnd_lca/data/Remind%20output%20files/description.md).
 
 Note that, by default, the library will look for REMIND output files ("xxx.mif" files and "GAINS emission factors.csv") in the
 "data/Remind output files" subdirectory. If those are not located there, you need to specify the path to
