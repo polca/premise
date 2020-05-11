@@ -90,7 +90,7 @@ Note that, by default, the library will look for REMIND output files ("xxx.mif" 
 the correct directory, as such::
 ```python
     from rmnd_lca import *
-    ndb = NewDatabase(scenario = 'BAU',
+    ndb = NewDatabase(scenario = 'SSP2-Base',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
               source_version = 3.6,
@@ -107,7 +107,7 @@ and the file path to the ecospold files in `source_file_path`.
 
 ```python
     from rmnd_lca import *
-    ndb = NewDatabase(scenario = 'BAU',
+    ndb = NewDatabase(scenario = 'SSP2-Base',
                   year = 2028,
                   source_db = 'ecoinvent 3.5 cutoff',
                   source_version = 3.5,

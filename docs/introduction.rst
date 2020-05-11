@@ -80,7 +80,7 @@ For example, here with the year 2028 and the policy "Business-as-usual":
 
 .. code-block:: python
 
-    ndb = NewDatabase(scenario = 'BAU',
+    ndb = NewDatabase(scenario = 'SSP2-Base',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
               source_version = 3.6,
@@ -92,7 +92,7 @@ the correct directory, such as:
 
 .. code-block:: python
 
-    ndb = NewDatabase(scenario = 'BAU',
+    ndb = NewDatabase(scenario = 'SSP2-Base',
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
               source_version = 3.6,
