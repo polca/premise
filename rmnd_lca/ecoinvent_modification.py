@@ -75,7 +75,7 @@ class NewDatabase:
         self.source_file_path = source_file_path
         self.db = self.clean_database()
         self.import_inventories()
-        self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "Remind output files")
+        self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "remind_output_files")
 
         self.rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
 
