@@ -93,13 +93,11 @@ class InventorySet:
             ]
         },
         "Biomass CHP": {
-            "fltr": {
-                "name": [
+            "fltr": [
                     "heat and power co-generation, wood chips",
                     "heat and power co-generation, biogas",
-                ],
-                "reference product": "electricity"
-            }
+            ],
+            "mask":{"reference product": "heat"}
         },
         "Coal PC": {
             "fltr": [
@@ -109,13 +107,12 @@ class InventorySet:
             "mask": "mine",
         },
         "Coal CHP": {
-            "fltr": {
-                "name": [
+            "fltr": [
                     "heat and power co-generation, hard coal",
                     "heat and power co-generation, lignite",
-                ],
-                "reference product": "electricity"
-            }
+            ],
+            "mask":{"reference product":"heat"}
+
         },
         "Gas OC": {
             "fltr": "electricity production, natural gas, conventional power plant"
@@ -124,13 +121,11 @@ class InventorySet:
             "fltr": "electricity production, natural gas, combined cycle power plant"
         },
         "Gas CHP": {
-            "fltr": {
-                "name": [
+            "fltr": [
                     "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
                     "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
-                ],
-                "reference product": "electricity"
-            }
+            ],
+            "mask":{"reference product":"heat"}
         },
         "Geothermal": {"fltr": "electricity production, deep geothermal"},
         "Hydro": {
@@ -141,14 +136,11 @@ class InventorySet:
         },
         "Nuclear": {"fltr": "electricity production, nuclear", "mask": "aluminium"},
         "Oil": {
-            "fltr": {
-                "name": [
+            "fltr": [
                     "electricity production, oil",
                     "heat and power co-generation, oil",
-                ],
-                "reference product": "electricity"
-            },
-            "mask": "aluminium",
+            ],
+            "mask": {"name":"aluminium", "reference product":"heat"}
         },
         "Solar CSP": {
             "fltr": [
