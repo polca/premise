@@ -137,21 +137,28 @@ class NewDatabase:
         self.db = electricity.update_electricity_efficiency()
 
     def update_cement_to_remind_data(self):
-        cement = Cement(self.db, self.rdc, self.year, self.version)
-        self.db = cement.add_datasets_to_database()
+        if len([v for v in self.rdc.data.variables.values
+                if "cement" in v.lower() and "production" in v.lower()])>0:
+            cement = Cement(self.db, self.rdc, self.year, self.version)
+            self.db = cement.add_datasets_to_database()
+        else:
+            print("The REMIND scenario chosen does not contain any data related to the cement sector."
+                  "Transformations related to the cement sector will be skipped.")
 
     def update_steel_to_remind_data(self):
-        steel = Steel(self.db, self.rdc, self.year)
-        self.db = steel.generate_activities()
+        if len([v for v in self.rdc.data.variables.values
+                if "steel" in v.lower() and "production" in v.lower()])>0:
+            steel = Steel(self.db, self.rdc, self.year)
+            self.db = steel.generate_activities()
+        else:
+            print("The REMIND scenario chosen does not contain any data related to the steel sector."
+                  "Transformations related to the steel sector will be skipped.")
+
 
     def update_all(self):
-        electricity = Electricity(self.db, self.rdc, self.scenario, self.year)
-        self.db = electricity.update_electricity_markets()
-        self.db = electricity.update_electricity_efficiency()
-        cement = Cement(self.db, self.rdc, self.year, self.version)
-        self.db = cement.add_datasets_to_database()
-        steel = Steel(self.db, self.rdc, self.year)
-        self.db = steel.generate_activities()
+        self.update_electricity_to_remind_data()
+        self.update_cement_to_remind_data()
+        self.update_steel_to_remind_data()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')
