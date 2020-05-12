@@ -866,6 +866,13 @@ class Electricity:
                 .values
         )
 
+        with open(DATA_DIR / "logs/log efficiencies change.csv", "a") as csv_file:
+            writer = csv.writer(csv_file,
+                                delimiter=';',
+                                lineterminator='\n')
+
+            writer.writerow([ds['name'], ds['location'], ecoinvent_eff, remind_eff])
+
         return ecoinvent_eff / remind_eff
 
     @staticmethod
@@ -1125,6 +1132,17 @@ class Electricity:
 
         technologies_map = self.get_remind_mapping()
 
+        if not os.path.exists(DATA_DIR / "logs"):
+            os.makedirs(DATA_DIR / "logs")
+
+        with open(DATA_DIR / "logs/log efficiencies change.csv", "w") as csv_file:
+            writer = csv.writer(csv_file,
+                                delimiter=';',
+                                lineterminator='\n')
+            writer.writerow(['dataset name', 'location', 'original efficiency', 'new efficiency'])
+
+        print('Log of changes in power plants efficiencies saved in {}'.format(DATA_DIR / 'logs'))
+
         for remind_technology in technologies_map:
             dict_technology = technologies_map[remind_technology]
             print("Rescale inventories and emissions for", remind_technology)
@@ -1215,6 +1233,9 @@ class Electricity:
         self.db = [
             i for i in self.db if not any(stop in i["name"] for stop in list_to_remove)
         ]
+
+
+
 
         # We then need to create high voltage REMIND electricity markets
         print("Create high voltage markets.")
