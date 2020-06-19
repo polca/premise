@@ -12,7 +12,8 @@ from .inventory_imports import CarmaCCSInventory, \
     GeothermalInventory, \
     SyngasCoalInventory, \
     SynfuelCoalInventory, \
-    LPGInventory
+    LPGInventory, \
+    CarculatorInventory
 from .cement import Cement
 from .steel import Steel
 
@@ -130,6 +131,10 @@ class NewDatabase:
         print("Add LPG inventories")
         lpg = LPGInventory(self.db, self.version, FILEPATH_LPG_INVENTORIES)
         lpg.merge_inventory()
+
+        print("Add Carculator inventories")
+        cars = CarculatorInventory(self.db, self.year)
+        cars.merge_inventory()
 
     def update_electricity_to_remind_data(self):
         electricity = Electricity(self.db, self.rdc, self.scenario, self.year)
