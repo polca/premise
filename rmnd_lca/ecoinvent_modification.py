@@ -16,10 +16,12 @@ from .inventory_imports import CarmaCCSInventory, \
     CarculatorInventory
 from .cement import Cement
 from .steel import Steel
+from .cars import Cars
 
 from .export import Export
 from .utils import eidb_label
 import wurst
+import wurst.searching as ws
 
 FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
 FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
@@ -65,9 +67,11 @@ class NewDatabase:
             "SSP2-PkBudg1100",
             "SSP2-PkBudg1300",
         ]:
-            raise NameError('The scenario chosen is not any of "SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", "SSP2-PkBudg1100", "SSP2-PkBudg1300".')
-        else:
-            self.scenario = scenario
+            print(('Warning: The scenario chosen is not any of '
+                   '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
+                   '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
+
+        self.scenario = scenario
 
         self.year = year
         self.source = source_db
@@ -159,11 +163,22 @@ class NewDatabase:
             print("The REMIND scenario chosen does not contain any data related to the steel sector."
                   "Transformations related to the steel sector will be skipped.")
 
+    def update_cars(self):
+        try:
+            next(ws.get_many(
+                self.db,
+                ws.equals("name", "market group for electricity, low voltage")))
+            Cars(self.db, self.scenario, self.year).create_local_evs()
+        except StopIteration as e:
+            print(("No updated electricity markets found. Please update "
+                   "electricity markets before updating upstream fuel "
+                   "inventories for electricity powered vehicles"))
 
     def update_all(self):
         self.update_electricity_to_remind_data()
         self.update_cement_to_remind_data()
         self.update_steel_to_remind_data()
+        self.update_cars()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')
