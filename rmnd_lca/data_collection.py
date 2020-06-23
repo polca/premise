@@ -1,5 +1,6 @@
 from . import DATA_DIR
 import pandas as pd
+import xarray as xr
 from pathlib import Path
 import csv
 
@@ -236,6 +237,51 @@ class RemindDataCollection:
                                   :, list_technologies, :
                                   ] / self.data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
             return data_to_interp_from.interp(year=self.year)
+
+    def get_remind_fuel_mix(self):
+        """
+        This method retrieves the fuel production mix
+        used in the transport sector,
+        for a specified year, for each region provided by REMIND.
+
+        :return: an multi-dimensional array with market share for a given year, for all regions.
+        :rtype: xarray.core.dataarray.DataArray
+
+        """
+
+        # add fossil fuel entry
+        data = xr.concat([
+            self.data,
+            (self.data.loc[:, "FE|Transport|Liquids|Coal", :] +
+             self.data.loc[:, "FE|Transport|Liquids|Oil", :]).expand_dims({
+                 "variables": ["FE|Transport|Liquids|Fossil"]
+             })], dim="variables")
+
+        list_technologies = [
+            "FE|Transport|Liquids|Biomass",
+            "FE|Transport|Liquids|Fossil",
+            "FE|Transport|Liquids|Hydrogen"
+        ]
+        data = data.loc[:, list_technologies, :]
+
+        data.coords["variables"] = data.coords["variables"]\
+                                       .str.replace("FE\|Transport\|Liquids\|", "")
+
+        # shares
+        data = data / data.groupby("region").sum(dim="variables")
+
+        # If the year specified is not contained within
+        # the range of years given by REMIND
+        if (
+                self.year < self.data.year.values.min()
+                or self.year > self.data.year.values.max()
+        ):
+            raise KeyError("year not valid, must be between 2005 and 2150")
+        # Finally, if the specified year falls in
+        # between two periods provided by REMIND
+        else:
+            # Interpolation between two periods
+            return data.interp(year=self.year)
 
     def get_remind_electricity_efficiencies(self, drop_hydrogen=True):
         """
