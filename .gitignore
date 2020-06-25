@@ -4,6 +4,7 @@ logs/
 *.egg/
 build/
 dist/
+*.eggs/
 
 *.pyc
 

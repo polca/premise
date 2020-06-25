@@ -413,7 +413,7 @@ class Electricity:
                 (1 - solar_amount) * (1 + distr_loss)
             ])
 
-            with open(DATA_DIR / "logs/log created markets.csv", "a") as csv_file:
+            with open(DATA_DIR / "logs/log created markets {} {}-{}.csv".format(self.scenario, self.year, date.today()), "a") as csv_file:
                 writer = csv.writer(csv_file,
                                     delimiter=';',
                                     lineterminator='\n')
@@ -550,7 +550,7 @@ class Electricity:
 
             self.db.append(new_dataset)
 
-        with open(DATA_DIR / "logs/log created markets.csv", "a") as csv_file:
+        with open(DATA_DIR / "logs/log created markets {} {}-{}.csv".format(self.scenario, self.year, date.today()), "a") as csv_file:
             writer = csv.writer(csv_file,
                                 delimiter=';',
                                 lineterminator='\n')
@@ -710,7 +710,7 @@ class Electricity:
 
         # Writing log of created markets
 
-        with open(DATA_DIR / "logs/log created markets.csv", "w") as csv_file:
+        with open(DATA_DIR / "logs/log created markets {} {}-{}.csv".format(self.scenario, self.year, date.today()), "w") as csv_file:
             writer = csv.writer(csv_file,
                                 delimiter=';',
                                 lineterminator='\n')
@@ -1223,7 +1223,7 @@ class Electricity:
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
 
-        with open(DATA_DIR / "logs/log deleted markets.csv", "w") as csv_file:
+        with open(DATA_DIR / "logs/log deleted markets {} {}-{}.csv".format(self.scenario, self.year, date.today()), "w") as csv_file:
             writer = csv.writer(csv_file,
                                 delimiter=';',
                                 lineterminator='\n')
