@@ -752,7 +752,6 @@ class Electricity:
                     *[
                         ws.either(
                             *[
-                                ws.contains("unit", "kilowatt hour"),
                                 ws.contains("name", "market for electricity"),
                                 ws.contains("name", "electricity voltage transformation"),
                                 ws.contains("name", "market group for electricity"),
