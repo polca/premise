@@ -26,7 +26,7 @@ def package_files(directory):
 
 setup(
     name='rmnd-lca',
-    version="0.0.5",
+    version="0.0.6",
     packages=packages,
     author="Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>, Tom Terlouw <tom.terlouw@psi.ch>, Romain Sacchi <romain.sacchi@psi.ch>",
     # author_email="cmutel@gmail.com",
@@ -37,14 +37,13 @@ setup(
         'numpy',
         'pytest-cov',
         'coveralls',
-        'wurst',
+        'wurst>=0.2',
         'bw2io',
         'pandas',
         'bw2data',
-        'xarray==0.13.0'
+        'xarray>0.15.0'
     ],
     url="https://github.com/romainsacchi/rmnd-lca",
-    long_description=open('README.md').read(),
     description='Coupling REMIND output to ecoinvent LCA database ecoinvent for prospective LCA',
     classifiers=[
         'Intended Audience :: End Users/Desktop',

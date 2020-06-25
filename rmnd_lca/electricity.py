@@ -8,6 +8,7 @@ import csv
 import numpy as np
 import uuid
 import wurst
+from datetime import date
 
 PRODUCTION_PER_TECH = (DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv")
 LOSS_PER_COUNTRY = (DATA_DIR / "electricity" / "losses_per_country.csv")
@@ -866,7 +867,7 @@ class Electricity:
                 .values
         )
 
-        with open(DATA_DIR / "logs/log efficiencies change.csv", "a") as csv_file:
+        with open(DATA_DIR / "logs/log efficiencies change {} {}-{}.csv".format(self.scenario, self.year, date.today()), "a") as csv_file:
             writer = csv.writer(csv_file,
                                 delimiter=';',
                                 lineterminator='\n')
@@ -1135,7 +1136,7 @@ class Electricity:
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
 
-        with open(DATA_DIR / "logs/log efficiencies change.csv", "w") as csv_file:
+        with open(DATA_DIR / "logs/log efficiencies change {} {}-{}.csv".format(self.scenario, self.year, date.today()), "w") as csv_file:
             writer = csv.writer(csv_file,
                                 delimiter=';',
                                 lineterminator='\n')
@@ -1233,9 +1234,6 @@ class Electricity:
         self.db = [
             i for i in self.db if not any(stop in i["name"] for stop in list_to_remove)
         ]
-
-
-
 
         # We then need to create high voltage REMIND electricity markets
         print("Create high voltage markets.")

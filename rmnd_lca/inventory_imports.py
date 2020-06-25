@@ -713,3 +713,4 @@ class LPGInventory(BaseInventoryImport):
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_duplicates()
+
