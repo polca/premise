@@ -3,6 +3,8 @@ from .geomap import Geomap
 import wurst
 import wurst.searching as ws
 import pandas as pd
+import uuid
+import copy
 
 from .geomap import REGION_MAPPING_FILEPATH
 
@@ -30,6 +32,28 @@ class Cars():
         self.remind_regions = list(pd.read_csv(
             REGION_MAPPING_FILEPATH, sep=";").RegionCode.unique())
         self.remind_regions.remove("World")
+
+    def _create_local_copy(self, old_act, region):
+        """
+        Create a local copy of an activity.
+        Update also the production exchange.
+        """
+        act = copy.deepcopy(old_act)
+        act.update({
+            "location": region,
+            "code": str(uuid.uuid4().hex)
+        })
+
+        # update production exchange
+        prods = list(ws.production(
+            act, ws.equals("name", act["name"])))
+        if len(prods) == 1:
+            prods[0]["location"] = region
+        else:
+            raise ValueError(
+                "Multiple or no Production Exchanges found for {}."
+                .format(old_act["name"]))
+        return act
 
     def _delete_non_global(self, acts, proxy_region="RER"):
         # delete any non-global activities?
@@ -61,49 +85,45 @@ class Cars():
 
         self._delete_non_global(bevs)
 
+        old_supply = ws.get_one(
+            self.db,
+            ws.startswith(
+                "name", "electricity supply for electric vehicles"))
+
         for region in self.remind_regions:
+
+            # create local electricity supply
+            supply = self._create_local_copy(old_supply, region)
+            # replace electricity input
+            for sup in ws.technosphere(
+                    supply, ws.equals("product", "electricity, low voltage")):
+                sup.update({
+                    "name": "market group for electricity, low voltage",
+                    "location": region
+                })
             print("Relinking electricity markets for BEVs in {}".format(region))
-            # find markets
-            new_market = ws.get_one(self.db,
-                ws.startswith("name", "market group for electricity, low voltage"),
-                ws.equals("location", region))
+
             for bev in bevs:
-                new_bev = bev.copy()
-                new_bev["location"] = region
-
-                # update production exchange
-                prod = next(ws.production(bev, ws.equals("name", bev["name"])))
-                prod["location"] = region
-
+                new_bev = self._create_local_copy(bev, region)
                 # update fuel market
                 oldex = list(ws.technosphere(
                     new_bev,
-                    ws.equals("name", "market group for electricity, low voltage"),
-                    ws.equals("location", "EUR")))
+                    ws.startswith(
+                        "name",
+                        "electricity supply for electric vehicles")))
                 # should only be one
-                if len(oldex) > 1:
-                    raise ValueError("More than one electricity market for "
-                                     "fuel production found for {}"
-                                     .format(new_bev))
+                if len(oldex) != 1:
+                    raise ValueError(
+                        "Zero or more than one electricity "
+                        "markets for fuel production found for {} in {}"
+                        .format(new_bev["name"], new_bev["location"]))
                 elif len(oldex) == 1:
-                    # new exchange
+                    # reference the new supply
                     oldex[0].update({
-                        "name": new_market["name"],
-                        "amount": oldex[0]["amount"],
-                        "unit": "kilowatt hour",
-                        "type": "technosphere",
-                        "location": region,
-                        "uncertainty type": 1,
-                        "reference product": "electricity, low voltage",
-                        "product": "electricity, low voltage"
+                        "location": region
                     })
-
-                    chklst = list(ws.technosphere(
-                        new_bev, ws.equals(
-                            "name",
-                            "market group for electricity, low voltage")))
-                    assert len(chklst) == 2, "Deletion failed"
                     self.db.append(new_bev)
+            self.db.append(supply)
 
     def create_local_fcevs(self):
         """Create LDV activities for REMIND regions and relink
@@ -125,15 +145,16 @@ class Cars():
         for region in self.remind_regions:
             if region == "EUR":
                 # in this case, the RER activities are just fine
+                print("Assuming default datasets from RER, no updates for EUR.")
                 continue
             print("Relinking hydrogen markets for FCEVs in {}".format(region))
             # create local hydrogen supply
-            supply = old_supply.copy()
-            supply["location"] = region
+            supply = self._create_local_copy(old_supply, region)
             # remove explicit electricity input
-            elmark = next(ws.technosphere(supply, ws.equals(
-                "name", "market group for electricity, low voltage")))
+            elmark = next(ws.technosphere(supply, ws.startswith(
+                "name", "electricity market for fuel preparation")))
             elmark["amount"] = 0
+            wurst.delete_zero_amount_exchanges([supply])
 
             # find hydrogen supply nearby
             ei_locs = self.geo.remind_to_ecoinvent_location(region)
@@ -164,8 +185,8 @@ class Cars():
 
             # create local fcev
             for fcev in fcevs:
-                local_fcev = fcev.copy()
-                local_fcev["location"] = region
+                # create local fcevs
+                local_fcev = self._create_local_copy(fcev, region)
                 # link correct market
                 fuel_ex = next(ws.technosphere(
                     local_fcev,
