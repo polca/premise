@@ -50,5 +50,5 @@ script:
         
       fi
     else
-      pytest;
+      pytest -m "not ecoinvent";
     fi
