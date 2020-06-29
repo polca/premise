@@ -355,3 +355,8 @@ class Cars():
         else:
             raise ValueError("Multiple activities found for {} in {}"
                              .format(act["name"], region))
+
+    def update_cars(self):
+        self.create_local_evs()
+        self.create_local_fcevs()
+        self.create_local_icevs()

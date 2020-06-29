@@ -169,8 +169,7 @@ class NewDatabase:
                 self.db,
                 ws.equals("name", "market group for electricity, low voltage")))
             crs = Cars(self.db, self.scenario, self.year)
-            crs.create_local_evs()
-            crs.create_local_fcevs()
+            crs.update_cars()
         except StopIteration as e:
             print(("No updated electricity markets found. Please update "
                    "electricity markets before updating upstream fuel "
