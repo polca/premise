@@ -224,6 +224,7 @@ class Cars():
         Use REMIND fuel markets to update the mix of bio-, syn-
         and fossil liquids in gasoline and diesel.
         """
+        print("Creating local ICEV activities")
         icevs = list(ws.get_many(
             self.db,
             ws.either(
@@ -287,6 +288,7 @@ class Cars():
             new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
                 region, "Diesel production, Fischer Tropsch process")
 
+            print("Relinking fuel markets for ICEVs in {}".format(region))
             for ftype in new_producers:
                 new_supp = self._create_local_copy(
                     old_suppliers[ftype], region)
