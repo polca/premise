@@ -41,6 +41,7 @@ setup(
         'bw2io',
         'pandas',
         'bw2data',
+        'brightway2',
         'xarray>0.15.0',
         'carculator>1.1.4'
     ],
