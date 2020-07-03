@@ -143,10 +143,6 @@ class Cars():
                 "name", "fuel supply for hydrogen vehicles"))
 
         for region in self.remind_regions:
-            if region == "EUR":
-                # in this case, the RER activities are just fine
-                print("Assuming default datasets from RER, no updates for EUR.")
-                continue
             print("Relinking hydrogen markets for FCEVs in {}".format(region))
             # create local hydrogen supply
             supply = self._create_local_copy(old_supply, region)
