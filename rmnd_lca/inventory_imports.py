@@ -487,6 +487,122 @@ class HydrogenInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
+class HydrogenBiogasInventory(BaseInventoryImport):
+    """
+    Hydrogen datasets from the ELEGANCY project (2019).
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+        # Migrations for 3.5
+        if self.version == 3.5:
+            migrations = {
+                'fields': ['name', 'reference product', 'location'],
+                'data': [
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'RoW'),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',),
+                         'IAI Area, EU27 & EFTA'),
+                        {
+                            'name': ('market for aluminium oxide'),
+                            'reference product': ('aluminium oxide'),
+                            'location': ('GLO'),
+                        }
+                    ),
+                    (
+                        ('market for flat glass, coated', ('flat glass, coated',), 'RER'),
+                        {
+                            'location': ('GLO'),
+                        }
+                    )
+                ]
+            }
+
+            Migration("hydrogen_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("hydrogen_ecoinvent_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+        # Check for duplicates
+        self.check_for_duplicates()
+
+class HydrogenWoodyInventory(BaseInventoryImport):
+    """
+    Hydrogen datasets from the ELEGANCY project (2019).
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+        # Migrations for 3.5
+        if self.version == 3.5:
+            migrations = {
+                'fields': ['name', 'reference product', 'location'],
+                'data': [
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'RoW'),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',),
+                         'IAI Area, EU27 & EFTA'),
+                        {
+                            'name': ('market for aluminium oxide'),
+                            'reference product': ('aluminium oxide'),
+                            'location': ('GLO'),
+                        }
+                    ),
+                    (
+                        ('market for flat glass, coated', ('flat glass, coated',), 'RER'),
+                        {
+                            'location': ('GLO'),
+                        }
+                    )
+                ]
+            }
+
+            Migration("hydrogen_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("hydrogen_ecoinvent_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+        # Check for duplicates
+        self.check_for_duplicates()
+
 
 class BiogasInventory(BaseInventoryImport):
     """

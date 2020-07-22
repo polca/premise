@@ -60,36 +60,36 @@ class InventorySet:
     powerplant_filters = {
         "Biomass IGCC CCS": {
             "fltr": [
-                "Electricity, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m/2025",
-                "Electricity, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m/2025",
-                "Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025",
+                "Electricity, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m",
+                "Electricity, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m",
+                "Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m",
             ]
         },
         "Biomass IGCC": {
-            "fltr": "Electricity, at BIGCC power plant 450MW, no CCS/2025"
+            "fltr": "Electricity, at BIGCC power plant 450MW, no CCS"
         },
         "Coal IGCC": {
             "fltr": [
-                "Electricity, at power plant/hard coal, IGCC, no CCS/2025",
-                "Electricity, at power plant/lignite, IGCC, no CCS/2025",
+                "Electricity, at power plant/hard coal, IGCC, no CCS",
+                "Electricity, at power plant/lignite, IGCC, no CCS",
             ]
         },
         "Coal IGCC CCS": {
             "fltr": [
-                "Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025",
-                "Electricity, at power plant/lignite, pre, pipeline 200km, storage 1000m/2025",
+                "Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m",
+                "Electricity, at power plant/lignite, pre, pipeline 200km, storage 1000m",
             ]
         },
         "Coal PC CCS": {
             "fltr": [
-                "Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m/2025",
-                "Electricity, at power plant/lignite, post, pipeline 200km, storage 1000m/2025",
+                "Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m",
+                "Electricity, at power plant/lignite, post, pipeline 200km, storage 1000m",
             ]
         },
         "Gas CCS": {
             "fltr": [
-                "Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025",
-                "Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m/2025",
+                "Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m",
+                "Electricity, at power plant/natural gas, post, pipeline 200km, storage 1000m",
             ]
         },
         "Biomass CHP": {
