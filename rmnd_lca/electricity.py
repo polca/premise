@@ -871,11 +871,18 @@ class Electricity:
         :return: the efficiency value set by ecoinvent
         """
 
-        def calculate_input_energy(fuel_name, fuel_amount):
-            lhv = [self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()][
-                0
-            ]
-            return float(lhv) * fuel_amount
+        def calculate_input_energy(fuel_name, fuel_amount, fuel_unit):
+
+
+            if fuel_unit == 'kilogram' or fuel_unit == 'cubic meter':
+
+                lhv = [self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()][
+                    0
+                ]
+                return float(lhv) * fuel_amount / 3.6
+
+            if fuel_unit == 'megajoule':
+                return fuel_amount / 3.6
 
         not_allowed = ["thermal"]
         key = list()
@@ -894,9 +901,7 @@ class Electricity:
                 np.sum(
                     np.asarray(
                         [
-                            calculate_input_energy(exc["name"], exc["amount"]) / 3.6
-                            if exc["unit"] == "kilogram"
-                            else exc["amount"] / 3.6
+                            calculate_input_energy(exc["name"], exc["amount"], exc['unit'])
                             for exc in ws.technosphere(ds, *fuel_filters)
                         ]
                     )
