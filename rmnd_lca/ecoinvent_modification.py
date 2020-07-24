@@ -9,6 +9,7 @@ from .inventory_imports import CarmaCCSInventory, \
     SynfuelInventory, \
     SyngasInventory, \
     HydrogenCoalInventory, \
+    HydrogenWoodyInventory, \
     GeothermalInventory, \
     SyngasCoalInventory, \
     SynfuelCoalInventory, \
@@ -27,6 +28,8 @@ FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
 FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
 FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
 FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen.xlsx")
+FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-biogas.xlsx")
+FILEPATH_HYDROGEN_WOODY_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx")
 FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel.xlsx")
 FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
@@ -91,6 +94,19 @@ class NewDatabase:
                                ).prepare_datasets()
 
     def import_inventories(self):
+
+        print("Add Biogas inventories")
+        biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
+        biogas.merge_inventory()
+
+        print("Add Electrolysis and SMR Hydrogen inventories")
+        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_INVENTORIES)
+        hydro.merge_inventory()
+
+        print("Add Woody biomass gasification Hydrogen inventories")
+        hydro = HydrogenWoodyInventory(self.db, self.version, FILEPATH_HYDROGEN_WOODY_INVENTORIES)
+        hydro.merge_inventory()
+
         # Add Carma CCS inventories
         print("Add Carma CCS inventories")
         carma = CarmaCCSInventory(self.db, self.version, FILEPATH_CARMA_INVENTORIES)
@@ -99,14 +115,6 @@ class NewDatabase:
         print("Add Biofuel inventories")
         bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
         bio.merge_inventory()
-
-        print("Add Hydrogen inventories")
-        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_INVENTORIES)
-        hydro.merge_inventory()
-
-        print("Add Biogas inventories")
-        biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
-        biogas.merge_inventory()
 
         print("Add Synthetic gas inventories")
         syngas = SyngasInventory(self.db, self.version, FILEPATH_SYNGAS_INVENTORIES)
