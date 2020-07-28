@@ -107,6 +107,10 @@ class NewDatabase:
         hydro = HydrogenWoodyInventory(self.db, self.version, FILEPATH_HYDROGEN_WOODY_INVENTORIES)
         hydro.merge_inventory()
 
+        print("Add Synthetic gas inventories")
+        syngas = SyngasInventory(self.db, self.version, FILEPATH_SYNGAS_INVENTORIES)
+        syngas.merge_inventory()
+
         # Add Carma CCS inventories
         print("Add Carma CCS inventories")
         carma = CarmaCCSInventory(self.db, self.version, FILEPATH_CARMA_INVENTORIES)
@@ -115,10 +119,6 @@ class NewDatabase:
         print("Add Biofuel inventories")
         bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
         bio.merge_inventory()
-
-        print("Add Synthetic gas inventories")
-        syngas = SyngasInventory(self.db, self.version, FILEPATH_SYNGAS_INVENTORIES)
-        syngas.merge_inventory()
 
         print("Add Synthetic fuels inventories")
         synfuel = SynfuelInventory(self.db, self.version, FILEPATH_SYNFUEL_INVENTORIES)

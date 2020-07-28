@@ -387,13 +387,15 @@ class CarmaCCSInventory(BaseInventoryImport):
         Thus, we can simply find out what the new CO2 emission is and then we know how much gets stored in the ground.
         It's very important that we ONLY do this for biomass CCS plants, as only they will have negative emissions!
 
+        We also rename the emission to 'Carbon dioxide, from soil or biomass stock' so that it is properly
+        characterized by IPCC's GWP100a method.
+
         Modifies in place (does not return anything).
 
         """
         for ds in ws.get_many(self.db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
             for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
-
 
 class BiofuelInventory(BaseInventoryImport):
     """
