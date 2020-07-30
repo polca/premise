@@ -161,7 +161,6 @@ class NewDatabase:
             print("The REMIND scenario chosen does not contain any data related to the steel sector."
                   "Transformations related to the steel sector will be skipped.")
 
-
     def update_all(self):
         self.update_electricity_to_remind_data()
         self.update_cement_to_remind_data()
