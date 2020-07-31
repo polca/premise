@@ -249,11 +249,6 @@ class Cars():
                 "Biomass": ws.get_one(
                     self.db,
                     ws.equals("name", "Ethanol from wheat straw pellets"),
-                    ws.equals("location", "RER")),
-                "Hydrogen": ws.get_one(
-                    self.db,
-                    ws.equals("name",
-                              "Gasoline production, synthetic, from methanol"),
                     ws.equals("location", "RER"))
             }
         }
@@ -282,7 +277,10 @@ class Cars():
 
             # local syndiesel
             new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
-                region, "Diesel production, Fischer Tropsch process")
+                region, "Diesel production, synthetic, Fischer Tropsch process")
+
+            new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
+                region, "Gasoline production, synthetic, from methanol")
 
             print("Relinking fuel markets for ICEVs in {}".format(region))
             for ftype in new_producers:
