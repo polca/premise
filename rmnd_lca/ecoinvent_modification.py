@@ -30,13 +30,13 @@ FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
 FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen.xlsx")
 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-biogas.xlsx")
 FILEPATH_HYDROGEN_WOODY_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx")
-FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel.xlsx")
+FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-FT.xlsx")
 FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = (INVENTORY_DIR / "lci-geothermal.xlsx")
 FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.xlsx")
 FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xlsx")
-FILEPATH_LPG_INVENTORIES = (INVENTORY_DIR / "lci-lpg-from-methanol.xlsx")
+FILEPATH_METHANOL_FUELS_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-methanol.xlsx")
 
 
 class NewDatabase:
@@ -120,7 +120,7 @@ class NewDatabase:
         bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
         bio.merge_inventory()
 
-        print("Add Synthetic fuels inventories")
+        print("Add Fischer-Tropsh-based synthetic fuels inventories")
         synfuel = SynfuelInventory(self.db, self.version, FILEPATH_SYNFUEL_INVENTORIES)
         synfuel.merge_inventory()
 
@@ -140,8 +140,8 @@ class NewDatabase:
         synfuel_coal = SynfuelCoalInventory(self.db, self.version, FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES)
         synfuel_coal.merge_inventory()
 
-        print("Add LPG inventories")
-        lpg = LPGInventory(self.db, self.version, FILEPATH_LPG_INVENTORIES)
+        print("Add methanol-based synthetic fuel inventories")
+        lpg = LPGInventory(self.db, self.version, FILEPATH_METHANOL_FUELS_INVENTORIES)
         lpg.merge_inventory()
 
         print("Add Carculator inventories")

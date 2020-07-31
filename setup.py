@@ -26,7 +26,7 @@ def package_files(directory):
 
 setup(
     name='rmnd-lca',
-    version="0.0.8",
+    version="0.0.9",
     packages=packages,
     author="Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>, Tom Terlouw <tom.terlouw@psi.ch>, Romain Sacchi <romain.sacchi@psi.ch>",
     # author_email="cmutel@gmail.com",
