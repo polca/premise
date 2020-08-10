@@ -238,11 +238,14 @@ class RemindDataCollection:
                                   ] / self.data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
             return data_to_interp_from.interp(year=self.year)
 
-    def get_remind_fuel_mix(self):
+    def get_remind_fuel_mix_for_ldvs(self):
         """
         This method retrieves the fuel production mix
-        used in the transport sector,
+        used in the transport sector for LDVs,
         for a specified year, for each region provided by REMIND.
+
+        Note that synthetic fuels are preferred by LDVs so the share is much larger
+        compared to the general blend supplied to the transport sector.
 
         :return: an multi-dimensional array with market share for a given year, for all regions.
         :rtype: xarray.core.dataarray.DataArray
@@ -257,19 +260,33 @@ class RemindDataCollection:
                  "variables": ["FE|Transport|Liquids|Fossil"]
              })], dim="variables")
 
-        list_technologies = [
-            "FE|Transport|Liquids|Biomass",
-            "FE|Transport|Liquids|Fossil",
-            "FE|Transport|Liquids|Hydrogen"
+        hydro_techs = [
+            "SE|Liquids|Hydrogen",
+            "FE|Transport|Pass|Road|LDV|Liquids",
         ]
-        data = data.loc[:, list_technologies, :]
+        hydro = data.loc[:, hydro_techs, :]
 
-        data.coords["variables"] = data.coords["variables"]\
+        # all synthetic liquids to LDVs
+        hydro = (hydro.loc[:, "SE|Liquids|Hydrogen"]
+                 /data.loc[:, "FE|Transport|Pass|Road|LDV|Liquids"])
+        hydro = hydro.where(hydro < 1, 1)
+
+        other_techs = [
+            "FE|Transport|Liquids|Biomass",
+            "FE|Transport|Liquids|Fossil"
+        ]
+        others = data.loc[:, other_techs]
+        others.coords["variables"] = others.coords["variables"]\
                                        .str.replace("FE\|Transport\|Liquids\|", "")
+        others = others / others.sum(dim="variables")
 
-        # shares
-        data = data / data.groupby("region").sum(dim="variables")
+        # concat
+        full = xr.concat([
+            hydro.expand_dims({"variables": ["Hydrogen"]}),
+            (1-hydro) * others], "variables")
 
+        # shares all sum to 1?
+        assert(np.allclose(full.sum(dim="variables"), 1))
         # If the year specified is not contained within
         # the range of years given by REMIND
         if (
@@ -281,7 +298,7 @@ class RemindDataCollection:
         # between two periods provided by REMIND
         else:
             # Interpolation between two periods
-            return data.interp(year=self.year)
+            return full.interp(year=self.year)
 
     def get_remind_electricity_efficiencies(self, drop_hydrogen=True):
         """
