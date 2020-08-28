@@ -1,5 +1,6 @@
 from . import DATA_DIR
 import pandas as pd
+import numpy as np
 import xarray as xr
 from pathlib import Path
 import csv
@@ -298,7 +299,7 @@ class RemindDataCollection:
         # between two periods provided by REMIND
         else:
             # Interpolation between two periods
-            return full.interp(year=self.year)
+            return full.interp(year=self.year).transpose()
 
     def get_remind_electricity_efficiencies(self, drop_hydrogen=True):
         """
