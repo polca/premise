@@ -253,7 +253,7 @@ class Cars():
             }
         }
 
-        data = self.rmd.get_remind_fuel_mix()
+        data = self.rmd.get_remind_fuel_mix_for_ldvs()
         for region in self.remind_regions:
             # two regions for gasoline and diesel production
             if region == "EUR":
