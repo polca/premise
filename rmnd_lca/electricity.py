@@ -983,6 +983,7 @@ class Electricity:
             ws.exclude(ws.contains("name", "aluminium industry")),
             ws.exclude(ws.contains("name", "carbon capture and storage")),
             ws.exclude(ws.contains("name", "market")),
+            ws.exclude(ws.contains("name", "treatment")),
         ]
         no_imports = [ws.exclude(ws.contains("name", "import"))]
 
@@ -1015,7 +1016,14 @@ class Electricity:
         coal_PC_CCS = [
             ws.either(ws.contains("name", "coal"), ws.contains("name", "lignite")),
             ws.contains("name", "storage"),
-            ws.contains("name", "post"),
+            ws.equals("unit", "kilowatt hour"),
+        ]
+
+        coal_PC = [
+            ws.either(ws.contains("name", "coal"), ws.contains("name", "lignite")),
+            ws.exclude(ws.contains("name", "storage")),
+            ws.exclude(ws.contains("name", "heat")),
+            ws.exclude(ws.contains("name", "IGCC")),
             ws.equals("unit", "kilowatt hour"),
         ]
 
@@ -1067,13 +1075,16 @@ class Electricity:
             },
             "Coal PC": {
                 "eff_func": self.find_fuel_efficiency_scaling_factor,
-                "technology filters": filters.coal_electricity + generic_excludes,
+                "technology filters": coal_PC + generic_excludes,
                 "fuel filters": [
                     ws.either(
-                        ws.contains("name", "hard coal"), ws.contains("name", "lignite")
+                        ws.contains("name", "hard coal"),
+                        ws.contains("name", "Hard coal"),
+                        ws.contains("name", "lignite"),
+                        ws.contains("name", "Lignite")
                     ),
                     ws.doesnt_contain_any("name", ("ash", "SOx")),
-                    ws.equals("unit", "kilogram"),
+                    ws.either(ws.equals("unit", "kilogram"),ws.equals("unit", "megajoule")),
                 ],
                 "technosphere excludes": [],
             },
