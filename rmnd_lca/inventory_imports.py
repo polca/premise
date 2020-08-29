@@ -605,7 +605,6 @@ class HydrogenWoodyInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
-
 class BiogasInventory(BaseInventoryImport):
     """
     Biogas datasets from the SCCER project (2019).
@@ -655,7 +654,6 @@ class BiogasInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
-
 
 class SyngasInventory(BaseInventoryImport):
     """
