@@ -6,16 +6,21 @@
 Introduction
 ============
 
-**rmnd-lca** allows to align the life cycle inventories contained in the **ecoinvent 3.5 and 3.6 cutoff** databases with the output results of
-the **REMIND IAM**, in order to produce life cycle inventories under future policy scenarios for any year between 2005
-and 2150.
+**rmnd-lca** allows to align the life cycle inventories contained in the **ecoinvent 3.5 and 3.6 cutoff** databases with
+the output results of the Integrated Assessment Model (IAM) **REMIND**, in order to produce life cycle inventories under
+future policy scenarios for any year between 2005 and 2150.
 
-In the latest version, this includes:
+In the latest version (0.1.0), this includes:
 * electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
-electricity production technologies, including Carbon Capture and Storage technologies.
-* clinker and cement production: alignment of regional performance for clinker production, including Carbon Capture and Storage, clinker-to-cement ratio and cement grinding.
+ electricity production technologies, including Carbon Capture and Storage technologies.
 
-In upcoming versions, important sectors such as cement and steel will also be updated.
+It will soon also include:
+* clinker and cement production: alignment of regional performance for clinker production, including Carbon Capture and 
+ Storage, clinker-to-cement ratio and cement grinding.
+* primary and secondary steel production: projection of primary vs. secondary steel supply on steel markets, projection 
+ of efficiencies and fuel mixes for primary steel production, as well as alignment of electricity mix used for secondary 
+ steel production. 
+* heat for residential and industrial purposes: projection of technology mixes for heat supply on heat markets.
 
 Documentation
 -------------
@@ -31,7 +36,6 @@ Requirements
 ------------
 * Python language interpreter 3.x
 * License for ecoinvent 3
-* Brightway2
 * REMIND IAM output files come with the library ("xxx.mif" and "GAINS emission factors.csv")
  and are located by default in the subdirectory "/data/Remind output files".
  A file path can be specified to fetch the REMIND IAM output files elsewhere on your computer.
@@ -39,9 +43,9 @@ Requirements
 How to install this package?
 ----------------------------
 
-In a terminal, from Github:
+In a terminal, from Pypi:
 
-    pip install git+https://github.com/romainsacchi/rmnd-lca.git
+    pip install rmnd-lca
 
 will install the package and the required dependencies.
 
@@ -172,8 +176,10 @@ returns
     Rescale inventories and emissions for Biomass IGCC
 ```
 
-Note that logs of deleted and created electricity markets are created in
-the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
+Note that logs of:
+* deleted and created electricity markets
+* changes in efficiencies for each power plant
+are created in the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
 
 #### Cement
 
@@ -242,7 +248,6 @@ returns
     Matrices saved in C:\Users\username\Documents\GitHub\rmnd-lca\rmnd_lca\data\matrices.
 ```
 
-
 Two matrices are created:
 * matrix A: contains product exchanges
 * matrix B: contains exchanges between activities and the biosphere
@@ -252,3 +257,25 @@ Two other files are exported:
 * B_matrix_index: maps row index of B_matrix to biosphere flow label
 
 The column indices of B_matrix are similar to the row/column indices of A_matrix.
+
+# Support
+
+Do not hesitate to contact the development team at [romain.sacchi@psi.ch](mailto:romain.sacchi@psi.ch)
+or [aloisdir@pik-potsdam.de](aloisdir@pik-potsdam.de).
+
+## Maintainers
+
+* [Romain Sacchi](https://github.com/romainsacchi)
+* [Alois Dirnaichner](https://github.com/Loisel)
+* [Tom Mike Terlouw](https://github.com/tomterlouw)
+* [Laurent Vandepaer](https://github.com/lvandepaer)
+* [Chris Mutel](https://github.com/cmutel/)
+
+## Contributing
+
+See [contributing](https://github.com/romainsacchi/rmnd-lca/blob/master/CONTRIBUTING.md).
+
+## License
+
+[BSD-3-Clause](https://github.com/romainsacchi/rmnd-lca/blob/master/LICENSE).
+Copyright 2020 Potsdam Institute for Climate Impact Research, Paul Scherrer Institut.
