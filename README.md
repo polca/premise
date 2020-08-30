@@ -1,3 +1,5 @@
+# ``rmnd_lca``
+
 # Integrated Assessment Model-based life cycle inventories for prospective life cycle assessment.
 ## Coupling ecoinvent database with projections from REMIND IAM
 

@@ -21,7 +21,7 @@ requirements:
     - pandas
     - bw2io
     - bw2data
-    - xarray >0.15
+    - xarray
     - pytest
     - pytest-cov
     - coveralls
@@ -33,7 +33,7 @@ requirements:
     - pandas
     - bw2io
     - bw2data
-    - xarray >0.15
+    - xarray
     - pytest
     - pytest-cov
     - coveralls
