@@ -14,13 +14,24 @@ In the latest version (0.1.0), this includes:
 * electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
  electricity production technologies, including Carbon Capture and Storage technologies.
 
-It will soon also include:
+**REMIND** also adds to the generic ecoinvent database a number of inventories, notably:
+* electricity production using various fuels (including biomass and biogas) with Carbon Capture and Storage (CCS) [Volkart et al. 2013](https://doi.org/10.1016/j.ijggc.2013.03.003)
+* hydrogen production from electrolysis from different world regions,
+* hydrogen production from steam methane reforming (SMR) and auto-thermal reforming (ATR) of natural gas and biogas, with and without CCS [Antonini et al. 2020](https://doi.org/10.1039/D0SE00222D)
+* hydrogen production from coal gasification [Antonini et al. 2020](https://doi.org/10.1039/D0SE00222D)
+* hydrogen production from woody biomass gasification, with and without CCS [Antonini et al. 2020](https://doi.org/10.1039/D0SE00222D)
+* synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrolchemical methanation (gas) processes,
+ using direct air capture (DAC) [Zhang et al. 2019](https://doi.org/10.1039/C9SE00986H)
+* passenger car inventories from the library [carculator](https://github.com/romainsacchi/carculator)
+
+
+In upcoming versions, it will also include:
 * clinker and cement production: alignment of regional performance for clinker production, including Carbon Capture and 
  Storage, clinker-to-cement ratio and cement grinding.
 * primary and secondary steel production: projection of primary vs. secondary steel supply on steel markets, projection 
  of efficiencies and fuel mixes for primary steel production, as well as alignment of electricity mix used for secondary 
  steel production. 
-* heat for residential and industrial purposes: projection of technology mixes for heat supply on heat markets.
+* heat for residential and industrial purposes: projection of technology shares in heat markets.
 
 Documentation
 -------------
