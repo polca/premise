@@ -1,6 +1,7 @@
-# Coupling Brightway2 & Wurst Future Ecoinvent Toolset to the REMIND IAM.
+# Integrated Assessment Model-based life cycle inventories for prospective life cycle assessment.
+## Coupling ecoinvent database with projections from REMIND IAM
 
-[![Build Status](https://travis-ci.org/romainsacchi/rmnd-lca.svg?branch=master)](https://travis-ci.org/romainsacchi/rmnd-lca) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/rmnd-lca/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/rmnd-lca?branch=master) [![Documentation](https://readthedocs.org/projects/rmnd-lca/badge/?version=latest)](https://rmnd-lca.readthedocs.io/en/latest/)
+[![Build Status](https://travis-ci.org/romainsacchi/rmnd-lca.svg?branch=master)](https://travis-ci.org/romainsacchi/rmnd-lca) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/rmnd-lca/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/rmnd-lca?branch=master) [![Documentation](https://readthedocs.org/projects/rmnd-lca/badge/?version=latest)](https://rmnd-lca.readthedocs.io/en/latest/) [![PyPI version](https://badge.fury.io/py/rmnd-lca.svg)](https://badge.fury.io/py/rmnd-lca)
 
 
 Introduction
@@ -8,7 +9,7 @@ Introduction
 
 **rmnd-lca** allows to align the life cycle inventories contained in the **ecoinvent 3.5 and 3.6 cutoff** databases with
 the output results of the Integrated Assessment Model (IAM) **REMIND**, in order to produce life cycle inventories under
-future policy scenarios for any year between 2005 and 2150.
+future policy scenarios (from business-as-usual to very ambitious climate scenarios) for any year between 2005 and 2150.
 
 In the latest version (0.1.0), this includes:
 * electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
