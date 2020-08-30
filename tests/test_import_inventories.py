@@ -1,7 +1,8 @@
 # content of test_activity_maps.py
 import pytest
 from rmnd_lca.inventory_imports import \
-    BaseInventoryImport, CarmaCCSInventory, BiofuelInventory
+    BaseInventoryImport, CarmaCCSInventory,\
+    BiofuelInventory, CarculatorInventory
 from pathlib import Path
 from rmnd_lca import INVENTORY_DIR
 
@@ -93,3 +94,10 @@ def test_load_biofuel():
     db, version = get_db()
     bio = BiofuelInventory(db, version, FILEPATH_BIOFUEL_INVENTORIES)
     assert len(bio.import_db.data) == 27
+
+
+def test_load_carculator():
+    db, version = get_db()
+    carc = CarculatorInventory(db, 2015)
+
+    assert len(carc.import_db.data) == 230

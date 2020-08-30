@@ -41,7 +41,9 @@ setup(
         'bw2io',
         'pandas',
         'bw2data',
-        'xarray>0.15.0'
+        'brightway2',
+        'xarray>0.15.0',
+        'carculator>1.1.4'
     ],
     url="https://github.com/romainsacchi/rmnd-lca",
     description='Coupling REMIND output to ecoinvent LCA database ecoinvent for prospective LCA',

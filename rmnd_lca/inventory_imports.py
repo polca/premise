@@ -1,10 +1,18 @@
 from . import DATA_DIR
 import wurst
+
 from wurst import searching as ws
-from bw2io import ExcelImporter, Migration, SimaProCSVImporter
+from bw2io import ExcelImporter, Migration
+from bw2io.importers.base_lci import LCIImporter
+
+from carculator import CarInputParameters, \
+    fill_xarray_from_input_parameters, \
+    CarModel, InventoryCalculation
+
 from pathlib import Path
 import csv
 import uuid
+import numpy as np
 
 FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
 
@@ -65,9 +73,17 @@ class BaseInventoryImport:
         pass
 
     def check_for_duplicates(self):
-        """Check whether the inventories to be imported are not already in the source database."""
-        self.import_db.data = [x for x in self.import_db.data if x['code'] not in self.db_code]
-        self.import_db.data = [x for x in self.import_db.data if (x['name'], x['reference product'], x['location']) not in self.db_names]
+        """
+        Check whether the inventories to be imported are not
+        already in the source database.
+        """
+
+        self.import_db.data = [
+            x for x in self.import_db.data
+            if x['code'] not in self.db_code]
+        self.import_db.data = [
+            x for x in self.import_db.data
+            if (x['name'], x['reference product'], x['location']) not in self.db_names]
 
     def merge_inventory(self):
         """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`db`.
@@ -211,7 +227,7 @@ class BaseInventoryImport:
                 'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}' \
                     .format(self.import_db.db_name, exc))
 
-    def add_biosphere_links(self):
+    def add_biosphere_links(self, delete_missing=False):
         """Add links for biosphere exchanges to :attr:`import_db`
 
         Modifies the :attr:`import_db` attribute in place.
@@ -222,29 +238,42 @@ class BaseInventoryImport:
                     if isinstance(y["categories"], str):
                         y["categories"] = tuple(y["categories"].split("::"))
                     if len(y["categories"]) > 1:
-                        y["input"] = (
-                            "biosphere3",
-                            self.biosphere_dict[
-                                (
-                                    y["name"],
-                                    y["categories"][0],
-                                    y["categories"][1],
-                                    y["unit"],
-                                )
-                            ],
-                        )
+                        try:
+                            y["input"] = (
+                                "biosphere3",
+                                self.biosphere_dict[
+                                    (
+                                        y["name"],
+                                        y["categories"][0],
+                                        y["categories"][1],
+                                        y["unit"],
+                                    )
+                                ],
+                            )
+                        except KeyError as e:
+                            if delete_missing:
+                                y["flag_deletion"] = True
+                            else:
+                                raise
                     else:
-                        y["input"] = (
-                            "biosphere3",
-                            self.biosphere_dict[
-                                (
-                                    y["name"],
-                                    y["categories"][0],
-                                    "unspecified",
-                                    y["unit"],
-                                )
-                            ],
-                        )
+                        try:
+                            y["input"] = (
+                                "biosphere3",
+                                self.biosphere_dict[
+                                    (
+                                        y["name"],
+                                        y["categories"][0],
+                                        "unspecified",
+                                        y["unit"],
+                                    )
+                                ],
+                            )
+                        except KeyError as e:
+                            if delete_missing:
+                                y["flag_deletion"] = True
+                            else:
+                                raise
+            x["exchanges"] = [ex for ex in x["exchanges"] if "flag_deletion" not in ex]
 
     def remove_ds_and_modifiy_exchanges(self, name, ex_data):
         """
@@ -830,3 +859,53 @@ class LPGInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
+
+class CarculatorInventory(BaseInventoryImport):
+    """
+    Car models from the carculator project, https://github.com/romainsacchi/carculator
+    """
+    def __init__(self, database, year):
+        """Create a :class:`BaseInventoryImport` instance.
+
+        :param list database: the target database for the import (the Ecoinvent database),
+                              unpacked to a list of dicts
+        :param float version: the version of the target database
+        :param path: Path to the imported inventory.
+
+        """
+        self.db = database
+        self.db_code = [x['code'] for x in self.db]
+        self.db_names = [(x['name'], x['reference product'], x['location']) for x in self.db]
+        self.biosphere_dict = self.get_biosphere_code()
+
+        self.db_year = year
+
+        self.load_inventory()
+
+    def load_inventory(self):
+        """Load `carculator` inventories for a given range of years.
+        """
+        cip = CarInputParameters()
+
+        cip.static()
+
+        _, array = fill_xarray_from_input_parameters(cip)
+
+        array = array.interp(
+            year=np.array([self.db_year]),
+            kwargs={'fill_value': 'extrapolate'})
+
+        cm = CarModel(array, cycle='WLTC')
+
+        cm.set_all()
+
+        ic = InventoryCalculation(cm.array)
+
+        self.import_db = LCIImporter("carculator")
+        self.import_db.data = ic.export_lci(ecoinvent_compatibility=True)[0]
+
+    def prepare_inventory(self):
+        self.add_biosphere_links(delete_missing=True)
+        self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
