@@ -137,8 +137,9 @@ and the file path to the ecospold files in `source_file_path`.
 A series of transformations can be performed on the extracted database.
 Currently, only the transformation regarding:
 * electricity generation and distribution
-* clinker and cement production
-are implemented.
+
+
+is implemented.
 
 All the transformation functions can be executed like so:
 
@@ -192,7 +193,7 @@ Note that logs of:
 * changes in efficiencies for each power plant
 are created in the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
 
-#### Cement
+#### Cement (not available yet)
 
 The following function will:
 * remove existing datasets for clinker production, clinker markets, cement production and cement markets
