@@ -11,7 +11,7 @@ import pandas as pd
 REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
 
 # for local test runs
-BW_PROJECT = "transport_lca"
+BW_PROJECT = "transport_lca_Budg1100_IC"
 scenario = "SSP2-PkBudg900"
 year = 2049
 
@@ -145,23 +145,19 @@ def test_full_import():
         source_version=3.6)
 
     ndb.update_electricity_to_remind_data()
-    crs = Cars(ndb.db, ndb.rdc, scenario, year)
-    crs.create_local_evs()
-    crs.create_local_fcevs()
-    crs.create_local_icevs()
+    ndb.update_cars()
     dbname = "test_carculator_complete"
     if dbname in bw.databases:
         del bw.databases[dbname]
     wurst.write_brightway2_database(ndb.db, dbname)
-    # del bw.datases[dbname]
-    return ndb.db
+    del bw.databases[dbname]
 
 
 def test_get_fuel_mix():
     from rmnd_lca import DATA_DIR
     remind_file_path = DATA_DIR / "remind_output_files"
     rdc = RemindDataCollection(scenario, year, remind_file_path)
-    data = rdc.get_remind_fuel_mix()
+    data = rdc.get_remind_fuel_mix_for_ldvs()
     assert data.shape == (13, 3)
     assert all(data.sum(dim="variables") == 1.)
 
