@@ -4,6 +4,7 @@ import numpy as np
 import xarray as xr
 from pathlib import Path
 import csv
+import numpy as np
 
 REMIND_ELEC_MARKETS = (DATA_DIR / "electricity" / "remind_electricity_markets.csv")
 REMIND_ELEC_EFFICIENCIES = (DATA_DIR / "electricity" / "remind_electricity_efficiencies.csv")

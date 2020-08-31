@@ -87,7 +87,7 @@ def test_biosphere_dict_2():
 def test_load_carma():
     db, version = get_db()
     carma = CarmaCCSInventory(db, version, FILEPATH_CARMA_INVENTORIES)
-    assert len(carma.import_db.data) == 158
+    assert len(carma.import_db.data) == 138
 
 
 def test_load_biofuel():
