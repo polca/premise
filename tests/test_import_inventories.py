@@ -100,4 +100,4 @@ def test_load_carculator():
     db, version = get_db()
     carc = CarculatorInventory(db, 2015)
 
-    assert len(carc.import_db.data) == 230
+    assert len(carc.import_db.data) == 254
