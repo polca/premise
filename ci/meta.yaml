@@ -37,6 +37,7 @@ requirements:
     - pytest
     - pytest-cov
     - coveralls
+    - prettytable
 
 test:
   imports:

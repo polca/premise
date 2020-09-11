@@ -1,6 +1,5 @@
 from . import DATA_DIR
 import pandas as pd
-import numpy as np
 import xarray as xr
 from pathlib import Path
 import csv

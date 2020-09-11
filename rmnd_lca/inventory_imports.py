@@ -1,5 +1,6 @@
 from . import DATA_DIR
 import wurst
+from prettytable import PrettyTable
 
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration
@@ -77,6 +78,24 @@ class BaseInventoryImport:
         Check whether the inventories to be imported are not
         already in the source database.
         """
+
+        # print if we find datasets that already exist
+        already_exist= [(x["name"], x["reference product"], x["location"]) for x in self.import_db.data
+            if x['code'] in self.db_code]
+
+        already_exist.extend([
+            (x["name"], x["reference product"], x["location"]) for x in self.import_db.data
+            if (x['name'], x['reference product'], x['location']) in self.db_names])
+
+        if len(already_exist)>0:
+            print("The following datasets to import already exist in the source database. They will not be imported")
+            t = PrettyTable(["Name", "Reference product", "Location"])
+            for ds in already_exist:
+                t.add_row([ds[0][:40], ds[1][:30], ds[2]])
+
+            print(t)
+
+
 
         self.import_db.data = [
             x for x in self.import_db.data

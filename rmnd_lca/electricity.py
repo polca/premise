@@ -932,6 +932,12 @@ class Electricity:
         """
 
         ecoinvent_eff = self.find_ecoinvent_fuel_efficiency(ds, fuel_filters)
+
+        # If the current efficiency is too high, there's an issue, and teh dataset is skipped.
+        if ecoinvent_eff > 1.1:
+            print("The current efficiency factor for the dataset {} has not been found. Its current efficiency will remain".format(ds["name"]))
+            return 1
+
         remind_locations = self.geo.ecoinvent_to_remind_location(ds["location"])
         remind_eff = (
             self.rmd.electricity_efficiencies.loc[
@@ -1209,7 +1215,11 @@ class Electricity:
                 "technology filters": biomass_IGCC,
                 "fuel filters": [
                     ws.contains("name", "Hydrogen"),
-                    ws.equals("unit", "kilogram"),
+                    ws.either(
+                        ws.equals("unit", "kilogram"),
+                        ws.equals("unit", "megajoule"),
+                    ),
+
                 ],
                 "technosphere excludes": [],
             },
