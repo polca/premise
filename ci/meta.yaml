@@ -26,6 +26,8 @@ requirements:
     - pytest-cov
     - coveralls
     - setuptools
+    - prettytable
+    - carculator
   run:
     - python
     - wurst
@@ -38,6 +40,7 @@ requirements:
     - pytest-cov
     - coveralls
     - prettytable
+    - carculator
 
 test:
   imports:
