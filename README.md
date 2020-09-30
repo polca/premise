@@ -94,7 +94,7 @@ the correct directory, as such::
               year = 2028,
               source_db = 'ecoinvent 3.6 cutoff',
               source_version = 3.6,
-              r"C:\Users\username\Documents\Remind output files"
+              filepath_to_remind_files = r"C:\Users\username\Documents\Remind output files"
              )
 ```
 
