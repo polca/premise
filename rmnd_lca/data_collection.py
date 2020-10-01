@@ -1,7 +1,9 @@
 from . import DATA_DIR
 import pandas as pd
+import xarray as xr
 from pathlib import Path
 import csv
+import numpy as np
 
 REMIND_ELEC_MARKETS = (DATA_DIR / "electricity" / "remind_electricity_markets.csv")
 REMIND_ELEC_EFFICIENCIES = (DATA_DIR / "electricity" / "remind_electricity_efficiencies.csv")
@@ -236,6 +238,68 @@ class RemindDataCollection:
                                   :, list_technologies, :
                                   ] / self.data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
             return data_to_interp_from.interp(year=self.year)
+
+    def get_remind_fuel_mix_for_ldvs(self):
+        """
+        This method retrieves the fuel production mix
+        used in the transport sector for LDVs,
+        for a specified year, for each region provided by REMIND.
+
+        Note that synthetic fuels are preferred by LDVs so the share is much larger
+        compared to the general blend supplied to the transport sector.
+
+        :return: an multi-dimensional array with market share for a given year, for all regions.
+        :rtype: xarray.core.dataarray.DataArray
+
+        """
+
+        # add fossil fuel entry
+        data = xr.concat([
+            self.data,
+            (self.data.loc[:, "FE|Transport|Liquids|Coal", :] +
+             self.data.loc[:, "FE|Transport|Liquids|Oil", :]).expand_dims({
+                 "variables": ["FE|Transport|Liquids|Fossil"]
+             })], dim="variables")
+
+        hydro_techs = [
+            "SE|Liquids|Hydrogen",
+            "FE|Transport|Pass|Road|LDV|Liquids",
+        ]
+        hydro = data.loc[:, hydro_techs, :]
+
+        # all synthetic liquids to LDVs
+        hydro = (hydro.loc[:, "SE|Liquids|Hydrogen"]
+                 /data.loc[:, "FE|Transport|Pass|Road|LDV|Liquids"])
+        hydro = hydro.where(hydro < 1, 1)
+
+        other_techs = [
+            "FE|Transport|Liquids|Biomass",
+            "FE|Transport|Liquids|Fossil"
+        ]
+        others = data.loc[:, other_techs]
+        others.coords["variables"] = others.coords["variables"]\
+                                       .str.replace("FE\|Transport\|Liquids\|", "")
+        others = others / others.sum(dim="variables")
+
+        # concat
+        full = xr.concat([
+            hydro.expand_dims({"variables": ["Hydrogen"]}),
+            (1-hydro) * others], "variables")
+
+        # shares all sum to 1?
+        assert(np.allclose(full.sum(dim="variables"), 1))
+        # If the year specified is not contained within
+        # the range of years given by REMIND
+        if (
+                self.year < self.data.year.values.min()
+                or self.year > self.data.year.values.max()
+        ):
+            raise KeyError("year not valid, must be between 2005 and 2150")
+        # Finally, if the specified year falls in
+        # between two periods provided by REMIND
+        else:
+            # Interpolation between two periods
+            return full.interp(year=self.year).transpose()
 
     def get_remind_electricity_efficiencies(self, drop_hydrogen=True):
         """

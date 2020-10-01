@@ -8,10 +8,13 @@ import csv
 import numpy as np
 import uuid
 import wurst
+from datetime import date
 
-PRODUCTION_PER_TECH = (DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv")
-LOSS_PER_COUNTRY = (DATA_DIR / "electricity" / "losses_per_country.csv")
-LHV_FUELS = (DATA_DIR / "fuels_lower_heating_value.txt")
+PRODUCTION_PER_TECH = (
+    DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
+)
+LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
+LHV_FUELS = DATA_DIR / "fuels_lower_heating_value.txt"
 
 
 class Electricity:
@@ -133,14 +136,18 @@ class Electricity:
         """
 
         # Fetch the production volume of the supplier
-        loc_production = float(self.production_per_tech.get((supplier["name"], supplier["location"]), 0))
+        loc_production = float(
+            self.production_per_tech.get((supplier["name"], supplier["location"]), 0)
+        )
 
         # Fetch the total production volume of similar technologies in other locations
         # contained within the REMIND region.
 
         total_production = 0
         for loc in suppliers:
-            total_production += float(self.production_per_tech.get((loc['name'], loc["location"]), 0))
+            total_production += float(
+                self.production_per_tech.get((loc["name"], loc["location"]), 0)
+            )
 
         # If a corresponding production volume is found.
         if total_production != 0:
@@ -165,54 +172,70 @@ class Electricity:
         # Fetch locations contained in REMIND region
         locations = self.geo.remind_to_ecoinvent_location(remind_region)
 
-        if voltage == 'high':
+        if voltage == "high":
 
             cumul_prod, transf_loss = 0, 0
             for loc in locations:
-                dict_loss = self.losses.get(loc, {
-                    'Transformation loss, high voltage': 0,
-                    'Production volume': 0
-                })
+                dict_loss = self.losses.get(
+                    loc,
+                    {"Transformation loss, high voltage": 0, "Production volume": 0},
+                )
 
-                transf_loss += dict_loss['Transformation loss, high voltage'] \
-                               * dict_loss['Production volume']
-                cumul_prod += dict_loss['Production volume']
+                transf_loss += (
+                    dict_loss["Transformation loss, high voltage"]
+                    * dict_loss["Production volume"]
+                )
+                cumul_prod += dict_loss["Production volume"]
             transf_loss /= cumul_prod
             return transf_loss
 
-        if voltage == 'medium':
+        if voltage == "medium":
 
             cumul_prod, transf_loss, distr_loss = 0, 0, 0
             for loc in locations:
-                dict_loss = self.losses.get(loc, {
-                    'Transformation loss, medium voltage': 0,
-                    'Transmission loss to medium voltage': 0,
-                    'Production volume': 0
-                })
-                transf_loss += dict_loss['Transformation loss, medium voltage'] \
-                               * dict_loss['Production volume']
-                distr_loss += dict_loss['Transmission loss to medium voltage'] \
-                              * dict_loss['Production volume']
-                cumul_prod += dict_loss['Production volume']
+                dict_loss = self.losses.get(
+                    loc,
+                    {
+                        "Transformation loss, medium voltage": 0,
+                        "Transmission loss to medium voltage": 0,
+                        "Production volume": 0,
+                    },
+                )
+                transf_loss += (
+                    dict_loss["Transformation loss, medium voltage"]
+                    * dict_loss["Production volume"]
+                )
+                distr_loss += (
+                    dict_loss["Transmission loss to medium voltage"]
+                    * dict_loss["Production volume"]
+                )
+                cumul_prod += dict_loss["Production volume"]
             transf_loss /= cumul_prod
             distr_loss /= cumul_prod
             return transf_loss, distr_loss
 
-        if voltage == 'low':
+        if voltage == "low":
 
             cumul_prod, transf_loss, distr_loss = 0, 0, 0
 
             for loc in locations:
-                dict_loss = self.losses.get(loc, {
-                    'Transformation loss, low voltage': 0,
-                    'Transmission loss to low voltage': 0,
-                    'Production volume': 0
-                })
-                transf_loss += dict_loss['Transformation loss, low voltage'] \
-                               * dict_loss['Production volume']
-                distr_loss += dict_loss['Transmission loss to low voltage'] \
-                              * dict_loss['Production volume']
-                cumul_prod += dict_loss['Production volume']
+                dict_loss = self.losses.get(
+                    loc,
+                    {
+                        "Transformation loss, low voltage": 0,
+                        "Transmission loss to low voltage": 0,
+                        "Production volume": 0,
+                    },
+                )
+                transf_loss += (
+                    dict_loss["Transformation loss, low voltage"]
+                    * dict_loss["Production volume"]
+                )
+                distr_loss += (
+                    dict_loss["Transmission loss to low voltage"]
+                    * dict_loss["Production volume"]
+                )
+                cumul_prod += dict_loss["Production volume"]
             transf_loss /= cumul_prod
             distr_loss /= cumul_prod
             return transf_loss, distr_loss
@@ -229,53 +252,62 @@ class Electricity:
         for region in self.rmd.electricity_markets.coords["region"].values:
             created_markets = []
             # Create an empty dataset
-            new_dataset = {"location": region, "name": (
-                "market group for electricity, low voltage"
-            ), "reference product": "electricity, low voltage", "unit": "kilowatt hour",
-                           "database": self.db[1]["database"], "code": str(uuid.uuid4().hex),
-                           "comment": "Dataset produced from REMIND scenario output results"}
+            new_dataset = {
+                "location": region,
+                "name": ("market group for electricity, low voltage"),
+                "reference product": "electricity, low voltage",
+                "unit": "kilowatt hour",
+                "database": self.db[1]["database"],
+                "code": str(uuid.uuid4().hex),
+                "comment": "Dataset produced from REMIND scenario output results",
+            }
 
             # First, add the reference product exchange
-            new_exchanges = [{
-                "uncertainty type": 0,
-                "loc": 1,
-                "amount": 1,
-                "type": "production",
-                "production volume": 0,
-                "product": "electricity, low voltage",
-                "name": "market group for electricity, low voltage",
-                "unit": "kilowatt hour",
-                "location": region,
-            }, {
-                "uncertainty type": 0,
-                "loc": 2.99e-9,
-                "amount": 2.99e-9,
-                "type": "technosphere",
-                "production volume": 0,
-                "product": "sulfur hexafluoride, liquid",
-                "name": "market for sulfur hexafluoride, liquid",
-                "unit": "kilogram",
-                "location": "RoW",
-            }, {
-                "uncertainty type": 0,
-                "loc": 2.99e-9,
-                "amount": 2.99e-9,
-                "type": "biosphere",
-                "input": ("biosphere3", "35d1dff5-b535-4628-9826-4a8fce08a1f2"),
-                "name": "Sulfur hexafluoride",
-                "unit": "kilogram",
-                "categories": ("air", "non-urban air or from high stacks"),
-            }, {
-                "uncertainty type": 0,
-                "loc": 8.74e-8,
-                "amount": 8.74e-8,
-                "type": "technosphere",
-                "production volume": 0,
-                "product": "distribution network, electricity, low voltage",
-                "name": "distribution network construction, electricity, low voltage",
-                "unit": "kilometer",
-                "location": "RoW",
-            }]
+            new_exchanges = [
+                {
+                    "uncertainty type": 0,
+                    "loc": 1,
+                    "amount": 1,
+                    "type": "production",
+                    "production volume": 0,
+                    "product": "electricity, low voltage",
+                    "name": "market group for electricity, low voltage",
+                    "unit": "kilowatt hour",
+                    "location": region,
+                },
+                {
+                    "uncertainty type": 0,
+                    "loc": 2.99e-9,
+                    "amount": 2.99e-9,
+                    "type": "technosphere",
+                    "production volume": 0,
+                    "product": "sulfur hexafluoride, liquid",
+                    "name": "market for sulfur hexafluoride, liquid",
+                    "unit": "kilogram",
+                    "location": "RoW",
+                },
+                {
+                    "uncertainty type": 0,
+                    "loc": 2.99e-9,
+                    "amount": 2.99e-9,
+                    "type": "biosphere",
+                    "input": ("biosphere3", "35d1dff5-b535-4628-9826-4a8fce08a1f2"),
+                    "name": "Sulfur hexafluoride",
+                    "unit": "kilogram",
+                    "categories": ("air", "non-urban air or from high stacks"),
+                },
+                {
+                    "uncertainty type": 0,
+                    "loc": 8.74e-8,
+                    "amount": 8.74e-8,
+                    "type": "technosphere",
+                    "production volume": 0,
+                    "product": "distribution network, electricity, low voltage",
+                    "name": "distribution network construction, electricity, low voltage",
+                    "unit": "kilometer",
+                    "location": "RoW",
+                },
+            ]
 
             # Second, add an input to of sulfur hexafluoride emission to compensate the transformer's leakage
             # And an emission of a corresponding amount
@@ -298,9 +330,7 @@ class Electricity:
                     ecoinvent_regions = self.geo.remind_to_ecoinvent_location(region)
 
                     # Contribution in supply
-                    amount = self.rmd.electricity_markets.loc[
-                        region, technology
-                    ].values
+                    amount = self.rmd.electricity_markets.loc[region, technology].values
                     solar_amount += amount
 
                     # Get the possible names of ecoinvent datasets
@@ -355,22 +385,24 @@ class Electricity:
                                 "location": supplier["location"],
                             }
                         )
-                        created_markets.append([
-                            "low voltage, " + self.scenario + ", " + str(self.year),
-                            "n/a",
-                            region,
-                            0,
-                            0,
-                            supplier['name'],
-                            supplier['location'],
-                            share,
-                            (share * amount)
-                        ])
+                        created_markets.append(
+                            [
+                                "low voltage, " + self.scenario + ", " + str(self.year),
+                                "n/a",
+                                region,
+                                0,
+                                0,
+                                supplier["name"],
+                                supplier["location"],
+                                share,
+                                (share * amount),
+                            ]
+                        )
             # Fifth, add:
             # * an input from the medium voltage market minus solar contribution, including distribution loss
             # * an self-consuming input for transformation loss
 
-            transf_loss, distr_loss = self.get_production_weighted_losses('low', region)
+            transf_loss, distr_loss = self.get_production_weighted_losses("low", region)
 
             new_exchanges.append(
                 {
@@ -400,22 +432,28 @@ class Electricity:
                 }
             )
 
-            created_markets.append([
-                "low voltage, " + self.scenario + ", " + str(self.year),
-                "n/a",
-                region,
-                transf_loss,
-                distr_loss,
-                "low voltage, " + self.scenario + ", " + str(self.year),
-                region,
-                1,
-                (1 - solar_amount) * (1 + distr_loss)
-            ])
+            created_markets.append(
+                [
+                    "low voltage, " + self.scenario + ", " + str(self.year),
+                    "n/a",
+                    region,
+                    transf_loss,
+                    distr_loss,
+                    "low voltage, " + self.scenario + ", " + str(self.year),
+                    region,
+                    1,
+                    (1 - solar_amount) * (1 + distr_loss),
+                ]
+            )
 
-            with open(DATA_DIR / "logs/log created markets.csv", "a") as csv_file:
-                writer = csv.writer(csv_file,
-                                    delimiter=';',
-                                    lineterminator='\n')
+            with open(
+                DATA_DIR
+                / "logs/log created markets {} {}-{}.csv".format(
+                    self.scenario, self.year, date.today()
+                ),
+                "a",
+            ) as csv_file:
+                writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
                 for line in created_markets:
                     writer.writerow(line)
 
@@ -438,30 +476,38 @@ class Electricity:
 
         for region in gen_region:
             # Create an empty dataset
-            new_dataset = {"location": region, "name": (
-                "market group for electricity, medium voltage"
-            ), "reference product": "electricity, medium voltage", "unit": "kilowatt hour",
-                           "database": self.db[1]["database"], "code": str(uuid.uuid1().hex),
-                           "comment": "Dataset produced from REMIND scenario output results"}
+            new_dataset = {
+                "location": region,
+                "name": ("market group for electricity, medium voltage"),
+                "reference product": "electricity, medium voltage",
+                "unit": "kilowatt hour",
+                "database": self.db[1]["database"],
+                "code": str(uuid.uuid1().hex),
+                "comment": "Dataset produced from REMIND scenario output results",
+            }
 
             # First, add the reference product exchange
-            new_exchanges = [{
-                "uncertainty type": 0,
-                "loc": 1,
-                "amount": 1,
-                "type": "production",
-                "production volume": 0,
-                "product": "electricity, medium voltage",
-                "name": "market group for electricity, medium voltage",
-                "unit": "kilowatt hour",
-                "location": region,
-            }]
+            new_exchanges = [
+                {
+                    "uncertainty type": 0,
+                    "loc": 1,
+                    "amount": 1,
+                    "type": "production",
+                    "production volume": 0,
+                    "product": "electricity, medium voltage",
+                    "name": "market group for electricity, medium voltage",
+                    "unit": "kilowatt hour",
+                    "location": region,
+                }
+            ]
 
             # Second, add:
             # * an input from the high voltage market, including transmission loss
             # * an self-consuming input for transformation loss
 
-            transf_loss, distr_loss = self.get_production_weighted_losses('medium', region)
+            transf_loss, distr_loss = self.get_production_weighted_losses(
+                "medium", region
+            )
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
@@ -535,24 +581,30 @@ class Electricity:
 
             new_dataset["exchanges"] = new_exchanges
 
-            created_markets.append([
-                "medium voltage, " + self.scenario + ", " + str(self.year),
-                "n/a",
-                region,
-                transf_loss,
-                distr_loss,
-                "medium voltage, " + self.scenario + ", " + str(self.year),
-                region,
-                1,
-                1 + distr_loss
-            ])
+            created_markets.append(
+                [
+                    "medium voltage, " + self.scenario + ", " + str(self.year),
+                    "n/a",
+                    region,
+                    transf_loss,
+                    distr_loss,
+                    "medium voltage, " + self.scenario + ", " + str(self.year),
+                    region,
+                    1,
+                    1 + distr_loss,
+                ]
+            )
 
             self.db.append(new_dataset)
 
-        with open(DATA_DIR / "logs/log created markets.csv", "a") as csv_file:
-            writer = csv.writer(csv_file,
-                                delimiter=';',
-                                lineterminator='\n')
+        with open(
+            DATA_DIR
+            / "logs/log created markets {} {}-{}.csv".format(
+                self.scenario, self.year, date.today()
+            ),
+            "a",
+        ) as csv_file:
+            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
             for line in created_markets:
                 writer.writerow(line)
 
@@ -582,28 +634,34 @@ class Electricity:
             ecoinvent_regions = self.geo.remind_to_ecoinvent_location(region)
 
             # Create an empty dataset
-            new_dataset = {"location": region, "name": (
-                "market group for electricity, high voltage"
-            ), "reference product": "electricity, high voltage", "unit": "kilowatt hour",
-                           "database": self.db[1]["database"], "code": str(uuid.uuid4().hex),
-                           "comment": "Dataset produced from REMIND scenario output results"}
-
-            new_exchanges = [{
-                "uncertainty type": 0,
-                "loc": 1,
-                "amount": 1,
-                "type": "production",
-                "production volume": 0,
-                "product": "electricity, high voltage",
-                "name": "market group for electricity, high voltage",
-                "unit": "kilowatt hour",
+            new_dataset = {
                 "location": region,
-            }]
+                "name": ("market group for electricity, high voltage"),
+                "reference product": "electricity, high voltage",
+                "unit": "kilowatt hour",
+                "database": self.db[1]["database"],
+                "code": str(uuid.uuid4().hex),
+                "comment": "Dataset produced from REMIND scenario output results",
+            }
+
+            new_exchanges = [
+                {
+                    "uncertainty type": 0,
+                    "loc": 1,
+                    "amount": 1,
+                    "type": "production",
+                    "production volume": 0,
+                    "product": "electricity, high voltage",
+                    "name": "market group for electricity, high voltage",
+                    "unit": "kilowatt hour",
+                    "location": region,
+                }
+            ]
 
             # First, add the reference product exchange
 
             # Second, add transformation loss
-            transf_loss = self.get_production_weighted_losses('high', region)
+            transf_loss = self.get_production_weighted_losses("high", region)
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
@@ -621,8 +679,14 @@ class Electricity:
             # Fetch solar contribution in the mix, to subtract it
             # as solar energy is an input of low-voltage markets
 
-            index_solar = [ind for ind in self.rmd.rev_electricity_market_labels if "solar" in ind.lower()]
-            solar_amount = self.rmd.electricity_markets.loc[region, index_solar].values.sum()
+            index_solar = [
+                ind
+                for ind in self.rmd.rev_electricity_market_labels
+                if "solar" in ind.lower()
+            ]
+            solar_amount = self.rmd.electricity_markets.loc[
+                region, index_solar
+            ].values.sum()
 
             # Loop through the REMIND technologies
             for technology in gen_tech:
@@ -631,9 +695,7 @@ class Electricity:
                 if self.rmd.electricity_markets.loc[region, technology] != 0.0:
 
                     # Contribution in supply
-                    amount = self.rmd.electricity_markets.loc[
-                        region, technology
-                    ].values
+                    amount = self.rmd.electricity_markets.loc[region, technology].values
 
                     # Get the possible names of ecoinvent datasets
                     ecoinvent_technologies = self.powerplant_map[
@@ -672,8 +734,11 @@ class Electricity:
                     suppliers = self.check_for_production_volume(suppliers)
 
                     if len(suppliers) == 0:
-                        print('no suppliers for {} in {} with ecoinvent names {}'.format(technology, region,
-                                                                                         ecoinvent_technologies))
+                        print(
+                            "no suppliers for {} in {} with ecoinvent names {}".format(
+                                technology, region, ecoinvent_technologies
+                            )
+                        )
 
                     for supplier in suppliers:
                         share = self.get_production_weighted_share(supplier, suppliers)
@@ -692,44 +757,60 @@ class Electricity:
                             }
                         )
 
-                        created_markets.append([
-                            "high voltage, " + self.scenario + ", " + str(self.year),
-                            technology,
-                            region,
-                            transf_loss,
-                            0.0,
-                            supplier['name'],
-                            supplier['location'],
-                            share,
-                            (amount * share) / (1 - solar_amount)
-                        ])
+                        created_markets.append(
+                            [
+                                "high voltage, "
+                                + self.scenario
+                                + ", "
+                                + str(self.year),
+                                technology,
+                                region,
+                                transf_loss,
+                                0.0,
+                                supplier["name"],
+                                supplier["location"],
+                                share,
+                                (amount * share) / (1 - solar_amount),
+                            ]
+                        )
             new_dataset["exchanges"] = new_exchanges
 
             self.db.append(new_dataset)
 
         # Writing log of created markets
 
-        with open(DATA_DIR / "logs/log created markets.csv", "w") as csv_file:
-            writer = csv.writer(csv_file,
-                                delimiter=';',
-                                lineterminator='\n')
-            writer.writerow(['dataset name',
-                             'energy type',
-                             'REMIND location',
-                             'Transformation loss',
-                             'Distr./Transmission loss',
-                             'Supplier name',
-                             'Supplier location',
-                             'Contribution within energy type',
-                             'Final contribution'])
+        with open(
+            DATA_DIR
+            / "logs/log created markets {} {}-{}.csv".format(
+                self.scenario, self.year, date.today()
+            ),
+            "w",
+        ) as csv_file:
+            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+            writer.writerow(
+                [
+                    "dataset name",
+                    "energy type",
+                    "REMIND location",
+                    "Transformation loss",
+                    "Distr./Transmission loss",
+                    "Supplier name",
+                    "Supplier location",
+                    "Contribution within energy type",
+                    "Final contribution",
+                ]
+            )
             for line in created_markets:
                 writer.writerow(line)
 
     def check_for_production_volume(self, suppliers):
 
         # Remove suppliers that do not have a production volume
-        return [supplier for supplier in suppliers
-                if self.get_production_weighted_share(supplier, suppliers) != 0]
+        return [
+            supplier
+            for supplier in suppliers
+            if self.get_production_weighted_share(supplier, suppliers) != 0
+        ]
 
     def relink_activities_to_new_markets(self):
         """
@@ -743,49 +824,42 @@ class Electricity:
         # Filter all activities that consume high voltage electricity
 
         for ds in ws.get_many(
-                self.db, ws.exclude(ws.contains("name", "market group for electricity"))
+            self.db, ws.exclude(ws.contains("name", "market group for electricity"))
         ):
 
             for exc in ws.get_many(
-                    ds["exchanges"],
-                    *[
-                        ws.either(
-                            *[
-                                ws.contains("unit", "kilowatt hour"),
-                                ws.contains("name", "market for electricity"),
-                                ws.contains("name", "electricity voltage transformation"),
-                                ws.contains("name", "market group for electricity"),
-                            ]
-                        )
-                    ]
+                ds["exchanges"],
+                *[
+                    ws.either(
+                        *[
+                            ws.contains("name", "market for electricity"),
+                            ws.contains("name", "electricity voltage transformation"),
+                            ws.contains("name", "market group for electricity"),
+                        ]
+                    )
+                ]
             ):
                 if exc["type"] != "production" and exc["unit"] == "kilowatt hour":
                     if "high" in exc["product"]:
-                        exc["name"] = (
-                            "market group for electricity, high voltage"
-                        )
+                        exc["name"] = "market group for electricity, high voltage"
                         exc["product"] = "electricity, high voltage"
                         exc["location"] = self.geo.ecoinvent_to_remind_location(
                             exc["location"]
                         )
                     if "medium" in exc["product"]:
-                        exc["name"] = (
-                            "market group for electricity, medium voltage"
-                        )
+                        exc["name"] = "market group for electricity, medium voltage"
                         exc["product"] = "electricity, medium voltage"
                         exc["location"] = self.geo.ecoinvent_to_remind_location(
                             exc["location"]
                         )
                     if "low" in exc["product"]:
-                        exc["name"] = (
-                            "market group for electricity, low voltage"
-                        )
+                        exc["name"] = "market group for electricity, low voltage"
                         exc["product"] = "electricity, low voltage"
                         exc["location"] = self.geo.ecoinvent_to_remind_location(
                             exc["location"]
                         )
-                if 'input' in exc:
-                    exc.pop('input')
+                if "input" in exc:
+                    exc.pop("input")
 
     def find_ecoinvent_fuel_efficiency(self, ds, fuel_filters):
         """
@@ -797,49 +871,53 @@ class Electricity:
         :return: the efficiency value set by ecoinvent
         """
 
-        if "ecoinvent" in ds["database"]:
-            not_allowed = ["thermal"]
+        def calculate_input_energy(fuel_name, fuel_amount, fuel_unit):
+
+
+            if fuel_unit == 'kilogram' or fuel_unit == 'cubic meter':
+
+                lhv = [self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()][
+                    0
+                ]
+                return float(lhv) * fuel_amount / 3.6
+
+            if fuel_unit == 'megajoule':
+                return fuel_amount / 3.6
+
+        not_allowed = ["thermal"]
+        key = list()
+        if "parameters" in ds:
             key = list(
                 key
                 for key in ds["parameters"]
                 if "efficiency" in key and not any(item in key for item in not_allowed)
             )
-            if len(key) > 0:
-                return ds["parameters"][key[0]]
-
-            else:
-                energy_input = np.sum(
-                    np.sum(
-                        np.asarray(
-                            [
-                                [
-                                    float(self.fuels_lhv[k]) / 3.6 * exc["amount"]
-                                    for exc in ws.technosphere(ds, *fuel_filters)
-                                    if k in exc["name"]
-                                ]
-                                for k in self.fuels_lhv
-                            ]
-                        )
-                    )
-                )
-                ds["parameters"]["efficiency"] = (
-                        float(ws.reference_product(ds)["amount"]) / energy_input
-                )
-                return ds["parameters"]["efficiency"]
+        if len(key) > 0:
+            return ds["parameters"][key[0]]
 
         else:
 
-            # Carma inventories have their fuel inputs directly expressed in megajoules.
             energy_input = np.sum(
-                [exc["amount"] / 3.6 for exc in ws.technosphere(ds, *fuel_filters)]
+                np.sum(
+                    np.asarray(
+                        [
+                            calculate_input_energy(exc["name"], exc["amount"], exc['unit'])
+                            for exc in ws.technosphere(ds, *fuel_filters)
+                        ]
+                    )
+                )
             )
 
-            ds["parameters"] = {}
-            ds["parameters"]["efficiency"] = (
-                    float(ws.reference_product(ds)["amount"]) / energy_input
+            current_efficiency = (
+                float(ws.reference_product(ds)["amount"]) / energy_input
             )
 
-            return ds["parameters"]["efficiency"]
+            if "paramters" in ds:
+                ds["parameters"]["efficiency"] = current_efficiency
+            else:
+                ds["parameters"] = {"efficiency": current_efficiency}
+
+            return current_efficiency
 
     def find_fuel_efficiency_scaling_factor(self, ds, fuel_filters, technology):
         """
@@ -854,24 +932,34 @@ class Electricity:
         """
 
         ecoinvent_eff = self.find_ecoinvent_fuel_efficiency(ds, fuel_filters)
+
+        # If the current efficiency is too high, there's an issue, and teh dataset is skipped.
+        if ecoinvent_eff > 1.1:
+            print("The current efficiency factor for the dataset {} has not been found. Its current efficiency will remain".format(ds["name"]))
+            return 1
+
         remind_locations = self.geo.ecoinvent_to_remind_location(ds["location"])
         remind_eff = (
             self.rmd.electricity_efficiencies.loc[
                 dict(
                     variables=self.rmd.electricity_efficiency_labels[technology],
-                    region=remind_locations
+                    region=remind_locations,
                 )
             ]
-                .mean()
-                .values
+            .mean()
+            .values
         )
 
-        with open(DATA_DIR / "logs/log efficiencies change.csv", "a") as csv_file:
-            writer = csv.writer(csv_file,
-                                delimiter=';',
-                                lineterminator='\n')
+        with open(
+            DATA_DIR
+            / "logs/log efficiencies change {} {}-{}.csv".format(
+                self.scenario, self.year, date.today()
+            ),
+            "a",
+        ) as csv_file:
+            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
 
-            writer.writerow([ds['name'], ds['location'], ecoinvent_eff, remind_eff])
+            writer.writerow([ds["name"], ds["location"], ecoinvent_eff, remind_eff])
 
         return ecoinvent_eff / remind_eff
 
@@ -901,6 +989,7 @@ class Electricity:
             ws.exclude(ws.contains("name", "aluminium industry")),
             ws.exclude(ws.contains("name", "carbon capture and storage")),
             ws.exclude(ws.contains("name", "market")),
+            ws.exclude(ws.contains("name", "treatment")),
         ]
         no_imports = [ws.exclude(ws.contains("name", "import"))]
 
@@ -933,7 +1022,14 @@ class Electricity:
         coal_PC_CCS = [
             ws.either(ws.contains("name", "coal"), ws.contains("name", "lignite")),
             ws.contains("name", "storage"),
-            ws.contains("name", "post"),
+            ws.equals("unit", "kilowatt hour"),
+        ]
+
+        coal_PC = [
+            ws.either(ws.contains("name", "coal"), ws.contains("name", "lignite")),
+            ws.exclude(ws.contains("name", "storage")),
+            ws.exclude(ws.contains("name", "heat")),
+            ws.exclude(ws.contains("name", "IGCC")),
             ws.equals("unit", "kilowatt hour"),
         ]
 
@@ -985,13 +1081,16 @@ class Electricity:
             },
             "Coal PC": {
                 "eff_func": self.find_fuel_efficiency_scaling_factor,
-                "technology filters": filters.coal_electricity + generic_excludes,
+                "technology filters": coal_PC + generic_excludes,
                 "fuel filters": [
                     ws.either(
-                        ws.contains("name", "hard coal"), ws.contains("name", "lignite")
+                        ws.contains("name", "hard coal"),
+                        ws.contains("name", "Hard coal"),
+                        ws.contains("name", "lignite"),
+                        ws.contains("name", "Lignite")
                     ),
                     ws.doesnt_contain_any("name", ("ash", "SOx")),
-                    ws.equals("unit", "kilogram"),
+                    ws.either(ws.equals("unit", "kilogram"),ws.equals("unit", "megajoule")),
                 ],
                 "technosphere excludes": [],
             },
@@ -1021,8 +1120,8 @@ class Electricity:
             "Gas OC": {
                 "eff_func": self.find_fuel_efficiency_scaling_factor,
                 "technology filters": gas_open_cycle_electricity
-                                      + generic_excludes
-                                      + no_imports,
+                + generic_excludes
+                + no_imports,
                 "fuel filters": [
                     ws.either(
                         ws.contains("name", "natural gas, low pressure"),
@@ -1035,8 +1134,8 @@ class Electricity:
             "Gas CC": {
                 "eff_func": self.find_fuel_efficiency_scaling_factor,
                 "technology filters": filters.gas_combined_cycle_electricity
-                                      + generic_excludes
-                                      + no_imports,
+                + generic_excludes
+                + no_imports,
                 "fuel filters": [
                     ws.either(
                         ws.contains("name", "natural gas, low pressure"),
@@ -1049,8 +1148,8 @@ class Electricity:
             "Gas CHP": {
                 "eff_func": self.find_fuel_efficiency_scaling_factor,
                 "technology filters": filters.gas_chp_electricity
-                                      + generic_excludes
-                                      + no_imports,
+                + generic_excludes
+                + no_imports,
                 "fuel filters": [
                     ws.either(
                         ws.contains("name", "natural gas, low pressure"),
@@ -1072,9 +1171,9 @@ class Electricity:
             "Oil": {
                 "eff_func": self.find_fuel_efficiency_scaling_factor,
                 "technology filters": (
-                        filters.oil_open_cycle_electricity
-                        + generic_excludes
-                        + [ws.exclude(ws.contains("name", "nuclear"))]
+                    filters.oil_open_cycle_electricity
+                    + generic_excludes
+                    + [ws.exclude(ws.contains("name", "nuclear"))]
                 ),
                 "fuel filters": [
                     ws.contains("name", "heavy fuel oil"),
@@ -1105,7 +1204,9 @@ class Electricity:
                         ws.contains("name", "Wood chips"),
                         ws.contains("name", "Hydrogen"),
                     ),
-                    ws.equals("unit", "megajoule"),
+                    ws.either(
+                        ws.equals("unit", "megajoule"), ws.equals("unit", "kilogram"),
+                    ),
                 ],
                 "technosphere excludes": [],
             },
@@ -1114,7 +1215,11 @@ class Electricity:
                 "technology filters": biomass_IGCC,
                 "fuel filters": [
                     ws.contains("name", "Hydrogen"),
-                    ws.equals("unit", "megajoule"),
+                    ws.either(
+                        ws.equals("unit", "kilogram"),
+                        ws.equals("unit", "megajoule"),
+                    ),
+
                 ],
                 "technosphere excludes": [],
             },
@@ -1135,13 +1240,23 @@ class Electricity:
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
 
-        with open(DATA_DIR / "logs/log efficiencies change.csv", "w") as csv_file:
-            writer = csv.writer(csv_file,
-                                delimiter=';',
-                                lineterminator='\n')
-            writer.writerow(['dataset name', 'location', 'original efficiency', 'new efficiency'])
+        with open(
+            DATA_DIR
+            / "logs/log efficiencies change {} {}-{}.csv".format(
+                self.scenario, self.year, date.today()
+            ),
+            "w",
+        ) as csv_file:
+            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+            writer.writerow(
+                ["dataset name", "location", "original efficiency", "new efficiency"]
+            )
 
-        print('Log of changes in power plants efficiencies saved in {}'.format(DATA_DIR / 'logs'))
+        print(
+            "Log of changes in power plants efficiencies saved in {}".format(
+                DATA_DIR / "logs"
+            )
+        )
 
         for remind_technology in technologies_map:
             dict_technology = technologies_map[remind_technology]
@@ -1150,7 +1265,7 @@ class Electricity:
             datsets = list(ws.get_many(self.db, *dict_technology["technology filters"]))
 
             # no activities found? Check filters!
-            assert (len(datsets) > 0), "No dataset found for {}".format(remind_technology)
+            assert len(datsets) > 0, "No dataset found for {}".format(remind_technology)
             for ds in datsets:
                 # Modify using remind efficiency values:
                 scaling_factor = dict_technology["eff_func"](
@@ -1168,17 +1283,19 @@ class Electricity:
 
                 # Update biosphere exchanges according to GAINS emission values
                 for exc in ws.biosphere(
-                        ds, ws.either(*[ws.contains("name", x) for x in self.emissions_map])
+                    ds, ws.either(*[ws.contains("name", x) for x in self.emissions_map])
                 ):
                     remind_emission_label = self.emissions_map[exc["name"]]
 
                     remind_emission = self.rmd.electricity_emissions.loc[
                         dict(
-                            region=self.geo.ecoinvent_to_remind_location(ds["location"]),
+                            region=self.geo.ecoinvent_to_remind_location(
+                                ds["location"]
+                            ),
                             pollutant=remind_emission_label,
                             sector=self.rmd.electricity_emission_labels[
                                 remind_technology
-                            ]
+                            ],
                         )
                     ].values.item(0)
 
@@ -1215,27 +1332,29 @@ class Electricity:
 
         # Writing log of deleted markets
         markets_to_delete = [
-            [i['name'], i['location']] for i in self.db
+            [i["name"], i["location"]]
+            for i in self.db
             if any(stop in i["name"] for stop in list_to_remove)
         ]
 
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
 
-        with open(DATA_DIR / "logs/log deleted markets.csv", "w") as csv_file:
-            writer = csv.writer(csv_file,
-                                delimiter=';',
-                                lineterminator='\n')
-            writer.writerow(['dataset name', 'location'])
+        with open(
+            DATA_DIR
+            / "logs/log deleted markets {} {}-{}.csv".format(
+                self.scenario, self.year, date.today()
+            ),
+            "w",
+        ) as csv_file:
+            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+            writer.writerow(["dataset name", "location"])
             for line in markets_to_delete:
                 writer.writerow(line)
 
         self.db = [
             i for i in self.db if not any(stop in i["name"] for stop in list_to_remove)
         ]
-
-
-
 
         # We then need to create high voltage REMIND electricity markets
         print("Create high voltage markets.")
@@ -1249,7 +1368,11 @@ class Electricity:
         print("Link activities to new electricity markets.")
         self.relink_activities_to_new_markets()
 
-        print('Log of deleted electricity markets saved in {}'.format(DATA_DIR / 'logs'))
-        print('Log of created electricity markets saved in {}'.format(DATA_DIR / 'logs'))
+        print(
+            "Log of deleted electricity markets saved in {}".format(DATA_DIR / "logs")
+        )
+        print(
+            "Log of created electricity markets saved in {}".format(DATA_DIR / "logs")
+        )
 
         return self.db

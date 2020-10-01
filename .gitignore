@@ -1,6 +1,10 @@
 # Data directories #
 *.egg-info/
 logs/
+*.egg/
+build/
+dist/
+*.eggs/
 
 *.pyc
 

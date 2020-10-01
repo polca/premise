@@ -19,3 +19,11 @@ def test_REMIND_to_ecoinvent():
     assert "HK" in geomap.remind_to_ecoinvent_location("CHA")
     # Japan is in JPN
     assert "JP" in geomap.remind_to_ecoinvent_location("JPN")
+
+
+def test_REMIND_to_ecoinvent_contained():
+    # RU is intersecting EUR
+    assert "RU" in geomap.remind_to_ecoinvent_location("EUR")
+    # but lies not strictly within
+    assert "RU" not in geomap.remind_to_ecoinvent_location(
+        "EUR", contained=True)

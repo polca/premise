@@ -1,5 +1,9 @@
 from . import DATA_DIR
 import wurst
+<<<<<<< HEAD
+=======
+from prettytable import PrettyTable
+>>>>>>> b1fadadf8818f8d95667b29363b9d5e5c4f64f5f
 
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration
@@ -77,6 +81,22 @@ class BaseInventoryImport:
         Check whether the inventories to be imported are not
         already in the source database.
         """
+
+        # print if we find datasets that already exist
+        already_exist= [(x["name"], x["reference product"], x["location"]) for x in self.import_db.data
+            if x['code'] in self.db_code]
+
+        already_exist.extend([
+            (x["name"], x["reference product"], x["location"]) for x in self.import_db.data
+            if (x['name'], x['reference product'], x['location']) in self.db_names])
+
+        if len(already_exist)>0:
+            print("The following datasets to import already exist in the source database. They will not be imported")
+            t = PrettyTable(["Name", "Reference product", "Location"])
+            for ds in already_exist:
+                t.add_row([ds[0][:40], ds[1][:30], ds[2]])
+
+            print(t)
 
         self.import_db.data = [
             x for x in self.import_db.data
@@ -387,13 +407,15 @@ class CarmaCCSInventory(BaseInventoryImport):
         Thus, we can simply find out what the new CO2 emission is and then we know how much gets stored in the ground.
         It's very important that we ONLY do this for biomass CCS plants, as only they will have negative emissions!
 
+        We also rename the emission to 'Carbon dioxide, from soil or biomass stock' so that it is properly
+        characterized by IPCC's GWP100a method.
+
         Modifies in place (does not return anything).
 
         """
         for ds in ws.get_many(self.db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
             for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
-
 
 class BiofuelInventory(BaseInventoryImport):
     """
@@ -516,6 +538,121 @@ class HydrogenInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
+class HydrogenBiogasInventory(BaseInventoryImport):
+    """
+    Hydrogen datasets from the ELEGANCY project (2019).
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+        # Migrations for 3.5
+        if self.version == 3.5:
+            migrations = {
+                'fields': ['name', 'reference product', 'location'],
+                'data': [
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'RoW'),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',),
+                         'IAI Area, EU27 & EFTA'),
+                        {
+                            'name': ('market for aluminium oxide'),
+                            'reference product': ('aluminium oxide'),
+                            'location': ('GLO'),
+                        }
+                    ),
+                    (
+                        ('market for flat glass, coated', ('flat glass, coated',), 'RER'),
+                        {
+                            'location': ('GLO'),
+                        }
+                    )
+                ]
+            }
+
+            Migration("hydrogen_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("hydrogen_ecoinvent_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+        # Check for duplicates
+        self.check_for_duplicates()
+
+class HydrogenWoodyInventory(BaseInventoryImport):
+    """
+    Hydrogen datasets from the ELEGANCY project (2019).
+    """
+
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+        # Migrations for 3.5
+        if self.version == 3.5:
+            migrations = {
+                'fields': ['name', 'reference product', 'location'],
+                'data': [
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for water, deionised', ('water, deionised',), 'RoW'),
+                        {
+                            'name': ('market for water, deionised, from tap water, at user'),
+                            'reference product': ('water, deionised, from tap water, at user'),
+                        }
+                    ),
+                    (
+                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',),
+                         'IAI Area, EU27 & EFTA'),
+                        {
+                            'name': ('market for aluminium oxide'),
+                            'reference product': ('aluminium oxide'),
+                            'location': ('GLO'),
+                        }
+                    ),
+                    (
+                        ('market for flat glass, coated', ('flat glass, coated',), 'RER'),
+                        {
+                            'location': ('GLO'),
+                        }
+                    )
+                ]
+            }
+
+            Migration("hydrogen_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6"
+            )
+            self.import_db.migrate("hydrogen_ecoinvent_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+        # Check for duplicates
+        self.check_for_duplicates()
 
 class BiogasInventory(BaseInventoryImport):
     """
@@ -566,7 +703,6 @@ class BiogasInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
-
 
 class SyngasInventory(BaseInventoryImport):
     """

@@ -9,6 +9,7 @@ from .inventory_imports import CarmaCCSInventory, \
     SynfuelInventory, \
     SyngasInventory, \
     HydrogenCoalInventory, \
+    HydrogenWoodyInventory, \
     GeothermalInventory, \
     SyngasCoalInventory, \
     SynfuelCoalInventory, \
@@ -16,22 +17,27 @@ from .inventory_imports import CarmaCCSInventory, \
     CarculatorInventory
 from .cement import Cement
 from .steel import Steel
+from .cars import Cars
 
 from .export import Export
 from .utils import eidb_label
 import wurst
+import wurst.searching as ws
 
 FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
 FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
 FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
-FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen.xlsx")
-FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel.xlsx")
+FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx")
+FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx")
+FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx")
+FILEPATH_HYDROGEN_WOODY_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx")
+FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-FT.xlsx")
 FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = (INVENTORY_DIR / "lci-geothermal.xlsx")
 FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.xlsx")
 FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xlsx")
-FILEPATH_LPG_INVENTORIES = (INVENTORY_DIR / "lci-lpg-from-methanol.xlsx")
+FILEPATH_METHANOL_FUELS_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-methanol.xlsx")
 
 
 class NewDatabase:
@@ -65,9 +71,11 @@ class NewDatabase:
             "SSP2-PkBudg1100",
             "SSP2-PkBudg1300",
         ]:
-            raise NameError('The scenario chosen is not any of "SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", "SSP2-PkBudg1100", "SSP2-PkBudg1300".')
-        else:
-            self.scenario = scenario
+            print(('Warning: The scenario chosen is not any of '
+                   '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
+                   '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
+
+        self.scenario = scenario
 
         self.year = year
         self.source = source_db
@@ -87,28 +95,41 @@ class NewDatabase:
                                ).prepare_datasets()
 
     def import_inventories(self):
+
         # Add Carma CCS inventories
         print("Add Carma CCS inventories")
         carma = CarmaCCSInventory(self.db, self.version, FILEPATH_CARMA_INVENTORIES)
         carma.merge_inventory()
 
-        print("Add Biofuel inventories")
-        bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
-        bio.merge_inventory()
-
-        print("Add Hydrogen inventories")
-        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_INVENTORIES)
-        hydro.merge_inventory()
-
         print("Add Biogas inventories")
         biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
         biogas.merge_inventory()
+
+        print("Add Electrolysis Hydrogen inventories")
+        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_INVENTORIES)
+        hydro.merge_inventory()
+
+        print("Add Natural Gas SMR and ATR Hydrogen inventories")
+        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_NATGAS_INVENTORIES)
+        hydro.merge_inventory()
+
+        print("Add Biogas SMR and ATR Hydrogen inventories")
+        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_BIOGAS_INVENTORIES)
+        hydro.merge_inventory()
+
+        print("Add Woody biomass gasification Hydrogen inventories")
+        hydro = HydrogenWoodyInventory(self.db, self.version, FILEPATH_HYDROGEN_WOODY_INVENTORIES)
+        hydro.merge_inventory()
 
         print("Add Synthetic gas inventories")
         syngas = SyngasInventory(self.db, self.version, FILEPATH_SYNGAS_INVENTORIES)
         syngas.merge_inventory()
 
-        print("Add Synthetic fuels inventories")
+        print("Add Biofuel inventories")
+        bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
+        bio.merge_inventory()
+
+        print("Add Fischer-Tropsh-based synthetic fuels inventories")
         synfuel = SynfuelInventory(self.db, self.version, FILEPATH_SYNFUEL_INVENTORIES)
         synfuel.merge_inventory()
 
@@ -128,8 +149,8 @@ class NewDatabase:
         synfuel_coal = SynfuelCoalInventory(self.db, self.version, FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES)
         synfuel_coal.merge_inventory()
 
-        print("Add LPG inventories")
-        lpg = LPGInventory(self.db, self.version, FILEPATH_LPG_INVENTORIES)
+        print("Add methanol-based synthetic fuel inventories")
+        lpg = LPGInventory(self.db, self.version, FILEPATH_METHANOL_FUELS_INVENTORIES)
         lpg.merge_inventory()
 
         print("Add Carculator inventories")
@@ -159,11 +180,23 @@ class NewDatabase:
             print("The REMIND scenario chosen does not contain any data related to the steel sector."
                   "Transformations related to the steel sector will be skipped.")
 
+    def update_cars(self):
+        try:
+            next(ws.get_many(
+                self.db,
+                ws.equals("name", "market group for electricity, low voltage")))
+            crs = Cars(self.db, self.rdc, self.scenario, self.year)
+            crs.update_cars()
+        except StopIteration as e:
+            print(("No updated electricity markets found. Please update "
+                   "electricity markets before updating upstream fuel "
+                   "inventories for electricity powered vehicles"))
 
     def update_all(self):
         self.update_electricity_to_remind_data()
         self.update_cement_to_remind_data()
         self.update_steel_to_remind_data()
+        self.update_cars()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')

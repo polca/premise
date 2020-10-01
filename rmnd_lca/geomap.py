@@ -48,7 +48,7 @@ class Geomap:
 
         return geo
 
-    def remind_to_ecoinvent_location(self, location):
+    def remind_to_ecoinvent_location(self, location, contained=False):
         """
         Find the corresponding ecoinvent region given a REMIND region.
 
@@ -63,7 +63,9 @@ class Geomap:
 
             ecoinvent_locations = []
             try:
-                for r in self.geo.intersects(location):
+                searchfunc = (self.geo.contained
+                              if contained else self.geo.intersects)
+                for r in searchfunc(location):
                     if not isinstance(r, tuple):
                         ecoinvent_locations.append(r)
                     else:

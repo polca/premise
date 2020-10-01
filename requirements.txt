@@ -2,8 +2,10 @@ numpy
 pandas
 bw2io
 bw2data
-wurst>=0.2
-xarray>0.15
+wurst
+xarray
 pytest
 pytest-cov
 coveralls
+prettytable
+carculator
