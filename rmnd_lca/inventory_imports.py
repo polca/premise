@@ -600,7 +600,6 @@ class HydrogenCoalInventory(BaseInventoryImport):
     """
     Hydrogen production from coal gasification from Wokaun A, Wilhelm E, Schenler W, Simons A, Bauer C, Bond S, et al.
     Transition to hydrogen - pathways toward clean transportation. New York: Cambridge University Press; 2011
-.
     """
 
     def load_inventory(self, path):
@@ -656,7 +655,6 @@ class HydrogenCoalInventory(BaseInventoryImport):
 class GeothermalInventory(BaseInventoryImport):
     """
     Geothermal heat production, adapted from geothermal power production dataset from ecoinvent 3.6.
-.
     """
 
     def load_inventory(self, path):
