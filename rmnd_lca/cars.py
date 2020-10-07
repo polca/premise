@@ -80,15 +80,18 @@ class Cars():
         bevs = list(ws.get_many(
             self.db,
             ws.either(
-                ws.contains("name", "BEV,"),
-                ws.contains("name", "PHEV"))))
+                ws.startswith("name", "Passenger car, BEV"),
+                ws.startswith("name", "Passenger car, PHEV"),
+            ),
+            ws.contains("name", str(self.year))))
 
         self._delete_non_global(bevs)
 
         old_supply = ws.get_one(
             self.db,
-            ws.startswith(
-                "name", "electricity supply for electric vehicles"))
+            ws.equals(
+                "name", "electricity supply for electric vehicles, {}"
+                .format(self.year)))
 
         for region in self.remind_regions:
 
@@ -134,13 +137,15 @@ class Cars():
 
         fcevs = list(ws.get_many(
             self.db,
-            ws.contains("name", "FCEV,")))
+            ws.startswith("name", "Passenger car, FCEV"),
+            ws.contains("name", str(self.year))))
 
         self._delete_non_global(fcevs)
         old_supply = ws.get_one(
             self.db,
-            ws.startswith(
-                "name", "fuel supply for hydrogen vehicles"))
+            ws.equals(
+                "name", "fuel supply for hydrogen vehicles, {}"
+                .format(self.year)))
 
         for region in self.remind_regions:
             print("Relinking hydrogen markets for FCEVs in {}".format(region))
@@ -168,7 +173,8 @@ class Cars():
                 # link correct market
                 fuel_ex = next(ws.technosphere(
                     local_fcev,
-                    ws.startswith("name", "fuel supply for hydrogen vehicles")))
+                    ws.startswith("name", "fuel supply for hydrogen vehicles, {}"
+                                  .format(self.year))))
                 fuel_ex["location"] = region
                 self.db.append(local_fcev)
             self.db.append(supply)
@@ -219,20 +225,28 @@ class Cars():
         """
         Use REMIND fuel markets to update the mix of bio-, syn-
         and fossil liquids in gasoline and diesel.
+
+        For ICEVs we create also local versions of older cars
+        with EURO-X for X < 6d emission standards if required.
         """
         print("Creating local ICEV activities")
         icevs = list(ws.get_many(
             self.db,
-            ws.either(
-                ws.contains("name", "ICEV-"),
-                ws.contains("name", "HEV-"))
-            ))
+            ws.startswith("name", "Passenger car, ICEV-")
+        ))
+
+        icevs.extend(list(ws.get_many(
+            self.db,
+            ws.startswith("name", "Passenger car, HEV-"),
+            ws.contains("name", str(self.year))
+        )))
 
         old_suppliers = {
             fuel: ws.get_one(
                 self.db,
-                ws.startswith(
-                    "name", "fuel supply for {} vehicles".format(fuel)))
+                ws.equals(
+                    "name", "fuel supply for {} vehicles, {}"
+                    .format(fuel, self.year)))
             for fuel in ["diesel", "gasoline"]}
 
         new_producers = {
@@ -328,6 +342,9 @@ class Cars():
                         ws.startswith(
                             "name",
                             "fuel supply for {} vehicles".format(ftype))))
+                    # point explicitly to the *newest* supply process
+                    fuel_ex["name"] = ("fuel supply for {} vehicles, {}"
+                                       .format(ftype, self.year))
                     fuel_ex["location"] = region
 
     def _get_local_act_or_copy(self, db, act, region):
@@ -350,7 +367,69 @@ class Cars():
             raise ValueError("Multiple activities found for {} in {}"
                              .format(act["name"], region))
 
+    def create_icev_fleet_mix(self):
+        """
+        For historical combustion engine fleets, we assume that
+        the fleet is made up from last 15 years of vehicle production,
+        distributing production evenly accross 5 year intervals.
+
+        For newer technologies, we assume that the fleet is made up
+        solely from new vehicles (this is mainly relevant wrt.
+        emission standards).
+        """
+        techs = ["ICEV-p", "ICEV-d"]
+        sizes = ["Mini", "Small", "Lower medium", "Medium", "Large", "SUV", "Van"]
+        for region in self.remind_regions:
+            for tech in techs:
+                for size in sizes:
+                    new_dataset = {
+                        "location": region,
+                        "name": ("passenger car fleet mix, {}, {}, {}"
+                                 .format(tech, size, self.year)),
+                        "reference product": "transport, passenger car",
+                        "unit": "kilometer",
+                        "database": self.db[1]["database"],
+                        "code": str(uuid.uuid4().hex),
+                        "comment": "Fleet mix from historical data for Europe.",
+                        "exchanges": [
+                            {
+                                "uncertainty type": 0,
+                                "loc": 1,
+                                "amount": 1,
+                                "type": "production",
+                                "production volume": 0,
+                                "product": "transport, passenger car",
+                                "name": ("passenger car fleet mix, {}, {}"
+                                         .format(tech, size, self.year)),
+                                "unit": "kilometer",
+                                "location": region,
+                            }]
+                    }
+
+                    supplrs = list(ws.get_many(
+                        self.db,
+                        ws.startswith("name", "Passenger car, {}, {}".format(tech, size)),
+                        ws.equals("location", region)))
+
+                    # There should be 4 suppliers (last 15 years)
+                    if len(supplrs) != 4:
+                        raise Exception(
+                            "Incorrect number of historical ICEV activities.")
+
+                    new_dataset["exchanges"].extend([{
+                        "amount": 0.25,
+                        "name": supp["name"],
+                        "location": supp["location"],
+                        "unit": "kilometer",
+                        "type": "technosphere",
+                        "reference product": supp["reference product"],
+                        "product": supp["reference product"]
+                    } for supp in supplrs])
+                    self.db.append(new_dataset)
+
+
     def update_cars(self):
         self.create_local_evs()
         self.create_local_fcevs()
         self.create_local_icevs()
+        self.create_icev_fleet_mix()
