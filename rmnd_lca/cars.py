@@ -384,7 +384,7 @@ class Cars():
                 for size in sizes:
                     new_dataset = {
                         "location": region,
-                        "name": ("passenger car fleet mix, {}, {}, {}"
+                        "name": ("Passenger car fleet mix, {}, {}, {}"
                                  .format(tech, size, self.year)),
                         "reference product": "transport, passenger car",
                         "unit": "kilometer",
@@ -399,7 +399,7 @@ class Cars():
                                 "type": "production",
                                 "production volume": 0,
                                 "product": "transport, passenger car",
-                                "name": ("passenger car fleet mix, {}, {}"
+                                "name": ("Passenger car fleet mix, {}, {}"
                                          .format(tech, size, self.year)),
                                 "unit": "kilometer",
                                 "location": region,
@@ -407,11 +407,15 @@ class Cars():
                     }
 
                     supplrs = list(ws.get_many(
-                        self.db,
+                        db,
                         ws.startswith("name", "Passenger car, {}, {}".format(tech, size)),
-                        ws.equals("location", region)))
+                        ws.equals("location", region),
+                        ws.exclude(
+                            ws.startswith("name", "Passenger car, {}, {}, {}".format(
+                                tech, size, 2020))
+                    )))
 
-                    # There should be 4 suppliers (last 15 years)
+                    # There should be 4 suppliers (last 20 years)
                     if len(supplrs) != 4:
                         raise Exception(
                             "Incorrect number of historical ICEV activities.")

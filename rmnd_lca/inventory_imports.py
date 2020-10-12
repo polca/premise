@@ -892,7 +892,7 @@ class CarculatorInventory(BaseInventoryImport):
         _, array = fill_xarray_from_input_parameters(cip)
 
         array = array.interp(
-            year=np.arange(self.db_year, self.db_year - 20, -5),
+            year=np.arange(self.db_year, self.db_year - 25, -5),
             kwargs={'fill_value': 'extrapolate'})
 
         cm = CarModel(array, cycle='WLTC')
