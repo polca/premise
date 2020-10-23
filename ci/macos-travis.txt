@@ -8,4 +8,4 @@ pytest
 pytest-cov
 coveralls
 prettytable
-carculator
+carculator>=1.2.8
