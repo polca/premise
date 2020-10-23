@@ -145,7 +145,7 @@ class RemindDataCollection:
 
         """
         filename = "GAINS emission factors.csv"
-        filepath = Path(self.filepath_remind_files) / filename
+        filepath = (DATA_DIR / "remind_output_files" / filename)
 
         gains_emi = pd.read_csv(
             filepath,
