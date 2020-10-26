@@ -1020,7 +1020,7 @@ class CarculatorInventory(BaseInventoryImport):
     Car models from the carculator project, https://github.com/romainsacchi/carculator
     """
 
-    def __init__(self, database, year, vehicles, scenario):
+    def __init__(self, database, year, vehicles={}, scenario="SSP2-Base"):
         """Create a :class:`BaseInventoryImport` instance.
 
         :param list database: the target database for the import (the Ecoinvent database),
@@ -1037,13 +1037,15 @@ class CarculatorInventory(BaseInventoryImport):
         self.biosphere_dict = self.get_biosphere_code()
 
         self.db_year = year
-        self.region = vehicles["region"]
-        self.source_file = Path(vehicles["source file"]) / (scenario + ".mif")
-
-        if "fleet file" in vehicles:
-            self.fleet_file = Path(vehicles["fleet file"])
-        else:
-            self.fleet_file = None
+        self.fleet_file = (
+            Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
+        )
+        self.region = vehicles.get("region", ["EUR"])
+        self.source_file = (
+            Path(vehicles["source file"]) / (scenario + ".mif")
+            if "source file" in vehicles
+            else DATA_DIR / "remind_output_files" / (scenario + ".mif")
+        )
 
         self.import_db = []
 
@@ -1093,39 +1095,47 @@ class CarculatorInventory(BaseInventoryImport):
                     "petrol": {
                         "primary fuel": {
                             "type": "petrol",
-                            "share": fuel_shares.sel(
-                                fuel_type="liquid - fossil"
-                            ).values,
+                            "share": fuel_shares.sel(fuel_type="liquid - fossil").values
+                            if "liquid - fossil" in fuel_shares.fuel_type.values
+                            else [1],
                         },
                         "secondary fuel": {
                             "type": "bioethanol - wheat straw",
                             "share": fuel_shares.sel(
                                 fuel_type="liquid - biomass"
-                            ).values,
+                            ).values
+                            if "liquid - biomass" in fuel_shares.fuel_type.values
+                            else [1],
                         },
                     },
                     "diesel": {
                         "primary fuel": {
                             "type": "diesel",
-                            "share": fuel_shares.sel(
-                                fuel_type="liquid - fossil"
-                            ).values,
+                            "share": fuel_shares.sel(fuel_type="liquid - fossil").values
+                            if "liquid - fossil" in fuel_shares.fuel_type.values
+                            else [1],
                         },
                         "secondary fuel": {
                             "type": "biodiesel - cooking oil",
                             "share": fuel_shares.sel(
                                 fuel_type="liquid - biomass"
-                            ).values,
+                            ).values
+                            if "liquid - biomass" in fuel_shares.fuel_type.values
+                            else [1],
                         },
                     },
                     "cng": {
                         "primary fuel": {
                             "type": "cng",
-                            "share": fuel_shares.sel(fuel_type="gas - fossil").values,
+                            "share": fuel_shares.sel(fuel_type="gas - fossil").values
+                            if "gas - fossil" in fuel_shares.fuel_type.values
+                            else [1],
                         },
                         "secondary fuel": {
                             "type": "biogas - biowaste",
-                            "share": fuel_shares.sel(fuel_type="gas - biomass").values,
+                            "share": fuel_shares.sel(fuel_type="gas - biomass").values
+                            if "gas - biomass" in fuel_shares.fuel_type.values
+                            else [0],
                         },
                     },
                     "hydrogen": {
@@ -1158,6 +1168,45 @@ class CarculatorInventory(BaseInventoryImport):
                 if (x["name"], x["location"])
                 not in [(z["name"], z["location"]) for z in self.import_db]
             ]
+
+            # remove electricity mix made by `carculator` and
+            # link instead to ecoinvent
+            # so that it will be replaced by new electricity markets made by :class:`.Electricity`
+            map_region = {
+                "LAM": "BR",
+                "OAS": "RAS",
+                "SSA": "RAF",
+                "EUR": "RER",
+                "NEU": "RER",
+                "MEA": "RME",
+                "REF": "RU",
+                "CAZ": "CA",
+                "CHA": "CN",
+                "IND": "IN",
+                "JPN": "JP",
+                "USA": "US",
+            }
+
+            for d in i.data:
+                if "electricity market for fuel preparation" in d["name"]:
+                    d["exchanges"] = [
+                        e for e in d["exchanges"] if e["type"] == "production"
+                    ]
+                    d["exchanges"].append(
+                        {
+                            "amount": 1.0,
+                            "database": "ecoinvent",
+                            "location": map_region[region],
+                            "name": "market group for electricity, low voltage"
+                            if region not in ["REF", "JPN"]
+                            else "market for electricity, low voltage",
+                            "reference product": "electricity, low voltage",
+                            "tag": "energy chain",
+                            "type": "technosphere",
+                            "uncertainty_type": 1,
+                            "unit": "kilowatt hour",
+                        }
+                    )
 
             if r == 0:
                 self.import_db = i

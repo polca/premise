@@ -9,7 +9,7 @@ __all__ = (
     "Geomap",
     "DATA_DIR"
 )
-__version__ = (0, 1, 5)
+__version__ = (0, 1, 6)
 
 from pathlib import Path
 
