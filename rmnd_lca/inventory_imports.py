@@ -1,20 +1,27 @@
 from . import DATA_DIR
 import wurst
+from prettytable import PrettyTable
 
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
 
-from carculator import CarInputParameters, \
-    fill_xarray_from_input_parameters, \
-    CarModel, InventoryCalculation
+from carculator import (
+    CarInputParameters,
+    fill_xarray_from_input_parameters,
+    CarModel,
+    InventoryCalculation,
+    create_fleet_composition_from_REMIND_file,
+    extract_electricity_mix_from_REMIND_file,
+    extract_biofuel_shares_from_REMIND,
+)
 
 from pathlib import Path
 import csv
 import uuid
 import numpy as np
 
-FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
 
 class BaseInventoryImport:
@@ -41,14 +48,18 @@ class BaseInventoryImport:
 
         """
         self.db = database
-        self.db_code = [x['code'] for x in self.db]
-        self.db_names = [(x['name'], x['reference product'], x['location']) for x in self.db]
+        self.db_code = [x["code"] for x in self.db]
+        self.db_names = [
+            (x["name"], x["reference product"], x["location"]) for x in self.db
+        ]
         self.version = version
         self.biosphere_dict = self.get_biosphere_code()
 
         path = Path(path)
         if not path.is_file():
-            raise FileNotFoundError("The inventory file {} could not be found.".format(path))
+            raise FileNotFoundError(
+                "The inventory file {} could not be found.".format(path)
+            )
         self.load_inventory(path)
 
     def load_inventory(self, path):
@@ -78,12 +89,39 @@ class BaseInventoryImport:
         already in the source database.
         """
 
+        # print if we find datasets that already exist
+        already_exist = [
+            (x["name"], x["reference product"], x["location"])
+            for x in self.import_db.data
+            if x["code"] in self.db_code
+        ]
+
+        already_exist.extend(
+            [
+                (x["name"], x["reference product"], x["location"])
+                for x in self.import_db.data
+                if (x["name"], x["reference product"], x["location"]) in self.db_names
+            ]
+        )
+
+        if len(already_exist) > 0:
+            print(
+                "The following datasets to import already exist in the source database. They will not be imported"
+            )
+            t = PrettyTable(["Name", "Reference product", "Location"])
+            for ds in already_exist:
+                t.add_row([ds[0][:40], ds[1][:30], ds[2]])
+
+            print(t)
+
         self.import_db.data = [
-            x for x in self.import_db.data
-            if x['code'] not in self.db_code]
+            x for x in self.import_db.data if x["code"] not in self.db_code
+        ]
         self.import_db.data = [
-            x for x in self.import_db.data
-            if (x['name'], x['reference product'], x['location']) not in self.db_names]
+            x
+            for x in self.import_db.data
+            if (x["name"], x["reference product"], x["location"]) not in self.db_names
+        ]
 
     def merge_inventory(self):
         """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`db`.
@@ -180,15 +218,15 @@ class BaseInventoryImport:
             for y in x["exchanges"]:
                 if y["type"] == "technosphere":
                     # Check if the field 'product' is present
-                    if not 'product' in y:
-                        y['product'] = self.correct_product_field(y)
+                    if not "product" in y:
+                        y["product"] = self.correct_product_field(y)
 
                     # If a 'reference product' field is present, we make sure it matches with the new 'product' field
-                    if 'reference product' in y:
+                    if "reference product" in y:
                         try:
-                            assert y['product'] == y['reference product']
+                            assert y["product"] == y["reference product"]
                         except AssertionError:
-                            y['product'] = self.correct_product_field(y)
+                            y["product"] = self.correct_product_field(y)
 
         # Add a `code` field if missing
         for x in self.import_db.data:
@@ -207,8 +245,8 @@ class BaseInventoryImport:
             a["reference product"]
             for a in self.import_db.data
             if a["name"] == exc["name"]
-               and a["location"] == exc["location"]
-               and a["unit"] == exc["unit"]
+            and a["location"] == exc["location"]
+            and a["unit"] == exc["unit"]
         ]
 
         # If not, look in the ecoinvent inventories
@@ -217,15 +255,17 @@ class BaseInventoryImport:
                 a["reference product"]
                 for a in self.db
                 if a["name"] == exc["name"]
-                   and a["location"] == exc["location"]
-                   and a["unit"] == exc["unit"]
+                and a["location"] == exc["location"]
+                and a["unit"] == exc["unit"]
             ]
         if len(possibles) > 0:
             return possibles[0]
         else:
             raise IndexError(
-                'An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}' \
-                    .format(self.import_db.db_name, exc))
+                "An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}".format(
+                    self.import_db.db_name, exc
+                )
+            )
 
     def add_biosphere_links(self, delete_missing=False):
         """Add links for biosphere exchanges to :attr:`import_db`
@@ -286,7 +326,9 @@ class BaseInventoryImport:
         :returns: Nothing
         """
 
-        self.import_db.data = [act for act in self.import_db.data if not act["name"] == name]
+        self.import_db.data = [
+            act for act in self.import_db.data if not act["name"] == name
+        ]
 
         for act in self.import_db.data:
             for ex in act["exchanges"]:
@@ -294,7 +336,7 @@ class BaseInventoryImport:
                     ex.update(ex_data)
                     # make sure there is no existing link
                     if "input" in ex:
-                        del (ex["input"])
+                        del ex["input"]
 
 
 class CarmaCCSInventory(BaseInventoryImport):
@@ -305,66 +347,70 @@ class CarmaCCSInventory(BaseInventoryImport):
         if self.version == 3.6:
             # apply some updates to comply with ei 3.6
             new_technosphere_data = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
+                "fields": ["name", "reference product", "location"],
+                "data": [
                     (
-                        ('market for water, decarbonised, at user', (), 'GLO'),
+                        ("market for water, decarbonised, at user", (), "GLO"),
                         {
-                            'name': 'market for water, decarbonised',
-                            'reference product': 'water, decarbonised',
-                            'location': 'DE',
-                        }
-                    ),
-                    (
-                        ('market for water, completely softened, from decarbonised water, at user', (), 'GLO'),
-                        {
-                            'name': 'market for water, completely softened',
-                            'reference product': 'water, completely softened',
-                            'location': 'RER',
-                        }
-                    ),
-                    (
-                        ('market for steam, in chemical industry', (), 'GLO'),
-                        {
-                            'location': 'RER',
-                            'reference product': 'steam, in chemical industry',
-                        }
-                    ),
-                    (
-                        ('market for steam, in chemical industry', (), 'RER'),
-                        {
-                            'reference product': 'steam, in chemical industry',
-                        }
-                    ),
-                    (
-                        ('zinc-lead mine operation', ('zinc concentrate',), 'GLO'),
-                        {
-                            'name': 'zinc mine operation',
-                            'reference product': 'bulk lead-zinc concentrate',
-                        }
-                    ),
-                    (
-                        ('market for aluminium oxide', ('aluminium oxide',), 'GLO'),
-                        {
-                            'name': 'market for aluminium oxide, non-metallurgical',
-                            'reference product': 'aluminium oxide, non-metallurgical',
-                            'location': 'IAI Area, EU27 & EFTA',
-                        }
+                            "name": "market for water, decarbonised",
+                            "reference product": "water, decarbonised",
+                            "location": "DE",
+                        },
                     ),
                     (
                         (
-                            'platinum group metal mine operation, ore with high rhodium content', ('nickel, 99.5%',),
-                            'ZA'),
+                            "market for water, completely softened, from decarbonised water, at user",
+                            (),
+                            "GLO",
+                        ),
                         {
-                            'name': 'platinum group metal, extraction and refinery operations',
-                        }
-                    )
-                ]
+                            "name": "market for water, completely softened",
+                            "reference product": "water, completely softened",
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("market for steam, in chemical industry", (), "GLO"),
+                        {
+                            "location": "RER",
+                            "reference product": "steam, in chemical industry",
+                        },
+                    ),
+                    (
+                        ("market for steam, in chemical industry", (), "RER"),
+                        {"reference product": "steam, in chemical industry",},
+                    ),
+                    (
+                        ("zinc-lead mine operation", ("zinc concentrate",), "GLO"),
+                        {
+                            "name": "zinc mine operation",
+                            "reference product": "bulk lead-zinc concentrate",
+                        },
+                    ),
+                    (
+                        ("market for aluminium oxide", ("aluminium oxide",), "GLO"),
+                        {
+                            "name": "market for aluminium oxide, non-metallurgical",
+                            "reference product": "aluminium oxide, non-metallurgical",
+                            "location": "IAI Area, EU27 & EFTA",
+                        },
+                    ),
+                    (
+                        (
+                            "platinum group metal mine operation, ore with high rhodium content",
+                            ("nickel, 99.5%",),
+                            "ZA",
+                        ),
+                        {
+                            "name": "platinum group metal, extraction and refinery operations",
+                        },
+                    ),
+                ],
             }
 
             Migration("migration_36").write(
                 new_technosphere_data,
-                description="Change technosphere names due to change from 3.5 to 3.6"
+                description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("migration_36")
 
@@ -393,9 +439,14 @@ class CarmaCCSInventory(BaseInventoryImport):
         Modifies in place (does not return anything).
 
         """
-        for ds in ws.get_many(self.db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
-            for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
+        for ds in ws.get_many(
+            self.db, ws.contains("name", "storage"), ws.equals("database", "Carma CCS")
+        ):
+            for exc in ws.biosphere(
+                ds, ws.equals("name", "Carbon dioxide, non-fossil")
+            ):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
+
 
 class BiofuelInventory(BaseInventoryImport):
     """
@@ -409,47 +460,59 @@ class BiofuelInventory(BaseInventoryImport):
         # Migrations for 3.6
         if self.version == 3.6:
             migrations = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
+                "fields": ["name", "reference product", "location"],
+                "data": [
                     (
-                        ('market for transport, freight, sea, transoceanic tanker',
-                         ('transport, freight, sea, transoceanic tanker',), 'GLO'),
+                        (
+                            "market for transport, freight, sea, transoceanic tanker",
+                            ("transport, freight, sea, transoceanic tanker",),
+                            "GLO",
+                        ),
                         {
-                            'name': (
-                                'market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
-                            'reference product': (
-                                'transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas'),
-                        }
+                            "name": (
+                                "market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
+                            ),
+                            "reference product": (
+                                "transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
+                            ),
+                        },
                     ),
                     (
-                        ('market for water, decarbonised, at user', ('water, decarbonised, at user',), 'GLO'),
+                        (
+                            "market for water, decarbonised, at user",
+                            ("water, decarbonised, at user",),
+                            "GLO",
+                        ),
                         {
-                            'name': ('market for water, decarbonised'),
-                            'reference product': ('water, decarbonised'),
-                            'location': ('DE'),
-                        }
+                            "name": ("market for water, decarbonised"),
+                            "reference product": ("water, decarbonised"),
+                            "location": ("DE"),
+                        },
                     ),
                     (
-                        ('market for water, completely softened, from decarbonised water, at user',
-                         ('water, completely softened, from decarbonised water, at user',), 'GLO'),
+                        (
+                            "market for water, completely softened, from decarbonised water, at user",
+                            (
+                                "water, completely softened, from decarbonised water, at user",
+                            ),
+                            "GLO",
+                        ),
                         {
-                            'name': ('market for water, completely softened'),
-                            'reference product': ('water, completely softened'),
-                            'location': ('RER'),
-                        }
+                            "name": ("market for water, completely softened"),
+                            "reference product": ("water, completely softened"),
+                            "location": ("RER"),
+                        },
                     ),
                     (
-                        ('market for concrete block', ('concrete block',), 'GLO'),
-                        {
-                            'location': ('DE'),
-                        }
-                    )
-                ]
+                        ("market for concrete block", ("concrete block",), "GLO"),
+                        {"location": ("DE"),},
+                    ),
+                ],
             }
 
             Migration("biofuels_ecoinvent_36").write(
                 migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6"
+                description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("biofuels_ecoinvent_36")
 
@@ -472,43 +535,60 @@ class HydrogenInventory(BaseInventoryImport):
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
+                "fields": ["name", "reference product", "location"],
+                "data": [
                     (
-                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        (
+                            "market for water, deionised",
+                            ("water, deionised",),
+                            "Europe without Switzerland",
+                        ),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for water, deionised', ('water, deionised',), 'RoW'),
+                        ("market for water, deionised", ("water, deionised",), "RoW"),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',),
-                         'IAI Area, EU27 & EFTA'),
+                        (
+                            "market for aluminium oxide, metallurgical",
+                            ("aluminium oxide, metallurgical",),
+                            "IAI Area, EU27 & EFTA",
+                        ),
                         {
-                            'name': ('market for aluminium oxide'),
-                            'reference product': ('aluminium oxide'),
-                            'location': ('GLO'),
-                        }
+                            "name": ("market for aluminium oxide"),
+                            "reference product": ("aluminium oxide"),
+                            "location": ("GLO"),
+                        },
                     ),
                     (
-                        ('market for flat glass, coated', ('flat glass, coated',), 'RER'),
-                        {
-                            'location': ('GLO'),
-                        }
-                    )
-                ]
+                        (
+                            "market for flat glass, coated",
+                            ("flat glass, coated",),
+                            "RER",
+                        ),
+                        {"location": ("GLO"),},
+                    ),
+                ],
             }
 
             Migration("hydrogen_ecoinvent_35").write(
                 migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6"
+                description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("hydrogen_ecoinvent_35")
 
@@ -517,6 +597,7 @@ class HydrogenInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
+
 
 class HydrogenBiogasInventory(BaseInventoryImport):
     """
@@ -530,43 +611,60 @@ class HydrogenBiogasInventory(BaseInventoryImport):
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
+                "fields": ["name", "reference product", "location"],
+                "data": [
                     (
-                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        (
+                            "market for water, deionised",
+                            ("water, deionised",),
+                            "Europe without Switzerland",
+                        ),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for water, deionised', ('water, deionised',), 'RoW'),
+                        ("market for water, deionised", ("water, deionised",), "RoW"),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',),
-                         'IAI Area, EU27 & EFTA'),
+                        (
+                            "market for aluminium oxide, metallurgical",
+                            ("aluminium oxide, metallurgical",),
+                            "IAI Area, EU27 & EFTA",
+                        ),
                         {
-                            'name': ('market for aluminium oxide'),
-                            'reference product': ('aluminium oxide'),
-                            'location': ('GLO'),
-                        }
+                            "name": ("market for aluminium oxide"),
+                            "reference product": ("aluminium oxide"),
+                            "location": ("GLO"),
+                        },
                     ),
                     (
-                        ('market for flat glass, coated', ('flat glass, coated',), 'RER'),
-                        {
-                            'location': ('GLO'),
-                        }
-                    )
-                ]
+                        (
+                            "market for flat glass, coated",
+                            ("flat glass, coated",),
+                            "RER",
+                        ),
+                        {"location": ("GLO"),},
+                    ),
+                ],
             }
 
             Migration("hydrogen_ecoinvent_35").write(
                 migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6"
+                description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("hydrogen_ecoinvent_35")
 
@@ -575,6 +673,7 @@ class HydrogenBiogasInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
+
 
 class HydrogenWoodyInventory(BaseInventoryImport):
     """
@@ -588,43 +687,60 @@ class HydrogenWoodyInventory(BaseInventoryImport):
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
+                "fields": ["name", "reference product", "location"],
+                "data": [
                     (
-                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        (
+                            "market for water, deionised",
+                            ("water, deionised",),
+                            "Europe without Switzerland",
+                        ),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for water, deionised', ('water, deionised',), 'RoW'),
+                        ("market for water, deionised", ("water, deionised",), "RoW"),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',),
-                         'IAI Area, EU27 & EFTA'),
+                        (
+                            "market for aluminium oxide, metallurgical",
+                            ("aluminium oxide, metallurgical",),
+                            "IAI Area, EU27 & EFTA",
+                        ),
                         {
-                            'name': ('market for aluminium oxide'),
-                            'reference product': ('aluminium oxide'),
-                            'location': ('GLO'),
-                        }
+                            "name": ("market for aluminium oxide"),
+                            "reference product": ("aluminium oxide"),
+                            "location": ("GLO"),
+                        },
                     ),
                     (
-                        ('market for flat glass, coated', ('flat glass, coated',), 'RER'),
-                        {
-                            'location': ('GLO'),
-                        }
-                    )
-                ]
+                        (
+                            "market for flat glass, coated",
+                            ("flat glass, coated",),
+                            "RER",
+                        ),
+                        {"location": ("GLO"),},
+                    ),
+                ],
             }
 
             Migration("hydrogen_ecoinvent_35").write(
                 migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6"
+                description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("hydrogen_ecoinvent_35")
 
@@ -633,6 +749,7 @@ class HydrogenWoodyInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
+
 
 class BiogasInventory(BaseInventoryImport):
     """
@@ -646,35 +763,51 @@ class BiogasInventory(BaseInventoryImport):
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
+                "fields": ["name", "reference product", "location"],
+                "data": [
                     (
-                        ('market for water, deionised', ('water, deionised',), 'CH'),
+                        ("market for water, deionised", ("water, deionised",), "CH"),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for water, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        (
+                            "market for water, deionised",
+                            ("water, deionised",),
+                            "Europe without Switzerland",
+                        ),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for water, deionised', ('water, deionised',), 'RoW'),
+                        ("market for water, deionised", ("water, deionised",), "RoW"),
                         {
-                            'name': ('market for water, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
-                    )
-                ]
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
+                    ),
+                ],
             }
 
             Migration("biogas_ecoinvent_35").write(
                 migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6"
+                description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("biogas_ecoinvent_35")
 
@@ -683,6 +816,7 @@ class BiogasInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
+
 
 class SyngasInventory(BaseInventoryImport):
     """
@@ -726,40 +860,56 @@ class HydrogenCoalInventory(BaseInventoryImport):
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
+                "fields": ["name", "reference product", "location"],
+                "data": [
                     (
-                        ('water production, deionised', ('water, deionised',), 'RoW'),
+                        ("water production, deionised", ("water, deionised",), "RoW"),
                         {
-                            'name': ('water production, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "water production, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('water production, deionised', ('water, deionised',), 'Europe without Switzerland'),
+                        (
+                            "water production, deionised",
+                            ("water, deionised",),
+                            "Europe without Switzerland",
+                        ),
                         {
-                            'name': ('water production, deionised, from tap water, at user'),
-                            'reference product': ('water, deionised, from tap water, at user'),
-                        }
+                            "name": (
+                                "water production, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
                     ),
                     (
-                        ('market for transport, freight train', ('transport, freight train',), 'ZA'),
-                        {
-                            'location': ('RoW')
-                        }
+                        (
+                            "market for transport, freight train",
+                            ("transport, freight train",),
+                            "ZA",
+                        ),
+                        {"location": ("RoW")},
                     ),
                     (
-                        ('market for transport, freight train', ('transport, freight train',), 'IN'),
-                        {
-                            'location': ('RoW')
-                        }
-                    )
-                ]
+                        (
+                            "market for transport, freight train",
+                            ("transport, freight train",),
+                            "IN",
+                        ),
+                        {"location": ("RoW")},
+                    ),
+                ],
             }
 
             Migration("hydrogen_coal_ecoinvent_35").write(
                 migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6"
+                description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("hydrogen_coal_ecoinvent_35")
 
@@ -828,29 +978,34 @@ class LPGInventory(BaseInventoryImport):
         # Migrations for 3.5
         if self.version == 3.5:
             migrations = {
-                'fields': ['name', 'reference product', 'location'],
-                'data': [
+                "fields": ["name", "reference product", "location"],
+                "data": [
                     (
-                        ('market for aluminium oxide, metallurgical', ('aluminium oxide, metallurgical',), 'IAI Area, EU27 & EFTA'),
+                        (
+                            "market for aluminium oxide, metallurgical",
+                            ("aluminium oxide, metallurgical",),
+                            "IAI Area, EU27 & EFTA",
+                        ),
                         {
-                            'name': ('market for aluminium oxide'),
-                            'reference product': ('aluminium oxide'),
-                            'location': ('GLO')
-                        }
+                            "name": ("market for aluminium oxide"),
+                            "reference product": ("aluminium oxide"),
+                            "location": ("GLO"),
+                        },
                     ),
                     (
-                        ('market for flat glass, uncoated', ('flat glass, uncoated',), 'RER'),
-                        {
-                            'location': ('GLO')
-                        }
-                    )
-
-                ]
+                        (
+                            "market for flat glass, uncoated",
+                            ("flat glass, uncoated",),
+                            "RER",
+                        ),
+                        {"location": ("GLO")},
+                    ),
+                ],
             }
 
             Migration("LPG_ecoinvent_35").write(
                 migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6"
+                description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("LPG_ecoinvent_35")
 
@@ -864,7 +1019,8 @@ class CarculatorInventory(BaseInventoryImport):
     """
     Car models from the carculator project, https://github.com/romainsacchi/carculator
     """
-    def __init__(self, database, year):
+
+    def __init__(self, database, year, vehicles={}, scenario="SSP2-Base"):
         """Create a :class:`BaseInventoryImport` instance.
 
         :param list database: the target database for the import (the Ecoinvent database),
@@ -874,35 +1030,188 @@ class CarculatorInventory(BaseInventoryImport):
 
         """
         self.db = database
-        self.db_code = [x['code'] for x in self.db]
-        self.db_names = [(x['name'], x['reference product'], x['location']) for x in self.db]
+        self.db_code = [x["code"] for x in self.db]
+        self.db_names = [
+            (x["name"], x["reference product"], x["location"]) for x in self.db
+        ]
         self.biosphere_dict = self.get_biosphere_code()
 
         self.db_year = year
+        self.fleet_file = (
+            Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
+        )
+        self.region = vehicles.get("region", ["EUR"])
+        self.source_file = (
+            Path(vehicles["source file"]) / (scenario + ".mif")
+            if "source file" in vehicles
+            else DATA_DIR / "remind_output_files" / (scenario + ".mif")
+        )
+
+        self.import_db = []
 
         self.load_inventory()
 
     def load_inventory(self):
-        """Load `carculator` inventories for a given range of years.
+        """Create `carculator` fleet average inventories for a given range of years.
         """
+
         cip = CarInputParameters()
-
         cip.static()
-
         _, array = fill_xarray_from_input_parameters(cip)
 
         array = array.interp(
-            year=np.arange(self.db_year, self.db_year - 25, -5),
-            kwargs={'fill_value': 'extrapolate'})
-
-        cm = CarModel(array, cycle='WLTC')
-
+            year=np.arange(2010, self.db_year + 1), kwargs={"fill_value": "extrapolate"}
+        )
+        cm = CarModel(array, cycle="WLTC")
         cm.set_all()
 
-        ic = InventoryCalculation(cm.array)
+        for r, region in enumerate(self.region):
 
-        self.import_db = LCIImporter("carculator")
-        self.import_db.data = ic.export_lci(ecoinvent_compatibility=True)[0]
+            if self.fleet_file:
+                fleet_array = create_fleet_composition_from_REMIND_file(
+                    self.fleet_file, region, fleet_year=self.db_year
+                )
+
+                scope = {
+                    "powertrain": fleet_array.powertrain.values,
+                    "size": fleet_array.coords["size"].values,
+                    "year": fleet_array.coords["vintage_year"].values,
+                    "fu": {"fleet": fleet_array, "unit": "vkm"},
+                }
+            else:
+                scope = {"year": [self.db_year]}
+
+            mix = extract_electricity_mix_from_REMIND_file(
+                fp=self.source_file, remind_region=region, years=scope["year"]
+            )
+            fuel_shares = extract_biofuel_shares_from_REMIND(
+                fp=self.source_file, remind_region=region, years=scope["year"]
+            )
+
+            bc = {
+                "custom electricity mix": mix,
+                "country": region,
+                "fuel blend": {
+                    "petrol": {
+                        "primary fuel": {
+                            "type": "petrol",
+                            "share": fuel_shares.sel(fuel_type="liquid - fossil").values
+                            if "liquid - fossil" in fuel_shares.fuel_type.values
+                            else [1],
+                        },
+                        "secondary fuel": {
+                            "type": "bioethanol - wheat straw",
+                            "share": fuel_shares.sel(
+                                fuel_type="liquid - biomass"
+                            ).values
+                            if "liquid - biomass" in fuel_shares.fuel_type.values
+                            else [1],
+                        },
+                    },
+                    "diesel": {
+                        "primary fuel": {
+                            "type": "diesel",
+                            "share": fuel_shares.sel(fuel_type="liquid - fossil").values
+                            if "liquid - fossil" in fuel_shares.fuel_type.values
+                            else [1],
+                        },
+                        "secondary fuel": {
+                            "type": "biodiesel - cooking oil",
+                            "share": fuel_shares.sel(
+                                fuel_type="liquid - biomass"
+                            ).values
+                            if "liquid - biomass" in fuel_shares.fuel_type.values
+                            else [1],
+                        },
+                    },
+                    "cng": {
+                        "primary fuel": {
+                            "type": "cng",
+                            "share": fuel_shares.sel(fuel_type="gas - fossil").values
+                            if "gas - fossil" in fuel_shares.fuel_type.values
+                            else [1],
+                        },
+                        "secondary fuel": {
+                            "type": "biogas - biowaste",
+                            "share": fuel_shares.sel(fuel_type="gas - biomass").values
+                            if "gas - biomass" in fuel_shares.fuel_type.values
+                            else [0],
+                        },
+                    },
+                    "hydrogen": {
+                        "primary fuel": {
+                            "type": "electrolysis",
+                            "share": np.ones_like(scope["year"]),
+                        }
+                    },
+                },
+            }
+
+            ic = InventoryCalculation(
+                cm.array, scope=scope, background_configuration=bc
+            )
+
+            # filter out regular cars, to keep only fleet averages
+            fa = [
+                i[0] for i in ic.inputs if any(x for x in ic.scope["size"] if x in i[0])
+            ]
+
+            if self.fleet_file:
+                i = ic.export_lci_to_bw(presamples=False, forbidden_activities=fa)
+            else:
+                i = ic.export_lci_to_bw(presamples=False)
+
+            # remove duplicate items if iterating over several regions
+            i.data = [
+                x
+                for x in i.data
+                if (x["name"], x["location"])
+                not in [(z["name"], z["location"]) for z in self.import_db]
+            ]
+
+            # remove electricity mix made by `carculator` and
+            # link instead to ecoinvent
+            # so that it will be replaced by new electricity markets made by :class:`.Electricity`
+            map_region = {
+                "LAM": "BR",
+                "OAS": "RAS",
+                "SSA": "RAF",
+                "EUR": "RER",
+                "NEU": "RER",
+                "MEA": "RME",
+                "REF": "RU",
+                "CAZ": "CA",
+                "CHA": "CN",
+                "IND": "IN",
+                "JPN": "JP",
+                "USA": "US",
+            }
+
+            for d in i.data:
+                if "electricity market for fuel preparation" in d["name"]:
+                    d["exchanges"] = [
+                        e for e in d["exchanges"] if e["type"] == "production"
+                    ]
+                    d["exchanges"].append(
+                        {
+                            "amount": 1.0,
+                            "database": "ecoinvent",
+                            "location": map_region[region],
+                            "name": "market group for electricity, low voltage"
+                            if region not in ["REF", "JPN"]
+                            else "market for electricity, low voltage",
+                            "reference product": "electricity, low voltage",
+                            "tag": "energy chain",
+                            "type": "technosphere",
+                            "uncertainty_type": 1,
+                            "unit": "kilowatt hour",
+                        }
+                    )
+
+            if r == 0:
+                self.import_db = i
+            else:
+                self.import_db.data.extend(i.data)
 
     def prepare_inventory(self):
         self.add_biosphere_links(delete_missing=True)

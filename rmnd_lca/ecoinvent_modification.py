@@ -23,6 +23,7 @@ from .export import Export
 from .utils import eidb_label
 import wurst
 import wurst.searching as ws
+from pathlib import Path
 
 FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
 FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
@@ -57,25 +58,38 @@ class NewDatabase:
 
     """
 
-    def __init__(self, scenario, year, source_db,
+    def __init__(self, year, source_db, scenario=None,
                  source_version=3.5,
                  source_type='brightway',
                  source_file_path=None,
-                 filepath_to_remind_files=None):
+                 filepath_to_remind_files=None,
+                 add_vehicles=None):
 
-        if scenario not in [
-            "SSP2-Base",
-            "SSP2-NDC",
-            "SSP2-NPi",
-            "SSP2-PkBudg900",
-            "SSP2-PkBudg1100",
-            "SSP2-PkBudg1300",
-        ]:
-            print(('Warning: The scenario chosen is not any of '
-                   '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
-                   '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
+        if filepath_to_remind_files is None:
+            if scenario not in [
+                "SSP2-Base",
+                "SSP2-NDC",
+                "SSP2-NPi",
+                "SSP2-PkBudg900",
+                "SSP2-PkBudg1100",
+                "SSP2-PkBudg1300",
+            ]:
+                print(('Warning: The scenario chosen is not any of '
+                       '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
+                       '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
 
-        self.scenario = scenario
+
+        # If we produce fleet average vehicles, fleet compositions and electricity mixes must be provided
+        if add_vehicles:
+            if "fleet file" not in add_vehicles:
+                print("No fleet composition file is provided, hence fleet average vehicles inventories will not be produced.")
+            if "source file" not in add_vehicles:
+                add_vehicles["source file"] = (filepath_to_remind_files or DATA_DIR / "remind_output_files")
+
+        if scenario is None:
+            raise ValueError("Missing scenario name.")
+        else:
+            self.scenario = scenario
 
         self.year = year
         self.source = source_db
@@ -83,7 +97,7 @@ class NewDatabase:
         self.source_type = source_type
         self.source_file_path = source_file_path
         self.db = self.clean_database()
-        self.import_inventories()
+        self.import_inventories(add_vehicles)
         self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "remind_output_files")
 
         self.rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
@@ -94,7 +108,7 @@ class NewDatabase:
                                self.source_file_path
                                ).prepare_datasets()
 
-    def import_inventories(self):
+    def import_inventories(self, add_vehicles):
 
         # Add Carma CCS inventories
         print("Add Carma CCS inventories")
@@ -153,9 +167,11 @@ class NewDatabase:
         lpg = LPGInventory(self.db, self.version, FILEPATH_METHANOL_FUELS_INVENTORIES)
         lpg.merge_inventory()
 
-        #print("Add Carculator inventories")
-        #cars = CarculatorInventory(self.db, self.year)
-        #cars.merge_inventory()
+        # Import `carculator` inventories if wanted
+        if add_vehicles:
+            print("Add Carculator inventories")
+            cars = CarculatorInventory(self.db, self.year, add_vehicles, self.scenario)
+            cars.merge_inventory()
 
     def update_electricity_to_remind_data(self):
         electricity = Electricity(self.db, self.rdc, self.scenario, self.year)
@@ -196,7 +212,7 @@ class NewDatabase:
         self.update_electricity_to_remind_data()
         self.update_cement_to_remind_data()
         self.update_steel_to_remind_data()
-        self.update_cars()
+        #self.update_cars()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')

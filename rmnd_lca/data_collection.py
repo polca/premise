@@ -1,6 +1,5 @@
 from . import DATA_DIR
 import pandas as pd
-import numpy as np
 import xarray as xr
 from pathlib import Path
 import csv
@@ -146,7 +145,7 @@ class RemindDataCollection:
 
         """
         filename = "GAINS emission factors.csv"
-        filepath = Path(self.filepath_remind_files) / filename
+        filepath = (DATA_DIR / "remind_output_files" / filename)
 
         gains_emi = pd.read_csv(
             filepath,
@@ -279,7 +278,7 @@ class RemindDataCollection:
         ]
         others = data.loc[:, other_techs]
         others.coords["variables"] = others.coords["variables"]\
-                                       .str.replace("FE\|Transport\|Liquids\|", "")
+                                       .str[21:]
         others = others / others.sum(dim="variables")
 
         # concat
