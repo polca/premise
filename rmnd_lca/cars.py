@@ -407,12 +407,12 @@ class Cars():
                     }
 
                     supplrs = list(ws.get_many(
-                        db,
+                        self.db,
                         ws.startswith("name", "Passenger car, {}, {}".format(tech, size)),
                         ws.equals("location", region),
                         ws.exclude(
                             ws.startswith("name", "Passenger car, {}, {}, {}".format(
-                                tech, size, 2020))
+                                tech, size, self.year))
                     )))
 
                     # There should be 4 suppliers (last 20 years)
@@ -436,4 +436,3 @@ class Cars():
         self.create_local_evs()
         self.create_local_fcevs()
         self.create_local_icevs()
-        self.create_icev_fleet_mix()
