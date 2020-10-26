@@ -278,7 +278,7 @@ class RemindDataCollection:
         ]
         others = data.loc[:, other_techs]
         others.coords["variables"] = others.coords["variables"]\
-                                       .str.replace("FE\|Transport\|Liquids\|", "")
+                                       .str[21:]
         others = others / others.sum(dim="variables")
 
         # concat

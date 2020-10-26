@@ -43,8 +43,9 @@ setup(
         'bw2data',
         'brightway2',
         'xarray>0.15.0',
-        'carculator>1.1.4',
-        'prettytable'
+        'carculator>=1.2.8',
+        'prettytable',
+        'pycountry'
     ],
     url="https://github.com/romainsacchi/rmnd-lca",
     description='Coupling REMIND output to ecoinvent LCA database ecoinvent for prospective LCA',
