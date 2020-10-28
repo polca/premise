@@ -96,9 +96,15 @@ class NewDatabase:
         self.version = source_version
         self.source_type = source_type
         self.source_file_path = source_file_path
+        self.filepath_to_remind_files = Path(filepath_to_remind_files or DATA_DIR / "remind_output_files")
+
+        if not self.filepath_to_remind_files.is_dir():
+            raise FileNotFoundError(
+                "The REMIND output directory could not be found."
+            )
         self.db = self.clean_database()
         self.import_inventories(add_vehicles)
-        self.filepath_to_remind_files = (filepath_to_remind_files or DATA_DIR / "remind_output_files")
+
 
         self.rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
 
@@ -170,7 +176,7 @@ class NewDatabase:
         # Import `carculator` inventories if wanted
         if add_vehicles:
             print("Add Carculator inventories")
-            cars = CarculatorInventory(self.db, self.year, add_vehicles, self.scenario)
+            cars = CarculatorInventory(self.db, self.year, self.version, add_vehicles, self.scenario)
             cars.merge_inventory()
 
     def update_electricity_to_remind_data(self):
