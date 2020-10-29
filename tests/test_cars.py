@@ -3,22 +3,26 @@ from rmnd_lca import NewDatabase
 from rmnd_lca import RemindDataCollection
 from rmnd_lca.cars import Cars
 
+import os
 import pytest
 import wurst
 import brightway2 as bw
 import pandas as pd
+import numpy as np
 
 REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
 
 # for local test runs
-BW_PROJECT = "transport_lca_Budg1100_IC"
-scenario = "SSP2-PkBudg900"
-year = 2049
+remind_output_folder = "~/remind/testruns/lca_paper/"
+BW_PROJECT = "transport_lca_Budg1100_Conv"
+scenario = "Budg1100_Conv"
+year = 2035
+remind_regions = ['LAM', 'OAS', 'SSA', 'EUR',
+                  'NEU', 'MEA', 'REF', 'CAZ',
+                  'CHA', 'IND', 'JPN', 'USA']
 
 
 def get_db():
-    remind_regions = list(pd.read_csv(
-        REGION_MAPPING_FILEPATH, sep=";").RegionCode.unique())
     db = [
         {
             'name': 'fake activity',
@@ -99,39 +103,46 @@ def get_db():
     return db, version
 
 
-def test_create_evs_mock_db():
-    rdc = RemindDataCollection(
-        'SSP2-Base', 2012, DATA_DIR / "remind_output_files")
-    db, _ = get_db()
-    Cars(db, rdc, 'SSP2-Base', 2012).create_local_evs()
-
-
 @pytest.mark.ecoinvent
-def test_create_local_evs():
+def test_link_local_electricity_supply():
     bw.projects.set_current(BW_PROJECT)
 
     ndb = NewDatabase(
         scenario=scenario,
         year=year,
         source_db='ecoinvent 3.6 cutoff',
-        source_version=3.6)
+        source_version=3.6,
+        add_vehicles={
+            "fleet file": os.path.join(
+                remind_output_folder, scenario + "_vintcomp.csv"),
+            "region": remind_regions,
+            "source file": remind_output_folder
+        },
+        filepath_to_remind_files=remind_output_folder)
 
     ndb.update_electricity_to_remind_data()
-    Cars(ndb.db, ndb.rdc, scenario, year).create_local_evs()
+    Cars(ndb.db, ndb.rdc, scenario, year).link_local_electricity_supply()
 
 
 @pytest.mark.ecoinvent
-def test_create_local_fcevs():
+def test_link_local_liquid_fuel_markets():
     bw.projects.set_current(BW_PROJECT)
 
     ndb = NewDatabase(
         scenario=scenario,
         year=year,
         source_db='ecoinvent 3.6 cutoff',
-        source_version=3.6)
+        source_version=3.6,
+        add_vehicles={
+            "fleet file": os.path.join(
+                remind_output_folder, scenario + "_vintcomp.csv"),
+            "region": remind_regions,
+            "source file": remind_output_folder
+        },
+        filepath_to_remind_files=remind_output_folder)
 
     ndb.update_electricity_to_remind_data()
-    Cars(ndb.db, ndb.rdc, scenario, year).create_local_fcevs()
+    Cars(ndb.db, ndb.rdc, scenario, year).link_local_liquid_fuel_markets()
 
 
 @pytest.mark.ecoinvent
@@ -142,7 +153,14 @@ def test_full_import():
         scenario=scenario,
         year=year,
         source_db='ecoinvent 3.6 cutoff',
-        source_version=3.6)
+        source_version=3.6,
+        add_vehicles={
+            "fleet file": os.path.join(
+                remind_output_folder, scenario + "_vintcomp.csv"),
+            "region": remind_regions,
+            "source file": remind_output_folder
+        },
+        filepath_to_remind_files=remind_output_folder)
 
     ndb.update_electricity_to_remind_data()
     ndb.update_cars()
@@ -155,28 +173,8 @@ def test_full_import():
 
 def test_get_fuel_mix():
     from rmnd_lca import DATA_DIR
-    remind_file_path = DATA_DIR / "remind_output_files"
-    rdc = RemindDataCollection(scenario, year, remind_file_path)
+
+    rdc = RemindDataCollection(scenario, year, remind_output_folder)
     data = rdc.get_remind_fuel_mix_for_ldvs()
     assert data.shape == (13, 3)
-    assert all(data.sum(dim="variables") == 1.)
-
-
-@pytest.mark.ecoinvent
-def test_update_fuel_mix():
-    bw.projects.set_current(BW_PROJECT)
-    ndb = NewDatabase(
-        scenario=scenario,
-        year=year,
-        source_db='ecoinvent 3.6 cutoff',
-        source_version=3.6)
-
-    ndb.update_electricity_to_remind_data()
-    crs = Cars(ndb.db, ndb.rdc, scenario, year)
-    crs.create_local_icevs()
-
-    dbname = "test_carculator_complete"
-    if dbname in bw.databases:
-        del bw.databases[dbname]
-    wurst.write_brightway2_database(ndb.db, dbname)
-    del bw.databases[dbname]
+    np.testing.assert_allclose(data.sum(dim="variables"), 1.)

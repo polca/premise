@@ -1169,45 +1169,6 @@ class CarculatorInventory(BaseInventoryImport):
                 not in [(z["name"], z["location"]) for z in self.import_db]
             ]
 
-            # remove electricity mix made by `carculator` and
-            # link instead to ecoinvent
-            # so that it will be replaced by new electricity markets made by :class:`.Electricity`
-            map_region = {
-                "LAM": "BR",
-                "OAS": "RAS",
-                "SSA": "RAF",
-                "EUR": "RER",
-                "NEU": "RER",
-                "MEA": "RME",
-                "REF": "RU",
-                "CAZ": "CA",
-                "CHA": "CN",
-                "IND": "IN",
-                "JPN": "JP",
-                "USA": "US",
-            }
-
-            for d in i.data:
-                if "electricity market for fuel preparation" in d["name"]:
-                    d["exchanges"] = [
-                        e for e in d["exchanges"] if e["type"] == "production"
-                    ]
-                    d["exchanges"].append(
-                        {
-                            "amount": 1.0,
-                            "database": "ecoinvent",
-                            "location": map_region[region],
-                            "name": "market group for electricity, low voltage"
-                            if region not in ["REF", "JPN"]
-                            else "market for electricity, low voltage",
-                            "reference product": "electricity, low voltage",
-                            "tag": "energy chain",
-                            "type": "technosphere",
-                            "uncertainty_type": 1,
-                            "unit": "kilowatt hour",
-                        }
-                    )
-
             if r == 0:
                 self.import_db = i
             else:
