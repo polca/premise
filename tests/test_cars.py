@@ -13,13 +13,14 @@ import numpy as np
 REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
 
 # for local test runs
-remind_output_folder = "~/remind/testruns/lca_paper/"
+remind_output_folder = "/home/alois/remind/testruns/lca_paper/"
 BW_PROJECT = "transport_lca_Budg1100_Conv"
 scenario = "Budg1100_Conv"
 year = 2035
 remind_regions = ['LAM', 'OAS', 'SSA', 'EUR',
                   'NEU', 'MEA', 'REF', 'CAZ',
                   'CHA', 'IND', 'JPN', 'USA']
+ecoinvent_version = 3.6
 
 
 def get_db():
@@ -99,26 +100,26 @@ def get_db():
         } for region in remind_regions
         ]
     ]
-    version = 3.6
+    version = ecoinvent_version
     return db, version
+
+def setup_db():
+    bw.projects.set_current(BW_PROJECT)
+    return NewDatabase(
+        scenario=scenario,
+        year=year,
+        source_db='ecoinvent {} cutoff'.format(ecoinvent_version),
+        source_version=ecoinvent_version,
+        add_vehicles={
+            "fleet file": os.path.join(
+                remind_output_folder, scenario + "_vintcomp.csv")
+        },
+        filepath_to_remind_files=remind_output_folder)
 
 
 @pytest.mark.ecoinvent
 def test_link_local_electricity_supply():
-    bw.projects.set_current(BW_PROJECT)
-
-    ndb = NewDatabase(
-        scenario=scenario,
-        year=year,
-        source_db='ecoinvent 3.6 cutoff',
-        source_version=3.6,
-        add_vehicles={
-            "fleet file": os.path.join(
-                remind_output_folder, scenario + "_vintcomp.csv"),
-            "region": remind_regions,
-            "source file": remind_output_folder
-        },
-        filepath_to_remind_files=remind_output_folder)
+    ndb = setup_db()
 
     ndb.update_electricity_to_remind_data()
     Cars(ndb.db, ndb.rdc, scenario, year).link_local_electricity_supply()
@@ -128,18 +129,7 @@ def test_link_local_electricity_supply():
 def test_link_local_liquid_fuel_markets():
     bw.projects.set_current(BW_PROJECT)
 
-    ndb = NewDatabase(
-        scenario=scenario,
-        year=year,
-        source_db='ecoinvent 3.6 cutoff',
-        source_version=3.6,
-        add_vehicles={
-            "fleet file": os.path.join(
-                remind_output_folder, scenario + "_vintcomp.csv"),
-            "region": remind_regions,
-            "source file": remind_output_folder
-        },
-        filepath_to_remind_files=remind_output_folder)
+    ndb = setup_db()
 
     ndb.update_electricity_to_remind_data()
     Cars(ndb.db, ndb.rdc, scenario, year).link_local_liquid_fuel_markets()
@@ -149,18 +139,7 @@ def test_link_local_liquid_fuel_markets():
 def test_full_import():
     bw.projects.set_current(BW_PROJECT)
 
-    ndb = NewDatabase(
-        scenario=scenario,
-        year=year,
-        source_db='ecoinvent 3.6 cutoff',
-        source_version=3.6,
-        add_vehicles={
-            "fleet file": os.path.join(
-                remind_output_folder, scenario + "_vintcomp.csv"),
-            "region": remind_regions,
-            "source file": remind_output_folder
-        },
-        filepath_to_remind_files=remind_output_folder)
+    ndb = setup_db()
 
     ndb.update_electricity_to_remind_data()
     ndb.update_cars()

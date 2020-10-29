@@ -29,10 +29,6 @@ class Cars():
         self.scenario = scenario
         self.year = year
 
-        self.remind_regions = list(pd.read_csv(
-            REGION_MAPPING_FILEPATH, sep=";").RegionCode.unique())
-        self.remind_regions.remove("World")
-
     def _create_local_copy(self, old_act, region):
         """
         Create a local copy of an activity.
@@ -62,7 +58,7 @@ class Cars():
         """
         print("Re-linking local electricity supply for all EV and FCEV activities")
 
-        for region in self.remind_regions:
+        for region in self.rmd.regions:
             supply = ws.get_one(
                 self.db,
                 ws.equals(
@@ -153,7 +149,7 @@ class Cars():
         }
 
         data = self.rmd.get_remind_fuel_mix_for_ldvs()
-        for region in self.remind_regions:
+        for region in self.rmd.regions:
             supply = {"gasoline": ws.get_one(
                 self.db,
                 ws.equals("location", region),

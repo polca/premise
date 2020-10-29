@@ -26,6 +26,8 @@ class RemindDataCollection:
         self.year = year
         self.filepath_remind_files = filepath_remind_files
         self.data = self.get_remind_data()
+        self.regions = [r for r in self.data.region.values if r != "World"]
+
         self.gains_data = self.get_gains_data()
         self.gnr_data = self.get_gnr_data()
         self.electricity_market_labels = self.get_remind_electricity_market_labels()
