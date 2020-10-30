@@ -1631,27 +1631,22 @@ class CarculatorInventory(BaseInventoryImport):
                 cm.array, scope=scope, background_configuration=bc
             )
 
+            i = ic.export_lci_to_bw(presamples=False, ecoinvent_version=str(self.version))
+
             # filter out regular cars, to keep only fleet averages
-            fa = [
-                i[0] for i in ic.inputs if any(x for x in ic.scope["size"] if x in i[0])
-            ]
-
             if self.fleet_file:
-                i = ic.export_lci_to_bw(presamples=False, forbidden_activities=fa, ecoinvent_version=str(self.version))
-            else:
-                i = ic.export_lci_to_bw(presamples=False, ecoinvent_version=str(self.version))
-
-            # remove duplicate items if iterating over several regions
-            i.data = [
-                x
-                for x in i.data
-                if (x["name"], x["location"])
-                not in [(z["name"], z["location"]) for z in self.import_db]
-            ]
+                i.data = [x for x in i.data if not any(z for z in ic.scope["size"] if z in x["name"])]
 
             if r == 0:
                 self.import_db = i
             else:
+                # remove duplicate items if iterating over several regions
+                i.data = [
+                    x
+                    for x in i.data
+                    if (x["name"], x["location"])
+                       not in [(z["name"], z["location"]) for z in self.import_db.data]
+                ]
                 self.import_db.data.extend(i.data)
 
     def prepare_inventory(self):
