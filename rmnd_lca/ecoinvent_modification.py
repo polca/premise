@@ -221,7 +221,8 @@ class NewDatabase:
         self.update_electricity_to_remind_data()
         self.update_cement_to_remind_data()
         self.update_steel_to_remind_data()
-        self.update_cars()
+        if self.add_vehicles:
+            self.update_cars()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')
