@@ -1644,11 +1644,20 @@ class CarculatorInventory(BaseInventoryImport):
                 cm.array, scope=scope, background_configuration=bc
             )
 
-            i = ic.export_lci_to_bw(presamples=False, ecoinvent_version=str(self.version))
-
-            # filter out regular cars, to keep only fleet averages
             if self.fleet_file:
-                i.data = [x for x in i.data if not any(z for z in ic.scope["size"] if z in x["name"])]
+                i = ic.export_lci_to_bw(presamples=False,
+                                        ecoinvent_version=str(self.version),
+                                        create_vehicle_datasets=False)
+
+                # filter out regular cars, to keep only fleet averages
+
+                if self.fleet_file:
+                    i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
+                              or "fleet average" in x["name"]]
+
+            else:
+                i = ic.export_lci_to_bw(presamples=False,
+                                        ecoinvent_version=str(self.version))
 
             if r == 0:
                 self.import_db = i
