@@ -94,5 +94,5 @@ def test_load_biofuel():
 
 def test_load_carculator():
     db, version = get_db()
-    carc = CarculatorInventory(db, 2015)
+    carc = CarculatorInventory(db, 2015, "3.7")
     assert len(carc.import_db.data) == 173
