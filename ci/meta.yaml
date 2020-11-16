@@ -21,11 +21,13 @@ requirements:
     - pandas
     - bw2io
     - bw2data
-    - xarray <=0.13.0
+    - xarray
     - pytest
     - pytest-cov
     - coveralls
     - setuptools
+    - prettytable
+    - carculator
   run:
     - python
     - wurst
@@ -33,10 +35,9 @@ requirements:
     - pandas
     - bw2io
     - bw2data
-    - xarray <=0.13.0
-    - pytest
-    - pytest-cov
-    - coveralls
+    - xarray
+    - prettytable
+    - carculator
 
 test:
   imports:

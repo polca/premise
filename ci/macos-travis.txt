@@ -3,7 +3,10 @@ pandas
 bw2data
 bw2io
 wurst
-xarray <=0.13.0
+xarray
 pytest
 pytest-cov
 coveralls
+prettytable
+carculator>=1.2.8
+pycountry
