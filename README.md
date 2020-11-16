@@ -13,7 +13,7 @@ Introduction
 the output results of the Integrated Assessment Model (IAM) **REMIND**, in order to produce life cycle inventories under
 future policy scenarios (from business-as-usual to very ambitious climate scenarios) for any year between 2005 and 2150.
 
-In the latest version (0.1.0), this includes:
+In the latest version (0.1.6), this includes:
 * electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
  electricity production technologies, including Carbon Capture and Storage technologies.
 
@@ -51,7 +51,7 @@ Requirements
 * Python language interpreter 3.x
 * License for ecoinvent 3
 * REMIND IAM output files come with the library ("xxx.mif" and "GAINS emission factors.csv")
- and are located by default in the subdirectory "/data/Remind output files".
+ and are located by default in the subdirectory "/data/remind_output_files/".
  A file path can be specified to fetch the REMIND IAM output files elsewhere on your computer.
 
 How to install this package?
