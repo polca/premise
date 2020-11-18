@@ -2,9 +2,11 @@ from . import DATA_DIR
 import wurst
 from prettytable import PrettyTable
 
+
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
+
 
 from carculator import (
     CarInputParameters,
@@ -16,10 +18,12 @@ from carculator import (
     extract_biofuel_shares_from_REMIND,
 )
 
+
 from pathlib import Path
 import csv
 import uuid
 import numpy as np
+
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
@@ -347,6 +351,10 @@ EI_37_MIGRATION_MAP = {
                 ],
             }
 
+FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
+
+
+
 class BaseInventoryImport:
     """
     Base class for inventories that are to be merged with the ecoinvent database.
@@ -445,6 +453,7 @@ class BaseInventoryImport:
             for x in self.import_db.data
             if (x["name"], x["reference product"], x["location"]) not in self.db_names
         ]
+
 
     def merge_inventory(self):
         """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`db`.
@@ -1494,8 +1503,9 @@ class CarculatorInventory(BaseInventoryImport):
     Car models from the carculator project, https://github.com/romainsacchi/carculator
     """
 
-    def __init__(self, database, year, version,
-                 regions, vehicles={}, scenario="SSP2-Base"):
+
+    def __init__(self, database, year, version, vehicles={}, scenario="SSP2-Base"):
+
         """Create a :class:`BaseInventoryImport` instance.
 
         :param list database: the target database for the import (the Ecoinvent database),
@@ -1670,6 +1680,36 @@ class CarculatorInventory(BaseInventoryImport):
                        not in [(z["name"], z["location"]) for z in self.import_db.data]
                 ]
                 self.import_db.data.extend(i.data)
+
+        self.db_code = [x['code'] for x in self.db]
+        self.db_names = [(x['name'], x['reference product'], x['location']) for x in self.db]
+        self.biosphere_dict = self.get_biosphere_code()
+
+        self.db_year = year
+
+        self.load_inventory()
+
+    def load_inventory(self):
+        """Load `carculator` inventories for a given range of years.
+        """
+        cip = CarInputParameters()
+
+        cip.static()
+
+        _, array = fill_xarray_from_input_parameters(cip)
+
+        array = array.interp(
+            year=np.array([self.db_year]),
+            kwargs={'fill_value': 'extrapolate'})
+
+        cm = CarModel(array, cycle='WLTC')
+
+        cm.set_all()
+
+        ic = InventoryCalculation(cm.array)
+
+        self.import_db = LCIImporter("carculator")
+        self.import_db.data = ic.export_lci(ecoinvent_compatibility=True)[0]
 
     def prepare_inventory(self):
         self.add_biosphere_links(delete_missing=True)
