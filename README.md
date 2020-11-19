@@ -57,7 +57,14 @@ Requirements
 How to install this package?
 ----------------------------
 
-In a terminal, from Pypi:
+Two options:
+
+A development version with the latest advancements (but with the risks of unseen bugs),
+is available on Conda:
+
+    conda install rmnd-lca
+
+For a more stable and proven version, from Pypi:
 
     pip install rmnd-lca
 
