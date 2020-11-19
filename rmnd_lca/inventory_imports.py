@@ -1504,7 +1504,8 @@ class CarculatorInventory(BaseInventoryImport):
     """
 
 
-    def __init__(self, database, year, version, vehicles={}, scenario="SSP2-Base"):
+    def __init__(self, database, year, version, regions,
+                 vehicles={}, scenario="SSP2-Base"):
 
         """Create a :class:`BaseInventoryImport` instance.
 
@@ -1535,8 +1536,8 @@ class CarculatorInventory(BaseInventoryImport):
         )
 
         self.import_db = []
-
         self.load_inventory()
+
 
     def load_inventory(self):
         """Create `carculator` fleet average inventories for a given range of years.
@@ -1681,35 +1682,6 @@ class CarculatorInventory(BaseInventoryImport):
                 ]
                 self.import_db.data.extend(i.data)
 
-        self.db_code = [x['code'] for x in self.db]
-        self.db_names = [(x['name'], x['reference product'], x['location']) for x in self.db]
-        self.biosphere_dict = self.get_biosphere_code()
-
-        self.db_year = year
-
-        self.load_inventory()
-
-    def load_inventory(self):
-        """Load `carculator` inventories for a given range of years.
-        """
-        cip = CarInputParameters()
-
-        cip.static()
-
-        _, array = fill_xarray_from_input_parameters(cip)
-
-        array = array.interp(
-            year=np.array([self.db_year]),
-            kwargs={'fill_value': 'extrapolate'})
-
-        cm = CarModel(array, cycle='WLTC')
-
-        cm.set_all()
-
-        ic = InventoryCalculation(cm.array)
-
-        self.import_db = LCIImporter("carculator")
-        self.import_db.data = ic.export_lci(ecoinvent_compatibility=True)[0]
 
     def prepare_inventory(self):
         self.add_biosphere_links(delete_missing=True)
