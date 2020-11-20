@@ -20,7 +20,7 @@ year = 2035
 remind_regions = ['LAM', 'OAS', 'SSA', 'EUR',
                   'NEU', 'MEA', 'REF', 'CAZ',
                   'CHA', 'IND', 'JPN', 'USA']
-ecoinvent_version = 3.6
+ecoinvent_version = 3.7
 
 
 def get_db():

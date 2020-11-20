@@ -150,20 +150,14 @@ class Cars():
 
         data = self.rmd.get_remind_fuel_mix_for_ldvs()
         for region in self.rmd.regions:
-            supply = {"gasoline": ws.get_one(
-                self.db,
-                ws.equals("location", region),
-                ws.equals(
-                    "name", "fuel supply for gasoline vehicles, {}"
-                    .format(self.year)))}
-            # workaround for diesel cars, will soon be integrated in carculator inventories
-            supply["diesel"] = self._create_local_copy(
-                supply["gasoline"], region)
-            supply["diesel"]["name"] = supply["diesel"]["name"].replace(
-                "gasoline", "diesel")
-            prod_ex = [ex for ex in supply["diesel"]["exchanges"]
-                       if ex["type"] == "production"]
-            prod_ex[0]["name"] = supply["diesel"]["name"]
+            supply = {
+                ftype: ws.get_one(
+                    self.db,
+                    ws.equals("location", region),
+                    ws.equals(
+                        "name", "fuel supply for {} vehicles, {}"
+                        .format(ftype, self.year))) for ftype in ["gasoline", "diesel"]
+            }
 
             # two regions for gasoline and diesel production
             if region == "EUR":
@@ -192,27 +186,31 @@ class Cars():
             new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
                 region, "Gasoline production, synthetic, from methanol")
 
-            print("Relinking fuel markets for ICEVs in {}".format(region))
-            for ftype in new_producers:
-                supply[ftype]["exchanges"] = [{
-                    "amount": data.loc[region, suptype].values.item(),
-                    "name": new_producers[ftype][suptype]["name"],
-                    "location": new_producers[ftype][suptype]["location"],
-                    "unit": "kilogram",
-                    "type": "technosphere",
-                    "reference product": new_producers[ftype][suptype]["reference product"],
-                    "product": new_producers[ftype][suptype]["reference product"]
-                } for suptype in new_producers[ftype]]
+            supply_search = {
+                "gasoline": {
+                    "Hydrogen": "Gasoline, synthetic",
+                    "Fossil": "petrol, low-sulfur"
+                },
+                "diesel": {
+                    "Hydrogen": "Diesel, synthetic",
+                    "Fossil": "diesel"
+                }
+            }
 
-                supply[ftype]["exchanges"].append({
-                    "amount": 1,
-                    "name": supply[ftype]["name"],
-                    "location": region,
-                    "unit": "kilogram",
-                    "type": "production",
-                    "reference product": "fuel",
-                    "product": "fuel"
-                })
+            print("Relinking fuel markets for ICEVs in {}".format(region))
+            for ftype in supply_search:
+                for subtype in supply_search[ftype]:
+                    ex = list(ws.technosphere(
+                        supply[ftype], ws.equals("product", supply_search[ftype][subtype])))
+                    if len(ex) == 1:
+                        ex[0].update({
+                            "location": new_producers[ftype][subtype]["location"],
+                            "name": new_producers[ftype][subtype]["name"],
+                        })
+                    else:
+                        print("Scenario {} Year {}, could not find a supplier for {} in {}"
+                              .format(self.scenario, self.year,
+                                      supply_search[ftype][subtype], region))
 
     def update_cars(self):
         self.link_local_electricity_supply()
