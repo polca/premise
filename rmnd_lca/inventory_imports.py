@@ -1573,7 +1573,8 @@ class CarculatorInventory(BaseInventoryImport):
                 fp=self.source_file, remind_region=region, years=scope["year"]
             )
             fuel_shares = extract_biofuel_shares_from_REMIND(
-                fp=self.source_file, remind_region=region, years=scope["year"]
+                fp=self.source_file, remind_region=region, years=scope["year"],
+                allocate_all_synfuel=True
             )
 
             bc = {

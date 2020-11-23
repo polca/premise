@@ -1,12 +1,8 @@
 from .geomap import Geomap
 
-import wurst
 import wurst.searching as ws
-import pandas as pd
 import uuid
 import copy
-
-from .geomap import REGION_MAPPING_FILEPATH
 
 
 class Cars():
