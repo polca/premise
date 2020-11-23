@@ -553,7 +553,8 @@ class BaseInventoryImport:
                     if not "product" in y:
                         y["product"] = self.correct_product_field(y)
 
-                    # If a 'reference product' field is present, we make sure it matches with the new 'product' field
+                    # If a 'reference product' field is present, we make sure
+                    # it matches with the new 'product' field
                     if "reference product" in y:
                         try:
                             assert y["product"] == y["reference product"]
@@ -573,25 +574,37 @@ class BaseInventoryImport:
         :rtype: str
         """
         # Look first in the imported inventories
-        possibles = [
-            a["reference product"]
-            for a in self.import_db.data
-            if a["name"] == exc["name"]
-            and a["location"] == exc["location"]
-            and a["unit"] == exc["unit"]
-        ]
+        candidate = next(ws.get_many(
+            self.import_db.data,
+            ws.equals("name", exc["name"]),
+            ws.equals("location", exc["location"]),
+            ws.equals("unit", exc["unit"])
+        ), None)
+        # possibles = [
+        #     a["reference product"]
+        #     for a in self.import_db.data
+        #     if a["name"] == exc["name"]
+        #     and a["location"] == exc["location"]
+        #     and a["unit"] == exc["unit"]
+        # ]
 
         # If not, look in the ecoinvent inventories
-        if len(possibles) == 0:
-            possibles = [
-                a["reference product"]
-                for a in self.db
-                if a["name"] == exc["name"]
-                and a["location"] == exc["location"]
-                and a["unit"] == exc["unit"]
-            ]
-        if len(possibles) > 0:
-            return possibles[0]
+        if candidate is None:
+            candidate = next(ws.get_many(
+                self.db,
+                ws.equals("name", exc["name"]),
+                ws.equals("location", exc["location"]),
+                ws.equals("unit", exc["unit"])
+            ), None)
+            # possibles = [
+            #     a["reference product"]
+            #     for a in self.db
+            #     if a["name"] == exc["name"]
+            #     and a["location"] == exc["location"]
+            #     and a["unit"] == exc["unit"]
+            # ]
+        if candidate is not None:
+            return candidate["reference product"]
         else:
             raise IndexError(
                 "An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}".format(
@@ -1491,7 +1504,8 @@ class CarculatorInventory(BaseInventoryImport):
     """
 
 
-    def __init__(self, database, year, version, vehicles={}, scenario="SSP2-Base"):
+    def __init__(self, database, year, version, regions,
+                 vehicles={}, scenario="SSP2-Base"):
 
         """Create a :class:`BaseInventoryImport` instance.
 
@@ -1510,10 +1524,11 @@ class CarculatorInventory(BaseInventoryImport):
 
         self.db_year = year
         self.version = version
+        self.regions = regions
         self.fleet_file = (
             Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
         )
-        self.region = vehicles.get("region", ["EUR"])
+
         self.source_file = (
             Path(vehicles["source file"]) / (scenario + ".mif")
             if "source file" in vehicles
@@ -1521,9 +1536,7 @@ class CarculatorInventory(BaseInventoryImport):
         )
 
         self.import_db = []
-
         self.load_inventory()
-
 
 
     def load_inventory(self):
@@ -1540,7 +1553,7 @@ class CarculatorInventory(BaseInventoryImport):
         cm = CarModel(array, cycle="WLTC")
         cm.set_all()
 
-        for r, region in enumerate(self.region):
+        for r, region in enumerate(self.regions):
 
             if self.fleet_file:
                 fleet_array = create_fleet_composition_from_REMIND_file(
@@ -1669,35 +1682,6 @@ class CarculatorInventory(BaseInventoryImport):
                 ]
                 self.import_db.data.extend(i.data)
 
-        self.db_code = [x['code'] for x in self.db]
-        self.db_names = [(x['name'], x['reference product'], x['location']) for x in self.db]
-        self.biosphere_dict = self.get_biosphere_code()
-
-        self.db_year = year
-
-        self.load_inventory()
-
-    def load_inventory(self):
-        """Load `carculator` inventories for a given range of years.
-        """
-        cip = CarInputParameters()
-
-        cip.static()
-
-        _, array = fill_xarray_from_input_parameters(cip)
-
-        array = array.interp(
-            year=np.array([self.db_year]),
-            kwargs={'fill_value': 'extrapolate'})
-
-        cm = CarModel(array, cycle='WLTC')
-
-        cm.set_all()
-
-        ic = InventoryCalculation(cm.array)
-
-        self.import_db = LCIImporter("carculator")
-        self.import_db.data = ic.export_lci(ecoinvent_compatibility=True)[0]
 
     def prepare_inventory(self):
         self.add_biosphere_links(delete_missing=True)

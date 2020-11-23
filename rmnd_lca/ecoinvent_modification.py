@@ -97,24 +97,26 @@ class NewDatabase:
         self.source_type = source_type
         self.source_file_path = source_file_path
         self.filepath_to_remind_files = Path(filepath_to_remind_files or DATA_DIR / "remind_output_files")
+        self.add_vehicles = add_vehicles
 
         if not self.filepath_to_remind_files.is_dir():
             raise FileNotFoundError(
                 "The REMIND output directory could not be found."
             )
-        self.db = self.clean_database()
-        self.import_inventories(add_vehicles)
-
-
         self.rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
 
-    def clean_database(self):
-        return DatabaseCleaner(self.source,
-                               self.source_type,
-                               self.source_file_path
-                               ).prepare_datasets()
+        self.db = self.clean_database()
+        self.import_inventories()
 
-    def import_inventories(self, add_vehicles):
+
+    def clean_database(self):
+        return DatabaseCleaner(
+            self.source,
+            self.source_type,
+            self.source_file_path
+        ).prepare_datasets()
+
+    def import_inventories(self):
 
         # Add Carma CCS inventories
         print("Add Carma CCS inventories")
@@ -174,9 +176,10 @@ class NewDatabase:
         lpg.merge_inventory()
 
         # Import `carculator` inventories if wanted
-        if add_vehicles:
+        if self.add_vehicles:
             print("Add Carculator inventories")
-            cars = CarculatorInventory(self.db, self.year, self.version, add_vehicles, self.scenario)
+            cars = CarculatorInventory(self.db, self.year, self.version, self.rdc.regions,
+                                       self.add_vehicles, self.scenario)
             cars.merge_inventory()
 
     def update_electricity_to_remind_data(self):
@@ -218,7 +221,8 @@ class NewDatabase:
         self.update_electricity_to_remind_data()
         self.update_cement_to_remind_data()
         self.update_steel_to_remind_data()
-        #self.update_cars()
+        if self.add_vehicles:
+            self.update_cars()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')
