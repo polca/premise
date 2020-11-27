@@ -5,6 +5,8 @@ logs/
 build/
 dist/
 *.eggs/
+*/data/logs/*
+*/data/matrices/*
 
 *.pyc
 

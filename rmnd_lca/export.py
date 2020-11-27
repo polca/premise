@@ -2,7 +2,7 @@ import os
 from . import DATA_DIR
 import csv
 
-FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "flows_biosphere.csv")
+FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "flows_biosphere_37.csv")
 
 
 class Export:
@@ -58,7 +58,8 @@ class Export:
         with open(filepath / 'A_matrix_index.csv', 'w') as f:
             writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             for d in index_A:
-                writer.writerow([d, index_A[d]])
+                data = list(d) + [index_A[d]]
+                writer.writerow(data)
 
         index_B = self.create_index_of_B_matrix()
         rev_index_B = self.create_rev_index_of_B_matrix()
@@ -71,20 +72,27 @@ class Export:
                 for exc in ds['exchanges']:
                     if exc['type'] == 'biosphere':
                         try:
+
+                            code = exc["input"][1]
+                            lookup = rev_index_B[code]
+                            ind_B = index_B[lookup]
+
                             row = [
                                 index_A[(ds['name'], ds['reference product'], ds['unit'], ds['location'])],
-                                index_B[rev_index_B[exc['input'][1]]],
+                                ind_B,
                                 exc['amount'] * -1
                             ]
                         except KeyError:
-                            print(exc)
+                            print("Cannot find the biosphere flow", exc["name"], exc["categories"])
                         writer.writerow(row)
 
         # Export B index
         with open(filepath / 'B_matrix_index.csv', 'w') as f:
             writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             for d in index_B:
-                writer.writerow([d, index_B[d]])
+                data = list(d) + [index_B[d]]
+                writer.writerow(data)
+
 
         print("Matrices saved in {}.".format(filepath))
 
@@ -108,14 +116,13 @@ class Export:
                 "The dictionary of biosphere flows could not be found."
             )
 
-        csv_dict = {}
+        csv_dict = dict()
 
         with open(FILEPATH_BIOSPHERE_FLOWS) as f:
             input_dict = csv.reader(f, delimiter=";")
-            i = 0
-            for row in input_dict:
-                csv_dict[row[1]] = i
-                i += 1
+            for i, row in enumerate(input_dict):
+                csv_dict[(row[0], row[1], row[2], row[3])] = i
+
         return csv_dict
 
     @staticmethod
@@ -130,5 +137,6 @@ class Export:
         with open(FILEPATH_BIOSPHERE_FLOWS) as f:
             input_dict = csv.reader(f, delimiter=";")
             for row in input_dict:
-                csv_dict[row[0]] = row[1]
+                csv_dict[row[-1]] = (row[0], row[1], row[2], row[3])
+
         return csv_dict

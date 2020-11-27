@@ -1524,7 +1524,7 @@ class CarculatorInventory(BaseInventoryImport):
 
         self.db_year = year
         self.version = version
-        self.regions = regions
+        self.regions = vehicles["region"] if "region" in vehicles else regions
         self.fleet_file = (
             Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
         )
@@ -1548,9 +1548,9 @@ class CarculatorInventory(BaseInventoryImport):
         _, array = fill_xarray_from_input_parameters(cip)
 
         array = array.interp(
-            year=np.arange(2010, self.db_year + 1), kwargs={"fill_value": "extrapolate"}
+            year=np.arange(2005, self.db_year + 1), kwargs={"fill_value": "extrapolate"}
         )
-        cm = CarModel(array, cycle="WLTC")
+        cm = CarModel(array, cycle="WLTC 3.4")
         cm.set_all()
 
         for r, region in enumerate(self.regions):
@@ -1566,6 +1566,7 @@ class CarculatorInventory(BaseInventoryImport):
                     "year": fleet_array.coords["vintage_year"].values,
                     "fu": {"fleet": fleet_array, "unit": "vkm"},
                 }
+
             else:
                 scope = {"year": [self.db_year]}
 
