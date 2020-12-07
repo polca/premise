@@ -5,7 +5,7 @@ import uuid
 import copy
 
 
-class Cars():
+class Cars:
     """
     Class that modifies carculator inventories in ecoinvent
     based on REMIND output data.
@@ -21,7 +21,6 @@ class Cars():
         self.db = db
         self.rmd = rmd
         self.geo = Geomap()
-
         self.scenario = scenario
         self.year = year
 
@@ -55,27 +54,30 @@ class Cars():
         print("Re-linking local electricity supply for all EV and FCEV activities")
 
         for region in self.rmd.regions:
-            supply = ws.get_one(
-                self.db,
-                ws.equals(
-                    "name", "electricity market for fuel preparation, {}"
-                    .format(self.year)),
-                ws.equals("location", region))
+            try:
+                supply = ws.get_one(
+                    self.db,
+                    ws.equals(
+                        "name", "electricity market for fuel preparation, {}"
+                        .format(self.year)),
+                    ws.equals("location", region))
 
-            # replace electricity input
-            supply["exchanges"] = [
-                e for e in supply["exchanges"] if e["type"] == "production"
-            ]
-            supply["exchanges"].append({
-                "amount": 1.0,
-                "location": region,
-                "name": "market group for electricity, low voltage",
-                "product": "electricity, low voltage",
-                "tag": "energy chain",
-                "type": "technosphere",
-                "uncertainty type": 0,
-                "unit": "kilowatt hour",
-            })
+                # replace electricity input
+                supply["exchanges"] = [
+                    e for e in supply["exchanges"] if e["type"] == "production"
+                ]
+                supply["exchanges"].append({
+                    "amount": 1.0,
+                    "location": region,
+                    "name": "market group for electricity, low voltage",
+                    "product": "electricity, low voltage",
+                    "tag": "energy chain",
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                    "unit": "kilowatt hour",
+                })
+            except:
+                pass
 
 
     def _find_local_supplier(self, region, name):
@@ -102,6 +104,7 @@ class Cars():
 
         ei_locs = self.geo.remind_to_ecoinvent_location(region, contained=True)
         prod = producer_in_locations(ei_locs)
+
         if prod is None:
             ei_locs = self.geo.remind_to_ecoinvent_location(region)
             prod = producer_in_locations(ei_locs)
@@ -144,69 +147,79 @@ class Cars():
             }
         }
 
-        data = self.rmd.get_remind_fuel_mix_for_ldvs()
         for region in self.rmd.regions:
-            supply = {
-                ftype: ws.get_one(
-                    self.db,
-                    ws.equals("location", region),
-                    ws.equals(
-                        "name", "fuel supply for {} vehicles, {}"
-                        .format(ftype, self.year))) for ftype in ["gasoline", "diesel"]
-            }
 
-            # two regions for gasoline and diesel production
-            if region == "EUR":
-                new_producers["gasoline"]["Fossil"] = ws.get_one(
-                    self.db,
-                    ws.equals("name", "market for petrol, low-sulfur"),
-                    ws.equals("location", "Europe without Switzerland"))
-                new_producers["diesel"]["Fossil"] = ws.get_one(
-                    self.db,
-                    ws.equals("name", "market group for diesel"),
-                    ws.equals("location", "RER"))
-            else:
-                new_producers["gasoline"]["Fossil"] = ws.get_one(
-                    self.db,
-                    ws.equals("name", "market for petrol, low-sulfur"),
-                    ws.equals("location", "RoW"))
-                new_producers["diesel"]["Fossil"] = ws.get_one(
-                    self.db,
-                    ws.equals("name", "market group for diesel"),
-                    ws.equals("location", "GLO"))
-
-            # local syndiesel
-            new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
-                region, "Diesel production, synthetic, Fischer Tropsch process")
-
-            new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
-                region, "Gasoline production, synthetic, from methanol")
-
-            supply_search = {
-                "gasoline": {
-                    "Hydrogen": "Gasoline, synthetic",
-                    "Fossil": "petrol, low-sulfur"
-                },
-                "diesel": {
-                    "Hydrogen": "Diesel, synthetic",
-                    "Fossil": "diesel"
+            try:
+                supply = {
+                    ftype: ws.get_one(
+                        self.db,
+                        ws.equals("location", region),
+                        ws.equals(
+                            "name", "fuel supply for {} vehicles, {}"
+                            .format(ftype, self.year))) for ftype in ["gasoline", "diesel"]
                 }
-            }
 
-            print("Relinking fuel markets for ICEVs in {}".format(region))
-            for ftype in supply_search:
-                for subtype in supply_search[ftype]:
-                    ex = list(ws.technosphere(
-                        supply[ftype], ws.equals("product", supply_search[ftype][subtype])))
-                    if len(ex) == 1:
-                        ex[0].update({
-                            "location": new_producers[ftype][subtype]["location"],
-                            "name": new_producers[ftype][subtype]["name"],
-                        })
-                    else:
-                        print("Scenario {} Year {}, could not find a supplier for {} in {}"
-                              .format(self.scenario, self.year,
-                                      supply_search[ftype][subtype], region))
+                # two regions for gasoline and diesel production
+                if region == "EUR":
+                    new_producers["gasoline"]["Fossil"] = ws.get_one(
+                        self.db,
+                        ws.equals("name", "market for petrol, low-sulfur"),
+                        ws.equals("location", "Europe without Switzerland"))
+                    new_producers["diesel"]["Fossil"] = ws.get_one(
+                        self.db,
+                        ws.equals("name", "market group for diesel"),
+                        ws.equals("location", "RER"))
+                else:
+                    new_producers["gasoline"]["Fossil"] = ws.get_one(
+                        self.db,
+                        ws.equals("name", "market for petrol, low-sulfur"),
+                        ws.equals("location", "RoW"))
+                    new_producers["diesel"]["Fossil"] = ws.get_one(
+                        self.db,
+                        ws.equals("name", "market group for diesel"),
+                        ws.equals("location", "GLO"))
+
+
+
+                # local syndiesel
+                new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
+                    region,
+                    "Diesel production, synthetic, Fischer Tropsch process")
+
+                new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
+                    region,
+                    "Gasoline production, synthetic, from methanol")
+
+                supply_search = {
+                    "gasoline": {
+                        "Hydrogen": "Gasoline, synthetic",
+                        "Fossil": "petrol, low-sulfur"
+                    },
+                    "diesel": {
+                        "Hydrogen": "Diesel, synthetic",
+                        "Fossil": "diesel"
+                    }
+                }
+
+
+                print("Relinking fuel markets for ICEVs in {}".format(region))
+                for ftype in supply_search:
+                    for subtype in supply_search[ftype]:
+
+                        ex = list(ws.technosphere(
+                            supply[ftype], ws.equals("product", supply_search[ftype][subtype])))
+
+                        if len(ex) == 1:
+                            ex[0].update({
+                                "location": new_producers[ftype][subtype]["location"],
+                                "name": new_producers[ftype][subtype]["name"],
+                            })
+                        else:
+                            print("Scenario {} Year {}, could not find a supplier for {} in {}"
+                                  .format(self.scenario, self.year,
+                                          supply_search[ftype][subtype], region))
+            except:
+                pass
 
     def update_cars(self):
         self.link_local_electricity_supply()

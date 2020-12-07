@@ -1548,7 +1548,7 @@ class CarculatorInventory(BaseInventoryImport):
         _, array = fill_xarray_from_input_parameters(cip)
 
         array = array.interp(
-            year=np.arange(2005, self.db_year + 1), kwargs={"fill_value": "extrapolate"}
+            year=np.arange(1996, self.db_year + 1), kwargs={"fill_value": "extrapolate"}
         )
         cm = CarModel(array, cycle="WLTC 3.4")
         cm.set_all()
@@ -1573,6 +1573,7 @@ class CarculatorInventory(BaseInventoryImport):
             mix = extract_electricity_mix_from_REMIND_file(
                 fp=self.source_file, remind_region=region, years=scope["year"]
             )
+
             fuel_shares = extract_biofuel_shares_from_REMIND(
                 fp=self.source_file, remind_region=region, years=scope["year"],
                 allocate_all_synfuel=True
