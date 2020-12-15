@@ -25,22 +25,31 @@ import wurst
 import wurst.searching as ws
 from pathlib import Path
 
-FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
-FILEPATH_CHP_INVENTORIES = (INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx")
-FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
-FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
-FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx")
-FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx")
-FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx")
-FILEPATH_HYDROGEN_WOODY_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx")
-FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-FT.xlsx")
-FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
-FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
-FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = (INVENTORY_DIR / "lci-geothermal.xlsx")
-FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.xlsx")
-FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xlsx")
-FILEPATH_METHANOL_FUELS_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-methanol.xlsx")
 
+FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xls")
+FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xls")
+FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xls")
+FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xls")
+FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xls")
+FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xls")
+FILEPATH_HYDROGEN_WOODY_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-wood-gasification.xls")
+FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-FT.xls")
+FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xls")
+FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xls")
+FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = (INVENTORY_DIR / "lci-geothermal.xls")
+FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.xls")
+FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xls")
+FILEPATH_METHANOL_FUELS_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-methanol.xls")
+
+SUPPORTED_EI_VERSIONS = [3.5, 3.6, 3.7]
+SUPPORTED_SCENARIOS = [
+    "SSP2-Base",
+    "SSP2-NDC",
+    "SSP2-NPi",
+    "SSP2-PkBudg900",
+    "SSP2-PkBudg1100",
+    "SSP2-PkBudg1300",
+]
 
 class NewDatabase:
     """
@@ -61,16 +70,18 @@ class NewDatabase:
 
     """
 
+
     def __init__(self,
                  year,
                  source_db,
                  model="remind",
                  scenario=None,
-                 source_version=3.5,
+                 source_version=3.7,
                  source_type='brightway',
                  source_file_path=None,
                  filepath_to_iam_files=None,
                  add_vehicles=None):
+
 
 
         if model not in ["remind", "image"]:
@@ -109,6 +120,14 @@ class NewDatabase:
             raise ValueError("Missing scenario name.")
         else:
             self.scenario = scenario
+
+        if source_version not in SUPPORTED_EI_VERSIONS:
+            raise ValueError(
+                (
+                    f"Provided ecoinvent version ({source_version}) is not supported.\n"
+                    f"Please use one of the following: {SUPPORTED_EI_VERSIONS}"
+                )
+            )
 
         self.year = year
         self.source = source_db
