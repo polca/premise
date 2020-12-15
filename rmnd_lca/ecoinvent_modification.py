@@ -78,6 +78,14 @@ class NewDatabase:
                        '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
                        '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
 
+        try:
+            float(source_version)
+        except:
+            raise ValueError("The value for `source_version` does not seem valid.")
+
+        if source_version not in [3.5, 3.6, 3.7]:
+            raise ValueError("`source_version` must be one of [3.5, 3.6, 3.7]")
+
 
         # If we produce fleet average vehicles, fleet compositions and electricity mixes must be provided
         if add_vehicles:
