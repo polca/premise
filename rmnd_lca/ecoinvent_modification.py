@@ -25,20 +25,20 @@ import wurst
 import wurst.searching as ws
 from pathlib import Path
 
-FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
-FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
-FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
-FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx")
-FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx")
-FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx")
-FILEPATH_HYDROGEN_WOODY_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx")
-FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-FT.xlsx")
-FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
-FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
-FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = (INVENTORY_DIR / "lci-geothermal.xlsx")
-FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.xlsx")
-FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xlsx")
-FILEPATH_METHANOL_FUELS_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-methanol.xlsx")
+FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xls")
+FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xls")
+FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xls")
+FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xls")
+FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xls")
+FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xls")
+FILEPATH_HYDROGEN_WOODY_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-wood-gasification.xls")
+FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-FT.xls")
+FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xls")
+FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xls")
+FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = (INVENTORY_DIR / "lci-geothermal.xls")
+FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.xls")
+FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xls")
+FILEPATH_METHANOL_FUELS_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-methanol.xls")
 
 
 class NewDatabase:
