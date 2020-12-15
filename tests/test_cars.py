@@ -2,24 +2,21 @@ from rmnd_lca import DATA_DIR
 from rmnd_lca import NewDatabase
 from rmnd_lca import RemindDataCollection
 from rmnd_lca.cars import Cars
-
 import os
 import pytest
 import wurst
 import brightway2 as bw
-import pandas as pd
 import numpy as np
+from pathlib import Path
 
 REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
 
 # for local test runs
-remind_output_folder = "/home/alois/remind/testruns/lca_paper/"
+remind_output_folder = Path(__file__).resolve().parent / "data"
 BW_PROJECT = "transport_lca_Budg1100_Conv"
 scenario = "Budg1100_Conv"
 year = 2035
-remind_regions = ['LAM', 'OAS', 'SSA', 'EUR',
-                  'NEU', 'MEA', 'REF', 'CAZ',
-                  'CHA', 'IND', 'JPN', 'USA']
+remind_regions = ['LAM', 'EUR']
 ecoinvent_version = 3.7
 
 
@@ -151,7 +148,6 @@ def test_full_import():
 
 
 def test_get_fuel_mix():
-    from rmnd_lca import DATA_DIR
 
     rdc = RemindDataCollection(scenario, year, remind_output_folder)
     data = rdc.get_remind_fuel_mix_for_ldvs()
