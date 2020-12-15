@@ -40,6 +40,15 @@ FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.x
 FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xls")
 FILEPATH_METHANOL_FUELS_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-methanol.xls")
 
+SUPPORTED_EI_VERSIONS = [3.5, 3.6, 3.7]
+SUPPORTED_SCENARIOS = [
+    "SSP2-Base",
+    "SSP2-NDC",
+    "SSP2-NPi",
+    "SSP2-PkBudg900",
+    "SSP2-PkBudg1100",
+    "SSP2-PkBudg1300",
+]
 
 class NewDatabase:
     """
@@ -66,14 +75,7 @@ class NewDatabase:
                  add_vehicles=None):
 
         if filepath_to_remind_files is None:
-            if scenario not in [
-                "SSP2-Base",
-                "SSP2-NDC",
-                "SSP2-NPi",
-                "SSP2-PkBudg900",
-                "SSP2-PkBudg1100",
-                "SSP2-PkBudg1300",
-            ]:
+            if scenario not in SUPPORTED_SCENARIOS:
                 print(('Warning: The scenario chosen is not any of '
                        '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
                        '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
@@ -90,6 +92,14 @@ class NewDatabase:
             raise ValueError("Missing scenario name.")
         else:
             self.scenario = scenario
+
+        if source_version not in SUPPORTED_EI_VERSIONS:
+            raise ValueError(
+                (
+                    f"Provided ecoinvent version ({source_version}) is not supported.\n"
+                    f"Please use one of the following: {SUPPORTED_EI_VERSIONS}"
+                )
+            )
 
         self.year = year
         self.source = source_db
