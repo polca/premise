@@ -68,7 +68,7 @@ class NewDatabase:
     """
 
     def __init__(self, year, source_db, scenario=None,
-                 source_version=3.5,
+                 source_version=3.7,
                  source_type='brightway',
                  source_file_path=None,
                  filepath_to_remind_files=None,
