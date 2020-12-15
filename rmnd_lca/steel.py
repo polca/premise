@@ -42,7 +42,7 @@ class Steel:
         :return:
         """
         d_map = {
-            self.geo.ecoinvent_to_remind_location(d['location']): d['location']
+            self.geo.ecoinvent_to_iam_location(d['location']): d['location']
             for d in ws.get_many(
                 self.db,
                 ws.equals("name", name)
@@ -151,7 +151,7 @@ class Steel:
         :return: list of wurst datasets
         :rtype: list
         """
-        list_regions = [self.geo.remind_to_ecoinvent_location(region)
+        list_regions = [self.geo.iam_to_ecoinvent_location(region)
                         for region in remind_regions]
         list_regions = [x for y in list_regions for x in y]
 
@@ -198,7 +198,7 @@ class Steel:
                         if act['location'] == "North America without Quebec":
                             exc['location'] = 'USA'
                         else:
-                            exc['location'] = self.geo.ecoinvent_to_remind_location(act['location'])
+                            exc['location'] = self.geo.ecoinvent_to_iam_location(act['location'])
                     else:
                         exc['location'] = act['location']
 

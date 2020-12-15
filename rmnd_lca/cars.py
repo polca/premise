@@ -102,11 +102,11 @@ class Cars:
                                name, region, prod["location"]))
             return prod
 
-        ei_locs = self.geo.remind_to_ecoinvent_location(region, contained=True)
+        ei_locs = self.geo.iam_to_ecoinvent_location(region, contained=True)
         prod = producer_in_locations(ei_locs)
 
         if prod is None:
-            ei_locs = self.geo.remind_to_ecoinvent_location(region)
+            ei_locs = self.geo.iam_to_ecoinvent_location(region)
             prod = producer_in_locations(ei_locs)
             if prod is None:
                 # let's use "any" dataset

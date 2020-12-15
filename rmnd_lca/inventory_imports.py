@@ -1,23 +1,17 @@
 from . import DATA_DIR
 import wurst
 from prettytable import PrettyTable
-
-
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration
-from bw2io.importers.base_lci import LCIImporter
-
-
 from carculator import (
     CarInputParameters,
     fill_xarray_from_input_parameters,
     CarModel,
     InventoryCalculation,
     create_fleet_composition_from_REMIND_file,
-    extract_electricity_mix_from_REMIND_file,
-    extract_biofuel_shares_from_REMIND,
+    extract_electricity_mix_from_IAM_file,
+    extract_biofuel_shares_from_IAM,
 )
-
 
 from pathlib import Path
 import csv
@@ -802,6 +796,96 @@ class CarmaCCSInventory(BaseInventoryImport):
             ):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
+class CHPCCSInventory(BaseInventoryImport):
+    def load_inventory(self, path):
+        self.import_db = ExcelImporter(path)
+
+    def prepare_inventory(self):
+        if self.version == 3.7:
+            # apply some updates to comply with ei 3.7
+            new_technosphere_data = EI_37_MIGRATION_MAP
+
+            Migration("migration_37").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
+            )
+            self.import_db.migrate("migration_37")
+
+        if self.version == 3.6:
+            # apply some updates to comply with ei 3.6
+            new_technosphere_data = {
+                "fields": ["name", "reference product", "location"],
+                "data": [
+                    (
+                        ("market for water, decarbonised, at user", (), "GLO"),
+                        {
+                            "name": "market for water, decarbonised",
+                            "reference product": "water, decarbonised",
+                            "location": "DE",
+                        },
+                    ),
+                    (
+                        (
+                            "market for water, completely softened, from decarbonised water, at user",
+                            (),
+                            "GLO",
+                        ),
+                        {
+                            "name": "market for water, completely softened",
+                            "reference product": "water, completely softened",
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("market for steam, in chemical industry", (), "GLO"),
+                        {
+                            "location": "RER",
+                            "reference product": "steam, in chemical industry",
+                        },
+                    ),
+                    (
+                        ("market for steam, in chemical industry", (), "RER"),
+                        {"reference product": "steam, in chemical industry",},
+                    ),
+                    (
+                        ("zinc-lead mine operation", ("zinc concentrate",), "GLO"),
+                        {
+                            "name": "zinc mine operation",
+                            "reference product": "bulk lead-zinc concentrate",
+                        },
+                    ),
+                    (
+                        ("market for aluminium oxide", ("aluminium oxide",), "GLO"),
+                        {
+                            "name": "market for aluminium oxide, non-metallurgical",
+                            "reference product": "aluminium oxide, non-metallurgical",
+                            "location": "IAI Area, EU27 & EFTA",
+                        },
+                    ),
+                    (
+                        (
+                            "platinum group metal mine operation, ore with high rhodium content",
+                            ("nickel, 99.5%",),
+                            "ZA",
+                        ),
+                        {
+                            "name": "platinum group metal, extraction and refinery operations",
+                        },
+                    ),
+                ],
+            }
+
+            Migration("migration_36").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.5 to 3.6",
+            )
+            self.import_db.migrate("migration_36")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+        # Check for duplicates
+        self.check_for_duplicates()
 
 class BiofuelInventory(BaseInventoryImport):
     """
@@ -1504,8 +1588,7 @@ class CarculatorInventory(BaseInventoryImport):
     """
 
 
-    def __init__(self, database, year, version, regions,
-                 vehicles={}, scenario="SSP2-Base"):
+    def __init__(self, database, model, scenario, year, version, regions, vehicles):
 
         """Create a :class:`BaseInventoryImport` instance.
 
@@ -1516,6 +1599,7 @@ class CarculatorInventory(BaseInventoryImport):
 
         """
         self.db = database
+        self.model = model
         self.db_code = [x["code"] for x in self.db]
         self.db_names = [
             (x["name"], x["reference product"], x["location"]) for x in self.db
@@ -1532,7 +1616,7 @@ class CarculatorInventory(BaseInventoryImport):
         self.source_file = (
             Path(vehicles["source file"]) / (scenario + ".mif")
             if "source file" in vehicles
-            else DATA_DIR / "remind_output_files" / (scenario + ".mif")
+            else DATA_DIR / "iam_output_files" / (scenario + ".mif")
         )
 
         self.import_db = []
@@ -1556,28 +1640,37 @@ class CarculatorInventory(BaseInventoryImport):
         for r, region in enumerate(self.regions):
 
             if self.fleet_file:
-                fleet_array = create_fleet_composition_from_REMIND_file(
-                    self.fleet_file, region, fleet_year=self.db_year
-                )
+                if self.model == "remind":
 
-                scope = {
-                    "powertrain": fleet_array.powertrain.values,
-                    "size": fleet_array.coords["size"].values,
-                    "year": fleet_array.coords["vintage_year"].values,
-                    "fu": {"fleet": fleet_array, "unit": "vkm"},
-                }
+                    fleet_array = create_fleet_composition_from_REMIND_file(
+                        self.fleet_file, region, fleet_year=self.db_year
+                    )
+
+                    scope = {
+                        "powertrain": fleet_array.powertrain.values,
+                        "size": fleet_array.coords["size"].values,
+                        "year": fleet_array.coords["vintage_year"].values,
+                        "fu": {"fleet": fleet_array, "unit": "vkm"},
+                    }
+
+                else:
+                    # If a fleet file is given, but not for REMIND, it
+                    # has to be a filepath to a CSV file
+                    scope = {"fu": {"fleet": self.fleet_file, "unit": "vkm"}}
 
             else:
                 scope = {"year": [self.db_year]}
 
-            mix = extract_electricity_mix_from_REMIND_file(
-                fp=self.source_file, remind_region=region, years=scope["year"]
+
+            mix = extract_electricity_mix_from_IAM_file(
+                model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"]
             )
 
-            fuel_shares = extract_biofuel_shares_from_REMIND(
-                fp=self.source_file, remind_region=region, years=scope["year"],
+            fuel_shares = extract_biofuel_shares_from_IAM(
+                model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"],
                 allocate_all_synfuel=True
             )
+
 
             bc = {
                 "custom electricity mix": mix,

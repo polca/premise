@@ -172,7 +172,7 @@ according to the projections given by REMIND,
 
 
 ```python
-    ndb.update_electricity_to_remind_data()
+    ndb.update_electricity_to_iam_data()
 ```
 returns
 ```python
@@ -220,7 +220,7 @@ The following function will:
 * and relink cement-consuming activities to the newly created cement markets.
 
 ```python
-    ndb.update_cement_to_remind_data()
+    ndb.update_cement_to_iam_data()
 ```
 returns
 ```python

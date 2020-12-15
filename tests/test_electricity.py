@@ -1,7 +1,7 @@
 # content of test_electricity.py
 from rmnd_lca import DATA_DIR
 from rmnd_lca.electricity import Electricity
-from rmnd_lca.data_collection import RemindDataCollection
+from rmnd_lca.data_collection import IAMDataCollection
 
 REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
 PRODUCTION_PER_TECH = (DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv")
@@ -35,7 +35,7 @@ def get_db():
     return db, version
 
 
-rdc = RemindDataCollection('SSP2-Base', 2012, DATA_DIR / "remind_output_files")
+rdc = IAMDataCollection('SSP2-Base', 2012, DATA_DIR / "iam_output_files")
 db, _ = get_db()
 el = Electricity(db, rdc, 'SSP2-Base', 2012)
 

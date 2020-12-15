@@ -40,7 +40,7 @@ class Cement:
         :return:
         """
         d_map = {
-            self.geo.ecoinvent_to_remind_location(d['location']): d['location']
+            self.geo.ecoinvent_to_iam_location(d['location']): d['location']
             for d in ws.get_many(
                 self.db,
                 ws.equals("name", name),
@@ -137,7 +137,7 @@ class Cement:
                 ws.either(
                     *[
                         ws.equals("location", loc)
-                        for loc in self.geo.remind_to_ecoinvent_location(remind_region)
+                        for loc in self.geo.iam_to_ecoinvent_location(remind_region)
                     ]
                 ),
                 ws.equals("unit", "kilogram"),
@@ -479,7 +479,7 @@ class Cement:
                         if act['location'] == "North America without Quebec":
                             exc['location'] = 'USA'
                         else:
-                            exc['location'] = self.geo.ecoinvent_to_remind_location(act['location'])
+                            exc['location'] = self.geo.ecoinvent_to_iam_location(act['location'])
                     else:
                         exc['location'] = act['location']
 

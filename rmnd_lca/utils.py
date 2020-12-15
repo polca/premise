@@ -10,8 +10,8 @@ CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.c
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
 REMIND_TO_FUELS = DATA_DIR / "steel" / "remind_fuels_correspondance.txt"
 
-def eidb_label(scenario, year):
-    return "ecoinvent_" + scenario + "_" + str(year)
+def eidb_label(model, scenario, year):
+    return "ecoinvent_" + model + "_" + scenario + "_" + str(year)
 
 def get_correspondance_remind_to_fuels():
     """
@@ -25,8 +25,6 @@ def get_correspondance_remind_to_fuels():
         for row in r:
             d[row[0]] = {"fuel name": row[1], "activity name": row[2], "reference product": row[3]}
     return d
-
-
 
 def get_fuel_co2_emission_factors():
     """

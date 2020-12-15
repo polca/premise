@@ -120,7 +120,7 @@ according to the projections given by REMIND,
 
 .. code-block:: python
 
-    ndb.update_electricity_to_remind_data()
+    ndb.update_electricity_to_iam_data()
 
 returns
 

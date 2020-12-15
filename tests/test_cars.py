@@ -1,6 +1,6 @@
 from rmnd_lca import DATA_DIR
 from rmnd_lca import NewDatabase
-from rmnd_lca import RemindDataCollection
+from rmnd_lca import IAMDataCollection
 from rmnd_lca.cars import Cars
 
 import os
@@ -114,14 +114,14 @@ def setup_db():
             "fleet file": os.path.join(
                 remind_output_folder, scenario + "_vintcomp.csv")
         },
-        filepath_to_remind_files=remind_output_folder)
+        filepath_to_iam_files=remind_output_folder)
 
 
 @pytest.mark.ecoinvent
 def test_link_local_electricity_supply():
     ndb = setup_db()
 
-    ndb.update_electricity_to_remind_data()
+    ndb.update_electricity_to_iam_data()
     Cars(ndb.db, ndb.rdc, scenario, year).link_local_electricity_supply()
 
 
@@ -131,7 +131,7 @@ def test_link_local_liquid_fuel_markets():
 
     ndb = setup_db()
 
-    ndb.update_electricity_to_remind_data()
+    ndb.update_electricity_to_iam_data()
     Cars(ndb.db, ndb.rdc, scenario, year).link_local_liquid_fuel_markets()
 
 
@@ -141,7 +141,7 @@ def test_full_import():
 
     ndb = setup_db()
 
-    ndb.update_electricity_to_remind_data()
+    ndb.update_electricity_to_iam_data()
     ndb.update_cars()
     dbname = "test_carculator_complete"
     if dbname in bw.databases:
@@ -153,7 +153,7 @@ def test_full_import():
 def test_get_fuel_mix():
     from rmnd_lca import DATA_DIR
 
-    rdc = RemindDataCollection(scenario, year, remind_output_folder)
+    rdc = IAMDataCollection(scenario, year, remind_output_folder)
     data = rdc.get_remind_fuel_mix_for_ldvs()
     assert data.shape == (13, 3)
     np.testing.assert_allclose(data.sum(dim="variables"), 1.)

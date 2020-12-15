@@ -1,6 +1,6 @@
 from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
-from .data_collection import RemindDataCollection
+from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .inventory_imports import CarmaCCSInventory, \
     BiofuelInventory, \
@@ -26,6 +26,7 @@ import wurst.searching as ws
 from pathlib import Path
 
 FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
+FILEPATH_CHP_INVENTORIES = (INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx")
 FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
 FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
 FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx")
@@ -45,46 +46,64 @@ class NewDatabase:
     """
     Class that represents a new wurst inventory database, modified according to IAM data.
 
-    :ivar scenario: name of the REMIND scenario, e.g., 'BAU', 'SCP26'.
+    :ivar scenario: name of the IAM scenario, e.g., 'SSP2-Base', 'SSP2/NDC', etc..
     :vartype scenario: str
-    :ivar year: year of the REMIND scenario to consider, between 2005 and 2150.
+    :ivar year: year of the IAM scenario to consider, between 2005 and 2150.
     :vartype year: int
     :ivar source_db: name of the ecoinvent source database
     :vartype source_db: str
-    :ivar source_version: version of the ecoinvent source database. Currently works with ecoinvent 3.5 and 3.6.
+    :ivar model: name of IAM model. Currently only "remind" or "image" supported.
+    :vartype model: str
+    :ivar source_version: version of the ecoinvent source database. Currently works with ecoinvent 3.5, 3.6 and 3.7.
     :vartype source_version: float
-    :ivar filepath_to_remind_files: Filepath to the directory that contains REMIND output files.
-    :vartype filepath_to_remind_file: pathlib.Path
+    :ivar filepath_to_iam_files: Filepath to the directory that contains IAM output files.
+    :vartype filepath_to_iam_files: pathlib.Path
 
     """
 
-    def __init__(self, year, source_db, scenario=None,
+    def __init__(self,
+                 year,
+                 source_db,
+                 model="remind",
+                 scenario=None,
                  source_version=3.5,
                  source_type='brightway',
                  source_file_path=None,
-                 filepath_to_remind_files=None,
+                 filepath_to_iam_files=None,
                  add_vehicles=None):
 
-        if filepath_to_remind_files is None:
-            if scenario not in [
-                "SSP2-Base",
-                "SSP2-NDC",
-                "SSP2-NPi",
-                "SSP2-PkBudg900",
-                "SSP2-PkBudg1100",
-                "SSP2-PkBudg1300",
-            ]:
-                print(('Warning: The scenario chosen is not any of '
-                       '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
-                       '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
 
+        if model not in ["remind", "image"]:
+            raise ValueError("Only REMIND and IMAGE model scenarios are currently supported.")
 
-        # If we produce fleet average vehicles, fleet compositions and electricity mixes must be provided
+        if filepath_to_iam_files is None:
+            if model == "remind":
+                if scenario not in [
+                    "SSP2-Base",
+                    "SSP2-NDC",
+                    "SSP2-NPi",
+                    "SSP2-PkBudg900",
+                    "SSP2-PkBudg1100",
+                    "SSP2-PkBudg1300",
+                ]:
+                    print(('Warning: The scenario chosen is not any of '
+                           '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
+                           '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
+
+            if model == "image":
+                if scenario not in [
+                    "SSP2-Base",
+                ]:
+                    print(('Warning: The scenario chosen is not any of '
+                           '"SSP2-Base".'))
+
+        # If we produce fleet average vehicles,
+        # fleet compositions and electricity mixes must be provided
         if add_vehicles:
             if "fleet file" not in add_vehicles:
                 print("No fleet composition file is provided, hence fleet average vehicles inventories will not be produced.")
             if "source file" not in add_vehicles:
-                add_vehicles["source file"] = (filepath_to_remind_files or DATA_DIR / "remind_output_files")
+                add_vehicles["source file"] = (filepath_to_iam_files or DATA_DIR / "iam_output_files")
 
         if scenario is None:
             raise ValueError("Missing scenario name.")
@@ -93,17 +112,18 @@ class NewDatabase:
 
         self.year = year
         self.source = source_db
+        self.model = model
         self.version = source_version
         self.source_type = source_type
         self.source_file_path = source_file_path
-        self.filepath_to_remind_files = Path(filepath_to_remind_files or DATA_DIR / "remind_output_files")
+        self.filepath_to_iam_files = Path(filepath_to_iam_files or DATA_DIR / "iam_output_files")
         self.add_vehicles = add_vehicles
 
-        if not self.filepath_to_remind_files.is_dir():
+        if not self.filepath_to_iam_files.is_dir():
             raise FileNotFoundError(
-                "The REMIND output directory could not be found."
+                "The IAM output directory could not be found."
             )
-        self.rdc = RemindDataCollection(self.scenario, self.year, self.filepath_to_remind_files)
+        self.rdc = IAMDataCollection(self.model, self.scenario, self.year, self.filepath_to_iam_files)
 
         self.db = self.clean_database()
         self.import_inventories()
@@ -119,8 +139,12 @@ class NewDatabase:
     def import_inventories(self):
 
         # Add Carma CCS inventories
-        print("Add Carma CCS inventories")
+        print("Add inventories for conventional power plants with CCS")
         carma = CarmaCCSInventory(self.db, self.version, FILEPATH_CARMA_INVENTORIES)
+        carma.merge_inventory()
+
+        print("Add inventories for CHP power plants with CCS")
+        carma = CarmaCCSInventory(self.db, self.version, FILEPATH_CHP_INVENTORIES)
         carma.merge_inventory()
 
         print("Add Biogas inventories")
@@ -178,31 +202,31 @@ class NewDatabase:
         # Import `carculator` inventories if wanted
         if self.add_vehicles:
             print("Add Carculator inventories")
-            cars = CarculatorInventory(self.db, self.year, self.version, self.rdc.regions,
-                                       self.add_vehicles, self.scenario)
+            cars = CarculatorInventory(self.db, self.model, self.scenario, self.year, self.version, self.rdc.regions,
+                                       self.add_vehicles)
             cars.merge_inventory()
 
-    def update_electricity_to_remind_data(self):
-        electricity = Electricity(self.db, self.rdc, self.scenario, self.year)
+    def update_electricity_to_iam_data(self):
+        electricity = Electricity(self.db, self.rdc, self.model, self.scenario, self.year)
         self.db = electricity.update_electricity_markets()
         self.db = electricity.update_electricity_efficiency()
 
-    def update_cement_to_remind_data(self):
+    def update_cement_to_iam_data(self):
         if len([v for v in self.rdc.data.variables.values
                 if "cement" in v.lower() and "production" in v.lower()])>0:
             cement = Cement(self.db, self.rdc, self.year, self.version)
             self.db = cement.add_datasets_to_database()
         else:
-            print("The REMIND scenario chosen does not contain any data related to the cement sector."
+            print("The IAM scenario chosen does not contain any data related to the cement sector."
                   "Transformations related to the cement sector will be skipped.")
 
-    def update_steel_to_remind_data(self):
+    def update_steel_to_iam_data(self):
         if len([v for v in self.rdc.data.variables.values
-                if "steel" in v.lower() and "production" in v.lower()])>0:
+                if "steel" in v.lower() and "production" in v.lower()]) > 0:
             steel = Steel(self.db, self.rdc, self.year)
             self.db = steel.generate_activities()
         else:
-            print("The REMIND scenario chosen does not contain any data related to the steel sector."
+            print("The IAM scenario chosen does not contain any data related to the steel sector."
                   "Transformations related to the steel sector will be skipped.")
 
     def update_cars(self):
@@ -218,15 +242,15 @@ class NewDatabase:
                    "inventories for electricity powered vehicles"))
 
     def update_all(self):
-        self.update_electricity_to_remind_data()
-        self.update_cement_to_remind_data()
-        self.update_steel_to_remind_data()
+        self.update_electricity_to_iam_data()
+        self.update_cement_to_iam_data()
+        self.update_steel_to_iam_data()
         if self.add_vehicles:
             self.update_cars()
 
     def write_db_to_brightway(self):
         print('Write new database to Brightway2.')
-        wurst.write_brightway2_database(self.db, eidb_label(self.scenario, self.year))
+        wurst.write_brightway2_database(self.db, eidb_label(self.model, self.scenario, self.year))
 
     def write_db_to_matrices(self):
         print("Write new database to matrix.")
