@@ -3,16 +3,8 @@ import wurst
 from prettytable import PrettyTable
 from wurst import searching as ws
 from bw2io import ExcelImporter, Migration
-from carculator import (
-    CarInputParameters,
-    fill_xarray_from_input_parameters,
-    CarModel,
-    InventoryCalculation,
-    create_fleet_composition_from_REMIND_file,
-    extract_electricity_mix_from_IAM_file,
-    extract_biofuel_shares_from_IAM,
-)
-
+import carculator
+import carculator_truck
 from pathlib import Path
 import csv
 import uuid
@@ -1608,16 +1600,37 @@ class CarculatorInventory(BaseInventoryImport):
 
         self.db_year = year
         self.version = version
-        self.regions = vehicles["region"] if "region" in vehicles else regions
+
+        if "region" in vehicles:
+            if vehicles["region"] == "all":
+                self.regions = regions
+            else:
+                if any(i for i in vehicles["region"] if i not in regions):
+                    raise ValueError(
+                        "One or more of the following regions {} for the creation of truck inventories is not valid.\n"
+                        "Regions must be of the following {}".format(vehicles["region"], regions))
+                else:
+                    self.regions = vehicles["region"]
+        else:
+            self.regions = regions
+
         self.fleet_file = (
             Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
         )
 
+        # IAM output file extension differs between REMIND and IMAGE
+        ext = ".mif" if model == "remind" else ".xlsx"
+
         self.source_file = (
-            Path(vehicles["source file"]) / (scenario + ".mif")
+            Path(vehicles["source file"]) / (model + "_" + scenario + ext)
             if "source file" in vehicles
-            else DATA_DIR / "iam_output_files" / (scenario + ".mif")
+            else DATA_DIR / "iam_output_files" / (model + "_" + scenario + ext)
         )
+
+        if not self.source_file.is_file():
+            raise FileNotFoundError("For some reason, the file {} is not accessible.".format(
+                self.source_file
+            ))
 
         self.import_db = []
         self.load_inventory()
@@ -1627,14 +1640,14 @@ class CarculatorInventory(BaseInventoryImport):
         """Create `carculator` fleet average inventories for a given range of years.
         """
 
-        cip = CarInputParameters()
+        cip = carculator.CarInputParameters()
         cip.static()
-        _, array = fill_xarray_from_input_parameters(cip)
+        _, array = carculator.fill_xarray_from_input_parameters(cip)
 
         array = array.interp(
             year=np.arange(1996, self.db_year + 1), kwargs={"fill_value": "extrapolate"}
         )
-        cm = CarModel(array, cycle="WLTC 3.4")
+        cm = carculator.CarModel(array, cycle="WLTC 3.4")
         cm.set_all()
 
         for r, region in enumerate(self.regions):
@@ -1642,7 +1655,7 @@ class CarculatorInventory(BaseInventoryImport):
             if self.fleet_file:
                 if self.model == "remind":
 
-                    fleet_array = create_fleet_composition_from_REMIND_file(
+                    fleet_array = carculator.create_fleet_composition_from_REMIND_file(
                         self.fleet_file, region, fleet_year=self.db_year
                     )
 
@@ -1656,17 +1669,18 @@ class CarculatorInventory(BaseInventoryImport):
                 else:
                     # If a fleet file is given, but not for REMIND, it
                     # has to be a filepath to a CSV file
-                    scope = {"fu": {"fleet": self.fleet_file, "unit": "vkm"}}
+                    scope = {"fu": {"fleet": self.fleet_file, "unit": "vkm"},
+                             "year": [self.db_year]
+                             }
 
             else:
                 scope = {"year": [self.db_year]}
 
-
-            mix = extract_electricity_mix_from_IAM_file(
+            mix = carculator.extract_electricity_mix_from_IAM_file(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"]
             )
 
-            fuel_shares = extract_biofuel_shares_from_IAM(
+            fuel_shares = carculator.extract_biofuel_shares_from_IAM(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"],
                 allocate_all_synfuel=True
             )
@@ -1747,7 +1761,7 @@ class CarculatorInventory(BaseInventoryImport):
                 },
             }
 
-            ic = InventoryCalculation(
+            ic = carculator.InventoryCalculation(
                 cm.array, scope=scope, background_configuration=bc
             )
 
@@ -1765,6 +1779,174 @@ class CarculatorInventory(BaseInventoryImport):
             else:
                 i = ic.export_lci_to_bw(presamples=False,
                                         ecoinvent_version=str(self.version))
+
+            if r == 0:
+                self.import_db = i
+            else:
+                # remove duplicate items if iterating over several regions
+                i.data = [
+                    x
+                    for x in i.data
+                    if (x["name"], x["location"])
+                       not in [(z["name"], z["location"]) for z in self.import_db.data]
+                ]
+                self.import_db.data.extend(i.data)
+
+
+    def prepare_inventory(self):
+        self.add_biosphere_links(delete_missing=True)
+        self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
+
+class TruckInventory(BaseInventoryImport):
+    """
+    Car models from the carculator project, https://github.com/romainsacchi/carculator
+    """
+
+
+    def __init__(self, database, model, scenario, year, version, regions, vehicles):
+
+        """Create a :class:`BaseInventoryImport` instance.
+
+        :param list database: the target database for the import (the Ecoinvent database),
+                              unpacked to a list of dicts
+        :param float version: the version of the target database
+        :param path: Path to the imported inventory.
+
+        """
+        self.db = database
+        self.model = model
+        self.db_code = [x["code"] for x in self.db]
+        self.db_names = [
+            (x["name"], x["reference product"], x["location"]) for x in self.db
+        ]
+        self.biosphere_dict = self.get_biosphere_code()
+
+        self.db_year = year
+        self.version = version
+
+        if "region" in vehicles:
+            if vehicles["region"] == "all":
+                self.regions = regions
+            else:
+                if any(i for i in vehicles["region"] if i not in regions):
+                    raise ValueError(
+                        "One or more of the following regions {} for the creation of truck inventories is not valid.\n"
+                        "Regions must be of the following {}".format(vehicles["region"], regions))
+                else:
+                    self.regions = vehicles["region"]
+        else:
+            self.regions = regions
+
+        self.fleet_file = (
+            Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
+        )
+
+        # IAM output file extension differs between REMIND and IMAGE
+        ext = ".mif" if model == "remind" else ".xlsx"
+
+        self.source_file = (
+            Path(vehicles["source file"]) / (model + "_" + scenario + ext)
+            if "source file" in vehicles
+            else DATA_DIR / "iam_output_files" / (model + "_" + scenario + ext)
+        )
+
+        if not self.source_file.is_file():
+            raise FileNotFoundError("For some reason, the file {} is not accessible.".format(
+                self.source_file
+            ))
+
+        self.import_db = []
+        self.load_inventory()
+
+
+    def load_inventory(self):
+        """Create `carculator_truck` fleet average inventories for a given range of years.
+        """
+
+        tip = carculator_truck.TruckInputParameters()
+        tip.static()
+        _, array = carculator_truck.fill_xarray_from_input_parameters(tip)
+
+        array = array.interp(
+            year=[self.db_year], kwargs={"fill_value": "extrapolate"}
+        )
+        tm = carculator_truck.TruckModel(array, cycle="Regional delivery", country="CH")
+        tm.set_all()
+
+        for r, region in enumerate(self.regions):
+
+            scope = {"year": [self.db_year]}
+
+            mix = carculator_truck.extract_electricity_mix_from_IAM_file(
+                model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"]
+            )
+
+            fuel_shares = carculator_truck.extract_biofuel_shares_from_IAM(
+                model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"],
+                allocate_all_synfuel=True
+            )
+
+            bc = {
+                "custom electricity mix": mix,
+                "country": region,
+                "fuel blend": {
+                    "diesel": {
+                        "primary fuel": {
+                            "type": "diesel",
+                            "share": fuel_shares.sel(fuel_type="liquid - fossil").values
+                            if "liquid - fossil" in fuel_shares.fuel_type.values
+                            else [1],
+                        },
+                        "secondary fuel": {
+                            "type": "biodiesel - cooking oil",
+                            "share": fuel_shares.sel(
+                                fuel_type="liquid - biomass"
+                            ).values
+                            if "liquid - biomass" in fuel_shares.fuel_type.values
+                            else [1],
+                        },
+                        "tertiary fuel": {
+                            "type": "synthetic diesel",
+                            "share": fuel_shares.sel(
+                                fuel_type="liquid - synfuel"
+                            ).values
+                            if "liquid - synfuel" in fuel_shares.fuel_type.values
+                            else [0],
+                        }
+                    },
+                    "cng": {
+                        "primary fuel": {
+                            "type": "cng",
+                            "share": fuel_shares.sel(fuel_type="gas - fossil").values
+                            if "gas - fossil" in fuel_shares.fuel_type.values
+                            else [1],
+                        },
+                        "secondary fuel": {
+                            "type": "biogas - biowaste",
+                            "share": fuel_shares.sel(fuel_type="gas - biomass").values
+                            if "gas - biomass" in fuel_shares.fuel_type.values
+                            else [0],
+                        },
+                    },
+                    "hydrogen": {
+                        "primary fuel": {
+                            "type": "electrolysis",
+                            "share": np.ones_like(scope["year"]),
+                        }
+                    },
+                },
+            }
+
+            ic = carculator_truck.InventoryCalculation(tm,
+                                      scope=scope,
+                                      background_configuration=bc)
+
+
+
+            i = ic.export_lci_to_bw(presamples=False,
+                                    ecoinvent_version=str(self.version))
 
             if r == 0:
                 self.import_db = i

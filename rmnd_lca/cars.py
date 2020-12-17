@@ -8,21 +8,23 @@ import copy
 class Cars:
     """
     Class that modifies carculator inventories in ecoinvent
-    based on REMIND output data.
+    based on IAM output data.
 
     :ivar db: ecoinvent database in list-of-dict format
-    :ivar rmd: REMIND output data
-    :ivar scenario: REMIND scenario identifier
+    :ivar rmd: IAM output data
+    :ivar scenario: IAM scenario identifier
     :ivar year: year for the current analysis
+    :ivar model: str. "remind" or "image"
 
     """
 
-    def __init__(self, db, rmd, scenario, year):
+    def __init__(self, db, rmd, scenario, year, model):
         self.db = db
         self.rmd = rmd
-        self.geo = Geomap()
+        self.geo = Geomap(model=model)
         self.scenario = scenario
         self.year = year
+        self.model = model
 
     def _create_local_copy(self, old_act, region):
         """
@@ -125,7 +127,7 @@ class Cars:
 
     def link_local_liquid_fuel_markets(self):
         """
-        Use REMIND fuel markets to update the mix of bio-, syn-
+        Use IAM fuel markets to update the mix of bio-, syn-
         and fossil liquids in gasoline and diesel.
 
         """
@@ -148,7 +150,6 @@ class Cars:
         }
 
         for region in self.rmd.regions:
-
             try:
                 supply = {
                     ftype: ws.get_one(
@@ -160,7 +161,7 @@ class Cars:
                 }
 
                 # two regions for gasoline and diesel production
-                if region == "EUR":
+                if region in ("EUR", "NEU", "WEU", "CEU"):
                     new_producers["gasoline"]["Fossil"] = ws.get_one(
                         self.db,
                         ws.equals("name", "market for petrol, low-sulfur"),

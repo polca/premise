@@ -114,7 +114,8 @@ class IAMDataCollection:
 
         """
 
-        file_ext = {"remind": self.scenario + ".mif", "image": self.scenario + ".xlsx"}
+        file_ext = {"remind": self.model + "_" + self.scenario + ".mif",
+                    "image": self.model + "_" + self.scenario + ".xlsx"}
 
         filepath = Path(self.filepath_iam_files) / file_ext[self.model]
 

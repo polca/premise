@@ -107,7 +107,7 @@ def setup_db():
         year=year,
         source_db='ecoinvent {} cutoff'.format(ecoinvent_version),
         source_version=ecoinvent_version,
-        add_vehicles={
+        add_passenger_cars={
             "fleet file": os.path.join(
                 remind_output_folder, scenario + "_vintcomp.csv")
         },

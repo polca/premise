@@ -14,11 +14,11 @@ from .inventory_imports import CarmaCCSInventory, \
     SyngasCoalInventory, \
     SynfuelCoalInventory, \
     LPGInventory, \
-    CarculatorInventory
+    CarculatorInventory, \
+    TruckInventory
 from .cement import Cement
 from .steel import Steel
 from .cars import Cars
-
 from .export import Export
 from .utils import eidb_label
 import wurst
@@ -27,6 +27,7 @@ from pathlib import Path
 
 
 FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xls")
+FILEPATH_CHP_INVENTORIES = (INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xls")
 FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xls")
 FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xls")
 FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xls")
@@ -55,21 +56,33 @@ class NewDatabase:
     """
     Class that represents a new wurst inventory database, modified according to IAM data.
 
+
+    :ivar model: name of teh IAM model. Can be `remind` or `image`.
+    :vartype model: str
     :ivar scenario: name of the IAM scenario, e.g., 'SSP2-Base', 'SSP2/NDC', etc..
     :vartype scenario: str
     :ivar year: year of the IAM scenario to consider, between 2005 and 2150.
     :vartype year: int
+    :ivar source_type: the source of the ecoinvent database. Can be `brigthway` or `ecospold`.
+    :vartype source_type: str
     :ivar source_db: name of the ecoinvent source database
     :vartype source_db: str
-    :ivar model: name of IAM model. Currently only "remind" or "image" supported.
-    :vartype model: str
     :ivar source_version: version of the ecoinvent source database. Currently works with ecoinvent 3.5, 3.6 and 3.7.
     :vartype source_version: float
     :ivar filepath_to_iam_files: Filepath to the directory that contains IAM output files.
-    :vartype filepath_to_iam_files: pathlib.Path
+    :vartype filepath_to_iam_files: str
+    :ivar add_passenger_cars: Whether or not to include inventories of future passenger cars. If
+    a dictionary is passed, it will look inside to collect arguments such as a specified fleet file,
+    or a list of regions to generate inventories for. If a boolean is passed, inventories are
+    generated for all regions.
+    :vartype add_passenger_cars: bool or dict
+    :ivar add_trucks: Whether or not to include inventories of future medium and heavy duty trucks. If
+    a dictionary is passed, it will look inside to collect arguments such as a specified fleet file,
+    or a list of regions to generate inventories for. If a boolean is passed, inventories are
+    generated for all regions.
+    :vartype add_passenger_cars: bool or dict
 
     """
-
 
     def __init__(self,
                  year,
@@ -80,15 +93,14 @@ class NewDatabase:
                  source_type='brightway',
                  source_file_path=None,
                  filepath_to_iam_files=None,
-                 add_vehicles=None):
+                 add_passenger_cars=None,
+                 add_trucks=None):
 
-
-
-        if model not in ["remind", "image"]:
+        if model.lower() not in ["remind", "image"]:
             raise ValueError("Only REMIND and IMAGE model scenarios are currently supported.")
 
         if filepath_to_iam_files is None:
-            if model == "remind":
+            if model.lower() == "remind":
                 if scenario not in [
                     "SSP2-Base",
                     "SSP2-NDC",
@@ -101,7 +113,7 @@ class NewDatabase:
                            '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
                            '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
 
-            if model == "image":
+            if model.lower() == "image":
                 if scenario not in [
                     "SSP2-Base",
                 ]:
@@ -110,18 +122,49 @@ class NewDatabase:
 
         # If we produce fleet average vehicles,
         # fleet compositions and electricity mixes must be provided
-        if add_vehicles:
-            if "fleet file" not in add_vehicles:
-                print("No fleet composition file is provided, hence fleet average vehicles inventories will not be produced.")
-            if "source file" not in add_vehicles:
-                add_vehicles["source file"] = (filepath_to_iam_files or DATA_DIR / "iam_output_files")
+        if add_passenger_cars:
+            if isinstance(add_passenger_cars, dict):
+                if "fleet file" not in add_passenger_cars:
+                    print("No fleet composition file is provided, hence fleet average vehicles inventories will not be produced.")
+                if "source file" not in add_passenger_cars:
+                    add_passenger_cars["source file"] = (filepath_to_iam_files or DATA_DIR / "iam_output_files")
+            elif isinstance(add_passenger_cars, bool):
+                if add_passenger_cars == True:
+
+                    # IAM output file extension differs between REMIND and IMAGE
+                    add_passenger_cars = {"region": "all",
+                                    "source file":(filepath_to_iam_files or DATA_DIR / "iam_output_files")
+                                          }
+
+        # If we produce fleet average trucks,
+        # fleet compositions and electricity mixes must be provided
+        if add_trucks:
+            if isinstance(add_trucks, dict):
+                if "fleet file" not in add_trucks:
+                    print(
+                        "No fleet composition file is provided, hence fleet average truck inventories will not be produced.")
+                if "source file" not in add_trucks:
+                    add_trucks["source file"] = (filepath_to_iam_files or DATA_DIR / "iam_output_files")
+            elif isinstance(add_trucks, bool):
+                if add_trucks == True:
+
+                    # IAM output file extension differs between REMIND and IMAGE
+                    add_trucks = {"region": "all",
+                                          "source file": (
+                                                      filepath_to_iam_files or DATA_DIR / "iam_output_files")
+                                          }
 
         if scenario is None:
             raise ValueError("Missing scenario name.")
         else:
             self.scenario = scenario
 
-        if source_version not in SUPPORTED_EI_VERSIONS:
+        try:
+            source_version = float(source_version)
+        except ValueError:
+            raise ValueError(f"Provided ecoinvent version ({source_version}) is not valid.\n")
+
+        if float(source_version) not in SUPPORTED_EI_VERSIONS:
             raise ValueError(
                 (
                     f"Provided ecoinvent version ({source_version}) is not supported.\n"
@@ -131,12 +174,13 @@ class NewDatabase:
 
         self.year = year
         self.source = source_db
-        self.model = model
+        self.model = model.lower()
         self.version = source_version
         self.source_type = source_type
         self.source_file_path = source_file_path
         self.filepath_to_iam_files = Path(filepath_to_iam_files or DATA_DIR / "iam_output_files")
-        self.add_vehicles = add_vehicles
+        self.add_passenger_cars = add_passenger_cars
+        self.add_trucks = add_trucks
 
         if not self.filepath_to_iam_files.is_dir():
             raise FileNotFoundError(
@@ -219,11 +263,19 @@ class NewDatabase:
         lpg.merge_inventory()
 
         # Import `carculator` inventories if wanted
-        if self.add_vehicles:
-            print("Add Carculator inventories")
+        if self.add_passenger_cars:
+            print("Add passenger cars inventories")
             cars = CarculatorInventory(self.db, self.model, self.scenario, self.year, self.version, self.rdc.regions,
-                                       self.add_vehicles)
+                                       self.add_passenger_cars)
             cars.merge_inventory()
+
+        # Import `carculator_truck` inventories if wanted
+        if self.add_trucks:
+            print("Add medium and heavy duty truck inventories")
+            trucks = TruckInventory(self.db, self.model, self.scenario, self.year, self.version,
+                                       self.rdc.regions,
+                                       self.add_trucks)
+            trucks.merge_inventory()
 
     def update_electricity_to_iam_data(self):
         electricity = Electricity(self.db, self.rdc, self.model, self.scenario, self.year)
@@ -236,7 +288,7 @@ class NewDatabase:
             cement = Cement(self.db, self.rdc, self.year, self.version)
             self.db = cement.add_datasets_to_database()
         else:
-            print("The IAM scenario chosen does not contain any data related to the cement sector."
+            print("The IAM scenario chosen does not contain any data related to the cement sector.\n"
                   "Transformations related to the cement sector will be skipped.")
 
     def update_steel_to_iam_data(self):
@@ -245,7 +297,7 @@ class NewDatabase:
             steel = Steel(self.db, self.rdc, self.year)
             self.db = steel.generate_activities()
         else:
-            print("The IAM scenario chosen does not contain any data related to the steel sector."
+            print("The IAM scenario chosen does not contain any data related to the steel sector.\n"
                   "Transformations related to the steel sector will be skipped.")
 
     def update_cars(self):
@@ -253,7 +305,7 @@ class NewDatabase:
             next(ws.get_many(
                 self.db,
                 ws.equals("name", "market group for electricity, low voltage")))
-            crs = Cars(self.db, self.rdc, self.scenario, self.year)
+            crs = Cars(self.db, self.rdc, self.scenario, self.year, self.model)
             crs.update_cars()
         except StopIteration as e:
             print(("No updated electricity markets found. Please update "
@@ -264,7 +316,7 @@ class NewDatabase:
         self.update_electricity_to_iam_data()
         self.update_cement_to_iam_data()
         self.update_steel_to_iam_data()
-        if self.add_vehicles:
+        if self.add_passenger_cars:
             self.update_cars()
 
     def write_db_to_brightway(self):
