@@ -1,6 +1,6 @@
 # ``premise``
 
-# Integrated Assessment Model-based life cycle inventories for prospective life cycle assessment.
+# **PR**ospective **E**nviron**M**ental **I**mpact As**SE**ssment
 ## Coupling the ecoinvent database with projections from Integrated Assessment Models (IAM)
 
 [![Build Status](https://travis-ci.org/romainsacchi/premise.svg?branch=master)](https://travis-ci.org/romainsacchi/premise) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/premise?branch=master) [![Documentation](https://readthedocs.org/projects/premise/badge/?version=latest)](https://premise.readthedocs.io/en/latest/) [![PyPI version](https://badge.fury.io/py/premise.svg)](https://badge.fury.io/py/premise)
