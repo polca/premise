@@ -1,21 +1,21 @@
 # Coupling Integrated Assessment Models and ecoinvent.
 
 <p>
-<a href="https://travis-ci.org/romainsacchi/rmnd-lca" rel="nofollow"><img src="https://camo.githubusercontent.com/ad7ef34aec8925f5a9de57c7442325bcc3397d5ec3b85e4e6b4dcd2e092e3204/68747470733a2f2f7472617669732d63692e6f72672f726f6d61696e7361636368692f726d6e642d6c63612e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/romainsacchi/rmnd-lca.svg?branch=master" style="max-width:100%;"></a>
-<a href="https://coveralls.io/github/romainsacchi/rmnd-lca?branch=master" rel="nofollow"><img src="https://camo.githubusercontent.com/dc4e7f62f5512c0e8365d2a7a437d1729df3d267d72ec6b8efc2a91bc18e3b36/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f6769746875622f726f6d61696e7361636368692f726d6e642d6c63612f62616467652e7376673f6272616e63683d6d6173746572" alt="Coverage Status" data-canonical-src="https://coveralls.io/repos/github/romainsacchi/rmnd-lca/badge.svg?branch=master" style="max-width:100%;"></a>
-<a href="https://rmnd-lca.readthedocs.io/en/latest/" rel="nofollow"><img src="https://camo.githubusercontent.com/b3c50f02deae75a2a92509c6dedd89003dcedb85aa52822105e48158363cf79e/68747470733a2f2f72656164746865646f63732e6f72672f70726f6a656374732f726d6e642d6c63612f62616467652f3f76657273696f6e3d6c6174657374" alt="Documentation" data-canonical-src="https://readthedocs.org/projects/rmnd-lca/badge/?version=latest" style="max-width:100%;"></a>
-<a href="https://badge.fury.io/py/rmnd-lca" rel="nofollow"><img src="https://camo.githubusercontent.com/ffd2ba9c77f29f90825c1d6a49241d3e01bac4dfbe76af9fc2231a0e73e82dbf/68747470733a2f2f62616467652e667572792e696f2f70792f726d6e642d6c63612e737667" alt="PyPI version" data-canonical-src="https://badge.fury.io/py/rmnd-lca.svg" style="max-width:100%;"></a>
+<a href="https://travis-ci.org/romainsacchi/premise" rel="nofollow"><img src="https://camo.githubusercontent.com/ad7ef34aec8925f5a9de57c7442325bcc3397d5ec3b85e4e6b4dcd2e092e3204/68747470733a2f2f7472617669732d63692e6f72672f726f6d61696e7361636368692f726d6e642d6c63612e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/romainsacchi/premise.svg?branch=master" style="max-width:100%;"></a>
+<a href="https://coveralls.io/github/romainsacchi/premise?branch=master" rel="nofollow"><img src="https://camo.githubusercontent.com/dc4e7f62f5512c0e8365d2a7a437d1729df3d267d72ec6b8efc2a91bc18e3b36/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f6769746875622f726f6d61696e7361636368692f726d6e642d6c63612f62616467652e7376673f6272616e63683d6d6173746572" alt="Coverage Status" data-canonical-src="https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master" style="max-width:100%;"></a>
+<a href="https://premise.readthedocs.io/en/latest/" rel="nofollow"><img src="https://camo.githubusercontent.com/b3c50f02deae75a2a92509c6dedd89003dcedb85aa52822105e48158363cf79e/68747470733a2f2f72656164746865646f63732e6f72672f70726f6a656374732f726d6e642d6c63612f62616467652f3f76657273696f6e3d6c6174657374" alt="Documentation" data-canonical-src="https://readthedocs.org/projects/premise/badge/?version=latest" style="max-width:100%;"></a>
+<a href="https://badge.fury.io/py/premise" rel="nofollow"><img src="https://camo.githubusercontent.com/ffd2ba9c77f29f90825c1d6a49241d3e01bac4dfbe76af9fc2231a0e73e82dbf/68747470733a2f2f62616467652e667572792e696f2f70792f726d6e642d6c63612e737667" alt="PyPI version" data-canonical-src="https://badge.fury.io/py/premise.svg" style="max-width:100%;"></a>
 </p>
 
 
 Introduction
 ============
 
-**rmnd-lca** allows to align the life cycle inventories contained in the life cycle inventory database **ecoinvent 3 cutoff**
+**premise** allows to align the life cycle inventories contained in the life cycle inventory database **ecoinvent 3 cutoff**
 with the output results of Integrated Assessment Models (IAM), such as **REMIND** or **IMAGE**,
 in order to produce life cycle inventories under future policy scenarios for any year between 2005 and 2100.
 
-More specifically, **rmnd-lca** will apply a series of transformation functions to ecoinvent.
+More specifically, **premise** will apply a series of transformation functions to ecoinvent.
 
 In the latest version (0.1.7), the following transformation functions are available:
 
@@ -81,11 +81,11 @@ Two options:
 A development version with the latest advancements (but with the risks of unseen bugs),
 is available on Conda:
 
-    conda install rmnd-lca
+    conda install premise
 
 For a more stable and proven version, from Pypi:
 
-    pip install rmnd-lca
+    pip install premise
 
 will install the package and the required dependencies.
 
@@ -95,7 +95,7 @@ How to use it?
 Examples notebook
 *****************
 
-`This notebook <https://github.com/romainsacchi/rmnd-lca/blob/master/examples/examples.ipynb>`_ will show you everything you need to know to use **rmnd_lca**.
+`This notebook <https://github.com/romainsacchi/premise/blob/master/examples/examples.ipynb>`_ will show you everything you need to know to use **premise**.
 
 Methodology
 -----------
@@ -123,7 +123,7 @@ This transformation function reads electricity-related variables from the IAM fi
 datasets and markets.
 
 1. Power plants efficiencies
-`rmnd_lca` iterates through all the electricity production datasets that rely on fuel combustion.
+`premise` iterates through all the electricity production datasets that rely on fuel combustion.
 This includes combustion of hard coal, lignite, natural gas and oil.
 It identifies the current efficiency of the process, either by looking up in the parameters of the
 dataset, or by calculating the fuel-to-electricity-output ratio.
@@ -131,13 +131,13 @@ Then, it looks up the expected efficiency for the technology from the IAM file f
 exchanges to that new efficiency ratio, including fuel inputs, infrastructure as well as carbon dioxide emissions.
 
 2. Non-CO2 regulated emissions
-`rmnd_lca` iterates through all the electricity production datasets that rely on fuel combustion.
+`premise` iterates through all the electricity production datasets that rely on fuel combustion.
 This includes combustion of hard coal, lignite, natural gas and oil.
 It looks up the expected emissions for each technology for the year considered in the GAINS air emission model data.
 It updates the corresponding emissions. This includes emissions of SO_2, CO, NO_x, NH_3 and NMVOC.
 
 3. Electricity markets
-`rmnd_lca` deletes existing electricity markets.
+`premise` deletes existing electricity markets.
 Then, it creates new ones for each region of the IAM model, for high, medium and low voltage respectively.
 Shares of each technology are looked up from the IAM file for the year considered.
 
@@ -173,7 +173,7 @@ Main contributor
 
 `Romain Sacchi <https://github.com/romainsacchi>`_
 
-`rmnd_lca` uses a combination of two external data sources:
+`premise` uses a combination of two external data sources:
 * `WBCSD's GNR database <https://gccassociation.org/gnr/>`_ for historical data (1990 - 2018) on clinker and cement production, fuel mixes, clinker-to-cement ratio, etc.
 * `IEA's technology roadmap for the cement industry <https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry>`_ for projected data on clinker and cement production.
 
@@ -198,14 +198,14 @@ on-site production of electricity and heat based on waste heat recovery, the rec
 electricity and heat needed for the CO_2 capture.
 
 2. Cement production
-`rmnd_lca` deletes existing national cement production datasets and create regional ones instead, to match the IAM regions.
+`premise` deletes existing national cement production datasets and create regional ones instead, to match the IAM regions.
 Then, it adjusts the electricity requirement to the value indicated by the GNR
 database or the IEA projections. Most of that electricity is used for grinding.
 Finally, it re-links all the ecoinvent activities that consume cement to the newly created cement production datasets
 (mostly cement markets).
 
 3. Cement markets
-`rmnd_lca` iterates through the market datasets for average cement (called "unspecified cement" in ecoinvent).
+`premise` iterates through the market datasets for average cement (called "unspecified cement" in ecoinvent).
 For each of these datasets, it will modify the supply share of each cement production dataset in that market in order to reach
 the clinker-to-cement ratio indicated by the GNR database or the IEA projections for the concerned region
 and year, in order to consider the use of supplementary cimentitious materials (e.g., fly ash, slag, calcined clay, etc.).
@@ -225,7 +225,7 @@ Remark 1: still in development
 Remark 2: only works with the variables of the industry module of REMIND
 
 1. Steel markets
-`rmnd_lca` starts by deleting existing steel markets and replacing them by regional steel markets (for each region of
+`premise` starts by deleting existing steel markets and replacing them by regional steel markets (for each region of
 the IAM). Within each of these markets, the respective shares of primary and secondary steel are adjusted.
 After this, steel-consuming datasets in ecoinvent are re-linked to the new steel market datasets, based on their location.
 

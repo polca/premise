@@ -45,7 +45,7 @@ setup(
         'prettytable',
         'pycountry'
     ],
-    url="https://github.com/romainsacchi/rmnd-lca",
+    url="https://github.com/romainsacchi/premise",
     description='Coupling REMIND output to ecoinvent LCA database ecoinvent for prospective LCA',
     classifiers=[
         'Intended Audience :: End Users/Desktop',

@@ -1,15 +1,15 @@
-# ``rmnd_lca``
+# ``premise``
 
 # Integrated Assessment Model-based life cycle inventories for prospective life cycle assessment.
 ## Coupling the ecoinvent database with projections from Integrated Assessment Models (IAM)
 
-[![Build Status](https://travis-ci.org/romainsacchi/rmnd-lca.svg?branch=master)](https://travis-ci.org/romainsacchi/rmnd-lca) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/rmnd-lca/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/rmnd-lca?branch=master) [![Documentation](https://readthedocs.org/projects/rmnd-lca/badge/?version=latest)](https://rmnd-lca.readthedocs.io/en/latest/) [![PyPI version](https://badge.fury.io/py/rmnd-lca.svg)](https://badge.fury.io/py/rmnd-lca)
+[![Build Status](https://travis-ci.org/romainsacchi/premise.svg?branch=master)](https://travis-ci.org/romainsacchi/premise) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/premise?branch=master) [![Documentation](https://readthedocs.org/projects/premise/badge/?version=latest)](https://premise.readthedocs.io/en/latest/) [![PyPI version](https://badge.fury.io/py/premise.svg)](https://badge.fury.io/py/premise)
 
 
 Introduction
 ============
 
-**rmnd-lca** allows to align the life cycle inventories contained in the **ecoinvent 3.5, 3.6 and 3.7 cutoff** databases with
+**premise** allows to align the life cycle inventories contained in the **ecoinvent 3.5, 3.6 and 3.7 cutoff** databases with
 the output results of Integrated Assessment Models (IAM) **REMIND** and **IMAGE**, in order to produce life cycle inventories under
 future policy scenarios (from business-as-usual to very ambitious climate scenarios) for any year between 2005 and 2100.
 
@@ -23,7 +23,7 @@ Either:
 Transformations
 ---------------
 
-More specifically, **rmnd-lca** will apply a series of transformation functions to ecoinvent.
+More specifically, **premise** will apply a series of transformation functions to ecoinvent.
 
 In the latest version (0.1.7), the following transformation functions are available:
 
@@ -80,7 +80,7 @@ Either:
 
 Documentation
 -------------
-[https://rmnd-lca.readthedocs.io/en/latest/](https://rmnd-lca.readthedocs.io/en/latest/)
+[https://premise.readthedocs.io/en/latest/](https://premise.readthedocs.io/en/latest/)
 
 Objective
 ---------
@@ -105,11 +105,11 @@ Two options:
 A development version with the latest advancements (but with the risks of unseen bugs),
 is available on Conda:
 
-    conda install rmnd-lca
+    conda install premise
 
 For a more stable and proven version, from Pypi:
 
-    pip install rmnd-lca
+    pip install premise
 
 will install the package and the required dependencies.
 
@@ -138,7 +138,7 @@ Then, for a chosen policy and year between 2005 and 2150, the following function
 
 For example, here with the year 2028 and a baseline variant of a "middle of the road" socioeconomic pathway called "SSP2-Base":
 ```python
-    from rmnd_lca import *
+    from premise import *
     ndb = NewDatabase(scenario = 'SSP2-Base',
               year = 2028,
               source_db = 'ecoinvent 3.7 cutoff',
@@ -151,13 +151,13 @@ The current variants available of SSP2 are:
 * SSP2-NDC: All emission reductions and other mitigation commitments of the Nationally Determined Contributions under the Paris Agreement are implemented.
 * SSP2-PkBudg900, SSP2-PkBudg1100, SSP2-PkBudg1300: PkBudg 1300/1100/900: Climate policies to limit cumulative 2011-2100 CO2 emissions to 1300/1100/900 gigatons over the entire time horizon (not-to-exceed). Correspond to 2°, well-below 2° and 1.5° targets respectively. Other greenhouse gases are priced with the CO2e-price using 100year global warming potentials.
 
-Further description of those scenarios is provided [here](https://github.com/romainsacchi/rmnd-lca/blob/master/rmnd_lca/data/remind_output_files/description.md).
+Further description of those scenarios is provided [here](https://github.com/romainsacchi/premise/blob/master/premise/data/remind_output_files/description.md).
 
 Note that, by default, the library will look for REMIND output files ("xxx.mif" files and "GAINS emission factors.csv") in the
 "data/remind_output_files" subdirectory. If those are not located there, you need to specify the path to
 the correct directory, as such::
 ```python
-    from rmnd_lca import *
+    from premise import *
     
     ndb = NewDatabase(
         model="remind",
@@ -177,7 +177,7 @@ like shown in the example below, by specifying `source_type = 'ecospold'`
 and the file path to the ecospold files in `source_file_path`.
 
 ```python
-    from rmnd_lca import *
+    from premise import *
     ndb = NewDatabase(scenario = 'SSP2-Base',
                   year = 2028,
                   source_db = 'ecoinvent 3.5 cutoff',
@@ -225,7 +225,7 @@ according to the projections given by REMIND,
 Note that logs of:
 * deleted and created electricity markets
 * changes in efficiencies for each power plant
-are created in the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
+are created in the `data/logs/` directory as MS Excel files, within premise working directory.
 
 #### Cement (not available yet)
 
@@ -248,7 +248,7 @@ The following function will:
 ```
 
 Note that logs of deleted and created clinker and cement datasets are created in
-the `data/logs/` directory as MS Excel files, within rmnd_lca working directory.
+the `data/logs/` directory as MS Excel files, within premise working directory.
 
 ### Load (export back to brightway2)
 
@@ -277,7 +277,7 @@ If you do not use brightway2, it is possible to export the transformed database 
 returns
 ```
     Write new database to matrix.
-    Matrices saved in C:\Users\username\Documents\GitHub\rmnd-lca\rmnd_lca\data\matrices.
+    Matrices saved in C:\Users\username\Documents\GitHub\premise\premise\data\matrices.
 ```
 
 Two matrices are created:
@@ -305,9 +305,9 @@ or [aloisdir@pik-potsdam.de](mailto:aloisdir@pik-potsdam.de).
 
 ## Contributing
 
-See [contributing](https://github.com/romainsacchi/rmnd-lca/blob/master/CONTRIBUTING.md).
+See [contributing](https://github.com/romainsacchi/premise/blob/master/CONTRIBUTING.md).
 
 ## License
 
-[BSD-3-Clause](https://github.com/romainsacchi/rmnd-lca/blob/master/LICENSE).
+[BSD-3-Clause](https://github.com/romainsacchi/premise/blob/master/LICENSE).
 Copyright 2020 Potsdam Institute for Climate Impact Research, Paul Scherrer Institut.
