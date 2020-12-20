@@ -40,8 +40,9 @@ setup(
         'pandas',
         'bw2data',
         'brightway2',
-        'xarray>0.15.0',
-        'carculator>=1.2.8',
+        'xarray',
+        'carculator',
+        'carculator_truck',
         'prettytable',
         'pycountry'
     ],

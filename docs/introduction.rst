@@ -1,13 +1,22 @@
 Coupling Integrated Assessment Models and ecoinvent for prospective environmental impact assessment
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-<p>
-<a href="https://travis-ci.org/romainsacchi/premise" rel="nofollow"><img src="https://camo.githubusercontent.com/ad7ef34aec8925f5a9de57c7442325bcc3397d5ec3b85e4e6b4dcd2e092e3204/68747470733a2f2f7472617669732d63692e6f72672f726f6d61696e7361636368692f726d6e642d6c63612e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/romainsacchi/premise.svg?branch=master" style="max-width:100%;"></a>
-<a href="https://coveralls.io/github/romainsacchi/premise?branch=master" rel="nofollow"><img src="https://camo.githubusercontent.com/dc4e7f62f5512c0e8365d2a7a437d1729df3d267d72ec6b8efc2a91bc18e3b36/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f6769746875622f726f6d61696e7361636368692f726d6e642d6c63612f62616467652e7376673f6272616e63683d6d6173746572" alt="Coverage Status" data-canonical-src="https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master" style="max-width:100%;"></a>
-<a href="https://premise.readthedocs.io/en/latest/" rel="nofollow"><img src="https://camo.githubusercontent.com/b3c50f02deae75a2a92509c6dedd89003dcedb85aa52822105e48158363cf79e/68747470733a2f2f72656164746865646f63732e6f72672f70726f6a656374732f726d6e642d6c63612f62616467652f3f76657273696f6e3d6c6174657374" alt="Documentation" data-canonical-src="https://readthedocs.org/projects/premise/badge/?version=latest" style="max-width:100%;"></a>
-<a href="https://badge.fury.io/py/premise" rel="nofollow"><img src="https://camo.githubusercontent.com/ffd2ba9c77f29f90825c1d6a49241d3e01bac4dfbe76af9fc2231a0e73e82dbf/68747470733a2f2f62616467652e667572792e696f2f70792f726d6e642d6c63612e737667" alt="PyPI version" data-canonical-src="https://badge.fury.io/py/premise.svg" style="max-width:100%;"></a>
-</p>
 
+.. image:: https://travis-ci.org/romainsacchi/premise.svg?branch=master
+    :target: https://travis-ci.org/romainsacchi/premise
+    :alt: Travis status
+
+.. image:: https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master
+    :target: https://coveralls.io/github/romainsacchi/premise?branch=master
+    :alt: Coveralls status
+
+.. image:: https://readthedocs.org/projects/premise/badge/?version=latest
+    :target: https://premise.readthedocs.io/en/latest/
+    :alt: Readthedocs status
+
+.. image:: https://badge.fury.io/py/premise.svg
+    :target: https://badge.fury.io/py/premise
+    :alt: Pypi package version
 
 Introduction
 ============
