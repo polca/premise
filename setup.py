@@ -7,7 +7,7 @@ if root_dir:
     os.chdir(root_dir)
 
 # Probably should be changed, __init__.py is no longer required for Python 3
-for dirpath, dirnames, filenames in os.walk('rmnd_lca'):
+for dirpath, dirnames, filenames in os.walk('premise'):
     # Ignore dirnames that start with '.'
     if '__init__.py' in filenames:
         pkg = dirpath.replace(os.path.sep, '.')
@@ -25,7 +25,7 @@ def package_files(directory):
 
 
 setup(
-    name='rmnd-lca',
+    name='premise',
     version="0.1.6",
     packages=packages,
     author="Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>, Tom Terlouw <tom.terlouw@psi.ch>, Romain Sacchi <romain.sacchi@psi.ch>",

@@ -1,4 +1,4 @@
-from rmnd_lca.geomap import Geomap
+from premise.geomap import Geomap
 
 geomap = Geomap(model="remind")
 

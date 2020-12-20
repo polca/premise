@@ -1,5 +1,5 @@
 package:
-  name: rmnd-lca
+  name: premise
   version: {{ environ['VERSION'] }}
 
 source:
@@ -43,10 +43,10 @@ requirements:
 
 test:
   imports:
-    - rmnd_lca
+    - premise
 
 about:
-  home: https://github.com/romainsacchi/rmnd-lca
+  home: https://github.com/romainsacchi/premise
   license: BSD License
   summary: 'Coupling REMIND output to ecoinvent LCA databases.'
 license_family: BSD

@@ -1,10 +1,10 @@
 # content of test_activity_maps.py
 import pytest
-from rmnd_lca.inventory_imports import \
+from premise.inventory_imports import \
     BaseInventoryImport, CarmaCCSInventory,\
     BiofuelInventory, CarculatorInventory
 from pathlib import Path
-from rmnd_lca import INVENTORY_DIR, DATA_DIR
+from premise import INVENTORY_DIR, DATA_DIR
 
 
 FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xls")

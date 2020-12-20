@@ -1,6 +1,6 @@
-from rmnd_lca import DATA_DIR
-from rmnd_lca import NewDatabase
-from rmnd_lca.cars import Cars
+from premise import DATA_DIR
+from premise import NewDatabase
+from premise.cars import Cars
 import os
 import pytest
 import wurst
