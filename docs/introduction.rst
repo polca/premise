@@ -1,4 +1,5 @@
-# Coupling Integrated Assessment Models and ecoinvent.
+Coupling Integrated Assessment Models and ecoinvent for prospective environmental impact assessment
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 <p>
 <a href="https://travis-ci.org/romainsacchi/premise" rel="nofollow"><img src="https://camo.githubusercontent.com/ad7ef34aec8925f5a9de57c7442325bcc3397d5ec3b85e4e6b4dcd2e092e3204/68747470733a2f2f7472617669732d63692e6f72672f726f6d61696e7361636368692f726d6e642d6c63612e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/romainsacchi/premise.svg?branch=master" style="max-width:100%;"></a>
@@ -20,15 +21,16 @@ More specifically, **premise** will apply a series of transformation functions t
 In the latest version (0.1.7), the following transformation functions are available:
 
 * **update_electricity_to_iam_data()**: alignment of regional electricity production mixes as well as efficiencies for a number of
-electricity production technologies, including Carbon Capture and Storage technologies.
+    electricity production technologies, including Carbon Capture and Storage technologies.
 * **update_cars()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
-including penetration of bio- and synthetic fuels.
+    including penetration of bio- and synthetic fuels.
 * **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
-fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
+    fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
 * **update_steel_to_iam_data()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
 
 However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
 the IAM file you use as input.
+
 
 .. csv-table:: Availability of transformation functions
     :file: table_1.csv
@@ -59,7 +61,7 @@ Additionally, a number of inventories for emerging technologies are added upon t
 * hydrogen production from coal gasification `Antonini et al. 2020 <https://doi.org/10.1039/D0SE00222D>`_
 * hydrogen production from woody biomass gasification, with and without CCS `Antonini et al. 2020 <https://doi.org/10.1039/D0SE00222D>`_
 * synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrolchemical methanation (gas) processes,
- using direct air capture (DAC) `Zhang et al. 2019 <https://doi.org/10.1039/C9SE00986H>`_
+    using direct air capture (DAC) `Zhang et al. 2019 <https://doi.org/10.1039/C9SE00986H>`_
 * passenger car inventories from the library `carculator <https://github.com/romainsacchi/carculator>`_
 * medium and heavy duty trucks from the library `carculator_truck <https://github.com/romainsacchi/carculator_truck>`_
 
@@ -69,7 +71,7 @@ Requirements
 * Python language interpreter 3.x
 * License for ecoinvent 3
 * Some IAM output files come with the library ("REMIND_xxx.mif" for REMIND, "IMAGE_xxxx.xlsx" for IMAGE)
- and are located by default in the subdirectory "/data/iam_output_files".
+    and are located by default in the subdirectory "/data/iam_output_files".
  A file path can be specified to fetch IAM output files elsewhere on your computer.
 * brightway2 (optional)
 
@@ -81,9 +83,13 @@ Two options:
 A development version with the latest advancements (but with the risks of unseen bugs),
 is available on Conda:
 
+.. code-block:: python
+
     conda install premise
 
 For a more stable and proven version, from Pypi:
+
+.. code-block:: python
 
     pip install premise
 
@@ -183,19 +189,18 @@ the geographical scope of each IAM region).
 
 For each clinker production dataset, the following aspects are adjusted:
 * the thermal efficiency of the kiln: it is calculated as the product of the projected efficiency of each kiln technology
- (dry, semi-dry, wet, with or without pre-calciner, with or without pre-heater) and the expected share of each technology
- for the concerned region and year.
+    (dry, semi-dry, wet, with or without pre-calciner, with or without pre-heater) and the expected share of each technology
+    for the concerned region and year.
 * the fuel mix: the use of fossil fuel, waste fuel and biomass fuel is adjusted, based on the thermal efficiency of the kiln
-and the calorific value of each fuel.
+    and the calorific value of each fuel.
 * fuel-related emissions (fossil and biogenic CO_2)): they are adjusted based on the fuel mix and thermal efficiency of the kiln as well as their
-respective emissions factors.
+    respective emissions factors.
 * other emissions: emissions of SO_2, CO, NO_x, NH_3 and NMVOC are adjusted based on the GAINS air emission model data
-for the cement sector.
-* production of excess heat and electricity:
+    for the cement sector.
 * carbon capture and storage (CCS): if the IAM file provides a number for CCS for cement production for that region and
-that year, additional input of electricity and heat are added for the CO2 capture. Note that, if the GNR or IEA data indicates
-on-site production of electricity and heat based on waste heat recovery, the recovered amounts are subtracted to the
-electricity and heat needed for the CO_2 capture.
+    that year, additional input of electricity and heat are added for the CO2 capture. Note that, if the GNR or IEA data indicates
+    on-site production of electricity and heat based on waste heat recovery, the recovered amounts are subtracted to the
+    electricity and heat needed for the CO_2 capture.
 
 2. Cement production
 `premise` deletes existing national cement production datasets and create regional ones instead, to match the IAM regions.
