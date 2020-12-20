@@ -38,10 +38,14 @@ fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) 
 However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
 the IAM file you use as input.
 
-.. csv-table:: Availability of transformation functions
-    :file: table_1.csv
-    :widths: 10 10 30 10 10 10 10
-    :header-rows: 1
+|Function                        |Implemented?|Description                                                            |REMIND|IMAGE|Other IAM|Comment                               |
+|--------------------------------|------------|-----------------------------------------------------------------------|------|-----|---------|--------------------------------------|
+|update_electricity_to_iam_data()| Yes        | Aligns electricity markets and power plants efficiencies with IAM     | Yes  | Yes | No      |                                      |
+|update_cars()                   | Yes        | Aligns fuel markets for transport with IAM                            | Yes  | Yes | No      |                                      |
+|update_cement_to_iam_data()     | Yes        | Aligns cement production and cement supply with external projections  | Yes  | Yes | Yes     | Does not currently use IAM data but external data sources (WBCSD and IEA)|
+|update_steel_to_iam_data()      | Yes        | Align steel production and primary and secondary steel supply with IAM| Yes  | No  | No      | Only works with REMIND at the moment.|
+|update_metal_markets()          | Not yet    | Align metal extraction and supply with IAM                            | No   | No  | No      |                                      |
+|update_renewables()             | Not yet    | Align renewable energy systems performances with IAM                  | No   | No  | No      |                                      |
 
 
 The following REMIND IAM files come with the library:
