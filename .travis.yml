@@ -27,6 +27,7 @@ before_install:
       conda config --append channels konstantinstadler;
       conda config --append channels romainsacchi;
       conda update conda;
+      conda config --set channel_priority strict;
       conda info -a;
       echo $(python --version);
     fi

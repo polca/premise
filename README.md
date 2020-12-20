@@ -110,9 +110,9 @@ How to install this package?
 Two options:
 
 A development version with the latest advancements (but with the risks of unseen bugs),
-is available on Conda:
+is available from Anaconda Cloud:
 
-    conda install premise
+    conda install -c romainsacchi premise
 
 For a more stable and proven version, from Pypi:
 

@@ -47,7 +47,7 @@ setup(
         'pycountry'
     ],
     url="https://github.com/romainsacchi/premise",
-    description='Coupling REMIND output to ecoinvent LCA database ecoinvent for prospective LCA',
+    description='Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA',
     classifiers=[
         'Intended Audience :: End Users/Desktop',
         'Intended Audience :: Developers',
@@ -61,6 +61,7 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Scientific/Engineering :: Mathematics',
         'Topic :: Scientific/Engineering :: Visualization',
