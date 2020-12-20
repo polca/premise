@@ -8,6 +8,40 @@ As it now evolves towards a more IAM-neutral approach, a change of name was cons
  
 [![Build Status](https://travis-ci.org/romainsacchi/premise.svg?branch=master)](https://travis-ci.org/romainsacchi/premise) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/premise?branch=master) [![Documentation](https://readthedocs.org/projects/premise/badge/?version=latest)](https://premise.readthedocs.io/en/latest/) [![PyPI version](https://badge.fury.io/py/premise.svg)](https://badge.fury.io/py/premise)
 
+Documentation
+-------------
+[https://premise.readthedocs.io/en/latest/](https://premise.readthedocs.io/en/latest/)
+
+Objective
+---------
+
+The objective is to produce life cycle inventories under future energy policies, by modifying the inventory database
+ecoinvent 3 to reflect projected energy policy trajectories.
+
+Requirements
+------------
+* Python language interpreter 3.x
+* License for ecoinvent 3
+* Some IAM output files come with the library ("REMIND_xxx.mif" for REMIND, "IMAGE_xxxx.xlsx" for IMAGE)
+ and are located by default in the subdirectory "/data/iam_output_files".
+ A file path can be specified to fetch IAM output files elsewhere on your computer.
+ * brightway2 (optional)
+
+How to install this package?
+----------------------------
+
+Two options:
+
+A development version with the latest advancements (but with the risks of unseen bugs),
+is available from Anaconda Cloud:
+
+    conda install -c romainsacchi premise
+
+For a more stable and proven version, from Pypi:
+
+    pip install premise
+
+will install the package and the required dependencies.
 
 Introduction
 ============
@@ -84,41 +118,6 @@ Outputs
 Either:
 * a database to register in a brightway2 project
 * a sparse matrix representation of the database stored in csv files
-
-Documentation
--------------
-[https://premise.readthedocs.io/en/latest/](https://premise.readthedocs.io/en/latest/)
-
-Objective
----------
-
-The objective is to produce life cycle inventories under future energy policies, by modifying the inventory database
-ecoinvent 3 to reflect projected energy policy trajectories.
-
-Requirements
-------------
-* Python language interpreter 3.x
-* License for ecoinvent 3
-* Some IAM output files come with the library ("REMIND_xxx.mif" for REMIND, "IMAGE_xxxx.xlsx" for IMAGE)
- and are located by default in the subdirectory "/data/iam_output_files".
- A file path can be specified to fetch IAM output files elsewhere on your computer.
- * brightway2 (optional)
-
-How to install this package?
-----------------------------
-
-Two options:
-
-A development version with the latest advancements (but with the risks of unseen bugs),
-is available from Anaconda Cloud:
-
-    conda install -c romainsacchi premise
-
-For a more stable and proven version, from Pypi:
-
-    pip install premise
-
-will install the package and the required dependencies.
 
 How to use it?
 --------------
