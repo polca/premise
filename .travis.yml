@@ -25,7 +25,7 @@ before_install:
       conda config --append channels conda-forge;
       conda config --append channels cmutel;
       conda config --append channels konstantinstadler;
-      conda config --append channels romainsacchi/label/nightly;
+      conda config --append channels romainsacchi;
       conda update conda;
       conda info -a;
       echo $(python --version);
