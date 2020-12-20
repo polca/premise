@@ -1,7 +1,6 @@
-import pytest
 from rmnd_lca.geomap import Geomap
 
-geomap = Geomap()
+geomap = Geomap(model="remind")
 
 
 def test_ecoinvent_to_REMIND():

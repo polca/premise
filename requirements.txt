@@ -6,4 +6,5 @@ wurst
 xarray
 prettytable
 carculator
+carculator_truck
 pycountry

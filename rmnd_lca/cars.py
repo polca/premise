@@ -26,7 +26,8 @@ class Cars:
         self.year = year
         self.model = model
 
-    def _create_local_copy(self, old_act, region):
+    @staticmethod
+    def _create_local_copy(old_act, region):
         """
         Create a local copy of an activity.
         Update also the production exchange.
@@ -78,9 +79,8 @@ class Cars:
                     "uncertainty type": 0,
                     "unit": "kilowatt hour",
                 })
-            except:
+            except ws.NoResults:
                 pass
-
 
     def _find_local_supplier(self, region, name):
         """
@@ -89,20 +89,23 @@ class Cars:
         eventually *any* activity with this name.
         """
         def producer_in_locations(locs):
-            prod = None
-            producers = list(ws.get_many(
+
+            possible_producers = list(ws.get_many(
                 self.db,
                 ws.equals("name", name),
                 ws.either(*[
                     ws.equals("location", loc) for loc in locs
                 ])))
-            if len(producers) >= 1:
-                prod = producers[0]
-                if len(producers) > 1:
-                    print(("Multiple producers for {} found in {}, "
+            if len(possible_producers) >= 1:
+                selected_producer = possible_producers[0]
+                if len(possible_producers) > 1:
+                    print(("Multiple potential producers for {} found in {}, "
                            "using activity from {}").format(
                                name, region, prod["location"]))
-            return prod
+            else:
+                selected_producer = None
+
+            return selected_producer
 
         ei_locs = self.geo.iam_to_ecoinvent_location(region, contained=True)
         prod = producer_in_locations(ei_locs)
@@ -180,8 +183,6 @@ class Cars:
                         ws.equals("name", "market group for diesel"),
                         ws.equals("location", "GLO"))
 
-
-
                 # local syndiesel
                 new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
                     region,
@@ -202,7 +203,6 @@ class Cars:
                     }
                 }
 
-
                 print("Relinking fuel markets for ICEVs in {}".format(region))
                 for ftype in supply_search:
                     for subtype in supply_search[ftype]:
@@ -219,7 +219,7 @@ class Cars:
                             print("Scenario {} Year {}, could not find a supplier for {} in {}"
                                   .format(self.scenario, self.year,
                                           supply_search[ftype][subtype], region))
-            except:
+            except ws.NoResults:
                 pass
 
     def update_cars(self):

@@ -2,7 +2,6 @@ from . import DATA_DIR
 import csv
 import pandas as pd
 
-
 CO2_FUELS = DATA_DIR / "fuel_co2_emission_factor.txt"
 LHV_FUELS = DATA_DIR / "fuels_lower_heating_value.txt"
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"

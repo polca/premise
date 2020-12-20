@@ -4,7 +4,8 @@ from rmnd_lca.inventory_imports import \
     BaseInventoryImport, CarmaCCSInventory,\
     BiofuelInventory, CarculatorInventory
 from pathlib import Path
-from rmnd_lca import INVENTORY_DIR
+from rmnd_lca import INVENTORY_DIR, DATA_DIR
+
 
 FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xls")
 FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xls")
@@ -94,6 +95,14 @@ def test_load_biofuel():
 
 def test_load_carculator():
     db, version = get_db()
-    carc = CarculatorInventory(db, 2015, "3.7", ["EUR"])
+    carc = CarculatorInventory(database=db,
+                               version=3.7,
+                               model="remind",
+                               path=Path(""),
+                               scenario="SSP2-Base",
+                               year=2015,
+                               regions=["EUR"],
+                               vehicles={"source file": (DATA_DIR / "iam_output_files")}
+                               )
     assert len(carc.import_db.data) == 335
 

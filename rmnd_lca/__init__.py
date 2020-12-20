@@ -7,7 +7,8 @@ __all__ = (
     "BiofuelInventory",
     "CarmaCCSInventory",
     "Geomap",
-    "DATA_DIR"
+    "DATA_DIR",
+    "INVENTORY_DIR"
 )
 __version__ = (0, 1, 6)
 

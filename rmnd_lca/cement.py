@@ -6,21 +6,25 @@ from wurst import searching as ws
 from .activity_maps import InventorySet
 from .geomap import Geomap
 from .utils import *
+from datetime import date
 
 class Cement:
     """
-    Class that modifies clinker and cement production datasets in ecoinvent based on REMIND and WBCSD's GNR data.
+    Class that modifies clinker and cement production datasets in ecoinvent, mostly based on WBCSD's GNR data.
     :ivar scenario: name of a Remind scenario
     :vartype scenario: str
 
     """
 
-    def __init__(self, db, rmd, year, version):
+    def __init__(self, db, model, scenario, rmd, year, version):
         self.db = db
+        self.model = model
+        self.scenario = scenario
         self.rmd = rmd
-        self.geo = Geomap()
         self.year = year
         self.version = version
+        self.geo = Geomap(model=model)
+
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio_remind = get_clinker_ratio_remind(self.year)
         self.fuels_lhv = get_lower_heating_values()
@@ -48,29 +52,29 @@ class Cement:
             )
         }
 
-        list_remind_regions = [
+        list_iam_regions = [
             c[1] for c in self.geo.geo.keys()
-            if type(c) == tuple and c[0] == "REMIND"
+            if type(c) == tuple and c[0].lower() == self.model
         ]
 
-        d_remind_to_eco = {r: d_map.get(r, "RoW") for r in list_remind_regions}
+        d_iam_to_eco = {r: d_map.get(r, "RoW") for r in list_iam_regions}
 
         d_act = {}
 
-        for d in d_remind_to_eco:
+        for d in d_iam_to_eco:
             try:
                 ds = ws.get_one(
                     self.db,
                     ws.equals("name", name),
                     ws.equals("reference product", ref_prod),
-                    ws.equals("location", d_remind_to_eco[d]),
+                    ws.equals("location", d_iam_to_eco[d]),
                 )
 
                 d_act[d] = copy.deepcopy(ds)
                 d_act[d]["location"] = d
                 d_act[d]["code"] = str(uuid.uuid4().hex)
             except ws.NoResults:
-                print('No dataset {} found for the REMIND region {}'.format(name, d))
+                print('No dataset {} found for the {} region {}'.format(name, self.model.upper(), d))
                 continue
 
             for prod in ws.production(d_act[d]):
@@ -81,7 +85,9 @@ class Cement:
                    if (act["name"], act['reference product']) == (name, ref_prod)
         ]
 
-        with open(DATA_DIR / "logs/log deleted cement datasets.csv", "a") as csv_file:
+        with open(DATA_DIR / "logs/log deleted cement datasets {} {} {}-{}.csv".format(
+                self.model, self.scenario, self.year, date.today()
+            ), "a") as csv_file:
                 writer = csv.writer(csv_file,
                                     delimiter=';',
                                     lineterminator='\n')
@@ -92,32 +98,31 @@ class Cement:
         self.db = [act for act in self.db
                    if (act["name"], act['reference product']) != (name, ref_prod)]
 
-
         return d_act
 
     @staticmethod
-    def remove_exchanges(dict, list_exc):
+    def remove_exchanges(exchanges_dict, list_exc):
 
         keep = lambda x: {
             k: v
             for k, v in x.items()
-            if not any(ele in x["name"] for ele in list_exc)
+            if not any(ele in x.get("product", list()) for ele in list_exc)
         }
 
-        for r in dict:
-            dict[r]["exchanges"] = [keep(exc) for exc in dict[r]["exchanges"]]
+        for r in exchanges_dict:
+            exchanges_dict[r]["exchanges"] = [keep(exc) for exc in exchanges_dict[r]["exchanges"]]
 
-        return dict
+        return exchanges_dict
 
     def get_suppliers_of_a_region(
-            self, remind_region, ecoinvent_technologies, reference_product
+            self, iam_region, ecoinvent_technologies, reference_product
     ):
         """
         Return a list of datasets which location and name correspond to the region, name and reference product given,
         respectively.
 
-        :param remind_region: a REMIND region
-        :type remind_region: str
+        :param iam_region: an IAM region
+        :type iam_region: str
         :param ecoinvent_technologies: list of names of ecoinvent dataset
         :type ecoinvent_technologies: list
         :param reference_product: reference product
@@ -137,7 +142,7 @@ class Cement:
                 ws.either(
                     *[
                         ws.equals("location", loc)
-                        for loc in self.geo.iam_to_ecoinvent_location(remind_region)
+                        for loc in self.geo.iam_to_ecoinvent_location(iam_region)
                     ]
                 ),
                 ws.equals("unit", "kilogram"),
@@ -177,32 +182,32 @@ class Cement:
         for exc in ws.biosphere(
                 ds, ws.either(*[ws.contains("name", x) for x in self.emissions_map])
             ):
-            remind_emission_label = self.emissions_map[exc["name"]]
+            iam_emission_label = self.emissions_map[exc["name"]]
 
             try:
-                remind_emission = self.rmd.cement_emissions.loc[
+                iam_emission = self.rmd.cement_emissions.loc[
                     dict(
                         region=ds["location"],
-                        pollutant=remind_emission_label
+                        pollutant=iam_emission_label
                     )
                 ].values.item(0)
             except KeyError:
                 # TODO: fix this.
-                # GAINS does not have a 'World' region, hence we use China as a temporary fix
-                remind_emission = self.rmd.cement_emissions.loc[
+                # GAINS does not have a 'World' region, hence we use Europe as a temporary fix
+                iam_emission = self.rmd.cement_emissions.loc[
                     dict(
-                        region='CHA',
-                        pollutant=remind_emission_label
+                        region=self.geo.iam_to_GAINS_region("World"),
+                        pollutant=iam_emission_label
                     )
                 ].values.item(0)
 
 
             if exc["amount"] == 0:
                 wurst.rescale_exchange(
-                    exc, remind_emission / 1, remove_uncertainty=True
+                    exc, iam_emission / 1, remove_uncertainty=True
                 )
             else:
-                wurst.rescale_exchange(exc, remind_emission / exc["amount"])
+                wurst.rescale_exchange(exc, iam_emission / exc["amount"])
         return ds
 
     def build_clinker_market_datasets(self):
@@ -211,10 +216,10 @@ class Cement:
 
     def build_clinker_production_datasets(self):
         """
-        Builds clinker production datasets for each REMIND region.
+        Builds clinker production datasets for each IAM region.
         Add CO2 capture and Storage if needed.
-        Source for Co2 capture and compression: https://www.sciencedirect.com/science/article/pii/S1750583613001230?via%3Dihub#fn0040
-        :return: a dictionary with REMIND regions as keys and clinker production datasets as values.
+        Source for CO2 capture and compression: https://www.sciencedirect.com/science/article/pii/S1750583613001230?via%3Dihub#fn0040
+        :return: a dictionary with IAM regions as keys and clinker production datasets as values.
         :rtype: dict
         """
 
@@ -222,7 +227,7 @@ class Cement:
         d_act_clinker = self.fetch_proxies('clinker production', 'clinker')
 
         # Fuel exchanges to remove
-        list_fuels = ["diesel", "coal", "lignite", "coke", "fuel", "meat", "gas", "oil", "electricity"]
+        list_fuels = ["diesel", "coal", "lignite", "coke", "fuel", "meat", "gas", "oil", "electricity", "wood", "waste"]
 
         # Remove fuel and electricity exchanges in each activity
         d_act_clinker = self.remove_exchanges(d_act_clinker, list_fuels)
@@ -230,7 +235,7 @@ class Cement:
         for k, v in d_act_clinker.items():
             # Production volume by kiln type
             energy_input_per_kiln_type = self.rmd.gnr_data.sel(
-                region=k,
+                region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
                 variables=[
                     v
                     for v in self.rmd.gnr_data.variables.values
@@ -241,7 +246,7 @@ class Cement:
             energy_input_per_kiln_type /= energy_input_per_kiln_type.sum(axis=0)
 
             energy_eff_per_kiln_type = self.rmd.gnr_data.sel(
-                region=k,
+                region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
                 variables=[
                     v
                     for v in self.rmd.gnr_data.variables.values
@@ -261,7 +266,7 @@ class Cement:
                     "Share biomass fuel",
                     "Share fossil fuel",
                 ],
-                region=k
+                region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
             ).clip(0, 1)
 
             fuel_mix /= fuel_mix.sum(axis=0)
@@ -306,49 +311,48 @@ class Cement:
                     energy_input_per_ton_clinker.sum()
                     * fuel_mix
                     * np.array(
-                [
-                    (
-                            self.fuels_co2["waste"]["co2"]
-                            * (self.fuels_co2["waste"]["bio_share"])
-                    ),
-                    (
-                            self.fuels_co2["wood pellet"]["co2"]
-                            * (self.fuels_co2["wood pellet"]["bio_share"])
-                    ),
-                    (
-                            self.fuels_co2["hard coal"]["co2"]
-                            * (self.fuels_co2["hard coal"]["bio_share"])
-                    ),
-                ]
+                    [
+                        (
+                                self.fuels_co2["waste"]["co2"]
+                                * (self.fuels_co2["waste"]["bio_share"])
+                        ),
+                        (
+                                self.fuels_co2["wood pellet"]["co2"]
+                                * (self.fuels_co2["wood pellet"]["bio_share"])
+                        ),
+                        (
+                                self.fuels_co2["hard coal"]["co2"]
+                                * (self.fuels_co2["hard coal"]["bio_share"])
+                        ),
+                    ]
+                )
             )
-            )
 
-
-
-            for fuel in [('waste', 'waste plastic, mixture', 'EUR'),
-                         ('wood pellet', 'wood pellet, measured as dry mass', 'EUR'),
-                         ('hard coal', 'hard coal', 'REF')]:
-                # Select waste fuel providers, fitting the REMIND region
+            for f, fuel in enumerate([('waste', 'waste plastic, mixture'),
+                         ('wood pellet', 'wood pellet, measured as dry mass'),
+                         ('hard coal', 'hard coal')]):
+                # Select waste fuel providers, fitting the IAM region
                 # Fetch respective shares based on production volumes
                 fuel_suppliers = self.get_shares_from_production_volume(
                     self.get_suppliers_of_a_region(k,
                                                    self.fuel_map[fuel[0]],
-                                                   fuel[1]))
+                                                   fuel[1])
+                )
                 if len(fuel_suppliers) == 0:
+                    loc = "EUR" if self.model == "remind" else "WEU"
                     fuel_suppliers = self.get_shares_from_production_volume(
-                        self.get_suppliers_of_a_region(fuel[2],
+                        self.get_suppliers_of_a_region(loc,
                                                        self.fuel_map[fuel[0]],
                                                        fuel[1]))
 
                 # Append it to the dataset exchanges
-                # Append it to the dataset exchanges
                 new_exchanges = []
-                for supplier in fuel_suppliers:
+                for s, supplier in enumerate(fuel_suppliers):
                     new_exchanges.append(
                         {
                             "uncertainty type": 0,
                             "loc": 1,
-                            "amount": (fuel_suppliers[supplier] * fuel_qty_per_type[2].values) / 1000,
+                            "amount": (fuel_suppliers[supplier] * fuel_qty_per_type[f].values) / 1000,
                             "type": "technosphere",
                             "production volume": 0,
                             "product": supplier[2],
@@ -363,13 +367,19 @@ class Cement:
 
             # Add carbon capture-related energy exchanges
             # Carbon capture rate: share of total CO2 captured
-            carbon_capture_rate = (self.rmd.data.sel(
-                variables='Emi|CCO2|FFaI|Industry|Cement',
-                region=k
-            ).interp(year=self.year) / self.rmd.data.sel(
-                variables='Emi|CO2|FFaI|Industry|Cement',
-                region=k
-            ).interp(year=self.year)).values
+            # Note: only if variables exist in IAM data
+            if all(x in self.rmd.data.variables.values
+                   for x in ['Emi|CCO2|FFaI|Industry|Cement',
+                             'Emi|CO2|FFaI|Industry|Cement']):
+                carbon_capture_rate = (self.rmd.data.sel(
+                    variables='Emi|CCO2|FFaI|Industry|Cement',
+                    region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
+                ).interp(year=self.year) / self.rmd.data.sel(
+                    variables='Emi|CO2|FFaI|Industry|Cement',
+                    region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
+                ).interp(year=self.year)).values
+            else:
+                carbon_capture_rate = 0
 
             if carbon_capture_rate > 0:
 
@@ -380,8 +390,7 @@ class Cement:
 
                 # Electricity: 0.024 kWh/kg CO2 for capture, 0.146 kWh/kg CO2 for compression
                 carbon_capture_electricity = carbon_capture_abs * (0.146 + 0.024)
-                new_exchanges = []
-                new_exchanges.append(
+                new_exchanges = [
                             {
                                 "uncertainty type": 0,
                                 "loc": 1,
@@ -393,12 +402,13 @@ class Cement:
                                 "unit": 'kilowatt hour',
                                 "location": k,
                             }
-                        )
+                    ]
+
 
                 # Heat, as steam: 3.48 MJ/kg CO2 captured, minus excess heat generated on site
                 excess_heat_generation = self.rmd.gnr_data.sel(
                     variables='Share of recovered energy, per ton clinker',
-                    region=k
+                    region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
                 ).values * energy_input_per_ton_clinker.sum()
 
                 carbon_capture_heat = (carbon_capture_abs * 3.48) - (excess_heat_generation / 1000)
@@ -418,10 +428,6 @@ class Cement:
                         )
 
                 v["exchanges"].extend(new_exchanges)
-
-            else:
-                carbon_capture_rate = 0
-
 
             # Update fossil CO2 exchange, add 525 kg of fossil CO_2 from calcination, minus CO2 captured
             fossil_co2_exc = [e for e in v["exchanges"] if e['name'] == 'Carbon dioxide, fossil'][0]
@@ -448,7 +454,24 @@ class Cement:
                 }
                 v["exchanges"].append(biogenic_co2_exc)
 
+
+
             v['exchanges'] = [v for v in v["exchanges"] if v]
+
+            v["comment"] = (
+                        "WARNING: Dataset modified by `rmnd_lca` based on WBCSD's GNR data and IEA roadmap " +
+                        " for the cement industry.\n" +
+                        "Calculated energy input per kg clinker: {} MJ/kg clinker.\n".format(
+                            np.round(energy_input_per_ton_clinker.sum(), 1) / 1000) +
+                        "Share of biomass fuel energy-wise: {} pct.\n".format(int(fuel_mix[1] * 100)) +
+                        "Share of waste fuel energy-wise: {} pct.\n".format(int(fuel_mix[0] * 100)) +
+                        "Share of fossil carbon in waste fuel energy-wise: {} pct.\n".format(int(self.fuels_co2["waste"]["bio_share"] * 100)) +
+                        "Share of fossil CO2 emissions from fuel combustion: {} pct.\n".format(int(
+                            (fuel_fossil_co2_per_type.sum() / np.sum(fuel_fossil_co2_per_type.sum() + 525)) * 100)) +
+                        "Share of fossil CO2 emissions from calcination: {} pct.\n".format(100 - int(
+                            (fuel_fossil_co2_per_type.sum() / np.sum(fuel_fossil_co2_per_type.sum() + 525)) * 100)) +
+                        "Rate of carbon capture: {} pct.\n".format(int(carbon_capture_rate * 100))
+                        ) + v["comment"]
 
 
         d_act_clinker = {k:self.update_pollutant_emissions(v) for k,v in d_act_clinker.items()}
@@ -457,41 +480,55 @@ class Cement:
 
     def relink_datasets(self, name, ref_product):
         """
-        For a given dataset name, change its location to a REMIND location,
+        For a given dataset name, change its location to an IAM location,
         to effectively link the newly built dataset(s).
 
         :param ref_product:
         :param name: dataset name
         :type name: str
         """
-        list_remind_regions = [
-            c[1] for c in self.geo.geo.keys() if type(c) == tuple and c[0] == "REMIND"
-        ]
+
+        list_ds = [(ds["name"], ds["reference product"], ds["location"]) for ds in self.db]
 
         for act in self.db:
             for exc in act['exchanges']:
                 try:
                     exc["name"]
-                except:
-                    print(exc)
+                except KeyError:
+                    # If it cannot find the key `name`, it's weird, so we print it but we pass
+                    print("Cannot find field `name` for teh following exchange: {}.".format(exc))
+
                 if (exc['name'], exc.get('product')) == (name, ref_product) and exc['type'] == 'technosphere':
-                    if act['location'] not in list_remind_regions:
-                        if act['location'] == "North America without Quebec":
-                            exc['location'] = 'USA'
-                        else:
-                            exc['location'] = self.geo.ecoinvent_to_iam_location(act['location'])
+                    if (name, ref_product, act["location"]) in list_ds:
+                        exc["location"] = act["location"]
                     else:
-                        exc['location'] = act['location']
+                        try:
+                            new_loc = self.geo.ecoinvent_to_iam_location(act["location"])
+                        except KeyError:
+                            new_loc = ""
+
+                        if (name, ref_product, new_loc) in list_ds:
+                            exc["location"] = new_loc
+                        else:
+                            # new location in ei3.7, not yet defined in `constructive_geometries`
+                            if act["location"] == "North America without Quebec":
+                                exc["location"] = self.geo.ecoinvent_to_iam_location("US")
+
+                            elif act["location"] in ("RoW", "GLO"):
+                                exc["location"] = self.geo.ecoinvent_to_iam_location("CN")
+                            else:
+                                print("Issue with {} used in {}: cannot find the IAM equiavlent for "
+                                      "the location {}".format(name, act["name"], act["location"]))
 
     def adjust_clinker_ratio(self, d_act):
         """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
-        the average clinker-to-cement ratio given by REMIND.
+        the average clinker-to-cement ratio given by the IAM.
 
         The supply of the cement with the highest clinker-to-cement ratio is decreased by 1% to the favor of
         the supply of the cement with the lowest clinker-to-cement ratio, and the average clinker-to-cement ratio
         is calculated.
 
-        This operation is repeated until the average clinker-to-cement ratio aligns with that given by REMIND.
+        This operation is repeated until the average clinker-to-cement ratio aligns with that given by the IAM.
         When the supply of the cement with the highest clinker-to-cement ratio goes below 1%,
         the cement with the second highest clinker-to-cement ratio becomes affected and so forth.
 
@@ -500,7 +537,7 @@ class Cement:
         for d in d_act:
 
             ratio_to_reach = self.clinker_ratio_remind.sel(dict(
-                region=d
+                region=self.geo.iam_to_iam_region(d) if self.model == "image" else d
             )).values
 
             share = []
@@ -516,7 +553,8 @@ class Cement:
 
             average_ratio = (share * ratio).sum()
 
-            while average_ratio > ratio_to_reach:
+            iteration = 0
+            while average_ratio > ratio_to_reach and iteration < 100:
                 share[share == 0] = np.nan
 
                 ratio = np.where(share >= 0.001, ratio, np.nan)
@@ -528,6 +566,7 @@ class Cement:
                 share[lowest_ratio] += .01
 
                 average_ratio = (np.nan_to_num(ratio) * np.nan_to_num(share)).sum()
+                iteration += 1
 
             share = np.nan_to_num(share)
 
@@ -567,17 +606,19 @@ class Cement:
         for act in d_act:
 
             new_exchanges = []
+            electricity_needed = self.rmd.gnr_data.loc[dict(
+                                            variables='Power consumption',
+                                            region=self.geo.iam_to_iam_region(act) if self.model == "image" else act
+                                        )].values / 1000
+            electricity_recovered = self.rmd.gnr_data.loc[dict(
+                                            variables='Power generation',
+                                            region=self.geo.iam_to_iam_region(act) if self.model == "image" else act
+                                        )].values / 1000
             new_exchanges.append(
                         {
                             "uncertainty type": 0,
                             "loc": 1,
-                            "amount": (self.rmd.gnr_data.loc[dict(
-                                            variables='Power consumption',
-                                            region=act
-                                        )].values - self.rmd.gnr_data.loc[dict(
-                                            variables='Power generation',
-                                            region=act
-                                        )].values) / 1000,
+                            "amount": electricity_needed - electricity_recovered,
                             "type": "technosphere",
                             "production volume": 0,
                             "product": 'electricity, medium voltage',
@@ -588,26 +629,36 @@ class Cement:
                     )
 
             d_act[act]["exchanges"].extend(new_exchanges)
-
             d_act[act]['exchanges'] = [v for v in d_act[act]["exchanges"] if v]
 
+            d_act[act]["comment"] = ("WARNING: Dataset modified by `rmnd_lca` based on WBCSD's GNR data and 2018 IEA roadmap for the cement industry.\n " +
+                                "Electricity consumption per kg cement: {} kWh.\n".format(electricity_needed) +
+                                 "Of which {} kWh were generated from on-site waste heat recovery.\n".format(electricity_recovered)
+                                ) + d_act[act]["comment"]
 
         return d_act
 
     def add_datasets_to_database(self):
 
-        print("The validity of the datasets produced from the integration of the cement sector is not yet fully tested. Consider the results with caution.")
+        print("\nStart integration of cement data...\n")
+
+        print("The validity of the datasets produced from the integration of the cement sector is not yet fully tested.\n"
+              "Consider the results with caution.\n")
 
         print('Log of deleted cement datasets saved in {}'.format(DATA_DIR / 'logs'))
         print('Log of created cement datasets saved in {}'.format(DATA_DIR / 'logs'))
 
-        with open(DATA_DIR / "logs/log deleted cement datasets.csv", "w") as csv_file:
+        with open(DATA_DIR / "logs/log deleted cement datasets {} {} {}-{}.csv".format(
+                self.model, self.scenario, self.year, date.today()
+            ), "w") as csv_file:
             writer = csv.writer(csv_file,
                                 delimiter=';',
                                 lineterminator='\n')
             writer.writerow(['dataset name', 'reference product', 'location'])
 
-        with open(DATA_DIR / "logs/log created cement datasets.csv", "w") as csv_file:
+        with open(DATA_DIR / "logs/log created cement datasets {} {} {}-{}.csv".format(
+                self.model, self.scenario, self.year, date.today()
+            ), "w") as csv_file:
             writer = csv.writer(csv_file,
                                 delimiter=';',
                                 lineterminator='\n')
@@ -783,14 +834,14 @@ class Cement:
                             for act in clinker_market_datasets])
 
 
-        with open(DATA_DIR / "logs/log created cement datasets.csv", "a") as csv_file:
+        with open(DATA_DIR / "logs/log created cement datasets {} {} {}-{}.csv".format(
+                self.model, self.scenario, self.year, date.today()
+            ), "a") as csv_file:
                 writer = csv.writer(csv_file,
                                     delimiter=';',
                                     lineterminator='\n')
                 for line in created_datasets:
                     writer.writerow(line)
-
-
 
         print('Relink cement market datasets to new cement production datasets')
         self.relink_datasets('market for cement', 'cement')
@@ -804,7 +855,5 @@ class Cement:
 
         print('Relink clinker market datasets to new clinker production datasets')
         self.relink_datasets('clinker production', 'clinker')
-
-
 
         return self.db

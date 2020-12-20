@@ -1,12 +1,10 @@
 from rmnd_lca import DATA_DIR
 from rmnd_lca import NewDatabase
-from rmnd_lca import IAMDataCollection
 from rmnd_lca.cars import Cars
 import os
 import pytest
 import wurst
 import brightway2 as bw
-import numpy as np
 from pathlib import Path
 
 REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
@@ -18,7 +16,6 @@ scenario = "Budg1100_Conv"
 year = 2035
 remind_regions = ['LAM', 'EUR']
 ecoinvent_version = 3.7
-
 
 def get_db():
     db = [
@@ -119,7 +116,7 @@ def test_link_local_electricity_supply():
     ndb = setup_db()
 
     ndb.update_electricity_to_iam_data()
-    Cars(ndb.db, ndb.rdc, scenario, year).link_local_electricity_supply()
+    Cars(ndb.db, ndb.rdc, scenario, year, ndb.model).link_local_electricity_supply()
 
 
 @pytest.mark.ecoinvent
@@ -129,7 +126,7 @@ def test_link_local_liquid_fuel_markets():
     ndb = setup_db()
 
     ndb.update_electricity_to_iam_data()
-    Cars(ndb.db, ndb.rdc, scenario, year).link_local_liquid_fuel_markets()
+    Cars(ndb.db, ndb.rdc, scenario, year, ndb.model).link_local_liquid_fuel_markets()
 
 
 @pytest.mark.ecoinvent
@@ -145,11 +142,3 @@ def test_full_import():
         del bw.databases[dbname]
     wurst.write_brightway2_database(ndb.db, dbname)
     del bw.databases[dbname]
-
-
-def test_get_fuel_mix():
-
-    rdc = IAMDataCollection(scenario, year, remind_output_folder)
-    data = rdc.get_remind_fuel_mix_for_ldvs()
-    assert data.shape == (13, 3)
-    np.testing.assert_allclose(data.sum(dim="variables"), 1.)

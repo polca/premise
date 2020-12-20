@@ -87,7 +87,7 @@ class Geomap:
         with open(REGION_MAPPING_FILEPATH) as f:
             f.readline()
             csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-            l = [(x[1], x[2]) for x in csv_list]
+            list_of_region = [(x[1], x[2]) for x in csv_list]
 
         # List of countries not found
         countries_not_found = ["CC", "CX", "GG", "JE", "BL"]
@@ -97,7 +97,7 @@ class Geomap:
 
         # Build a dictionary that maps region names (used by REMIND) to ISO country codes
         # And a reverse dictionary that maps ISO country codes to region names
-        for ISO, region in l:
+        for ISO, region in list_of_region:
             if ISO not in countries_not_found:
                 try:
                     rmnd_to_iso[region].append(ISO)
@@ -117,6 +117,9 @@ class Geomap:
 
         :param location: name of a IAM region
         :type location: str
+        :param contained: whether only geographies that are contained within the IAM region should be returned.
+        By default, `contained` is False, meaning the function also returns geographies that intersects with IAM region.
+        :type contained: bool
         :return: name of an ecoinvent region
         :rtype: str
         """
@@ -237,15 +240,22 @@ class Geomap:
             # an IAM location
 
             list_IAM_regions = [
-                k
-                for k in list(self.geo.geo.keys())
+                k[1]
+                for k in list(self.geo.keys())
                 if isinstance(k, tuple) and k[0].lower() == self.model.lower()
             ]
 
             if location in list_IAM_regions:
                 return location
 
-            print("no location for {}".format(location))
+            # Or it could be an ecoinvent region
+            try:
+                iam_location = self.geo.intersects(("ecoinvent", location))
+                iam_location = [i[1] for i in iam_location if i[0].lower() == self.model]
+                return iam_location[0]
+
+            except KeyError:
+                print("no location for {}".format(location))
         else:
             return iam_location[0]
 
@@ -287,7 +297,52 @@ class Geomap:
         }
 
         if self.model == "remind":
-            return location
+            return "EUR" if location == "World" else location
 
         if self.model == "image":
             return d_map_region[location]
+
+    def iam_to_iam_region(self, location):
+        """
+        When data is defined according to one IAM geography naming convention but needs to be used with another IAM.
+        :param location:
+        :return:
+        """
+
+        d_map_region = {
+            "BRA": "LAM",
+            "CAN": "CAZ",
+            "CEU": "EUR",
+            "CHN": "CHA",
+            "EAF": "SSA",
+            "INDIA": "IND",
+            "INDO": "OAS",
+            "JAP": "JPN",
+            "KOR": "OAS",
+            "ME": "MEA",
+            "MEX": "LAM",
+            "NAF": "SSA",
+            "OCE": "CAZ",
+            "RCAM": "LAM",
+            "RSAF": "SSA",
+            "RSAM": "LAM",
+            "RSAS": "OAS",
+            "RUS": "REF",
+            "SAF": "SSA",
+            "SEAS": "OAS",
+            "STAN": "MEA",
+            "TUR": "MEA",
+            "UKR": "REF",
+            "USA": "USA",
+            "WAF": "SSA",
+            "WEU": "EUR",
+            "World": "EUR",
+        }
+
+        d_map_region_rev = {v: k for k, v in d_map_region.items()}
+
+        if self.model == "image":
+            return d_map_region[location]
+
+        if self.model == "remind":
+            return d_map_region_rev[location]

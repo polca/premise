@@ -1,9 +1,7 @@
 from . import DATA_DIR
 import pandas as pd
-import xarray as xr
 from pathlib import Path
 import csv
-import numpy as np
 
 IAM_ELEC_MARKETS = DATA_DIR / "electricity" / "electricity_markets.csv"
 IAM_ELEC_EFFICIENCIES = DATA_DIR / "electricity" / "electricity_efficiencies.csv"
@@ -127,7 +125,7 @@ class IAMDataCollection:
             # Filter the dataframe
             list_var = ("SE", "Tech", "FE", "Production", "Emi|CCO2", "Emi|CO2")
 
-        if self.model == "image":
+        elif self.model == "image":
             df = pd.read_excel(filepath, index_col=[2, 3, 4]).drop(
                 columns=["Model", "Scenario"]
             )
@@ -138,6 +136,8 @@ class IAMDataCollection:
                 "Efficiency",
                 "Final Energy",
             )
+        else:
+            raise ValueError("The IAM model name {} is not valid. Currently supported: 'remind' or 'image'".format(self.model))
 
         if len(df.columns == 20):
             df.drop(columns=df.columns[-1], inplace=True)
@@ -163,7 +163,8 @@ class IAMDataCollection:
 
         return array
 
-    def get_gains_data(self):
+    @staticmethod
+    def get_gains_data():
         """
         Read the GAINS emissions csv file and return an `xarray` with dimensions:
         * region

@@ -3,7 +3,6 @@ from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
 from wurst import searching as ws
-from wurst.ecoinvent import filters
 import csv
 import numpy as np
 import uuid
@@ -245,7 +244,7 @@ class Electricity:
             # Create an empty dataset
             new_dataset = {
                 "location": region,
-                "name": ("market group for electricity, low voltage"),
+                "name": "market group for electricity, low voltage",
                 "reference product": "electricity, low voltage",
                 "unit": "kilowatt hour",
                 "database": self.db[1]["database"],
@@ -439,7 +438,7 @@ class Electricity:
 
             with open(
                 DATA_DIR
-                / "logs/log created markets {} {}-{}.csv".format(
+                / "logs/log created electricity markets {} {}-{}.csv".format(
                     self.scenario, self.year, date.today()
                 ),
                 "a",
@@ -469,7 +468,7 @@ class Electricity:
             # Create an empty dataset
             new_dataset = {
                 "location": region,
-                "name": ("market group for electricity, medium voltage"),
+                "name": "market group for electricity, medium voltage",
                 "reference product": "electricity, medium voltage",
                 "unit": "kilowatt hour",
                 "database": self.db[1]["database"],
@@ -590,7 +589,7 @@ class Electricity:
 
         with open(
             DATA_DIR
-            / "logs/log created markets {} {}-{}.csv".format(
+            / "logs/log created electricity markets {} {}-{}.csv".format(
                 self.scenario, self.year, date.today()
             ),
             "a",
@@ -627,7 +626,7 @@ class Electricity:
             # Create an empty dataset
             new_dataset = {
                 "location": region,
-                "name": ("market group for electricity, high voltage"),
+                "name": "market group for electricity, high voltage",
                 "reference product": "electricity, high voltage",
                 "unit": "kilowatt hour",
                 "database": self.db[1]["database"],
@@ -772,7 +771,7 @@ class Electricity:
 
         with open(
             DATA_DIR
-            / "logs/log created markets {} {}-{}.csv".format(
+            / "logs/log created electricity markets {} {}-{}.csv".format(
                 self.scenario, self.year, date.today()
             ),
             "w",
@@ -844,7 +843,7 @@ class Electricity:
                             exc["location"] = self.geo.ecoinvent_to_iam_location(
                                 exc["location"]
                             )
-                        except:
+                        except KeyError:
                             print(exc)
                     if "low" in exc["product"]:
                         exc["name"] = "market group for electricity, low voltage"
@@ -971,7 +970,7 @@ class Electricity:
 
         with open(
             DATA_DIR
-            / "logs/log efficiencies change {} {} {}-{}.csv".format(
+            / "logs/log power plant efficiencies change {} {} {}-{}.csv".format(
                 self.model, self.scenario, self.year, date.today()
             ),
             "a",
@@ -1031,7 +1030,7 @@ class Electricity:
 
         with open(
             DATA_DIR
-            / "logs/log efficiencies change {} {} {}-{}.csv".format(
+            / "logs/log power plant efficiencies change {} {} {}-{}.csv".format(
                 self.model, self.scenario, self.year, date.today()
             ),
             "w",
@@ -1134,7 +1133,7 @@ class Electricity:
 
         with open(
             DATA_DIR
-            / "logs/log deleted markets {} {} {}-{}.csv".format(
+            / "logs/log deleted electricity markets {} {} {}-{}.csv".format(
                 self.model, self.scenario, self.year, date.today()
             ),
             "w",

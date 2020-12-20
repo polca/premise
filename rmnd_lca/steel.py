@@ -12,12 +12,18 @@ class Steel:
     """
     Class that modifies steel markets in ecoinvent based on REMIND output data.
 
-    :ivar scenario: name of a Remind scenario
-    :vartype scenario: str
+    :ivar db: database dictionary from :attr:`.NewDatabase.db`
+    :vartype db: dict
+    :ivar model: can be 'remind' or 'image'. str from :attr:`.NewDatabase.model`
+    :vartype model: str
+    :ivar rmd: xarray that contains IAM data, from :attr:`.NewDatabase.rdc`
+    :vartype rmd: xarray.DataArray
+    :ivar year: year, from :attr:`.NewDatabase.year`
+    :vartype year: int
     
     """
 
-    def __init__(self, db, rmd, year):
+    def __init__(self, db, model, rmd, year):
         self.db = db
         self.rmd = rmd
         self.year = year
@@ -25,7 +31,7 @@ class Steel:
         self.fuels_lhv = get_lower_heating_values()
         self.fuels_co2 = get_fuel_co2_emission_factors()
         self.remind_fuels = get_correspondance_remind_to_fuels()
-        self.geo = Geomap()
+        self.geo = Geomap(model=model)
         mapping = InventorySet(self.db)
         self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
         self.fuel_map = mapping.generate_fuel_map()
@@ -136,14 +142,14 @@ class Steel:
         return dict_act
 
     def get_suppliers_of_a_region(
-            self, remind_regions, ecoinvent_technologies, reference_product
+            self, iam_regions, ecoinvent_technologies, reference_product
     ):
         """
         Return a list of datasets which location and name correspond to the region, name and reference product given,
         respectively.
 
-        :param remind_region: list of REMIND regions
-        :type remind_region: list
+        :param iam_regions: list of REMIND regions
+        :type iam_regions: list
         :param ecoinvent_technologies: list of names of ecoinvent dataset
         :type ecoinvent_technologies: list
         :param reference_product: reference product
@@ -152,7 +158,7 @@ class Steel:
         :rtype: list
         """
         list_regions = [self.geo.iam_to_ecoinvent_location(region)
-                        for region in remind_regions]
+                        for region in iam_regions]
         list_regions = [x for y in list_regions for x in y]
 
         return ws.get_many(
@@ -191,7 +197,7 @@ class Steel:
             for exc in act['exchanges']:
                 try:
                     exc["name"]
-                except:
+                except KeyError:
                     print(exc)
                 if (exc['name'], exc.get('product')) == (name, ref_product) and exc['type'] == 'technosphere':
                     if act['location'] not in list_remind_regions:
@@ -327,7 +333,7 @@ class Steel:
 
 
         print('Create steel markets for differention regions')
-        print('Adjust primary and secondary steel supply shares in  steel markets')
+        print('Adjust primary and secondary steel supply shares in steel markets')
 
         created_datasets = list()
         for i in (
@@ -410,7 +416,7 @@ class Steel:
 
                     # Amount of specific fuel, for a specific region
                     fuel_amount = self.steel_data.sel(variables=fuel_type, region=k)\
-                          * (self.steel_data.sel(variables=list_second_fuels[count], region=k)\
+                          * (self.steel_data.sel(variables=list_second_fuels[count], region=k)
                              / self.steel_data.sel(variables=list_second_fuels[count], region=k).sum(dim='variables'))
 
                     # Divide the amount of fuel by steel production, to get unitary efficiency
@@ -499,14 +505,14 @@ class Steel:
                 # Convert to obtain kWh/kg steel
                 if d in self.material_map['steel, primary']:
 
-                    electricity = (self.steel_data.sel(region=k, variables = 'FE|Industry|Electricity|Steel|Primary').values\
+                    electricity = (self.steel_data.sel(region=k, variables = 'FE|Industry|Electricity|Steel|Primary').values
                                                             / self.steel_data.sel(region=k,
                                                                                   variables='Production|Industry|Steel|Primary').values)\
                                 * 1000 / 3.6
 
                 else:
 
-                    electricity = (self.steel_data.sel(region=k, variables = 'FE|Industry|Electricity|Steel|Secondary').values\
+                    electricity = (self.steel_data.sel(region=k, variables = 'FE|Industry|Electricity|Steel|Secondary').values
                                                             / self.steel_data.sel(region=k,
                                                                                   variables='Production|Industry|Steel|Secondary').values)\
                                 * 1000 / 3.6
