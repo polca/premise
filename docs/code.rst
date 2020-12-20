@@ -21,7 +21,7 @@ Inventory Imports
 Remind Data Collection
 ======================
 
-.. autoclass:: rmnd_lca.data_collection.RemindDataCollection
+.. autoclass:: rmnd_lca.data_collection.IAMDataCollection
     :members:
 
 Remind to Ecoinvent mapping

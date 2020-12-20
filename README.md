@@ -1,7 +1,7 @@
 # ``rmnd_lca``
 
 # Integrated Assessment Model-based life cycle inventories for prospective life cycle assessment.
-## Coupling ecoinvent database with projections from REMIND IAM
+## Coupling the ecoinvent database with projections from Integrated Assessment Models (IAM)
 
 [![Build Status](https://travis-ci.org/romainsacchi/rmnd-lca.svg?branch=master)](https://travis-ci.org/romainsacchi/rmnd-lca) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/rmnd-lca/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/rmnd-lca?branch=master) [![Documentation](https://readthedocs.org/projects/rmnd-lca/badge/?version=latest)](https://rmnd-lca.readthedocs.io/en/latest/) [![PyPI version](https://badge.fury.io/py/rmnd-lca.svg)](https://badge.fury.io/py/rmnd-lca)
 
@@ -10,14 +10,57 @@ Introduction
 ============
 
 **rmnd-lca** allows to align the life cycle inventories contained in the **ecoinvent 3.5, 3.6 and 3.7 cutoff** databases with
-the output results of the Integrated Assessment Model (IAM) **REMIND**, in order to produce life cycle inventories under
-future policy scenarios (from business-as-usual to very ambitious climate scenarios) for any year between 2005 and 2150.
+the output results of Integrated Assessment Models (IAM) **REMIND** and **IMAGE**, in order to produce life cycle inventories under
+future policy scenarios (from business-as-usual to very ambitious climate scenarios) for any year between 2005 and 2100.
 
-In the latest version (0.1.6), this includes:
-* electricity generation: alignment of regional electricity production mixes as well as efficiencies for a number of
- electricity production technologies, including Carbon Capture and Storage technologies.
+Inputs
+------
 
-**REMIND** also adds to the generic ecoinvent database a number of inventories, notably:
+Either:
+* ecoinvent v.3.5, 3.6 or 3.7 as a registered brightway2 database
+* ecoinvent v.3.5, 3.6 or 3.7 as ecospold files
+
+Transformations
+---------------
+
+More specifically, **rmnd-lca** will apply a series of transformation functions to ecoinvent.
+
+In the latest version (0.1.7), the following transformation functions are available:
+
+* **update_electricity_to_iam_data()**: alignment of regional electricity production mixes as well as efficiencies for a number of
+electricity production technologies, including Carbon Capture and Storage technologies.
+* **update_cars()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
+including penetration of bio- and synthetic fuels.
+* **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
+fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
+* **update_steel_to_iam_data()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
+
+However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
+the IAM file you use as input.
+
+.. csv-table:: Availability of transformation functions
+    :file: table_1.csv
+    :widths: 10 10 30 10 10 10 10
+    :header-rows: 1
+
+
+The following REMIND IAM files come with the library:
+
+* SSP2
+    1.  **Base:** counter-factual scenario with no climate policy implemented
+    2.  **NPi** (*N*ational *P*olicies *i*mplemented): scenario  describes energy,  climate  and  economic  projections for the  period  until 2030, and equivalent efforts thereafter. See [CD-LINKS modelling protocol](https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf) for details.
+    3.  **NDC**: All emission reductions and other mitigation commitments of the *N*ationally*D*etermined *C*ontributions under the Paris Agreement are implemented. See [CD-LINKS modelling protocol](https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf) for details.
+    4.  **PkBudg 1300/1100/900**: Climate policies to limit cumulative 2011-2100 CO2 emissions to 1300 / 1100 / 900 over the entire time horizon (“not-to-exceed”). Correspond to 2°, well-below 2° and 1.5° targets. Other greenhouse gases are priced with the CO2e-price using 100year global warming potentials.
+
+The following IMAGE IAM file comes with the library:
+
+* SSP2
+    1.  **Base** counter-factual scenario with no climate policy implemented
+
+You can however use any other IAM files.
+
+Additionally, a number of inventories for emerging technologies are added upon the creation of a new database.
+
 * electricity production using various fuels (including biomass and biogas) with Carbon Capture and Storage (CCS) [Volkart et al. 2013](https://doi.org/10.1016/j.ijggc.2013.03.003)
 * hydrogen production from electrolysis from different world regions,
 * hydrogen production from steam methane reforming (SMR) and auto-thermal reforming (ATR) of natural gas and biogas, with and without CCS [Antonini et al. 2020](https://doi.org/10.1039/D0SE00222D)
@@ -26,19 +69,18 @@ In the latest version (0.1.6), this includes:
 * synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrolchemical methanation (gas) processes,
  using direct air capture (DAC) [Zhang et al. 2019](https://doi.org/10.1039/C9SE00986H)
 * passenger car inventories from the library [carculator](https://github.com/romainsacchi/carculator)
+* medium and heavy duty trucks from the library [carculator_truck](https://github.com/romainsacchi/carculator_truck)
 
+Outputs
+-------
 
-In upcoming versions, it will also include:
-* clinker and cement production: alignment of regional performance for clinker production, including Carbon Capture and 
- Storage, clinker-to-cement ratio and cement grinding.
-* primary and secondary steel production: projection of primary vs. secondary steel supply on steel markets, projection 
- of efficiencies and fuel mixes for primary steel production, as well as alignment of electricity mix used for secondary 
- steel production. 
-* heat for residential and industrial purposes: projection of technology shares in heat markets.
+Either:
+* a database to register in a brightway2 project
+* a sparse matrix representation of the database stored in csv files
 
 Documentation
 -------------
-https://rmnd-lca.readthedocs.io/en/latest/
+[https://rmnd-lca.readthedocs.io/en/latest/](https://rmnd-lca.readthedocs.io/en/latest/)
 
 Objective
 ---------
@@ -50,9 +92,10 @@ Requirements
 ------------
 * Python language interpreter 3.x
 * License for ecoinvent 3
-* REMIND IAM output files come with the library ("xxx.mif" and "GAINS emission factors.csv")
- and are located by default in the subdirectory "/data/remind_output_files/".
- A file path can be specified to fetch the REMIND IAM output files elsewhere on your computer.
+* Some IAM output files come with the library ("REMIND_xxx.mif" for REMIND, "IMAGE_xxxx.xlsx" for IMAGE)
+ and are located by default in the subdirectory "/data/iam_output_files".
+ A file path can be specified to fetch IAM output files elsewhere on your computer.
+ * brightway2 (optional)
 
 How to install this package?
 ----------------------------
@@ -82,7 +125,7 @@ A preliminary requirement to the use this library is to have a `brightway2` proj
 
     import brightway2 as bw
     bw.projects.set_current('remind')
-    bw.databases
+    list(bw.databases)
 ```
 returns
 ```
@@ -115,11 +158,14 @@ Note that, by default, the library will look for REMIND output files ("xxx.mif" 
 the correct directory, as such::
 ```python
     from rmnd_lca import *
-    ndb = NewDatabase(scenario = 'SSP2-Base',
-              year = 2028,
-              source_db = 'ecoinvent 3.7 cutoff',
-              source_version = 3.7,
-              r"C:\Users\username\Documents\Remind output files"
+    
+    ndb = NewDatabase(
+        model="remind",
+        scenario="SSP2-NPi",
+        year=2050,
+        source_db="ecoinvent 3.7 cutoff",
+        source_version=3,
+        filepath_to_iam_files=r"C:\Users\username\Documents\Remind output files"
              )
 ```
 
@@ -172,31 +218,9 @@ according to the projections given by REMIND,
 
 
 ```python
-    ndb.update_electricity_to_remind_data()
+    ndb.update_electricity_to_iam_data()
 ```
-returns
-```python
-    Remove old electricity datasets
-    Create high voltage markets.
-    Create medium voltage markets.
-    Create low voltage markets.
-    Link activities to new electricity markets.
-    Log of deleted electricity markets saved in C:\Users\username\Documents\GitHub\rmnd-lca\rmnd_lca\data\logs
-    Log of created electricity markets saved in C:\Users\username\Documents\GitHub\rmnd-lca\rmnd_lca\data\logs
-    Rescale inventories and emissions for Coal IGCC
-    Rescale inventories and emissions for Coal IGCC CCS
-    Rescale inventories and emissions for Coal PC
-    Rescale inventories and emissions for Coal PC CCS
-    Rescale inventories and emissions for Coal CHP
-    Rescale inventories and emissions for Gas OC
-    Rescale inventories and emissions for Gas CC
-    Rescale inventories and emissions for Gas CHP
-    Rescale inventories and emissions for Gas CCS
-    Rescale inventories and emissions for Oil
-    Rescale inventories and emissions for Biomass CHP
-    Rescale inventories and emissions for Biomass IGCC CCS
-    Rescale inventories and emissions for Biomass IGCC
-```
+
 
 Note that logs of:
 * deleted and created electricity markets
@@ -220,21 +244,7 @@ The following function will:
 * and relink cement-consuming activities to the newly created cement markets.
 
 ```python
-    ndb.update_cement_to_remind_data()
-```
-returns
-```python
-    Log of deleted cement datasets saved in C:\Users\romai\Documents\GitHub\rmnd-lca\rmnd_lca\data\logs
-    Log of created cement datasets saved in C:\Users\romai\Documents\GitHub\rmnd-lca\rmnd_lca\data\logs
-    Create new clinker production datasets and delete old datasets
-    Create new clinker market datasets and delete old datasets
-    Adjust clinker-to-cement ratio in "unspecified cement" datasets
-    Create new cement production datasets and adjust electricity consumption
-    Create new cement market datasets
-    Relink cement production datasets to new clinker production datasets
-    Relink cement production datasets to new clinker market datasets
-    Relink cement market datasets to new cement production datasets
-    Relink activities to new cement datasets
+    ndb.update_cement_to_iam_data()
 ```
 
 Note that logs of deleted and created clinker and cement datasets are created in
@@ -283,7 +293,7 @@ The column indices of B_matrix are similar to the row/column indices of A_matrix
 # Support
 
 Do not hesitate to contact the development team at [romain.sacchi@psi.ch](mailto:romain.sacchi@psi.ch)
-or [aloisdir@pik-potsdam.de](aloisdir@pik-potsdam.de).
+or [aloisdir@pik-potsdam.de](mailto:aloisdir@pik-potsdam.de).
 
 ## Maintainers
 

@@ -28,6 +28,7 @@ requirements:
     - setuptools
     - prettytable
     - carculator
+    - carculator_truck
   run:
     - python
     - wurst
@@ -38,6 +39,7 @@ requirements:
     - xarray
     - prettytable
     - carculator
+    - carculator_truck
 
 test:
   imports:

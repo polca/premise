@@ -8,23 +8,26 @@ import copy
 class Cars:
     """
     Class that modifies carculator inventories in ecoinvent
-    based on REMIND output data.
+    based on IAM output data.
 
     :ivar db: ecoinvent database in list-of-dict format
-    :ivar rmd: REMIND output data
-    :ivar scenario: REMIND scenario identifier
+    :ivar rmd: IAM output data
+    :ivar scenario: IAM scenario identifier
     :ivar year: year for the current analysis
+    :ivar model: str. "remind" or "image"
 
     """
 
-    def __init__(self, db, rmd, scenario, year):
+    def __init__(self, db, rmd, scenario, year, model):
         self.db = db
         self.rmd = rmd
-        self.geo = Geomap()
+        self.geo = Geomap(model=model)
         self.scenario = scenario
         self.year = year
+        self.model = model
 
-    def _create_local_copy(self, old_act, region):
+    @staticmethod
+    def _create_local_copy(old_act, region):
         """
         Create a local copy of an activity.
         Update also the production exchange.
@@ -76,9 +79,8 @@ class Cars:
                     "uncertainty type": 0,
                     "unit": "kilowatt hour",
                 })
-            except:
+            except ws.NoResults:
                 pass
-
 
     def _find_local_supplier(self, region, name):
         """
@@ -87,26 +89,29 @@ class Cars:
         eventually *any* activity with this name.
         """
         def producer_in_locations(locs):
-            prod = None
-            producers = list(ws.get_many(
+
+            possible_producers = list(ws.get_many(
                 self.db,
                 ws.equals("name", name),
                 ws.either(*[
                     ws.equals("location", loc) for loc in locs
                 ])))
-            if len(producers) >= 1:
-                prod = producers[0]
-                if len(producers) > 1:
-                    print(("Multiple producers for {} found in {}, "
+            if len(possible_producers) >= 1:
+                selected_producer = possible_producers[0]
+                if len(possible_producers) > 1:
+                    print(("Multiple potential producers for {} found in {}, "
                            "using activity from {}").format(
                                name, region, prod["location"]))
-            return prod
+            else:
+                selected_producer = None
 
-        ei_locs = self.geo.remind_to_ecoinvent_location(region, contained=True)
+            return selected_producer
+
+        ei_locs = self.geo.iam_to_ecoinvent_location(region, contained=True)
         prod = producer_in_locations(ei_locs)
 
         if prod is None:
-            ei_locs = self.geo.remind_to_ecoinvent_location(region)
+            ei_locs = self.geo.iam_to_ecoinvent_location(region)
             prod = producer_in_locations(ei_locs)
             if prod is None:
                 # let's use "any" dataset
@@ -125,7 +130,7 @@ class Cars:
 
     def link_local_liquid_fuel_markets(self):
         """
-        Use REMIND fuel markets to update the mix of bio-, syn-
+        Use IAM fuel markets to update the mix of bio-, syn-
         and fossil liquids in gasoline and diesel.
 
         """
@@ -148,7 +153,6 @@ class Cars:
         }
 
         for region in self.rmd.regions:
-
             try:
                 supply = {
                     ftype: ws.get_one(
@@ -160,7 +164,7 @@ class Cars:
                 }
 
                 # two regions for gasoline and diesel production
-                if region == "EUR":
+                if region in ("EUR", "NEU", "WEU", "CEU"):
                     new_producers["gasoline"]["Fossil"] = ws.get_one(
                         self.db,
                         ws.equals("name", "market for petrol, low-sulfur"),
@@ -178,8 +182,6 @@ class Cars:
                         self.db,
                         ws.equals("name", "market group for diesel"),
                         ws.equals("location", "GLO"))
-
-
 
                 # local syndiesel
                 new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
@@ -201,7 +203,6 @@ class Cars:
                     }
                 }
 
-
                 print("Relinking fuel markets for ICEVs in {}".format(region))
                 for ftype in supply_search:
                     for subtype in supply_search[ftype]:
@@ -218,7 +219,7 @@ class Cars:
                             print("Scenario {} Year {}, could not find a supplier for {} in {}"
                                   .format(self.scenario, self.year,
                                           supply_search[ftype][subtype], region))
-            except:
+            except ws.NoResults:
                 pass
 
     def update_cars(self):
