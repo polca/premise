@@ -1,6 +1,7 @@
 import os
 from . import DATA_DIR
 import csv
+from pathlib import Path
 
 FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "flows_biosphere_37.csv")
 
@@ -25,20 +26,23 @@ class Export:
 
     """
 
-    def __init__(self, db, scenario, year):
+    def __init__(self, db, model, scenario, year, filepath=None):
         self.db = db
+        self.model = model
         self.scenario = scenario
         self.year = year
+        self.filepath = Path(filepath) / self.model / self.scenario / str(self.year) \
+                        or DATA_DIR / "matrices" / self.model / self.scenario / str(self.year)
 
     def export_db_to_matrices(self):
         index_A = self.create_index_of_A_matrix()
 
-        filepath = DATA_DIR / "matrices"
-        if not os.path.exists(filepath):
-            os.makedirs(filepath)
+
+        if not os.path.exists(self.filepath):
+            os.makedirs(self.filepath)
 
         # Export A matrix
-        with open(filepath / 'A_matrix.csv', 'w') as f:
+        with open(self.filepath / 'A_matrix.csv', 'w') as f:
             writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             writer.writerow(['index of activity', 'index of product', 'value'])
             for ds in self.db:
@@ -55,7 +59,7 @@ class Export:
                         writer.writerow(row)
 
         # Export A index
-        with open(filepath / 'A_matrix_index.csv', 'w') as f:
+        with open(self.filepath / 'A_matrix_index.csv', 'w') as f:
             writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             for d in index_A:
                 data = list(d) + [index_A[d]]
@@ -65,7 +69,7 @@ class Export:
         rev_index_B = self.create_rev_index_of_B_matrix()
 
         # Export B matrix
-        with open(filepath / 'B_matrix.csv', 'w') as f:
+        with open(self.filepath / 'B_matrix.csv', 'w') as f:
             writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             writer.writerow(['index of activity', 'index of biosphere flow', 'value'])
             for ds in self.db:
@@ -87,14 +91,14 @@ class Export:
                         writer.writerow(row)
 
         # Export B index
-        with open(filepath / 'B_matrix_index.csv', 'w') as f:
+        with open(self.filepath / 'B_matrix_index.csv', 'w') as f:
             writer = csv.writer(f, delimiter=';', lineterminator='\n', )
             for d in index_B:
                 data = list(d) + [index_B[d]]
                 writer.writerow(data)
 
 
-        print("Matrices saved in {}.".format(filepath))
+        print("Matrices saved in {}.".format(self.filepath))
 
     def create_index_of_A_matrix(self):
         """

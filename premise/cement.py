@@ -73,12 +73,18 @@ class Cement:
                 d_act[d] = copy.deepcopy(ds)
                 d_act[d]["location"] = d
                 d_act[d]["code"] = str(uuid.uuid4().hex)
+
+                if "input" in d_act[d]:
+                    d_act[d].pop("input")
+
             except ws.NoResults:
                 print('No dataset {} found for the {} region {}'.format(name, self.model.upper(), d))
                 continue
 
             for prod in ws.production(d_act[d]):
                 prod['location'] = d
+                if "input" in prod:
+                    prod.pop("input")
 
         deleted_markets = [
             (act['name'], act['reference product'], act['location']) for act in self.db
@@ -492,33 +498,33 @@ class Cement:
 
         for act in self.db:
             for exc in act['exchanges']:
-                try:
-                    exc["name"]
-                except KeyError:
-                    # If it cannot find the key `name`, it's weird, so we print it but we pass
-                    print("Cannot find field `name` for teh following exchange: {}.".format(exc))
-
-                if (exc['name'], exc.get('product')) == (name, ref_product) and exc['type'] == 'technosphere':
-                    if (name, ref_product, act["location"]) in list_ds:
-                        exc["location"] = act["location"]
-                    else:
-                        try:
-                            new_loc = self.geo.ecoinvent_to_iam_location(act["location"])
-                        except KeyError:
-                            new_loc = ""
-
-                        if (name, ref_product, new_loc) in list_ds:
-                            exc["location"] = new_loc
+                if "name" in exc and "product" in exc and exc["type"] == "technosphere":
+                    if (exc['name'], exc.get('product')) == (name, ref_product):
+                        if (name, ref_product, act["location"]) in list_ds:
+                            exc["location"] = act["location"]
                         else:
-                            # new location in ei3.7, not yet defined in `constructive_geometries`
-                            if act["location"] == "North America without Quebec":
-                                exc["location"] = self.geo.ecoinvent_to_iam_location("US")
+                            try:
+                                new_loc = self.geo.ecoinvent_to_iam_location(act["location"])
+                            except KeyError:
+                                new_loc = ""
 
-                            elif act["location"] in ("RoW", "GLO"):
-                                exc["location"] = self.geo.ecoinvent_to_iam_location("CN")
+                            if (name, ref_product, new_loc) in list_ds:
+                                exc["location"] = new_loc
                             else:
-                                print("Issue with {} used in {}: cannot find the IAM equiavlent for "
-                                      "the location {}".format(name, act["name"], act["location"]))
+                                # new location in ei3.7, not yet defined in `constructive_geometries`
+                                if act["location"] in ("North America without Quebec", "US only"):
+                                    new_loc = self.geo.ecoinvent_to_iam_location("US")
+                                    exc["location"] = new_loc
+
+                                elif act["location"] in ("RoW", "GLO"):
+                                    new_loc = self.geo.ecoinvent_to_iam_location("CN")
+                                    exc["location"] = new_loc
+                                else:
+                                    print("Issue with {} used in {}: cannot find the IAM equiavlent for "
+                                          "the location {}".format(name, act["name"], act["location"]))
+
+                        if "input" in exc:
+                            exc.pop("input")
 
     def adjust_clinker_ratio(self, d_act):
         """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
@@ -677,13 +683,14 @@ class Cement:
             ref_prod = 'cement, unspecified'
 
         act_cement_unspecified = self.fetch_proxies(name, ref_prod)
+
         act_cement_unspecified = self.adjust_clinker_ratio(act_cement_unspecified)
         self.db.extend([v for v in act_cement_unspecified.values()])
 
         created_datasets.extend([(act['name'], act['reference product'], act['location'])
                             for act in act_cement_unspecified.values()])
 
-        print('Create new cement production datasets and adjust electricity consumption')
+        print('\nCreate new cement production datasets and adjust electricity consumption')
 
         if self.version == 3.5:
             for i in (
@@ -713,26 +720,28 @@ class Cement:
                                 for act in act_cement.values()])
                 self.relink_datasets(i[0], i[1])
                 
-            print('Create new cement market datasets')
+            print('\nCreate new cement market datasets')
 
-            for i in (("market for cement, alternative constituents 21-35%","cement, alternative constituents 21-35%"),
-                ("market for cement, alternative constituents 6-20%","cement, alternative constituents 6-20%"),
-                ("market for cement, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                 "cement, blast furnace slag 18-30% and 18-30% other alternative constituents"),
-                ("market for cement, blast furnace slag 25-70%, US only","cement, blast furnace slag 25-70%, US only"),
-                ("market for cement, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                 "cement, blast furnace slag 31-50% and 31-50% other alternative constituents"),
-                ("market for cement, blast furnace slag 36-65%, non-US","cement, blast furnace slag 36-65%, non-US"),
-                ("market for cement, blast furnace slag 5-25%, US only","cement, blast furnace slag 5-25%, US only"),
-                ("market for cement, blast furnace slag 70-100%, non-US","cement, blast furnace slag 70-100%, non-US"),
-                ("market for cement, blast furnace slag 70-100%, US only","cement, blast furnace slag 70-100%, US only"),
-                ("market for cement, blast furnace slag 81-95%, non-US","cement, blast furnace slag 81-95%, non-US"),
-                ("market for cement, blast furnace slag, 66-80%, non-US","cement, blast furnace slag, 66-80%, non-US"),
-                ("market for cement, Portland","cement, Portland"),
-                ("market for cement, pozzolana and fly ash 11-35%, non-US","cement, pozzolana and fly ash 11-35%, non-US"),
-                ("market for cement, pozzolana and fly ash 15-40%, US only","cement, pozzolana and fly ash 15-40%, US only"),
-                ("market for cement, pozzolana and fly ash 36-55%,non-US","cement, pozzolana and fly ash 36-55%,non-US"),
-                ("market for cement, pozzolana and fly ash 5-15%, US only","cement, pozzolana and fly ash 5-15%, US only")
+            for i in (
+                    ("market for cement, alternative constituents 21-35%","cement, alternative constituents 21-35%"),
+                    ("market for cement, alternative constituents 6-20%","cement, alternative constituents 6-20%"),
+                    ("market for cement, blast furnace slag 18-30% and 18-30% other alternative constituents",
+                     "cement, blast furnace slag 18-30% and 18-30% other alternative constituents"),
+                    ("market for cement, blast furnace slag 25-70%, US only","cement, blast furnace slag 25-70%, US only"),
+                    ("market for cement, blast furnace slag 31-50% and 31-50% other alternative constituents",
+                     "cement, blast furnace slag 31-50% and 31-50% other alternative constituents"),
+                    ("market for cement, blast furnace slag 36-65%, non-US","cement, blast furnace slag 36-65%, non-US"),
+                    ("market for cement, blast furnace slag 5-25%, US only","cement, blast furnace slag 5-25%, US only"),
+                    ("market for cement, blast furnace slag 70-100%, non-US","cement, blast furnace slag 70-100%, non-US"),
+                    ("market for cement, blast furnace slag 70-100%, US only","cement, blast furnace slag 70-100%, US only"),
+                    ("market for cement, blast furnace slag 81-95%, non-US","cement, blast furnace slag 81-95%, non-US"),
+                    ("market for cement, blast furnace slag, 66-80%, non-US","cement, blast furnace slag, 66-80%, non-US"),
+                    ("market for cement, Portland", "cement, Portland"),
+                    ("market for cement, pozzolana and fly ash 11-35%, non-US","cement, pozzolana and fly ash 11-35%, non-US"),
+                    ("market for cement, pozzolana and fly ash 15-40%, US only","cement, pozzolana and fly ash 15-40%, US only"),
+                    ("market for cement, pozzolana and fly ash 36-55%,non-US","cement, pozzolana and fly ash 36-55%,non-US"),
+                    ("market for cement, pozzolana and fly ash 5-15%, US only","cement, pozzolana and fly ash 5-15%, US only")
+                    ("market for cement, unspecified", "cement, unspecified")
                       ):
                 act_cement = self.fetch_proxies(i[0], i[1])
                 self.db.extend([v for v in act_cement.values()])
@@ -780,7 +789,7 @@ class Cement:
 
                 self.relink_datasets(i[0], i[1])
 
-            print('Create new cement market datasets')
+            print('\nCreate new cement market datasets')
 
             for i in (("market for cement, Portland", "cement, Portland"),
                       ("market for cement, blast furnace slag 35-70%", "cement, blast furnace slag 35-70%"),
@@ -810,6 +819,7 @@ class Cement:
                       ("market for cement, blast furnace slag 70-100%", "cement, blast furnace slag 70-100%"),
                       ("market for cement, pozzolana and fly ash 15-40%", "cement, pozzolana and fly ash 15-40%"),
                       ("market for cement, pozzolana and fly ash 5-15%", "cement, pozzolana and fly ash 5-15%"),
+                      ("market for cement, unspecified", "cement, unspecified")
                       ):
                 act_cement = self.fetch_proxies(i[0], i[1])
                 self.db.extend([v for v in act_cement.values()])
@@ -819,14 +829,14 @@ class Cement:
 
                 self.relink_datasets(i[0], i[1])
 
-        print('Create new clinker production datasets and delete old datasets')
+        print('\nCreate new clinker production datasets and delete old datasets')
         clinker_prod_datasets = [d for d in self.build_clinker_production_datasets().values()]
         self.db.extend(clinker_prod_datasets)
 
         created_datasets.extend([(act['name'], act['reference product'], act['location'])
                             for act in clinker_prod_datasets])
 
-        print('Create new clinker market datasets and delete old datasets')
+        print('\nCreate new clinker market datasets and delete old datasets')
         clinker_market_datasets = [d for d in self.build_clinker_market_datasets().values()]
         self.db.extend(clinker_market_datasets)
 
@@ -845,10 +855,12 @@ class Cement:
 
         print('Relink cement market datasets to new cement production datasets')
         self.relink_datasets('market for cement', 'cement')
+        self.relink_datasets('market for cement, unspecified', 'cement, unspecified')
 
         print('Relink activities to new cement datasets')
         self.relink_datasets('cement, all types to generic market for cement, unspecified',
                              'cement, unspecified')
+
 
         print('Relink cement production datasets to new clinker market datasets')
         self.relink_datasets('market for clinker', 'clinker')

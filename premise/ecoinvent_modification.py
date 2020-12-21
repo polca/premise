@@ -85,7 +85,7 @@ class NewDatabase:
 
     def __init__(self,
                  year,
-                 source_db,
+                 source_db=None,
                  model="remind",
                  scenario=None,
                  source_version=3.7,
@@ -341,9 +341,11 @@ class NewDatabase:
         print('Write new database to Brightway2.')
         wurst.write_brightway2_database(self.db, eidb_label(self.model, self.scenario, self.year))
 
-    def write_db_to_matrices(self):
+    def write_db_to_matrices(self, filepath=None):
         """
+        :param filepath: path provided by the user to store the exported matrices
+        :type filepath: str
         Exports the new database as a sparse matrix representation in csv files.
         """
         print("Write new database to matrix.")
-        Export(self.db, self.scenario, self.year).export_db_to_matrices()
+        Export(self.db, self.model, self.scenario, self.year, filepath).export_db_to_matrices()

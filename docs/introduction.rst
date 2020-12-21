@@ -94,7 +94,7 @@ is available on Conda:
 
 .. code-block:: python
 
-    conda install premise
+    conda install -c romainsacchi premise
 
 For a more stable and proven version, from Pypi:
 

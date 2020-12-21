@@ -954,7 +954,7 @@ class BiofuelInventory(BaseInventoryImport):
                         },
                     ),
                     (
-                        "market for concrete block", "concrete block", "GLO",
+                        ("market for concrete block", "concrete block", "GLO"),
                         {"location": "DE"},
                     ),
                 ],
@@ -1003,9 +1003,40 @@ class HydrogenInventory(BaseInventoryImport):
                 "data": [
                     (
                         (
+                            "market for water, decarbonised",
+                            ("water, decarbonised",),
+                            "CH",
+                        ),
+                        {
+                            "name": (
+                                "market for water, decarbonised, at user"
+                            ),
+                            "reference product": (
+                                "water, decarbonised, at user"
+                            ),
+                            "location": "GLO"
+                        },
+                    ),
+                    (
+                        (
                             "market for water, deionised",
                             ("water, deionised",),
                             "Europe without Switzerland",
+                        ),
+                        {
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
+                    ),
+                    (
+                        (
+                            "market for water, deionised",
+                            ("water, deionised",),
+                            "CH",
                         ),
                         {
                             "name": (
@@ -1208,6 +1239,17 @@ class HydrogenWoodyInventory(BaseInventoryImport):
                         },
                     ),
                     (
+                        ("market for water, deionised", ("water, deionised",), "CH"),
+                        {
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
+                    ),
+                    (
                         (
                             "market for aluminium oxide, metallurgical",
                             ("aluminium oxide, metallurgical",),
@@ -1308,6 +1350,12 @@ class BiogasInventory(BaseInventoryImport):
                             ),
                         },
                     ),
+                    (
+                        ("market for steam, in chemical industry", "steam, in chemical industry", "RER"),
+                        {
+                            "location": "GLO"
+                        },
+                    ),
                 ],
             }
 
@@ -1346,6 +1394,32 @@ class SyngasInventory(BaseInventoryImport):
                 description="Change technosphere names due to change from 3.5/3.6 to 3.7",
             )
             self.import_db.migrate("migration_37")
+
+        # migration for ei 3.5
+        if self.version == 3.5:
+            migrations = {
+                "fields": ["name", "reference product", "location"],
+                "data": [
+                    (
+                        ("market for water, decarbonised", ("water, decarbonised",), "CH"),
+                        {
+                            "name": (
+                                "market for water, decarbonised, at user"
+                            ),
+                            "reference product": (
+                                "water, decarbonised, at user"
+                            ),
+                            "location": "GLO"
+                        },
+                    )
+                ],
+            }
+
+            Migration("syngas_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.6 to 3.5",
+            )
+            self.import_db.migrate("syngas_ecoinvent_35")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -1599,6 +1673,22 @@ class LPGInventory(BaseInventoryImport):
                         ),
                         {"location": "GLO"},
                     ),
+                    (
+                        (
+                            "market for water, ultrapure",
+                            "water, ultrapure",
+                            "RoW",
+                        ),
+                        {"location": "GLO"},
+                    ),
+                    (
+                        (
+                            "market for water, ultrapure",
+                            "water, ultrapure",
+                            "CA-QC",
+                        ),
+                        {"location": "GLO"},
+                    ),
                 ],
             }
 
@@ -1706,7 +1796,6 @@ class CarculatorInventory(BaseInventoryImport):
                 allocate_all_synfuel=True
             )
 
-
             bc = {
                 "custom electricity mix": mix,
                 "country": region,
@@ -1809,7 +1898,7 @@ class CarculatorInventory(BaseInventoryImport):
                     x
                     for x in i.data
                     if (x["name"], x["location"])
-                       not in [(z["name"], z["location"]) for z in self.import_db.data]
+                       not in [(z["name"], z["location"]) for z in import_db.data]
                 ]
                 import_db.data.extend(i.data)
 
@@ -1960,12 +2049,11 @@ class TruckInventory(BaseInventoryImport):
                     x
                     for x in i.data
                     if (x["name"], x["location"])
-                       not in [(z["name"], z["location"]) for z in self.import_db.data]
+                       not in [(z["name"], z["location"]) for z in import_db.data]
                 ]
                 import_db.data.extend(i.data)
 
         return import_db
-
 
     def prepare_inventory(self):
         self.add_biosphere_links(delete_missing=True)

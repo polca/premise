@@ -78,12 +78,19 @@ class Steel:
                 d_act[d] = copy.deepcopy(ds)
                 d_act[d]["location"] = d
                 d_act[d]["code"] = str(uuid.uuid4().hex)
+
+                if "input" in d_act[d]:
+                    d_act[d].pop("input")
+
             except ws.NoResults:
                 print('No dataset {} found for the REMIND region {}'.format(name, d))
                 continue
 
             for prod in ws.production(d_act[d]):
                 prod['location'] = d
+
+                if "input" in prod:
+                    prod.pop("input")
 
         deleted_markets = [
             (act['name'], act['reference product'], act['location']) for act in self.db
