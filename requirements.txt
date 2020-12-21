@@ -1,10 +1,10 @@
 numpy
 pandas
-bw2io
-bw2data
-wurst
-xarray
-prettytable
+bw2io>=0.7.1
+bw2data>=3.6
+wurst>=0.2.2
+xarray>=0.16
+prettytable>=2.0.0
 carculator
 carculator_truck
-pycountry
+pycountry>=20.7.3
