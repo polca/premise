@@ -102,15 +102,15 @@ You can however use any other IAM files.
 
 Additionally, a number of inventories for emerging technologies are added upon the creation of a new database.
 
-* electricity production using various fuels (including biomass and biogas) with Carbon Capture and Storage (CCS)[Volkart et al. 2013][10]
+* electricity production using various fuels (including biomass and biogas) with Carbon Capture and Storage (CCS) [Volkart et al. 2013][9]
 * hydrogen production from electrolysis from different world regions,
-* hydrogen production from steam methane reforming (SMR) and auto-thermal reforming (ATR) of natural gas and biogas, with and without CCS [Antonini et al. 2020][11]
-* hydrogen production from coal gasification [Antonini et al. 2020][11]
-* hydrogen production from woody biomass gasification, with and without CCS [Antonini et al. 2020][11]
+* hydrogen production from steam methane reforming (SMR) and auto-thermal reforming (ATR) of natural gas and biogas, with and without CCS [Antonini et al. 2020][10]
+* hydrogen production from coal gasification [Antonini et al. 2020][10]
+* hydrogen production from woody biomass gasification, with and without CCS [Antonini et al. 2020][10]
 * synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrolchemical methanation (gas) processes,
- using direct air capture (DAC) [Zhang et al. 2019][12]
-* passenger car inventories from the library [carculator][13]
-* medium and heavy duty trucks from the library [carculator_truck][14]
+ using direct air capture (DAC) [Zhang et al. 2019][11]
+* passenger car inventories from the library [carculator][12]
+* medium and heavy duty trucks from the library [carculator_truck][13]
 
 Outputs
 -------
@@ -151,11 +151,11 @@ See [contributing](https://github.com/romainsacchi/premise/blob/master/CONTRIBUT
 [6]:https://gccassociation.org/sustainability-innovation/gnr-gcca-in-numbers/
 [7]:https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry
 [8]:https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf
-[10]:https://doi.org/10.1016/j.ijggc.2013.03.003
-[11]:https://doi.org/10.1039/D0SE00222D
-[12]:https://doi.org/10.1039/C9SE00986H
-[13]:https://github.com/romainsacchi/carculator
-[14]:https://github.com/romainsacchi/carculator_truck
+[9]:https://doi.org/10.1016/j.ijggc.2013.03.003
+[10]:https://doi.org/10.1039/D0SE00222D
+[11]:https://doi.org/10.1039/C9SE00986H
+[12]:https://github.com/romainsacchi/carculator
+[13]:https://github.com/romainsacchi/carculator_truck
 
 ## License
 
