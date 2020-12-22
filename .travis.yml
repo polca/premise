@@ -1,7 +1,7 @@
 language: python
 matrix:
   include:
-    - language: generic-covered
+    - language: generic
       python: 3.7
       os: osx
     - python: 3.7

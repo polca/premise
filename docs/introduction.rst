@@ -51,8 +51,8 @@ The following REMIND IAM files come with the library:
 
 * SSP2
     1.  **Base:** counter-factual scenario with no climate policy implemented
-    2.  **NPi** (*N*ational *P*olicies *i*mplemented): scenario  describes energy,  climate  and  economic  projections for the  period  until 2030, and equivalent efforts thereafter. See [CD-LINKS modelling protocol](https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf) for details.
-    3.  **NDC**: All emission reductions and other mitigation commitments of the *N*ationally*D*etermined *C*ontributions under the Paris Agreement are implemented. See [CD-LINKS modelling protocol](https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf) for details.
+    2.  **NPi** (National Policies implemented): scenario  describes energy,  climate  and  economic  projections for the  period  until 2030, and equivalent efforts thereafter. See `CD-LINKS modelling protocol <https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf>`_ for details.
+    3.  **NDC**: All emission reductions and other mitigation commitments of the Nationally Determined Contributions under the Paris Agreement are implemented. See `CD-LINKS modelling protocol <https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf>`_ for details.
     4.  **PkBudg 1300/1100/900**: Climate policies to limit cumulative 2011-2100 CO2 emissions to 1300 / 1100 / 900 over the entire time horizon (“not-to-exceed”). Correspond to 2°, well-below 2° and 1.5° targets. Other greenhouse gases are priced with the CO2e-price using 100year global warming potentials.
 
 The following IMAGE IAM files come with the library:
@@ -189,6 +189,7 @@ Main contributor
 `Romain Sacchi <https://github.com/romainsacchi>`_
 
 `premise` uses a combination of two external data sources:
+
 * `WBCSD's GNR database <https://gccassociation.org/gnr/>`_ for historical data (1990 - 2018) on clinker and cement production, fuel mixes, clinker-to-cement ratio, etc.
 * `IEA's technology roadmap for the cement industry <https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry>`_ for projected data on clinker and cement production.
 
@@ -197,6 +198,7 @@ Existing national datasets for clinker production in ecoinvent are adapted to a 
 the geographical scope of each IAM region).
 
 For each clinker production dataset, the following aspects are adjusted:
+
 * the thermal efficiency of the kiln: it is calculated as the product of the projected efficiency of each kiln technology
   (dry, semi-dry, wet, with or without pre-calciner, with or without pre-heater) and the expected share of each technology
   for the concerned region and year.
@@ -236,6 +238,7 @@ Main contributors
 `Romain Sacchi <https://github.com/romainsacchi>`_
 
 Remark 1: still in development
+
 Remark 2: only works with the variables of the industry module of REMIND
 
 1. Steel markets
