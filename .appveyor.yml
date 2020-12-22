@@ -7,10 +7,10 @@ environment:
   PYTHONIOENCODING: "UTF-8"
 
   matrix:
-    - PYTHON_VERSION: "3.7"
+    - PYTHON_VERSION: "3.8"
       PYTHON_ARCH: "64"
-      CONDA_PY: "37"
-      CONDA_INSTALL_LOCN: "C:\\Miniconda37-x64"
+      CONDA_PY: "38"
+      CONDA_INSTALL_LOCN: "C:\\Miniconda38-x64"
 
 install:
   - call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
@@ -21,4 +21,4 @@ install:
   - pip install -e .
 
 test_script:
-  - pytest
+  - pytest -m "not ecoinvent"
