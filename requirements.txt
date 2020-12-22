@@ -1,4 +1,4 @@
-numpy>=1.19
+numpy
 pandas
 bw2io
 bw2data
