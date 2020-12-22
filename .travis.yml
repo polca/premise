@@ -33,9 +33,8 @@ before_install:
 install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       conda create -n test-environment python=$TRAVIS_PYTHON_VERSION numpy pandas pytest pytest-cov
-      coveralls bw2io bw2data wurst xarray prettytable
-      carculator carculator_truck;
-      source activate test-environment;
+      coveralls bw2io bw2data wurst xarray prettytable carculator carculator_truck pycountry;
+      conda activate test-environment;
       pip3 install -e .;
     else
       pip3 install -r ci/macos-travis.txt;
