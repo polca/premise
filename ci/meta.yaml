@@ -29,6 +29,7 @@ requirements:
     - prettytable
     - carculator
     - carculator_truck
+    - prettytable
   run:
     - python
     - wurst
@@ -40,6 +41,8 @@ requirements:
     - prettytable
     - carculator
     - carculator_truck
+    - pycountry
+    - prettytable
 
 test:
   imports:
