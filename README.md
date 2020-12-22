@@ -6,7 +6,7 @@
 Previously named *rmnd-lca*. *rmnd-lca* was designed to work with the IAM model REMIND only.
 As it now evolves towards a more IAM-neutral approach, a change of name was considered.
  
-[![Build Status](https://travis-ci.org/romainsacchi/premise.svg?branch=master)](https://travis-ci.org/romainsacchi/premise) [![Build status](https://ci.appveyor.com/api/projects/status/qdtgf7tngv652x03?svg=true)](https://ci.appveyor.com/project/romainsacchi/premise) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/premise?branch=master) [![Documentation](https://readthedocs.org/projects/premise/badge/?version=latest)](https://premise.readthedocs.io/en/latest/) [![PyPI version](https://badge.fury.io/py/premise.svg)](https://badge.fury.io/py/premise)
+[![Build Status](https://travis-ci.org/romainsacchi/premise.svg?branch=master)](https://travis-ci.org/romainsacchi/premise) [![Build status](https://ci.appveyor.com/api/projects/status/qdtgf7tngv652x03?svg=true)](https://ci.appveyor.com/project/romainsacchi/premise) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/premise?branch=master) [![Documentation](https://readthedocs.org/projects/premise/badge/?version=latest)](https://premise.readthedocs.io/en/latest/) ![PyPI](https://img.shields.io/pypi/v/premise)
 
 Documentation
 -------------
