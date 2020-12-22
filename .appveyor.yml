@@ -11,6 +11,7 @@ environment:
       PYTHON_ARCH: "64"
       CONDA_PY: "38"
       CONDA_INSTALL_LOCN: "C:\\Miniconda38-x64"
+      PYTHON_LOCN: "C:\\Python38-x64"
 
 install:
   - call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
