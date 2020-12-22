@@ -24,7 +24,6 @@ before_install:
       conda config --set always_yes yes --set changeps1 no;
       conda config --append channels conda-forge;
       conda config --append channels cmutel;
-      conda config --append channels konstantinstadler;
       conda config --append channels romainsacchi;
       conda update conda;
       conda config --set channel_priority strict;
