@@ -21,4 +21,4 @@ install:
   - pip install -e .
 
 test_script:
-  - pytest
+  - pytest -m "not ecoinvent"

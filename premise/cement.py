@@ -740,7 +740,7 @@ class Cement:
                     ("market for cement, pozzolana and fly ash 11-35%, non-US","cement, pozzolana and fly ash 11-35%, non-US"),
                     ("market for cement, pozzolana and fly ash 15-40%, US only","cement, pozzolana and fly ash 15-40%, US only"),
                     ("market for cement, pozzolana and fly ash 36-55%,non-US","cement, pozzolana and fly ash 36-55%,non-US"),
-                    ("market for cement, pozzolana and fly ash 5-15%, US only","cement, pozzolana and fly ash 5-15%, US only")
+                    ("market for cement, pozzolana and fly ash 5-15%, US only","cement, pozzolana and fly ash 5-15%, US only"),
                     ("market for cement, unspecified", "cement, unspecified")
                       ):
                 act_cement = self.fetch_proxies(i[0], i[1])
