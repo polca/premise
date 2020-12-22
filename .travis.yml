@@ -35,7 +35,7 @@ before_install:
 install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       conda create -n test-environment python=$TRAVIS_PYTHON_VERSION numpy pandas pytest pytest-cov
-      coveralls xarray prettytable carculator carculator_truck pycountry;
+      coveralls xarray prettytable carculator carculator_truck pycountry
       bw2io bw2data wurst ;
 
       source activate test-environment;
