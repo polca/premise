@@ -16,19 +16,7 @@ build:
 requirements:
   build:
     - python
-    - wurst
-    - numpy
-    - pandas
-    - bw2io
-    - bw2data
-    - xarray
-    - pytest
-    - pytest-cov
-    - coveralls
     - setuptools
-    - prettytable
-    - carculator
-    - carculator_truck
   run:
     - python
     - wurst
