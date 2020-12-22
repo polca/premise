@@ -34,8 +34,8 @@ before_install:
     fi
 install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      conda create -n test-environment python=$TRAVIS_PYTHON_VERSION numpy>=1.19 pandas pytest pytest-cov
-      coveralls bw2io bw2data wurst;
+      conda create -n test-environment python=$TRAVIS_PYTHON_VERSION numpy pandas pytest pytest-cov
+      coveralls xarray prettytable carculator carculator_truck pycountry;
       source activate test-environment;
       pip3 install -e .;
       pip3 install pytest;
@@ -48,7 +48,7 @@ script:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       pwd;
       ls;
-      pytest -m "not ecoinvent" --cov=premise;
+      # pytest -m "not ecoinvent" --cov=premise;
       coveralls;
       if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
         conda install conda-build anaconda-client;
