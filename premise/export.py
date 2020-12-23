@@ -26,13 +26,16 @@ class Export:
 
     """
 
-    def __init__(self, db, model, scenario, year, filepath=None):
+    def __init__(self, db, model, scenario, year, filepath):
         self.db = db
         self.model = model
         self.scenario = scenario
         self.year = year
-        self.filepath = Path(filepath) / self.model / self.scenario / str(self.year) \
-                        or DATA_DIR / "matrices" / self.model / self.scenario / str(self.year)
+
+        if filepath:
+            self.filepath = Path(filepath) / self.model / self.scenario / str(self.year)
+        else:
+            self.filepath = DATA_DIR / "matrices" / self.model / self.scenario / str(self.year)
 
     def export_db_to_matrices(self):
         index_A = self.create_index_of_A_matrix()

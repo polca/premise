@@ -4,6 +4,7 @@ from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .inventory_imports import CarmaCCSInventory, \
     BiofuelInventory, \
+    DACInventory, \
     HydrogenInventory, \
     BiogasInventory, \
     SynfuelInventory, \
@@ -28,6 +29,7 @@ from pathlib import Path
 
 FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xls")
 FILEPATH_CHP_INVENTORIES = (INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xls")
+FILEPATH_DAC_INVENTORIES = (INVENTORY_DIR / "lci-direct-air-capture.xls")
 FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xls")
 FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xls")
 FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xls")
@@ -218,6 +220,9 @@ class NewDatabase:
 
         carma = CarmaCCSInventory(self.db, self.version, FILEPATH_CHP_INVENTORIES)
         carma.merge_inventory()
+
+        dac = DACInventory(self.db, self.version, FILEPATH_DAC_INVENTORIES)
+        dac.merge_inventory()
 
         biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
         biogas.merge_inventory()

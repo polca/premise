@@ -664,7 +664,6 @@ class BaseInventoryImport:
                     if "input" in ex:
                         del ex["input"]
 
-
 class CarmaCCSInventory(BaseInventoryImport):
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
@@ -757,6 +756,71 @@ class CarmaCCSInventory(BaseInventoryImport):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
 
+        # Check for duplicates
+        self.check_for_duplicates()
+
+class DACInventory(BaseInventoryImport):
+    def __init__(self, database, version, path):
+        super().__init__(database, version, path)
+        self.import_db = self.load_inventory(path)
+
+    def load_inventory(self, path):
+        return ExcelImporter(path)
+
+    def prepare_inventory(self):
+        if self.version == 3.7:
+            # apply some updates to comply with ei 3.7
+            new_technosphere_data = EI_37_MIGRATION_MAP
+
+            Migration("migration_37").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
+            )
+            self.import_db.migrate("migration_37")
+
+        if self.version in (3.6, 3.5):
+            # apply some updates to go from ei3.7 to ei3.6
+            new_technosphere_data = {
+                "fields": ["name", "reference product", "location"],
+                "data": [
+                    (
+                        ("steel production, electric, low-alloyed",
+                         "steel, low-alloyed",
+                         "Europe without Switzerland and Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("reinforcing steel production",
+                         "reinforcing steel",
+                         "Europe without Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("smelting of copper concentrate, sulfide ore",
+                         "copper, anode",
+                         "RoW"),
+                        {
+                            "name": "smelting and refining of nickel ore",
+                            "reference product": "copper concentrate, sulfide ore",
+                            "location": "GLO",
+                        },
+                    )
+                ],
+            }
+
+            Migration("migration_36").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.5 to 3.6",
+            )
+            self.import_db.migrate("migration_36")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
         # Add carbon storage for CCS technologies
         print("Add fossil carbon dioxide storage for CCS technologies.")
         self.add_negative_CO2_flows_for_biomass_CCS()
@@ -786,101 +850,6 @@ class CarmaCCSInventory(BaseInventoryImport):
                 ds, ws.equals("name", "Carbon dioxide, non-fossil")
             ):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
-
-class CHPCCSInventory(BaseInventoryImport):
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        if self.version == 3.7:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-
-        if self.version == 3.6:
-            # apply some updates to comply with ei 3.6
-            new_technosphere_data = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        ("market for water, decarbonised, at user", (), "GLO"),
-                        {
-                            "name": "market for water, decarbonised",
-                            "reference product": "water, decarbonised",
-                            "location": "DE",
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, completely softened, from decarbonised water, at user",
-                            (),
-                            "GLO",
-                        ),
-                        {
-                            "name": "market for water, completely softened",
-                            "reference product": "water, completely softened",
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("market for steam, in chemical industry", (), "GLO"),
-                        {
-                            "location": "RER",
-                            "reference product": "steam, in chemical industry",
-                        },
-                    ),
-                    (
-                        ("market for steam, in chemical industry", (), "RER"),
-                        {"reference product": "steam, in chemical industry",},
-                    ),
-                    (
-                        ("zinc-lead mine operation", ("zinc concentrate",), "GLO"),
-                        {
-                            "name": "zinc mine operation",
-                            "reference product": "bulk lead-zinc concentrate",
-                        },
-                    ),
-                    (
-                        ("market for aluminium oxide", ("aluminium oxide",), "GLO"),
-                        {
-                            "name": "market for aluminium oxide, non-metallurgical",
-                            "reference product": "aluminium oxide, non-metallurgical",
-                            "location": "IAI Area, EU27 & EFTA",
-                        },
-                    ),
-                    (
-                        (
-                            "platinum group metal mine operation, ore with high rhodium content",
-                            ("nickel, 99.5%",),
-                            "ZA",
-                        ),
-                        {
-                            "name": "platinum group metal, extraction and refinery operations",
-                        },
-                    ),
-                ],
-            }
-
-            Migration("migration_36").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("migration_36")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
 
 class BiofuelInventory(BaseInventoryImport):
     """

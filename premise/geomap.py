@@ -171,11 +171,14 @@ class Geomap:
         if location in mapping:
             return mapping[location]
 
-        iam_location = [
-            r[1]
-            for r in self.geo.within(location)
-            if r[0] == self.model.upper() and r[1] != "World"
-        ]
+        try:
+            iam_location = [
+                r[1]
+                for r in self.geo.within(location)
+                if r[0] == self.model.upper() and r[1] != "World"
+            ]
+        except KeyError:
+            raise("ERROR with {}".format(self.model, location))
 
         mapping = {
             ("AFR", "MEA"): "AFR",
