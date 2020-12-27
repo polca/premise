@@ -1859,6 +1859,14 @@ class CarculatorInventory(BaseInventoryImport):
                 i = ic.export_lci_to_bw(presamples=False,
                                         ecoinvent_version=str(self.version))
 
+            # we need to remove the electricity inputs in the fuel markets
+            # that are typically added when synfuels are part of the blend
+            for x in i.data:
+                if "fuel supply for " in x["name"]:
+                    for e in x["exchanges"]:
+                        if "electricity market for " in e["name"]:
+                            x["exchanges"].remove(e)
+
             if r == 0:
                 import_db = i
             else:
@@ -2009,6 +2017,14 @@ class TruckInventory(BaseInventoryImport):
             i = ic.export_lci_to_bw(presamples=False,
                                     ecoinvent_version=str(self.version)
                                     )
+
+            # we need to remove the electricity inputs in the fuel markets
+            # that are typically added when synfuels are part of the blend
+            for x in i.data:
+                if "fuel supply for " in x["name"]:
+                    for e in x["exchanges"]:
+                        if "electricity market for " in e["name"]:
+                            x["exchanges"].remove(e)
 
             if r == 0:
                 import_db = i
