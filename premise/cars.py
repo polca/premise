@@ -101,7 +101,7 @@ class Cars:
                 if len(possible_producers) > 1:
                     print(("Multiple potential producers for {} found in {}, "
                            "using activity from {}").format(
-                               name, region, prod["location"]))
+                               name, region, selected_producer["location"]))
             else:
                 selected_producer = None
 
