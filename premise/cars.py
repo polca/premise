@@ -186,7 +186,7 @@ class Cars:
                 # local syndiesel
                 new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Diesel production, synthetic, Fischer Tropsch process")
+                    "Diesel production, synthetic, Fischer Tropsch process, economic allocation")
 
                 new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
                     region,
