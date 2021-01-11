@@ -101,7 +101,7 @@ class Cars:
                 if len(possible_producers) > 1:
                     print(("Multiple potential producers for {} found in {}, "
                            "using activity from {}").format(
-                               name, region, prod["location"]))
+                               name, region, selected_producer["location"]))
             else:
                 selected_producer = None
 
@@ -186,7 +186,7 @@ class Cars:
                 # local syndiesel
                 new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Diesel production, synthetic, Fischer Tropsch process, economic allocation")
+                    "Diesel production, synthetic, Fischer Tropsch process, energy allocation")
 
                 new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
                     region,
