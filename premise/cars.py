@@ -114,6 +114,7 @@ class Cars:
                 print("We will use the following location: {}".format(selected_producer["location"]))
 
             if len(possible_producers) == 0:
+
                 selected_producer = None
 
             return selected_producer
@@ -198,7 +199,7 @@ class Cars:
                 # local syndiesel
                 new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Diesel production, synthetic, Fischer Tropsch process, economic allocation")
+                    "Diesel production, synthetic, Fischer Tropsch process, energy allocation")
 
                 new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
                     region,
