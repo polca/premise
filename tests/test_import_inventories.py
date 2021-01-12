@@ -104,5 +104,5 @@ def test_load_carculator():
                                regions=["EUR"],
                                vehicles={"source file": (DATA_DIR / "iam_output_files")}
                                )
-    assert len(carc.import_db.data) == 339
+    assert len(carc.import_db.data) == 335
 
