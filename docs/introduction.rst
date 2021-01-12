@@ -31,7 +31,7 @@ In the latest version (0.1.7), the following transformation functions are availa
 
 * **update_electricity_to_iam_data()**: alignment of regional electricity production mixes as well as efficiencies for a number of
   electricity production technologies, including Carbon Capture and Storage technologies.
-* **update_cars()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
+* **update_vehicles()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
   including penetration of bio- and synthetic fuels.
 * **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
   fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
@@ -163,22 +163,27 @@ with a voltage transformation loss and additional electricity from waste inciner
 Low voltage markets take an input from medium voltage markets with a voltage transformation loss and additional
 electricity from photovoltaic-based technology.
 
-update_cars()
+update_vehicles()
 *************
 
 Main contributor
 ................
 
 `Alois Dirnaichner <https://github.com/Loisel>`_
+`Romain Sacchi <https://github.com/romainsacchi>`_
 
 1. Electric vehicles
-If passenger cars and/or truck inventories have been added upon the database creation, `update_cars()` will link
+If passenger cars and/or truck inventories have been added upon the database creation, `update_vehicles()` will link
 the electricity supply dataset these vehicles are using for battery charging or hydrogen production to the new
 low voltage electricity markets created by `update_electricity_to_iam_data()`.
 
 2. Internal combustion engine vehicles
-If passenger cars and/or truck inventories have been added upon the database creation, `update_cars()` will link
+If passenger cars and/or truck inventories have been added upon the database creation, `update_vehicles()` will link
 the fuel supply of conventional, bio- and synthetic fuel to the closest geographical supplier.
+
+3. Markets for passenger cars (upcoming)
+Fleet projections from the IAM are used to build markets for passenger cars and trucks. Once these markets are built,
+they replace existing markets and link back to transport-consuming activities.
 
 update_cement_to_iam_data()
 ***************************

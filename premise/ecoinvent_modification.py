@@ -348,9 +348,25 @@ class NewDatabase:
 
     def write_db_to_matrices(self, filepath=None):
         """
+
+        Exports the new database as a sparse matrix representation in csv files.
+
+
         :param filepath: path provided by the user to store the exported matrices
         :type filepath: str
-        Exports the new database as a sparse matrix representation in csv files.
+
         """
         print("Write new database to matrix.")
         Export(self.db, self.model, self.scenario, self.year, filepath).export_db_to_matrices()
+
+    def write_db_to_simapro(self, filepath=None):
+        """
+        Exports database as a CSV file to be imported in Simapro 9.x
+
+        :param filepath: path provided by the user to store the exported import file
+        :type filepath: str
+
+        """
+
+        print("Write Simapro import file.")
+        Export(self.db, self.model, self.scenario, self.year, filepath).export_db_to_simapro()

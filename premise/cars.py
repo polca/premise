@@ -96,13 +96,24 @@ class Cars:
                 ws.either(*[
                     ws.equals("location", loc) for loc in locs
                 ])))
-            if len(possible_producers) >= 1:
+
+            if len(possible_producers) == 1:
                 selected_producer = possible_producers[0]
-                if len(possible_producers) > 1:
-                    print(("Multiple potential producers for {} found in {}, "
-                           "using activity from {}").format(
-                               name, region, prod["location"]))
-            else:
+
+            if len(possible_producers) > 1:
+                possible_locations = tuple([p["location"] for p in possible_producers])
+                print(("Multiple potential producers for {} found in {}, "
+                       "using activity from {}").format(
+                           name, region, possible_locations))
+
+                mapping = {
+                    ("RAS", "RER"): "RER",
+                }
+                selected_producer = [p for p in possible_producers if p["location"] == mapping.get(possible_locations, "RER")][0]
+
+                print("We will use the following location: {}".format(selected_producer["location"]))
+
+            if len(possible_producers) == 0:
                 selected_producer = None
 
             return selected_producer
@@ -113,6 +124,7 @@ class Cars:
         if prod is None:
             ei_locs = self.geo.iam_to_ecoinvent_location(region)
             prod = producer_in_locations(ei_locs)
+
             if prod is None:
                 # let's use "any" dataset
                 producers = list(ws.get_many(
@@ -210,15 +222,12 @@ class Cars:
                         ex = list(ws.technosphere(
                             supply[ftype], ws.equals("product", supply_search[ftype][subtype])))
 
-                        if len(ex) == 1:
+                        if len(ex) > 0:
                             ex[0].update({
                                 "location": new_producers[ftype][subtype]["location"],
                                 "name": new_producers[ftype][subtype]["name"],
                             })
-                        else:
-                            print("Scenario {} Year {}, could not find a supplier for {} in {}"
-                                  .format(self.scenario, self.year,
-                                          supply_search[ftype][subtype], region))
+
             except ws.NoResults:
                 pass
 
