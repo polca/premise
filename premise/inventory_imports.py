@@ -13,6 +13,150 @@ import numpy as np
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
+EI_37_35_MIGRATION_MAP = {
+                "fields": ["name", "reference product", "location"],
+                "data": [
+                    (
+                        (
+                            "market for water, deionised",
+                            ("water, deionised",),
+                            "Europe without Switzerland",
+                        ),
+                        {
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
+                    ),
+                    (
+                        ("market for water, deionised", ("water, deionised",), "RoW"),
+                        {
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            ),
+                        },
+                    ),
+                    (
+                        ("market for water, deionised", ("water, deionised",), "CH"),
+                        {
+                            "name": (
+                                "market for water, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            )
+                        },
+                    ),
+                    (
+                        ("market for water, decarbonised", ("water, decarbonised",), "CH"),
+                        {
+                            "name": (
+                                "market for water, decarbonised, at user"
+                            ),
+                            "reference product": (
+                                "water, decarbonised, at user"
+                            )
+                            ,
+                            "location": (
+                                "GLO"
+                            )
+                        },
+                    ),
+                    (
+                        ("water production, deionised", ("water, deionised",), "RoW"),
+                        {
+                            "name": (
+                                "water production, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            )
+                            ,
+                        },
+                    ),
+                    (
+                        ("water production, deionised", ("water, deionised",), "Europe without Switzerland"),
+                        {
+                            "name": (
+                                "water production, deionised, from tap water, at user"
+                            ),
+                            "reference product": (
+                                "water, deionised, from tap water, at user"
+                            )
+                            ,
+                        },
+                    ),
+                    (
+                        ("market for water, ultrapure", ("water, ultrapure",), "RoW"),
+                        {
+                            "location": "GLO"
+                        },
+                    ),
+(
+                        ("market for water, ultrapure", ("water, ultrapure",), "CA-QC"),
+                        {
+                            "location": "GLO"
+                        },
+                    ),
+                    (
+                        (
+                            "market for aluminium oxide, metallurgical",
+                            ("aluminium oxide, metallurgical",),
+                            "IAI Area, EU27 & EFTA",
+                        ),
+                        {
+                            "name": "market for aluminium oxide",
+                            "reference product": "aluminium oxide",
+                            "location": "GLO",
+                        },
+                    ),
+                    (
+                        (
+                            "market for flat glass, coated",
+                            "flat glass, coated",
+                            "RER",
+                        ),
+                        {"location": "GLO"},
+                    ),
+                    (
+                        (
+                            "market for flat glass, uncoated",
+                            "flat glass, uncoated",
+                            "RER",
+                        ),
+                        {"location": "GLO"},
+                    ),
+
+                    (
+                        (
+                            "market for steam, in chemical industry",
+                            "steam, in chemical industry",
+                            "RER",
+                        ),
+                        {"location": "GLO"},
+                    ),
+                    (
+                        ("market for transport, freight train", ("transport, freight train",), "ZA"),
+                        {
+                            "location": "RoW",
+                        },
+                    ),
+                    (
+                        ("market for transport, freight train", ("transport, freight train",), "IN"),
+                        {
+                            "location": "RoW",
+                        },
+                    ),
+
+                ],
+            }
+
 EI_37_MIGRATION_MAP = {
                 "fields": ["name", "location", "reference product"],
                 "data": [
@@ -967,88 +1111,7 @@ class HydrogenInventory(BaseInventoryImport):
 
         # Migrations for 3.5
         if self.version == 3.5:
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        (
-                            "market for water, decarbonised",
-                            ("water, decarbonised",),
-                            "CH",
-                        ),
-                        {
-                            "name": (
-                                "market for water, decarbonised, at user"
-                            ),
-                            "reference product": (
-                                "water, decarbonised, at user"
-                            ),
-                            "location": "GLO"
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, deionised",
-                            ("water, deionised",),
-                            "Europe without Switzerland",
-                        ),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, deionised",
-                            ("water, deionised",),
-                            "CH",
-                        ),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        ("market for water, deionised", ("water, deionised",), "RoW"),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "market for aluminium oxide, metallurgical",
-                            ("aluminium oxide, metallurgical",),
-                            "IAI Area, EU27 & EFTA",
-                        ),
-                        {
-                            "name": "market for aluminium oxide",
-                            "reference product": "aluminium oxide",
-                            "location": "GLO",
-                        },
-                    ),
-                    (
-                        (
-                            "market for flat glass, coated",
-                            "flat glass, coated",
-                            "RER",
-                        ),
-                        {"location": "GLO",},
-                    ),
-                ],
-            }
+            migrations = EI_37_35_MIGRATION_MAP
 
             Migration("hydrogen_ecoinvent_35").write(
                 migrations,
@@ -1088,57 +1151,7 @@ class HydrogenBiogasInventory(BaseInventoryImport):
 
         # Migrations for 3.5
         if self.version == 3.5:
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        (
-                            "market for water, deionised",
-                            ("water, deionised",),
-                            "Europe without Switzerland",
-                        ),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        ("market for water, deionised", ("water, deionised",), "RoW"),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "market for aluminium oxide, metallurgical",
-                            ("aluminium oxide, metallurgical",),
-                            "IAI Area, EU27 & EFTA",
-                        ),
-                        {
-                            "name": "market for aluminium oxide",
-                            "reference product": "aluminium oxide",
-                            "location": "GLO",
-                        },
-                    ),
-                    (
-                        (
-                            "market for flat glass, coated",
-                            "flat glass, coated",
-                            "RER",
-                        ),
-                        {"location": "GLO"},
-                    ),
-                ],
-            }
+            migrations = EI_37_35_MIGRATION_MAP
 
             Migration("hydrogen_ecoinvent_35").write(
                 migrations,
@@ -1178,68 +1191,7 @@ class HydrogenWoodyInventory(BaseInventoryImport):
 
         # Migrations for 3.5
         if self.version == 3.5:
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        (
-                            "market for water, deionised",
-                            ("water, deionised",),
-                            "Europe without Switzerland",
-                        ),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        ("market for water, deionised", ("water, deionised",), "RoW"),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        ("market for water, deionised", ("water, deionised",), "CH"),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "market for aluminium oxide, metallurgical",
-                            ("aluminium oxide, metallurgical",),
-                            "IAI Area, EU27 & EFTA",
-                        ),
-                        {
-                            "name": "market for aluminium oxide",
-                            "reference product": "aluminium oxide",
-                            "location": "GLO",
-                        },
-                    ),
-                    (
-                        (
-                            "market for flat glass, coated",
-                            "flat glass, coated",
-                            "RER",
-                        ),
-                        {"location": "GLO"},
-                    ),
-                ],
-            }
+            migrations = EI_37_35_MIGRATION_MAP
 
             Migration("hydrogen_ecoinvent_35").write(
                 migrations,
@@ -1279,54 +1231,7 @@ class BiogasInventory(BaseInventoryImport):
 
         # Migrations for 3.5
         if self.version == 3.5:
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        ("market for water, deionised", ("water, deionised",), "CH"),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, deionised",
-                            ("water, deionised",),
-                            "Europe without Switzerland",
-                        ),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        ("market for water, deionised", ("water, deionised",), "RoW"),
-                        {
-                            "name": (
-                                "market for water, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        ("market for steam, in chemical industry", "steam, in chemical industry", "RER"),
-                        {
-                            "location": "GLO"
-                        },
-                    ),
-                ],
-            }
+            migrations = EI_37_35_MIGRATION_MAP
 
             Migration("biogas_ecoinvent_35").write(
                 migrations,
@@ -1366,23 +1271,7 @@ class SyngasInventory(BaseInventoryImport):
 
         # migration for ei 3.5
         if self.version == 3.5:
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        ("market for water, decarbonised", ("water, decarbonised",), "CH"),
-                        {
-                            "name": (
-                                "market for water, decarbonised, at user"
-                            ),
-                            "reference product": (
-                                "water, decarbonised, at user"
-                            ),
-                            "location": "GLO"
-                        },
-                    )
-                ],
-            }
+            migrations = EI_37_35_MIGRATION_MAP
 
             Migration("syngas_ecoinvent_35").write(
                 migrations,
@@ -1416,6 +1305,16 @@ class SynfuelInventory(BaseInventoryImport):
                 description="Change technosphere names due to change from 3.5/3.6 to 3.7",
             )
             self.import_db.migrate("migration_37")
+
+        if self.version == 3.5:
+            migrations = EI_37_35_MIGRATION_MAP
+
+            Migration("syngas_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.6 to 3.5",
+            )
+            self.import_db.migrate("syngas_ecoinvent_35")
+
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
         # Check for duplicates
@@ -1449,53 +1348,7 @@ class HydrogenCoalInventory(BaseInventoryImport):
 
         # Migrations for 3.5
         if self.version == 3.5:
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        ("water production, deionised", ("water, deionised",), "RoW"),
-                        {
-                            "name": (
-                                "water production, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "water production, deionised",
-                            ("water, deionised",),
-                            "Europe without Switzerland",
-                        ),
-                        {
-                            "name": (
-                                "water production, deionised, from tap water, at user"
-                            ),
-                            "reference product": (
-                                "water, deionised, from tap water, at user"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "market for transport, freight train",
-                            ("transport, freight train",),
-                            "ZA",
-                        ),
-                        {"location": "RoW"},
-                    ),
-                    (
-                        (
-                            "market for transport, freight train",
-                            "transport, freight train",
-                            "IN",
-                        ),
-                        {"location": "RoW"},
-                    ),
-                ],
-            }
+            migrations = EI_37_35_MIGRATION_MAP
 
             Migration("hydrogen_coal_ecoinvent_35").write(
                 migrations,
@@ -1619,47 +1472,7 @@ class LPGInventory(BaseInventoryImport):
 
         # Migrations for 3.5
         if self.version == 3.5:
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        (
-                            "market for aluminium oxide, metallurgical",
-                            ("aluminium oxide, metallurgical",),
-                            "IAI Area, EU27 & EFTA",
-                        ),
-                        {
-                            "name": "market for aluminium oxide",
-                            "reference product": "aluminium oxide",
-                            "location": "GLO",
-                        },
-                    ),
-                    (
-                        (
-                            "market for flat glass, uncoated",
-                            "flat glass, uncoated",
-                            "RER",
-                        ),
-                        {"location": "GLO"},
-                    ),
-                    (
-                        (
-                            "market for water, ultrapure",
-                            "water, ultrapure",
-                            "RoW",
-                        ),
-                        {"location": "GLO"},
-                    ),
-                    (
-                        (
-                            "market for water, ultrapure",
-                            "water, ultrapure",
-                            "CA-QC",
-                        ),
-                        {"location": "GLO"},
-                    ),
-                ],
-            }
+            migrations = EI_37_35_MIGRATION_MAP
 
             Migration("LPG_ecoinvent_35").write(
                 migrations,

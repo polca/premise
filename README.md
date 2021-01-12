@@ -66,8 +66,9 @@ In the latest version (0.1.7), the following transformation functions are availa
 
 * **update_electricity_to_iam_data()**: alignment of regional electricity production mixes as well as efficiencies for a number of
 electricity production technologies, including Carbon Capture and Storage technologies.
-* **update_cars()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
-including penetration of bio- and synthetic fuels.
+* **update_vehicles()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
+including penetration of bio- and synthetic fuels. Then, given a fleet composition, markets for passenger cars and trucks are created.
+Finally, these transport markets link back to transport-consuming activities.
 * **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
 fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
 * **update_steel_to_iam_data()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
@@ -78,7 +79,7 @@ the IAM file you use as input.
 |Function                        |Implemented?|Description                                                            |REMIND|IMAGE|Other IAM|Comment                               |
 |--------------------------------|------------|-----------------------------------------------------------------------|------|-----|---------|--------------------------------------|
 |update_electricity_to_iam_data()| Yes        | Aligns electricity markets and power plants efficiencies     | Yes  | Yes | No      |                                      |
-|update_cars()                   | Yes        | Aligns fuel markets for transport with IAM                            | Yes  | Yes | No      |                                      |
+|update_vehicles()               | Yes        | Aligns fuel supply markets with IAM and creates transport markets | Yes  | Yes | No      |                                      |
 |update_cement_to_iam_data()     | Yes        | Aligns clinker and cement production and supply | Yes  | Yes | Yes     | Uses external data sources ([WBCSD][6] and [IEA][7])|
 |update_steel_to_iam_data()      | Yes        | Align primary and secondary steel production and supply| Yes  | No  | No      | Only works with REMIND at the moment.|
 |update_metal_markets()          | Not yet    | Align metal extraction and supply with IAM                            | No   | No  | No      |                                      |
@@ -118,6 +119,7 @@ Outputs
 Either:
 * a database to register in a brightway2 project
 * a sparse matrix representation of the database stored in csv files
+* a SimaPro CSV file
 
 How to use it?
 --------------
