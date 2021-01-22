@@ -154,13 +154,13 @@ class Cars:
                 # to be improved!
                 "Biomass": ws.get_one(
                     self.db,
-                    ws.equals("name", "Biodiesel from cooking oil"))
+                    ws.equals("name", "Biodiesel, from used cooking oil, at fuelling station"))
             },
             "gasoline": {
                 # only ethanol from European wheat straw as biofuel
                 "Biomass": ws.get_one(
                     self.db,
-                    ws.equals("name", "Ethanol from wheat straw pellets"),
+                    ws.equals("name", "Ethanol, from wheat straw pellets, at fuelling station"),
                     ws.equals("location", "RER"))
             }
         }
@@ -199,19 +199,19 @@ class Cars:
                 # local syndiesel
                 new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Diesel production, synthetic, Fischer Tropsch process, energy allocation")
+                    "Diesel, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station")
 
                 new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Gasoline production, synthetic, from methanol")
+                    "Gasoline, synthetic, from methanol, at fuelling station")
 
                 supply_search = {
                     "gasoline": {
-                        "Hydrogen": "Gasoline, synthetic",
+                        "Hydrogen": "gasoline, synthetic, vehicle grade",
                         "Fossil": "petrol, low-sulfur"
                     },
                     "diesel": {
-                        "Hydrogen": "Diesel, synthetic",
+                        "Hydrogen": "diesel, synthetic, vehicle grade",
                         "Fossil": "diesel"
                     }
                 }
