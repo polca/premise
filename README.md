@@ -119,7 +119,7 @@ Outputs
 Either:
 * a database to register in a brightway2 project
 * a sparse matrix representation of the database stored in csv files
-* a SimaPro CSV file
+* a SimaPro CSV file for SimaPro 9.x
 
 How to use it?
 --------------

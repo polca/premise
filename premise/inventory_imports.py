@@ -1495,7 +1495,6 @@ class CarculatorInventory(BaseInventoryImport):
         self.model = model
 
 
-
         if "region" in vehicles:
             if vehicles["region"] == "all":
                 self.regions = regions
@@ -1512,6 +1511,16 @@ class CarculatorInventory(BaseInventoryImport):
         self.fleet_file = (
             Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
         )
+
+        if self.fleet_file:
+            self.filter = ["fleet average"]
+
+        else:
+            self.filter = []
+
+        if "filter" in vehicles:
+            self.filter.extend(vehicles["filter"])
+
 
         # IAM output file extension differs between REMIND and IMAGE
         ext = ".mif" if model == "remind" else ".xlsx"
@@ -1658,19 +1667,19 @@ class CarculatorInventory(BaseInventoryImport):
             )
 
             if self.fleet_file:
+
                 i = ic.export_lci_to_bw(presamples=False,
                                         ecoinvent_version=str(self.version),
                                         create_vehicle_datasets=False)
 
-                # filter out regular cars, to keep only fleet averages
-
-                if self.fleet_file:
-                    i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
-                              or "fleet average" in x["name"]]
-
             else:
                 i = ic.export_lci_to_bw(presamples=False,
                                         ecoinvent_version=str(self.version))
+
+            # filter out cars if anything given in `self.filter`
+            if len(self.filter) > 0:
+                i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
+                          or any(y.lower() in x["name"].lower() for y in self.filter)]
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
@@ -1727,6 +1736,15 @@ class TruckInventory(BaseInventoryImport):
         self.fleet_file = (
             Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
         )
+
+        if self.fleet_file:
+            self.filter = ["fleet average"]
+
+        else:
+            self.filter = []
+
+        if "filter" in vehicles:
+            self.filter.extend(vehicles["filter"])
 
         # IAM output file extension differs between REMIND and IMAGE
         ext = ".mif" if model == "remind" else ".xlsx"
@@ -1830,6 +1848,11 @@ class TruckInventory(BaseInventoryImport):
             i = ic.export_lci_to_bw(presamples=False,
                                     ecoinvent_version=str(self.version)
                                     )
+
+            # filter out cars if anything given in `self.filter`
+            if len(self.filter) > 0:
+                i.data = [x for x in i.data if "transport, " not in x["name"]
+                          or any(y.lower() in x["name"].lower() for y in self.filter)]
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
