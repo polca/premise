@@ -49,12 +49,12 @@ script:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       pwd;
       ls;
-      pytest -m "not ecoinvent" --cov=premise;
+      pytest -m "not ecoinvent" -s --cov=premise;
       coveralls;
       if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
         conda install conda-build anaconda-client;
         bash ci/conda_upload.sh;
       fi
     else
-      pytest -m "not ecoinvent";
+      pytest -m "not ecoinvent" -s;
     fi
