@@ -1,5 +1,9 @@
 # ``premise``
 
+<p align="center">
+  <img style="height:130px;" src="https://github.com/romainsacchi/premise/raw/master/docs/large.png">
+</p>
+
 # **PR**ospective **E**nviron**M**ental **I**mpact As**SE**ssment
 ## Coupling the ecoinvent database with projections from Integrated Assessment Models (IAM)
 
