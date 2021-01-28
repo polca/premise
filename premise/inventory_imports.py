@@ -1662,10 +1662,6 @@ class CarculatorInventory(BaseInventoryImport):
                 },
             }
 
-            print("scope", scope)
-            print("array.years", cm.array.coords["year"].values.tolist())
-            #print("fleet_array.years", fleet_array.coords["year"].values.tolist())
-
             ic = carculator.InventoryCalculation(
                 cm.array, scope=scope, background_configuration=bc
             )
