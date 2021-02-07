@@ -9,8 +9,8 @@ heavy fuel oil;38.5
 light fuel oil;40.6
 biogas;21.5
 waste;14
-methane, fossil;35.8
-methane, biogenic;35.8
+methane, fossil;50
+methane, biogenic;50
 diesel;48
 gasoline;42
 hydrogen;120

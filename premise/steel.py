@@ -1,5 +1,6 @@
 import wurst
 from wurst import searching as ws
+from wurst.searching import NoResults
 import itertools
 from .geomap import Geomap
 from .activity_maps import InventorySet
@@ -72,19 +73,35 @@ class Steel:
                 ds = ws.get_one(
                     self.db,
                     ws.equals("name", name),
+                    ws.contains("reference product", "steel"),
                     ws.equals("location", d_remind_to_eco[d]),
                 )
-
-                d_act[d] = copy.deepcopy(ds)
-                d_act[d]["location"] = d
-                d_act[d]["code"] = str(uuid.uuid4().hex)
-
-                if "input" in d_act[d]:
-                    d_act[d].pop("input")
 
             except ws.NoResults:
                 print('No dataset {} found for the REMIND region {}'.format(name, d))
                 continue
+            except ws.MultipleResults:
+                print("Multiple results for {} found for the REMIND region {}".format(name, d))
+
+                ds = ws.get_many(
+                    self.db,
+                    ws.equals("name", name),
+                    ws.contains("reference product", "steel"),
+                    ws.equals("location", d_remind_to_eco[d]),
+                )
+
+                for x in ds:
+                    print(x["name"], x["location"], x["reference product"])
+
+                raise
+
+            d_act[d] = copy.deepcopy(ds)
+            d_act[d]["location"] = d
+            d_act[d]["code"] = str(uuid.uuid4().hex)
+
+            if "input" in d_act[d]:
+                d_act[d].pop("input")
+
 
             for prod in ws.production(d_act[d]):
                 prod['location'] = d
@@ -211,7 +228,10 @@ class Steel:
                         if act['location'] == "North America without Quebec":
                             exc['location'] = 'USA'
                         else:
-                            exc['location'] = self.geo.ecoinvent_to_iam_location(act['location'])
+                            try:
+                                exc['location'] = self.geo.ecoinvent_to_iam_location(act['location'])
+                            except:
+                                print("cannot find for {}".format(act["location"]))
                     else:
                         exc['location'] = act['location']
 
@@ -272,25 +292,31 @@ class Steel:
             primary_share = (self.steel_data.sel(region=remind_region, variables='Production|Industry|Steel|Primary') / total_production_volume).values
             secondary_share = 1 - primary_share
 
-            ds = ws.get_one(self.db,
-                       ws.equals('reference product', act['reference product']),
-                       ws.contains('name', 'steel production'),
-                       ws.contains('name', 'converter'),
-                        ws.contains('location', 'RoW'))
+            print(d, act["name"], act["location"])
 
-            act['exchanges'].append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 1,
-                    "amount": primary_share,
-                    "type": "technosphere",
-                    "production volume": 1,
-                    "product": ds['reference product'],
-                    "name": ds['name'],
-                    "unit": ds['unit'],
-                    "location": remind_region,
-                }
-            )
+
+            try:
+                ds = ws.get_one(self.db,
+                           ws.equals('reference product', act['reference product']),
+                           ws.contains('name', 'steel production'),
+                           ws.contains('name', 'converter'),
+                            ws.contains('location', 'RoW'))
+
+                act['exchanges'].append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 1,
+                        "amount": primary_share,
+                        "type": "technosphere",
+                        "production volume": 1,
+                        "product": ds['reference product'],
+                        "name": ds['name'],
+                        "unit": ds['unit'],
+                        "location": remind_region,
+                    }
+                )
+            except NoResults:
+                secondary_share = 1
 
             ds = ws.get_one(self.db,
                        ws.equals('reference product', act['reference product']),
@@ -409,6 +435,34 @@ class Steel:
         # TODO: for now, we ignore CCS
         list_second_fuels = sorted(list(set(['|'.join(x) for x in l_SE if len(x) == 3 for y in l_FE if y[2] in x])))
         list_second_fuels = [list(g) for _, g in itertools.groupby(list_second_fuels, lambda x: x.split('|')[1])]
+
+        d_fuel_types = {
+            'SE|Gases|Biomass': 'biogas',
+            'SE|Gases|Coal': 'gas from coal',
+            'SE|Gases|Hydrogen': 'hydrogen',
+            'SE|Gases|Natural Gas': 'natural gas',
+            'SE|Gases|Non-Biomass': 'natural gas',
+            'SE|Gases|Waste': 'biogas',
+            #'SE|Heat|Biomass': 'heat from biomass',
+            #'SE|Heat|CHP': 'heat from CHP',
+            #'SE|Heat|Coal': 'heat from coal',
+            #'SE|Heat|Gas': 'heat from gas',
+            #'SE|Heat|Geothermal': 'heat from geothermal',
+            'SE|Hydrogen|Biomass': 'hydrogen from biomass',
+            'SE|Hydrogen|Coal': 'hydrogen from coal',
+            'SE|Hydrogen|Gas': 'hydrogen from natural gas',
+            'SE|Liquids|Biomass': 'bioethanol',
+            'SE|Liquids|Coal': 'synthetic diesel from coal',
+            'SE|Liquids|Gas': 'synthetic fuel from natural gas',
+            'SE|Liquids|Hydrogen': 'syntehtic fuel from natural gas',
+            'SE|Liquids|Oil': 'light fuel oil',
+            'SE|Solids|Biomass': 'waste',
+            'SE|Solids|Coal': 'hard coal',
+            'SE|Solids|Traditional Biomass': 'wood pellet'
+        }
+
+        print("list_second_fuels", list_second_fuels)
+        print("REMIND fuels", self.remind_fuels)
 
         # Loop through primary steel technologies
         for d in d_act_steel:

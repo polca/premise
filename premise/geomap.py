@@ -167,15 +167,22 @@ class Geomap:
         mapping = {
             "GLO": "World",
             "RoW": "CAZ" if self.model == "remind" else "World",
+            "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
+            "Europe without Switzerland and Austria": "EUR" if self.model == "remind" else "WEU",
         }
         if location in mapping:
             return mapping[location]
 
-        iam_location = [
-            r[1]
-            for r in self.geo.within(location)
-            if r[0] == self.model.upper() and r[1] != "World"
-        ]
+        try:
+            iam_location = [
+                r[1]
+                for r in self.geo.within(location)
+                if r[0] == self.model.upper() and r[1] != "World"
+            ]
+        except KeyError:
+            print("Cannot find the IAM location for {}.".format(location))
+            iam_location = ["World"]
+
 
         mapping = {
             ("AFR", "MEA"): "AFR",

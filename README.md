@@ -76,7 +76,7 @@ Finally, these transport markets link back to transport-consuming activities.
 * **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
 fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
 * **update_steel_to_iam_data()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
-
+* **update_solar_PV()**: adjustment of solar PV modules efficiency, to reflect current (18-20%) and future (25%) efficiencies.
 However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
 the IAM file you use as input.
 
@@ -87,8 +87,7 @@ the IAM file you use as input.
 |update_cement_to_iam_data()     | Yes        | Aligns clinker and cement production and supply | Yes  | Yes | Yes     | Uses external data sources ([WBCSD][6] and [IEA][7])|
 |update_steel_to_iam_data()      | Yes        | Align primary and secondary steel production and supply| Yes  | No  | No      | Only works with REMIND at the moment.|
 |update_metal_markets()          | Not yet    | Align metal extraction and supply with IAM                            | No   | No  | No      |                                      |
-|update_renewables()             | Not yet    | Align renewable energy systems performances with IAM                  | No   | No  | No      |                                      |
-
+|update_solar_PV()               | Yes        | Align solar PV modules efficiency | Yes | Yes | Yes | Uses external data source ([PSI]][7]) |
 
 The following REMIND IAM files come with the library:
 
@@ -155,13 +154,14 @@ See [contributing](https://github.com/romainsacchi/premise/blob/master/CONTRIBUT
 [4]:https://models.pbl.nl/image/index.php/IMAGE_framework
 [5]:https://www.ecoinvent.org/data-provider/data-provider-toolkit/ecospold2/ecospold2.html
 [6]:https://gccassociation.org/sustainability-innovation/gnr-gcca-in-numbers/
-[7]:https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry
-[8]:https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf
-[9]:https://doi.org/10.1016/j.ijggc.2013.03.003
-[10]:https://doi.org/10.1039/D0SE00222D
-[11]:https://doi.org/10.1039/C9SE00986H
-[12]:https://github.com/romainsacchi/carculator
-[13]:https://github.com/romainsacchi/carculator_truck
+[7]:https://www.psi.ch/sites/default/files/import/ta/PublicationTab/Final-Report-BFE-Project.pdf
+[8]:https://www.iea.org/reports/technology-roadmap-low-carbon-transition-in-the-cement-industry
+[9]:https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf
+[10]:https://doi.org/10.1016/j.ijggc.2013.03.003
+[11]:https://doi.org/10.1039/D0SE00222D
+[12]:https://doi.org/10.1039/C9SE00986H
+[13]:https://github.com/romainsacchi/carculator
+[14]:https://github.com/romainsacchi/carculator_truck
 
 ## License
 

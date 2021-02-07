@@ -36,6 +36,7 @@ In the latest version (0.1.7), the following transformation functions are availa
 * **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
   fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
 * **update_steel_to_iam_data()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
+* **update_solar_PV()**: adjustment of solar PV modules with projected developments reported in `Bauer et al. <https://www.psi.ch/sites/default/files/import/ta/PublicationTab/Final-Report-BFE-Project.pdf>`_
 
 However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
 the IAM file you use as input.
@@ -257,3 +258,17 @@ is fetched from the REMIND data. In parallel, the fuel mix for each process type
 natural gas and biomass-based fuel). With this information, the energy efficiency, fuel mix and resulting fossil and
 biogenic CO_2 emissions are updated in each steel production dataset.
 After this, steel-consuming datasets in ecoinvent are re-linked to the new steel production datasets, based on their location.
+
+update_solar_PV()
+**************************
+
+Main contributor
+.................
+
+`Romain Sacchi <https://github.com/romainsacchi>`_
+
+
+1. Solar PV efficiency module
+`premise` iterates through photovoltaic panel installation activities (residential -- on roof -- and commercial
+-- on ground) and adjusts the required panels area required to fulfill the peak power of the installation with
+current and future efficiencies. As teh efficiency increases, the surface of panels required diminishes.

@@ -235,3 +235,5 @@ class Cars:
     def update_cars(self):
         self.link_local_electricity_supply()
         self.link_local_liquid_fuel_markets()
+
+        return self.db

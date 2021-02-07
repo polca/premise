@@ -510,6 +510,7 @@ class BaseInventoryImport:
         self.version = version
         self.biosphere_dict = self.get_biosphere_code()
 
+
         path = Path(path)
 
         if path != Path("."):
@@ -517,6 +518,8 @@ class BaseInventoryImport:
                 raise FileNotFoundError(
                     "The inventory file {} could not be found.".format(path)
                 )
+
+        self.path = path
         self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
@@ -565,9 +568,9 @@ class BaseInventoryImport:
             print(
                 "The following datasets to import already exist in the source database. They will not be imported"
             )
-            t = PrettyTable(["Name", "Reference product", "Location"])
+            t = PrettyTable(["Name", "Reference product", "Location", "File"])
             for ds in already_exist:
-                t.add_row([ds[0][:40], ds[1][:30], ds[2]])
+                t.add_row([ds[0][:50], ds[1][:30], ds[2], self.path.name])
 
             print(t)
 
@@ -1165,46 +1168,6 @@ class HydrogenBiogasInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
-class HydrogenWoodyInventory(BaseInventoryImport):
-    """
-    Hydrogen datasets from the ELEGANCY project (2019).
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version == 3.7:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-
-        # Migrations for 3.5
-        if self.version == 3.5:
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("hydrogen_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("hydrogen_ecoinvent_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
-
 class BiogasInventory(BaseInventoryImport):
     """
     Biogas datasets from the SCCER project (2019).
@@ -1320,107 +1283,10 @@ class SynfuelInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
-class HydrogenCoalInventory(BaseInventoryImport):
-    """
-    Hydrogen production from coal gasification from Wokaun A, Wilhelm E, Schenler W, Simons A, Bauer C, Bond S, et al.
-    Transition to hydrogen - pathways toward clean transportation. New York: Cambridge University Press; 2011
-.
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version == 3.7:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-
-        # Migrations for 3.5
-        if self.version == 3.5:
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("hydrogen_coal_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("hydrogen_coal_ecoinvent_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-        # Check for duplicates
-        self.check_for_duplicates()
-
 class GeothermalInventory(BaseInventoryImport):
     """
     Geothermal heat production, adapted from geothermal power production dataset from ecoinvent 3.6.
 .
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version == 3.7:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-        # Check for duplicates
-        self.check_for_duplicates()
-
-class SyngasCoalInventory(BaseInventoryImport):
-    """
-    Synthetic fuel datasets from the PSI project (2019), with hydrogen from coal gasification.
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version == 3.7:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-        # Check for duplicates
-        self.check_for_duplicates()
-
-class SynfuelCoalInventory(BaseInventoryImport):
-    """
-    Synthetic fuel datasets from the PSI project (2019), with hydrogen from coal gasification.
     """
 
     def __init__(self, database, version, path):
