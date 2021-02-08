@@ -39,12 +39,13 @@ class SolarPV:
                 ws.contains('name', 'photovoltaic'),
                 ws.either(ws.contains('name', 'installation'),
                           ws.contains('name', 'construction')),
-                ws.doesnt_contain_any('name', ['market']),
+                ws.doesnt_contain_any('name', ['market', 'factory']),
                 ws.equals("unit", "unit"),
             ]
         )
 
         for d in ds:
+            print(d["name"])
             power = float(re.findall('\d+', d["name"])[0])
 
             for exc in ws.technosphere(d, *[

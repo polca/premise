@@ -271,4 +271,4 @@ Main contributor
 1. Solar PV efficiency module
 `premise` iterates through photovoltaic panel installation activities (residential -- on roof -- and commercial
 -- on ground) and adjusts the required panels area required to fulfill the peak power of the installation with
-current and future efficiencies. As teh efficiency increases, the surface of panels required diminishes.
+current and future efficiencies. As the efficiency increases, the surface of panels to mount diminishes.
