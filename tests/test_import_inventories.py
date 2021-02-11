@@ -99,10 +99,11 @@ def test_load_carculator():
                                version=3.7,
                                model="remind",
                                path=Path(""),
-                               scenario="SSP2-Base",
+                               pathway="SSP2-Base",
                                year=2015,
                                regions=["EUR"],
-                               vehicles={"source file": (DATA_DIR / "iam_output_files")}
+                               fleet_file= DATA_DIR / "iam_output_files" / "fleet files" / "remind" / "passenger cars"
                                )
     assert len(carc.import_db.data) >= 335
+
 

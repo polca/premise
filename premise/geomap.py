@@ -120,8 +120,8 @@ class Geomap:
         :param contained: whether only geographies that are contained within the IAM region should be returned.
         By default, `contained` is False, meaning the function also returns geographies that intersects with IAM region.
         :type contained: bool
-        :return: name of an ecoinvent region
-        :rtype: str
+        :return: name(s) of an ecoinvent region
+        :rtype: list
         """
 
         if location == "World":
@@ -180,7 +180,7 @@ class Geomap:
                 if r[0] == self.model.upper() and r[1] != "World"
             ]
         except KeyError:
-            print("Cannot find the IAM location for {}.".format(location))
+            print("Cannot find the IAM location for {} from IAM model {}.".format(location, self.model))
             iam_location = ["World"]
 
 
@@ -233,7 +233,7 @@ class Geomap:
                     "IAI Area, Russia & RER w/o EU27 & EFTA": "RUS"
                 }
 
-            if self.model == "remind":
+            else:
                 d_ecoinvent_regions = {
                     "IAI Area, Russia & RER w/o EU27 & EFTA": "REF",
                 }

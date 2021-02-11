@@ -100,15 +100,15 @@ def get_db():
 def setup_db():
     bw.projects.set_current(BW_PROJECT)
     return NewDatabase(
-        scenario=scenario,
-        year=year,
+        scenarios={"model": "remind",
+                   "pathway": scenario,
+                   "year": year,
+                   "filapath": remind_output_folder,
+                   "passenger cars": {"fleet file": os.path.join(
+                remind_output_folder, scenario + "_vintcomp.csv")}},
         source_db='ecoinvent {} cutoff'.format(ecoinvent_version),
-        source_version=ecoinvent_version,
-        add_passenger_cars={
-            "fleet file": os.path.join(
-                remind_output_folder, scenario + "_vintcomp.csv")
-        },
-        filepath_to_iam_files=remind_output_folder)
+        source_version=ecoinvent_version)
+
 
 
 @pytest.mark.ecoinvent

@@ -21,19 +21,19 @@ class Electricity:
     """
     Class that modifies electricity markets in ecoinvent based on IAM output data.
 
-    :ivar scenario: name of an IAM scenario
-    :vartype scenario: str
+    :ivar scenario: name of an IAM pathway
+    :vartype pathway: str
 
     """
 
-    def __init__(self, db, rmd, model, scenario, year):
+    def __init__(self, db, iam_data, model, pathway, year):
         self.db = db
-        self.rmd = rmd
+        self.iam_data = iam_data
         self.model = model
         self.geo = Geomap(model=model)
         self.production_per_tech = self.get_production_per_tech_dict()
         self.losses = self.get_losses_per_country_dict()
-        self.scenario = scenario
+        self.scenario = pathway
         self.year = year
         self.fuels_lhv = get_lower_heating_values()
         mapping = InventorySet(self.db)
@@ -239,7 +239,7 @@ class Electricity:
         """
         # Loop through REMIND regions
 
-        for region in self.rmd.electricity_markets.coords["region"].values:
+        for region in self.iam_data.electricity_markets.coords["region"].values:
             created_markets = []
             # Create an empty dataset
             new_dataset = {
@@ -249,7 +249,7 @@ class Electricity:
                 "unit": "kilowatt hour",
                 "database": self.db[1]["database"],
                 "code": str(uuid.uuid4().hex),
-                "comment": "Dataset produced from REMIND scenario output results",
+                "comment": "Dataset produced from REMIND pathway output results",
             }
 
             # First, add the reference product exchange
@@ -309,23 +309,23 @@ class Electricity:
             gen_tech = list(
                 (
                     tech
-                    for tech in self.rmd.electricity_markets.coords["variables"].values
+                    for tech in self.iam_data.electricity_markets.coords["variables"].values
                     if "Solar" in tech
                 )
             )
             for technology in gen_tech:
                 # If the solar power technology contributes to the mix
-                if self.rmd.electricity_markets.loc[region, technology] != 0.0:
+                if self.iam_data.electricity_markets.loc[region, technology] != 0.0:
                     # Fetch ecoinvent regions contained in the REMIND region
                     ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
 
                     # Contribution in supply
-                    amount = self.rmd.electricity_markets.loc[region, technology].values
+                    amount = self.iam_data.electricity_markets.loc[region, technology].values
                     solar_amount += amount
 
                     # Get the possible names of ecoinvent datasets
                     ecoinvent_technologies = self.powerplant_map[
-                        self.rmd.rev_electricity_market_labels[technology]
+                        self.iam_data.rev_electricity_market_labels[technology]
                     ]
 
                     # Fetch electricity-producing technologies contained in the REMIND region
@@ -459,7 +459,7 @@ class Electricity:
         """
         # Loop through REMIND regions
         gen_region = (
-            region for region in self.rmd.electricity_markets.coords["region"].values
+            region for region in self.iam_data.electricity_markets.coords["region"].values
         )
 
         created_markets = []
@@ -473,7 +473,7 @@ class Electricity:
                 "unit": "kilowatt hour",
                 "database": self.db[1]["database"],
                 "code": str(uuid.uuid1().hex),
-                "comment": "Dataset produced from REMIND scenario output results",
+                "comment": "Dataset produced from REMIND pathway output results",
             }
 
             # First, add the reference product exchange
@@ -606,12 +606,12 @@ class Electricity:
         """
         # Loop through REMIND regions
         gen_region = (
-            region for region in self.rmd.electricity_markets.coords["region"].values
+            region for region in self.iam_data.electricity_markets.coords["region"].values
         )
         gen_tech = list(
             (
                 tech
-                for tech in self.rmd.electricity_markets.coords["variables"].values
+                for tech in self.iam_data.electricity_markets.coords["variables"].values
                 if "Solar" not in tech
             )
         )
@@ -631,7 +631,7 @@ class Electricity:
                 "unit": "kilowatt hour",
                 "database": self.db[1]["database"],
                 "code": str(uuid.uuid4().hex),
-                "comment": "Dataset produced from REMIND scenario output results",
+                "comment": "Dataset produced from REMIND pathway output results",
             }
 
             new_exchanges = [
@@ -671,10 +671,10 @@ class Electricity:
 
             index_solar = [
                 ind
-                for ind in self.rmd.rev_electricity_market_labels
+                for ind in self.iam_data.rev_electricity_market_labels
                 if "solar" in ind.lower()
             ]
-            solar_amount = self.rmd.electricity_markets.loc[
+            solar_amount = self.iam_data.electricity_markets.loc[
                 region, index_solar
             ].values.sum()
 
@@ -682,14 +682,14 @@ class Electricity:
             for technology in gen_tech:
 
                 # If the given technology contributes to the mix
-                if self.rmd.electricity_markets.loc[region, technology] != 0.0:
+                if self.iam_data.electricity_markets.loc[region, technology] != 0.0:
 
                     # Contribution in supply
-                    amount = self.rmd.electricity_markets.loc[region, technology].values
+                    amount = self.iam_data.electricity_markets.loc[region, technology].values
 
                     # Get the possible names of ecoinvent datasets
                     ecoinvent_technologies = self.powerplant_map[
-                        self.rmd.rev_electricity_market_labels[technology]
+                        self.iam_data.rev_electricity_market_labels[technology]
                     ]
 
                     # Fetch electricity-producing technologies contained in the REMIND region
@@ -826,7 +826,8 @@ class Electricity:
                             ws.contains("name", "electricity voltage transformation"),
                             ws.contains("name", "market group for electricity"),
                         ]
-                    )
+                    ),
+                    ws.doesnt_contain_any("name", ["cobalt", "aluminium", "coal mining"])
                 ]
             ):
                 if exc["type"] != "production" and exc["unit"] == "kilowatt hour":
@@ -947,9 +948,9 @@ class Electricity:
 
         remind_locations = self.geo.ecoinvent_to_iam_location(ds["location"])
         remind_eff = (
-            self.rmd.electricity_efficiencies.loc[
+            self.iam_data.electricity_efficiencies.loc[
                 dict(
-                    variables=self.rmd.electricity_efficiency_labels[technology],
+                    variables=self.iam_data.electricity_efficiency_labels[technology],
                     region=remind_locations,
                 )
             ]
@@ -1010,7 +1011,7 @@ class Electricity:
                 "technology filters": self.powerplant_map[tech],
                 "fuel filters": self.powerplant_fuels_map[tech],
             }
-            for tech in self.rmd.electricity_efficiency_labels.keys()
+            for tech in self.iam_data.electricity_efficiency_labels.keys()
         }
 
     def update_electricity_efficiency(self):
@@ -1078,13 +1079,13 @@ class Electricity:
                 ):
                     remind_emission_label = self.emissions_map[exc["name"]]
 
-                    remind_emission = self.rmd.electricity_emissions.loc[
+                    remind_emission = self.iam_data.electricity_emissions.loc[
                         dict(
                             region=self.geo.iam_to_GAINS_region(
                                 self.geo.ecoinvent_to_iam_location(ds["location"])
                             ),
                             pollutant=remind_emission_label,
-                            sector=self.rmd.electricity_emission_labels[
+                            sector=self.iam_data.electricity_emission_labels[
                                 remind_technology
                             ],
                         )
@@ -1122,10 +1123,13 @@ class Electricity:
         ]
 
         # Writing log of deleted markets
+        # We want to preserve special markets
+        # for the cobalt and aluminium industries
         markets_to_delete = [
             [i["name"], i["location"]]
             for i in self.db
             if any(stop in i["name"] for stop in list_to_remove)
+            and "industry" not in i["name"]
         ]
 
         if not os.path.exists(DATA_DIR / "logs"):
@@ -1145,6 +1149,7 @@ class Electricity:
 
         self.db = [
             i for i in self.db if not any(stop in i["name"] for stop in list_to_remove)
+            or any(w for w in ("cobalt", "aluminium", "coal mining") if w in i["name"])
         ]
 
         # We then need to create high voltage REMIND electricity markets

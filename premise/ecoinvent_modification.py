@@ -2,21 +2,20 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .inventory_imports import CarmaCCSInventory, \
-    BiofuelInventory, \
-    DACInventory, \
-    HydrogenInventory, \
-    BiogasInventory, \
-    SynfuelInventory, \
-    SyngasInventory, \
-    HydrogenCoalInventory, \
-    HydrogenWoodyInventory, \
-    GeothermalInventory, \
-    SyngasCoalInventory, \
-    SynfuelCoalInventory, \
-    LPGInventory, \
-    CarculatorInventory, \
-    TruckInventory
+from .renewables import SolarPV
+from .inventory_imports import (
+    CarmaCCSInventory,
+    BiofuelInventory,
+    DACInventory,
+    HydrogenInventory,
+    BiogasInventory,
+    SynfuelInventory,
+    SyngasInventory,
+    GeothermalInventory,
+    LPGInventory,
+    CarculatorInventory,
+    TruckInventory,
+)
 from .cement import Cement
 from .steel import Steel
 from .cars import Cars
@@ -25,34 +24,267 @@ from .utils import eidb_label
 import wurst
 import wurst.searching as ws
 from pathlib import Path
+import copy
 
 
-FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xls")
-FILEPATH_CHP_INVENTORIES = (INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xls")
-FILEPATH_DAC_INVENTORIES = (INVENTORY_DIR / "lci-direct-air-capture.xls")
-FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xls")
-FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xls")
-FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-electrolysis.xls")
-FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xls")
-FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xls")
-FILEPATH_HYDROGEN_WOODY_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-wood-gasification.xls")
-FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-FT.xls")
-FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xls")
-FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xls")
-FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = (INVENTORY_DIR / "lci-geothermal.xls")
-FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-syngas-from-coal.xls")
-FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel-from-coal.xls")
-FILEPATH_METHANOL_FUELS_INVENTORIES = (INVENTORY_DIR / "lci-synfuels-from-methanol.xls")
+FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xls"
+FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xls"
+FILEPATH_DAC_INVENTORIES = INVENTORY_DIR / "lci-direct-air-capture.xls"
+FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xls"
+FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xls"
+FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xls"
+FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xls"
+FILEPATH_HYDROGEN_NATGAS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xls"
+FILEPATH_HYDROGEN_WOODY_INVENTORIES = (
+    INVENTORY_DIR / "lci-hydrogen-wood-gasification.xls"
+)
+FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
+    INVENTORY_DIR / "lci-hydrogen-coal-gasification.xls"
+)
+FILEPATH_SYNFUEL_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xls"
+)
+FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal.xls"
+)
+FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-biogas.xls"
+)
+FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas.xls"
+)
+FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas-CCS.xls"
+)
+FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-petroleum.xls"
+)
+FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass.xls"
+)
+FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xls"
+)
+FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xls"
+FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xls"
+FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xls"
+FILEPATH_METHANOL_FUELS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xls"
+)
+FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xls"
+)
+FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xls"
+)
+FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xls"
+)
+FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xls"
+)
 
-SUPPORTED_EI_VERSIONS = [3.5, 3.6, 3.7]
-SUPPORTED_SCENARIOS = [
+SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1"]
+SUPPORTED_MODELS = ["remind", "image", "static"]
+SUPPORTED_PATHWAYS = [
     "SSP2-Base",
     "SSP2-NDC",
     "SSP2-NPi",
     "SSP2-PkBudg900",
     "SSP2-PkBudg1100",
     "SSP2-PkBudg1300",
+    "static",
 ]
+
+LIST_REMIND_REGIONS = [
+    "LAM",
+    "CAZ",
+    "EUR",
+    "CHA",
+    "SSA",
+    "IND",
+    "OAS",
+    "JPN",
+    "OAS",
+    "REF",
+    "MEA",
+    "USA",
+    "World",
+]
+
+LIST_IMAGE_REGIONS = [
+    "BRA",
+    "CAN",
+    "CEU",
+    "CHN",
+    "EAF",
+    "INDIA",
+    "INDO",
+    "JAP",
+    "KOR",
+    "ME",
+    "MEX",
+    "NAF",
+    "OCE",
+    "RCAM",
+    "RSAF",
+    "RSAM",
+    "RSAS",
+    "RUS",
+    "SAF",
+    "SEAS",
+    "STAN",
+    "TUR",
+    "UKR",
+    "USA",
+    "WAF",
+    "WEU",
+]
+
+
+def check_ei_filepath(filepath):
+
+    if not Path(filepath).is_dir():
+        raise FileNotFoundError(
+            f"The directory for ecospold files {filepath} could not be found."
+        )
+    else:
+        return Path(filepath)
+
+
+def check_model_name(name):
+    if name.lower() not in SUPPORTED_MODELS:
+        raise ValueError(
+            f"Only {SUPPORTED_MODELS} are currently supported, not {name}."
+        )
+    else:
+        return name.lower()
+
+
+def check_pathway_name(name):
+    if name not in SUPPORTED_PATHWAYS:
+        raise ValueError(
+            f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
+        )
+    else:
+        return name
+
+
+def check_year(year):
+    try:
+        year = int(year)
+    except ValueError:
+        raise ValueError(f"{year} is not a valid year.")
+
+    try:
+        assert 2005 <= year < 2100
+    except AssertionError:
+        raise AssertionError(f"{year} must be comprised between 2005 and 2100.")
+
+    return year
+
+
+def check_filepath(path):
+    if not Path(path).is_dir():
+        raise FileNotFoundError(f"The IAM output directory {path} could not be found.")
+    else:
+        return Path(path)
+
+
+def check_fleet(fleet, model, vehicle_type):
+    if "fleet file" not in fleet:
+        print(
+            "No fleet composition file is provided, hence fleet average vehicles will be built using "
+            "fleet projection from the pathway provided."
+        )
+        fleet["fleet file"] = (
+            DATA_DIR / "iam_output_files" / "fleet files" / model / vehicle_type / "fleet_file_pc.csv"
+        )
+    else:
+        filepath = fleet["fleet file"]
+        if not Path(filepath).is_dir():
+            raise FileNotFoundError(
+                f"The fleet file directory {filepath} could not be found."
+            )
+
+    if "region" in fleet:
+        if isinstance(fleet["region"], str):
+            fleet["region"] = list(fleet["region"])
+
+
+        if model == "remind":
+            if not set(fleet["region"]).issubset(LIST_REMIND_REGIONS):
+                raise ValueError(
+                    "One or several regions specified for the fleet "
+                    "of passenger cars is invalid."
+                )
+
+        if model == "image":
+            if not set(fleet["region"]).issubset(LIST_IMAGE_REGIONS):
+                raise ValueError(
+                    "One or several regions specified for the fleet "
+                    "of passenger cars is invalid."
+                )
+    else:
+        if model == "remind":
+            fleet["region"] = LIST_REMIND_REGIONS
+        if model == "image":
+            fleet["region"] = LIST_IMAGE_REGIONS
+
+    if "filters" not in fleet:
+        fleet["filters"] = None
+    else:
+        if isinstance(fleet["fleet"], str):
+            fleet["filters"] = list(fleet["filters"])
+
+
+    return fleet
+
+
+def check_scenarios(scenario):
+
+    if not all(name in scenario for name in ["model", "pathway", "year"]):
+        raise ValueError(
+            f"Missing parameters in {scenario}. Needs to include at least `model`,"
+            f"`pathway` and `year`."
+        )
+
+    scenario["model"] = check_model_name(scenario["model"])
+    scenario["pathway"] = check_pathway_name(scenario["pathway"])
+    scenario["year"] = check_year(scenario["year"])
+
+    if "filepath" in scenario:
+        filepath = scenario["filepath"]
+        scenario["filepath"] = check_filepath(filepath)
+    else:
+        scenario["filepath"] = DATA_DIR / "iam_output_files"
+
+    if "passenger cars" in scenario:
+        scenario["passenger cars"] = check_fleet(
+            scenario["passenger cars"], scenario["model"], "passenger cars"
+        )
+    else:
+        scenario["passenger cars"] = False
+
+    if "trucks" in scenario:
+        scenario["trucks"] = check_fleet(
+            scenario["trucks"], scenario["model"], "trucks"
+        )
+    else:
+        scenario["trucks"] = False
+
+    return scenario
+
+
+def check_db_version(version):
+    version = str(version)
+    if version not in SUPPORTED_EI_VERSIONS:
+        raise ValueError(
+            f"Only {SUPPORTED_EI_VERSIONS} are currently supported, not {version}."
+        )
+    else:
+        return version
+
 
 class NewDatabase:
     """
@@ -60,138 +292,56 @@ class NewDatabase:
 
     :ivar model: name of teh IAM model. Can be `remind` or `image`.
     :vartype model: str
-    :ivar scenario: name of the IAM scenario, e.g., 'SSP2-Base', 'SSP2/NDC', etc..
-    :vartype scenario: str
-    :ivar year: year of the IAM scenario to consider, between 2005 and 2150.
+    :ivar pathway: name of the IAM pathway, e.g., 'SSP2-Base', 'SSP2/NDC', etc..
+    :vartype pathway: str
+    :ivar year: year of the IAM pathway to consider, between 2005 and 2150.
     :vartype year: int
     :ivar source_type: the source of the ecoinvent database. Can be `brigthway` or `ecospold`.
     :vartype source_type: str
     :ivar source_db: name of the ecoinvent source database
     :vartype source_db: str
-    :ivar source_version: version of the ecoinvent source database. Currently works with ecoinvent 3.5, 3.6 and 3.7.
-    :vartype source_version: float
-    :ivar filepath_to_iam_files: Filepath to the directory that contains IAM output files.
-    :vartype filepath_to_iam_files: str
-    :ivar add_passenger_cars: Whether or not to include inventories of future passenger cars. If
-    a dictionary is passed, it will look inside to collect arguments such as a specified fleet file,
-    or a list of regions to generate inventories for. If a boolean is passed, inventories are
-    generated for all regions.
-    :vartype add_passenger_cars: bool or dict
-    :ivar add_trucks: Whether or not to include inventories of future medium and heavy duty trucks. If
-    a dictionary is passed, it will look inside to collect arguments such as a specified fleet file,
-    or a list of regions to generate inventories for. If a boolean is passed, inventories are
-    generated for all regions.
-    :vartype add_passenger_cars: bool or dict
+    :ivar source_version: version of the ecoinvent source database. Currently works with ecoinvent 3.5, 3.6, 3.7, 3.7.1.
+    :vartype source_version: str
 
     """
 
-    def __init__(self,
-                 year,
-                 source_db=None,
-                 model="remind",
-                 scenario=None,
-                 source_version=3.7,
-                 source_type='brightway',
-                 source_file_path=None,
-                 filepath_to_iam_files=None,
-                 add_passenger_cars=None,
-                 add_trucks=None):
+    def __init__(
+        self,
+        scenarios,
+        source_db=None,
+        source_version="3.7.1",
+        source_type="brightway",
+        source_file_path=None,
+    ):
 
-        if model.lower() not in ["remind", "image"]:
-            raise ValueError("Only REMIND and IMAGE model scenarios are currently supported.")
-
-        if filepath_to_iam_files is None:
-            if model.lower() == "remind":
-                if scenario not in [
-                    "SSP2-Base",
-                    "SSP2-NDC",
-                    "SSP2-NPi",
-                    "SSP2-PkBudg900",
-                    "SSP2-PkBudg1100",
-                    "SSP2-PkBudg1300",
-                ]:
-                    print(('Warning: The scenario chosen is not any of '
-                           '"SSP2-Base", "SSP2-NDC", "SSP2-NPi", "SSP2-PkBudg900", '
-                           '"SSP2-PkBudg1100", "SSP2-PkBudg1300".'))
-
-            if model.lower() == "image":
-                if scenario not in [
-                    "SSP2-Base",
-                ]:
-                    print(('Warning: The scenario chosen is not any of '
-                           '"SSP2-Base".'))
-
-        # If we produce fleet average vehicles,
-        # fleet compositions and electricity mixes must be provided
-        if add_passenger_cars:
-            if isinstance(add_passenger_cars, dict):
-                if "fleet file" not in add_passenger_cars:
-                    print("No fleet composition file is provided, hence fleet average vehicles inventories will not be produced.")
-                if "source file" not in add_passenger_cars:
-                    add_passenger_cars["source file"] = (filepath_to_iam_files or DATA_DIR / "iam_output_files")
-            elif isinstance(add_passenger_cars, bool):
-
-                # IAM output file extension differs between REMIND and IMAGE
-                add_passenger_cars = {"region": "all",
-                                        "source file":(filepath_to_iam_files or DATA_DIR / "iam_output_files")
-                                      }
-
-        # If we produce fleet average trucks,
-        # fleet compositions and electricity mixes must be provided
-        if add_trucks:
-            if isinstance(add_trucks, dict):
-                if "fleet file" not in add_trucks:
-                    print(
-                        "No fleet composition file is provided, hence fleet average truck inventories will not be produced.")
-                if "source file" not in add_trucks:
-                    add_trucks["source file"] = (filepath_to_iam_files or DATA_DIR / "iam_output_files")
-            elif isinstance(add_trucks, bool):
-
-                # IAM output file extension differs between REMIND and IMAGE
-                add_trucks = {"region": "all",
-                                      "source file": (
-                                                  filepath_to_iam_files or DATA_DIR / "iam_output_files")
-                                      }
-
-        if scenario is None:
-            raise ValueError("Missing scenario name.")
-        else:
-            self.scenario = scenario
-
-        try:
-            source_version = float(source_version)
-        except ValueError:
-            raise ValueError(f"Provided ecoinvent version ({source_version}) is not valid.\n")
-
-        if float(source_version) not in SUPPORTED_EI_VERSIONS:
-            raise ValueError(
-                (
-                    f"Provided ecoinvent version ({source_version}) is not supported.\n"
-                    f"Please use one of the following: {SUPPORTED_EI_VERSIONS}"
-                )
-            )
-
-        self.year = year
         self.source = source_db
-        self.model = model.lower()
-        self.version = source_version
+        self.version = check_db_version(source_version)
         self.source_type = source_type
-        self.source_file_path = source_file_path
-        self.filepath_to_iam_files = Path(filepath_to_iam_files or DATA_DIR / "iam_output_files")
-        self.add_passenger_cars = add_passenger_cars
-        self.add_trucks = add_trucks
 
-        if not self.filepath_to_iam_files.is_dir():
-            raise FileNotFoundError(
-                "The IAM output directory could not be found."
-            )
-        self.rdc = IAMDataCollection(self.model, self.scenario, self.year, self.filepath_to_iam_files)
+        if self.source_type == "ecospold":
+            self.source_file_path = check_ei_filepath(source_file_path)
+        else:
+            self.source_file_path = None
 
-        print("\n////////////////////// EXTRACTING SOURCE DATABASE ///////////////////////")
+        self.scenarios = [check_scenarios(scenario) for scenario in scenarios]
+
+        print(
+            "\n////////////////////// EXTRACTING SOURCE DATABASE ///////////////////////"
+        )
         self.db = self.clean_database()
-        print("\n/////////////////// IMPORTING ADDITIONAL INVENTORIES ////////////////////")
+        print(
+            "\n/////////////////// IMPORTING ADDITIONAL INVENTORIES ////////////////////"
+        )
         self.import_inventories()
 
+        for scenario in self.scenarios:
+            scenario["external data"] = IAMDataCollection(
+                model=scenario["model"],
+                pathway=scenario["pathway"],
+                year=scenario["year"],
+                filepath_iam_files=scenario["filepath"],
+            )
+            scenario["database"] = copy.deepcopy(self.db)
 
     def clean_database(self):
         """
@@ -200,9 +350,7 @@ class NewDatabase:
         :return:
         """
         return DatabaseCleaner(
-            self.source,
-            self.source_type,
-            self.source_file_path
+            self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
     def import_inventories(self):
@@ -215,11 +363,9 @@ class NewDatabase:
         """
 
         # Add Carma CCS inventories
-        carma = CarmaCCSInventory(self.db, self.version, FILEPATH_CARMA_INVENTORIES)
-        carma.merge_inventory()
-
-        carma = CarmaCCSInventory(self.db, self.version, FILEPATH_CHP_INVENTORIES)
-        carma.merge_inventory()
+        for f in (FILEPATH_CARMA_INVENTORIES, FILEPATH_CHP_INVENTORIES):
+            carma = CarmaCCSInventory(self.db, self.version, f)
+            carma.merge_inventory()
 
         dac = DACInventory(self.db, self.version, FILEPATH_DAC_INVENTORIES)
         dac.merge_inventory()
@@ -227,124 +373,228 @@ class NewDatabase:
         biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
         biogas.merge_inventory()
 
-        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_INVENTORIES)
-        hydro.merge_inventory()
+        for f in (
+            FILEPATH_HYDROGEN_INVENTORIES,
+            FILEPATH_HYDROGEN_BIOGAS_INVENTORIES,
+            FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,
+            FILEPATH_HYDROGEN_NATGAS_INVENTORIES,
+            FILEPATH_HYDROGEN_WOODY_INVENTORIES,
+        ):
 
-        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_NATGAS_INVENTORIES)
-        hydro.merge_inventory()
+            hydro = HydrogenInventory(self.db, self.version, f)
+            hydro.merge_inventory()
 
-        hydro = HydrogenInventory(self.db, self.version, FILEPATH_HYDROGEN_BIOGAS_INVENTORIES)
-        hydro.merge_inventory()
-
-        hydro = HydrogenWoodyInventory(self.db, self.version, FILEPATH_HYDROGEN_WOODY_INVENTORIES)
-        hydro.merge_inventory()
-
-        syngas = SyngasInventory(self.db, self.version, FILEPATH_SYNGAS_INVENTORIES)
-        syngas.merge_inventory()
+        for f in (FILEPATH_SYNGAS_INVENTORIES, FILEPATH_SYNGAS_FROM_COAL_INVENTORIES):
+            syngas = SyngasInventory(self.db, self.version, f)
+            syngas.merge_inventory()
 
         bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
         bio.merge_inventory()
 
-        synfuel = SynfuelInventory(self.db, self.version, FILEPATH_SYNFUEL_INVENTORIES)
-        synfuel.merge_inventory()
+        for f in (
+            FILEPATH_SYNFUEL_INVENTORIES,
+            FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
+            FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
+            FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
+            FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES,
+            FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
+            FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
+            FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
+        ):
+            synfuel = SynfuelInventory(self.db, self.version, f)
+            synfuel.merge_inventory()
 
-        hydrogen_coal = HydrogenCoalInventory(self.db, self.version, FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES)
-        hydrogen_coal.merge_inventory()
-
-        geo_heat = GeothermalInventory(self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES)
+        geo_heat = GeothermalInventory(
+            self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
+        )
         geo_heat.merge_inventory()
 
-        syngas_coal = SyngasCoalInventory(self.db, self.version, FILEPATH_SYNGAS_FROM_COAL_INVENTORIES)
-        syngas_coal.merge_inventory()
+        for f in (
+            FILEPATH_METHANOL_FUELS_INVENTORIES,
+            FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
+            FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
+            FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
+            FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
+        ):
 
-        synfuel_coal = SynfuelCoalInventory(self.db, self.version, FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES)
-        synfuel_coal.merge_inventory()
-
-        lpg = LPGInventory(self.db, self.version, FILEPATH_METHANOL_FUELS_INVENTORIES)
-        lpg.merge_inventory()
-
-        # Import `carculator` inventories if wanted
-        if self.add_passenger_cars:
-            cars = CarculatorInventory(database=self.db,
-                                       version=self.version,
-                                       path=Path(""),
-                                       model=self.model,
-                                       scenario=self.scenario,
-                                       year=self.year,
-                                       regions=self.rdc.regions,
-                                       vehicles=self.add_passenger_cars
-                                       )
-            cars.merge_inventory()
-
-        # Import `carculator_truck` inventories if wanted
-        if self.add_trucks:
-            trucks = TruckInventory(database=self.db,
-                                       version=self.version,
-                                       path=Path(""),
-                                       model=self.model,
-                                       scenario=self.scenario,
-                                       year=self.year,
-                                       regions=self.rdc.regions,
-                                       vehicles=self.add_passenger_cars
-                                       )
-            trucks.merge_inventory()
+            lpg = LPGInventory(self.db, self.version, f)
+            lpg.merge_inventory()
 
     def update_electricity_to_iam_data(self):
         print("\n/////////////////// ELECTRICITY ////////////////////")
-        electricity = Electricity(self.db, self.rdc, self.model, self.scenario, self.year)
-        self.db = electricity.update_electricity_markets()
-        self.db = electricity.update_electricity_efficiency()
+
+        for scenario in self.scenarios:
+
+            electricity = Electricity(
+                db=scenario["database"],
+                iam_data=scenario["external data"],
+                model=scenario["model"],
+                pathway=scenario["pathway"],
+                year=scenario["year"],
+            )
+            scenario["database"] = electricity.update_electricity_markets()
+            scenario["database"] = electricity.update_electricity_efficiency()
 
     def update_cement_to_iam_data(self):
         print("\n/////////////////// CEMENT ////////////////////")
-        cement = Cement(db=self.db,
-                        model=self.model,
-                        scenario=self.scenario,
-                        rmd=self.rdc,
-                        year=self.year,
-                        version=self.version
-                        )
-        self.db = cement.add_datasets_to_database()
+
+        for scenario in self.scenarios:
+
+            cement = Cement(
+                db=scenario["database"],
+                model=scenario["model"],
+                scenario=scenario["pathway"],
+                iam_data=scenario["external data"],
+                year=scenario["year"],
+                version=self.version,
+            )
+
+            scenario["database"] = cement.add_datasets_to_database()
 
     def update_steel_to_iam_data(self):
-        print("\n/////////////////// STEEL ////////////////////")
-        if len([v for v in self.rdc.data.variables.values
-                if "steel" in v.lower() and "production" in v.lower()]) > 0:
-            steel = Steel(db=self.db, model=self.model, rmd=self.rdc, year=self.year)
-            self.db = steel.generate_activities()
+
+        if (
+            len(
+                [
+                    v
+                    for v in self.scenarios[0]["external data"].data.variables.values
+                    if "steel" in v.lower() and "production" in v.lower()
+                ]
+            )
+            > 0
+        ):
+            print("\n/////////////////// STEEL ////////////////////")
+            for scenario in self.scenarios:
+
+                steel = Steel(
+                    db=scenario["database"],
+                    model=scenario["model"],
+                    iam_data=scenario["external data"],
+                    year=scenario["year"],
+                )
+                scenario["database"] = steel.generate_activities()
         else:
-            print("The IAM scenario chosen does not contain any data related to the steel sector.\n"
-                  "Transformations related to the steel sector will be skipped.")
+            print(
+                "The IAM pathway chosen does not contain any data related to the steel sector.\n"
+                "Transformations related to the steel sector will be skipped."
+            )
 
     def update_cars(self):
-        print("\n/////////////////// VEHICLES ////////////////////")
+
         try:
-            next(ws.get_many(
-                self.db,
-                ws.equals("name", "market group for electricity, low voltage")))
-            crs = Cars(self.db, self.rdc, self.scenario, self.year, self.model)
-            crs.update_cars()
+            next(
+                ws.get_many(
+                    self.db,
+                    ws.equals("name", "market group for electricity, low voltage"),
+                )
+            )
+
+            for scenario in self.scenarios:
+                if scenario["passenger cars"]:
+                    print("\n/////////////////// PASSENGER CARS ////////////////////")
+
+
+                    # Import `carculator` inventories if wanted
+                    cars = CarculatorInventory(
+                        database=scenario["database"],
+                        version=self.version,
+                        path=scenario["filepath"],
+                        fleet_file=scenario["passenger cars"]["fleet file"],
+                        model=scenario["model"],
+                        pathway=scenario["pathway"],
+                        year=scenario["year"],
+                        regions=scenario["passenger cars"]["region"],
+                        filters=scenario["passenger cars"]["filters"],
+                    )
+                    cars.merge_inventory()
+
+                    crs = Cars(
+                        db=scenario["database"],
+                        iam_data=scenario["external data"],
+                        pathway=scenario["pathway"],
+                        year=scenario["year"],
+                        model=scenario["model"],
+                    )
+                    scenario["database"] = crs.update_cars()
+
         except StopIteration:
-            raise(("No updated electricity markets found. Please update "
-                   "electricity markets before updating upstream fuel "
-                   "inventories for electricity powered vehicles"))
+            raise (
+                (
+                    "No updated electricity markets found. Please update "
+                    "electricity markets before updating upstream fuel "
+                    "inventories for electricity powered vehicles"
+                )
+            )
+
+    def update_trucks(self):
+
+        try:
+            next(
+                ws.get_many(
+                    self.db,
+                    ws.equals("name", "market group for electricity, low voltage"),
+                )
+            )
+
+            for scenario in self.scenarios:
+                if scenario["passenger cars"]:
+                    print("\n/////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
+
+                    # Import `carculator_truck` inventories if wanted
+
+                    trucks = TruckInventory(
+                        database=scenario["database"],
+                        version=self.version,
+                        path=scenario["filepath"],
+                        fleet_file=scenario["passenger cars"]["fleet file"],
+                        model=scenario["model"],
+                        pathway=scenario["pathway"],
+                        year=scenario["year"],
+                        regions=scenario["trucks"]["region"],
+                        filters=scenario["trucks"]["filters"],
+                       )
+                    trucks.merge_inventory()
+
+        except StopIteration:
+            raise (
+                (
+                    "No updated electricity markets found. Please update "
+                    "electricity markets before updating upstream fuel "
+                    "inventories for electricity powered vehicles"
+                )
+            )
+
+
+
+
+    def update_solar_PV(self):
+        print("\n/////////////////// SOLAR PV ////////////////////")
+
+        for scenario in self.scenarios:
+            solar_PV = SolarPV(db=scenario["database"], year=scenario["year"])
+            print("Update efficiency of solar PVs.\n")
+            scenario["database"] = solar_PV.update_efficiency_of_solar_PV()
 
     def update_all(self):
         """
         Shortcut method to execute all transformation functions.
         """
         self.update_electricity_to_iam_data()
+        self.update_solar_PV()
         self.update_cement_to_iam_data()
         self.update_steel_to_iam_data()
-        if self.add_passenger_cars:
-            self.update_cars()
+        self.update_cars()
 
     def write_db_to_brightway(self):
         """
         Register the new database into an open brightway2 project.
         """
-        print('Write new database to Brightway2.')
-        wurst.write_brightway2_database(self.db, eidb_label(self.model, self.scenario, self.year))
+        print("Write new database(s) to Brightway2.")
+        for scenario in self.scenarios:
+            wurst.write_brightway2_database(
+                scenario["database"],
+                eidb_label(scenario["model"], scenario["pathway"], scenario["year"]),
+            )
 
     def write_db_to_matrices(self, filepath=None):
         """
@@ -356,8 +606,15 @@ class NewDatabase:
         :type filepath: str
 
         """
-        print("Write new database to matrix.")
-        Export(self.db, self.model, self.scenario, self.year, filepath).export_db_to_matrices()
+        print("Write new database(s) to matrix.")
+        for scenario in self.scenarios:
+            Export(
+                scenario["database"],
+                scenario["model"],
+                scenario["pathway"],
+                scenario["year"],
+                filepath,
+            ).export_db_to_matrices()
 
     def write_db_to_simapro(self, filepath=None):
         """
@@ -368,5 +625,12 @@ class NewDatabase:
 
         """
 
-        print("Write Simapro import file.")
-        Export(self.db, self.model, self.scenario, self.year, filepath).export_db_to_simapro()
+        print("Write Simapro import file(s).")
+        for scenario in self.scenarios:
+            Export(
+                scenario["database"],
+                scenario["model"],
+                scenario["pathway"],
+                scenario["year"],
+                filepath,
+            ).export_db_to_simapro()

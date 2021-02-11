@@ -22,9 +22,9 @@ class Export:
 
     :ivar db: transformed database
     :vartype db: dict
-    :ivar scenario: name of a Remind scenario
-    :vartype scenario: str
-    :ivar year: year of a Remind scenario
+    :ivar scenario: name of a Remind pathway
+    :vartype pathway: str
+    :ivar year: year of a Remind pathway
     :vartype year: int
 
     """
@@ -241,7 +241,8 @@ class Export:
 
         return dict_cat
 
-    def get_simapro_category_of_exchange(self):
+    @staticmethod
+    def get_simapro_category_of_exchange():
 
         """Load a dictionary with categories to use for Simapro export based on ei 3.7"""
 

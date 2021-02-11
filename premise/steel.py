@@ -17,18 +17,18 @@ class Steel:
     :vartype db: dict
     :ivar model: can be 'remind' or 'image'. str from :attr:`.NewDatabase.model`
     :vartype model: str
-    :ivar rmd: xarray that contains IAM data, from :attr:`.NewDatabase.rdc`
-    :vartype rmd: xarray.DataArray
+    :ivar iam_data: xarray that contains IAM data, from :attr:`.NewDatabase.rdc`
+    :vartype iam_data: xarray.DataArray
     :ivar year: year, from :attr:`.NewDatabase.year`
     :vartype year: int
     
     """
 
-    def __init__(self, db, model, rmd, year):
+    def __init__(self, db, model, iam_data, year):
         self.db = db
-        self.rmd = rmd
+        self.iam_data = iam_data
         self.year = year
-        self.steel_data = self.rmd.data.interp(year=self.year)
+        self.steel_data = self.iam_data.data.interp(year=self.year)
         self.fuels_lhv = get_lower_heating_values()
         self.fuels_co2 = get_fuel_co2_emission_factors()
         self.remind_fuels = get_correspondance_remind_to_fuels()
@@ -248,7 +248,7 @@ class Steel:
             remind_emission_label = self.emissions_map[exc["name"]]
 
             try:
-                remind_emission = self.rmd.steel_emissions.loc[
+                remind_emission = self.iam_data.steel_emissions.loc[
                     dict(
                         region=ds["location"],
                         pollutant=remind_emission_label
@@ -257,7 +257,7 @@ class Steel:
             except KeyError:
                 # TODO: fix this.
                 # GAINS does not have a 'World' region, hence we use China as a temporary fix
-                remind_emission = self.rmd.steel_emissions.loc[
+                remind_emission = self.iam_data.steel_emissions.loc[
                     dict(
                         region='CHA',
                         pollutant=remind_emission_label

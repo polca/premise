@@ -497,7 +497,8 @@ class BaseInventoryImport:
 
         :param list database: the target database for the import (the Ecoinvent database),
                               unpacked to a list of dicts
-        :param float version: the version of the target database
+        :param version: the version of the target database ("3.5", "3.6", "3.7", "3.7.1")
+        :type version: str
         :param path: Path to the imported inventory.
         :type path: str or Path
 
@@ -820,7 +821,7 @@ class CarmaCCSInventory(BaseInventoryImport):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -830,7 +831,7 @@ class CarmaCCSInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_37")
 
-        if self.version == 3.6:
+        if self.version == "3.6":
             # apply some updates to comply with ei 3.6
             new_technosphere_data = {
                 "fields": ["name", "reference product", "location"],
@@ -915,7 +916,7 @@ class DACInventory(BaseInventoryImport):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -925,7 +926,7 @@ class DACInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_37")
 
-        if self.version in (3.6, 3.5):
+        if self.version in ["3.6", "3.5"]:
             # apply some updates to go from ei3.7 to ei3.6
             new_technosphere_data = {
                 "fields": ["name", "reference product", "location"],
@@ -1013,7 +1014,7 @@ class BiofuelInventory(BaseInventoryImport):
     def prepare_inventory(self):
 
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1024,7 +1025,7 @@ class BiofuelInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.6
-        if self.version == 3.6:
+        if self.version == "3.6":
             migrations = {
                 "fields": ["name", "reference product", "location"],
                 "data": [
@@ -1102,7 +1103,7 @@ class HydrogenInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1113,7 +1114,7 @@ class HydrogenInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("hydrogen_ecoinvent_35").write(
@@ -1142,7 +1143,7 @@ class HydrogenBiogasInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1153,7 +1154,7 @@ class HydrogenBiogasInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("hydrogen_ecoinvent_35").write(
@@ -1182,7 +1183,7 @@ class BiogasInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1193,7 +1194,7 @@ class BiogasInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("biogas_ecoinvent_35").write(
@@ -1222,7 +1223,7 @@ class SyngasInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1233,7 +1234,7 @@ class SyngasInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # migration for ei 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("syngas_ecoinvent_35").write(
@@ -1259,7 +1260,7 @@ class SynfuelInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1269,7 +1270,7 @@ class SynfuelInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_37")
 
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("syngas_ecoinvent_35").write(
@@ -1298,7 +1299,7 @@ class GeothermalInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1326,7 +1327,7 @@ class LPGInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1337,7 +1338,7 @@ class LPGInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("LPG_ecoinvent_35").write(
@@ -1356,53 +1357,27 @@ class CarculatorInventory(BaseInventoryImport):
     Car models from the carculator project, https://github.com/romainsacchi/carculator
     """
 
-    def __init__(self, database, version, path, model, scenario, year, regions, vehicles):
+    def __init__(self, database, version, path, fleet_file, model, pathway, year, regions, filters=None):
         self.db_year = year
         self.model = model
+        self.regions = regions
+        self.fleet_file = fleet_file
+        self.filter = ["fleet average"]
 
-
-        if "region" in vehicles:
-            if vehicles["region"] == "all":
-                self.regions = regions
-            else:
-                if any(i for i in vehicles["region"] if i not in regions):
-                    raise ValueError(
-                        "One or more of the following regions {} for the creation of truck inventories is not valid.\n"
-                        "Regions must be of the following {}".format(vehicles["region"], regions))
-                else:
-                    self.regions = vehicles["region"]
-        else:
-            self.regions = regions
-
-        self.fleet_file = (
-            Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
-        )
-
-        if self.fleet_file:
-            self.filter = ["fleet average"]
-
-        else:
-            self.filter = []
-
-        if "filter" in vehicles:
-            self.filter.extend(vehicles["filter"])
-
+        if filters:
+            self.filter.extend(filters)
 
         # IAM output file extension differs between REMIND and IMAGE
         ext = ".mif" if model == "remind" else ".xlsx"
 
-        self.source_file = (
-            Path(vehicles["source file"]) / (model + "_" + scenario + ext)
-            if "source file" in vehicles
-            else DATA_DIR / "iam_output_files" / (model + "_" + scenario + ext)
-        )
+        self.source_file = path / (model + "_" + pathway + ext)
 
         if not self.source_file.is_file():
             raise FileNotFoundError("For some reason, the file {} is not accessible.".format(
                 self.source_file
             ))
 
-        super().__init__(database, version, path)
+        super().__init__(database, version, Path("."))
 
     def load_inventory(self, path):
         """Create `carculator` fleet average inventories for a given range of years.
@@ -1420,29 +1395,25 @@ class CarculatorInventory(BaseInventoryImport):
 
         for r, region in enumerate(self.regions):
 
-            if self.fleet_file:
-                if self.model == "remind":
+            if self.model == "remind":
 
-                    fleet_array = carculator.create_fleet_composition_from_REMIND_file(
-                        self.fleet_file, region, fleet_year=self.db_year
-                    )
+                fleet_array = carculator.create_fleet_composition_from_REMIND_file(
+                    self.fleet_file, region, fleet_year=self.db_year
+                )
 
-                    scope = {
-                        "powertrain": fleet_array.powertrain.values,
-                        "size": fleet_array.coords["size"].values,
-                        "year": fleet_array.coords["vintage_year"].values,
-                        "fu": {"fleet": fleet_array, "unit": "vkm"},
-                    }
-
-                else:
-                    # If a fleet file is given, but not for REMIND, it
-                    # has to be a filepath to a CSV file
-                    scope = {"fu": {"fleet": self.fleet_file, "unit": "vkm"},
-                             "year": [self.db_year]
-                             }
+                scope = {
+                    "powertrain": fleet_array.powertrain.values,
+                    "size": fleet_array.coords["size"].values,
+                    "year": fleet_array.coords["vintage_year"].values,
+                    "fu": {"fleet": fleet_array, "unit": "vkm"},
+                }
 
             else:
-                scope = {"year": [self.db_year]}
+                # If a fleet file is given, but not for REMIND, it
+                # has to be a filepath to a CSV file
+                scope = {"fu": {"fleet": self.fleet_file, "unit": "vkm"},
+                         "year": [self.db_year]
+                         }
 
             mix = carculator.extract_electricity_mix_from_IAM_file(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"]

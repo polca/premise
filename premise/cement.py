@@ -11,16 +11,16 @@ from datetime import date
 class Cement:
     """
     Class that modifies clinker and cement production datasets in ecoinvent, mostly based on WBCSD's GNR data.
-    :ivar scenario: name of a Remind scenario
-    :vartype scenario: str
+    :ivar scenario: name of a Remind pathway
+    :vartype pathway: str
 
     """
 
-    def __init__(self, db, model, scenario, rmd, year, version):
+    def __init__(self, db, model, scenario, iam_data, year, version):
         self.db = db
         self.model = model
         self.scenario = scenario
-        self.rmd = rmd
+        self.iam_data = iam_data
         self.year = year
         self.version = version
         self.geo = Geomap(model=model)
@@ -192,7 +192,7 @@ class Cement:
             iam_emission_label = self.emissions_map[exc["name"]]
 
             try:
-                iam_emission = self.rmd.cement_emissions.loc[
+                iam_emission = self.iam_data.cement_emissions.loc[
                     dict(
                         region=ds["location"],
                         pollutant=iam_emission_label
@@ -201,7 +201,7 @@ class Cement:
             except KeyError:
                 # TODO: fix this.
                 # GAINS does not have a 'World' region, hence we use Europe as a temporary fix
-                iam_emission = self.rmd.cement_emissions.loc[
+                iam_emission = self.iam_data.cement_emissions.loc[
                     dict(
                         region=self.geo.iam_to_GAINS_region("World"),
                         pollutant=iam_emission_label
@@ -241,22 +241,22 @@ class Cement:
 
         for k, v in d_act_clinker.items():
             # Production volume by kiln type
-            energy_input_per_kiln_type = self.rmd.gnr_data.sel(
+            energy_input_per_kiln_type = self.iam_data.gnr_data.sel(
                 region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
                 variables=[
                     v
-                    for v in self.rmd.gnr_data.variables.values
+                    for v in self.iam_data.gnr_data.variables.values
                     if "Production volume share" in v
                 ]
             ).clip(0, 1)
             # Energy input per ton of clinker, in MJ, per kiln type
             energy_input_per_kiln_type /= energy_input_per_kiln_type.sum(axis=0)
 
-            energy_eff_per_kiln_type = self.rmd.gnr_data.sel(
+            energy_eff_per_kiln_type = self.iam_data.gnr_data.sel(
                 region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
                 variables=[
                     v
-                    for v in self.rmd.gnr_data.variables.values
+                    for v in self.iam_data.gnr_data.variables.values
                     if "Thermal energy consumption" in v
                 ]
             )
@@ -267,7 +267,7 @@ class Cement:
             )
 
             # Fuel mix (waste, biomass, fossil)
-            fuel_mix = self.rmd.gnr_data.sel(
+            fuel_mix = self.iam_data.gnr_data.sel(
                 variables=[
                     "Share waste fuel",
                     "Share biomass fuel",
@@ -375,13 +375,13 @@ class Cement:
             # Add carbon capture-related energy exchanges
             # Carbon capture rate: share of total CO2 captured
             # Note: only if variables exist in IAM data
-            if all(x in self.rmd.data.variables.values
+            if all(x in self.iam_data.data.variables.values
                    for x in ['Emi|CCO2|FFaI|Industry|Cement',
                              'Emi|CO2|FFaI|Industry|Cement']):
-                carbon_capture_rate = (self.rmd.data.sel(
+                carbon_capture_rate = (self.iam_data.data.sel(
                     variables='Emi|CCO2|FFaI|Industry|Cement',
                     region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
-                ).interp(year=self.year) / self.rmd.data.sel(
+                ).interp(year=self.year) / self.iam_data.data.sel(
                     variables='Emi|CO2|FFaI|Industry|Cement',
                     region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
                 ).interp(year=self.year)).values
@@ -413,7 +413,7 @@ class Cement:
 
 
                 # Heat, as steam: 3.48 MJ/kg CO2 captured, minus excess heat generated on site
-                excess_heat_generation = self.rmd.gnr_data.sel(
+                excess_heat_generation = self.iam_data.gnr_data.sel(
                     variables='Share of recovered energy, per ton clinker',
                     region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
                 ).values * energy_input_per_ton_clinker.sum()
@@ -613,11 +613,11 @@ class Cement:
         for act in d_act:
 
             new_exchanges = []
-            electricity_needed = self.rmd.gnr_data.loc[dict(
+            electricity_needed = self.iam_data.gnr_data.loc[dict(
                                             variables='Power consumption',
                                             region=self.geo.iam_to_iam_region(act) if self.model == "image" else act
                                         )].values / 1000
-            electricity_recovered = self.rmd.gnr_data.loc[dict(
+            electricity_recovered = self.iam_data.gnr_data.loc[dict(
                                             variables='Power generation',
                                             region=self.geo.iam_to_iam_region(act) if self.model == "image" else act
                                         )].values / 1000
