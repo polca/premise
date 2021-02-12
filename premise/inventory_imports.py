@@ -153,6 +153,52 @@ EI_37_35_MIGRATION_MAP = {
                             "location": "RoW",
                         },
                     ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "Europe without Switzerland"),
+                        {
+                            "location": "RER",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "RoW"),
+                        {
+                            "location": "RoW",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "ZA"),
+                        {
+                            "location": "RoW",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "IN"),
+                        {
+                            "location": "RoW",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "BR"),
+                        {
+                            "location": "RoW",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("market for tap water", "tap water", "IN"),
+                        {
+                            "location": "RoW",
+                        },
+                    ),
 
                 ],
             }
@@ -725,13 +771,7 @@ class BaseInventoryImport:
                 ws.equals("location", exc["location"]),
                 ws.equals("unit", exc["unit"])
             ), None)
-            # possibles = [
-            #     a["reference product"]
-            #     for a in self.db
-            #     if a["name"] == exc["name"]
-            #     and a["location"] == exc["location"]
-            #     and a["unit"] == exc["unit"]
-            # ]
+
         if candidate is not None:
             return candidate["reference product"]
         else:

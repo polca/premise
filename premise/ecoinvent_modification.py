@@ -25,6 +25,8 @@ import wurst
 import wurst.searching as ws
 from pathlib import Path
 import copy
+import os
+import contextlib
 
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xls"
@@ -161,11 +163,24 @@ def check_model_name(name):
         return name.lower()
 
 
-def check_pathway_name(name):
+def check_pathway_name(name, filepath, model):
+    """ Check teh path way name"""
+
     if name not in SUPPORTED_PATHWAYS:
-        raise ValueError(
-            f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
-        )
+        # If the pathway name is not a default one, check that the filepath + pathway name
+        # leads to an actual file
+
+        if model.lower() not in name:
+            name_check = '_'.join((model.lower(), name))
+
+        if (filepath / name_check).with_suffix(".mif").is_file():
+            return name
+        elif (filepath / name_check).with_suffix(".xls").is_file():
+            return name
+        else:
+            raise ValueError(
+                f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
+            )
     else:
         return name
 
@@ -194,8 +209,8 @@ def check_filepath(path):
 def check_fleet(fleet, model, vehicle_type):
     if "fleet file" not in fleet:
         print(
-            "No fleet composition file is provided, hence fleet average vehicles will be built using "
-            "fleet projection from the pathway provided."
+            f"No fleet composition file is provided for {vehicle_type}."
+            "Fleet average vehicles will be built using default fleet projection."
         )
         fleet["fleet file"] = (
             DATA_DIR / "iam_output_files" / "fleet files" / model / vehicle_type / "fleet_file_pc.csv"
@@ -240,6 +255,15 @@ def check_fleet(fleet, model, vehicle_type):
 
     return fleet
 
+def check_db_version(version):
+    version = str(version)
+    if version not in SUPPORTED_EI_VERSIONS:
+        raise ValueError(
+            f"Only {SUPPORTED_EI_VERSIONS} are currently supported, not {version}."
+        )
+    else:
+        return version
+
 
 def check_scenarios(scenario):
 
@@ -249,15 +273,17 @@ def check_scenarios(scenario):
             f"`pathway` and `year`."
         )
 
-    scenario["model"] = check_model_name(scenario["model"])
-    scenario["pathway"] = check_pathway_name(scenario["pathway"])
-    scenario["year"] = check_year(scenario["year"])
-
     if "filepath" in scenario:
         filepath = scenario["filepath"]
         scenario["filepath"] = check_filepath(filepath)
     else:
         scenario["filepath"] = DATA_DIR / "iam_output_files"
+
+    scenario["model"] = check_model_name(scenario["model"])
+    scenario["pathway"] = check_pathway_name(scenario["pathway"], scenario["filepath"], scenario["model"])
+    scenario["year"] = check_year(scenario["year"])
+
+
 
     if "passenger cars" in scenario:
         scenario["passenger cars"] = check_fleet(
@@ -274,16 +300,6 @@ def check_scenarios(scenario):
         scenario["trucks"] = False
 
     return scenario
-
-
-def check_db_version(version):
-    version = str(version)
-    if version not in SUPPORTED_EI_VERSIONS:
-        raise ValueError(
-            f"Only {SUPPORTED_EI_VERSIONS} are currently supported, not {version}."
-        )
-    else:
-        return version
 
 
 class NewDatabase:
@@ -362,63 +378,67 @@ class NewDatabase:
         imported as well, otherwise, they will not.
         """
 
-        # Add Carma CCS inventories
-        for f in (FILEPATH_CARMA_INVENTORIES, FILEPATH_CHP_INVENTORIES):
-            carma = CarmaCCSInventory(self.db, self.version, f)
-            carma.merge_inventory()
+        print("Importing necessary inventories...\n")
+        with open(os.devnull, "w") as f, contextlib.redirect_stdout(f):
+            # Add Carma CCS inventories
+            for file in (FILEPATH_CARMA_INVENTORIES, FILEPATH_CHP_INVENTORIES):
+                carma = CarmaCCSInventory(self.db, self.version, file)
+                carma.merge_inventory()
 
-        dac = DACInventory(self.db, self.version, FILEPATH_DAC_INVENTORIES)
-        dac.merge_inventory()
+            dac = DACInventory(self.db, self.version, FILEPATH_DAC_INVENTORIES)
+            dac.merge_inventory()
 
-        biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
-        biogas.merge_inventory()
+            biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
+            biogas.merge_inventory()
 
-        for f in (
-            FILEPATH_HYDROGEN_INVENTORIES,
-            FILEPATH_HYDROGEN_BIOGAS_INVENTORIES,
-            FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,
-            FILEPATH_HYDROGEN_NATGAS_INVENTORIES,
-            FILEPATH_HYDROGEN_WOODY_INVENTORIES,
-        ):
+            for file in (
+                FILEPATH_HYDROGEN_INVENTORIES,
+                FILEPATH_HYDROGEN_BIOGAS_INVENTORIES,
+                FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,
+                FILEPATH_HYDROGEN_NATGAS_INVENTORIES,
+                FILEPATH_HYDROGEN_WOODY_INVENTORIES,
+            ):
 
-            hydro = HydrogenInventory(self.db, self.version, f)
-            hydro.merge_inventory()
+                hydro = HydrogenInventory(self.db, self.version, file)
+                hydro.merge_inventory()
 
-        for f in (FILEPATH_SYNGAS_INVENTORIES, FILEPATH_SYNGAS_FROM_COAL_INVENTORIES):
-            syngas = SyngasInventory(self.db, self.version, f)
-            syngas.merge_inventory()
+            for file in (FILEPATH_SYNGAS_INVENTORIES, FILEPATH_SYNGAS_FROM_COAL_INVENTORIES):
+                syngas = SyngasInventory(self.db, self.version, file)
+                syngas.merge_inventory()
 
-        bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
-        bio.merge_inventory()
+            bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
+            bio.merge_inventory()
 
-        for f in (
-            FILEPATH_SYNFUEL_INVENTORIES,
-            FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
-            FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
-            FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
-            FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES,
-            FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
-            FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
-            FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
-        ):
-            synfuel = SynfuelInventory(self.db, self.version, f)
-            synfuel.merge_inventory()
 
-        geo_heat = GeothermalInventory(
-            self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
-        )
-        geo_heat.merge_inventory()
+            for file in (
+                FILEPATH_SYNFUEL_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
+            ):
+                synfuel = SynfuelInventory(self.db, self.version, file)
+                synfuel.merge_inventory()
 
-        for f in (
-            FILEPATH_METHANOL_FUELS_INVENTORIES,
-            FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
-            FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
-            FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
-            FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
-        ):
+            geo_heat = GeothermalInventory(
+                self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
+            )
+            geo_heat.merge_inventory()
 
-            lpg = LPGInventory(self.db, self.version, f)
-            lpg.merge_inventory()
+            for file in (
+                FILEPATH_METHANOL_FUELS_INVENTORIES,
+                FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
+                FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
+                FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
+                FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
+            ):
+
+                lpg = LPGInventory(self.db, self.version, file)
+                lpg.merge_inventory()
+        print("Done!\n")
 
     def update_electricity_to_iam_data(self):
         print("\n/////////////////// ELECTRICITY ////////////////////")
@@ -452,6 +472,7 @@ class NewDatabase:
             scenario["database"] = cement.add_datasets_to_database()
 
     def update_steel_to_iam_data(self):
+        print("\n/////////////////// STEEL ////////////////////")
 
         if (
             len(
@@ -463,7 +484,7 @@ class NewDatabase:
             )
             > 0
         ):
-            print("\n/////////////////// STEEL ////////////////////")
+
             for scenario in self.scenarios:
 
                 steel = Steel(
@@ -480,91 +501,58 @@ class NewDatabase:
             )
 
     def update_cars(self):
+        print("\n/////////////////// PASSENGER CARS ////////////////////")
 
-        try:
-            next(
-                ws.get_many(
-                    self.db,
-                    ws.equals("name", "market group for electricity, low voltage"),
+        for scenario in self.scenarios:
+
+            if "passenger cars" in scenario:
+
+                # Import `carculator` inventories if wanted
+                cars = CarculatorInventory(
+                    database=scenario["database"],
+                    version=self.version,
+                    path=scenario["filepath"],
+                    fleet_file=scenario["passenger cars"]["fleet file"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    year=scenario["year"],
+                    regions=scenario["passenger cars"]["region"],
+                    filters=scenario["passenger cars"]["filters"],
                 )
-            )
+                cars.merge_inventory()
 
-            for scenario in self.scenarios:
-                if scenario["passenger cars"]:
-                    print("\n/////////////////// PASSENGER CARS ////////////////////")
-
-
-                    # Import `carculator` inventories if wanted
-                    cars = CarculatorInventory(
-                        database=scenario["database"],
-                        version=self.version,
-                        path=scenario["filepath"],
-                        fleet_file=scenario["passenger cars"]["fleet file"],
-                        model=scenario["model"],
-                        pathway=scenario["pathway"],
-                        year=scenario["year"],
-                        regions=scenario["passenger cars"]["region"],
-                        filters=scenario["passenger cars"]["filters"],
-                    )
-                    cars.merge_inventory()
-
-                    crs = Cars(
-                        db=scenario["database"],
-                        iam_data=scenario["external data"],
-                        pathway=scenario["pathway"],
-                        year=scenario["year"],
-                        model=scenario["model"],
-                    )
-                    scenario["database"] = crs.update_cars()
-
-        except StopIteration:
-            raise (
-                (
-                    "No updated electricity markets found. Please update "
-                    "electricity markets before updating upstream fuel "
-                    "inventories for electricity powered vehicles"
+                crs = Cars(
+                    db=scenario["database"],
+                    iam_data=scenario["external data"],
+                    pathway=scenario["pathway"],
+                    year=scenario["year"],
+                    model=scenario["model"],
                 )
-            )
+                scenario["database"] = crs.update_cars()
+
+
 
     def update_trucks(self):
 
-        try:
-            next(
-                ws.get_many(
-                    self.db,
-                    ws.equals("name", "market group for electricity, low voltage"),
-                )
-            )
+        print("\n/////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
 
-            for scenario in self.scenarios:
-                if scenario["passenger cars"]:
-                    print("\n/////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
+        for scenario in self.scenarios:
+            if "trucks" in scenario:
 
-                    # Import `carculator_truck` inventories if wanted
+                # Import `carculator_truck` inventories if wanted
 
-                    trucks = TruckInventory(
-                        database=scenario["database"],
-                        version=self.version,
-                        path=scenario["filepath"],
-                        fleet_file=scenario["passenger cars"]["fleet file"],
-                        model=scenario["model"],
-                        pathway=scenario["pathway"],
-                        year=scenario["year"],
-                        regions=scenario["trucks"]["region"],
-                        filters=scenario["trucks"]["filters"],
-                       )
-                    trucks.merge_inventory()
-
-        except StopIteration:
-            raise (
-                (
-                    "No updated electricity markets found. Please update "
-                    "electricity markets before updating upstream fuel "
-                    "inventories for electricity powered vehicles"
-                )
-            )
-
-
+                trucks = TruckInventory(
+                    database=scenario["database"],
+                    version=self.version,
+                    path=scenario["filepath"],
+                    fleet_file=scenario["passenger cars"]["fleet file"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    year=scenario["year"],
+                    regions=scenario["trucks"]["region"],
+                    filters=scenario["trucks"]["filters"],
+                   )
+                trucks.merge_inventory()
 
 
     def update_solar_PV(self):
