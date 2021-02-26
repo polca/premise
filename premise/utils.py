@@ -156,7 +156,6 @@ def add_modified_tags(original, scenarios):
         new_B = {(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B}
 
         list_changes = []
-        list_changes_names = []
         list_new = []
 
         for x, y in new_A.items():
@@ -165,15 +164,13 @@ def add_modified_tags(original, scenarios):
             else:
                 if original_A[x] != new_A[x]:
                     list_changes.append(x)
-                    list_changes_names.append(x[0])
 
         for x, y in new_B.items():
             if x in original_B:
                 if original_B[x] != new_B[x]:
                     list_changes.append(x)
-                    list_changes_names.append(x[0])
 
-        list_changes_names = set(list_changes_names)
+        list_changes_names = list(set([x[0] for x in list_changes]))
 
         for ds in scenario["database"]:
             if (ds["name"], ds["reference product"], ds["unit"], ds["location"]) in list_new:
@@ -181,7 +178,7 @@ def add_modified_tags(original, scenarios):
 
             if (ds["name"], ds["reference product"], ds["unit"], ds["location"]) in list_changes_names:
                 for exc in ds["exchanges"]:
-                    if exc["type"] == "technopshere":
+                    if exc["type"] == "technosphere":
                         if ((ds["name"], ds["reference product"], ds["unit"], ds["location"]),
                             (exc["name"], exc["product"], exc["unit"], exc["location"])) in list_changes:
                             exc["modified"] = True
