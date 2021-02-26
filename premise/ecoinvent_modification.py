@@ -20,7 +20,7 @@ from .cement import Cement
 from .steel import Steel
 from .cars import Cars
 from .export import Export
-from .utils import eidb_label
+from .utils import eidb_label, add_modified_tags
 import wurst
 import wurst.searching as ws
 from pathlib import Path
@@ -99,19 +99,19 @@ SUPPORTED_PATHWAYS = [
 ]
 
 LIST_REMIND_REGIONS = [
-    "LAM",
-    "CAZ",
-    "EUR",
-    "CHA",
-    "SSA",
-    "IND",
-    "OAS",
-    "JPN",
-    "OAS",
-    "REF",
-    "MEA",
-    "USA",
-    "World",
+    'CAZ',
+    'CHA',
+    'EUR',
+    'IND',
+    'JPN',
+    'LAM',
+    'MEA',
+    'NEU',
+    'OAS',
+    'REF',
+    'SSA',
+    'USA',
+    'World'
 ]
 
 LIST_IMAGE_REGIONS = [
@@ -164,7 +164,7 @@ def check_model_name(name):
 
 
 def check_pathway_name(name, filepath, model):
-    """ Check teh path way name"""
+    """ Check the pathway name"""
 
     if name not in SUPPORTED_PATHWAYS:
         # If the pathway name is not a default one, check that the filepath + pathway name
@@ -172,6 +172,8 @@ def check_pathway_name(name, filepath, model):
 
         if model.lower() not in name:
             name_check = '_'.join((model.lower(), name))
+        else:
+            name_check = name
 
         if (filepath / name_check).with_suffix(".mif").is_file():
             return name
@@ -182,7 +184,19 @@ def check_pathway_name(name, filepath, model):
                 f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
             )
     else:
-        return name
+        if model.lower() not in name:
+            name_check = '_'.join((model.lower(), name))
+        else:
+            name_check = name
+
+        if (filepath / name_check).with_suffix(".mif").is_file():
+            return name
+        elif (filepath / name_check).with_suffix(".xls").is_file():
+            return name
+        else:
+            raise ValueError(
+                f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
+            )
 
 
 def check_year(year):
@@ -212,8 +226,9 @@ def check_fleet(fleet, model, vehicle_type):
             f"No fleet composition file is provided for {vehicle_type}."
             "Fleet average vehicles will be built using default fleet projection."
         )
+
         fleet["fleet file"] = (
-            DATA_DIR / "iam_output_files" / "fleet files" / model / vehicle_type / "fleet_file_pc.csv"
+            DATA_DIR / "iam_output_files" / "fleet files" / model / vehicle_type / "fleet_file.csv"
         )
     else:
         filepath = fleet["fleet file"]
@@ -222,29 +237,29 @@ def check_fleet(fleet, model, vehicle_type):
                 f"The fleet file directory {filepath} could not be found."
             )
 
-    if "region" in fleet:
-        if isinstance(fleet["region"], str):
-            fleet["region"] = list(fleet["region"])
+    if "regions" in fleet:
+        if isinstance(fleet["regions"], str):
+            fleet["regions"] = list(fleet["regions"])
 
 
         if model == "remind":
-            if not set(fleet["region"]).issubset(LIST_REMIND_REGIONS):
+            if not set(fleet["regions"]).issubset(LIST_REMIND_REGIONS):
                 raise ValueError(
                     "One or several regions specified for the fleet "
                     "of passenger cars is invalid."
                 )
 
         if model == "image":
-            if not set(fleet["region"]).issubset(LIST_IMAGE_REGIONS):
+            if not set(fleet["regions"]).issubset(LIST_IMAGE_REGIONS):
                 raise ValueError(
                     "One or several regions specified for the fleet "
                     "of passenger cars is invalid."
                 )
     else:
         if model == "remind":
-            fleet["region"] = LIST_REMIND_REGIONS
+            fleet["regions"] = [r for r in LIST_REMIND_REGIONS if r != "World"]
         if model == "image":
-            fleet["region"] = LIST_IMAGE_REGIONS
+            fleet["regions"] = [r for r in LIST_IMAGE_REGIONS if r != "World"]
 
     if "filters" not in fleet:
         fleet["filters"] = None
@@ -505,7 +520,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
 
-            if "passenger cars" in scenario:
+            if scenario["passenger cars"]:
 
                 # Import `carculator` inventories if wanted
                 cars = CarculatorInventory(
@@ -516,7 +531,7 @@ class NewDatabase:
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     year=scenario["year"],
-                    regions=scenario["passenger cars"]["region"],
+                    regions=scenario["passenger cars"]["regions"],
                     filters=scenario["passenger cars"]["filters"],
                 )
                 cars.merge_inventory()
@@ -537,7 +552,7 @@ class NewDatabase:
         print("\n/////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
 
         for scenario in self.scenarios:
-            if "trucks" in scenario:
+            if scenario["trucks"]:
 
                 # Import `carculator_truck` inventories if wanted
 
@@ -545,11 +560,11 @@ class NewDatabase:
                     database=scenario["database"],
                     version=self.version,
                     path=scenario["filepath"],
-                    fleet_file=scenario["passenger cars"]["fleet file"],
+                    fleet_file=scenario["trucks"]["fleet file"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     year=scenario["year"],
-                    regions=scenario["trucks"]["region"],
+                    regions=scenario["trucks"]["regions"],
                     filters=scenario["trucks"]["filters"],
                    )
                 trucks.merge_inventory()
@@ -567,11 +582,13 @@ class NewDatabase:
         """
         Shortcut method to execute all transformation functions.
         """
+        self.update_cars()
+        self.update_trucks()
         self.update_electricity_to_iam_data()
         self.update_solar_PV()
         self.update_cement_to_iam_data()
         self.update_steel_to_iam_data()
-        self.update_cars()
+
 
     def write_db_to_brightway(self):
         """
@@ -622,3 +639,16 @@ class NewDatabase:
                 scenario["year"],
                 filepath,
             ).export_db_to_simapro()
+
+    def write_db_to_brightway25(self):
+        """
+        Register the new database into the current brightway2.5 project.
+        """
+        print('Write new database to Brightway2.5')
+        self.scenarios = add_modified_tags(self.db, self.scenarios)
+        for scenario in self.scenarios:
+            wurst.write_brightway25_database(scenario["database"],
+                                             eidb_label(scenario["model"],
+                                                                 scenario["pathway"],
+                                                                 scenario["year"]),
+                                             self.source)

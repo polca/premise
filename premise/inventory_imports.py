@@ -9,7 +9,7 @@ from pathlib import Path
 import csv
 import uuid
 import numpy as np
-
+from .geomap import Geomap
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
@@ -556,7 +556,6 @@ class BaseInventoryImport:
         ]
         self.version = version
         self.biosphere_dict = self.get_biosphere_code()
-
 
         path = Path(path)
 
@@ -1400,6 +1399,7 @@ class CarculatorInventory(BaseInventoryImport):
     def __init__(self, database, version, path, fleet_file, model, pathway, year, regions, filters=None):
         self.db_year = year
         self.model = model
+        self.geomap = Geomap(model=self.model)
         self.regions = regions
         self.fleet_file = fleet_file
         self.filter = ["fleet average"]
@@ -1408,7 +1408,7 @@ class CarculatorInventory(BaseInventoryImport):
             self.filter.extend(filters)
 
         # IAM output file extension differs between REMIND and IMAGE
-        ext = ".mif" if model == "remind" else ".xlsx"
+        ext = ".mif" if model == "remind" else ".xls"
 
         self.source_file = path / (model + "_" + pathway + ext)
 
@@ -1433,31 +1433,47 @@ class CarculatorInventory(BaseInventoryImport):
         cm = carculator.CarModel(array, cycle="WLTC 3.4")
         cm.set_all()
 
+        fleet_array = carculator.create_fleet_composition_from_IAM_file(
+            self.fleet_file
+        )
+
         for r, region in enumerate(self.regions):
 
+            if region == "World":
+                region = [r for r in self.regions if r != "World"]
+
+            # The fleet file has REMIND region
+            # Hence, if we use IMAGE, we need to convert
+            # the region names
+            # which is something `iam_to_GAINS_region()` does.
             if self.model == "remind":
+                reg_fleet = region
+            if self.model == "image":
+                reg_fleet = self.geomap.iam_to_GAINS_region(region)
 
-                fleet_array = carculator.create_fleet_composition_from_REMIND_file(
-                    self.fleet_file, region, fleet_year=self.db_year
-                )
+            fleet = fleet_array.sel(IAM_region=reg_fleet,
+                                    vintage_year=np.arange(1996, self.db_year + 1)
+                                    ).interp(variable=np.arange(1996, self.db_year + 1))
 
-                scope = {
-                    "powertrain": fleet_array.powertrain.values,
-                    "size": fleet_array.coords["size"].values,
-                    "year": fleet_array.coords["vintage_year"].values,
-                    "fu": {"fleet": fleet_array, "unit": "vkm"},
-                }
 
-            else:
-                # If a fleet file is given, but not for REMIND, it
-                # has to be a filepath to a CSV file
-                scope = {"fu": {"fleet": self.fleet_file, "unit": "vkm"},
-                         "year": [self.db_year]
-                         }
+            years = []
+            for y in np.arange(1996, self.db_year):
+                if fleet.sel(vintage_year=y,
+                             variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                    years.append(y)
+            years.append(self.db_year)
+
+            scope = {
+                "powertrain": fleet.sel(vintage_year=years).powertrain.values,
+                "size": fleet.sel(vintage_year=years).coords["size"].values,
+                "year": years,
+                "fu": {"fleet": fleet.sel(vintage_year=years), "unit": "vkm"},
+            }
 
             mix = carculator.extract_electricity_mix_from_IAM_file(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"]
             )
+
 
             fuel_shares = carculator.extract_biofuel_shares_from_IAM(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"],
@@ -1473,7 +1489,7 @@ class CarculatorInventory(BaseInventoryImport):
                             "type": "petrol",
                             "share": fuel_shares.sel(fuel_type="liquid - fossil").values
                             if "liquid - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "bioethanol - wheat straw",
@@ -1481,7 +1497,7 @@ class CarculatorInventory(BaseInventoryImport):
                                 fuel_type="liquid - biomass"
                             ).values
                             if "liquid - biomass" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         },
                         "tertiary fuel": {
                             "type": "synthetic gasoline",
@@ -1489,7 +1505,7 @@ class CarculatorInventory(BaseInventoryImport):
                                 fuel_type="liquid - synfuel"
                             ).values
                             if "liquid - synfuel" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         },
                     },
                     "diesel": {
@@ -1497,7 +1513,7 @@ class CarculatorInventory(BaseInventoryImport):
                             "type": "diesel",
                             "share": fuel_shares.sel(fuel_type="liquid - fossil").values
                             if "liquid - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "biodiesel - cooking oil",
@@ -1505,7 +1521,7 @@ class CarculatorInventory(BaseInventoryImport):
                                 fuel_type="liquid - biomass"
                             ).values
                             if "liquid - biomass" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.zeros_like(years),
                         },
                         "tertiary fuel": {
                             "type": "synthetic diesel",
@@ -1513,7 +1529,7 @@ class CarculatorInventory(BaseInventoryImport):
                                 fuel_type="liquid - synfuel"
                             ).values
                             if "liquid - synfuel" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         }
                     },
                     "cng": {
@@ -1521,19 +1537,19 @@ class CarculatorInventory(BaseInventoryImport):
                             "type": "cng",
                             "share": fuel_shares.sel(fuel_type="gas - fossil").values
                             if "gas - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "biogas - biowaste",
                             "share": fuel_shares.sel(fuel_type="gas - biomass").values
                             if "gas - biomass" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         },
                     },
                     "hydrogen": {
                         "primary fuel": {
                             "type": "electrolysis",
-                            "share": np.ones_like(scope["year"]),
+                            "share": np.ones_like(years),
                         }
                     },
                 },
@@ -1543,20 +1559,22 @@ class CarculatorInventory(BaseInventoryImport):
                 cm.array, scope=scope, background_configuration=bc
             )
 
-            if self.fleet_file:
+            # if self.fleet_file:
+            #
+            #     i = ic.export_lci_to_bw(presamples=False,
+            #                             ecoinvent_version=str(self.version),
+            #                             create_vehicle_datasets=False)
+            #
+            # else:
+            i = ic.export_lci_to_bw(presamples=False,
+                                    ecoinvent_version=str(self.version))
 
-                i = ic.export_lci_to_bw(presamples=False,
-                                        ecoinvent_version=str(self.version),
-                                        create_vehicle_datasets=False)
-
-            else:
-                i = ic.export_lci_to_bw(presamples=False,
-                                        ecoinvent_version=str(self.version))
 
             # filter out cars if anything given in `self.filter`
-            if len(self.filter) > 0:
-                i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
-                          or any(y.lower() in x["name"].lower() for y in self.filter)]
+            i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
+                      or any(y.lower() in x["name"].lower() for y in self.filter)]
+
+            ic.export_lci_to_excel()
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
@@ -1592,70 +1610,101 @@ class TruckInventory(BaseInventoryImport):
     Car models from the carculator project, https://github.com/romainsacchi/carculator
     """
 
-    def __init__(self, database, version, path, model, scenario, year, regions, vehicles):
+    def __init__(self, database, version, path, fleet_file, model, pathway, year, regions, filters=None):
 
         self.db_year = year
         self.model = model
+        self.geomap = Geomap(model=self.model)
+        self.regions = regions
+        self.fleet_file = fleet_file
+        self.filter = ["fleet average"]
 
-        if "region" in vehicles:
-            if vehicles["region"] == "all":
-                self.regions = regions
-            else:
-                if any(i for i in vehicles["region"] if i not in regions):
-                    raise ValueError(
-                        "One or more of the following regions {} for the creation of truck inventories is not valid.\n"
-                        "Regions must be of the following {}".format(vehicles["region"], regions))
-                else:
-                    self.regions = vehicles["region"]
-        else:
-            self.regions = regions
-
-        self.fleet_file = (
-            Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
-        )
-
-        if self.fleet_file:
-            self.filter = ["fleet average"]
-
-        else:
-            self.filter = []
-
-        if "filter" in vehicles:
-            self.filter.extend(vehicles["filter"])
+        if filters:
+            self.filter.extend(filters)
 
         # IAM output file extension differs between REMIND and IMAGE
-        ext = ".mif" if model == "remind" else ".xlsx"
+        ext = ".mif" if model == "remind" else ".xls"
 
-        self.source_file = (
-            Path(vehicles["source file"]) / (model + "_" + scenario + ext)
-            if "source file" in vehicles
-            else DATA_DIR / "iam_output_files" / (model + "_" + scenario + ext)
-        )
+        self.source_file = path / (model + "_" + pathway + ext)
 
         if not self.source_file.is_file():
             raise FileNotFoundError("For some reason, the file {} is not accessible.".format(
                 self.source_file
             ))
 
-        super().__init__(database, version, path)
+        super().__init__(database, version, Path("."))
 
     def load_inventory(self, path):
         """Create `carculator_truck` fleet average inventories for a given range of years.
         """
 
+        fleet_array = carculator_truck.create_fleet_composition_from_IAM_file(
+            self.fleet_file
+        )
+
+        fleet = fleet_array.sel(IAM_region="EUR",
+                                vintage_year=np.arange(1996, self.db_year + 1)
+                                ).interp(variable=np.arange(1996, self.db_year + 1))
+
+
+
+        years = []
+        for y in np.arange(2010, self.db_year):
+            if fleet.sel(vintage_year=y,
+                         variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                years.append(y)
+        years.append(self.db_year)
+
+        scope = {
+            "powertrain": fleet.sel(vintage_year=years).powertrain.values,
+            "size": fleet.sel(vintage_year=years).coords["size"].values,
+            "fu": {"fleet": fleet.sel(vintage_year=years), "unit": "tkm"},
+        }
+
+
         tip = carculator_truck.TruckInputParameters()
         tip.static()
-        _, array = carculator_truck.fill_xarray_from_input_parameters(tip)
+        _, array = carculator_truck.fill_xarray_from_input_parameters(tip,
+                                                                      scope=scope
+                                                                      )
 
         array = array.interp(
-            year=[self.db_year], kwargs={"fill_value": "extrapolate"}
+            year=years, kwargs={"fill_value": "extrapolate"}
         )
         tm = carculator_truck.TruckModel(array, cycle="Regional delivery", country="CH")
         tm.set_all()
 
+
+
         for r, region in enumerate(self.regions):
 
-            scope = {"year": [self.db_year]}
+            if region == "World":
+                region = [r for r in self.regions if r != "World"]
+
+            # The fleet file has REMIND region
+            # Hence, if we use IMAGE, we need to convert
+            # the region names
+            # which is something `iam_to_GAINS_region()` does.
+            if self.model == "remind":
+                reg_fleet = region
+            if self.model == "image":
+                reg_fleet = self.geomap.iam_to_GAINS_region(region)
+
+            fleet = fleet_array.sel(IAM_region=reg_fleet).interp(variable=np.arange(1996, self.db_year + 1))
+
+            years = []
+            for y in np.arange(2010, self.db_year):
+                if fleet.sel(vintage_year=y,
+                             variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                    years.append(y)
+            years.append(self.db_year)
+
+            scope = {
+                "powertrain": fleet.sel(vintage_year=years).powertrain.values,
+                "size": fleet.sel(vintage_year=years).coords["size"].values,
+                "year": years,
+                "fu": {"fleet": fleet.sel(vintage_year=years), "unit": "tkm"},
+            }
 
             mix = carculator_truck.extract_electricity_mix_from_IAM_file(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"]
@@ -1675,7 +1724,7 @@ class TruckInventory(BaseInventoryImport):
                             "type": "diesel",
                             "share": fuel_shares.sel(fuel_type="liquid - fossil").values
                             if "liquid - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "biodiesel - cooking oil",
@@ -1683,7 +1732,7 @@ class TruckInventory(BaseInventoryImport):
                                 fuel_type="liquid - biomass"
                             ).values
                             if "liquid - biomass" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.zeros_like(years),
                         },
                         "tertiary fuel": {
                             "type": "synthetic diesel",
@@ -1691,7 +1740,7 @@ class TruckInventory(BaseInventoryImport):
                                 fuel_type="liquid - synfuel"
                             ).values
                             if "liquid - synfuel" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         }
                     },
                     "cng": {
@@ -1699,19 +1748,19 @@ class TruckInventory(BaseInventoryImport):
                             "type": "cng",
                             "share": fuel_shares.sel(fuel_type="gas - fossil").values
                             if "gas - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "biogas - biowaste",
                             "share": fuel_shares.sel(fuel_type="gas - biomass").values
                             if "gas - biomass" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         },
                     },
                     "hydrogen": {
                         "primary fuel": {
                             "type": "electrolysis",
-                            "share": np.ones_like(scope["year"]),
+                            "share": np.ones_like(years),
                         }
                     },
                 },
@@ -1726,10 +1775,9 @@ class TruckInventory(BaseInventoryImport):
                                     ecoinvent_version=str(self.version)
                                     )
 
-            # filter out cars if anything given in `self.filter`
-            if len(self.filter) > 0:
-                i.data = [x for x in i.data if "transport, " not in x["name"]
-                          or any(y.lower() in x["name"].lower() for y in self.filter)]
+            # filter out trucks if anything given in `self.filter`
+            i.data = [x for x in i.data if "transport, " not in x["name"]
+                      or any(y.lower() in x["name"].lower() for y in self.filter)]
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend

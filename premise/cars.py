@@ -131,7 +131,7 @@ class Cars:
                     self.db,
                     ws.equals("name", name)))
                 if len(producers) == 0:
-                    raise ValueError("No producers found for {}.")
+                    raise ValueError("No producers found for {}.".format(name))
                 prod = producers[0]
                 # we can leave things as they are since the existing
                 # supply is the default supply
@@ -202,7 +202,7 @@ class Cars:
 
                 new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Gasoline, synthetic, from methanol, at fuelling station")
+                    "Gasoline, synthetic, from MTG, hydrogen from electrolysis, energy allocation, at fuelling station")
 
                 supply_search = {
                     "gasoline": {
