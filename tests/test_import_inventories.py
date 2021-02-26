@@ -98,7 +98,7 @@ def test_load_carculator():
     carc = CarculatorInventory(database=db,
                                version=3.7,
                                model="remind",
-                               path=Path(""),
+                               path=DATA_DIR / "iam_output_files",
                                pathway="SSP2-Base",
                                year=2015,
                                regions=["EUR"],
