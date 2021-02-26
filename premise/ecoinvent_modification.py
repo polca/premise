@@ -29,61 +29,61 @@ import os
 import contextlib
 
 
-FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xls"
-FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xls"
-FILEPATH_DAC_INVENTORIES = INVENTORY_DIR / "lci-direct-air-capture.xls"
-FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xls"
-FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xls"
-FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xls"
-FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xls"
-FILEPATH_HYDROGEN_NATGAS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xls"
+FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
+FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
+FILEPATH_DAC_INVENTORIES = INVENTORY_DIR / "lci-direct-air-capture.xlsx"
+FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
+FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
+FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
+FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
+FILEPATH_HYDROGEN_NATGAS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
 FILEPATH_HYDROGEN_WOODY_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-wood-gasification.xls"
+    INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx"
 )
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-coal-gasification.xls"
+    INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xls"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal.xls"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-biogas.xls"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-biogas.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas.xls"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas-CCS.xls"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas-CCS.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-petroleum.xls"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-petroleum.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass.xls"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xls"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
 )
-FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xls"
-FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xls"
-FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xls"
+FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
+FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
+FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
 FILEPATH_METHANOL_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xls"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xls"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xls"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xls"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xlsx"
 )
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xls"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
 
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1"]
