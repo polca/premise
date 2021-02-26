@@ -177,7 +177,6 @@ def add_modified_tags(original, scenarios):
 
         for ds in scenario["database"]:
             if (ds["name"], ds["reference product"], ds["unit"], ds["location"]) in list_new:
-                print("new", ds["name"])
                 ds["modified"] = True
 
             if (ds["name"], ds["reference product"], ds["unit"], ds["location"]) in list_changes_names:
