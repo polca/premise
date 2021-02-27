@@ -3,7 +3,7 @@ import csv
 import pandas as pd
 from .export import *
 import numpy as np
-from scipy.sparse import coo_matrix
+from wurst import searching as ws
 
 CO2_FUELS = DATA_DIR / "fuel_co2_emission_factor.txt"
 LHV_FUELS = DATA_DIR / "fuels_lower_heating_value.txt"
@@ -106,91 +106,95 @@ def get_clinker_ratio_remind(year):
         .to_xarray() \
         .interp(year=year)
 
-def shape_matrix(data, shape):
-    data = np.matrix(data)
-    row = np.squeeze(data[:, 0]).tolist()[0]
-    col = np.squeeze(data[:, 1]).tolist()[0]
-    val = np.squeeze(data[:, 2]).tolist()[0]
-
-    d = {}
-
-    A = coo_matrix((val, (row, col)), shape=(shape, shape))
-    return A.toarray()
-
 def rev_index(inds):
-
     return {v: k for k, v in inds.items()}
 
-
-def add_modified_tags(original, scenarios):
+def create_codes_and_names_of_A_matrix(db):
     """
-    Add a tag to any activity that is new or that has been modified
-    compared to the source database.
+    Create a dictionary a tuple (activity name, reference product,
+    unit, location) as key, and its code as value.
+    :return: a dictionary to map indices to activities
+    :rtype: dict
+    """
+    return {
+        (
+            i["name"],
+            i["reference product"],
+            i["unit"],
+            i["location"],
+        ):  i["code"]
+        for i in db
+    }
+
+def add_modified_tags(original_db, scenarios):
+    """
+    Add a `modified` label to any activity that is new
+    Also add a `modified` label to any exchange that has been added
+    or that has a different value than the source database.
     :return:
     """
 
-    list_d = []
-
-    exp = Export(original)
-    ind_A = create_index_of_A_matrix(original)
-    rev_ind_A = rev_index(ind_A)
+    # Class `Export` to which the original database is passed
+    exp = Export(original_db)
+    # Collect a dictionary of activities {row/col index in A matrix: code}
+    rev_ind_A = rev_index(create_codes_index_of_A_matrix(original_db))
+    # Retrieve list of coordinates [activity, activity, value]
     coords_A = exp.create_A_matrix_coordinates()
-    original_A = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
-    list_d.append(original_A)
-
-    ind_B = create_index_of_B_matrix()
-    rev_ind_B = rev_index(ind_B)
+    # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
+    original = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
+    # Collect a dictionary with activities' names and correponding codes
+    codes_names = create_codes_and_names_of_A_matrix(original_db)
+    # Collect list of substances
+    rev_ind_B = rev_index(create_codes_index_of_B_matrix())
+    # Retrieve list of coordinates of the B matrix [activity index, substance index, value]
     coords_B = exp.create_B_matrix_coordinates()
-    original_B = {(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B}
+    # Turn it into a dictionary {(activity code, substance code): value}
+    original.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
 
-    for scenario in scenarios:
-        ind_A = create_index_of_A_matrix(scenario["database"])
-        rev_ind_A = rev_index(ind_A)
+    for s, scenario in enumerate(scenarios):
+        print(f"Looking for differences in database {s + 1} ...")
+        rev_ind_A = rev_index(create_codes_index_of_A_matrix(scenario["database"]))
         exp = Export(scenario["database"], scenario["model"], scenario["pathway"], scenario["year"], "")
         coords_A = exp.create_A_matrix_coordinates()
-        new_A = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
+        new = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
 
-        ind_B = create_index_of_B_matrix()
-        rev_ind_B = rev_index(ind_B)
+        rev_ind_B = rev_index(create_codes_index_of_B_matrix())
         coords_B = exp.create_B_matrix_coordinates()
-        new_B = {(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B}
+        new.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
 
-        list_changes = []
-        list_new = []
+        list_new = set(i[0] for i in original.keys()) ^ set(i[0] for i in new.keys())
 
-        for x, y in new_A.items():
-            if x not in original_A:
-                list_new.append(x[0])
-            else:
-                if original_A[x] != new_A[x]:
-                    list_changes.append(x)
+        ds = (d for d in scenario["database"] if d["code"] in list_new)
 
-        for x, y in new_B.items():
-            if x in original_B:
-                if original_B[x] != new_B[x]:
-                    list_changes.append(x)
+        # Tag new activities
+        for d in ds:
+            d["modified"] = True
 
-        list_changes_names = list(set([x[0] for x in list_changes]))
-
-        for ds in scenario["database"]:
-            if (ds["name"], ds["reference product"], ds["unit"], ds["location"]) in list_new:
-                ds["modified"] = True
-
-            if (ds["name"], ds["reference product"], ds["unit"], ds["location"]) in list_changes_names:
-                for exc in ds["exchanges"]:
-                    if exc["type"] == "technosphere":
-                        if ((ds["name"], ds["reference product"], ds["unit"], ds["location"]),
-                            (exc["name"], exc["product"], exc["unit"], exc["location"])) in list_changes:
-                            exc["modified"] = True
-
-                    if exc["type"] == "biosphere":
-                        if len(exc["categories"]) > 1:
-                            if ((ds["name"], ds["reference product"], ds["unit"], ds["location"]),
-                                (exc["name"], exc["categories"][0], exc["categories"][1], exc["unit"])) in list_changes:
-                                exc["modified"] = True
-                        else:
-                            if ((ds["name"], ds["reference product"], ds["unit"], ds["location"]),
-                                (exc["name"], exc["categories"][0], "unspecified", exc["unit"])) in list_changes:
-                                exc["modified"] = True
+        # List codes that belong to activities that contain modified exchanges
+        list_modified = (i[0] for i in new if i in original and new[i] != original[i])
+        #
+        # Filter for activities that have modified exchanges
+        for ds in ws.get_many(
+                scenario["database"],
+                ws.either(*[ws.equals("code", c) for c in set(list_modified)])
+        ):
+            # Loop through biosphere exchanges and check if
+            # the exchange also exists in the original database
+            # and if it has the same value
+            # if any of these two conditions is False, we tag the exchange
+            excs = (exc for exc in ds["exchanges"] if exc["type"] == "biosphere")
+            for exc in excs:
+                if (ds["code"], exc["input"][0]) not in original or new[(ds["code"], exc["input"][0])] != original[(ds["code"], exc["input"][0])]:
+                    exc["modified"] = True
+            # Same thing for technosphere exchanges,
+            # except that we first need to look up the provider's code first
+            excs = (exc for exc in ds["exchanges"] if exc["type"] == "technosphere")
+            for exc in excs:
+                if (exc["name"], exc["product"], exc["unit"], exc["location"]) in codes_names:
+                    exc_code = codes_names[(exc["name"], exc["product"], exc["unit"], exc["location"])]
+                    if new[(ds["code"], exc_code)] != original[(ds["code"], exc_code)]:
+                        exc["modified"] = True
+                else:
+                    exc["modified"] = True
 
     return scenarios

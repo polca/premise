@@ -645,10 +645,16 @@ class NewDatabase:
         Register the new database into the current brightway2.5 project.
         """
         print('Write new database to Brightway2.5')
+        # We first need to check for differences between the source database
+        # and the new ones
+        # We add a `modified` label to any new activity or any new or modified exchange
         self.scenarios = add_modified_tags(self.db, self.scenarios)
         for scenario in self.scenarios:
             wurst.write_brightway25_database(scenario["database"],
-                                             eidb_label(scenario["model"],
-                                                                 scenario["pathway"],
-                                                                 scenario["year"]),
-                                             self.source)
+                                             eidb_label(
+                                                 scenario["model"],
+                                                 scenario["pathway"],
+                                                 scenario["year"]
+                                             ),
+                                             self.source
+                                             )

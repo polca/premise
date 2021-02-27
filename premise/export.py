@@ -26,6 +26,31 @@ def create_index_of_A_matrix(db):
         for i in range(0, len(db))
     }
 
+
+
+def create_codes_index_of_A_matrix(db):
+    """
+    Create a dictionary with row/column indices of the A matrix as key and the activity code as value.
+    :return: a dictionary to map indices to activity codes
+    :rtype: dict
+    """
+    return {db[i]["code"]: i for i in range(0, len(db))}
+
+def create_codes_index_of_B_matrix():
+    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+        raise FileNotFoundError(
+            "The dictionary of biosphere flows could not be found."
+        )
+
+    csv_dict = dict()
+
+    with open(FILEPATH_BIOSPHERE_FLOWS) as f:
+        input_dict = csv.reader(f, delimiter=";")
+        for i, row in enumerate(input_dict):
+            csv_dict[row[-1]] = i
+
+    return csv_dict
+
 def create_index_of_B_matrix():
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
         raise FileNotFoundError(

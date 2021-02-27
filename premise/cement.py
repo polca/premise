@@ -122,7 +122,7 @@ class Cement:
         return exchanges_dict
 
     def get_suppliers_of_a_region(
-            self, iam_region, ecoinvent_technologies, reference_product
+            self, iam_region, ecoinvent_technologies, reference_product, unit="kilogram", look_for_locations_in="ecoinvent"
     ):
         """
         Return a list of datasets which location and name correspond to the region, name and reference product given,
@@ -137,25 +137,41 @@ class Cement:
         :return: list of wurst datasets
         :rtype: list
         """
-        return ws.get_many(
-            self.db,
-            *[
-                ws.either(
+        if look_for_locations_in == "ecoinvent":
+            return ws.get_many(
+                    self.db,
                     *[
-                        ws.equals("name", supplier)
-                        for supplier in ecoinvent_technologies
+                        ws.either(
+                            *[
+                                ws.contains("name", supplier)
+                                for supplier in ecoinvent_technologies
+                            ]
+                        ),
+                        ws.either(
+                            *[
+                                ws.equals("location", loc)
+                                for loc in self.geo.iam_to_ecoinvent_location(iam_region)
+                            ]
+                        ),
+                        ws.equals("unit", unit),
+                        ws.equals("reference product", reference_product),
                     ]
-                ),
-                ws.either(
-                    *[
-                        ws.equals("location", loc)
-                        for loc in self.geo.iam_to_ecoinvent_location(iam_region)
-                    ]
-                ),
-                ws.equals("unit", "kilogram"),
-                ws.equals("reference product", reference_product),
-            ]
-        )
+                )
+        else:
+            return ws.get_many(
+                self.db,
+                *[
+                    ws.either(
+                        *[
+                            ws.contains("name", supplier)
+                            for supplier in ecoinvent_technologies
+                        ]
+                    ),
+                    ws.equals("location", look_for_locations_in),
+                    ws.equals("unit", unit),
+                    ws.equals("reference product", reference_product),
+                ]
+            )
 
     @staticmethod
     def get_shares_from_production_volume(ds):
@@ -175,7 +191,10 @@ class Cement:
                 total_production_volume += float(exc["production volume"])
 
         for d in dict_act:
-            dict_act[d] /= total_production_volume
+            if total_production_volume != 0:
+                dict_act[d] /= total_production_volume
+            else:
+                dict_act[d] = 1 / len(dict_act)
 
         return dict_act
 
@@ -621,19 +640,44 @@ class Cement:
                                             variables='Power generation',
                                             region=self.geo.iam_to_iam_region(act) if self.model == "image" else act
                                         )].values / 1000
-            new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": electricity_needed - electricity_recovered,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": 'electricity, medium voltage',
-                            "name": 'market group for electricity, medium voltage',
-                            "unit": 'kilowatt hour',
-                            "location": act,
-                        }
+
+
+            electricity_suppliers = self.get_shares_from_production_volume(
+                self.get_suppliers_of_a_region(
+                    iam_region=act,
+                    ecoinvent_technologies=["electricity, medium voltage"],
+                    reference_product="electricity, medium voltage",
+                    unit="kilowatt hour",
+                    look_for_locations_in=act
+                )
+            )
+
+            if len(electricity_suppliers) == 0:
+                electricity_suppliers = self.get_shares_from_production_volume(
+                    self.get_suppliers_of_a_region(
+                        iam_region=act,
+                        ecoinvent_technologies=["electricity, medium voltage"],
+                        reference_product="electricity, medium voltage",
+                        unit="kilowatt hour",
+                        look_for_locations_in="ecoinvent"
                     )
+                )
+
+            for s, supplier in enumerate(electricity_suppliers):
+                share = electricity_suppliers[supplier]
+                new_exchanges.append(
+                            {
+                                "uncertainty type": 0,
+                                "loc": 1,
+                                "amount": (electricity_needed - electricity_recovered) * share,
+                                "type": "technosphere",
+                                "production volume": 0,
+                                "product": supplier[2],
+                                "name": supplier[0],
+                                "unit": supplier[3],
+                                "location": supplier[1],
+                            }
+                        )
 
             d_act[act]["exchanges"].extend(new_exchanges)
             d_act[act]['exchanges'] = [v for v in d_act[act]["exchanges"] if v]
