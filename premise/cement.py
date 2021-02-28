@@ -499,8 +499,8 @@ class Cement:
                         "Rate of carbon capture: {} pct.\n".format(int(carbon_capture_rate * 100))
                         ) + v["comment"]
 
-
-        d_act_clinker = {k:self.update_pollutant_emissions(v) for k,v in d_act_clinker.items()}
+        # TODO: not sure about the GAINS unit. Check first.
+        #d_act_clinker = {k:self.update_pollutant_emissions(v) for k,v in d_act_clinker.items()}
 
         return d_act_clinker
 

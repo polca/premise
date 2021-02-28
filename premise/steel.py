@@ -635,16 +635,16 @@ class Steel:
             # 2. Adjust the share of secondary steel on the steel market
 
             # Update hot pollutant emissions
-            print("Update hot pollutant emissions for steel production activities.")
-            for ds in ws.get_many(
-                self.db,
-                    *[ws.either(ws.contains("name", "steel production, converter"),
-                                ws.contains("name", "steel production, electric")),
-                      ws.contains("reference product", "steel")]
-            ):
-                self.update_pollutant_emissions(ds)
-
-                # https://www.bir.org/publications/facts-figures/download/643/175/36?method=view
+            # print("Update hot pollutant emissions for steel production activities.")
+            # for ds in ws.get_many(
+            #     self.db,
+            #         *[ws.either(ws.contains("name", "steel production, converter"),
+            #                     ws.contains("name", "steel production, electric")),
+            #           ws.contains("reference product", "steel")]
+            # ):
+            #     self.update_pollutant_emissions(ds)
+            #
+            #
 
             # Create new steel markets with adjusted secondary steel supply
             print("Create new steel markets.")
