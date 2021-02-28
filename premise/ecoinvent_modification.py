@@ -512,8 +512,18 @@ class NewDatabase:
         else:
             print(
                 "The IAM pathway chosen does not contain any data related to the steel sector.\n"
-                "Transformations related to the steel sector will be skipped."
+                "The creation of IAM region-specific steel production activities and markets will be skipped."
+                "But we will nevertheless adjust hot pollutant emissions and the expected share of recycled steel."
             )
+            for scenario in self.scenarios:
+
+                steel = Steel(
+                    db=scenario["database"],
+                    model=scenario["model"],
+                    iam_data=scenario["external data"],
+                    year=scenario["year"],
+                )
+                scenario["database"] = steel.generate_activities(industry_module_present=False)
 
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")

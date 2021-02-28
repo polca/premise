@@ -1,5 +1,4 @@
 from wurst.geo import geomatcher
-
 from premise import DATA_DIR
 
 REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
@@ -145,6 +144,19 @@ class Geomap:
                         e for e in ecoinvent_locations if "CA" not in e
                     ]
 
+                if location in [("REMIND", "REF"), ("IMAGE", "RUS")]:
+                    ecoinvent_locations = [
+                        e for e in ecoinvent_locations if e not in [
+                            "RER",
+                            'Europe without Switzerland',
+                            'Europe without Switzerland and France',
+                            'RER w/o CH+DE',
+                            'RER w/o AT+BE+CH+DE+FR+IT',
+                            'RER w/o DE+NL+NO',
+                            'Europe without NORDEL (NCPA)',
+                        ]
+                    ]
+
                 # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
                 if location != (self.model.upper(), "World"):
                     ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
@@ -152,6 +164,7 @@ class Geomap:
                 return ecoinvent_locations
             except KeyError:
                 print("Can't find location {} using the geomatcher.".format(location))
+                return ["RoW"]
 
     def ecoinvent_to_iam_location(self, location):
         """

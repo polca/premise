@@ -851,6 +851,11 @@ class BaseInventoryImport:
                     if "input" in ex:
                         del ex["input"]
 
+            # Delete any field that does not have information
+            for key in act:
+                if act[key] is None:
+                    act.pop(key)
+
 class CarmaCCSInventory(BaseInventoryImport):
     def __init__(self, database, version, path):
         super().__init__(database, version, path)

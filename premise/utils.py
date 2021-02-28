@@ -11,6 +11,8 @@ CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.c
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
 
+STEEL_RECYCLING_SHARES = DATA_DIR / "steel" / "steel_recycling_shares.csv"
+
 REMIND_TO_FUELS = DATA_DIR / "steel" / "remind_fuels_correspondance.txt"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
@@ -103,6 +105,22 @@ def get_clinker_ratio_remind(year):
 
     return df.groupby(["region", "year"]) \
         .mean()["value"] \
+        .to_xarray() \
+        .interp(year=year)
+
+def get_steel_recycling_rates(year):
+    """
+    Return an array with the average shares for primary (Basic oxygen furnace) and secondary (Electric furnace)
+    steel production per year and per region, as given by: https://www.bir.org/publications/facts-figures/download/643/175/36?method=view
+    for 2015-2019, further linearly extrapolated to 2020, 2030, 2040 and 2050.
+    :return: xarray
+    :return:
+    """
+    df = pd.read_csv(
+        STEEL_RECYCLING_SHARES, sep=";")
+
+    return df.groupby(["region", "year", "type"]) \
+        .mean()[["share", "world_share"]] \
         .to_xarray() \
         .interp(year=year)
 
