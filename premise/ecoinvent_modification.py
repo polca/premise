@@ -15,6 +15,7 @@ from .inventory_imports import (
     LPGInventory,
     CarculatorInventory,
     TruckInventory,
+    AdditionalInventory
 )
 from .cement import Cement
 from .steel import Steel
@@ -143,6 +144,15 @@ LIST_IMAGE_REGIONS = [
     "WEU",
 ]
 
+LIST_TRANSF_FUNC = [
+    "update_electricity",
+    "update_cement",
+    "update_steel",
+    "update_cars",
+    "update_trucks",
+    "update_solar_PV"
+]
+
 
 def check_ei_filepath(filepath):
 
@@ -219,6 +229,19 @@ def check_filepath(path):
     else:
         return Path(path)
 
+def check_exclude(list_exc):
+
+    if not isinstance(list_exc, list):
+        raise TypeError("`exclude` should be a sequence of strings.")
+
+    if not set(list_exc).issubset(LIST_TRANSF_FUNC):
+        raise ValueError(
+            "One or several of the transformation that you wish to exclude is not recognized."
+        )
+    else:
+        return list_exc
+
+
 
 def check_fleet(fleet, model, vehicle_type):
     if "fleet file" not in fleet:
@@ -270,6 +293,38 @@ def check_fleet(fleet, model, vehicle_type):
 
     return fleet
 
+def check_additional_inventories(inventories_list):
+
+    if not isinstance(inventories_list, list):
+        raise TypeError("Inventories to import need to be in a sequence of dictionaries like so:"
+                  "["
+                  "{'filepath': 'a file path', 'ecoinvent version: '3.6'},"
+                  " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
+                  "]")
+
+    for inventory in inventories_list:
+        if not isinstance(inventory, dict):
+            raise TypeError("Inventories to import need to be in a sequence of dictionaries like so:"
+                  "["
+                  "{'filepath': 'a file path', 'ecoinvent version: '3.6'},"
+                  " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
+                  "]")
+
+        if not all(i for i in inventory.keys() if i in ["filepath", "ecoinvent version"]):
+            raise TypeError("Both `filepath` and `ecoinvent version` must be present in the list of inventories to import.")
+
+        if not Path(inventory["filepath"]).is_file():
+            raise FileNotFoundError(f"Cannot find the inventory file: {inventory['filepath']}.")
+        else:
+            inventory["filepath"] = Path(inventory["filepath"])
+
+        if inventory["ecoinvent version"] not in ["3.7", "3.7.1"]:
+            raise ValueError(
+                f"A lot of trouble will be avoided if the additional inventories to import are ecoinvent 3.7 or 3.7.1-compliant."
+            )
+
+    return inventories_list
+
 def check_db_version(version):
     version = str(version)
     if version not in SUPPORTED_EI_VERSIONS:
@@ -298,7 +353,8 @@ def check_scenarios(scenario):
     scenario["pathway"] = check_pathway_name(scenario["pathway"], scenario["filepath"], scenario["model"])
     scenario["year"] = check_year(scenario["year"])
 
-
+    if "exclude" in scenario:
+        scenario["exclude"] = check_exclude(scenario["exclude"])
 
     if "passenger cars" in scenario:
         scenario["passenger cars"] = check_fleet(
@@ -343,6 +399,7 @@ class NewDatabase:
         source_version="3.7.1",
         source_type="brightway",
         source_file_path=None,
+        additional_inventories=None
     ):
 
         self.source = source_db
@@ -356,12 +413,15 @@ class NewDatabase:
 
         self.scenarios = [check_scenarios(scenario) for scenario in scenarios]
 
+        if additional_inventories:
+            self.additional_inventories = check_additional_inventories(additional_inventories) or None
+
         print(
             "\n////////////////////// EXTRACTING SOURCE DATABASE ///////////////////////"
         )
         self.db = self.clean_database()
         print(
-            "\n/////////////////// IMPORTING ADDITIONAL INVENTORIES ////////////////////"
+            "\n/////////////////// IMPORTING DEFAULT INVENTORIES ////////////////////"
         )
         self.import_inventories()
 
@@ -453,40 +513,60 @@ class NewDatabase:
 
                 lpg = LPGInventory(self.db, self.version, file)
                 lpg.merge_inventory()
+
+
+
+
         print("Done!\n")
 
-    def update_electricity_to_iam_data(self):
+        if self.additional_inventories:
+
+            print(
+                "\n/////////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////////"
+            )
+
+            for file in self.additional_inventories:
+                additional = AdditionalInventory(self.db, self.version, file["filepath"])
+                additional.merge_inventory()
+
+            print("Done!\n")
+
+
+
+    def update_electricity(self):
+
         print("\n/////////////////// ELECTRICITY ////////////////////")
 
         for scenario in self.scenarios:
+            if "exclude" not in scenario or "update_electricity" not in scenario["exclude"]:
+                electricity = Electricity(
+                    db=scenario["database"],
+                    iam_data=scenario["external data"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    year=scenario["year"],
+                )
+                scenario["database"] = electricity.update_electricity_markets()
+                scenario["database"] = electricity.update_electricity_efficiency()
 
-            electricity = Electricity(
-                db=scenario["database"],
-                iam_data=scenario["external data"],
-                model=scenario["model"],
-                pathway=scenario["pathway"],
-                year=scenario["year"],
-            )
-            scenario["database"] = electricity.update_electricity_markets()
-            scenario["database"] = electricity.update_electricity_efficiency()
-
-    def update_cement_to_iam_data(self):
+    def update_cement(self):
         print("\n/////////////////// CEMENT ////////////////////")
 
         for scenario in self.scenarios:
+            if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
 
-            cement = Cement(
-                db=scenario["database"],
-                model=scenario["model"],
-                scenario=scenario["pathway"],
-                iam_data=scenario["external data"],
-                year=scenario["year"],
-                version=self.version,
-            )
+                cement = Cement(
+                    db=scenario["database"],
+                    model=scenario["model"],
+                    scenario=scenario["pathway"],
+                    iam_data=scenario["external data"],
+                    year=scenario["year"],
+                    version=self.version,
+                )
 
-            scenario["database"] = cement.add_datasets_to_database()
+                scenario["database"] = cement.add_datasets_to_database()
 
-    def update_steel_to_iam_data(self):
+    def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
 
         if (
@@ -501,14 +581,15 @@ class NewDatabase:
         ):
 
             for scenario in self.scenarios:
+                if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
-                steel = Steel(
-                    db=scenario["database"],
-                    model=scenario["model"],
-                    iam_data=scenario["external data"],
-                    year=scenario["year"],
-                )
-                scenario["database"] = steel.generate_activities()
+                    steel = Steel(
+                        db=scenario["database"],
+                        model=scenario["model"],
+                        iam_data=scenario["external data"],
+                        year=scenario["year"],
+                    )
+                    scenario["database"] = steel.generate_activities()
         else:
             print(
                 "The IAM pathway chosen does not contain any data related to the steel sector.\n"
@@ -516,44 +597,46 @@ class NewDatabase:
                 "But we will nevertheless adjust hot pollutant emissions and the expected share of recycled steel."
             )
             for scenario in self.scenarios:
+                if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
-                steel = Steel(
-                    db=scenario["database"],
-                    model=scenario["model"],
-                    iam_data=scenario["external data"],
-                    year=scenario["year"],
-                )
-                scenario["database"] = steel.generate_activities(industry_module_present=False)
+                    steel = Steel(
+                        db=scenario["database"],
+                        model=scenario["model"],
+                        iam_data=scenario["external data"],
+                        year=scenario["year"],
+                    )
+                    scenario["database"] = steel.generate_activities(industry_module_present=False)
 
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")
 
         for scenario in self.scenarios:
+            if "exclude" not in scenario or "update_cars" not in scenario["exclude"]:
 
-            if scenario["passenger cars"]:
+                if scenario["passenger cars"]:
 
-                # Import `carculator` inventories if wanted
-                cars = CarculatorInventory(
-                    database=scenario["database"],
-                    version=self.version,
-                    path=scenario["filepath"],
-                    fleet_file=scenario["passenger cars"]["fleet file"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    year=scenario["year"],
-                    regions=scenario["passenger cars"]["regions"],
-                    filters=scenario["passenger cars"]["filters"],
-                )
-                cars.merge_inventory()
+                    # Import `carculator` inventories if wanted
+                    cars = CarculatorInventory(
+                        database=scenario["database"],
+                        version=self.version,
+                        path=scenario["filepath"],
+                        fleet_file=scenario["passenger cars"]["fleet file"],
+                        model=scenario["model"],
+                        pathway=scenario["pathway"],
+                        year=scenario["year"],
+                        regions=scenario["passenger cars"]["regions"],
+                        filters=scenario["passenger cars"]["filters"],
+                    )
+                    cars.merge_inventory()
 
-                crs = Cars(
-                    db=scenario["database"],
-                    iam_data=scenario["external data"],
-                    pathway=scenario["pathway"],
-                    year=scenario["year"],
-                    model=scenario["model"],
-                )
-                scenario["database"] = crs.update_cars()
+                    crs = Cars(
+                        db=scenario["database"],
+                        iam_data=scenario["external data"],
+                        pathway=scenario["pathway"],
+                        year=scenario["year"],
+                        model=scenario["model"],
+                    )
+                    scenario["database"] = crs.update_cars()
 
 
 
@@ -562,42 +645,45 @@ class NewDatabase:
         print("\n/////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
 
         for scenario in self.scenarios:
-            if scenario["trucks"]:
+            if "exclude" not in scenario or "update_trucks" not in scenario["exclude"]:
+                if scenario["trucks"]:
 
-                # Import `carculator_truck` inventories if wanted
+                    # Import `carculator_truck` inventories if wanted
 
-                trucks = TruckInventory(
-                    database=scenario["database"],
-                    version=self.version,
-                    path=scenario["filepath"],
-                    fleet_file=scenario["trucks"]["fleet file"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    year=scenario["year"],
-                    regions=scenario["trucks"]["regions"],
-                    filters=scenario["trucks"]["filters"],
-                   )
-                trucks.merge_inventory()
+                    trucks = TruckInventory(
+                        database=scenario["database"],
+                        version=self.version,
+                        path=scenario["filepath"],
+                        fleet_file=scenario["trucks"]["fleet file"],
+                        model=scenario["model"],
+                        pathway=scenario["pathway"],
+                        year=scenario["year"],
+                        regions=scenario["trucks"]["regions"],
+                        filters=scenario["trucks"]["filters"],
+                       )
+                    trucks.merge_inventory()
 
 
     def update_solar_PV(self):
         print("\n/////////////////// SOLAR PV ////////////////////")
 
         for scenario in self.scenarios:
-            solar_PV = SolarPV(db=scenario["database"], year=scenario["year"])
-            print("Update efficiency of solar PVs.\n")
-            scenario["database"] = solar_PV.update_efficiency_of_solar_PV()
+            if "exclude" not in scenario or "update_solar_PV" not in scenario["exclude"]:
+                solar_PV = SolarPV(db=scenario["database"], year=scenario["year"])
+                print("Update efficiency of solar PVs.\n")
+                scenario["database"] = solar_PV.update_efficiency_of_solar_PV()
 
     def update_all(self):
         """
         Shortcut method to execute all transformation functions.
         """
+
         self.update_cars()
         self.update_trucks()
-        self.update_electricity_to_iam_data()
+        self.update_electricity()
         self.update_solar_PV()
-        self.update_cement_to_iam_data()
-        self.update_steel_to_iam_data()
+        self.update_cement()
+        self.update_steel()
 
 
     def write_db_to_brightway(self):

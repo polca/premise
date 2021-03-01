@@ -115,7 +115,7 @@ def setup_db():
 def test_link_local_electricity_supply():
     ndb = setup_db()
 
-    ndb.update_electricity_to_iam_data()
+    ndb.update_electricity()
     Cars(ndb.db, ndb.rdc, scenario, year, ndb.model).link_local_electricity_supply()
 
 
@@ -125,7 +125,7 @@ def test_link_local_liquid_fuel_markets():
 
     ndb = setup_db()
 
-    ndb.update_electricity_to_iam_data()
+    ndb.update_electricity()
     Cars(ndb.db, ndb.rdc, scenario, year, ndb.model).link_local_liquid_fuel_markets()
 
 
@@ -135,7 +135,7 @@ def test_full_import():
 
     ndb = setup_db()
 
-    ndb.update_electricity_to_iam_data()
+    ndb.update_electricity()
     ndb.update_cars()
     dbname = "test_carculator_complete"
     if dbname in bw.databases:

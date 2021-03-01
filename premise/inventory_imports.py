@@ -98,7 +98,7 @@ EI_37_35_MIGRATION_MAP = {
                             "location": "GLO"
                         },
                     ),
-(
+                    (
                         ("market for water, ultrapure", ("water, ultrapure",), "CA-QC"),
                         {
                             "location": "GLO"
@@ -199,7 +199,110 @@ EI_37_35_MIGRATION_MAP = {
                             "location": "RoW",
                         },
                     ),
+                    (
+                        ("steel production, electric, low-alloyed",
+                         "steel, low-alloyed",
+                         "Europe without Switzerland and Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("reinforcing steel production",
+                         "reinforcing steel",
+                         "Europe without Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("smelting of copper concentrate, sulfide ore",
+                         "copper, anode",
+                         "RoW"),
+                        {
+                            "name": "smelting and refining of nickel ore",
+                            "reference product": "copper concentrate, sulfide ore",
+                            "location": "GLO",
+                        },
+                    )
 
+                ],
+            }
+
+EI_37_36_MIGRATION_MAP = {
+                "fields": ["name", "reference product", "location"],
+                "data": [
+                    (
+                        (
+                            "market for transport, freight, sea, transoceanic tanker",
+                            ("transport, freight, sea, transoceanic tanker",),
+                            "GLO",
+                        ),
+                        {
+                            "name": (
+                                "market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
+                            ),
+                            "reference product": (
+                                "transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
+                            ),
+                        },
+                    ),
+                    (
+                        (
+                            "market for water, decarbonised, at user",
+                            "water, decarbonised, at user",
+                            "GLO",
+                        ),
+                        {
+                            "name": "market for water, decarbonised",
+                            "reference product": "water, decarbonised",
+                            "location": "DE",
+                        },
+                    ),
+                    (
+                        (
+                            "market for water, completely softened, from decarbonised water, at user",
+                            (
+                                "water, completely softened, from decarbonised water, at user",
+                            ),
+                            "GLO",
+                        ),
+                        {
+                            "name": "market for water, completely softened",
+                            "reference product": "water, completely softened",
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("market for concrete block", "concrete block", "GLO"),
+                        {"location": "DE"},
+                    ),
+                    (
+                        ("steel production, electric, low-alloyed",
+                         "steel, low-alloyed",
+                         "Europe without Switzerland and Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("reinforcing steel production",
+                         "reinforcing steel",
+                         "Europe without Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("smelting of copper concentrate, sulfide ore",
+                         "copper, anode",
+                         "RoW"),
+                        {
+                            "name": "smelting and refining of nickel ore",
+                            "reference product": "copper concentrate, sulfide ore",
+                            "location": "GLO",
+                        },
+                    )
                 ],
             }
 
@@ -877,67 +980,7 @@ class CarmaCCSInventory(BaseInventoryImport):
 
         if self.version == "3.6":
             # apply some updates to comply with ei 3.6
-            new_technosphere_data = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        ("market for water, decarbonised, at user", (), "GLO"),
-                        {
-                            "name": "market for water, decarbonised",
-                            "reference product": "water, decarbonised",
-                            "location": "DE",
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, completely softened, from decarbonised water, at user",
-                            (),
-                            "GLO",
-                        ),
-                        {
-                            "name": "market for water, completely softened",
-                            "reference product": "water, completely softened",
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("market for steam, in chemical industry", (), "GLO"),
-                        {
-                            "location": "RER",
-                            "reference product": "steam, in chemical industry",
-                        },
-                    ),
-                    (
-                        ("market for steam, in chemical industry", (), "RER"),
-                        {"reference product": "steam, in chemical industry",},
-                    ),
-                    (
-                        ("zinc-lead mine operation", ("zinc concentrate",), "GLO"),
-                        {
-                            "name": "zinc mine operation",
-                            "reference product": "bulk lead-zinc concentrate",
-                        },
-                    ),
-                    (
-                        ("market for aluminium oxide", ("aluminium oxide",), "GLO"),
-                        {
-                            "name": "market for aluminium oxide, non-metallurgical",
-                            "reference product": "aluminium oxide, non-metallurgical",
-                            "location": "IAI Area, EU27 & EFTA",
-                        },
-                    ),
-                    (
-                        (
-                            "platinum group metal mine operation, ore with high rhodium content",
-                            ("nickel, 99.5%",),
-                            "ZA",
-                        ),
-                        {
-                            "name": "platinum group metal, extraction and refinery operations",
-                        },
-                    ),
-                ],
-            }
+            new_technosphere_data = EI_37_36_MIGRATION_MAP
 
             Migration("migration_36").write(
                 new_technosphere_data,
@@ -970,45 +1013,25 @@ class DACInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_37")
 
-        if self.version in ["3.6", "3.5"]:
+        if self.version == "3.6":
             # apply some updates to go from ei3.7 to ei3.6
-            new_technosphere_data = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        ("steel production, electric, low-alloyed",
-                         "steel, low-alloyed",
-                         "Europe without Switzerland and Austria"),
-                        {
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("reinforcing steel production",
-                         "reinforcing steel",
-                         "Europe without Austria"),
-                        {
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("smelting of copper concentrate, sulfide ore",
-                         "copper, anode",
-                         "RoW"),
-                        {
-                            "name": "smelting and refining of nickel ore",
-                            "reference product": "copper concentrate, sulfide ore",
-                            "location": "GLO",
-                        },
-                    )
-                ],
-            }
+            new_technosphere_data = EI_37_36_MIGRATION_MAP
 
             Migration("migration_36").write(
                 new_technosphere_data,
-                description="Change technosphere names due to change from 3.5 to 3.6",
+                description="Change technosphere names due to change from 3.7 to 3.5",
             )
             self.import_db.migrate("migration_36")
+
+        if self.version == "3.5":
+            # apply some updates to go from ei3.7 to ei3.5
+            new_technosphere_data = EI_37_35_MIGRATION_MAP
+
+            Migration("migration_35").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.7 to 3.6",
+            )
+            self.import_db.migrate("migration_35")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -1070,56 +1093,7 @@ class BiofuelInventory(BaseInventoryImport):
 
         # Migrations for 3.6
         if self.version == "3.6":
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        (
-                            "market for transport, freight, sea, transoceanic tanker",
-                            ("transport, freight, sea, transoceanic tanker",),
-                            "GLO",
-                        ),
-                        {
-                            "name": (
-                                "market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
-                            ),
-                            "reference product": (
-                                "transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, decarbonised, at user",
-                            "water, decarbonised, at user",
-                            "GLO",
-                        ),
-                        {
-                            "name": "market for water, decarbonised",
-                            "reference product": "water, decarbonised",
-                            "location": "DE",
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, completely softened, from decarbonised water, at user",
-                            (
-                                "water, completely softened, from decarbonised water, at user",
-                            ),
-                            "GLO",
-                        ),
-                        {
-                            "name": "market for water, completely softened",
-                            "reference product": "water, completely softened",
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("market for concrete block", "concrete block", "GLO"),
-                        {"location": "DE"},
-                    ),
-                ],
-            }
+            migrations = EI_37_36_MIGRATION_MAP
 
             Migration("biofuels_ecoinvent_36").write(
                 migrations,
@@ -1390,6 +1364,45 @@ class LPGInventory(BaseInventoryImport):
                 description="Change technosphere names due to change from 3.5 to 3.6",
             )
             self.import_db.migrate("LPG_ecoinvent_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
+
+class AdditionalInventory(BaseInventoryImport):
+    """
+    Import additional inventories, if any.
+    """
+
+    def __init__(self, database, version, path):
+        super().__init__(database, version, path)
+        self.import_db = self.load_inventory(path)
+
+    def load_inventory(self, path):
+        return ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        # Migrations for 3.6
+        if self.version == "3.6":
+            migrations = EI_37_36_MIGRATION_MAP
+
+            Migration("ecoinvent_36").write(
+                migrations,
+                description="Change technosphere names due to change from 3.7 to 3.6",
+            )
+            self.import_db.migrate("ecoinvent_36")
+
+        # Migrations for 3.5
+        if self.version == "3.5":
+            migrations = EI_37_35_MIGRATION_MAP
+
+            Migration("migration_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.7 to 3.5",
+            )
+            self.import_db.migrate("migration_35")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
