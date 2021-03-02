@@ -1370,6 +1370,46 @@ class LPGInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
+class VariousVehicles(BaseInventoryImport):
+    """
+    Imports various future vehicles' inventories (two-wheelers, buses, trams, etc.).
+    """
+
+    def __init__(self, database, version, path):
+        super().__init__(database, version, path)
+        self.import_db = self.load_inventory(path)
+
+    def load_inventory(self, path):
+        return ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        # Migrations for 3.6
+        if self.version == "3.6":
+            migrations = EI_37_36_MIGRATION_MAP
+
+            Migration("ecoinvent_36").write(
+                migrations,
+                description="Change technosphere names due to change from 3.7 to 3.6",
+            )
+            self.import_db.migrate("ecoinvent_36")
+
+
+        # Migrations for 3.5
+        if self.version == "3.5":
+            migrations = EI_37_35_MIGRATION_MAP
+
+            Migration("ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6",
+            )
+            self.import_db.migrate("ecoinvent_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
+
 class AdditionalInventory(BaseInventoryImport):
     """
     Import additional inventories, if any.
@@ -1573,6 +1613,8 @@ class CarculatorInventory(BaseInventoryImport):
                 },
             }
 
+            print(scope)
+
             ic = carculator.InventoryCalculation(
                 cm.array, scope=scope, background_configuration=bc
             )
@@ -1585,12 +1627,13 @@ class CarculatorInventory(BaseInventoryImport):
             #
             # else:
             i = ic.export_lci_to_bw(presamples=False,
-                                    ecoinvent_version=str(self.version))
+                                    ecoinvent_version=str(self.version),
+                                    create_vehicle_datasets=False)
 
 
             # filter out cars if anything given in `self.filter`
             i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
-                      or any(y.lower() in x["name"].lower() for y in self.filter)]
+                      or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
 
             ic.export_lci_to_excel()
 

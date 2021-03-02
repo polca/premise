@@ -15,6 +15,7 @@ from .inventory_imports import (
     LPGInventory,
     CarculatorInventory,
     TruckInventory,
+    VariousVehicles,
     AdditionalInventory
 )
 from .cement import Cement
@@ -86,6 +87,7 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
+FILEPATH_VARIOUS_VEHICLES = INVENTORY_DIR / "lci-various_vehicles.xlsx"
 
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1"]
 SUPPORTED_MODELS = ["remind", "image", "static"]
@@ -255,9 +257,9 @@ def check_fleet(fleet, model, vehicle_type):
         )
     else:
         filepath = fleet["fleet file"]
-        if not Path(filepath).is_dir():
+        if not Path(filepath).is_file():
             raise FileNotFoundError(
-                f"The fleet file directory {filepath} could not be found."
+                f"The fleet file {filepath} could not be found."
             )
 
     if "regions" in fleet:
@@ -414,7 +416,9 @@ class NewDatabase:
         self.scenarios = [check_scenarios(scenario) for scenario in scenarios]
 
         if additional_inventories:
-            self.additional_inventories = check_additional_inventories(additional_inventories) or None
+            self.additional_inventories = check_additional_inventories(additional_inventories)
+        else:
+            self.additional_inventories = None
 
         print(
             "\n////////////////////// EXTRACTING SOURCE DATABASE ///////////////////////"
@@ -514,8 +518,8 @@ class NewDatabase:
                 lpg = LPGInventory(self.db, self.version, file)
                 lpg.merge_inventory()
 
-
-
+            various_veh = VariousVehicles(self.db, self.version, FILEPATH_VARIOUS_VEHICLES)
+            various_veh.merge_inventory()
 
         print("Done!\n")
 

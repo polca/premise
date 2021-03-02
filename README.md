@@ -100,9 +100,9 @@ the IAM file you use as input.
 |update_cars()                   | Yes        | Aligns fuel supply markets with IAM and creates passenger cars transport markets | Yes  | Yes | No      |                                      |
 |update_trucks()                 | Yes       | Aligns fuel supply markets with IAM and creates truck transport markets | Yes  | Yes | No      |                                      |
 |update_cement()     | Yes        | Aligns clinker and cement production and supply | Yes  | Yes | Yes     | Uses external data sources ([WBCSD][6] and [IEA][7])|
-|update_steel()      | Yes        | Align primary and secondary steel production and supply| Yes  | No  | No      | Only works with REMIND at the moment.|
+|update_steel()      | Yes        | Align primary and secondary steel production and supply| Yes  | No  | No      | Uses external data source ([BIR][15])|
 |update_metal_markets()          | Not yet    | Align metal extraction and supply with IAM             | No   | No  | No      |                                      |
-|update_solar_PV()               | Yes        | Align solar PV modules efficiency | Yes | Yes | Yes | Uses external data source ([PSI]][7]) |
+|update_solar_PV()               | Yes        | Align solar PV modules efficiency | Yes | Yes | Yes | Uses external data source ([PSI][7]) |
 
 The following REMIND IAM files come with the library:
 
@@ -128,8 +128,9 @@ Additionally, a number of inventories for emerging technologies are added upon t
 * hydrogen production from woody biomass gasification, with and without CCS [Antonini et al. 2020][10]
 * synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrolchemical methanation (gas) processes,
  using direct air capture (DAC) [Zhang et al. 2019][11]
-* passenger car inventories from the library [carculator][12]
-* medium and heavy duty trucks from the library [carculator_truck][13]
+* current and future passenger car inventories from the library [carculator][12]
+* current and future medium and heavy duty trucks from the library [carculator_truck][13]
+* current and future various two-wheelers and collective means of transport (buses, trams, etc.)[PSI][16]
 
 Outputs
 -------
@@ -177,6 +178,9 @@ See [contributing](https://github.com/romainsacchi/premise/blob/master/CONTRIBUT
 [12]:https://doi.org/10.1039/C9SE00986H
 [13]:https://github.com/romainsacchi/carculator
 [14]:https://github.com/romainsacchi/carculator_truck
+[15]:https://www.bir.org/publications/facts-figures/
+[16]:https://ta.psi.ch
+
 
 ## License
 
