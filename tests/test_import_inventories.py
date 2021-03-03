@@ -1,18 +1,19 @@
 # content of test_activity_maps.py
 import pytest
-from rmnd_lca.inventory_imports import \
+from premise.inventory_imports import \
     BaseInventoryImport, CarmaCCSInventory,\
     BiofuelInventory, CarculatorInventory
 from pathlib import Path
-from rmnd_lca import INVENTORY_DIR
+from premise import INVENTORY_DIR, DATA_DIR
 
-FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
-FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
-FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
-FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen.xlsx")
-FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel.xlsx")
-FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
-FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
+
+FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xls")
+FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xls")
+FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xls")
+FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen.xls")
+FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel.xls")
+FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xls")
+FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xls")
 
 
 def get_db():
@@ -41,13 +42,11 @@ def get_db():
     version = 3.5
     return db, version
 
-
 def test_file_exists():
     db, version = get_db()
     with pytest.raises(FileNotFoundError) as wrapped_error:
         BaseInventoryImport(db, version, "testfile")
     assert wrapped_error.type == FileNotFoundError
-
 
 def test_biosphere_dict():
     db, version = get_db()
@@ -63,7 +62,6 @@ def test_biosphere_dict():
                )] == '38a622c6-f086-4763-a952-7c6b3b1c42ba'
 
     testpath.unlink()
-
 
 def test_biosphere_dict_2():
     db, version = get_db()
@@ -83,21 +81,28 @@ def test_biosphere_dict_2():
 
     testpath.unlink()
 
-
 def test_load_carma():
     db, version = get_db()
     carma = CarmaCCSInventory(db, version, FILEPATH_CARMA_INVENTORIES)
-    assert len(carma.import_db.data) == 146
+    assert len(carma.import_db.data) == 148
 
 
 def test_load_biofuel():
     db, version = get_db()
     bio = BiofuelInventory(db, version, FILEPATH_BIOFUEL_INVENTORIES)
-    assert len(bio.import_db.data) == 27
+    assert len(bio.import_db.data) == 36
 
 
 def test_load_carculator():
     db, version = get_db()
-    carc = CarculatorInventory(db, 2015)
+    carc = CarculatorInventory(database=db,
+                               version=3.7,
+                               model="remind",
+                               path=Path(""),
+                               scenario="SSP2-Base",
+                               year=2015,
+                               regions=["EUR"],
+                               vehicles={"source file": (DATA_DIR / "iam_output_files")}
+                               )
+    assert len(carc.import_db.data) >= 335
 
-    assert len(carc.data) == 203

@@ -1,12 +1,12 @@
 # content of test_activity_maps.py
-from rmnd_lca.activity_maps import InventorySet
+from premise.activity_maps import InventorySet
 
-dummy_minimal_db = [{'name': 'Electricity, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m/2025'},
-                    {'name': 'Electricity, at BIGCC power plant 450MW, no CCS/2025'},
-                    {'name': 'Electricity, at power plant/lignite, IGCC, no CCS/2025'},
-                    {'name': 'Electricity, at power plant/hard coal, pre, pipeline 200km, storage 1000m/2025'},
-                    {'name': 'Electricity, at power plant/hard coal, post, pipeline 200km, storage 1000m/2025'},
-                    {'name': 'Electricity, at power plant/natural gas, pre, pipeline 200km, storage 1000m/2025'},
+dummy_minimal_db = [{'name': 'electricity production, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m'},
+                    {'name': 'electricity production, at BIGCC power plant 450MW, no CCS'},
+                    {'name': 'electricity production, at power plant/lignite, IGCC, no CCS'},
+                    {'name': 'electricity production, at power plant/hard coal, pre, pipeline 200km, storage 1000m'},
+                    {'name': 'electricity production, at power plant/hard coal, post, pipeline 200km, storage 1000m'},
+                    {'name': 'electricity production, at power plant/natural gas, pre, pipeline 200km, storage 1000m'},
                     {'name': 'heat and power co-generation, biogas, gas engine, label-certified'},
                     {'name': 'electricity production, hard coal'},
                     {'name': 'heat and power co-generation, hard coal'},
@@ -49,6 +49,6 @@ def test_content_dict():
     materials = maps.generate_material_map()
     assert materials['aluminium'] == {'market for aluminium, primary'}
     plants = maps.generate_powerplant_map()
-    assert plants['Coal IGCC'] == {'Electricity, at power plant/lignite, IGCC, no CCS/2025'}
+    assert plants['Coal IGCC'] == {'electricity production, at power plant/lignite, IGCC, no CCS'}
     emissions = maps.get_remind_to_ecoinvent_emissions()
     assert emissions['Sulfur dioxide'] == 'SO2'

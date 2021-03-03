@@ -17,12 +17,12 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-project = 'rmnd-lca'
-copyright = '2019, Alois Dirnaichner, Brian Cox, Romain Sacchi'
-author = 'Alois Dirnaichner, Brian Cox, Romain Sacchi'
+project = 'premise'
+copyright = '2020, Potsdam Institute for Climate Impact Research, Paul Scherrer Institut'
+author = 'Alois Dirnaichner, Romain Sacchi, Chris Mutel'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.1.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -32,7 +32,7 @@ release = '0.0.1'
 extensions = ['sphinx.ext.autodoc']
 
 autoapi_type = 'python'
-autoapi_dirs = ['../rmnd-lca']
+autoapi_dirs = ['../premise']
 
 master_doc = 'index'
 

@@ -1,5 +1,5 @@
 package:
-  name: rmnd-lca
+  name: premise
   version: {{ environ['VERSION'] }}
 
 source:
@@ -16,15 +16,6 @@ build:
 requirements:
   build:
     - python
-    - wurst
-    - numpy
-    - pandas
-    - bw2io
-    - bw2data
-    - xarray <=0.13.0
-    - pytest
-    - pytest-cov
-    - coveralls
     - setuptools
   run:
     - python
@@ -33,17 +24,18 @@ requirements:
     - pandas
     - bw2io
     - bw2data
-    - xarray <=0.13.0
-    - pytest
-    - pytest-cov
-    - coveralls
+    - xarray
+    - prettytable
+    - carculator
+    - carculator_truck
+    - pycountry
 
 test:
   imports:
-    - rmnd_lca
+    - premise
 
 about:
-  home: https://github.com/romainsacchi/rmnd-lca
+  home: https://github.com/romainsacchi/premise
   license: BSD License
   summary: 'Coupling REMIND output to ecoinvent LCA databases.'
 license_family: BSD
