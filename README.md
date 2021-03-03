@@ -61,16 +61,6 @@ For a more stable and proven version, from Pypi:
 
 will install the package and the required dependencies.
 
-What's new in 0.2.0?
-====================
-
-* CODE-BREAKING CHANGE --> New workflow (please check [examples notebook](https://github.com/romainsacchi/premise/blob/master/examples/examples.ipynb)): better suited for creating several scenarios, as the original ecoinvent database and inventories are only loaded once.
-* `update_solar_PV()`: adjusts the efficiency of photovoltaic solar panels in ecoinvent according to the year of projection.
-* `update_cars()`: creates car inventories in line with the year of projection. Also creates new fleet average car transport market
-and links them back to transport-consuming activities.
-* `update_trucks()`: creates truck inventories in line with the year of projection. Also creates new fleet average lorry transport market
-and links them back to transport-consuming activities.
-
 Introduction
 ============
 
