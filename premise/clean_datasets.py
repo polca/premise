@@ -214,9 +214,7 @@ class DatabaseCleaner:
 
             for exc in wurst.technosphere(ds):
                 if "location" not in exc:
-                    locs = self.find_location_given_lookup_dict(
-                        self.db, {k: exc.get(k) for k in matching_fields}
-                    )
+                    locs = self.find_location_given_lookup_dict({k: exc.get(k) for k in matching_fields})
                     if len(locs) == 1:
                         exc["location"] = locs[0]
                     else:

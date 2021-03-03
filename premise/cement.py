@@ -128,6 +128,8 @@ class Cement:
         Return a list of datasets which location and name correspond to the region, name and reference product given,
         respectively.
 
+        :param unit: unit of the dataset. If not specified, "kilogram" is used.
+        :param look_for_locations_in: whether it should look for a supplier in ecoinvent locations or IAM locations.
         :param iam_region: an IAM region
         :type iam_region: str
         :param ecoinvent_technologies: list of names of ecoinvent dataset

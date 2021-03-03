@@ -24,7 +24,6 @@ from .cars import Cars
 from .export import Export
 from .utils import eidb_label, add_modified_tags
 import wurst
-import wurst.searching as ws
 from pathlib import Path
 import copy
 import os
@@ -379,12 +378,6 @@ class NewDatabase:
     """
     Class that represents a new wurst inventory database, modified according to IAM data.
 
-    :ivar model: name of teh IAM model. Can be `remind` or `image`.
-    :vartype model: str
-    :ivar pathway: name of the IAM pathway, e.g., 'SSP2-Base', 'SSP2/NDC', etc..
-    :vartype pathway: str
-    :ivar year: year of the IAM pathway to consider, between 2005 and 2150.
-    :vartype year: int
     :ivar source_type: the source of the ecoinvent database. Can be `brigthway` or `ecospold`.
     :vartype source_type: str
     :ivar source_db: name of the ecoinvent source database

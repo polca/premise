@@ -4,7 +4,7 @@ pandas
 bw2io
 bw2data
 wurst
-xarray==0.16.2
+xarray
 prettytable
 carculator
 carculator_truck
