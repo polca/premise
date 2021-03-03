@@ -4,8 +4,7 @@ bw2io
 bw2data
 wurst
 xarray
-pytest
-pytest-cov
-coveralls
 prettytable
 carculator
+carculator_truck
+pycountry
