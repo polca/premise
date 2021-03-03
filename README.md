@@ -60,6 +60,16 @@ For a more stable and proven version, from Pypi:
 
 will install the package and the required dependencies.
 
+What's new in 0.2.0?
+====================
+
+* CODE-BREAKING CHANGE --> New workflow (please check [examples notebook](https://github.com/romainsacchi/premise/blob/master/examples/examples.ipynb)): better suited for creating several scenarios, as the original ecoinvent database and inventories are only loaded once.
+* `update_solar_PV()`: adjusts the efficiency of photovoltaic solar panels in ecoinvent according to the year of projection.
+* `update_cars()`: creates car inventories in line with the year of projection. Also creates new fleet average car transport market
+and links them back to transport-consuming activities.
+* `update_trucks()`: creates truck inventories in line with the year of projection. Also creates new fleet average lorry transport market
+and links them back to transport-consuming activities.
+
 Introduction
 ============
 
@@ -71,36 +81,41 @@ Inputs
 ------
 
 Either:
-* ecoinvent v.3.5, 3.6 or 3.7 as a registered brightway2 database
-* ecoinvent v.3.5, 3.6 or 3.7 as [ecospold2][5] files
+* ecoinvent v.3.5, 3.6, 3.7 or 3.7.1 as a registered brightway2 database
+* ecoinvent v.3.5, 3.6, 3.7 or 3.7.1 as [ecospold2][5] files
 
 Transformations
 ---------------
 
 More specifically, **premise** will apply a series of transformation functions to ecoinvent.
 
-In the latest version (0.1.7), the following transformation functions are available:
+In the latest version (0.2.0), the following transformation functions are available:
 
-* **update_electricity_to_iam_data()**: alignment of regional electricity production mixes as well as efficiencies for a number of
+* **update_electricity()**: alignment of regional electricity production mixes as well as efficiencies for a number of
 electricity production technologies, including Carbon Capture and Storage technologies.
-* **update_vehicles()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
-including penetration of bio- and synthetic fuels. Then, given a fleet composition, markets for passenger cars and trucks are created.
+* **update_cars()**: new passenger car inventories are created based on [carculator][13], fuel markets that supply passenger cars are adjusted 
+according to the IAM projections, including penetration of bio- and synthetic fuels. Then, given a fleet composition, markets for passenger car transport are created.
 Finally, these transport markets link back to transport-consuming activities.
-* **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
+* **update_trucks()**: new truck inventories are created based on [carculator_truck][14], fuel markets that supply trucks are adjusted 
+according to the IAM projections, including penetration of bio- and synthetic fuels. Then, given a fleet composition, markets for truck transport are created.
+Finally, these transport markets link back to lorry transport-consuming activities.
+* **update_cement()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
 fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
-* **update_steel_to_iam_data()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
+* **update_steel()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
 * **update_solar_PV()**: adjustment of solar PV modules efficiency, to reflect current (18-20%) and future (25%) efficiencies.
+
 However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
 the IAM file you use as input.
 
 |Function                        |Implemented?|Description                                                            |REMIND|IMAGE|Other IAM|Comment                               |
 |--------------------------------|------------|-----------------------------------------------------------------------|------|-----|---------|--------------------------------------|
-|update_electricity_to_iam_data()| Yes        | Aligns electricity markets and power plants efficiencies     | Yes  | Yes | No      |                                      |
-|update_vehicles()               | Yes        | Aligns fuel supply markets with IAM and creates transport markets | Yes  | Yes | No      |                                      |
-|update_cement_to_iam_data()     | Yes        | Aligns clinker and cement production and supply | Yes  | Yes | Yes     | Uses external data sources ([WBCSD][6] and [IEA][7])|
-|update_steel_to_iam_data()      | Yes        | Align primary and secondary steel production and supply| Yes  | No  | No      | Only works with REMIND at the moment.|
-|update_metal_markets()          | Not yet    | Align metal extraction and supply with IAM                            | No   | No  | No      |                                      |
-|update_solar_PV()               | Yes        | Align solar PV modules efficiency | Yes | Yes | Yes | Uses external data source ([PSI]][7]) |
+|update_electricity()| Yes        | Aligns electricity markets and power plants efficiencies     | Yes  | Yes | No      |                                      |
+|update_cars()                   | Yes        | Aligns fuel supply markets with IAM and creates passenger cars transport markets | Yes  | Yes | No      |                                      |
+|update_trucks()                 | Yes       | Aligns fuel supply markets with IAM and creates truck transport markets | Yes  | Yes | No      |                                      |
+|update_cement()     | Yes        | Aligns clinker and cement production and supply | Yes  | Yes | Yes     | Uses external data sources ([WBCSD][6] and [IEA][7])|
+|update_steel()      | Yes        | Align primary and secondary steel production and supply| Yes  | No  | No      | Uses external data source ([BIR][15])|
+|update_metal_markets()          | Not yet    | Align metal extraction and supply with IAM             | No   | No  | No      |                                      |
+|update_solar_PV()               | Yes        | Align solar PV modules efficiency | Yes | Yes | Yes | Uses external data source ([PSI][7]) |
 
 The following REMIND IAM files come with the library:
 
@@ -126,8 +141,9 @@ Additionally, a number of inventories for emerging technologies are added upon t
 * hydrogen production from woody biomass gasification, with and without CCS [Antonini et al. 2020][10]
 * synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrolchemical methanation (gas) processes,
  using direct air capture (DAC) [Zhang et al. 2019][11]
-* passenger car inventories from the library [carculator][12]
-* medium and heavy duty trucks from the library [carculator_truck][13]
+* current and future passenger car inventories from the library [carculator][12]
+* current and future medium and heavy duty trucks from the library [carculator_truck][13]
+* current and future various two-wheelers and collective means of transport (buses, trams, etc.)[PSI][16]
 
 Outputs
 -------
@@ -175,6 +191,9 @@ See [contributing](https://github.com/romainsacchi/premise/blob/master/CONTRIBUT
 [12]:https://doi.org/10.1039/C9SE00986H
 [13]:https://github.com/romainsacchi/carculator
 [14]:https://github.com/romainsacchi/carculator_truck
+[15]:https://www.bir.org/publications/facts-figures/
+[16]:https://ta.psi.ch
+
 
 ## License
 

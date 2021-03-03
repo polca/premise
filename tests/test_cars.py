@@ -100,22 +100,35 @@ def get_db():
 def setup_db():
     bw.projects.set_current(BW_PROJECT)
     return NewDatabase(
-        scenario=scenario,
-        year=year,
-        source_db='ecoinvent {} cutoff'.format(ecoinvent_version),
-        source_version=ecoinvent_version,
-        add_passenger_cars={
-            "fleet file": os.path.join(
-                remind_output_folder, scenario + "_vintcomp.csv")
-        },
-        filepath_to_iam_files=remind_output_folder)
+            scenarios=[
+                {"model": "remind", "pathway": scenario, "year": year,
+                 "exclude": ["update_electricity", "update_steel", "update_cement"],
+                 "passenger cars": {"regions": ["EUR"]}
+                 }
+            ],
+            source_db="ecoinvent 3.7 cutoff",
+            source_version="3.7"
+            )
 
+def setup_db_with_custom_fleet_file():
+    bw.projects.set_current(BW_PROJECT)
+    return NewDatabase(
+            scenarios=[
+                {"model": "remind", "pathway": scenario, "year": year,
+                 "exclude": ["update_electricity", "update_steel", "update_cement"],
+                 "passenger cars": {"regions": ["EUR"],
+                                    "fleet file": remind_output_folder / "fleet files" / "remind" / "passenger cars" / "fleet_file.csv"}
+                 }
+            ],
+            source_db="ecoinvent 3.7 cutoff",
+            source_version="3.7"
+    )
 
 @pytest.mark.ecoinvent
 def test_link_local_electricity_supply():
     ndb = setup_db()
 
-    ndb.update_electricity_to_iam_data()
+    ndb.update_electricity()
     Cars(ndb.db, ndb.rdc, scenario, year, ndb.model).link_local_electricity_supply()
 
 
@@ -125,7 +138,7 @@ def test_link_local_liquid_fuel_markets():
 
     ndb = setup_db()
 
-    ndb.update_electricity_to_iam_data()
+    ndb.update_electricity()
     Cars(ndb.db, ndb.rdc, scenario, year, ndb.model).link_local_liquid_fuel_markets()
 
 
@@ -135,7 +148,7 @@ def test_full_import():
 
     ndb = setup_db()
 
-    ndb.update_electricity_to_iam_data()
+    ndb.update_electricity()
     ndb.update_cars()
     dbname = "test_carculator_complete"
     if dbname in bw.databases:

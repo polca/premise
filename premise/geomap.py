@@ -1,5 +1,4 @@
 from wurst.geo import geomatcher
-
 from premise import DATA_DIR
 
 REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
@@ -120,8 +119,8 @@ class Geomap:
         :param contained: whether only geographies that are contained within the IAM region should be returned.
         By default, `contained` is False, meaning the function also returns geographies that intersects with IAM region.
         :type contained: bool
-        :return: name of an ecoinvent region
-        :rtype: str
+        :return: name(s) of an ecoinvent region
+        :rtype: list
         """
 
         if location == "World":
@@ -145,6 +144,19 @@ class Geomap:
                         e for e in ecoinvent_locations if "CA" not in e
                     ]
 
+                if location in [("REMIND", "REF"), ("IMAGE", "RUS")]:
+                    ecoinvent_locations = [
+                        e for e in ecoinvent_locations if e not in [
+                            "RER",
+                            'Europe without Switzerland',
+                            'Europe without Switzerland and France',
+                            'RER w/o CH+DE',
+                            'RER w/o AT+BE+CH+DE+FR+IT',
+                            'RER w/o DE+NL+NO',
+                            'Europe without NORDEL (NCPA)',
+                        ]
+                    ]
+
                 # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
                 if location != (self.model.upper(), "World"):
                     ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
@@ -152,6 +164,7 @@ class Geomap:
                 return ecoinvent_locations
             except KeyError:
                 print("Can't find location {} using the geomatcher.".format(location))
+                return ["RoW"]
 
     def ecoinvent_to_iam_location(self, location):
         """
@@ -169,6 +182,8 @@ class Geomap:
             "RoW": "CAZ" if self.model == "remind" else "World",
             "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
             "Europe without Switzerland and Austria": "EUR" if self.model == "remind" else "WEU",
+            "North America without Quebec": "USA",
+
         }
         if location in mapping:
             return mapping[location]
@@ -180,7 +195,7 @@ class Geomap:
                 if r[0] == self.model.upper() and r[1] != "World"
             ]
         except KeyError:
-            print("Cannot find the IAM location for {}.".format(location))
+            print("Cannot find the IAM location for {} from IAM model {}.".format(location, self.model))
             iam_location = ["World"]
 
 
@@ -233,7 +248,7 @@ class Geomap:
                     "IAI Area, Russia & RER w/o EU27 & EFTA": "RUS"
                 }
 
-            if self.model == "remind":
+            else:
                 d_ecoinvent_regions = {
                     "IAI Area, Russia & RER w/o EU27 & EFTA": "REF",
                 }
