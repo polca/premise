@@ -624,7 +624,7 @@ class NewDatabase:
                         regions=scenario["passenger cars"]["regions"],
                         filters=scenario["passenger cars"]["filters"],
                     )
-                    cars.merge_inventory()
+                    scenario["database"] = cars.merge_inventory()
 
                     crs = Cars(
                         db=scenario["database"],
@@ -658,7 +658,7 @@ class NewDatabase:
                         regions=scenario["trucks"]["regions"],
                         filters=scenario["trucks"]["filters"],
                        )
-                    trucks.merge_inventory()
+                    scenario["database"] = trucks.merge_inventory()
 
 
     def update_solar_PV(self):

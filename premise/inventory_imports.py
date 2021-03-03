@@ -1516,9 +1516,10 @@ class CarculatorInventory(BaseInventoryImport):
 
             years = []
             for y in np.arange(1996, self.db_year):
-                if fleet.sel(vintage_year=y,
-                             variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
-                    years.append(y)
+                if y in fleet.vintage_year:
+                    if fleet.sel(vintage_year=y,
+                                 variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                        years.append(y)
             years.append(self.db_year)
 
             scope = {
@@ -1662,6 +1663,67 @@ class CarculatorInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
+    def merge_inventory(self):
+        self.prepare_inventory()
+
+        activities_to_remove = [
+            "transport, passenger car",
+            "market for passenger car",
+            "market for transport, passenger car"
+        ]
+
+        self.db = [x for x in self.db if not any(y for y in activities_to_remove if y in x["name"])]
+        self.db.extend(self.import_db)
+
+        exchanges_to_modify = [
+            'market for transport, passenger car, large size, petol, EURO 4',
+            'market for transport, passenger car',
+            'market for transport, passenger car, large size, petrol, EURO 3',
+            'market for transport, passenger car, large size, diesel, EURO 4',
+            'market for transport, passenger car, large size, diesel, EURO 5'
+        ]
+        for ds in self.db:
+            excs = (exc for exc in ds["exchanges"]
+                    if exc["name"] in exchanges_to_modify
+                    and exc["type"] == "technosphere")
+
+            for exc in excs:
+
+                try:
+
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.contains("name", "transport, passenger car, fleet average, all powertrains"),
+                            ws.equals("location", self.geomap.ecoinvent_to_iam_location(ds["location"])),
+                            ws.contains("reference product", "transport")
+                        ]
+                    )
+
+                    exc["name"] = new_supplier["name"]
+                    exc["location"] = new_supplier["location"]
+                    exc["product"] = new_supplier["reference product"]
+                    exc["unit"] = new_supplier["unit"]
+
+                except ws.NoResults:
+
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.contains("name", "transport, passenger car, fleet average, all powertrains"),
+                            ws.equals("location", self.regions[0]),
+                            ws.contains("reference product", "transport")
+                        ]
+                    )
+
+                    exc["name"] = new_supplier["name"]
+                    exc["location"] = new_supplier["location"]
+                    exc["product"] = new_supplier["reference product"]
+                    exc["unit"] = new_supplier["unit"]
+
+        return self.db
+
+
 class TruckInventory(BaseInventoryImport):
     """
     Car models from the carculator project, https://github.com/romainsacchi/carculator
@@ -1699,17 +1761,16 @@ class TruckInventory(BaseInventoryImport):
             self.fleet_file
         )
 
-        fleet = fleet_array.sel(IAM_region="EUR",
-                                vintage_year=np.arange(1996, self.db_year + 1)
-                                ).interp(variable=np.arange(1996, self.db_year + 1))
+        fleet = fleet_array.sel(IAM_region="EUR").interp(variable=np.arange(1996, self.db_year + 1))
 
 
 
         years = []
         for y in np.arange(2010, self.db_year):
-            if fleet.sel(vintage_year=y,
-                         variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
-                years.append(y)
+            if y in fleet.vintage_year:
+                if fleet.sel(vintage_year=y,
+                             variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                    years.append(y)
         years.append(self.db_year)
 
         scope = {
@@ -1751,9 +1812,10 @@ class TruckInventory(BaseInventoryImport):
 
             years = []
             for y in np.arange(2010, self.db_year):
-                if fleet.sel(vintage_year=y,
-                             variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
-                    years.append(y)
+                if y in fleet.vintage_year:
+                    if fleet.sel(vintage_year=y,
+                                 variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                        years.append(y)
             years.append(self.db_year)
 
             scope = {
@@ -1825,16 +1887,19 @@ class TruckInventory(BaseInventoryImport):
 
             ic = carculator_truck.InventoryCalculation(tm,
                                                       scope=scope,
-                                                      background_configuration=bc
+                                                      background_configuration=bc,
                                                        )
 
             i = ic.export_lci_to_bw(presamples=False,
-                                    ecoinvent_version=str(self.version)
+                                    ecoinvent_version=str(self.version),
+                                    create_vehicle_datasets=False
                                     )
+
 
             # filter out trucks if anything given in `self.filter`
             i.data = [x for x in i.data if "transport, " not in x["name"]
-                      or any(y.lower() in x["name"].lower() for y in self.filter)]
+                      or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
+
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
@@ -1863,3 +1928,55 @@ class TruckInventory(BaseInventoryImport):
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_duplicates()
+
+    def merge_inventory(self):
+        self.prepare_inventory()
+
+        activities_to_remove = [
+            "transport, freight, lorry",
+        ]
+
+        self.db = [x for x in self.db if not any(y for y in activities_to_remove if y in x["name"])]
+        self.db.extend(self.import_db)
+
+
+        for ds in self.db:
+            excs = (exc for exc in ds["exchanges"]
+                    if "transport, freight, lorry" in exc["name"]
+                    and exc["type"] == "technosphere")
+
+            for exc in excs:
+
+                try:
+
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.contains("name", "transport, medium and heavy duty truck, fleet average, all powertrains"),
+                            ws.equals("location", self.geomap.ecoinvent_to_iam_location(ds["location"])),
+                            ws.contains("reference product", "transport")
+                        ]
+                    )
+
+                    exc["name"] = new_supplier["name"]
+                    exc["location"] = new_supplier["location"]
+                    exc["product"] = new_supplier["reference product"]
+                    exc["unit"] = new_supplier["unit"]
+
+                except ws.NoResults:
+
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.contains("name", "transport, medium and heavy duty truck, fleet average, all powertrains"),
+                            ws.equals("location", self.regions[0]),
+                            ws.contains("reference product", "transport")
+                        ]
+                    )
+
+                    exc["name"] = new_supplier["name"]
+                    exc["location"] = new_supplier["location"]
+                    exc["product"] = new_supplier["reference product"]
+                    exc["unit"] = new_supplier["unit"]
+
+        return self.db
