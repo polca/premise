@@ -92,7 +92,7 @@ according to the IAM projections, including penetration of bio- and synthetic fu
 Finally, these transport markets link back to lorry transport-consuming activities.
 * **update_cement()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
 fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
-* **update_steel()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
+* **update_steel()**: creation of regional low-alloy steel markets and correction/projection of primary vs. secondary steel supply.
 * **update_solar_PV()**: adjustment of solar PV modules efficiency, to reflect current (18-20%) and future (25%) efficiencies.
 
 However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
@@ -101,12 +101,12 @@ the IAM file you use as input.
 |Function                        |Implemented?|Description                                                            |REMIND|IMAGE|Other IAM|Comment                               |
 |--------------------------------|------------|-----------------------------------------------------------------------|------|-----|---------|--------------------------------------|
 |update_electricity()| Yes        | Aligns electricity markets and power plants efficiencies     | Yes  | Yes | No      |                                      |
-|update_cars()                   | Yes        | Aligns fuel supply markets with IAM and creates passenger cars transport markets | Yes  | Yes | No      |                                      |
-|update_trucks()                 | Yes       | Aligns fuel supply markets with IAM and creates truck transport markets | Yes  | Yes | No      |                                      |
+|update_cars()                   | Yes        | Creates fleet average passenger cars as projected by the IAM | Yes  | Yes | No      | Uses default projection if the IAM does not provide a fleet projection.                                     |
+|update_trucks()                 | Yes       | Creates fleet average lorries as projected by the IAM | Yes  | Yes | No      | Uses default projection if the IAM does not provide a fleet projection.                                 |
 |update_cement()     | Yes        | Aligns clinker and cement production and supply | Yes  | Yes | Yes     | Uses external data sources ([WBCSD][6] and [IEA][7])|
-|update_steel()      | Yes        | Align primary and secondary steel production and supply| Yes  | No  | No      | Uses external data source ([BIR][15])|
-|update_metal_markets()          | Not yet    | Align metal extraction and supply with IAM             | No   | No  | No      |                                      |
-|update_solar_PV()               | Yes        | Align solar PV modules efficiency | Yes | Yes | Yes | Uses external data source ([PSI][7]) |
+|update_steel()      | Yes        | Aligns primary and secondary steel production and supply| Yes  | No  | No      | Uses external data source ([BIR][15])|
+|update_metal_markets()          | Not yet    | Aligns share of metal extraction vs. recycling and and supply with IAM             | No   | No  | No      |                                      |
+|update_solar_PV()               | Yes        | Aligns solar PV modules efficiency | Yes | Yes | Yes | Uses external data source ([PSI][7]) |
 
 The following REMIND IAM files come with the library:
 
