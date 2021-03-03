@@ -1613,8 +1613,6 @@ class CarculatorInventory(BaseInventoryImport):
                 },
             }
 
-            print(scope)
-
             ic = carculator.InventoryCalculation(
                 cm.array, scope=scope, background_configuration=bc
             )
@@ -1634,8 +1632,6 @@ class CarculatorInventory(BaseInventoryImport):
             # filter out cars if anything given in `self.filter`
             i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
                       or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
-
-            ic.export_lci_to_excel()
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
