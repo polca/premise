@@ -9,6 +9,19 @@
 
 Previously named *rmnd-lca*. *rmnd-lca* was designed to work with the IAM model REMIND only.
 As it now evolves towards a more IAM-neutral approach, a change of name was considered.
+
+What's new in 0.2.0?
+====================
+
+* CODE-BREAKING CHANGE --> New workflow (please check [examples notebook](https://github.com/romainsacchi/premise/blob/master/examples/examples.ipynb)): better suited for creating several scenarios, as the original ecoinvent database and inventories are only loaded once.
+* `update_solar_PV()`: adjusts the efficiency of photovoltaic solar panels in ecoinvent according to the year of projection.
+* `update_cars()`: creates car inventories in line with the year of projection. Also creates new fleet average car transport 
+and links it back to transport-consuming activities.
+* `update_trucks()`: creates truck inventories in line with the year of projection. Also creates new fleet average truck transport 
+and links it back to transport-consuming activities.
+* `update_steel()`: creates regional steel markets instead of one "Global" one. For each regional market, the share of
+primary vs. secondary steel is adjusted/extrapolated based on recent statistics. These regional markets supply steel-consuming
+activities within their geographical scope, but also supplies the global steel market.
  
 [![Build Status](https://travis-ci.org/romainsacchi/premise.svg?branch=master)](https://travis-ci.org/romainsacchi/premise) [![Build status](https://ci.appveyor.com/api/projects/status/qdtgf7tngv652x03?svg=true)](https://ci.appveyor.com/project/romainsacchi/premise) [![Coverage Status](https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master)](https://coveralls.io/github/romainsacchi/premise?branch=master) [![Documentation](https://readthedocs.org/projects/premise/badge/?version=latest)](https://premise.readthedocs.io/en/latest/) ![PyPI](https://img.shields.io/pypi/v/premise)
 
