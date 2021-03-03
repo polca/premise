@@ -7,7 +7,7 @@ environment:
   PYTHONIOENCODING: "UTF-8"
 
   matrix:
-    - PYTHON_VERSION: "3.7"
+    - PYTHON_VERSION: "3.9"
       PYTHON_ARCH: "64"
       CONDA_PY: "37"
       CONDA_INSTALL_LOCN: "C:\\Miniconda37-x64"
