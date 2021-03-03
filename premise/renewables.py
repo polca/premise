@@ -9,7 +9,7 @@ class SolarPV:
     For example, in ei 3.7, currently 22m^2 are required to achieve 3 kWp, meaning an efficiency of 12.6%,
     if we assume a maximal solar irradiation of 1000 W/m^2. In 2020, such installation should have an
     efficiency of about 18%.
-    It is, for now, irrespective of the IAM scenario chosen.
+    It is, for now, irrespective of the IAM pathway chosen.
     Source: p.357 of https://www.psi.ch/sites/default/files/import/ta/PublicationTab/Final-Report-BFE-Project.pdf
     This considers efficiencies of current and mature technologies today (18-20%), to efficiencies of PV currently in
     development for 2050 (24.5-25%), according to https://science.sciencemag.org/content/352/6283/aad4424/tab-pdf.
@@ -45,7 +45,6 @@ class SolarPV:
         )
 
         for d in ds:
-            print(d["name"])
             power = float(re.findall('\d+', d["name"])[0])
 
             for exc in ws.technosphere(d, *[
@@ -57,7 +56,10 @@ class SolarPV:
                 max_power = surface # in kW, since we assume a constant 1,000W/m^2
                 current_eff = power / max_power
                 new_eff = get_efficiency_ratio_solar_PV(self.year, power).values
-                exc["amount"] *= float(current_eff/new_eff)
-                d["parameters"] = {"efficiency": new_eff}
+
+                # We only update the efficiency if it is higher than the current one.
+                if new_eff > current_eff:
+                    exc["amount"] *= float(current_eff/new_eff)
+                    d["parameters"] = {"efficiency": new_eff}
 
         return self.db

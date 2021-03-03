@@ -29,13 +29,13 @@ More specifically, **premise** will apply a series of transformation functions t
 
 In the latest version (0.1.7), the following transformation functions are available:
 
-* **update_electricity_to_iam_data()**: alignment of regional electricity production mixes as well as efficiencies for a number of
+* **update_electricity()**: alignment of regional electricity production mixes as well as efficiencies for a number of
   electricity production technologies, including Carbon Capture and Storage technologies.
 * **update_vehicles()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
   including penetration of bio- and synthetic fuels.
-* **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
+* **update_cement()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
   fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
-* **update_steel_to_iam_data()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
+* **update_steel()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
 * **update_solar_PV()**: adjustment of solar PV modules with projected developments reported in `Bauer et al. <https://www.psi.ch/sites/default/files/import/ta/PublicationTab/Final-Report-BFE-Project.pdf>`_
 
 However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
@@ -122,7 +122,7 @@ preparation (e.g., synthetic fuels) and transport (e.g., passenger cars and truc
 
 After this, the following transformation functions can be applied to the database.
 
-update_electricity_to_iam_data()
+update_electricity()
 ********************************
 
 Main contributors
@@ -176,7 +176,7 @@ Main contributor
 1. Electric vehicles
 If passenger cars and/or truck inventories have been added upon the database creation, `update_vehicles()` will link
 the electricity supply dataset these vehicles are using for battery charging or hydrogen production to the new
-low voltage electricity markets created by `update_electricity_to_iam_data()`.
+low voltage electricity markets created by `update_electricity()`.
 
 2. Internal combustion engine vehicles
 If passenger cars and/or truck inventories have been added upon the database creation, `update_vehicles()` will link
@@ -186,7 +186,7 @@ the fuel supply of conventional, bio- and synthetic fuel to the closest geograph
 Fleet projections from the IAM are used to build markets for passenger cars and trucks. Once these markets are built,
 they replace existing markets and link back to transport-consuming activities.
 
-update_cement_to_iam_data()
+update_cement()
 ***************************
 
 Main contributor
@@ -234,7 +234,7 @@ and year, in order to consider the use of supplementary cimentitious materials (
 Finally, it re-links all the ecoinvent activities that consume cement  to the newly created cement market datasets
 (mostly concrete production markets).
 
-update_steel_to_iam_data()
+update_steel()
 **************************
 
 Main contributors

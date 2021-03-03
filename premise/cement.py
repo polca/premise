@@ -11,16 +11,16 @@ from datetime import date
 class Cement:
     """
     Class that modifies clinker and cement production datasets in ecoinvent, mostly based on WBCSD's GNR data.
-    :ivar scenario: name of a Remind scenario
-    :vartype scenario: str
+    :ivar scenario: name of a Remind pathway
+    :vartype pathway: str
 
     """
 
-    def __init__(self, db, model, scenario, rmd, year, version):
+    def __init__(self, db, model, scenario, iam_data, year, version):
         self.db = db
         self.model = model
         self.scenario = scenario
-        self.rmd = rmd
+        self.iam_data = iam_data
         self.year = year
         self.version = version
         self.geo = Geomap(model=model)
@@ -122,12 +122,14 @@ class Cement:
         return exchanges_dict
 
     def get_suppliers_of_a_region(
-            self, iam_region, ecoinvent_technologies, reference_product
+            self, iam_region, ecoinvent_technologies, reference_product, unit="kilogram", look_for_locations_in="ecoinvent"
     ):
         """
         Return a list of datasets which location and name correspond to the region, name and reference product given,
         respectively.
 
+        :param unit: unit of the dataset. If not specified, "kilogram" is used.
+        :param look_for_locations_in: whether it should look for a supplier in ecoinvent locations or IAM locations.
         :param iam_region: an IAM region
         :type iam_region: str
         :param ecoinvent_technologies: list of names of ecoinvent dataset
@@ -137,25 +139,41 @@ class Cement:
         :return: list of wurst datasets
         :rtype: list
         """
-        return ws.get_many(
-            self.db,
-            *[
-                ws.either(
+        if look_for_locations_in == "ecoinvent":
+            return ws.get_many(
+                    self.db,
                     *[
-                        ws.equals("name", supplier)
-                        for supplier in ecoinvent_technologies
+                        ws.either(
+                            *[
+                                ws.contains("name", supplier)
+                                for supplier in ecoinvent_technologies
+                            ]
+                        ),
+                        ws.either(
+                            *[
+                                ws.equals("location", loc)
+                                for loc in self.geo.iam_to_ecoinvent_location(iam_region)
+                            ]
+                        ),
+                        ws.equals("unit", unit),
+                        ws.equals("reference product", reference_product),
                     ]
-                ),
-                ws.either(
-                    *[
-                        ws.equals("location", loc)
-                        for loc in self.geo.iam_to_ecoinvent_location(iam_region)
-                    ]
-                ),
-                ws.equals("unit", "kilogram"),
-                ws.equals("reference product", reference_product),
-            ]
-        )
+                )
+        else:
+            return ws.get_many(
+                self.db,
+                *[
+                    ws.either(
+                        *[
+                            ws.contains("name", supplier)
+                            for supplier in ecoinvent_technologies
+                        ]
+                    ),
+                    ws.equals("location", look_for_locations_in),
+                    ws.equals("unit", unit),
+                    ws.equals("reference product", reference_product),
+                ]
+            )
 
     @staticmethod
     def get_shares_from_production_volume(ds):
@@ -175,7 +193,10 @@ class Cement:
                 total_production_volume += float(exc["production volume"])
 
         for d in dict_act:
-            dict_act[d] /= total_production_volume
+            if total_production_volume != 0:
+                dict_act[d] /= total_production_volume
+            else:
+                dict_act[d] = 1 / len(dict_act)
 
         return dict_act
 
@@ -192,7 +213,7 @@ class Cement:
             iam_emission_label = self.emissions_map[exc["name"]]
 
             try:
-                iam_emission = self.rmd.cement_emissions.loc[
+                iam_emission = self.iam_data.cement_emissions.loc[
                     dict(
                         region=ds["location"],
                         pollutant=iam_emission_label
@@ -201,7 +222,7 @@ class Cement:
             except KeyError:
                 # TODO: fix this.
                 # GAINS does not have a 'World' region, hence we use Europe as a temporary fix
-                iam_emission = self.rmd.cement_emissions.loc[
+                iam_emission = self.iam_data.cement_emissions.loc[
                     dict(
                         region=self.geo.iam_to_GAINS_region("World"),
                         pollutant=iam_emission_label
@@ -241,22 +262,22 @@ class Cement:
 
         for k, v in d_act_clinker.items():
             # Production volume by kiln type
-            energy_input_per_kiln_type = self.rmd.gnr_data.sel(
+            energy_input_per_kiln_type = self.iam_data.gnr_data.sel(
                 region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
                 variables=[
                     v
-                    for v in self.rmd.gnr_data.variables.values
+                    for v in self.iam_data.gnr_data.variables.values
                     if "Production volume share" in v
                 ]
             ).clip(0, 1)
             # Energy input per ton of clinker, in MJ, per kiln type
             energy_input_per_kiln_type /= energy_input_per_kiln_type.sum(axis=0)
 
-            energy_eff_per_kiln_type = self.rmd.gnr_data.sel(
+            energy_eff_per_kiln_type = self.iam_data.gnr_data.sel(
                 region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
                 variables=[
                     v
-                    for v in self.rmd.gnr_data.variables.values
+                    for v in self.iam_data.gnr_data.variables.values
                     if "Thermal energy consumption" in v
                 ]
             )
@@ -267,7 +288,7 @@ class Cement:
             )
 
             # Fuel mix (waste, biomass, fossil)
-            fuel_mix = self.rmd.gnr_data.sel(
+            fuel_mix = self.iam_data.gnr_data.sel(
                 variables=[
                     "Share waste fuel",
                     "Share biomass fuel",
@@ -375,13 +396,13 @@ class Cement:
             # Add carbon capture-related energy exchanges
             # Carbon capture rate: share of total CO2 captured
             # Note: only if variables exist in IAM data
-            if all(x in self.rmd.data.variables.values
+            if all(x in self.iam_data.data.variables.values
                    for x in ['Emi|CCO2|FFaI|Industry|Cement',
                              'Emi|CO2|FFaI|Industry|Cement']):
-                carbon_capture_rate = (self.rmd.data.sel(
+                carbon_capture_rate = (self.iam_data.data.sel(
                     variables='Emi|CCO2|FFaI|Industry|Cement',
                     region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
-                ).interp(year=self.year) / self.rmd.data.sel(
+                ).interp(year=self.year) / self.iam_data.data.sel(
                     variables='Emi|CO2|FFaI|Industry|Cement',
                     region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
                 ).interp(year=self.year)).values
@@ -413,7 +434,7 @@ class Cement:
 
 
                 # Heat, as steam: 3.48 MJ/kg CO2 captured, minus excess heat generated on site
-                excess_heat_generation = self.rmd.gnr_data.sel(
+                excess_heat_generation = self.iam_data.gnr_data.sel(
                     variables='Share of recovered energy, per ton clinker',
                     region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
                 ).values * energy_input_per_ton_clinker.sum()
@@ -480,8 +501,8 @@ class Cement:
                         "Rate of carbon capture: {} pct.\n".format(int(carbon_capture_rate * 100))
                         ) + v["comment"]
 
-
-        d_act_clinker = {k:self.update_pollutant_emissions(v) for k,v in d_act_clinker.items()}
+        # TODO: not sure about the GAINS unit. Check first.
+        #d_act_clinker = {k:self.update_pollutant_emissions(v) for k,v in d_act_clinker.items()}
 
         return d_act_clinker
 
@@ -613,27 +634,52 @@ class Cement:
         for act in d_act:
 
             new_exchanges = []
-            electricity_needed = self.rmd.gnr_data.loc[dict(
+            electricity_needed = self.iam_data.gnr_data.loc[dict(
                                             variables='Power consumption',
                                             region=self.geo.iam_to_iam_region(act) if self.model == "image" else act
                                         )].values / 1000
-            electricity_recovered = self.rmd.gnr_data.loc[dict(
+            electricity_recovered = self.iam_data.gnr_data.loc[dict(
                                             variables='Power generation',
                                             region=self.geo.iam_to_iam_region(act) if self.model == "image" else act
                                         )].values / 1000
-            new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": electricity_needed - electricity_recovered,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": 'electricity, medium voltage',
-                            "name": 'market group for electricity, medium voltage',
-                            "unit": 'kilowatt hour',
-                            "location": act,
-                        }
+
+
+            electricity_suppliers = self.get_shares_from_production_volume(
+                self.get_suppliers_of_a_region(
+                    iam_region=act,
+                    ecoinvent_technologies=["electricity, medium voltage"],
+                    reference_product="electricity, medium voltage",
+                    unit="kilowatt hour",
+                    look_for_locations_in=act
+                )
+            )
+
+            if len(electricity_suppliers) == 0:
+                electricity_suppliers = self.get_shares_from_production_volume(
+                    self.get_suppliers_of_a_region(
+                        iam_region=act,
+                        ecoinvent_technologies=["electricity, medium voltage"],
+                        reference_product="electricity, medium voltage",
+                        unit="kilowatt hour",
+                        look_for_locations_in="ecoinvent"
                     )
+                )
+
+            for s, supplier in enumerate(electricity_suppliers):
+                share = electricity_suppliers[supplier]
+                new_exchanges.append(
+                            {
+                                "uncertainty type": 0,
+                                "loc": 1,
+                                "amount": (electricity_needed - electricity_recovered) * share,
+                                "type": "technosphere",
+                                "production volume": 0,
+                                "product": supplier[2],
+                                "name": supplier[0],
+                                "unit": supplier[3],
+                                "location": supplier[1],
+                            }
+                        )
 
             d_act[act]["exchanges"].extend(new_exchanges)
             d_act[act]['exchanges'] = [v for v in d_act[act]["exchanges"] if v]

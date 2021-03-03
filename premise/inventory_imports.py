@@ -9,7 +9,7 @@ from pathlib import Path
 import csv
 import uuid
 import numpy as np
-
+from .geomap import Geomap
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
@@ -98,7 +98,7 @@ EI_37_35_MIGRATION_MAP = {
                             "location": "GLO"
                         },
                     ),
-(
+                    (
                         ("market for water, ultrapure", ("water, ultrapure",), "CA-QC"),
                         {
                             "location": "GLO"
@@ -153,7 +153,156 @@ EI_37_35_MIGRATION_MAP = {
                             "location": "RoW",
                         },
                     ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "Europe without Switzerland"),
+                        {
+                            "location": "RER",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "RoW"),
+                        {
+                            "location": "RoW",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "ZA"),
+                        {
+                            "location": "RoW",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "IN"),
+                        {
+                            "location": "RoW",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("hydrogen production, gaseous, petroleum refinery operation", "hydrogen, gaseous", "BR"),
+                        {
+                            "location": "RoW",
+                            "name": "hydrogen cracking, APME",
+                            "reference product": "hydrogen, liquid"
+                        },
+                    ),
+                    (
+                        ("market for tap water", "tap water", "IN"),
+                        {
+                            "location": "RoW",
+                        },
+                    ),
+                    (
+                        ("steel production, electric, low-alloyed",
+                         "steel, low-alloyed",
+                         "Europe without Switzerland and Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("reinforcing steel production",
+                         "reinforcing steel",
+                         "Europe without Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("smelting of copper concentrate, sulfide ore",
+                         "copper, anode",
+                         "RoW"),
+                        {
+                            "name": "smelting and refining of nickel ore",
+                            "reference product": "copper concentrate, sulfide ore",
+                            "location": "GLO",
+                        },
+                    )
 
+                ],
+            }
+
+EI_37_36_MIGRATION_MAP = {
+                "fields": ["name", "reference product", "location"],
+                "data": [
+                    (
+                        (
+                            "market for transport, freight, sea, transoceanic tanker",
+                            ("transport, freight, sea, transoceanic tanker",),
+                            "GLO",
+                        ),
+                        {
+                            "name": (
+                                "market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
+                            ),
+                            "reference product": (
+                                "transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
+                            ),
+                        },
+                    ),
+                    (
+                        (
+                            "market for water, decarbonised, at user",
+                            "water, decarbonised, at user",
+                            "GLO",
+                        ),
+                        {
+                            "name": "market for water, decarbonised",
+                            "reference product": "water, decarbonised",
+                            "location": "DE",
+                        },
+                    ),
+                    (
+                        (
+                            "market for water, completely softened, from decarbonised water, at user",
+                            (
+                                "water, completely softened, from decarbonised water, at user",
+                            ),
+                            "GLO",
+                        ),
+                        {
+                            "name": "market for water, completely softened",
+                            "reference product": "water, completely softened",
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("market for concrete block", "concrete block", "GLO"),
+                        {"location": "DE"},
+                    ),
+                    (
+                        ("steel production, electric, low-alloyed",
+                         "steel, low-alloyed",
+                         "Europe without Switzerland and Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("reinforcing steel production",
+                         "reinforcing steel",
+                         "Europe without Austria"),
+                        {
+                            "location": "RER",
+                        },
+                    ),
+                    (
+                        ("smelting of copper concentrate, sulfide ore",
+                         "copper, anode",
+                         "RoW"),
+                        {
+                            "name": "smelting and refining of nickel ore",
+                            "reference product": "copper concentrate, sulfide ore",
+                            "location": "GLO",
+                        },
+                    )
                 ],
             }
 
@@ -497,7 +646,8 @@ class BaseInventoryImport:
 
         :param list database: the target database for the import (the Ecoinvent database),
                               unpacked to a list of dicts
-        :param float version: the version of the target database
+        :param version: the version of the target database ("3.5", "3.6", "3.7", "3.7.1")
+        :type version: str
         :param path: Path to the imported inventory.
         :type path: str or Path
 
@@ -509,7 +659,6 @@ class BaseInventoryImport:
         ]
         self.version = version
         self.biosphere_dict = self.get_biosphere_code()
-
 
         path = Path(path)
 
@@ -724,13 +873,7 @@ class BaseInventoryImport:
                 ws.equals("location", exc["location"]),
                 ws.equals("unit", exc["unit"])
             ), None)
-            # possibles = [
-            #     a["reference product"]
-            #     for a in self.db
-            #     if a["name"] == exc["name"]
-            #     and a["location"] == exc["location"]
-            #     and a["unit"] == exc["unit"]
-            # ]
+
         if candidate is not None:
             return candidate["reference product"]
         else:
@@ -811,6 +954,11 @@ class BaseInventoryImport:
                     if "input" in ex:
                         del ex["input"]
 
+            # Delete any field that does not have information
+            for key in act:
+                if act[key] is None:
+                    act.pop(key)
+
 class CarmaCCSInventory(BaseInventoryImport):
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
@@ -820,7 +968,7 @@ class CarmaCCSInventory(BaseInventoryImport):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -830,69 +978,9 @@ class CarmaCCSInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_37")
 
-        if self.version == 3.6:
+        if self.version == "3.6":
             # apply some updates to comply with ei 3.6
-            new_technosphere_data = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        ("market for water, decarbonised, at user", (), "GLO"),
-                        {
-                            "name": "market for water, decarbonised",
-                            "reference product": "water, decarbonised",
-                            "location": "DE",
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, completely softened, from decarbonised water, at user",
-                            (),
-                            "GLO",
-                        ),
-                        {
-                            "name": "market for water, completely softened",
-                            "reference product": "water, completely softened",
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("market for steam, in chemical industry", (), "GLO"),
-                        {
-                            "location": "RER",
-                            "reference product": "steam, in chemical industry",
-                        },
-                    ),
-                    (
-                        ("market for steam, in chemical industry", (), "RER"),
-                        {"reference product": "steam, in chemical industry",},
-                    ),
-                    (
-                        ("zinc-lead mine operation", ("zinc concentrate",), "GLO"),
-                        {
-                            "name": "zinc mine operation",
-                            "reference product": "bulk lead-zinc concentrate",
-                        },
-                    ),
-                    (
-                        ("market for aluminium oxide", ("aluminium oxide",), "GLO"),
-                        {
-                            "name": "market for aluminium oxide, non-metallurgical",
-                            "reference product": "aluminium oxide, non-metallurgical",
-                            "location": "IAI Area, EU27 & EFTA",
-                        },
-                    ),
-                    (
-                        (
-                            "platinum group metal mine operation, ore with high rhodium content",
-                            ("nickel, 99.5%",),
-                            "ZA",
-                        ),
-                        {
-                            "name": "platinum group metal, extraction and refinery operations",
-                        },
-                    ),
-                ],
-            }
+            new_technosphere_data = EI_37_36_MIGRATION_MAP
 
             Migration("migration_36").write(
                 new_technosphere_data,
@@ -915,7 +1003,7 @@ class DACInventory(BaseInventoryImport):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -925,45 +1013,25 @@ class DACInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_37")
 
-        if self.version in (3.6, 3.5):
+        if self.version == "3.6":
             # apply some updates to go from ei3.7 to ei3.6
-            new_technosphere_data = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        ("steel production, electric, low-alloyed",
-                         "steel, low-alloyed",
-                         "Europe without Switzerland and Austria"),
-                        {
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("reinforcing steel production",
-                         "reinforcing steel",
-                         "Europe without Austria"),
-                        {
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("smelting of copper concentrate, sulfide ore",
-                         "copper, anode",
-                         "RoW"),
-                        {
-                            "name": "smelting and refining of nickel ore",
-                            "reference product": "copper concentrate, sulfide ore",
-                            "location": "GLO",
-                        },
-                    )
-                ],
-            }
+            new_technosphere_data = EI_37_36_MIGRATION_MAP
 
             Migration("migration_36").write(
                 new_technosphere_data,
-                description="Change technosphere names due to change from 3.5 to 3.6",
+                description="Change technosphere names due to change from 3.7 to 3.5",
             )
             self.import_db.migrate("migration_36")
+
+        if self.version == "3.5":
+            # apply some updates to go from ei3.7 to ei3.5
+            new_technosphere_data = EI_37_35_MIGRATION_MAP
+
+            Migration("migration_35").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.7 to 3.6",
+            )
+            self.import_db.migrate("migration_35")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -1013,7 +1081,7 @@ class BiofuelInventory(BaseInventoryImport):
     def prepare_inventory(self):
 
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1024,57 +1092,8 @@ class BiofuelInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.6
-        if self.version == 3.6:
-            migrations = {
-                "fields": ["name", "reference product", "location"],
-                "data": [
-                    (
-                        (
-                            "market for transport, freight, sea, transoceanic tanker",
-                            ("transport, freight, sea, transoceanic tanker",),
-                            "GLO",
-                        ),
-                        {
-                            "name": (
-                                "market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
-                            ),
-                            "reference product": (
-                                "transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas"
-                            ),
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, decarbonised, at user",
-                            "water, decarbonised, at user",
-                            "GLO",
-                        ),
-                        {
-                            "name": "market for water, decarbonised",
-                            "reference product": "water, decarbonised",
-                            "location": "DE",
-                        },
-                    ),
-                    (
-                        (
-                            "market for water, completely softened, from decarbonised water, at user",
-                            (
-                                "water, completely softened, from decarbonised water, at user",
-                            ),
-                            "GLO",
-                        ),
-                        {
-                            "name": "market for water, completely softened",
-                            "reference product": "water, completely softened",
-                            "location": "RER",
-                        },
-                    ),
-                    (
-                        ("market for concrete block", "concrete block", "GLO"),
-                        {"location": "DE"},
-                    ),
-                ],
-            }
+        if self.version == "3.6":
+            migrations = EI_37_36_MIGRATION_MAP
 
             Migration("biofuels_ecoinvent_36").write(
                 migrations,
@@ -1102,7 +1121,7 @@ class HydrogenInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1113,7 +1132,7 @@ class HydrogenInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("hydrogen_ecoinvent_35").write(
@@ -1142,7 +1161,7 @@ class HydrogenBiogasInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1153,7 +1172,7 @@ class HydrogenBiogasInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("hydrogen_ecoinvent_35").write(
@@ -1182,7 +1201,7 @@ class BiogasInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1193,7 +1212,7 @@ class BiogasInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("biogas_ecoinvent_35").write(
@@ -1222,7 +1241,7 @@ class SyngasInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1233,7 +1252,7 @@ class SyngasInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # migration for ei 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("syngas_ecoinvent_35").write(
@@ -1259,7 +1278,7 @@ class SynfuelInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1269,7 +1288,7 @@ class SynfuelInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_37")
 
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("syngas_ecoinvent_35").write(
@@ -1298,7 +1317,7 @@ class GeothermalInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1326,7 +1345,7 @@ class LPGInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         # migration for ei 3.7
-        if self.version == 3.7:
+        if self.version in ["3.7", "3.7.1"]:
             # apply some updates to comply with ei 3.7
             new_technosphere_data = EI_37_MIGRATION_MAP
 
@@ -1337,7 +1356,7 @@ class LPGInventory(BaseInventoryImport):
             self.import_db.migrate("migration_37")
 
         # Migrations for 3.5
-        if self.version == 3.5:
+        if self.version == "3.5":
             migrations = EI_37_35_MIGRATION_MAP
 
             Migration("LPG_ecoinvent_35").write(
@@ -1351,58 +1370,112 @@ class LPGInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
+class VariousVehicles(BaseInventoryImport):
+    """
+    Imports various future vehicles' inventories (two-wheelers, buses, trams, etc.).
+    """
+
+    def __init__(self, database, version, path):
+        super().__init__(database, version, path)
+        self.import_db = self.load_inventory(path)
+
+    def load_inventory(self, path):
+        return ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        # Migrations for 3.6
+        if self.version == "3.6":
+            migrations = EI_37_36_MIGRATION_MAP
+
+            Migration("ecoinvent_36").write(
+                migrations,
+                description="Change technosphere names due to change from 3.7 to 3.6",
+            )
+            self.import_db.migrate("ecoinvent_36")
+
+
+        # Migrations for 3.5
+        if self.version == "3.5":
+            migrations = EI_37_35_MIGRATION_MAP
+
+            Migration("ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.5 to 3.6",
+            )
+            self.import_db.migrate("ecoinvent_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
+
+class AdditionalInventory(BaseInventoryImport):
+    """
+    Import additional inventories, if any.
+    """
+
+    def __init__(self, database, version, path):
+        super().__init__(database, version, path)
+        self.import_db = self.load_inventory(path)
+
+    def load_inventory(self, path):
+        return ExcelImporter(path)
+
+    def prepare_inventory(self):
+
+        # Migrations for 3.6
+        if self.version == "3.6":
+            migrations = EI_37_36_MIGRATION_MAP
+
+            Migration("ecoinvent_36").write(
+                migrations,
+                description="Change technosphere names due to change from 3.7 to 3.6",
+            )
+            self.import_db.migrate("ecoinvent_36")
+
+        # Migrations for 3.5
+        if self.version == "3.5":
+            migrations = EI_37_35_MIGRATION_MAP
+
+            Migration("migration_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.7 to 3.5",
+            )
+            self.import_db.migrate("migration_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+        # Check for duplicates
+        self.check_for_duplicates()
+
 class CarculatorInventory(BaseInventoryImport):
     """
     Car models from the carculator project, https://github.com/romainsacchi/carculator
     """
 
-    def __init__(self, database, version, path, model, scenario, year, regions, vehicles):
+    def __init__(self, database, version, path, fleet_file, model, pathway, year, regions, filters=None):
         self.db_year = year
         self.model = model
+        self.geomap = Geomap(model=self.model)
+        self.regions = regions
+        self.fleet_file = fleet_file
+        self.filter = ["fleet average"]
 
-
-        if "region" in vehicles:
-            if vehicles["region"] == "all":
-                self.regions = regions
-            else:
-                if any(i for i in vehicles["region"] if i not in regions):
-                    raise ValueError(
-                        "One or more of the following regions {} for the creation of truck inventories is not valid.\n"
-                        "Regions must be of the following {}".format(vehicles["region"], regions))
-                else:
-                    self.regions = vehicles["region"]
-        else:
-            self.regions = regions
-
-        self.fleet_file = (
-            Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
-        )
-
-        if self.fleet_file:
-            self.filter = ["fleet average"]
-
-        else:
-            self.filter = []
-
-        if "filter" in vehicles:
-            self.filter.extend(vehicles["filter"])
-
+        if filters:
+            self.filter.extend(filters)
 
         # IAM output file extension differs between REMIND and IMAGE
-        ext = ".mif" if model == "remind" else ".xlsx"
+        ext = ".mif" if model == "remind" else ".xls"
 
-        self.source_file = (
-            Path(vehicles["source file"]) / (model + "_" + scenario + ext)
-            if "source file" in vehicles
-            else DATA_DIR / "iam_output_files" / (model + "_" + scenario + ext)
-        )
+        self.source_file = path / (model + "_" + pathway + ext)
 
         if not self.source_file.is_file():
             raise FileNotFoundError("For some reason, the file {} is not accessible.".format(
                 self.source_file
             ))
 
-        super().__init__(database, version, path)
+        super().__init__(database, version, Path("."))
 
     def load_inventory(self, path):
         """Create `carculator` fleet average inventories for a given range of years.
@@ -1418,35 +1491,48 @@ class CarculatorInventory(BaseInventoryImport):
         cm = carculator.CarModel(array, cycle="WLTC 3.4")
         cm.set_all()
 
+        fleet_array = carculator.create_fleet_composition_from_IAM_file(
+            self.fleet_file
+        )
+
         for r, region in enumerate(self.regions):
 
-            if self.fleet_file:
-                if self.model == "remind":
+            if region == "World":
+                region = [r for r in self.regions if r != "World"]
 
-                    fleet_array = carculator.create_fleet_composition_from_REMIND_file(
-                        self.fleet_file, region, fleet_year=self.db_year
-                    )
+            # The fleet file has REMIND region
+            # Hence, if we use IMAGE, we need to convert
+            # the region names
+            # which is something `iam_to_GAINS_region()` does.
+            if self.model == "remind":
+                reg_fleet = region
+            if self.model == "image":
+                reg_fleet = self.geomap.iam_to_GAINS_region(region)
 
-                    scope = {
-                        "powertrain": fleet_array.powertrain.values,
-                        "size": fleet_array.coords["size"].values,
-                        "year": fleet_array.coords["vintage_year"].values,
-                        "fu": {"fleet": fleet_array, "unit": "vkm"},
-                    }
+            fleet = fleet_array.sel(IAM_region=reg_fleet,
+                                    vintage_year=np.arange(1996, self.db_year + 1)
+                                    ).interp(variable=np.arange(1996, self.db_year + 1))
 
-                else:
-                    # If a fleet file is given, but not for REMIND, it
-                    # has to be a filepath to a CSV file
-                    scope = {"fu": {"fleet": self.fleet_file, "unit": "vkm"},
-                             "year": [self.db_year]
-                             }
 
-            else:
-                scope = {"year": [self.db_year]}
+            years = []
+            for y in np.arange(1996, self.db_year):
+                if y in fleet.vintage_year:
+                    if fleet.sel(vintage_year=y,
+                                 variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                        years.append(y)
+            years.append(self.db_year)
+
+            scope = {
+                "powertrain": fleet.sel(vintage_year=years).powertrain.values,
+                "size": fleet.sel(vintage_year=years).coords["size"].values,
+                "year": years,
+                "fu": {"fleet": fleet.sel(vintage_year=years), "unit": "vkm"},
+            }
 
             mix = carculator.extract_electricity_mix_from_IAM_file(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"]
             )
+
 
             fuel_shares = carculator.extract_biofuel_shares_from_IAM(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"],
@@ -1462,7 +1548,7 @@ class CarculatorInventory(BaseInventoryImport):
                             "type": "petrol",
                             "share": fuel_shares.sel(fuel_type="liquid - fossil").values
                             if "liquid - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "bioethanol - wheat straw",
@@ -1470,7 +1556,7 @@ class CarculatorInventory(BaseInventoryImport):
                                 fuel_type="liquid - biomass"
                             ).values
                             if "liquid - biomass" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         },
                         "tertiary fuel": {
                             "type": "synthetic gasoline",
@@ -1478,7 +1564,7 @@ class CarculatorInventory(BaseInventoryImport):
                                 fuel_type="liquid - synfuel"
                             ).values
                             if "liquid - synfuel" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         },
                     },
                     "diesel": {
@@ -1486,7 +1572,7 @@ class CarculatorInventory(BaseInventoryImport):
                             "type": "diesel",
                             "share": fuel_shares.sel(fuel_type="liquid - fossil").values
                             if "liquid - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "biodiesel - cooking oil",
@@ -1494,7 +1580,7 @@ class CarculatorInventory(BaseInventoryImport):
                                 fuel_type="liquid - biomass"
                             ).values
                             if "liquid - biomass" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.zeros_like(years),
                         },
                         "tertiary fuel": {
                             "type": "synthetic diesel",
@@ -1502,7 +1588,7 @@ class CarculatorInventory(BaseInventoryImport):
                                 fuel_type="liquid - synfuel"
                             ).values
                             if "liquid - synfuel" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         }
                     },
                     "cng": {
@@ -1510,19 +1596,19 @@ class CarculatorInventory(BaseInventoryImport):
                             "type": "cng",
                             "share": fuel_shares.sel(fuel_type="gas - fossil").values
                             if "gas - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "biogas - biowaste",
                             "share": fuel_shares.sel(fuel_type="gas - biomass").values
                             if "gas - biomass" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         },
                     },
                     "hydrogen": {
                         "primary fuel": {
                             "type": "electrolysis",
-                            "share": np.ones_like(scope["year"]),
+                            "share": np.ones_like(years),
                         }
                     },
                 },
@@ -1532,20 +1618,21 @@ class CarculatorInventory(BaseInventoryImport):
                 cm.array, scope=scope, background_configuration=bc
             )
 
-            if self.fleet_file:
+            # if self.fleet_file:
+            #
+            #     i = ic.export_lci_to_bw(presamples=False,
+            #                             ecoinvent_version=str(self.version),
+            #                             create_vehicle_datasets=False)
+            #
+            # else:
+            i = ic.export_lci_to_bw(presamples=False,
+                                    ecoinvent_version=str(self.version),
+                                    create_vehicle_datasets=False)
 
-                i = ic.export_lci_to_bw(presamples=False,
-                                        ecoinvent_version=str(self.version),
-                                        create_vehicle_datasets=False)
-
-            else:
-                i = ic.export_lci_to_bw(presamples=False,
-                                        ecoinvent_version=str(self.version))
 
             # filter out cars if anything given in `self.filter`
-            if len(self.filter) > 0:
-                i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
-                          or any(y.lower() in x["name"].lower() for y in self.filter)]
+            i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
+                      or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
@@ -1576,75 +1663,167 @@ class CarculatorInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
+    def merge_inventory(self):
+        self.prepare_inventory()
+
+        activities_to_remove = [
+            "transport, passenger car",
+            "market for passenger car",
+            "market for transport, passenger car"
+        ]
+
+        self.db = [x for x in self.db if not any(y for y in activities_to_remove if y in x["name"])]
+        self.db.extend(self.import_db)
+
+        exchanges_to_modify = [
+            'market for transport, passenger car, large size, petol, EURO 4',
+            'market for transport, passenger car',
+            'market for transport, passenger car, large size, petrol, EURO 3',
+            'market for transport, passenger car, large size, diesel, EURO 4',
+            'market for transport, passenger car, large size, diesel, EURO 5'
+        ]
+        for ds in self.db:
+            excs = (exc for exc in ds["exchanges"]
+                    if exc["name"] in exchanges_to_modify
+                    and exc["type"] == "technosphere")
+
+            for exc in excs:
+
+                try:
+
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.contains("name", "transport, passenger car, fleet average, all powertrains"),
+                            ws.equals("location", self.geomap.ecoinvent_to_iam_location(ds["location"])),
+                            ws.contains("reference product", "transport")
+                        ]
+                    )
+
+                    exc["name"] = new_supplier["name"]
+                    exc["location"] = new_supplier["location"]
+                    exc["product"] = new_supplier["reference product"]
+                    exc["unit"] = new_supplier["unit"]
+
+                except ws.NoResults:
+
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.contains("name", "transport, passenger car, fleet average, all powertrains"),
+                            ws.equals("location", self.regions[0]),
+                            ws.contains("reference product", "transport")
+                        ]
+                    )
+
+                    exc["name"] = new_supplier["name"]
+                    exc["location"] = new_supplier["location"]
+                    exc["product"] = new_supplier["reference product"]
+                    exc["unit"] = new_supplier["unit"]
+
+        return self.db
+
+
 class TruckInventory(BaseInventoryImport):
     """
     Car models from the carculator project, https://github.com/romainsacchi/carculator
     """
 
-    def __init__(self, database, version, path, model, scenario, year, regions, vehicles):
+    def __init__(self, database, version, path, fleet_file, model, pathway, year, regions, filters=None):
 
         self.db_year = year
         self.model = model
+        self.geomap = Geomap(model=self.model)
+        self.regions = regions
+        self.fleet_file = fleet_file
+        self.filter = ["fleet average"]
 
-        if "region" in vehicles:
-            if vehicles["region"] == "all":
-                self.regions = regions
-            else:
-                if any(i for i in vehicles["region"] if i not in regions):
-                    raise ValueError(
-                        "One or more of the following regions {} for the creation of truck inventories is not valid.\n"
-                        "Regions must be of the following {}".format(vehicles["region"], regions))
-                else:
-                    self.regions = vehicles["region"]
-        else:
-            self.regions = regions
-
-        self.fleet_file = (
-            Path(vehicles["fleet file"]) if "fleet file" in vehicles else None
-        )
-
-        if self.fleet_file:
-            self.filter = ["fleet average"]
-
-        else:
-            self.filter = []
-
-        if "filter" in vehicles:
-            self.filter.extend(vehicles["filter"])
+        if filters:
+            self.filter.extend(filters)
 
         # IAM output file extension differs between REMIND and IMAGE
-        ext = ".mif" if model == "remind" else ".xlsx"
+        ext = ".mif" if model == "remind" else ".xls"
 
-        self.source_file = (
-            Path(vehicles["source file"]) / (model + "_" + scenario + ext)
-            if "source file" in vehicles
-            else DATA_DIR / "iam_output_files" / (model + "_" + scenario + ext)
-        )
+        self.source_file = path / (model + "_" + pathway + ext)
 
         if not self.source_file.is_file():
             raise FileNotFoundError("For some reason, the file {} is not accessible.".format(
                 self.source_file
             ))
 
-        super().__init__(database, version, path)
+        super().__init__(database, version, Path("."))
 
     def load_inventory(self, path):
         """Create `carculator_truck` fleet average inventories for a given range of years.
         """
 
+        fleet_array = carculator_truck.create_fleet_composition_from_IAM_file(
+            self.fleet_file
+        )
+
+        fleet = fleet_array.sel(IAM_region="EUR").interp(variable=np.arange(1996, self.db_year + 1))
+
+
+
+        years = []
+        for y in np.arange(2010, self.db_year):
+            if y in fleet.vintage_year:
+                if fleet.sel(vintage_year=y,
+                             variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                    years.append(y)
+        years.append(self.db_year)
+
+        scope = {
+            "powertrain": fleet.sel(vintage_year=years).powertrain.values,
+            "size": fleet.sel(vintage_year=years).coords["size"].values,
+            "fu": {"fleet": fleet.sel(vintage_year=years), "unit": "tkm"},
+        }
+
+
         tip = carculator_truck.TruckInputParameters()
         tip.static()
-        _, array = carculator_truck.fill_xarray_from_input_parameters(tip)
+        _, array = carculator_truck.fill_xarray_from_input_parameters(tip,
+                                                                      scope=scope
+                                                                      )
 
         array = array.interp(
-            year=[self.db_year], kwargs={"fill_value": "extrapolate"}
+            year=years, kwargs={"fill_value": "extrapolate"}
         )
         tm = carculator_truck.TruckModel(array, cycle="Regional delivery", country="CH")
         tm.set_all()
 
+
+
         for r, region in enumerate(self.regions):
 
-            scope = {"year": [self.db_year]}
+            if region == "World":
+                region = [r for r in self.regions if r != "World"]
+
+            # The fleet file has REMIND region
+            # Hence, if we use IMAGE, we need to convert
+            # the region names
+            # which is something `iam_to_GAINS_region()` does.
+            if self.model == "remind":
+                reg_fleet = region
+            if self.model == "image":
+                reg_fleet = self.geomap.iam_to_GAINS_region(region)
+
+            fleet = fleet_array.sel(IAM_region=reg_fleet).interp(variable=np.arange(1996, self.db_year + 1))
+
+            years = []
+            for y in np.arange(2010, self.db_year):
+                if y in fleet.vintage_year:
+                    if fleet.sel(vintage_year=y,
+                                 variable=self.db_year).sum(dim=["size", "powertrain"]) != 0:
+                        years.append(y)
+            years.append(self.db_year)
+
+            scope = {
+                "powertrain": fleet.sel(vintage_year=years).powertrain.values,
+                "size": fleet.sel(vintage_year=years).coords["size"].values,
+                "year": years,
+                "fu": {"fleet": fleet.sel(vintage_year=years), "unit": "tkm"},
+            }
 
             mix = carculator_truck.extract_electricity_mix_from_IAM_file(
                 model=self.model, fp=self.source_file, IAM_region=region, years=scope["year"]
@@ -1664,7 +1843,7 @@ class TruckInventory(BaseInventoryImport):
                             "type": "diesel",
                             "share": fuel_shares.sel(fuel_type="liquid - fossil").values
                             if "liquid - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "biodiesel - cooking oil",
@@ -1672,7 +1851,7 @@ class TruckInventory(BaseInventoryImport):
                                 fuel_type="liquid - biomass"
                             ).values
                             if "liquid - biomass" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.zeros_like(years),
                         },
                         "tertiary fuel": {
                             "type": "synthetic diesel",
@@ -1680,7 +1859,7 @@ class TruckInventory(BaseInventoryImport):
                                 fuel_type="liquid - synfuel"
                             ).values
                             if "liquid - synfuel" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         }
                     },
                     "cng": {
@@ -1688,19 +1867,19 @@ class TruckInventory(BaseInventoryImport):
                             "type": "cng",
                             "share": fuel_shares.sel(fuel_type="gas - fossil").values
                             if "gas - fossil" in fuel_shares.fuel_type.values
-                            else [1],
+                            else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "biogas - biowaste",
                             "share": fuel_shares.sel(fuel_type="gas - biomass").values
                             if "gas - biomass" in fuel_shares.fuel_type.values
-                            else [0],
+                            else np.zeros_like(years),
                         },
                     },
                     "hydrogen": {
                         "primary fuel": {
                             "type": "electrolysis",
-                            "share": np.ones_like(scope["year"]),
+                            "share": np.ones_like(years),
                         }
                     },
                 },
@@ -1708,17 +1887,19 @@ class TruckInventory(BaseInventoryImport):
 
             ic = carculator_truck.InventoryCalculation(tm,
                                                       scope=scope,
-                                                      background_configuration=bc
+                                                      background_configuration=bc,
                                                        )
 
             i = ic.export_lci_to_bw(presamples=False,
-                                    ecoinvent_version=str(self.version)
+                                    ecoinvent_version=str(self.version),
+                                    create_vehicle_datasets=False
                                     )
 
-            # filter out cars if anything given in `self.filter`
-            if len(self.filter) > 0:
-                i.data = [x for x in i.data if "transport, " not in x["name"]
-                          or any(y.lower() in x["name"].lower() for y in self.filter)]
+
+            # filter out trucks if anything given in `self.filter`
+            i.data = [x for x in i.data if "transport, " not in x["name"]
+                      or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
+
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
@@ -1747,3 +1928,55 @@ class TruckInventory(BaseInventoryImport):
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_duplicates()
+
+    def merge_inventory(self):
+        self.prepare_inventory()
+
+        activities_to_remove = [
+            "transport, freight, lorry",
+        ]
+
+        self.db = [x for x in self.db if not any(y for y in activities_to_remove if y in x["name"])]
+        self.db.extend(self.import_db)
+
+
+        for ds in self.db:
+            excs = (exc for exc in ds["exchanges"]
+                    if "transport, freight, lorry" in exc["name"]
+                    and exc["type"] == "technosphere")
+
+            for exc in excs:
+
+                try:
+
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.contains("name", "transport, medium and heavy duty truck, fleet average, all powertrains"),
+                            ws.equals("location", self.geomap.ecoinvent_to_iam_location(ds["location"])),
+                            ws.contains("reference product", "transport")
+                        ]
+                    )
+
+                    exc["name"] = new_supplier["name"]
+                    exc["location"] = new_supplier["location"]
+                    exc["product"] = new_supplier["reference product"]
+                    exc["unit"] = new_supplier["unit"]
+
+                except ws.NoResults:
+
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.contains("name", "transport, medium and heavy duty truck, fleet average, all powertrains"),
+                            ws.equals("location", self.regions[0]),
+                            ws.contains("reference product", "transport")
+                        ]
+                    )
+
+                    exc["name"] = new_supplier["name"]
+                    exc["location"] = new_supplier["location"]
+                    exc["product"] = new_supplier["reference product"]
+                    exc["unit"] = new_supplier["unit"]
+
+        return self.db
