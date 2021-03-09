@@ -23,7 +23,6 @@ def package_files(directory):
             paths.append(os.path.join('..', path, filename))
     return paths
 
-
 setup(
     name='premise',
     version="0.2.1",
