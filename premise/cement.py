@@ -394,7 +394,7 @@ class Cement:
             v['exchanges'] = [v for v in v["exchanges"] if v]
 
             # Add carbon capture-related energy exchanges
-            # Carbon capture rate: share of total CO2 captured
+            # Carbon capture rate: share of capture of total CO2 emitted
             # Note: only if variables exist in IAM data
             if all(x in self.iam_data.data.variables.values
                    for x in ['Emi|CCO2|FFaI|Industry|Cement',
@@ -403,9 +403,10 @@ class Cement:
                     variables='Emi|CCO2|FFaI|Industry|Cement',
                     region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
                 ).interp(year=self.year) / self.iam_data.data.sel(
-                    variables='Emi|CO2|FFaI|Industry|Cement',
+                    variables=['Emi|CCO2|FFaI|Industry|Cement',
+                             'Emi|CO2|FFaI|Industry|Cement'],
                     region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
-                ).interp(year=self.year)).values
+                ).interp(year=self.year).sum(dim="variables")).values
             else:
                 carbon_capture_rate = 0
 
@@ -459,6 +460,7 @@ class Cement:
 
             # Update fossil CO2 exchange, add 525 kg of fossil CO_2 from calcination, minus CO2 captured
             fossil_co2_exc = [e for e in v["exchanges"] if e['name'] == 'Carbon dioxide, fossil'][0]
+
             fossil_co2_exc['amount'] = ((fuel_fossil_co2_per_type.sum().values + 525) / 1000) * (1 - carbon_capture_rate)
             fossil_co2_exc['uncertainty type'] = 0
 

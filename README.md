@@ -84,10 +84,10 @@ In the latest version (0.2.0), the following transformation functions are availa
 
 * **update_electricity()**: alignment of regional electricity production mixes as well as efficiencies for a number of
 electricity production technologies, including Carbon Capture and Storage technologies.
-* **update_cars()**: new passenger car inventories are created based on [carculator][13], fuel markets that supply passenger cars are adjusted 
+* **update_cars()**: new passenger car inventories are created based on [carculator][17], fuel markets that supply passenger cars are adjusted 
 according to the IAM projections, including penetration of bio- and synthetic fuels. Then, given a fleet composition, markets for passenger car transport are created.
 Finally, these transport markets link back to transport-consuming activities.
-* **update_trucks()**: new truck inventories are created based on [carculator_truck][14], fuel markets that supply trucks are adjusted 
+* **update_trucks()**: new truck inventories are created based on [carculator_truck][18], fuel markets that supply trucks are adjusted 
 according to the IAM projections, including penetration of bio- and synthetic fuels. Then, given a fleet composition, markets for truck transport are created.
 Finally, these transport markets link back to lorry transport-consuming activities.
 * **update_cement()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
@@ -103,8 +103,8 @@ the IAM file you use as input.
 |update_electricity()| Yes        | Aligns electricity markets and power plants efficiencies     | Yes  | Yes | No      |                                      |
 |update_cars()                   | Yes        | Creates fleet average passenger cars as projected by the IAM | Yes  | Yes | No      | Uses default projection if the IAM does not provide a fleet projection.                                     |
 |update_trucks()                 | Yes       | Creates fleet average lorries as projected by the IAM | Yes  | Yes | No      | Uses default projection if the IAM does not provide a fleet projection.                                 |
-|update_cement()     | Yes        | Aligns clinker and cement production and supply | Yes  | Yes | Yes     | Uses external data sources ([WBCSD][6] and [IEA][7])|
-|update_steel()      | Yes        | Aligns primary and secondary steel production and supply| Yes  | No  | No      | Uses external data source ([BIR][15])|
+|update_cement()     | Yes        | Aligns clinker and cement production and supply | Yes  | Yes | Yes     | Uses external data sources ([WBCSD][6] and [IEA][8])|
+|update_steel()      | Yes        | Aligns primary and secondary steel production and supply| Yes  | No  | No      | Uses external data source ([BIR][19])|
 |update_metal_markets()          | Not yet    | Aligns share of metal extraction vs. recycling and and supply with IAM             | No   | No  | No      |                                      |
 |update_solar_PV()               | Yes        | Aligns solar PV modules efficiency | Yes | Yes | Yes | Uses external data source ([PSI][7]) |
 
@@ -112,8 +112,8 @@ The following REMIND IAM files come with the library:
 
 * SSP2
     1.  **Base:** counter-factual scenario with no climate policy implemented
-    2.  **NPi** (*N*ational *P*olicies *i*mplemented): scenario  describes energy,  climate  and  economic  projections for the  period  until 2030, and equivalent efforts thereafter. See [CD-LINKS modelling protocol][8] for details.
-    3.  **NDC**: All emission reductions and other mitigation commitments of the *N*ationally*D*etermined *C*ontributions under the Paris Agreement are implemented. See [CD-LINKS modelling protocol][8] for details.
+    2.  **NPi** (*N*ational *P*olicies *i*mplemented): scenario  describes energy,  climate  and  economic  projections for the  period  until 2030, and equivalent efforts thereafter. See [CD-LINKS modelling protocol][9] for details.
+    3.  **NDC**: All emission reductions and other mitigation commitments of the *N*ationally*D*etermined *C*ontributions under the Paris Agreement are implemented. See [CD-LINKS modelling protocol][9] for details.
     4.  **PkBudg 1300/1100/900**: Climate policies to limit cumulative 2011-2100 CO2 emissions to 1300 / 1100 / 900 over the entire time horizon (“not-to-exceed”). Correspond to 2°, well-below 2° and 1.5° targets. Other greenhouse gases are priced with the CO2e-price using 100year global warming potentials.
 
 The following IMAGE IAM file comes with the library:
@@ -125,15 +125,15 @@ You can however use any other IAM files.
 
 Additionally, a number of inventories for emerging technologies are added upon the creation of a new database.
 
-* electricity production using various fuels (including biomass and biogas) with Carbon Capture and Storage (CCS) [Volkart et al. 2013][9]
+* electricity production using various fuels (including biomass and biogas) with Carbon Capture and Storage (CCS) [Volkart et al. 2013][10]
 * hydrogen production from electrolysis from different world regions,
-* hydrogen production from steam methane reforming (SMR) and auto-thermal reforming (ATR) of natural gas and biogas, with and without CCS [Antonini et al. 2020][10]
-* hydrogen production from coal gasification [Antonini et al. 2020][10]
-* hydrogen production from woody biomass gasification, with and without CCS [Antonini et al. 2020][10]
-* synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrolchemical methanation (gas) processes,
- using direct air capture (DAC) [Zhang et al. 2019][11]
-* current and future passenger car inventories from the library [carculator][12]
-* current and future medium and heavy duty trucks from the library [carculator_truck][13]
+* hydrogen production from steam methane reforming (SMR) and auto-thermal reforming (ATR) of natural gas and biogas, with and without CCS [Antonini et al. 2020][11]
+* hydrogen production from coal gasification [Simons, Bauer. 2011][12]
+* hydrogen production from woody biomass gasification, with and without CCS [Antonini et al. 2021][21]
+* synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrochemical methanation (gas) processes,
+ using direct air capture (DAC) [Zhang et al. 2019][13], [van der Giesen et al. 2014][14], [Hank et al. 2019][15], [Grimmer at al. 1988][16], [Terlouw et al.][22]
+* current and future passenger car inventories from the library [carculator][17]
+* current and future medium and heavy duty trucks from the library [carculator_truck][18]
 * current and future various two-wheelers and collective means of transport (buses, trams, etc.)[PSI][16]
 
 Outputs
@@ -179,12 +179,17 @@ See [contributing](https://github.com/romainsacchi/premise/blob/master/CONTRIBUT
 [9]:https://www.cd-links.org/wp-content/uploads/2016/06/CD-LINKS-global-exercise-protocol_secondround_for-website.pdf
 [10]:https://doi.org/10.1016/j.ijggc.2013.03.003
 [11]:https://doi.org/10.1039/D0SE00222D
-[12]:https://doi.org/10.1039/C9SE00986H
-[13]:https://github.com/romainsacchi/carculator
-[14]:https://github.com/romainsacchi/carculator_truck
-[15]:https://www.bir.org/publications/facts-figures/
-[16]:https://ta.psi.ch
-
+[12]:https://doi.org/10.1017/CBO9781139018036.006
+[13]:https://doi.org/10.1039/C9SE00986H
+[14]:https://doi.org/10.1021/es500191g
+[15]:https://doi.org/10.1039/C9SE00658C
+[16]:https://doi.org/10.1016/S0167-2991(09)60522-X
+[17]:https://github.com/romainsacchi/carculator
+[18]:https://github.com/romainsacchi/carculator_truck
+[19]:https://www.bir.org/publications/facts-figures/
+[20]:https://ta.psi.ch
+[21]:https://chemrxiv.org/articles/preprint/Hydrogen_from_Wood_Gasification_with_CCS_-_a_Technoenvironmental_Analysis_of_Production_and_Use_as_Transport_Fuel/13213553/1
+[22]:https://doi.org/10.1039/D0EE03757E
 
 ## License
 
