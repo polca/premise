@@ -237,218 +237,338 @@ class Electricity:
         Contribution from solar power is added here as well.
         Does not return anything. Modifies the database in place.
         """
+
         # Loop through REMIND regions
-
         for region in self.iam_data.electricity_markets.coords["region"].values:
-            created_markets = []
-            # Create an empty dataset
-            new_dataset = {
-                "location": region,
-                "name": "market group for electricity, low voltage",
-                "reference product": "electricity, low voltage",
-                "unit": "kilowatt hour",
-                "database": self.db[1]["database"],
-                "code": str(uuid.uuid4().hex),
-                "comment": "Dataset produced from REMIND pathway output results",
-            }
 
-            # First, add the reference product exchange
-            new_exchanges = [
-                {
-                    "uncertainty type": 0,
-                    "loc": 1,
-                    "amount": 1,
-                    "type": "production",
-                    "production volume": 0,
-                    "product": "electricity, low voltage",
-                    "name": "market group for electricity, low voltage",
-                    "unit": "kilowatt hour",
-                    "location": region,
-                },
-                {
-                    "uncertainty type": 0,
-                    "loc": 2.99e-9,
-                    "amount": 2.99e-9,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "sulfur hexafluoride, liquid",
-                    "name": "market for sulfur hexafluoride, liquid",
-                    "unit": "kilogram",
-                    "location": "RoW",
-                },
-                {
-                    "uncertainty type": 0,
-                    "loc": 2.99e-9,
-                    "amount": 2.99e-9,
-                    "type": "biosphere",
-                    "input": ("biosphere3", "35d1dff5-b535-4628-9826-4a8fce08a1f2"),
-                    "name": "Sulfur hexafluoride",
-                    "unit": "kilogram",
-                    "categories": ("air", "non-urban air or from high stacks"),
-                },
-                {
-                    "uncertainty type": 0,
-                    "loc": 8.74e-8,
-                    "amount": 8.74e-8,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "distribution network, electricity, low voltage",
-                    "name": "distribution network construction, electricity, low voltage",
-                    "unit": "kilometer",
-                    "location": "RoW",
-                },
-            ]
+            for period in range(0, 60, 10):
 
-            # Second, add an input to of sulfur hexafluoride emission to compensate the transformer's leakage
-            # And an emission of a corresponding amount
+                mix = dict(
+                    zip(
+                        self.iam_data.electricity_markets.variables.values,
+                        self.iam_data.electricity_markets.sel(
+                            region=region,
+                        ).interp(year=np.arange(self.year, self.year + period + 1),
+                                 kwargs={"fill_value": "extrapolate"}).mean(dim="year").values))
 
-            # Third, transmission line
 
-            # Fourth, add the contribution of solar power
-            solar_amount = 0
-            gen_tech = list(
-                (
-                    tech
-                    for tech in self.iam_data.electricity_markets.coords["variables"].values
-                    if "Solar" in tech
-                )
-            )
-            for technology in gen_tech:
-                # If the solar power technology contributes to the mix
-                if self.iam_data.electricity_markets.loc[region, technology] != 0.0:
-                    # Fetch ecoinvent regions contained in the REMIND region
-                    ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
+                created_markets = []
+                # Create an empty dataset
 
-                    # Contribution in supply
-                    amount = self.iam_data.electricity_markets.loc[region, technology].values
-                    solar_amount += amount
-
-                    # Get the possible names of ecoinvent datasets
-                    ecoinvent_technologies = self.powerplant_map[
-                        self.iam_data.rev_electricity_market_labels[technology]
+                if period == 0:
+                    new_dataset = {
+                        "location": region,
+                        "name": "market group for electricity, low voltage",
+                        "reference product": "electricity, low voltage",
+                        "unit": "kilowatt hour",
+                        "database": self.db[1]["database"],
+                        "code": str(uuid.uuid4().hex),
+                        "comment": "Dataset produced from REMIND pathway output results",
+                    }
+                    # First, add the reference product exchange
+                    new_exchanges = [
+                        {
+                            "uncertainty type": 0,
+                            "loc": 1,
+                            "amount": 1,
+                            "type": "production",
+                            "production volume": 0,
+                            "product": "electricity, low voltage",
+                            "name": "market group for electricity, low voltage",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
                     ]
 
-                    # Fetch electricity-producing technologies contained in the REMIND region
-                    suppliers = list(
-                        self.get_suppliers_of_a_region(
-                            ecoinvent_regions, ecoinvent_technologies
+                else:
+
+                    new_dataset = {
+                        "location": region,
+                        "name": "market group for electricity, low voltage, " + str(period) + "-year forecast",
+                        "reference product": "electricity, low voltage",
+                        "unit": "kilowatt hour",
+                        "database": self.db[1]["database"],
+                        "code": str(uuid.uuid4().hex),
+                        "comment": "Dataset produced from REMIND pathway output results. Average electricity"
+                                   " mix forecast over a " + str(period) + "-year period ("
+                                                                                            + str(self.year) + "-"
+                                                                                            + str(self.year + period) + ").",
+                    }
+                    # First, add the reference product exchange
+                    new_exchanges = [
+                        {
+                            "uncertainty type": 0,
+                            "loc": 1,
+                            "amount": 1,
+                            "type": "production",
+                            "production volume": 0,
+                            "product": "electricity, low voltage",
+                            "name": "market group for electricity, low voltage, " + str(period) + "-year forecast",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    ]
+
+                # Second, add an input to of sulfur hexafluoride emission to compensate the transformer's leakage
+                # And an emission of a corresponding amount
+                # Third, transmission line
+                new_exchanges.extend([
+                    {
+                        "uncertainty type": 0,
+                        "loc": 2.99e-9,
+                        "amount": 2.99e-9,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "sulfur hexafluoride, liquid",
+                        "name": "market for sulfur hexafluoride, liquid",
+                        "unit": "kilogram",
+                        "location": "RoW",
+                    },
+                    {
+                        "uncertainty type": 0,
+                        "loc": 2.99e-9,
+                        "amount": 2.99e-9,
+                        "type": "biosphere",
+                        "input": ("biosphere3", "35d1dff5-b535-4628-9826-4a8fce08a1f2"),
+                        "name": "Sulfur hexafluoride",
+                        "unit": "kilogram",
+                        "categories": ("air", "non-urban air or from high stacks"),
+                    },
+                    {
+                        "uncertainty type": 0,
+                        "loc": 8.74e-8,
+                        "amount": 8.74e-8,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "distribution network, electricity, low voltage",
+                        "name": "distribution network construction, electricity, low voltage",
+                        "unit": "kilometer",
+                        "location": "RoW",
+                    },
+                ])
+
+                # Fourth, add the contribution of solar power
+
+                gen_tech = list(
+                    (
+                        tech
+                        for tech in self.iam_data.electricity_markets.coords["variables"].values
+                        if "solar" in tech.lower()
+                    )
+                )
+                solar_amount = 0
+
+                for technology in gen_tech:
+                    # If the solar power technology contributes to the mix
+                    if mix[technology] > 0:
+                        # Fetch ecoinvent regions contained in the REMIND region
+                        ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
+
+                        # Contribution in supply
+                        amount = mix[technology]
+                        solar_amount += amount
+
+                        # Get the possible names of ecoinvent datasets
+                        ecoinvent_technologies = self.powerplant_map[
+                            self.iam_data.rev_electricity_market_labels[technology]
+                        ]
+
+                        # Fetch electricity-producing technologies contained in the REMIND region
+                        suppliers = list(
+                            self.get_suppliers_of_a_region(
+                                ecoinvent_regions, ecoinvent_technologies
+                            )
                         )
+
+                        suppliers = self.check_for_production_volume(suppliers)
+
+                        # If no technology is available for the REMIND region
+                        if len(suppliers) == 0:
+                            # We fetch European technologies instead
+                            suppliers = list(
+                                self.get_suppliers_of_a_region(
+                                    ["RER"], ecoinvent_technologies
+                                )
+                            )
+
+                        suppliers = self.check_for_production_volume(suppliers)
+
+                        # If, after looking for European technologies, no technology is available
+                        if len(suppliers) == 0:
+                            # We fetch RoW technologies instead
+                            suppliers = list(
+                                self.get_suppliers_of_a_region(
+                                    ["RoW"], ecoinvent_technologies
+                                )
+                            )
+
+                        suppliers = self.check_for_production_volume(suppliers)
+
+                        for supplier in suppliers:
+                            share = self.get_production_weighted_share(supplier, suppliers)
+
+                            new_exchanges.append(
+                                {
+                                    "uncertainty type": 0,
+                                    "loc": (amount * share),
+                                    "amount": (amount * share),
+                                    "type": "technosphere",
+                                    "production volume": 0,
+                                    "product": supplier["reference product"],
+                                    "name": supplier["name"],
+                                    "unit": supplier["unit"],
+                                    "location": supplier["location"],
+                                }
+                            )
+
+                            if period == 0:
+                                created_markets.append(
+                                    [
+                                        "low voltage, " + self.scenario + ", " + str(self.year),
+                                        "n/a",
+                                        region,
+                                        0,
+                                        0,
+                                        supplier["name"],
+                                        supplier["location"],
+                                        share,
+                                        (share * amount),
+                                    ]
+                                )
+                            else:
+                                created_markets.append(
+                                    [
+                                        "low voltage, "
+                                        + self.scenario
+                                        + ", "
+                                        + str(self.year)
+                                        + ", "
+                                        + str(period)
+                                        +"-year forecast",
+                                        "n/a",
+                                        region,
+                                        0,
+                                        0,
+                                        supplier["name"],
+                                        supplier["location"],
+                                        share,
+                                        (share * amount),
+                                    ]
+                                )
+
+                # Fifth, add:
+                # * an input from the medium voltage market minus solar contribution, including distribution loss
+                # * an self-consuming input for transformation loss
+
+                transf_loss, distr_loss = self.get_production_weighted_losses("low", region)
+
+                if period == 0:
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": (1 - solar_amount) * (1 + distr_loss),
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": "electricity, medium voltage",
+                            "name": "market group for electricity, medium voltage",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
                     )
 
-                    suppliers = self.check_for_production_volume(suppliers)
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": transf_loss,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": "electricity, low voltage",
+                            "name": "market group for electricity, low voltage",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    )
 
-                    # If no technology is available for the REMIND region
-                    if len(suppliers) == 0:
-                        # We fetch European technologies instead
-                        suppliers = list(
-                            self.get_suppliers_of_a_region(
-                                ["RER"], ecoinvent_technologies
-                            )
-                        )
+                    created_markets.append(
+                        [
+                            "low voltage, " + self.scenario + ", " + str(self.year),
+                            "n/a",
+                            region,
+                            transf_loss,
+                            distr_loss,
+                            "low voltage, " + self.scenario + ", " + str(self.year),
+                            region,
+                            1,
+                            (1 - solar_amount) * (1 + distr_loss),
+                        ]
+                    )
 
-                    suppliers = self.check_for_production_volume(suppliers)
+                else:
 
-                    # If, after looking for European technologies, no technology is available
-                    if len(suppliers) == 0:
-                        # We fetch RoW technologies instead
-                        suppliers = list(
-                            self.get_suppliers_of_a_region(
-                                ["RoW"], ecoinvent_technologies
-                            )
-                        )
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": (1 - solar_amount) * (1 + distr_loss),
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": "electricity, medium voltage",
+                            "name": "market group for electricity, medium voltage, " + str(period) + "-year forecast",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    )
 
-                    suppliers = self.check_for_production_volume(suppliers)
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": transf_loss,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": "electricity, low voltage",
+                            "name": "market group for electricity, low voltage, " + str(period) + "-year forecast",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    )
 
-                    for supplier in suppliers:
-                        share = self.get_production_weighted_share(supplier, suppliers)
+                    created_markets.append(
+                        [
+                            "low voltage, "
+                            + self.scenario
+                            + ", "
+                            + str(self.year)
+                            + ", "
+                            + str(period)
+                            +"-year forecast",
+                            "n/a",
+                            region,
+                            transf_loss,
+                            distr_loss,
+                            "low voltage, " + self.scenario + ", " + str(self.year),
+                            region,
+                            1,
+                            (1 - solar_amount) * (1 + distr_loss),
+                        ]
+                    )
 
-                        new_exchanges.append(
-                            {
-                                "uncertainty type": 0,
-                                "loc": (amount * share),
-                                "amount": (amount * share),
-                                "type": "technosphere",
-                                "production volume": 0,
-                                "product": supplier["reference product"],
-                                "name": supplier["name"],
-                                "unit": supplier["unit"],
-                                "location": supplier["location"],
-                            }
-                        )
-                        created_markets.append(
-                            [
-                                "low voltage, " + self.scenario + ", " + str(self.year),
-                                "n/a",
-                                region,
-                                0,
-                                0,
-                                supplier["name"],
-                                supplier["location"],
-                                share,
-                                (share * amount),
-                            ]
-                        )
-            # Fifth, add:
-            # * an input from the medium voltage market minus solar contribution, including distribution loss
-            # * an self-consuming input for transformation loss
 
-            transf_loss, distr_loss = self.get_production_weighted_losses("low", region)
+                with open(
+                    DATA_DIR
+                    / "logs/log created electricity markets {} {}-{}.csv".format(
+                        self.scenario, self.year, date.today()
+                    ),
+                    "a",
+                ) as csv_file:
+                    writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+                    for line in created_markets:
+                        writer.writerow(line)
 
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 0,
-                    "amount": (1 - solar_amount) * (1 + distr_loss),
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage",
-                    "unit": "kilowatt hour",
-                    "location": region,
-                }
-            )
-
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 0,
-                    "amount": transf_loss,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "electricity, low voltage",
-                    "name": "market group for electricity, low voltage",
-                    "unit": "kilowatt hour",
-                    "location": region,
-                }
-            )
-
-            created_markets.append(
-                [
-                    "low voltage, " + self.scenario + ", " + str(self.year),
-                    "n/a",
-                    region,
-                    transf_loss,
-                    distr_loss,
-                    "low voltage, " + self.scenario + ", " + str(self.year),
-                    region,
-                    1,
-                    (1 - solar_amount) * (1 + distr_loss),
-                ]
-            )
-
-            with open(
-                DATA_DIR
-                / "logs/log created electricity markets {} {}-{}.csv".format(
-                    self.scenario, self.year, date.today()
-                ),
-                "a",
-            ) as csv_file:
-                writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-                for line in created_markets:
-                    writer.writerow(line)
-
-            new_dataset["exchanges"] = new_exchanges
-            self.db.append(new_dataset)
+                new_dataset["exchanges"] = new_exchanges
+                self.db.append(new_dataset)
 
     def create_new_markets_medium_voltage(self):
         """
@@ -464,128 +584,224 @@ class Electricity:
 
         created_markets = []
 
+
+
         for region in gen_region:
-            # Create an empty dataset
-            new_dataset = {
-                "location": region,
-                "name": "market group for electricity, medium voltage",
-                "reference product": "electricity, medium voltage",
-                "unit": "kilowatt hour",
-                "database": self.db[1]["database"],
-                "code": str(uuid.uuid1().hex),
-                "comment": "Dataset produced from REMIND pathway output results",
-            }
 
-            # First, add the reference product exchange
-            new_exchanges = [
-                {
-                    "uncertainty type": 0,
-                    "loc": 1,
-                    "amount": 1,
-                    "type": "production",
-                    "production volume": 0,
-                    "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage",
-                    "unit": "kilowatt hour",
-                    "location": region,
-                }
-            ]
+            for period in range(0, 60, 10):
 
-            # Second, add:
-            # * an input from the high voltage market, including transmission loss
-            # * an self-consuming input for transformation loss
+                # Create an empty dataset
 
-            transf_loss, distr_loss = self.get_production_weighted_losses(
-                "medium", region
-            )
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 0,
-                    "amount": 1 + distr_loss,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "electricity, high voltage",
-                    "name": "market group for electricity, high voltage",
-                    "unit": "kilowatt hour",
-                    "location": region,
-                }
-            )
+                if period == 0:
+                    # this dataset is for one year
+                    new_dataset = {
+                        "location": region,
+                        "name": "market group for electricity, medium voltage",
+                        "reference product": "electricity, medium voltage",
+                        "unit": "kilowatt hour",
+                        "database": self.db[1]["database"],
+                        "code": str(uuid.uuid4().hex),
+                        "comment": "Dataset produced from REMIND pathway output results",
+                    }
 
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 0,
-                    "amount": transf_loss,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage",
-                    "unit": "kilowatt hour",
-                    "location": region,
-                }
-            )
+                    # First, add the reference product exchange
+                    new_exchanges = [
+                        {
+                            "uncertainty type": 0,
+                            "loc": 1,
+                            "amount": 1,
+                            "type": "production",
+                            "production volume": 0,
+                            "product": "electricity, medium voltage",
+                            "name": "market group for electricity, medium voltage",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    ]
 
-            # Third, add an input to of sulfur hexafluoride emission to compensate the transformer's leakage
-            # And an emission of a corresponding amount
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 5.4e-8,
-                    "amount": 5.4e-8,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "sulfur hexafluoride, liquid",
-                    "name": "market for sulfur hexafluoride, liquid",
-                    "unit": "kilogram",
-                    "location": "RoW",
-                }
-            )
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 5.4e-8,
-                    "amount": 5.4e-8,
-                    "type": "biosphere",
-                    "input": ("biosphere3", "35d1dff5-b535-4628-9826-4a8fce08a1f2"),
-                    "name": "Sulfur hexafluoride",
-                    "unit": "kilogram",
-                    "categories": ("air", "non-urban air or from high stacks"),
-                }
-            )
+                else:
+                    # this dataset is for a period of time
+                    new_dataset = {
+                        "location": region,
+                        "name": "market group for electricity, medium voltage, " + str(period) + "-year forecast",
+                        "reference product": "electricity, medium voltage",
+                        "unit": "kilowatt hour",
+                        "database": self.db[1]["database"],
+                        "code": str(uuid.uuid4().hex),
+                        "comment": "Dataset produced from REMIND pathway output results. Average electricity"
+                                   " mix forecast over a " + str(period) + "-year period ("
+                                                                                            + str(self.year) + "-"
+                                                                                            + str(self.year + period) + ").",
+                    }
 
-            # Fourth, transmission line
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 1.8628e-8,
-                    "amount": 1.8628e-8,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "transmission network, electricity, medium voltage",
-                    "name": "transmission network construction, electricity, medium voltage",
-                    "unit": "kilometer",
-                    "location": "RoW",
-                }
-            )
+                    # First, add the reference product exchange
+                    new_exchanges = [
+                        {
+                            "uncertainty type": 0,
+                            "loc": 1,
+                            "amount": 1,
+                            "type": "production",
+                            "production volume": 0,
+                            "product": "electricity, medium voltage",
+                            "name": "market group for electricity, medium voltage, " + str(period) + "-year forecast",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    ]
 
-            new_dataset["exchanges"] = new_exchanges
 
-            created_markets.append(
-                [
-                    "medium voltage, " + self.scenario + ", " + str(self.year),
-                    "n/a",
-                    region,
-                    transf_loss,
-                    distr_loss,
-                    "medium voltage, " + self.scenario + ", " + str(self.year),
-                    region,
-                    1,
-                    1 + distr_loss,
-                ]
-            )
+                # Second, add:
+                # * an input from the high voltage market, including transmission loss
+                # * an self-consuming input for transformation loss
 
-            self.db.append(new_dataset)
+                transf_loss, distr_loss = self.get_production_weighted_losses(
+                    "medium", region
+                )
+
+                if period == 0:
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": 1 + distr_loss,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": "electricity, high voltage",
+                            "name": "market group for electricity, high voltage",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    )
+
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": transf_loss,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": "electricity, medium voltage",
+                            "name": "market group for electricity, medium voltage",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    )
+
+                else:
+
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": 1 + distr_loss,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": "electricity, high voltage",
+                            "name": "market group for electricity, high voltage, " + str(period) + "-year forecast",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    )
+
+                    new_exchanges.append(
+                        {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": transf_loss,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": "electricity, medium voltage",
+                            "name": "market group for electricity, medium voltage, " + str(period) + "-year forecast",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    )
+
+                # Third, add an input to of sulfur hexafluoride emission to compensate the transformer's leakage
+                # And an emission of a corresponding amount
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 5.4e-8,
+                        "amount": 5.4e-8,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "sulfur hexafluoride, liquid",
+                        "name": "market for sulfur hexafluoride, liquid",
+                        "unit": "kilogram",
+                        "location": "RoW",
+                    }
+                )
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 5.4e-8,
+                        "amount": 5.4e-8,
+                        "type": "biosphere",
+                        "input": ("biosphere3", "35d1dff5-b535-4628-9826-4a8fce08a1f2"),
+                        "name": "Sulfur hexafluoride",
+                        "unit": "kilogram",
+                        "categories": ("air", "non-urban air or from high stacks"),
+                    }
+                )
+
+                # Fourth, transmission line
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 1.8628e-8,
+                        "amount": 1.8628e-8,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "transmission network, electricity, medium voltage",
+                        "name": "transmission network construction, electricity, medium voltage",
+                        "unit": "kilometer",
+                        "location": "RoW",
+                    }
+                )
+
+                new_dataset["exchanges"] = new_exchanges
+
+                if period == 0:
+
+                    created_markets.append(
+                        [
+                            "medium voltage, " + self.scenario + ", " + str(self.year),
+                            "n/a",
+                            region,
+                            transf_loss,
+                            distr_loss,
+                            "medium voltage, " + self.scenario + ", " + str(self.year),
+                            region,
+                            1,
+                            1 + distr_loss,
+                        ]
+                    )
+
+                else:
+
+                    created_markets.append(
+                        [
+                            "medium voltage, "
+                            + self.scenario
+                            + ", "
+                            + str(self.year)
+                            + ", "
+                            + str(period)
+                            +"-year forecast",
+                            "n/a",
+                            region,
+                            transf_loss,
+                            distr_loss,
+                            "medium voltage, " + self.scenario + ", " + str(self.year),
+                            region,
+                            1,
+                            1 + distr_loss,
+                        ]
+                    )
+
+
+                self.db.append(new_dataset)
 
         with open(
             DATA_DIR
@@ -608,164 +824,221 @@ class Electricity:
         gen_region = (
             region for region in self.iam_data.electricity_markets.coords["region"].values
         )
-        gen_tech = list(
-            (
-                tech
-                for tech in self.iam_data.electricity_markets.coords["variables"].values
-                if "Solar" not in tech
-            )
-        )
 
         created_markets = []
 
         for region in gen_region:
 
-            # Fetch ecoinvent regions contained in the REMIND region
-            ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
+            for period in range(0, 60, 10):
 
-            # Create an empty dataset
-            new_dataset = {
-                "location": region,
-                "name": "market group for electricity, high voltage",
-                "reference product": "electricity, high voltage",
-                "unit": "kilowatt hour",
-                "database": self.db[1]["database"],
-                "code": str(uuid.uuid4().hex),
-                "comment": "Dataset produced from REMIND pathway output results",
-            }
+                mix = dict(
+                    zip(
+                        self.iam_data.electricity_markets.variables.values,
+                        self.iam_data.electricity_markets.sel(
+                            region=region,
+                        ).interp(year=np.arange(self.year, self.year + period + 1),
+                                 kwargs={"fill_value": "extrapolate"}).mean(dim="year").values
+                    )
+                )
 
-            new_exchanges = [
-                {
-                    "uncertainty type": 0,
-                    "loc": 1,
-                    "amount": 1,
-                    "type": "production",
-                    "production volume": 0,
-                    "product": "electricity, high voltage",
-                    "name": "market group for electricity, high voltage",
-                    "unit": "kilowatt hour",
-                    "location": region,
-                }
-            ]
+                # Fetch ecoinvent regions contained in the REMIND region
+                ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
 
-            # First, add the reference product exchange
+                # Create an empty dataset
+                if period == 0:
+                    # this dataset is for one year
+                    new_dataset = {
+                        "location": region,
+                        "name": "market group for electricity, high voltage",
+                        "reference product": "electricity, high voltage",
+                        "unit": "kilowatt hour",
+                        "database": self.db[1]["database"],
+                        "code": str(uuid.uuid4().hex),
+                        "comment": "Dataset produced from REMIND pathway output results",
+                    }
 
-            # Second, add transformation loss
-            transf_loss = self.get_production_weighted_losses("high", region)
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 1,
-                    "amount": transf_loss,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "electricity, high voltage",
-                    "name": "market group for electricity, high voltage",
-                    "unit": "kilowatt hour",
-                    "location": region,
-                }
-            )
-
-            # Fetch solar contribution in the mix, to subtract it
-            # as solar energy is an input of low-voltage markets
-
-            index_solar = [
-                ind
-                for ind in self.iam_data.rev_electricity_market_labels
-                if "solar" in ind.lower()
-            ]
-            solar_amount = self.iam_data.electricity_markets.loc[
-                region, index_solar
-            ].values.sum()
-
-            # Loop through the REMIND technologies
-            for technology in gen_tech:
-
-                # If the given technology contributes to the mix
-                if self.iam_data.electricity_markets.loc[region, technology] != 0.0:
-
-                    # Contribution in supply
-                    amount = self.iam_data.electricity_markets.loc[region, technology].values
-
-                    # Get the possible names of ecoinvent datasets
-                    ecoinvent_technologies = self.powerplant_map[
-                        self.iam_data.rev_electricity_market_labels[technology]
+                    # First, add the reference product exchange
+                    new_exchanges = [
+                        {
+                            "uncertainty type": 0,
+                            "loc": 1,
+                            "amount": 1,
+                            "type": "production",
+                            "production volume": 0,
+                            "product": "electricity, high voltage",
+                            "name": "market group for electricity, high voltage",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
                     ]
 
-                    # Fetch electricity-producing technologies contained in the REMIND region
-                    suppliers = list(
-                        self.get_suppliers_of_a_region(
-                            ecoinvent_regions, ecoinvent_technologies
-                        )
-                    )
 
-                    suppliers = self.check_for_production_volume(suppliers)
+                else:
+                    # this dataset is for a period of time
+                    new_dataset = {
+                        "location": region,
+                        "name": "market group for electricity, high voltage, " + str(period) + "-year forecast",
+                        "reference product": "electricity, high voltage",
+                        "unit": "kilowatt hour",
+                        "database": self.db[1]["database"],
+                        "code": str(uuid.uuid4().hex),
+                        "comment": "Dataset produced from REMIND pathway output results. Average electricity"
+                                   " mix forecast over a " + str(period) + "-year period ("
+                                                                                            + str(self.year) + "-"
+                                                                                            + str(self.year + period) + ".",
+                    }
 
-                    # If no technology is available for the REMIND region
-                    if len(suppliers) == 0:
-                        # We fetch European technologies instead
+                    # First, add the reference product exchange
+                    new_exchanges = [
+                        {
+                            "uncertainty type": 0,
+                            "loc": 1,
+                            "amount": 1,
+                            "type": "production",
+                            "production volume": 0,
+                            "product": "electricity, high voltage",
+                            "name": "market group for electricity, high voltage, " + str(period) + "-year forecast",
+                            "unit": "kilowatt hour",
+                            "location": region,
+                        }
+                    ]
+
+                # Second, add transformation loss
+                transf_loss = self.get_production_weighted_losses("high", region)
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 1,
+                        "amount": transf_loss,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "electricity, high voltage",
+                        "name": "market group for electricity, high voltage",
+                        "unit": "kilowatt hour",
+                        "location": region,
+                    }
+                )
+
+                # Fetch solar contribution in the mix, to subtract it
+                # as solar energy is an input of low-voltage markets
+
+                solar_amount = 0
+                for m in mix:
+                    if "solar" in m.lower():
+                        solar_amount += mix[m]
+
+                # Loop through the REMIND technologies
+                technologies = (tech for tech in mix if "solar" not in tech.lower())
+                for technology in technologies:
+
+                    # If the given technology contributes to the mix
+                    if mix[technology] > 0:
+
+                        # Contribution in supply
+                        amount = mix[technology]
+
+                        # Get the possible names of ecoinvent datasets
+                        ecoinvent_technologies = self.powerplant_map[
+                            self.iam_data.rev_electricity_market_labels[technology]
+                        ]
+
+                        # Fetch electricity-producing technologies contained in the REMIND region
                         suppliers = list(
                             self.get_suppliers_of_a_region(
-                                ["RER"], ecoinvent_technologies
+                                ecoinvent_regions, ecoinvent_technologies
                             )
                         )
 
-                    suppliers = self.check_for_production_volume(suppliers)
+                        suppliers = self.check_for_production_volume(suppliers)
 
-                    # If, after looking for European technologies, no technology is available
-                    if len(suppliers) == 0:
-                        # We fetch RoW technologies instead
-                        suppliers = list(
-                            self.get_suppliers_of_a_region(
-                                ["RoW"], ecoinvent_technologies
+                        # If no technology is available for the REMIND region
+                        if len(suppliers) == 0:
+                            # We fetch European technologies instead
+                            suppliers = list(
+                                self.get_suppliers_of_a_region(
+                                    ["RER"], ecoinvent_technologies
+                                )
                             )
-                        )
 
-                    suppliers = self.check_for_production_volume(suppliers)
+                        suppliers = self.check_for_production_volume(suppliers)
 
-                    if len(suppliers) == 0:
-                        print(
-                            "no suppliers for {} in {} with ecoinvent names {}".format(
-                                technology, region, ecoinvent_technologies
+                        # If, after looking for European technologies, no technology is available
+                        if len(suppliers) == 0:
+                            # We fetch RoW technologies instead
+                            suppliers = list(
+                                self.get_suppliers_of_a_region(
+                                    ["RoW"], ecoinvent_technologies
+                                )
                             )
-                        )
 
-                    for supplier in suppliers:
-                        share = self.get_production_weighted_share(supplier, suppliers)
+                        suppliers = self.check_for_production_volume(suppliers)
 
-                        new_exchanges.append(
-                            {
-                                "uncertainty type": 0,
-                                "loc": (amount * share) / (1 - solar_amount),
-                                "amount": (amount * share) / (1 - solar_amount),
-                                "type": "technosphere",
-                                "production volume": 0,
-                                "product": supplier["reference product"],
-                                "name": supplier["name"],
-                                "unit": supplier["unit"],
-                                "location": supplier["location"],
-                            }
-                        )
+                        if len(suppliers) == 0:
+                            print(
+                                "no suppliers for {} in {} with ecoinvent names {}".format(
+                                    technology, region, ecoinvent_technologies
+                                )
+                            )
 
-                        created_markets.append(
-                            [
-                                "high voltage, "
-                                + self.scenario
-                                + ", "
-                                + str(self.year),
-                                technology,
-                                region,
-                                transf_loss,
-                                0.0,
-                                supplier["name"],
-                                supplier["location"],
-                                share,
-                                (amount * share) / (1 - solar_amount),
-                            ]
-                        )
-            new_dataset["exchanges"] = new_exchanges
+                        for supplier in suppliers:
+                            share = self.get_production_weighted_share(supplier, suppliers)
 
-            self.db.append(new_dataset)
+                            new_exchanges.append(
+                                {
+                                    "uncertainty type": 0,
+                                    "loc": (amount * share) / (1 - solar_amount),
+                                    "amount": (amount * share) / (1 - solar_amount),
+                                    "type": "technosphere",
+                                    "production volume": 0,
+                                    "product": supplier["reference product"],
+                                    "name": supplier["name"],
+                                    "unit": supplier["unit"],
+                                    "location": supplier["location"],
+                                }
+                            )
+
+                            if period == 0:
+
+                                created_markets.append(
+                                    [
+                                        "high voltage, "
+                                        + self.scenario
+                                        + ", "
+                                        + str(self.year),
+                                        technology,
+                                        region,
+                                        transf_loss,
+                                        0.0,
+                                        supplier["name"],
+                                        supplier["location"],
+                                        share,
+                                        (amount * share) / (1 - solar_amount),
+                                    ]
+                                )
+                            else:
+                                created_markets.append(
+                                    [
+                                        "high voltage, "
+                                        + self.scenario
+                                        + ", "
+                                        + str(self.year)
+                                        + ", "
+                                        + str(period)
+                                        +"-year forecast",
+                                        technology,
+                                        region,
+                                        transf_loss,
+                                        0.0,
+                                        supplier["name"],
+                                        supplier["location"],
+                                        share,
+                                        (amount * share) / (1 - solar_amount),
+                                    ]
+                                )
+
+                new_dataset["exchanges"] = new_exchanges
+
+                self.db.append(new_dataset)
 
         # Writing log of created markets
 

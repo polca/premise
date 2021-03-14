@@ -202,7 +202,7 @@ def check_pathway_name(name, filepath, model):
 
         if (filepath / name_check).with_suffix(".mif").is_file():
             return name
-        elif (filepath / name_check).with_suffix(".xls").is_file():
+        elif (filepath / name_check).with_suffix(".xlsx").is_file():
             return name
         else:
             raise ValueError(

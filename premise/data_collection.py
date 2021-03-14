@@ -113,7 +113,7 @@ class IAMDataCollection:
         """
 
         file_ext = {"remind": self.model + "_" + self.pathway + ".mif",
-                    "image": self.model + "_" + self.pathway + ".xls"}
+                    "image": self.model + "_" + self.pathway + ".xlsx"}
 
         filepath = Path(self.filepath_iam_files) / file_ext[self.model]
 
@@ -275,12 +275,12 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         else:
             # Interpolation between two periods
-            data_to_interp_from = self.data.loc[
+            data_to_return = self.data.loc[
                 :, list_technologies, :
             ] / self.data.loc[:, list_technologies, :].groupby("region").sum(
                 dim="variables"
             )
-            return data_to_interp_from.interp(year=self.year)
+            return data_to_return
 
     def get_iam_electricity_efficiencies(self, drop_hydrogen=True):
         """
