@@ -72,7 +72,7 @@ Additionally, a number of inventories for emerging technologies are added upon t
 * hydrogen production from woody biomass gasification, with and without CCS `Antonini et al. 2021 (preprint) <https://chemrxiv.org/articles/preprint/Hydrogen_from_Wood_Gasification_with_CCS_-_a_Technoenvironmental_Analysis_of_Production_and_Use_as_Transport_Fuel/13213553/1>`_
 * synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrochemical methanation (gas) processes,
   using direct air capture (DAC) `Zhang et al. 2019 <https://doi.org/10.1039/C9SE00986H>`_, `Hank et al. 2019 <https://doi.org/10.1039/C9SE00658C>`_,
-  `van der Giesen et al. 2014 <https://doi.org/10.1021/es500191g>`_, `Terlouw et al. 2021 <https://doi.org/10.1039/D0EE03757E>`_.
+  `van der Giesen et al. 2014 <https://doi.org/10.1021/es500191g>`_, Terlouw et al. 2021.
 * passenger car inventories from the library `carculator <https://github.com/romainsacchi/carculator>`_
 * medium and heavy duty trucks from the library `carculator_truck <https://github.com/romainsacchi/carculator_truck>`_
 

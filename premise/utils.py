@@ -70,7 +70,8 @@ def get_efficiency_ratio_solar_PV(year, power):
     """
 
     df = pd.read_csv(
-        EFFICIENCY_RATIO_SOLAR_PV)
+        EFFICIENCY_RATIO_SOLAR_PV,
+        sep=",")
 
     return df.groupby(["power", "year"]) \
         .mean()["value"] \
