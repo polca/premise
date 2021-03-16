@@ -38,7 +38,7 @@ ecoinvent 3 to reflect projected energy policy trajectories.
 
 Requirements
 ------------
-* Python language interpreter 3.x
+* **Python 3.9**
 * License for [ecoinvent 3][1]
 * Some IAM output files come with the library ("REMIND_xxx.mif" for REMIND, "IMAGE_xxxx.xlsx" for IMAGE)
  and are located by default in the subdirectory "/data/iam_output_files".
