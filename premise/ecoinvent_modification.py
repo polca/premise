@@ -683,15 +683,22 @@ class NewDatabase:
         self.update_steel()
 
 
-    def write_db_to_brightway(self):
+    def write_db_to_brightway(self, name=None):
         """
         Register the new database into an open brightway2 project.
+        :param name: to give a custom name to the database
+        :type name: str
         """
+
+        if name:
+            if not isinstance(name, str):
+                raise TypeError("`name` should be a string.")
+
         print("Write new database(s) to Brightway2.")
         for scenario in self.scenarios:
             wurst.write_brightway2_database(
                 scenario["database"],
-                eidb_label(scenario["model"], scenario["pathway"], scenario["year"]),
+                name or eidb_label(scenario["model"], scenario["pathway"], scenario["year"]),
             )
 
     def write_db_to_matrices(self, filepath=None):

@@ -26,8 +26,6 @@ def create_index_of_A_matrix(db):
         for i in range(0, len(db))
     }
 
-
-
 def create_codes_index_of_A_matrix(db):
     """
     Create a dictionary with row/column indices of the A matrix as key and the activity code as value.
