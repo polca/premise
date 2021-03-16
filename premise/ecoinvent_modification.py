@@ -686,19 +686,31 @@ class NewDatabase:
     def write_db_to_brightway(self, name=None):
         """
         Register the new database into an open brightway2 project.
-        :param name: to give a custom name to the database
+        :param name: to give a (list) of custom name(s) to the database.
+        Should either be a string if there's only one database to export.
+        Or a list of strings if there are several databases.
         :type name: str
         """
 
         if name:
-            if not isinstance(name, str):
-                raise TypeError("`name` should be a string.")
+            if isinstance(name, str):
+                name = [name]
+            elif isinstance(name, list):
+                if not all(isinstance(item, str) for item in name):
+                    raise TypeError("`name` should be a string or a sequence of strings.")
+            else:
+                raise TypeError("`name` should be a string or a sequence of strings.")
+        else:
+            name = [eidb_label(s["model"], s["pathway"], s["year"]) for s in self.scenarios]
+
+        if len(name) != len(self.scenarios):
+            raise ValueError("The number of databases does not match the number of `name` given.")
 
         print("Write new database(s) to Brightway2.")
-        for scenario in self.scenarios:
+        for s, scenario in enumerate(self.scenarios):
             wurst.write_brightway2_database(
                 scenario["database"],
-                name or eidb_label(scenario["model"], scenario["pathway"], scenario["year"]),
+                name[s],
             )
 
     def write_db_to_matrices(self, filepath=None):
@@ -740,21 +752,32 @@ class NewDatabase:
                 filepath,
             ).export_db_to_simapro()
 
-    def write_db_to_brightway25(self):
+    def write_db_to_brightway25(self, name=None):
         """
         Register the new database into the current brightway2.5 project.
         """
+
+        if name:
+            if isinstance(name, str):
+                name = [name]
+            elif isinstance(name, list):
+                if not all(isinstance(item, str) for item in name):
+                    raise TypeError("`name` should be a string or a sequence of strings.")
+            else:
+                raise TypeError("`name` should be a string or a sequence of strings.")
+        else:
+            name = [eidb_label(s["model"], s["pathway"], s["year"]) for s in self.scenarios]
+
+        if len(name) != len(self.scenarios):
+            raise ValueError("The number of databases does not match the number of `name` given.")
+
         print('Write new database to Brightway2.5')
         # We first need to check for differences between the source database
         # and the new ones
         # We add a `modified` label to any new activity or any new or modified exchange
         self.scenarios = add_modified_tags(self.db, self.scenarios)
-        for scenario in self.scenarios:
+        for s, scenario in enumerate(self.scenarios):
             wurst.write_brightway25_database(scenario["database"],
-                                             eidb_label(
-                                                 scenario["model"],
-                                                 scenario["pathway"],
-                                                 scenario["year"]
-                                             ),
+                                             name[s],
                                              self.source
                                              )

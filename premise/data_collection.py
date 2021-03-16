@@ -141,6 +141,7 @@ class IAMDataCollection:
 
         if len(df.columns == 20):
             df.drop(columns=df.columns[-1], inplace=True)
+
         df.columns = df.columns.astype(int)
         df = df.reset_index()
 

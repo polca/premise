@@ -298,9 +298,6 @@ class Steel:
             primary_share = (self.steel_data.sel(region=remind_region, variables='Production|Industry|Steel|Primary') / total_production_volume).values
             secondary_share = 1 - primary_share
 
-            print(d, act["name"], act["location"])
-
-
             try:
                 ds = ws.get_one(self.db,
                            ws.equals('reference product', act['reference product']),
