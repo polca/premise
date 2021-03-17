@@ -103,7 +103,7 @@ def setup_db():
             scenarios=[
                 {"model": "remind", "pathway": scenario, "year": year,
                  "exclude": ["update_electricity", "update_steel", "update_cement"],
-                 "passenger cars": {"regions": ["EUR"]}
+                 "passenger_cars": {"regions": ["EUR"]}
                  }
             ],
             source_db="ecoinvent 3.7 cutoff",
@@ -116,8 +116,8 @@ def setup_db_with_custom_fleet_file():
             scenarios=[
                 {"model": "remind", "pathway": scenario, "year": year,
                  "exclude": ["update_electricity", "update_steel", "update_cement"],
-                 "passenger cars": {"regions": ["EUR"],
-                                    "fleet file": remind_output_folder / "fleet files" / "remind" / "passenger cars" / "fleet_file.csv"}
+                 "passenger_cars": {"regions": ["EUR"],
+                                    "fleet file": remind_output_folder / "fleet_files" / "remind" / "passenger_cars" / "fleet_file.csv"}
                  }
             ],
             source_db="ecoinvent 3.7 cutoff",

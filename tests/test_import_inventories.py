@@ -99,7 +99,7 @@ def test_load_carculator():
         database=db,
         version="3.7.1",
         path=DATA_DIR / "iam_output_files",
-        fleet_file=DATA_DIR / "iam_output_files" / "fleet files" / "remind" / "passenger cars" / "fleet_file.csv",
+        fleet_file=DATA_DIR / "iam_output_files" / "fleet_files" / "remind" / "passenger_cars" / "fleet_file.csv",
         model="remind",
         pathway="SSP2-Base",
         year=2015,

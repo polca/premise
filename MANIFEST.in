@@ -4,10 +4,10 @@ include premise/data/*.json
 include premise/data/iam_output_files/*.mif
 include premise/data/iam_output_files/*.csv
 include premise/data/iam_output_files/*.xlsx
-include premise/data/iam_output_files/fleet files/image/passenger cars/*.csv
-include premise/data/iam_output_files/fleet files/remind/passenger cars/*.csv
-include premise/data/iam_output_files/fleet files/remind/trucks/*.csv
-include premise/data/iam_output_files/fleet files/remind/trucks/*.csv
+include premise/data/iam_output_files/fleet_files/image/passenger_cars/*.csv
+include premise/data/iam_output_files/fleet_files/remind/passenger_cars/*.csv
+include premise/data/iam_output_files/fleet_files/image/trucks/*.csv
+include premise/data/iam_output_files/fleet_files/remind/trucks/*.csv
 include premise/data/additional_inventories/*.xlsx
 include premise/data/electricity/*.csv
 include premise/data/cement/*.csv

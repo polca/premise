@@ -252,7 +252,7 @@ def check_fleet(fleet, model, vehicle_type):
         )
 
         fleet["fleet file"] = (
-            DATA_DIR / "iam_output_files" / "fleet files" / model / vehicle_type / "fleet_file.csv"
+            DATA_DIR / "iam_output_files" / "fleet_files" / model / vehicle_type / "fleet_file.csv"
         )
     else:
         filepath = fleet["fleet file"]
@@ -270,14 +270,14 @@ def check_fleet(fleet, model, vehicle_type):
             if not set(fleet["regions"]).issubset(LIST_REMIND_REGIONS):
                 raise ValueError(
                     "One or several regions specified for the fleet "
-                    "of passenger cars is invalid."
+                    "of passenger_cars is invalid."
                 )
 
         if model == "image":
             if not set(fleet["regions"]).issubset(LIST_IMAGE_REGIONS):
                 raise ValueError(
                     "One or several regions specified for the fleet "
-                    "of passenger cars is invalid."
+                    "of passenger_cars is invalid."
                 )
     else:
         if model == "remind":
@@ -357,12 +357,12 @@ def check_scenarios(scenario):
     if "exclude" in scenario:
         scenario["exclude"] = check_exclude(scenario["exclude"])
 
-    if "passenger cars" in scenario:
-        scenario["passenger cars"] = check_fleet(
-            scenario["passenger cars"], scenario["model"], "passenger cars"
+    if "passenger_cars" in scenario:
+        scenario["passenger_cars"] = check_fleet(
+            scenario["passenger_cars"], scenario["model"], "passenger_cars"
         )
     else:
-        scenario["passenger cars"] = False
+        scenario["passenger_cars"] = False
 
     if "trucks" in scenario:
         scenario["trucks"] = check_fleet(
@@ -445,9 +445,6 @@ class NewDatabase:
         """
         This method will trigger the import of a number of inventories
         and merge them into the database dictionary.
-        If `add_passenger_cars` and `add_trucks` have been set to `True`,
-        or if they have been passed as dictionaries, corresponding inventories will be
-        imported as well, otherwise, they will not.
         """
 
         print("Importing necessary inventories...\n")
@@ -610,19 +607,19 @@ class NewDatabase:
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cars" not in scenario["exclude"]:
 
-                if scenario["passenger cars"]:
+                if scenario["passenger_cars"]:
 
                     # Import `carculator` inventories if wanted
                     cars = CarculatorInventory(
                         database=scenario["database"],
                         version=self.version,
                         path=scenario["filepath"],
-                        fleet_file=scenario["passenger cars"]["fleet file"],
+                        fleet_file=scenario["passenger_cars"]["fleet file"],
                         model=scenario["model"],
                         pathway=scenario["pathway"],
                         year=scenario["year"],
-                        regions=scenario["passenger cars"]["regions"],
-                        filters=scenario["passenger cars"]["filters"],
+                        regions=scenario["passenger_cars"]["regions"],
+                        filters=scenario["passenger_cars"]["filters"],
                     )
                     scenario["database"] = cars.merge_inventory()
 
