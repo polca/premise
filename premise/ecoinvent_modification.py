@@ -28,6 +28,7 @@ from pathlib import Path
 import copy
 import os
 import contextlib
+import pickle
 
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -87,6 +88,9 @@ FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
 FILEPATH_VARIOUS_VEHICLES = INVENTORY_DIR / "lci-various_vehicles.xlsx"
+FILE_PATH_INVENTORIES_EI_37 = INVENTORY_DIR / "inventory_data_ei_37.pickle"
+FILE_PATH_INVENTORIES_EI_36 = INVENTORY_DIR / "inventory_data_ei_36.pickle"
+FILE_PATH_INVENTORIES_EI_35 = INVENTORY_DIR / "inventory_data_ei_35.pickle"
 
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1"]
 SUPPORTED_MODELS = ["remind", "image", "static"]
@@ -281,9 +285,9 @@ def check_fleet(fleet, model, vehicle_type):
                 )
     else:
         if model == "remind":
-            fleet["regions"] = [r for r in LIST_REMIND_REGIONS if r != "World"]
+            fleet["regions"] = LIST_REMIND_REGIONS
         if model == "image":
-            fleet["regions"] = [r for r in LIST_IMAGE_REGIONS if r != "World"]
+            fleet["regions"] = LIST_IMAGE_REGIONS
 
     if "filters" not in fleet:
         fleet["filters"] = None
@@ -394,7 +398,8 @@ class NewDatabase:
         source_version="3.7.1",
         source_type="brightway",
         source_file_path=None,
-        additional_inventories=None
+        additional_inventories=None,
+        direct_import=True
     ):
 
         self.source = source_db
@@ -420,7 +425,7 @@ class NewDatabase:
         print(
             "\n/////////////////// IMPORTING DEFAULT INVENTORIES ////////////////////"
         )
-        self.import_inventories()
+        self.import_inventories(direct_import)
 
         for scenario in self.scenarios:
             scenario["external data"] = IAMDataCollection(
@@ -441,15 +446,32 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
-    def import_inventories(self):
+    def import_inventories(self, direct_import):
         """
         This method will trigger the import of a number of inventories
         and merge them into the database dictionary.
         """
 
         print("Importing necessary inventories...\n")
-        with open(os.devnull, "w") as f, contextlib.redirect_stdout(f):
-            # Add Carma CCS inventories
+
+        if direct_import:
+
+            # we unpickle inventories here
+            # and append them directly to the end of the database
+
+            if self.version in ["3.7", "3.7.1"]:
+                fp = FILE_PATH_INVENTORIES_EI_37
+            elif self.version == "3.6":
+                fp = FILE_PATH_INVENTORIES_EI_36
+            else:
+                fp = FILE_PATH_INVENTORIES_EI_35
+
+            with open(fp, 'rb') as handle:
+                data = pickle.load(handle)
+                self.db.extend(data)
+
+        else:
+            # Manual import
             for file in (FILEPATH_CARMA_INVENTORIES, FILEPATH_CHP_INVENTORIES):
                 carma = CarmaCCSInventory(self.db, self.version, file)
                 carma.merge_inventory()

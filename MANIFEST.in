@@ -9,6 +9,8 @@ include premise/data/iam_output_files/fleet_files/remind/passenger_cars/*.csv
 include premise/data/iam_output_files/fleet_files/image/trucks/*.csv
 include premise/data/iam_output_files/fleet_files/remind/trucks/*.csv
 include premise/data/additional_inventories/*.xlsx
+include premise/data/additional_inventories/*.pickle
+include premise/data/additional_inventories/*.csv
 include premise/data/electricity/*.csv
 include premise/data/cement/*.csv
 include premise/data/steel/*.txt
