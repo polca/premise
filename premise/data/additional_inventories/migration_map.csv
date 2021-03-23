@@ -66,3 +66,17 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 36;37;nickel mine operation, sulfidic ore;nickel, 99.5%;GLO;market for nickel, class 1;nickel, class 1;
 36;37;plywood production, for outdoor use;plywood, for outdoor use;RER;market for plywood;plywood;
 36;37;market for nickel, 99.5%;nickel, 99.5%;GLO;market for nickel, class 1;nickel, class 1;
+35;37;market for urea, as N;urea, as N;GLO;market for urea;urea;RER
+36;37;market for urea, as N;urea, as N;GLO;market for urea;urea;RER
+35;37;market for ammonium sulfate, as N;ammonium sulfate, as N;GLO;market for ammonium sulfate;ammonium sulfate;RER
+36;37;market for ammonium sulfate, as N;ammonium sulfate, as N;GLO;market for ammonium sulfate;ammonium sulfate;RER
+35;37;market for natural gas, from medium pressure network (0.1-1 bar), at service station;natural gas, from medium pressure network (0.1-1 bar), at service station;GLO;market for natural gas, medium pressure, vehicle grade;natural gas, medium pressure, vehicle grade;
+36;37;market for natural gas, from medium pressure network (0.1-1 bar), at service station;natural gas, from medium pressure network (0.1-1 bar), at service station;GLO;market for natural gas, medium pressure, vehicle grade;natural gas, medium pressure, vehicle grade;
+35;37;market for potassium sulfate, as K2O;potassium sulfate, as K2O;GLO;market for potassium sulfate;potassium sulfate;RER
+36;37;market for potassium sulfate, as K2O;potassium sulfate, as K2O;GLO;market for potassium sulfate;potassium sulfate;RER
+35;37;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO;market group for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;RER
+36;37;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO;market group for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;RER
+35;37;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO;market group for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;RER
+36;37;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO;market group for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;RER
+35;37;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO;market group for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;RER
+36;37;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO;market group for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;RER

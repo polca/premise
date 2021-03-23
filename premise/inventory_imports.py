@@ -269,13 +269,7 @@ class BaseInventoryImport:
             ws.equals("location", exc["location"]),
             ws.equals("unit", exc["unit"])
         ), None)
-        # possibles = [
-        #     a["reference product"]
-        #     for a in self.import_db.data
-        #     if a["name"] == exc["name"]
-        #     and a["location"] == exc["location"]
-        #     and a["unit"] == exc["unit"]
-        # ]
+
 
         # If not, look in the ecoinvent inventories
         if candidate is None:

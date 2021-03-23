@@ -155,7 +155,6 @@ class Export:
             for exc in ds["exchanges"]:
                 if exc["type"] == "biosphere":
                     try:
-
                         code = exc["input"][1]
                         lookup = rev_index_B[code]
                         ind_B = index_B[lookup]
