@@ -1,5 +1,5 @@
 import brightway2 as bw
-from rmnd_lca import *
+from premise import *
 
 # Call brightway2
 bw.projects.set_current('H2')
