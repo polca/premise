@@ -5,8 +5,10 @@ from pathlib import Path
 import datetime
 import json
 import re
+import pandas as pd
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
+
 
 
 def create_index_of_A_matrix(db):
@@ -91,8 +93,7 @@ class Export:
         self.scenario = scenario
         self.year = year
         self.filepath = filepath
-
-
+        self.bio_codes = self.rev_index(create_codes_index_of_B_matrix())
 
     def create_A_matrix_coordinates(self):
         index_A = create_index_of_A_matrix(self.db)
@@ -180,8 +181,6 @@ class Export:
                     list_rows.append(row)
         return list_rows
 
-
-
     def export_db_to_matrices(self):
 
         if self.filepath is not None:
@@ -231,8 +230,6 @@ class Export:
                 writer.writerow(data)
 
         print("Matrices saved in {}.".format(self.filepath))
-
-
 
     @staticmethod
     def create_rev_index_of_B_matrix():
@@ -318,7 +315,6 @@ class Export:
             }
 
         return dict_cat
-
 
     def get_category_of_exchange(self):
         """
@@ -843,3 +839,48 @@ class Export:
         csvFile.close()
 
         print("Simapro CSV files saved in {}.".format(self.filepath))
+
+    def create_names_and_indices_of_A_matrix(self):
+        """
+        Create a dictionary a tuple (activity name, reference product,
+        database, location, unit) as key, and its indix in the
+        matrix A as value.
+        :return: a dictionary to map indices to activities
+        :rtype: dict
+        """
+        return {
+            (
+                i["name"],
+                i["reference product"],
+                i["database"],
+                i["location"],
+                i["unit"]
+            ): x
+            for x, i in enumerate(self.db)
+        }
+
+    def create_names_and_indices_of_B_matrix(self):
+        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+            raise FileNotFoundError(
+                "The dictionary of biosphere flows could not be found."
+            )
+
+        csv_dict = dict()
+
+        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
+            input_dict = csv.reader(f, delimiter=";")
+            for i, row in enumerate(input_dict):
+                if row[2] != "unspecified":
+                    csv_dict[(row[0], (row[1], row[2]), "biosphere3", row[3])] = i
+                else:
+                    csv_dict[(row[0], (row[1],), "biosphere3", row[3])] = i
+
+        return csv_dict
+
+    def rev_index(self, inds):
+        return {v: k for k, v in inds.items()}
+
+    def get_bio_code(self, idx):
+
+        return self.bio_codes[idx]
+

@@ -899,17 +899,22 @@ class CarculatorInventory(BaseInventoryImport):
 
         for r, region in enumerate(self.regions):
 
-            if region == "World":
-                region = [r for r in self.regions if r != "World"]
+
 
             # The fleet file has REMIND region
             # Hence, if we use IMAGE, we need to convert
             # the region names
             # which is something `iam_to_GAINS_region()` does.
             if self.model == "remind":
-                reg_fleet = region
+                if region == "World":
+                    reg_fleet = [r for r in self.regions if r != "World"]
+                else:
+                    reg_fleet = region
             if self.model == "image":
-                reg_fleet = self.geomap.iam_to_GAINS_region(region)
+                if region == "World":
+                    reg_fleet = [self.geomap.iam_to_GAINS_region(r) for r in self.regions if r != "World"]
+                else:
+                    reg_fleet = self.geomap.iam_to_GAINS_region(region)
 
             fleet = fleet_array.sel(IAM_region=reg_fleet,
                                     vintage_year=np.arange(1996, self.db_year + 1)

@@ -872,7 +872,6 @@ class Electricity:
                         }
                     ]
 
-
                 else:
                     # this dataset is for a period of time
                     new_dataset = {
