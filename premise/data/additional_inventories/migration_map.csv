@@ -1,0 +1,82 @@
+from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
+37;35;market for water, deionised;water, deionised;Europe without Switzerland;market for water, deionised, from tap water, at user;water, deionised, from tap water, at user;
+37;35;market for water, deionised;water, deionised;RoW;market for water, deionised, from tap water, at user;water, deionised, from tap water, at user;
+37;35;market for water, deionised;water, deionised;CH;market for water, deionised, from tap water, at user;water, deionised, from tap water, at user;
+37;35;market for water, decarbonised;water, decarbonised;CH;market for water, decarbonised, at user;water, decarbonised, at user;GLO
+37;35;water production, deionised;water, deionised;RoW;water production, deionised, from tap water, at user;water, deionised, from tap water, at user;
+37;35;water production, deionised;water, deionised;Europe without Switzerland;water production, deionised, from tap water, at user;water, deionised, from tap water, at user;
+37;35;market for water, deionised;water, deionised;RoW;market for water, deionised, from tap water, at user;water, deionised, from tap water, at user;
+37;35;market for water, deionised;water, deionised;Europe without Switzerland;market for water, deionised, from tap water, at user;water, deionised, from tap water, at user;
+37;35;market for water, ultrapure;water, ultrapure;RoW;;;GLO
+37;35;market for water, ultrapure;water, ultrapure;CA-QC;;;GLO
+37;35;market for aluminium oxide, metallurgical;aluminium oxide, metallurgical;IAI Area, EU27 & EFTA;market for aluminium oxide;aluminium oxide;GLO
+37;35;market for flat glass, coated;flat glass, coated;RER;;;GLO
+37;35;market for flat glass, uncoated;flat glass, uncoated;RER;;;GLO
+37;35;market for steam, in chemical industry;steam, in chemical industry;RER;;;GLO
+37;35;market for transport, freight train;transport, freight train;ZA;;;RoW
+37;35;market for transport, freight train;transport, freight train;IN;;;RoW
+37;35;hydrogen production, gaseous, petroleum refinery operation;hydrogen, gaseous;Europe without Switzerland;hydrogen cracking, APME;hydrogen, liquid;RER
+37;35;hydrogen production, gaseous, petroleum refinery operation;hydrogen, gaseous;RoW;hydrogen cracking, APME;hydrogen, liquid;RoW
+37;35;hydrogen production, gaseous, petroleum refinery operation;hydrogen, gaseous;ZA;hydrogen cracking, APME;hydrogen, liquid;RoW
+37;35;hydrogen production, gaseous, petroleum refinery operation;hydrogen, gaseous;IN;hydrogen cracking, APME;hydrogen, liquid;RoW
+37;35;hydrogen production, gaseous, petroleum refinery operation;hydrogen, gaseous;BR;hydrogen cracking, APME;hydrogen, liquid;RoW
+37;35;market for tap water;tap water;IN;;;RoW
+37;35;steel production, electric, low-alloyed;steel, low-alloyed;Europe without Switzerland and Austria;;;RER
+37;35;reinforcing steel production;reinforcing steel;Europe without Austria;;;RER
+37;35;smelting of copper concentrate, sulfide ore;copper, anode;RoW;smelting and refining of nickel ore;copper concentrate, sulfide ore;GLO
+37;35;market for nylon 6;nylon 6;RoW;;;GLO
+37;35;market for copper, anode;copper, anode;GLO;market for copper;copper;GLO
+37;35;market for transport, freight, sea, tanker for petroleum;transport, freight, sea, tanker for petroleum;GLO;transport, freight, sea, transoceanic tanker;transport, freight, sea, transoceanic tanker;
+37;35;market for water, decarbonised;water, decarbonised;RoW;market for water, decarbonised, at user;water, decarbonised, at user;GLO
+37;35;transport, freight, sea, container ship;transport, freight, sea, container ship;GLO;transport, freight, sea, transoceanic ship;transport, freight, sea, transoceanic ship;
+37;35;market for nickel, class 1;nickel, class 1;GLO;market for nickel, 99.5%;nickel, 99.5%;
+35;36;market for transport, freight, sea, transoceanic tanker;transport, freight, sea, transoceanic tanker;GLO;market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas;transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas;
+35;36;market for water, decarbonised, at user;water, decarbonised, at user;GLO;market for water, decarbonised;water, decarbonised;DE
+35;36;market for water, completely softened, from decarbonised water, at user;water, completely softened, from decarbonised water, at user;GLO;market for water, completely softened;water, completely softened;RER
+35;36;market for concrete block;concrete block;GLO;;;DE
+35;36;steel production, electric, low-alloyed;steel, low-alloyed;Europe without Switzerland and Austria;;;RER
+35;36;reinforcing steel production;reinforcing steel;Europe without Austria;;;RER
+35;36;market for steam, in chemical industry;steam, in chemical industry;GLO;;;RoW
+35;36;zinc-lead mine operation;zinc concentrate;GLO;market for zinc concentrate;;
+35;36;platinum group metal mine operation, ore with high rhodium content;nickel, 99.5%;ZA;platinum group metal, extraction and refinery operations;nickel, 99.5%;
+35;36;market for aluminium oxide;aluminium oxide;GLO;market for aluminium oxide, metallurgical;aluminium oxide, metallurgical;IAI Area, EU27 & EFTA
+35;37;market for transport, freight, sea, transoceanic tanker;transport, freight, sea, transoceanic tanker;GLO;market for transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas;transport, freight, sea, tanker for liquid goods other than petroleum and liquefied natural gas;
+35;37;market for water, decarbonised, at user;water, decarbonised, at user;GLO;market for water, decarbonised;water, decarbonised;DE
+35;37;market for water, completely softened, from decarbonised water, at user;water, completely softened, from decarbonised water, at user;GLO;market for water, completely softened;water, completely softened;RER
+35;37;market for concrete block;concrete block;GLO;;;DE
+37;35;steel production, electric, low-alloyed;steel, low-alloyed;Europe without Switzerland and Austria;;;RER
+35;37;steel production, electric, low-alloyed;steel, low-alloyed;RER;;;Europe without Switzerland and Austria
+35;37;reinforcing steel production;reinforcing steel;Europe without Austria;;;RER
+35;37;smelting of copper concentrate, sulfide ore;copper, anode;RoW;smelting and refining of nickel ore;copper concentrate, sulfide ore;GLO
+35;37;market for steam, in chemical industry;steam, in chemical industry;GLO;;;RoW
+35;37;zinc-lead mine operation;zinc concentrate;GLO;market for zinc concentrate;;
+35;37;platinum group metal mine operation, ore with high rhodium content;nickel, 99.5%;ZA;platinum group metal, extraction and refinery operations;nickel, 99.5%;
+35;37;market for aluminium oxide;aluminium oxide;GLO;market for aluminium oxide, metallurgical;aluminium oxide, metallurgical;IAI Area, EU27 & EFTA
+35;37;market for copper;copper;GLO;market for copper, anode;copper, anode;
+35;37;nickel mine operation, sulfidic ore;nickel, 99.5%;GLO;market for nickel, class 1;nickel, class 1;
+35;37;market for ammonia, liquid;ammonia, liquid;RER;market for ammonia, anhydrous, liquid;ammonia, anhydrous, liquid;
+35;37;plywood production, for outdoor use;plywood, for outdoor use;RER;market for plywood;plywood;
+37;36;steel production, electric, low-alloyed;steel, low-alloyed;Europe without Switzerland and Austria;;;RER
+37;36;reinforcing steel production;reinforcing steel;Europe without Austria;;;RER
+37;36;smelting of copper concentrate, sulfide ore;copper, anode;RoW;market for copper;copper;GLO
+37;36;market for copper, anode;copper, anode;GLO;market for copper;copper;GLO
+37;36;market for nickel, class 1;nickel, class 1;GLO;market for nickel, 99.5%;nickel, 99.5%;
+36;37;market for copper;copper;GLO;market for copper, anode;copper, anode;
+36;37;market for cellulose fibre, inclusive blowing in;cellulose fibre, inclusive blowing in;GLO;market for cellulose fibre;cellulose fibre;RoW
+36;37;nickel mine operation, sulfidic ore;nickel, 99.5%;GLO;market for nickel, class 1;nickel, class 1;
+36;37;plywood production, for outdoor use;plywood, for outdoor use;RER;market for plywood;plywood;
+36;37;market for nickel, 99.5%;nickel, 99.5%;GLO;market for nickel, class 1;nickel, class 1;
+35;37;market for urea, as N;urea, as N;GLO;market for urea;urea;RER
+36;37;market for urea, as N;urea, as N;GLO;market for urea;urea;RER
+35;37;market for ammonium sulfate, as N;ammonium sulfate, as N;GLO;market for ammonium sulfate;ammonium sulfate;RER
+36;37;market for ammonium sulfate, as N;ammonium sulfate, as N;GLO;market for ammonium sulfate;ammonium sulfate;RER
+35;37;market for natural gas, from medium pressure network (0.1-1 bar), at service station;natural gas, from medium pressure network (0.1-1 bar), at service station;GLO;market for natural gas, medium pressure, vehicle grade;natural gas, medium pressure, vehicle grade;
+36;37;market for natural gas, from medium pressure network (0.1-1 bar), at service station;natural gas, from medium pressure network (0.1-1 bar), at service station;GLO;market for natural gas, medium pressure, vehicle grade;natural gas, medium pressure, vehicle grade;
+35;37;market for potassium sulfate, as K2O;potassium sulfate, as K2O;GLO;market for potassium sulfate;potassium sulfate;RER
+36;37;market for potassium sulfate, as K2O;potassium sulfate, as K2O;GLO;market for potassium sulfate;potassium sulfate;RER
+35;37;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO;market group for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;RER
+36;37;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO;market group for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;RER
+35;37;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO;market group for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;RER
+36;37;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO;market group for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;RER
+35;37;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO;market group for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;RER
+36;37;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO;market group for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;RER

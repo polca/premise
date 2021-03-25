@@ -29,13 +29,13 @@ More specifically, **premise** will apply a series of transformation functions t
 
 In the latest version (0.1.7), the following transformation functions are available:
 
-* **update_electricity_to_iam_data()**: alignment of regional electricity production mixes as well as efficiencies for a number of
+* **update_electricity()**: alignment of regional electricity production mixes as well as efficiencies for a number of
   electricity production technologies, including Carbon Capture and Storage technologies.
 * **update_vehicles()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
   including penetration of bio- and synthetic fuels.
-* **update_cement_to_iam_data()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
+* **update_cement()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
   fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
-* **update_steel_to_iam_data()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
+* **update_steel()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
 * **update_solar_PV()**: adjustment of solar PV modules with projected developments reported in `Bauer et al. <https://www.psi.ch/sites/default/files/import/ta/PublicationTab/Final-Report-BFE-Project.pdf>`_
 
 However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
@@ -68,17 +68,18 @@ Additionally, a number of inventories for emerging technologies are added upon t
 * electricity production using various fuels (including biomass and biogas) with Carbon Capture and Storage (CCS) `Volkart et al. 2013 <https://doi.org/10.1016/j.ijggc.2013.03.003>`_
 * hydrogen production from electrolysis from different world regions,
 * hydrogen production from steam methane reforming (SMR) and auto-thermal reforming (ATR) of natural gas and biogas, with and without CCS `Antonini et al. 2020 <https://doi.org/10.1039/D0SE00222D>`_
-* hydrogen production from coal gasification `Antonini et al. 2020 <https://doi.org/10.1039/D0SE00222D>`_
-* hydrogen production from woody biomass gasification, with and without CCS `Antonini et al. 2020 <https://doi.org/10.1039/D0SE00222D>`_
-* synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrolchemical methanation (gas) processes,
-  using direct air capture (DAC) `Zhang et al. 2019 <https://doi.org/10.1039/C9SE00986H>`_
+* hydrogen production from coal gasification `Simons, Bauer. 2011 <https://doi.org/10.1017/CBO9781139018036.006>`_
+* hydrogen production from woody biomass gasification, with and without CCS `Antonini et al. 2021 (preprint) <https://chemrxiv.org/articles/preprint/Hydrogen_from_Wood_Gasification_with_CCS_-_a_Technoenvironmental_Analysis_of_Production_and_Use_as_Transport_Fuel/13213553/1>`_
+* synthetic fuels from Fischer-Tropsh (diesel), Methanol-to-liquid (gasoline) and electrochemical methanation (gas) processes,
+  using direct air capture (DAC) `Zhang et al. 2019 <https://doi.org/10.1039/C9SE00986H>`_, `Hank et al. 2019 <https://doi.org/10.1039/C9SE00658C>`_,
+  `van der Giesen et al. 2014 <https://doi.org/10.1021/es500191g>`_, Terlouw et al. 2021.
 * passenger car inventories from the library `carculator <https://github.com/romainsacchi/carculator>`_
 * medium and heavy duty trucks from the library `carculator_truck <https://github.com/romainsacchi/carculator_truck>`_
 
 
 Requirements
 ------------
-* Python language interpreter 3.x
+* Python language interpreter **3.9**
 * License for ecoinvent 3
 * Some IAM output files come with the library ("REMIND_xxx.mif" for REMIND, "IMAGE_xxxx.xlsx" for IMAGE)
   and are located by default in the subdirectory "/data/iam_output_files".
@@ -122,7 +123,7 @@ preparation (e.g., synthetic fuels) and transport (e.g., passenger cars and truc
 
 After this, the following transformation functions can be applied to the database.
 
-update_electricity_to_iam_data()
+update_electricity()
 ********************************
 
 Main contributors
@@ -176,7 +177,7 @@ Main contributor
 1. Electric vehicles
 If passenger cars and/or truck inventories have been added upon the database creation, `update_vehicles()` will link
 the electricity supply dataset these vehicles are using for battery charging or hydrogen production to the new
-low voltage electricity markets created by `update_electricity_to_iam_data()`.
+low voltage electricity markets created by `update_electricity()`.
 
 2. Internal combustion engine vehicles
 If passenger cars and/or truck inventories have been added upon the database creation, `update_vehicles()` will link
@@ -186,7 +187,7 @@ the fuel supply of conventional, bio- and synthetic fuel to the closest geograph
 Fleet projections from the IAM are used to build markets for passenger cars and trucks. Once these markets are built,
 they replace existing markets and link back to transport-consuming activities.
 
-update_cement_to_iam_data()
+update_cement()
 ***************************
 
 Main contributor
@@ -234,7 +235,7 @@ and year, in order to consider the use of supplementary cimentitious materials (
 Finally, it re-links all the ecoinvent activities that consume cement  to the newly created cement market datasets
 (mostly concrete production markets).
 
-update_steel_to_iam_data()
+update_steel()
 **************************
 
 Main contributors

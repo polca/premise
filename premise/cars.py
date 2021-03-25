@@ -11,18 +11,18 @@ class Cars:
     based on IAM output data.
 
     :ivar db: ecoinvent database in list-of-dict format
-    :ivar rmd: IAM output data
-    :ivar scenario: IAM scenario identifier
+    :ivar iam_data: IAM output data
+    :ivar pathway: IAM pathway identifier
     :ivar year: year for the current analysis
     :ivar model: str. "remind" or "image"
 
     """
 
-    def __init__(self, db, rmd, scenario, year, model):
+    def __init__(self, db, iam_data, pathway, year, model):
         self.db = db
-        self.rmd = rmd
+        self.iam_data = iam_data
         self.geo = Geomap(model=model)
-        self.scenario = scenario
+        self.pathway = pathway
         self.year = year
         self.model = model
 
@@ -56,7 +56,7 @@ class Cars:
         """
         print("Re-linking local electricity supply for all EV and FCEV activities")
 
-        for region in self.rmd.regions:
+        for region in self.iam_data.regions:
             try:
                 supply = ws.get_one(
                     self.db,
@@ -100,7 +100,7 @@ class Cars:
             if len(possible_producers) == 1:
                 selected_producer = possible_producers[0]
 
-            if len(possible_producers) > 1:
+            elif len(possible_producers) > 1:
                 possible_locations = tuple([p["location"] for p in possible_producers])
                 print(("Multiple potential producers for {} found in {}, "
                        "using activity from {}").format(
@@ -113,8 +113,7 @@ class Cars:
 
                 print("We will use the following location: {}".format(selected_producer["location"]))
 
-            if len(possible_producers) == 0:
-
+            else:
                 selected_producer = None
 
             return selected_producer
@@ -132,7 +131,7 @@ class Cars:
                     self.db,
                     ws.equals("name", name)))
                 if len(producers) == 0:
-                    raise ValueError("No producers found for {}.")
+                    raise ValueError("No producers found for {}.".format(name))
                 prod = producers[0]
                 # we can leave things as they are since the existing
                 # supply is the default supply
@@ -165,7 +164,7 @@ class Cars:
             }
         }
 
-        for region in self.rmd.regions:
+        for region in self.iam_data.regions:
             try:
                 supply = {
                     ftype: ws.get_one(
@@ -203,7 +202,7 @@ class Cars:
 
                 new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Gasoline, synthetic, from methanol, at fuelling station")
+                    "Gasoline, synthetic, from MTG, hydrogen from electrolysis, energy allocation, at fuelling station")
 
                 supply_search = {
                     "gasoline": {

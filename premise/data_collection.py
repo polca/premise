@@ -14,14 +14,14 @@ class IAMDataCollection:
     """
     Class that extracts data from IAM output files.
 
-    :ivar scenario: name of a IAM scenario
-    :vartype scenario: str
+    :ivar pathway: name of a IAM pathway
+    :vartype pathway: str
 
     """
 
-    def __init__(self, model, scenario, year, filepath_iam_files):
+    def __init__(self, model, pathway, year, filepath_iam_files):
         self.model = model
-        self.scenario = scenario
+        self.pathway = pathway
         self.year = year
         self.filepath_iam_files = filepath_iam_files
         self.data = self.get_iam_data()
@@ -112,8 +112,8 @@ class IAMDataCollection:
 
         """
 
-        file_ext = {"remind": self.model + "_" + self.scenario + ".mif",
-                    "image": self.model + "_" + self.scenario + ".xls"}
+        file_ext = {"remind": self.model + "_" + self.pathway + ".mif",
+                    "image": self.model + "_" + self.pathway + ".xlsx"}
 
         filepath = Path(self.filepath_iam_files) / file_ext[self.model]
 
@@ -141,6 +141,7 @@ class IAMDataCollection:
 
         if len(df.columns == 20):
             df.drop(columns=df.columns[-1], inplace=True)
+
         df.columns = df.columns.astype(int)
         df = df.reset_index()
 
@@ -182,10 +183,10 @@ class IAMDataCollection:
         gains_emi = pd.read_csv(
             filepath,
             skiprows=4,
-            names=["year", "region", "GAINS", "pollutant", "scenario", "factor"],
+            names=["year", "region", "GAINS", "pollutant", "pathway", "factor"],
         )
         gains_emi["unit"] = "Mt/TWa"
-        gains_emi = gains_emi[gains_emi.scenario == "SSP2"]
+        gains_emi = gains_emi[gains_emi.pathway == "SSP2"]
 
         sector_mapping = pd.read_csv(GAINS_TO_IAM_FILEPATH).drop(
             ["noef", "elasticity"], axis=1
@@ -194,7 +195,7 @@ class IAMDataCollection:
         gains_emi = (
             gains_emi.join(sector_mapping.set_index("GAINS"), on="GAINS")
             .dropna()
-            .drop(["scenario", "REMIND"], axis=1)
+            .drop(["pathway", "REMIND"], axis=1)
             .pivot_table(
                 index=["region", "GAINS", "pollutant", "unit"],
                 values="factor",
@@ -275,12 +276,12 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         else:
             # Interpolation between two periods
-            data_to_interp_from = self.data.loc[
+            data_to_return = self.data.loc[
                 :, list_technologies, :
             ] / self.data.loc[:, list_technologies, :].groupby("region").sum(
                 dim="variables"
             )
-            return data_to_interp_from.interp(year=self.year)
+            return data_to_return
 
     def get_iam_electricity_efficiencies(self, drop_hydrogen=True):
         """

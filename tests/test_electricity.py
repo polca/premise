@@ -35,9 +35,9 @@ def get_db():
     return dummy_db, version
 
 
-rdc = IAMDataCollection(model="remind", scenario='SSP2-Base', year=2012, filepath_iam_files=DATA_DIR / "iam_output_files")
+rdc = IAMDataCollection(model="remind", pathway='SSP2-Base', year=2012, filepath_iam_files=DATA_DIR / "iam_output_files")
 db, _ = get_db()
-el = Electricity(db=db, rmd=rdc, model="remind", scenario='SSP2-Base', year=2012)
+el = Electricity(db=db, iam_data=rdc, model="remind", pathway='SSP2-Base', year=2012)
 
 
 def test_losses():
