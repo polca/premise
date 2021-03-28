@@ -521,34 +521,56 @@ class Cement:
         list_ds = [(ds["name"], ds["reference product"], ds["location"]) for ds in self.db]
 
         for act in self.db:
-            for exc in act['exchanges']:
-                if "name" in exc and "product" in exc and exc["type"] == "technosphere":
-                    if (exc['name'], exc.get('product')) == (name, ref_product):
-                        if (name, ref_product, act["location"]) in list_ds:
-                            exc["location"] = act["location"]
+            excs = [exc for exc in act["exchanges"]
+                    if (exc['name'], exc.get('product')) == (name, ref_product)
+                    and exc['type'] == 'technosphere']
+
+            amount = 0
+            for exc in excs:
+                amount += exc["amount"]
+                act["exchanges"].remove(exc)
+
+            if amount > 0:
+                new_exc = {
+                    'name': name,
+                    'product': ref_product,
+                    'amount': amount,
+                    'type': 'technosphere',
+                    'unit': 'kilogram'
+                }
+
+                if (name, ref_product, act["location"]) in list_ds:
+                    new_exc["location"] = act["location"]
+                else:
+                    try:
+                        new_loc = self.geo.ecoinvent_to_iam_location(act["location"])
+                    except KeyError:
+                        new_loc = ""
+
+                    if (name, ref_product, new_loc) in list_ds:
+                        new_exc["location"] = new_loc
+                    else:
+                        # new locations in ei3.7, not yet defined in `constructive_geometries`
+                        if act["location"] in ("North America without Quebec", "US only"):
+                            new_loc = self.geo.ecoinvent_to_iam_location("US")
+                            new_exc["location"] = new_loc
+
+                        elif act["location"] in ("RoW", "GLO"):
+                            new_loc = self.geo.ecoinvent_to_iam_location("CN")
+                            new_exc["location"] = new_loc
+
+                        elif act["location"] in ("RER w/o RU"):
+                            new_loc = self.geo.ecoinvent_to_iam_location("RER")
+                            new_exc["location"] = new_loc
+
                         else:
-                            try:
-                                new_loc = self.geo.ecoinvent_to_iam_location(act["location"])
-                            except KeyError:
-                                new_loc = ""
+                            print("Issue with {} used in {}: cannot find the IAM equivalent for "
+                                  "the location {}".format(name, act["name"], act["location"]))
 
-                            if (name, ref_product, new_loc) in list_ds:
-                                exc["location"] = new_loc
-                            else:
-                                # new location in ei3.7, not yet defined in `constructive_geometries`
-                                if act["location"] in ("North America without Quebec", "US only"):
-                                    new_loc = self.geo.ecoinvent_to_iam_location("US")
-                                    exc["location"] = new_loc
+                act["exchanges"].append(
+                    new_exc
+                )
 
-                                elif act["location"] in ("RoW", "GLO"):
-                                    new_loc = self.geo.ecoinvent_to_iam_location("CN")
-                                    exc["location"] = new_loc
-                                else:
-                                    print("Issue with {} used in {}: cannot find the IAM equiavlent for "
-                                          "the location {}".format(name, act["name"], act["location"]))
-
-                        if "input" in exc:
-                            exc.pop("input")
 
     def adjust_clinker_ratio(self, d_act):
         """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach

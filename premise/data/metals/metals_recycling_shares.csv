@@ -1,0 +1,97 @@
+metal;year;scenario;type;battery_type;share
+Lithium, ion;2025;no reuse;pyro;NCX;0.03
+Lithium, ion;2035;no reuse;pyro;NCX;0.17
+Lithium, ion;2045;no reuse;pyro;NCX;0.28
+Cobalt;2025;no reuse;pyro;NCX;0.04
+Cobalt;2035;no reuse;pyro;NCX;0.19
+Cobalt;2045;no reuse;pyro;NCX;0.36
+Nickel;2025;no reuse;pyro;NCX;0.02
+Nickel;2035;no reuse;pyro;NCX;0.15
+Nickel;2045;no reuse;pyro;NCX;0.29
+Manganese;2025;no reuse;pyro;NCX;0.05
+Manganese;2035;no reuse;pyro;NCX;0.18
+Manganese;2045;no reuse;pyro;NCX;0.32
+Aluminium;2025;no reuse;pyro;NCX;0
+Aluminium;2035;no reuse;pyro;NCX;0
+Aluminium;2045;no reuse;pyro;NCX;0
+Copper;2025;no reuse;pyro;NCX;0.03
+Copper;2035;no reuse;pyro;NCX;0.17
+Copper;2045;no reuse;pyro;NCX;0.28
+Graphite;2025;no reuse;pyro;NCX;0
+Graphite;2035;no reuse;pyro;NCX;0
+Graphite;2045;no reuse;pyro;NCX;0
+Silicium;2025;no reuse;pyro;NCX;0
+Silicium;2035;no reuse;pyro;NCX;0
+Silicium;2045;no reuse;pyro;NCX;0
+Lithium, ion;2025;reuse;pyro;NCX;0.01
+Lithium, ion;2035;reuse;pyro;NCX;0.04
+Lithium, ion;2045;reuse;pyro;NCX;0.13
+Cobalt;2025;reuse;pyro;NCX;0.01
+Cobalt;2035;reuse;pyro;NCX;0.06
+Cobalt;2045;reuse;pyro;NCX;0.17
+Nickel;2025;reuse;pyro;NCX;0.01
+Nickel;2035;reuse;pyro;NCX;0.04
+Nickel;2045;reuse;pyro;NCX;0.12
+Manganese;2025;reuse;pyro;NCX;0.01
+Manganese;2035;reuse;pyro;NCX;0.07
+Manganese;2045;reuse;pyro;NCX;0.18
+Aluminium;2025;reuse;pyro;NCX;0
+Aluminium;2035;reuse;pyro;NCX;0
+Aluminium;2045;reuse;pyro;NCX;0
+Copper;2025;reuse;pyro;NCX;0.01
+Copper;2035;reuse;pyro;NCX;0.06
+Copper;2045;reuse;pyro;NCX;0.15
+Graphite;2025;reuse;pyro;NCX;0
+Graphite;2035;reuse;pyro;NCX;0
+Graphite;2045;reuse;pyro;NCX;0
+Silicium;2025;reuse;pyro;NCX;0
+Silicium;2035;reuse;pyro;NCX;0
+Silicium;2045;reuse;pyro;NCX;0
+Lithium, ion;2025;no reuse;hydro;NCX;0.03
+Lithium, ion;2035;no reuse;hydro;NCX;0.17
+Lithium, ion;2045;no reuse;hydro;NCX;0.28
+Cobalt;2025;no reuse;hydro;NCX;0.04
+Cobalt;2035;no reuse;hydro;NCX;0.19
+Cobalt;2045;no reuse;hydro;NCX;0.36
+Nickel;2025;no reuse;hydro;NCX;0.02
+Nickel;2035;no reuse;hydro;NCX;0.15
+Nickel;2045;no reuse;hydro;NCX;0.29
+Manganese;2025;no reuse;hydro;NCX;0.06
+Manganese;2035;no reuse;hydro;NCX;0.2
+Manganese;2045;no reuse;hydro;NCX;0.35
+Aluminium;2025;no reuse;hydro;NCX;0.03
+Aluminium;2035;no reuse;hydro;NCX;0.17
+Aluminium;2045;no reuse;hydro;NCX;0.28
+Copper;2025;no reuse;hydro;NCX;0.03
+Copper;2035;no reuse;hydro;NCX;0.17
+Copper;2045;no reuse;hydro;NCX;0.28
+Graphite;2025;no reuse;hydro;NCX;0.03
+Graphite;2035;no reuse;hydro;NCX;0.18
+Graphite;2045;no reuse;hydro;NCX;0.29
+Silicium;2025;no reuse;hydro;NCX;0.01
+Silicium;2035;no reuse;hydro;NCX;0.08
+Silicium;2045;no reuse;hydro;NCX;0.2
+Lithium, ion;2025;reuse;hydro;NCX;0.01
+Lithium, ion;2035;reuse;hydro;NCX;0.04
+Lithium, ion;2045;reuse;hydro;NCX;0.13
+Cobalt;2025;reuse;hydro;NCX;0.01
+Cobalt;2035;reuse;hydro;NCX;0.06
+Cobalt;2045;reuse;hydro;NCX;0.17
+Nickel;2025;reuse;hydro;NCX;0.01
+Nickel;2035;reuse;hydro;NCX;0.04
+Nickel;2045;reuse;hydro;NCX;0.12
+Manganese;2025;reuse;hydro;NCX;0.02
+Manganese;2035;reuse;hydro;NCX;0.07
+Manganese;2045;reuse;hydro;NCX;0.19
+Aluminium;2025;reuse;hydro;NCX;0.02
+Aluminium;2035;reuse;hydro;NCX;0.11
+Aluminium;2045;reuse;hydro;NCX;0.21
+Copper;2025;reuse;hydro;NCX;0.01
+Copper;2035;reuse;hydro;NCX;0.06
+Copper;2045;reuse;hydro;NCX;0.15
+Graphite;2025;reuse;hydro;NCX;0.01
+Graphite;2035;reuse;hydro;NCX;0.05
+Graphite;2045;reuse;hydro;NCX;0.14
+Silicium;2025;reuse;hydro;NCX;0
+Silicium;2035;reuse;hydro;NCX;0.02
+Silicium;2045;reuse;hydro;NCX;0.07

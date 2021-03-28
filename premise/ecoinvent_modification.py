@@ -150,6 +150,7 @@ LIST_IMAGE_REGIONS = [
     "USA",
     "WAF",
     "WEU",
+    'World'
 ]
 
 LIST_TRANSF_FUNC = [
@@ -701,6 +702,7 @@ class NewDatabase:
         :return: filepath of the "scenarios difference file"
         """
 
+        #return build_superstructure_db(self.db, self.scenarios, db_name=name, fp=filepath)
         self.db = build_superstructure_db(self.db, self.scenarios, db_name=name, fp=filepath)
 
         print("Done!")

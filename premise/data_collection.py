@@ -25,7 +25,7 @@ class IAMDataCollection:
         self.year = year
         self.filepath_iam_files = filepath_iam_files
         self.data = self.get_iam_data()
-        self.regions = [r for r in self.data.region.values if r != "World"]
+        self.regions = [r for r in self.data.region.values]
 
         self.gains_data = self.get_gains_data()
         self.gnr_data = self.get_gnr_data()

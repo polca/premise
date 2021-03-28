@@ -1380,13 +1380,39 @@ class TruckInventory(BaseInventoryImport):
                         )
 
                     except ws.NoResults:
-                        new_supplier = ws.get_one(
-                            self.db,
-                            *[
-                                ws.equals("name", search_for + ", " + str(self.db_year)),
-                                ws.contains("reference product", "transport, freight, lorry")
-                            ]
-                        )
+
+                        search_for = "transport, freight, lorry, fleet average"
+
+                        try:
+                            new_supplier = ws.get_one(
+                                self.db,
+                                *[
+                                    ws.equals("name", search_for + ", " + str(self.db_year)),
+                                    ws.contains("reference product", "transport, freight, lorry")
+                                ]
+                            )
+
+                        except ws.NoResults:
+                            print(f"no results for {exc['name']} in {exc['location']}")
+
+                            print("available trucks")
+                            for dataset in self.db:
+                                if "transport, freight, lorry" in dataset["name"]:
+                                    print(dataset["name"], dataset["location"])
+
+                        except ws.MultipleResults:
+                            # If multiple trucks are available, but none of the correct region,
+                            # we pick a a truck from the "World" region
+                            print("found several suppliers")
+                            new_supplier = ws.get_one(
+                                self.db,
+                                *[
+                                    ws.equals("name", search_for + ", " + str(self.db_year)),
+                                    ws.equals("location", "World"),
+                                    ws.contains("reference product", "transport, freight, lorry")
+                                ]
+                            )
+
 
                     exc["name"] = new_supplier["name"]
                     exc["location"] = new_supplier["location"]

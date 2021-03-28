@@ -15,6 +15,7 @@ CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.c
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
 
 STEEL_RECYCLING_SHARES = DATA_DIR / "steel" / "steel_recycling_shares.csv"
+METALS_RECYCLING_SHARES = DATA_DIR / "metals" / "metals_recycling_shares.csv"
 
 REMIND_TO_FUELS = DATA_DIR / "steel" / "remind_fuels_correspondance.txt"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
@@ -137,6 +138,22 @@ def get_steel_recycling_rates(year):
         .interp(year=year)
     )
 
+def get_metals_recycling_rates(year):
+    """
+    Return an array with the average shares for some metals,
+    as given by: https://static-content.springer.com/esm/art%3A10.1038%2Fs43246-020-00095-x/MediaObjects/43246_2020_95_MOESM1_ESM.pdf
+    for 2025, 2035, 2045.
+    :return: xarray
+    :return:
+    """
+    df = pd.read_csv(METALS_RECYCLING_SHARES, sep=";")
+
+    return (
+        df.groupby(["metal", "year", "type"])
+        .mean()["share"]
+        .to_xarray()
+        .interp(year=year)
+    )
 
 def rev_index(inds):
     return {v: k for k, v in inds.items()}
@@ -292,7 +309,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         # List activities that are in teh new database but not in the original one
         # As well as exchanges that are present in both databases but with a different value
         list_modified = (i for i in new if i not in original or new[i] != original[i])
-        # Also add activities from teh original database that are not present in
+        # Also add activities from the original database that are not present in
         # the new one
         list_new = (i for i in original if i not in new)
 
@@ -316,6 +333,29 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                     + " - "
                     + str(scenario["year"])
                 ] = new.get(i, 0)
+
+    # some scenarios may have not been modified
+    # and that means that exchanges might be absent
+    # from `modified`
+    # so we need to manually add them
+    # and set the exchange value similar to that
+    # of the original database
+
+    list_scenarios = ["original"] + [s["model"]
+                    + " - "
+                    + s["pathway"]
+                    + " - "
+                    + str(s["year"]) for s in scenarios]
+
+    for m in modified:
+        for s in list_scenarios:
+            if s not in modified[m].keys():
+                # if it is a production exchange
+                # the value should be -1
+                if m[1] == m[0]:
+                    modified[m][s] = -1
+                else:
+                    modified[m][s] = modified[m]["original"]
 
     columns = [
         "from activity name",
@@ -344,39 +384,47 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     l_modified = [columns]
 
     for m in modified:
-        if m[1][2] == "biosphere3":
-            d = [
-                m[1][0],
-                "",
-                "",
-                m[1][1],
-                m[1][2],
-                "",
-                m[0][0],
-                m[0][1],
-                m[0][3],
-                "",
-                db_name,
-                "",
-            ]
-        else:
-            d = [
-                m[1][0],
-                m[1][1],
-                m[1][3],
-                "",
-                db_name,
-                "",
-                m[0][0],
-                m[0][1],
-                m[0][3],
-                "",
-                db_name,
-                "",
-            ]
-        for n in modified[m]:
-            d.append(modified[m][n])
-        l_modified.append(d)
+        # Avoid production flow types
+        if not (m[1] == m[0] and any(v for v in modified[m].values() if v == -1)):
+
+            if m[1][2] == "biosphere3":
+                d = [
+                    m[1][0],
+                    "",
+                    "",
+                    m[1][1],
+                    m[1][2],
+                    "",
+                    m[0][0],
+                    m[0][1],
+                    m[0][3],
+                    "",
+                    db_name,
+                    "",
+                ]
+            else:
+                d = [
+                    m[1][0],
+                    m[1][1],
+                    m[1][3],
+                    "",
+                    db_name,
+                    "",
+                    m[0][0],
+                    m[0][1],
+                    m[0][3],
+                    "",
+                    db_name,
+                    "",
+                ]
+            for s in list_scenarios:
+                # we do not want a zero here,
+                # as it would render the matrix undetermined
+                if m[1] == m[0] and modified[m][s] == 0:
+                    d.append(1)
+                else:
+                    d.append(modified[m][s])
+            l_modified.append(d)
 
     if fp is not None:
         filepath = Path(fp)
@@ -417,8 +465,6 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             if isinstance(exc[1][1], tuple):
                 exc_to_add.append(
                     {
-                        "uncertainty type": 0,
-                        "loc": 0,
                         "amount": 0,
                         "input": (
                             "biosphere3",
@@ -436,11 +482,8 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             else:
                 exc_to_add.append(
                     {
-                        "uncertainty type": 0,
-                        "loc": 0,
                         "amount": 0,
                         "type": "technosphere",
-                        "production volume": 0,
                         "product": exc[1][1],
                         "name": exc[1][0],
                         "unit": exc[1][4],
@@ -500,7 +543,6 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             else:
 
                 if act[1] == act[0]:
-
                     act_to_add["exchanges"].append(
                         {
                             "uncertainty type": 0,
