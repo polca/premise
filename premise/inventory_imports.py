@@ -1033,6 +1033,15 @@ class CarculatorInventory(BaseInventoryImport):
             i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
                       or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
 
+            # we want to rename teh passenger car transport dataset
+            # by removing the year in the name
+            for x in i.data:
+                if "transport, passenger car, fleet average" in x["name"]:
+                    x["name"] = x["name"][:-6]
+                    for e in x["exchanges"]:
+                        if e["type"] == "production":
+                            e["name"] = x["name"]
+
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
             for x in i.data:
@@ -1286,6 +1295,15 @@ class TruckInventory(BaseInventoryImport):
             i.data = [x for x in i.data if "transport, " not in x["name"]
                       or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
 
+            # we want to rename teh passenger car transport dataset
+            # by removing the year in the name
+            for x in i.data:
+                if "transport, freight, lorry, " in x["name"] and "market" not in x["name"]:
+                    x["name"] = x["name"][:-6]
+                    for e in x["exchanges"]:
+                        if e["type"] == "production":
+                            e["name"] = x["name"]
+
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
@@ -1354,7 +1372,7 @@ class TruckInventory(BaseInventoryImport):
                     new_supplier = ws.get_one(
                         self.db,
                         *[
-                            ws.equals("name", search_for + ", " + str(self.db_year)),
+                            ws.equals("name", search_for),
                             ws.equals("location", self.geomap.ecoinvent_to_iam_location(ds["location"])),
                             ws.contains("reference product", "transport, freight, lorry")
                         ]
@@ -1373,7 +1391,7 @@ class TruckInventory(BaseInventoryImport):
                         new_supplier = ws.get_one(
                             self.db,
                             *[
-                                ws.equals("name", search_for + ", " + str(self.db_year)),
+                                ws.equals("name", search_for),
                                 ws.equals("location", self.geomap.ecoinvent_to_iam_location(ds["location"])),
                                 ws.contains("reference product", "transport, freight, lorry")
                             ]
@@ -1387,7 +1405,7 @@ class TruckInventory(BaseInventoryImport):
                             new_supplier = ws.get_one(
                                 self.db,
                                 *[
-                                    ws.equals("name", search_for + ", " + str(self.db_year)),
+                                    ws.equals("name", search_for),
                                     ws.contains("reference product", "transport, freight, lorry")
                                 ]
                             )
@@ -1407,7 +1425,7 @@ class TruckInventory(BaseInventoryImport):
                             new_supplier = ws.get_one(
                                 self.db,
                                 *[
-                                    ws.equals("name", search_for + ", " + str(self.db_year)),
+                                    ws.equals("name", search_for),
                                     ws.equals("location", "World"),
                                     ws.contains("reference product", "transport, freight, lorry")
                                 ]
