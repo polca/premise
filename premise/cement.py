@@ -725,6 +725,9 @@ class Cement:
         print('Log of deleted cement datasets saved in {}'.format(DATA_DIR / 'logs'))
         print('Log of created cement datasets saved in {}'.format(DATA_DIR / 'logs'))
 
+        if not os.path.exists(DATA_DIR / "logs"):
+            os.makedirs(DATA_DIR / "logs")
+
         with open(DATA_DIR / "logs/log deleted cement datasets {} {} {}-{}.csv".format(
                 self.model, self.scenario, self.year, date.today()
             ), "w") as csv_file:
