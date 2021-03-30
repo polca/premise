@@ -244,6 +244,9 @@ class Steel:
     def update_pollutant_emissions(self, ds):
         """
         Update pollutant emissions based on GAINS data.
+        We apply a correction factor defined as being equal to
+        the emission level in the year in question, compared
+        to 2020
         :return:
         """
 
@@ -253,30 +256,47 @@ class Steel:
             ):
             remind_emission_label = self.emissions_map[exc["name"]]
 
-            try:
-                remind_emission = self.iam_data.steel_emissions.loc[
+            if ds["location"] in self.iam_data.steel_emissions.region:
+                correction_factor = (self.iam_data.steel_emissions.loc[
                     dict(
-                        region=ds["location"],
+                        region=ds["location"] if ds["location"] != "World" else "CHA",
                         pollutant=remind_emission_label
                     )
-                ].values.item(0)
-            except KeyError:
-                # TODO: fix this.
-                # GAINS does not have a 'World' region, hence we use China as a temporary fix
-                remind_emission = self.iam_data.steel_emissions.loc[
+                ].interp(year=self.year)
+                                     /
+                                     self.iam_data.steel_emissions.loc[
                     dict(
-                        region='CHA',
-                        pollutant=remind_emission_label
+                        region=ds["location"] if ds["location"] != "World" else "CHA",
+                        pollutant=remind_emission_label,
+                        year=2020
                     )
-                ].values.item(0)
+                ]).values.item(0)
 
-
-            if exc["amount"] == 0:
-                wurst.rescale_exchange(
-                    exc, remind_emission / 1, remove_uncertainty=True
-                )
             else:
-                wurst.rescale_exchange(exc, remind_emission / exc["amount"])
+                correction_factor = (self.iam_data.steel_emissions.loc[
+                                         dict(
+                                             region=self.geo.ecoinvent_to_iam_location(ds["location"]),
+                                             pollutant=remind_emission_label
+                                         )
+                                     ].interp(year=self.year)
+                                     /
+                                     self.iam_data.steel_emissions.loc[
+                                         dict(
+                                             region=self.geo.ecoinvent_to_iam_location(ds["location"]),
+                                             pollutant=remind_emission_label,
+                                             year=2020
+                                         )
+                                     ]).values.item(0)
+
+            if correction_factor != 0 and ~np.isnan(correction_factor):
+                if exc["amount"] == 0:
+                    wurst.rescale_exchange(
+                        exc, correction_factor / 1, remove_uncertainty=True
+                    )
+                else:
+                    wurst.rescale_exchange(exc, correction_factor)
+
+                exc["comment"] = "This exchange has been modified based on GAINS projections for the steel sector by `premise`."
         return ds
 
     def adjust_recycled_steel_share(self, dict_act):
@@ -632,14 +652,14 @@ class Steel:
             # 2. Adjust the share of secondary steel on the steel market
 
             # Update hot pollutant emissions
-            # print("Update hot pollutant emissions for steel production activities.")
-            # for ds in ws.get_many(
-            #     self.db,
-            #         *[ws.either(ws.contains("name", "steel production, converter"),
-            #                     ws.contains("name", "steel production, electric")),
-            #           ws.contains("reference product", "steel")]
-            # ):
-            #     self.update_pollutant_emissions(ds)
+            print("Update hot pollutant emissions for steel production activities.")
+            for ds in ws.get_many(
+                self.db,
+                    *[ws.either(ws.contains("name", "steel production, converter"),
+                                ws.contains("name", "steel production, electric")),
+                      ws.contains("reference product", "steel")]
+            ):
+                self.update_pollutant_emissions(ds)
             #
             #
 

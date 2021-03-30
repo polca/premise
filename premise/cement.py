@@ -203,39 +203,60 @@ class Cement:
     def update_pollutant_emissions(self, ds):
         """
         Update pollutant emissions based on GAINS data.
+        We apply a correction factor defined as being equal to
+        the emission level in the year in question, compared
+        to 2020
         :return:
         """
 
         # Update biosphere exchanges according to GAINS emission values
         for exc in ws.biosphere(
                 ds, ws.either(*[ws.contains("name", x) for x in self.emissions_map])
-            ):
-            iam_emission_label = self.emissions_map[exc["name"]]
+        ):
+            remind_emission_label = self.emissions_map[exc["name"]]
 
-            try:
-                iam_emission = self.iam_data.cement_emissions.loc[
-                    dict(
-                        region=ds["location"],
-                        pollutant=iam_emission_label
-                    )
-                ].values.item(0)
-            except KeyError:
-                # TODO: fix this.
-                # GAINS does not have a 'World' region, hence we use Europe as a temporary fix
-                iam_emission = self.iam_data.cement_emissions.loc[
-                    dict(
-                        region=self.geo.iam_to_GAINS_region("World"),
-                        pollutant=iam_emission_label
-                    )
-                ].values.item(0)
+            if ds["location"] in self.iam_data.cement_emissions.region or ds["location"] == "World":
+                correction_factor = (self.iam_data.cement_emissions.loc[
+                                         dict(
+                                             region=ds["location"] if ds["location"] != "World" else "CHA",
+                                             pollutant=remind_emission_label
+                                         )
+                                     ].interp(year=self.year)
+                                     /
+                                     self.iam_data.cement_emissions.loc[
+                                         dict(
+                                             region=ds["location"] if ds["location"] != "World" else "CHA",
+                                             pollutant=remind_emission_label,
+                                             year=2020
+                                         )
+                                     ]).values.item(0)
 
-
-            if exc["amount"] == 0:
-                wurst.rescale_exchange(
-                    exc, iam_emission / 1, remove_uncertainty=True
-                )
             else:
-                wurst.rescale_exchange(exc, iam_emission / exc["amount"])
+                correction_factor = (self.iam_data.cement_emissions.loc[
+                                         dict(
+                                             region=self.geo.ecoinvent_to_iam_location(ds["location"]),
+                                             pollutant=remind_emission_label
+                                         )
+                                     ].interp(year=self.year)
+                                     /
+                                     self.iam_data.cement_emissions.loc[
+                                         dict(
+                                             region=self.geo.ecoinvent_to_iam_location(ds["location"]),
+                                             pollutant=remind_emission_label,
+                                             year=2020
+                                         )
+                                     ]).values.item(0)
+
+            if correction_factor != 0 and ~np.isnan(correction_factor):
+                if exc["amount"] == 0:
+                    wurst.rescale_exchange(
+                        exc, correction_factor / 1, remove_uncertainty=True
+                    )
+                else:
+                    wurst.rescale_exchange(exc, correction_factor)
+
+                exc[
+                    "comment"] = "This exchange has been modified based on GAINS projections for the cement sector by `premise`."
         return ds
 
     def build_clinker_market_datasets(self):
@@ -504,7 +525,8 @@ class Cement:
                         ) + v["comment"]
 
         # TODO: not sure about the GAINS unit. Check first.
-        #d_act_clinker = {k:self.update_pollutant_emissions(v) for k,v in d_act_clinker.items()}
+        print("Adjusting emissions of hot pollutants for clinker production datasets...")
+        d_act_clinker = {k:self.update_pollutant_emissions(v) for k,v in d_act_clinker.items()}
 
         return d_act_clinker
 
