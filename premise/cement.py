@@ -215,7 +215,7 @@ class Cement:
         ):
             remind_emission_label = self.emissions_map[exc["name"]]
 
-            if ds["location"] in self.iam_data.cement_emissions.region or ds["location"] == "World":
+            if self.model == "remind" and ds["location"] in self.iam_data.cement_emissions.region or ds["location"] == "World":
                 correction_factor = (self.iam_data.cement_emissions.loc[
                                          dict(
                                              region=ds["location"] if ds["location"] != "World" else "CHA",
@@ -231,6 +231,21 @@ class Cement:
                                          )
                                      ]).values.item(0)
 
+            elif self.model == "image" and self.geo.iam_to_iam_region(ds["location"]) in self.iam_data.cement_emissions.region:
+                correction_factor = (self.iam_data.cement_emissions.loc[
+                                         dict(
+                                             region=self.geo.iam_to_iam_region(ds["location"]),
+                                             pollutant=remind_emission_label
+                                         )
+                                     ].interp(year=self.year)
+                                     /
+                                     self.iam_data.cement_emissions.loc[
+                                         dict(
+                                             region=self.geo.iam_to_iam_region(ds["location"]),
+                                             pollutant=remind_emission_label,
+                                             year=2020
+                                         )
+                                     ]).values.item(0)
             else:
                 correction_factor = (self.iam_data.cement_emissions.loc[
                                          dict(

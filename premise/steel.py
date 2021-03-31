@@ -35,6 +35,7 @@ class Steel:
         self.fuels_co2 = get_fuel_co2_emission_factors()
         self.remind_fuels = get_correspondance_remind_to_fuels()
         self.geo = Geomap(model=model)
+        self.model = model
         mapping = InventorySet(self.db)
         self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
         self.fuel_map = mapping.generate_fuel_map()
@@ -256,7 +257,7 @@ class Steel:
             ):
             remind_emission_label = self.emissions_map[exc["name"]]
 
-            if ds["location"] in self.iam_data.steel_emissions.region or ds["location"] == "World":
+            if ds["location"] in self.iam_data.steel_emissions.region.values or ds["location"] == "World":
                 correction_factor = (self.iam_data.steel_emissions.loc[
                     dict(
                         region=ds["location"] if ds["location"] != "World" else "CHA",
@@ -273,16 +274,22 @@ class Steel:
                 ]).values.item(0)
 
             else:
+
+                if self.model == "remind":
+                    loc = self.geo.ecoinvent_to_iam_location(ds["location"])
+                else:
+                    loc = self.geo.iam_to_iam_region(self.geo.ecoinvent_to_iam_location(ds["location"]))
+
                 correction_factor = (self.iam_data.steel_emissions.loc[
                                          dict(
-                                             region=self.geo.ecoinvent_to_iam_location(ds["location"]),
+                                             region="CHA" if loc == "World" else loc,
                                              pollutant=remind_emission_label
                                          )
                                      ].interp(year=self.year)
                                      /
                                      self.iam_data.steel_emissions.loc[
                                          dict(
-                                             region=self.geo.ecoinvent_to_iam_location(ds["location"]),
+                                             region="CHA" if loc == "World" else loc,
                                              pollutant=remind_emission_label,
                                              year=2020
                                          )

@@ -104,6 +104,8 @@ SUPPORTED_PATHWAYS = [
     "SSP2-PkBudg900",
     "SSP2-PkBudg1100",
     "SSP2-PkBudg1300",
+    "SSP2-RCP26",
+    "SSP2-RCP19",
     "static",
 ]
 
@@ -566,17 +568,18 @@ class NewDatabase:
     def update_cement(self):
         print("\n/////////////////// CEMENT ////////////////////")
 
-        if len(
-                [
-                    v
-                    for v in self.scenarios[0]["external data"].data.variables.values
-                    if "cement" in v.lower() and "production" in v.lower()
-                ]
-        )>0:
+        for scenario in self.scenarios:
+            if len(
+                    [
+                        v
+                        for v in scenario["external data"].data.variables.values
+                        if "cement" in v.lower() and "production" in v.lower()
+                    ]
+            ) > 0:
 
-            # Industry module present in IAM file
+                # Industry module present in IAM file
+                print("IAM data for the cement sector available. We will use those.")
 
-            for scenario in self.scenarios:
                 if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
 
                     cement = Cement(
@@ -590,12 +593,16 @@ class NewDatabase:
 
                     scenario["database"] = cement.add_datasets_to_database()
 
-        else:
+            else:
 
-            # No industry module present in IAM file.
-            # Hence, we follow IEA's projections instead
+                # No industry module present in IAM file.
+                # Hence, we follow IEA's projections instead
+                print(
+                    "The IAM pathway chosen does not contain any data related to the cement sector.\n"
+                    "But we will nevertheless use IEA's projections for the cement sector instead.\n"
+                    "We will also adjust the emission of hot pollutants according to GAINS projections"
+                )
 
-            for scenario in self.scenarios:
                 if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
                     cement = Cement(
                         db=scenario["database"],
@@ -613,18 +620,18 @@ class NewDatabase:
     def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
 
-        if (
-            len(
-                [
-                    v
-                    for v in self.scenarios[0]["external data"].data.variables.values
-                    if "steel" in v.lower() and "production" in v.lower()
-                ]
-            )
-            > 0
-        ):
-
-            for scenario in self.scenarios:
+        for scenario in self.scenarios:
+            if (
+                len(
+                    [
+                        v
+                        for v in scenario["external data"].data.variables.values
+                        if "steel" in v.lower() and "production" in v.lower()
+                    ]
+                )
+                > 0
+            ):
+                print("IAM data for the steel sector available. We will use those.")
                 if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
                     steel = Steel(
@@ -634,13 +641,13 @@ class NewDatabase:
                         year=scenario["year"],
                     )
                     scenario["database"] = steel.generate_activities()
-        else:
-            print(
-                "The IAM pathway chosen does not contain any data related to the steel sector.\n"
-                "The creation of IAM region-specific steel production activities and markets will be skipped."
-                "But we will nevertheless adjust hot pollutant emissions and the expected share of recycled steel."
-            )
-            for scenario in self.scenarios:
+            else:
+                print(
+                    "The IAM pathway chosen does not contain any data related to the steel sector.\n"
+                    "The creation of IAM region-specific steel production activities and markets will be skipped."
+                    "But we will nevertheless adjust hot pollutant emissions and the expected share of recycled steel."
+                )
+
                 if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
                     steel = Steel(
