@@ -20,7 +20,8 @@ class InventorySet:
 
     material_filters = {
         "steel, primary": {"fltr": "steel production, converter", "mask": "hot rolled"},
-        "steel, secondary": {"fltr": "steel production, electric", "mask": "hot rolled"},
+        "steel, secondary": {"fltr": "steel production, electric",
+                             "mask": {"name": "hot rolled", "reference product": "heat"}},
         "concrete": {"fltr": "market for concrete,"},
         "copper": {"fltr": "market for copper", "filter_exact": True},
         "aluminium": {
@@ -389,7 +390,7 @@ class InventorySet:
             "fltr": [
                     "electricity production, oil"
             ],
-            "mask": {"name":"aluminium", "reference product":"heat"}
+            "mask": {"name": "aluminium", "reference product": "heat"}
         },
         # TODO: find batter fit than this. Nothing better available in ecoinvent.
         "Oil CC": {

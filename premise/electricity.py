@@ -1086,7 +1086,9 @@ class Electricity:
         # Filter all activities that consume electricity
 
         for ds in ws.get_many(
-            self.db, ws.exclude(ws.contains("name", "market group for electricity"))
+            self.db,
+                ws.exclude(ws.contains("name", "market group for electricity")),
+                ws.doesnt_contain_any("name", ["cobalt industry", "aluminium industry", "coal mining"])
         ):
 
             for name in [

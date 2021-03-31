@@ -566,19 +566,49 @@ class NewDatabase:
     def update_cement(self):
         print("\n/////////////////// CEMENT ////////////////////")
 
-        for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
+        if len(
+                [
+                    v
+                    for v in self.scenarios[0]["external data"].data.variables.values
+                    if "cement" in v.lower() and "production" in v.lower()
+                ]
+        )>0:
 
-                cement = Cement(
-                    db=scenario["database"],
-                    model=scenario["model"],
-                    scenario=scenario["pathway"],
-                    iam_data=scenario["external data"],
-                    year=scenario["year"],
-                    version=self.version,
-                )
+            # Industry module present in IAM file
 
-                scenario["database"] = cement.add_datasets_to_database()
+            for scenario in self.scenarios:
+                if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
+
+                    cement = Cement(
+                        db=scenario["database"],
+                        model=scenario["model"],
+                        scenario=scenario["pathway"],
+                        iam_data=scenario["external data"],
+                        year=scenario["year"],
+                        version=self.version,
+                    )
+
+                    scenario["database"] = cement.add_datasets_to_database()
+
+        else:
+
+            # No industry module present in IAM file.
+            # Hence, we follow IEA's projections instead
+
+            for scenario in self.scenarios:
+                if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
+                    cement = Cement(
+                        db=scenario["database"],
+                        model=scenario["model"],
+                        scenario=scenario["pathway"],
+                        iam_data=scenario["external data"],
+                        year=scenario["year"],
+                        version=self.version,
+                    )
+
+                    scenario["database"] = cement.add_datasets_to_database(industry_module_present=False)
+
+
 
     def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
