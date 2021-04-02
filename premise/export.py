@@ -183,13 +183,6 @@ class Export:
 
     def export_db_to_matrices(self):
 
-        if self.filepath is not None:
-            self.filepath = Path(self.filepath) / self.model / self.scenario / str(self.year)
-        else:
-            self.filepath = (
-                DATA_DIR / "export" / self.model / self.scenario / str(self.year)
-            )
-
 
         if not os.path.exists(self.filepath):
             os.makedirs(self.filepath)

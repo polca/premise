@@ -135,6 +135,8 @@ class IAMDataCollection:
                 "Secondary Energy",
                 "Efficiency",
                 "Final Energy",
+                "Production",
+                "Emissions"
             )
         else:
             raise ValueError("The IAM model name {} is not valid. Currently supported: 'remind' or 'image'".format(self.model))

@@ -278,6 +278,316 @@ class Cement:
         # Fetch clinker market activities and store them in a dictionary
         return self.fetch_proxies('market for clinker', 'clinker')
 
+    def fuel_efficiency_factor(self, loc):
+        """
+
+        :param loc: location of the exchange
+        :return: correction factor
+        :rtype: float
+        """
+
+        if self.model == "remind":
+            # REMIND
+            final_energy = "FE|Industry|Cement"
+            prod = "Production|Industry|Cement"
+        else:
+            # IMAGE
+            final_energy = [
+                "Final Energy|Industry|Cement|Electricity",
+                "Final Energy|Industry|Cement|Gases",
+                "Final Energy|Industry|Cement|Heat",
+                "Final Energy|Industry|Cement|Hydrogen",
+                "Final Energy|Industry|Cement|Liquids",
+                "Final Energy|Industry|Cement|Solids",
+            ]
+            prod = "Production|Cement"
+
+        return ((self.iam_data.data.loc[
+                                  dict(
+                                      region=loc,
+                                      variables=final_energy
+                                  )
+                              ].interp(year=self.year)
+                              /
+                              self.iam_data.data.loc[
+                                  dict(
+                                      region=loc,
+                                      variables=prod,
+                                  )
+                              ].interp(year=self.year)) /
+                             (self.iam_data.data.loc[
+                                  dict(
+                                      region=loc,
+                                      variables=final_energy,
+                                      year=2020
+                                  )
+                              ]
+                              /
+                              self.iam_data.data.loc[
+                                  dict(
+                                      region=loc,
+                                      variables=prod,
+                                      year=2020
+                                  )
+                              ])
+                             ).values.item(0)
+
+    def get_carbon_capture_rate(self, loc):
+        """
+        Returns the carbon capture rate as indicated by the IAM
+        It is calculated as CO2 captured / (CO2 captured + CO2 emitted)
+
+        :param loc: location of the dataset
+        :return: rate of carbon capture
+        :rtype: float
+        """
+
+        if self.model == "remind":
+            if all(x in self.iam_data.data.variables.values
+                   for x in ['Emi|CCO2|FFaI|Industry|Cement',
+                             'Emi|CO2|FFaI|Industry|Cement']):
+                rate = (self.iam_data.data.sel(
+                    variables='Emi|CCO2|FFaI|Industry|Cement',
+                    region=loc
+                ).interp(year=self.year) / self.iam_data.data.sel(
+                    variables=['Emi|CCO2|FFaI|Industry|Cement',
+                               'Emi|CO2|FFaI|Industry|Cement'],
+                    region=loc
+                ).interp(year=self.year).sum(dim="variables")).values
+            else:
+                rate = 0
+        else:
+            if all(x in self.iam_data.data.variables.values
+                   for x in ['Emissions|CO2|Industry|Cement|Gross',
+                             'Emissions|CO2|Industry|Cement|Sequestered']):
+                rate = (self.iam_data.data.sel(
+                    variables='Emissions|CO2|Industry|Cement|Sequestered',
+                    region=loc
+                ).interp(year=self.year) / self.iam_data.data.sel(
+                    variables=['Emissions|CO2|Industry|Cement|Gross',
+                               'Emissions|CO2|Industry|Cement|Sequestered'],
+                    region=loc
+                ).interp(year=self.year).sum(dim="variables")).values
+            else:
+                rate = 0
+
+        return rate
+
+    def get_carbon_capture_energy_inputs(self, amount_CO2, loc):
+        """
+        Returns the additional electricity and heat exchanges to add to the dataset
+        associated with the carbon capture
+
+        :param amount_CO2: initial amount of CO2 emitted
+        :param loc: location of the cement production dataset
+        :return: carbon capture rate, list of exchanges
+        :rtype: float, list
+        """
+
+        rate = self.get_carbon_capture_rate(loc)
+
+        new_exchanges = list()
+
+        if rate > 0:
+            # Electricity: 0.024 kWh/kg CO2 for capture, 0.146 kWh/kg CO2 for compression
+            # Form Volkart et al. 2013
+            carbon_capture_electricity = (amount_CO2 * rate) * (0.146 + 0.024)
+
+            try:
+                new_supplier = ws.get_one(
+                    self.db,
+                    ws.equals("name", 'market group for electricity, medium voltage'),
+                    ws.equals("location", loc),
+                    ws.equals("reference product", 'electricity, medium voltage')
+                )
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 1,
+                        "amount": carbon_capture_electricity,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": 'electricity, medium voltage',
+                        "name": 'market group for electricity, medium voltage',
+                        "unit": 'kilowatt hour',
+                        "location": new_supplier["location"],
+                    }
+                )
+
+            except ws.NoResults:
+                # maybe update_electricity has not been applied
+                try:
+                    new_supplier = ws.get_one(
+                        self.db,
+                        ws.equals("name", 'market group for electricity, medium voltage'),
+                        ws.either(
+                            *[ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
+                                "location", l)
+                              for l in self.geo.iam_to_ecoinvent_location(loc)
+                              ]),
+                        ws.equals("reference product", 'electricity, medium voltage')
+                    )
+                    new_exchanges = [
+                        {
+                            "uncertainty type": 0,
+                            "loc": 1,
+                            "amount": carbon_capture_electricity,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "product": 'electricity, medium voltage',
+                            "name": 'market group for electricity, medium voltage',
+                            "unit": 'kilowatt hour',
+                            "location": new_supplier["location"],
+                        }
+                    ]
+                except ws.MultipleResults:
+                    # We have several potential electricity suppliers
+                    # We will look up their respective production volumes
+                    # And include them proportionally to it
+
+                    possible_suppliers = ws.get_many(
+                        self.db,
+                        ws.equals("name", 'market group for electricity, medium voltage'),
+                        ws.either(
+                            *[ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
+                                "location", l)
+                              for l in self.geo.iam_to_ecoinvent_location(loc)
+                              ]),
+                        ws.equals("reference product", 'electricity, medium voltage')
+                    )
+                    possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
+
+                    new_exchanges = []
+                    for supplier in possible_suppliers:
+                        new_exchanges.append(
+                            {
+                                "uncertainty type": 0,
+                                "loc": 1,
+                                "amount": carbon_capture_electricity * possible_suppliers[supplier],
+                                "type": "technosphere",
+                                "production volume": 0,
+                                "product": 'electricity, medium voltage',
+                                "name": 'market group for electricity, medium voltage',
+                                "unit": 'kilowatt hour',
+                                "location": supplier[1],
+                            }
+                        )
+
+                except ws.NoResults:
+                    # there's no "market group for electricity" matching the location
+                    # we try with "market for electricity"
+                    try:
+                        new_supplier = ws.get_one(
+                            self.db,
+                            ws.equals("name", 'market for electricity, medium voltage'),
+                            ws.either(*[
+                                ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
+                                    "location", l)
+                                for l in self.geo.iam_to_ecoinvent_location(loc)
+                            ]),
+                            ws.equals("reference product", 'electricity, medium voltage')
+                        )
+                        new_exchanges = [
+                            {
+                                "uncertainty type": 0,
+                                "loc": 1,
+                                "amount": carbon_capture_electricity,
+                                "type": "technosphere",
+                                "production volume": 0,
+                                "product": 'electricity, medium voltage',
+                                "name": 'market for electricity, medium voltage',
+                                "unit": 'kilowatt hour',
+                                "location": new_supplier["location"],
+                            }
+                        ]
+                    except ws.MultipleResults:
+                        # We have several potential electricity suppliers
+                        # We will look up their respective production volumes
+                        # And include them proportionally to it
+
+                        possible_suppliers = ws.get_many(
+                            self.db,
+                            ws.equals("name", 'market for electricity, medium voltage'),
+                            ws.either(*[
+                                ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
+                                    "location", l)
+                                for l in self.geo.iam_to_ecoinvent_location(loc)
+                            ]),
+                            ws.equals("reference product", 'electricity, medium voltage')
+                        )
+                        possible_suppliers = self.get_shares_from_production_volume(
+                            possible_suppliers)
+
+                        new_exchanges = []
+                        for supplier in possible_suppliers:
+                            new_exchanges.append(
+                                {
+                                    "uncertainty type": 0,
+                                    "loc": 1,
+                                    "amount": carbon_capture_electricity * possible_suppliers[
+                                        supplier],
+                                    "type": "technosphere",
+                                    "production volume": 0,
+                                    "product": 'electricity, medium voltage',
+                                    "name": 'market for electricity, medium voltage',
+                                    "unit": 'kilowatt hour',
+                                    "location": supplier[1],
+                                }
+                            )
+
+            # Heat, as steam: 3.48 MJ/kg CO2 captured, minus excess heat generated on site
+
+            if self.model == "remind":
+                # REMIND
+                final_energy = "FE|Industry|Cement"
+                prod = "Production|Industry|Cement"
+            else:
+                # IMAGE
+                final_energy = [
+                    "Final Energy|Industry|Cement|Electricity",
+                    "Final Energy|Industry|Cement|Gases",
+                    "Final Energy|Industry|Cement|Heat",
+                    "Final Energy|Industry|Cement|Hydrogen",
+                    "Final Energy|Industry|Cement|Liquids",
+                    "Final Energy|Industry|Cement|Solids",
+                ]
+                prod = "Production|Cement"
+
+            excess_heat_generation = self.iam_data.gnr_data.sel(
+                variables='Share of recovered energy, per ton clinker',
+                region=self.geo.iam_to_iam_region(loc) if self.model == "image" else loc
+            ).values * (self.iam_data.data.loc[
+                            dict(
+                                region=loc,
+                                variables=final_energy
+                            )
+                        ].interp(year=self.year).sum()
+                        /
+                        self.iam_data.data.loc[
+                            dict(
+                                region=loc,
+                                variables=prod,
+                            )
+                        ].interp(year=self.year)).values.item(0)
+
+            carbon_capture_heat = ((amount_CO2 * rate) * 3.48) - excess_heat_generation
+
+            new_exchanges.append(
+                {
+                    "uncertainty type": 0,
+                    "loc": 1,
+                    "amount": carbon_capture_heat,
+                    "type": "technosphere",
+                    "production volume": 0,
+                    "product": 'heat, from steam, in chemical industry',
+                    "name": 'steam production, as energy carrier, in chemical industry',
+                    "unit": 'megajoule',
+                    "location": 'RoW',
+                }
+            )
+
+        return rate, new_exchanges
+
     def build_clinker_production_datasets(self, industry_module_present):
         """
         Builds clinker production datasets for each IAM region.
@@ -295,48 +605,20 @@ class Cement:
         # Fuel exchanges to remove
         list_fuels = ["diesel", "coal", "lignite", "coke", "fuel", "meat", "gas", "oil", "electricity", "wood", "waste"]
 
-
-
         if industry_module_present:
 
             for k, v in d_act_clinker.items():
 
-                for exc in v["exchanges"]:
-                    if "type" not in exc:
-                        print(exc)
-
                 # the correction factor applied to all fuel/electricity input is
                 # equal to the ration fuel/output in the year in question
                 # divided by the ratio fuel/output in 2020
-                correction_factor = ((self.iam_data.data.loc[
-                                          dict(
-                                              region=v["location"],
-                                              variables="FE|Industry|Cement"
-                                          )
-                                      ].interp(year=self.year)
-                                      /
-                                      self.iam_data.data.loc[
-                                          dict(
-                                              region=v["location"],
-                                              variables="Production|Industry|Cement",
-                                          )
-                                      ].interp(year=self.year)) /
-                                     (self.iam_data.data.loc[
-                                          dict(
-                                              region=v["location"],
-                                              variables="FE|Industry|Cement",
-                                              year=2020
-                                          )
-                                      ]
-                                      /
-                                      self.iam_data.data.loc[
-                                          dict(
-                                              region=v["location"],
-                                              variables="Production|Industry|Cement",
-                                              year=2020
-                                          )
-                                      ])
-                                     ).values.item(0)
+
+                correction_factor = self.fuel_efficiency_factor(v["location"])
+
+                # just in case the IAM gives weird stuff
+                # we assume that things cannot get worse in the future
+                if correction_factor > 1:
+                    correction_factor = 1
 
                 for exc in ws.technosphere(v,
                                            ws.either(*[ws.contains("name", x) for x in list_fuels])):
@@ -360,14 +642,15 @@ class Cement:
                     # is limestone calcination (525 kg/t clinker) which has not been reduced
                     # so we should only reduce the CO2 associated to fuel combustion
 
+                    correction_factor = (((exc["amount"] - .525) * correction_factor) + .525) / exc["amount"]
+
                     if correction_factor != 0 and ~np.isnan(correction_factor):
                         if exc["amount"] == 0:
                             wurst.rescale_exchange(
-                                exc, correction_factor * ((exc["amount"] - .525) / exc["amount"])
-                                     / 1, remove_uncertainty=True
+                                exc, correction_factor / 1, remove_uncertainty=True
                             )
                         else:
-                            wurst.rescale_exchange(exc, correction_factor * ((exc["amount"] - .525) / exc["amount"]))
+                            wurst.rescale_exchange(exc, correction_factor)
 
                         exc[
                             "comment"] = "This exchange has been modified based on REMIND projections for " \
@@ -376,146 +659,11 @@ class Cement:
                     # Add carbon capture-related energy exchanges
                     # Carbon capture rate: share of capture of total CO2 emitted
                     # Note: only if variables exist in IAM data
-                    if all(x in self.iam_data.data.variables.values
-                           for x in ['Emi|CCO2|FFaI|Industry|Cement',
-                                     'Emi|CO2|FFaI|Industry|Cement']):
-                        carbon_capture_rate = (self.iam_data.data.sel(
-                            variables='Emi|CCO2|FFaI|Industry|Cement',
-                            region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
-                        ).interp(year=self.year) / self.iam_data.data.sel(
-                            variables=['Emi|CCO2|FFaI|Industry|Cement',
-                                       'Emi|CO2|FFaI|Industry|Cement'],
-                            region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
-                        ).interp(year=self.year).sum(dim="variables")).values
-                    else:
-                        carbon_capture_rate = 0
+
+                    carbon_capture_rate, new_exchanges = self.get_carbon_capture_energy_inputs(exc["amount"], v["location"])
 
                     if carbon_capture_rate > 0:
-
-                        inital_co2 = ws.biosphere(v, ws.contains("name", "Carbon dioxide, fossil"))[0]["amount"]
-                        # CO2 effectively captured per kg of clinker
-                        carbon_capture_abs = carbon_capture_rate * inital_co2
-
-                        # Electricity: 0.024 kWh/kg CO2 for capture, 0.146 kWh/kg CO2 for compression
-                        carbon_capture_electricity = carbon_capture_abs * (0.146 + 0.024)
-
-                        try:
-                            new_supplier = ws.get_one(
-                                self.db,
-                                ws.equals("name", 'market group for electricity, medium voltage'),
-                                ws.equals("location", k),
-                                ws.equals("reference product", 'electricity, medium voltage')
-                            )
-                            new_exchanges = [
-                                {
-                                    "uncertainty type": 0,
-                                    "loc": 1,
-                                    "amount": carbon_capture_electricity,
-                                    "type": "technosphere",
-                                    "production volume": 0,
-                                    "product": 'electricity, medium voltage',
-                                    "name": 'market group for electricity, medium voltage',
-                                    "unit": 'kilowatt hour',
-                                    "location": new_supplier["location"],
-                                }
-                            ]
-
-
-                        except ws.NoResults:
-                            # maybe update_electricity has not been applied
-                            try:
-                                new_supplier = ws.get_one(
-                                    self.db,
-                                    ws.equals("name", 'market group for electricity, medium voltage'),
-                                    ws.either(*[ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
-                                        "location", l)
-                                                for l in self.geo.iam_to_ecoinvent_location(k)
-                                                ]),
-                                    ws.equals("reference product", 'electricity, medium voltage')
-                                )
-                                new_exchanges = [
-                                    {
-                                        "uncertainty type": 0,
-                                        "loc": 1,
-                                        "amount": carbon_capture_electricity,
-                                        "type": "technosphere",
-                                        "production volume": 0,
-                                        "product": 'electricity, medium voltage',
-                                        "name": 'market group for electricity, medium voltage',
-                                        "unit": 'kilowatt hour',
-                                        "location": new_supplier["location"],
-                                    }
-                                ]
-                            except ws.MultipleResults:
-                                # We have several potential electricity suppliers
-                                # We will look up their respective production volumes
-                                # And include them proportionally to it
-
-                                possible_suppliers = ws.get_many(
-                                    self.db,
-                                    ws.equals("name", 'market group for electricity, medium voltage'),
-                                    ws.either(*[ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
-                                        "location", l)
-                                                for l in self.geo.iam_to_ecoinvent_location(k)
-                                                ]),
-                                    ws.equals("reference product", 'electricity, medium voltage')
-                                )
-                                possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
-
-                                new_exc = []
-                                for supplier in possible_suppliers:
-                                    new_exc.append(
-                                        {
-                                            "uncertainty type": 0,
-                                            "loc": 1,
-                                            "amount": carbon_capture_electricity * possible_suppliers[supplier],
-                                            "type": "technosphere",
-                                            "production volume": 0,
-                                            "product": 'electricity, medium voltage',
-                                            "name": 'market group for electricity, medium voltage',
-                                            "unit": 'kilowatt hour',
-                                            "location": supplier[1],
-                                        }
-                                    )
-                                v["exchanges"].extend(new_exc)
-
-
-
-
-                        # Heat, as steam: 3.48 MJ/kg CO2 captured, minus excess heat generated on site
-                        excess_heat_generation = self.iam_data.gnr_data.sel(
-                            variables='Share of recovered energy, per ton clinker',
-                            region=self.geo.iam_to_iam_region(k) if self.model == "image" else k
-                        ).values * (self.iam_data.data.loc[
-                                          dict(
-                                              region=v["location"],
-                                              variables="FE|Industry|Cement"
-                                          )
-                                      ].interp(year=self.year)
-                                      /
-                                      self.iam_data.data.loc[
-                                          dict(
-                                              region=v["location"],
-                                              variables="Production|Industry|Cement",
-                                          )
-                                      ].interp(year=self.year)).values.item(0)
-
-                        carbon_capture_heat = (carbon_capture_abs * 3.48) - excess_heat_generation
-
-                        new_exchanges.append(
-                            {
-                                "uncertainty type": 0,
-                                "loc": 1,
-                                "amount": carbon_capture_heat,
-                                "type": "technosphere",
-                                "production volume": 0,
-                                "product": 'heat, from steam, in chemical industry',
-                                "name": 'steam production, as energy carrier, in chemical industry',
-                                "unit": 'megajoule',
-                                "location": 'RoW',
-                            }
-                        )
-
+                        exc["amount"] *= (1 - carbon_capture_rate)
                         v["exchanges"].extend(new_exchanges)
 
         else:
@@ -696,7 +844,6 @@ class Cement:
                                 }
                         ]
 
-
                     # Heat, as steam: 3.48 MJ/kg CO2 captured, minus excess heat generated on site
                     excess_heat_generation = self.iam_data.gnr_data.sel(
                         variables='Share of recovered energy, per ton clinker',
@@ -834,7 +981,6 @@ class Cement:
                 act["exchanges"].append(
                     new_exc
                 )
-
 
     def adjust_clinker_ratio(self, d_act):
         """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
