@@ -65,20 +65,30 @@ class Cars:
                         .format(self.year)),
                     ws.equals("location", region))
 
-                # replace electricity input
-                supply["exchanges"] = [
-                    e for e in supply["exchanges"] if e["type"] == "production"
-                ]
-                supply["exchanges"].append({
-                    "amount": 1.0,
-                    "location": region,
-                    "name": "market group for electricity, low voltage",
-                    "product": "electricity, low voltage",
-                    "tag": "energy chain",
-                    "type": "technosphere",
-                    "uncertainty type": 0,
-                    "unit": "kilowatt hour",
-                })
+
+                try:
+                    # we check first that the electricity market exists
+                    ws.get_one(
+                            self.db,
+                            ws.equals("name", "market group for electricity, low voltage"),
+                            ws.equals("location", region)
+                            )
+                    # replace electricity input
+                    supply["exchanges"] = [
+                        e for e in supply["exchanges"] if e["type"] == "production"
+                    ]
+                    supply["exchanges"].append({
+                        "amount": 1.0,
+                        "location": region,
+                        "name": "market group for electricity, low voltage",
+                        "product": "electricity, low voltage",
+                        "tag": "energy chain",
+                        "type": "technosphere",
+                        "uncertainty type": 0,
+                        "unit": "kilowatt hour",
+                    })
+                except ws.NoResults:
+                    pass
             except ws.NoResults:
                 pass
 

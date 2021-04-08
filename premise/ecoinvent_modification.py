@@ -22,13 +22,16 @@ from .cement import Cement
 from .steel import Steel
 from .cars import Cars
 from .export import Export
-from .utils import eidb_label, add_modified_tags
+from .utils import eidb_label, add_modified_tags, build_superstructure_db
 import wurst
 from pathlib import Path
 import copy
+import uuid
 import os
 import contextlib
 import pickle
+from datetime import date
+
 
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -101,6 +104,8 @@ SUPPORTED_PATHWAYS = [
     "SSP2-PkBudg900",
     "SSP2-PkBudg1100",
     "SSP2-PkBudg1300",
+    "SSP2-RCP26",
+    "SSP2-RCP19",
     "static",
 ]
 
@@ -147,6 +152,7 @@ LIST_IMAGE_REGIONS = [
     "USA",
     "WAF",
     "WEU",
+    'World'
 ]
 
 LIST_TRANSF_FUNC = [
@@ -192,7 +198,7 @@ def check_pathway_name(name, filepath, model):
 
         if (filepath / name_check).with_suffix(".mif").is_file():
             return name
-        elif (filepath / name_check).with_suffix(".xls").is_file():
+        elif (filepath / name_check).with_suffix(".xlsx").is_file():
             return name
         else:
             raise ValueError(
@@ -227,7 +233,6 @@ def check_year(year):
 
     return year
 
-
 def check_filepath(path):
     if not Path(path).is_dir():
         raise FileNotFoundError(f"The IAM output directory {path} could not be found.")
@@ -245,7 +250,6 @@ def check_exclude(list_exc):
         )
     else:
         return list_exc
-
 
 
 def check_fleet(fleet, model, vehicle_type):
@@ -339,7 +343,6 @@ def check_db_version(version):
     else:
         return version
 
-
 def check_scenarios(scenario):
 
     if not all(name in scenario for name in ["model", "pathway", "year"]):
@@ -376,7 +379,6 @@ def check_scenarios(scenario):
         scenario["trucks"] = False
 
     return scenario
-
 
 class NewDatabase:
     """
@@ -547,8 +549,6 @@ class NewDatabase:
 
             print("Done!\n")
 
-
-
     def update_electricity(self):
 
         print("\n/////////////////// ELECTRICITY ////////////////////")
@@ -569,6 +569,21 @@ class NewDatabase:
         print("\n/////////////////// CEMENT ////////////////////")
 
         for scenario in self.scenarios:
+            has_cement_data = False
+
+            if len(
+                    [
+                        v
+                        for v in scenario["external data"].data.variables.values
+                        if "cement" in v.lower() and "production" in v.lower()
+                    ]
+            ) > 0:
+                # Industry module present in IAM file
+                print("\nData specific to the cement sector detected!\n")
+                has_cement_data = True
+
+
+
             if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
 
                 cement = Cement(
@@ -580,48 +595,36 @@ class NewDatabase:
                     version=self.version,
                 )
 
-                scenario["database"] = cement.add_datasets_to_database()
+                scenario["database"] = cement.add_datasets_to_database(industry_module_present=has_cement_data)
 
     def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
 
-        if (
-            len(
-                [
-                    v
-                    for v in self.scenarios[0]["external data"].data.variables.values
-                    if "steel" in v.lower() and "production" in v.lower()
-                ]
-            )
-            > 0
-        ):
+        for scenario in self.scenarios:
+            has_steel_data = False
+            if (
+                len(
+                    [
+                        v
+                        for v in scenario["external data"].data.variables.values
+                        if "steel" in v.lower() and "production" in v.lower()
+                    ]
+                )
+                > 0
+            ):
+                print("\nData specific to the steel sector detected!\n")
+                has_steel_data = True
 
-            for scenario in self.scenarios:
-                if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
+            if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
-                    steel = Steel(
-                        db=scenario["database"],
-                        model=scenario["model"],
-                        iam_data=scenario["external data"],
-                        year=scenario["year"],
-                    )
-                    scenario["database"] = steel.generate_activities()
-        else:
-            print(
-                "The IAM pathway chosen does not contain any data related to the steel sector.\n"
-                "The creation of IAM region-specific steel production activities and markets will be skipped."
-                "But we will nevertheless adjust hot pollutant emissions and the expected share of recycled steel."
-            )
-            for scenario in self.scenarios:
-                if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
+                steel = Steel(
+                    db=scenario["database"],
+                    model=scenario["model"],
+                    iam_data=scenario["external data"],
+                    year=scenario["year"],
+                )
+                scenario["database"] = steel.generate_activities(industry_module_present=has_steel_data)
 
-                    steel = Steel(
-                        db=scenario["database"],
-                        model=scenario["model"],
-                        iam_data=scenario["external data"],
-                        year=scenario["year"],
-                    )
-                    scenario["database"] = steel.generate_activities(industry_module_present=False)
 
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")
@@ -654,8 +657,6 @@ class NewDatabase:
                     )
                     scenario["database"] = crs.update_cars()
 
-
-
     def update_trucks(self):
 
         print("\n/////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
@@ -679,7 +680,6 @@ class NewDatabase:
                        )
                     scenario["database"] = trucks.merge_inventory()
 
-
     def update_solar_PV(self):
         print("\n/////////////////// SOLAR PV ////////////////////")
 
@@ -701,6 +701,20 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
 
+    def write_superstructure_db_to_brightway(self, name=f"super_db_{date.today()}", filepath=None):
+        """
+        Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
+        :return: filepath of the "scenarios difference file"
+        """
+
+        self.db = build_superstructure_db(self.db, self.scenarios, db_name=name, fp=filepath)
+
+        print("Done!")
+
+        wurst.write_brightway2_database(
+            self.db,
+            name,
+        )
 
     def write_db_to_brightway(self, name=None):
         """
@@ -737,19 +751,39 @@ class NewDatabase:
 
         Exports the new database as a sparse matrix representation in csv files.
 
-
-        :param filepath: path provided by the user to store the exported matrices
-        :type filepath: str
+        :param filepath: path provided by the user to store the exported matrices.
+        If it is a string, the path is used as main directory from which
+        "iam model" / "pathway" / "year" subdirectories will be created.
+        If it is a sequence of strings, each string becomes the directory
+        under which the set of matrices is saved. If `filepath` is not provided,
+        "iam model" / "pathway" / "year" subdirectories are created under
+        "premise" / "data" / "export".
+        :type filepath: str or list
 
         """
+
+        if filepath is not None:
+            if isinstance(filepath, str):
+                filepath = [(
+                Path(filepath) / s["model"] / s["pathway"] / str(s["year"])
+                    ) for s in self.scenarios]
+            elif isinstance(filepath, list):
+                filepath = [Path(f) for f in filepath]
+            else:
+                raise TypeError(f"Expected a string or a sequence of strings for `filepath`, not {type(filepath)}.")
+        else:
+            filepath = [(
+                DATA_DIR / "export" / s["model"] / s["pathway"] / str(s["year"])
+            ) for s in self.scenarios]
+
         print("Write new database(s) to matrix.")
-        for scenario in self.scenarios:
+        for s, scenario in enumerate(self.scenarios):
             Export(
                 scenario["database"],
                 scenario["model"],
                 scenario["pathway"],
                 scenario["year"],
-                filepath,
+                filepath[s],
             ).export_db_to_matrices()
 
     def write_db_to_simapro(self, filepath=None):

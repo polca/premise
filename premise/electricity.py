@@ -872,7 +872,6 @@ class Electricity:
                         }
                     ]
 
-
                 else:
                     # this dataset is for a period of time
                     new_dataset = {
@@ -1084,49 +1083,51 @@ class Electricity:
         Does not return anything.
         """
 
-        # Filter all activities that consume high voltage electricity
+        # Filter all activities that consume electricity
 
         for ds in ws.get_many(
-            self.db, ws.exclude(ws.contains("name", "market group for electricity"))
+            self.db,
+                ws.exclude(ws.contains("name", "market group for electricity")),
+                ws.doesnt_contain_any("name", ["cobalt industry", "aluminium industry", "coal mining"])
         ):
 
-            for exc in ws.get_many(
-                ds["exchanges"],
-                *[
-                    ws.either(
-                        *[
-                            ws.contains("name", "market for electricity"),
-                            ws.contains("name", "electricity voltage transformation"),
-                            ws.contains("name", "market group for electricity"),
-                        ]
-                    ),
-                    ws.doesnt_contain_any("name", ["cobalt", "aluminium", "coal mining"])
-                ]
-            ):
-                if exc["type"] != "production" and exc["unit"] == "kilowatt hour":
-                    if "high" in exc["product"]:
-                        exc["name"] = "market group for electricity, high voltage"
-                        exc["product"] = "electricity, high voltage"
-                        exc["location"] = self.geo.ecoinvent_to_iam_location(
-                            exc["location"]
-                        )
-                    if "medium" in exc["product"]:
-                        exc["name"] = "market group for electricity, medium voltage"
-                        exc["product"] = "electricity, medium voltage"
-                        try:
-                            exc["location"] = self.geo.ecoinvent_to_iam_location(
-                                exc["location"]
-                            )
-                        except KeyError:
-                            print(exc)
-                    if "low" in exc["product"]:
-                        exc["name"] = "market group for electricity, low voltage"
-                        exc["product"] = "electricity, low voltage"
-                        exc["location"] = self.geo.ecoinvent_to_iam_location(
-                            exc["location"]
-                        )
-                if "input" in exc:
-                    exc.pop("input")
+            for name in [
+                ("market group for electricity, high voltage", "electricity, high voltage"),
+                ("market group for electricity, medium voltage", "electricity, medium voltage"),
+                ("market group for electricity, low voltage", "electricity, low voltage"),
+            ]:
+
+                excs = list(ws.get_many(
+                    ds["exchanges"],
+                    *[
+                        ws.either(
+                            *[
+                                ws.contains("name", name[1]),
+                                ws.equals("unit", "kilowatt hour"),
+                            ]
+                        ),
+                        ws.equals("type", "technosphere"),
+                        ws.doesnt_contain_any("name", ["cobalt", "aluminium", "coal mining"])
+                    ]
+                ))
+
+                amount = 0
+                for exc in excs:
+                    amount += exc["amount"]
+                    ds["exchanges"].remove(exc)
+
+                if amount > 0:
+                    new_exc = {
+                        'name': name[0],
+                        'product': name[1],
+                        'amount': amount,
+                        'type': 'technosphere',
+                        'unit': 'kilowatt hour',
+                        'location': self.geo.ecoinvent_to_iam_location(ds["location"])
+                    }
+
+                    ds["exchanges"].append(new_exc)
+
 
     def find_ecoinvent_fuel_efficiency(self, ds, fuel_filters):
         """
