@@ -370,6 +370,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         "to categories",
         "to database",
         "to key",
+        "flow type"
     ]
     columns.append("original")
     columns.extend(
@@ -401,6 +402,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                     "",
                     db_name,
                     "",
+                    "biosphere"
                 ]
             else:
                 d = [
@@ -416,6 +418,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                     "",
                     db_name,
                     "",
+                    "technosphere"
                 ]
             for s in list_scenarios:
                 # we do not want a zero here,
