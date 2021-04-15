@@ -1,7 +1,6 @@
 from premise import DATA_DIR
 from premise import NewDatabase
 from premise.cars import Cars
-import os
 import pytest
 import wurst
 import brightway2 as bw
@@ -12,7 +11,7 @@ REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
 # for local test runs
 remind_output_folder = Path(__file__).resolve().parent / "data"
 BW_PROJECT = "transport_lca_Budg1100_Conv"
-scenario = "Budg1100_Conv"
+scenario = "SSP2-PkBudg1100"
 year = 2035
 remind_regions = ['LAM', 'EUR']
 ecoinvent_version = 3.7
