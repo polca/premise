@@ -545,6 +545,7 @@ class NewDatabase:
 
             for file in self.additional_inventories:
                 additional = AdditionalInventory(self.db, self.version, file["filepath"])
+                additional.prepare_inventory()
                 additional.merge_inventory()
 
             print("Done!\n")
