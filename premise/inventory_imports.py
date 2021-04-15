@@ -171,6 +171,22 @@ class BaseInventoryImport:
                     results.append(act)
         return results
 
+    def search_missing_exchanges(self, label, value):
+        """
+        Return a list of activities for which
+        a given exchange cannot be found
+        :param label: the label of the field to look for
+        :param value: the value of the field to look for
+        :return:
+        """
+
+        results = []
+        for act in self.import_db.data:
+            if len([a for a in act["exchanges"] if label in a and a[label] == value]) == 0:
+                results.append(act)
+
+        return results
+
     def search_missing_field(self, field, scope="activity"):
         """Find exchanges and activities that do not contain a specific field
         in :attr:`imort_db`
@@ -286,12 +302,11 @@ class BaseInventoryImport:
         if candidate is not None:
             return candidate["reference product"]
         else:
-            print(self.import_db.db_name, exc.get("name"), exc.get("reference product"), exc.get("location"))
-            #raise IndexError(
-            #    "An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}".format(
-            #        self.import_db.db_name, exc
-            #    )
-            #)
+            raise IndexError(
+                "An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}".format(
+                    self.import_db.db_name, exc
+                )
+            )
 
     def add_biosphere_links(self, delete_missing=False):
         """Add links for biosphere exchanges to :attr:`import_db`
@@ -857,6 +872,21 @@ class AdditionalInventory(BaseInventoryImport):
             )
             self.import_db.migrate("migration_35")
 
+        list_missing_prod = self.search_missing_exchanges(label="type", value="production")
+
+        if len(list_missing_prod) > 0:
+            print("The following datasets are missing a `production` exchange.")
+            print("You should fix those before proceeding further.\n")
+            t = PrettyTable(["Name", "Reference product", "Location", "Unit", "File"])
+            for ds in list_missing_prod:
+                t.add_row([ds.get("name", "XXXX"),
+                           ds.get("referece product", "XXXX"),
+                           ds.get("location", "XXXX"),
+                           ds.get("unit", "XXXX"),
+                           self.path.name])
+
+            print(t)
+
         self.add_biosphere_links(delete_missing=True)
         list_missing_ref = self.search_missing_field(field="name")
         list_missing_ref.extend(self.search_missing_field(field="reference product"))
@@ -875,7 +905,11 @@ class AdditionalInventory(BaseInventoryImport):
                            self.path.name])
 
             print(t)
-            sys.exit(0)
+
+        if len(list_missing_prod) > 0 or len(list_missing_ref) > 0:
+            sys.exit()
+
+
 
         self.remove_missing_fields()
         self.add_product_field_to_exchanges()
