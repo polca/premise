@@ -935,7 +935,7 @@ class CarculatorInventory(BaseInventoryImport):
             self.filter.extend(filters)
 
         # IAM output file extension differs between REMIND and IMAGE
-        ext = ".mif" if model == "remind" else ".xlsx"
+        ext = ".csv"
 
         self.source_file = path / (model + "_" + pathway + ext)
 
@@ -1238,7 +1238,7 @@ class TruckInventory(BaseInventoryImport):
             self.filter.extend(filters)
 
         # IAM output file extension differs between REMIND and IMAGE
-        ext = ".mif" if model == "remind" else ".xlsx"
+        ext = ".csv"
 
         self.source_file = path / (model + "_" + pathway + ext)
 
