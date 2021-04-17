@@ -1216,7 +1216,7 @@ class Electricity:
             return 1
 
         # If the current efficiency is precisely 1, it is because it is not the actual power generation dataset
-        # but an additional layer (for example, int eh case of CCS added to CHP).
+        # but an additional layer (for example, in the case of CCS added to CHP).
         if ecoinvent_eff == 1:
             return 1
 

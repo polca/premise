@@ -894,7 +894,9 @@ class AdditionalInventory(BaseInventoryImport):
         list_missing_ref.extend(self.search_missing_field(field="unit"))
 
         if len(list_missing_ref) > 0:
-            print("The following datasets are missing an important field.")
+            print("The following datasets are missing an important field "
+                  "(`name`, `reference product`, `location` or `unit`).\n")
+
             print("You should fix those before proceeding further.\n")
             t = PrettyTable(["Name", "Reference product", "Location", "Unit", "File"])
             for ds in list_missing_ref:
@@ -961,6 +963,8 @@ class CarculatorInventory(BaseInventoryImport):
         fleet_array = carculator.create_fleet_composition_from_IAM_file(
             self.fleet_file
         )
+
+        import_db = None
 
         for r, region in enumerate(self.regions):
 
@@ -1098,14 +1102,14 @@ class CarculatorInventory(BaseInventoryImport):
             i.data = [x for x in i.data if "transport, passenger car" not in x["name"]
                       or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
 
-            # we want to rename teh passenger car transport dataset
-            # by removing the year in the name
-            for x in i.data:
-                if "transport, passenger car, fleet average" in x["name"]:
-                    x["name"] = x["name"][:-6]
-                    for e in x["exchanges"]:
-                        if e["type"] == "production":
-                            e["name"] = x["name"]
+            # we want to remove all fuel and electricity supply datatsets
+            # to only keep the one corresponding to the fleet year
+            i.data = [
+                x for x in i.data if not any(y in x["name"] for y in [
+                    "fuel supply for", "electricity supply for",
+                    "electricity market for fuel preparation"
+                ]) or str(self.db_year) in x["name"]
+            ]
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
@@ -1114,6 +1118,26 @@ class CarculatorInventory(BaseInventoryImport):
                     for e in x["exchanges"]:
                         if "electricity market for " in e["name"]:
                             x["exchanges"].remove(e)
+
+            # we want to rename the passenger car transport dataset
+            # by removing the year in the name
+            for x in i.data:
+                if any(y in x["name"] for y in ["transport, passenger car, fleet average",
+                                                     "fuel supply for ",
+                                                     "electricity supply for ",
+                                                "electricity market for fuel preparation"]):
+                    x["name"] = x["name"][:-6]
+                    for e in x["exchanges"]:
+                        if e["type"] == "production":
+                            e["name"] = x["name"]
+
+                        if any(f in e["name"] for f in [
+                                                     "fuel supply for ",
+                                                     "electricity supply for ",
+                                                    "electricity market for fuel preparation"])\
+                            and e["type"] == "technosphere":
+                            e["name"] = e["name"][:-6]
+
 
             if r == 0:
                 import_db = i
@@ -1251,7 +1275,7 @@ class TruckInventory(BaseInventoryImport):
         tm = carculator_truck.TruckModel(array, cycle="Regional delivery", country="CH")
         tm.set_all()
 
-
+        import_db = None
 
         for r, region in enumerate(self.regions):
 
@@ -1360,15 +1384,14 @@ class TruckInventory(BaseInventoryImport):
             i.data = [x for x in i.data if "transport, " not in x["name"]
                       or (any(y.lower() in x["name"].lower() for y in self.filter) and str(self.db_year) in x["name"])]
 
-            # we want to rename teh passenger car transport dataset
-            # by removing the year in the name
-            for x in i.data:
-                if "transport, freight, lorry, " in x["name"] and "market" not in x["name"]:
-                    x["name"] = x["name"][:-6]
-                    for e in x["exchanges"]:
-                        if e["type"] == "production":
-                            e["name"] = x["name"]
-
+            # we want to remove all fuel and electricity supply datatsets
+            # to only keep the one corresponding to the fleet year
+            i.data = [
+                x for x in i.data if not any(y in x["name"] for y in [
+                    "fuel supply for", "electricity supply for",
+                    "electricity market for fuel preparation"
+                ]) or str(self.db_year) in x["name"]
+            ]
 
             # we need to remove the electricity inputs in the fuel markets
             # that are typically added when synfuels are part of the blend
@@ -1377,6 +1400,26 @@ class TruckInventory(BaseInventoryImport):
                     for e in x["exchanges"]:
                         if "electricity market for " in e["name"]:
                             x["exchanges"].remove(e)
+
+            # we want to rename the fuel supply and lorry transport dataset
+            # by removing the year in the name
+            for x in i.data:
+                if any(y in x["name"] for y in ["transport, freight, lorry, ",
+                                                     "fuel supply for ",
+                                                     "electricity supply for ",
+                                                "electricity market for fuel preparation"]):
+                    x["name"] = x["name"][:-6]
+                    for e in x["exchanges"]:
+
+                        if e["type"] == "production":
+                            e["name"] = x["name"]
+
+                        if any(f in e["name"] for f in [
+                                                     "fuel supply for ",
+                                                     "electricity supply for ",
+                        "electricity market for fuel preparation"])\
+                            and e["type"] == "technosphere":
+                            e["name"] = e["name"][:-6]
 
             if r == 0:
                 import_db = i

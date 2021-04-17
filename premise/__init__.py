@@ -4,7 +4,7 @@ __all__ = (
     "DATA_DIR",
     "INVENTORY_DIR"
 )
-__version__ = (0, 3, 3)
+__version__ = (0, 3, 4)
 
 from pathlib import Path
 
