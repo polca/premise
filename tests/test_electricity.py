@@ -2,6 +2,7 @@
 from premise import DATA_DIR
 from premise.electricity import Electricity
 from premise.data_collection import IAMDataCollection
+import os
 
 REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
 PRODUCTION_PER_TECH = (DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv")
@@ -35,7 +36,11 @@ def get_db():
     return dummy_db, version
 
 
-rdc = IAMDataCollection(model="remind", pathway='SSP2-Base', year=2012, filepath_iam_files=DATA_DIR / "iam_output_files")
+rdc = IAMDataCollection(model="remind",
+                        pathway='SSP2-Base',
+                        year=2012,
+                        filepath_iam_files=DATA_DIR / "iam_output_files",
+                        key=os.environ['IAM_FILES_KEY'])
 db, _ = get_db()
 el = Electricity(db=db, iam_data=rdc, model="remind", pathway='SSP2-Base', year=2012)
 

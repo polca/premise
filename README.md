@@ -40,7 +40,7 @@ Requirements
 ------------
 * **Python 3.9**
 * License for [ecoinvent 3][1]
-* Some IAM output files come with the library ("REMIND_xxx.mif" for REMIND, "IMAGE_xxxx.xlsx" for IMAGE)
+* Some IAM output files come with the library ("REMIND_xxx.csv" for REMIND, "IMAGE_xxxx.csv" for IMAGE)
  and are located by default in the subdirectory "/data/iam_output_files". **If you wish to use
  those files, you need to request (by [email](mailto:romain.sacchi@psi.ch)) an encryption key from the developers**.
  A file path can be specified to fetch IAM output files elsewhere on your computer.
