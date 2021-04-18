@@ -61,8 +61,7 @@ class Cars:
                 supply = ws.get_one(
                     self.db,
                     ws.equals(
-                        "name", "electricity market for fuel preparation, {}"
-                        .format(self.year)),
+                        "name", "electricity market for fuel preparation"),
                     ws.equals("location", region))
 
 

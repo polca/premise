@@ -16,7 +16,9 @@ from .inventory_imports import (
     CarculatorInventory,
     TruckInventory,
     VariousVehicles,
-    AdditionalInventory
+    AdditionalInventory,
+    PassengerCars,
+    Trucks
 )
 from .cement import Cement
 from .steel import Steel
@@ -31,6 +33,7 @@ import os
 import contextlib
 import pickle
 from datetime import date
+import uuid
 
 
 
@@ -451,7 +454,7 @@ class NewDatabase:
             )
             scenario["database"] = copy.deepcopy(self.db)
 
-        #self.import_vehicle_inventories()
+        self.import_vehicle_inventories()
 
     def clean_database(self):
         """
@@ -470,19 +473,45 @@ class NewDatabase:
         # but those are model and scenario-specific
 
         for scenario in self.scenarios:
-            if not scenario["passenger_cars"] and not scenario["trucks"]:
-                fp = INVENTORY_DIR / scenario["model"]\
-                     + "_vehicles_inventory_data_ei_"\
-                     + self.version + "_" + str(
-                    scenario["year"]) + ".pickle"
+            if not scenario["passenger_cars"]:
 
-                with open(fp, 'rb') as handle:
-                    data = pickle.load(handle)
-                    scenario["database"].extend(data)
+                pc = PassengerCars(
+                    database=scenario["database"],
+                    version=self.version,
+                    model=scenario["model"],
+                    year=scenario["year"],
+                    regions=LIST_REMIND_REGIONS if scenario["model"] == "remind" else LIST_IMAGE_REGIONS
+                )
+
+                scenario["database"] = pc.merge_inventory()
+
+                crs = Cars(
+                    db=scenario["database"],
+                    iam_data=scenario["external data"],
+                    pathway=scenario["pathway"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                )
+                scenario["database"] = crs.update_cars()
 
             else:
                 self.update_cars()
+
+            if not scenario["trucks"]:
+
+                trucks = Trucks(
+                    database=scenario["database"],
+                    version=self.version,
+                    model=scenario["model"],
+                    year=scenario["year"],
+                    regions=LIST_REMIND_REGIONS if scenario["model"] == "remind" else LIST_IMAGE_REGIONS
+                )
+
+                scenario["database"] = trucks.merge_inventory()
+
+            else:
                 self.update_trucks()
+
 
     def import_inventories(self, direct_import):
         """
@@ -675,13 +704,12 @@ class NewDatabase:
                     cars = CarculatorInventory(
                         database=scenario["database"],
                         version=self.version,
-                        path=scenario["filepath"],
                         fleet_file=scenario["passenger_cars"]["fleet file"],
                         model=scenario["model"],
-                        pathway=scenario["pathway"],
                         year=scenario["year"],
                         regions=scenario["passenger_cars"]["regions"],
                         filters=scenario["passenger_cars"]["filters"],
+                        iam_data=scenario["external data"].data
                     )
                     scenario["database"] = cars.merge_inventory()
 
@@ -707,13 +735,12 @@ class NewDatabase:
                     trucks = TruckInventory(
                         database=scenario["database"],
                         version=self.version,
-                        path=scenario["filepath"],
                         fleet_file=scenario["trucks"]["fleet file"],
                         model=scenario["model"],
-                        pathway=scenario["pathway"],
                         year=scenario["year"],
                         regions=scenario["trucks"]["regions"],
                         filters=scenario["trucks"]["filters"],
+                        iam_data=scenario["external data"].data
                        )
                     scenario["database"] = trucks.merge_inventory()
 
