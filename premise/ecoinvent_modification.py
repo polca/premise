@@ -454,8 +454,6 @@ class NewDatabase:
             )
             scenario["database"] = copy.deepcopy(self.db)
 
-        self.import_vehicle_inventories()
-
     def clean_database(self):
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
@@ -466,53 +464,7 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
-    def import_vehicle_inventories(self):
-
-        # if no fleet file is specified
-        # we unpickle default vehicle inventories as well
-        # but those are model and scenario-specific
-
-        for scenario in self.scenarios:
-            if not scenario["passenger_cars"]:
-
-                pc = PassengerCars(
-                    database=scenario["database"],
-                    version=self.version,
-                    model=scenario["model"],
-                    year=scenario["year"],
-                    regions=LIST_REMIND_REGIONS if scenario["model"] == "remind" else LIST_IMAGE_REGIONS
-                )
-
-                scenario["database"] = pc.merge_inventory()
-
-                crs = Cars(
-                    db=scenario["database"],
-                    iam_data=scenario["external data"],
-                    pathway=scenario["pathway"],
-                    year=scenario["year"],
-                    model=scenario["model"],
-                )
-                scenario["database"] = crs.update_cars()
-
-            else:
-                self.update_cars()
-
-            if not scenario["trucks"]:
-
-                trucks = Trucks(
-                    database=scenario["database"],
-                    version=self.version,
-                    model=scenario["model"],
-                    year=scenario["year"],
-                    regions=LIST_REMIND_REGIONS if scenario["model"] == "remind" else LIST_IMAGE_REGIONS
-                )
-
-                scenario["database"] = trucks.merge_inventory()
-
-            else:
-                self.update_trucks()
-
-
+  
     def import_inventories(self, direct_import):
         """
         This method will trigger the import of a number of inventories
@@ -691,15 +643,14 @@ class NewDatabase:
                 )
                 scenario["database"] = steel.generate_activities(industry_module_present=has_steel_data)
 
-
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cars" not in scenario["exclude"]:
 
-                if "passenger_cars" in scenario:
-
+                if scenario["passenger_cars"]:
+                    # Load fleet-specific inventories
                     # Import `carculator` inventories if wanted
                     cars = CarculatorInventory(
                         database=scenario["database"],
@@ -711,16 +662,27 @@ class NewDatabase:
                         filters=scenario["passenger_cars"]["filters"],
                         iam_data=scenario["external data"].data
                     )
-                    scenario["database"] = cars.merge_inventory()
 
-                    crs = Cars(
-                        db=scenario["database"],
-                        iam_data=scenario["external data"],
-                        pathway=scenario["pathway"],
-                        year=scenario["year"],
+                else:
+                    # Load fleet default inventories
+                    cars = PassengerCars(
+                        database=scenario["database"],
+                        version=self.version,
                         model=scenario["model"],
+                        year=scenario["year"],
+                        regions=LIST_REMIND_REGIONS if scenario["model"] == "remind" else LIST_IMAGE_REGIONS
                     )
-                    scenario["database"] = crs.update_cars()
+
+                scenario["database"] = cars.merge_inventory()
+
+                crs = Cars(
+                    db=scenario["database"],
+                    iam_data=scenario["external data"],
+                    pathway=scenario["pathway"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                )
+                scenario["database"] = crs.update_cars()
 
     def update_trucks(self):
 
@@ -728,8 +690,9 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_trucks" not in scenario["exclude"]:
-                if "trucks" in scenario:
+                if scenario["trucks"]:
 
+                    # Load fleet-specific inventories
                     # Import `carculator_truck` inventories if wanted
 
                     trucks = TruckInventory(
@@ -742,7 +705,18 @@ class NewDatabase:
                         filters=scenario["trucks"]["filters"],
                         iam_data=scenario["external data"].data
                        )
-                    scenario["database"] = trucks.merge_inventory()
+
+                else:
+                    # Load default trucks inventories
+                    trucks = Trucks(
+                        database=scenario["database"],
+                        version=self.version,
+                        model=scenario["model"],
+                        year=scenario["year"],
+                        regions=LIST_REMIND_REGIONS if scenario["model"] == "remind" else LIST_IMAGE_REGIONS
+                    )
+
+                scenario["database"] = trucks.merge_inventory()
 
     def update_solar_PV(self):
         print("\n/////////////////// SOLAR PV ////////////////////")

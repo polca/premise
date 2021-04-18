@@ -123,16 +123,22 @@ class IAMDataCollection:
 
         if self.key is None:
             # Uses a non-encrypted file
+            try:
+                with open(filepath, "rb") as file:
+                    # read the encrypted data
+                    encrypted_data = file.read()
+            except FileNotFoundError:
+                file_ext = self.model + "_" + self.pathway + ".mif"
+                filepath = Path(self.filepath_iam_files) / file_ext
+                with open(filepath, "rb") as file:
+                    # read the encrypted data
+                    encrypted_data = file.read()
 
-            with open(filepath, "rb") as file:
-                # read the encrypted data
-                encrypted_data = file.read()
             # create a temp csv-like file to pass to pandas.read_csv()
             DATA = StringIO(str(encrypted_data, 'latin-1'))
 
         else:
             # Uses an encrypted file
-
             f = Fernet(self.key)
             with open(filepath, "rb") as file:
                 # read the encrypted data
