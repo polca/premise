@@ -123,7 +123,6 @@ def setup_db_with_custom_fleet_file():
             ],
             source_db="ecoinvent 3.7 cutoff",
             source_version="3.7",
-            key=os.environ['IAM_FILES_KEY']
     )
 
 @pytest.mark.ecoinvent
