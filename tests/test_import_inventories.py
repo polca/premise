@@ -106,5 +106,3 @@ def test_load_biofuel():
 #        iam_data=
 #    )
 #    assert len(carc.import_db.data) >= 335
-
-

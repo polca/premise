@@ -464,7 +464,7 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
-  
+
     def import_inventories(self, direct_import):
         """
         This method will trigger the import of a number of inventories
