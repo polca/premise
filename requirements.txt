@@ -9,3 +9,4 @@ prettytable
 carculator>=1.4.3
 carculator_truck>=0.1.5
 pycountry
+cryptography

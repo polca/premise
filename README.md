@@ -40,8 +40,9 @@ Requirements
 ------------
 * **Python 3.9**
 * License for [ecoinvent 3][1]
-* Some IAM output files come with the library ("REMIND_xxx.mif" for REMIND, "IMAGE_xxxx.xlsx" for IMAGE)
- and are located by default in the subdirectory "/data/iam_output_files".
+* Some IAM output files come with the library ("REMIND_xxx.csv" for REMIND, "IMAGE_xxxx.csv" for IMAGE)
+ and are located by default in the subdirectory "/data/iam_output_files". **If you wish to use
+ those files, you need to request (by [email](mailto:romain.sacchi@psi.ch)) an encryption key from the developers**.
  A file path can be specified to fetch IAM output files elsewhere on your computer.
  * [brightway2][2] (optional)
 
@@ -120,8 +121,13 @@ The following IMAGE IAM file comes with the library:
 
 * SSP2
     1.  **Base** counter-factual scenario with no climate policy implemented
+    2.  **RCP 2.6**: limits radiative forcing to 2.6 W/m^2 by 2100
+    3.  **RCP 1.9**: limits radiative forcing to 1.9 W/m^2 by 2100
 
-You can however use any other IAM files.
+**If you wish to use those scenarios,
+you need to request (by [email](mailto:romain.sacchi@psi.ch)) an encryption key from
+the maintainers**.
+You can however use any other compatible IAM files.
 
 Additionally, a number of inventories for emerging technologies are added upon the creation of a new database.
 

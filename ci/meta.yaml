@@ -29,6 +29,7 @@ requirements:
     - carculator
     - carculator_truck
     - pycountry
+    - cryptography
 
 test:
   imports:
