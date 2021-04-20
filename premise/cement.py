@@ -591,7 +591,7 @@ class Cement:
     def build_clinker_production_datasets(self, industry_module_present):
         """
         Builds clinker production datasets for each IAM region.
-        If `industry_module_present`, the kiln efficiency improvement follows projections from teh IAM model
+        If `industry_module_present`, the kiln efficiency improvement follows projections from the IAM model
         # If not, it follows projections from the IEA
         Add CO2 capture and Storage if needed.
         Source for CO2 capture and compression: https://www.sciencedirect.com/science/article/pii/S1750583613001230?via%3Dihub#fn0040
@@ -610,7 +610,7 @@ class Cement:
             for k, v in d_act_clinker.items():
 
                 # the correction factor applied to all fuel/electricity input is
-                # equal to the ration fuel/output in the year in question
+                # equal to the ratio fuel/output in the year in question
                 # divided by the ratio fuel/output in 2020
 
                 correction_factor = self.fuel_efficiency_factor(v["location"])
