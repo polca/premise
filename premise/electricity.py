@@ -43,7 +43,7 @@ class Electricity:
 
     def get_suppliers_of_a_region(self, ecoinvent_regions, ecoinvent_technologies):
         """
-        Return a list of electricity-producing datasets which location and name correspond to the region and name given,
+        Return a list of electricity-producing datasets, for which the location and name correspond to the region and name given,
         respectively.
 
         :param ecoinvent_regions: an ecoinvent region
