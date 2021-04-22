@@ -182,8 +182,10 @@ class Geomap:
             "RoW": "CAZ" if self.model == "remind" else "World",
             "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
             "Europe without Switzerland and Austria": "EUR" if self.model == "remind" else "WEU",
+            "Europe without Switzerland": "EUR" if self.model == "remind" else "WEU",
             "North America without Quebec": "USA",
             "RER w/o RU": "EUR" if self.model == "remind" else "WEU",
+            "RER": "EUR" if self.model == "remind" else "WEU",
 
         }
         if location in mapping:
