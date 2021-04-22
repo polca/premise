@@ -370,7 +370,7 @@ class Metals:
                 writer.writerow(['dataset name', 'reference product', 'location'])
 
 
-            print('Create steel markets for differention regions')
+            print('Create steel markets for different regions')
             print('Adjust primary and secondary steel supply shares in steel markets')
 
             created_datasets = list()
@@ -626,8 +626,8 @@ class Metals:
 
         else:
 
-            # In this case, we do not have industry data related to steel production from teh IAM
-            # We will though do two things any:
+            # In this case, we do not have industry data related to steel production from the IAM
+            # We will though do two things anyway:
             # 1. Update hot pollutant emission levels according to GAINS
             # 2. Adjust the share of secondary steel on the steel market
 

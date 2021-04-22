@@ -50,9 +50,9 @@ class Cars:
         return act
 
     def link_local_electricity_supply(self):
-        """Create LDV activities for REMIND regions and relink
+        """Create LDV activities for IAM regions and relink
         existing electricity exchanges for BEVs and PHEVs
-        to REMIND-compatible (regional) market groups.
+        to IAM-compatible (regional) market groups.
         """
         print("Re-linking local electricity supply for all EV and FCEV activities")
 
@@ -94,7 +94,7 @@ class Cars:
     def _find_local_supplier(self, region, name):
         """
         Use geomatcher to find a supplier with `name` first strictly
-        within the region, then in an intersecting region and
+        within the region, then in an intersecting region, and
         eventually *any* activity with this name.
         """
         def producer_in_locations(locs):

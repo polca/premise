@@ -626,7 +626,7 @@ class Cement:
             for k, v in d_act_clinker.items():
 
                 # the correction factor applied to all fuel/electricity input is
-                # equal to the ration fuel/output in the year in question
+                # equal to the ratio fuel/output in the year in question
                 # divided by the ratio fuel/output in 2020
 
                 correction_factor = self.fuel_efficiency_factor(v["location"])

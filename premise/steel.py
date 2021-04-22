@@ -13,7 +13,7 @@ import contextlib
 
 class Steel:
     """
-    Class that modifies steel markets in ecoinvent based on REMIND output data.
+    Class that modifies steel markets in ecoinvent based on IAM output data.
 
     :ivar db: database dictionary from :attr:`.NewDatabase.db`
     :vartype db: dict
@@ -31,9 +31,6 @@ class Steel:
         self.iam_data = iam_data
         self.year = year
         self.steel_data = self.iam_data.data.interp(year=self.year)
-        self.fuels_lhv = get_lower_heating_values()
-        self.fuels_co2 = get_fuel_co2_emission_factors()
-        self.remind_fuels = get_correspondance_remind_to_fuels()
         self.geo = Geomap(model=model)
         self.model = model
         mapping = InventorySet(self.db)
@@ -45,8 +42,8 @@ class Steel:
     def fetch_proxies(self, name, ref_prod):
         """
         Fetch dataset proxies, given a dataset `name` and `ref_prod`.
-        Store a copy for each REMIND region.
-        If a REMIND region does not find a fitting ecoinvent location,
+        Store a copy for each IAM region.
+        If an IAM region does not find a fitting ecoinvent location,
         fetch a dataset with a "RoW" location.
         Delete original datasets from the database.
 
@@ -68,9 +65,9 @@ class Steel:
         ]
 
         if 'market' in name:
-            d_remind_to_eco = {r: d_map.get(r, "GLO") for r in list_iam_regions}
+            d_iam_to_eco = {r: d_map.get(r, "GLO") for r in list_iam_regions}
         else:
-            d_remind_to_eco = {r: d_map.get(r, "RoW") for r in list_iam_regions}
+            d_iam_to_eco = {r: d_map.get(r, "RoW") for r in list_iam_regions}
 
         d_act = {}
 
@@ -80,20 +77,20 @@ class Steel:
                     self.db,
                     ws.equals("name", name),
                     ws.contains("reference product", "steel"),
-                    ws.equals("location", d_remind_to_eco[d]),
+                    ws.equals("location", d_iam_to_eco[d]),
                 )
 
             except ws.NoResults:
-                print('No dataset {} found for the REMIND region {}'.format(name, d))
+                print('No dataset {} found for the IAM region {}'.format(name, d))
                 continue
             except ws.MultipleResults:
-                print("Multiple results for {} found for the REMIND region {}".format(name, d))
+                print("Multiple results for {} found for the IAM region {}".format(name, d))
 
                 ds = ws.get_many(
                     self.db,
                     ws.equals("name", name),
                     ws.contains("reference product", "steel"),
-                    ws.equals("location", d_remind_to_eco[d]),
+                    ws.equals("location", d_iam_to_eco[d]),
                 )
 
                 for x in ds:
