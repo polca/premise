@@ -52,6 +52,7 @@ class Steel:
 
         :return:
         """
+
         d_map = {
             self.geo.ecoinvent_to_iam_location(d['location']): d['location']
             for d in ws.get_many(
@@ -277,7 +278,10 @@ class Steel:
                 if self.model == "remind":
                     loc = self.geo.ecoinvent_to_iam_location(ds["location"])
                 else:
-                    loc = self.geo.iam_to_iam_region(self.geo.ecoinvent_to_iam_location(ds["location"]))
+                    if ds["location"] in self.iam_data.regions:
+                        loc = self.geo.iam_to_iam_region(ds["location"])
+                    else:
+                        loc = self.geo.iam_to_iam_region(self.geo.ecoinvent_to_iam_location(ds["location"]))
 
                 correction_factor = (self.iam_data.steel_emissions.loc[
                                          dict(
@@ -381,10 +385,10 @@ class Steel:
         if self.model == "remind":
             # REMIND
             if "electric" in ds["name"]:
-                final_energy = "FE|Industry|Steel|Secondary"
+                final_energy = ["FE|Industry|Steel|Secondary"]
                 prod = "Production|Industry|Steel|Secondary"
             else:
-                final_energy = "FE|Industry|Steel|Primary"
+                final_energy = ["FE|Industry|Steel|Primary"]
                 prod = "Production|Industry|Steel|Primary"
         else:
             # IMAGE
@@ -398,35 +402,52 @@ class Steel:
             ]
             prod = "Production|Steel"
 
-        return ((self.iam_data.data.loc[
+        # sometimes, the energy consumption values are not reported for the region "World"
+        # in such case, we then look at teh sum of all the regions
+        if self.iam_data.data.loc[
+                              dict(
+                                  region=loc,
+                                  variables=final_energy
+                              )
+                          ].interp(year=self.year).sum() == 0:
+            loc = self.iam_data.data.region.values
+
+        eff_factor = ((self.iam_data.data.loc[
                                   dict(
-                                      region=loc,
+                                      region=[loc],
                                       variables=final_energy
                                   )
-                              ].interp(year=self.year)
+                              ].interp(year=self.year).sum(dim=["region", "variables"])
                               /
                               self.iam_data.data.loc[
                                   dict(
-                                      region=loc,
+                                      region=[loc],
                                       variables=prod,
                                   )
-                              ].interp(year=self.year)) /
+                              ].interp(year=self.year).sum(dim="region")) /
                              (self.iam_data.data.loc[
                                   dict(
-                                      region=loc,
+                                      region=[loc],
                                       variables=final_energy,
                                       year=2020
                                   )
-                              ]
+                              ].sum(dim=["region", "variables"])
                               /
                               self.iam_data.data.loc[
                                   dict(
-                                      region=loc,
+                                      region=[loc],
                                       variables=prod,
                                       year=2020
                                   )
-                              ])
+                              ].sum(dim="region"))
                              ).values.item(0)
+
+        # we assume efficiency cannot get worse over time
+        if eff_factor == np.nan or eff_factor == np.inf or eff_factor > 1 or eff_factor != eff_factor:
+            eff_factor = 1
+
+
+        return eff_factor
 
     def get_carbon_capture_rate(self, loc):
         """
@@ -691,7 +712,7 @@ class Steel:
 
                 self.db.extend([v for v in act_steel.values()])
 
-                created_datasets.extend([(act['name'], act['reference product'], act['location'])
+                crteheated_datasets.extend([(act['name'], act['reference product'], act['location'])
                                 for act in act_steel.values()])
 
                 print('Relink new steel markets to steel-consuming activities')
@@ -1002,46 +1023,169 @@ class Steel:
                             'unit': 'kilogram'
                         }
 
+                        if ds["location"] in self.iam_data.regions:
+                            print("YES", ds["location"], self.iam_data.regions)
+                            new_exc["location"] = ds["location"]
 
-                        # First, try to find a steel market that has the same location as the dataset
-                        try:
-                            new_supplier = ws.get_one(
-                                self.db,
-                                ws.equals("name", name[0]),
-                                ws.equals("location", ds["location"]),
-                                ws.equals("reference product", name[1])
-                            )
+                        else:
 
-                            new_exc["location"] = new_supplier["location"]
-
-                        # If it fails
-                        except ws.NoResults:
+                            # First, try to find a steel market that has the same location as the dataset
                             try:
-                                # If the dataset location is a region of the IAM model
-                                # Let's try to find a steel market dataset which location
-                                # is included in that IAM region
-                                if ds["location"] in self.iam_data.regions:
-                                    new_supplier = ws.get_one(
-                                        self.db,
-                                        *[
-                                            ws.contains("name", name[0]),
-                                            ws.either(*[ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
-                                                "location", l)
-                                                        for l in self.geo.iam_to_ecoinvent_location(ds["location"])
-                                                        ]),
-                                            ws.equals("reference product", name[1])
+                                new_supplier = ws.get_one(
+                                    self.db,
+                                    ws.equals("name", name[0]),
+                                    ws.equals("location", ds["location"]),
+                                    ws.equals("reference product", name[1])
+                                )
 
-                                        ]
-                                    )
-                                    new_exc["location"] = new_supplier["location"]
+                                new_exc["location"] = new_supplier["location"]
 
-                                else:
-                                    # If the dataset location is an ecoinvent location
-                                    # Let's try to find a steel market which location
-                                    # encompasses the location of the dataset
+                            # If it fails
+                            except ws.NoResults:
+                                try:
+                                    # If the dataset location is a region of the IAM model
+                                    # Let's try to find a steel market dataset which location
+                                    # is included in that IAM region
+                                    if ds["location"] in self.iam_data.regions:
+                                        new_supplier = ws.get_one(
+                                            self.db,
+                                            *[
+                                                ws.contains("name", name[0]),
+                                                ws.either(*[ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
+                                                    "location", l)
+                                                            for l in self.geo.iam_to_ecoinvent_location(ds["location"])
+                                                            ]),
+                                                ws.equals("reference product", name[1])
+
+                                            ]
+                                        )
+                                        new_exc["location"] = new_supplier["location"]
+
+                                    else:
+                                        # If the dataset location is an ecoinvent location
+                                        # Let's try to find a steel market which location
+                                        # encompasses the location of the dataset
+                                        try:
+                                            possible_locs = [l[1] if isinstance(l, tuple) else l
+                                                             for l in self.geo.geo.contained(ds["location"])]
+                                            if ds["location"] not in ("World", "GLO"):
+                                                possible_locs = [l for l in possible_locs if l != "GLO"]
+
+                                            new_supplier = ws.get_one(
+                                                self.db,
+                                                *[
+                                                    ws.equals("name", name[0]),
+                                                    ws.either(*[ws.equals("location", l) for l in possible_locs]),
+                                                    ws.equals("reference product", name[1])
+                                                ]
+                                            )
+                                            new_exc["location"] = new_supplier["location"]
+
+                                        except ws.NoResults:
+
+                                            # If the dataset location is an ecoinvent location
+                                            # Let's try to find a steel market which location
+                                            # is a part of the location of the dataset
+                                            possible_locs = [l[1] if isinstance(l, tuple) else l
+                                                             for l in self.geo.geo.within(ds["location"])]
+                                            if ds["location"] not in ("World", "GLO"):
+                                                possible_locs = [l for l in possible_locs if l != "GLO"]
+
+                                            try:
+                                                new_supplier = ws.get_one(
+                                                    self.db,
+                                                    *[
+                                                        ws.equals("name", name[0]),
+                                                        ws.either(*[
+                                                            ws.equals("location", l) for l in possible_locs]),
+                                                        ws.equals("reference product", name[1])
+
+                                                    ]
+                                                )
+                                            except ws.NoResults:
+                                                # then maybe, the supplier has an IAM region
+                                                new_supplier = ws.get_one(
+                                                    self.db,
+                                                    *[
+                                                        ws.equals("name", name[0]),
+                                                        ws.equals("location", self.geo.ecoinvent_to_iam_location(ds["location"])),
+                                                        ws.equals("reference product", name[1])
+
+                                                    ]
+                                                )
+
+                                            new_exc["location"] = new_supplier["location"]
+
+                                        except ws.MultipleResults:
+                                            # We have several potential steel suppliers
+                                            # We will look up their respective production volumes
+                                            # And include them proportionally to it
+
+                                            possible_locs = [l[1] if isinstance(l, tuple) else l
+                                                             for l in self.geo.geo.contained(ds["location"])]
+                                            possible_locs = [l for l in possible_locs if l != "GLO"]
+
+                                            possible_suppliers = ws.get_many(
+                                                self.db,
+                                                *[
+                                                    ws.equals("name", name[0]),
+                                                    ws.either(
+                                                        *[ws.equals("location", l) for l in possible_locs]),
+                                                    ws.equals("reference product", name[1])
+
+                                                ]
+                                            )
+                                            possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
+
+                                            new_exc = []
+                                            for supplier in possible_suppliers:
+                                                new_exc.append(
+                                                    {
+                                                    'name': name[0],
+                                                    'product': name[1],
+                                                    'amount': amount * possible_suppliers[supplier],
+                                                    'type': 'technosphere',
+                                                    'unit': 'kilogram',
+                                                    'location': supplier[1]
+                                                    }
+                                                )
+
+                                # Europe without Austria is a new location in ei 3.7
+                                # which is not yet defined in wurst
+                                except KeyError:
+
+                                    if ds["location"] == "Europe without Austria":
+
+                                        try:
+                                            new_supplier = ws.get_one(
+                                                self.db,
+                                                ws.equals("name", name[0]),
+                                                ws.equals("location", "RER"),
+                                                ws.equals("reference product", name[1])
+                                            )
+                                        except ws.NoResults:
+
+                                            new_supplier = ws.get_one(
+                                                self.db,
+                                                ws.equals("name", name[0]),
+                                                ws.equals("location", "EUR" if self.model == "remind" else "WEU"),
+                                                ws.equals("reference product", name[1])
+                                            )
+
+
+                                        new_exc["location"] = new_supplier["location"]
+
+                                # If this also fails
+                                except ws.NoResults:
                                     try:
+                                        # If the dataset location is an ecoinvent location
+                                        # Let's try to find a steel market which location
+                                        # is a part of the location of the dataset
+
+
                                         possible_locs = [l[1] if isinstance(l, tuple) else l
-                                                         for l in self.geo.geo.contained(ds["location"])]
+                                                         for l in self.geo.geo.within(ds["location"])]
+
                                         if ds["location"] not in ("World", "GLO"):
                                             possible_locs = [l for l in possible_locs if l != "GLO"]
 
@@ -1049,45 +1193,22 @@ class Steel:
                                             self.db,
                                             *[
                                                 ws.equals("name", name[0]),
-                                                ws.either(*[ws.equals("location", l) for l in possible_locs]),
+                                                ws.either(*[
+                                                    ws.equals("location", l) for l in possible_locs]),
                                                 ws.equals("reference product", name[1])
+
                                             ]
                                         )
                                         new_exc["location"] = new_supplier["location"]
 
-                                    except ws.NoResults:
-
-                                        # If the dataset location is an ecoinvent location
-                                        # Let's try to find a steel market which location
-                                        # is a part of the location of the dataset
-                                        possible_locs = [l[1] if isinstance(l, tuple) else l
-                                                         for l in self.geo.geo.within(ds["location"])]
-                                        if ds["location"] not in ("World", "GLO"):
-                                            possible_locs = [l for l in possible_locs if l != "GLO"]
-
-                                        try:
-                                            new_supplier = ws.get_one(
-                                                self.db,
-                                                *[
-                                                    ws.equals("name", name[0]),
-                                                    ws.either(*[
-                                                        ws.equals("location", l) for l in possible_locs]),
-                                                    ws.equals("reference product", name[1])
-
-                                                ]
-                                            )
-                                        except ws.NoResults:
-                                            # then maybe, the supplier has an IAM region
-                                            new_supplier = ws.get_one(
-                                                self.db,
-                                                *[
-                                                    ws.equals("name", name[0]),
-                                                    ws.equals("location", self.geo.ecoinvent_to_iam_location(ds["location"])),
-                                                    ws.equals("reference product", name[1])
-
-                                                ]
-                                            )
-
+                                    # If this fails, then we use the GLO steel market
+                                    except (ws.NoResults, KeyError):
+                                        new_supplier = ws.get_one(
+                                            self.db,
+                                            ws.equals("name", name[0]),
+                                            ws.equals("location", "GLO"),
+                                            ws.equals("reference product", name[1])
+                                        )
                                         new_exc["location"] = new_supplier["location"]
 
                                     except ws.MultipleResults:
@@ -1097,15 +1218,16 @@ class Steel:
 
                                         possible_locs = [l[1] if isinstance(l, tuple) else l
                                                          for l in self.geo.geo.contained(ds["location"])]
-                                        possible_locs = [l for l in possible_locs if l != "GLO"]
+                                        if ds["location"] not in ("World", "GLO"):
+                                            possible_locs = [l for l in possible_locs if l != "GLO"]
 
                                         possible_suppliers = ws.get_many(
                                             self.db,
                                             *[
-                                                ws.equals("name", name[0]),
+                                                ws.equals("name", "market for steel, low-alloyed"),
                                                 ws.either(
                                                     *[ws.equals("location", l) for l in possible_locs]),
-                                                ws.equals("reference product", name[1])
+                                                ws.equals("reference product", "steel")
 
                                             ]
                                         )
@@ -1115,97 +1237,54 @@ class Steel:
                                         for supplier in possible_suppliers:
                                             new_exc.append(
                                                 {
-                                                'name': name[0],
-                                                'product': name[1],
-                                                'amount': amount * possible_suppliers[supplier],
-                                                'type': 'technosphere',
-                                                'unit': 'kilogram',
-                                                'location': supplier[1]
+                                                    'name': name[0],
+                                                    'product': name[1],
+                                                    'amount': amount * possible_suppliers[supplier],
+                                                    'type': 'technosphere',
+                                                    'unit': 'kilogram',
+                                                    'location': supplier[1]
                                                 }
                                             )
-
-                            # Europe without Austria is a new location in ei 3.7
-                            # which is not yet defined in wurst
-                            except KeyError:
-
-                                if ds["location"] == "Europe without Austria":
-
-                                    try:
-                                        new_supplier = ws.get_one(
-                                            self.db,
-                                            ws.equals("name", name[0]),
-                                            ws.equals("location", "RER"),
-                                            ws.equals("reference product", name[1])
-                                        )
-                                    except ws.NoResults:
-
-                                        new_supplier = ws.get_one(
-                                            self.db,
-                                            ws.equals("name", name[0]),
-                                            ws.equals("location", "EUR" if self.model == "remind" else "WEU"),
-                                            ws.equals("reference product", name[1])
-                                        )
-
-
-                                    new_exc["location"] = new_supplier["location"]
-
-                            # If this also fails
-                            except ws.NoResults:
-                                try:
-                                    # If the dataset location is an ecoinvent location
-                                    # Let's try to find a steel market which location
-                                    # is a part of the location of the dataset
-
-
-                                    possible_locs = [l[1] if isinstance(l, tuple) else l
-                                                     for l in self.geo.geo.within(ds["location"])]
-
-                                    if ds["location"] not in ("World", "GLO"):
-                                        possible_locs = [l for l in possible_locs if l != "GLO"]
-
-                                    new_supplier = ws.get_one(
-                                        self.db,
-                                        *[
-                                            ws.equals("name", name[0]),
-                                            ws.either(*[
-                                                ws.equals("location", l) for l in possible_locs]),
-                                            ws.equals("reference product", name[1])
-
-                                        ]
-                                    )
-                                    new_exc["location"] = new_supplier["location"]
-
-                                # If this fails, then we use the GLO steel market
-                                except (ws.NoResults, KeyError):
-                                    new_supplier = ws.get_one(
-                                        self.db,
-                                        ws.equals("name", name[0]),
-                                        ws.equals("location", "GLO"),
-                                        ws.equals("reference product", name[1])
-                                    )
-                                    new_exc["location"] = new_supplier["location"]
 
                                 except ws.MultipleResults:
                                     # We have several potential steel suppliers
                                     # We will look up their respective production volumes
                                     # And include them proportionally to it
 
-                                    possible_locs = [l[1] if isinstance(l, tuple) else l
-                                                     for l in self.geo.geo.contained(ds["location"])]
-                                    if ds["location"] not in ("World", "GLO"):
-                                        possible_locs = [l for l in possible_locs if l != "GLO"]
+                                    if ds["location"] in self.iam_data.regions:
 
-                                    possible_suppliers = ws.get_many(
-                                        self.db,
-                                        *[
-                                            ws.equals("name", "market for steel, low-alloyed"),
-                                            ws.either(
-                                                *[ws.equals("location", l) for l in possible_locs]),
-                                            ws.equals("reference product", "steel")
+                                        possible_suppliers = ws.get_many(
+                                            self.db,
+                                            *[
+                                                ws.equals("name", name[0]),
+                                                ws.either(*[ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
+                                                    "location", l)
+                                                            for l in self.geo.iam_to_ecoinvent_location(ds["location"])
+                                                            ]),
+                                                ws.equals("reference product", name[1])
 
-                                        ]
-                                    )
-                                    possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
+                                            ]
+                                        )
+
+                                        possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
+
+                                    else:
+
+                                        possible_locs = [l[1] if isinstance(l, tuple) else l
+                                                         for l in self.geo.geo.contained(ds["location"])]
+                                        if ds["location"] not in ("World", "GLO"):
+                                            possible_locs = [l for l in possible_locs if l != "GLO"]
+
+                                        possible_suppliers = ws.get_many(
+                                            self.db,
+                                            *[
+                                                ws.equals("name", name[0]),
+                                                ws.either(*[ws.equals("location", l) for l in possible_locs]),
+                                                ws.equals("reference product", name[1])
+
+                                            ]
+                                        )
+                                        possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
 
                                     new_exc = []
                                     for supplier in possible_suppliers:
@@ -1250,14 +1329,14 @@ class Steel:
                                         possible_locs = [l for l in possible_locs if l != "GLO"]
 
                                     possible_suppliers = ws.get_many(
-                                        self.db,
-                                        *[
-                                            ws.equals("name", name[0]),
-                                            ws.either(*[ws.equals("location", l) for l in possible_locs]),
-                                            ws.equals("reference product", name[1])
+                                            self.db,
+                                            *[
+                                                ws.equals("name", name[0]),
+                                                ws.either(*[ws.equals("location", l) for l in possible_locs]),
+                                                ws.equals("reference product", name[1])
 
-                                        ]
-                                    )
+                                            ]
+                                        )
                                     possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
 
                                 new_exc = []
@@ -1272,59 +1351,6 @@ class Steel:
                                             'location': supplier[1]
                                         }
                                     )
-
-                        except ws.MultipleResults:
-                            # We have several potential steel suppliers
-                            # We will look up their respective production volumes
-                            # And include them proportionally to it
-
-                            if ds["location"] in self.iam_data.regions:
-
-                                possible_suppliers = ws.get_many(
-                                    self.db,
-                                    *[
-                                        ws.equals("name", name[0]),
-                                        ws.either(*[ws.equals("location", l[1]) if isinstance(l, tuple) else ws.equals(
-                                            "location", l)
-                                                    for l in self.geo.iam_to_ecoinvent_location(ds["location"])
-                                                    ]),
-                                        ws.equals("reference product", name[1])
-
-                                    ]
-                                )
-
-                                possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
-
-                            else:
-
-                                possible_locs = [l[1] if isinstance(l, tuple) else l
-                                                 for l in self.geo.geo.contained(ds["location"])]
-                                if ds["location"] not in ("World", "GLO"):
-                                    possible_locs = [l for l in possible_locs if l != "GLO"]
-
-                                possible_suppliers = ws.get_many(
-                                        self.db,
-                                        *[
-                                            ws.equals("name", name[0]),
-                                            ws.either(*[ws.equals("location", l) for l in possible_locs]),
-                                            ws.equals("reference product", name[1])
-
-                                        ]
-                                    )
-                                possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
-
-                            new_exc = []
-                            for supplier in possible_suppliers:
-                                new_exc.append(
-                                    {
-                                        'name': name[0],
-                                        'product': name[1],
-                                        'amount': amount * possible_suppliers[supplier],
-                                        'type': 'technosphere',
-                                        'unit': 'kilogram',
-                                        'location': supplier[1]
-                                    }
-                                )
 
                         if isinstance(new_exc, dict):
                             ds["exchanges"].append(new_exc)

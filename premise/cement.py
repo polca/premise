@@ -288,7 +288,7 @@ class Cement:
 
         if self.model == "remind":
             # REMIND
-            final_energy = "FE|Industry|Cement"
+            final_energy = ["FE|Industry|Cement"]
             prod = "Production|Industry|Cement"
         else:
             # IMAGE
@@ -302,35 +302,51 @@ class Cement:
             ]
             prod = "Production|Cement"
 
-        return ((self.iam_data.data.loc[
+        # sometimes, the energy consumption values are not reported for the region "World"
+        # in such case, we then look at th sum of all the regions
+        if self.iam_data.data.loc[
+            dict(
+                region=loc,
+                variables=final_energy
+            )
+        ].interp(year=self.year).sum() == 0:
+            loc = self.iam_data.data.region.values
+
+        eff_factor = ((self.iam_data.data.loc[
                                   dict(
-                                      region=loc,
+                                      region=[loc],
                                       variables=final_energy
                                   )
-                              ].interp(year=self.year)
+                              ].interp(year=self.year).sum(dim=["region", "variables"])
                               /
                               self.iam_data.data.loc[
                                   dict(
-                                      region=loc,
+                                      region=[loc],
                                       variables=prod,
                                   )
-                              ].interp(year=self.year)) /
+                              ].interp(year=self.year).sum(dim="region")) /
                              (self.iam_data.data.loc[
                                   dict(
-                                      region=loc,
+                                      region=[loc],
                                       variables=final_energy,
                                       year=2020
                                   )
-                              ]
+                              ].sum(dim=["region", "variables"])
                               /
                               self.iam_data.data.loc[
                                   dict(
-                                      region=loc,
+                                      region=[loc],
                                       variables=prod,
                                       year=2020
                                   )
-                              ])
+                              ].sum(dim="region"))
                              ).values.item(0)
+
+        # we assume efficiency cannot get worse over time
+        if eff_factor == np.nan or eff_factor == np.inf or eff_factor > 1:
+            eff_factor = 1
+
+        return eff_factor
 
     def get_carbon_capture_rate(self, loc):
         """
@@ -591,7 +607,7 @@ class Cement:
     def build_clinker_production_datasets(self, industry_module_present):
         """
         Builds clinker production datasets for each IAM region.
-        If `industry_module_present`, the kiln efficiency improvement follows projections from teh IAM model
+        If `industry_module_present`, the kiln efficiency improvement follows projections from the IAM model
         # If not, it follows projections from the IEA
         Add CO2 capture and Storage if needed.
         Source for CO2 capture and compression: https://www.sciencedirect.com/science/article/pii/S1750583613001230?via%3Dihub#fn0040
@@ -970,7 +986,7 @@ class Cement:
                             new_loc = self.geo.ecoinvent_to_iam_location("CN")
                             new_exc["location"] = new_loc
 
-                        elif act["location"] in ("RER w/o RU"):
+                        elif act["location"] in ("RER w/o RU", "WECC", "UCTE without Germany"):
                             new_loc = self.geo.ecoinvent_to_iam_location("RER")
                             new_exc["location"] = new_loc
 

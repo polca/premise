@@ -1117,14 +1117,28 @@ class Electricity:
                     ds["exchanges"].remove(exc)
 
                 if amount > 0:
-                    new_exc = {
-                        'name': name[0],
-                        'product': name[1],
-                        'amount': amount,
-                        'type': 'technosphere',
-                        'unit': 'kilowatt hour',
-                        'location': self.geo.ecoinvent_to_iam_location(ds["location"])
-                    }
+                    if ds["location"] in self.iam_data.electricity_markets.region:
+
+                        new_exc = {
+                            'name': name[0],
+                            'product': name[1],
+                            'amount': amount,
+                            'type': 'technosphere',
+                            'unit': 'kilowatt hour',
+                            'location': ds["location"]
+                        }
+
+
+                    else:
+
+                        new_exc = {
+                            'name': name[0],
+                            'product': name[1],
+                            'amount': amount,
+                            'type': 'technosphere',
+                            'unit': 'kilowatt hour',
+                            'location': self.geo.ecoinvent_to_iam_location(ds["location"])
+                        }
 
                     ds["exchanges"].append(new_exc)
 
