@@ -126,7 +126,7 @@ class Steel:
 
         # Remove old datasets
         self.db = [act for act in self.db
-                   if (act["name"], act["reference product"], act["location"] not in deleted_markets)
+                   if (act["name"], act["reference product"], act["location"]) not in deleted_markets
                    ]
 
 
