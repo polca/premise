@@ -709,7 +709,7 @@ class Steel:
 
                 self.db.extend([v for v in act_steel.values()])
 
-                crteheated_datasets.extend([(act['name'], act['reference product'], act['location'])
+                created_datasets.extend([(act['name'], act['reference product'], act['location'])
                                 for act in act_steel.values()])
 
                 print('Relink new steel markets to steel-consuming activities')
