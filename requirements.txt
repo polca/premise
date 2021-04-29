@@ -3,7 +3,7 @@ numpy
 pandas
 bw2io
 bw2data
-wurst
+wurst >= 0.3
 xarray
 prettytable
 carculator>=1.4.3

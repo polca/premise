@@ -275,7 +275,7 @@ class IAMDataCollection:
         gnr_array = gnr_array.interpolate_na(
             dim="year", method="linear", fill_value="extrapolate"
         )
-        gnr_array = gnr_array.interp(year=self.year)
+        gnr_array = gnr_array.interp(year=2020)
         gnr_array = gnr_array.fillna(0)
 
         return gnr_array

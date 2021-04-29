@@ -18,7 +18,7 @@ from .inventory_imports import (
     VariousVehicles,
     AdditionalInventory,
     PassengerCars,
-    Trucks
+    Trucks,
 )
 from .cement import Cement
 from .steel import Steel
@@ -36,15 +36,18 @@ from datetime import date
 import uuid
 
 
-
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_DAC_INVENTORIES = INVENTORY_DIR / "lci-direct-air-capture.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
-FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
-FILEPATH_HYDROGEN_NATGAS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
+FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (
+    INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
+)
+FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (
+    INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
+)
 FILEPATH_HYDROGEN_WOODY_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx"
 )
@@ -116,19 +119,19 @@ SUPPORTED_PATHWAYS = [
 ]
 
 LIST_REMIND_REGIONS = [
-    'CAZ',
-    'CHA',
-    'EUR',
-    'IND',
-    'JPN',
-    'LAM',
-    'MEA',
-    'NEU',
-    'OAS',
-    'REF',
-    'SSA',
-    'USA',
-    'World'
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World",
 ]
 
 LIST_IMAGE_REGIONS = [
@@ -158,7 +161,7 @@ LIST_IMAGE_REGIONS = [
     "USA",
     "WAF",
     "WEU",
-    'World'
+    "World",
 ]
 
 LIST_TRANSF_FUNC = [
@@ -167,7 +170,7 @@ LIST_TRANSF_FUNC = [
     "update_steel",
     "update_cars",
     "update_trucks",
-    "update_solar_PV"
+    "update_solar_PV",
 ]
 
 
@@ -198,7 +201,7 @@ def check_pathway_name(name, filepath, model):
         # leads to an actual file
 
         if model.lower() not in name:
-            name_check = '_'.join((model.lower(), name))
+            name_check = "_".join((model.lower(), name))
         else:
             name_check = name
 
@@ -214,7 +217,7 @@ def check_pathway_name(name, filepath, model):
             )
     else:
         if model.lower() not in name:
-            name_check = '_'.join((model.lower(), name))
+            name_check = "_".join((model.lower(), name))
         else:
             name_check = name
 
@@ -229,6 +232,7 @@ def check_pathway_name(name, filepath, model):
                 f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
             )
 
+
 def check_year(year):
     try:
         year = int(year)
@@ -242,11 +246,13 @@ def check_year(year):
 
     return year
 
+
 def check_filepath(path):
     if not Path(path).is_dir():
         raise FileNotFoundError(f"The IAM output directory {path} could not be found.")
     else:
         return Path(path)
+
 
 def check_exclude(list_exc):
 
@@ -260,6 +266,7 @@ def check_exclude(list_exc):
     else:
         return list_exc
 
+
 def check_fleet(fleet, model, vehicle_type):
     if "fleet file" not in fleet:
         print(
@@ -268,19 +275,21 @@ def check_fleet(fleet, model, vehicle_type):
         )
 
         fleet["fleet file"] = (
-            DATA_DIR / "iam_output_files" / "fleet_files" / model / vehicle_type / "fleet_file.csv"
+            DATA_DIR
+            / "iam_output_files"
+            / "fleet_files"
+            / model
+            / vehicle_type
+            / "fleet_file.csv"
         )
     else:
         filepath = fleet["fleet file"]
         if not Path(filepath).is_file():
-            raise FileNotFoundError(
-                f"The fleet file {filepath} could not be found."
-            )
+            raise FileNotFoundError(f"The fleet file {filepath} could not be found.")
 
     if "regions" in fleet:
         if isinstance(fleet["regions"], str):
             fleet["regions"] = list(fleet["regions"])
-
 
         if model == "remind":
             if not set(fleet["regions"]).issubset(LIST_REMIND_REGIONS):
@@ -307,31 +316,41 @@ def check_fleet(fleet, model, vehicle_type):
         if isinstance(fleet["fleet"], str):
             fleet["filters"] = list(fleet["filters"])
 
-
     return fleet
+
 
 def check_additional_inventories(inventories_list):
 
     if not isinstance(inventories_list, list):
-        raise TypeError("Inventories to import need to be in a sequence of dictionaries like so:"
-                  "["
-                  "{'filepath': 'a file path', 'ecoinvent version: '3.6'},"
-                  " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
-                  "]")
+        raise TypeError(
+            "Inventories to import need to be in a sequence of dictionaries like so:"
+            "["
+            "{'filepath': 'a file path', 'ecoinvent version: '3.6'},"
+            " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
+            "]"
+        )
 
     for inventory in inventories_list:
         if not isinstance(inventory, dict):
-            raise TypeError("Inventories to import need to be in a sequence of dictionaries like so:"
-                  "["
-                  "{'filepath': 'a file path', 'ecoinvent version: '3.6'},"
-                  " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
-                  "]")
+            raise TypeError(
+                "Inventories to import need to be in a sequence of dictionaries like so:"
+                "["
+                "{'filepath': 'a file path', 'ecoinvent version: '3.6'},"
+                " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
+                "]"
+            )
 
-        if not all(i for i in inventory.keys() if i in ["filepath", "ecoinvent version"]):
-            raise TypeError("Both `filepath` and `ecoinvent version` must be present in the list of inventories to import.")
+        if not all(
+            i for i in inventory.keys() if i in ["filepath", "ecoinvent version"]
+        ):
+            raise TypeError(
+                "Both `filepath` and `ecoinvent version` must be present in the list of inventories to import."
+            )
 
         if not Path(inventory["filepath"]).is_file():
-            raise FileNotFoundError(f"Cannot find the inventory file: {inventory['filepath']}.")
+            raise FileNotFoundError(
+                f"Cannot find the inventory file: {inventory['filepath']}."
+            )
         else:
             inventory["filepath"] = Path(inventory["filepath"])
 
@@ -342,6 +361,7 @@ def check_additional_inventories(inventories_list):
 
     return inventories_list
 
+
 def check_db_version(version):
     version = str(version)
     if version not in SUPPORTED_EI_VERSIONS:
@@ -350,6 +370,7 @@ def check_db_version(version):
         )
     else:
         return version
+
 
 def check_scenarios(scenario, key):
 
@@ -366,13 +387,17 @@ def check_scenarios(scenario, key):
         if key is not None:
             scenario["filepath"] = DATA_DIR / "iam_output_files"
         else:
-            raise PermissionError("You will need to provide a decryption key "
-                                  "if you want to use the IAM scenario files included "
-                                  "in premise. If you do not have a key, "
-                                  "please contact the developers.")
+            raise PermissionError(
+                "You will need to provide a decryption key "
+                "if you want to use the IAM scenario files included "
+                "in premise. If you do not have a key, "
+                "please contact the developers."
+            )
 
     scenario["model"] = check_model_name(scenario["model"])
-    scenario["pathway"] = check_pathway_name(scenario["pathway"], scenario["filepath"], scenario["model"])
+    scenario["pathway"] = check_pathway_name(
+        scenario["pathway"], scenario["filepath"], scenario["model"]
+    )
     scenario["year"] = check_year(scenario["year"])
 
     if "exclude" in scenario:
@@ -393,6 +418,7 @@ def check_scenarios(scenario, key):
         scenario["trucks"] = False
 
     return scenario
+
 
 class NewDatabase:
     """
@@ -416,7 +442,7 @@ class NewDatabase:
         source_db=None,
         source_file_path=None,
         additional_inventories=None,
-        direct_import=True
+        direct_import=True,
     ):
 
         self.source = source_db
@@ -431,7 +457,9 @@ class NewDatabase:
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
 
         if additional_inventories:
-            self.additional_inventories = check_additional_inventories(additional_inventories)
+            self.additional_inventories = check_additional_inventories(
+                additional_inventories
+            )
         else:
             self.additional_inventories = None
 
@@ -450,7 +478,7 @@ class NewDatabase:
                 pathway=scenario["pathway"],
                 year=scenario["year"],
                 filepath_iam_files=scenario["filepath"],
-                key=key
+                key=key,
             )
             scenario["database"] = copy.deepcopy(self.db)
 
@@ -463,7 +491,6 @@ class NewDatabase:
         return DatabaseCleaner(
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
-
 
     def import_inventories(self, direct_import):
         """
@@ -485,7 +512,7 @@ class NewDatabase:
             else:
                 fp = FILE_PATH_INVENTORIES_EI_35
 
-            with open(fp, 'rb') as handle:
+            with open(fp, "rb") as handle:
                 data = pickle.load(handle)
                 self.db.extend(data)
 
@@ -512,13 +539,15 @@ class NewDatabase:
                 hydro = HydrogenInventory(self.db, self.version, file)
                 hydro.merge_inventory()
 
-            for file in (FILEPATH_SYNGAS_INVENTORIES, FILEPATH_SYNGAS_FROM_COAL_INVENTORIES):
+            for file in (
+                FILEPATH_SYNGAS_INVENTORIES,
+                FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
+            ):
                 syngas = SyngasInventory(self.db, self.version, file)
                 syngas.merge_inventory()
 
             bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
             bio.merge_inventory()
-
 
             for file in (
                 FILEPATH_SYNFUEL_INVENTORIES,
@@ -549,7 +578,9 @@ class NewDatabase:
                 lpg = LPGInventory(self.db, self.version, file)
                 lpg.merge_inventory()
 
-            various_veh = VariousVehicles(self.db, self.version, FILEPATH_VARIOUS_VEHICLES)
+            various_veh = VariousVehicles(
+                self.db, self.version, FILEPATH_VARIOUS_VEHICLES
+            )
             various_veh.merge_inventory()
 
         print("Done!\n")
@@ -561,7 +592,9 @@ class NewDatabase:
             )
 
             for file in self.additional_inventories:
-                additional = AdditionalInventory(self.db, self.version, file["filepath"])
+                additional = AdditionalInventory(
+                    self.db, self.version, file["filepath"]
+                )
                 additional.prepare_inventory()
                 additional.merge_inventory()
 
@@ -572,7 +605,10 @@ class NewDatabase:
         print("\n/////////////////// ELECTRICITY ////////////////////")
 
         for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_electricity" not in scenario["exclude"]:
+            if (
+                "exclude" not in scenario
+                or "update_electricity" not in scenario["exclude"]
+            ):
                 electricity = Electricity(
                     db=scenario["database"],
                     iam_data=scenario["external data"],
@@ -589,31 +625,31 @@ class NewDatabase:
         for scenario in self.scenarios:
             has_cement_data = False
 
-            if len(
+            if (
+                len(
                     [
                         v
                         for v in scenario["external data"].data.variables.values
                         if "cement" in v.lower() and "production" in v.lower()
                     ]
-            ) > 0:
+                )
+                > 0
+            ):
                 # Industry module present in IAM file
                 print("\nData specific to the cement sector detected!\n")
-                has_cement_data = True
 
+                if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
 
+                    cement = Cement(
+                        db=scenario["database"],
+                        model=scenario["model"],
+                        scenario=scenario["pathway"],
+                        iam_data=scenario["external data"],
+                        year=scenario["year"],
+                        version=self.version,
+                    )
 
-            if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
-
-                cement = Cement(
-                    db=scenario["database"],
-                    model=scenario["model"],
-                    scenario=scenario["pathway"],
-                    iam_data=scenario["external data"],
-                    year=scenario["year"],
-                    version=self.version,
-                )
-
-                scenario["database"] = cement.add_datasets_to_database(industry_module_present=has_cement_data)
+                    scenario["database"] = cement.add_datasets_to_database()
 
     def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
@@ -631,17 +667,17 @@ class NewDatabase:
                 > 0
             ):
                 print("\nData specific to the steel sector detected!\n")
-                has_steel_data = True
 
-            if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
-                steel = Steel(
-                    db=scenario["database"],
-                    model=scenario["model"],
-                    iam_data=scenario["external data"],
-                    year=scenario["year"],
-                )
-                scenario["database"] = steel.generate_activities(industry_module_present=has_steel_data)
+                if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
+
+                    steel = Steel(
+                        db=scenario["database"],
+                        model=scenario["model"],
+                        iam_data=scenario["external data"],
+                        year=scenario["year"],
+                    )
+                    scenario["database"] = steel.generate_activities()
 
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")
@@ -660,7 +696,7 @@ class NewDatabase:
                         year=scenario["year"],
                         regions=scenario["passenger_cars"]["regions"],
                         filters=scenario["passenger_cars"]["filters"],
-                        iam_data=scenario["external data"].data
+                        iam_data=scenario["external data"].data,
                     )
 
                 else:
@@ -670,7 +706,9 @@ class NewDatabase:
                         version=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
-                        regions=LIST_REMIND_REGIONS if scenario["model"] == "remind" else LIST_IMAGE_REGIONS
+                        regions=LIST_REMIND_REGIONS
+                        if scenario["model"] == "remind"
+                        else LIST_IMAGE_REGIONS,
                     )
 
                 scenario["database"] = cars.merge_inventory()
@@ -703,8 +741,8 @@ class NewDatabase:
                         year=scenario["year"],
                         regions=scenario["trucks"]["regions"],
                         filters=scenario["trucks"]["filters"],
-                        iam_data=scenario["external data"].data
-                       )
+                        iam_data=scenario["external data"].data,
+                    )
 
                 else:
                     # Load default trucks inventories
@@ -713,7 +751,9 @@ class NewDatabase:
                         version=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
-                        regions=LIST_REMIND_REGIONS if scenario["model"] == "remind" else LIST_IMAGE_REGIONS
+                        regions=LIST_REMIND_REGIONS
+                        if scenario["model"] == "remind"
+                        else LIST_IMAGE_REGIONS,
                     )
 
                 scenario["database"] = trucks.merge_inventory()
@@ -722,7 +762,10 @@ class NewDatabase:
         print("\n/////////////////// SOLAR PV ////////////////////")
 
         for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_solar_PV" not in scenario["exclude"]:
+            if (
+                "exclude" not in scenario
+                or "update_solar_PV" not in scenario["exclude"]
+            ):
                 solar_PV = SolarPV(db=scenario["database"], year=scenario["year"])
                 print("Update efficiency of solar PVs.\n")
                 scenario["database"] = solar_PV.update_efficiency_of_solar_PV()
@@ -739,19 +782,22 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
 
-    def write_superstructure_db_to_brightway(self, name=f"super_db_{date.today()}", filepath=None):
+    def write_superstructure_db_to_brightway(
+        self, name=f"super_db_{date.today()}", filepath=None
+    ):
         """
         Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
         :return: filepath of the "scenarios difference file"
         """
 
-        self.db = build_superstructure_db(self.db, self.scenarios, db_name=name, fp=filepath)
+        self.db = build_superstructure_db(
+            self.db, self.scenarios, db_name=name, fp=filepath
+        )
 
         print("Done!")
 
         wurst.write_brightway2_database(
-            self.db,
-            name,
+            self.db, name,
         )
 
     def write_db_to_brightway(self, name=None):
@@ -768,20 +814,25 @@ class NewDatabase:
                 name = [name]
             elif isinstance(name, list):
                 if not all(isinstance(item, str) for item in name):
-                    raise TypeError("`name` should be a string or a sequence of strings.")
+                    raise TypeError(
+                        "`name` should be a string or a sequence of strings."
+                    )
             else:
                 raise TypeError("`name` should be a string or a sequence of strings.")
         else:
-            name = [eidb_label(s["model"], s["pathway"], s["year"]) for s in self.scenarios]
+            name = [
+                eidb_label(s["model"], s["pathway"], s["year"]) for s in self.scenarios
+            ]
 
         if len(name) != len(self.scenarios):
-            raise ValueError("The number of databases does not match the number of `name` given.")
+            raise ValueError(
+                "The number of databases does not match the number of `name` given."
+            )
 
         print("Write new database(s) to Brightway2.")
         for s, scenario in enumerate(self.scenarios):
             wurst.write_brightway2_database(
-                scenario["database"],
-                name[s],
+                scenario["database"], name[s],
             )
 
     def write_db_to_matrices(self, filepath=None):
@@ -802,17 +853,21 @@ class NewDatabase:
 
         if filepath is not None:
             if isinstance(filepath, str):
-                filepath = [(
-                Path(filepath) / s["model"] / s["pathway"] / str(s["year"])
-                    ) for s in self.scenarios]
+                filepath = [
+                    (Path(filepath) / s["model"] / s["pathway"] / str(s["year"]))
+                    for s in self.scenarios
+                ]
             elif isinstance(filepath, list):
                 filepath = [Path(f) for f in filepath]
             else:
-                raise TypeError(f"Expected a string or a sequence of strings for `filepath`, not {type(filepath)}.")
+                raise TypeError(
+                    f"Expected a string or a sequence of strings for `filepath`, not {type(filepath)}."
+                )
         else:
-            filepath = [(
-                DATA_DIR / "export" / s["model"] / s["pathway"] / str(s["year"])
-            ) for s in self.scenarios]
+            filepath = [
+                (DATA_DIR / "export" / s["model"] / s["pathway"] / str(s["year"]))
+                for s in self.scenarios
+            ]
 
         print("Write new database(s) to matrix.")
         for s, scenario in enumerate(self.scenarios):
@@ -853,22 +908,25 @@ class NewDatabase:
                 name = [name]
             elif isinstance(name, list):
                 if not all(isinstance(item, str) for item in name):
-                    raise TypeError("`name` should be a string or a sequence of strings.")
+                    raise TypeError(
+                        "`name` should be a string or a sequence of strings."
+                    )
             else:
                 raise TypeError("`name` should be a string or a sequence of strings.")
         else:
-            name = [eidb_label(s["model"], s["pathway"], s["year"]) for s in self.scenarios]
+            name = [
+                eidb_label(s["model"], s["pathway"], s["year"]) for s in self.scenarios
+            ]
 
         if len(name) != len(self.scenarios):
-            raise ValueError("The number of databases does not match the number of `name` given.")
+            raise ValueError(
+                "The number of databases does not match the number of `name` given."
+            )
 
-        print('Write new database to Brightway2.5')
+        print("Write new database to Brightway2.5")
         # We first need to check for differences between the source database
         # and the new ones
         # We add a `modified` label to any new activity or any new or modified exchange
         self.scenarios = add_modified_tags(self.db, self.scenarios)
         for s, scenario in enumerate(self.scenarios):
-            wurst.write_brightway25_database(scenario["database"],
-                                             name[s],
-                                             self.source
-                                             )
+            wurst.write_brightway25_database(scenario["database"], name[s], self.source)

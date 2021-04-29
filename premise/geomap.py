@@ -12,105 +12,13 @@ class Geomap:
     def __init__(self, model):
 
         self.model = model
+        self.geo = geomatcher
 
-        if self.model == "remind":
-            self.geo = self.get_REMIND_geomatcher()
+        self.iam_regions = [x[1] for x in list(self.geo.keys()) if isinstance(x, tuple)
+                            and x[0] == self.model.upper()]
 
-        if self.model == "image":
-            self.geo = self.get_IMAGE_geomatcher()
 
-    @staticmethod
-    def get_IMAGE_geomatcher():
-        """
-        Geographical boundaries for IMAGE regions are initally included in geomatcher.
-        However, they are not properly labelled.
-
-        """
-
-        d_image_regions = {
-            "BRA": "Brazil",
-            "CAN": "Canada",
-            "CEU": "Central Europe",
-            "CHN": "China Region",
-            "EAF": "Eastern Africa",
-            "INDIA": "India",
-            "INDO": "Indonesia Region",
-            "JAP": "Japan",
-            "KOR": "Korea Region",
-            "ME": "Middle east",
-            "MEX": "Mexico",
-            "NAF": "Northern Africa",
-            "OCE": "Oceania",
-            "RCAM": "Central America",
-            "RSAF": "Rest of Southern Africa",
-            "RSAM": "Rest of South America",
-            "RSAS": "Rest of South Asia",
-            "RUS": "Russia Region",
-            "SAF": "South Africa",
-            "SEAS": "South Asia",
-            "STAN": "Central Asia",
-            "TUR": "Turkey",
-            "UKR": "Ukraine region",
-            "USA": "USA",
-            "WAF": "Western Africa",
-            "WEU": "Western Europe",
-        }
-
-        d_map = {("IMAGE", v): ("IMAGE", k) for k, v in d_image_regions.items()}
-
-        new_def = dict()
-
-        for k, v in geomatcher.items():
-            if isinstance(k, tuple):
-                if k[0] == "IMAGE" and k[1] in list(d_image_regions.values()):
-                    new_def[d_map[k]] = v
-
-        geo = geomatcher
-
-        for k in list(geomatcher.keys()):
-            if k[0] == "IMAGE" and k[1] in list(d_image_regions.values()):
-                geomatcher.pop(k)
-
-        geo.update(new_def)
-
-        return geo
-
-    @staticmethod
-    def get_REMIND_geomatcher():
-        """
-        Load a geomatcher object from the `constructive_geometries`library and add definitions.
-        It is used to find correspondences between REMIND and ecoinvent region names.
-        :return: geomatcher object
-        :rtype: wurst.geo.geomatcher
-        """
-        with open(REGION_MAPPING_FILEPATH) as f:
-            f.readline()
-            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-            list_of_region = [(x[1], x[2]) for x in csv_list]
-
-        # List of countries not found
-        countries_not_found = ["CC", "CX", "GG", "JE", "BL"]
-
-        rmnd_to_iso = {}
-        iso_to_rmnd = {}
-
-        # Build a dictionary that maps region names (used by REMIND) to ISO country codes
-        # And a reverse dictionary that maps ISO country codes to region names
-        for ISO, region in list_of_region:
-            if ISO not in countries_not_found:
-                try:
-                    rmnd_to_iso[region].append(ISO)
-                except KeyError:
-                    rmnd_to_iso[region] = [ISO]
-
-                iso_to_rmnd[region] = ISO
-
-        geo = geomatcher
-        geo.add_definitions(rmnd_to_iso, "REMIND")
-
-        return geo
-
-    def iam_to_ecoinvent_location(self, location, contained=False):
+    def iam_to_ecoinvent_location(self, location, contained=True):
         """
         Find the corresponding ecoinvent region given an IAM region.
 
@@ -123,48 +31,26 @@ class Geomap:
         :rtype: list
         """
 
-        if location == "World":
-            return ["GLO"]
-        else:
-            location = (self.model.upper(), location)
+        location = (self.model.upper(), location)
 
-            ecoinvent_locations = []
-            try:
-                searchfunc = self.geo.contained if contained else self.geo.intersects
-                for r in searchfunc(location):
-                    if not isinstance(r, tuple):
-                        ecoinvent_locations.append(r)
-                    else:
-                        if r[0] not in ("REMIND", "IMAGE"):
-                            ecoinvent_locations.append(r[1])
+        ecoinvent_locations = []
+        try:
+            searchfunc = self.geo.contained if contained else self.geo.intersects
+            for r in searchfunc(location):
+                if not isinstance(r, tuple):
+                    ecoinvent_locations.append(r)
+                else:
+                    if r[0] not in ("REMIND", "IMAGE"):
+                        ecoinvent_locations.append(r[1])
 
-                # TODO: Dirty trick. In the future, "CA" should be removed from "RNA". Also, "GLO" should not appear.
-                if location == ("REMIND", "USA"):
-                    ecoinvent_locations = [
-                        e for e in ecoinvent_locations if "CA" not in e
-                    ]
+            # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
+            if location != (self.model.upper(), "World"):
+                ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
 
-                if location in [("REMIND", "REF"), ("IMAGE", "RUS")]:
-                    ecoinvent_locations = [
-                        e for e in ecoinvent_locations if e not in [
-                            "RER",
-                            'Europe without Switzerland',
-                            'Europe without Switzerland and France',
-                            'RER w/o CH+DE',
-                            'RER w/o AT+BE+CH+DE+FR+IT',
-                            'RER w/o DE+NL+NO',
-                            'Europe without NORDEL (NCPA)',
-                        ]
-                    ]
-
-                # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
-                if location != (self.model.upper(), "World"):
-                    ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
-
-                return ecoinvent_locations
-            except KeyError:
-                print("Can't find location {} using the geomatcher.".format(location))
-                return ["RoW"]
+            return ecoinvent_locations
+        except KeyError:
+            print("Can't find location {} using the geomatcher.".format(location))
+            return ["RoW"]
 
     def ecoinvent_to_iam_location(self, location):
         """
@@ -178,15 +64,30 @@ class Geomap:
         """
 
         mapping = {
-            "GLO": "World",
-            "RoW": "CAZ" if self.model == "remind" else "World",
             "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
             "Europe without Switzerland and Austria": "EUR" if self.model == "remind" else "WEU",
             "Europe without Switzerland": "EUR" if self.model == "remind" else "WEU",
             "North America without Quebec": "USA",
             "RER w/o RU": "EUR" if self.model == "remind" else "WEU",
             "RER": "EUR" if self.model == "remind" else "WEU",
-
+            "RoW": "World",
+            "GLO": "World",
+            "RNA": "USA",
+            "SAS": "OAS" if self.model == "remind" else "SEAS",
+            "IAI Area, EU27 & EFTA": "EUR" if self.model == "remind" else "WEU",
+            "UN-OCEANIA": "CAZ" if self.model == "remind" else "OCE",
+            "UN-SEASIA": "OAS" if self.model == "remind" else "SEAS",
+            "RAF": "SSA" if self.model == "remind" else "RSAF",
+            "RAS": "CHA" if self.model == "remind" else "CHN",
+            "IAI Area, Africa": "SSA" if self.model == "remind" else "RSAF",
+            "RER w/o CH+DE": "EUR" if self.model == "remind" else "WEU",
+            "RER w/o DE+NL+RU": "EUR" if self.model == "remind" else "WEU",
+            "IAI Area, Asia, without China and GCC": "OAS" if self.model == "remind" else "SEAS",
+            "Europe, without Russia and Turkey": "EUR" if self.model == "remind" else "WEU",
+            "WECC": "USA",
+            "UCTE": "EUR" if self.model == "remind" else "WEU",
+            "UCTE without Germany": "EUR" if self.model == "remind" else "WEU",
+            "NORDEL": "NEU" if self.model == "remind" else "WEU",
         }
         if location in mapping:
             return mapping[location]
@@ -218,6 +119,7 @@ class Geomap:
 
         # If we have more than one REMIND region
         if len(iam_location) > 1:
+            print(f"more than one locations possible for {location}: {iam_location}")
             # TODO: find a more elegant way to do that
             for key, value in mapping.items():
                 # We need to find the most specific REMIND region
@@ -239,7 +141,7 @@ class Geomap:
                     "RAF": "RSAF",
                     "Europe without Switzerland": "WEU",
                     "RLA": "RSAF",
-                    "XK": "WEU",
+                    #"XK": "WEU",
                     "SS": "EAF",
                     "IAI Area, Africa": "WAF",
                     "UN-OCEANIA": "OCE",
