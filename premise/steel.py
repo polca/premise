@@ -1,6 +1,7 @@
 import wurst
 from wurst import searching as ws
 from wurst.searching import NoResults
+from wurst import transformations as wt
 import itertools
 from .geomap import Geomap
 from .activity_maps import InventorySet
@@ -9,6 +10,8 @@ import uuid
 import copy
 import os
 import contextlib
+from .utils import *
+import numpy as np
 
 
 class Steel:
@@ -39,7 +42,7 @@ class Steel:
         self.material_map = mapping.generate_material_map()
         self.recycling_rates = get_steel_recycling_rates(year=self.year)
 
-    def fetch_proxies(self, name, ref_prod):
+    def fetch_proxies(self, name, ref_prod, relink=False):
         """
         Fetch dataset proxies, given a dataset `name` and `ref_prod`.
         Store a copy for each IAM region.
@@ -99,9 +102,11 @@ class Steel:
 
                 raise
 
-            d_act[d] = copy.deepcopy(ds)
-            d_act[d]["location"] = d
+            d_act[d] = wt.copy_to_new_location(ds, d)
             d_act[d]["code"] = str(uuid.uuid4().hex)
+
+            if relink:
+                relink_technosphere_exchanges(d_act[d], self.db, self.model)
 
             # Add `production volume` field
             if self.model == "remind":
@@ -383,7 +388,7 @@ class Steel:
     def fuel_efficiency_factor(self, ds):
         """
 
-        :param loc: the steel production dataset
+        :param ds:
         :return: correction factor
         :rtype: float
         """
@@ -421,20 +426,20 @@ class Steel:
 
         eff_factor = ((self.iam_data.data.loc[
                                   dict(
-                                      region=[loc],
+                                      region=[loc] if isinstance(loc, str) else loc,
                                       variables=final_energy
                                   )
                               ].interp(year=self.year).sum(dim=["region", "variables"])
                               /
                               self.iam_data.data.loc[
                                   dict(
-                                      region=[loc],
+                                      region=[loc] if isinstance(loc, str) else loc,
                                       variables=prod,
                                   )
                               ].interp(year=self.year).sum(dim="region")) /
                              (self.iam_data.data.loc[
                                   dict(
-                                      region=[loc],
+                                      region=[loc] if isinstance(loc, str) else loc,
                                       variables=final_energy,
                                       year=2020
                                   )
@@ -442,7 +447,7 @@ class Steel:
                               /
                               self.iam_data.data.loc[
                                   dict(
-                                      region=[loc],
+                                      region=[loc] if isinstance(loc, str) else loc,
                                       variables=prod,
                                       year=2020
                                   )
@@ -674,205 +679,178 @@ class Steel:
 
         return rate, new_exchanges
 
-    def generate_activities(self, industry_module_present=True):
+    def generate_activities(self):
         """
         This function generates new activities for primary and secondary steel production and add them to the ecoinvent db.
         
         :return: Returns a modified database with newly added steel activities for the corresponding year
         """
 
-        if industry_module_present:
-
-            print("The validity of the datasets produced from the integration of the steel sector is not yet fully tested. Consider the results with caution.")
-
-            print('Log of deleted steel datasets saved in {}'.format(DATA_DIR / 'logs'))
-            print('Log of created steel datasets saved in {}'.format(DATA_DIR / 'logs'))
-
-            if not os.path.exists(DATA_DIR / "logs"):
-                os.makedirs(DATA_DIR / "logs")
-
-            with open(DATA_DIR / "logs/log deleted steel datasets.csv", "w") as csv_file:
-                writer = csv.writer(csv_file,
-                                    delimiter=';',
-                                    lineterminator='\n')
-                writer.writerow(['dataset name', 'reference product', 'location'])
-
-            with open(DATA_DIR / "logs/log created steel datasets.csv", "w") as csv_file:
-                writer = csv.writer(csv_file,
-                                    delimiter=';',
-                                    lineterminator='\n')
-                writer.writerow(['dataset name', 'reference product', 'location'])
-
-            print('Create steel markets for different regions')
-
-            created_datasets = list()
-            for i in (
-                      ("market for steel, low-alloyed", "steel, low-alloyed"),
-                      ("market for steel, unalloyed", "steel, unalloyed"),
-                      ("market for steel, chromium steel 18/8", "steel, chromium steel 18/8")
-                      ):
-                act_steel = self.fetch_proxies(i[0], i[1])
-
-                self.db.extend([v for v in act_steel.values()])
-
-                created_datasets.extend([(act['name'], act['reference product'], act['location'])
-                                for act in act_steel.values()])
 
 
-                # Create global market for steel
-                ds = ws.get_one(
-                    self.db,
-                    ws.equals("name", i[0]),
-                    ws.contains("reference product", "steel"),
-                    ws.equals("location", "WEU" if self.model == "image" else "EUR"),
-                )
-                d = copy.deepcopy(ds)
-                d["location"] = "World"
-                d["code"] = str(uuid.uuid4().hex)
+        print("The validity of the datasets produced from the integration of the steel sector is not yet fully tested. Consider the results with caution.")
 
-                if "input" in d:
-                    d.pop("input")
+        print('Log of deleted steel datasets saved in {}'.format(DATA_DIR / 'logs'))
+        print('Log of created steel datasets saved in {}'.format(DATA_DIR / 'logs'))
 
-                for prod in ws.production(d):
-                    prod['location'] = d["location"]
+        if not os.path.exists(DATA_DIR / "logs"):
+            os.makedirs(DATA_DIR / "logs")
 
-                    if "input" in prod:
-                        prod.pop("input")
+        with open(DATA_DIR / "logs/log deleted steel datasets.csv", "w") as csv_file:
+            writer = csv.writer(csv_file,
+                                delimiter=';',
+                                lineterminator='\n')
+            writer.writerow(['dataset name', 'reference product', 'location'])
 
-                d["exchanges"] = [x for x in d["exchanges"] if x["type"] == "production"]
+        with open(DATA_DIR / "logs/log created steel datasets.csv", "w") as csv_file:
+            writer = csv.writer(csv_file,
+                                delimiter=';',
+                                lineterminator='\n')
+            writer.writerow(['dataset name', 'reference product', 'location'])
 
-                if self.model == "remind":
-                    prod = "Production|Industry|Steel"
-                else:
-                    prod = "Production|Steel"
+        print('Create steel markets for different regions')
 
-                regions = [r for r in self.iam_data.data.region.values if r != "World"]
-                for region in regions:
-                    share = (self.iam_data.data.sel(variables=prod, region=region).interp(year=self.year)/
-                             self.iam_data.data.sel(variables=prod, region=regions).interp(year=self.year).sum(dim="region"))\
-                        .values.item(0)
+        created_datasets = list()
+        for i in (
+                  ("market for steel, low-alloyed", "steel, low-alloyed"),
+                  ("market for steel, unalloyed", "steel, unalloyed"),
+                  ("market for steel, chromium steel 18/8", "steel, chromium steel 18/8")
+                  ):
+            act_steel = self.fetch_proxies(i[0], i[1])
 
-                    d["exchanges"].append(
-                        {
-                            "name": i[0],
-                            "product": i[1],
-                            "amount": share,
-                            "unit": "kilogram",
-                            "type": "technosphere",
-                            "location": region
-                        }
-                    )
+            self.db.extend([v for v in act_steel.values()])
 
-                self.db.append(d)
+            created_datasets.extend([(act['name'], act['reference product'], act['location'])
+                            for act in act_steel.values()])
 
-                print('Relink new steel markets to steel-consuming activities')
-                self.relink_to_new_steel_markets(i[0], i[1])
 
-            # Determine all steel activities in the db. Delete old datasets.
-            print('Create new steel production datasets and delete old datasets')
-            d_act_primary_steel = {mat: self.fetch_proxies(mat[0], mat[1]) for mat
-                                   in zip(self.material_map['steel, primary'], ["steel"]*len(self.material_map['steel, primary']))}
-            d_act_secondary_steel = {mat: self.fetch_proxies(mat[0], mat[1]) for mat
-                                     in zip(self.material_map['steel, secondary'], ["steel"]*len(self.material_map['steel, secondary']))}
-            d_act_steel = {**d_act_primary_steel, **d_act_secondary_steel}
-
-            # Scale down fuel exchanges, according to efficiency improvement as
-            # forecast by the IAM:
-            list_fuels = [
-                        "diesel",
-                        "coal",
-                        "lignite",
-                        "coke",
-                        "fuel",
-                        "meat",
-                        "gas",
-                        "oil",
-                        "electricity",
-                        "natural gas",
-                        ]
-
-            for steel in d_act_steel:
-
-                for ds in d_act_steel[steel]:
-                    # the correction factor applied to all fuel/electricity input is
-                    # equal to the ration fuel/output in the year in question
-                    # divided by the ratio fuel/output in 2020
-
-                    correction_factor = self.fuel_efficiency_factor(d_act_steel[steel][ds])
-
-                    # just in case the IAM gives weird stuff
-                    # we assume that things cannot get worse in the future
-                    if correction_factor > 1:
-                        correction_factor = 1
-
-                    for exc in ws.technosphere(d_act_steel[steel][ds],
-                                               ws.either(*[ws.contains("name", x) for x in list_fuels])
-                                               ):
-                        if correction_factor != 0 and ~np.isnan(correction_factor):
-                            if exc["amount"] == 0:
-                                wurst.rescale_exchange(
-                                    exc, correction_factor / 1, remove_uncertainty=True
-                                )
-                            else:
-                                wurst.rescale_exchange(exc, correction_factor)
-
-                            exc["comment"] = "This exchange has been modified based on REMIND projections for the steel sector by `premise`."
-
-                    for exc in ws.biosphere(d_act_steel[steel][ds], ws.contains("name", "Carbon dioxide, fossil")):
-                        if correction_factor != 0 and ~np.isnan(correction_factor):
-                            if exc["amount"] == 0:
-                                wurst.rescale_exchange(
-                                    exc, correction_factor / 1, remove_uncertainty=True
-                                )
-                            else:
-                                wurst.rescale_exchange(exc, correction_factor)
-
-                            exc["comment"] = "This exchange has been modified based on REMIND projections for the steel sector by `premise`."
-
-                        # Add carbon capture-related energy exchanges
-                        # Carbon capture rate: share of capture of total CO2 emitted
-                        # Note: only if variables exist in IAM data
-
-                        carbon_capture_rate, new_exchanges = self.get_carbon_capture_energy_inputs(exc["amount"], ds)
-
-                        if carbon_capture_rate > 0:
-                            exc["amount"] *= (1 - carbon_capture_rate)
-                            d_act_steel[steel][ds]["exchanges"].extend(new_exchanges)
-
-                    # Update hot pollutant emission according to GAINS
-                    self.update_pollutant_emissions(d_act_steel[steel][ds])
-
-                self.db.extend([v for v in d_act_steel[steel].values()])
-
-                print('Relink new steel production datasets to steel-consuming activities')
-                self.relink_to_new_steel_markets(d_act_steel[steel][ds]["name"], d_act_steel[steel][ds]["reference product"])
-
-        else:
-
-            # In this case, we do not have industry data related to steel production from the IAM
-
-            # We will though do four things anyway:
-            # 1. Update hot pollutant emission levels according to GAINS
-            # 2. Create regional low-alloyed steel markets
-            # 3. Adjust the share of secondary steel on these steel markets
-            # 4. Relink steel-consuming activities to these markets
-
-            # Update hot pollutant emissions
-            print("Update hot pollutant emissions for steel production activities.")
-            for ds in ws.get_many(
+            # Create global market for steel
+            ds = ws.get_one(
                 self.db,
-                    *[ws.either(ws.contains("name", "steel production, converter"),
-                                ws.contains("name", "steel production, electric")),
-                      ws.contains("reference product", "steel")]
-            ):
-                self.update_pollutant_emissions(ds)
+                ws.equals("name", i[0]),
+                ws.contains("reference product", "steel"),
+                ws.equals("location", "WEU" if self.model == "image" else "EUR"),
+            )
+            d = copy.deepcopy(ds)
+            d["location"] = "World"
+            d["code"] = str(uuid.uuid4().hex)
 
+            if "input" in d:
+                d.pop("input")
 
-            # Create new steel markets with adjusted secondary steel supply
-            print("Create new steel markets.")
-            self.create_new_steel_markets()
-            print("Relink steel inputs to new steel markets.")
-            self.relink_to_new_steel_markets()
+            for prod in ws.production(d):
+                prod['location'] = d["location"]
+
+                if "input" in prod:
+                    prod.pop("input")
+
+            d["exchanges"] = [x for x in d["exchanges"] if x["type"] == "production"]
+
+            if self.model == "remind":
+                prod = "Production|Industry|Steel"
+            else:
+                prod = "Production|Steel"
+
+            regions = [r for r in self.iam_data.data.region.values if r != "World"]
+            for region in regions:
+                share = (self.iam_data.data.sel(variables=prod, region=region).interp(year=self.year)/
+                         self.iam_data.data.sel(variables=prod, region=regions).interp(year=self.year).sum(dim="region"))\
+                    .values.item(0)
+
+                d["exchanges"].append(
+                    {
+                        "name": i[0],
+                        "product": i[1],
+                        "amount": share,
+                        "unit": "kilogram",
+                        "type": "technosphere",
+                        "location": region
+                    }
+                )
+
+            self.db.append(d)
+
+            print('Relink new steel markets to steel-consuming activities')
+            self.relink_to_new_steel_markets(i[0], i[1])
+
+        # Determine all steel activities in the db. Delete old datasets.
+        print('Create new steel production datasets and delete old datasets')
+        d_act_primary_steel = {mat: self.fetch_proxies(mat[0], mat[1], relink=True) for mat
+                               in zip(self.material_map['steel, primary'], ["steel"]*len(self.material_map['steel, primary']))}
+        d_act_secondary_steel = {mat: self.fetch_proxies(mat[0], mat[1], relink=True) for mat
+                                 in zip(self.material_map['steel, secondary'], ["steel"]*len(self.material_map['steel, secondary']))}
+        d_act_steel = {**d_act_primary_steel, **d_act_secondary_steel}
+
+        # Scale down fuel exchanges, according to efficiency improvement as
+        # forecast by the IAM:
+        list_fuels = [
+                    "diesel",
+                    "coal",
+                    "lignite",
+                    "coke",
+                    "fuel",
+                    "meat",
+                    "gas",
+                    "oil",
+                    "electricity",
+                    "natural gas",
+                    ]
+
+        for steel in d_act_steel:
+
+            for ds in d_act_steel[steel]:
+                # the correction factor applied to all fuel/electricity input is
+                # equal to the ration fuel/output in the year in question
+                # divided by the ratio fuel/output in 2020
+
+                correction_factor = self.fuel_efficiency_factor(d_act_steel[steel][ds])
+
+                # just in case the IAM gives weird stuff
+                # we assume that things cannot get worse in the future
+                if correction_factor > 1:
+                    correction_factor = 1
+
+                for exc in ws.technosphere(d_act_steel[steel][ds],
+                                           ws.either(*[ws.contains("name", x) for x in list_fuels])
+                                           ):
+                    if correction_factor != 0 and ~np.isnan(correction_factor):
+                        if exc["amount"] == 0:
+                            wurst.rescale_exchange(
+                                exc, correction_factor / 1, remove_uncertainty=True
+                            )
+                        else:
+                            wurst.rescale_exchange(exc, correction_factor)
+
+                        exc["comment"] = "This exchange has been modified based on REMIND projections for the steel sector by `premise`."
+
+                for exc in ws.biosphere(d_act_steel[steel][ds], ws.contains("name", "Carbon dioxide, fossil")):
+                    if correction_factor != 0 and ~np.isnan(correction_factor):
+                        if exc["amount"] == 0:
+                            wurst.rescale_exchange(
+                                exc, correction_factor / 1, remove_uncertainty=True
+                            )
+                        else:
+                            wurst.rescale_exchange(exc, correction_factor)
+
+                        exc["comment"] = "This exchange has been modified based on REMIND projections for the steel sector by `premise`."
+
+                    # Add carbon capture-related energy exchanges
+                    # Carbon capture rate: share of capture of total CO2 emitted
+                    # Note: only if variables exist in IAM data
+
+                    carbon_capture_rate, new_exchanges = self.get_carbon_capture_energy_inputs(exc["amount"], ds)
+
+                    if carbon_capture_rate > 0:
+                        exc["amount"] *= (1 - carbon_capture_rate)
+                        d_act_steel[steel][ds]["exchanges"].extend(new_exchanges)
+
+                # Update hot pollutant emission according to GAINS
+                self.update_pollutant_emissions(d_act_steel[steel][ds])
+
+            self.db.extend([v for v in d_act_steel[steel].values()])
+
+            print('Relink new steel production datasets to steel-consuming activities')
+            self.relink_to_new_steel_markets(d_act_steel[steel][ds]["name"], d_act_steel[steel][ds]["reference product"])
 
         return self.db
 
@@ -1049,9 +1027,6 @@ class Steel:
             self.db.extend([v for v in d_act.values()])
 
     def relink_to_new_steel_markets(self, name, ref_prod):
-
-        #with open(os.devnull, "w") as f, contextlib.redirect_stdout(f):
-
 
         # Loop through datasets that are not steel markets
         for ds in ws.get_many(

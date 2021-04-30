@@ -127,7 +127,7 @@ class Cars:
 
             return selected_producer
 
-        ei_locs = self.geo.iam_to_ecoinvent_location(region, contained=True)
+        ei_locs = self.geo.iam_to_ecoinvent_location(region)
         prod = producer_in_locations(ei_locs)
 
         if prod is None:

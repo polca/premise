@@ -14,6 +14,7 @@ from .geomap import Geomap
 import sys
 import xarray as xr
 import pickle
+from .utils import *
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
@@ -199,6 +200,7 @@ class BaseInventoryImport:
         """Find exchanges and activities that do not contain a specific field
         in :attr:`imort_db`
 
+        :param scope:
         :param str field: label of the field to search for.
         :returns: a list of dictionaries, activities and exchanges
         :rtype: list
@@ -866,6 +868,7 @@ class PassengerCars(BaseInventoryImport):
 
         self.db = database
         self.regions = regions
+        self.model = model
         self.geomap = Geomap(model=model)
 
         inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
@@ -915,6 +918,7 @@ class PassengerCars(BaseInventoryImport):
 
         for x in self.import_db.data:
             x["code"] = str(uuid.uuid4().hex)
+            #x = relink_technosphere_exchanges(x, self.db, self.model)
 
     def merge_inventory(self):
         self.prepare_inventory()
@@ -1178,8 +1182,6 @@ class Trucks(BaseInventoryImport):
                     exc["unit"] = new_supplier["unit"]
 
         return self.db
-
-
 
 
 class AdditionalInventory(BaseInventoryImport):

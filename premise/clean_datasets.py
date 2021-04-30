@@ -61,6 +61,25 @@ class DatabaseCleaner:
             for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
+    def change_biogenic_co2_name(self):
+        """
+        CO2 capture through biomass growth is represented with `Carbon dioxide, in air`.
+        However, such flow does not have a CF in the IPCC method. This becomes an issue when biommas
+        is used together with CCS.
+        Hence, we change th flow name to `Carbon dioxide, to soil or biomass stock`, for which the IPPCC
+        has a CF of -1.
+        :return:
+        """
+
+        for ds in self.db:
+            for exc in ws.biosphere(ds, ws.equals("name", "Carbon dioxide, in air")):
+                exc["name"] = "Carbon dioxide, to soil or biomass stock"
+                exc["categories"] = ("soil",)
+
+            for exc in ws.biosphere(ds, ws.equals("name", "Carbon dioxide, non-fossil")):
+                exc["name"] = "Carbon dioxide, from soil or biomass stock"
+                exc["categories"] = ("air",)
+
     @staticmethod
     def get_fix_names_dict():
         """
@@ -75,7 +94,7 @@ class DatabaseCleaner:
 
     def get_rev_fix_names_dict(self):
         """
-        Reverse the fix_names dicitonary.
+        Reverse the fix_names dictionary.
 
         :return: dictionary that contains names equivalence
         :rtype: dict

@@ -11,9 +11,9 @@ def test_ecoinvent_to_REMIND():
 
 
 def test_REMIND_to_ecoinvent():
-    # DE and CH are in EUR (at least for now)
+    # DE and CH are in EUR and NEU
     assert "DE" in geomap.iam_to_ecoinvent_location("EUR")
-    assert "CH" in geomap.iam_to_ecoinvent_location("EUR")
+    assert "CH" in geomap.iam_to_ecoinvent_location("NEU")
     # Hongkong is in China (really?)
     assert "HK" in geomap.iam_to_ecoinvent_location("CHA")
     # Japan is in JPN
@@ -21,8 +21,6 @@ def test_REMIND_to_ecoinvent():
 
 
 def test_REMIND_to_ecoinvent_contained():
-    # RU is intersecting EUR
-    assert "RU" in geomap.iam_to_ecoinvent_location("EUR")
-    # but lies not strictly within
+    # RU is not contained in EUR
     assert "RU" not in geomap.iam_to_ecoinvent_location(
         "EUR", contained=True)
