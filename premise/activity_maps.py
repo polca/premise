@@ -389,14 +389,14 @@ class InventorySet:
             ],
             "mask": {"name": "aluminium", "reference product": "heat"}
         },
-        # TODO: find batter fit than this. Nothing better available in ecoinvent.
+        # TODO: find better fit than this. Nothing better available in ecoinvent.
         "Oil CC": {
             "fltr": [
                 "electricity production, oil"
             ],
             "mask": {"name": "aluminium", "reference product": "heat"}
         },
-        # TODO: find batter fit than this. Nothing better available in ecoinvent.
+        # TODO: find better fit than this. Nothing better available in ecoinvent.
         "Oil CC CCS": {
             "fltr": [
                 "electricity production, at co-generation power plant/oil, post, pipeline 200km, storage 1000m",
@@ -449,7 +449,6 @@ class InventorySet:
         "Coal": {
             "fltr": [
                     "heat production, at hard coal industrial furnace 1-10MW",
-                    "heat production, hard coal coke, stove 5-15kW",
             ]
         },
         "Coal CHP": {
@@ -473,6 +472,44 @@ class InventorySet:
             "mask":{"reference product":"electricity"}
         },
         "Geothermal": {"fltr": "heat production, deep geothermal"},
+    }
+    
+    heatplant_fuels = {
+        "Biomass": {
+            "fltr": [
+                    "market for wood chips, dry, measured as dry mass",
+            ]
+        },
+        "Biomass CHP": {
+            "fltr": [
+                    "market for wood chips, wet, measured as dry mass",
+                    "market for biogas",
+            ]
+        },
+        "Coal": {
+            "fltr": ["market for hard coal"],
+            "mask": ['factory', 'plant', 'briquettes', 'ash']
+        },
+        "Coal CHP": {
+            "fltr": [
+                    "market for hard coal",
+                    "market for lignite",
+            ],
+            "mask": ['factory', 'plant', 'briquettes', 'ash']
+        },
+        "Gas": {
+            "fltr": [
+                    "market for natural gas, high pressure",
+                    "market group for natural gas, high pressure",
+            ]
+        },
+        "Gas CHP": {
+            "fltr": [
+                    "market for natural gas, high pressure",
+                    "market group for natural gas, high pressure",
+            ]
+        }#,
+        #"Geothermal": {"fltr": "heat production, deep geothermal"},
     }
 
     def __init__(self, db):
@@ -522,6 +559,17 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.powerplant_fuels)
+        
+    def generate_heatplant_fuels_map(self):
+        """
+        Filter ecoinvent processes related to heat production.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.heatplant_fuels)
 
     def generate_fuel_map(self):
         """

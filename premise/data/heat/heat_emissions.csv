@@ -1,0 +1,6 @@
+remind;Biomass CHP;Power_Gen_Bio_Trad
+remind;Biomass;Power_Gen_Bio_Trad
+remind;Coal CHP;Power_Gen_Coal
+remind;Coal;Power_Gen_Coal
+remind;Gas CHP;Power_Gen_NatGas
+remind;Gas;Power_Gen_NatGas

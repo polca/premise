@@ -2,6 +2,7 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
+from .heat import Heat
 from .renewables import SolarPV
 from .inventory_imports import (
     CarmaCCSInventory,
@@ -582,6 +583,22 @@ class NewDatabase:
                 )
                 scenario["database"] = electricity.update_electricity_markets()
                 scenario["database"] = electricity.update_electricity_efficiency()
+                
+    def update_heat(self):
+
+        print("\n/////////////////// HEAT ////////////////////")
+
+        for scenario in self.scenarios:
+            if "exclude" not in scenario or "update_heat" not in scenario["exclude"]:
+                heat = Heat(
+                    db=scenario["database"],
+                    iam_data=scenario["external data"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    year=scenario["year"],
+                )
+                scenario["database"] = heat.update_heat_markets()
+                scenario["database"] = heat.update_heat_efficiency()
 
     def update_cement(self):
         print("\n/////////////////// CEMENT ////////////////////")
@@ -735,6 +752,7 @@ class NewDatabase:
         self.update_cars()
         self.update_trucks()
         self.update_electricity()
+        self.update_heat()
         self.update_solar_PV()
         self.update_cement()
         self.update_steel()

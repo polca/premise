@@ -7,15 +7,19 @@ print("Existing databases in the project:")
 print(bw.databases)
 
 # Extract the ecoinvent database, clean it, add additional inventories
-ndb = NewDatabase(scenario = 'SSP2-Base',
-          year = 2030,
+ndb = NewDatabase(
+          scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2030}
+            ],
           source_db = 'ecoinvent_cut-off36',
-          source_version = 3.6,
-          #filepath_to_remind_files = r"C:\Users\siala\Documents\remind\output\testOneRegi"
-         )
+          source_version = "3.6",
+          key = 'tUePmX_S5B8ieZkkM7WUU2CnO8SmShwmAeWK9x2rTFo=',
+          )
 
 # Transform
-ndb.update_all()
+ndb.update_heat()
+#ndb.update_all()
+import pdb; pdb.set_trace()
 
 # Export to Brightway2
 ndb.write_db_to_brightway()
