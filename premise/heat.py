@@ -268,7 +268,7 @@ class Heat:
         """
 
         def calculate_input_energy(fuel_name, fuel_amount, fuel_unit):
-
+            import pdb; pdb.set_trace()
             if fuel_unit == "kilogram" or fuel_unit == "cubic meter":
 
                 lhv = [
@@ -337,6 +337,7 @@ class Heat:
         """
 
         ecoinvent_eff = self.find_ecoinvent_fuel_efficiency(ds, fuel_filters)
+        import pdb; pdb.set_trace()
         ### Check
         # If the current efficiency is too high, there's an issue, and the dataset is skipped.
         if ecoinvent_eff > 1.1:
