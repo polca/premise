@@ -201,7 +201,6 @@ class InventorySet:
         "Coal CHP": {
             "fltr": ["market for hard coal", "market for lignite"],
             "mask": ['factory', 'plant', 'briquettes', 'ash']
-
         },
         "Coal CHP CCS": {
             "fltr": ["heat and power co-generation, hard coal"]
@@ -348,7 +347,6 @@ class InventorySet:
                 "electricity production, at power plant/lignite, post, pipeline 200km, storage 1000m",
             ]
         },
-
         "Gas OC": {
             "fltr": "electricity production, natural gas, conventional power plant"
         },
@@ -437,12 +435,34 @@ class InventorySet:
         "Biomass": {
             "fltr": [
                     "heat production, wood chips from industry, at furnace 1000kW",
+                    "heat production, wood chips from industry, at furnace 1000kW, state-of-the-art 2014",
+                    "heat production, wood chips from industry, at furnace 300kW",
+                    "heat production, wood chips from industry, at furnace 300kW, state-of-the-art 2014",
+                    "heat production, wood chips from industry, at furnace 5000kW",
+                    "heat production, wood chips from industry, at furnace 5000kW, state-of-the-art 2014",
+                    "heat production, wood chips from post-consumer wood, at furnace 300kW",
+                    "heat production, hardwood chips from forest, at furnace 1000kW",
+                    "heat production, hardwood chips from forest, at furnace 1000kW, state-of-the-art 2014",
+                    "heat production, hardwood chips from forest, at furnace 300kW",
+                    "heat production, hardwood chips from forest, at furnace 300kW, state-of-the-art 2014",
+                    "heat production, hardwood chips from forest, at furnace 5000kW",
+                    "heat production, hardwood chips from forest, at furnace 5000kW, state-of-the-art 2014",
+                    "heat production, softwood chips from forest, at furnace 1000kW",
+                    "heat production, softwood chips from forest, at furnace 1000kW, state-of-the-art 2014",
+                    "heat production, softwood chips from forest, at furnace 300kW",
+                    "heat production, softwood chips from forest, at furnace 300kW, state-of-the-art 2014",
+                    "heat production, softwood chips from forest, at furnace 5000kW",
+                    "heat production, softwood chips from forest, at furnace 5000kW, state-of-the-art 2014",
+                    "heat production, straw, at furnace 300kW",
+                    
             ]
         },
         "Biomass CHP": {
             "fltr": [
-                    "heat and power co-generation, wood chips",
+                    "heat and power co-generation, wood chips, 6667 kW",
+                    "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
                     "heat and power co-generation, biogas",
+                    "heat and power co-generation, biogas, gas engine",
             ],
             "mask":{"reference product": "electricity"}
         },
@@ -461,13 +481,17 @@ class InventorySet:
         "Gas": {
             "fltr": [
                     "heat production, natural gas, at boiler modulating >100kW",
+                    "heat production, natural gas, at boiler condensing modulating >100kW",
                     "heat production, natural gas, at industrial furnace >100kW",
+                    "heat production, natural gas, at industrial furnace low-NOx >100kW",
+                    
             ]
         },
         "Gas CHP": {
             "fltr": [
                     "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
                     "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+                    
             ],
             "mask":{"reference product":"electricity"}
         },
@@ -501,6 +525,7 @@ class InventorySet:
             "fltr": [
                     "market for natural gas, high pressure",
                     "market group for natural gas, high pressure",
+                    "refinery gas, burned in furnace",
             ]
         },
         "Gas CHP": {
