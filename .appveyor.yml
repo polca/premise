@@ -2,7 +2,7 @@ skip_commits:
   message: /^Merge pull request /
 
 build: false
-image: Visual Studio 2019
+image: "Visual Studio 2019"
 environment:
   PYTHONIOENCODING: "UTF-8"
 
