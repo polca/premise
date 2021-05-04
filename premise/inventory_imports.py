@@ -876,8 +876,7 @@ class PassengerCars(BaseInventoryImport):
         ver = version.replace(".1", "")
         ver = ver.replace(".", "")
         filename = model \
-                   + "_pass_cars_inventory_data_ei_" \
-                   + ver + "_" + str(
+                   + "_pass_cars_inventory_data_ei_37_" + str(
             inventory_year) + ".pickle"
         fp = INVENTORY_DIR / filename
 
@@ -1012,8 +1011,7 @@ class Trucks(BaseInventoryImport):
         ver = version.replace(".1", "")
         ver = ver.replace(".", "")
         filename = model \
-                   + "_trucks_inventory_data_ei_" \
-                   + ver + "_" + str(
+                   + "_trucks_inventory_data_ei_37_" + str(
             inventory_year) + ".pickle"
         fp = INVENTORY_DIR / filename
 

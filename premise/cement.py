@@ -1090,7 +1090,7 @@ class Cement:
 
         return d_act
 
-    def add_datasets_to_database(self, industry_module_present=True):
+    def add_datasets_to_database(self):
 
         print("\nStart integration of cement data...\n")
 
@@ -1130,9 +1130,7 @@ class Cement:
         print("\nCreate new clinker production datasets and delete old datasets")
         clinker_prod_datasets = [
             d
-            for d in self.build_clinker_production_datasets(
-                industry_module_present
-            ).values()
+            for d in self.build_clinker_production_datasets().values()
         ]
         self.db.extend(clinker_prod_datasets)
 

@@ -284,13 +284,13 @@ class Electricity:
 
                     new_dataset = {
                         "location": region,
-                        "name": "market group for electricity, low voltage, " + str(period) + "-year forecast",
+                        "name": "market group for electricity, low voltage, " + str(period) + "-year period",
                         "reference product": "electricity, low voltage",
                         "unit": "kilowatt hour",
                         "database": self.db[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": "Dataset produced from REMIND pathway output results. Average electricity"
-                                   " mix forecast over a " + str(period) + "-year period ("
+                                   " mix over a " + str(period) + "-year period ("
                                                                                             + str(self.year) + "-"
                                                                                             + str(self.year + period) + ").",
                     }
@@ -303,7 +303,7 @@ class Electricity:
                             "type": "production",
                             "production volume": 0,
                             "product": "electricity, low voltage",
-                            "name": "market group for electricity, low voltage, " + str(period) + "-year forecast",
+                            "name": "market group for electricity, low voltage, " + str(period) + "-year period",
                             "unit": "kilowatt hour",
                             "location": region,
                         }
@@ -444,7 +444,7 @@ class Electricity:
                                         + str(self.year)
                                         + ", "
                                         + str(period)
-                                        +"-year forecast",
+                                        +"-year period",
                                         "n/a",
                                         region,
                                         0,
@@ -515,7 +515,7 @@ class Electricity:
                             "type": "technosphere",
                             "production volume": 0,
                             "product": "electricity, medium voltage",
-                            "name": "market group for electricity, medium voltage, " + str(period) + "-year forecast",
+                            "name": "market group for electricity, medium voltage, " + str(period) + "-year period",
                             "unit": "kilowatt hour",
                             "location": region,
                         }
@@ -529,7 +529,7 @@ class Electricity:
                             "type": "technosphere",
                             "production volume": 0,
                             "product": "electricity, low voltage",
-                            "name": "market group for electricity, low voltage, " + str(period) + "-year forecast",
+                            "name": "market group for electricity, low voltage, " + str(period) + "-year period",
                             "unit": "kilowatt hour",
                             "location": region,
                         }
@@ -543,7 +543,7 @@ class Electricity:
                             + str(self.year)
                             + ", "
                             + str(period)
-                            +"-year forecast",
+                            +"-year period",
                             "n/a",
                             region,
                             transf_loss,
@@ -623,13 +623,13 @@ class Electricity:
                     # this dataset is for a period of time
                     new_dataset = {
                         "location": region,
-                        "name": "market group for electricity, medium voltage, " + str(period) + "-year forecast",
+                        "name": "market group for electricity, medium voltage, " + str(period) + "-year period",
                         "reference product": "electricity, medium voltage",
                         "unit": "kilowatt hour",
                         "database": self.db[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": "Dataset produced from REMIND pathway output results. Average electricity"
-                                   " mix forecast over a " + str(period) + "-year period ("
+                                   " mix over a " + str(period) + "-year period ("
                                                                                             + str(self.year) + "-"
                                                                                             + str(self.year + period) + ").",
                     }
@@ -643,7 +643,7 @@ class Electricity:
                             "type": "production",
                             "production volume": 0,
                             "product": "electricity, medium voltage",
-                            "name": "market group for electricity, medium voltage, " + str(period) + "-year forecast",
+                            "name": "market group for electricity, medium voltage, " + str(period) + "-year period",
                             "unit": "kilowatt hour",
                             "location": region,
                         }
@@ -697,7 +697,7 @@ class Electricity:
                             "type": "technosphere",
                             "production volume": 0,
                             "product": "electricity, high voltage",
-                            "name": "market group for electricity, high voltage, " + str(period) + "-year forecast",
+                            "name": "market group for electricity, high voltage, " + str(period) + "-year period",
                             "unit": "kilowatt hour",
                             "location": region,
                         }
@@ -711,7 +711,7 @@ class Electricity:
                             "type": "technosphere",
                             "production volume": 0,
                             "product": "electricity, medium voltage",
-                            "name": "market group for electricity, medium voltage, " + str(period) + "-year forecast",
+                            "name": "market group for electricity, medium voltage, " + str(period) + "-year period",
                             "unit": "kilowatt hour",
                             "location": region,
                         }
@@ -788,7 +788,7 @@ class Electricity:
                             + str(self.year)
                             + ", "
                             + str(period)
-                            +"-year forecast",
+                            +"-year period",
                             "n/a",
                             region,
                             transf_loss,
@@ -876,13 +876,13 @@ class Electricity:
                     # this dataset is for a period of time
                     new_dataset = {
                         "location": region,
-                        "name": "market group for electricity, high voltage, " + str(period) + "-year forecast",
+                        "name": "market group for electricity, high voltage, " + str(period) + "-year period",
                         "reference product": "electricity, high voltage",
                         "unit": "kilowatt hour",
                         "database": self.db[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": "Dataset produced from REMIND pathway output results. Average electricity"
-                                   " mix forecast over a " + str(period) + "-year period ("
+                                   " mix over a " + str(period) + "-year period ("
                                                                                             + str(self.year) + "-"
                                                                                             + str(self.year + period) + ".",
                     }
@@ -896,7 +896,7 @@ class Electricity:
                             "type": "production",
                             "production volume": 0,
                             "product": "electricity, high voltage",
-                            "name": "market group for electricity, high voltage, " + str(period) + "-year forecast",
+                            "name": "market group for electricity, high voltage, " + str(period) + "-year period",
                             "unit": "kilowatt hour",
                             "location": region,
                         }
@@ -1023,7 +1023,7 @@ class Electricity:
                                         + str(self.year)
                                         + ", "
                                         + str(period)
-                                        +"-year forecast",
+                                        +"-year period",
                                         technology,
                                         region,
                                         transf_loss,
@@ -1088,7 +1088,7 @@ class Electricity:
         for ds in ws.get_many(
             self.db,
                 ws.exclude(ws.contains("name", "market group for electricity")),
-                ws.doesnt_contain_any("name", ["cobalt industry", "aluminium industry", "coal mining"])
+                ws.doesnt_contain_any("name", ["cobalt industry"])
         ):
 
             for name in [
@@ -1107,7 +1107,7 @@ class Electricity:
                             ]
                         ),
                         ws.equals("type", "technosphere"),
-                        ws.doesnt_contain_any("name", ["cobalt", "aluminium", "coal mining"])
+                        ws.doesnt_contain_any("name", ["cobalt"])
                     ]
                 ))
 
@@ -1412,12 +1412,12 @@ class Electricity:
 
         # Writing log of deleted markets
         # We want to preserve special markets
-        # for the cobalt and aluminium industries
+        # for the cobalt industry
         markets_to_delete = [
             [i["name"], i["location"]]
             for i in self.db
             if any(stop in i["name"] for stop in list_to_remove)
-            and "industry" not in i["name"]
+            and "cobalt industry" not in i["name"]
         ]
 
         if not os.path.exists(DATA_DIR / "logs"):
@@ -1437,7 +1437,7 @@ class Electricity:
 
         self.db = [
             i for i in self.db if not any(stop in i["name"] for stop in list_to_remove)
-            or any(w for w in ("cobalt", "aluminium", "coal mining") if w in i["name"])
+            or any(w for w in ("cobalt") if w in i["name"])
         ]
 
         # We then need to create high voltage REMIND electricity markets
