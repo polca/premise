@@ -454,7 +454,6 @@ class InventorySet:
                     "heat production, softwood chips from forest, at furnace 5000kW",
                     "heat production, softwood chips from forest, at furnace 5000kW, state-of-the-art 2014",
                     "heat production, straw, at furnace 300kW",
-                    
             ]
         },
         "Biomass CHP": {
@@ -464,7 +463,10 @@ class InventorySet:
                     "heat and power co-generation, biogas",
                     "heat and power co-generation, biogas, gas engine",
             ],
-            "mask":{"reference product": "electricity"}
+            "mask":{
+                    "reference product": "electricity",
+                    "name": "heat and power co-generation, biogas, gas engine, label-certified",
+            },
         },
         "Coal": {
             "fltr": [
@@ -484,7 +486,7 @@ class InventorySet:
                     "heat production, natural gas, at boiler condensing modulating >100kW",
                     "heat production, natural gas, at industrial furnace >100kW",
                     "heat production, natural gas, at industrial furnace low-NOx >100kW",
-                    
+                    "refinery gas, burned in furnace",
             ]
         },
         "Gas CHP": {
@@ -502,30 +504,31 @@ class InventorySet:
         "Biomass": {
             "fltr": [
                     "market for wood chips, dry, measured as dry mass",
-            ]
+                    "market for wood chips, from post-consumer wood, measured as dry mass",
+                    "market for wood chips, wet, measured as dry mass",
+                    "market for straw",
+            ],
+            "mask": ["strawberry"],
         },
         "Biomass CHP": {
             "fltr": [
                     "market for wood chips, wet, measured as dry mass",
-                    "market for biogas",
+                    "biogas",
             ]
         },
         "Coal": {
-            "fltr": ["market for hard coal"],
+            "fltr": ["hard coal", "lignite"],
             "mask": ['factory', 'plant', 'briquettes', 'ash']
         },
         "Coal CHP": {
-            "fltr": [
-                    "market for hard coal",
-                    "market for lignite",
-            ],
+            "fltr": ["hard coal", "lignite"],
             "mask": ['factory', 'plant', 'briquettes', 'ash']
         },
         "Gas": {
             "fltr": [
-                    "market for natural gas, high pressure",
+                    'market for natural gas, high pressure',
                     "market group for natural gas, high pressure",
-                    "refinery gas, burned in furnace",
+                    "market for refinery gas",
             ]
         },
         "Gas CHP": {

@@ -39,7 +39,7 @@ class Heat:
         mapping = InventorySet(self.db)
         self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
         self.heatplant_map = mapping.generate_heatplant_map()
-        self.fuel_map = mapping.generate_fuel_map()
+        #self.fuel_map = mapping.generate_fuel_map()
         self.material_map = mapping.generate_material_map()
         self.heatplant_fuels_map = mapping.generate_heatplant_fuels_map()
 
@@ -262,25 +262,25 @@ class Heat:
         This method calculates the efficiency value set initially, in case it is not specified in the parameter
         field of the dataset. In Carma datasets, fuel inputs are expressed in megajoules instead of kilograms.
 
-        :param ds: a wurst dataset of an electricity-producing technology
-        :param fuel_filters: wurst filter to to filter fule input exchanges
+        :param ds: a wurst dataset of a heat-producing technology
+        :param fuel_filters: wurst filter to filter fuel input exchanges
         :return: the efficiency value set by ecoinvent
         """
 
         def calculate_input_energy(fuel_name, fuel_amount, fuel_unit):
-            import pdb; pdb.set_trace()
             if fuel_unit == "kilogram" or fuel_unit == "cubic meter":
-
                 lhv = [
                     self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()
                 ][0]
-                return float(lhv) * fuel_amount / 3.6
+                print([k for k in self.fuels_lhv if k in fuel_name.lower()])
+                #import pdb; pdb.set_trace()
+                return float(lhv) * fuel_amount
 
             if fuel_unit == "megajoule":
-                return fuel_amount / 3.6
+                return fuel_amount
 
             if fuel_unit == "kilowatt hour":
-                return fuel_amount
+                return fuel_amount * 3.6
 
         only_allowed = ["thermal"]
         key = list()
@@ -292,10 +292,18 @@ class Heat:
                 if "efficiency" in key and any(item in key for item in only_allowed)
             )
         if len(key) > 0:
+            import pdb; pdb.set_trace()
             return ds["parameters"][key[0]]
 
         else:
             try:
+                mytest0 = [exc for exc in ds["exchanges"]]
+                mytest = [exc for exc in ds["exchanges"] if exc["name"] in fuel_filters]
+                print("mytest", mytest)
+                for exc in ds["exchanges"]:
+                    if exc["name"] in fuel_filters:
+                        print("exc:")
+                        print(exc["name"], exc["amount"], exc["unit"])
                 energy_input = np.sum(
                     np.sum(
                         np.asarray(
@@ -316,7 +324,8 @@ class Heat:
             current_efficiency = (
                 float(ws.reference_product(ds)["amount"]) / energy_input
             )
-
+            print("efficiency: ", current_efficiency)
+            #import pdb; pdb.set_trace()
             if "paramters" in ds:
                 ds["parameters"]["efficiency"] = current_efficiency
             else:
@@ -356,9 +365,9 @@ class Heat:
 
         iam_locations = self.geo.ecoinvent_to_iam_location(ds["location"])
         iam_eff = (
-            self.iam_data.electricity_efficiencies.loc[
+            self.iam_data.heat_efficiencies.loc[
                 dict(
-                    variables=self.iam_data.electricity_efficiency_labels[technology],
+                    variables=self.iam_data.heat_efficiency_labels[technology],
                     region=iam_locations,
                 )
             ]
@@ -487,17 +496,24 @@ class Heat:
                 ):
                     iam_emission_label = self.emissions_map[exc["name"]]
                     
-                    iam_emission = self.iam_data.heat_emissions.loc[
-                        dict(
-                            region=self.geo.ecoinvent_to_iam_location(
-                                ds["location"]
-                            ),
-                            pollutant=iam_emission_label,
-                            sector=self.iam_data.heat_emission_labels[
-                                iam_technology
-                            ],
-                        )
-                    ].values.item(0)
+                    try:
+                        iam_emission = self.iam_data.heat_emissions.loc[
+                            dict(
+                                region=self.geo.ecoinvent_to_iam_location(
+                                    ds["location"]
+                                ),
+                                pollutant=iam_emission_label,
+                                sector=self.iam_data.heat_emission_labels[
+                                    iam_technology
+                                ],
+                            )
+                        ].values.item(0)
+                    except: # World
+                        iam_emission =  self.iam_data.heat_emissions.loc[
+                            (slice(None), # all regions
+                            iam_emission_label,
+                            self.iam_data.heat_emission_labels[iam_technology])
+                        ][:,0].values.sum()
 
                     if exc["amount"] == 0:
                         wurst.rescale_exchange(
@@ -520,8 +536,10 @@ class Heat:
         # We first need to delete 'market for heat' and 'market group for heat' datasets
         print("Remove old markets datasets")
         list_to_remove = [
-            "market for heat,",
-            "generic market for heat",
+            "market for heat, central or small-scale, natural gas",
+            "market for heat, central or small-scale, other than natural gas",
+            "market for heat, district or industrial, natural gas",
+            "market for heat, district or industrial, other than natural gas",
         ]
 
         # Writing log of deleted markets

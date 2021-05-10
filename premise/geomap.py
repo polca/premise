@@ -88,7 +88,6 @@ class Geomap:
             "UCTE": "EUR" if self.model == "remind" else "WEU",
             "UCTE without Germany": "EUR" if self.model == "remind" else "WEU",
             "NORDEL": "NEU" if self.model == "remind" else "WEU",
-            "CA-QC": "CAZ" if self.model == "remind" else "CAN",
         }
         if location in mapping:
             return mapping[location]
