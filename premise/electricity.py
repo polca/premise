@@ -1417,7 +1417,7 @@ class Electricity:
             [i["name"], i["location"]]
             for i in self.db
             if any(stop in i["name"] for stop in list_to_remove)
-            and "cobalt industry" not in i["name"]
+            and "cobalt industry" not in i["reference product"]
         ]
 
         if not os.path.exists(DATA_DIR / "logs"):
@@ -1435,9 +1435,10 @@ class Electricity:
             for line in markets_to_delete:
                 writer.writerow(line)
 
-        self.db = [
-            i for i in self.db if not any(stop in i["name"] for stop in list_to_remove)
-            or any(w for w in ("cobalt") if w in i["name"])
+        self.db = [i
+            for i in self.db
+            if not any(stop in i["name"] for stop in list_to_remove)
+            or "cobalt industry" in i["reference product"]
         ]
 
         # We then need to create high voltage REMIND electricity markets

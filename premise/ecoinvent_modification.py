@@ -800,6 +800,7 @@ class NewDatabase:
             self.db, name,
         )
 
+
     def write_db_to_brightway(self, name=None):
         """
         Register the new database into an open brightway2 project.
