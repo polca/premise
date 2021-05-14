@@ -39,7 +39,6 @@ class Heat:
         mapping = InventorySet(self.db)
         self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
         self.heatplant_map = mapping.generate_heatplant_map()
-        #self.fuel_map = mapping.generate_fuel_map()
         self.material_map = mapping.generate_material_map()
         self.heatplant_fuels_map = mapping.generate_heatplant_fuels_map()
 
@@ -272,8 +271,6 @@ class Heat:
                 lhv = [
                     self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()
                 ][0]
-                print([k for k in self.fuels_lhv if k in fuel_name.lower()])
-                #import pdb; pdb.set_trace()
                 return float(lhv) * fuel_amount
 
             if fuel_unit == "megajoule":
@@ -292,18 +289,10 @@ class Heat:
                 if "efficiency" in key and any(item in key for item in only_allowed)
             )
         if len(key) > 0:
-            import pdb; pdb.set_trace()
             return ds["parameters"][key[0]]
 
         else:
             try:
-                mytest0 = [exc for exc in ds["exchanges"]]
-                mytest = [exc for exc in ds["exchanges"] if exc["name"] in fuel_filters]
-                print("mytest", mytest)
-                for exc in ds["exchanges"]:
-                    if exc["name"] in fuel_filters:
-                        print("exc:")
-                        print(exc["name"], exc["amount"], exc["unit"])
                 energy_input = np.sum(
                     np.sum(
                         np.asarray(
