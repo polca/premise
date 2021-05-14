@@ -119,16 +119,16 @@ class BaseInventoryImport:
 
         # print if we find datasets that already exist
         already_exist = [
-            (x["name"], x["reference product"], x["location"])
+            (x["name"].lower(), x["reference product"].lower(), x["location"])
             for x in self.import_db.data
             if x["code"] in self.db_code
         ]
 
         already_exist.extend(
             [
-                (x["name"], x["reference product"], x["location"])
+                (x["name"].lower(), x["reference product"].lower(), x["location"])
                 for x in self.import_db.data
-                if (x["name"], x["reference product"], x["location"]) in self.db_names
+                if (x["name"].lower(), x["reference product"].lower(), x["location"]) in self.db_names
             ]
         )
 

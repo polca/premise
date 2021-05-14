@@ -609,7 +609,7 @@ class Cement:
                     ("wood pellet", "wood pellet, measured as dry mass"),
                     ("hard coal", "hard coal"),
                 ]
-            ):
+                ):
                 # Select waste fuel providers, fitting the IAM region
                 # Fetch respective shares based on production volumes
                 fuel_suppliers = self.get_shares_from_production_volume(
@@ -618,13 +618,19 @@ class Cement:
                     )
                 )
                 if len(fuel_suppliers) == 0:
-                    loc = "EUR" if self.model == "remind" else "WEU"
                     fuel_suppliers = self.get_shares_from_production_volume(
                         self.get_suppliers_of_a_region(
-                            loc, self.fuel_map[fuel[0]], fuel[1]
+                            k, self.fuel_map[fuel[0]], fuel[1], look_for_locations_in="ecoinvent"
                         )
                     )
 
+                if len(fuel_suppliers) == 0:
+                    loc = "World"
+                    fuel_suppliers = self.get_shares_from_production_volume(
+                        self.get_suppliers_of_a_region(
+                            loc, self.fuel_map[fuel[0]], fuel[1], look_for_locations_in="ecoinvent"
+                        )
+                    )
 
                 for s, supplier in enumerate(fuel_suppliers):
                     new_exchanges.append(
@@ -644,6 +650,7 @@ class Cement:
                             "location": supplier[1],
                         }
                     )
+
             v["exchanges"].extend(new_exchanges)
 
             v["exchanges"] = [v for v in v["exchanges"] if v]

@@ -249,7 +249,12 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     coords_A = exp.create_A_matrix_coordinates()
 
     # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
-    original = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] * -1 for x in coords_A}
+    original = dict()
+    for x in coords_A:
+        if (rev_ind_A[x[0]], rev_ind_A[x[1]]) in original:
+            original[(rev_ind_A[x[0]], rev_ind_A[x[1]])] += x[2] * -1
+        else:
+            original[(rev_ind_A[x[0]], rev_ind_A[x[1]])] = x[2] * -1
 
     # Collect list of substances
     rev_ind_B = exp.rev_index(exp.create_names_and_indices_of_B_matrix())
@@ -275,15 +280,19 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
         new_rev_ind_A = exp.rev_index(exp.create_names_and_indices_of_A_matrix())
         new_coords_A = exp.create_A_matrix_coordinates()
-        new = {
-            (new_rev_ind_A[x[0]], new_rev_ind_A[x[1]]): x[2] * -1 for x in new_coords_A
-        }
+
+        new = dict()
+        for x in new_coords_A:
+            if (new_rev_ind_A[x[0]], new_rev_ind_A[x[1]]) in new:
+                new[(new_rev_ind_A[x[0]], new_rev_ind_A[x[1]])] += x[2] * -1
+            else:
+                new[(new_rev_ind_A[x[0]], new_rev_ind_A[x[1]])] = x[2] * -1
 
         new_coords_B = exp.create_B_matrix_coordinates()
         new.update(
             {(new_rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] * -1 for x in new_coords_B}
         )
-        # List activities that are in teh new database but not in the original one
+        # List activities that are in the new database but not in the original one
         # As well as exchanges that are present in both databases but with a different value
         list_modified = (i for i in new if i not in original or new[i] != original[i])
         # Also add activities from the original database that are not present in
@@ -349,49 +358,66 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     l_modified = [columns]
 
     for m in modified:
-        # Avoid production flow types
-        if not (m[1] == m[0] and any(v for v in modified[m].values() if v == -1)):
 
-            if m[1][2] == "biosphere3":
-                d = [
-                    m[1][0],
-                    "",
-                    "",
-                    m[1][1],
-                    m[1][2],
-                    "",
-                    m[0][0],
-                    m[0][1],
-                    m[0][3],
-                    "",
-                    db_name,
-                    "",
-                    "biosphere"
-                ]
+        if m[1][2] == "biosphere3":
+            d = [
+                m[1][0],
+                "",
+                "",
+                m[1][1],
+                m[1][2],
+                "",
+                m[0][0],
+                m[0][1],
+                m[0][3],
+                "",
+                db_name,
+                "",
+                "biosphere"
+            ]
+        elif (m[1] == m[0] and any(v < 0 for v in modified[m].values())):
+            d = [
+                m[1][0],
+                m[1][1],
+                m[1][3],
+                "",
+                db_name,
+                "",
+                m[0][0],
+                m[0][1],
+                m[0][3],
+                "",
+                db_name,
+                "",
+                "production"
+            ]
+        else:
+            d = [
+                m[1][0],
+                m[1][1],
+                m[1][3],
+                "",
+                db_name,
+                "",
+                m[0][0],
+                m[0][1],
+                m[0][3],
+                "",
+                db_name,
+                "",
+                "technosphere"
+            ]
+
+        for s in list_scenarios:
+            # we do not want a zero here,
+            # as it would render the matrix undetermined
+            if m[1] == m[0] and modified[m][s] == 0:
+                d.append(1)
+            elif m[1] == m[0] and modified[m][s] < 0:
+                d.append(modified[m][s] * -1)
             else:
-                d = [
-                    m[1][0],
-                    m[1][1],
-                    m[1][3],
-                    "",
-                    db_name,
-                    "",
-                    m[0][0],
-                    m[0][1],
-                    m[0][3],
-                    "",
-                    db_name,
-                    "",
-                    "technosphere"
-                ]
-            for s in list_scenarios:
-                # we do not want a zero here,
-                # as it would render the matrix undetermined
-                if m[1] == m[0] and modified[m][s] == 0:
-                    d.append(1)
-                else:
-                    d.append(modified[m][s])
-            l_modified.append(d)
+                d.append(modified[m][s])
+        l_modified.append(d)
 
     if fp is not None:
         filepath = Path(fp)
