@@ -651,6 +651,10 @@ class NewDatabase:
 
                     scenario["database"] = cement.add_datasets_to_database()
 
+            else:
+                print(f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
+                      " to proceed to the cement sector transformation.")
+
     def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
 
@@ -668,7 +672,6 @@ class NewDatabase:
             ):
                 print("\nData specific to the steel sector detected!\n")
 
-
                 if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
                     steel = Steel(
@@ -678,6 +681,10 @@ class NewDatabase:
                         year=scenario["year"],
                     )
                     scenario["database"] = steel.generate_activities()
+
+            else:
+                print(f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
+                      " to proceed to the steel sector transformation.")
 
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")
