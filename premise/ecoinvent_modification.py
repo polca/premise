@@ -494,7 +494,7 @@ class NewDatabase:
 
     def import_inventories(self, direct_import):
         """
-        This method will trigger the import of a number of inventories
+        This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
         """
 
@@ -513,7 +513,7 @@ class NewDatabase:
                 fp = FILE_PATH_INVENTORIES_EI_35
 
             with open(fp, "rb") as handle:
-                data = pickle.load(handle)
+                data = self.check_for_duplicates(pickle.load(handle))
                 self.db.extend(data)
 
         else:
@@ -800,7 +800,6 @@ class NewDatabase:
             self.db, name,
         )
 
-
     def write_db_to_brightway(self, name=None):
         """
         Register the new database into an open brightway2 project.
@@ -832,6 +831,10 @@ class NewDatabase:
 
         print("Write new database(s) to Brightway2.")
         for s, scenario in enumerate(self.scenarios):
+
+            # we ensure first the absence of duplicate datasets
+            scenario["database"] = self.check_for_duplicates(scenario["database"])
+
             wurst.write_brightway2_database(
                 scenario["database"], name[s],
             )
@@ -872,6 +875,10 @@ class NewDatabase:
 
         print("Write new database(s) to matrix.")
         for s, scenario in enumerate(self.scenarios):
+
+            # we ensure first the absence of duplicate datasets
+            scenario["database"] = self.check_for_duplicates(scenario["database"])
+
             Export(
                 scenario["database"],
                 scenario["model"],
@@ -889,8 +896,17 @@ class NewDatabase:
 
         """
 
+        filepath = filepath or Path(DATA_DIR / "export" / "simapro")
+
+        if not os.path.exists(filepath):
+            os.makedirs(filepath)
+
         print("Write Simapro import file(s).")
         for scenario in self.scenarios:
+
+            # we ensure first the absence of duplicate datasets
+            scenario["database"] = self.check_for_duplicates(scenario["database"])
+
             Export(
                 scenario["database"],
                 scenario["model"],
@@ -930,4 +946,26 @@ class NewDatabase:
         # We add a `modified` label to any new activity or any new or modified exchange
         self.scenarios = add_modified_tags(self.db, self.scenarios)
         for s, scenario in enumerate(self.scenarios):
+
+            # we ensure first the absence of duplicate datasets
+            scenario["database"] = self.check_for_duplicates(scenario["database"])
+
             wurst.write_brightway25_database(scenario["database"], name[s], self.source)
+
+    def check_for_duplicates(self, db):
+
+        """ Check for the absence of duplicates before export """
+
+        db_names = [
+            (x["name"].lower(), x["reference product"].lower(), x["location"]) for x in db
+        ]
+
+        if len(db_names) == len(set(db_names)):
+            return db
+
+        else:
+            print("One or multiple duplicates detected. Removing them...")
+            seen = set()
+            return [x for x in db
+                       if (x["name"].lower(), x["reference product"].lower(), x["location"]) not in seen
+                       and not seen.add((x["name"].lower(), x["reference product"].lower(), x["location"]))]

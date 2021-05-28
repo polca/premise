@@ -1652,8 +1652,8 @@ class CarculatorInventory(BaseInventoryImport):
                 i.data = [
                     x
                     for x in i.data
-                    if (x["name"], x["location"])
-                    not in [(z["name"], z["location"]) for z in import_db.data]
+                    if (x["name"].lower(), x["location"])
+                    not in [(z["name"].lower(), z["location"]) for z in import_db.data]
                 ]
                 import_db.data.extend(i.data)
 
@@ -2109,8 +2109,8 @@ class TruckInventory(BaseInventoryImport):
                 i.data = [
                     x
                     for x in i.data
-                    if (x["name"], x["location"])
-                    not in [(z["name"], z["location"]) for z in import_db.data]
+                    if (x["name"].lower(), x["location"])
+                    not in [(z["name"].lower(), z["location"]) for z in import_db.data]
                 ]
                 import_db.data.extend(i.data)
 
