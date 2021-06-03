@@ -16,8 +16,17 @@ install:
   - call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
   - python --version
   - conda config --set always_yes yes
+  - conda config --append channels conda-forge
+  - conda config --append channels cmutel
+  - conda config --append channels konstantinstadler
+  - conda config --append channels haasad
+  - conda config --append channels pascallesage
+  - conda config --append channels romainsacchi
+  - conda config --set channel_priority strict
   - conda update -y conda
-  - conda install -y -c conda-forge -c cmutel -c romainsacchi -c konstantinstadler numpy pandas bw2io>0.8 bw2data wurst>=0.3 xarray pycountry pytest pytest-cov coveralls prettytable carculator carculator_truck
+  - conda install -y numpy pandas bw2io>0.8
+  - conda install -y bw2data wurst>=0.3 xarray pycountry pytest pytest-cov coveralls
+  - conda install -y prettytable carculator carculator_truck cryptography
   - pip install -e .
 
 test_script:

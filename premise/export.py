@@ -455,6 +455,7 @@ class Export:
             "kilowatt hour": "kWh",
             "kilometer": "km",
             "ton kilometer": "tkm",
+            "ton-kilometer": "tkm",
             "megajoule": "MJ",
             "unit": "p",
             "square meter": "m2",

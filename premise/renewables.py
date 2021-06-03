@@ -28,7 +28,7 @@ class SolarPV:
         """
         Update the efficiency of solar PV modules.
         We look at how many square meters are needed per kilowatt of installed capacity
-        to obtain thr current efficiency.
+        to obtain the current efficiency.
         Then we update the surface needed according to the projected efficiency.
         :return:
         """

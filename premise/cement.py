@@ -434,20 +434,23 @@ class Cement:
                     "Emissions|CO2|Industry|Cement|Sequestered",
                 ]
             ):
+                # let's check that we have values
+                # sometimes, values are not reported for the "World " region
+
                 rate = (
                     self.iam_data.data.sel(
                         variables="Emissions|CO2|Industry|Cement|Sequestered",
-                        region=loc,
-                    ).interp(year=self.year)
+                        region=[loc] if loc != "World" else [l for l in self.iam_data.data.region.values],
+                    ).interp(year=self.year).sum(dim="region")
                     / self.iam_data.data.sel(
                         variables=[
                             "Emissions|CO2|Industry|Cement|Gross",
                             "Emissions|CO2|Industry|Cement|Sequestered",
                         ],
-                        region=loc,
+                        region=[loc] if loc != "World" else [l for l in self.iam_data.data.region.values],
                     )
                     .interp(year=self.year)
-                    .sum(dim="variables")
+                    .sum(dim=["variables", "region"])
                 ).values
             else:
                 rate = 0

@@ -973,6 +973,8 @@ class PassengerCars(BaseInventoryImport):
                     exc["product"] = new_supplier["reference product"]
                     exc["unit"] = new_supplier["unit"]
 
+
+
                 except ws.NoResults:
 
                     new_supplier = ws.get_one(
@@ -991,6 +993,9 @@ class PassengerCars(BaseInventoryImport):
                     exc["location"] = new_supplier["location"]
                     exc["product"] = new_supplier["reference product"]
                     exc["unit"] = new_supplier["unit"]
+
+                if "input" in exc:
+                    exc.pop("input")
 
         return self.db
 
@@ -1178,6 +1183,9 @@ class Trucks(BaseInventoryImport):
                     exc["location"] = new_supplier["location"]
                     exc["product"] = new_supplier["reference product"]
                     exc["unit"] = new_supplier["unit"]
+
+                if "input" in exc:
+                    exc.pop("input")
 
         return self.db
 
@@ -1652,8 +1660,8 @@ class CarculatorInventory(BaseInventoryImport):
                 i.data = [
                     x
                     for x in i.data
-                    if (x["name"], x["location"])
-                    not in [(z["name"], z["location"]) for z in import_db.data]
+                    if (x["name"].lower(), x["location"])
+                    not in [(z["name"].lower(), z["location"]) for z in import_db.data]
                 ]
                 import_db.data.extend(i.data)
 
@@ -2109,8 +2117,8 @@ class TruckInventory(BaseInventoryImport):
                 i.data = [
                     x
                     for x in i.data
-                    if (x["name"], x["location"])
-                    not in [(z["name"], z["location"]) for z in import_db.data]
+                    if (x["name"].lower(), x["location"])
+                    not in [(z["name"].lower(), z["location"]) for z in import_db.data]
                 ]
                 import_db.data.extend(i.data)
 
