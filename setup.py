@@ -25,7 +25,7 @@ def package_files(directory):
 
 setup(
     name='premise',
-    version="0.4.0",
+    version="0.4.1",
     packages=packages,
     author="Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>, Tom Terlouw <tom.terlouw@psi.ch>, Romain Sacchi <romain.sacchi@psi.ch>",
     license=open('LICENSE').read(),
@@ -42,7 +42,8 @@ setup(
         'carculator',
         'carculator_truck',
         'prettytable',
-        'pycountry'
+        'pycountry',
+        'cryptography'
     ],
     url="https://github.com/romainsacchi/premise",
     description='Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA',
