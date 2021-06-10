@@ -23,6 +23,7 @@ from .inventory_imports import (
 from .cement import Cement
 from .steel import Steel
 from .cars import Cars
+from .fuels import Fuels
 from .export import Export
 from .utils import eidb_label, add_modified_tags, build_superstructure_db
 import wurst
@@ -41,7 +42,12 @@ FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xl
 FILEPATH_DAC_INVENTORIES = INVENTORY_DIR / "lci-direct-air-capture.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
+
+FILEPATH_CARBON_FIBER_INVENTORIES = INVENTORY_DIR / "lci-carbon-fiber.xlsx"
+FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distribution.xlsx"
+
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
+
 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
 )
@@ -529,59 +535,61 @@ class NewDatabase:
             biogas.merge_inventory()
 
             for file in (
+                FILEPATH_CARBON_FIBER_INVENTORIES,
+                FILEPATH_HYDROGEN_DISTRI_INVENTORIES,
                 FILEPATH_HYDROGEN_INVENTORIES,
                 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES,
                 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,
                 FILEPATH_HYDROGEN_NATGAS_INVENTORIES,
                 FILEPATH_HYDROGEN_WOODY_INVENTORIES,
-            ):
+                ):
 
                 hydro = HydrogenInventory(self.db, self.version, file)
                 hydro.merge_inventory()
-
-            for file in (
-                FILEPATH_SYNGAS_INVENTORIES,
-                FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
-            ):
-                syngas = SyngasInventory(self.db, self.version, file)
-                syngas.merge_inventory()
-
-            bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
-            bio.merge_inventory()
-
-            for file in (
-                FILEPATH_SYNFUEL_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
-            ):
-                synfuel = SynfuelInventory(self.db, self.version, file)
-                synfuel.merge_inventory()
-
-            geo_heat = GeothermalInventory(
-                self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
-            )
-            geo_heat.merge_inventory()
-
-            for file in (
-                FILEPATH_METHANOL_FUELS_INVENTORIES,
-                FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
-                FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
-                FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
-                FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
-            ):
-
-                lpg = LPGInventory(self.db, self.version, file)
-                lpg.merge_inventory()
-
-            various_veh = VariousVehicles(
-                self.db, self.version, FILEPATH_VARIOUS_VEHICLES
-            )
-            various_veh.merge_inventory()
+            #
+            # for file in (
+            #     FILEPATH_SYNGAS_INVENTORIES,
+            #     FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
+            # ):
+            #     syngas = SyngasInventory(self.db, self.version, file)
+            #     syngas.merge_inventory()
+            #
+            # bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
+            # bio.merge_inventory()
+            #
+            # for file in (
+            #     FILEPATH_SYNFUEL_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
+            # ):
+            #     synfuel = SynfuelInventory(self.db, self.version, file)
+            #     synfuel.merge_inventory()
+            #
+            # geo_heat = GeothermalInventory(
+            #     self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
+            # )
+            # geo_heat.merge_inventory()
+            #
+            # for file in (
+            #     FILEPATH_METHANOL_FUELS_INVENTORIES,
+            #     FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
+            #     FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
+            #     FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
+            #     FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
+            # ):
+            #
+            #     lpg = LPGInventory(self.db, self.version, file)
+            #     lpg.merge_inventory()
+            #
+            # various_veh = VariousVehicles(
+            #     self.db, self.version, FILEPATH_VARIOUS_VEHICLES
+            # )
+            # various_veh.merge_inventory()
 
         print("Done!\n")
 
@@ -618,6 +626,26 @@ class NewDatabase:
                 )
                 scenario["database"] = electricity.update_electricity_markets()
                 scenario["database"] = electricity.update_electricity_efficiency()
+
+    def update_fuels(self):
+        print("\n/////////////////// FUELS ////////////////////")
+
+        for scenario in self.scenarios:
+
+            if "exclude" not in scenario or "update_fuels" not in scenario["exclude"]:
+
+                fuels = Fuels(
+                    db=scenario["database"],
+                    original_db=self.db,
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["external data"],
+                    year=scenario["year"],
+                )
+
+                scenario["database"] = fuels.generate_regional_variants()
+
+
 
     def update_cement(self):
         print("\n/////////////////// CEMENT ////////////////////")
@@ -788,6 +816,7 @@ class NewDatabase:
         self.update_solar_PV()
         self.update_cement()
         self.update_steel()
+        self.update_fuels()
 
     def write_superstructure_db_to_brightway(
         self, name=f"super_db_{date.today()}", filepath=None

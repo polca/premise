@@ -1,5 +1,4 @@
 import wurst
-from wurst import searching as ws
 from wurst.searching import NoResults
 import itertools
 from .geomap import Geomap
@@ -7,10 +6,6 @@ from .activity_maps import InventorySet
 from .utils import *
 import uuid
 import copy
-import os
-import contextlib
-
-
 
 
 class Metals:
