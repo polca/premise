@@ -1,47 +1,53 @@
-import contextlib
-import copy
-import os
-import pickle
-import uuid
-from datetime import date
-from pathlib import Path
-
-import wurst
-
 from . import DATA_DIR, INVENTORY_DIR
-from .cars import Cars
-from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import Export
+from .renewables import SolarPV
 from .inventory_imports import (
-    AdditionalInventory,
-    BiofuelInventory,
-    BiogasInventory,
-    CarculatorInventory,
     CarmaCCSInventory,
+    BiofuelInventory,
     DACInventory,
-    GeothermalInventory,
     HydrogenInventory,
-    LPGInventory,
-    PassengerCars,
+    BiogasInventory,
     SynfuelInventory,
     SyngasInventory,
+    GeothermalInventory,
+    LPGInventory,
+    CarculatorInventory,
     TruckInventory,
-    Trucks,
     VariousVehicles,
+    AdditionalInventory,
+    PassengerCars,
+    Trucks,
 )
-from .renewables import SolarPV
+from .cement import Cement
 from .steel import Steel
-from .utils import add_modified_tags, build_superstructure_db, eidb_label
+from .cars import Cars
+from .fuels import Fuels
+from .export import Export
+from .utils import eidb_label, add_modified_tags, build_superstructure_db
+import wurst
+from pathlib import Path
+import copy
+import uuid
+import os
+import contextlib
+import pickle
+from datetime import date
+import uuid
+
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_DAC_INVENTORIES = INVENTORY_DIR / "lci-direct-air-capture.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
+
+FILEPATH_CARBON_FIBER_INVENTORIES = INVENTORY_DIR / "lci-carbon-fiber.xlsx"
+FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distribution.xlsx"
+
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
+
 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
 )
@@ -194,7 +200,7 @@ def check_model_name(name):
 
 
 def check_pathway_name(name, filepath, model):
-    """Check the pathway name"""
+    """ Check the pathway name"""
 
     if name not in SUPPORTED_PATHWAYS:
         # If the pathway name is not a default one, check that the filepath + pathway name
@@ -529,59 +535,61 @@ class NewDatabase:
             biogas.merge_inventory()
 
             for file in (
+                FILEPATH_CARBON_FIBER_INVENTORIES,
+                FILEPATH_HYDROGEN_DISTRI_INVENTORIES,
                 FILEPATH_HYDROGEN_INVENTORIES,
                 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES,
                 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,
                 FILEPATH_HYDROGEN_NATGAS_INVENTORIES,
                 FILEPATH_HYDROGEN_WOODY_INVENTORIES,
-            ):
+                ):
 
                 hydro = HydrogenInventory(self.db, self.version, file)
                 hydro.merge_inventory()
-
-            for file in (
-                FILEPATH_SYNGAS_INVENTORIES,
-                FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
-            ):
-                syngas = SyngasInventory(self.db, self.version, file)
-                syngas.merge_inventory()
-
-            bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
-            bio.merge_inventory()
-
-            for file in (
-                FILEPATH_SYNFUEL_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
-            ):
-                synfuel = SynfuelInventory(self.db, self.version, file)
-                synfuel.merge_inventory()
-
-            geo_heat = GeothermalInventory(
-                self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
-            )
-            geo_heat.merge_inventory()
-
-            for file in (
-                FILEPATH_METHANOL_FUELS_INVENTORIES,
-                FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
-                FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
-                FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
-                FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
-            ):
-
-                lpg = LPGInventory(self.db, self.version, file)
-                lpg.merge_inventory()
-
-            various_veh = VariousVehicles(
-                self.db, self.version, FILEPATH_VARIOUS_VEHICLES
-            )
-            various_veh.merge_inventory()
+            #
+            # for file in (
+            #     FILEPATH_SYNGAS_INVENTORIES,
+            #     FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
+            # ):
+            #     syngas = SyngasInventory(self.db, self.version, file)
+            #     syngas.merge_inventory()
+            #
+            # bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
+            # bio.merge_inventory()
+            #
+            # for file in (
+            #     FILEPATH_SYNFUEL_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
+            #     FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
+            # ):
+            #     synfuel = SynfuelInventory(self.db, self.version, file)
+            #     synfuel.merge_inventory()
+            #
+            # geo_heat = GeothermalInventory(
+            #     self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
+            # )
+            # geo_heat.merge_inventory()
+            #
+            # for file in (
+            #     FILEPATH_METHANOL_FUELS_INVENTORIES,
+            #     FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
+            #     FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
+            #     FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
+            #     FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
+            # ):
+            #
+            #     lpg = LPGInventory(self.db, self.version, file)
+            #     lpg.merge_inventory()
+            #
+            # various_veh = VariousVehicles(
+            #     self.db, self.version, FILEPATH_VARIOUS_VEHICLES
+            # )
+            # various_veh.merge_inventory()
 
         print("Done!\n")
 
@@ -619,6 +627,26 @@ class NewDatabase:
                 scenario["database"] = electricity.update_electricity_markets()
                 scenario["database"] = electricity.update_electricity_efficiency()
 
+    def update_fuels(self):
+        print("\n/////////////////// FUELS ////////////////////")
+
+        for scenario in self.scenarios:
+
+            if "exclude" not in scenario or "update_fuels" not in scenario["exclude"]:
+
+                fuels = Fuels(
+                    db=scenario["database"],
+                    original_db=self.db,
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["external data"],
+                    year=scenario["year"],
+                )
+
+                scenario["database"] = fuels.generate_regional_variants()
+
+
+
     def update_cement(self):
         print("\n/////////////////// CEMENT ////////////////////")
 
@@ -638,10 +666,7 @@ class NewDatabase:
                 # Industry module present in IAM file
                 print("\nData specific to the cement sector detected!\n")
 
-                if (
-                    "exclude" not in scenario
-                    or "update_cement" not in scenario["exclude"]
-                ):
+                if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
 
                     cement = Cement(
                         db=scenario["database"],
@@ -655,10 +680,8 @@ class NewDatabase:
                     scenario["database"] = cement.add_datasets_to_database()
 
             else:
-                print(
-                    f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
-                    " to proceed to the cement sector transformation."
-                )
+                print(f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
+                      " to proceed to the cement sector transformation.")
 
     def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
@@ -677,10 +700,7 @@ class NewDatabase:
             ):
                 print("\nData specific to the steel sector detected!\n")
 
-                if (
-                    "exclude" not in scenario
-                    or "update_steel" not in scenario["exclude"]
-                ):
+                if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
                     steel = Steel(
                         db=scenario["database"],
@@ -691,10 +711,8 @@ class NewDatabase:
                     scenario["database"] = steel.generate_activities()
 
             else:
-                print(
-                    f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
-                    " to proceed to the steel sector transformation."
-                )
+                print(f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
+                      " to proceed to the steel sector transformation.")
 
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")
@@ -798,6 +816,7 @@ class NewDatabase:
         self.update_solar_PV()
         self.update_cement()
         self.update_steel()
+        self.update_fuels()
 
     def write_superstructure_db_to_brightway(
         self, name=f"super_db_{date.today()}", filepath=None
@@ -814,8 +833,7 @@ class NewDatabase:
         print("Done!")
 
         wurst.write_brightway2_database(
-            self.db,
-            name,
+            self.db, name,
         )
 
     def write_db_to_brightway(self, name=None):
@@ -854,8 +872,7 @@ class NewDatabase:
             scenario["database"] = self.check_for_duplicates(scenario["database"])
 
             wurst.write_brightway2_database(
-                scenario["database"],
-                name[s],
+                scenario["database"], name[s],
             )
 
     def write_db_to_matrices(self, filepath=None):
@@ -915,37 +932,13 @@ class NewDatabase:
 
         """
 
-        if filepath is not None:
-            if isinstance(filepath, str):
-                filepath = [
-                    (Path(filepath) / s["model"] / s["pathway"] / str(s["year"]))
-                    for s in self.scenarios
-                ]
-            elif isinstance(filepath, list):
-                filepath = [Path(f) for f in filepath]
-            else:
-                raise TypeError(
-                    f"Expected a string or a sequence of strings for `filepath`, not {type(filepath)}."
-                )
-        else:
-            filepath = [
-                (
-                    DATA_DIR
-                    / "export"
-                    / "simapro"
-                    / s["model"]
-                    / s["pathway"]
-                    / str(s["year"])
-                )
-                for s in self.scenarios
-            ]
+        filepath = filepath or Path(DATA_DIR / "export" / "simapro")
 
-        for fp in filepath:
-            if not os.path.exists(fp):
-                os.makedirs(fp)
+        if not os.path.exists(filepath):
+            os.makedirs(filepath)
 
         print("Write Simapro import file(s).")
-        for s, scenario in enumerate(self.scenarios):
+        for scenario in self.scenarios:
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = self.check_for_duplicates(scenario["database"])
@@ -955,7 +948,7 @@ class NewDatabase:
                 scenario["model"],
                 scenario["pathway"],
                 scenario["year"],
-                filepath[s],
+                filepath,
             ).export_db_to_simapro()
 
     def write_db_to_brightway25(self, name=None):
@@ -997,11 +990,10 @@ class NewDatabase:
 
     def check_for_duplicates(self, db):
 
-        """Check for the absence of duplicates before export"""
+        """ Check for the absence of duplicates before export """
 
         db_names = [
-            (x["name"].lower(), x["reference product"].lower(), x["location"])
-            for x in db
+            (x["name"].lower(), x["reference product"].lower(), x["location"]) for x in db
         ]
 
         if len(db_names) == len(set(db_names)):
@@ -1010,12 +1002,6 @@ class NewDatabase:
         else:
             print("One or multiple duplicates detected. Removing them...")
             seen = set()
-            return [
-                x
-                for x in db
-                if (x["name"].lower(), x["reference product"].lower(), x["location"])
-                not in seen
-                and not seen.add(
-                    (x["name"].lower(), x["reference product"].lower(), x["location"])
-                )
-            ]
+            return [x for x in db
+                       if (x["name"].lower(), x["reference product"].lower(), x["location"]) not in seen
+                       and not seen.add((x["name"].lower(), x["reference product"].lower(), x["location"]))]

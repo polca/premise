@@ -674,6 +674,7 @@ class BiogasInventory(BaseInventoryImport):
         self.check_for_duplicates()
 
 
+
 class SyngasInventory(BaseInventoryImport):
     """
     Synthetic fuel datasets from the PSI project (2019).
