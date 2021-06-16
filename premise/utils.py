@@ -602,8 +602,12 @@ def relink_technosphere_exchanges(
     for exc in filter(technosphere, ds["exchanges"]):
 
         possible_datasets = [x for x in get_possibles(exc, data) if x["location"] in list_loc]
-
         possible_locations = [obj["location"] for obj in possible_datasets]
+
+        if ds["location"] in possible_locations:
+            exc["location"] = ds["location"]
+            new_exchanges.append(exc)
+            continue
 
         possible_locations = [(model.upper(), p) if p in geomatcher.iam_regions else p for p in possible_locations]
 
@@ -628,6 +632,7 @@ def relink_technosphere_exchanges(
             kept = [
                 ds for loc in gis_match for ds in possible_datasets if ds["location"] == loc
             ]
+
             if kept:
                 missing_faces = geomatcher.geo[location].difference(
                     set.union(*[geomatcher.geo[obj["location"]] for obj in kept])
@@ -713,7 +718,7 @@ def allocate_inputs(exc, lst):
 
 
 def get_possibles(exchange, data):
-    """FIlter a list of datasets ``data``, returning those with the save name, reference product, and unit as in ``exchange``.
+    """Filter a list of datasets ``data``, returning those with the save name, reference product, and unit as in ``exchange``.
     Returns a generator."""
     key = (exchange["name"], exchange["product"], exchange["unit"])
     list_exc = []

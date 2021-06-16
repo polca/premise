@@ -102,6 +102,29 @@ class DatabaseCleaner:
         return {v: k for k, v in self.get_fix_names_dict().items()}
 
     @staticmethod
+    def get_biosphere_flow_categories():
+        """
+        Retrieve a dictionary with biosphere flow uuids and categories.
+
+        :returns: dictionary with biosphere flow uuids as keys and categories as values
+        :rtype: dict
+        """
+
+        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+            raise FileNotFoundError(
+                "The dictionary of biosphere flows could not be found."
+            )
+
+        csv_dict = {}
+
+        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
+            input_dict = csv.reader(f, delimiter=";")
+            for row in input_dict:
+                csv_dict[row[-1]]= (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
+
+        return csv_dict
+
+    @staticmethod
     def remove_nones(db):
         """
         Remove empty exchanges in the datasets of the wurst inventory database.
@@ -243,22 +266,41 @@ class DatabaseCleaner:
                             )
                         )
 
+    def fix_biosphere_flow_categories(self):
+        """ Add a `categories` for biosphere flows if missing.
+        This happens when importing directly from ecospold files """
+
+        dict_bio = self.get_biosphere_flow_categories()
+
+        for ds in self.db:
+            for exc in ds["exchanges"]:
+                if exc["type"] == "biosphere":
+                    if "categories" not in exc:
+                        if exc["input"][1] in dict_bio:
+                            exc["categories"] = dict_bio[exc["input"][1]]
+                        else:
+                            print(f"Missing categories flows for {exc['name']} with UUID {exc['input'][1]}.")
+
     def prepare_datasets(self):
         """
         Clean datasets for all databases listed in scenarios: fix location names, remove
         empty exchanges, etc.
-
-
 
         """
 
         # Set missing locations to ```GLO``` for datasets in ``database``
         print("Set missing location of datasets to global scope.")
         wurst.default_global_location(self.db)
+
         # Set missing locations to ```GLO``` for exchanges in ``datasets``
         print("Set missing location of production exchanges to scope of dataset.")
+
         print("Correct missing location of technosphere exchanges.")
         self.fix_unset_technosphere_and_production_exchange_locations()
+
+        print("Correct missing flow categories for biosphere exchanges")
+        self.fix_biosphere_flow_categories()
+
         # Remove empty exchanges
         print("Remove empty exchanges.")
         self.remove_nones(self.db)
