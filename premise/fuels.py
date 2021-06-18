@@ -2,6 +2,7 @@ from wurst import searching as ws
 from wurst import transformations as wt
 from .utils import *
 from .geomap import Geomap
+import numpy as np
 
 class Fuels:
     """
@@ -135,57 +136,22 @@ class Fuels:
         down to 44 kWh by 2050, according to a literature review conducted by the Paul Scherrer Institut.
 
         """
-
-        means_of_transport = {
-            "truck": {
-                "type": [("market for transport, freight, lorry >32 metric ton, EURO6",
-                          "transport, freight, lorry >32 metric ton, EURO6")],
-                "state": ["gaseous", "liquid"],
-                "distance": [100, 200, 500, 1000]
-                },
-            "ship": {
-                "type": [("transport, freight, sea, tanker for liquefied natural gas",
-                          "transport, freight, sea, tanker for liquefied natural gas")],
-                "state": ["liquid"],
-                "distance": [1000, 2000, 5000]
-                },
-            "pipeline": {
-                "type": [
-                    (
-                        ("distribution pipeline for hydrogen, dedicated hydrogen pipeline", "pipeline, for hydrogen distribution"),
-                        ("transmission pipeline for hydrogen, dedicated hydrogen pipeline", "pipeline, for hydrogen transmission")
-                     ),
-                    (
-                        ("distribution pipeline for hydrogen, reassigned CNG pipeline", "pipeline, for hydrogen distribution"),
-                        ("transmission pipeline for hydrogen, reassigned CNG pipeline", "pipeline, for hydrogen transmission")
-                    )
-                    ],
-                "state": ["gaseous"],
-                "distance": [100, 200, 500, 1000],
-                "regional storage": ("geological hydrogen storage", "hydrogen storage"),
-                "loss": {"pipeline": 4e-5, # lost per kg H2/km,
-                         "compression": 0.005, # kg H2/compression event
-                         }
-                }
-        }
-
-
-
+        print("Generate region-specific hydrogen production pathways.")
         fuel_activities = {
-            "hydrogen": ["hydrogen production, gaseous, 25 bar, from electrolysis",
-                         "hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar",
-                         "hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar",
-                         "hydrogen production, auto-thermal reforming, from biomethane, 25 bar",
-                         "hydrogen production, auto-thermal reforming, from biomethane, with CCS (MDEA, 98% eff.), 25 bar",
-                         "hydrogen production, steam methane reforming of natural gas, 25 bar",
-                         "hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar",
-                         "hydrogen production, auto-thermal reforming of natural gas, 25 bar",
-                         "hydrogen production, auto-thermal reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar",
-                         "hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant",
-                         "hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant",
-                         "hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant",
-                         "hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant",
-                         "hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant"
+            "hydrogen": [("hydrogen production, gaseous, 25 bar, from electrolysis", "from electrolysis"),
+                         ("hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar", "from SMR of biogas, with CCS"),
+                         ("hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar", "from SMR of biogas"),
+                         ("hydrogen production, auto-thermal reforming, from biomethane, 25 bar", "from ATR of biogas"),
+                         ("hydrogen production, auto-thermal reforming, from biomethane, with CCS (MDEA, 98% eff.), 25 bar", "from ATR of biogas, with CCS"),
+                         ("hydrogen production, steam methane reforming of natural gas, 25 bar", "from SMR of nat. gas"),
+                         ("hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar", "from SMR of nat. gas, with CCS"),
+                         ("hydrogen production, auto-thermal reforming of natural gas, 25 bar", "from ATR of nat. gas"),
+                         ("hydrogen production, auto-thermal reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar", "from ATR of nat. gas, with CCS"),
+                         ("hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant", "from gasification of biomass by heatpipe reformer, with CCS"),
+                         ("hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant", "from gasification of biomass by heatpipe reformer"),
+                         ("hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant", "from gasification of biomass, with CCS"),
+                         ("hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant", "from gasification of biomass"),
+                         ("hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant", "from coal gasification"),
                          ]
         }
 
@@ -196,7 +162,7 @@ class Fuels:
 
                     ds = wt.copy_to_new_location(ws.get_one(
                         self.original_db,
-                        ws.contains("name", f)
+                        ws.contains("name", f[0])
                     ), region)
 
                     if "input" in ds:
@@ -206,7 +172,427 @@ class Fuels:
                         ds, self.db, self.model
                     )
 
+                    ds["comment"] = "Region-specific hydrogen production dataset generated by `premise`. "
+
+                    # we adjust the electrolysis efficiency
+                    # from 58 kWh/kg H2 in 2010, down to 44 kWh in 2050
+                    if f[0] == "hydrogen production, gaseous, 25 bar, from electrolysis":
+                        for exc in ws.technosphere(ds):
+                            if "market group for electricity" in exc["name"]:
+                                exc["amount"] = -.3538 * (self.year - 2010) + 58.589
+
+                        ds["comment"] += f"The electricity input per kg of H2 has been adapted to the year {self.year}."
+
                     self.db.append(ds)
+
+        print("Generate region-specific hydrogen supply chains.")
+        # loss coefficients for hydrogen supply
+        losses = {
+            "truck": {
+                "gaseous": (lambda d: 0.005, # compression, per operation,
+                            f" 0.5% loss during compression."),
+                "liquid": (lambda d:(
+                    0.013  # liquefaction, per operation
+                    + 0.02 # vaporization, per operation
+                    + np.power(1.002, d/50/24) - 1 # boil-off, per day, 50 km/h on average
+                ), "1.3% loss during liquefaction. Boil-off loss of 0.2% per day of truck driving. "\
+                "2% loss caused by vaporization during tank filling at fuelling station."),
+                "liquid organic compound": (lambda d: 0.005, "0.5% loss during hydrogenation.")
+            },
+            "ship": {
+                "liquid": (lambda d: (
+                        0.013  # liquefaction, per operation
+                        + 0.02  # vaporization, per operation
+                        + np.power(0.2, d / 36 / 24)  # boil-off, per day, 36 km/h on average
+                ), "1.3% loss during liquefaction. Boil-off loss of 0.2% per day of shipping. " \
+                   "2% loss caused by vaporization during tank filling at fuelling station."
+                           ),
+            },
+
+            "H2 pipeline": {
+                "gaseous": (lambda d: (0.005 # compression, per operation
+                                      + 0.023 # storage, unused buffer gas
+                                      + 0.01 # storage, yearly leakage rate
+                                      + 4e-5 *d # pipeline leakage, per km
+                                      ), "0.5% loss during compression. 3.3% loss at regional storage." \
+                            "Leakage rate of 4e-5 kg H2 per km of pipeline.")
+            },
+            "CNG pipeline": {
+                "gaseous": (lambda d: (0.005 # compression, per operation
+                                      + 0.023 # storage, unused buffer gas
+                                      + 0.01 # storage, yearly leakage rate
+                                      + 4e-5 *d # pipeline leakage, per km
+                                      + 0.07 # purification, per operation
+                                      ), "0.5% loss during compression. 3.3% loss at regional storage." \
+                            "Leakage rate of 4e-5 kg H2 per km of pipeline. 7% loss during sepration of H2"
+                                         "from inhibitor gas.")
+            }
+        }
+
+        supply_chain_scenarios = {
+            "truck": {
+                "type": [("market for transport, freight, lorry >32 metric ton, EURO6",
+                          "transport, freight, lorry >32 metric ton, EURO6", "ton kilometer", "RoW")],
+                "state": ["gaseous", "liquid", "liquid organic compound"],
+                "distance": [500, 1000],
+                },
+            "ship": {
+                "type": [("transport, freight, sea, tanker for liquefied natural gas",
+                          "transport, freight, sea, tanker for liquefied natural gas", "ton kilometer", "RoW")],
+                "state": ["liquid"],
+                "distance": [2000, 5000],
+                },
+            "H2 pipeline": {
+                "type": [
+                        ("distribution pipeline for hydrogen, dedicated hydrogen pipeline", "pipeline, for hydrogen distribution", "kilometer", "RER"),
+                        ("transmission pipeline for hydrogen, dedicated hydrogen pipeline", "pipeline, for hydrogen transmission", "kilometer", "RER")
+                    ],
+                "state": ["gaseous"],
+                "distance": [500, 1000],
+                "regional storage": ("geological hydrogen storage", "hydrogen storage", "kilogram", "RER"),
+                "lifetime": 40 * 400000 * 1e3
+                },
+            "CNG pipeline": {
+                "type": [
+                        ("distribution pipeline for hydrogen, reassigned CNG pipeline",
+                         "pipeline, for hydrogen distribution", "kilometer", "RER"),
+                        ("transmission pipeline for hydrogen, reassigned CNG pipeline",
+                         "pipeline, for hydrogen transmission", "kilometer", "RER")
+                ],
+                "state": ["gaseous"],
+                "distance": [500, 1000],
+                "regional storage": ("geological hydrogen storage", "hydrogen storage", "kilogram", "RER"),
+                "lifetime": 40 * 400000 * 1e3
+            },
+        }
+
+        for region in self.list_iam_regions:
+
+            for act in [
+                "hydrogen embrittlement inhibition",
+                "geological hydrogen storage",
+                "hydrogenation of hydrogen",
+                "dehydrogenation of hydrogen",
+                "hydrogen refuelling station"
+                ]:
+
+                ds = wt.copy_to_new_location(ws.get_one(
+                        self.original_db,
+                        ws.equals("name", act)
+                    ), region)
+
+                if "input" in ds:
+                    ds.pop("input")
+
+                ds = relink_technosphere_exchanges(
+                    ds, self.db, self.model
+                )
+
+                self.db.append(ds)
+
+            for fuel in fuel_activities:
+                for f in fuel_activities[fuel]:
+                    for vehicle in supply_chain_scenarios:
+                        for s in supply_chain_scenarios[vehicle]["state"]:
+                            for d in supply_chain_scenarios[vehicle]["distance"]:
+
+                                # dataset creation
+                                new_act = {
+                                    "location": region,
+                                    "name": "hydrogen supply, " + f[1] + ", by " + vehicle + ", as " + s + ", over " + str(d) + " km",
+                                    "reference product": "hydrogen, 700 bar",
+                                    "unit": "kilogram",
+                                    "database": self.db[1]["database"],
+                                    "code": str(uuid.uuid4().hex),
+                                    "comment": f"Dataset representing {fuel} supply, generated by `premise`.",
+                                }
+
+                                # production flow
+                                new_exc = [
+                                    {
+                                        "uncertainty type": 0,
+                                        "loc": 1,
+                                        "amount": 1,
+                                        "type": "production",
+                                        "production volume": 1,
+                                        "product": "hydrogen, 700 bar",
+                                        "name": "hydrogen supply, " + f[1] + ", by " + vehicle + ", as " + s + ", over " + str(d) + " km",
+                                        "unit": "kilogram",
+                                        "location": region,
+                                    }
+                                ]
+
+                                # transport
+                                for t in supply_chain_scenarios[vehicle]["type"]:
+                                    new_exc.append(
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": d / 1000 if t[2] == "ton kilometer"
+                                                else d / 2 * (1 / supply_chain_scenarios[vehicle]["lifetime"]),
+                                            "type": "technosphere",
+                                            "product": t[1],
+                                            "name": t[0],
+                                            "unit": t[2],
+                                            "location": t[3],
+                                            "comment": f"Transport over {d} km by {vehicle}."
+                                        }
+                                    )
+
+                                    new_act["comment"] += f"Transport over {d} km by {vehicle}."
+
+                                # need for inhibitor and purification if CNG pipeline
+                                # electricity for purification: 2.46 kWh/kg H2
+                                if vehicle == "CNG pipeline":
+
+                                    inhibbitor_ds = ws.get_one(
+                                        self.db,
+                                        ws.contains("name", "hydrogen embrittlement inhibition"),
+                                        ws.equals("location", region)
+                                    )
+
+                                    new_exc.append(
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": 1,
+                                            "type": "technosphere",
+                                            "product": inhibbitor_ds["reference product"],
+                                            "name": inhibbitor_ds["name"],
+                                            "unit": inhibbitor_ds["unit"],
+                                            "location": region,
+                                            "comment": "Injection of an inhibiting gas (oxygen) to prevent embritllement of metal."
+                                        }
+                                    )
+                                    new_act["comment"] += " 2.46 kWh/kg H2 is needed to purify the hydrogen from the inhibiting gas."
+                                    new_act["comment"] += " The recovery rate for hydrogen after separation from the inhibitor gas is 93%."
+
+
+                                if "regional storage" in supply_chain_scenarios[vehicle]:
+
+                                    storage_ds = ws.get_one(
+                                        self.db,
+                                        ws.contains("name", "geological hydrogen storage"),
+                                        ws.equals("location", region)
+                                    )
+
+                                    new_exc.append(
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": 1,
+                                            "type": "technosphere",
+                                            "product": storage_ds["reference product"],
+                                            "name": storage_ds["name"],
+                                            "unit": storage_ds["unit"],
+                                            "location": region,
+                                            "comment": "Geological storage (salt cavern)."
+                                        }
+                                    )
+                                    new_act["comment"] += " Geological storage is added. It includes 0.344 kWh for the injection and pumping of 1 kg of H2."
+
+                                # electricity for compression
+                                if s == "gaseous":
+
+                                    # if transport by truck, compression from 25 bar to 500 bar for teh transport
+                                    # and from 500 bar to 900 bar for dispensing in 700 bar storage tanks
+
+                                    # if transport by pipeline, initial compression from 25 bar to 100 bar
+                                    # and 0.6 kWh re-compression every 250 km
+                                    # and finally from 100 bar to 900 bar for dispensing in 700 bar storage tanks
+
+                                    if vehicle == "truck":
+                                        electricity_comp = self.get_compression_effort(25, 500, 1000)
+                                        electricity_comp += self.get_compression_effort(500, 900, 1000)
+                                    else:
+                                        electricity_comp = (self.get_compression_effort(25, 100, 1000)
+                                                            + (0.6 * d/250))
+                                        electricity_comp += self.get_compression_effort(100, 900, 1000)
+
+                                    new_exc.append(
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": electricity_comp,
+                                            "type": "technosphere",
+                                            "product": "electricity, low voltage",
+                                            "name": "market group for electricity, low voltage",
+                                            "unit": "kilowatt hour",
+                                            "location": "RoW",
+                                        }
+                                    )
+                                    new_act["comment"] += f" {electricity_comp} kWh is added to compress from 25 bar 100 bar (if pipeline)" \
+                                        f"or 500 bar (if truck), and then to 900 bar to dispense in storage tanks at 700 bar. "\
+                                    " Additionally, if transported by pipeline, there is re-compression (0.6 kWh) every 250 km."
+
+                                # electricity for liquefaction
+                                if s == "liquid":
+                                    # liquefaction electricity need
+                                    # currently, 12 kWh/kg H2
+                                    # mid-term, 8 kWh/ kg H2
+                                    # by 2050, 6 kWh/kg H2
+                                    electricity_comp = np.clip(np.interp(self.year,
+                                              [2020, 2035, 2050],
+                                              [12, 8, 6]), 12, 6)
+                                    new_exc.append(
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": electricity_comp,
+                                            "type": "technosphere",
+                                            "product": "electricity, low voltage",
+                                            "name": "market group for electricity, low voltage",
+                                            "unit": "kilowatt hour",
+                                            "location": "RoW",
+                                        }
+                                    )
+                                    new_act[
+                                        "comment"] += f" {electricity_comp} kWh is added to liquefy the hydrogen. "
+
+                                # electricity for hydrogenation, dehydrogenation and compression at delivery
+                                if s == "liquid organic compound":
+
+                                    hydrogenation_ds = ws.get_one(
+                                        self.db,
+                                        ws.equals("name", "hydrogenation of hydrogen"),
+                                        ws.equals("location", region)
+                                    )
+
+                                    dehydrogenation_ds = ws.get_one(
+                                        self.db,
+                                        ws.equals("name", "dehydrogenation of hydrogen"),
+                                        ws.equals("location", region)
+                                    )
+
+                                    new_exc.extend([
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": 1,
+                                            "type": "technosphere",
+                                            "product": hydrogenation_ds["reference product"],
+                                            "name": hydrogenation_ds["name"],
+                                            "unit": hydrogenation_ds["unit"],
+                                            "location": region,
+                                        },
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": 1,
+                                            "type": "technosphere",
+                                            "product": dehydrogenation_ds["reference product"],
+                                            "name": dehydrogenation_ds["name"],
+                                            "unit": dehydrogenation_ds["unit"],
+                                            "location": region,
+                                        },
+
+                                    ]
+                                    )
+
+                                    # After dehydrogenation at ambient temperature at delivery
+                                    # the hydrogen needs to be compressed up to 900 bar to be dispensed
+                                    # in 700 bar storage tanks
+
+                                    electricity_comp = self.get_compression_effort(25, 900, 1000)
+
+                                    new_exc.append(
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": electricity_comp,
+                                            "type": "technosphere",
+                                            "product": "electricity, low voltage",
+                                            "name": "market group for electricity, low voltage",
+                                            "unit": "kilowatt hour",
+                                            "location": "RoW",
+                                        }
+                                    )
+
+                                    new_act["comment"] += " Hydrogenation and dehydrogenation of hydrogen included. "
+                                    new_act["comment"] +=  "Compression at delivery after dehydrogenation also included."
+
+                                # fetch the H2 production activity
+                                h2_ds = ws.get_one(
+                                    self.db,
+                                    ws.equals("name", f[0]),
+                                    ws.equals("location", region)
+                                )
+
+                                # include losses along the way
+                                new_exc.append(
+                                    {
+                                        "uncertainty type": 0,
+                                        "amount": 1 + losses[vehicle][s][0](d),
+                                        "type": "technosphere",
+                                        "product": h2_ds["reference product"],
+                                        "name": h2_ds["name"],
+                                        "unit": h2_ds["unit"],
+                                        "location": region,
+                                    }
+                                )
+
+                                new_act["comment"] += losses[vehicle][s][1]
+
+                                # add fuelling station, including storage tank
+                                ds_h2_station = ws.get_one(
+                                    self.db,
+                                    ws.equals("name", "hydrogen refuelling station"),
+                                    ws.equals("location", region)
+                                )
+
+                                new_exc.append(
+                                    {
+                                        "uncertainty type": 0,
+                                        "amount": 1 / (600 * 365 * 40), # 1 over lifetime: 40 years, 600 kg H2/day
+                                        "type": "technosphere",
+                                        "product": ds_h2_station["reference product"],
+                                        "name": ds_h2_station["name"],
+                                        "unit": ds_h2_station["unit"],
+                                        "location": region,
+                                    }
+                                )
+
+                                # finally, add pre-cooling
+                                # pre-cooling is needed before filling vehicle tanks
+                                # as the hydrogen is pumped, the ambient temperature
+                                # vaporizes the gas, and because of the Thomson-Joule effect,
+                                # the gas temperature increases.
+                                # Hence, a refrigerant is needed to keep the H2 as low as
+                                # -30 C during pumping.
+
+                                # https://www.osti.gov/servlets/purl/1422579 gives us a formula
+                                # to estimate pre-cooling electricity need
+                                # it requires a capacity utilization for the fuellnig station
+                                # as well as an ambient temperature
+                                # we will use a temp of 25 C
+                                # and a capacity utilization going from 10 kg H2/day in 2020
+                                # to 150 kg H2/day in 2050
+                                t_amb = 25
+                                cap_util = np.interp(self.year,
+                                                     [2020, 2050],
+                                                     [10, 150]
+                                                     )
+                                el_pre_cooling = (
+                                        (0.3 / 1.6 * np.exp(-.018 * t_amb))
+                                        + ((25 * np.log(t_amb) - 21) / cap_util)
+                                        )
+
+                                new_exc.append(
+                                    {
+                                        "uncertainty type": 0,
+                                        "amount": el_pre_cooling,
+                                        "type": "technosphere",
+                                        "product": "electricity, low voltage",
+                                        "name": "market group for electricity, low voltage",
+                                        "unit": "kilowatt hour",
+                                        "location": "RoW",
+                                    }
+                                )
+
+                                new_act["comment"] += f"Pre-cooling electricity is considered ({el_pre_cooling}), " \
+                                                      f"assuming an ambiant temperature of {t_amb}C "\
+                                                      f"and a capacity utilization for the fuel station of {cap_util} kg/day."
+
+                                new_act["exchanges"] = new_exc
+
+                                new_act = relink_technosphere_exchanges(
+                                    new_act, self.db, self.model
+                                )
+
+                                self.db.append(new_act)
+
 
     def generate_regional_variants(self):
         """ Duplicate fuel chains and make them IAM region-specific """
@@ -216,33 +602,124 @@ class Fuels:
         self.generate_DAC_activities()
 
         # then hydrogen
-        print("Generate region-specific hydrogen production and supply chains.")
         self.generate_hydrogen_activities()
 
-
+        # then biogas
+        print("Generate region-specific biogas and syngas supply chains.")
         fuel_activities = {
-            "hydrogen": ["hydrogen production, gaseous, 25 bar, from electrolysis",
-                         "hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar",
-                         "hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar",
-                         "hydrogen production, auto-thermal reforming, from biomethane, 25 bar",
-                         "hydrogen production, auto-thermal reforming, from biomethane, with CCS (MDEA, 98% eff.), 25 bar",
-                         "hydrogen production, steam methane reforming of natural gas, 25 bar",
-                         "hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar",
-                         "hydrogen production, auto-thermal reforming of natural gas, 25 bar",
-                         "hydrogen production, auto-thermal reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar",
-                         "hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant",
-                         "hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant",
-                         "hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant",
-                         "hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant",
-                         "hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant"
-                         ],
+
             "methane, from biomass": [
                 'production of 2 wt-% potassium',
                 'biogas upgrading - sewage sludge',
                 'Biomethane, gaseous',
             ],
-            #"methane, synthetic, from coal": [],
-            #"methane, synthetic, from electrolysis": []
+            "methane, synthetic": [
+                "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture",
+                "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation, at fuelling station"
+            ]
+        }
+
+        for region in self.list_iam_regions:
+            for fuel in fuel_activities:
+                for f in fuel_activities[fuel]:
+                    if fuel == "methane, synthetic":
+
+                        for CO2_type in [
+                            ("carbon dioxide, captured from atmosphere, with waste heat, and grid electricity", "carbon dioxide, captured from the atmosphere", "waste heat"),
+                            #("carbon dioxide, captured from atmosphere, with industrial steam heat, and grid electricity", "carbon dioxide, captured from atmosphere", "industrial steam heat"),
+                            ("carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity", "carbon dioxide, captured from the atmosphere", "heat pump heat")
+                            ]:
+                            ds = wt.copy_to_new_location(ws.get_one(
+                                self.original_db,
+                                ws.contains("name", f)
+                            ), region)
+
+                            if "input" in ds:
+                                ds.pop("input")
+
+                            for exc in ws.technosphere(ds):
+                                if "carbon dioxide, captured from atmosphere" in exc["name"]:
+                                    exc["name"] = CO2_type[0]
+                                    exc["product"] = CO2_type[1]
+                                    exc["location"] = region
+
+                                    ds["name"] += "using " + CO2_type[2]
+
+                                    for prod in ws.production(ds):
+                                        prod["name"] += "using " + CO2_type[2]
+
+                                if "methane, from electrochemical methanation" in exc["name"]:
+                                    exc["name"] += "using " + CO2_type[2]
+
+                                    ds["name"] = ds["name"].replace("from electrochemical methanation",
+                                                                    f"from electrochemical methanation (H2 from electrolysis, CO2 from DAC using {CO2_type[2]})")
+
+                                    for prod in ws.production(ds):
+                                        prod["name"] = prod["name"].replace("from electrochemical methanation",
+                                                                    f"from electrochemical methanation (H2 from electrolysis, CO2 from DAC using {CO2_type[2]})")
+
+
+                            ds = relink_technosphere_exchanges(
+                                ds, self.db, self.model
+                            )
+
+                            self.db.append(ds)
+
+                    else:
+
+                        ds = wt.copy_to_new_location(ws.get_one(
+                            self.original_db,
+                            ws.contains("name", f)
+                        ), region)
+
+                        if "input" in ds:
+                            ds.pop("input")
+
+                        ds = relink_technosphere_exchanges(
+                            ds, self.db, self.model
+                        )
+
+                        self.db.append(ds)
+
+        # then synthetic fuels
+        print("Generate region-specific synthetic fuel supply chains.")
+
+        fuel_activities = {
+            "methanol": [
+                'methanol synthesis, hydrogen from electrolysis, CO2 from DAC',
+                'methanol distillation, hydrogen from electrolysis, CO2 from DAC',
+                'liquefied petroleum gas production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation',
+                'liquefied petroleum gas production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation',
+                'gasoline production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation',
+                'gasoline production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation',
+                'diesel production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation',
+                'diesel production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation',
+                'kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation',
+                'kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation',
+                'gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station',
+                'diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station',
+                'kerosene production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station',
+                'liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station',
+                'gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station',
+                'diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station',
+                'kerosene production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station',
+                'liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station'
+            ],
+            "fischer-tropsch": [
+                'Carbon monoxide, from RWGS',
+                'Syngas, RWGS, Production',
+                'Diesel production, synthetic, Fischer Tropsch process, energy allocation',
+                'Naphtha production, synthetic, Fischer Tropsch process, energy allocation',
+                'Kerosene production, synthetic, Fischer Tropsch process, energy allocation',
+                'Lubricating oil production, synthetic, Fischer Tropsch process, energy allocation',
+                'Diesel production, synthetic, Fischer Tropsch process, economic allocation',
+                'Naphtha production, synthetic, Fischer Tropsch process, economic allocation',
+                'Kerosene production, synthetic, Fischer Tropsch process, economic allocation',
+                'diesel production, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station',
+                'kerosene production, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station',
+                'diesel production, synthetic, from electrolysis-based hydrogen, economic allocation, at fuelling station',
+                'kerosene production, synthetic, from electrolysis-based hydrogen, economic allocation, at fuelling station',
+                ]
         }
 
         for region in self.list_iam_regions:
@@ -257,10 +734,17 @@ class Fuels:
                     if "input" in ds:
                         ds.pop("input")
 
+                    for exc in ws.technosphere(ds):
+                        if "carbon dioxide, captured from atmosphere" in exc["name"]:
+                            exc["name"] = "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity"
+                            exc["product"] = "carbon dioxide, captured from the atmosphere"
+                            exc["location"] = region
+
                     ds = relink_technosphere_exchanges(
                         ds, self.db, self.model
                     )
 
                     self.db.append(ds)
+
 
         return self.db

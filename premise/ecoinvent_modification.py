@@ -546,19 +546,19 @@ class NewDatabase:
 
                 hydro = HydrogenInventory(self.db, self.version, file)
                 hydro.merge_inventory()
-            #
-            # for file in (
-            #     FILEPATH_SYNGAS_INVENTORIES,
+
+            for file in (
+                FILEPATH_SYNGAS_INVENTORIES,
             #     FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
-            # ):
-            #     syngas = SyngasInventory(self.db, self.version, file)
-            #     syngas.merge_inventory()
+            ):
+                syngas = SyngasInventory(self.db, self.version, file)
+                syngas.merge_inventory()
             #
             # bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
             # bio.merge_inventory()
             #
-            # for file in (
-            #     FILEPATH_SYNFUEL_INVENTORIES,
+            for file in (
+                FILEPATH_SYNFUEL_INVENTORIES,
             #     FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
             #     FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
             #     FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
@@ -566,25 +566,25 @@ class NewDatabase:
             #     FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
             #     FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
             #     FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
-            # ):
-            #     synfuel = SynfuelInventory(self.db, self.version, file)
-            #     synfuel.merge_inventory()
+            ):
+                synfuel = SynfuelInventory(self.db, self.version, file)
+                synfuel.merge_inventory()
             #
-            # geo_heat = GeothermalInventory(
-            #     self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
-            # )
-            # geo_heat.merge_inventory()
+            geo_heat = GeothermalInventory(
+                self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
+            )
+            geo_heat.merge_inventory()
             #
-            # for file in (
-            #     FILEPATH_METHANOL_FUELS_INVENTORIES,
+            for file in (
+                FILEPATH_METHANOL_FUELS_INVENTORIES,
             #     FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
             #     FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
             #     FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
             #     FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
-            # ):
-            #
-            #     lpg = LPGInventory(self.db, self.version, file)
-            #     lpg.merge_inventory()
+            ):
+
+                lpg = LPGInventory(self.db, self.version, file)
+                lpg.merge_inventory()
             #
             # various_veh = VariousVehicles(
             #     self.db, self.version, FILEPATH_VARIOUS_VEHICLES

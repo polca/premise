@@ -109,7 +109,7 @@ def test_load_carma():
 def test_load_biofuel():
     db, version = get_db()
     bio = BiofuelInventory(db, version, FILEPATH_BIOFUEL_INVENTORIES)
-    assert len(bio.import_db.data) == 36
+    assert len(bio.import_db.data) == 35
 
 
 # def test_load_carculator():
