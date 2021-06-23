@@ -102,6 +102,29 @@ class DatabaseCleaner:
         return {v: k for k, v in self.get_fix_names_dict().items()}
 
     @staticmethod
+    def get_biosphere_flow_uuid():
+        """
+        Retrieve a dictionary with biosphere flow (name, categories, unit) --> uuid.
+
+        :returns: dictionary with biosphere flow (name, categories, unit) --> uuid
+        :rtype: dict
+        """
+
+        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+            raise FileNotFoundError(
+                "The dictionary of biosphere flows could not be found."
+            )
+
+        csv_dict = {}
+
+        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
+            input_dict = csv.reader(f, delimiter=";")
+            for row in input_dict:
+                csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
+
+        return csv_dict
+
+    @staticmethod
     def get_biosphere_flow_categories():
         """
         Retrieve a dictionary with biosphere flow uuids and categories.
@@ -120,7 +143,7 @@ class DatabaseCleaner:
         with open(FILEPATH_BIOSPHERE_FLOWS) as f:
             input_dict = csv.reader(f, delimiter=";")
             for row in input_dict:
-                csv_dict[row[-1]]= (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
+                csv_dict[row[-1]] = (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
 
         return csv_dict
 
@@ -270,16 +293,23 @@ class DatabaseCleaner:
         """ Add a `categories` for biosphere flows if missing.
         This happens when importing directly from ecospold files """
 
-        dict_bio = self.get_biosphere_flow_categories()
+        dict_bio_cat = self.get_biosphere_flow_categories()
+        dict_bio_uuid = self.get_biosphere_flow_uuid()
 
         for ds in self.db:
             for exc in ds["exchanges"]:
                 if exc["type"] == "biosphere":
                     if "categories" not in exc:
-                        if exc["input"][1] in dict_bio:
-                            exc["categories"] = dict_bio[exc["input"][1]]
+                        if "input" in exc:
+                            if exc["input"][1] in dict_bio_cat:
+                                exc["categories"] = dict_bio_cat[exc["input"][1]]
+                            else:
+                                print(f"Missing categories flows for {exc['name']} with UUID {exc['input'][1]}.")
                         else:
-                            print(f"Missing categories flows for {exc['name']} with UUID {exc['input'][1]}.")
+                            # fetching the uuid of that biosphere flow
+                            cat = exc["categories"] if len(exc["categories"]) > 1 else (exc["categories"][0], "unspecified")
+                            uuid = dict_bio_uuid[exc["name"], cat[0], cat[1], exc["unit"]]
+                            exc["input"] = ("biosphere3", uuid)
 
     def prepare_datasets(self):
         """
