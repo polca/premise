@@ -77,6 +77,10 @@ class Cement:
                 d_act[d] = wt.copy_to_new_location(ds, d)
                 d_act[d]["code"] = str(uuid.uuid4().hex)
 
+                for exc in ws.production(d_act[d]):
+                    if "input" in exc:
+                        exc.pop("input")
+
                 if "input" in d_act[d]:
                     d_act[d].pop("input")
 
