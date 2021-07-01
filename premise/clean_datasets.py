@@ -310,13 +310,12 @@ class DatabaseCleaner:
                             cat = exc["categories"] if len(exc["categories"]) > 1 else (exc["categories"][0], "unspecified")
                             uuid = dict_bio_uuid[exc["name"], cat[0], cat[1], exc["unit"]]
                             exc["input"] = ("biosphere3", uuid)
-                            
+
                             # and then add the `categories` field
                             if uuid in dict_bio_cat:
                                 exc["categories"] = dict_bio_cat[uuid]
                             else:
                                 print(f"Missing categories flows for {exc['name']} with UUID {uuid}.")
-
 
     def prepare_datasets(self):
         """
