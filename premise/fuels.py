@@ -3,6 +3,10 @@ from wurst import transformations as wt
 from .utils import *
 from .geomap import Geomap
 import numpy as np
+from . import DATA_DIR
+
+CROP_CLIMATE_MAP = DATA_DIR / "crop_climate_mapping.csv"
+REGION_CLIMATE_MAP = DATA_DIR / "region_climate_mapping.csv"
 
 class Fuels:
     """
@@ -28,8 +32,39 @@ class Fuels:
             if type(c) == tuple and c[0].lower() == self.model
         ]
 
+    def get_crop_climate_mapping(self):
+        """ Returns a dictionnary thatindictes the type of crop
+        used for bioethanol production per type of climate """
+
+        d = {}
+        with open(CROP_CLIMATE_MAP) as f:
+            r = csv.reader(f, delimiter=";")
+            next(r)
+            for line in r:
+                climate, sugar, oil, wood, grass = line
+                d[climate] = {
+                    'sugar': sugar.split(', '),
+                     'oil': oil.split(', '),
+                     'wood': wood.split(', '),
+                     'grass': grass.split(', ')
+                    }
+        return d
+
+    def get_region_climate_mapping(self):
+        """ Returns a dicitonnary that indicates the type of climate
+         for each IAM region"""
+
+        d = {}
+        with open(REGION_CLIMATE_MAP) as f:
+            r = csv.reader(f, delimiter=";")
+            next(r)
+            for line in r:
+                region, climate = line
+                d[region] = climate
+        return d
+
     def get_compression_effort(self, p_in, p_out, flow_rate):
-        """ Calculate the required electricity consumption from teh compressor given
+        """ Calculate the required electricity consumption from the compressor given
         an inlet and outlet pressure and a flow rate for hydrogen. """
         # result is shaft power [kW] and compressor size [kW]
         # flow_rate = mass flow rate (kg/day)
@@ -77,8 +112,11 @@ class Fuels:
                 new_name = ds["name"] + ", with " + heat + ", and grid electricity"
 
                 ds["name"] = new_name
+
                 for exc in ws.production(ds):
                     exc["name"] = new_name
+                    if "input" in exc:
+                        exc.pop("input")
 
                 for exc in ws.technosphere(ds):
                     if "heat" in exc["name"]:
@@ -100,8 +138,7 @@ class Fuels:
                                   + " for which 0.78 kWh is considered. Furthermore, there's a 2.1% loss on site"
                                   + " and only a 1 km long pipeline transport.")
 
-                if "input" in ds:
-                    ds.pop("input")
+
 
                 ds = relink_technosphere_exchanges(
                     ds, self.db, self.model, contained=False
@@ -165,8 +202,11 @@ class Fuels:
                         ws.contains("name", f[0])
                     ), region)
 
-                    if "input" in ds:
-                        ds.pop("input")
+                    for exc in ws.production(ds):
+                        if "input" in exc:
+                            exc.pop("input")
+
+
 
                     ds = relink_technosphere_exchanges(
                         ds, self.db, self.model
@@ -281,8 +321,11 @@ class Fuels:
                         ws.equals("name", act)
                     ), region)
 
-                if "input" in ds:
-                    ds.pop("input")
+                for exc in ws.production(ds):
+                    if "input" in exc:
+                        exc.pop("input")
+
+
 
                 ds = relink_technosphere_exchanges(
                     ds, self.db, self.model
@@ -593,19 +636,8 @@ class Fuels:
 
                                 self.db.append(new_act)
 
+    def generate_biogas_activities(self):
 
-    def generate_regional_variants(self):
-        """ Duplicate fuel chains and make them IAM region-specific """
-
-        # start with DAC datasets
-        print("Generate region-specific direct air capture processes.")
-        self.generate_DAC_activities()
-
-        # then hydrogen
-        self.generate_hydrogen_activities()
-
-        # then biogas
-        print("Generate region-specific biogas and syngas supply chains.")
         fuel_activities = {
 
             "methane, from biomass": [
@@ -634,8 +666,11 @@ class Fuels:
                                 ws.contains("name", f)
                             ), region)
 
-                            if "input" in ds:
-                                ds.pop("input")
+                            for exc in ws.production(ds):
+                                if "input" in exc:
+                                    exc.pop("input")
+
+
 
                             for exc in ws.technosphere(ds):
                                 if "carbon dioxide, captured from atmosphere" in exc["name"]:
@@ -672,8 +707,11 @@ class Fuels:
                             ws.contains("name", f)
                         ), region)
 
-                        if "input" in ds:
-                            ds.pop("input")
+                        for exc in ws.production(ds):
+                            if "input" in exc:
+                                exc.pop("input")
+
+
 
                         ds = relink_technosphere_exchanges(
                             ds, self.db, self.model
@@ -681,8 +719,7 @@ class Fuels:
 
                         self.db.append(ds)
 
-        # then synthetic fuels
-        print("Generate region-specific synthetic fuel supply chains.")
+    def generate_synthetic_fuel_activities(self):
 
         fuel_activities = {
             "methanol": [
@@ -731,8 +768,9 @@ class Fuels:
                         ws.contains("name", f)
                     ), region)
 
-                    if "input" in ds:
-                        ds.pop("input")
+                    for exc in ws.production(ds):
+                        if "input" in exc:
+                            exc.pop("input")
 
                     for exc in ws.technosphere(ds):
                         if "carbon dioxide, captured from atmosphere" in exc["name"]:
@@ -746,5 +784,72 @@ class Fuels:
 
                     self.db.append(ds)
 
+    def generate_biofuel_activities(self):
+
+        fuel_activities = {
+            "farming": [
+                "Farming and supply of",
+                "Supply of forest residue"
+                ],
+            "ethanol": [
+                "Ethanol production, via fermentation"
+            ]
+        }
+
+        # region -> climate dictionnary
+        d_region_climate = self.get_region_climate_mapping()
+        # climate --> {crop type --> crop} dictionnary
+        d_climate_crop_type = self.get_crop_climate_mapping()
+
+        for region in self.list_iam_regions:
+            climate_type = d_region_climate[region]
+
+            for crop_type in d_climate_crop_type[climate_type]:
+                crop = d_climate_crop_type[climate_type][crop_type]
+
+                for original_ds in ws.get_many(
+                    self.original_db,
+                    ws.either(*[ws.contains("name", c) for c in crop]),
+                    ws.either(
+                        *[
+                            ws.contains("name", "Farming and supply of"),
+                            ws.contains("name", "Ethanol production, via fermentation")
+                        ]
+                    )
+                ):
+
+                    ds = wt.copy_to_new_location(original_ds, region)
+
+                    for exc in ws.production(ds):
+                        if "input" in exc:
+                            exc.pop("input")
+
+                        ds = relink_technosphere_exchanges(
+                            ds, self.db, self.model
+                        )
+
+                    self.db.append(ds)
+
+    def generate_regional_variants(self):
+        """ Duplicate fuel chains and make them IAM region-specific """
+
+        # DAC datasets
+        print("Generate region-specific direct air capture processes.")
+        self.generate_DAC_activities()
+
+        # hydrogen
+        self.generate_hydrogen_activities()
+
+        # biogas
+        print("Generate region-specific biogas and syngas supply chains.")
+        self.generate_biogas_activities()
+
+        # synthetic fuels
+        print("Generate region-specific synthetic fuel supply chains.")
+        self.generate_synthetic_fuel_activities()
+
+        # biofuels
+        print("Generate region-specific biofuel fuel supply chains.")
+        self.generate_biofuel_activities()
 
         return self.db
