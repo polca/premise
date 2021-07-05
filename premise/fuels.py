@@ -1,5 +1,6 @@
 from wurst import searching as ws
 from wurst import transformations as wt
+import wurst
 from .utils import *
 from .geomap import Geomap
 import numpy as np
@@ -784,21 +785,78 @@ class Fuels:
 
                     self.db.append(ds)
 
-    def generate_biofuel_activities(self):
+    def get_biofuel_conversion_efficiency(self, loc, fuel_type, crop_type):
+        """
+        Return the biofuel conversion process efficiency
+        from the IAM projections. The efficiency is understood as the ratio
+        between the primary energy embodied in the biomass and the net energy
+        contained in the fuel product.
+        """
 
-        fuel_activities = {
-            "farming": [
-                "Farming and supply of",
-                "Supply of forest residue"
-                ],
-            "ethanol": [
-                "Ethanol production, via fermentation"
-            ]
+        d_fuel_type = {
+            "remind": {
+                "bioethanol": {
+                    "sugar": "Tech|Liquids|Biomass|Biofuel|Ethanol|Conventional|w/o CCS|Efficiency",
+                    "oil": "Tech|Liquids|Biomass|Biofuel|Ethanol|Conventional|w/o CCS|Efficiency",
+                    "wood": "Tech|Liquids|Biomass|Biofuel|Ethanol|Cellulosic|w/o CCS|Efficiency",
+                    "grass": "Tech|Liquids|Biomass|Biofuel|Ethanol|Cellulosic|w/o CCS|Efficiency",
+                },
+                "biodiesel": {
+                    "oil": "Tech|Liquids|Biomass|Biofuel|Biodiesel|w/o CCS|Efficiency",
+                }
+            },
+            "image": {
+                "bioethanol": {
+                    "sugar": "Efficiency|Liquids|Biomass|Ethanol|Sugar|w/o CCS",
+                    "oil": "Efficiency|Liquids|Biomass|Ethanol|Maize|w/o CCS",
+                    "wood": "Efficiency|Liquids|Biomass|Ethanol|Woody|w/o CCS",
+                    "grass": "Efficiency|Liquids|Biomass|Ethanol|Grassy|w/o CCS",
+                },
+                "biodiesel": {
+                    "oil": "Efficiency|Liquids|Biomass|Biodiesel|Oilcrops|w/o CCS",
+                }
+            }
         }
 
-        # region -> climate dictionnary
+        param = d_fuel_type[self.model][fuel_type][crop_type]
+
+        # sometimes, the energy consumption values are not reported for the region "World"
+        # in such case, we then look at the sum of all the regions
+        if (
+                self.iam_data.data.loc[dict(region=loc, variables=param)]
+                        .interp(year=self.year)
+                        .sum()
+                == 0
+        ):
+            loc = self.iam_data.data.region.values
+
+        return (self.iam_data.data.loc[
+                    dict(
+                        region=[loc] if isinstance(loc, str) else loc,
+                        variables=param,
+                    )
+                ].interp(year=self.year).sum(dim=["region", "variables"]) /
+                self.iam_data.data.loc[
+                    dict(
+                        region=[loc] if isinstance(loc, str) else loc,
+                        variables=param,
+                        year=2020,
+                    )
+                ].sum(dim=["region", "variables"])
+                )
+
+
+    def generate_biofuel_activities(self):
+        """
+        Create region-specific biofuel datasets.
+        Update the conversion efficiency.
+        :return:
+        """
+
+
+        # region -> climate dictionary
         d_region_climate = self.get_region_climate_mapping()
-        # climate --> {crop type --> crop} dictionnary
+        # climate --> {crop type --> crop} dictionary
         d_climate_crop_type = self.get_crop_climate_mapping()
 
         for region in self.list_iam_regions:
@@ -812,8 +870,9 @@ class Fuels:
                     ws.either(*[ws.contains("name", c) for c in crop]),
                     ws.either(
                         *[
-                            ws.contains("name", "Farming and supply of"),
-                            ws.contains("name", "Ethanol production, via fermentation")
+                            ws.contains("name", "supply of"),
+                            ws.contains("name", "fermentation"),
+                            ws.contains("name", "transesterification"),
                         ]
                     )
                 ):
@@ -824,9 +883,34 @@ class Fuels:
                         if "input" in exc:
                             exc.pop("input")
 
-                        ds = relink_technosphere_exchanges(
-                            ds, self.db, self.model
+                    ds = relink_technosphere_exchanges(
+                        ds, self.db, self.model
+                    )
+
+                    # if this is a fuel conversion process
+                    # we want to update the conversion efficiency
+                    if any(x in ds["name"] for x in ["fermentation",
+                                                     "transesterification"]
+                           ):
+                        # modify efficiency
+                        eff_correction_factor = self.get_biofuel_conversion_efficiency(
+                            loc=region,
+                            fuel_type="biodiesel" if crop_type in ["rapeseed", "palm oil"] else "bioethanol",
+                            crop_type=crop_type
                         )
+
+                        # Rescale all the technosphere exchanges according to the IAM efficiency values
+                        wurst.change_exchanges_by_constant_factor(
+                            ds,
+                            float(eff_correction_factor)
+                        )
+
+                    # if this is a farming activity
+                    # and if the product is not a residue
+                    # we should include the Land Use  Change-induced CO2 emissions
+
+
+
 
                     self.db.append(ds)
 

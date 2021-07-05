@@ -1,15 +1,13 @@
 import copy
 import uuid
-from datetime import date
-
 import numpy as np
 import wurst
 from wurst import searching as ws
 from wurst import transformations as wt
-
 from .activity_maps import InventorySet
 from .geomap import Geomap
 from .utils import *
+from datetime import date
 
 
 class Cement:
@@ -369,10 +367,7 @@ class Cement:
                 .interp(year=self.year)
                 .sum(dim=["region", "variables"])
                 / self.iam_data.data.loc[
-                    dict(
-                        region=[loc] if isinstance(loc, str) else loc,
-                        variables=prod,
-                    )
+                    dict(region=[loc] if isinstance(loc, str) else loc, variables=prod,)
                 ]
                 .interp(year=self.year)
                 .sum(dim="region")
@@ -449,20 +444,14 @@ class Cement:
                 rate = (
                     self.iam_data.data.sel(
                         variables="Emissions|CO2|Industry|Cement|Sequestered",
-                        region=[loc]
-                        if loc != "World"
-                        else [l for l in self.iam_data.data.region.values],
-                    )
-                    .interp(year=self.year)
-                    .sum(dim="region")
+                        region=[loc] if loc != "World" else [l for l in self.iam_data.data.region.values],
+                    ).interp(year=self.year).sum(dim="region")
                     / self.iam_data.data.sel(
                         variables=[
                             "Emissions|CO2|Industry|Cement|Gross",
                             "Emissions|CO2|Industry|Cement|Sequestered",
                         ],
-                        region=[loc]
-                        if loc != "World"
-                        else [l for l in self.iam_data.data.region.values],
+                        region=[loc] if loc != "World" else [l for l in self.iam_data.data.region.values],
                     )
                     .interp(year=self.year)
                     .sum(dim=["variables", "region"])
@@ -512,7 +501,9 @@ class Cement:
 
             # Production volume by kiln type
             energy_input_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
+                region=self.geo.iam_to_iam_region(k)
+                if self.model == "image"
+                else k,
                 variables=[
                     v
                     for v in self.iam_data.gnr_data.variables.values
@@ -523,7 +514,9 @@ class Cement:
             energy_input_per_kiln_type /= energy_input_per_kiln_type.sum(axis=0)
 
             energy_eff_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
+                region=self.geo.iam_to_iam_region(k)
+                if self.model == "image"
+                else k,
                 variables=[
                     v
                     for v in self.iam_data.gnr_data.variables.values
@@ -550,7 +543,9 @@ class Cement:
                     "Share biomass fuel",
                     "Share fossil fuel",
                 ],
-                region=self.geo.iam_to_iam_region(k) if self.model == "image" else k,
+                region=self.geo.iam_to_iam_region(k)
+                if self.model == "image"
+                else k,
             ).clip(0, 1)
 
             fuel_mix /= fuel_mix.sum(axis=0)
@@ -621,19 +616,18 @@ class Cement:
                     ("wood pellet", "wood pellet, measured as dry mass"),
                     ("hard coal", "hard coal"),
                 ]
-            ):
+                ):
                 # Select waste fuel providers, fitting the IAM region
                 # Fetch respective shares based on production volumes
                 fuel_suppliers = self.get_shares_from_production_volume(
-                    self.get_suppliers_of_a_region(k, self.fuel_map[fuel[0]], fuel[1])
+                    self.get_suppliers_of_a_region(
+                        k, self.fuel_map[fuel[0]], fuel[1]
+                    )
                 )
                 if len(fuel_suppliers) == 0:
                     fuel_suppliers = self.get_shares_from_production_volume(
                         self.get_suppliers_of_a_region(
-                            k,
-                            self.fuel_map[fuel[0]],
-                            fuel[1],
-                            look_for_locations_in="ecoinvent",
+                            k, self.fuel_map[fuel[0]], fuel[1], look_for_locations_in="ecoinvent"
                         )
                     )
 
@@ -641,10 +635,7 @@ class Cement:
                     loc = "World"
                     fuel_suppliers = self.get_shares_from_production_volume(
                         self.get_suppliers_of_a_region(
-                            loc,
-                            self.fuel_map[fuel[0]],
-                            fuel[1],
-                            look_for_locations_in="ecoinvent",
+                            loc, self.fuel_map[fuel[0]], fuel[1], look_for_locations_in="ecoinvent"
                         )
                     )
 
@@ -654,7 +645,8 @@ class Cement:
                             "uncertainty type": 0,
                             "loc": 1,
                             "amount": (
-                                fuel_suppliers[supplier] * fuel_qty_per_type[f].values
+                                fuel_suppliers[supplier]
+                                * fuel_qty_per_type[f].values
                             )
                             / 1000,
                             "type": "technosphere",
@@ -678,16 +670,15 @@ class Cement:
                 fossil_co2_exc = [
                     e for e in v["exchanges"] if e["name"] == "Carbon dioxide, fossil"
                 ][0]
+
                 fossil_co2_exc["amount"] = (
-                    (fuel_fossil_co2_per_type.sum().values + 525) / 1000
-                ) * (1 - carbon_capture_rate)
+                                                   (fuel_fossil_co2_per_type.sum().values + 525) / 1000
+                                           ) * (1 - carbon_capture_rate)
                 fossil_co2_exc["uncertainty type"] = 0
 
             except IndexError:
                 # the fossil CO2 flow does not exist
-                amount = ((fuel_fossil_co2_per_type.sum().values + 525) / 1000) * (
-                    1 - carbon_capture_rate
-                )
+                amount = ((fuel_fossil_co2_per_type.sum().values + 525) / 1000 ) * (1 - carbon_capture_rate)
                 fossil_co2_exc = {
                     "uncertainty type": 0,
                     "loc": amount,
@@ -695,7 +686,7 @@ class Cement:
                     "type": "biosphere",
                     "name": "Carbon dioxide, fossil",
                     "unit": "kilogram",
-                    "categories": ("air",),
+                    "categories": ("air",)
                 }
                 v["exchanges"].append(fossil_co2_exc)
 
@@ -712,10 +703,8 @@ class Cement:
                 biogenic_co2_exc["uncertainty type"] = 0
 
             except IndexError:
-                # There isn't a biogenic CO2 emissions exchange
-                amount = (fuel_biogenic_co2_per_type.sum().values / 1000) * (
-                    1 - carbon_capture_rate
-                )
+                # There isn't a biogenic CO2 emission exchange
+                amount = (fuel_biogenic_co2_per_type.sum().values / 1000) * (1 - carbon_capture_rate)
                 biogenic_co2_exc = {
                     "uncertainty type": 0,
                     "loc": amount,
@@ -754,14 +743,11 @@ class Cement:
                     ccs,
                     ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
                 ):
-                    exc["amount"] = (
-                        fuel_biogenic_co2_per_type.sum()
-                        / (
-                            fuel_fossil_co2_per_type.sum()
-                            + fuel_biogenic_co2_per_type.sum()
-                            + 525
-                        )
-                    ).values.item(0)
+                    exc["amount"] = (fuel_biogenic_co2_per_type.sum() / (
+                          fuel_fossil_co2_per_type.sum()
+                        + fuel_biogenic_co2_per_type.sum()
+                        + 525
+                    )).values.item(0)
 
                 # 0.11 kg CO2 leaks per kg captured
                 # we need to align the CO2 composition with
@@ -799,13 +785,13 @@ class Cement:
 
                 # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
                 excess_heat_generation = (
-                    self.iam_data.gnr_data.sel(
-                        variables="Share of recovered energy, per ton clinker",
-                        region=self.geo.iam_to_iam_region(v["location"])
-                        if self.model == "image"
-                        else v["location"],
-                    ).values
-                    * (energy_input_per_ton_clinker.sum() / 1000)
+                        self.iam_data.gnr_data.sel(
+                            variables="Share of recovered energy, per ton clinker",
+                            region=self.geo.iam_to_iam_region(v["location"])
+                            if self.model == "image"
+                            else v["location"],
+                        ).values
+                        * (energy_input_per_ton_clinker.sum() / 1000)
                 )
 
                 for exc in ws.technosphere(
@@ -883,6 +869,7 @@ class Cement:
                     int(carbon_capture_rate * 100)
                 )
             ) + v["comment"]
+
 
         # TODO: currently, uses the relative improvement as given by GAINS in reference to 2020
         print(
@@ -972,7 +959,7 @@ class Cement:
                 act["exchanges"].append(new_exc)
 
     def adjust_clinker_ratio(self, d_act):
-        """Adjust the cement suppliers composition for "cement, unspecified", in order to reach
+        """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
         the average clinker-to-cement ratio given by the IAM.
 
         The supply of the cement with the highest clinker-to-cement ratio is decreased by 1% to the favor of
@@ -1171,7 +1158,8 @@ class Cement:
 
         print("\nCreate new clinker production datasets and delete old datasets")
         clinker_prod_datasets = [
-            d for d in self.build_clinker_production_datasets().values()
+            d
+            for d in self.build_clinker_production_datasets().values()
         ]
         self.db.extend(clinker_prod_datasets)
 
@@ -1486,6 +1474,7 @@ class Cement:
                     "market for cement, limestone cement 6-20%",
                     "cement, limestone 6-20%",
                 ),
+
             ):
                 act_cement = self.fetch_proxies(i[0], i[1])
                 self.db.extend([v for v in act_cement.values()])
@@ -1621,6 +1610,7 @@ class Cement:
                     "hard coal ash",
                 ),
                 ("cement production, alternative constituents 6-20%", "hard coal ash"),
+
                 ("cement production, pozzolana and fly ash 36-55%", "hard coal ash"),
                 ("cement production, pozzolana and fly ash 15-50%", "hard coal ash"),
                 (
