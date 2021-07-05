@@ -903,7 +903,23 @@ class NewDatabase:
 
         """
 
-        filepath = filepath or Path(DATA_DIR / "export" / "simapro")
+        if filepath is not None:
+            if isinstance(filepath, str):
+                filepath = [
+                    (Path(filepath) / s["model"] / s["pathway"] / str(s["year"]))
+                    for s in self.scenarios
+                ]
+            elif isinstance(filepath, list):
+                filepath = [Path(f) for f in filepath]
+            else:
+                raise TypeError(
+                    f"Expected a string or a sequence of strings for `filepath`, not {type(filepath)}."
+                )
+        else:
+            filepath = [
+                (DATA_DIR / "export" / "simapro" / s["model"] / s["pathway"] / str(s["year"]))
+                for s in self.scenarios
+            ]
 
         if not os.path.exists(filepath):
             os.makedirs(filepath)
