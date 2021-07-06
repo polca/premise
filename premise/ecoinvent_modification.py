@@ -921,8 +921,9 @@ class NewDatabase:
                 for s in self.scenarios
             ]
 
-        if not os.path.exists(filepath):
-            os.makedirs(filepath)
+        for fp in filepath:
+            if not os.path.exists(fp):
+                os.makedirs(fp)
 
         print("Write Simapro import file(s).")
         for scenario in self.scenarios:
