@@ -926,7 +926,7 @@ class NewDatabase:
                 os.makedirs(fp)
 
         print("Write Simapro import file(s).")
-        for scenario in self.scenarios:
+        for s, scenario in enumerate(self.scenarios):
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = self.check_for_duplicates(scenario["database"])
@@ -936,7 +936,7 @@ class NewDatabase:
                 scenario["model"],
                 scenario["pathway"],
                 scenario["year"],
-                filepath,
+                filepath[s],
             ).export_db_to_simapro()
 
     def write_db_to_brightway25(self, name=None):
