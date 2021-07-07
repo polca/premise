@@ -953,13 +953,30 @@ class NewDatabase:
 
         """
 
-        filepath = filepath or Path(DATA_DIR / "export" / "simapro")
+        if filepath is not None:
+            if isinstance(filepath, str):
+                filepath = [
+                    (Path(filepath) / s["model"] / s["pathway"] / str(s["year"]))
+                    for s in self.scenarios
+                ]
+            elif isinstance(filepath, list):
+                filepath = [Path(f) for f in filepath]
+            else:
+                raise TypeError(
+                    f"Expected a string or a sequence of strings for `filepath`, not {type(filepath)}."
+                )
+        else:
+            filepath = [
+                (DATA_DIR / "export" / "simapro" / s["model"] / s["pathway"] / str(s["year"]))
+                for s in self.scenarios
+            ]
 
-        if not os.path.exists(filepath):
-            os.makedirs(filepath)
+        for fp in filepath:
+            if not os.path.exists(fp):
+                os.makedirs(fp)
 
         print("Write Simapro import file(s).")
-        for scenario in self.scenarios:
+        for s, scenario in enumerate(self.scenarios):
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = self.check_for_duplicates(scenario["database"])
@@ -969,7 +986,7 @@ class NewDatabase:
                 scenario["model"],
                 scenario["pathway"],
                 scenario["year"],
-                filepath,
+                filepath[s],
             ).export_db_to_simapro()
 
     def write_db_to_brightway25(self, name=None):

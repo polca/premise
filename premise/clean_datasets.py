@@ -299,17 +299,28 @@ class DatabaseCleaner:
         for ds in self.db:
             for exc in ds["exchanges"]:
                 if exc["type"] == "biosphere":
+
                     if "categories" not in exc:
                         if "input" in exc:
+                            # from the uuid, fetch the flow category
                             if exc["input"][1] in dict_bio_cat:
                                 exc["categories"] = dict_bio_cat[exc["input"][1]]
                             else:
-                                print(f"Missing categories flows for {exc['name']} with UUID {exc['input'][1]}.")
+                                print(f"Missing flow category for {exc['name']} with UUID {exc['input'][1]}. It will be deleted.")
+                                exc["delete"] = True
                         else:
-                            # fetching the uuid of that biosphere flow
+                            print(f"Missing flow category for {exc['name']}. It will be deleted.")
+                            exc["delete"] = True
+                    
+                    if "input" not in exc:
+                        if "categories" in exc:
+                            # from the category, fetch the uuid of that biosphere flow
                             cat = exc["categories"] if len(exc["categories"]) > 1 else (exc["categories"][0], "unspecified")
                             uuid = dict_bio_uuid[exc["name"], cat[0], cat[1], exc["unit"]]
                             exc["input"] = ("biosphere3", uuid)
+
+            ds["exchanges"] = [exc for exc in ds["exchanges"] if "delete" not in exc]
+
 
     def prepare_datasets(self):
         """
