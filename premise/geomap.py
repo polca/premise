@@ -1,7 +1,6 @@
 from wurst.geo import geomatcher
 from premise import DATA_DIR
-
-REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
+import csv
 
 
 class Geomap:
@@ -12,6 +11,22 @@ class Geomap:
     def __init__(self, model):
 
         self.model = model
+        if model == "remind21":
+            REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH21.csv"
+        else:
+            REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
+        d_reg = dict()
+        with open(REGION_MAPPING_FILEPATH) as f:
+            reader = csv.reader(f, delimiter=";")
+            next(reader, None)
+            for row in reader:
+                if row[3] in d_reg.keys():
+                    d_reg[row[3]].append(row[2])
+                else:
+                    d_reg[row[3]] = [row[2]]
+            d_reg["World"] = ["GLO", "RoW"]
+            
+        geomatcher.add_definitions(d_reg, "REMIND", relative=True)
         self.geo = geomatcher
 
         self.iam_regions = [x[1] for x in list(self.geo.keys()) if isinstance(x, tuple)
@@ -31,8 +46,11 @@ class Geomap:
         :rtype: list
         """
 
-        location = (self.model.upper(), location)
-
+        if self.model == "remind21":
+            location = (self.model[:-2].upper(), location)
+        else:
+            location = (self.model.upper(), location)
+            
         ecoinvent_locations = []
         try:
             searchfunc = self.geo.contained if contained else self.geo.intersects
@@ -49,6 +67,7 @@ class Geomap:
 
             return ecoinvent_locations
         except KeyError:
+            import pdb; pdb.set_trace()
             print("Can't find location {} using the geomatcher.".format(location))
             return ["RoW"]
 
@@ -63,32 +82,90 @@ class Geomap:
         :rtype: str
         """
 
-        mapping = {
-            "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
-            "Europe without Switzerland and Austria": "EUR" if self.model == "remind" else "WEU",
-            "Europe without Switzerland": "EUR" if self.model == "remind" else "WEU",
-            "North America without Quebec": "USA",
-            "RER w/o RU": "EUR" if self.model == "remind" else "WEU",
-            "RER": "EUR" if self.model == "remind" else "WEU",
-            "RoW": "World",
-            "GLO": "World",
-            "RNA": "USA",
-            "SAS": "OAS" if self.model == "remind" else "SEAS",
-            "IAI Area, EU27 & EFTA": "EUR" if self.model == "remind" else "WEU",
-            "UN-OCEANIA": "CAZ" if self.model == "remind" else "OCE",
-            "UN-SEASIA": "OAS" if self.model == "remind" else "SEAS",
-            "RAF": "SSA" if self.model == "remind" else "RSAF",
-            "RAS": "CHA" if self.model == "remind" else "CHN",
-            "IAI Area, Africa": "SSA" if self.model == "remind" else "RSAF",
-            "RER w/o CH+DE": "EUR" if self.model == "remind" else "WEU",
-            "RER w/o DE+NL+RU": "EUR" if self.model == "remind" else "WEU",
-            "IAI Area, Asia, without China and GCC": "OAS" if self.model == "remind" else "SEAS",
-            "Europe, without Russia and Turkey": "EUR" if self.model == "remind" else "WEU",
-            "WECC": "USA",
-            "UCTE": "EUR" if self.model == "remind" else "WEU",
-            "UCTE without Germany": "EUR" if self.model == "remind" else "WEU",
-            "NORDEL": "NEU" if self.model == "remind" else "WEU",
-        }
+        if self.model == "remind":
+            mapping = {
+                "Europe without Austria": "EUR",
+                "Europe without Switzerland and Austria": "EUR",
+                "Europe without Switzerland": "EUR",
+                "North America without Quebec": "USA",
+                "RER w/o RU": "EUR",
+                "RER": "EUR",
+                "RoW": "World",
+                "GLO": "World",
+                "RNA": "USA",
+                "SAS": "OAS",
+                "IAI Area, EU27 & EFTA": "EUR",
+                "UN-OCEANIA": "CAZ",
+                "UN-SEASIA": "OAS",
+                "RAF": "SSA",
+                "RAS": "CHA",
+                "IAI Area, Africa": "SSA",
+                "RER w/o CH+DE": "EUR",
+                "RER w/o DE+NL+RU": "EUR",
+                "IAI Area, Asia, without China and GCC": "OAS",
+                "Europe, without Russia and Turkey": "EUR",
+                "WECC": "USA",
+                "UCTE": "EUR",
+                "UCTE without Germany": "EUR",
+                "NORDEL": "NEU",
+            }
+        elif self.model == "remind21":
+            mapping = {
+                "Europe without Austria": "EWN",
+                "Europe without Switzerland and Austria": "EWN",
+                "Europe without Switzerland": "EWN",
+                "North America without Quebec": "USA",
+                "RER w/o RU": "EWN",
+                "RER": "EWN",
+                "RoW": "World",
+                "GLO": "World",
+                "RNA": "USA",
+                "SAS": "OAS",
+                "IAI Area, EU27 & EFTA": "EWN",
+                "UN-OCEANIA": "CAZ",
+                "UN-SEASIA": "OAS",
+                "RAF": "SSA",
+                "RAS": "CHA",
+                "IAI Area, Africa": "SSA",
+                "RER w/o CH+DE": "EWN",
+                "RER w/o DE+NL+RU": "EWN",
+                "IAI Area, Asia, without China and GCC": "OAS",
+                "Europe, without Russia and Turkey": "EWN",
+                "WECC": "USA",
+                "UCTE": "EWN",
+                "UCTE without Germany": "EWN",
+                "NORDEL": "NEN",
+                # not sure why these two pop up
+                "EUR": "EWN",
+                "NEU": "NEN",
+            }
+        else:
+            mapping = {
+                "Europe without Austria": "WEU",
+                "Europe without Switzerland and Austria": "WEU",
+                "Europe without Switzerland": "WEU",
+                "North America without Quebec": "USA",
+                "RER w/o RU": "WEU",
+                "RER":  "WEU",
+                "RoW": "World",
+                "GLO": "World",
+                "RNA": "USA",
+                "SAS": "SEAS",
+                "IAI Area, EU27 & EFTA": "WEU",
+                "UN-OCEANIA": "OCE",
+                "UN-SEASIA": "SEAS",
+                "RAF": "RSAF",
+                "RAS": "CHN",
+                "IAI Area, Africa": "RSAF",
+                "RER w/o CH+DE": "WEU",
+                "RER w/o DE+NL+RU": "WEU",
+                "IAI Area, Asia, without China and GCC": "SEAS",
+                "Europe, without Russia and Turkey": "WEU",
+                "WECC": "USA",
+                "UCTE": "WEU",
+                "UCTE without Germany": "WEU",
+                "NORDEL": "WEU",
+            }
         if location in mapping:
             return mapping[location]
 
@@ -96,9 +173,10 @@ class Geomap:
             iam_location = [
                 r[1]
                 for r in self.geo.within(location)
-                if r[0] == self.model.upper() and r[1] != "World"
+                if (r[0] == self.model.upper() or r[0] == self.model[:-2].upper()) and r[1] != "World"
             ]
         except KeyError:
+            import pdb; pdb.set_trace()
             print("Cannot find the IAM location for {} from IAM model {}.".format(location, self.model))
             iam_location = ["World"]
 
@@ -161,6 +239,7 @@ class Geomap:
             if location in d_ecoinvent_regions:
                 return d_ecoinvent_regions[location]
             else:
+                import pdb; pdb.set_trace()
                 print("no location for {}".format(location))
 
             # It can also be that the location is already

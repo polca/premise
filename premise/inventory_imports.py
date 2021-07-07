@@ -875,7 +875,12 @@ class PassengerCars(BaseInventoryImport):
                              key=lambda x: abs(x - year))
         ver = version.replace(".1", "")
         ver = ver.replace(".", "")
-        filename = model \
+        if model == "remind21":
+            filename = model[:-2] \
+                   + "_pass_cars_inventory_data_ei_37_" + str(
+            inventory_year) + ".pickle"
+        else:
+            filename = model \
                    + "_pass_cars_inventory_data_ei_37_" + str(
             inventory_year) + ".pickle"
         fp = INVENTORY_DIR / filename
@@ -952,7 +957,6 @@ class PassengerCars(BaseInventoryImport):
             for exc in excs:
 
                 try:
-
                     new_supplier = ws.get_one(
                         self.db,
                         *[
@@ -976,7 +980,6 @@ class PassengerCars(BaseInventoryImport):
 
 
                 except ws.NoResults:
-
                     new_supplier = ws.get_one(
                         self.db,
                         *[
@@ -1015,9 +1018,14 @@ class Trucks(BaseInventoryImport):
                              key=lambda x: abs(x - year))
         ver = version.replace(".1", "")
         ver = ver.replace(".", "")
-        filename = model \
-                   + "_trucks_inventory_data_ei_37_" + str(
-            inventory_year) + ".pickle"
+        if model == "remind21":
+            filename = model[:-2] \
+                    + "_trucks_inventory_data_ei_37_" + str(
+                inventory_year) + ".pickle"
+        else:
+            filename = model \
+                    + "_trucks_inventory_data_ei_37_" + str(
+                inventory_year) + ".pickle"
         fp = INVENTORY_DIR / filename
 
         self.import_db = LCIImporter("trucks")

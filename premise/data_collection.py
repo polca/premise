@@ -9,9 +9,6 @@ from io import StringIO
 IAM_ELEC_MARKETS = DATA_DIR / "electricity" / "electricity_markets.csv"
 IAM_ELEC_EFFICIENCIES = DATA_DIR / "electricity" / "electricity_efficiencies.csv"
 IAM_ELEC_EMISSIONS = DATA_DIR / "electricity" / "electricity_emissions.csv"
-IAM_HEAT_MARKETS = DATA_DIR / "heat" / "heat_markets.csv"
-IAM_HEAT_EFFICIENCIES = DATA_DIR / "heat" / "heat_efficiencies.csv" ### Dummy keywords
-IAM_HEAT_EMISSIONS = DATA_DIR / "heat" / "heat_emissions.csv" ### Dummy values
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 
@@ -50,18 +47,6 @@ class IAMDataCollection:
         self.electricity_emissions = self.get_gains_electricity_emissions()
         self.cement_emissions = self.get_gains_cement_emissions()
         self.steel_emissions = self.get_gains_steel_emissions()
-        self.heat_market_labels = self.get_iam_heat_market_labels()
-        self.heat_efficiency_labels = (
-            self.get_iam_heat_efficiency_labels()
-        )
-        self.heat_emission_labels = self.get_iam_heat_emission_labels()
-        self.rev_heat_market_labels = self.get_rev_heat_market_labels()
-        self.rev_heat_efficiency_labels = (
-            self.get_rev_heat_efficiency_labels()
-        )
-        self.heat_markets = self.get_iam_heat_markets()
-        self.heat_efficiencies = self.get_iam_heat_efficiencies()
-        self.heat_emissions = self.get_gains_heat_emissions()
 
 
     def get_iam_electricity_emission_labels(self):
@@ -79,22 +64,6 @@ class IAMDataCollection:
                 if row[0] == self.model:
                     d[row[1]] = row[2]
         return d
-        
-    def get_iam_heat_emission_labels(self):
-        """
-        Loads a csv file into a dictionary. This dictionary contains labels of heat emissions
-        in the selected IAM.
-
-        :return: dictionary that contains emission names equivalence
-        :rtype: dict
-        """
-        d = dict()
-        with open(IAM_HEAT_EMISSIONS) as f:
-            reader = csv.reader(f, delimiter=";")
-            for row in reader:
-                if row[0] == self.model:
-                    d[row[1]] = row[2]
-        return d
 
     def get_iam_electricity_market_labels(self):
         """
@@ -107,22 +76,6 @@ class IAMDataCollection:
 
         d = dict()
         with open(IAM_ELEC_MARKETS) as f:
-            reader = csv.reader(f, delimiter=";")
-            for row in reader:
-                if row[0] == self.model:
-                    d[row[1]] = row[2]
-        return d
-        
-    def get_iam_heat_market_labels(self):
-        """
-        Loads a csv file into a dictionary. This dictionary contains labels of heat markets
-        in the IAM.
-
-        :return: dictionary that contains market names equivalence
-        :rtype: dict
-        """
-        d = dict()
-        with open(IAM_HEAT_MARKETS) as f:
             reader = csv.reader(f, delimiter=";")
             for row in reader:
                 if row[0] == self.model:
@@ -146,33 +99,11 @@ class IAMDataCollection:
                     d[row[1]] = row[2]
         return d
         
-    def get_iam_heat_efficiency_labels(self):
-        """
-        Loads a csv file into a dictionary. This dictionary contains labels of heat technologies efficiency
-        in the IAM.
-
-        :return: dictionary that contains market names equivalence
-        :rtype: dict
-        """
-        d = dict()
-        with open(IAM_HEAT_EFFICIENCIES) as f:
-            reader = csv.reader(f, delimiter=";")
-            for row in reader:
-                if row[0] == self.model:
-                    d[row[1]] = row[2]
-        return d
-
     def get_rev_electricity_market_labels(self):
         return {v: k for k, v in self.electricity_market_labels.items()}
 
     def get_rev_electricity_efficiency_labels(self):
         return {v: k for k, v in self.electricity_efficiency_labels.items()}
-        
-    def get_rev_heat_market_labels(self):
-        return {v: k for k, v in self.heat_market_labels.items()}
-
-    def get_rev_heat_efficiency_labels(self):
-        return {v: k for k, v in self.heat_efficiency_labels.items()}
 
     def get_iam_data(self):
         """
@@ -186,7 +117,10 @@ class IAMDataCollection:
 
         """
 
-        file_ext = self.model + "_" + self.pathway + ".csv"
+        if self.model == "remind21":
+            file_ext = self.model[:-2] + "_" + self.pathway + ".csv"
+        else:
+            file_ext = self.model + "_" + self.pathway + ".csv"
         filepath = Path(self.filepath_iam_files) / file_ext
 
 
@@ -217,7 +151,7 @@ class IAMDataCollection:
             decrypted_data = f.decrypt(encrypted_data)
             DATA = StringIO(str(decrypted_data, 'latin-1'))
 
-        if self.model == "remind":
+        if self.model in ["remind", "remind21"]:
             df = pd.read_csv(
                 DATA, sep=";", index_col=["Region", "Variable", "Unit"], encoding="latin-1"
             ).drop(columns=["Model", "Scenario"])
@@ -251,6 +185,10 @@ class IAMDataCollection:
         df = df.reset_index()
 
         df = df.loc[df["Variable"].str.startswith(list_var)]
+        
+        if self.model == "remind21":
+            # Remove aggregated regions for Europe
+            df = df.loc[(df["Region"] != "EUR") & (df["Region"] != "NEU")]
 
         df = df.rename(
             columns={"Region": "region", "Variable": "variables", "Unit": "unit"}
@@ -292,11 +230,13 @@ class IAMDataCollection:
         )
         gains_emi["unit"] = "Mt/TWa"
         gains_emi = gains_emi[gains_emi.pathway == "SSP2"]
+        gains_emi["factor"] = gains_emi["factor"].astype(float)
+        gains_emi["year"] = gains_emi["year"].astype(int)
 
         sector_mapping = pd.read_csv(GAINS_TO_IAM_FILEPATH).drop(
             ["noef", "elasticity"], axis=1
         )
-
+        
         gains_emi = (
             gains_emi.join(sector_mapping.set_index("GAINS"), on="GAINS")
             .dropna()
@@ -388,31 +328,6 @@ class IAMDataCollection:
             )
             return data_to_return
             
-    def get_iam_heat_markets(self):
-        """
-        This method retrieves the market share for each heat-producing technology, for a specified year,
-        for each region provided by the IAM.
-
-        :return: a multi-dimensional array with heat technologies market share for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
-
-        """
-        list_technologies = list(self.heat_market_labels.values())
-
-        # If the year specified is not contained within the range of years given by REMIND
-        if (
-                self.year < self.data.year.values.min()
-                or self.year > self.data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2150")
-
-        # Finally, if the specified year falls in between two periods provided by REMIND
-        else:
-            # Interpolation between two periods
-            data_to_interp_from = self.data.loc[
-                                  :, list_technologies, :
-                                  ] / self.data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
-            return data_to_interp_from.interp(year=self.year)
 
     def get_iam_electricity_efficiencies(self, drop_hydrogen=True):
         """
@@ -455,32 +370,7 @@ class IAMDataCollection:
 
             if self.model == "image":
                 return data_to_interp_from.interp(year=self.year)
-                
-    def get_iam_heat_efficiencies(self):
-        """
-        This method retrieves efficiency values for heat-producing technology, for a specified year,
-        for each region provided by the IAM.
 
-        :return: a multi-dimensional array with heat technologies market share for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
-
-        """
-        list_technologies = list(self.heat_efficiency_labels.values())
-
-        # If the year specified is not contained within the range of years given by REMIND
-        if (
-                self.year < self.data.year.values.min()
-                or self.year > self.data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2150")
-
-        # Finally, if the specified year falls in between two periods provided by REMIND
-        else:
-            # Interpolation between two periods
-            data_to_interp_from = self.data.loc[:, list_technologies, :]
-            return (
-                    data_to_interp_from.interp(year=self.year) / 100
-            )  # Percentage to ratio
 
     def get_gains_electricity_emissions(self):
         """
@@ -504,28 +394,6 @@ class IAMDataCollection:
             return self.gains_data.sel(
                 sector=[v for v in self.electricity_emission_labels.values()]
             ).interp(year=self.year)
-            
-    def get_gains_heat_emissions(self):
-        """
-        This method retrieves emission values for heat-producing technology, for a specified year,
-        for each region provided by GAINS.
-
-        :return: a multi-dimensional array with emissions for different technologies for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
-
-        """
-        # If the year specified is not contained within the range of years given by REMIND
-        if (
-                self.year < self.gains_data.year.values.min()
-                or self.year > self.gains_data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2150")
-
-        # Finally, if the specified year falls in between two periods provided by REMIND
-        else:
-            # Interpolation between two periods
-            return self.gains_data.sel(sector=[v for v in self.heat_emission_labels.values()]) \
-                .interp(year=self.year)
 
     def get_gains_cement_emissions(self):
         """

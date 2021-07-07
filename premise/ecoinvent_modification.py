@@ -2,7 +2,6 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .heat import Heat
 from .renewables import SolarPV
 from .inventory_imports import (
     CarmaCCSInventory,
@@ -103,7 +102,7 @@ FILE_PATH_INVENTORIES_EI_36 = INVENTORY_DIR / "inventory_data_ei_36.pickle"
 FILE_PATH_INVENTORIES_EI_35 = INVENTORY_DIR / "inventory_data_ei_35.pickle"
 
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1"]
-SUPPORTED_MODELS = ["remind", "image"]
+SUPPORTED_MODELS = ["remind", "remind21", "image"]
 SUPPORTED_PATHWAYS = [
     "SSP2-Base",
     "SSP2-NDC",
@@ -131,6 +130,31 @@ LIST_REMIND_REGIONS = [
     "OAS",
     "REF",
     "SSA",
+    "USA",
+    "World",
+]
+
+LIST_REMIND21_REGIONS = [
+    "CAZ",
+    "CHA",
+    "DEU",
+    "ECE",
+    "ECS",
+    "ENC",
+    "ESC",
+    "ESW",
+    "EWN",
+    "FRA",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEN",
+    "NES",
+    "OAS",
+    "REF",
+    "SSA",
+    "UKI",
     "USA",
     "World",
 ]
@@ -202,7 +226,10 @@ def check_pathway_name(name, filepath, model):
         # leads to an actual file
 
         if model.lower() not in name:
-            name_check = "_".join((model.lower(), name))
+            if model.lower() == "remind21":
+                name_check = "_".join((model[:-2].lower(), name))
+            else:
+                name_check = "_".join((model.lower(), name))
         else:
             name_check = name
 
@@ -218,7 +245,10 @@ def check_pathway_name(name, filepath, model):
             )
     else:
         if model.lower() not in name:
-            name_check = "_".join((model.lower(), name))
+            if model.lower() == "remind21":
+                name_check = "_".join((model[:-2].lower(), name))
+            else:
+                name_check = "_".join((model.lower(), name))
         else:
             name_check = name
 
@@ -298,6 +328,13 @@ def check_fleet(fleet, model, vehicle_type):
                     "One or several regions specified for the fleet "
                     "of passenger_cars is invalid."
                 )
+                
+        if model == "remind21":
+            if not set(fleet["regions"]).issubset(LIST_REMIND21_REGIONS):
+                raise ValueError(
+                    "One or several regions specified for the fleet "
+                    "of passenger_cars is invalid."
+                )
 
         if model == "image":
             if not set(fleet["regions"]).issubset(LIST_IMAGE_REGIONS):
@@ -308,6 +345,8 @@ def check_fleet(fleet, model, vehicle_type):
     else:
         if model == "remind":
             fleet["regions"] = LIST_REMIND_REGIONS
+        if model == "remind21":
+            fleet["regions"] = LIST_REMIND21_REGIONS
         if model == "image":
             fleet["regions"] = LIST_IMAGE_REGIONS
 
@@ -385,15 +424,16 @@ def check_scenarios(scenario, key):
         filepath = scenario["filepath"]
         scenario["filepath"] = check_filepath(filepath)
     else:
-        if key is not None:
-            scenario["filepath"] = DATA_DIR / "iam_output_files"
-        else:
-            raise PermissionError(
-                "You will need to provide a decryption key "
-                "if you want to use the IAM scenario files included "
-                "in premise. If you do not have a key, "
-                "please contact the developers."
-            )
+        scenario["filepath"] = DATA_DIR / "iam_output_files"
+        # if key is not None:
+            # scenario["filepath"] = DATA_DIR / "iam_output_files"
+        # else:
+            # raise PermissionError(
+                # "You will need to provide a decryption key "
+                # "if you want to use the IAM scenario files included "
+                # "in premise. If you do not have a key, "
+                # "please contact the developers."
+            # )
 
     scenario["model"] = check_model_name(scenario["model"])
     scenario["pathway"] = check_pathway_name(
@@ -620,21 +660,6 @@ class NewDatabase:
                 scenario["database"] = electricity.update_electricity_markets()
                 scenario["database"] = electricity.update_electricity_efficiency()
                 
-    def update_heat(self):
-
-        print("\n/////////////////// HEAT ////////////////////")
-
-        for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_heat" not in scenario["exclude"]:
-                heat = Heat(
-                    db=scenario["database"],
-                    iam_data=scenario["external data"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    year=scenario["year"],
-                )
-                scenario["database"] = heat.update_heat_markets()
-                scenario["database"] = heat.update_heat_efficiency()
 
     def update_cement(self):
         print("\n/////////////////// CEMENT ////////////////////")
@@ -724,15 +749,19 @@ class NewDatabase:
                     )
 
                 else:
+                    if scenario["model"] == "remind":
+                        LIST_REGIONS = LIST_REMIND_REGIONS
+                    elif scenario["model"] == "remind21":
+                        LIST_REGIONS = LIST_REMIND21_REGIONS
+                    elif scenario["model"] == "image":
+                        LIST_REGIONS = LIST_IMAGE_REGIONS    
                     # Load fleet default inventories
                     cars = PassengerCars(
                         database=scenario["database"],
                         version=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
-                        regions=LIST_REMIND_REGIONS
-                        if scenario["model"] == "remind"
-                        else LIST_IMAGE_REGIONS,
+                        regions=LIST_REGIONS,
                     )
 
                 scenario["database"] = cars.merge_inventory()
@@ -769,15 +798,19 @@ class NewDatabase:
                     )
 
                 else:
+                    if scenario["model"] == "remind":
+                        LIST_REGIONS = LIST_REMIND_REGIONS
+                    elif scenario["model"] == "remind21":
+                        LIST_REGIONS = LIST_REMIND21_REGIONS
+                    elif scenario["model"] == "image":
+                        LIST_REGIONS = LIST_IMAGE_REGIONS 
                     # Load default trucks inventories
                     trucks = Trucks(
                         database=scenario["database"],
                         version=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
-                        regions=LIST_REMIND_REGIONS
-                        if scenario["model"] == "remind"
-                        else LIST_IMAGE_REGIONS,
+                        regions=LIST_REGIONS,
                     )
 
                 scenario["database"] = trucks.merge_inventory()
@@ -802,7 +835,6 @@ class NewDatabase:
         self.update_cars()
         self.update_trucks()
         self.update_electricity()
-        self.update_heat()
         self.update_solar_PV()
         self.update_cement()
         self.update_steel()

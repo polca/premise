@@ -1,6 +1,0 @@
-remind;Biomass;Tech|Electricity|Biomass|IGCC|w/o CCS|Efficiency
-remind;Biomass CHP;Tech|Electricity|Biomass|CHP|w/o CCS|Efficiency
-remind;Coal;Tech|Electricity|Coal|IGCC|w/o CCS|Efficiency
-remind;Coal CHP;Tech|Electricity|Coal|CHP|w/o CCS|Efficiency
-remind;Gas;Tech|Electricity|Gas|CC|w/o CCS|Efficiency
-remind;Gas CHP;Tech|Electricity|Gas|CHP|w/o CCS|Efficiency

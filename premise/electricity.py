@@ -1130,7 +1130,6 @@ class Electricity:
 
 
                     else:
-
                         new_exc = {
                             'name': name[0],
                             'product': name[1],
@@ -1367,17 +1366,20 @@ class Electricity:
                 ):
                     remind_emission_label = self.emissions_map[exc["name"]]
 
-                    remind_emission = self.iam_data.electricity_emissions.loc[
-                        dict(
-                            region=self.geo.iam_to_GAINS_region(
-                                self.geo.ecoinvent_to_iam_location(ds["location"])
-                            ),
-                            pollutant=remind_emission_label,
-                            sector=self.iam_data.electricity_emission_labels[
-                                remind_technology
-                            ],
-                        )
-                    ].values.item(0)
+                    try:
+                        remind_emission = self.iam_data.electricity_emissions.loc[
+                            dict(
+                                region=self.geo.iam_to_GAINS_region(
+                                    self.geo.ecoinvent_to_iam_location(ds["location"])
+                                ),
+                                pollutant=remind_emission_label,
+                                sector=self.iam_data.electricity_emission_labels[
+                                    remind_technology
+                                ],
+                            )
+                        ].values.item(0)
+                    except:
+                        import pdb; pdb.set_trace()
 
                     if exc["amount"] == 0:
                         wurst.rescale_exchange(

@@ -431,114 +431,6 @@ class InventorySet:
         "Wind Offshore": {"fltr": "electricity production, wind, 1-3MW turbine, offshore"},
     }
     
-    heatplant_filters = {
-        "Biomass": {
-            "fltr": [
-                    "heat production, wood chips from industry, at furnace 1000kW",
-                    "heat production, wood chips from industry, at furnace 1000kW, state-of-the-art 2014",
-                    "heat production, wood chips from industry, at furnace 300kW",
-                    "heat production, wood chips from industry, at furnace 300kW, state-of-the-art 2014",
-                    "heat production, wood chips from industry, at furnace 5000kW",
-                    "heat production, wood chips from industry, at furnace 5000kW, state-of-the-art 2014",
-                    "heat production, wood chips from post-consumer wood, at furnace 300kW",
-                    "heat production, hardwood chips from forest, at furnace 1000kW",
-                    "heat production, hardwood chips from forest, at furnace 1000kW, state-of-the-art 2014",
-                    "heat production, hardwood chips from forest, at furnace 300kW",
-                    "heat production, hardwood chips from forest, at furnace 300kW, state-of-the-art 2014",
-                    "heat production, hardwood chips from forest, at furnace 5000kW",
-                    "heat production, hardwood chips from forest, at furnace 5000kW, state-of-the-art 2014",
-                    "heat production, softwood chips from forest, at furnace 1000kW",
-                    "heat production, softwood chips from forest, at furnace 1000kW, state-of-the-art 2014",
-                    "heat production, softwood chips from forest, at furnace 300kW",
-                    "heat production, softwood chips from forest, at furnace 300kW, state-of-the-art 2014",
-                    "heat production, softwood chips from forest, at furnace 5000kW",
-                    "heat production, softwood chips from forest, at furnace 5000kW, state-of-the-art 2014",
-                    "heat production, straw, at furnace 300kW",
-            ]
-        },
-        "Biomass CHP": {
-            "fltr": [
-                    "heat and power co-generation, wood chips, 6667 kW",
-                    "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
-                    "heat and power co-generation, biogas",
-                    "heat and power co-generation, biogas, gas engine",
-            ],
-            "mask":{
-                    "reference product": "electricity",
-                    "name": "heat and power co-generation, biogas, gas engine, label-certified",
-            },
-        },
-        "Coal": {
-            "fltr": [
-                    "heat production, at hard coal industrial furnace 1-10MW",
-            ]
-        },
-        "Coal CHP": {
-            "fltr": [
-                    "heat and power co-generation, hard coal",
-                    "heat and power co-generation, lignite",
-            ],
-            "mask":{"reference product":"electricity"}
-        },
-        "Gas": {
-            "fltr": [
-                    "heat production, natural gas, at boiler modulating >100kW",
-                    "heat production, natural gas, at boiler condensing modulating >100kW",
-                    "heat production, natural gas, at industrial furnace >100kW",
-                    "heat production, natural gas, at industrial furnace low-NOx >100kW",
-                    "refinery gas, burned in furnace",
-            ]
-        },
-        "Gas CHP": {
-            "fltr": [
-                    "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
-                    "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
-                    
-            ],
-            "mask":{"reference product":"electricity"}
-        },
-        "Geothermal": {"fltr": "heat production, deep geothermal"},
-    }
-    
-    heatplant_fuels = {
-        "Biomass": {
-            "fltr": [
-                    "market for wood chips, dry, measured as dry mass",
-                    "market for wood chips, from post-consumer wood, measured as dry mass",
-                    "market for wood chips, wet, measured as dry mass",
-                    "market for straw",
-            ],
-            "mask": ["strawberry"],
-        },
-        "Biomass CHP": {
-            "fltr": [
-                    "market for wood chips, wet, measured as dry mass",
-                    "biogas",
-            ]
-        },
-        "Coal": {
-            "fltr": ["hard coal", "lignite"],
-            "mask": ['factory', 'plant', 'briquettes', 'ash']
-        },
-        "Coal CHP": {
-            "fltr": ["hard coal", "lignite"],
-            "mask": ['factory', 'plant', 'briquettes', 'ash']
-        },
-        "Gas": {
-            "fltr": [
-                    'market for natural gas, high pressure',
-                    "market group for natural gas, high pressure",
-                    "market for refinery gas",
-            ]
-        },
-        "Gas CHP": {
-            "fltr": [
-                    "market for natural gas, high pressure",
-                    "market group for natural gas, high pressure",
-            ]
-        }#,
-        #"Geothermal": {"fltr": "heat production, deep geothermal"},
-    }
 
     def __init__(self, db):
         self.db = db
@@ -565,17 +457,6 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.powerplant_filters)
-        
-    def generate_heatplant_map(self):
-        """
-        Filter ecoinvent processes related to heat production.
-
-        :return: dictionary with heat prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
-        """
-        return self.generate_sets_from_filters(self.heatplant_filters)
 
     def generate_powerplant_fuels_map(self):
         """
@@ -587,17 +468,6 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.powerplant_fuels)
-        
-    def generate_heatplant_fuels_map(self):
-        """
-        Filter ecoinvent processes related to heat production.
-
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
-        """
-        return self.generate_sets_from_filters(self.heatplant_fuels)
 
     def generate_fuel_map(self):
         """
