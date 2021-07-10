@@ -101,6 +101,21 @@ jobs:
 #          Platforms: 'osx-64 linux-32 linux-64 win-32 win-64'
 #          CondaUsername: ${{ secrets.CONDA_USERNAME }}
 #          CondaPassword: ${{ secrets.CONDA_PASSWORD }}
+      - name: Install pypa/build
+        run: >-
+          python -m
+          pip install
+          build
+          --user
+
+      - name: Build a binary wheel and a source tarball
+        run: >-
+          python -m
+          build
+          --sdist
+          --wheel
+          --outdir dist/
+          .
 
       - name: Publish distribution 📦 to Test PyPI if Push
         uses: pypa/gh-action-pypi-publish@master
