@@ -61,11 +61,11 @@ jobs:
       - name: Install python version
         uses: gabrielfalcao/pyenv-action@v7
         with:
-          default: 3.8.6
+          default: 3.9.6
           command: pip install -U pip  # upgrade pip after installing python
 
       - name: create environment
-        run: pyenv local 3.8.6 && python -mvenv .venv386
+        run: pyenv local 3.9.6 && python -mvenv .venv396
 
       - name: Install dependencies
         run: |
