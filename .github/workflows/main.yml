@@ -97,8 +97,6 @@ jobs:
           CondaDir: 'conda'
           # Channels: You can add more channel with a space separator
           Channels: 'conda-forge cmutel konstantinstadler haasad pascallesage romainsacchi'
-          # Platforms: remove one or more of these platforms
-          Platforms: 'win-64'
           CondaUsername: ${{ secrets.CONDA_USERNAME }}
           CondaPassword: ${{ secrets.CONDA_PASSWORD }}
 
