@@ -92,7 +92,16 @@ jobs:
       - name: Publish distribution 📦 to Anaconda if Push
         run: |
           conda install conda-build anaconda-client
-
+          conda config --set always_yes yes --set changeps1 no;
+          conda config --append channels conda-forge;
+          conda config --append channels cmutel;
+          conda config --append channels konstantinstadler;
+          conda config --append channels haasad;
+          conda config --append channels pascallesage;
+          conda config --append channels romainsacchi;
+          conda update conda;
+          conda config --set channel_priority strict;
+          conda info -a;
           conda config --set anaconda_upload no
           conda build . --output
           PKG_NAME=premise
