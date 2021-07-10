@@ -48,7 +48,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
 
   build:
-    environment: env
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
@@ -95,7 +94,7 @@ jobs:
           conda install conda-build anaconda-client
           git clone https://github.com/romainsacchi/premise
           cd anaconda-client/premise/conda/
-          mkdir ~/conda-bld
+          
           conda config --set anaconda_upload no
           conda build . --output
           PKG_NAME=premise
