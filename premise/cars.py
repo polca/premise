@@ -1,8 +1,9 @@
-from .geomap import Geomap
+import copy
+import uuid
 
 import wurst.searching as ws
-import uuid
-import copy
+
+from .geomap import Geomap
 
 
 class Cars:
@@ -33,20 +34,18 @@ class Cars:
         Update also the production exchange.
         """
         act = copy.deepcopy(old_act)
-        act.update({
-            "location": region,
-            "code": str(uuid.uuid4().hex)
-        })
+        act.update({"location": region, "code": str(uuid.uuid4().hex)})
 
         # update production exchange
-        prods = list(ws.production(
-            act, ws.equals("name", act["name"])))
+        prods = list(ws.production(act, ws.equals("name", act["name"])))
         if len(prods) == 1:
             prods[0]["location"] = region
         else:
             raise ValueError(
-                "Multiple or no Production Exchanges found for {}."
-                .format(old_act["name"]))
+                "Multiple or no Production Exchanges found for {}.".format(
+                    old_act["name"]
+                )
+            )
         return act
 
     def link_local_electricity_supply(self):
@@ -60,32 +59,33 @@ class Cars:
             try:
                 supply = ws.get_one(
                     self.db,
-                    ws.equals(
-                        "name", "electricity market for fuel preparation"),
-                    ws.equals("location", region))
-
+                    ws.equals("name", "electricity market for fuel preparation"),
+                    ws.equals("location", region),
+                )
 
                 try:
                     # we check first that the electricity market exists
                     ws.get_one(
-                            self.db,
-                            ws.equals("name", "market group for electricity, low voltage"),
-                            ws.equals("location", region)
-                            )
+                        self.db,
+                        ws.equals("name", "market group for electricity, low voltage"),
+                        ws.equals("location", region),
+                    )
                     # replace electricity input
                     supply["exchanges"] = [
                         e for e in supply["exchanges"] if e["type"] == "production"
                     ]
-                    supply["exchanges"].append({
-                        "amount": 1.0,
-                        "location": region,
-                        "name": "market group for electricity, low voltage",
-                        "product": "electricity, low voltage",
-                        "tag": "energy chain",
-                        "type": "technosphere",
-                        "uncertainty type": 0,
-                        "unit": "kilowatt hour",
-                    })
+                    supply["exchanges"].append(
+                        {
+                            "amount": 1.0,
+                            "location": region,
+                            "name": "market group for electricity, low voltage",
+                            "product": "electricity, low voltage",
+                            "tag": "energy chain",
+                            "type": "technosphere",
+                            "uncertainty type": 0,
+                            "unit": "kilowatt hour",
+                        }
+                    )
                 except ws.NoResults:
                     pass
             except ws.NoResults:
@@ -97,30 +97,43 @@ class Cars:
         within the region, then in an intersecting region, and
         eventually *any* activity with this name.
         """
+
         def producer_in_locations(locs):
 
-            possible_producers = list(ws.get_many(
-                self.db,
-                ws.equals("name", name),
-                ws.either(*[
-                    ws.equals("location", loc) for loc in locs
-                ])))
+            possible_producers = list(
+                ws.get_many(
+                    self.db,
+                    ws.equals("name", name),
+                    ws.either(*[ws.equals("location", loc) for loc in locs]),
+                )
+            )
 
             if len(possible_producers) == 1:
                 selected_producer = possible_producers[0]
 
             elif len(possible_producers) > 1:
                 possible_locations = tuple([p["location"] for p in possible_producers])
-                print(("Multiple potential producers for {} found in {}, "
-                       "using activity from {}").format(
-                           name, region, possible_locations))
+                print(
+                    (
+                        "Multiple potential producers for {} found in {}, "
+                        "using activity from {}"
+                    ).format(name, region, possible_locations)
+                )
 
                 mapping = {
                     ("RAS", "RER"): "RER",
                 }
-                selected_producer = [p for p in possible_producers if p["location"] == mapping.get(possible_locations, "RER")][0]
+                selected_producer = [
+                    p
+                    for p in possible_producers
+                    if p["location"] == mapping.get(possible_locations, "RER")
+                ][0]
 
-                print("We will use the following location: {}".format(selected_producer["location"]))
+                print(
+                    "We will use the following location: {}".format(
+                        selected_producer["location"]
+                    )
+                )
 
             else:
                 selected_producer = None
@@ -136,17 +149,17 @@ class Cars:
 
             if prod is None:
                 # let's use "any" dataset
-                producers = list(ws.get_many(
-                    self.db,
-                    ws.equals("name", name)))
+                producers = list(ws.get_many(self.db, ws.equals("name", name)))
                 if len(producers) == 0:
                     raise ValueError("No producers found for {}.".format(name))
                 prod = producers[0]
                 # we can leave things as they are since the existing
                 # supply is the default supply
-                print(("No producers for {} found in {}\n"
-                       "Using activity from {}")
-                      .format(name, region, prod["location"]))
+                print(
+                    (
+                        "No producers for {} found in {}\n" "Using activity from {}"
+                    ).format(name, region, prod["location"])
+                )
         return prod
 
     def link_local_liquid_fuel_markets(self):
@@ -162,15 +175,21 @@ class Cars:
                 # to be improved!
                 "Biomass": ws.get_one(
                     self.db,
-                    ws.equals("name", "Biodiesel, from used cooking oil, at fuelling station"))
+                    ws.equals(
+                        "name", "Biodiesel, from used cooking oil, at fuelling station"
+                    ),
+                )
             },
             "gasoline": {
                 # only ethanol from European wheat straw as biofuel
                 "Biomass": ws.get_one(
                     self.db,
-                    ws.equals("name", "Ethanol, from wheat straw pellets, at fuelling station"),
-                    ws.equals("location", "RER"))
-            }
+                    ws.equals(
+                        "name", "Ethanol, from wheat straw pellets, at fuelling station"
+                    ),
+                    ws.equals("location", "RER"),
+                )
+            },
         }
 
         for region in self.iam_data.regions:
@@ -180,8 +199,11 @@ class Cars:
                         self.db,
                         ws.equals("location", region),
                         ws.equals(
-                            "name", "fuel supply for {} vehicles, {}"
-                            .format(ftype, self.year))) for ftype in ["gasoline", "diesel"]
+                            "name",
+                            "fuel supply for {} vehicles, {}".format(ftype, self.year),
+                        ),
+                    )
+                    for ftype in ["gasoline", "diesel"]
                 }
 
                 # two regions for gasoline and diesel production
@@ -189,53 +211,67 @@ class Cars:
                     new_producers["gasoline"]["Fossil"] = ws.get_one(
                         self.db,
                         ws.equals("name", "market for petrol, low-sulfur"),
-                        ws.equals("location", "Europe without Switzerland"))
+                        ws.equals("location", "Europe without Switzerland"),
+                    )
                     new_producers["diesel"]["Fossil"] = ws.get_one(
                         self.db,
                         ws.equals("name", "market group for diesel"),
-                        ws.equals("location", "RER"))
+                        ws.equals("location", "RER"),
+                    )
                 else:
                     new_producers["gasoline"]["Fossil"] = ws.get_one(
                         self.db,
                         ws.equals("name", "market for petrol, low-sulfur"),
-                        ws.equals("location", "RoW"))
+                        ws.equals("location", "RoW"),
+                    )
                     new_producers["diesel"]["Fossil"] = ws.get_one(
                         self.db,
                         ws.equals("name", "market group for diesel"),
-                        ws.equals("location", "GLO"))
+                        ws.equals("location", "GLO"),
+                    )
 
                 # local syndiesel
                 new_producers["diesel"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Diesel, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station")
+                    "Diesel, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station",
+                )
 
                 new_producers["gasoline"]["Hydrogen"] = self._find_local_supplier(
                     region,
-                    "Gasoline, synthetic, from MTG, hydrogen from electrolysis, energy allocation, at fuelling station")
+                    "Gasoline, synthetic, from MTG, hydrogen from electrolysis, energy allocation, at fuelling station",
+                )
 
                 supply_search = {
                     "gasoline": {
                         "Hydrogen": "gasoline, synthetic, vehicle grade",
-                        "Fossil": "petrol, low-sulfur"
+                        "Fossil": "petrol, low-sulfur",
                     },
                     "diesel": {
                         "Hydrogen": "diesel, synthetic, vehicle grade",
-                        "Fossil": "diesel"
-                    }
+                        "Fossil": "diesel",
+                    },
                 }
 
                 print("Relinking fuel markets for ICEVs in {}".format(region))
                 for ftype in supply_search:
                     for subtype in supply_search[ftype]:
 
-                        ex = list(ws.technosphere(
-                            supply[ftype], ws.equals("product", supply_search[ftype][subtype])))
+                        ex = list(
+                            ws.technosphere(
+                                supply[ftype],
+                                ws.equals("product", supply_search[ftype][subtype]),
+                            )
+                        )
 
                         if len(ex) > 0:
-                            ex[0].update({
-                                "location": new_producers[ftype][subtype]["location"],
-                                "name": new_producers[ftype][subtype]["name"],
-                            })
+                            ex[0].update(
+                                {
+                                    "location": new_producers[ftype][subtype][
+                                        "location"
+                                    ],
+                                    "name": new_producers[ftype][subtype]["name"],
+                                }
+                            )
 
             except ws.NoResults:
                 pass

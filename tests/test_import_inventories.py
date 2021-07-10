@@ -1,46 +1,58 @@
 # content of test_activity_maps.py
-import pytest
-from premise.inventory_imports import \
-    BaseInventoryImport, CarmaCCSInventory,\
-    BiofuelInventory, CarculatorInventory
 from pathlib import Path
-from premise import INVENTORY_DIR, DATA_DIR
 
+import pytest
 
-FILEPATH_CARMA_INVENTORIES = (INVENTORY_DIR / "lci-Carma-CCS.xlsx")
-FILEPATH_BIOFUEL_INVENTORIES = (INVENTORY_DIR / "lci-biofuels.xlsx")
-FILEPATH_BIOGAS_INVENTORIES = (INVENTORY_DIR / "lci-biogas.xlsx")
-FILEPATH_HYDROGEN_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen.xlsx")
-FILEPATH_SYNFUEL_INVENTORIES = (INVENTORY_DIR / "lci-synfuel.xlsx")
-FILEPATH_SYNGAS_INVENTORIES = (INVENTORY_DIR / "lci-syngas.xlsx")
-FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx")
+from premise import DATA_DIR, INVENTORY_DIR
+from premise.inventory_imports import (
+    BaseInventoryImport,
+    BiofuelInventory,
+    CarculatorInventory,
+    CarmaCCSInventory,
+)
+
+FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
+FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
+FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
+FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen.xlsx"
+FILEPATH_SYNFUEL_INVENTORIES = INVENTORY_DIR / "lci-synfuel.xlsx"
+FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
+FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
+    INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
+)
 
 
 def get_db():
-    db = [{
-        'code':'argsthyfujgyftdgr',
-        'name': 'fake activity',
-        'reference product': 'fake product',
-        'location': 'IAI Area, Africa',
-        'unit': 'kilogram',
-        'exchanges': [
-            {'name': 'fake activity',
-             'product': 'fake product',
-             'amount': 1,
-             'type': 'production',
-             'unit': 'kilogram',
-             'input': ('dummy_db', '6543541'), },
-            {'name': '1,4-Butanediol',
-             'categories': ('air', 'urban air close to ground'),
-             'amount': 1,
-             'type': 'biosphere',
-             'unit': 'kilogram',
-             'input': ('dummy_bio', '123'),
-             },
-        ]
-    }]
+    db = [
+        {
+            "code": "argsthyfujgyftdgr",
+            "name": "fake activity",
+            "reference product": "fake product",
+            "location": "IAI Area, Africa",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "fake activity",
+                    "product": "fake product",
+                    "amount": 1,
+                    "type": "production",
+                    "unit": "kilogram",
+                    "input": ("dummy_db", "6543541"),
+                },
+                {
+                    "name": "1,4-Butanediol",
+                    "categories": ("air", "urban air close to ground"),
+                    "amount": 1,
+                    "type": "biosphere",
+                    "unit": "kilogram",
+                    "input": ("dummy_bio", "123"),
+                },
+            ],
+        }
+    ]
     version = "3.5"
     return db, version
+
 
 def test_file_exists():
     db, version = get_db()
@@ -48,20 +60,21 @@ def test_file_exists():
         BaseInventoryImport(db, version, "testfile")
     assert wrapped_error.type == FileNotFoundError
 
+
 def test_biosphere_dict():
     db, version = get_db()
     testpath = Path("testfile")
     open(testpath, "w")
     dbc = BaseInventoryImport(db, version, testpath)
-    assert dbc.biosphere_dict[
-               (
-                   '1,4-Butanediol',
-                   'air',
-                   'urban air close to ground',
-                   'kilogram'
-               )] == '38a622c6-f086-4763-a952-7c6b3b1c42ba'
+    assert (
+        dbc.biosphere_dict[
+            ("1,4-Butanediol", "air", "urban air close to ground", "kilogram")
+        ]
+        == "38a622c6-f086-4763-a952-7c6b3b1c42ba"
+    )
 
     testpath.unlink()
+
 
 def test_biosphere_dict_2():
     db, version = get_db()
@@ -70,16 +83,22 @@ def test_biosphere_dict_2():
     dbc = BaseInventoryImport(db, version, testpath)
 
     for act in dbc.db:
-        for exc in act['exchanges']:
-            if exc['type'] == 'biosphere':
-                assert dbc.biosphere_dict[(
-                    exc['name'],
-                    exc['categories'][0],
-                    exc['categories'][1],
-                    exc['unit']
-                )] == '38a622c6-f086-4763-a952-7c6b3b1c42ba'
+        for exc in act["exchanges"]:
+            if exc["type"] == "biosphere":
+                assert (
+                    dbc.biosphere_dict[
+                        (
+                            exc["name"],
+                            exc["categories"][0],
+                            exc["categories"][1],
+                            exc["unit"],
+                        )
+                    ]
+                    == "38a622c6-f086-4763-a952-7c6b3b1c42ba"
+                )
 
     testpath.unlink()
+
 
 def test_load_carma():
     db, version = get_db()
@@ -93,7 +112,7 @@ def test_load_biofuel():
     assert len(bio.import_db.data) == 36
 
 
-#def test_load_carculator():
+# def test_load_carculator():
 #    db, version = get_db()
 #    carc = CarculatorInventory(
 #        database=db,

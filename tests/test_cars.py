@@ -1,129 +1,153 @@
-from premise import DATA_DIR
-from premise import NewDatabase
-from premise.cars import Cars
+import os
+from pathlib import Path
+
+import brightway2 as bw
 import pytest
 import wurst
-import brightway2 as bw
-from pathlib import Path
-import os
 
-REGION_MAPPING_FILEPATH = (DATA_DIR / "regionmappingH12.csv")
+from premise import DATA_DIR, NewDatabase
+from premise.cars import Cars
+
+REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
 
 # for local test runs
 remind_output_folder = Path(__file__).resolve().parent / "data"
 BW_PROJECT = "transport_lca_Budg1100_Conv"
 scenario = "SSP2-PkBudg1100"
 year = 2035
-remind_regions = ['LAM', 'EUR']
+remind_regions = ["LAM", "EUR"]
 ecoinvent_version = 3.7
+
 
 def get_db():
     db = [
         {
-            'name': 'fake activity',
-            'reference product': 'fake product',
-            'location': 'IAI Area, Africa',
-            'unit': 'kilogram',
-            'exchanges': [
-            {
-                'name': 'fake activity',
-                'product': 'fake product',
-                'amount': 1,
-                'type': 'production',
-                'unit': 'kilogram',
-                'input': ('dummy_db', '6543541'), },
-            {
-                'name': '1,4-Butanediol',
-                'categories': ('air', 'urban air close to ground'),
-                'amount': 1,
-                'type': 'biosphere',
-                'unit': 'kilogram',
-                'input': ('dummy_bio', '123'),
-            }]
-        },
-        {
-            'name': 'electricity supply for electric vehicles',
-            'reference product': 'electricity, low voltage',
-            'location': 'RER',
-            'unit': 'kilowatt hour',
-            'exchanges': [
+            "name": "fake activity",
+            "reference product": "fake product",
+            "location": "IAI Area, Africa",
+            "unit": "kilogram",
+            "exchanges": [
                 {
-                    'name': 'electricity supply for electric vehicles',
-                    'product': 'fake product',
-                    'amount': 1,
-                    'type': 'production',
-                    'unit': 'kilogram',
-                    'input': ('dummy_db', '6543541')},
-                {
-                    'name': '1,4-Butanediol',
-                    'categories': ('air', 'urban air close to ground'),
-                    'amount': 1,
-                    'type': 'biosphere',
-                    'unit': 'kilogram',
-                    'input': ('dummy_bio', '123'),
+                    "name": "fake activity",
+                    "product": "fake product",
+                    "amount": 1,
+                    "type": "production",
+                    "unit": "kilogram",
+                    "input": ("dummy_db", "6543541"),
                 },
-            ]
+                {
+                    "name": "1,4-Butanediol",
+                    "categories": ("air", "urban air close to ground"),
+                    "amount": 1,
+                    "type": "biosphere",
+                    "unit": "kilogram",
+                    "input": ("dummy_bio", "123"),
+                },
+            ],
         },
         {
-            'name': 'BEV,',
-            'reference product': 'car',
-            'location': 'RER',
-            'unit': 'car',
-            'exchanges': [
+            "name": "electricity supply for electric vehicles",
+            "reference product": "electricity, low voltage",
+            "location": "RER",
+            "unit": "kilowatt hour",
+            "exchanges": [
                 {
-                    'name': 'BEV,',
-                    'product': 'fake product',
-                    'amount': 1,
-                    'type': 'production',
-                    'unit': 'kilogram',
-                    'input': ('dummy_db', '6543541')},
+                    "name": "electricity supply for electric vehicles",
+                    "product": "fake product",
+                    "amount": 1,
+                    "type": "production",
+                    "unit": "kilogram",
+                    "input": ("dummy_db", "6543541"),
+                },
                 {
-                    'name': 'electricity supply for electric vehicles',
-                    'product': 'fake product',
-                    'amount': 1,
-                    'type': 'technosphere',
-                    'unit': 'kilogram',
-                    'input': ('dummy_db', '6543541')},
-            ]
+                    "name": "1,4-Butanediol",
+                    "categories": ("air", "urban air close to ground"),
+                    "amount": 1,
+                    "type": "biosphere",
+                    "unit": "kilogram",
+                    "input": ("dummy_bio", "123"),
+                },
+            ],
         },
-        *[{
-            'name': 'market group for electricity, low voltage',
-            'reference product': 'electricity, low voltage',
-            'location': region,
-            'unit': 'kilowatt hour'
-        } for region in remind_regions
-        ]
+        {
+            "name": "BEV,",
+            "reference product": "car",
+            "location": "RER",
+            "unit": "car",
+            "exchanges": [
+                {
+                    "name": "BEV,",
+                    "product": "fake product",
+                    "amount": 1,
+                    "type": "production",
+                    "unit": "kilogram",
+                    "input": ("dummy_db", "6543541"),
+                },
+                {
+                    "name": "electricity supply for electric vehicles",
+                    "product": "fake product",
+                    "amount": 1,
+                    "type": "technosphere",
+                    "unit": "kilogram",
+                    "input": ("dummy_db", "6543541"),
+                },
+            ],
+        },
+        *[
+            {
+                "name": "market group for electricity, low voltage",
+                "reference product": "electricity, low voltage",
+                "location": region,
+                "unit": "kilowatt hour",
+            }
+            for region in remind_regions
+        ],
     ]
     version = ecoinvent_version
     return db, version
 
+
 def setup_db():
     bw.projects.set_current(BW_PROJECT)
     return NewDatabase(
-            scenarios=[
-                {"model": "remind", "pathway": scenario, "year": year,
-                 "exclude": ["update_electricity", "update_steel", "update_cement"],
-                 "passenger_cars": {"regions": ["EUR"]}
-                 }
-            ],
-            source_db="ecoinvent 3.7 cutoff",
-            source_version="3.7",
-            key=os.environ['IAM_FILES_KEY']
-            )
+        scenarios=[
+            {
+                "model": "remind",
+                "pathway": scenario,
+                "year": year,
+                "exclude": ["update_electricity", "update_steel", "update_cement"],
+                "passenger_cars": {"regions": ["EUR"]},
+            }
+        ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7",
+        key=os.environ["IAM_FILES_KEY"],
+    )
+
 
 def setup_db_with_custom_fleet_file():
     bw.projects.set_current(BW_PROJECT)
     return NewDatabase(
-            scenarios=[
-                {"model": "remind", "pathway": scenario, "year": year,
-                 "exclude": ["update_electricity", "update_steel", "update_cement"],
-                 "passenger_cars": {"regions": ["EUR"],
-                                    "fleet file": remind_output_folder / "fleet_files" / "remind" / "passenger_cars" / "fleet_file.csv"}
-                 }
-            ],
-            source_db="ecoinvent 3.7 cutoff",
-            source_version="3.7",
+        scenarios=[
+            {
+                "model": "remind",
+                "pathway": scenario,
+                "year": year,
+                "exclude": ["update_electricity", "update_steel", "update_cement"],
+                "passenger_cars": {
+                    "regions": ["EUR"],
+                    "fleet file": remind_output_folder
+                    / "fleet_files"
+                    / "remind"
+                    / "passenger_cars"
+                    / "fleet_file.csv",
+                },
+            }
+        ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7",
     )
+
 
 @pytest.mark.ecoinvent
 def test_link_local_electricity_supply():

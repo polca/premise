@@ -1,4 +1,5 @@
 from wurst.geo import geomatcher
+
 from premise import DATA_DIR
 
 REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
@@ -14,9 +15,11 @@ class Geomap:
         self.model = model
         self.geo = geomatcher
 
-        self.iam_regions = [x[1] for x in list(self.geo.keys()) if isinstance(x, tuple)
-                            and x[0] == self.model.upper()]
-
+        self.iam_regions = [
+            x[1]
+            for x in list(self.geo.keys())
+            if isinstance(x, tuple) and x[0] == self.model.upper()
+        ]
 
     def iam_to_ecoinvent_location(self, location, contained=True):
         """
@@ -65,7 +68,9 @@ class Geomap:
 
         mapping = {
             "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
-            "Europe without Switzerland and Austria": "EUR" if self.model == "remind" else "WEU",
+            "Europe without Switzerland and Austria": "EUR"
+            if self.model == "remind"
+            else "WEU",
             "Europe without Switzerland": "EUR" if self.model == "remind" else "WEU",
             "North America without Quebec": "USA",
             "RER w/o RU": "EUR" if self.model == "remind" else "WEU",
@@ -82,8 +87,12 @@ class Geomap:
             "IAI Area, Africa": "SSA" if self.model == "remind" else "RSAF",
             "RER w/o CH+DE": "EUR" if self.model == "remind" else "WEU",
             "RER w/o DE+NL+RU": "EUR" if self.model == "remind" else "WEU",
-            "IAI Area, Asia, without China and GCC": "OAS" if self.model == "remind" else "SEAS",
-            "Europe, without Russia and Turkey": "EUR" if self.model == "remind" else "WEU",
+            "IAI Area, Asia, without China and GCC": "OAS"
+            if self.model == "remind"
+            else "SEAS",
+            "Europe, without Russia and Turkey": "EUR"
+            if self.model == "remind"
+            else "WEU",
             "WECC": "USA",
             "UCTE": "EUR" if self.model == "remind" else "WEU",
             "UCTE without Germany": "EUR" if self.model == "remind" else "WEU",
@@ -99,9 +108,12 @@ class Geomap:
                 if r[0] == self.model.upper() and r[1] != "World"
             ]
         except KeyError:
-            print("Cannot find the IAM location for {} from IAM model {}.".format(location, self.model))
+            print(
+                "Cannot find the IAM location for {} from IAM model {}.".format(
+                    location, self.model
+                )
+            )
             iam_location = ["World"]
-
 
         mapping = {
             ("AFR", "MEA"): "AFR",
@@ -141,7 +153,7 @@ class Geomap:
                     "RAF": "RSAF",
                     "Europe without Switzerland": "WEU",
                     "RLA": "RSAF",
-                    #"XK": "WEU",
+                    # "XK": "WEU",
                     "SS": "EAF",
                     "IAI Area, Africa": "WAF",
                     "UN-OCEANIA": "OCE",
@@ -150,7 +162,7 @@ class Geomap:
                     "IAI Area, Asia, without China and GCC": "RSAS",
                     "IAI Area, South America": "RSAM",
                     "IAI Area, EU27 & EFTA": "WEU",
-                    "IAI Area, Russia & RER w/o EU27 & EFTA": "RUS"
+                    "IAI Area, Russia & RER w/o EU27 & EFTA": "RUS",
                 }
 
             else:
@@ -178,7 +190,9 @@ class Geomap:
             # Or it could be an ecoinvent region
             try:
                 iam_location = self.geo.intersects(("ecoinvent", location))
-                iam_location = [i[1] for i in iam_location if i[0].lower() == self.model]
+                iam_location = [
+                    i[1] for i in iam_location if i[0].lower() == self.model
+                ]
                 return iam_location[0]
 
             except KeyError:

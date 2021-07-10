@@ -1,19 +1,21 @@
-from . import DATA_DIR, INVENTORY_DIR
-import wurst
-from prettytable import PrettyTable
-from wurst import searching as ws
-from bw2io import ExcelImporter, Migration
-from bw2io.importers.base_lci import LCIImporter
+import csv
+import pickle
+import sys
+import uuid
+from pathlib import Path
+
 import carculator
 import carculator_truck
-from pathlib import Path
-import csv
-import uuid
 import numpy as np
-from .geomap import Geomap
-import sys
+import wurst
 import xarray as xr
-import pickle
+from bw2io import ExcelImporter, Migration
+from bw2io.importers.base_lci import LCIImporter
+from prettytable import PrettyTable
+from wurst import searching as ws
+
+from . import DATA_DIR, INVENTORY_DIR
+from .geomap import Geomap
 from .utils import *
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
@@ -128,7 +130,8 @@ class BaseInventoryImport:
             [
                 (x["name"].lower(), x["reference product"].lower(), x["location"])
                 for x in self.import_db.data
-                if (x["name"].lower(), x["reference product"].lower(), x["location"]) in self.db_names
+                if (x["name"].lower(), x["reference product"].lower(), x["location"])
+                in self.db_names
             ]
         )
 
@@ -750,8 +753,8 @@ class SynfuelInventory(BaseInventoryImport):
 
 class GeothermalInventory(BaseInventoryImport):
     """
-    Geothermal heat production, adapted from geothermal power production dataset from ecoinvent 3.6.
-.
+        Geothermal heat production, adapted from geothermal power production dataset from ecoinvent 3.6.
+    .
     """
 
     def __init__(self, database, version, path):
@@ -871,18 +874,19 @@ class PassengerCars(BaseInventoryImport):
         self.model = model
         self.geomap = Geomap(model=model)
 
-        inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
-                             key=lambda x: abs(x - year))
+        inventory_year = min(
+            [2020, 2025, 2030, 2040, 2045, 2050], key=lambda x: abs(x - year)
+        )
         ver = version.replace(".1", "")
         ver = ver.replace(".", "")
-        filename = model \
-                   + "_pass_cars_inventory_data_ei_37_" + str(
-            inventory_year) + ".pickle"
+        filename = (
+            model + "_pass_cars_inventory_data_ei_37_" + str(inventory_year) + ".pickle"
+        )
         fp = INVENTORY_DIR / filename
 
         self.import_db = LCIImporter("passenger_cars")
 
-        with open(fp, 'rb') as handle:
+        with open(fp, "rb") as handle:
             self.import_db.data = pickle.load(handle)
 
     def load_inventory(self, path):
@@ -917,7 +921,7 @@ class PassengerCars(BaseInventoryImport):
 
         for x in self.import_db.data:
             x["code"] = str(uuid.uuid4().hex)
-            #x = relink_technosphere_exchanges(x, self.db, self.model)
+            # x = relink_technosphere_exchanges(x, self.db, self.model)
 
     def merge_inventory(self):
         self.prepare_inventory()
@@ -973,8 +977,6 @@ class PassengerCars(BaseInventoryImport):
                     exc["product"] = new_supplier["reference product"]
                     exc["unit"] = new_supplier["unit"]
 
-
-
                 except ws.NoResults:
 
                     new_supplier = ws.get_one(
@@ -999,6 +1001,7 @@ class PassengerCars(BaseInventoryImport):
 
         return self.db
 
+
 class Trucks(BaseInventoryImport):
     """
     Imports default inventories for trucks.
@@ -1011,18 +1014,19 @@ class Trucks(BaseInventoryImport):
         self.regions = regions
         self.geomap = Geomap(model=model)
 
-        inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
-                             key=lambda x: abs(x - year))
+        inventory_year = min(
+            [2020, 2025, 2030, 2040, 2045, 2050], key=lambda x: abs(x - year)
+        )
         ver = version.replace(".1", "")
         ver = ver.replace(".", "")
-        filename = model \
-                   + "_trucks_inventory_data_ei_37_" + str(
-            inventory_year) + ".pickle"
+        filename = (
+            model + "_trucks_inventory_data_ei_37_" + str(inventory_year) + ".pickle"
+        )
         fp = INVENTORY_DIR / filename
 
         self.import_db = LCIImporter("trucks")
 
-        with open(fp, 'rb') as handle:
+        with open(fp, "rb") as handle:
             self.import_db.data = pickle.load(handle)
 
     def load_inventory(self, path):
@@ -1077,7 +1081,7 @@ class Trucks(BaseInventoryImport):
                 exc
                 for exc in ds["exchanges"]
                 if "transport, freight, lorry" in exc["name"]
-                   and exc["type"] == "technosphere"
+                and exc["type"] == "technosphere"
             )
 
             for exc in excs:
@@ -1094,9 +1098,9 @@ class Trucks(BaseInventoryImport):
                     search_for = "transport, freight, lorry, fleet average"
 
                 if not any(
-                        x
-                        for x in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
-                        if x in exc["name"]
+                    x
+                    for x in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
+                    if x in exc["name"]
                 ):
                     search_for = "transport, freight, lorry, fleet average"
 
@@ -1327,18 +1331,19 @@ class CarculatorInventory(BaseInventoryImport):
                     variables=["SE|Liquids|Hydrogen"]
                 ) / self.data.sel(variables="FE|Transport|Pass|Road|LDV|Liquids")
 
-                share_liquids = self.data.sel(
-                    variables=[
-                        "FE|Transport|Liquids|Oil",
-                        "FE|Transport|Liquids|Biomass",
-                    ]
-                ) / self.data.sel(
-                    variables=[
-                        "FE|Transport|Liquids|Oil",
-                        "FE|Transport|Liquids|Biomass",
-                    ]
-                ).sum(
-                    dim="variables"
+                share_liquids = (
+                    self.data.sel(
+                        variables=[
+                            "FE|Transport|Liquids|Oil",
+                            "FE|Transport|Liquids|Biomass",
+                        ]
+                    )
+                    / self.data.sel(
+                        variables=[
+                            "FE|Transport|Liquids|Oil",
+                            "FE|Transport|Liquids|Biomass",
+                        ]
+                    ).sum(dim="variables")
                 )
                 share_liquids *= 1 - share_synfuel.values
 
@@ -1391,7 +1396,12 @@ class CarculatorInventory(BaseInventoryImport):
             share_liquids /= share_liquids.sum(dim="variables")
 
             share_liquids = share_liquids.assign_coords(
-                {"variables": ["liquid - fossil", "liquid - biomass",]}
+                {
+                    "variables": [
+                        "liquid - fossil",
+                        "liquid - biomass",
+                    ]
+                }
             )
 
             share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
@@ -1407,29 +1417,31 @@ class CarculatorInventory(BaseInventoryImport):
             share_gas = self.data.sel(variables=var)
             share_gas /= share_gas.sum(dim="variables")
 
-            share_gas = share_gas.assign_coords({"variables": ["gas - fossil", "gas - biomass"]})
+            share_gas = share_gas.assign_coords(
+                {"variables": ["gas - fossil", "gas - biomass"]}
+            )
             share_gas = np.clip(share_gas.fillna(0), 0, 1)
 
         if self.model == "image":
 
             share_gas = xr.DataArray(
                 np.ones_like(
-                self.data.sel(variables=["Final Energy|Transportation|Freight|Gases"])
+                    self.data.sel(
+                        variables=["Final Energy|Transportation|Freight|Gases"]
+                    )
                 ),
                 dims=["region", "variables", "year"],
                 coords=[
                     self.data.region.values,
                     ["gas - fossil"],
                     self.data.year.values,
-                ])
-
-
+                ],
+            )
 
         return share_gas
 
     def load_inventory(self, path):
-        """Create `carculator` fleet average inventories for a given range of years.
-        """
+        """Create `carculator` fleet average inventories for a given range of years."""
 
         cip = carculator.CarInputParameters()
         cip.static()
@@ -1498,75 +1510,156 @@ class CarculatorInventory(BaseInventoryImport):
                     "petrol": {
                         "primary fuel": {
                             "type": "petrol",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - fossil", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values, 0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - fossil", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values,
+                                0,
+                                1,
+                            )
                             if "liquid - fossil" in liquid_fuel_blend.variables.values
                             else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "bioethanol - wheat straw",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - biomass", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "liquid - biomass" in liquid_fuel_blend.variables.values
-                            else np.zeros_like(years), 0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - biomass", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "liquid - biomass"
+                                in liquid_fuel_blend.variables.values
+                                else np.zeros_like(years),
+                                0,
+                                1,
+                            ),
                         },
                         "tertiary fuel": {
                             "type": "synthetic gasoline",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - synfuel", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "liquid - synfuel" in liquid_fuel_blend.variables.values
-                            else np.zeros_like(years), 0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - synfuel", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "liquid - synfuel"
+                                in liquid_fuel_blend.variables.values
+                                else np.zeros_like(years),
+                                0,
+                                1,
+                            ),
                         },
                     },
                     "diesel": {
                         "primary fuel": {
                             "type": "diesel",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - fossil", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "liquid - fossil" in liquid_fuel_blend.variables.values
-                            else np.ones_like(years), 0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - fossil", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "liquid - fossil"
+                                in liquid_fuel_blend.variables.values
+                                else np.ones_like(years),
+                                0,
+                                1,
+                            ),
                         },
                         "secondary fuel": {
                             "type": "biodiesel - cooking oil",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - biomass", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "liquid - biomass" in liquid_fuel_blend.variables.values
-                            else np.zeros_like(years),0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - biomass", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "liquid - biomass"
+                                in liquid_fuel_blend.variables.values
+                                else np.zeros_like(years),
+                                0,
+                                1,
+                            ),
                         },
                         "tertiary fuel": {
                             "type": "synthetic diesel",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - synfuel", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "liquid - synfuel" in liquid_fuel_blend.variables.values
-                            else np.zeros_like(years),0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - synfuel", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "liquid - synfuel"
+                                in liquid_fuel_blend.variables.values
+                                else np.zeros_like(years),
+                                0,
+                                1,
+                            ),
                         },
                     },
                     "cng": {
                         "primary fuel": {
                             "type": "cng",
-                            "share": np.clip(gas_fuel_blend.sel(
-                                variables="gas - fossil", region=region
-                                                        ).interp(year=scope["year"]
-                                                                 , kwargs={"fill_value": "extrapolate"}).values
-                            if "gas - fossil" in gas_fuel_blend.variables.values
-                            else np.ones_like(years), 0, 1)
+                            "share": np.clip(
+                                gas_fuel_blend.sel(
+                                    variables="gas - fossil", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "gas - fossil" in gas_fuel_blend.variables.values
+                                else np.ones_like(years),
+                                0,
+                                1,
+                            ),
                         },
                         "secondary fuel": {
                             "type": "biogas - biowaste",
-                            "share": np.clip(gas_fuel_blend.sel(
-                                variables="gas - biomass", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "gas - biomass" in gas_fuel_blend.variables.values
-                            else 1
-                            - gas_fuel_blend.sel(variables="gas - fossil", region=region
-                                                 ).interp(year=scope["year"],
-                                                          kwargs={"fill_value": "extrapolate"}).values,0, 1)
+                            "share": np.clip(
+                                gas_fuel_blend.sel(
+                                    variables="gas - biomass", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "gas - biomass" in gas_fuel_blend.variables.values
+                                else 1
+                                - gas_fuel_blend.sel(
+                                    variables="gas - fossil", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values,
+                                0,
+                                1,
+                            ),
                         },
                     },
                     "hydrogen": {
@@ -1788,18 +1881,19 @@ class TruckInventory(BaseInventoryImport):
                     variables=["SE|Liquids|Hydrogen"]
                 ) / self.data.sel(variables="FE|Transport|Pass|Road|LDV|Liquids")
 
-                share_liquids = self.data.sel(
-                    variables=[
-                        "FE|Transport|Liquids|Oil",
-                        "FE|Transport|Liquids|Biomass",
-                    ]
-                ) / self.data.sel(
-                    variables=[
-                        "FE|Transport|Liquids|Oil",
-                        "FE|Transport|Liquids|Biomass",
-                    ]
-                ).sum(
-                    dim="variables"
+                share_liquids = (
+                    self.data.sel(
+                        variables=[
+                            "FE|Transport|Liquids|Oil",
+                            "FE|Transport|Liquids|Biomass",
+                        ]
+                    )
+                    / self.data.sel(
+                        variables=[
+                            "FE|Transport|Liquids|Oil",
+                            "FE|Transport|Liquids|Biomass",
+                        ]
+                    ).sum(dim="variables")
                 )
                 share_liquids *= 1 - share_synfuel.values
 
@@ -1852,7 +1946,12 @@ class TruckInventory(BaseInventoryImport):
             share_liquids /= share_liquids.sum(dim="variables")
 
             share_liquids = share_liquids.assign_coords(
-                {"variables": ["liquid - fossil", "liquid - biomass",]}
+                {
+                    "variables": [
+                        "liquid - fossil",
+                        "liquid - biomass",
+                    ]
+                }
             )
 
             share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
@@ -1868,29 +1967,31 @@ class TruckInventory(BaseInventoryImport):
             share_gas = self.data.sel(variables=var)
             share_gas /= share_gas.sum(dim="variables")
 
-            share_gas = share_gas.assign_coords({"variables": ["gas - fossil", "gas - biomass"]})
+            share_gas = share_gas.assign_coords(
+                {"variables": ["gas - fossil", "gas - biomass"]}
+            )
             share_gas = np.clip(share_gas.fillna(0), 0, 1)
 
         if self.model == "image":
 
             share_gas = xr.DataArray(
                 np.ones_like(
-                self.data.sel(variables=["Final Energy|Transportation|Freight|Gases"])
+                    self.data.sel(
+                        variables=["Final Energy|Transportation|Freight|Gases"]
+                    )
                 ),
                 dims=["region", "variables", "year"],
                 coords=[
                     self.data.region.values,
                     ["gas - fossil"],
                     self.data.year.values,
-                ])
-
-
+                ],
+            )
 
         return share_gas
 
     def load_inventory(self, path):
-        """Create `carculator_truck` fleet average inventories for a given range of years.
-        """
+        """Create `carculator_truck` fleet average inventories for a given range of years."""
 
         fleet_array = carculator_truck.create_fleet_composition_from_IAM_file(
             self.fleet_file
@@ -1968,61 +2069,120 @@ class TruckInventory(BaseInventoryImport):
                     "petrol": {
                         "primary fuel": {
                             "type": "petrol",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - fossil", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values, 0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - fossil", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values,
+                                0,
+                                1,
+                            )
                             if "liquid - fossil" in liquid_fuel_blend.variables.values
                             else np.ones_like(years),
                         },
                         "secondary fuel": {
                             "type": "bioethanol - wheat straw",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - biomass", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "liquid - biomass" in liquid_fuel_blend.variables.values
-                            else np.zeros_like(years), 0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - biomass", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "liquid - biomass"
+                                in liquid_fuel_blend.variables.values
+                                else np.zeros_like(years),
+                                0,
+                                1,
+                            ),
                         },
-
                     },
                     "diesel": {
                         "primary fuel": {
                             "type": "diesel",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - fossil", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "liquid - fossil" in liquid_fuel_blend.variables.values
-                            else np.ones_like(years), 0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - fossil", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "liquid - fossil"
+                                in liquid_fuel_blend.variables.values
+                                else np.ones_like(years),
+                                0,
+                                1,
+                            ),
                         },
                         "secondary fuel": {
                             "type": "biodiesel - cooking oil",
-                            "share": np.clip(liquid_fuel_blend.sel(
-                                variables="liquid - biomass", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "liquid - biomass" in liquid_fuel_blend.variables.values
-                            else np.zeros_like(years),0, 1)
+                            "share": np.clip(
+                                liquid_fuel_blend.sel(
+                                    variables="liquid - biomass", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "liquid - biomass"
+                                in liquid_fuel_blend.variables.values
+                                else np.zeros_like(years),
+                                0,
+                                1,
+                            ),
                         },
-
                     },
                     "cng": {
                         "primary fuel": {
                             "type": "cng",
-                            "share": np.clip(gas_fuel_blend.sel(
-                                variables="gas - fossil", region=region
-                                                        ).interp(year=scope["year"]
-                                                                 , kwargs={"fill_value": "extrapolate"}).values
-                            if "gas - fossil" in gas_fuel_blend.variables.values
-                            else np.ones_like(years), 0, 1)
+                            "share": np.clip(
+                                gas_fuel_blend.sel(
+                                    variables="gas - fossil", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "gas - fossil" in gas_fuel_blend.variables.values
+                                else np.ones_like(years),
+                                0,
+                                1,
+                            ),
                         },
                         "secondary fuel": {
                             "type": "biogas - biowaste",
-                            "share": np.clip(gas_fuel_blend.sel(
-                                variables="gas - biomass", region=region
-                            ).interp(year=scope["year"], kwargs={"fill_value": "extrapolate"}).values
-                            if "gas - biomass" in gas_fuel_blend.variables.values
-                            else 1
-                            - gas_fuel_blend.sel(variables="gas - fossil", region=region
-                                                 ).interp(year=scope["year"],
-                                                          kwargs={"fill_value": "extrapolate"}).values,0, 1)
+                            "share": np.clip(
+                                gas_fuel_blend.sel(
+                                    variables="gas - biomass", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values
+                                if "gas - biomass" in gas_fuel_blend.variables.values
+                                else 1
+                                - gas_fuel_blend.sel(
+                                    variables="gas - fossil", region=region
+                                )
+                                .interp(
+                                    year=scope["year"],
+                                    kwargs={"fill_value": "extrapolate"},
+                                )
+                                .values,
+                                0,
+                                1,
+                            ),
                         },
                     },
                     "hydrogen": {
@@ -2035,7 +2195,9 @@ class TruckInventory(BaseInventoryImport):
             }
 
             ic = carculator_truck.InventoryCalculation(
-                tm, scope=scope, background_configuration=bc,
+                tm,
+                scope=scope,
+                background_configuration=bc,
             )
 
             i = ic.export_lci_to_bw(
