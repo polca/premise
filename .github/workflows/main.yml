@@ -92,8 +92,6 @@ jobs:
       - name: Publish distribution 📦 to Anaconda if Push
         run: |
           conda install conda-build anaconda-client
-          
-          cd anaconda-client/premise/conda/
 
           conda config --set anaconda_upload no
           conda build . --output
