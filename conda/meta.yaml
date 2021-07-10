@@ -20,10 +20,10 @@ requirements:
     - brightway2
     - numpy
     - pandas
-    - bw2io >= 0.8
+    - bw2io >=0.8
     - bw2data
-    - wurst >= 0.3
-    - xarray<0.18
+    - wurst >=0.3
+    - xarray <0.18
     - prettytable
     - carculator
     - carculator_truck
