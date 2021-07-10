@@ -81,6 +81,7 @@ jobs:
           coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.COVERALLS }}
+          IAM_FILES_KEY: ${{ env.IAM_FILES_KEY }}
 
   publish:
     runs-on: ubuntu-latest
