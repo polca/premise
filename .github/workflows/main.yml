@@ -76,7 +76,7 @@ jobs:
 
       - name: Run tests
         run: |
-          coverage run --source=premise -m pytest
+          pytest -m "not ecoinvent" -s --cov=premise
           coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.COVERALLS }}
