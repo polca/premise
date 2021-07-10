@@ -1,13 +1,15 @@
 import copy
 import uuid
+from datetime import date
+
 import numpy as np
 import wurst
 from wurst import searching as ws
 from wurst import transformations as wt
+
 from .activity_maps import InventorySet
 from .geomap import Geomap
 from .utils import *
-from datetime import date
 
 
 class Cement:
@@ -367,7 +369,10 @@ class Cement:
                 .interp(year=self.year)
                 .sum(dim=["region", "variables"])
                 / self.iam_data.data.loc[
-                    dict(region=[loc] if isinstance(loc, str) else loc, variables=prod,)
+                    dict(
+                        region=[loc] if isinstance(loc, str) else loc,
+                        variables=prod,
+                    )
                 ]
                 .interp(year=self.year)
                 .sum(dim="region")
@@ -746,7 +751,8 @@ class Cement:
                 # share = sum of biogenic fuel emissions / (sum of fossil fuel emission
                 # + sum of biogenic fuel emissions + 525 kg from calcination)
                 for exc in ws.biosphere(
-                    ccs, ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
+                    ccs,
+                    ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
                 ):
                     exc["amount"] = (
                         fuel_biogenic_co2_per_type.sum()
@@ -792,12 +798,15 @@ class Cement:
                 # the cement plant is expected to produce as excess heat
 
                 # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
-                excess_heat_generation = self.iam_data.gnr_data.sel(
-                    variables="Share of recovered energy, per ton clinker",
-                    region=self.geo.iam_to_iam_region(v["location"])
-                    if self.model == "image"
-                    else v["location"],
-                ).values * (energy_input_per_ton_clinker.sum() / 1000)
+                excess_heat_generation = (
+                    self.iam_data.gnr_data.sel(
+                        variables="Share of recovered energy, per ton clinker",
+                        region=self.geo.iam_to_iam_region(v["location"])
+                        if self.model == "image"
+                        else v["location"],
+                    ).values
+                    * (energy_input_per_ton_clinker.sum() / 1000)
+                )
 
                 for exc in ws.technosphere(
                     ccs, ws.contains("name", "steam production")
@@ -963,7 +972,7 @@ class Cement:
                 act["exchanges"].append(new_exc)
 
     def adjust_clinker_ratio(self, d_act):
-        """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
+        """Adjust the cement suppliers composition for "cement, unspecified", in order to reach
         the average clinker-to-cement ratio given by the IAM.
 
         The supply of the cement with the highest clinker-to-cement ratio is decreased by 1% to the favor of

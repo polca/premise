@@ -1,40 +1,40 @@
+import contextlib
+import copy
+import os
+import pickle
+import uuid
+from datetime import date
+from pathlib import Path
+
+import wurst
+
 from . import DATA_DIR, INVENTORY_DIR
+from .cars import Cars
+from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .renewables import SolarPV
+from .export import Export
 from .inventory_imports import (
-    CarmaCCSInventory,
+    AdditionalInventory,
     BiofuelInventory,
-    DACInventory,
-    HydrogenInventory,
     BiogasInventory,
+    CarculatorInventory,
+    CarmaCCSInventory,
+    DACInventory,
+    GeothermalInventory,
+    HydrogenInventory,
+    LPGInventory,
+    PassengerCars,
     SynfuelInventory,
     SyngasInventory,
-    GeothermalInventory,
-    LPGInventory,
-    CarculatorInventory,
     TruckInventory,
-    VariousVehicles,
-    AdditionalInventory,
-    PassengerCars,
     Trucks,
+    VariousVehicles,
 )
-from .cement import Cement
+from .renewables import SolarPV
 from .steel import Steel
-from .cars import Cars
-from .export import Export
-from .utils import eidb_label, add_modified_tags, build_superstructure_db
-import wurst
-from pathlib import Path
-import copy
-import uuid
-import os
-import contextlib
-import pickle
-from datetime import date
-import uuid
-
+from .utils import add_modified_tags, build_superstructure_db, eidb_label
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
@@ -194,7 +194,7 @@ def check_model_name(name):
 
 
 def check_pathway_name(name, filepath, model):
-    """ Check the pathway name"""
+    """Check the pathway name"""
 
     if name not in SUPPORTED_PATHWAYS:
         # If the pathway name is not a default one, check that the filepath + pathway name
@@ -638,7 +638,10 @@ class NewDatabase:
                 # Industry module present in IAM file
                 print("\nData specific to the cement sector detected!\n")
 
-                if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
+                if (
+                    "exclude" not in scenario
+                    or "update_cement" not in scenario["exclude"]
+                ):
 
                     cement = Cement(
                         db=scenario["database"],
@@ -652,8 +655,10 @@ class NewDatabase:
                     scenario["database"] = cement.add_datasets_to_database()
 
             else:
-                print(f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
-                      " to proceed to the cement sector transformation.")
+                print(
+                    f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
+                    " to proceed to the cement sector transformation."
+                )
 
     def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
@@ -672,7 +677,10 @@ class NewDatabase:
             ):
                 print("\nData specific to the steel sector detected!\n")
 
-                if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
+                if (
+                    "exclude" not in scenario
+                    or "update_steel" not in scenario["exclude"]
+                ):
 
                     steel = Steel(
                         db=scenario["database"],
@@ -683,8 +691,10 @@ class NewDatabase:
                     scenario["database"] = steel.generate_activities()
 
             else:
-                print(f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
-                      " to proceed to the steel sector transformation.")
+                print(
+                    f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
+                    " to proceed to the steel sector transformation."
+                )
 
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")
@@ -804,7 +814,8 @@ class NewDatabase:
         print("Done!")
 
         wurst.write_brightway2_database(
-            self.db, name,
+            self.db,
+            name,
         )
 
     def write_db_to_brightway(self, name=None):
@@ -843,7 +854,8 @@ class NewDatabase:
             scenario["database"] = self.check_for_duplicates(scenario["database"])
 
             wurst.write_brightway2_database(
-                scenario["database"], name[s],
+                scenario["database"],
+                name[s],
             )
 
     def write_db_to_matrices(self, filepath=None):
@@ -917,7 +929,14 @@ class NewDatabase:
                 )
         else:
             filepath = [
-                (DATA_DIR / "export" / "simapro" / s["model"] / s["pathway"] / str(s["year"]))
+                (
+                    DATA_DIR
+                    / "export"
+                    / "simapro"
+                    / s["model"]
+                    / s["pathway"]
+                    / str(s["year"])
+                )
                 for s in self.scenarios
             ]
 
@@ -978,10 +997,11 @@ class NewDatabase:
 
     def check_for_duplicates(self, db):
 
-        """ Check for the absence of duplicates before export """
+        """Check for the absence of duplicates before export"""
 
         db_names = [
-            (x["name"].lower(), x["reference product"].lower(), x["location"]) for x in db
+            (x["name"].lower(), x["reference product"].lower(), x["location"])
+            for x in db
         ]
 
         if len(db_names) == len(set(db_names)):
@@ -990,6 +1010,12 @@ class NewDatabase:
         else:
             print("One or multiple duplicates detected. Removing them...")
             seen = set()
-            return [x for x in db
-                       if (x["name"].lower(), x["reference product"].lower(), x["location"]) not in seen
-                       and not seen.add((x["name"].lower(), x["reference product"].lower(), x["location"]))]
+            return [
+                x
+                for x in db
+                if (x["name"].lower(), x["reference product"].lower(), x["location"])
+                not in seen
+                and not seen.add(
+                    (x["name"].lower(), x["reference product"].lower(), x["location"])
+                )
+            ]

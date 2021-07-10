@@ -1,6 +1,9 @@
-from wurst import searching as ws
-from .utils import *
 import re
+
+from wurst import searching as ws
+
+from .utils import *
+
 
 class SolarPV:
     """
@@ -36,30 +39,35 @@ class SolarPV:
         ds = ws.get_many(
             self.db,
             *[
-                ws.contains('name', 'photovoltaic'),
-                ws.either(ws.contains('name', 'installation'),
-                          ws.contains('name', 'construction')),
-                ws.doesnt_contain_any('name', ['market', 'factory']),
+                ws.contains("name", "photovoltaic"),
+                ws.either(
+                    ws.contains("name", "installation"),
+                    ws.contains("name", "construction"),
+                ),
+                ws.doesnt_contain_any("name", ["market", "factory"]),
                 ws.equals("unit", "unit"),
             ]
         )
 
         for d in ds:
-            power = float(re.findall('\d+', d["name"])[0])
+            power = float(re.findall("\d+", d["name"])[0])
 
-            for exc in ws.technosphere(d, *[
-                ws.contains('name', 'photovoltaic'),
-                ws.equals('unit', 'square meter')
-            ]):
+            for exc in ws.technosphere(
+                d,
+                *[
+                    ws.contains("name", "photovoltaic"),
+                    ws.equals("unit", "square meter"),
+                ]
+            ):
 
                 surface = float(exc["amount"])
-                max_power = surface # in kW, since we assume a constant 1,000W/m^2
+                max_power = surface  # in kW, since we assume a constant 1,000W/m^2
                 current_eff = power / max_power
                 new_eff = get_efficiency_ratio_solar_PV(self.year, power).values
 
                 # We only update the efficiency if it is higher than the current one.
                 if new_eff > current_eff:
-                    exc["amount"] *= float(current_eff/new_eff)
+                    exc["amount"] *= float(current_eff / new_eff)
                     d["parameters"] = {"efficiency": new_eff}
 
         return self.db

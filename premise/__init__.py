@@ -1,9 +1,4 @@
-__all__ = (
-    "NewDatabase",
-    "Geomap",
-    "DATA_DIR",
-    "INVENTORY_DIR"
-)
+__all__ = ("NewDatabase", "Geomap", "DATA_DIR", "INVENTORY_DIR")
 __version__ = (0, 4, 2)
 
 from pathlib import Path

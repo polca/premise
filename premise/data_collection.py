@@ -1,10 +1,11 @@
-from . import DATA_DIR
-import pandas as pd
-from pathlib import Path
 import csv
-from cryptography.fernet import Fernet
 from io import StringIO
+from pathlib import Path
 
+import pandas as pd
+from cryptography.fernet import Fernet
+
+from . import DATA_DIR
 
 IAM_ELEC_MARKETS = DATA_DIR / "electricity" / "electricity_markets.csv"
 IAM_ELEC_EFFICIENCIES = DATA_DIR / "electricity" / "electricity_efficiencies.csv"
@@ -47,7 +48,6 @@ class IAMDataCollection:
         self.electricity_emissions = self.get_gains_electricity_emissions()
         self.cement_emissions = self.get_gains_cement_emissions()
         self.steel_emissions = self.get_gains_steel_emissions()
-
 
     def get_iam_electricity_emission_labels(self):
         """
@@ -120,7 +120,6 @@ class IAMDataCollection:
         file_ext = self.model + "_" + self.pathway + ".csv"
         filepath = Path(self.filepath_iam_files) / file_ext
 
-
         if self.key is None:
             # Uses a non-encrypted file
             try:
@@ -135,7 +134,7 @@ class IAMDataCollection:
                     encrypted_data = file.read()
 
             # create a temp csv-like file to pass to pandas.read_csv()
-            DATA = StringIO(str(encrypted_data, 'latin-1'))
+            DATA = StringIO(str(encrypted_data, "latin-1"))
 
         else:
             # Uses an encrypted file
@@ -146,11 +145,14 @@ class IAMDataCollection:
 
             # decrypt data
             decrypted_data = f.decrypt(encrypted_data)
-            DATA = StringIO(str(decrypted_data, 'latin-1'))
+            DATA = StringIO(str(decrypted_data, "latin-1"))
 
         if self.model == "remind":
             df = pd.read_csv(
-                DATA, sep=";", index_col=["Region", "Variable", "Unit"], encoding="latin-1"
+                DATA,
+                sep=";",
+                index_col=["Region", "Variable", "Unit"],
+                encoding="latin-1",
             ).drop(columns=["Model", "Scenario"])
 
             # Filter the dataframe
@@ -158,11 +160,9 @@ class IAMDataCollection:
 
         elif self.model == "image":
 
-            df = pd.read_csv(DATA, index_col=[2, 3, 4],
-                             encoding="latin-1",
-                             sep=";").drop(
-                columns=["Model", "Scenario"]
-            )
+            df = pd.read_csv(
+                DATA, index_col=[2, 3, 4], encoding="latin-1", sep=";"
+            ).drop(columns=["Model", "Scenario"])
 
             # Filter the dataframe
             list_var = (
@@ -170,10 +170,14 @@ class IAMDataCollection:
                 "Efficiency",
                 "Final Energy",
                 "Production",
-                "Emissions"
+                "Emissions",
             )
         else:
-            raise ValueError("The IAM model name {} is not valid. Currently supported: 'remind' or 'image'".format(self.model))
+            raise ValueError(
+                "The IAM model name {} is not valid. Currently supported: 'remind' or 'image'".format(
+                    self.model
+                )
+            )
 
         if len(df.columns == 20):
             df.drop(columns=df.columns[-1], inplace=True)
@@ -312,11 +316,9 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         else:
             # Interpolation between two periods
-            data_to_return = self.data.loc[
+            data_to_return = self.data.loc[:, list_technologies, :] / self.data.loc[
                 :, list_technologies, :
-            ] / self.data.loc[:, list_technologies, :].groupby("region").sum(
-                dim="variables"
-            )
+            ].groupby("region").sum(dim="variables")
             return data_to_return
 
     def get_iam_electricity_efficiencies(self, drop_hydrogen=True):
