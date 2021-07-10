@@ -1,0 +1,108 @@
+name: configuration for python env
+on: [push, pull_request]
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Black formatting
+        uses: lgeiger/black-action@v1.0.1
+        with:
+          args: "./"
+
+      - name: Run isort
+        uses: jamescurtin/isort-action@master
+        with:
+          configuration: --profile black
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+
+      - name: Push changes
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.email "r_s@me.com"
+          git config --global user.name "romainsacchi"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git checkout $GITHUB_HEAD_REF
+          git commit -am "Black reformating"
+          git push
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: clean
+    steps:
+
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Super-Linter
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: master
+          IGNORE_GITIGNORED_FILES: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+
+  build:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+
+    needs: clean
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install python version
+        uses: gabrielfalcao/pyenv-action@v7
+        with:
+          default: 3.8.6
+          command: pip install -U pip  # upgrade pip after installing python
+
+      - name: create environment
+        run: pyenv local 3.8.6 && python -mvenv .venv386
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt --upgrade pip
+          pip install -e .
+          pip install pytest
+          pip install coveralls
+
+      - name: Run tests
+        run: |
+          coverage run --source=premise -m pytest
+          coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.COVERALLS }}
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Publish distribution 📦 to Anaconda if Push
+        uses: fcakyon/conda-publish-action@v1.3
+        with:
+          subdir: 'conda'
+          anacondatoken: ${{ secrets.ANACONDA_CLOUD }}
+          platforms: 'win osx linux'
+
+      - name: Publish distribution 📦 to Test PyPI if Push
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          repository_url: https://test.pypi.org/legacy/
+
+      - name: Publish distribution 📦 to PyPI if Release
+        if: startsWith(github.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
