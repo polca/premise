@@ -90,31 +90,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-#      - name: Publish distribution 📦 to Anaconda if Push
-#        run: |
-#          conda install conda-build anaconda-client
-#          # Only need to change these two variables
-#          PKG_NAME=premise
-#          USER=romainsacchi
-#
-#          mkdir ~/conda-bld
-#          conda config --set anaconda_upload no
-#          export CONDA_BLD_PATH=~/conda-bld
-#          export VERSION=`date +%Y.%m.%d`
-#          conda build . --old-build-string
-#          ls $CONDA_BLD_PATH/noarch/
-#          anaconda -t $CONDA_UPLOAD_TOKEN upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
-
-#        uses: amauryval/publish_conda_package_action@1.1.0
-#        with:
-#          # CondaDir: locate the directory containing your meta.yml, conda_build_config.yaml (...) files
-#          CondaDir: 'conda'
-#          # Channels: You can add more channel with a space separator
-#          Channels: 'conda-forge cmutel konstantinstadler haasad pascallesage romainsacchi'
-#          # Platforms: remove one or more of these platforms
-#          Platforms: 'osx-64 linux-32 linux-64 win-32 win-64'
-#          CondaUsername: ${{ secrets.CONDA_USERNAME }}
-#          CondaPassword: ${{ secrets.CONDA_PASSWORD }}
+      - name: Publish distribution 📦 to Anaconda if Push
+        run: |
+          conda install conda-build anaconda-client
+          git clone https://github.com/romainsacchi/premise
+          cd anaconda-client/premise/conda/
+          mkdir ~/conda-bld
+          conda config --set anaconda_upload no
+          conda build . --output
+          PKG_NAME=premise
+          export CONDA_BLD_PATH=~/conda-bld
+          export VERSION=`date +%Y.%m.%d`
+          conda build . --old-build-string
+          ls $CONDA_BLD_PATH/noarch/
+          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
       - name: Install pypa/build
         run: >-
@@ -143,5 +132,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags')
         uses: pypa/gh-action-pypi-publish@master
         with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          user: ${{ secrets.PYPI_USER }}
+          password: ${{ secrets.PYPI_PASSWORD }}
