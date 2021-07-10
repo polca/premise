@@ -90,11 +90,16 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Publish distribution 📦 to Anaconda if Push
-        uses: fcakyon/conda-publish-action@v1.3
+        uses: amauryval/publish_conda_package_action@1.1.0
         with:
-          subdir: 'conda'
-          anacondatoken: ${{ secrets.ANACONDA_CLOUD }}
-          platforms: 'win osx linux'
+          # CondaDir: locate the directory containing your meta.yml, conda_build_config.yaml (...) files
+          CondaDir: 'conda'
+          # Channels: You can add more channel with a space separator
+          Channels: 'conda-forge cmutel konstantinstadler haasad pascallesage romainsacchi'
+          # Platforms: remove one or more of these platforms
+          Platforms: 'osx-64 linux-32 linux-64 win-32 win-64'
+          CondaUsername: ${{ secrets.CONDA_USERNAME }}
+          CondaPassword: ${{ secrets.CONDA_PASSWORD }}
 
       - name: Publish distribution 📦 to Test PyPI if Push
         uses: pypa/gh-action-pypi-publish@master
