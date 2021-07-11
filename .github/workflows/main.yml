@@ -107,7 +107,7 @@ jobs:
 
       - name: Publish distribution 📦 to Anaconda if Push
         shell: bash -l {0}
-        working-directory: premise
+        working-directory: /home/runner/premise
 
 
         run: |
@@ -122,7 +122,7 @@ jobs:
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
 
-          conda build .
+          conda build "./conda"
 
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
