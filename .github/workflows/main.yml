@@ -107,6 +107,7 @@ jobs:
 
       - name: Publish distribution 📦 to Anaconda if Push
         shell: bash -l {0}
+        working-directory: premise
 
 
         run: |
