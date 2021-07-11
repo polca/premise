@@ -116,6 +116,7 @@ jobs:
 
           PKG_NAME=premise
           mkdir ~/conda-bld
+          conda install conda-verify
           conda config --set anaconda_upload no
 
           conda build "conda/"
@@ -123,7 +124,11 @@ jobs:
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
 
-          ls $CONDA_BLD_PATH/noarch/
+          #ls $CONDA_BLD_PATH/noarch/
+
+          pwd
+          ls
+          
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
   Pypi:
