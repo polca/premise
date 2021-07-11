@@ -111,10 +111,10 @@ jobs:
         run: |
           $PATH
           pwd
-          ls
-          cd ..
+          ls -d */
+          cd /home/runner/work/premise
           pwd
-          ls
+          ls -d */
 
           PKG_NAME=premise
           mkdir ~/conda-bld
