@@ -82,7 +82,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.COVERALLS }}
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
 
-  publish - conda:
+  conda:
     name: Ex1 (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -117,7 +117,7 @@ jobs:
           ls $CONDA_BLD_PATH/noarch/
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
-  publish - Pypi:
+  Pypi:
     runs-on: ubuntu-latest
 
     steps:
