@@ -123,9 +123,8 @@ jobs:
 
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
+          export PATH="/usr/share/miniconda/bin:$PATH"
 
-          pwd
-          ls
           conda activate test
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
