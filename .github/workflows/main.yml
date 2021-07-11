@@ -111,20 +111,8 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          export CONDA_BLD_PATH=~/conda-bld
-          export VERSION=`date +%Y.%m.%d`
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          export PATH="/usr/share/anaconda3/bin:$PATH"
-          source activate test
-
-          echo $PATH
-
-          pwd
-          ls
 
           PKG_NAME=premise
-          mkdir ~/conda-bld
-          conda install conda-verify
           conda config --set anaconda_upload no
 
           conda build "conda/"
