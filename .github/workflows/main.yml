@@ -113,7 +113,6 @@ jobs:
 
         run: |
 
-          export VERSION=`date +%Y.%m.%d`
           PKG_NAME=premise
 
           conda install anaconda-client
