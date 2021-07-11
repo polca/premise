@@ -115,7 +115,7 @@ jobs:
           export VERSION=`date +%Y.%m.%d`
           export PATH="/usr/share/miniconda/bin:$PATH"
           export PATH="/usr/share/anaconda3/bin:$PATH"
-          source ~/.bash_profile
+          source activate test
 
           echo $PATH
 
