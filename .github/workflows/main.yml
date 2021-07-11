@@ -112,7 +112,7 @@ jobs:
         run: |
 
           pwd
-          ls -d */
+          ls
 
           PKG_NAME=premise
           mkdir ~/conda-bld
