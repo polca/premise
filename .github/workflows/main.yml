@@ -119,7 +119,7 @@ jobs:
           conda config --set anaconda_upload no
           conda build "conda/" --old-build-string
 
-          anaconda upload /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 -t ${{ secrets.ANACONDA_CLOUD }} -u ${{ secrets.CONDA_USERNAME }} --force
+          anaconda upload "/usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2" -t ${{ secrets.ANACONDA_CLOUD }} -u ${{ secrets.CONDA_USERNAME }} --force
 
   Pypi:
     runs-on: ubuntu-latest
