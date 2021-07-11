@@ -107,14 +107,14 @@ jobs:
 
       - name: Publish distribution 📦 to Anaconda if Push
         run: |
-          
+
           PKG_NAME=premise
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
 
           cd ..
 
-          conda build conda/
+          conda build ..
 
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
