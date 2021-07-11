@@ -121,8 +121,8 @@ jobs:
 
           conda build "conda/"
 
-          $ export CONDA_BLD_PATH=~/conda-bld
-          $ export VERSION=`date +%Y.%m.%d`
+          export CONDA_BLD_PATH=~/conda-bld
+          export VERSION=`date +%Y.%m.%d`
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
   Pypi:
