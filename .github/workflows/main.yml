@@ -99,6 +99,7 @@ jobs:
           allow-softlinks: true
           channel-priority: strict
           auto-update-conda: true
+          conda-build-version: 3.21.4
 
       - name: Conda info
         shell: bash -l {0}
@@ -111,8 +112,8 @@ jobs:
           conda install conda-build
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
-          echo */
-          conda build . conda/
+          ls
+          conda build .. conda/
 
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
