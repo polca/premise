@@ -126,7 +126,7 @@ jobs:
 
           pwd
           ls
-          conda activate base
+          conda activate test
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
   Pypi:
