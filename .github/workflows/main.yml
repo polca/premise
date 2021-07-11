@@ -95,7 +95,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-activate-base: true
-          activate-environment: ""
+          activate-environment: true
           python-version: ${{ matrix.python-version }}
           channels: conda-forge,cmutel,konstantinstadler,haasad,pascallesage,romainsacchi
           allow-softlinks: true
