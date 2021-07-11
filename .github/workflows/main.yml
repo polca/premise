@@ -106,16 +106,17 @@ jobs:
         run: conda info
 
       - name: Publish distribution 📦 to Anaconda if Push
-        shell: |
-          bash -l {0}
-          bash pwd
-          bash ls
-          bash cd ..
-          bash pwd
-          bash ls
+        shell: bash -l {0}
+
+
         run: |
-
-
+          echo $PATH
+          echo pwd
+          echo ls
+          cd ..
+          echo pwd
+          echo ls
+          
           PKG_NAME=premise
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
