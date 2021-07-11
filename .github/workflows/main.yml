@@ -120,7 +120,7 @@ jobs:
           PKG_NAME=premise
           mkdir ~/conda-bld
           conda install conda-verify
-          conda config --set anaconda_upload yes
+          conda config --set anaconda_upload no
 
           conda build "conda/"
 
