@@ -121,8 +121,8 @@ jobs:
           conda install anaconda-client
           conda config --set anaconda_upload no
           conda build "conda/" --old-build-string
-          echo $TOKEN
-          echo $USER
+          echo "$TOKEN"
+          echo "$USER"
 
           anaconda -t $TOKEN upload -u $USER /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
