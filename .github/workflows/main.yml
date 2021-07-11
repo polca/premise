@@ -96,7 +96,7 @@ jobs:
         with:
           auto-activate-base: true
           activate-environment: true
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.9
           channels: conda-forge,cmutel,konstantinstadler,haasad,pascallesage,romainsacchi
           allow-softlinks: true
           channel-priority: strict
