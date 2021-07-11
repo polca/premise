@@ -7,8 +7,15 @@
 # **PR**ospective **E**nviron**M**ental **I**mpact As**SE**ssment
 ## Coupling the ecoinvent database with projections from Integrated Assessment Models (IAM)
 
-![example workflow](https://github.com/romainsacchi/premise/actions/workflows/main.yml/badge.svg)
 
+<p align="center">
+  <a href="https://badge.fury.io/py/premise" target="_blank"><img src="https://badge.fury.io/py/premise.svg"></a>
+  <a href="https://github.com/romainsacchi/premise" target="_blank"><img src="https://github.com/romainsacchi/premise/actions/workflows/main.yml/badge.svg?branch=master"></a>
+  <a href="https://ci.appveyor.com/project/romainsacchi/premise" target="_blank"><img src="https://ci.appveyor.com/api/projects/status/github/romainsacchi/premise?svg=true"></a>
+  <a href="https://coveralls.io/github/romainsacchi/premise" target="_blank"><img src="https://coveralls.io/repos/github/romainsacchi/premise/badge.svg"></a>
+  <a href="https://premise.readthedocs.io/en/latest/" target="_blank"><img src="https://readthedocs.org/projects/premise/badge/?version=latest"></a>
+</p>
+ 
 Previously named *rmnd-lca*. *rmnd-lca* was designed to work with the IAM model REMIND only.
 As it now evolves towards a more IAM-neutral approach, a change of name was considered.
 
