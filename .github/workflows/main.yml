@@ -114,7 +114,7 @@ jobs:
         run: |
           export PATH=~/anaconda3/bin:$PATH
 
-          source activate test
+          conda activate test
           conda install anaconda-client
 
           PKG_NAME=premise
