@@ -114,7 +114,7 @@ jobs:
         run: |
           export PATH=~/anaconda3/bin:$PATH
 
-          
+
           conda install anaconda-client
 
           PKG_NAME=premise
@@ -122,7 +122,7 @@ jobs:
 
           conda build "conda/"
 
-          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
+          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} files /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
   Pypi:
     runs-on: ubuntu-latest
