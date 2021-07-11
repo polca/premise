@@ -103,6 +103,7 @@ jobs:
           conda-build-version: 3.21.4
           activate-environment: test
 
+
       - name: Conda info
         shell: bash -l {0}
         run: conda info
@@ -112,8 +113,10 @@ jobs:
 
         run: |
           export PATH=~/anaconda3/bin:$PATH
-          source ~/.bashrc
-          
+
+          source activate test
+          conda install anaconda-client
+
           PKG_NAME=premise
           conda config --set anaconda_upload no
 
