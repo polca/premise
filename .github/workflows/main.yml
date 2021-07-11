@@ -102,6 +102,8 @@ jobs:
           auto-update-conda: true
           conda-build-version: 3.21.4
           activate-environment: test
+          USER: ${{ secrets.CONDA_USERNAME }}
+          TOKEN: ${{ secrets.ANACONDA_CLOUD }}
 
 
       - name: Conda info
@@ -115,12 +117,15 @@ jobs:
 
           PKG_NAME=premise
 
+
           conda install anaconda-client
           conda config --set anaconda_upload no
           conda build "conda/" --old-build-string
+          $TOKEN
+          $USER
 
-          anaconda -t ${{ secrets.ANACONDA_CLOUD }} -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
-          
+          anaconda -t $TOKEN upload -u $USER /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
+
   Pypi:
     runs-on: ubuntu-latest
 
