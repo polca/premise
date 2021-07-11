@@ -110,12 +110,12 @@ jobs:
 
 
         run: |
-          echo $PATH
-          echo $pwd
-          echo $ls
+          echo "$PATH"
+          echo "$pwd"
+          echo "$ls"
           cd ..
-          echo $pwd
-          echo $ls
+          echo "$pwd"
+          echo "$ls"
 
           PKG_NAME=premise
           mkdir ~/conda-bld
