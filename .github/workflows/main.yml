@@ -94,6 +94,8 @@ jobs:
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
+          auto-activate-base: true
+          activate-environment: ""
           python-version: ${{ matrix.python-version }}
           channels: conda-forge,cmutel,konstantinstadler,haasad,pascallesage,romainsacchi
           allow-softlinks: true
@@ -109,11 +111,10 @@ jobs:
       - name: Publish distribution 📦 to Anaconda if Push
         run: |
           PKG_NAME=premise
-          conda install conda-build
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
-          ls
-          conda build .. conda/
+
+          conda build ../conda
 
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
