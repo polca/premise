@@ -101,6 +101,7 @@ jobs:
           channel-priority: strict
           auto-update-conda: true
           conda-build-version: 3.21.4
+          activate-environment: test
 
       - name: Conda info
         shell: bash -l {0}
@@ -113,7 +114,9 @@ jobs:
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
           export PATH="/usr/share/miniconda/bin:$PATH"
-          source activate test
+
+          echo $PATH
+
           pwd
           ls
 
