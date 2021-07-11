@@ -85,6 +85,7 @@ jobs:
   conda:
     name: Ex1 (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       matrix:
@@ -93,7 +94,7 @@ jobs:
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
-          activate-environment: base
+          activate-environment: test
           python-version: ${{ matrix.python-version }}
           channels: conda-forge,cmutel,konstantinstadler,haasad,pascallesage,romainsacchi
           allow-softlinks: true
