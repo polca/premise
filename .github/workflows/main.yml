@@ -113,7 +113,7 @@ jobs:
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
           export PATH="/usr/share/miniconda/bin:$PATH"
-          conda activate test
+          source activate test-environment
           pwd
           ls
 
