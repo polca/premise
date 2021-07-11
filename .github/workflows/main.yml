@@ -107,16 +107,14 @@ jobs:
 
       - name: Publish distribution 📦 to Anaconda if Push
         shell: bash -l {0}
-        working-directory: /home/runner/premise
-
 
         run: |
-          echo $PATH
-          echo $pwd
-          echo $ls
+          $PATH
+          pwd
+          ls
           cd ..
-          echo $pwd
-          echo $ls
+          pwd
+          ls
 
           PKG_NAME=premise
           mkdir ~/conda-bld
