@@ -111,6 +111,7 @@ jobs:
           conda install conda-build
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
+          echo */
           conda build . conda/
 
           export CONDA_BLD_PATH=~/conda-bld
