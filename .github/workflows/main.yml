@@ -103,8 +103,6 @@ jobs:
           auto-update-conda: true
           conda-build-version: 3.21.4
           activate-environment: test
-          USER: ${{ secrets.CONDA_USERNAME }}
-          TOKEN: ${{ secrets.ANACONDA_CLOUD }}
 
       - name: Conda info
         shell: bash -l {0}
