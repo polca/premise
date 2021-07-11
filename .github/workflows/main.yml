@@ -120,12 +120,9 @@ jobs:
           PKG_NAME=premise
           mkdir ~/conda-bld
           conda install conda-verify
-          conda config --set anaconda_upload no
+          conda config --set anaconda_upload yes
 
           conda build "conda/"
-
-
-
 
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
