@@ -116,15 +116,28 @@ jobs:
         run: |
 
           PKG_NAME=premise
+          USER=romainsacchi
 
-
-          conda install anaconda-client
+          mkdir ~/conda-bld
           conda config --set anaconda_upload no
+          export CONDA_BLD_PATH=~/conda-bld
+          export VERSION=`date +%Y.%m.%d`
           conda build "conda/" --old-build-string
-          echo "$TOKEN"
-          echo "$USER"
+          ls $CONDA_BLD_PATH/noarch/
+          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
-          anaconda upload /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
+#          PKG_NAME=premise
+
+
+#          conda install anaconda-client
+#          conda config --set anaconda_upload no
+#          conda build "conda/" --old-build-string
+#          echo "$TOKEN"
+#          echo "$USER"
+#          echo ${{ secrets.CONDA_USERNAME }}
+#          echo ${{ secrets.ANACONDA_CLOUD }}
+#
+#          anaconda upload /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
 
   Pypi:
     runs-on: ubuntu-latest
