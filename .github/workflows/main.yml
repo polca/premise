@@ -109,7 +109,7 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          cd home/runner/premise
+          cd /home/runner/premise
           pwd
           ls -d */
 
