@@ -112,6 +112,8 @@ jobs:
 
         run: |
           export PATH=~/anaconda3/bin:$PATH
+          source ~/.bashrc
+          
           PKG_NAME=premise
           conda config --set anaconda_upload no
 
