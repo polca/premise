@@ -83,13 +83,14 @@ jobs:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
 
   conda:
-    name: Ex1 (${{ matrix.python-version }}, ${{ matrix.os }})
+    name: (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    needs: build
 
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest"]
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
         python-version: ["3.9"]
     steps:
       - uses: actions/checkout@v2
@@ -104,7 +105,6 @@ jobs:
           activate-environment: test
           USER: ${{ secrets.CONDA_USERNAME }}
           TOKEN: ${{ secrets.ANACONDA_CLOUD }}
-
 
       - name: Conda info
         shell: bash -l {0}
@@ -126,21 +126,9 @@ jobs:
           ls $CONDA_BLD_PATH/noarch/
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
-#          PKG_NAME=premise
-
-
-#          conda install anaconda-client
-#          conda config --set anaconda_upload no
-#          conda build "conda/" --old-build-string
-#          echo "$TOKEN"
-#          echo "$USER"
-#          echo ${{ secrets.CONDA_USERNAME }}
-#          echo ${{ secrets.ANACONDA_CLOUD }}
-#
-#          anaconda upload /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
-
   Pypi:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - uses: actions/checkout@v2
