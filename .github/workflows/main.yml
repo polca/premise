@@ -110,7 +110,10 @@ jobs:
         shell: bash -l {0}
 
         run: |
-
+          export CONDA_BLD_PATH=~/conda-bld
+          export VERSION=`date +%Y.%m.%d`
+          export PATH="/usr/share/miniconda/bin:$PATH"
+          conda activate test
           pwd
           ls
 
@@ -121,11 +124,9 @@ jobs:
 
           conda build "conda/"
 
-          export CONDA_BLD_PATH=~/conda-bld
-          export VERSION=`date +%Y.%m.%d`
-          export PATH="/usr/share/miniconda/bin:$PATH"
 
-          conda activate test
+
+
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
   Pypi:
