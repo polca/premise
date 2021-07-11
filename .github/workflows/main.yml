@@ -124,12 +124,10 @@ jobs:
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
 
-          #ls $CONDA_BLD_PATH/noarch/
-
           pwd
           ls
 
-          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
+          echo anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u ${{ secrets.CONDA_USERNAME }} /usr/share/miniconda/conda-bld/noarch/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
   Pypi:
     runs-on: ubuntu-latest
