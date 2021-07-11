@@ -108,11 +108,11 @@ jobs:
       - name: Publish distribution 📦 to Anaconda if Push
         shell: |
           bash -l {0}
-          pwd
-          ls
-          cd ..
-          pwd
-          ls
+          bash pwd
+          bash ls
+          bash cd ..
+          bash pwd
+          bash ls
         run: |
 
 
