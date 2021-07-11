@@ -1,8 +1,6 @@
-{% set data = load_setup_py_data() %}
-
 package:
   name: premise
-  version: {{ data['version'] }}
+  version: {{ environ['VERSION'] }}
 
 source:
   path: ..
@@ -11,6 +9,9 @@ build:
   noarch: python
   number: 0
   script: python -m pip install --no-deps --ignore-installed .
+  script_env:
+    - VERSION
+    - CONDA_BLD_PATH
 
 requirements:
   build:
