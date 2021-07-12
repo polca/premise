@@ -1321,7 +1321,7 @@ class Electricity:
         # Sometimes, the efficiency factor from the IAM is nto defined
         # Hence, we filter for "nan" and return a scaling factor of 1.
 
-        if np.isnan(remind_eff):
+        if np.isnan(remind_eff) or remind_eff == 0:
             return 1
 
         with open(
