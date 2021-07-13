@@ -77,6 +77,10 @@ class Cement:
                 d_act[d] = wt.copy_to_new_location(ds, d)
                 d_act[d]["code"] = str(uuid.uuid4().hex)
 
+                for exc in ws.production(d_act[d]):
+                    if "input" in exc:
+                        exc.pop("input")
+
                 if "input" in d_act[d]:
                     d_act[d].pop("input")
 
@@ -662,14 +666,29 @@ class Cement:
             carbon_capture_rate = self.get_carbon_capture_rate(v["location"])
 
             # Update fossil CO2 exchange, add 525 kg of fossil CO_2 from calcination
-            fossil_co2_exc = [
-                e for e in v["exchanges"] if e["name"] == "Carbon dioxide, fossil"
-            ][0]
+            try:
+                fossil_co2_exc = [
+                    e for e in v["exchanges"] if e["name"] == "Carbon dioxide, fossil"
+                ][0]
 
-            fossil_co2_exc["amount"] = (
-                (fuel_fossil_co2_per_type.sum().values + 525) / 1000
-            ) * (1 - carbon_capture_rate)
-            fossil_co2_exc["uncertainty type"] = 0
+                fossil_co2_exc["amount"] = (
+                                                   (fuel_fossil_co2_per_type.sum().values + 525) / 1000
+                                           ) * (1 - carbon_capture_rate)
+                fossil_co2_exc["uncertainty type"] = 0
+
+            except IndexError:
+                # the fossil CO2 flow does not exist
+                amount = ((fuel_fossil_co2_per_type.sum().values + 525) / 1000 ) * (1 - carbon_capture_rate)
+                fossil_co2_exc = {
+                    "uncertainty type": 0,
+                    "loc": amount,
+                    "amount": amount,
+                    "type": "biosphere",
+                    "name": "Carbon dioxide, fossil",
+                    "unit": "kilogram",
+                    "categories": ("air",)
+                }
+                v["exchanges"].append(fossil_co2_exc)
 
             try:
                 # Update biogenic CO2 exchange
@@ -682,15 +701,15 @@ class Cement:
                     fuel_biogenic_co2_per_type.sum().values / 1000
                 ) * (1 - carbon_capture_rate)
                 biogenic_co2_exc["uncertainty type"] = 0
+
             except IndexError:
-                # There isn't a biogenic CO2 emissions exchange
+                # There isn't a biogenic CO2 emission exchange
+                amount = (fuel_biogenic_co2_per_type.sum().values / 1000) * (1 - carbon_capture_rate)
                 biogenic_co2_exc = {
                     "uncertainty type": 0,
-                    "loc": 1,
-                    "amount": (fuel_biogenic_co2_per_type.sum().values / 1000)
-                    * (1 - carbon_capture_rate),
+                    "loc": amount,
+                    "amount": amount,
                     "type": "biosphere",
-                    "production volume": 0,
                     "name": "Carbon dioxide, non-fossil",
                     "unit": "kilogram",
                     "input": ("biosphere3", "eba59fd6-f37e-41dc-9ca3-c7ea22d602c7"),

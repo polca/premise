@@ -9,7 +9,6 @@ def test_ecoinvent_to_REMIND():
     # CN is in CHA
     assert geomap.ecoinvent_to_iam_location("CN") == "CHA"
 
-
 def test_REMIND_to_ecoinvent():
     # DE and CH are in EUR and NEU
     assert "DE" in geomap.iam_to_ecoinvent_location("EUR")
