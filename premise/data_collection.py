@@ -1,13 +1,14 @@
-import csv
-from io import StringIO
-from pathlib import Path
-
-import pandas as pd
-from cryptography.fernet import Fernet
-
 from . import DATA_DIR
+import pandas as pd
+from pathlib import Path
+import csv
+from cryptography.fernet import Fernet
+from io import StringIO
+
 
 IAM_ELEC_MARKETS = DATA_DIR / "electricity" / "electricity_markets.csv"
+IAM_FUELS_MARKETS = DATA_DIR / "fuels" / "fuel_labels.csv"
+IAM_FUELS_EFFICIENCIES = DATA_DIR / "fuels" / "fuel_efficiencies.csv"
 IAM_ELEC_EFFICIENCIES = DATA_DIR / "electricity" / "electricity_efficiencies.csv"
 IAM_ELEC_EMISSIONS = DATA_DIR / "electricity" / "electricity_emissions.csv"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
@@ -34,76 +35,39 @@ class IAMDataCollection:
 
         self.gains_data = self.get_gains_data()
         self.gnr_data = self.get_gnr_data()
-        self.electricity_market_labels = self.get_iam_electricity_market_labels()
-        self.electricity_efficiency_labels = (
-            self.get_iam_electricity_efficiency_labels()
-        )
-        self.electricity_emission_labels = self.get_iam_electricity_emission_labels()
-        self.rev_electricity_market_labels = self.get_rev_electricity_market_labels()
-        self.rev_electricity_efficiency_labels = (
-            self.get_rev_electricity_efficiency_labels()
-        )
+        self.electricity_market_labels = self.get_iam_variable_labels(IAM_ELEC_MARKETS)
+        self.electricity_efficiency_labels = self.get_iam_variable_labels(IAM_ELEC_EFFICIENCIES)
+        self.electricity_emission_labels = self.get_iam_variable_labels(IAM_ELEC_EMISSIONS)
+
         self.electricity_markets = self.get_iam_electricity_markets()
         self.electricity_efficiencies = self.get_iam_electricity_efficiencies()
         self.electricity_emissions = self.get_gains_electricity_emissions()
         self.cement_emissions = self.get_gains_cement_emissions()
         self.steel_emissions = self.get_gains_steel_emissions()
+        self.fuel_market_labels = self.get_iam_variable_labels(IAM_FUELS_MARKETS)
+        self.fuel_efficiency_labels = self.get_iam_variable_labels(IAM_FUELS_EFFICIENCIES)
+        self.fuel_markets = self.get_iam_fuel_markets()
+        self.fuel_efficiencies = self.get_iam_fuel_efficiencies()
 
-    def get_iam_electricity_emission_labels(self):
+    def get_iam_variable_labels(self, filepath):
         """
-        Loads a csv file into a dictionary. This dictionary contains labels of electricity emissions
-        in the IAM selected.
+        Loads a csv file into a dictionary.
+        This dictionary contains common terminology to `premise`
+        (fuel names, electricity production technologies, etc.) and its
+        equivalent variable name in the IAM.
 
-        :return: dictionary that contains emission names equivalence
-        :rtype: dict
-        """
-        d = dict()
-        with open(IAM_ELEC_EMISSIONS) as f:
-            reader = csv.reader(f, delimiter=";")
-            for row in reader:
-                if row[0] == self.model:
-                    d[row[1]] = row[2]
-        return d
-
-    def get_iam_electricity_market_labels(self):
-        """
-        Loads a csv file into a dictionary. This dictionary contains labels of electricity markets
-        in the IAM.
-
-        :return: dictionary that contains market names equivalence
+        :return: dictionary that contains fuel production names equivalence
         :rtype: dict
         """
 
         d = dict()
-        with open(IAM_ELEC_MARKETS) as f:
+        with open(filepath) as f:
             reader = csv.reader(f, delimiter=";")
             for row in reader:
                 if row[0] == self.model:
                     d[row[1]] = row[2]
+
         return d
-
-    def get_iam_electricity_efficiency_labels(self):
-        """
-        Loads a csv file into a dictionary. This dictionary contains labels of electricity technologies efficiency
-        in the IAM.
-
-        :return: dictionary that contains market names equivalence
-        :rtype: dict
-        """
-
-        d = dict()
-        with open(IAM_ELEC_EFFICIENCIES) as f:
-            reader = csv.reader(f, delimiter=";")
-            for row in reader:
-                if row[0] == self.model:
-                    d[row[1]] = row[2]
-        return d
-
-    def get_rev_electricity_market_labels(self):
-        return {v: k for k, v in self.electricity_market_labels.items()}
-
-    def get_rev_electricity_efficiency_labels(self):
-        return {v: k for k, v in self.electricity_efficiency_labels.items()}
 
     def get_iam_data(self):
         """
@@ -120,6 +84,7 @@ class IAMDataCollection:
         file_ext = self.model + "_" + self.pathway + ".csv"
         filepath = Path(self.filepath_iam_files) / file_ext
 
+
         if self.key is None:
             # Uses a non-encrypted file
             try:
@@ -134,7 +99,7 @@ class IAMDataCollection:
                     encrypted_data = file.read()
 
             # create a temp csv-like file to pass to pandas.read_csv()
-            DATA = StringIO(str(encrypted_data, "latin-1"))
+            DATA = StringIO(str(encrypted_data, 'latin-1'))
 
         else:
             # Uses an encrypted file
@@ -145,24 +110,27 @@ class IAMDataCollection:
 
             # decrypt data
             decrypted_data = f.decrypt(encrypted_data)
-            DATA = StringIO(str(decrypted_data, "latin-1"))
+            DATA = StringIO(str(decrypted_data, 'latin-1'))
 
         if self.model == "remind":
             df = pd.read_csv(
-                DATA,
-                sep=";",
-                index_col=["Region", "Variable", "Unit"],
-                encoding="latin-1",
+                DATA, sep=";", index_col=["Region", "Variable", "Unit"], encoding="latin-1"
             ).drop(columns=["Model", "Scenario"])
 
             # Filter the dataframe
             list_var = ("SE", "Tech", "FE", "Production", "Emi|CCO2", "Emi|CO2")
 
+            # if new sub-European regions a represent, we remove EUR and NEU
+            if any(x in df.index.get_level_values("Region").unique() for x in ["ESC", "DEU", "NEN"]):
+                df = df.loc[~df.index.get_level_values("Region").isin(["EUR", "NEU"])]
+
         elif self.model == "image":
 
-            df = pd.read_csv(
-                DATA, index_col=[2, 3, 4], encoding="latin-1", sep=";"
-            ).drop(columns=["Model", "Scenario"])
+            df = pd.read_csv(DATA, index_col=[2, 3, 4],
+                             encoding="latin-1",
+                             sep=";").drop(
+                columns=["Model", "Scenario"]
+            )
 
             # Filter the dataframe
             list_var = (
@@ -171,13 +139,11 @@ class IAMDataCollection:
                 "Final Energy",
                 "Production",
                 "Emissions",
+                "Land Use",
+                "Emission Factor"
             )
         else:
-            raise ValueError(
-                "The IAM model name {} is not valid. Currently supported: 'remind' or 'image'".format(
-                    self.model
-                )
-            )
+            raise ValueError("The IAM model name {} is not valid. Currently supported: 'remind' or 'image'".format(self.model))
 
         if len(df.columns == 20):
             df.drop(columns=df.columns[-1], inplace=True)
@@ -316,9 +282,18 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         else:
             # Interpolation between two periods
-            data_to_return = self.data.loc[:, list_technologies, :] / self.data.loc[
+            data_to_return = self.data.loc[
                 :, list_technologies, :
-            ].groupby("region").sum(dim="variables")
+            ] / self.data.loc[:, list_technologies, :].groupby("region").sum(
+                dim="variables"
+            )
+
+            list_vars = [var for var in list(self.electricity_market_labels.keys())
+                                       if var != "Hydrogen"]\
+                if drop_hydrogen else list(self.electricity_market_labels.keys())
+
+            data_to_return.coords["variables"] = list_vars
+
             return data_to_return
 
     def get_iam_electricity_efficiencies(self, drop_hydrogen=True):
@@ -353,15 +328,33 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         else:
             # Interpolation between two periods
-            data_to_interp_from = self.data.loc[:, list_technologies, :]
+            data = self.data.loc[:, list_technologies, :]
 
-            if self.model == "remind":
-                return (
-                    data_to_interp_from.interp(year=self.year) / 100
-                )  # Percentage to ratio
+            data = (
+                    data.interp(year=self.year)
+                    / data.sel(year=2020)
+            )
 
-            if self.model == "image":
-                return data_to_interp_from.interp(year=self.year)
+            # If we are looking at a year post 2020
+            # and the ratio in efficiency change is inferior to 1
+            # we correct it to 1, as we do not accept
+            # that efficiency degrades over time
+            if self.year > 2020:
+                data.values[data.values < 1] = 1
+
+            # Inversely, if we are looking at a year prior to 2020
+            # and the ratio in efficiency change is superior to 1
+            # we correct it to 1, as we do not accept
+            # that efficiency in the past was higher than now
+            if self.year < 2020:
+                data.values[data.values > 1] = 1
+
+            # convert NaNs to ones
+            data = data.fillna(1)
+
+            data.coords["variables"] = list(self.electricity_efficiency_labels.keys())
+
+            return data
 
     def get_gains_electricity_emissions(self):
         """
@@ -427,3 +420,98 @@ class IAMDataCollection:
         else:
             # Interpolation between two periods
             return self.gains_data.sel(sector="STEEL")
+
+    def get_iam_fuel_markets(self):
+        """
+        This method retrieves the market share for each fuel-producing technology,
+        for a specified year, for each region provided by the IAM.
+
+        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
+        :rtype: xarray.core.dataarray.DataArray
+
+        """
+
+        list_technologies = list(self.fuel_market_labels.values())
+
+        # If the year specified is not contained within the range of years given by the IAM
+        if (
+            self.year < self.data.year.values.min()
+            or self.year > self.data.year.values.max()
+        ):
+            raise KeyError("year not valid, must be between 2005 and 2100")
+
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        else:
+
+            # sometimes, the World region is either neglected
+            # or wrongly evaluated
+            # so we fix that here
+
+            self.data.loc[dict(region="World", variables=list_technologies)] = self.data.loc[
+                dict(
+                    region=[r for r in self.data.coords["region"].values
+                            if r != "World"],
+                    variables=list_technologies
+                )
+            ].sum(dim="region")
+
+            # Interpolation between two periods
+            data_to_return = self.data.loc[
+                :, list_technologies, :
+            ].interp(year=self.year) / self.data.loc[:, list_technologies, :].interp(year=self.year).groupby("region").sum(
+                dim="variables"
+            )
+
+            data_to_return.coords["variables"] = list(self.fuel_market_labels.keys())
+
+            return data_to_return
+
+    def get_iam_fuel_efficiencies(self):
+        """
+        This method retrieves the change in fuel production efficiency between the year in question and 2020,
+        for each region provided by the IAM.
+        If the efficiency drops after 2020, we ignore it and keep the change in efficiency ratio to 1.
+
+        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
+        :rtype: xarray.core.dataarray.DataArray
+
+        """
+
+        list_technologies = list(self.fuel_efficiency_labels.values())
+
+        # If the year specified is not contained within the range of years given by the IAM
+        if (
+            self.year < self.data.year.values.min()
+            or self.year > self.data.year.values.max()
+        ):
+            raise KeyError("year not valid, must be between 2005 and 2100")
+
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        else:
+            # Interpolation between two periods
+            data_to_interp_from = self.data.loc[:, list_technologies, :]
+
+
+            data = (
+               data_to_interp_from.interp(year=self.year)
+                / data_to_interp_from.sel(year=2020)
+            )
+
+            # If we are looking at a year post 2020
+            # and the ratio in efficiency change is inferior to 1
+            # we correct it to 1, as we do not accept
+            # that efficiency degrades over time
+            if self.year > 2020:
+                data.values[data.values < 1] = 1
+
+            # Inversely, if we are looking at a year prior to 2020
+            # and the ratio in efficiency change is superior to 1
+            # we correct it to 1, as we do not accept
+            # that efficiency in the past was higher than now
+            if self.year < 2020:
+                data.values[data.values > 1] = 1
+
+            data.coords["variables"] = list(self.fuel_efficiency_labels.keys())
+
+            return data
+

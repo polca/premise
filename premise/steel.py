@@ -29,7 +29,7 @@ class Steel:
         self.iam_data = iam_data
         self.year = year
         self.steel_data = self.iam_data.data.interp(year=self.year)
-        self.geo = Geomap(model=model)
+        self.geo = Geomap(model=model, current_regions=iam_data.data.coords["region"].values.tolist())
         self.model = model
         mapping = InventorySet(self.db)
         self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
@@ -963,6 +963,8 @@ class Steel:
                 d_act_steel[steel][ds]["name"],
                 d_act_steel[steel][ds]["reference product"],
             )
+
+        print("Done!")
 
         return self.db
 

@@ -63,23 +63,9 @@ FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
 FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
-FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal.xlsx"
-)
-FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-biogas.xlsx"
-)
-FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas.xlsx"
-)
-FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas-CCS.xlsx"
-)
-FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-petroleum.xlsx"
-)
-FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass.xlsx"
+
+FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
@@ -88,6 +74,9 @@ FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
 FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
 FILEPATH_METHANOL_FUELS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
+)
+FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
@@ -102,7 +91,7 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
-FILEPATH_VARIOUS_VEHICLES = INVENTORY_DIR / "lci-various_vehicles.xlsx"
+FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILE_PATH_INVENTORIES_EI_37 = INVENTORY_DIR / "inventory_data_ei_37.pickle"
 FILE_PATH_INVENTORIES_EI_36 = INVENTORY_DIR / "inventory_data_ei_36.pickle"
 FILE_PATH_INVENTORIES_EI_35 = INVENTORY_DIR / "inventory_data_ei_35.pickle"
@@ -138,6 +127,17 @@ LIST_REMIND_REGIONS = [
     "SSA",
     "USA",
     "World",
+    "ESC",
+    "ECE",
+    "DEU",
+    "ESW",
+    "FRA",
+    "UKI",
+    "ENC",
+    "EWN",
+    "ECS",
+    "NEN",
+    "NES"
 ]
 
 LIST_IMAGE_REGIONS = [
@@ -175,8 +175,10 @@ LIST_TRANSF_FUNC = [
     "update_cement",
     "update_steel",
     "update_cars",
+    "update_two_wheelers",
     "update_trucks",
     "update_solar_PV",
+    "update_fuels",
 ]
 
 
@@ -548,48 +550,34 @@ class NewDatabase:
                 hydro.merge_inventory()
 
             for file in (
-                FILEPATH_SYNGAS_INVENTORIES,
-            #     FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
+              FILEPATH_SYNGAS_INVENTORIES,
+              FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
             ):
                 syngas = SyngasInventory(self.db, self.version, file)
                 syngas.merge_inventory()
-            #
-            # bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
-            # bio.merge_inventory()
-            #
+
+            bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
+            bio.merge_inventory()
+
             for file in (
                 FILEPATH_SYNFUEL_INVENTORIES,
-            #     FILEPATH_SYNFUEL_FROM_COAL_INVENTORIES,
-            #     FILEPATH_SYNFUEL_FROM_BIOGAS_INVENTORIES,
-            #     FILEPATH_SYNFUEL_FROM_BIOMASS_INVENTORIES,
-            #     FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES,
-            #     FILEPATH_SYNFUEL_FROM_NAT_GAS_INVENTORIES,
-            #     FILEPATH_SYNFUEL_FROM_NAT_GAS_CCS_INVENTORIES,
-            #     FILEPATH_SYNFUEL_FROM_PETROLEUM_INVENTORIES,
-            ):
+                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES
+                ):
                 synfuel = SynfuelInventory(self.db, self.version, file)
                 synfuel.merge_inventory()
-            #
+
             geo_heat = GeothermalInventory(
-                self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
+            self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
             )
             geo_heat.merge_inventory()
-            #
+
             for file in (
-                FILEPATH_METHANOL_FUELS_INVENTORIES,
-            #     FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,
-            #     FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES,
-            #     FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES,
-            #     FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES,
+              FILEPATH_METHANOL_FUELS_INVENTORIES,
+              FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES
             ):
 
                 lpg = LPGInventory(self.db, self.version, file)
                 lpg.merge_inventory()
-            #
-            # various_veh = VariousVehicles(
-            #     self.db, self.version, FILEPATH_VARIOUS_VEHICLES
-            # )
-            # various_veh.merge_inventory()
 
         print("Done!\n")
 
@@ -641,11 +629,10 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     iam_data=scenario["external data"],
                     year=scenario["year"],
+                    regions=scenario["fuels"]["regions"] if "fuels" in scenario else None
                 )
 
-                scenario["database"] = fuels.generate_regional_variants()
-
-
+                scenario["database"] = fuels.generate_fuel_markets()
 
     def update_cement(self):
         print("\n/////////////////// CEMENT ////////////////////")
@@ -741,21 +728,27 @@ class NewDatabase:
                         version=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
-                        regions=LIST_REMIND_REGIONS
-                        if scenario["model"] == "remind"
-                        else LIST_IMAGE_REGIONS,
+                        regions=scenario["external data"].data.coords["region"].values.tolist(),
+                        iam_data=scenario["external data"].data
                     )
 
                 scenario["database"] = cars.merge_inventory()
 
-                crs = Cars(
-                    db=scenario["database"],
-                    iam_data=scenario["external data"],
-                    pathway=scenario["pathway"],
+    def update_two_wheelers(self):
+        print("\n/////////////////// TWO-WHEELERS ////////////////////")
+
+        for scenario in self.scenarios:
+            if "exclude" not in scenario or "update_two_wheelers" not in scenario["exclude"]:
+
+                various_veh = VariousVehicles(
+                    database=scenario["database"],
+                    version=self.version,
+                    path=FILEPATH_TWO_WHEELERS,
                     year=scenario["year"],
-                    model=scenario["model"],
+                    regions=scenario["external data"].data.coords["region"].values.tolist(),
+                    model=scenario["model"]
                 )
-                scenario["database"] = crs.update_cars()
+                scenario["database"] = various_veh.merge_inventory()
 
     def update_trucks(self):
 
@@ -786,9 +779,8 @@ class NewDatabase:
                         version=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
-                        regions=LIST_REMIND_REGIONS
-                        if scenario["model"] == "remind"
-                        else LIST_IMAGE_REGIONS,
+                        regions=scenario["external data"].data.coords["region"].values.tolist(),
+                        iam_data=scenario["external data"].data,
                     )
 
                 scenario["database"] = trucks.merge_inventory()
@@ -810,6 +802,7 @@ class NewDatabase:
         Shortcut method to execute all transformation functions.
         """
 
+        self.update_two_wheelers()
         self.update_cars()
         self.update_trucks()
         self.update_electricity()

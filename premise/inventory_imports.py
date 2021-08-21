@@ -1,22 +1,18 @@
-import csv
-import pickle
-import sys
-import uuid
-from pathlib import Path
-
-import carculator
-import carculator_truck
-import numpy as np
+from . import DATA_DIR, INVENTORY_DIR
 import wurst
-import xarray as xr
+from prettytable import PrettyTable
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
-from prettytable import PrettyTable
-from wurst import searching as ws
-
-from . import DATA_DIR, INVENTORY_DIR
+import carculator
+import carculator_truck
+from pathlib import Path
+import numpy as np
 from .geomap import Geomap
+import sys
+import xarray as xr
+import pickle
 from .utils import *
+from wurst import transformations as wt
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
@@ -130,8 +126,7 @@ class BaseInventoryImport:
             [
                 (x["name"].lower(), x["reference product"].lower(), x["location"])
                 for x in self.import_db.data
-                if (x["name"].lower(), x["reference product"].lower(), x["location"])
-                in self.db_names
+                if (x["name"].lower(), x["reference product"].lower(), x["location"]) in self.db_names
             ]
         )
 
@@ -409,7 +404,6 @@ class BaseInventoryImport:
 class CarmaCCSInventory(BaseInventoryImport):
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -446,7 +440,6 @@ class CarmaCCSInventory(BaseInventoryImport):
 class DACInventory(BaseInventoryImport):
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -514,23 +507,11 @@ class BiofuelInventory(BaseInventoryImport):
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
-
-        # migration for ei 3.7
-        if self.version in ["3.7", "3.7.1"]:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_35_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
 
         # Migrations for 3.6
         if self.version == "3.6":
@@ -556,7 +537,6 @@ class HydrogenInventory(BaseInventoryImport):
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -599,7 +579,6 @@ class HydrogenBiogasInventory(BaseInventoryImport):
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -640,7 +619,6 @@ class BiogasInventory(BaseInventoryImport):
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -682,7 +660,6 @@ class SyngasInventory(BaseInventoryImport):
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -720,7 +697,6 @@ class SynfuelInventory(BaseInventoryImport):
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -754,13 +730,12 @@ class SynfuelInventory(BaseInventoryImport):
 
 class GeothermalInventory(BaseInventoryImport):
     """
-        Geothermal heat production, adapted from geothermal power production dataset from ecoinvent 3.6.
-    .
+    Geothermal heat production, adapted from geothermal power production dataset from ecoinvent 3.6.
+.
     """
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -789,7 +764,6 @@ class LPGInventory(BaseInventoryImport):
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -827,9 +801,11 @@ class VariousVehicles(BaseInventoryImport):
     Imports various future vehicles' inventories (two-wheelers, buses, trams, etc.).
     """
 
-    def __init__(self, database, version, path):
+    def __init__(self, database, version, path, year, regions, model):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
+        self.year = year
+        self.regions = regions
+        self.model = model
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -861,33 +837,102 @@ class VariousVehicles(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
+        # We filter electric vehicles by year fo manufacture
+        available_years = [2020, 2030, 2040, 2050]
+        closest_year = min(available_years, key=lambda x:abs(x-self.year))
+
+        list_vehicles = [
+            "Bicycle,", "Kick-scooter,",
+            "Moped,", "Scooter,", "Motorbike,"
+        ]
+
+        self.import_db.data = [
+            x for x in self.import_db.data
+            if not any(
+                y in x["name"]
+                for y in list_vehicles
+            ) or (
+                any(
+                    y in x["name"]
+                    for y in list_vehicles
+                ) and str(closest_year) in x["name"]
+                and "label-certified electricity" not in x["name"]
+            )
+        ]
+
+        list_new_ds = []
+
+        # create regional variants
+        for ds in self.import_db.data:
+            if "transport, " in ds["name"]:
+                # change fuel supply exchanges for ecoinvent ones
+                # so that it gets picked up by the fuels integration function
+                for exc in ds["exchanges"]:
+                    if "fuel supply for gasoline" in exc["name"]:
+                        exc["name"] = "market for petrol, low-sulfur"
+                        exc["product"] = "petrol, low-sulfur"
+                        exc["location"] = "RoW"
+                        if "input" in exc:
+                            exc.pop("input")
+
+                for region in self.regions:
+                    new_ds = wt.copy_to_new_location(ds, region)
+
+                    for exc in ws.production(new_ds):
+                        if "input" in exc:
+                            exc.pop("input")
+
+                    if "input" in new_ds:
+                        new_ds.pop("input")
+
+                    new_ds = relink_technosphere_exchanges(
+                        new_ds, self.db, self.model, iam_regions=self.regions
+                    )
+
+                    list_new_ds.append(new_ds)
+
+        self.import_db.data.extend(list_new_ds)
+
+        # remove empty fields
+        for x in self.import_db.data:
+            for k, v in list(x.items()):
+                if not v:
+                    del x[k]
+
+    def merge_inventory(self):
+
+        self.prepare_inventory()
+        self.db.extend(self.import_db.data)
+
+        print("Done!")
+
+        return self.db
 
 class PassengerCars(BaseInventoryImport):
     """
     Imports default inventories for passenger cars.
     """
 
-    def __init__(self, database, version, model, year, regions):
+    def __init__(self, database, version, model, year, regions, iam_data):
         super().__init__(database, version, Path("."))
 
         self.db = database
         self.regions = regions
         self.model = model
-        self.geomap = Geomap(model=model)
+        self.geomap = Geomap(model=model, current_regions=iam_data.coords["region"].values.tolist())
 
-        inventory_year = min(
-            [2020, 2025, 2030, 2040, 2045, 2050], key=lambda x: abs(x - year)
-        )
+        inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
+                             key=lambda x: abs(x - year))
         ver = version.replace(".1", "")
         ver = ver.replace(".", "")
-        filename = (
-            model + "_pass_cars_inventory_data_ei_37_" + str(inventory_year) + ".pickle"
-        )
+        filename = model \
+                   + "_pass_cars_inventory_data_ei_37_" + str(
+            inventory_year) + ".pickle"
         fp = INVENTORY_DIR / filename
 
         self.import_db = LCIImporter("passenger_cars")
 
-        with open(fp, "rb") as handle:
+        with open(fp, 'rb') as handle:
             self.import_db.data = pickle.load(handle)
 
     def load_inventory(self, path):
@@ -922,7 +967,7 @@ class PassengerCars(BaseInventoryImport):
 
         for x in self.import_db.data:
             x["code"] = str(uuid.uuid4().hex)
-            # x = relink_technosphere_exchanges(x, self.db, self.model)
+            #x = relink_technosphere_exchanges(x, self.db, self.model)
 
     def merge_inventory(self):
         self.prepare_inventory()
@@ -978,6 +1023,8 @@ class PassengerCars(BaseInventoryImport):
                     exc["product"] = new_supplier["reference product"]
                     exc["unit"] = new_supplier["unit"]
 
+
+
                 except ws.NoResults:
 
                     new_supplier = ws.get_one(
@@ -1002,32 +1049,30 @@ class PassengerCars(BaseInventoryImport):
 
         return self.db
 
-
 class Trucks(BaseInventoryImport):
     """
     Imports default inventories for trucks.
     """
 
-    def __init__(self, database, version, model, year, regions):
+    def __init__(self, database, version, model, year, regions, iam_data):
         super().__init__(database, version, Path("."))
 
         self.db = database
         self.regions = regions
-        self.geomap = Geomap(model=model)
+        self.geomap = Geomap(model=model, current_regions=iam_data.coords["region"].values.tolist())
 
-        inventory_year = min(
-            [2020, 2025, 2030, 2040, 2045, 2050], key=lambda x: abs(x - year)
-        )
+        inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
+                             key=lambda x: abs(x - year))
         ver = version.replace(".1", "")
         ver = ver.replace(".", "")
-        filename = (
-            model + "_trucks_inventory_data_ei_37_" + str(inventory_year) + ".pickle"
-        )
+        filename = model \
+                   + "_trucks_inventory_data_ei_37_" + str(
+            inventory_year) + ".pickle"
         fp = INVENTORY_DIR / filename
 
         self.import_db = LCIImporter("trucks")
 
-        with open(fp, "rb") as handle:
+        with open(fp, 'rb') as handle:
             self.import_db.data = pickle.load(handle)
 
     def load_inventory(self, path):
@@ -1082,7 +1127,7 @@ class Trucks(BaseInventoryImport):
                 exc
                 for exc in ds["exchanges"]
                 if "transport, freight, lorry" in exc["name"]
-                and exc["type"] == "technosphere"
+                   and exc["type"] == "technosphere"
             )
 
             for exc in excs:
@@ -1096,14 +1141,14 @@ class Trucks(BaseInventoryImport):
                 if ">32" in exc["name"]:
                     search_for = "transport, freight, lorry, fleet average, 40t"
                 if "unspecified" in exc["name"]:
-                    search_for = "transport, freight, lorry, fleet average"
+                    search_for = "market for transport, freight, lorry, unspecified"
 
                 if not any(
-                    x
-                    for x in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
-                    if x in exc["name"]
+                        x
+                        for x in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
+                        if x in exc["name"]
                 ):
-                    search_for = "transport, freight, lorry, fleet average"
+                    search_for = "market for transport, freight, lorry, unspecified"
 
                 try:
                     new_supplier = ws.get_one(
@@ -1127,7 +1172,7 @@ class Trucks(BaseInventoryImport):
 
                 except ws.NoResults:
 
-                    search_for = "transport, freight, lorry, fleet average"
+                    search_for = "market for transport, freight, lorry, unspecified"
 
                     try:
                         new_supplier = ws.get_one(
@@ -1148,7 +1193,7 @@ class Trucks(BaseInventoryImport):
 
                     except ws.NoResults:
 
-                        search_for = "transport, freight, lorry, fleet average"
+                        search_for = "market for transport, freight, lorry, unspecified"
 
                         try:
                             new_supplier = ws.get_one(
@@ -1194,7 +1239,6 @@ class Trucks(BaseInventoryImport):
 
         return self.db
 
-
 class AdditionalInventory(BaseInventoryImport):
     """
     Import additional inventories, if any.
@@ -1202,7 +1246,6 @@ class AdditionalInventory(BaseInventoryImport):
 
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
-        self.import_db = self.load_inventory(path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -1293,7 +1336,6 @@ class AdditionalInventory(BaseInventoryImport):
         # Check for duplicates
         self.check_for_duplicates()
 
-
 class CarculatorInventory(BaseInventoryImport):
     """
     Car models from the carculator project, https://github.com/romainsacchi/carculator
@@ -1312,7 +1354,7 @@ class CarculatorInventory(BaseInventoryImport):
     ):
         self.db_year = year
         self.model = model
-        self.geomap = Geomap(model=self.model)
+        self.geomap = Geomap(model=model, current_regions=iam_data.coords["region"].values.tolist())
         self.regions = regions
         self.fleet_file = fleet_file
         self.data = iam_data
@@ -1323,126 +1365,9 @@ class CarculatorInventory(BaseInventoryImport):
 
         super().__init__(database, version, Path("."))
 
-    def get_liquid_fuel_blend(self, allocate_all_synfuels):
-
-        if self.model == "remind":
-
-            if allocate_all_synfuels:
-                share_synfuel = self.data.sel(
-                    variables=["SE|Liquids|Hydrogen"]
-                ) / self.data.sel(variables="FE|Transport|Pass|Road|LDV|Liquids")
-
-                share_liquids = (
-                    self.data.sel(
-                        variables=[
-                            "FE|Transport|Liquids|Oil",
-                            "FE|Transport|Liquids|Biomass",
-                        ]
-                    )
-                    / self.data.sel(
-                        variables=[
-                            "FE|Transport|Liquids|Oil",
-                            "FE|Transport|Liquids|Biomass",
-                        ]
-                    ).sum(dim="variables")
-                )
-                share_liquids *= 1 - share_synfuel.values
-
-                share_liquids = xr.concat(
-                    [share_liquids, share_synfuel], dim="variables"
-                )
-
-                share_liquids = share_liquids.assign_coords(
-                    {
-                        "variables": [
-                            "liquid - fossil",
-                            "liquid - biomass",
-                            "liquid - synfuel",
-                        ]
-                    }
-                )
-
-                share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
-
-            else:
-
-                var = [
-                    "FE|Transport|Liquids|Oil",
-                    "FE|Transport|Liquids|Biomass",
-                    "FE|Transport|Liquids|Hydrogen",
-                ]
-
-                share_liquids = self.data.sel(variables=var)
-                share_liquids /= share_liquids.sum(dim="variables")
-
-                share_liquids = share_liquids.assign_coords(
-                    {
-                        "variables": [
-                            "liquid - fossil",
-                            "liquid - biomass",
-                            "liquid - synfuel",
-                        ]
-                    }
-                )
-
-                share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
-
-        if self.model == "image":
-            var = [
-                "Final Energy|Transportation|Freight|Liquids|Oil",
-                "Final Energy|Transportation|Freight|Liquids|Biomass",
-            ]
-
-            share_liquids = self.data.sel(variables=var)
-            share_liquids /= share_liquids.sum(dim="variables")
-
-            share_liquids = share_liquids.assign_coords(
-                {
-                    "variables": [
-                        "liquid - fossil",
-                        "liquid - biomass",
-                    ]
-                }
-            )
-
-            share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
-
-        return share_liquids
-
-    def get_gas_fuel_blend(self):
-
-        if self.model == "remind":
-
-            var = ["FE|Transport|Gases|Non-Biomass", "FE|Transport|Gases|Biomass"]
-
-            share_gas = self.data.sel(variables=var)
-            share_gas /= share_gas.sum(dim="variables")
-
-            share_gas = share_gas.assign_coords(
-                {"variables": ["gas - fossil", "gas - biomass"]}
-            )
-            share_gas = np.clip(share_gas.fillna(0), 0, 1)
-
-        if self.model == "image":
-
-            share_gas = xr.DataArray(
-                np.ones_like(
-                    self.data.sel(
-                        variables=["Final Energy|Transportation|Freight|Gases"]
-                    )
-                ),
-                dims=["region", "variables", "year"],
-                coords=[
-                    self.data.region.values,
-                    ["gas - fossil"],
-                    self.data.year.values,
-                ],
-            )
-
-        return share_gas
-
     def load_inventory(self, path):
-        """Create `carculator` fleet average inventories for a given range of years."""
+        """Create `carculator` fleet average inventories for a given range of years.
+        """
 
         cip = carculator.CarInputParameters()
         cip.static()
@@ -1455,9 +1380,6 @@ class CarculatorInventory(BaseInventoryImport):
         cm.set_all()
 
         fleet_array = carculator.create_fleet_composition_from_IAM_file(self.fleet_file)
-
-        liquid_fuel_blend = self.get_liquid_fuel_blend(allocate_all_synfuels=True)
-        gas_fuel_blend = self.get_gas_fuel_blend()
 
         import_db = None
 
@@ -1507,169 +1429,6 @@ class CarculatorInventory(BaseInventoryImport):
 
             bc = {
                 "country": region,
-                "fuel blend": {
-                    "petrol": {
-                        "primary fuel": {
-                            "type": "petrol",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - fossil", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values,
-                                0,
-                                1,
-                            )
-                            if "liquid - fossil" in liquid_fuel_blend.variables.values
-                            else np.ones_like(years),
-                        },
-                        "secondary fuel": {
-                            "type": "bioethanol - wheat straw",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - biomass", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "liquid - biomass"
-                                in liquid_fuel_blend.variables.values
-                                else np.zeros_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                        "tertiary fuel": {
-                            "type": "synthetic gasoline",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - synfuel", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "liquid - synfuel"
-                                in liquid_fuel_blend.variables.values
-                                else np.zeros_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                    },
-                    "diesel": {
-                        "primary fuel": {
-                            "type": "diesel",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - fossil", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "liquid - fossil"
-                                in liquid_fuel_blend.variables.values
-                                else np.ones_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                        "secondary fuel": {
-                            "type": "biodiesel - cooking oil",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - biomass", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "liquid - biomass"
-                                in liquid_fuel_blend.variables.values
-                                else np.zeros_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                        "tertiary fuel": {
-                            "type": "synthetic diesel",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - synfuel", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "liquid - synfuel"
-                                in liquid_fuel_blend.variables.values
-                                else np.zeros_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                    },
-                    "cng": {
-                        "primary fuel": {
-                            "type": "cng",
-                            "share": np.clip(
-                                gas_fuel_blend.sel(
-                                    variables="gas - fossil", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "gas - fossil" in gas_fuel_blend.variables.values
-                                else np.ones_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                        "secondary fuel": {
-                            "type": "biogas - biowaste",
-                            "share": np.clip(
-                                gas_fuel_blend.sel(
-                                    variables="gas - biomass", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "gas - biomass" in gas_fuel_blend.variables.values
-                                else 1
-                                - gas_fuel_blend.sel(
-                                    variables="gas - fossil", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values,
-                                0,
-                                1,
-                            ),
-                        },
-                    },
-                    "hydrogen": {
-                        "primary fuel": {
-                            "type": "electrolysis",
-                            "share": np.ones_like(years),
-                        }
-                    },
-                },
             }
 
             ic = carculator.InventoryCalculation(
@@ -1719,6 +1478,7 @@ class CarculatorInventory(BaseInventoryImport):
 
             # we want to rename the passenger car transport dataset
             # by removing the year in the name
+            # we also want to change the names of fuel supply exchanges
             for x in i.data:
                 if any(
                     y in x["name"]
@@ -1727,25 +1487,68 @@ class CarculatorInventory(BaseInventoryImport):
                         "fuel supply for ",
                         "electricity supply for ",
                         "electricity market for fuel preparation",
+                        "electricity market for energy storage",
                     ]
                 ):
-                    x["name"] = x["name"][:-6]
-                    for e in x["exchanges"]:
-                        if e["type"] == "production":
-                            e["name"] = x["name"]
+                    if "transport, passenger car, fleet average" in x["name"]:
+                        x["name"] = x["name"][:-6]
+                        for exc in ws.production(x):
+                            exc["name"] = exc["name"][:-6]
 
-                        if (
-                            any(
-                                f in e["name"]
-                                for f in [
-                                    "fuel supply for ",
-                                    "electricity supply for ",
-                                    "electricity market for fuel preparation",
-                                ]
-                            )
-                            and e["type"] == "technosphere"
-                        ):
-                            e["name"] = e["name"][:-6]
+                    if any(d in x["name"] for d in [
+                        "fuel supply for ",
+                        "electricity supply for ",
+                        "electricity market for fuel preparation",
+                    ]):
+                        i.data.remove(x)
+
+                    d_fuel_exchanges={
+                        "fuel supply for gasoline vehicles":{
+                            "name": "market for petrol, low-sulfur",
+                            "prod": "petrol, low-sulfur",
+                            "loc": "RoW"
+                        },
+                        "fuel supply for diesel vehicles":{
+                            "name": "market for diesel, low-sulfur",
+                            "prod": "diesel, low-sulfur",
+                            "loc": "RoW"
+                        },
+                        "fuel supply for gas vehicles":{
+                            "name": "market for natural gas, low pressure, vehicle grade",
+                            "prod": "natural gas, low pressure, vehicle grade",
+                            "loc": "GLO"
+                        },
+                        "fuel supply for hydrogen vehicles":{
+                            "name": "market for hydrogen, gaseous",
+                            "prod": "hydrogen, gaseous",
+                            "loc": "GLO"
+                        },
+                        "electricity supply for electric vehicles":{
+                            "name": "market group for electricity, low voltage",
+                            "prod": "electricity, low voltage",
+                            "loc": "RER"
+                        },
+                        "electricity market for fuel preparation":{
+                            "name": "market group for electricity, low voltage",
+                            "prod": "electricity, low voltage",
+                            "loc": "RER"
+                        },
+                        "electricity market for energy storage": {
+                            "name": "market group for electricity, low voltage",
+                            "prod": "electricity, low voltage",
+                            "loc": "CN"
+                        },
+                    }
+
+                    if "transport, passenger car, " in x["name"]:
+                        for exc in ws.technosphere(x):
+                            if any(d in exc["name"] for d in d_fuel_exchanges):
+                                for key in (key for key in d_fuel_exchanges if key in exc["name"]):
+                                    exc["name"] = d_fuel_exchanges[key]["name"]
+                                    exc["product"] = d_fuel_exchanges[key]["prod"]
+                                    exc["location"] = d_fuel_exchanges[key]["loc"]
+                                    if "input" in exc:
+                                        exc.pop("input")
 
             if r == 0:
                 import_db = i
@@ -1781,7 +1584,7 @@ class CarculatorInventory(BaseInventoryImport):
             for x in self.db
             if not any(y for y in activities_to_remove if y in x["name"])
         ]
-        self.db.extend(self.import_db)
+        self.db.extend(self.import_db.data)
 
         exchanges_to_modify = [
             "market for transport, passenger car, large size, petol, EURO 4",
@@ -1840,6 +1643,8 @@ class CarculatorInventory(BaseInventoryImport):
                     exc["product"] = new_supplier["reference product"]
                     exc["unit"] = new_supplier["unit"]
 
+        print("Done!")
+
         return self.db
 
 
@@ -1862,7 +1667,7 @@ class TruckInventory(BaseInventoryImport):
 
         self.db_year = year
         self.model = model
-        self.geomap = Geomap(model=self.model)
+        self.geomap = Geomap(model=model, current_regions=iam_data.coords["region"].values.tolist())
         self.regions = regions
         self.fleet_file = fleet_file
         self.filter = ["fleet average"]
@@ -1882,19 +1687,18 @@ class TruckInventory(BaseInventoryImport):
                     variables=["SE|Liquids|Hydrogen"]
                 ) / self.data.sel(variables="FE|Transport|Pass|Road|LDV|Liquids")
 
-                share_liquids = (
-                    self.data.sel(
-                        variables=[
-                            "FE|Transport|Liquids|Oil",
-                            "FE|Transport|Liquids|Biomass",
-                        ]
-                    )
-                    / self.data.sel(
-                        variables=[
-                            "FE|Transport|Liquids|Oil",
-                            "FE|Transport|Liquids|Biomass",
-                        ]
-                    ).sum(dim="variables")
+                share_liquids = self.data.sel(
+                    variables=[
+                        "FE|Transport|Liquids|Oil",
+                        "FE|Transport|Liquids|Biomass",
+                    ]
+                ) / self.data.sel(
+                    variables=[
+                        "FE|Transport|Liquids|Oil",
+                        "FE|Transport|Liquids|Biomass",
+                    ]
+                ).sum(
+                    dim="variables"
                 )
                 share_liquids *= 1 - share_synfuel.values
 
@@ -1947,12 +1751,7 @@ class TruckInventory(BaseInventoryImport):
             share_liquids /= share_liquids.sum(dim="variables")
 
             share_liquids = share_liquids.assign_coords(
-                {
-                    "variables": [
-                        "liquid - fossil",
-                        "liquid - biomass",
-                    ]
-                }
+                {"variables": ["liquid - fossil", "liquid - biomass",]}
             )
 
             share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
@@ -1968,31 +1767,29 @@ class TruckInventory(BaseInventoryImport):
             share_gas = self.data.sel(variables=var)
             share_gas /= share_gas.sum(dim="variables")
 
-            share_gas = share_gas.assign_coords(
-                {"variables": ["gas - fossil", "gas - biomass"]}
-            )
+            share_gas = share_gas.assign_coords({"variables": ["gas - fossil", "gas - biomass"]})
             share_gas = np.clip(share_gas.fillna(0), 0, 1)
 
         if self.model == "image":
 
             share_gas = xr.DataArray(
                 np.ones_like(
-                    self.data.sel(
-                        variables=["Final Energy|Transportation|Freight|Gases"]
-                    )
+                self.data.sel(variables=["Final Energy|Transportation|Freight|Gases"])
                 ),
                 dims=["region", "variables", "year"],
                 coords=[
                     self.data.region.values,
                     ["gas - fossil"],
                     self.data.year.values,
-                ],
-            )
+                ])
+
+
 
         return share_gas
 
     def load_inventory(self, path):
-        """Create `carculator_truck` fleet average inventories for a given range of years."""
+        """Create `carculator_truck` fleet average inventories for a given range of years.
+        """
 
         fleet_array = carculator_truck.create_fleet_composition_from_IAM_file(
             self.fleet_file
@@ -2017,9 +1814,6 @@ class TruckInventory(BaseInventoryImport):
         )
         tm = carculator_truck.TruckModel(array, cycle="Regional delivery", country="CH")
         tm.set_all()
-
-        liquid_fuel_blend = self.get_liquid_fuel_blend(allocate_all_synfuels=True)
-        gas_fuel_blend = self.get_gas_fuel_blend()
 
         import_db = None
 
@@ -2066,139 +1860,10 @@ class TruckInventory(BaseInventoryImport):
 
             bc = {
                 "country": region,
-                "fuel blend": {
-                    "petrol": {
-                        "primary fuel": {
-                            "type": "petrol",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - fossil", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values,
-                                0,
-                                1,
-                            )
-                            if "liquid - fossil" in liquid_fuel_blend.variables.values
-                            else np.ones_like(years),
-                        },
-                        "secondary fuel": {
-                            "type": "bioethanol - wheat straw",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - biomass", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "liquid - biomass"
-                                in liquid_fuel_blend.variables.values
-                                else np.zeros_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                    },
-                    "diesel": {
-                        "primary fuel": {
-                            "type": "diesel",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - fossil", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "liquid - fossil"
-                                in liquid_fuel_blend.variables.values
-                                else np.ones_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                        "secondary fuel": {
-                            "type": "biodiesel - cooking oil",
-                            "share": np.clip(
-                                liquid_fuel_blend.sel(
-                                    variables="liquid - biomass", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "liquid - biomass"
-                                in liquid_fuel_blend.variables.values
-                                else np.zeros_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                    },
-                    "cng": {
-                        "primary fuel": {
-                            "type": "cng",
-                            "share": np.clip(
-                                gas_fuel_blend.sel(
-                                    variables="gas - fossil", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "gas - fossil" in gas_fuel_blend.variables.values
-                                else np.ones_like(years),
-                                0,
-                                1,
-                            ),
-                        },
-                        "secondary fuel": {
-                            "type": "biogas - biowaste",
-                            "share": np.clip(
-                                gas_fuel_blend.sel(
-                                    variables="gas - biomass", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values
-                                if "gas - biomass" in gas_fuel_blend.variables.values
-                                else 1
-                                - gas_fuel_blend.sel(
-                                    variables="gas - fossil", region=region
-                                )
-                                .interp(
-                                    year=scope["year"],
-                                    kwargs={"fill_value": "extrapolate"},
-                                )
-                                .values,
-                                0,
-                                1,
-                            ),
-                        },
-                    },
-                    "hydrogen": {
-                        "primary fuel": {
-                            "type": "electrolysis",
-                            "share": np.ones_like(years),
-                        }
-                    },
-                },
             }
 
             ic = carculator_truck.InventoryCalculation(
-                tm,
-                scope=scope,
-                background_configuration=bc,
+                tm, scope=scope, background_configuration=bc,
             )
 
             i = ic.export_lci_to_bw(
@@ -2229,49 +1894,77 @@ class TruckInventory(BaseInventoryImport):
                         "fuel supply for",
                         "electricity supply for",
                         "electricity market for fuel preparation",
+                        "electricity market for energy storage",
                     ]
                 )
-                or str(self.db_year) in x["name"]
             ]
 
-            # we need to remove the electricity inputs in the fuel markets
-            # that are typically added when synfuels are part of the blend
-            for x in i.data:
-                if "fuel supply for " in x["name"]:
-                    for e in x["exchanges"]:
-                        if "electricity market for " in e["name"]:
-                            x["exchanges"].remove(e)
-
-            # we want to rename the fuel supply and lorry transport dataset
+            # we want to rename the lorry transport datasets
             # by removing the year in the name
+            # we also want to change the names of fuel supply exchanges
             for x in i.data:
-                if any(
-                    y in x["name"]
-                    for y in [
-                        "transport, freight, lorry, ",
-                        "fuel supply for ",
-                        "electricity supply for ",
-                        "electricity market for fuel preparation",
-                    ]
-                ):
+
+                if "transport, freight, lorry, " in x["name"]:
+
                     x["name"] = x["name"][:-6]
-                    for e in x["exchanges"]:
+                    for exc in ws.production(x):
+                        exc["name"] = exc["name"][:-6]
 
-                        if e["type"] == "production":
-                            e["name"] = x["name"]
+                if x["name"] == "transport, freight, lorry, fleet average":
+                    x["name"] = 'market for transport, freight, lorry, unspecified'
+                    x["reference product"] = 'transport, freight, lorry, unspecified'
+                    for exc in ws.production(x):
+                        exc["name"] = 'market for transport, freight, lorry, unspecified'
+                        exc["product"] = 'transport, freight, lorry, unspecified'
 
-                        if (
-                            any(
-                                f in e["name"]
-                                for f in [
-                                    "fuel supply for ",
-                                    "electricity supply for ",
-                                    "electricity market for fuel preparation",
-                                ]
-                            )
-                            and e["type"] == "technosphere"
-                        ):
-                            e["name"] = e["name"][:-6]
+                d_fuel_exchanges = {
+                    "fuel supply for gasoline vehicles": {
+                        "name": "market for petrol, low-sulfur",
+                        "prod": "petrol, low-sulfur",
+                        "loc": "RoW"
+                    },
+                    "fuel supply for diesel vehicles": {
+                        "name": "market for diesel, low-sulfur",
+                        "prod": "diesel, low-sulfur",
+                        "loc": "RoW"
+                    },
+                    "fuel supply for gas vehicles": {
+                        "name": "market for natural gas, low pressure, vehicle grade",
+                        "prod": "natural gas, low pressure, vehicle grade",
+                        "loc": "GLO"
+                    },
+                    "fuel supply for hydrogen vehicles": {
+                        "name": "market for hydrogen, gaseous",
+                        "prod": "hydrogen, gaseous",
+                        "loc": "GLO"
+                    },
+                    "electricity supply for electric vehicles": {
+                        "name": "market group for electricity, low voltage",
+                        "prod": "electricity, low voltage",
+                        "loc": "RER"
+                    },
+                    "electricity market for fuel preparation": {
+                        "name": "market group for electricity, low voltage",
+                        "prod": "electricity, low voltage",
+                        "loc": "RER"
+                    },
+                    "electricity market for energy storage": {
+                        "name": "market group for electricity, low voltage",
+                        "prod": "electricity, low voltage",
+                        "loc": "CN"
+                    },
+                }
+
+
+                for exc in ws.technosphere(x):
+                    if any(d in exc["name"] for d in d_fuel_exchanges):
+                        for key in (key for key in d_fuel_exchanges if key in exc["name"]):
+
+                            exc["name"] = d_fuel_exchanges[key]["name"]
+                            exc["product"] = d_fuel_exchanges[key]["prod"]
+                            exc["location"] = d_fuel_exchanges[key]["loc"]
+                            if "input" in exc:
+                                exc.pop("input")
 
             if r == 0:
                 import_db = i
@@ -2303,9 +1996,9 @@ class TruckInventory(BaseInventoryImport):
         self.db = [
             x
             for x in self.db
-            if not any(y for y in activities_to_remove if y in x["name"])
+            if not any(y in x["name"] for y in activities_to_remove)
         ]
-        self.db.extend(self.import_db)
+        self.db.extend(self.import_db.data)
 
         for ds in self.db:
             excs = (
@@ -2326,14 +2019,13 @@ class TruckInventory(BaseInventoryImport):
                 if ">32" in exc["name"]:
                     search_for = "transport, freight, lorry, fleet average, 40t"
                 if "unspecified" in exc["name"]:
-                    search_for = "transport, freight, lorry, fleet average"
+                    search_for = "market for transport, freight, lorry, unspecified"
 
                 if not any(
-                    x
-                    for x in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
-                    if x in exc["name"]
+                    x in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
+                    for x in exc["name"]
                 ):
-                    search_for = "transport, freight, lorry, fleet average"
+                    search_for = "market for transport, freight, lorry, unspecified"
 
                 try:
                     new_supplier = ws.get_one(
@@ -2357,7 +2049,7 @@ class TruckInventory(BaseInventoryImport):
 
                 except ws.NoResults:
 
-                    search_for = "transport, freight, lorry, fleet average"
+                    search_for = "market for transport, freight, lorry, unspecified"
 
                     try:
                         new_supplier = ws.get_one(
@@ -2371,14 +2063,14 @@ class TruckInventory(BaseInventoryImport):
                                     ),
                                 ),
                                 ws.contains(
-                                    "reference product", "transport, freight, lorry"
+                                    "reference product", "transport, freight, lorry, unspecified"
                                 ),
                             ],
                         )
 
                     except ws.NoResults:
 
-                        search_for = "transport, freight, lorry, fleet average"
+                        search_for = "market for transport, freight, lorry, unspecified"
 
                         try:
                             new_supplier = ws.get_one(
@@ -2386,7 +2078,7 @@ class TruckInventory(BaseInventoryImport):
                                 *[
                                     ws.equals("name", search_for),
                                     ws.contains(
-                                        "reference product", "transport, freight, lorry"
+                                        "reference product", "transport, freight, lorry, unspecified"
                                     ),
                                 ],
                             )
@@ -2418,5 +2110,7 @@ class TruckInventory(BaseInventoryImport):
                     exc["location"] = new_supplier["location"]
                     exc["product"] = new_supplier["reference product"]
                     exc["unit"] = new_supplier["unit"]
+
+        print("Done!")
 
         return self.db

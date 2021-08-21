@@ -70,4 +70,6 @@ class SolarPV:
                     exc["amount"] *= float(current_eff / new_eff)
                     d["parameters"] = {"efficiency": new_eff}
 
+        print("Done!")
+
         return self.db

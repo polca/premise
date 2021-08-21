@@ -1,17 +1,15 @@
-import uuid
-from copy import deepcopy
-from datetime import date
-from itertools import chain
-
-from constructive_geometries import resolved_row
-from wurst import log
-from wurst import searching as ws
-from wurst.errors import InvalidLink
-from wurst.searching import equals, get_many, get_one, reference_product
-from wurst.transformations.uncertainty import rescale_exchange
-
-from . import geomap
 from .export import *
+from wurst import searching as ws
+from datetime import date
+import uuid
+from itertools import chain
+from wurst import log
+from wurst.errors import InvalidLink
+from wurst.searching import reference_product, get_many, equals, get_one
+from wurst.transformations.uncertainty import rescale_exchange
+from constructive_geometries import resolved_row
+from copy import deepcopy
+from. import geomap
 
 CO2_FUELS = DATA_DIR / "fuel_co2_emission_factor.txt"
 LHV_FUELS = DATA_DIR / "fuels_lower_heating_value.txt"
@@ -28,7 +26,6 @@ EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 def eidb_label(model, scenario, year):
     return "ecoinvent_" + model + "_" + scenario + "_" + str(year)
-
 
 def get_fuel_co2_emission_factors():
     """
@@ -48,7 +45,6 @@ def get_fuel_co2_emission_factors():
 
     return d
 
-
 def get_lower_heating_values():
     """
     Loads a csv file into a dictionary. This dictionary contains lower heating values for a number of fuel types.
@@ -61,7 +57,6 @@ def get_lower_heating_values():
         d = dict(filter(None, csv.reader(f, delimiter=";")))
         d = {k: float(v) for k, v in d.items()}
         return d
-
 
 def get_efficiency_ratio_solar_PV(year, power):
     """
@@ -77,7 +72,6 @@ def get_efficiency_ratio_solar_PV(year, power):
         .to_xarray()
         .interp(year=year, power=power, kwargs={"fill_value": "extrapolate"})
     )
-
 
 def get_clinker_ratio_ecoinvent(version):
     """
@@ -96,7 +90,6 @@ def get_clinker_ratio_ecoinvent(version):
             d[(val[0], val[1])] = float(val[2])
     return d
 
-
 def get_clinker_ratio_remind(year):
     """
     Return an array with the average clinker-to-cement ratio per year and per region, as given by REMIND.
@@ -106,7 +99,6 @@ def get_clinker_ratio_remind(year):
     df = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
 
     return df.groupby(["region", "year"]).mean()["value"].to_xarray().interp(year=year)
-
 
 def get_steel_recycling_rates(year):
     """
@@ -125,7 +117,6 @@ def get_steel_recycling_rates(year):
         .interp(year=year)
     )
 
-
 def get_metals_recycling_rates(year):
     """
     Return an array with the average shares for some metals,
@@ -143,10 +134,8 @@ def get_metals_recycling_rates(year):
         .interp(year=year)
     )
 
-
 def rev_index(inds):
     return {v: k for k, v in inds.items()}
-
 
 def create_codes_and_names_of_A_matrix(db):
     """
@@ -156,15 +145,9 @@ def create_codes_and_names_of_A_matrix(db):
     :rtype: dict
     """
     return {
-        (
-            i["name"],
-            i["reference product"],
-            i["unit"],
-            i["location"],
-        ): i["code"]
+        (i["name"], i["reference product"], i["unit"], i["location"],): i["code"]
         for i in db
     }
-
 
 def add_modified_tags(original_db, scenarios):
     """
@@ -253,7 +236,6 @@ def add_modified_tags(original_db, scenarios):
                     exc["modified"] = True
 
     return scenarios
-
 
 def build_superstructure_db(origin_db, scenarios, db_name, fp):
     # Class `Export` to which the original database is passed
@@ -345,9 +327,11 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     # and set the exchange value similar to that
     # of the original database
 
-    list_scenarios = ["original"] + [
-        s["model"] + " - " + s["pathway"] + " - " + str(s["year"]) for s in scenarios
-    ]
+    list_scenarios = ["original"] + [s["model"]
+                    + " - "
+                    + s["pathway"]
+                    + " - "
+                    + str(s["year"]) for s in scenarios]
 
     for m in modified:
         for s in list_scenarios:
@@ -359,24 +343,14 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 else:
                     modified[m][s] = modified[m]["original"]
 
-    columns = [
-        "from activity name",
-        "from reference product",
-        "from location",
-        "from categories",
-        "from database",
-        "from key",
-        "to activity name",
-        "to reference product",
-        "to location",
-        "to categories",
-        "to database",
-        "to key",
-        "flow type",
-        "original",
-    ]
+    columns = ["from activity name", "from reference product", "from location", "from categories", "from database",
+               "from key", "to activity name", "to reference product", "to location", "to categories", "to database",
+               "to key", "flow type", "original"]
     columns.extend(
-        [a["model"] + " - " + a["pathway"] + " - " + str(a["year"]) for a in scenarios]
+        [
+            a["model"] + " - " + a["pathway"] + " - " + str(a["year"])
+            for a in scenarios
+        ]
     )
 
     print("Export a scenario difference file.")
@@ -399,9 +373,9 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 "",
                 db_name,
                 "",
-                "biosphere",
+                "biosphere"
             ]
-        elif m[1] == m[0] and any(v < 0 for v in modified[m].values()):
+        elif (m[1] == m[0] and any(v < 0 for v in modified[m].values())):
             d = [
                 m[1][0],
                 m[1][1],
@@ -415,7 +389,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 "",
                 db_name,
                 "",
-                "production",
+                "production"
             ]
         else:
             d = [
@@ -431,7 +405,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 "",
                 db_name,
                 "",
-                "technosphere",
+                "technosphere"
             ]
 
         for s in list_scenarios:
@@ -448,7 +422,9 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     if fp is not None:
         filepath = Path(fp)
     else:
-        filepath = DATA_DIR / "export" / "scenario diff files"
+        filepath = (
+                DATA_DIR / "export" / "scenario diff files"
+        )
 
     if not os.path.exists(filepath):
         os.makedirs(filepath)
@@ -477,8 +453,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 ds["database"],
                 ds["location"],
                 ds["unit"],
-            )
-            and modified[e]["original"] == 0
+            ) and modified[e]["original"] == 0
         ]:
             if isinstance(exc[1][1], tuple):
                 exc_to_add.append(
@@ -597,13 +572,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
 
 def relink_technosphere_exchanges(
-    ds,
-    data,
-    model,
-    exclusive=True,
-    drop_invalid=False,
-    biggest_first=False,
-    contained=True,
+    ds, data, model, exclusive=True, drop_invalid=False, biggest_first=False, contained=True, iam_regions=[]
 ):
     """Find new technosphere providers based on the location of the dataset.
     Designed to be used when the dataset's location changes, or when new datasets are added.
@@ -620,21 +589,20 @@ def relink_technosphere_exchanges(
         * ``drop_invalid``: Bool, default is ``False``. Delete exchanges for which no valid provider is available.
         * ``biggest_first``: Bool, default is ``False``. Determines search order when selecting provider locations. Only relevant is ``exclusive`` is ``True``.
         * ``contained``: Bool, default is ``True``. If true, only use providers whose location is completely within the ``ds`` location; otherwise use all intersecting locations.
+        * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
     Modifies the dataset in place; returns the modified dataset."""
     MESSAGE = "Relinked technosphere exchange of {}/{}/{} from {}/{} to {}/{}."
     DROPPED = "Dropped technosphere exchange of {}/{}/{}; no valid providers."
     new_exchanges = []
     technosphere = lambda x: x["type"] == "technosphere"
 
-    geomatcher = geomap.Geomap(model=model)
+    geomatcher = geomap.Geomap(model=model, current_regions=iam_regions)
 
     list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()]
 
     for exc in filter(technosphere, ds["exchanges"]):
 
-        possible_datasets = [
-            x for x in get_possibles(exc, data) if x["location"] in list_loc
-        ]
+        possible_datasets = [x for x in get_possibles(exc, data) if x["location"] in list_loc]
         possible_locations = [obj["location"] for obj in possible_datasets]
 
         if ds["location"] in possible_locations:
@@ -642,10 +610,7 @@ def relink_technosphere_exchanges(
             new_exchanges.append(exc)
             continue
 
-        possible_locations = [
-            (model.upper(), p) if p in geomatcher.iam_regions else p
-            for p in possible_locations
-        ]
+        possible_locations = [(model.upper(), p) if p in geomatcher.iam_regions else p for p in possible_locations]
 
         if len(possible_datasets) > 0:
 
@@ -666,10 +631,7 @@ def relink_technosphere_exchanges(
                 )
 
             kept = [
-                ds
-                for loc in gis_match
-                for ds in possible_datasets
-                if ds["location"] == loc
+                ds for loc in gis_match for ds in possible_datasets if ds["location"] == loc
             ]
 
             if kept:
@@ -685,6 +647,9 @@ def relink_technosphere_exchanges(
 
             if not kept and "GLO" in possible_locations:
                 kept = [obj for obj in possible_datasets if obj["location"] == "GLO"]
+
+            if not kept and any(x in possible_locations for x in ["RER", "EUR", "WEU"]):
+                kept = [obj for obj in possible_datasets if obj["location"] in ["RER", "EUR", "WEU"]]
 
             if not kept:
                 if drop_invalid:
