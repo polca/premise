@@ -1557,18 +1557,18 @@ class Fuels:
 
         # DAC datasets
         print("Generate region-specific direct air capture processes.")
-        #self.generate_DAC_activities()
+        self.generate_DAC_activities()
 
         # hydrogen
-        #self.generate_hydrogen_activities()
+        self.generate_hydrogen_activities()
 
         # biogas
         print("Generate region-specific biogas and syngas supply chains.")
-        #self.generate_biogas_activities()
+        self.generate_biogas_activities()
 
         # synthetic fuels
         print("Generate region-specific synthetic fuel supply chains.")
-        #self.generate_synthetic_fuel_activities()
+        self.generate_synthetic_fuel_activities()
 
         # biofuels
         print("Generate region-specific biofuel fuel supply chains.")
