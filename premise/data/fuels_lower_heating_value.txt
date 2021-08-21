@@ -3,19 +3,37 @@ lignite;9.9
 petroleum coke;31.3
 wood pellet;16.2
 wood chips;18.9
-natural gas, high pressure;47.1
-natural gas, low pressure;39.5
+natural gas, high pressure;47.5
+natural gas, low pressure;47.5
+natural gas;47.5
 heavy fuel oil;38.5
 light fuel oil;40.6
 biogas;21.5
+biomethane;47.5
 waste;14
 methane, fossil;50
 methane, biogenic;50
-diesel;48
-gasoline;42
+diesel;43
+gasoline;42.6
+petrol;42.6
 hydrogen;120
-bioethanol;26.8
-biodiesel;37.8
+bioethanol;26.5
+biodiesel;38
+bioethanol, woody;26.5
+bioethanol, grassy;26.5
+bioethanol, grain;26.5
+bioethanol, sugar;26.5
+biodiesel, oil;38
+methanol, wood;19.9
+methanol, grass;19.9
+petrol, synthetic, hydrogen;42.6
+petrol, synthetic, coal;42.6
+diesel, synthetic, hydrogen;43
+diesel, synthetic, coal;43
+diesel, synthetic, wood;43
+diesel, synthetic, wood, with CCS;43
+diesel, synthetic, grass;43
+diesel, synthetic, grass, with CCS;43
 liquified petroleum gas, natural;45.5
 liquified petroleum gas, synthetic;45.5
 uranium, enriched 3.8%, in fuel element for light water reactor; 4199040

@@ -1,3 +1,3 @@
-climate;sugar;oil;wood;grass
-temperate;sugarbeet;rapeseed;poplar, willow;switchgrass
-tropical;sugarcane;palm oil;eucalyptus;miscanthus
+climate;sugar;oil;wood;grass;grain
+temperate;sugarbeet;rapeseed;poplar;switchgrass;corn
+tropical;sugarcane;palm oil;eucalyptus;miscanthus;corn

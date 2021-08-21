@@ -1,22 +1,46 @@
-from wurst.geo import geomatcher
+from wurst import geomatcher
 from premise import DATA_DIR
+import json
 
 REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
-
+ADDITIONAL_DEFINITIONS = DATA_DIR / "additional_definitions.json"
 
 class Geomap:
     """
     Map ecoinvent locations to REMIND regions and vice-versa.
     """
 
-    def __init__(self, model):
+    def __init__(self, model, current_regions=[]):
 
         self.model = model
         self.geo = geomatcher
 
-        self.iam_regions = [x[1] for x in list(self.geo.keys()) if isinstance(x, tuple)
-                            and x[0] == self.model.upper()]
+        if not isinstance(current_regions, list):
+            current_regions = list(current_regions)
 
+        if len(current_regions) > 0:
+            self.add_or_remove_regions(current_regions)
+
+        self.iam_regions = [x[1] for x in list(self.geo.keys())
+                            if isinstance(x, tuple)
+                            and x[0] == self.model.upper()
+                            ]
+
+    def add_or_remove_regions(self, regions):
+
+        with open(ADDITIONAL_DEFINITIONS) as json_file:
+            additional_regions = json.load(json_file)
+
+        # add regions that do not have a topological definition in `wurst`
+        for r in regions:
+            if (self.model.upper(), r) not in self.geo.keys():
+                self.geo.add_definitions({r:additional_regions[r]}, self.model.upper())
+
+        for k in list(self.geo.keys()):
+            if isinstance(k, tuple) and k[0] == self.model.upper()\
+                    and k[1] not in regions:
+                self.geo[k].clear()
+                del self.geo[k]
 
     def iam_to_ecoinvent_location(self, location, contained=True):
         """
@@ -63,6 +87,19 @@ class Geomap:
         :rtype: str
         """
 
+        # First, it can be that the location is already
+        # an IAM location
+
+        list_IAM_regions = [
+            k[1]
+            for k in list(self.geo.keys())
+            if isinstance(k, tuple) and k[0].lower() == self.model.lower()
+        ]
+
+        if location in list_IAM_regions:
+            return location
+
+        # Second, it can be an ecoinvent region
         mapping = {
             "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
             "Europe without Switzerland and Austria": "EUR" if self.model == "remind" else "WEU",
@@ -85,106 +122,78 @@ class Geomap:
             "IAI Area, Asia, without China and GCC": "OAS" if self.model == "remind" else "SEAS",
             "Europe, without Russia and Turkey": "EUR" if self.model == "remind" else "WEU",
             "WECC": "USA",
+            "WEU": "EUR" if self.model == "remind" else "WEU",
             "UCTE": "EUR" if self.model == "remind" else "WEU",
             "UCTE without Germany": "EUR" if self.model == "remind" else "WEU",
             "NORDEL": "NEU" if self.model == "remind" else "WEU",
+            "ENTSO-E": "EUR" if self.model == "remind" else "WEU",
+            "RLA": "LAM" if self.model == "remind" else "RSAM",
+            "IAI Area, South America": "LAM" if self.model == "remind" else "RSAM",
+            "IAI Area, Russia & RER w/o EU27 & EFTA": "REF" if self.model == "remind" else "RUS",
+            "IAI Area, North America": "USA"
         }
-        if location in mapping:
-            return mapping[location]
 
-        try:
+        if location in mapping:
+            if mapping[location] in self.iam_regions:
+                return mapping[location]
+            # likely a case of missing "EUR" region
+            else:
+                return "DEU"
+
+        # If not, then we look for IAM regions that contain it
+        iam_location = [
+            r[1]
+            for r in self.geo.within(location)
+            if r[0] == self.model.upper() and r[1] != "World"
+        ]
+
+        # If not, then we look for IAM regions that intersects with it
+        if len(iam_location) == 0:
             iam_location = [
                 r[1]
-                for r in self.geo.within(location)
+                for r in self.geo.intersects(location)
                 if r[0] == self.model.upper() and r[1] != "World"
             ]
-        except KeyError:
-            print("Cannot find the IAM location for {} from IAM model {}.".format(location, self.model))
-            iam_location = ["World"]
 
-
-        mapping = {
-            ("AFR", "MEA"): "AFR",
-            ("AFR", "SSA"): "AFR",
-            ("EUR", "NEU"): "EUR",
-            ("EUR", "REF"): "EUR",
-            ("OAS", "CHA"): "OAS",
-            ("OAS", "EUR"): "OAS",
-            ("OAS", "IND"): "OAS",
-            ("OAS", "JPN"): "OAS",
-            ("OAS", "MEA"): "OAS",
-            ("OAS", "REF"): "OAS",
-            ("USA", "CAZ"): "USA",
-        }
-
-        # If we have more than one REMIND region
-        if len(iam_location) > 1:
-            print(f"more than one locations possible for {location}: {iam_location}")
-            # TODO: find a more elegant way to do that
-            for key, value in mapping.items():
-                # We need to find the most specific REMIND region
-                if len(set(iam_location).intersection(set(key))) == 2:
-                    iam_location.remove(value)
-            return iam_location[0]
-        elif len(iam_location) == 0:
-
-            # There are a few ecoinvent regions that do not match well
-            # with IMAGE regions
-
-            if self.model == "image":
-
-                d_ecoinvent_regions = {
-                    "ENTSO-E": "WEU",
-                    "RER": "WEU",
-                    "RNA": "USA",
-                    "RAS": "SEAS",
-                    "RAF": "RSAF",
-                    "Europe without Switzerland": "WEU",
-                    "RLA": "RSAF",
-                    #"XK": "WEU",
-                    "SS": "EAF",
-                    "IAI Area, Africa": "WAF",
-                    "UN-OCEANIA": "OCE",
-                    "UCTE": "CEU",
-                    "CU": "RCAM",
-                    "IAI Area, Asia, without China and GCC": "RSAS",
-                    "IAI Area, South America": "RSAM",
-                    "IAI Area, EU27 & EFTA": "WEU",
-                    "IAI Area, Russia & RER w/o EU27 & EFTA": "RUS"
-                }
-
-            else:
-                d_ecoinvent_regions = {
-                    "IAI Area, Russia & RER w/o EU27 & EFTA": "REF",
-                }
-
-            if location in d_ecoinvent_regions:
-                return d_ecoinvent_regions[location]
-            else:
-                print("no location for {}".format(location))
-
-            # It can also be that the location is already
-            # an IAM location
-
-            list_IAM_regions = [
-                k[1]
-                for k in list(self.geo.keys())
-                if isinstance(k, tuple) and k[0].lower() == self.model.lower()
+        # If not, then we look for IAM regions that are contained in it
+        if len(iam_location) == 0:
+            iam_location = [
+                r[1]
+                for r in self.geo.contained(location)
+                if r[0] == self.model.upper() and r[1] != "World"
             ]
 
-            if location in list_IAM_regions:
-                return location
+        if len(iam_location) == 0:
+            print("Cannot find the IAM location for {} from IAM model {}.".format(location, self.model))
+            return "World"
 
-            # Or it could be an ecoinvent region
-            try:
-                iam_location = self.geo.intersects(("ecoinvent", location))
-                iam_location = [i[1] for i in iam_location if i[0].lower() == self.model]
-                return iam_location[0]
-
-            except KeyError:
-                print("no location for {}".format(location))
-        else:
+        elif len(iam_location) == 1:
             return iam_location[0]
+        else:
+
+            if all(x in iam_location for x in ["NEU", "EUR"]):
+                return "NEU"
+            if all(x in iam_location for x in ["OAS", "JPN"]):
+                return "JPN"
+            if all(x in iam_location for x in ["CAZ", "USA"]):
+                return "CAZ"
+            if all(x in iam_location for x in ["OAS", "IND"]):
+                return "IND"
+            if all(x in iam_location for x in ["OAS", "CHA"]):
+                return "CHA"
+            if all(x in iam_location for x in ["OAS", "MEA"]):
+                return "MEA"
+            if all(x in iam_location for x in ["OAS", "REF"]):
+                return "REF"
+            if all(x in iam_location for x in ["OAS", "EUR"]):
+                return "EUR"
+            if all(x in iam_location for x in ["REF", "EUR"]):
+                return "REF"
+            if all(x in iam_location for x in ["MEA", "SSA"]):
+                return "MEA"
+
+            # more than one region is found
+            print(f"More than one region found for {location}:{iam_location}")
 
     def iam_to_GAINS_region(self, location):
         """

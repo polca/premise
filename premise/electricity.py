@@ -30,7 +30,7 @@ class Electricity:
         self.db = db
         self.iam_data = iam_data
         self.model = model
-        self.geo = Geomap(model=model)
+        self.geo = Geomap(model=model, current_regions=iam_data.data.coords["region"].values.tolist())
         self.production_per_tech = self.get_production_per_tech_dict()
         self.losses = self.get_losses_per_country_dict()
         self.scenario = pathway
@@ -349,16 +349,10 @@ class Electricity:
 
                 # Fourth, add the contribution of solar power
 
-                gen_tech = list(
-                    (
-                        tech
-                        for tech in self.iam_data.electricity_markets.coords["variables"].values
-                        if "solar" in tech.lower()
-                    )
-                )
+
                 solar_amount = 0
 
-                for technology in gen_tech:
+                for technology in (t for t in mix if "solar" in t.lower()):
                     # If the solar power technology contributes to the mix
                     if mix[technology] > 0:
                         # Fetch ecoinvent regions contained in the REMIND region
@@ -369,9 +363,7 @@ class Electricity:
                         solar_amount += amount
 
                         # Get the possible names of ecoinvent datasets
-                        ecoinvent_technologies = self.powerplant_map[
-                            self.iam_data.rev_electricity_market_labels[technology]
-                        ]
+                        ecoinvent_technologies = self.powerplant_map[technology]
 
                         # Fetch electricity-producing technologies contained in the REMIND region
                         suppliers = list(
@@ -926,7 +918,7 @@ class Electricity:
                     if "solar" in m.lower():
                         solar_amount += mix[m]
 
-                # Loop through the REMIND technologies
+                # Loop through the technologies
                 technologies = (tech for tech in mix if "solar" not in tech.lower())
                 for technology in technologies:
 
@@ -937,9 +929,7 @@ class Electricity:
                         amount = mix[technology]
 
                         # Get the possible names of ecoinvent datasets
-                        ecoinvent_technologies = self.powerplant_map[
-                            self.iam_data.rev_electricity_market_labels[technology]
-                        ]
+                        ecoinvent_technologies = self.powerplant_map[technology]
 
                         # Fetch electricity-producing technologies contained in the REMIND region
                         suppliers = list(
@@ -1208,7 +1198,10 @@ class Electricity:
     def find_fuel_efficiency_scaling_factor(self, ds, fuel_filters, technology):
         """
         This method calculates a scaling factor to change the process efficiency set by ecoinvent
-        to the efficiency given by the IAM.
+        to the efficiency ratio change given by the IAM.
+
+        If the efficiency ratio change (relative to 2020) equals one,
+        the ecoinvent assumed efficiency does not change.
 
         :param ds: wurst dataset of an electricity-producing technology
         :param fuel_filters: wurst filter to filter the fuel input exchanges
@@ -1235,10 +1228,11 @@ class Electricity:
             return 1
 
         remind_locations = self.geo.ecoinvent_to_iam_location(ds["location"])
-        remind_eff = (
+
+        remind_eff_change = (
             self.iam_data.electricity_efficiencies.loc[
                 dict(
-                    variables=self.iam_data.electricity_efficiency_labels[technology],
+                    variables=technology,
                     region=remind_locations,
                 )
             ]
@@ -1246,16 +1240,7 @@ class Electricity:
             .values
         )
 
-        # Sometimes, the efficiency factor is set to 1, when not value si available
-        # Therefore, we should ignore that
-        if remind_eff == 1:
-            return 1
-
-        # Sometimes, the efficiency factor from the IAM is nto defined
-        # Hence, we filter for "nan" and return a scaling factor of 1.
-
-        if np.isnan(remind_eff):
-            return 1
+        new_efficiency = ecoinvent_eff * remind_eff_change
 
         with open(
             DATA_DIR
@@ -1266,9 +1251,9 @@ class Electricity:
         ) as csv_file:
             writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
 
-            writer.writerow([ds["name"], ds["location"], ecoinvent_eff, remind_eff])
+            writer.writerow([ds["name"], ds["location"], ecoinvent_eff, new_efficiency])
 
-        return ecoinvent_eff / remind_eff
+        return 1 / remind_eff_change
 
     @staticmethod
     def update_ecoinvent_efficiency_parameter(ds, scaling_factor):
@@ -1284,7 +1269,7 @@ class Electricity:
 
         for key in possibles:
             if key in parameters:
-                ds["parameters"][key] /= scaling_factor
+                ds["parameters"][key] *= (1 / scaling_factor)
 
     def get_remind_mapping(self):
         """
@@ -1335,9 +1320,9 @@ class Electricity:
             )
         )
 
-        for remind_technology in technologies_map:
-            dict_technology = technologies_map[remind_technology]
-            print("Rescale inventories and emissions for", remind_technology)
+        for technology in technologies_map:
+            dict_technology = technologies_map[technology]
+            print("Rescale inventories and emissions for", technology)
 
             datasets = [d for d in self.db
                         if d["name"] in dict_technology["technology filters"]
@@ -1345,15 +1330,17 @@ class Electricity:
                         ]
 
             # no activities found? Check filters!
-            assert len(datasets) > 0, "No dataset found for {}".format(remind_technology)
+            assert len(datasets) > 0, "No dataset found for {}".format(technology)
             for ds in datasets:
                 # Modify using remind efficiency values:
                 scaling_factor = dict_technology["eff_func"](
-                    ds, dict_technology["fuel filters"], remind_technology
+                    ds, dict_technology["fuel filters"], technology
                 )
                 self.update_ecoinvent_efficiency_parameter(ds, scaling_factor)
 
-                # Rescale all the technosphere exchanges according to REMIND efficiency values
+                # Rescale all the technosphere exchanges
+                # according to the change in efficiency between `year` and 2020
+                # from the IAM efficiency values
                 wurst.change_exchanges_by_constant_factor(
                     ds,
                     float(scaling_factor),
@@ -1374,7 +1361,7 @@ class Electricity:
                             ),
                             pollutant=remind_emission_label,
                             sector=self.iam_data.electricity_emission_labels[
-                                remind_technology
+                                technology
                             ],
                         )
                     ].values.item(0)
@@ -1459,5 +1446,7 @@ class Electricity:
         print(
             "Log of created electricity markets saved in {}".format(DATA_DIR / "logs")
         )
+
+        print("Done!")
 
         return self.db

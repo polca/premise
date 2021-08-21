@@ -572,7 +572,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
 
 def relink_technosphere_exchanges(
-    ds, data, model, exclusive=True, drop_invalid=False, biggest_first=False, contained=True
+    ds, data, model, exclusive=True, drop_invalid=False, biggest_first=False, contained=True, iam_regions=[]
 ):
     """Find new technosphere providers based on the location of the dataset.
     Designed to be used when the dataset's location changes, or when new datasets are added.
@@ -589,13 +589,14 @@ def relink_technosphere_exchanges(
         * ``drop_invalid``: Bool, default is ``False``. Delete exchanges for which no valid provider is available.
         * ``biggest_first``: Bool, default is ``False``. Determines search order when selecting provider locations. Only relevant is ``exclusive`` is ``True``.
         * ``contained``: Bool, default is ``True``. If true, only use providers whose location is completely within the ``ds`` location; otherwise use all intersecting locations.
+        * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
     Modifies the dataset in place; returns the modified dataset."""
     MESSAGE = "Relinked technosphere exchange of {}/{}/{} from {}/{} to {}/{}."
     DROPPED = "Dropped technosphere exchange of {}/{}/{}; no valid providers."
     new_exchanges = []
     technosphere = lambda x: x["type"] == "technosphere"
 
-    geomatcher = geomap.Geomap(model=model)
+    geomatcher = geomap.Geomap(model=model, current_regions=iam_regions)
 
     list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()]
 
@@ -646,6 +647,9 @@ def relink_technosphere_exchanges(
 
             if not kept and "GLO" in possible_locations:
                 kept = [obj for obj in possible_datasets if obj["location"] == "GLO"]
+
+            if not kept and any(x in possible_locations for x in ["RER", "EUR", "WEU"]):
+                kept = [obj for obj in possible_datasets if obj["location"] in ["RER", "EUR", "WEU"]]
 
             if not kept:
                 if drop_invalid:

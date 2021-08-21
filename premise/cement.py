@@ -1,8 +1,5 @@
-import copy
-import uuid
 import numpy as np
 import wurst
-from wurst import searching as ws
 from wurst import transformations as wt
 from .activity_maps import InventorySet
 from .geomap import Geomap
@@ -25,7 +22,7 @@ class Cement:
         self.iam_data = iam_data
         self.year = year
         self.version = version
-        self.geo = Geomap(model=model)
+        self.geo = Geomap(model=model, current_regions=iam_data.data.coords["region"].values.tolist())
 
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio_remind = get_clinker_ratio_remind(self.year)
@@ -1661,5 +1658,7 @@ class Cement:
 
         print("Relink clinker market datasets to new clinker production datasets")
         self.relink_datasets("clinker production", "clinker")
+
+        print("Done!")
 
         return self.db
