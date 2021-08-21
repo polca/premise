@@ -515,13 +515,23 @@ class BiofuelInventory(BaseInventoryImport):
 
         # Migrations for 3.6
         if self.version == "3.6":
-            migrations = EI_35_36_MIGRATION_MAP
+            migrations = EI_37_36_MIGRATION_MAP
 
             Migration("biofuels_ecoinvent_36").write(
                 migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6",
+                description="Change technosphere names due to change from 3.7 to 3.6",
             )
             self.import_db.migrate("biofuels_ecoinvent_36")
+
+        # Migrations for 3.5
+        if self.version == "3.5":
+            migrations = EI_37_35_MIGRATION_MAP
+
+            Migration("biofuels_ecoinvent_35").write(
+                migrations,
+                description="Change technosphere names due to change from 3.7 to 3.5",
+            )
+            self.import_db.migrate("biofuels_ecoinvent_35")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()

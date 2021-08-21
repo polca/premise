@@ -97,3 +97,60 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 37;35;market for road maintenance;road maintenance;RER;;;GLO
 37;35;market for liquefied petroleum gas;liquefied petroleum gas;Europe without Switzerland;;;CH
 37;35;market for water, ultrapure;water, ultrapure;RER;;;GLO
+37;36;market for electric arc furnace dust;electric arc furnace dust;RER;market for dust, alloyed electric arc furnace steel;dust, alloyed electric arc furnace steel;GLO
+37;35;market for electric arc furnace dust;electric arc furnace dust;RER;market for dust, alloyed electric arc furnace steel;dust, alloyed electric arc furnace steel;GLO
+37;36;market for ammonia, anhydrous, liquid;ammonia, anhydrous, liquid;RER;market for ammonia, liquid;ammonia, liquid;;
+37;35;market for ammonia, anhydrous, liquid;ammonia, anhydrous, liquid;RER;market for ammonia, liquid;ammonia, liquid;;
+37;36;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;US;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;35;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;US;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;36;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;US;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;35;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;US;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;36;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;US;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;35;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;US;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;36;market for ammonia, anhydrous, liquid;ammonia, anhydrous, liquid;RNA;market for ammonia, liquid; ammonia, liquid;RoW
+37;35;market for ammonia, anhydrous, liquid;ammonia, anhydrous, liquid;RNA;market for ammonia, liquid; ammonia, liquid;RoW
+37;36;market for urea ammonium nitrate mix;urea ammonium nitrate mix;RoW;market for ammonium nitrate, as N;ammonium nitrate, as N;GLO
+37;35;market for urea ammonium nitrate mix;urea ammonium nitrate mix;RoW;market for ammonium nitrate, as N;ammonium nitrate, as N;GLO
+37;36;market for carbon dioxide, in chemical industry;carbon dioxide, in chemical industry;GLO;market for carbon dioxide, liquid; carbon dioxide, liquid;RoW
+37;35;market for carbon dioxide, in chemical industry;carbon dioxide, in chemical industry;GLO;market for carbon dioxide, liquid; carbon dioxide, liquid;RoW
+37;36;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;BR;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;35;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;BR;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;36;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;BR;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;35;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;BR;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;36;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;BR;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;35;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;BR;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;36;market for phosphoric acid, fertiliser grade, without water, in 70% solution state;phosphoric acid, fertiliser grade, without water, in 70% solution state;RoW;;;GLO
+37;35;market for phosphoric acid, fertiliser grade, without water, in 70% solution state;phosphoric acid, fertiliser grade, without water, in 70% solution state;RoW;;;GLO
+37;36;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;ES;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;35;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;ES;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;36;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;ES;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;35;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;ES;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;36;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;ES;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;35;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;ES;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;36;market for diammonium phosphate;diammonium phosphate;RER;diammonium phosphate production;phosphate fertiliser, as P2O5;RER
+37;35;market for diammonium phosphate;diammonium phosphate;RER;diammonium phosphate production;phosphate fertiliser, as P2O5;RER
+37;36;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;CH;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;35;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;CH;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;36;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;CH;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;35;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;CH;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;36;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;CH;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;35;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;CH;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;36;market for urea;urea;RER;market for urea, as N;urea, as N;GLO
+37;35;market for urea;urea;RER;market for urea, as N;urea, as N;GLO
+37;36;market for potassium sulfate;potassium sulfate;RER;market for potassium sulfate, as K2O;potassium sulfate, as K2O;GLO
+37;35;market for potassium sulfate;potassium sulfate;RER;market for potassium sulfate, as K2O;potassium sulfate, as K2O;GLO
+37;36;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;ID;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;35;market for inorganic nitrogen fertiliser, as N;inorganic nitrogen fertiliser, as N;ID;market for nitrogen fertiliser, as N;nitrogen fertiliser, as N;GLO
+37;36;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;ID;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;35;market for inorganic phosphorus fertiliser, as P2O5;inorganic phosphorus fertiliser, as P2O5;ID;market for phosphate fertiliser, as P2O5;phosphate fertiliser, as P2O5;GLO
+37;36;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;ID;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;35;market for inorganic potassium fertiliser, as K2O;inorganic potassium fertiliser, as K2O;ID;market for potassium fertiliser, as K2O;potassium fertiliser, as K2O;GLO
+37;35;market for compressed air, 1000 kPa gauge;compressed air, 1000 kPa gauge;RER;;;GLO
+37;35;market group for electricity, low voltage;electricity, low voltage;BR;market for electricity, low voltage;electricity, low voltage;
+37;35;market for tap water;tap water;BR;;;RoW
+37;35;market for eucalyptus seedling, for planting;eucalyptus seedling, for planting;GLO;market for tree seedling;tree seedling, for planting;
+37;35;market for gypsum, mineral;gypsum, mineral;RoW;;;GLO
+37;35;market for packaging, for fertilisers;packaging, for fertilisers;GLO;market for liquid packaging board container;liquid packaging board container;GLO
+37;35;market for packaging, for pesticides;packaging, for pesticides;GLO;market for liquid packaging board container;liquid packaging board container;GLO
+37;35;market for concrete block;concrete block;DE;;;GLO
+37;35;market for water, completely softened;water, completely softened;RER;water production, completely softened, from decarbonised water, at user;water, completely softened, from decarbonised water, at user;
