@@ -11,8 +11,10 @@ from constructive_geometries import resolved_row
 from copy import deepcopy
 from. import geomap
 
-CO2_FUELS = DATA_DIR / "fuel_co2_emission_factor.txt"
-LHV_FUELS = DATA_DIR / "fuels_lower_heating_value.txt"
+CO2_FUELS = DATA_DIR / "fuels" /"fuel_co2_emission_factor.txt"
+LHV_FUELS = DATA_DIR / "fuels" / "fuels_lower_heating_value.txt"
+CROPS_LAND_USE = DATA_DIR / "fuels" / "crops_land_use.csv"
+CROPS_LAND_USE_CHANGE_CO2 = DATA_DIR / "fuels" / "crops_land_use_change_CO2.csv"
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
@@ -26,6 +28,39 @@ EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 def eidb_label(model, scenario, year):
     return "ecoinvent_" + model + "_" + scenario + "_" + str(year)
+
+def get_land_use_for_crops(model):
+    """
+        Return a dictionary with crop names as keys and IAM labels as values
+        relating to land use per crop type
+
+        :return: dict
+        """
+    d = {}
+    with open(CROPS_LAND_USE) as f:
+        r = csv.reader(f, delimiter=";")
+        for row in r:
+            if row[0] == model:
+                d[row[1]] = row[2]
+
+    return d
+
+def get_land_use_change_CO2_for_crops(model):
+    """
+        Return a dictionary with crop names as keys and IAM labels as values
+        relating to land use change CO2 per crop type
+
+        :return: dict
+        """
+    d = {}
+    with open(CROPS_LAND_USE_CHANGE_CO2) as f:
+        r = csv.reader(f, delimiter=";")
+        for row in r:
+            if row[0] == model:
+                d[row[1]] = row[2]
+
+    return d
+
 
 def get_fuel_co2_emission_factors():
     """

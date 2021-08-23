@@ -154,3 +154,7 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 37;35;market for packaging, for pesticides;packaging, for pesticides;GLO;market for liquid packaging board container;liquid packaging board container;GLO
 37;35;market for concrete block;concrete block;DE;;;GLO
 37;35;market for water, completely softened;water, completely softened;RER;water production, completely softened, from decarbonised water, at user;water, completely softened, from decarbonised water, at user;
+37;36;market for ammonium sulfate;ammonium sulfate;RER;market for ammonium sulfate, as N;ammonium sulfate, as N;GLO
+37;35;market for ammonium sulfate;ammonium sulfate;RER;market for ammonium sulfate, as N;ammonium sulfate, as N;GLO
+37;36;transport, freight, sea, tanker for liquefied natural gas;transport, freight, sea, tanker for liquefied natural gas;RoW;;;GLO
+37;35;transport, freight, sea, tanker for liquefied natural gas;transport, freight, sea, tanker for liquefied natural gas;RoW;transport, freight, sea, liquefied natural gas;transport, freight, sea, liquefied natural gas;GLO

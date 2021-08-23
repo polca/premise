@@ -12,6 +12,12 @@ remind;diesel, synthetic, wood;SE|Liquids|Biomass|Biofuel|BioFTR|w/o CCS
 remind;diesel, synthetic, wood, with CCS;SE|Liquids|Biomass|Biofuel|BioFTRC|w/ CCS
 remind;natural gas;SE|Gases|Non-Biomass
 remind;biomethane;SE|Gases|Biomass
+remind;hydrogen, electrolysis;SE|Hydrogen|Electricity
+remind;hydrogen, biogas;SE|Hydrogen|Biomass|w/o CCS
+remind;hydrogen, biogas, with CCS;SE|Hydrogen|Biomass|w/ CCS
+remind;hydrogen, nat. gas;SE|Hydrogen|Gas|w/o CCS
+remind;hydrogen, nat. gas, with CCS;SE|Hydrogen|Gas|w/ CCS
+remind;hydrogen, coal;SE|Hydrogen|Coal|w/o CCS
 image;diesel;Secondary Energy|Consumption|Liquids|Fossil
 image;petrol;Secondary Energy|Consumption|Liquids|Fossil
 image;bioethanol, woody;Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody

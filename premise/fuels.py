@@ -1,4 +1,3 @@
-from wurst import searching as ws
 from wurst import transformations as wt
 import wurst
 from .utils import *
@@ -40,6 +39,8 @@ class Fuels:
         mapping = InventorySet(self.db)
         self.fuels_map = mapping.generate_fuel_map()
         self.fuel_co2 = get_fuel_co2_emission_factors()
+        self.land_use_per_crop_type = get_land_use_for_crops(model=self.model)
+        self.land_use_change_CO2_per_crop_type = get_land_use_change_CO2_for_crops(model=self.model)
         self.new_fuel_markets = {}
 
     def get_crop_climate_mapping(self):
@@ -173,6 +174,26 @@ class Fuels:
                 )
 
                 self.db.append(ds)
+
+    def find_transport_activity(self, items_to_look_for, items_to_exclude, loc):
+
+        try:
+            ds = ws.get_one(
+                self.db,
+                *[ws.contains("name", i)
+                  for i in items_to_look_for],
+                ws.doesnt_contain_any("name", items_to_exclude),
+                ws.equals("location", loc)
+            )
+        except ws.NoResults:
+            ds = ws.get_one(
+                self.db,
+                *[ws.contains("name", i)
+                  for i in items_to_look_for],
+                ws.doesnt_contain_any("name", items_to_exclude),
+            )
+
+        return (ds["name"], ds["reference product"], ds["unit"], ds["location"])
 
     def generate_hydrogen_activities(self):
         """
@@ -369,7 +390,7 @@ class Fuels:
                         "market for transport, freight, lorry, unspecified",
                         "transport, freight, lorry, unspecified",
                         "ton kilometer",
-                        "RER",
+                        "RER"
                     )
                 ],
                 "state": ["gaseous", "liquid", "liquid organic compound"],
@@ -377,12 +398,13 @@ class Fuels:
             },
             "ship": {
                 "type": [
-                    (
-                        "transport, freight, sea, tanker for liquefied natural gas",
-                        "transport, freight, sea, tanker for liquefied natural gas",
-                        "ton kilometer",
-                        "RoW",
+
+                    self.find_transport_activity(
+                        items_to_look_for=["market for transport, freight, sea", "liquefied"],
+                        items_to_exclude=["other"],
+                        loc="RoW"
                     )
+
                 ],
                 "state": ["liquid"],
                 "distance": [2000, 5000],
@@ -925,70 +947,45 @@ class Fuels:
 
         fuel_activities = {
             "methanol": [
-                "methanol synthesis, hydrogen from electrolysis, CO2 from DAC",
-                "methanol distillation, hydrogen from electrolysis, CO2 from DAC",
-                "liquefied petroleum gas production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation",
-                "liquefied petroleum gas production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation",
-                "gasoline production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation",
-                "gasoline production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation",
-                "diesel production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation",
-                "diesel production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation",
-                "kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation",
-                "kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation",
-                "gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station",
-                "diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station",
-                "kerosene production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station",
-                "liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station",
-                "gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station",
-                "diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station",
-                "kerosene production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station",
-                "liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station",
-            ],
+                "methanol", "hydrogen from electrolysis", "energy allocation"
+                ],
+            "methanol, from coal": [
+                "methanol", "hydrogen from coal gasification", "energy allocation"
+                ],
             "fischer-tropsch": [
-                "Carbon monoxide, from RWGS",
-                "Syngas, RWGS, Production",
-                "Diesel production, synthetic, Fischer Tropsch process, energy allocation",
-                "Naphtha production, synthetic, Fischer Tropsch process, energy allocation",
-                "Kerosene production, synthetic, Fischer Tropsch process, energy allocation",
-                "Lubricating oil production, synthetic, Fischer Tropsch process, energy allocation",
-                "Diesel production, synthetic, Fischer Tropsch process, economic allocation",
-                "Naphtha production, synthetic, Fischer Tropsch process, economic allocation",
-                "Kerosene production, synthetic, Fischer Tropsch process, economic allocation",
-                "diesel production, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station",
-                "kerosene production, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station",
-                "diesel production, synthetic, from electrolysis-based hydrogen, economic allocation, at fuelling station",
-                "kerosene production, synthetic, from electrolysis-based hydrogen, economic allocation, at fuelling station",
-            ],
+                "Fischer Tropsch process", "hydrogen from electrolysis", "energy allocation"
+                ],
             "fischer-tropsch, from woody biomass": [
-                "Carbon monoxide, from RWGS, hydrogen from wood gasification",
-                "Syngas, RWGS, Production, hydrogen from wood gasification",
-                "Diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation",
-                "Naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation",
-                "Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation",
-                "Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation",
-                "Diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, economic allocation",
-                "Naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, economic allocation",
-                "Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, economic allocation",
-                "diesel production, synthetic, from woody biomass-based hydrogen, energy allocation, at fuelling station",
-                "kerosene production, synthetic, from woody biomass-based hydrogen, energy allocation, at fuelling station",
-                "diesel production, synthetic, from woody biomass-based hydrogen, economic allocation, at fuelling station",
-                "kerosene production, synthetic, from woody biomass-based hydrogen, economic allocation, at fuelling station",
-            ],
+                "Fischer Tropsch process", "hydrogen from wood gasification", "energy allocation"
+                ],
+
+            "fischer-tropsch, from coal": [
+                "Fischer Tropsch process", "hydrogen from coal gasification", "energy allocation"
+                ],
         }
 
         for region in self.list_iam_regions:
             for fuel in fuel_activities:
-                for f in fuel_activities[fuel]:
 
-                    ds = wt.copy_to_new_location(
-                        ws.get_one(self.original_db, ws.equals("name", f)), region
+                filter_ds = ws.get_many(
+                    self.original_db,
+                    *[
+                        ws.contains("name", n)
+                        for n in fuel_activities[fuel]
+                    ]
+                )
+
+                for ds in filter_ds:
+
+                    ds_copy = wt.copy_to_new_location(
+                        ds, region
                     )
 
-                    for exc in ws.production(ds):
+                    for exc in ws.production(ds_copy):
                         if "input" in exc:
                             exc.pop("input")
 
-                    for exc in ws.technosphere(ds):
+                    for exc in ws.technosphere(ds_copy):
                         if "carbon dioxide, captured from atmosphere" in exc["name"]:
                             exc[
                                 "name"
@@ -998,9 +995,9 @@ class Fuels:
                             ] = "carbon dioxide, captured from the atmosphere"
                             exc["location"] = region
 
-                    ds = relink_technosphere_exchanges(ds, self.db, self.model)
+                    ds_copy = relink_technosphere_exchanges(ds_copy, self.db, self.model)
 
-                    self.db.append(ds)
+                    self.db.append(ds_copy)
 
     def get_biofuel_production_volume(self, region, fuel_label):
         """ Fetch from the IAM data the consumption (or production) volume. """
@@ -1060,11 +1057,8 @@ class Fuels:
                     for label in self.fuel_labels:
                         if crop_type in label:
 
-                            ds[
-                                "production volume"
-                            ] = self.iam_data.fuel_markets.sel(
-                                region=region,
-                                variables=label
+                            ds["production volume"] = self.iam_data.fuel_markets.sel(
+                                region=region, variables=label
                             ).values
 
                     # if this is a fuel conversion process
@@ -1078,15 +1072,24 @@ class Fuels:
                         # modify efficiency
                         # fetch the `progress factor`, compared to 2020
 
-                        progress_factor = self.iam_data.fuel_efficiencies.sel(
-                            region=region,
-                            variables=[v for v in self.iam_data.fuel_efficiencies.coords["variables"].values
-                                       if crop_type.lower() in v.lower()
-                                       and any(x.lower() in v.lower() for x in [
-                                            "bioethanol",
-                                            "biodiesel"
-                                ])]
-                        ).sum(dim="variables").values
+                        progress_factor = (
+                            self.iam_data.fuel_efficiencies.sel(
+                                region=region,
+                                variables=[
+                                    v
+                                    for v in self.iam_data.fuel_efficiencies.coords[
+                                        "variables"
+                                    ].values
+                                    if crop_type.lower() in v.lower()
+                                    and any(
+                                        x.lower() in v.lower()
+                                        for x in ["bioethanol", "biodiesel"]
+                                    )
+                                ],
+                            )
+                            .sum(dim="variables")
+                            .values
+                        )
 
                         # Rescale all the technosphere exchanges according to the IAM efficiency values
 
@@ -1114,114 +1117,113 @@ class Fuels:
                                 "comment"
                             ] += "Biodiesel has a combustion CO2 emission factor of 2.85 kg CO2/kg."
 
-                    if self.model == "image":
-                        # if this is a farming activity
-                        # and if the product (crop) is not a residue
-                        if "farming and supply" in ds["name"].lower():
+                    # if this is a farming activity
+                    # and if the product (crop) is not a residue
+                    # and if we have land use info from the IAM
+                    if "farming and supply" in ds["name"].lower()\
+                            and crop_type.lower() in self.land_use_per_crop_type:
 
-                            # lower heating value, as received
-                            lhv_ar = ds["LHV [MJ/kg dry]"] * (
+                        # lower heating value, as received
+                        lhv_ar = ds["LHV [MJ/kg dry]"] * (
+                            1 - ds["Moisture content [% wt]"]
+                        )
+
+                        for exc in ds["exchanges"]:
+                            # we adjust the land use
+                            if exc["type"] == "biosphere" and exc[
+                                "name"
+                            ].startswith("Occupation"):
+
+
+                                # Ha/GJ
+                                land_use = (
+                                    self.iam_data.data.loc[
+                                        dict(
+                                            region=region,
+                                            variables=self.land_use_per_crop_type[crop_type],
+                                        )
+                                    ]
+                                    .interp(year=self.year)
+                                    .values
+                                )
+                                # HA to m2
+                                land_use *= 10000
+                                # m2/GJ to m2/MJ
+                                land_use /= 1000
+
+                                # m2/kg, as received
+                                land_use *= lhv_ar
+
+                                # update exchange value
+                                exc["amount"] = land_use
+
+                                string = (
+                                    f"The land area occupied has been modified to {land_use}, "
+                                    f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                                    f"in {self.year} in the region {region}."
+                                )
+                                if "comment" in ds:
+                                    ds["comment"] += string
+                                else:
+                                    ds["comment"] = string
+
+                    # if this is a farming activity
+                    # and if the product (crop) is not a residue
+                    # and if we have land use change CO2 info from the IAM
+                    if "farming and supply" in ds["name"].lower() \
+                            and crop_type.lower() in self.land_use_change_CO2_per_crop_type:
+
+                        # then, we should include the Land Use Change-induced CO2 emissions
+                        # those are given in kg CO2-eq./GJ of primary crop energy
+
+                        # kg CO2/GJ
+                        land_use_co2 = (
+                            self.iam_data.data.loc[
+                                dict(
+                                    region=region, variables=self.land_use_change_CO2_per_crop_type[crop_type]
+                                )
+                            ]
+                            .interp(year=self.year)
+                            .values
+                        )
+
+                        # lower heating value, as received
+                        lhv_ar = ds["LHV [MJ/kg dry]"] * (
                                 1 - ds["Moisture content [% wt]"]
-                            )
+                        )
 
-                            for exc in ds["exchanges"]:
-                                # we should first adjust the land use, as given by IMAGE
-                                if exc["type"] == "biosphere" and exc[
-                                    "name"
-                                ].startswith("Occupation"):
+                        # kg CO2/MJ
+                        land_use_co2 /= 1000
+                        land_use_co2 *= lhv_ar
 
-                                    # variable name in IMAGE
-                                    param_label = {
-                                        "sugar": "Land Use|Marginal|Biomass|Sugar",
-                                        "oil": "Land Use|Marginal|Biomass|OilCrop",
-                                        "wood": "Land Use|Marginal|Biomass|Woody",
-                                        "grass": "Land Use|Marginal|Biomass|Grassy",
-                                        "grain": "Land Use|Marginal|Biomass|Maize",
-                                    }
-                                    # Ha/GJ
-                                    land_use = (
-                                        self.iam_data.data.loc[
-                                            dict(
-                                                region=region,
-                                                variables=param_label[crop_type],
-                                            )
-                                        ]
-                                        .interp(year=self.year)
-                                        .values
-                                    )
-                                    # HA to m2
-                                    land_use *= 10000
-                                    # m2/GJ to m2/MJ
-                                    land_use /= 1000
+                        land_use_co2_exc = {
+                            "uncertainty type": 0,
+                            "loc": land_use_co2,
+                            "amount": land_use_co2,
+                            "type": "biosphere",
+                            "name": "Carbon dioxide, from soil or biomass stock",
+                            "unit": "kilogram",
+                            "input": (
+                                "biosphere3",
+                                "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
+                            ),
+                            "categories": (
+                                "air",
+                                "non-urban air or from high stacks",
+                            ),
+                        }
+                        ds["exchanges"].append(land_use_co2_exc)
 
-                                    # m2/kg, as received
-                                    land_use *= lhv_ar
+                        string = (
+                            f"{land_use_co2} kg of land use-induced CO2 has been added by premise, "
+                            f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                            f"in {self.year} in the region {region}."
+                        )
 
-                                    # update exchange value
-                                    exc["amount"] = land_use
-
-                                    string = (
-                                        f"The land area occupied has been modified to {land_use}, "
-                                        f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
-                                        f"in {self.year} in the region {region}."
-                                    )
-                                    if "comment" in ds:
-                                        ds["comment"] += string
-                                    else:
-                                        ds["comment"] = string
-
-                            # then, we should include the Land Use Change-induced CO2 emissions
-                            # in IMAGE, those are given in kg CO2-eq./GJ of primary crop energy
-                            param_label = {
-                                "grass": "Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Grassy",
-                                "grain": "Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Maize",
-                                "oil": "Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Oilcrops",
-                                "sugar": "Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Sugar",
-                                "wood": "Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Woody",
-                            }
-
-                            # kg CO2/GJ
-                            land_use_co2 = (
-                                self.iam_data.data.loc[
-                                    dict(
-                                        region=region, variables=param_label[crop_type]
-                                    )
-                                ]
-                                .interp(year=self.year)
-                                .values
-                            )
-                            # kg CO2/MJ
-                            land_use_co2 /= 1000
-                            land_use_co2 *= lhv_ar
-
-                            land_use_co2_exc = {
-                                "uncertainty type": 0,
-                                "loc": land_use_co2,
-                                "amount": land_use_co2,
-                                "type": "biosphere",
-                                "name": "Carbon dioxide, from soil or biomass stock",
-                                "unit": "kilogram",
-                                "input": (
-                                    "biosphere3",
-                                    "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
-                                ),
-                                "categories": (
-                                    "air",
-                                    "non-urban air or from high stacks",
-                                ),
-                            }
-                            ds["exchanges"].append(land_use_co2_exc)
-
-                            string = (
-                                f"{land_use_co2} kg of land use-induced CO2 has been added by premise, "
-                                f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
-                                f"in {self.year} in the region {region}."
-                            )
-
-                            if "comment" in ds:
-                                ds["comment"] += string
-                            else:
-                                ds["comment"] = string
+                        if "comment" in ds:
+                            ds["comment"] += string
+                        else:
+                            ds["comment"] = string
 
                     if (ds["name"], ds["location"]) not in added_acts:
                         added_acts.append((ds["name"], ds["location"]))
@@ -1247,9 +1249,7 @@ class Fuels:
             )
         }
 
-        d_iam_to_eco = {
-            r: d_map.get(r, "RoW") for r in self.list_iam_regions
-        }
+        d_iam_to_eco = {r: d_map.get(r, "RoW") for r in self.list_iam_regions}
 
         d_act = {}
 
@@ -1263,11 +1263,8 @@ class Fuels:
                 )
 
             except ws.NoResults:
-                print(
-                    "No dataset {} found for the {} region {}. Trying with `GLO`.".format(
-                        name, self.model.upper(), d
-                    )
-                )
+
+                # trying with `GLO`
                 ds = ws.get_one(
                     self.db,
                     ws.equals("name", name),
@@ -1332,14 +1329,17 @@ class Fuels:
     def fetch_fuel_share(self, fuel, fuel_types, region):
         """ Return a fuel mix for a specific IAM region, for a specific year. """
 
-        vars = [v for v in self.iam_data.fuel_markets.variables.values
-                if any(x.lower() in v.lower() for x in fuel_types)]
+        vars = [
+            v
+            for v in self.iam_data.fuel_markets.variables.values
+            if any(x.lower() in v.lower() for x in fuel_types)
+        ]
 
         return (
-            self.iam_data.fuel_markets.sel(
-                region=region, variables=fuel
-            ) / self.iam_data.fuel_markets.sel(region=region, variables=vars)
-            .sum(dim="variables")
+            self.iam_data.fuel_markets.sel(region=region, variables=fuel)
+            / self.iam_data.fuel_markets.sel(region=region, variables=vars).sum(
+                dim="variables"
+            )
         ).values
 
     def relink_activities_to_new_markets(self):
@@ -1349,8 +1349,7 @@ class Fuels:
         Does not return anything.
         """
 
-        # Filter all activities that consume electricity
-
+        # Filter all activities that consume fuels
         acts_to_ignore = list(set([x[0] for x in list(self.new_fuel_markets.keys())]))
 
         for ds in ws.get_many(
@@ -1358,119 +1357,128 @@ class Fuels:
             ws.exclude(ws.either(*[ws.contains("name", n) for n in acts_to_ignore])),
         ):
 
-            # remove initial fossil and biogenic CO2 emissions
-            ds["exchanges"] = [
-                exc
+            # check that a fuel input exchange is present in the list of inputs
+            if any(
+                f[0] == exc["name"]
                 for exc in ds["exchanges"]
-                if not any(
-                    x in exc["name"]
-                    for x in ["Carbon dioxide, fossil", "Carbon dioxide, non-fossil"]
-                )
-            ]
+                for f in self.new_fuel_markets.keys()
+            ):
+                amount_fossil_co2, amount_non_fossil_co2 = [0, 0]
 
-            amount_fossil_co2, amount_non_fossil_co2 = [0, 0]
+                for name in [
+                    ("market for petrol, unleaded", "petrol, unleaded", "kilogram"),
+                    ("market for petrol, low-sulfur", "petrol, low-sulfur", "kilogram"),
+                    ("market for diesel, low-sulfur", "diesel, low-sulfur", "kilogram"),
+                    ("market for diesel", "diesel", "kilogram"),
+                    (
+                        "market for natural gas, high pressure",
+                        "natural gas, high pressure",
+                        "cubic meter",
+                    ),
+                    ("market for hydrogen, gaseous", "hydrogen, gaseous", "kilogram"),
+                ]:
 
-            for name in [
-                ("market for petrol, unleaded", "petrol, unleaded", "kilogram"),
-                ("market for petrol, low-sulfur", "petrol, low-sulfur", "kilogram"),
-                ("market for diesel, low-sulfur", "diesel, low-sulfur", "kilogram"),
-                ("market for diesel", "diesel", "kilogram"),
-                (
-                    "market for natural gas, high pressure",
-                    "natural gas, high pressure",
-                    "cubic meter",
-                ),
-                (
-                    "market for natural gas, high pressure, vehicle grade",
-                    "natural gas, high pressure, vehicle grade",
-                    "kilogram",
-                ),
-            ]:
-                # checking that it is one of the markets
-                # that has been newly created
-                if name[0] in acts_to_ignore:
+                    # checking that it is one of the markets
+                    # that has been newly created
+                    if name[0] in acts_to_ignore:
 
-                    excs = list(
-                        ws.get_many(
-                            ds["exchanges"],
-                            ws.contains("name", name[1]),
-                            ws.either(
-                                *[
-                                    ws.equals("unit", "kilogram"),
-                                    ws.equals("unit", "cubic meter"),
-                                ]
-                            ),
-                            ws.equals("type", "technosphere"),
+                        excs = list(
+                            ws.get_many(
+                                ds["exchanges"],
+                                ws.equals("name", name[0]),
+                                ws.either(
+                                    *[
+                                        ws.equals("unit", "kilogram"),
+                                        ws.equals("unit", "cubic meter"),
+                                    ]
+                                ),
+                                ws.equals("type", "technosphere"),
+                            )
                         )
-                    )
 
-                    amount = 0
-                    for exc in excs:
-                        amount += exc["amount"]
-                        ds["exchanges"].remove(exc)
+                        amount = 0
+                        for exc in excs:
+                            amount += exc["amount"]
+                            ds["exchanges"].remove(exc)
 
-                    if amount > 0:
-                        if ds["location"] in self.list_iam_regions:
-                            supplier_loc = ds["location"]
+                        if amount > 0:
+                            if ds["location"] in self.list_iam_regions:
+                                supplier_loc = ds["location"]
 
-                        else:
-                            new_loc = self.geo.ecoinvent_to_iam_location(ds["location"])
-                            supplier_loc = (
-                                new_loc
-                                if new_loc in self.list_iam_regions
-                                else self.list_iam_regions[0]
+                            else:
+                                new_loc = self.geo.ecoinvent_to_iam_location(
+                                    ds["location"]
+                                )
+                                supplier_loc = (
+                                    new_loc
+                                    if new_loc in self.list_iam_regions
+                                    else self.list_iam_regions[0]
+                                )
+
+                            new_exc = {
+                                "name": name[0],
+                                "product": name[1],
+                                "amount": amount,
+                                "type": "technosphere",
+                                "unit": name[2],
+                                "location": supplier_loc,
+                            }
+
+                            ds["exchanges"].append(new_exc)
+
+                            amount_fossil_co2 += (
+                                amount
+                                * self.new_fuel_markets[(name[0], supplier_loc)][
+                                    "fossil CO2"
+                                ]
+                            )
+                            amount_non_fossil_co2 += (
+                                amount
+                                * self.new_fuel_markets[(name[0], supplier_loc)][
+                                    "non-fossil CO2"
+                                ]
                             )
 
-                        new_exc = {
-                            "name": name[0],
-                            "product": name[1],
-                            "amount": amount,
-                            "type": "technosphere",
-                            "unit": name[2],
-                            "location": supplier_loc,
-                        }
+                # update fossil and biogenic CO2 emissions
+                list_items_to_ignore = [
+                    "blending",
+                    "market group",
+                    "lubricating oil production",
+                    "petrol production"
+                ]
+                if amount_non_fossil_co2 > 0\
+                        and not any(x in ds["name"].lower()
+                                    for x in list_items_to_ignore):
 
-                        ds["exchanges"].append(new_exc)
+                    # test for the presence of a fossil CO2 flow
+                    if len([e for e in ds["exchanges"]
+                            if "Carbon dioxide, fossil" in e["name"]]) == 0:
+                        print(f"{ds['name'], ds['location']} has not fossil CO2 output flow.")
 
-                        amount_fossil_co2 += (
-                            amount
-                            * self.new_fuel_markets[(name[0], supplier_loc)][
-                                "fossil CO2"
-                            ]
-                        )
-                        amount_non_fossil_co2 += (
-                            amount
-                            * self.new_fuel_markets[(name[0], supplier_loc)][
-                                "non-fossil CO2"
-                            ]
-                        )
+                    # subtract the biogenic CO2 amount to the
+                    # initial fossil CO2 emission amount
 
-            # update fossil and biogenic CO2 emissions
-            if amount_fossil_co2 > 0:
-                fossil_co2 = {
-                    "uncertainty type": 0,
-                    "loc": amount_fossil_co2,
-                    "amount": amount_fossil_co2,
-                    "type": "biosphere",
-                    "name": "Carbon dioxide, fossil",
-                    "unit": "kilogram",
-                    "categories": ("air",),
-                    "input": ("biosphere3", "349b29d1-3e58-4c66-98b9-9d1a076efd2e"),
-                }
-                ds["exchanges"].append(fossil_co2)
+                    for exc in ws.biosphere(ds,
+                        ws.equals("name", "Carbon dioxide, fossil")
+                                            ):
+                        if (exc["amount"] - amount_non_fossil_co2) < 0:
+                            exc["amount"] = 0
+                        else:
+                            exc["amount"] -= amount_non_fossil_co2
 
-            if amount_non_fossil_co2 > 0:
-                non_fossil_co2 = {
-                    "uncertainty type": 0,
-                    "loc": amount_non_fossil_co2,
-                    "amount": amount_non_fossil_co2,
-                    "type": "biosphere",
-                    "name": "Carbon dioxide, from soil or biomass stock",
-                    "unit": "kilogram",
-                    "categories": ("air",),
-                    "input": ("biosphere3", "e4e9febc-07c1-403d-8d3a-6707bb4d96e6"),
-                }
-                ds["exchanges"].append(non_fossil_co2)
+                    # add the biogenic CO2 emission flow
+                    non_fossil_co2 = {
+                        "uncertainty type": 0,
+                        "loc": amount_non_fossil_co2,
+                        "amount": amount_non_fossil_co2,
+                        "type": "biosphere",
+                        "name": "Carbon dioxide, from soil or biomass stock",
+                        "unit": "kilogram",
+                        "categories": ("air",),
+                        "input": ("biosphere3", "e4e9febc-07c1-403d-8d3a-6707bb4d96e6"),
+                    }
+
+                    ds["exchanges"].append(non_fossil_co2)
 
     @staticmethod
     def get_shares_from_production_volume(ds):
@@ -1491,15 +1499,19 @@ class Fuels:
                         act["reference product"],
                         act["unit"],
                     )
-                ] = float(exc.get("production volume", 1))
-                total_production_volume += float(exc.get("production volume", 1))
+                ] = float(exc.get("production volume", 1e-3))
+                total_production_volume += float(exc.get("production volume", 1e-3))
 
         for d in dict_act:
             dict_act[d] /= total_production_volume
 
         return dict_act
 
-    def select_multiple_suppliers(self, fuel, region, d_fuels, ds):
+    def filter_results(self, item_to_look_for, results, field_to_look_at):
+
+        return [r for r in results if item_to_look_for not in r[field_to_look_at]]
+
+    def select_multiple_suppliers(self, fuel, d_fuels, ds, look_for):
 
         # We have several potential fuel suppliers
         # We will look up their respective production volumes
@@ -1511,9 +1523,18 @@ class Fuels:
                 ws.either(
                     *[ws.equals("name", c) for c in set(d_fuels[fuel]["fuel filters"])]
                 ),
+                ws.either(*[ws.contains("reference product", l) for l in look_for]),
+                ws.doesnt_contain_any("reference product", ["petroleum coke", "petroleum gas"]),
                 ws.equals("location", ds["location"]),
             )
         )
+
+        if "low-sulfur" in ds["name"]:
+            possible_suppliers = self.filter_results("unleaded", possible_suppliers, "reference product")
+
+        if "unleaded" in ds["name"]:
+            possible_suppliers = self.filter_results("low-sulfur", possible_suppliers, "reference product")
+
 
         if len(possible_suppliers) == 0:
             possible_suppliers = list(
@@ -1531,8 +1552,16 @@ class Fuels:
                             for l in self.geo.iam_to_ecoinvent_location(ds["location"])
                         ]
                     ),
+                    ws.either(*[ws.contains("reference product", l) for l in look_for]),
+                    ws.doesnt_contain_any("reference product", ["petroleum coke", "petroleum gas"]),
                 )
             )
+
+            if "low-sulfur" in ds["name"]:
+                possible_suppliers = self.filter_results("unleaded", possible_suppliers, "reference product")
+
+            if "unleaded" in ds["name"]:
+                possible_suppliers = self.filter_results("low-sulfur", possible_suppliers, "reference product")
 
         if len(possible_suppliers) == 0:
             possible_suppliers = list(
@@ -1545,8 +1574,18 @@ class Fuels:
                         ]
                     ),
                     ws.equals("location", "RoW"),
+                    ws.either(*[ws.contains("reference product", l) for l in look_for]),
+                    ws.doesnt_contain_any("reference product", ["petroleum coke", "petroleum gas"]),
                 )
             )
+
+            if "low-sulfur" in ds["name"]:
+                possible_suppliers = self.filter_results("unleaded", possible_suppliers, "reference product")
+
+            if "unleaded" in ds["name"]:
+                possible_suppliers = self.filter_results("low-sulfur", possible_suppliers, "reference product")
+
+
 
         possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
 
@@ -1581,6 +1620,8 @@ class Fuels:
         # Create new fuel supply chains
         self.generate_fuel_supply_chains()
 
+        print("Generate new fuel markets.")
+
         fuel_markets = [
             ("market for petrol, unleaded", "petrol, unleaded", "kilogram", 42.6),
             ("market for petrol, low-sulfur", "petrol, low-sulfur", "kilogram", 42.6),
@@ -1592,37 +1633,40 @@ class Fuels:
                 "cubic meter",
                 47.5,
             ),
-            (
-                "market for natural gas, high pressure, vehicle grade",
-                "natural gas, high pressure, vehicle grade",
-                "kilogram",
-                47.5,
-            ),
+            ("market for hydrogen, gaseous", "hydrogen, gaseous", "kilogram", 120),
         ]
 
+        # refresh the fuel filters
+        # as some have been created in the meanwhile
+        mapping = InventorySet(self.db)
+        self.fuels_map = mapping.generate_fuel_map()
         d_fuels = self.get_iam_mapping()
 
         # to log new fuel markets
-        new_fuel_markets = [[
-            "market name",
-            "location",
-            "unit",
-            "reference product",
-            "fuel type",
-            "supplier name",
-            "supplier reference product",
-            "supplier location",
-            "supplier unit",
-            "fuel mix share (energy-wise)",
-            "amount supplied [kg]",
-            "LHV [mj/kg]",
-            "CO2 emmisison factor [kg CO2]",
-            "biogenic share",
-        ]]
+        new_fuel_markets = [
+            [
+                "market name",
+                "location",
+                "unit",
+                "reference product",
+                "fuel type",
+                "supplier name",
+                "supplier reference product",
+                "supplier location",
+                "supplier unit",
+                "fuel mix share (energy-wise)",
+                "amount supplied [kg]",
+                "LHV [mj/kg]",
+                "CO2 emmission factor [kg CO2]",
+                "biogenic share",
+            ]
+        ]
 
         for fuel_market in fuel_markets:
 
-            if fuel_market[1].split(", ")[0] in self.fuel_labels:
+            print(f"--> {fuel_market[0]}")
+
+            if any(fuel_market[1].split(", ")[0] in f for f in self.fuel_labels):
 
                 d_act = self.fetch_proxies(fuel_market[0], fuel_market[1], relink=True)
 
@@ -1648,7 +1692,7 @@ class Fuels:
                     ]
 
                     if "petrol" in fuel_market[0]:
-                        look_for = ["petrol", "bioethanol", "methanol"]
+                        look_for = ["petrol", "ethanol", "methanol", "gasoline"]
 
                     if "diesel" in fuel_market[0]:
                         look_for = ["diesel", "biodiesel"]
@@ -1656,145 +1700,82 @@ class Fuels:
                     if "natural gas" in fuel_market[0]:
                         look_for = ["natural gas", "biomethane"]
 
-                    for fuel in d_fuels:
+                    if "hydrogen" in fuel_market[0]:
+                        look_for = ["hydrogen"]
 
-                        if any(f in fuel for f in look_for):
+                    fuels = (f for f in d_fuels if any(x in f for x in look_for))
 
-                            if fuel in self.fuel_labels:
+                    for fuel in fuels:
 
-                                share = d_fuels[fuel]["find_share"](fuel, look_for, region)
+                        if fuel in self.fuel_labels:
 
-                                try:
-                                    possible_suppliers = ws.get_one(
-                                        self.db,
-                                        ws.either(
-                                            *[
-                                                ws.equals("name", c)
-                                                for c in set(d_fuels[fuel]["fuel filters"])
-                                            ]
-                                        ),
-                                        ws.equals("location", region),
-                                    )
-                                except ws.NoResults:
+                            share = d_fuels[fuel]["find_share"](
+                                fuel, look_for, region
+                            )
 
-                                    try:
-                                        possible_suppliers = ws.get_one(
-                                            self.db,
-                                            ws.either(
-                                                *[
-                                                    ws.equals("name", c)
-                                                    for c in set(
-                                                        d_fuels[fuel]["fuel filters"]
-                                                    )
-                                                ]
-                                            ),
-                                            ws.equals(
-                                                "location",
-                                                self.geo.iam_to_ecoinvent_location(region),
-                                            ),
-                                        )
-                                    except ws.NoResults:
+                            if share > 0:
 
-                                        try:
-                                            possible_suppliers = ws.get_one(
-                                                self.db,
-                                                ws.either(
-                                                    *[
-                                                        ws.equals("name", c)
-                                                        for c in set(
-                                                            d_fuels[fuel]["fuel filters"]
-                                                        )
-                                                    ]
-                                                ),
-                                                ws.equals("location", "RoW"),
-                                            )
-                                        except ws.NoResults:
-                                            try:
-                                                possible_suppliers = ws.get_one(
-                                                    self.db,
-                                                    ws.either(
-                                                        *[
-                                                            ws.equals("name", c)
-                                                            for c in set(
-                                                                d_fuels[fuel][
-                                                                    "fuel filters"
-                                                                ]
-                                                            )
-                                                        ]
-                                                    ),
-                                                )
+                                possible_suppliers = self.select_multiple_suppliers(
+                                    fuel, d_fuels, ds, look_for
+                                )
 
-                                            except ws.MultipleResults:
-                                                possible_suppliers = self.select_multiple_suppliers(
-                                                    fuel, region, d_fuels, ds
-                                                )
+                                if len(possible_suppliers) == 0:
+                                    print(f"ISSUE with {fuel} in {region} for ds in location {ds['location']}")
+                                    print(d_fuels[fuel])
 
-                                        except ws.MultipleResults:
-                                            possible_suppliers = self.select_multiple_suppliers(
-                                                fuel, region, d_fuels, ds
-                                            )
-
-                                    except ws.MultipleResults:
-                                        possible_suppliers = self.select_multiple_suppliers(
-                                            fuel, region, d_fuels, ds
-                                        )
-
-                                except ws.MultipleResults:
-                                    possible_suppliers = self.select_multiple_suppliers(
-                                        fuel, region, d_fuels, ds
-                                    )
-
-                                conversion_factor = 1
-                                if fuel_market[2] == "cubic meter":
-                                    if possible_suppliers["unit"] == "kilogram":
+                                for supplier in possible_suppliers:
+                                    if supplier[-1] != fuel_market[2]:
                                         conversion_factor = 0.679
+                                    else:
+                                        conversion_factor = 1
 
-                                # LHV of the fuel before update
-                                reference_LHV = fuel_market[3]
+                                    supplier_share = share * possible_suppliers[supplier]
 
-                                # amount of fuel input
-                                # corrected by the LHV of teh initial fuel
-                                # so that the overall composition keeps
-                                # the same average LHV
+                                    # LHV of the fuel before update
+                                    reference_LHV = fuel_market[3]
 
-                                amount = (
-                                    share
-                                    * (reference_LHV / self.fuels_lhv[fuel])
-                                    * conversion_factor
-                                )
+                                    # amount of fuel input
+                                    # corrected by the LHV of the initial fuel
+                                    # so that the overall composition maintains
+                                    # the same average LHV
 
-                                fossil_co2 += (
-                                    amount
-                                    * self.fuels_lhv[fuel]
-                                    * self.fuel_co2[fuel]["co2"]
-                                    * (1 - self.fuel_co2[fuel]["bio_share"])
-                                )
-                                non_fossil_co2 += (
-                                    amount
-                                    * self.fuels_lhv[fuel]
-                                    * self.fuel_co2[fuel]["co2"]
-                                    * self.fuel_co2[fuel]["bio_share"]
-                                )
+                                    amount = (
+                                        supplier_share
+                                        * (reference_LHV / self.fuels_lhv[fuel])
+                                        * conversion_factor
+                                    )
 
-                                final_lhv += amount * self.fuels_lhv[fuel]
+                                    fossil_co2 += (
+                                        amount
+                                        * self.fuels_lhv[fuel]
+                                        * self.fuel_co2[fuel]["co2"]
+                                        * (1 - self.fuel_co2[fuel]["bio_share"])
+                                    )
+                                    non_fossil_co2 += (
+                                        amount
+                                        * self.fuels_lhv[fuel]
+                                        * self.fuel_co2[fuel]["co2"]
+                                        * self.fuel_co2[fuel]["bio_share"]
+                                    )
 
-                                if isinstance(list(possible_suppliers.keys())[0], tuple):
-                                    for supplier in possible_suppliers:
-                                        ds["exchanges"].append(
-                                            {
-                                                "uncertainty type": 0,
-                                                "amount": amount
-                                                * float(possible_suppliers[supplier]),
-                                                "product": supplier[2],
-                                                "name": supplier[0],
-                                                "unit": supplier[-1],
-                                                "location": supplier[1],
-                                                "type": "technosphere",
-                                            }
-                                        )
+                                    final_lhv += amount * self.fuels_lhv[fuel]
 
-                                        # log
-                                        new_fuel_markets.append([
+
+                                    ds["exchanges"].append(
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": amount,
+                                            "product": supplier[2],
+                                            "name": supplier[0],
+                                            "unit": supplier[-1],
+                                            "location": supplier[1],
+                                            "type": "technosphere",
+                                        }
+                                    )
+
+                                    # log
+                                    new_fuel_markets.append(
+                                        [
                                             ds["name"],
                                             ds["location"],
                                             ds["unit"],
@@ -1805,44 +1786,13 @@ class Fuels:
                                             supplier[1],
                                             supplier[-1],
                                             share,
-                                            amount * float(possible_suppliers[supplier]),
+                                            amount,
                                             self.fuels_lhv[fuel],
                                             self.fuel_co2[fuel]["co2"],
                                             self.fuel_co2[fuel]["bio_share"],
-                                        ])
-
-                                else:
-                                    ds["exchanges"].append(
-                                        {
-                                            "uncertainty type": 0,
-                                            "amount": amount,
-                                            "product": possible_suppliers[
-                                                "reference product"
-                                            ],
-                                            "name": possible_suppliers["name"],
-                                            "unit": possible_suppliers["unit"],
-                                            "location": possible_suppliers["location"],
-                                            "type": "technosphere",
-                                        }
+                                        ]
                                     )
 
-                                    # log
-                                    new_fuel_markets.append([
-                                        ds["name"],
-                                        ds["location"],
-                                        ds["unit"],
-                                        ds["reference product"],
-                                        fuel,
-                                        possible_suppliers["name"],
-                                        possible_suppliers["reference product"],
-                                        possible_suppliers["location"],
-                                        possible_suppliers["unit"],
-                                        share,
-                                        amount,
-                                        self.fuels_lhv[fuel],
-                                        self.fuel_co2[fuel]["co2"],
-                                        self.fuel_co2[fuel]["bio_share"],
-                                    ])
 
                                 string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuels_lhv[fuel]} MJ/kg. "
 
@@ -1878,7 +1828,6 @@ class Fuels:
             writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
             for line in new_fuel_markets:
                 writer.writerow(line)
-
 
         self.relink_activities_to_new_markets()
 

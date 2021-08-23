@@ -67,6 +67,13 @@ FILEPATH_SYNFUEL_INVENTORIES = (
 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
 )
+FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx"
+)
+FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
+)
+
 FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
 )
@@ -561,7 +568,9 @@ class NewDatabase:
 
             for file in (
                 FILEPATH_SYNFUEL_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES
+                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
+                FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES
                 ):
                 synfuel = SynfuelInventory(self.db, self.version, file)
                 synfuel.merge_inventory()
@@ -573,7 +582,8 @@ class NewDatabase:
 
             for file in (
               FILEPATH_METHANOL_FUELS_INVENTORIES,
-              FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES
+              FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES,
+              FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES
             ):
 
                 lpg = LPGInventory(self.db, self.version, file)
