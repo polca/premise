@@ -1,7 +1,9 @@
 from . import DATA_DIR
 import csv
 
-REMIND_TO_ECOINVENT_EMISSION_FILEPATH = (DATA_DIR / "ecoinvent_to_gains_emission_mappping.csv")
+REMIND_TO_ECOINVENT_EMISSION_FILEPATH = (
+    DATA_DIR / "ecoinvent_to_gains_emission_mappping.csv"
+)
 
 
 class InventorySet:
@@ -20,8 +22,10 @@ class InventorySet:
 
     material_filters = {
         "steel, primary": {"fltr": "steel production, converter", "mask": "hot rolled"},
-        "steel, secondary": {"fltr": "steel production, electric",
-                             "mask": {"name": "hot rolled", "reference product": "heat"}},
+        "steel, secondary": {
+            "fltr": "steel production, electric",
+            "mask": {"name": "hot rolled", "reference product": "heat"},
+        },
         "concrete": {"fltr": "market for concrete,"},
         "copper": {"fltr": "market for copper", "filter_exact": True},
         "aluminium": {
@@ -38,113 +42,234 @@ class InventorySet:
 
     fuel_filters = {
         # Gaseous
-        "natural gas": {"fltr": "market for natural gas,", "mask": ["network", "burned", "liquefied"]}, #OK
-        "natural gas, high pressure": {"fltr": 'market for natural gas, high pressure'},#OK
-        "natural gas, low pressure": {"fltr": 'market for natural gas, low pressure'},#OK
-        "biomethane": {"fltr": ['Biomethane, gaseous'], 'mask': ['burned']},#OK
-        "methane, synthetic, from coal": {"fltr": "Methane, synthetic, gaseous, 5 bar, from coal-based hydrogen"},#OK
-        "methane, synthetic, from electrolysis": {"fltr": 'methane, from electrochemical methanation'},#OK
-
-        #Liquids
-        "diesel": {"fltr": ["diesel production, low", "diesel production, petroleum refinery"],
-                   "mask": ["burned", "electric"]},#OK
-        "petrol": {"fltr": "petrol production, low", "mask": "burned"},#OK
-        "heavy fuel oil": {"fltr": 'market for heavy fuel oil', 'mask': ['burned']},#OK
-        "light fuel oil": {"fltr": 'market for light fuel oil'},#OK
-        "bioethanol": {"fltr": ['market for ethanol', 'Ethanol, from']},#OK
-        "bioethanol, woody": {"fltr": ['Ethanol production, via fermentation, from forest',
-                                       'Ethanol production, via fermentation, from eucalyptus',
-                                       'Ethanol production, via fermentation, from poplar',
-                                       'Ethanol production, via fermentation, from willow'], 'mask': ['expansion', 'economic']},#OK
-        "bioethanol, grassy": {"fltr": ['Ethanol production, via fermentation, from switchgrass',
-                                        'Ethanol production, via fermentation, from miscanthus',
-                                        'Ethanol production, via fermentation, from sorghum',]
-                               , 'mask': ['expansion', 'economic']},#OK
-        "bioethanol, grain": {"fltr": ['Ethanol production, via fermentation, from wheat grains,',
-                                       'Ethanol production, via fermentation, from corn,'], 'mask': ['expansion', 'economic', 'carbon']},#OK
-        "bioethanol, sugar": {"fltr": ['Ethanol production, via fermentation, from sugarbeet',
-                                       'Ethanol production, via fermentation, from sugarcane,'], 'mask': ['expansion', 'economic']},#OK
-        "biodiesel, oil": {"fltr": 'Biodiesel production, via transesterification, from', 'mask': ['expansion', 'economic']},#OK
-        "diesel, synthetic, from electrolysis, energy allocation": {"fltr": ['Diesel, synthetic, from electrolysis-based hydrogen, energy allocation']},#OK
-        "diesel, synthetic, from natural gas, energy allocation": {
-            "fltr": 'Diesel, synthetic, from natural gas-based hydrogen, energy allocation, at fuelling station'},  # OK
-        "diesel, synthetic, from natural gas with CCS, energy allocation": {
-            "fltr": 'Diesel, synthetic, from natural gas-based hydrogen, energy allocation, at fuelling station'},  # OK
-        "diesel, synthetic, from biomethane, energy allocation": {
-            "fltr": 'Diesel, synthetic, from biomethane-based hydrogen, energy allocation, at fuelling station'},  # OK
-        "diesel, synthetic, from biomass, energy allocation": {
-            "fltr": 'Diesel, synthetic, from biomass-based hydrogen, energy allocation, at fuelling station'},  # OK
-        "diesel, synthetic, from biomass with CCS, energy allocation": {
-            "fltr": 'Diesel, synthetic, from biomass-based hydrogen with CCS, energy allocation, at fuelling station'},  # OK
-        "diesel, synthetic, from biomass with CCS, economic allocation": {
-            "fltr": 'Diesel, synthetic, from biomass-based hydrogen with CCS, economic allocation, at fuelling station'},
-        # OK
-        "diesel, synthetic, from petroleum, energy allocation": {
-            "fltr": 'Diesel, synthetic, from petroleum-based hydrogen, energy allocation, at fuelling station'},
-
-        "petrol, synthetic, hydrogen":{"fltr":"gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station"},
-        "petrol, synthetic, coal":{"fltr":"gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station"},
-        "diesel, synthetic, hydrogen":{"fltr":"diesel production, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station"},
-        "diesel, synthetic, coal":{"fltr":"diesel production, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station"},
-        "diesel, synthetic, wood":{"fltr":"diesel production, synthetic, from woody biomass-based hydrogen, energy allocation, at fuelling station"},
-        "diesel, synthetic, wood, with CCS":{"fltr":"diesel production, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station"},
-        "diesel, synthetic, grass":{"fltr":"diesel production, synthetic, from woody biomass-based hydrogen, energy allocation, at fuelling station"},
-        "diesel, synthetic, grass, with CCS":{"fltr":"diesel production, synthetic, from electrolysis-based hydrogen, energy allocation, at fuelling station"},
-
-        #Methanol
+        "natural gas": {
+            "fltr": {"reference product": "natural gas, high pressure"},
+            "mask": {
+                "name": [
+                    "market",
+                    "import",
+                    "synthetic",
+                    "burned",
+                    "vehicle grade",
+                    "electric",
+                    "evaporation",
+                ]
+            },
+        },  # OK
+        "biomethane": {"fltr": ["Biomethane, gaseous"], "mask": ["burned"]},  # OK
+        "methane, synthetic, from coal": {
+            "fltr": "Methane, synthetic, gaseous, 5 bar, from coal-based hydrogen"
+        },  # OK
+        "methane, synthetic, from electrolysis": {
+            "fltr": "methane, from electrochemical methanation"
+        },  # OK
+        # Liquids
+        "diesel": {
+            "fltr": {"reference product": ["diesel", "diesel, low-sulfur"]},
+            "mask": {
+                "name": [
+                    "market",
+                    "import",
+                    "synthetic",
+                    "burned",
+                    "methanol",
+                    "electric",
+                ]
+            },
+        },  # OK
+        "petrol": {
+            "fltr": {
+                "reference product": ["petrol, low-sulfur", "petrol, unleaded"],
+                "name": "petrol production, unleaded",
+            },
+            "mask": {"name": ["market", "import", "synthetic", "burned"]},
+        },  # OK
+        "bioethanol": {"fltr": ["market for ethanol", "Ethanol, from"]},  # OK
+        "bioethanol, woody": {
+            "fltr": [
+                "Ethanol production, via fermentation, from forest",
+                "Ethanol production, via fermentation, from eucalyptus",
+                "Ethanol production, via fermentation, from poplar",
+                "Ethanol production, via fermentation, from willow",
+            ],
+            "mask": ["expansion", "economic"],
+        },  # OK
+        "bioethanol, grassy": {
+            "fltr": [
+                "Ethanol production, via fermentation, from switchgrass",
+                "Ethanol production, via fermentation, from miscanthus",
+                "Ethanol production, via fermentation, from sorghum",
+            ],
+            "mask": ["expansion", "economic"],
+        },  # OK
+        "bioethanol, grain": {
+            "fltr": [
+                "Ethanol production, via fermentation, from wheat grains,",
+                "Ethanol production, via fermentation, from corn,",
+            ],
+            "mask": ["expansion", "economic", "carbon"],
+        },  # OK
+        "bioethanol, sugar": {
+            "fltr": [
+                "Ethanol production, via fermentation, from sugarbeet",
+                "Ethanol production, via fermentation, from sugarcane,",
+            ],
+            "mask": ["expansion", "economic"],
+        },  # OK
+        "biodiesel, oil": {
+            "fltr": "Biodiesel production, via transesterification, from",
+            "mask": ["expansion", "economic"],
+        },  # OK
+        "petrol, synthetic, hydrogen": {
+            "fltr": "gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station"
+        },
+        "petrol, synthetic, coal": {
+            "fltr": "gasoline production, synthetic, from methanol, hydrogen from coal gasification, CO2 from DAC, energy allocation, at fuelling station"
+        },
+        "diesel, synthetic, hydrogen": {
+            "fltr": "diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station"
+        },
+        "diesel, synthetic, coal": {
+            "fltr": "diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, energy allocation, at fuelling station"
+        },
+        "diesel, synthetic, wood": {
+            "fltr": "diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station"
+        },
+        "diesel, synthetic, wood, with CCS": {
+            "fltr": "diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation, at fuelling station"
+        },
+        "diesel, synthetic, grass": {
+            "fltr": "diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station"
+        },
+        "diesel, synthetic, grass, with CCS": {
+            "fltr": "diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation, at fuelling station"
+        },
+        # Methanol
         "methanol, wood": {"fltr": "market for methanol, from biomass"},
         "methanol, grass": {"fltr": "market for methanol, from biomass"},
-
-        #Solids
-        "hard coal": {"fltr": 'market for hard coal', 'mask': ['factory', 'plant', 'briquettes', 'ash']}, #OK
-        "lignite": {"fltr": 'market for lignite', 'mask': ['factory', 'plant', 'briquettes', 'ash']},#OK
-        "petroleum coke": {"fltr": 'market for petroleum coke'},#OK
-        "wood pellet": {"fltr": 'market for wood pellet', 'mask': ['factory']},#OK
-        "waste": {"fltr": {'reference product': ['waste plastic, mixture']},
-                  'mask': ['market for', 'treatment', 'market group']},#OK
-
-        #Hydrogen
-        "hydrogen, from petroleum": {"fltr": 'hydrogen production, gaseous, petroleum refinery operation'}, #OK
-        "hydrogen, from electrolysis": {"fltr": 'Hydrogen, gaseous, 700 bar, from electrolysis'}, #OK
-        "hydrogen, from biomass": {"fltr": ['Hydrogen, gaseous, 700 bar, from dual fluidised bed gasification of woody biomass',
-                                                    'Hydrogen, gaseous, 700 bar, from gasification of woody biomass'], "mask": ["CCS"]}, #OK
-        "hydrogen, from biomass with CCS": {"fltr": ['Hydrogen, gaseous, 700 bar, from dual fluidised bed gasification of woody biomass with CCS',
-                                                    'Hydrogen, gaseous, 700 bar, from gasification of woody biomass in oxy-fired entrained flow gasifier, with CCS']}, #OK
-        "hydrogen, from coal": {"fltr": 'Hydrogen, gaseous, 700 bar, from hard coal gasification'}, #OK
-        "hydrogen, from natural gas": {"fltr": ['Hydrogen, gaseous, 700 bar, ATR of NG',
-                                               'Hydrogen, gaseous, 700 bar, from SMR of NG'], 'mask': ['CCS']}, #OK
-        "hydrogen, from natural gas with CCS": {"fltr": ['Hydrogen, gaseous, 700 bar, ATR of NG, with CCS',
-                                               'Hydrogen, gaseous, 700 bar, from SMR of NG, with CCS']}, #OK
-        "hydrogen, from biomethane": {"fltr": ['Hydrogen, gaseous, 700 bar, from SMR of biogas',
-                                               'Hydrogen, gaseous, 700 bar, from ATR of biogas'], 'mask': ['CCS']}, #OK
-        "hydrogen, from biomethane with CCS": {"fltr": ['Hydrogen, gaseous, 700 bar, from SMR of NG, with CCS',
-                                                        'Hydrogen, gaseous, 700 bar, from ATR of biogas with CCS']}, #OK
-
-        #Kerosene
-        "kerosene, from petroleum": {"fltr":"kerosene production, petroleum refinery operation"}, #OK
-        "kerosene, synthetic, from electrolysis, energy allocation": {"fltr":["Kerosene, synthetic, from electrolysis-based hydrogen, energy allocation",
-                                                                              "Kerosene, synthetic, from MTO, hydrogen from electrolysis, energy allocation"]},
-        "kerosene, synthetic, from electrolysis, economic allocation": {"fltr":["Kerosene, synthetic, from electrolysis-based hydrogen, economic allocation",
-                                                                                "Kerosene, synthetic, from MTO, hydrogen from electrolysis, economic allocation"]},
-        "kerosene, synthetic, from coal, energy allocation": {"fltr":["Kerosene, synthetic, from coal-based hydrogen, energy allocation, at fuelling station"]},
-        "kerosene, synthetic, from coal, economic allocation": {"fltr":["Kerosene, synthetic, from coal-based hydrogen, economic allocation, at fuelling station"]},
-        "kerosene, synthetic, from natural gas, energy allocation": {"fltr": ["Kerosene, synthetic, from natural gas-based hydrogen, energy allocation, at fuelling station"]},
-        "kerosene, synthetic, from natural gas, economic allocation": {"fltr": ["Kerosene, synthetic, from natural gas-based hydrogen, economic allocation, at fuelling station"]},
-        "kerosene, synthetic, from biomethane, energy allocation": {"fltr":["Kerosene, synthetic, from biomethane-based hydrogen, energy allocation, at fuelling station"]},
-        "kerosene, synthetic, from biomethane, economic allocation": {"fltr":["Kerosene, synthetic, from biomethane-based hydrogen, economic allocation, at fuelling station"]},
-        "kerosene, synthetic, from biomass, energy allocation": {"fltr":["Kerosene, synthetic, from biomass-based hydrogen, energy allocation, at fuelling station"]},
-        "kerosene, synthetic, from biomass, economic allocation": {"fltr":["Kerosene, synthetic, from biomass-based hydrogen, economic allocation, at fuelling station"]},
-
-
-
+        # Solids
+        "hard coal": {
+            "fltr": "market for hard coal",
+            "mask": ["factory", "plant", "briquettes", "ash"],
+        },  # OK
+        "lignite": {
+            "fltr": "market for lignite",
+            "mask": ["factory", "plant", "briquettes", "ash"],
+        },  # OK
+        "petroleum coke": {"fltr": "market for petroleum coke"},  # OK
+        "wood pellet": {"fltr": "market for wood pellet", "mask": ["factory"]},  # OK
+        "waste": {
+            "fltr": {"reference product": ["waste plastic, mixture"]},
+            "mask": ["market for", "treatment", "market group"],
+        },  # OK
+        # Hydrogen
+        "hydrogen, petroleum": {
+            "fltr": "hydrogen production, gaseous, petroleum refinery operation"
+        },  # OK
+        "hydrogen, electrolysis": {
+            "fltr": "hydrogen supply, from electrolysis, by truck, as gaseous, over 500 km"
+        },  # OK
+        "hydrogen, biomass": {
+            "fltr": [
+                "hydrogen supply, from gasification of biomass, by truck, as liquid, over 500 km"
+            ],
+            "mask": ["CCS"],
+        },  # OK
+        "hydrogen, biomass, with CCS": {
+            "fltr": [
+                "hydrogen supply, from gasification of biomass, with CCS, by truck, as gaseous, over 500 km"
+            ]
+        },  # OK
+        "hydrogen, coal": {
+            "fltr": "hydrogen supply, from coal gasification, by truck, as gaseous, over 500 km"
+        },  # OK
+        "hydrogen, nat. gas": {
+            "fltr": [
+                "hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km"
+            ],
+            "mask": ["CCS"],
+        },  # OK
+        "hydrogen, nat. gas, with CCS": {
+            "fltr": [
+                "hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km"
+            ]
+        },  # OK
+        "hydrogen, biogas": {
+            "fltr": [
+                "hydrogen supply, from SMR of biogas, by truck, as gaseous, over 500 km"
+            ],
+            "mask": ["CCS"],
+        },  # OK
+        "hydrogen, biogas, with CCS": {
+            "fltr": [
+                "hydrogen supply, from SMR of biogas, with CCS, by truck, as gaseous, over 500 km"
+            ]
+        },  # OK
+        # Kerosene
+        "kerosene, from petroleum": {
+            "fltr": "kerosene production, petroleum refinery operation"
+        },  # OK
+        "kerosene, synthetic, from electrolysis, energy allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from electrolysis-based hydrogen, energy allocation",
+                "Kerosene, synthetic, from MTO, hydrogen from electrolysis, energy allocation",
+            ]
+        },
+        "kerosene, synthetic, from electrolysis, economic allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from electrolysis-based hydrogen, economic allocation",
+                "Kerosene, synthetic, from MTO, hydrogen from electrolysis, economic allocation",
+            ]
+        },
+        "kerosene, synthetic, from coal, energy allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from coal-based hydrogen, energy allocation, at fuelling station"
+            ]
+        },
+        "kerosene, synthetic, from coal, economic allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from coal-based hydrogen, economic allocation, at fuelling station"
+            ]
+        },
+        "kerosene, synthetic, from natural gas, energy allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from natural gas-based hydrogen, energy allocation, at fuelling station"
+            ]
+        },
+        "kerosene, synthetic, from natural gas, economic allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from natural gas-based hydrogen, economic allocation, at fuelling station"
+            ]
+        },
+        "kerosene, synthetic, from biomethane, energy allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from biomethane-based hydrogen, energy allocation, at fuelling station"
+            ]
+        },
+        "kerosene, synthetic, from biomethane, economic allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from biomethane-based hydrogen, economic allocation, at fuelling station"
+            ]
+        },
+        "kerosene, synthetic, from biomass, energy allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from biomass-based hydrogen, energy allocation, at fuelling station"
+            ]
+        },
+        "kerosene, synthetic, from biomass, economic allocation": {
+            "fltr": [
+                "Kerosene, synthetic, from biomass-based hydrogen, economic allocation, at fuelling station"
+            ]
+        },
     }
 
     powerplant_fuels = {
         "Biomass IGCC CCS": {
-            "fltr": ["100% SNG, burned in CC plant, truck 25km, post, pipeline 200km, storage 1000m",
-                     "Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m",
-                     "Hydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass with CCS, at gasification plant"
-                     ]
+            "fltr": [
+                "100% SNG, burned in CC plant, truck 25km, post, pipeline 200km, storage 1000m",
+                "Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m",
+                "Hydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass with CCS, at gasification plant",
+            ]
         },
         "Biomass IGCC": {
             "fltr": "Hydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass, at gasification plant"
@@ -152,96 +277,109 @@ class InventorySet:
         "Biomass ST": {
             "fltr": "Wood chips, burned in power plant 20 MW, truck 25km, no CCS"
         },
-        "Biomass CHP": {
-            "fltr": ["market for wood chips, wet, measured as dry mass"],
-        },
+        "Biomass CHP": {"fltr": ["market for wood chips, wet, measured as dry mass"],},
         "Biomass CHP CCS": {
             "fltr": "heat and power co-generation, wood chips, 6667 kW"
         },
         "Coal PC": {
             "fltr": ["market for hard coal", "market for lignite"],
-            "mask": ['factory', 'plant', 'briquettes', 'ash']
+            "mask": ["factory", "plant", "briquettes", "ash"],
         },
         "Coal CHP": {
             "fltr": ["market for hard coal", "market for lignite"],
-            "mask": ['factory', 'plant', 'briquettes', 'ash']
-
+            "mask": ["factory", "plant", "briquettes", "ash"],
         },
-        "Coal CHP CCS": {
-            "fltr": ["heat and power co-generation, hard coal"]
-        },
+        "Coal CHP CCS": {"fltr": ["heat and power co-generation, hard coal"]},
         "Coal IGCC": {
-            "fltr": ["Hard coal, burned in power plant/IGCC, no CCS",
-                     "Lignite, burned in power plant/IGCC, no CCS"
-                     ]
+            "fltr": [
+                "Hard coal, burned in power plant/IGCC, no CCS",
+                "Lignite, burned in power plant/IGCC, no CCS",
+            ]
         },
         "Coal IGCC CCS": {
-            "fltr": ["Hard coal, burned in power plant/pre, pipeline 200km, storage 1000m",
-                     "Lignite, burned in power plant/pre, pipeline 200km, storage 1000m"
-                     ]
+            "fltr": [
+                "Hard coal, burned in power plant/pre, pipeline 200km, storage 1000m",
+                "Lignite, burned in power plant/pre, pipeline 200km, storage 1000m",
+            ]
         },
         "Coal PC CCS": {
-            "fltr": ["Hard coal, burned in power plant/post, pipeline 200km, storage 1000m",
-                     "Lignite, burned in power plant/post, pipeline 200km, storage 1000m"
-                     ]
+            "fltr": [
+                "Hard coal, burned in power plant/post, pipeline 200km, storage 1000m",
+                "Lignite, burned in power plant/post, pipeline 200km, storage 1000m",
+            ]
         },
-
         "Gas OC": {
-            "fltr": ["market for natural gas, high pressure",
-                     "market for natural gas, medium pressure",
-                     "market for natural gas, low pressure",
-                     "market group for natural gas"
-                     ],
-            "mask": ['liquids', 'liquefied', 'unprocessed', 'station', 'burned', 'vented']
+            "fltr": [
+                "market for natural gas, high pressure",
+                "market for natural gas, medium pressure",
+                "market for natural gas, low pressure",
+                "market group for natural gas",
+            ],
+            "mask": [
+                "liquids",
+                "liquefied",
+                "unprocessed",
+                "station",
+                "burned",
+                "vented",
+            ],
         },
         "Gas CC": {
-            "fltr": ["market for natural gas, high pressure",
-                     "market for natural gas, medium pressure",
-                     "market for natural gas, low pressure"],
-            "mask": ['liquids', 'liquefied', 'unprocessed', 'station', 'burned', 'vented']
+            "fltr": [
+                "market for natural gas, high pressure",
+                "market for natural gas, medium pressure",
+                "market for natural gas, low pressure",
+            ],
+            "mask": [
+                "liquids",
+                "liquefied",
+                "unprocessed",
+                "station",
+                "burned",
+                "vented",
+            ],
         },
         "Gas CHP": {
-            "fltr": ["market for natural gas, high pressure",
-                     "market for natural gas, medium pressure",
-                     "market for natural gas, low pressure",
-                     "market for biogas"
-                     ],
-            "mask": ['liquids', 'liquefied', 'unprocessed', 'station', 'burned', 'vented']
+            "fltr": [
+                "market for natural gas, high pressure",
+                "market for natural gas, medium pressure",
+                "market for natural gas, low pressure",
+                "market for biogas",
+            ],
+            "mask": [
+                "liquids",
+                "liquefied",
+                "unprocessed",
+                "station",
+                "burned",
+                "vented",
+            ],
         },
         "Gas CC CCS": {
-            "fltr": ["Natural gas, in ATR H2-CC/pre, pipeline 200km, storage 1000m",
-                     "Natural gas, burned in power plant/post, pipeline 200km, storage 1000m/RER"
-                     ]
+            "fltr": [
+                "Natural gas, in ATR H2-CC/pre, pipeline 200km, storage 1000m",
+                "Natural gas, burned in power plant/post, pipeline 200km, storage 1000m/RER",
+            ]
         },
         "Gas CHP CCS": {
             "fltr": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical"
         },
-        "Nuclear": {"fltr": ["market for uranium, enriched",
-                             "market for nuclear fuel element, for pressure water reactor",
-                             "market for nuclear fuel element, for boiling water reactor",
-                             "market for uranium hexafluoride"
-                             ]
-                    },
-        "Oil ST": {
-            "fltr": "market for heavy fuel oil",
-            "mask": ["burned"]
+        "Nuclear": {
+            "fltr": [
+                "market for uranium, enriched",
+                "market for nuclear fuel element, for pressure water reactor",
+                "market for nuclear fuel element, for boiling water reactor",
+                "market for uranium hexafluoride",
+            ]
         },
-        "Oil CC": {
-            "fltr": "market for heavy fuel oil",
-            "mask": ["burned"]
-        },
-        "Oil CC CCS": {
-            "fltr": "heat and power co-generation, oil",
-            "mask": ["burned"]
-        },
-        "Oil CHP": {
-            "fltr": "market for heavy fuel oil",
-            "mask": ["burned"]
-        },
+        "Oil ST": {"fltr": "market for heavy fuel oil", "mask": ["burned"]},
+        "Oil CC": {"fltr": "market for heavy fuel oil", "mask": ["burned"]},
+        "Oil CC CCS": {"fltr": "heat and power co-generation, oil", "mask": ["burned"]},
+        "Oil CHP": {"fltr": "market for heavy fuel oil", "mask": ["burned"]},
         "Oil CHP CCS": {
             "fltr": "heat and power co-generation, oil",
-            "mask": ["burned"]
-        }
+            "mask": ["burned"],
+        },
     }
 
     powerplant_filters = {
@@ -259,14 +397,14 @@ class InventorySet:
             "fltr": "electricity production, at wood burning power plant 20 MW, truck 25km, no CCS"
         },
         "Biomass CHP": {
-            "fltr": [
-                "heat and power co-generation, wood chips",
-            ],
-            "mask": {"reference product": "heat"}
+            "fltr": ["heat and power co-generation, wood chips",],
+            "mask": {"reference product": "heat"},
         },
         "Biomass CHP CCS": {
-            "fltr": ["electricity production, at co-generation power plant/wood, post, pipeline 200km, storage 1000m",
-                     "electricity production, at co-generation power plant/wood, post, pipeline 400km, storage 3000m"]
+            "fltr": [
+                "electricity production, at co-generation power plant/wood, post, pipeline 200km, storage 1000m",
+                "electricity production, at co-generation power plant/wood, post, pipeline 400km, storage 3000m",
+            ]
         },
         "Coal PC": {
             "fltr": [
@@ -280,8 +418,7 @@ class InventorySet:
                 "heat and power co-generation, hard coal",
                 "heat and power co-generation, lignite",
             ],
-            "mask": {"reference product": "heat"}
-
+            "mask": {"reference product": "heat"},
         },
         "Coal CHP CCS": {
             "fltr": [
@@ -312,7 +449,6 @@ class InventorySet:
                 "electricity production, at power plant/lignite, post, pipeline 200km, storage 1000m",
             ]
         },
-
         "Gas OC": {
             "fltr": "electricity production, natural gas, conventional power plant"
         },
@@ -325,7 +461,7 @@ class InventorySet:
                 "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
                 "heat and power co-generation, biogas",
             ],
-            "mask": {"reference product": "heat"}
+            "mask": {"reference product": "heat"},
         },
         "Gas CC CCS": {
             "fltr": [
@@ -348,38 +484,32 @@ class InventorySet:
         },
         "Nuclear": {"fltr": "electricity production, nuclear", "mask": "aluminium"},
         "Oil ST": {
-            "fltr": [
-                    "electricity production, oil"
-            ],
-            "mask": {"name": "aluminium", "reference product": "heat"}
+            "fltr": ["electricity production, oil"],
+            "mask": {"name": "aluminium", "reference product": "heat"},
         },
         # TODO: find batter fit than this. Nothing better available in ecoinvent.
         "Oil CC": {
-            "fltr": [
-                "electricity production, oil"
-            ],
-            "mask": {"name": "aluminium", "reference product": "heat"}
+            "fltr": ["electricity production, oil"],
+            "mask": {"name": "aluminium", "reference product": "heat"},
         },
         # TODO: find batter fit than this. Nothing better available in ecoinvent.
         "Oil CC CCS": {
             "fltr": [
                 "electricity production, at co-generation power plant/oil, post, pipeline 200km, storage 1000m",
-                "electricity production, at co-generation power plant/oil, pre, pipeline 200km, storage 1000m"
+                "electricity production, at co-generation power plant/oil, pre, pipeline 200km, storage 1000m",
             ],
-            "mask": {"name": "aluminium"}
+            "mask": {"name": "aluminium"},
         },
         "Oil CHP": {
-            "fltr": [
-                "heat and power co-generation, oil",
-            ],
-            "mask": {"name": "aluminium", "reference product": "heat"}
+            "fltr": ["heat and power co-generation, oil",],
+            "mask": {"name": "aluminium", "reference product": "heat"},
         },
         "Oil CHP CCS": {
             "fltr": [
                 "electricity production, at co-generation power plant/oil, post, pipeline 200km, storage 1000m",
-                "electricity production, at co-generation power plant/oil, pre, pipeline 200km, storage 1000m"
+                "electricity production, at co-generation power plant/oil, pre, pipeline 200km, storage 1000m",
             ],
-            "mask": {"name": "aluminium"}
+            "mask": {"name": "aluminium"},
         },
         "Solar CSP": {
             "fltr": [
@@ -387,14 +517,20 @@ class InventorySet:
                 "electricity production, solar tower power plant, 20 MW",
             ]
         },
-        "Solar PV Centralized": {"fltr": "electricity production, photovoltaic, 570kWp"},
+        "Solar PV Centralized": {
+            "fltr": "electricity production, photovoltaic, 570kWp"
+        },
         "Solar PV Residential": {"fltr": "electricity production, photovoltaic, 3kWp"},
-        "Wind Onshore": {"fltr": ["electricity production, wind, <1MW turbine, onshore",
-                                  "electricity production, wind, >3MW turbine, onshore",
-                                  "electricity production, wind, 1-3MW turbine, onshore"
-                                  ]
-                         },
-        "Wind Offshore": {"fltr": "electricity production, wind, 1-3MW turbine, offshore"},
+        "Wind Onshore": {
+            "fltr": [
+                "electricity production, wind, <1MW turbine, onshore",
+                "electricity production, wind, >3MW turbine, onshore",
+                "electricity production, wind, 1-3MW turbine, onshore",
+            ]
+        },
+        "Wind Offshore": {
+            "fltr": "electricity production, wind, 1-3MW turbine, offshore"
+        },
     }
 
     def __init__(self, db):

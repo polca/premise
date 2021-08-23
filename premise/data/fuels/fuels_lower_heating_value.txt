@@ -17,6 +17,15 @@ diesel;43
 gasoline;42.6
 petrol;42.6
 hydrogen;120
+hydrogen, petroleum;120
+hydrogen, electrolysis;120
+hydrogen, biomass;120
+hydrogen, biomass, with CCS;120
+hydrogen, coal;120
+hydrogen, nat. gas;120
+hydrogen, nat. gas, with CCS;120
+hydrogen, biogas;120
+hydrogen, biogas, with CCS;120
 bioethanol;26.5
 biodiesel;38
 bioethanol, woody;26.5

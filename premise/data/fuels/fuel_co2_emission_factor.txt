@@ -15,7 +15,16 @@ methane, biogenic;28;1
 diesel;0.0732;0
 gasoline;0.0737;0
 petrol;0.0737;0
-hydrogen;0;0
+hydrogen;0;1
+hydrogen, petroleum;0;1
+hydrogen, electrolysis;0;1
+hydrogen, biomass;0;1
+hydrogen, biomass, with CCS;0;1
+hydrogen, coal;0;1
+hydrogen, nat. gas;0;1
+hydrogen, nat. gas, with CCS;0;1
+hydrogen, biogas;0;1
+hydrogen, biogas, with CCS;0;1
 bioethanol;0.0708;1
 biodiesel;0.0708;1
 bioethanol, woody;0.07396;1
