@@ -12,7 +12,7 @@ from .inventory_imports import (
     SynfuelInventory,
     SyngasInventory,
     GeothermalInventory,
-    LPGInventory,
+    SyntheticMethanolInventory,
     CarculatorInventory,
     TruckInventory,
     VariousVehicles,
@@ -84,7 +84,7 @@ FILEPATH_METHANOL_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
 FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-cement-plant.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
@@ -586,7 +586,7 @@ class NewDatabase:
               FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES
             ):
 
-                lpg = LPGInventory(self.db, self.version, file)
+                lpg = SyntheticMethanolInventory(self.db, self.version, file)
                 lpg.merge_inventory()
 
         print("Done!\n")

@@ -307,9 +307,13 @@ class Fuels:
                             if "market group for electricity" in exc["name"]:
                                 exc["amount"] = -0.3538 * (self.year - 2010) + 58.589
 
-                        ds[
-                            "comment"
-                        ] += f"The electricity input per kg of H2 has been adapted to the year {self.year}."
+                        string = f" The electricity input per kg of H2 has been adapted to the year {self.year}."
+                        if "comment" in ds:
+                            ds[
+                                "comment"
+                            ] += string
+                        else:
+                            ds["comment"] = string
 
                     ds = relink_technosphere_exchanges(ds, self.db, self.model)
 
@@ -555,9 +559,14 @@ class Fuels:
                                         }
                                     )
 
-                                    new_act[
-                                        "comment"
-                                    ] += f"Transport over {d} km by {vehicle}."
+                                    string = f"Transport over {d} km by {vehicle}."
+
+                                    if "comment" in new_act:
+                                        new_act[
+                                            "comment"
+                                        ] += string
+                                    else:
+                                        new_act["comment"] = string
 
                                 # need for inhibitor and purification if CNG pipeline
                                 # electricity for purification: 2.46 kWh/kg H2
@@ -585,12 +594,16 @@ class Fuels:
                                             "comment": "Injection of an inhibiting gas (oxygen) to prevent embritllement of metal.",
                                         }
                                     )
-                                    new_act[
-                                        "comment"
-                                    ] += " 2.46 kWh/kg H2 is needed to purify the hydrogen from the inhibiting gas."
-                                    new_act[
-                                        "comment"
-                                    ] += " The recovery rate for hydrogen after separation from the inhibitor gas is 93%."
+
+
+                                    string = (" 2.46 kWh/kg H2 is needed to purify the hydrogen from the inhibiting gas."
+                                              " The recovery rate for hydrogen after separation from the inhibitor gas is 93%.")
+                                    if "comment" in new_act:
+                                        new_act[
+                                            "comment"
+                                        ] += string
+                                    else:
+                                        new_act["comment"] = string
 
                                 if (
                                     "regional storage"
@@ -617,9 +630,15 @@ class Fuels:
                                             "comment": "Geological storage (salt cavern).",
                                         }
                                     )
-                                    new_act[
-                                        "comment"
-                                    ] += " Geological storage is added. It includes 0.344 kWh for the injection and pumping of 1 kg of H2."
+
+                                    string = " Geological storage is added. It includes 0.344 kWh for the injection and pumping of 1 kg of H2."
+                                    if "comment" in new_act:
+                                        new_act[
+                                            "comment"
+                                        ] += string
+                                    else:
+                                        new_act["comment"] = string
+
 
                                 # electricity for compression
                                 if s == "gaseous":
@@ -657,11 +676,21 @@ class Fuels:
                                             "location": "RoW",
                                         }
                                     )
-                                    new_act["comment"] += (
+
+                                    string = (
                                         f" {electricity_comp} kWh is added to compress from 25 bar 100 bar (if pipeline)"
                                         f"or 500 bar (if truck), and then to 900 bar to dispense in storage tanks at 700 bar. "
                                         " Additionally, if transported by pipeline, there is re-compression (0.6 kWh) every 250 km."
                                     )
+
+                                    if "comment" in new_act:
+                                        new_act[
+                                            "comment"
+                                        ] += string
+                                    else:
+                                        new_act["comment"] = string
+
+
 
                                 # electricity for liquefaction
                                 if s == "liquid":
@@ -687,9 +716,15 @@ class Fuels:
                                             "location": "RoW",
                                         }
                                     )
-                                    new_act[
-                                        "comment"
-                                    ] += f" {electricity_comp} kWh is added to liquefy the hydrogen. "
+
+                                    string = f" {electricity_comp} kWh is added to liquefy the hydrogen. "
+                                    if "comment" in new_act:
+                                        new_act[
+                                            "comment"
+                                        ] += string
+                                    else:
+                                        new_act["comment"] = string
+
 
                                 # electricity for hydrogenation, dehydrogenation and compression at delivery
                                 if s == "liquid organic compound":
@@ -755,12 +790,15 @@ class Fuels:
                                         }
                                     )
 
-                                    new_act[
-                                        "comment"
-                                    ] += " Hydrogenation and dehydrogenation of hydrogen included. "
-                                    new_act[
-                                        "comment"
-                                    ] += "Compression at delivery after dehydrogenation also included."
+
+                                    string = (" Hydrogenation and dehydrogenation of hydrogen included. "
+                                              "Compression at delivery after dehydrogenation also included.")
+                                    if "comment" in new_act:
+                                        new_act[
+                                            "comment"
+                                        ] += string
+                                    else:
+                                        new_act["comment"] = string
 
                                 # fetch the H2 production activity
                                 h2_ds = ws.get_one(
@@ -782,7 +820,14 @@ class Fuels:
                                     }
                                 )
 
-                                new_act["comment"] += losses[vehicle][s][1]
+                                string = losses[vehicle][s][1]
+                                if "comment" in new_act:
+                                    new_act[
+                                        "comment"
+                                    ] += string
+                                else:
+                                    new_act["comment"] = string
+
 
                                 # add fuelling station, including storage tank
                                 ds_h2_station = ws.get_one(
@@ -839,11 +884,18 @@ class Fuels:
                                     }
                                 )
 
-                                new_act["comment"] += (
+                                string = (
                                     f"Pre-cooling electricity is considered ({el_pre_cooling}), "
                                     f"assuming an ambiant temperature of {t_amb}C "
                                     f"and a capacity utilization for the fuel station of {cap_util} kg/day."
                                 )
+                                if "comment" in new_act:
+                                    new_act[
+                                        "comment"
+                                    ] += string
+                                else:
+                                    new_act["comment"] = string
+
 
                                 new_act["exchanges"] = new_exc
 

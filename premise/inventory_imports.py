@@ -767,9 +767,12 @@ class GeothermalInventory(BaseInventoryImport):
         self.check_for_duplicates()
 
 
-class LPGInventory(BaseInventoryImport):
+class SyntheticMethanolInventory(BaseInventoryImport):
     """
-    Liquified Petroleum Gas (LPG) from methanol distillation, the PSI project (2020), with hydrogen from electrolysis.
+    Methanol-based fuels.
+    Mostly from Alternative production of methanol from industrial CO2. Meunier et al. 2020. Renewable Energy 146, pp. 1192-1203
+    And https://www.fvv-net.de/fileadmin/user_upload/medien/materialien/FVV-Kraftstoffstudie_LBST_2013-10-30.pdf
+
     """
 
     def __init__(self, database, version, path):
@@ -779,16 +782,18 @@ class LPGInventory(BaseInventoryImport):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version in ["3.7", "3.7.1"]:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_36_37_MIGRATION_MAP
 
-            Migration("migration_37").write(
+        # migration for ei 3.6
+        if self.version == "3.6":
+            # apply some updates to comply with ei 3.7
+            new_technosphere_data = EI_37_36_MIGRATION_MAP
+
+            Migration("migration_36").write(
                 new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
+                description="Change technosphere names due to change from 3.7 to 3.6",
             )
-            self.import_db.migrate("migration_37")
+            self.import_db.migrate("migration_36")
+
 
         # Migrations for 3.5
         if self.version == "3.5":
