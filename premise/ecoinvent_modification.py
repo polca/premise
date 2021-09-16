@@ -7,6 +7,7 @@ from .inventory_imports import (
     CarmaCCSInventory,
     BiofuelInventory,
     DACInventory,
+    OilGasInventory,
     HydrogenInventory,
     BiogasInventory,
     SynfuelInventory,
@@ -37,6 +38,7 @@ from datetime import date
 import uuid
 
 
+FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_DAC_INVENTORIES = INVENTORY_DIR / "lci-direct-air-capture.xlsx"
@@ -434,6 +436,35 @@ def check_scenarios(scenario, key):
 
     return scenario
 
+def check_system_model(system_model):
+
+    if not isinstance(system_model, str):
+        raise TypeError("The argument `system_model` must be a string"
+                        "('attributional', 'consequential').")
+
+
+    if system_model not in ("attributional", "consequential"):
+        raise ValueError("The argument `system_model` must be one of the two values:"
+                        "'attributional', 'consequential'.")
+
+    return system_model
+
+def check_time_horizon(th):
+
+    if th is None:
+        print("`time_horizon`, used to identify marginal suppliers, is not specified. "
+              "It is therefore set to 20 years.")
+        th = 20
+
+    try:
+        int(th)
+    except ValueError:
+        raise("`time_horizon` must be an integer or float with a value between 5 and 50 years.")
+
+    if th < 5 or th > 50:
+        raise ValueError("`time_horizon` must be an integer or float with a value between 5 and 50 years.")
+
+    return int(th)
 
 class NewDatabase:
     """
@@ -445,6 +476,11 @@ class NewDatabase:
     :vartype source_db: str
     :ivar source_version: version of the ecoinvent source database. Currently works with ecoinvent 3.5, 3.6, 3.7, 3.7.1.
     :vartype source_version: str
+    :ivar direct_import: If True, appends pickled inventories to database.
+    If False, import inventories via bw2io importer.
+    :vartype direct_import: bool
+    :ivar system_model: Can be `attributional` (default) or `consequential`.
+    :vartype system_model: str
 
     """
 
@@ -458,11 +494,15 @@ class NewDatabase:
         source_file_path=None,
         additional_inventories=None,
         direct_import=True,
+        system_model="attributional",
+        time_horison=None
     ):
 
         self.source = source_db
         self.version = check_db_version(source_version)
         self.source_type = source_type
+        self.system_model = check_system_model(system_model)
+        self.time_horizon = check_time_horizon(time_horison) if system_model == "consequential" else None
 
         if self.source_type == "ecospold":
             self.source_file_path = check_ei_filepath(source_file_path)
@@ -494,6 +534,8 @@ class NewDatabase:
                 year=scenario["year"],
                 filepath_iam_files=scenario["filepath"],
                 key=key,
+                system_model=self.system_model,
+                time_horizon=self.time_horizon
             )
             scenario["database"] = copy.deepcopy(self.db)
 
@@ -533,17 +575,30 @@ class NewDatabase:
 
         else:
             # Manual import
-            for file in (FILEPATH_CARMA_INVENTORIES, FILEPATH_CHP_INVENTORIES):
+
+            # new inventories for natural gas and oil
+            print("oil and gas inventories")
+            oilgas = OilGasInventory(self.db, self.version, FILEPATH_OIL_GAS_INVENTORIES)
+            oilgas.merge_inventory()
+
+            list_inventories = [FILEPATH_CARMA_INVENTORIES, FILEPATH_CHP_INVENTORIES] if\
+                self.system_model == "attributional" else [FILEPATH_CARMA_INVENTORIES]
+
+            for file in list_inventories:
                 carma = CarmaCCSInventory(self.db, self.version, file)
                 carma.merge_inventory()
 
             dac = DACInventory(self.db, self.version, FILEPATH_DAC_INVENTORIES)
             dac.merge_inventory()
 
-            biogas = BiogasInventory(self.db, self.version, FILEPATH_BIOGAS_INVENTORIES)
-            biogas.merge_inventory()
+            list_inventories = [FILEPATH_BIOGAS_INVENTORIES]if\
+                self.system_model == "attributional" else []
 
-            for file in (
+            for file in list_inventories:
+                biogas = BiogasInventory(self.db, self.version, file)
+                biogas.merge_inventory()
+
+            list_inventories = [
                 FILEPATH_CARBON_FIBER_INVENTORIES,
                 FILEPATH_HYDROGEN_DISTRI_INVENTORIES,
                 FILEPATH_HYDROGEN_INVENTORIES,
@@ -551,8 +606,12 @@ class NewDatabase:
                 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,
                 FILEPATH_HYDROGEN_NATGAS_INVENTORIES,
                 FILEPATH_HYDROGEN_WOODY_INVENTORIES,
-                ):
+            ]
 
+            if self.system_model == "consequential":
+                list_inventories.remove(FILEPATH_HYDROGEN_BIOGAS_INVENTORIES)
+
+            for file in list_inventories:
                 hydro = HydrogenInventory(self.db, self.version, file)
                 hydro.merge_inventory()
 
@@ -586,8 +645,8 @@ class NewDatabase:
               FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES
             ):
 
-                lpg = SyntheticMethanolInventory(self.db, self.version, file)
-                lpg.merge_inventory()
+                methanol = SyntheticMethanolInventory(self.db, self.version, file)
+                methanol.merge_inventory()
 
         print("Done!\n")
 
