@@ -437,6 +437,41 @@ class CarmaCCSInventory(BaseInventoryImport):
         self.check_for_duplicates()
 
 
+class OilGasInventory(BaseInventoryImport):
+    def __init__(self, database, version, path):
+        super().__init__(database, version, path)
+
+    def load_inventory(self, path):
+        return ExcelImporter(path)
+
+    def prepare_inventory(self):
+        # Inventories initially made with ei 37
+        if self.version == "3.6":
+            # apply some updates to go from ei3.7 to ei3.6
+            new_technosphere_data = EI_37_36_MIGRATION_MAP
+
+            Migration("migration_36").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.7 to 3.5",
+            )
+            self.import_db.migrate("migration_36")
+
+        if self.version == "3.5":
+            # apply some updates to go from ei3.7 to ei3.5
+            new_technosphere_data = EI_37_35_MIGRATION_MAP
+
+            Migration("migration_35").write(
+                new_technosphere_data,
+                description="Change technosphere names due to change from 3.7 to 3.5",
+            )
+            self.import_db.migrate("migration_35")
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+        # Check for duplicates
+        self.check_for_duplicates()
+
 class DACInventory(BaseInventoryImport):
     def __init__(self, database, version, path):
         super().__init__(database, version, path)
@@ -469,36 +504,8 @@ class DACInventory(BaseInventoryImport):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
 
-        # Add carbon storage for CCS technologies
-        print("Add fossil carbon dioxide storage for CCS technologies.")
-        self.add_negative_CO2_flows_for_biomass_CCS()
-
         # Check for duplicates
         self.check_for_duplicates()
-
-    def add_negative_CO2_flows_for_biomass_CCS(self):
-        """
-        Rescale the amount of all exchanges of carbon dioxide, non-fossil by a factor -9 (.9/-.1),
-        to account for sequestered CO2.
-
-        All CO2 capture and storage in the Carma datasets is assumed to be 90% efficient.
-        Thus, we can simply find out what the new CO2 emission is and then we know how much gets stored in the ground.
-        It's very important that we ONLY do this for biomass CCS plants, as only they will have negative emissions!
-
-        We also rename the emission to 'Carbon dioxide, from soil or biomass stock' so that it is properly
-        characterized by IPCC's GWP100a method.
-
-        Modifies in place (does not return anything).
-
-        """
-        for ds in ws.get_many(
-            self.db, ws.contains("name", "storage"), ws.equals("database", "Carma CCS")
-        ):
-            for exc in ws.biosphere(
-                ds, ws.equals("name", "Carbon dioxide, non-fossil")
-            ):
-                wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
-
 
 class BiofuelInventory(BaseInventoryImport):
     """
