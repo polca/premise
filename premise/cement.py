@@ -9,7 +9,17 @@ from datetime import date
 
 class Cement:
     """
-    Class that modifies clinker and cement production datasets in ecoinvent, mostly based on WBCSD's GNR data.
+    Class that modifies clinker and cement production datasets in ecoinvent.
+    It creates region-specific new clinker production datasets (and deletes the original ones).
+    It adjusts the kiln efficiency based on the improvement indicated in the IAM file, relative to 2020.
+    It adjusts non-CO2 pollutants emission, based on improvement indicated by the GAINS file, relative to 2020.
+    It adds CCS, if indicated in the IAM file.
+    It creates regions-specific cement production datasets (and deletes the original ones).
+    It adjust electricity consumption in cement production datasets.
+    It creates regions-specific cement market datasets (and deletes the original ones).
+    It adjust the clinker-to-cement ratio in the generic cement market dataset.
+
+
     :ivar scenario: name of a Remind pathway
     :vartype pathway: str
 
@@ -461,9 +471,7 @@ class Cement:
     def build_clinker_production_datasets(self):
         """
         Builds clinker production datasets for each IAM region.
-        If `industry_module_present`, the kiln efficiency improvement follows projections from the IAM model
-        # If not, it follows projections from the IEA
-        Add CO2 capture and Storage if needed.
+        Adds CO2 capture and Storage if needed.
         Source for CO2 capture and compression: https://www.sciencedirect.com/science/article/pii/S1750583613001230?via%3Dihub#fn0040
         :return: a dictionary with IAM regions as keys and clinker production datasets as values.
         :rtype: dict
@@ -983,7 +991,10 @@ class Cement:
             for exc in d_act[d]["exchanges"]:
                 if "cement" in exc["product"] and exc["type"] == "technosphere":
                     share.append(exc["amount"])
-                    ratio.append(self.clinker_ratio_eco[(exc["name"], exc["location"])])
+                    try:
+                        ratio.append(self.clinker_ratio_eco[(exc["name"], exc["location"])])
+                    except:
+                        print(f"clinker ratio not found for {exc['name'], exc['location']}")
 
             share = np.array(share)
             ratio = np.array(ratio)
@@ -1202,436 +1213,50 @@ class Cement:
             ]
         )
 
+        print("\nCreate new cement market datasets")
+        # cement markets
+        markets = ws.get_many(
+            self.db,
+            ws.contains("name", "market for cement"),
+            ws.contains("reference product", "cement"),
+            ws.doesnt_contain_any("name", ["factory", "tile", "sulphate", "plaster"])
+        )
+
+        for ds in markets:
+            new_cement_markets = self.fetch_proxies(ds["name"], ds["reference product"])
+            self.db.extend([v for v in new_cement_markets.values()])
+            created_datasets.extend(
+                [
+                    (act["name"], act["reference product"], act["location"])
+                    for act in new_cement_markets.values()
+                ]
+            )
+            self.relink_datasets(ds["name"], ds["reference product"])
+
         print(
             "\nCreate new cement production datasets and adjust electricity consumption"
         )
+        # cement production
+        production = ws.get_many(
+            self.db,
+            ws.contains("name", "cement production"),
+            ws.contains("reference product", "cement"),
+            ws.doesnt_contain_any("name", ["factory", "tile", "sulphate", "plaster"])
+        )
 
-        if self.version == 3.5:
+        for ds in production:
+            new_cement_production = self.update_cement_production_datasets(ds["name"], ds["reference product"])
+            self.db.extend([v for v in new_cement_production.values()])
 
-            for i in (
-                (
-                    "market for cement, alternative constituents 21-35%",
-                    "cement, alternative constituents 21-35%",
-                ),
-                (
-                    "market for cement, alternative constituents 6-20%",
-                    "cement, alternative constituents 6-20%",
-                ),
-                (
-                    "market for cement, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                    "cement, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                ),
-                (
-                    "market for cement, blast furnace slag 25-70%, US only",
-                    "cement, blast furnace slag 25-70%, US only",
-                ),
-                (
-                    "market for cement, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                    "cement, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                ),
-                (
-                    "market for cement, blast furnace slag 36-65%, non-US",
-                    "cement, blast furnace slag 36-65%, non-US",
-                ),
-                (
-                    "market for cement, blast furnace slag 5-25%, US only",
-                    "cement, blast furnace slag 5-25%, US only",
-                ),
-                (
-                    "market for cement, blast furnace slag 70-100%, non-US",
-                    "cement, blast furnace slag 70-100%, non-US",
-                ),
-                (
-                    "market for cement, blast furnace slag 70-100%, US only",
-                    "cement, blast furnace slag 70-100%, US only",
-                ),
-                (
-                    "market for cement, blast furnace slag 81-95%, non-US",
-                    "cement, blast furnace slag 81-95%, non-US",
-                ),
-                (
-                    "market for cement, blast furnace slag, 66-80%, non-US",
-                    "cement, blast furnace slag, 66-80%, non-US",
-                ),
-                ("market for cement, Portland", "cement, Portland"),
-                (
-                    "market for cement, pozzolana and fly ash 11-35%, non-US",
-                    "cement, pozzolana and fly ash 11-35%, non-US",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 15-40%, US only",
-                    "cement, pozzolana and fly ash 15-40%, US only",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 36-55%,non-US",
-                    "cement, pozzolana and fly ash 36-55%,non-US",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 5-15%, US only",
-                    "cement, pozzolana and fly ash 5-15%, US only",
-                ),
-            ):
-                act_cement = self.fetch_proxies(i[0], i[1])
-                self.db.extend([v for v in act_cement.values()])
-                created_datasets.extend(
-                    [
-                        (act["name"], act["reference product"], act["location"])
-                        for act in act_cement.values()
-                    ]
-                )
+            created_datasets.extend(
+                [
+                    (act["name"], act["reference product"], act["location"])
+                    for act in new_cement_production.values()
+                ]
+            )
+            self.relink_datasets(ds["name"], ds["reference product"])
 
-                self.relink_datasets(i[0], i[1])
-
-            for i in (
-                (
-                    "cement production, alternative constituents 21-35%",
-                    "cement, alternative constituents 21-35%",
-                ),
-                (
-                    "cement production, alternative constituents 6-20%",
-                    "cement, alternative constituents 6-20%",
-                ),
-                (
-                    "cement production, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                    "cement, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                ),
-                (
-                    "cement production, blast furnace slag 25-70%, US only",
-                    "cement, blast furnace slag 25-70%, US only",
-                ),
-                (
-                    "cement production, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                    "cement, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                ),
-                (
-                    "cement production, blast furnace slag 36-65%, non-US",
-                    "cement, blast furnace slag 36-65%, non-US",
-                ),
-                (
-                    "cement production, blast furnace slag 5-25%, US only",
-                    "cement, blast furnace slag 5-25%, US only",
-                ),
-                (
-                    "cement production, blast furnace slag 70-100%, non-US",
-                    "cement, blast furnace slag 70-100%, non-US",
-                ),
-                (
-                    "cement production, blast furnace slag 70-100%, US only",
-                    "cement, blast furnace slag 70-100%, US only",
-                ),
-                (
-                    "cement production, blast furnace slag 81-95%, non-US",
-                    "cement, blast furnace slag 81-95%, non-US",
-                ),
-                (
-                    "cement production, blast furnace slag, 66-80%, non-US",
-                    "cement, blast furnace slag, 66-80%, non-US",
-                ),
-                ("cement production, Portland", "cement, Portland"),
-                (
-                    "cement production, pozzolana and fly ash 11-35%, non-US",
-                    "cement, pozzolana and fly ash 11-35%, non-US",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 15-40%, US only",
-                    "cement, pozzolana and fly ash 15-40%, US only",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 36-55%,non-US",
-                    "cement, pozzolana and fly ash 36-55%,non-US",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 5-15%, US only",
-                    "cement, pozzolana and fly ash 5-15%, US only",
-                ),
-            ):
-                act_cement = self.update_cement_production_datasets(i[0], i[1])
-                self.db.extend([v for v in act_cement.values()])
-
-                created_datasets.extend(
-                    [
-                        (act["name"], act["reference product"], act["location"])
-                        for act in act_cement.values()
-                    ]
-                )
-                self.relink_datasets(i[0], i[1])
-
-            print("\nCreate new cement market datasets")
-
-        else:
-            print("\nCreate new cement market datasets")
-
-            for i in (
-                ("market for cement, Portland", "cement, Portland"),
-                (
-                    "market for cement, blast furnace slag 35-70%",
-                    "cement, blast furnace slag 35-70%",
-                ),
-                (
-                    "market for cement, blast furnace slag 6-34%",
-                    "cement, blast furnace slag 6-34%",
-                ),
-                ("market for cement, limestone 6-10%", "cement, limestone 6-10%"),
-                (
-                    "market for cement, pozzolana and fly ash 15-50%",
-                    "cement, pozzolana and fly ash 15-50%",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 6-14%",
-                    "cement, pozzolana and fly ash 6-14%",
-                ),
-                (
-                    "market for cement, alternative constituents 6-20%",
-                    "cement, alternative constituents 6-20%",
-                ),
-                (
-                    "market for cement, alternative constituents 21-35%",
-                    "cement, alternative constituents 21-35%",
-                ),
-                (
-                    "market for cement, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                    "cement, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                ),
-                (
-                    "market for cement, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                    "cement, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                ),
-                (
-                    "market for cement, blast furnace slag 36-65%",
-                    "cement, blast furnace slag 36-65%",
-                ),
-                (
-                    "market for cement, blast furnace slag 66-80%",
-                    "cement, blast furnace slag, 66-80%",
-                ),
-                (
-                    "market for cement, blast furnace slag 81-95%",
-                    "cement, blast furnace slag 81-95%",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 11-35%",
-                    "cement, pozzolana and fly ash 11-35%",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 36-55%",
-                    "cement, pozzolana and fly ash 36-55%",
-                ),
-                (
-                    "market for cement, alternative constituents 45%",
-                    "cement, alternative constituents 45%",
-                ),
-                (
-                    "market for cement, blast furnace slag 40-70%",
-                    "cement, blast furnace 40-70%",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 25-35%",
-                    "cement, pozzolana and fly ash 25-35%",
-                ),
-                ("market for cement, limestone 21-35%", "cement, limestone 21-35%"),
-                (
-                    "market for cement, blast furnace slag 21-35%",
-                    "cement, blast furnace slag 21-35%",
-                ),
-                (
-                    "market for cement, blast furnace slag 25-70%",
-                    "cement, blast furnace slag 25-70%",
-                ),
-                (
-                    "market for cement, blast furnace slag 5-25%",
-                    "cement, blast furnace slag 5-25%",
-                ),
-                (
-                    "market for cement, blast furnace slag 6-20%",
-                    "cement, blast furnace slag 6-20%",
-                ),
-                (
-                    "market for cement, blast furnace slag 70-100%",
-                    "cement, blast furnace slag 70-100%",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 15-40%",
-                    "cement, pozzolana and fly ash 15-40%",
-                ),
-                (
-                    "market for cement, pozzolana and fly ash 5-15%",
-                    "cement, pozzolana and fly ash 5-15%",
-                ),
-                ("market for cement, unspecified", "cement, unspecified"),
-                (
-                    "market for cement, portland fly ash cement 21-35%",
-                    "cement, portland fly ash cement 21-35%",
-                ),
-                (
-                    "market for cement, portland fly ash cement 6-20%",
-                    "cement, portland fly ash cement 6-20%",
-                ),
-                ("market for cement mortar", "cement mortar"),
-                (
-                    "market for cement, limestone cement 6-20%",
-                    "cement, limestone 6-20%",
-                ),
-
-            ):
-                act_cement = self.fetch_proxies(i[0], i[1])
-                self.db.extend([v for v in act_cement.values()])
-
-                created_datasets.extend(
-                    [
-                        (act["name"], act["reference product"], act["location"])
-                        for act in act_cement.values()
-                    ]
-                )
-
-                self.relink_datasets(i[0], i[1])
-
-            for i in (
-                ("cement production, Portland", "cement, Portland"),
-                (
-                    "cement production, blast furnace slag 35-70%",
-                    "cement, blast furnace slag 35-70%",
-                ),
-                (
-                    "cement production, blast furnace slag 6-34%",
-                    "cement, blast furnace slag 6-34%",
-                ),
-                ("cement production, limestone 6-10%", "cement, limestone 6-10%"),
-                (
-                    "cement production, pozzolana and fly ash 15-50%",
-                    "cement, pozzolana and fly ash 15-50%",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 6-14%",
-                    "cement, pozzolana and fly ash 6-14%",
-                ),
-                (
-                    "cement production, alternative constituents 6-20%",
-                    "cement, alternative constituents 6-20%",
-                ),
-                (
-                    "cement production, alternative constituents 21-35%",
-                    "cement, alternative constituents 21-35%",
-                ),
-                (
-                    "cement production, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                    "cement, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                ),
-                (
-                    "cement production, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                    "cement, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                ),
-                (
-                    "cement production, blast furnace slag 36-65%",
-                    "cement, blast furnace slag 36-65%",
-                ),
-                (
-                    "cement production, blast furnace slag 66-80%",
-                    "cement, blast furnace slag, 66-80%",
-                ),
-                (
-                    "cement production, blast furnace slag 81-95%",
-                    "cement, blast furnace slag 81-95%",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 11-35%",
-                    "cement, pozzolana and fly ash 11-35%",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 36-55%",
-                    "cement, pozzolana and fly ash 36-55%",
-                ),
-                (
-                    "cement production, alternative constituents 45%",
-                    "cement, alternative constituents 45%",
-                ),
-                (
-                    "cement production, blast furnace slag 40-70%",
-                    "cement, blast furnace 40-70%",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 25-35%",
-                    "cement, pozzolana and fly ash 25-35%",
-                ),
-                ("cement production, limestone 21-35%", "cement, limestone 21-35%"),
-                (
-                    "cement production, blast furnace slag 21-35%",
-                    "cement, blast furnace slag 21-35%",
-                ),
-                (
-                    "cement production, blast furnace slag 25-70%",
-                    "cement, blast furnace slag 25-70%",
-                ),
-                (
-                    "cement production, blast furnace slag 5-25%",
-                    "cement, blast furnace slag 5-25%",
-                ),
-                (
-                    "cement production, blast furnace slag 6-20%",
-                    "cement, blast furnace slag 6-20%",
-                ),
-                (
-                    "cement production, blast furnace slag 70-100%",
-                    "cement, blast furnace slag 70-100%",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 15-40%",
-                    "cement, pozzolana and fly ash 15-40%",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 5-15%",
-                    "cement, pozzolana and fly ash 5-15%",
-                ),
-                (
-                    "cement production, blast furnace slag 31-50% and 31-50% other alternative constituents",
-                    "hard coal ash",
-                ),
-                (
-                    "cement production, pozzolana and fly ash 6-14%",
-                    "nickel smelter slag",
-                ),
-                (
-                    "cement production, fly ash 21-35%",
-                    "cement, portland fly ash cement 21-35%",
-                ),
-                ("cement production, fly ash 21-35%", "hard coal ash"),
-                ("cement production, limestone 21-35%", "hard coal ash"),
-                ("cement production, pozzolana and fly ash 6-14%", "hard coal ash"),
-                ("cement production, alternative constituents 45%", "hard coal ash"),
-                ("cement production, limestone 6-20%", "cement, limestone 6-20%"),
-                (
-                    "cement production, pozzolana and fly ash 15-50%",
-                    "nickel smelter slag",
-                ),
-                (
-                    "cement production, blast furnace slag 18-30% and 18-30% other alternative constituents",
-                    "hard coal ash",
-                ),
-                ("cement production, alternative constituents 6-20%", "hard coal ash"),
-
-                ("cement production, pozzolana and fly ash 36-55%", "hard coal ash"),
-                ("cement production, pozzolana and fly ash 15-50%", "hard coal ash"),
-                (
-                    "cement production, fly ash 6-20%",
-                    "cement, portland fly ash cement 6-20%",
-                ),
-                ("cement production, alternative constituents 21-35%", "hard coal ash"),
-                ("cement production, pozzolana and fly ash 5-15%", "hard coal ash"),
-                ("cement production, pozzolana and fly ash 11-35%", "hard coal ash"),
-                ("cement production, pozzolana and fly ash 25-35%", "hard coal ash"),
-                ("cement production, fly ash 6-20%", "hard coal ash"),
-                ("cement production, pozzolana and fly ash 15-40%", "hard coal ash"),
-            ):
-                act_cement = self.update_cement_production_datasets(i[0], i[1])
-                self.db.extend([v for v in act_cement.values()])
-
-                created_datasets.extend(
-                    [
-                        (act["name"], act["reference product"], act["location"])
-                        for act in act_cement.values()
-                    ]
-                )
-
-                self.relink_datasets(i[0], i[1])
+        # relink new cement market datasets to the new generic market for cement
 
         if self.version == 3.5:
             name = "market for cement, unspecified"

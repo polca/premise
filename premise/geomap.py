@@ -130,7 +130,9 @@ class Geomap:
             "RLA": "LAM" if self.model == "remind" else "RSAM",
             "IAI Area, South America": "LAM" if self.model == "remind" else "RSAM",
             "IAI Area, Russia & RER w/o EU27 & EFTA": "REF" if self.model == "remind" else "RUS",
-            "IAI Area, North America": "USA"
+            "IAI Area, North America": "USA",
+            "OCE": "CAZ" if self.model == "remind" else "OCE",
+            "US-PR": "USA",
         }
 
         if location in mapping:
