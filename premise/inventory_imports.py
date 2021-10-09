@@ -1,5 +1,4 @@
 from . import DATA_DIR, INVENTORY_DIR
-import wurst
 from prettytable import PrettyTable
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
@@ -13,6 +12,7 @@ import xarray as xr
 import pickle
 from .utils import *
 from wurst import transformations as wt
+import itertools
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
@@ -39,12 +39,7 @@ def generate_migration_maps(origin, destination):
     return response
 
 
-EI_37_35_MIGRATION_MAP = generate_migration_maps("37", "35")
-EI_37_36_MIGRATION_MAP = generate_migration_maps("37", "36")
-EI_35_37_MIGRATION_MAP = generate_migration_maps("35", "37")
-EI_35_36_MIGRATION_MAP = generate_migration_maps("35", "36")
-EI_36_37_MIGRATION_MAP = generate_migration_maps("36", "37")
-EI_36_35_MIGRATION_MAP = generate_migration_maps("36", "35")
+
 
 
 class BaseInventoryImport:
@@ -58,7 +53,7 @@ class BaseInventoryImport:
     :vartype version: str
     """
 
-    def __init__(self, database, version, path):
+    def __init__(self, database, version_in, version_out, path):
         """Create a :class:`BaseInventoryImport` instance.
 
         :param list database: the target database for the import (the Ecoinvent database),
@@ -74,7 +69,8 @@ class BaseInventoryImport:
         self.db_names = [
             (x["name"], x["reference product"], x["location"]) for x in self.db
         ]
-        self.version = version
+        self.version_in = version_in
+        self.version_out = version_out
         self.biosphere_dict = self.get_biosphere_code()
 
         path = Path(path)
@@ -87,6 +83,19 @@ class BaseInventoryImport:
 
         self.path = path
         self.import_db = self.load_inventory(path)
+
+        # register migration maps
+        # as imported inventories link to different ecoinvent versions
+        ei_versions = ['35', '36', '37', '38']
+
+        for r in itertools.product(ei_versions, ei_versions):
+            if r[0] != r[1]:
+                map = generate_migration_maps(r[0], r[1])
+                if len(map["data"]) > 0:
+                    Migration(f"migration_{r[0]}_{r[1]}").write(
+                        map,
+                        description=f"Change technosphere names due to change from {r[0]} to {r[1]}",
+                    )
 
     def load_inventory(self, path):
         """Load an inventory from a specified path.
@@ -401,419 +410,22 @@ class BaseInventoryImport:
                     act.pop(key)
 
 
-class CarmaCCSInventory(BaseInventoryImport):
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # Carma inventories are originally made with ei 3.5
-        if self.version in ["3.7", "3.7.1"]:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_35_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-
-        if self.version == "3.6":
-            # apply some updates to comply with ei 3.6
-            new_technosphere_data = EI_35_36_MIGRATION_MAP
-
-            Migration("migration_36").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("migration_36")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
-
-
-class OilGasInventory(BaseInventoryImport):
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # Inventories initially made with ei 37
-        if self.version == "3.6":
-            # apply some updates to go from ei3.7 to ei3.6
-            new_technosphere_data = EI_37_36_MIGRATION_MAP
-
-            Migration("migration_36").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.7 to 3.5",
-            )
-            self.import_db.migrate("migration_36")
-
-        if self.version == "3.5":
-            # apply some updates to go from ei3.7 to ei3.5
-            new_technosphere_data = EI_37_35_MIGRATION_MAP
-
-            Migration("migration_35").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.7 to 3.5",
-            )
-            self.import_db.migrate("migration_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
-
-class DACInventory(BaseInventoryImport):
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # Inventories initially made with ei 37
-        if self.version == "3.6":
-            # apply some updates to go from ei3.7 to ei3.6
-            new_technosphere_data = EI_37_36_MIGRATION_MAP
-
-            Migration("migration_36").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.7 to 3.5",
-            )
-            self.import_db.migrate("migration_36")
-
-        if self.version == "3.5":
-            # apply some updates to go from ei3.7 to ei3.5
-            new_technosphere_data = EI_37_35_MIGRATION_MAP
-
-            Migration("migration_35").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.7 to 3.5",
-            )
-            self.import_db.migrate("migration_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
-
-class BiofuelInventory(BaseInventoryImport):
-    """
-    Biofuel datasets from the master thesis of Francesco Cozzolino (2018).
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
+class DefaultInventory(BaseInventoryImport):
+    def __init__(self, database, version_in, version_out, path):
+        super().__init__(database, version_in, version_out, path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
 
-        # Migrations for 3.6
-        if self.version == "3.6":
-            migrations = EI_37_36_MIGRATION_MAP
-
-            Migration("biofuels_ecoinvent_36").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.6",
-            )
-            self.import_db.migrate("biofuels_ecoinvent_36")
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("biofuels_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.5",
-            )
-            self.import_db.migrate("biofuels_ecoinvent_35")
+        if self.version_in != self.version_out:
+            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            print(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
 
-        # Check for duplicates
-        self.check_for_duplicates()
-
-
-class HydrogenInventory(BaseInventoryImport):
-    """
-    Hydrogen datasets from the ELEGANCY project (2019).
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # inventories initially links to ei37
-
-        # migration for ei 3.6
-        if self.version == "3.6":
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_37_36_MIGRATION_MAP
-
-            Migration("migration_36").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.7 to 3.6",
-            )
-            self.import_db.migrate("migration_36")
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("hydrogen_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.5",
-            )
-            self.import_db.migrate("hydrogen_ecoinvent_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
-
-
-class HydrogenBiogasInventory(BaseInventoryImport):
-    """
-    Hydrogen datasets from the ELEGANCY project (2019).
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version in ["3.7", "3.7.1"]:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_36_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("hydrogen_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("hydrogen_ecoinvent_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
-
-
-class BiogasInventory(BaseInventoryImport):
-    """
-    Biogas datasets from the SCCER project (2019).
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version in ["3.7", "3.7.1"]:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_36_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("biogas_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.5",
-            )
-            self.import_db.migrate("biogas_ecoinvent_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
-
-
-
-class SyngasInventory(BaseInventoryImport):
-    """
-    Synthetic fuel datasets from the PSI project (2019).
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version in ["3.7", "3.7.1"]:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_36_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-
-        # migration for ei 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("syngas_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.6 to 3.5",
-            )
-            self.import_db.migrate("syngas_ecoinvent_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-
-class SynfuelInventory(BaseInventoryImport):
-    """
-    Synthetic fuel datasets from the PSI project (2019).
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version in ["3.7", "3.7.1"]:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_36_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("syngas_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.6 to 3.5",
-            )
-            self.import_db.migrate("syngas_ecoinvent_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-        # Check for duplicates
-        self.check_for_duplicates()
-
-
-class GeothermalInventory(BaseInventoryImport):
-    """
-    Geothermal heat production, adapted from geothermal power production dataset from ecoinvent 3.6.
-.
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-        # migration for ei 3.7
-        if self.version in ["3.7", "3.7.1"]:
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_36_37_MIGRATION_MAP
-
-            Migration("migration_37").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.5/3.6 to 3.7",
-            )
-            self.import_db.migrate("migration_37")
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-        # Check for duplicates
-        self.check_for_duplicates()
-
-
-class SyntheticMethanolInventory(BaseInventoryImport):
-    """
-    Methanol-based fuels.
-    Mostly from Alternative production of methanol from industrial CO2. Meunier et al. 2020. Renewable Energy 146, pp. 1192-1203
-    And https://www.fvv-net.de/fileadmin/user_upload/medien/materialien/FVV-Kraftstoffstudie_LBST_2013-10-30.pdf
-
-    """
-
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
-
-    def load_inventory(self, path):
-        return ExcelImporter(path)
-
-    def prepare_inventory(self):
-
-        # migration for ei 3.6
-        if self.version == "3.6":
-            # apply some updates to comply with ei 3.7
-            new_technosphere_data = EI_37_36_MIGRATION_MAP
-
-            Migration("migration_36").write(
-                new_technosphere_data,
-                description="Change technosphere names due to change from 3.7 to 3.6",
-            )
-            self.import_db.migrate("migration_36")
-
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("LPG_ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("LPG_ecoinvent_35")
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_duplicates()
 
@@ -823,8 +435,8 @@ class VariousVehicles(BaseInventoryImport):
     Imports various future vehicles' inventories (two-wheelers, buses, trams, etc.).
     """
 
-    def __init__(self, database, version, path, year, regions, model):
-        super().__init__(database, version, path)
+    def __init__(self, database, version_in, version_out, path, year, regions, model):
+        super().__init__(database, version_in, version_out, path)
         self.year = year
         self.regions = regions
         self.model = model
@@ -833,26 +445,10 @@ class VariousVehicles(BaseInventoryImport):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
-
-        # Migrations for 3.6
-        if self.version == "3.6":
-            migrations = EI_37_36_MIGRATION_MAP
-
-            Migration("ecoinvent_36").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.6",
-            )
-            self.import_db.migrate("ecoinvent_36")
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("ecoinvent_35")
+        # initially links to ei37
+        if self.version_in != self.version_out:
+            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            print(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -935,8 +531,8 @@ class PassengerCars(BaseInventoryImport):
     Imports default inventories for passenger cars.
     """
 
-    def __init__(self, database, version, model, year, regions, iam_data):
-        super().__init__(database, version, Path("."))
+    def __init__(self, database, version_in, version_out, model, year, regions, iam_data):
+        super().__init__(database, version_in, version_out, Path("."))
 
         self.db = database
         self.regions = regions
@@ -945,8 +541,7 @@ class PassengerCars(BaseInventoryImport):
 
         inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
                              key=lambda x: abs(x - year))
-        ver = version.replace(".1", "")
-        ver = ver.replace(".", "")
+
         filename = model \
                    + "_pass_cars_inventory_data_ei_37_" + str(
             inventory_year) + ".pickle"
@@ -961,26 +556,10 @@ class PassengerCars(BaseInventoryImport):
         pass
 
     def prepare_inventory(self):
-
-        # Migrations for 3.6
-        if self.version == "3.6":
-            migrations = EI_37_36_MIGRATION_MAP
-
-            Migration("ecoinvent_36").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.6",
-            )
-            self.import_db.migrate("ecoinvent_36")
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("ecoinvent_35")
+        # initially links to ei37
+        if self.version_in != self.version_out:
+            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            print(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -989,7 +568,6 @@ class PassengerCars(BaseInventoryImport):
 
         for x in self.import_db.data:
             x["code"] = str(uuid.uuid4().hex)
-            #x = relink_technosphere_exchanges(x, self.db, self.model)
 
     def merge_inventory(self):
         self.prepare_inventory()
@@ -1008,7 +586,7 @@ class PassengerCars(BaseInventoryImport):
         self.db.extend(self.import_db.data)
 
         exchanges_to_modify = [
-            "market for transport, passenger car, large size, petol, EURO 4",
+            "market for transport, passenger car, large size, petrol, EURO 4",
             "market for transport, passenger car",
             "market for transport, passenger car, large size, petrol, EURO 3",
             "market for transport, passenger car, large size, diesel, EURO 4",
@@ -1076,8 +654,8 @@ class Trucks(BaseInventoryImport):
     Imports default inventories for trucks.
     """
 
-    def __init__(self, database, version, model, year, regions, iam_data):
-        super().__init__(database, version, Path("."))
+    def __init__(self, database, version_in, version_out, model, year, regions, iam_data):
+        super().__init__(database, version_in, version_out, Path("."))
 
         self.db = database
         self.regions = regions
@@ -1085,8 +663,7 @@ class Trucks(BaseInventoryImport):
 
         inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
                              key=lambda x: abs(x - year))
-        ver = version.replace(".1", "")
-        ver = ver.replace(".", "")
+
         filename = model \
                    + "_trucks_inventory_data_ei_37_" + str(
             inventory_year) + ".pickle"
@@ -1101,26 +678,9 @@ class Trucks(BaseInventoryImport):
         pass
 
     def prepare_inventory(self):
-
-        # Migrations for 3.6
-        if self.version == "3.6":
-            migrations = EI_37_36_MIGRATION_MAP
-
-            Migration("ecoinvent_36").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.6",
-            )
-            self.import_db.migrate("ecoinvent_36")
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("ecoinvent_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.5 to 3.6",
-            )
-            self.import_db.migrate("ecoinvent_35")
+        # initially links to ei37
+        if self.version_in != self.version_out:
+            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -1133,17 +693,17 @@ class Trucks(BaseInventoryImport):
     def merge_inventory(self):
         self.prepare_inventory()
 
-        activities_to_remove = [
-            "transport, freight, lorry",
-        ]
-
+        # remove the old lorry transport datasets
         self.db = [
             x
             for x in self.db
-            if not any(y for y in activities_to_remove if y in x["name"])
+            if "transport, freight, lorry" not in x["name"]
         ]
+
+        # add the new ones
         self.db.extend(self.import_db.data)
 
+        # loop through datasets that use lorry transport
         for ds in self.db:
             excs = (
                 exc
@@ -1156,21 +716,16 @@ class Trucks(BaseInventoryImport):
 
                 if "3.5-7.5" in exc["name"]:
                     search_for = "transport, freight, lorry, fleet average, 3.5t"
-                if "7.5-16" in exc["name"]:
+                elif "7.5-16" in exc["name"]:
                     search_for = "transport, freight, lorry, fleet average, 7.5t"
-                if "16-32" in exc["name"]:
+                elif "16-32" in exc["name"]:
                     search_for = "transport, freight, lorry, fleet average, 26t"
-                if ">32" in exc["name"]:
+                elif ">32" in exc["name"]:
                     search_for = "transport, freight, lorry, fleet average, 40t"
-                if "unspecified" in exc["name"]:
-                    search_for = "market for transport, freight, lorry, unspecified"
-
-                if not any(
-                        x
-                        for x in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
-                        if x in exc["name"]
-                ):
-                    search_for = "market for transport, freight, lorry, unspecified"
+                elif "unspecified" in exc["name"]:
+                    search_for = "transport, freight, lorry, fleet average"
+                else:
+                    search_for = "transport, freight, lorry, fleet average"
 
                 try:
                     new_supplier = ws.get_one(
@@ -1179,7 +734,8 @@ class Trucks(BaseInventoryImport):
                             ws.equals("name", search_for),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(ds["location"]),
+                                self.geomap.ecoinvent_to_iam_location(ds["location"])
+                                if ds not in self.regions else ds["location"],
                             ),
                             ws.contains(
                                 "reference product", "transport, freight, lorry"
@@ -1194,62 +750,16 @@ class Trucks(BaseInventoryImport):
 
                 except ws.NoResults:
 
-                    search_for = "market for transport, freight, lorry, unspecified"
-
-                    try:
-                        new_supplier = ws.get_one(
-                            self.db,
-                            *[
-                                ws.equals("name", search_for),
-                                ws.equals(
-                                    "location",
-                                    self.geomap.ecoinvent_to_iam_location(
-                                        ds["location"]
-                                    ),
-                                ),
-                                ws.contains(
-                                    "reference product", "transport, freight, lorry"
-                                ),
-                            ],
-                        )
-
-                    except ws.NoResults:
-
-                        search_for = "market for transport, freight, lorry, unspecified"
-
-                        try:
-                            new_supplier = ws.get_one(
-                                self.db,
-                                *[
-                                    ws.equals("name", search_for),
-                                    ws.contains(
-                                        "reference product", "transport, freight, lorry"
-                                    ),
-                                ],
-                            )
-
-                        except ws.NoResults:
-                            print(f"no results for {exc['name']} in {exc['location']}")
-
-                            print("available trucks")
-                            for dataset in self.db:
-                                if "transport, freight, lorry" in dataset["name"]:
-                                    print(dataset["name"], dataset["location"])
-
-                        except ws.MultipleResults:
-                            # If multiple trucks are available, but none of the correct region,
-                            # we pick a a truck from the "World" region
-                            print("found several suppliers")
-                            new_supplier = ws.get_one(
-                                self.db,
-                                *[
-                                    ws.equals("name", search_for),
-                                    ws.equals("location", "World"),
-                                    ws.contains(
-                                        "reference product", "transport, freight, lorry"
-                                    ),
-                                ],
-                            )
+                    new_supplier = ws.get_one(
+                        self.db,
+                        *[
+                            ws.equals("name", search_for),
+                            ws.equals("location", "World"),
+                            ws.contains(
+                                "reference product", "transport, freight, lorry"
+                            ),
+                        ],
+                    )
 
                     exc["name"] = new_supplier["name"]
                     exc["location"] = new_supplier["location"]
@@ -1266,8 +776,8 @@ class AdditionalInventory(BaseInventoryImport):
     Import additional inventories, if any.
     """
 
-    def __init__(self, database, version, path):
-        super().__init__(database, version, path)
+    def __init__(self, database, version_in, version_out, path):
+        super().__init__(database, version_in, version_out, path)
 
     def load_inventory(self, path):
         return ExcelImporter(path)
@@ -1280,27 +790,10 @@ class AdditionalInventory(BaseInventoryImport):
                     del x[k]
 
     def prepare_inventory(self):
-        # Initially links to ei37
 
-        # Migrations for 3.6
-        if self.version == "3.6":
-            migrations = EI_37_36_MIGRATION_MAP
-
-            Migration("ecoinvent_36").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.6",
-            )
-            self.import_db.migrate("ecoinvent_36")
-
-        # Migrations for 3.5
-        if self.version == "3.5":
-            migrations = EI_37_35_MIGRATION_MAP
-
-            Migration("migration_35").write(
-                migrations,
-                description="Change technosphere names due to change from 3.7 to 3.5",
-            )
-            self.import_db.migrate("migration_35")
+        if self.version_in != self.version_out:
+            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            print(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
 
         list_missing_prod = self.search_missing_exchanges(
             label="type", value="production"
@@ -1669,7 +1162,6 @@ class CarculatorInventory(BaseInventoryImport):
 
         return self.db
 
-
 class TruckInventory(BaseInventoryImport):
     """
     Car models from the carculator project, https://github.com/romainsacchi/carculator
@@ -1678,7 +1170,8 @@ class TruckInventory(BaseInventoryImport):
     def __init__(
         self,
         database,
-        version,
+        version_in,
+        version_out,
         fleet_file,
         model,
         year,
@@ -1698,116 +1191,7 @@ class TruckInventory(BaseInventoryImport):
         if filters:
             self.filter.extend(filters)
 
-        super().__init__(database, version, Path("."))
-
-    def get_liquid_fuel_blend(self, allocate_all_synfuels):
-
-        if self.model == "remind":
-
-            if allocate_all_synfuels:
-                share_synfuel = self.data.sel(
-                    variables=["SE|Liquids|Hydrogen"]
-                ) / self.data.sel(variables="FE|Transport|Pass|Road|LDV|Liquids")
-
-                share_liquids = self.data.sel(
-                    variables=[
-                        "FE|Transport|Liquids|Oil",
-                        "FE|Transport|Liquids|Biomass",
-                    ]
-                ) / self.data.sel(
-                    variables=[
-                        "FE|Transport|Liquids|Oil",
-                        "FE|Transport|Liquids|Biomass",
-                    ]
-                ).sum(
-                    dim="variables"
-                )
-                share_liquids *= 1 - share_synfuel.values
-
-                share_liquids = xr.concat(
-                    [share_liquids, share_synfuel], dim="variables"
-                )
-
-                share_liquids = share_liquids.assign_coords(
-                    {
-                        "variables": [
-                            "liquid - fossil",
-                            "liquid - biomass",
-                            "liquid - synfuel",
-                        ]
-                    }
-                )
-
-                share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
-
-            else:
-
-                var = [
-                    "FE|Transport|Liquids|Oil",
-                    "FE|Transport|Liquids|Biomass",
-                    "FE|Transport|Liquids|Hydrogen",
-                ]
-
-                share_liquids = self.data.sel(variables=var)
-                share_liquids /= share_liquids.sum(dim="variables")
-
-                share_liquids = share_liquids.assign_coords(
-                    {
-                        "variables": [
-                            "liquid - fossil",
-                            "liquid - biomass",
-                            "liquid - synfuel",
-                        ]
-                    }
-                )
-
-                share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
-
-        if self.model == "image":
-            var = [
-                "Final Energy|Transportation|Freight|Liquids|Oil",
-                "Final Energy|Transportation|Freight|Liquids|Biomass",
-            ]
-
-            share_liquids = self.data.sel(variables=var)
-            share_liquids /= share_liquids.sum(dim="variables")
-
-            share_liquids = share_liquids.assign_coords(
-                {"variables": ["liquid - fossil", "liquid - biomass",]}
-            )
-
-            share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
-
-        return share_liquids
-
-    def get_gas_fuel_blend(self):
-
-        if self.model == "remind":
-
-            var = ["FE|Transport|Gases|Non-Biomass", "FE|Transport|Gases|Biomass"]
-
-            share_gas = self.data.sel(variables=var)
-            share_gas /= share_gas.sum(dim="variables")
-
-            share_gas = share_gas.assign_coords({"variables": ["gas - fossil", "gas - biomass"]})
-            share_gas = np.clip(share_gas.fillna(0), 0, 1)
-
-        if self.model == "image":
-
-            share_gas = xr.DataArray(
-                np.ones_like(
-                self.data.sel(variables=["Final Energy|Transportation|Freight|Gases"])
-                ),
-                dims=["region", "variables", "year"],
-                coords=[
-                    self.data.region.values,
-                    ["gas - fossil"],
-                    self.data.year.values,
-                ])
-
-
-
-        return share_gas
+        super().__init__(database, version_in, version_out, Path("."))
 
     def load_inventory(self, path):
         """Create `carculator_truck` fleet average inventories for a given range of years.

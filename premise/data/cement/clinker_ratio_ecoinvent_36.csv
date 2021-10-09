@@ -55,7 +55,8 @@
 "market for cement, portland fly ash cement 21-35%",RoW,0.43
 "market for cement, portland fly ash cement 6-20%",RoW,0.5
 "market for cement, limestone 21-35%",RoW,0.5
-"market for cement, limestone 6-10%",RoW,0.63
+"market for cement, limestone 6-10%",RoW,0.86
+"market for cement, limestone 6-20%",RoW,0.76
 "market for cement, limestone cement 6-20%",RoW,0.54
 "market for cement, pozzolana and fly ash 11-35%",RoW,0.73
 "market for cement, pozzolana and fly ash 15-40%",RoW,0.69
@@ -78,3 +79,4 @@
 "market for cement, portland fly ash cement 6-20%",ZA,0.71
 "market for cement, limestone 21-35%",ZA,0.76
 "market for cement, limestone cement 6-20%",ZA,0.76
+"market for cement, limestone 6-20%",ZA,0.76

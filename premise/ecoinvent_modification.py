@@ -4,16 +4,7 @@ from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .renewables import SolarPV
 from .inventory_imports import (
-    CarmaCCSInventory,
-    BiofuelInventory,
-    DACInventory,
-    OilGasInventory,
-    HydrogenInventory,
-    BiogasInventory,
-    SynfuelInventory,
-    SyngasInventory,
-    GeothermalInventory,
-    SyntheticMethanolInventory,
+    DefaultInventory,
     CarculatorInventory,
     TruckInventory,
     VariousVehicles,
@@ -101,11 +92,12 @@ FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
 FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
+FILE_PATH_INVENTORIES_EI_38 = INVENTORY_DIR / "inventory_data_ei_38.pickle"
 FILE_PATH_INVENTORIES_EI_37 = INVENTORY_DIR / "inventory_data_ei_37.pickle"
 FILE_PATH_INVENTORIES_EI_36 = INVENTORY_DIR / "inventory_data_ei_36.pickle"
 FILE_PATH_INVENTORIES_EI_35 = INVENTORY_DIR / "inventory_data_ei_35.pickle"
 
-SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1"]
+SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
 SUPPORTED_MODELS = ["remind", "image"]
 SUPPORTED_PATHWAYS = [
     "SSP2-Base",
@@ -371,9 +363,9 @@ def check_additional_inventories(inventories_list):
         else:
             inventory["filepath"] = Path(inventory["filepath"])
 
-        if inventory["ecoinvent version"] not in ["3.7", "3.7.1"]:
+        if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8"]:
             raise ValueError(
-                f"A lot of trouble will be avoided if the additional inventories to import are ecoinvent 3.7 or 3.7.1-compliant."
+                f"A lot of trouble will be avoided if the additional inventories to import are ecoinvent 3.7 or 3.8-compliant."
             )
 
     return inventories_list
@@ -474,7 +466,8 @@ class NewDatabase:
     :vartype source_type: str
     :ivar source_db: name of the ecoinvent source database
     :vartype source_db: str
-    :ivar source_version: version of the ecoinvent source database. Currently works with ecoinvent 3.5, 3.6, 3.7, 3.7.1.
+    :ivar source_version: version of the ecoinvent source database.
+        Currently works with ecoinvent cut-off 3.5, 3.6, 3.7, 3.7.1 and 3.8.
     :vartype source_version: str
     :ivar direct_import: If True, appends pickled inventories to database.
     If False, import inventories via bw2io importer.
@@ -487,7 +480,7 @@ class NewDatabase:
     def __init__(
         self,
         scenarios,
-        source_version="3.7.1",
+        source_version="3.8",
         source_type="brightway",
         key=None,
         source_db=None,
@@ -561,8 +554,10 @@ class NewDatabase:
 
             # we unpickle inventories here
             # and append them directly to the end of the database
-
-            if self.version in ["3.7", "3.7.1"]:
+            if self.version == "3.8":
+                fp = FILE_PATH_INVENTORIES_EI_38
+            elif self.version in ["3.7", "3.7.1"]:
+                self.version = "3.7"
                 fp = FILE_PATH_INVENTORIES_EI_37
             elif self.version == "3.6":
                 fp = FILE_PATH_INVENTORIES_EI_36
@@ -575,78 +570,36 @@ class NewDatabase:
 
         else:
             # Manual import
-
-            # new inventories for natural gas and oil
-            print("oil and gas inventories")
-            oilgas = OilGasInventory(self.db, self.version, FILEPATH_OIL_GAS_INVENTORIES)
-            oilgas.merge_inventory()
-
-            list_inventories = [FILEPATH_CARMA_INVENTORIES, FILEPATH_CHP_INVENTORIES] if\
-                self.system_model == "attributional" else [FILEPATH_CARMA_INVENTORIES]
-
-            for file in list_inventories:
-                carma = CarmaCCSInventory(self.db, self.version, file)
-                carma.merge_inventory()
-
-            dac = DACInventory(self.db, self.version, FILEPATH_DAC_INVENTORIES)
-            dac.merge_inventory()
-
-            list_inventories = [FILEPATH_BIOGAS_INVENTORIES]if\
-                self.system_model == "attributional" else []
-
-            for file in list_inventories:
-                biogas = BiogasInventory(self.db, self.version, file)
-                biogas.merge_inventory()
-
-            list_inventories = [
-                FILEPATH_CARBON_FIBER_INVENTORIES,
-                FILEPATH_HYDROGEN_DISTRI_INVENTORIES,
-                FILEPATH_HYDROGEN_INVENTORIES,
-                FILEPATH_HYDROGEN_BIOGAS_INVENTORIES,
-                FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,
-                FILEPATH_HYDROGEN_NATGAS_INVENTORIES,
-                FILEPATH_HYDROGEN_WOODY_INVENTORIES,
+            # file path and original ecoinvent version
+            filepaths = [
+                (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
+                (FILEPATH_CARMA_INVENTORIES, "3.5"),
+                (FILEPATH_CHP_INVENTORIES, "3.5"),
+                (FILEPATH_DAC_INVENTORIES, "3.7"),
+                (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
+                (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,"3.7"),
+                (FILEPATH_HYDROGEN_NATGAS_INVENTORIES,"3.7"),
+                (FILEPATH_HYDROGEN_WOODY_INVENTORIES,"3.7"),
+                (FILEPATH_SYNGAS_INVENTORIES,"3.6"),
+                (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,"3.7"),
+                (FILEPATH_BIOFUEL_INVENTORIES,"3.7"),
+                (FILEPATH_SYNFUEL_INVENTORIES,"3.7"),
+                (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,"3.7"),
+                (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,"3.7"),
+                (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,"3.7"),
+                (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES,"3.6"),
+                (FILEPATH_METHANOL_FUELS_INVENTORIES,"3.7"),
+                (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES,"3.7"),
+                (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,"3.7"),
             ]
-
-            if self.system_model == "consequential":
-                list_inventories.remove(FILEPATH_HYDROGEN_BIOGAS_INVENTORIES)
-
-            for file in list_inventories:
-                hydro = HydrogenInventory(self.db, self.version, file)
-                hydro.merge_inventory()
-
-            for file in (
-              FILEPATH_SYNGAS_INVENTORIES,
-              FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,
-            ):
-                syngas = SyngasInventory(self.db, self.version, file)
-                syngas.merge_inventory()
-
-            bio = BiofuelInventory(self.db, self.version, FILEPATH_BIOFUEL_INVENTORIES)
-            bio.merge_inventory()
-
-            for file in (
-                FILEPATH_SYNFUEL_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
-                FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES
-                ):
-                synfuel = SynfuelInventory(self.db, self.version, file)
-                synfuel.merge_inventory()
-
-            geo_heat = GeothermalInventory(
-            self.db, self.version, FILEPATH_GEOTHERMAL_HEAT_INVENTORIES
-            )
-            geo_heat.merge_inventory()
-
-            for file in (
-              FILEPATH_METHANOL_FUELS_INVENTORIES,
-              FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES,
-              FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES
-            ):
-
-                methanol = SyntheticMethanolInventory(self.db, self.version, file)
-                methanol.merge_inventory()
+            for fp in filepaths:
+                di = DefaultInventory(database=self.db, version_in=fp[1], version_out=self.version,
+                                 path=fp[0])
+                di.merge_inventory()
 
         print("Done!\n")
 
@@ -658,7 +611,10 @@ class NewDatabase:
 
             for file in self.additional_inventories:
                 additional = AdditionalInventory(
-                    self.db, self.version, file["filepath"]
+                    database=self.db,
+                    version_in=file["ecoinvent version"],
+                    version_out=self.version,
+                    path=file["filepath"]
                 )
                 additional.prepare_inventory()
                 additional.merge_inventory()
@@ -794,7 +750,8 @@ class NewDatabase:
                     # Load fleet default inventories
                     cars = PassengerCars(
                         database=scenario["database"],
-                        version=self.version,
+                        version_in="3.7",
+                        version_out=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
                         regions=scenario["external data"].data.coords["region"].values.tolist(),
@@ -811,11 +768,12 @@ class NewDatabase:
 
                 various_veh = VariousVehicles(
                     database=scenario["database"],
-                    version=self.version,
+                    version_in="3.7",
+                    version_out=self.version,
                     path=FILEPATH_TWO_WHEELERS,
                     year=scenario["year"],
                     regions=scenario["external data"].data.coords["region"].values.tolist(),
-                    model=scenario["model"]
+                    model=scenario["model"],
                 )
                 scenario["database"] = various_veh.merge_inventory()
 
@@ -845,7 +803,8 @@ class NewDatabase:
                     # Load default trucks inventories
                     trucks = Trucks(
                         database=scenario["database"],
-                        version=self.version,
+                        version_in="3.7",
+                        version_out=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
                         regions=scenario["external data"].data.coords["region"].values.tolist(),
