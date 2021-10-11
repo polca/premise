@@ -5,7 +5,6 @@ import uuid
 from pathlib import Path
 
 import carculator
-import carculator_bus
 import carculator_truck
 import numpy as np
 import wurst
