@@ -6,6 +6,7 @@ from pathlib import Path
 
 import carculator
 import carculator_truck
+import carculator_bus
 import numpy as np
 import wurst
 import xarray as xr
@@ -1322,69 +1323,30 @@ class CarculatorInventory(BaseInventoryImport):
 
         super().__init__(database, version, Path("."))
 
-    def get_liquid_fuel_blend(self, allocate_all_synfuels):
+    def get_liquid_fuel_blend(self):
 
         if self.model == "remind":
 
-            if allocate_all_synfuels:
-                share_synfuel = self.data.sel(
-                    variables=["SE|Liquids|Hydrogen"]
-                ) / self.data.sel(variables="FE|Transport|Pass|Road|LDV|Liquids")
+            var = [
+                "FE|Transport|Liquids|Oil",
+                "FE|Transport|Liquids|Biomass",
+                "FE|Transport|Liquids|Hydrogen",
+            ]
 
-                share_liquids = (
-                    self.data.sel(
-                        variables=[
-                            "FE|Transport|Liquids|Oil",
-                            "FE|Transport|Liquids|Biomass",
-                        ]
-                    )
-                    / self.data.sel(
-                        variables=[
-                            "FE|Transport|Liquids|Oil",
-                            "FE|Transport|Liquids|Biomass",
-                        ]
-                    ).sum(dim="variables")
-                )
-                share_liquids *= 1 - share_synfuel.values
+            share_liquids = self.data.sel(variables=var)
+            share_liquids /= share_liquids.sum(dim="variables")
 
-                share_liquids = xr.concat(
-                    [share_liquids, share_synfuel], dim="variables"
-                )
+            share_liquids = share_liquids.assign_coords(
+                {
+                    "variables": [
+                        "liquid - fossil",
+                        "liquid - biomass",
+                        "liquid - synfuel",
+                    ]
+                }
+            )
 
-                share_liquids = share_liquids.assign_coords(
-                    {
-                        "variables": [
-                            "liquid - fossil",
-                            "liquid - biomass",
-                            "liquid - synfuel",
-                        ]
-                    }
-                )
-
-                share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
-
-            else:
-
-                var = [
-                    "FE|Transport|Liquids|Oil",
-                    "FE|Transport|Liquids|Biomass",
-                    "FE|Transport|Liquids|Hydrogen",
-                ]
-
-                share_liquids = self.data.sel(variables=var)
-                share_liquids /= share_liquids.sum(dim="variables")
-
-                share_liquids = share_liquids.assign_coords(
-                    {
-                        "variables": [
-                            "liquid - fossil",
-                            "liquid - biomass",
-                            "liquid - synfuel",
-                        ]
-                    }
-                )
-
-                share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
+            share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
 
         if self.model == "image":
             var = [
@@ -1455,7 +1417,7 @@ class CarculatorInventory(BaseInventoryImport):
 
         fleet_array = carculator.create_fleet_composition_from_IAM_file(self.fleet_file)
 
-        liquid_fuel_blend = self.get_liquid_fuel_blend(allocate_all_synfuels=True)
+        liquid_fuel_blend = self.get_liquid_fuel_blend()
         gas_fuel_blend = self.get_gas_fuel_blend()
 
         import_db = None
@@ -1872,69 +1834,30 @@ class TruckInventory(BaseInventoryImport):
 
         super().__init__(database, version, Path("."))
 
-    def get_liquid_fuel_blend(self, allocate_all_synfuels):
+    def get_liquid_fuel_blend(self):
 
         if self.model == "remind":
 
-            if allocate_all_synfuels:
-                share_synfuel = self.data.sel(
-                    variables=["SE|Liquids|Hydrogen"]
-                ) / self.data.sel(variables="FE|Transport|Pass|Road|LDV|Liquids")
+            var = [
+                "FE|Transport|Liquids|Oil",
+                "FE|Transport|Liquids|Biomass",
+                "FE|Transport|Liquids|Hydrogen",
+            ]
 
-                share_liquids = (
-                    self.data.sel(
-                        variables=[
-                            "FE|Transport|Liquids|Oil",
-                            "FE|Transport|Liquids|Biomass",
-                        ]
-                    )
-                    / self.data.sel(
-                        variables=[
-                            "FE|Transport|Liquids|Oil",
-                            "FE|Transport|Liquids|Biomass",
-                        ]
-                    ).sum(dim="variables")
-                )
-                share_liquids *= 1 - share_synfuel.values
+            share_liquids = self.data.sel(variables=var)
+            share_liquids /= share_liquids.sum(dim="variables")
 
-                share_liquids = xr.concat(
-                    [share_liquids, share_synfuel], dim="variables"
-                )
+            share_liquids = share_liquids.assign_coords(
+                {
+                    "variables": [
+                        "liquid - fossil",
+                        "liquid - biomass",
+                        "liquid - synfuel",
+                    ]
+                }
+            )
 
-                share_liquids = share_liquids.assign_coords(
-                    {
-                        "variables": [
-                            "liquid - fossil",
-                            "liquid - biomass",
-                            "liquid - synfuel",
-                        ]
-                    }
-                )
-
-                share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
-
-            else:
-
-                var = [
-                    "FE|Transport|Liquids|Oil",
-                    "FE|Transport|Liquids|Biomass",
-                    "FE|Transport|Liquids|Hydrogen",
-                ]
-
-                share_liquids = self.data.sel(variables=var)
-                share_liquids /= share_liquids.sum(dim="variables")
-
-                share_liquids = share_liquids.assign_coords(
-                    {
-                        "variables": [
-                            "liquid - fossil",
-                            "liquid - biomass",
-                            "liquid - synfuel",
-                        ]
-                    }
-                )
-
-                share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
+            share_liquids = np.clip(share_liquids.fillna(0), 0, 1)
 
         if self.model == "image":
             var = [
@@ -2017,7 +1940,7 @@ class TruckInventory(BaseInventoryImport):
         tm = carculator_truck.TruckModel(array, cycle="Regional delivery", country="CH")
         tm.set_all()
 
-        liquid_fuel_blend = self.get_liquid_fuel_blend(allocate_all_synfuels=True)
+        liquid_fuel_blend = self.get_liquid_fuel_blend()
         gas_fuel_blend = self.get_gas_fuel_blend()
 
         import_db = None
@@ -2419,3 +2342,4 @@ class TruckInventory(BaseInventoryImport):
                     exc["unit"] = new_supplier["unit"]
 
         return self.db
+
