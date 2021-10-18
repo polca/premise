@@ -11,7 +11,6 @@ from . import DATA_DIR, __version__
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
 
-
 def create_index_of_A_matrix(db):
     """
     Create a dictionary with row/column indices of the A matrix as key and a tuple (activity name, reference product,
@@ -79,7 +78,7 @@ class Export:
     Dictionaries to map row numbers to activities and products names are also exported.
 
     :ivar db: transformed database
-    :vartype db: dict
+    :vartype database: dict
     :ivar scenario: name of a Remind pathway
     :vartype pathway: str
     :ivar year: year of a Remind pathway
@@ -112,12 +111,7 @@ class Export:
                             )
                         ],
                         index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
+                            (exc["name"], exc["product"], exc["unit"], exc["location"],)
                         ],
                         exc["amount"],
                     ]
@@ -133,12 +127,7 @@ class Export:
                             )
                         ],
                         index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
+                            (exc["name"], exc["product"], exc["unit"], exc["location"],)
                         ],
                         exc["amount"] * -1,
                     ]

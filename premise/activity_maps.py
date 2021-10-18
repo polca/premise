@@ -150,17 +150,18 @@ class InventorySet:
         # Solids
         "hard coal": {
             "fltr": "market for hard coal",
-            "mask": ["factory", "plant", "briquettes", "ash"],
+            "mask": {"name": ["factory", "plant", "briquettes", "ash", "clinker"]},
         },  # OK
         "lignite": {
             "fltr": "market for lignite",
             "mask": ["factory", "plant", "briquettes", "ash"],
         },  # OK
         "petroleum coke": {"fltr": "market for petroleum coke"},  # OK
-        "wood pellet": {"fltr": "market for wood pellet", "mask": ["factory"]},  # OK
+        "wood pellet": {"fltr": "market for wood pellet",
+                        "mask": {"name": ["clinker", "factory"]}},  # OK
         "waste": {
             "fltr": {"reference product": ["waste plastic, mixture"]},
-            "mask": ["market for", "treatment", "market group"],
+            "mask": {"name": ["market for", "treatment", "market group"]},
         },  # OK
         # Hydrogen
         "hydrogen, petroleum": {
@@ -605,7 +606,7 @@ class InventorySet:
 
     @staticmethod
     def act_fltr(db, fltr=None, mask=None, filter_exact=False, mask_exact=False):
-        """Filter `db` for activities matching field contents given by `fltr` excluding strings in `mask`.
+        """Filter `database` for activities matching field contents given by `fltr` excluding strings in `mask`.
         `fltr`: string, list of strings or dictionary.
         If a string is provided, it is used to match the name field from the start (*startswith*).
         If a list is provided, all strings in the lists are used and results are joined (*or*).

@@ -1,12 +1,11 @@
+from . import DATA_DIR
+
+from wurst import searching as ws
 import csv
 import pprint
-
-import bw2io
 import wurst
+import bw2io
 from bw2data.database import DatabaseChooser
-from wurst import searching as ws
-
-from . import DATA_DIR
 
 FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
@@ -208,7 +207,7 @@ class DatabaseCleaner:
 
     def add_location_field_to_exchanges(self):
         """Add the `location` key to the production and
-        technosphere exchanges in :attr:`db`.
+        technosphere exchanges in :attr:`database`.
 
         :raises IndexError: if no corresponding activity (and reference product) can be found.
 
@@ -222,10 +221,10 @@ class DatabaseCleaner:
 
     def add_product_field_to_exchanges(self):
         """Add the `product` key to the production and
-        technosphere exchanges in :attr:`db`.
+        technosphere exchanges in :attr:`database`.
 
         For production exchanges, use the value of the `reference_product` field.
-        For technosphere exchanges, search the activities in :attr:`db` and
+        For technosphere exchanges, search the activities in :attr:`database` and
         use the reference product.
 
         :raises IndexError: if no corresponding activity (and reference product) can be found.
@@ -303,8 +302,8 @@ class DatabaseCleaner:
                         )
 
     def fix_biosphere_flow_categories(self):
-        """Add a `categories` for biosphere flows if missing.
-        This happens when importing directly from ecospold files"""
+        """ Add a `categories` for biosphere flows if missing.
+        This happens when importing directly from ecospold files """
 
         dict_bio_cat = self.get_biosphere_flow_categories()
         dict_bio_uuid = self.get_biosphere_flow_uuid()

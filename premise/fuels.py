@@ -40,7 +40,9 @@ class Fuels:
         self.fuels_map = mapping.generate_fuel_map()
         self.fuel_co2 = get_fuel_co2_emission_factors()
         self.land_use_per_crop_type = get_land_use_for_crops(model=self.model)
-        self.land_use_change_CO2_per_crop_type = get_land_use_change_CO2_for_crops(model=self.model)
+        self.land_use_change_CO2_per_crop_type = get_land_use_change_CO2_for_crops(
+            model=self.model
+        )
         self.new_fuel_markets = {}
 
     def get_crop_climate_mapping(self):
@@ -180,16 +182,14 @@ class Fuels:
         try:
             ds = ws.get_one(
                 self.db,
-                *[ws.contains("name", i)
-                  for i in items_to_look_for],
+                *[ws.contains("name", i) for i in items_to_look_for],
                 ws.doesnt_contain_any("name", items_to_exclude),
-                ws.equals("location", loc)
+                ws.equals("location", loc),
             )
         except ws.NoResults:
             ds = ws.get_one(
                 self.db,
-                *[ws.contains("name", i)
-                  for i in items_to_look_for],
+                *[ws.contains("name", i) for i in items_to_look_for],
                 ws.doesnt_contain_any("name", items_to_exclude),
             )
 
@@ -300,8 +300,8 @@ class Fuels:
                     # we adjust the electrolysis efficiency
                     # from 58 kWh/kg H2 in 2010, down to 44 kWh in 2050
                     if (
-                            f[0]
-                            == "hydrogen production, gaseous, 25 bar, from electrolysis"
+                        f[0]
+                        == "hydrogen production, gaseous, 25 bar, from electrolysis"
                     ):
                         for exc in ws.technosphere(ds):
                             if "market group for electricity" in exc["name"]:
@@ -309,9 +309,7 @@ class Fuels:
 
                         string = f" The electricity input per kg of H2 has been adapted to the year {self.year}."
                         if "comment" in ds:
-                            ds[
-                                "comment"
-                            ] += string
+                            ds["comment"] += string
                         else:
                             ds["comment"] = string
 
@@ -394,7 +392,7 @@ class Fuels:
                         "market for transport, freight, lorry, unspecified",
                         "transport, freight, lorry, unspecified",
                         "ton kilometer",
-                        "RER"
+                        "RER",
                     )
                 ],
                 "state": ["gaseous", "liquid", "liquid organic compound"],
@@ -402,13 +400,14 @@ class Fuels:
             },
             "ship": {
                 "type": [
-
                     self.find_transport_activity(
-                        items_to_look_for=["market for transport, freight, sea", "liquefied"],
+                        items_to_look_for=[
+                            "market for transport, freight, sea",
+                            "liquefied",
+                        ],
                         items_to_exclude=["other"],
-                        loc="RoW"
+                        loc="RoW",
                     )
-
                 ],
                 "state": ["liquid"],
                 "distance": [2000, 5000],
@@ -562,9 +561,7 @@ class Fuels:
                                     string = f"Transport over {d} km by {vehicle}."
 
                                     if "comment" in new_act:
-                                        new_act[
-                                            "comment"
-                                        ] += string
+                                        new_act["comment"] += string
                                     else:
                                         new_act["comment"] = string
 
@@ -595,13 +592,12 @@ class Fuels:
                                         }
                                     )
 
-
-                                    string = (" 2.46 kWh/kg H2 is needed to purify the hydrogen from the inhibiting gas."
-                                              " The recovery rate for hydrogen after separation from the inhibitor gas is 93%.")
+                                    string = (
+                                        " 2.46 kWh/kg H2 is needed to purify the hydrogen from the inhibiting gas."
+                                        " The recovery rate for hydrogen after separation from the inhibitor gas is 93%."
+                                    )
                                     if "comment" in new_act:
-                                        new_act[
-                                            "comment"
-                                        ] += string
+                                        new_act["comment"] += string
                                     else:
                                         new_act["comment"] = string
 
@@ -633,12 +629,9 @@ class Fuels:
 
                                     string = " Geological storage is added. It includes 0.344 kWh for the injection and pumping of 1 kg of H2."
                                     if "comment" in new_act:
-                                        new_act[
-                                            "comment"
-                                        ] += string
+                                        new_act["comment"] += string
                                     else:
                                         new_act["comment"] = string
-
 
                                 # electricity for compression
                                 if s == "gaseous":
@@ -684,13 +677,9 @@ class Fuels:
                                     )
 
                                     if "comment" in new_act:
-                                        new_act[
-                                            "comment"
-                                        ] += string
+                                        new_act["comment"] += string
                                     else:
                                         new_act["comment"] = string
-
-
 
                                 # electricity for liquefaction
                                 if s == "liquid":
@@ -719,12 +708,9 @@ class Fuels:
 
                                     string = f" {electricity_comp} kWh is added to liquefy the hydrogen. "
                                     if "comment" in new_act:
-                                        new_act[
-                                            "comment"
-                                        ] += string
+                                        new_act["comment"] += string
                                     else:
                                         new_act["comment"] = string
-
 
                                 # electricity for hydrogenation, dehydrogenation and compression at delivery
                                 if s == "liquid organic compound":
@@ -790,13 +776,12 @@ class Fuels:
                                         }
                                     )
 
-
-                                    string = (" Hydrogenation and dehydrogenation of hydrogen included. "
-                                              "Compression at delivery after dehydrogenation also included.")
+                                    string = (
+                                        " Hydrogenation and dehydrogenation of hydrogen included. "
+                                        "Compression at delivery after dehydrogenation also included."
+                                    )
                                     if "comment" in new_act:
-                                        new_act[
-                                            "comment"
-                                        ] += string
+                                        new_act["comment"] += string
                                     else:
                                         new_act["comment"] = string
 
@@ -822,12 +807,9 @@ class Fuels:
 
                                 string = losses[vehicle][s][1]
                                 if "comment" in new_act:
-                                    new_act[
-                                        "comment"
-                                    ] += string
+                                    new_act["comment"] += string
                                 else:
                                     new_act["comment"] = string
-
 
                                 # add fuelling station, including storage tank
                                 ds_h2_station = ws.get_one(
@@ -890,12 +872,9 @@ class Fuels:
                                     f"and a capacity utilization for the fuel station of {cap_util} kg/day."
                                 )
                                 if "comment" in new_act:
-                                    new_act[
-                                        "comment"
-                                    ] += string
+                                    new_act["comment"] += string
                                 else:
                                     new_act["comment"] = string
-
 
                                 new_act["exchanges"] = new_exc
 
@@ -998,22 +977,27 @@ class Fuels:
     def generate_synthetic_fuel_activities(self):
 
         fuel_activities = {
-            "methanol": [
-                "methanol", "hydrogen from electrolysis", "energy allocation"
-                ],
+            "methanol": ["methanol", "hydrogen from electrolysis", "energy allocation"],
             "methanol, from coal": [
-                "methanol", "hydrogen from coal gasification", "energy allocation"
-                ],
+                "methanol",
+                "hydrogen from coal gasification",
+                "energy allocation",
+            ],
             "fischer-tropsch": [
-                "Fischer Tropsch process", "hydrogen from electrolysis", "energy allocation"
-                ],
+                "Fischer Tropsch process",
+                "hydrogen from electrolysis",
+                "energy allocation",
+            ],
             "fischer-tropsch, from woody biomass": [
-                "Fischer Tropsch process", "hydrogen from wood gasification", "energy allocation"
-                ],
-
+                "Fischer Tropsch process",
+                "hydrogen from wood gasification",
+                "energy allocation",
+            ],
             "fischer-tropsch, from coal": [
-                "Fischer Tropsch process", "hydrogen from coal gasification", "energy allocation"
-                ],
+                "Fischer Tropsch process",
+                "hydrogen from coal gasification",
+                "energy allocation",
+            ],
         }
 
         for region in self.list_iam_regions:
@@ -1021,17 +1005,12 @@ class Fuels:
 
                 filter_ds = ws.get_many(
                     self.original_db,
-                    *[
-                        ws.contains("name", n)
-                        for n in fuel_activities[fuel]
-                    ]
+                    *[ws.contains("name", n) for n in fuel_activities[fuel]],
                 )
 
                 for ds in filter_ds:
 
-                    ds_copy = wt.copy_to_new_location(
-                        ds, region
-                    )
+                    ds_copy = wt.copy_to_new_location(ds, region)
 
                     for exc in ws.production(ds_copy):
                         if "input" in exc:
@@ -1047,7 +1026,9 @@ class Fuels:
                             ] = "carbon dioxide, captured from the atmosphere"
                             exc["location"] = region
 
-                    ds_copy = relink_technosphere_exchanges(ds_copy, self.db, self.model)
+                    ds_copy = relink_technosphere_exchanges(
+                        ds_copy, self.db, self.model
+                    )
 
                     self.db.append(ds_copy)
 
@@ -1172,8 +1153,10 @@ class Fuels:
                     # if this is a farming activity
                     # and if the product (crop) is not a residue
                     # and if we have land use info from the IAM
-                    if "farming and supply" in ds["name"].lower()\
-                            and crop_type.lower() in self.land_use_per_crop_type:
+                    if (
+                        "farming and supply" in ds["name"].lower()
+                        and crop_type.lower() in self.land_use_per_crop_type
+                    ):
 
                         # lower heating value, as received
                         lhv_ar = ds["LHV [MJ/kg dry]"] * (
@@ -1182,17 +1165,18 @@ class Fuels:
 
                         for exc in ds["exchanges"]:
                             # we adjust the land use
-                            if exc["type"] == "biosphere" and exc[
-                                "name"
-                            ].startswith("Occupation"):
-
+                            if exc["type"] == "biosphere" and exc["name"].startswith(
+                                "Occupation"
+                            ):
 
                                 # Ha/GJ
                                 land_use = (
                                     self.iam_data.data.loc[
                                         dict(
                                             region=region,
-                                            variables=self.land_use_per_crop_type[crop_type],
+                                            variables=self.land_use_per_crop_type[
+                                                crop_type
+                                            ],
                                         )
                                     ]
                                     .interp(year=self.year)
@@ -1222,8 +1206,10 @@ class Fuels:
                     # if this is a farming activity
                     # and if the product (crop) is not a residue
                     # and if we have land use change CO2 info from the IAM
-                    if "farming and supply" in ds["name"].lower() \
-                            and crop_type.lower() in self.land_use_change_CO2_per_crop_type:
+                    if (
+                        "farming and supply" in ds["name"].lower()
+                        and crop_type.lower() in self.land_use_change_CO2_per_crop_type
+                    ):
 
                         # then, we should include the Land Use Change-induced CO2 emissions
                         # those are given in kg CO2-eq./GJ of primary crop energy
@@ -1232,7 +1218,10 @@ class Fuels:
                         land_use_co2 = (
                             self.iam_data.data.loc[
                                 dict(
-                                    region=region, variables=self.land_use_change_CO2_per_crop_type[crop_type]
+                                    region=region,
+                                    variables=self.land_use_change_CO2_per_crop_type[
+                                        crop_type
+                                    ],
                                 )
                             ]
                             .interp(year=self.year)
@@ -1241,7 +1230,7 @@ class Fuels:
 
                         # lower heating value, as received
                         lhv_ar = ds["LHV [MJ/kg dry]"] * (
-                                1 - ds["Moisture content [% wt]"]
+                            1 - ds["Moisture content [% wt]"]
                         )
 
                         # kg CO2/MJ
@@ -1259,10 +1248,7 @@ class Fuels:
                                 "biosphere3",
                                 "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
                             ),
-                            "categories": (
-                                "air",
-                                "non-urban air or from high stacks",
-                            ),
+                            "categories": ("air", "non-urban air or from high stacks",),
                         }
                         ds["exchanges"].append(land_use_co2_exc)
 
@@ -1496,23 +1482,33 @@ class Fuels:
                     "blending",
                     "market group",
                     "lubricating oil production",
-                    "petrol production"
+                    "petrol production",
                 ]
-                if amount_non_fossil_co2 > 0\
-                        and not any(x in ds["name"].lower()
-                                    for x in list_items_to_ignore):
+                if amount_non_fossil_co2 > 0 and not any(
+                    x in ds["name"].lower() for x in list_items_to_ignore
+                ):
 
                     # test for the presence of a fossil CO2 flow
-                    if len([e for e in ds["exchanges"]
-                            if "Carbon dioxide, fossil" in e["name"]]) == 0:
-                        print(f"{ds['name'], ds['location']} has not fossil CO2 output flow.")
+                    if (
+                        len(
+                            [
+                                e
+                                for e in ds["exchanges"]
+                                if "Carbon dioxide, fossil" in e["name"]
+                            ]
+                        )
+                        == 0
+                    ):
+                        print(
+                            f"{ds['name'], ds['location']} has not fossil CO2 output flow."
+                        )
 
                     # subtract the biogenic CO2 amount to the
                     # initial fossil CO2 emission amount
 
-                    for exc in ws.biosphere(ds,
-                        ws.equals("name", "Carbon dioxide, fossil")
-                                            ):
+                    for exc in ws.biosphere(
+                        ds, ws.equals("name", "Carbon dioxide, fossil")
+                    ):
                         if (exc["amount"] - amount_non_fossil_co2) < 0:
                             exc["amount"] = 0
                         else:
@@ -1576,17 +1572,22 @@ class Fuels:
                     *[ws.equals("name", c) for c in set(d_fuels[fuel]["fuel filters"])]
                 ),
                 ws.either(*[ws.contains("reference product", l) for l in look_for]),
-                ws.doesnt_contain_any("reference product", ["petroleum coke", "petroleum gas"]),
+                ws.doesnt_contain_any(
+                    "reference product", ["petroleum coke", "petroleum gas"]
+                ),
                 ws.equals("location", ds["location"]),
             )
         )
 
         if "low-sulfur" in ds["name"]:
-            possible_suppliers = self.filter_results("unleaded", possible_suppliers, "reference product")
+            possible_suppliers = self.filter_results(
+                "unleaded", possible_suppliers, "reference product"
+            )
 
         if "unleaded" in ds["name"]:
-            possible_suppliers = self.filter_results("low-sulfur", possible_suppliers, "reference product")
-
+            possible_suppliers = self.filter_results(
+                "low-sulfur", possible_suppliers, "reference product"
+            )
 
         if len(possible_suppliers) == 0:
             possible_suppliers = list(
@@ -1605,15 +1606,21 @@ class Fuels:
                         ]
                     ),
                     ws.either(*[ws.contains("reference product", l) for l in look_for]),
-                    ws.doesnt_contain_any("reference product", ["petroleum coke", "petroleum gas"]),
+                    ws.doesnt_contain_any(
+                        "reference product", ["petroleum coke", "petroleum gas"]
+                    ),
                 )
             )
 
             if "low-sulfur" in ds["name"]:
-                possible_suppliers = self.filter_results("unleaded", possible_suppliers, "reference product")
+                possible_suppliers = self.filter_results(
+                    "unleaded", possible_suppliers, "reference product"
+                )
 
             if "unleaded" in ds["name"]:
-                possible_suppliers = self.filter_results("low-sulfur", possible_suppliers, "reference product")
+                possible_suppliers = self.filter_results(
+                    "low-sulfur", possible_suppliers, "reference product"
+                )
 
         if len(possible_suppliers) == 0:
             possible_suppliers = list(
@@ -1627,17 +1634,21 @@ class Fuels:
                     ),
                     ws.equals("location", "RoW"),
                     ws.either(*[ws.contains("reference product", l) for l in look_for]),
-                    ws.doesnt_contain_any("reference product", ["petroleum coke", "petroleum gas"]),
+                    ws.doesnt_contain_any(
+                        "reference product", ["petroleum coke", "petroleum gas"]
+                    ),
                 )
             )
 
             if "low-sulfur" in ds["name"]:
-                possible_suppliers = self.filter_results("unleaded", possible_suppliers, "reference product")
+                possible_suppliers = self.filter_results(
+                    "unleaded", possible_suppliers, "reference product"
+                )
 
             if "unleaded" in ds["name"]:
-                possible_suppliers = self.filter_results("low-sulfur", possible_suppliers, "reference product")
-
-
+                possible_suppliers = self.filter_results(
+                    "low-sulfur", possible_suppliers, "reference product"
+                )
 
         possible_suppliers = self.get_shares_from_production_volume(possible_suppliers)
 
@@ -1761,9 +1772,7 @@ class Fuels:
 
                         if fuel in self.fuel_labels:
 
-                            share = d_fuels[fuel]["find_share"](
-                                fuel, look_for, region
-                            )
+                            share = d_fuels[fuel]["find_share"](fuel, look_for, region)
 
                             if share > 0:
 
@@ -1772,7 +1781,9 @@ class Fuels:
                                 )
 
                                 if len(possible_suppliers) == 0:
-                                    print(f"ISSUE with {fuel} in {region} for ds in location {ds['location']}")
+                                    print(
+                                        f"ISSUE with {fuel} in {region} for ds in location {ds['location']}"
+                                    )
                                     print(d_fuels[fuel])
 
                                 for supplier in possible_suppliers:
@@ -1781,7 +1792,9 @@ class Fuels:
                                     else:
                                         conversion_factor = 1
 
-                                    supplier_share = share * possible_suppliers[supplier]
+                                    supplier_share = (
+                                        share * possible_suppliers[supplier]
+                                    )
 
                                     # LHV of the fuel before update
                                     reference_LHV = fuel_market[3]
@@ -1811,7 +1824,6 @@ class Fuels:
                                     )
 
                                     final_lhv += amount * self.fuels_lhv[fuel]
-
 
                                     ds["exchanges"].append(
                                         {
@@ -1844,7 +1856,6 @@ class Fuels:
                                             self.fuel_co2[fuel]["bio_share"],
                                         ]
                                     )
-
 
                                 string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuels_lhv[fuel]} MJ/kg. "
 

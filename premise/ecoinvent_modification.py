@@ -1,3 +1,8 @@
+import sys, os, copy, pickle
+from pathlib import Path
+from datetime import date
+import wurst
+from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
@@ -14,19 +19,9 @@ from .inventory_imports import (
 )
 from .cement import Cement
 from .steel import Steel
-from .cars import Cars
 from .fuels import Fuels
 from .export import Export
 from .utils import eidb_label, add_modified_tags, build_superstructure_db
-import wurst
-from pathlib import Path
-import copy
-import uuid
-import os
-import contextlib
-import pickle
-from datetime import date
-import uuid
 
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
@@ -138,7 +133,7 @@ LIST_REMIND_REGIONS = [
     "EWN",
     "ECS",
     "NEN",
-    "NES"
+    "NES",
 ]
 
 LIST_IMAGE_REGIONS = [
@@ -178,28 +173,60 @@ LIST_TRANSF_FUNC = [
     "update_cars",
     "update_two_wheelers",
     "update_trucks",
-    "update_solar_PV",
+    "update_solar_pv",
     "update_fuels",
 ]
 
+# Disable printing
+def blockPrint():
+    sys.stdout = open(os.devnull, 'w')
+
+# Restore printing
+def enablePrint():
+    sys.stdout = sys.__stdout__
+
+def check_for_duplicates(database):
+    """ Check for the absence of duplicates before export """
+
+    db_names = [
+        (x["name"].lower(), x["reference product"].lower(), x["location"])
+        for x in database
+    ]
+
+    if len(db_names) == len(set(db_names)):
+        return database
+
+
+    print("One or multiple duplicates detected. Removing them...")
+    seen = set()
+    return [
+        x
+        for x in database
+        if (x["name"].lower(), x["reference product"].lower(), x["location"])
+           not in seen
+           and not seen.add(
+            (x["name"].lower(), x["reference product"].lower(), x["location"])
+        )
+    ]
+
 
 def check_ei_filepath(filepath):
+    """ Check for the existence of the file path."""
 
     if not Path(filepath).is_dir():
         raise FileNotFoundError(
             f"The directory for ecospold files {filepath} could not be found."
         )
-    else:
-        return Path(filepath)
+    return Path(filepath)
 
 
 def check_model_name(name):
+    """ Check for the validity of the IAM model name."""
     if name.lower() not in SUPPORTED_MODELS:
         raise ValueError(
             f"Only {SUPPORTED_MODELS} are currently supported, not {name}."
         )
-    else:
-        return name.lower()
+    return name.lower()
 
 
 def check_pathway_name(name, filepath, model):
@@ -216,12 +243,11 @@ def check_pathway_name(name, filepath, model):
 
         if (filepath / name_check).with_suffix(".mif").is_file():
             return name
-        elif (filepath / name_check).with_suffix(".xlsx").is_file():
+        if (filepath / name_check).with_suffix(".xlsx").is_file():
             return name
-        elif (filepath / name_check).with_suffix(".csv").is_file():
+        if (filepath / name_check).with_suffix(".csv").is_file():
             return name
-        else:
-            raise ValueError(
+        raise ValueError(
                 f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
             )
     else:
@@ -232,26 +258,27 @@ def check_pathway_name(name, filepath, model):
 
         if (filepath / name_check).with_suffix(".mif").is_file():
             return name
-        elif (filepath / name_check).with_suffix(".xlsx").is_file():
+        if (filepath / name_check).with_suffix(".xlsx").is_file():
             return name
-        elif (filepath / name_check).with_suffix(".csv").is_file():
+        if (filepath / name_check).with_suffix(".csv").is_file():
             return name
-        else:
-            raise ValueError(
+
+        raise ValueError(
                 f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
             )
 
 
 def check_year(year):
+    """ Check for the validity of the year passed. """
     try:
         year = int(year)
-    except ValueError:
-        raise ValueError(f"{year} is not a valid year.")
+    except ValueError as err:
+        raise Exception(f"{year} is not a valid year.") from err
 
     try:
         assert 2005 <= year < 2100
-    except AssertionError:
-        raise AssertionError(f"{year} must be comprised between 2005 and 2100.")
+    except AssertionError as err:
+        raise Exception(f"{year} must be comprised between 2005 and 2100.") from err
 
     return year
 
@@ -259,8 +286,7 @@ def check_year(year):
 def check_filepath(path):
     if not Path(path).is_dir():
         raise FileNotFoundError(f"The IAM output directory {path} could not be found.")
-    else:
-        return Path(path)
+    return Path(path)
 
 
 def check_exclude(list_exc):
@@ -272,8 +298,7 @@ def check_exclude(list_exc):
         raise ValueError(
             "One or several of the transformation that you wish to exclude is not recognized."
         )
-    else:
-        return list_exc
+    return list_exc
 
 
 def check_fleet(fleet, model, vehicle_type):
@@ -360,12 +385,11 @@ def check_additional_inventories(inventories_list):
             raise FileNotFoundError(
                 f"Cannot find the inventory file: {inventory['filepath']}."
             )
-        else:
-            inventory["filepath"] = Path(inventory["filepath"])
+        inventory["filepath"] = Path(inventory["filepath"])
 
         if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8"]:
             raise ValueError(
-                f"A lot of trouble will be avoided if the additional inventories to import are ecoinvent 3.7 or 3.8-compliant."
+                "A lot of trouble will be avoided if the additional inventories to import are ecoinvent 3.7 or 3.8-compliant."
             )
 
     return inventories_list
@@ -377,8 +401,7 @@ def check_db_version(version):
         raise ValueError(
             f"Only {SUPPORTED_EI_VERSIONS} are currently supported, not {version}."
         )
-    else:
-        return version
+    return version
 
 
 def check_scenarios(scenario, key):
@@ -428,35 +451,81 @@ def check_scenarios(scenario, key):
 
     return scenario
 
+
 def check_system_model(system_model):
 
     if not isinstance(system_model, str):
-        raise TypeError("The argument `system_model` must be a string"
-                        "('attributional', 'consequential').")
-
+        raise TypeError(
+            "The argument `system_model` must be a string"
+            "('attributional', 'consequential')."
+        )
 
     if system_model not in ("attributional", "consequential"):
-        raise ValueError("The argument `system_model` must be one of the two values:"
-                        "'attributional', 'consequential'.")
+        raise ValueError(
+            "The argument `system_model` must be one of the two values:"
+            "'attributional', 'consequential'."
+        )
 
     return system_model
+
 
 def check_time_horizon(th):
 
     if th is None:
-        print("`time_horizon`, used to identify marginal suppliers, is not specified. "
-              "It is therefore set to 20 years.")
+        print(
+            "`time_horizon`, used to identify marginal suppliers, is not specified. "
+            "It is therefore set to 20 years."
+        )
         th = 20
 
     try:
         int(th)
-    except ValueError:
-        raise("`time_horizon` must be an integer or float with a value between 5 and 50 years.")
+    except ValueError as err:
+        raise Exception(
+            "`time_horizon` must be an integer or float with a value between 5 and 50 years."
+        ) from err
 
     if th < 5 or th > 50:
-        raise ValueError("`time_horizon` must be an integer or float with a value between 5 and 50 years.")
+        raise ValueError(
+            "`time_horizon` must be an integer or float with a value between 5 and 50 years."
+        )
 
     return int(th)
+
+def warming_about_biogenic_co2():
+    """
+    Prints a simple warning about characterizing biogenic CO2 flows.
+    :return: Does not return anything.
+    """
+    t = PrettyTable(["Warning"])
+    t.add_row(["Because some of the scenarios can yield LCI databases\n"
+               "containing net negative emission technologies (NET),\n"
+               "it is advised to account for biogenic CO2 flows when calculating\n"
+               "Global Warming potential indicators.\n"
+               "`premise_gwp` provides characterization factors for such flows.\n\n"
+               "Install it via\n"
+               "pip install premise_gwp\n"
+               "or\n"
+               "conda install -c romainsacchi premise_gwp\n\n"
+               "Within in your bw2 project:\n"
+               "from premise_gwp import add_premise_gwp\n"
+                "add_premise_gwp()"])
+    # align text to the left
+    t.align = "l"
+    print(t)
+
+
+class HiddenPrints:
+    """
+    From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
+    """
+    def __enter__(self):
+        self._original_stdout = sys.stdout
+        sys.stdout = open(os.devnull, 'w')
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        sys.stdout.close()
+        sys.stdout = self._original_stdout
 
 class NewDatabase:
     """
@@ -488,14 +557,18 @@ class NewDatabase:
         additional_inventories=None,
         direct_import=True,
         system_model="attributional",
-        time_horison=None
+        time_horison=None,
     ):
 
         self.source = source_db
         self.version = check_db_version(source_version)
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
-        self.time_horizon = check_time_horizon(time_horison) if system_model == "consequential" else None
+        self.time_horizon = (
+            check_time_horizon(time_horison)
+            if system_model == "consequential"
+            else None
+        )
 
         if self.source_type == "ecospold":
             self.source_file_path = check_ei_filepath(source_file_path)
@@ -503,6 +576,9 @@ class NewDatabase:
             self.source_file_path = None
 
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
+
+        # warning about biogenic CO2
+        warming_about_biogenic_co2()
 
         if additional_inventories:
             self.additional_inventories = check_additional_inventories(
@@ -514,11 +590,11 @@ class NewDatabase:
         print(
             "\n////////////////////// EXTRACTING SOURCE DATABASE ///////////////////////"
         )
-        self.db = self.clean_database()
+        self.database = self.__clean_database()
         print(
             "\n/////////////////// IMPORTING DEFAULT INVENTORIES ////////////////////"
         )
-        self.import_inventories(direct_import)
+        self.__import_inventories(direct_import)
 
         for scenario in self.scenarios:
             scenario["external data"] = IAMDataCollection(
@@ -528,11 +604,11 @@ class NewDatabase:
                 filepath_iam_files=scenario["filepath"],
                 key=key,
                 system_model=self.system_model,
-                time_horizon=self.time_horizon
+                time_horizon=self.time_horizon,
             )
-            scenario["database"] = copy.deepcopy(self.db)
+            scenario["database"] = copy.deepcopy(self.database)
 
-    def clean_database(self):
+    def __clean_database(self):
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
         (adds missing locations, reference products, etc.).
@@ -542,7 +618,7 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
-    def import_inventories(self, direct_import):
+    def __import_inventories(self, direct_import):
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
@@ -555,51 +631,59 @@ class NewDatabase:
             # we unpickle inventories here
             # and append them directly to the end of the database
             if self.version == "3.8":
-                fp = FILE_PATH_INVENTORIES_EI_38
+                filepath = FILE_PATH_INVENTORIES_EI_38
             elif self.version in ["3.7", "3.7.1"]:
                 self.version = "3.7"
-                fp = FILE_PATH_INVENTORIES_EI_37
+                filepath = FILE_PATH_INVENTORIES_EI_37
             elif self.version == "3.6":
-                fp = FILE_PATH_INVENTORIES_EI_36
+                filepath = FILE_PATH_INVENTORIES_EI_36
             else:
-                fp = FILE_PATH_INVENTORIES_EI_35
+                filepath = FILE_PATH_INVENTORIES_EI_35
 
-            with open(fp, "rb") as handle:
-                data = self.check_for_duplicates(pickle.load(handle))
-                self.db.extend(data)
+            with open(filepath, "rb") as handle:
+                data = check_for_duplicates(pickle.load(handle))
+                self.database.extend(data)
 
         else:
-            # Manual import
-            # file path and original ecoinvent version
-            filepaths = [
-                (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
-                (FILEPATH_CARMA_INVENTORIES, "3.5"),
-                (FILEPATH_CHP_INVENTORIES, "3.5"),
-                (FILEPATH_DAC_INVENTORIES, "3.7"),
-                (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
-                (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES,"3.7"),
-                (FILEPATH_HYDROGEN_NATGAS_INVENTORIES,"3.7"),
-                (FILEPATH_HYDROGEN_WOODY_INVENTORIES,"3.7"),
-                (FILEPATH_SYNGAS_INVENTORIES,"3.6"),
-                (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES,"3.7"),
-                (FILEPATH_BIOFUEL_INVENTORIES,"3.7"),
-                (FILEPATH_SYNFUEL_INVENTORIES,"3.7"),
-                (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,"3.7"),
-                (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,"3.7"),
-                (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,"3.7"),
-                (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES,"3.6"),
-                (FILEPATH_METHANOL_FUELS_INVENTORIES,"3.7"),
-                (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES,"3.7"),
-                (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES,"3.7"),
-            ]
-            for fp in filepaths:
-                di = DefaultInventory(database=self.db, version_in=fp[1], version_out=self.version,
-                                 path=fp[0])
-                di.merge_inventory()
+            with HiddenPrints():
+                # Manual import
+                # file path and original ecoinvent version
+                filepaths = [
+                    (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
+                    (FILEPATH_CARMA_INVENTORIES, "3.5"),
+                    (FILEPATH_CHP_INVENTORIES, "3.5"),
+                    (FILEPATH_DAC_INVENTORIES, "3.7"),
+                    (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
+                    (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                    (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
+                    (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
+                    (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
+                    (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
+                    (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
+                    (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
+                    (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
+                    (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
+                    (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
+                    (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
+                    (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES, "3.7"),
+                    (
+                        FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
+                        "3.7",
+                    ),
+                    (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES, "3.7"),
+                    (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
+                    (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
+                    (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
+                    (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+                ]
+                for filepath in filepaths:
+                    inventory = DefaultInventory(
+                        database=self.database,
+                        version_in=filepath[1],
+                        version_out=self.version,
+                        path=filepath[0],
+                    )
+                    inventory.merge_inventory()
 
         print("Done!\n")
 
@@ -611,10 +695,10 @@ class NewDatabase:
 
             for file in self.additional_inventories:
                 additional = AdditionalInventory(
-                    database=self.db,
+                    database=self.database,
                     version_in=file["ecoinvent version"],
                     version_out=self.version,
-                    path=file["filepath"]
+                    path=file["filepath"],
                 )
                 additional.prepare_inventory()
                 additional.merge_inventory()
@@ -631,7 +715,7 @@ class NewDatabase:
                 or "update_electricity" not in scenario["exclude"]
             ):
                 electricity = Electricity(
-                    db=scenario["database"],
+                    database=scenario["database"],
                     iam_data=scenario["external data"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
@@ -649,12 +733,14 @@ class NewDatabase:
 
                 fuels = Fuels(
                     db=scenario["database"],
-                    original_db=self.db,
+                    original_db=self.database,
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     iam_data=scenario["external data"],
                     year=scenario["year"],
-                    regions=scenario["fuels"]["regions"] if "fuels" in scenario else None
+                    regions=scenario["fuels"]["regions"]
+                    if "fuels" in scenario
+                    else None,
                 )
 
                 scenario["database"] = fuels.generate_fuel_markets()
@@ -663,68 +749,39 @@ class NewDatabase:
         print("\n/////////////////// CEMENT ////////////////////")
 
         for scenario in self.scenarios:
-            has_cement_data = False
-
             if (
-                len(
-                    [
-                        v
-                        for v in scenario["external data"].data.variables.values
-                        if "cement" in v.lower() and "production" in v.lower()
-                    ]
+                    "exclude" not in scenario
+                    or "update_cement" not in scenario["exclude"]
+                ):
+
+                cement = Cement(
+                    database=scenario["database"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["external data"],
+                    year=scenario["year"],
+                    version=self.version,
                 )
-                > 0
-            ):
-                # Industry module present in IAM file
-                print("\nData specific to the cement sector detected!\n")
 
-                if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
-
-                    cement = Cement(
-                        db=scenario["database"],
-                        model=scenario["model"],
-                        scenario=scenario["pathway"],
-                        iam_data=scenario["external data"],
-                        year=scenario["year"],
-                        version=self.version,
-                    )
-
-                    scenario["database"] = cement.add_datasets_to_database()
-
-            else:
-                print(f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
-                      " to proceed to the cement sector transformation.")
+                scenario["database"] = cement.add_datasets_to_database()
 
     def update_steel(self):
         print("\n/////////////////// STEEL ////////////////////")
 
         for scenario in self.scenarios:
-            has_steel_data = False
+
             if (
-                len(
-                    [
-                        v
-                        for v in scenario["external data"].data.variables.values
-                        if "steel" in v.lower() and "production" in v.lower()
-                    ]
-                )
-                > 0
+                "exclude" not in scenario
+                or "update_steel" not in scenario["exclude"]
             ):
-                print("\nData specific to the steel sector detected!\n")
 
-                if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
-
-                    steel = Steel(
-                        db=scenario["database"],
-                        model=scenario["model"],
-                        iam_data=scenario["external data"],
-                        year=scenario["year"],
-                    )
-                    scenario["database"] = steel.generate_activities()
-
-            else:
-                print(f"REMARK: the scenario file {scenario['pathway']} does not contain the necessary information "
-                      " to proceed to the steel sector transformation.")
+                steel = Steel(
+                    db=scenario["database"],
+                    model=scenario["model"],
+                    iam_data=scenario["external data"],
+                    year=scenario["year"],
+                )
+                scenario["database"] = steel.generate_activities()
 
     def update_cars(self):
         print("\n/////////////////// PASSENGER CARS ////////////////////")
@@ -754,8 +811,10 @@ class NewDatabase:
                         version_out=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
-                        regions=scenario["external data"].data.coords["region"].values.tolist(),
-                        iam_data=scenario["external data"].data
+                        regions=scenario["external data"]
+                        .data.coords["region"]
+                        .values.tolist(),
+                        iam_data=scenario["external data"].data,
                     )
 
                 scenario["database"] = cars.merge_inventory()
@@ -764,7 +823,10 @@ class NewDatabase:
         print("\n/////////////////// TWO-WHEELERS ////////////////////")
 
         for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_two_wheelers" not in scenario["exclude"]:
+            if (
+                "exclude" not in scenario
+                or "update_two_wheelers" not in scenario["exclude"]
+            ):
 
                 various_veh = VariousVehicles(
                     database=scenario["database"],
@@ -772,7 +834,9 @@ class NewDatabase:
                     version_out=self.version,
                     path=FILEPATH_TWO_WHEELERS,
                     year=scenario["year"],
-                    regions=scenario["external data"].data.coords["region"].values.tolist(),
+                    regions=scenario["external data"]
+                    .data.coords["region"]
+                    .values.tolist(),
                     model=scenario["model"],
                 )
                 scenario["database"] = various_veh.merge_inventory()
@@ -790,7 +854,8 @@ class NewDatabase:
 
                     trucks = TruckInventory(
                         database=scenario["database"],
-                        version=self.version,
+                        version_in="3.7",
+                        version_out=self.version,
                         fleet_file=scenario["trucks"]["fleet file"],
                         model=scenario["model"],
                         year=scenario["year"],
@@ -807,23 +872,25 @@ class NewDatabase:
                         version_out=self.version,
                         model=scenario["model"],
                         year=scenario["year"],
-                        regions=scenario["external data"].data.coords["region"].values.tolist(),
+                        regions=scenario["external data"]
+                        .data.coords["region"]
+                        .values.tolist(),
                         iam_data=scenario["external data"].data,
                     )
 
                 scenario["database"] = trucks.merge_inventory()
 
-    def update_solar_PV(self):
+    def update_solar_pv(self):
         print("\n/////////////////// SOLAR PV ////////////////////")
 
         for scenario in self.scenarios:
             if (
                 "exclude" not in scenario
-                or "update_solar_PV" not in scenario["exclude"]
+                or "update_solar_pv" not in scenario["exclude"]
             ):
-                solar_PV = SolarPV(db=scenario["database"], year=scenario["year"])
+                solar_pv = SolarPV(db=scenario["database"], year=scenario["year"])
                 print("Update efficiency of solar PVs.\n")
-                scenario["database"] = solar_PV.update_efficiency_of_solar_PV()
+                scenario["database"] = solar_pv.update_efficiency_of_solar_pv()
 
     def update_all(self):
         """
@@ -834,7 +901,7 @@ class NewDatabase:
         self.update_cars()
         self.update_trucks()
         self.update_electricity()
-        self.update_solar_PV()
+        self.update_solar_pv()
         self.update_cement()
         self.update_steel()
         self.update_fuels()
@@ -847,14 +914,14 @@ class NewDatabase:
         :return: filepath of the "scenarios difference file"
         """
 
-        self.db = build_superstructure_db(
-            self.db, self.scenarios, db_name=name, fp=filepath
+        self.database = build_superstructure_db(
+            self.database, self.scenarios, db_name=name, fp=filepath
         )
 
         print("Done!")
 
         wurst.write_brightway2_database(
-            self.db, name,
+            self.database, name,
         )
 
     def write_db_to_brightway(self, name=None):
@@ -878,7 +945,7 @@ class NewDatabase:
                 raise TypeError("`name` should be a string or a sequence of strings.")
         else:
             name = [
-                eidb_label(s["model"], s["pathway"], s["year"]) for s in self.scenarios
+                eidb_label(scenario["model"], scenario["pathway"], scenario["year"]) for scenario in self.scenarios
             ]
 
         if len(name) != len(self.scenarios):
@@ -887,13 +954,13 @@ class NewDatabase:
             )
 
         print("Write new database(s) to Brightway2.")
-        for s, scenario in enumerate(self.scenarios):
+        for scen, scenario in enumerate(self.scenarios):
 
             # we ensure first the absence of duplicate datasets
-            scenario["database"] = self.check_for_duplicates(scenario["database"])
+            scenario["database"] = check_for_duplicates(scenario["database"])
 
             wurst.write_brightway2_database(
-                scenario["database"], name[s],
+                scenario["database"], name[scen],
             )
 
     def write_db_to_matrices(self, filepath=None):
@@ -931,17 +998,17 @@ class NewDatabase:
             ]
 
         print("Write new database(s) to matrix.")
-        for s, scenario in enumerate(self.scenarios):
+        for scen, scenario in enumerate(self.scenarios):
 
             # we ensure first the absence of duplicate datasets
-            scenario["database"] = self.check_for_duplicates(scenario["database"])
+            scenario["database"] = check_for_duplicates(scenario["database"])
 
             Export(
                 scenario["database"],
                 scenario["model"],
                 scenario["pathway"],
                 scenario["year"],
-                filepath[s],
+                filepath[scen],
             ).export_db_to_matrices()
 
     def write_db_to_simapro(self, filepath=None):
@@ -962,7 +1029,7 @@ class NewDatabase:
         for scenario in self.scenarios:
 
             # we ensure first the absence of duplicate datasets
-            scenario["database"] = self.check_for_duplicates(scenario["database"])
+            scenario["database"] = check_for_duplicates(scenario["database"])
 
             Export(
                 scenario["database"],
@@ -1001,28 +1068,10 @@ class NewDatabase:
         # We first need to check for differences between the source database
         # and the new ones
         # We add a `modified` label to any new activity or any new or modified exchange
-        self.scenarios = add_modified_tags(self.db, self.scenarios)
-        for s, scenario in enumerate(self.scenarios):
+        self.scenarios = add_modified_tags(self.database, self.scenarios)
+        for scen, scenario in enumerate(self.scenarios):
 
             # we ensure first the absence of duplicate datasets
-            scenario["database"] = self.check_for_duplicates(scenario["database"])
+            scenario["database"] = check_for_duplicates(scenario["database"])
 
-            wurst.write_brightway25_database(scenario["database"], name[s], self.source)
-
-    def check_for_duplicates(self, db):
-
-        """ Check for the absence of duplicates before export """
-
-        db_names = [
-            (x["name"].lower(), x["reference product"].lower(), x["location"]) for x in db
-        ]
-
-        if len(db_names) == len(set(db_names)):
-            return db
-
-        else:
-            print("One or multiple duplicates detected. Removing them...")
-            seen = set()
-            return [x for x in db
-                       if (x["name"].lower(), x["reference product"].lower(), x["location"]) not in seen
-                       and not seen.add((x["name"].lower(), x["reference product"].lower(), x["location"]))]
+            wurst.write_brightway25_database(scenario["database"], name[scen], self.source)

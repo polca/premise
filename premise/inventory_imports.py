@@ -1,29 +1,53 @@
-from . import DATA_DIR, INVENTORY_DIR
+import sys
+import csv
+import pickle
+import itertools
+import uuid
+from pathlib import Path
 from prettytable import PrettyTable
+from wurst import transformations as wt
+from wurst import searching as ws
+import numpy as np
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
 import carculator
 import carculator_truck
-from pathlib import Path
-import numpy as np
 from .geomap import Geomap
-import sys
-import xarray as xr
-import pickle
-from .utils import *
-from wurst import transformations as wt
-import itertools
+from .utils import relink_technosphere_exchanges
+from . import DATA_DIR, INVENTORY_DIR
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
 
+def get_biosphere_code():
+    """
+    Retrieve a dictionary with biosphere flow names and uuid codes.
+
+    :returns: dictionary with biosphere flow names as keys and uuid code as values
+    :rtype: dict
+    """
+
+    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+        raise FileNotFoundError(
+            "The dictionary of biosphere flows could not be found."
+        )
+
+    csv_dict = {}
+
+    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as f:
+        input_dict = csv.reader(f, delimiter=";")
+        for row in input_dict:
+            csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
+
+    return csv_dict
+
 def generate_migration_maps(origin, destination):
 
     response = {"fields": ["name", "reference product", "location"], "data": []}
 
-    with open(FILEPATH_MIGRATION_MAP, "r") as read_obj:
+    with open(FILEPATH_MIGRATION_MAP, "r", encoding="utf-8") as read_obj:
         csv_reader = csv.reader(read_obj, delimiter=";")
         next(csv_reader)
         for row in csv_reader:
@@ -39,16 +63,13 @@ def generate_migration_maps(origin, destination):
     return response
 
 
-
-
-
 class BaseInventoryImport:
     """
     Base class for inventories that are to be merged with the ecoinvent database.
 
-    :ivar db: the target database for the import (the Ecoinvent database),
+    :ivar database: the target database for the import (the Ecoinvent database),
               unpacked to a list of dicts
-    :vartype db: list
+    :vartype database: list
     :ivar version: the target Ecoinvent database version
     :vartype version: str
     """
@@ -64,38 +85,39 @@ class BaseInventoryImport:
         :type path: str or Path
 
         """
-        self.db = database
-        self.db_code = [x["code"] for x in self.db]
+        self.database = database
+        self.db_code = [x["code"] for x in self.database]
         self.db_names = [
-            (x["name"], x["reference product"], x["location"]) for x in self.db
+            (x["name"], x["reference product"], x["location"]) for x in self.database
         ]
         self.version_in = version_in
         self.version_out = version_out
-        self.biosphere_dict = self.get_biosphere_code()
+        self.biosphere_dict = get_biosphere_code()
 
         path = Path(path)
 
         if path != Path("."):
             if not path.is_file():
                 raise FileNotFoundError(
-                    "The inventory file {} could not be found.".format(path)
+                    f"The inventory file {path} could not be found."
                 )
-
         self.path = path
+
         self.import_db = self.load_inventory(path)
 
         # register migration maps
         # as imported inventories link to different ecoinvent versions
-        ei_versions = ['35', '36', '37', '38']
+        ei_versions = ["35", "36", "37", "38"]
 
         for r in itertools.product(ei_versions, ei_versions):
             if r[0] != r[1]:
-                map = generate_migration_maps(r[0], r[1])
-                if len(map["data"]) > 0:
+                mapping = generate_migration_maps(r[0], r[1])
+                if len(mapping["data"]) > 0:
                     Migration(f"migration_{r[0]}_{r[1]}").write(
-                        map,
+                        mapping,
                         description=f"Change technosphere names due to change from {r[0]} to {r[1]}",
                     )
+
 
     def load_inventory(self, path):
         """Load an inventory from a specified path.
@@ -106,7 +128,7 @@ class BaseInventoryImport:
         :returns: Nothing.
 
         """
-        pass
+
 
     def prepare_inventory(self):
         """Prepare the inventory for the merger with Ecoinvent.
@@ -116,7 +138,7 @@ class BaseInventoryImport:
         :returns: Nothing
 
         """
-        pass
+
 
     def check_for_duplicates(self):
         """
@@ -135,7 +157,8 @@ class BaseInventoryImport:
             [
                 (x["name"].lower(), x["reference product"].lower(), x["location"])
                 for x in self.import_db.data
-                if (x["name"].lower(), x["reference product"].lower(), x["location"]) in self.db_names
+                if (x["name"].lower(), x["reference product"].lower(), x["location"])
+                in self.db_names
             ]
         )
 
@@ -144,8 +167,8 @@ class BaseInventoryImport:
                 "The following datasets to import already exist in the source database. They will not be imported"
             )
             t = PrettyTable(["Name", "Reference product", "Location", "File"])
-            for ds in already_exist:
-                t.add_row([ds[0][:50], ds[1][:30], ds[2], self.path.name])
+            for dataset in already_exist:
+                t.add_row([dataset[0][:50], dataset[1][:30], dataset[2], self.path.name])
 
             print(t)
 
@@ -159,15 +182,16 @@ class BaseInventoryImport:
         ]
 
     def merge_inventory(self):
-        """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`db`.
+        """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`database`.
 
-        Calls :meth:`prepare_inventory`. Changes the :attr:`db` attribute.
+        Calls :meth:`prepare_inventory`. Changes the :attr:`database` attribute.
 
         :returns: Nothing
 
         """
+
         self.prepare_inventory()
-        self.db.extend(self.import_db)
+        self.database.extend(self.import_db)
 
     def search_exchanges(self, srchdict):
         """Search :attr:`import_db` by field values.
@@ -224,29 +248,6 @@ class BaseInventoryImport:
                         results.append(ex)
         return results
 
-    @staticmethod
-    def get_biosphere_code():
-        """
-        Retrieve a dictionary with biosphere flow names and uuid codes.
-
-        :returns: dictionary with biosphere flow names as keys and uuid code as values
-        :rtype: dict
-        """
-
-        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flows could not be found."
-            )
-
-        csv_dict = {}
-
-        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
-            input_dict = csv.reader(f, delimiter=";")
-            for row in input_dict:
-                csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
-
-        return csv_dict
-
     def add_product_field_to_exchanges(self):
         """Add the `product` key to the production and
         technosphere exchanges in :attr:`import_db`.
@@ -254,7 +255,7 @@ class BaseInventoryImport:
 
         For production exchanges, use the value of the `reference_product` field.
         For technosphere exchanges, search the activities in :attr:`import_db` and
-        use the reference product. If none is found, search the Ecoinvent :attr:`db`.
+        use the reference product. If none is found, search the Ecoinvent :attr:`database`.
         Modifies the :attr:`import_db` attribute in place.
 
         :raises IndexError: if no corresponding activity (and reference product) can be found.
@@ -313,7 +314,7 @@ class BaseInventoryImport:
         if candidate is None:
             candidate = next(
                 ws.get_many(
-                    self.db,
+                    self.database,
                     ws.equals("name", exc["name"]),
                     ws.equals("location", exc["location"]),
                     ws.equals("unit", exc["unit"]),
@@ -323,12 +324,11 @@ class BaseInventoryImport:
 
         if candidate is not None:
             return candidate["reference product"]
-        else:
-            raise IndexError(
-                "An inventory exchange in {} cannot be linked to the biosphere or the ecoinvent database: {}".format(
-                    self.import_db.db_name, exc
-                )
-            )
+
+        raise IndexError(
+            f"An inventory exchange in {self.import_db.db_name} cannot be linked to the "
+            f"biosphere or the ecoinvent database: {exc}"
+        )
 
     def add_biosphere_links(self, delete_missing=False):
         """Add links for biosphere exchanges to :attr:`import_db`
@@ -420,8 +420,9 @@ class DefaultInventory(BaseInventoryImport):
     def prepare_inventory(self):
 
         if self.version_in != self.version_out:
-            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
-            print(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            self.import_db.migrate(
+                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -447,8 +448,9 @@ class VariousVehicles(BaseInventoryImport):
     def prepare_inventory(self):
         # initially links to ei37
         if self.version_in != self.version_out:
-            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
-            print(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            self.import_db.migrate(
+                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -457,23 +459,23 @@ class VariousVehicles(BaseInventoryImport):
 
         # We filter electric vehicles by year fo manufacture
         available_years = [2020, 2030, 2040, 2050]
-        closest_year = min(available_years, key=lambda x:abs(x-self.year))
+        closest_year = min(available_years, key=lambda x: abs(x - self.year))
 
         list_vehicles = [
-            "Bicycle,", "Kick-scooter,",
-            "Moped,", "Scooter,", "Motorbike,"
+            "Bicycle,",
+            "Kick-scooter,",
+            "Moped,",
+            "Scooter,",
+            "Motorbike,",
         ]
 
         self.import_db.data = [
-            x for x in self.import_db.data
-            if not any(
-                y in x["name"]
-                for y in list_vehicles
-            ) or (
-                any(
-                    y in x["name"]
-                    for y in list_vehicles
-                ) and str(closest_year) in x["name"]
+            x
+            for x in self.import_db.data
+            if not any(y in x["name"] for y in list_vehicles)
+            or (
+                any(y in x["name"] for y in list_vehicles)
+                and str(closest_year) in x["name"]
                 and "label-certified electricity" not in x["name"]
             )
         ]
@@ -481,11 +483,11 @@ class VariousVehicles(BaseInventoryImport):
         list_new_ds = []
 
         # create regional variants
-        for ds in self.import_db.data:
-            if "transport, " in ds["name"]:
+        for dataset in self.import_db.data:
+            if "transport, " in dataset["name"]:
                 # change fuel supply exchanges for ecoinvent ones
                 # so that it gets picked up by the fuels integration function
-                for exc in ds["exchanges"]:
+                for exc in dataset["exchanges"]:
                     if "fuel supply for gasoline" in exc["name"]:
                         exc["name"] = "market for petrol, low-sulfur"
                         exc["product"] = "petrol, low-sulfur"
@@ -494,7 +496,7 @@ class VariousVehicles(BaseInventoryImport):
                             exc.pop("input")
 
                 for region in self.regions:
-                    new_ds = wt.copy_to_new_location(ds, region)
+                    new_ds = wt.copy_to_new_location(dataset, region)
 
                     for exc in ws.production(new_ds):
                         if "input" in exc:
@@ -504,7 +506,7 @@ class VariousVehicles(BaseInventoryImport):
                         new_ds.pop("input")
 
                     new_ds = relink_technosphere_exchanges(
-                        new_ds, self.db, self.model, iam_regions=self.regions
+                        new_ds, self.database, self.model, iam_regions=self.regions
                     )
 
                     list_new_ds.append(new_ds)
@@ -520,36 +522,42 @@ class VariousVehicles(BaseInventoryImport):
     def merge_inventory(self):
 
         self.prepare_inventory()
-        self.db.extend(self.import_db.data)
+        self.database.extend(self.import_db.data)
 
         print("Done!")
 
-        return self.db
+        return self.database
+
 
 class PassengerCars(BaseInventoryImport):
     """
     Imports default inventories for passenger cars.
     """
 
-    def __init__(self, database, version_in, version_out, model, year, regions, iam_data):
+    def __init__(
+        self, database, version_in, version_out, model, year, regions, iam_data
+    ):
         super().__init__(database, version_in, version_out, Path("."))
 
         self.db = database
         self.regions = regions
         self.model = model
-        self.geomap = Geomap(model=model, current_regions=iam_data.coords["region"].values.tolist())
+        self.geomap = Geomap(
+            model=model, current_regions=iam_data.coords["region"].values.tolist()
+        )
 
-        inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
-                             key=lambda x: abs(x - year))
+        inventory_year = min(
+            [2020, 2025, 2030, 2040, 2045, 2050], key=lambda x: abs(x - year)
+        )
 
-        filename = model \
-                   + "_pass_cars_inventory_data_ei_37_" + str(
-            inventory_year) + ".pickle"
+        filename = (
+            model + "_pass_cars_inventory_data_ei_37_" + str(inventory_year) + ".pickle"
+        )
         fp = INVENTORY_DIR / filename
 
         self.import_db = LCIImporter("passenger_cars")
 
-        with open(fp, 'rb') as handle:
+        with open(fp, "rb") as handle:
             self.import_db.data = pickle.load(handle)
 
     def load_inventory(self, path):
@@ -558,8 +566,12 @@ class PassengerCars(BaseInventoryImport):
     def prepare_inventory(self):
         # initially links to ei37
         if self.version_in != self.version_out:
-            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
-            print(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            self.import_db.migrate(
+                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
+            print(
+                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -592,10 +604,10 @@ class PassengerCars(BaseInventoryImport):
             "market for transport, passenger car, large size, diesel, EURO 4",
             "market for transport, passenger car, large size, diesel, EURO 5",
         ]
-        for ds in self.db:
+        for dataset in self.db:
             excs = (
                 exc
-                for exc in ds["exchanges"]
+                for exc in dataset["exchanges"]
                 if exc["name"] in exchanges_to_modify and exc["type"] == "technosphere"
             )
 
@@ -612,7 +624,7 @@ class PassengerCars(BaseInventoryImport):
                             ),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(ds["location"]),
+                                self.geomap.ecoinvent_to_iam_location(dataset["location"]),
                             ),
                             ws.contains("reference product", "transport"),
                         ],
@@ -622,8 +634,6 @@ class PassengerCars(BaseInventoryImport):
                     exc["location"] = new_supplier["location"]
                     exc["product"] = new_supplier["reference product"]
                     exc["unit"] = new_supplier["unit"]
-
-
 
                 except ws.NoResults:
 
@@ -649,29 +659,35 @@ class PassengerCars(BaseInventoryImport):
 
         return self.db
 
+
 class Trucks(BaseInventoryImport):
     """
     Imports default inventories for trucks.
     """
 
-    def __init__(self, database, version_in, version_out, model, year, regions, iam_data):
+    def __init__(
+        self, database, version_in, version_out, model, year, regions, iam_data
+    ):
         super().__init__(database, version_in, version_out, Path("."))
 
         self.db = database
         self.regions = regions
-        self.geomap = Geomap(model=model, current_regions=iam_data.coords["region"].values.tolist())
+        self.geomap = Geomap(
+            model=model, current_regions=iam_data.coords["region"].values.tolist()
+        )
 
-        inventory_year = min([2020, 2025, 2030, 2040, 2045, 2050],
-                             key=lambda x: abs(x - year))
+        inventory_year = min(
+            [2020, 2025, 2030, 2040, 2045, 2050], key=lambda x: abs(x - year)
+        )
 
-        filename = model \
-                   + "_trucks_inventory_data_ei_37_" + str(
-            inventory_year) + ".pickle"
+        filename = (
+            model + "_trucks_inventory_data_ei_37_" + str(inventory_year) + ".pickle"
+        )
         fp = INVENTORY_DIR / filename
 
         self.import_db = LCIImporter("trucks")
 
-        with open(fp, 'rb') as handle:
+        with open(fp, "rb") as handle:
             self.import_db.data = pickle.load(handle)
 
     def load_inventory(self, path):
@@ -680,7 +696,9 @@ class Trucks(BaseInventoryImport):
     def prepare_inventory(self):
         # initially links to ei37
         if self.version_in != self.version_out:
-            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            self.import_db.migrate(
+                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
@@ -694,22 +712,18 @@ class Trucks(BaseInventoryImport):
         self.prepare_inventory()
 
         # remove the old lorry transport datasets
-        self.db = [
-            x
-            for x in self.db
-            if "transport, freight, lorry" not in x["name"]
-        ]
+        self.db = [x for x in self.db if "transport, freight, lorry" not in x["name"]]
 
         # add the new ones
         self.db.extend(self.import_db.data)
 
         # loop through datasets that use lorry transport
-        for ds in self.db:
+        for dataset in self.db:
             excs = (
                 exc
-                for exc in ds["exchanges"]
+                for exc in dataset["exchanges"]
                 if "transport, freight, lorry" in exc["name"]
-                   and exc["type"] == "technosphere"
+                and exc["type"] == "technosphere"
             )
 
             for exc in excs:
@@ -734,8 +748,9 @@ class Trucks(BaseInventoryImport):
                             ws.equals("name", search_for),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(ds["location"])
-                                if ds not in self.regions else ds["location"],
+                                self.geomap.ecoinvent_to_iam_location(dataset["location"])
+                                if dataset not in self.regions
+                                else dataset["location"],
                             ),
                             ws.contains(
                                 "reference product", "transport, freight, lorry"
@@ -771,6 +786,7 @@ class Trucks(BaseInventoryImport):
 
         return self.db
 
+
 class AdditionalInventory(BaseInventoryImport):
     """
     Import additional inventories, if any.
@@ -792,8 +808,12 @@ class AdditionalInventory(BaseInventoryImport):
     def prepare_inventory(self):
 
         if self.version_in != self.version_out:
-            self.import_db.migrate(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
-            print(f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}")
+            self.import_db.migrate(
+                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
+            print(
+                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
 
         list_missing_prod = self.search_missing_exchanges(
             label="type", value="production"
@@ -803,13 +823,13 @@ class AdditionalInventory(BaseInventoryImport):
             print("The following datasets are missing a `production` exchange.")
             print("You should fix those before proceeding further.\n")
             t = PrettyTable(["Name", "Reference product", "Location", "Unit", "File"])
-            for ds in list_missing_prod:
+            for dataset in list_missing_prod:
                 t.add_row(
                     [
-                        ds.get("name", "XXXX"),
-                        ds.get("referece product", "XXXX"),
-                        ds.get("location", "XXXX"),
-                        ds.get("unit", "XXXX"),
+                        dataset.get("name", "XXXX"),
+                        dataset.get("referece product", "XXXX"),
+                        dataset.get("location", "XXXX"),
+                        dataset.get("unit", "XXXX"),
                         self.path.name,
                     ]
                 )
@@ -830,13 +850,13 @@ class AdditionalInventory(BaseInventoryImport):
 
             print("You should fix those before proceeding further.\n")
             t = PrettyTable(["Name", "Reference product", "Location", "Unit", "File"])
-            for ds in list_missing_ref:
+            for dataset in list_missing_ref:
                 t.add_row(
                     [
-                        ds.get("name", "XXXX"),
-                        ds.get("referece product", "XXXX"),
-                        ds.get("location", "XXXX"),
-                        ds.get("unit", "XXXX"),
+                        dataset.get("name", "XXXX"),
+                        dataset.get("referece product", "XXXX"),
+                        dataset.get("location", "XXXX"),
+                        dataset.get("unit", "XXXX"),
                         self.path.name,
                     ]
                 )
@@ -850,6 +870,7 @@ class AdditionalInventory(BaseInventoryImport):
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_duplicates()
+
 
 class CarculatorInventory(BaseInventoryImport):
     """
@@ -869,7 +890,9 @@ class CarculatorInventory(BaseInventoryImport):
     ):
         self.db_year = year
         self.model = model
-        self.geomap = Geomap(model=model, current_regions=iam_data.coords["region"].values.tolist())
+        self.geomap = Geomap(
+            model=model, current_regions=iam_data.coords["region"].values.tolist()
+        )
         self.regions = regions
         self.fleet_file = fleet_file
         self.data = iam_data
@@ -878,7 +901,7 @@ class CarculatorInventory(BaseInventoryImport):
         if filters:
             self.filter.extend(filters)
 
-        super().__init__(database, version, Path("."))
+        super().__init__(database, version, path=Path("."))
 
     def load_inventory(self, path):
         """Create `carculator` fleet average inventories for a given range of years.
@@ -942,15 +965,15 @@ class CarculatorInventory(BaseInventoryImport):
                 "fu": {"fleet": fleet.sel(vintage_year=years), "unit": "vkm"},
             }
 
-            bc = {
+            background_configuration = {
                 "country": region,
             }
 
-            ic = carculator.InventoryCalculation(
-                cm.array, scope=scope, background_configuration=bc
+            inventory = carculator.InventoryCalculation(
+                cm.array, scope=scope, background_configuration=background_configuration
             )
 
-            i = ic.export_lci_to_bw(
+            i = inventory.export_lci_to_bw(
                 presamples=False,
                 ecoinvent_version=str(self.version),
                 create_vehicle_datasets=False,
@@ -958,29 +981,29 @@ class CarculatorInventory(BaseInventoryImport):
 
             # filter out cars if anything given in `self.filter`
             i.data = [
-                x
-                for x in i.data
-                if "transport, passenger car" not in x["name"]
+                ds_to_keep
+                for ds_to_keep in i.data
+                if "transport, passenger car" not in ds_to_keep["name"]
                 or (
-                    any(y.lower() in x["name"].lower() for y in self.filter)
-                    and str(self.db_year) in x["name"]
+                    any(y.lower() in ds_to_keep["name"].lower() for y in self.filter)
+                    and str(self.db_year) in ds_to_keep["name"]
                 )
             ]
 
             # we want to remove all fuel and electricity supply datatsets
             # to only keep the one corresponding to the fleet year
             i.data = [
-                x
-                for x in i.data
+                ds_to_keep
+                for ds_to_keep in i.data
                 if not any(
-                    y in x["name"]
-                    for y in [
+                    forbidden_term in ds_to_keep["name"]
+                    for forbidden_term in [
                         "fuel supply for",
                         "electricity supply for",
                         "electricity market for fuel preparation",
                     ]
                 )
-                or str(self.db_year) in x["name"]
+                or str(self.db_year) in ds_to_keep["name"]
             ]
 
             # we need to remove the electricity inputs in the fuel markets
@@ -1010,55 +1033,62 @@ class CarculatorInventory(BaseInventoryImport):
                         for exc in ws.production(x):
                             exc["name"] = exc["name"][:-6]
 
-                    if any(d in x["name"] for d in [
-                        "fuel supply for ",
-                        "electricity supply for ",
-                        "electricity market for fuel preparation",
-                    ]):
+                    if any(
+                        d in x["name"]
+                        for d in [
+                            "fuel supply for ",
+                            "electricity supply for ",
+                            "electricity market for fuel preparation",
+                        ]
+                    ):
                         i.data.remove(x)
 
-                    d_fuel_exchanges={
-                        "fuel supply for gasoline vehicles":{
+                    d_fuel_exchanges = {
+                        "fuel supply for gasoline vehicles": {
                             "name": "market for petrol, low-sulfur",
                             "prod": "petrol, low-sulfur",
-                            "loc": "RoW"
+                            "loc": "RoW",
                         },
-                        "fuel supply for diesel vehicles":{
+                        "fuel supply for diesel vehicles": {
                             "name": "market for diesel, low-sulfur",
                             "prod": "diesel, low-sulfur",
-                            "loc": "RoW"
+                            "loc": "RoW",
                         },
-                        "fuel supply for gas vehicles":{
+                        "fuel supply for gas vehicles": {
                             "name": "market for natural gas, low pressure, vehicle grade",
                             "prod": "natural gas, low pressure, vehicle grade",
-                            "loc": "GLO"
+                            "loc": "GLO",
                         },
-                        "fuel supply for hydrogen vehicles":{
+                        "fuel supply for hydrogen vehicles": {
                             "name": "market for hydrogen, gaseous",
                             "prod": "hydrogen, gaseous",
-                            "loc": "GLO"
+                            "loc": "GLO",
                         },
-                        "electricity supply for electric vehicles":{
+                        "electricity supply for electric vehicles": {
                             "name": "market group for electricity, low voltage",
                             "prod": "electricity, low voltage",
-                            "loc": "RER"
+                            "loc": "RER",
                         },
-                        "electricity market for fuel preparation":{
+                        "electricity market for fuel preparation": {
                             "name": "market group for electricity, low voltage",
                             "prod": "electricity, low voltage",
-                            "loc": "RER"
+                            "loc": "RER",
                         },
                         "electricity market for energy storage": {
                             "name": "market group for electricity, low voltage",
                             "prod": "electricity, low voltage",
-                            "loc": "CN"
+                            "loc": "CN",
                         },
                     }
 
                     if "transport, passenger car, " in x["name"]:
                         for exc in ws.technosphere(x):
                             if any(d in exc["name"] for d in d_fuel_exchanges):
-                                for key in (key for key in d_fuel_exchanges if key in exc["name"]):
+                                for key in (
+                                    key
+                                    for key in d_fuel_exchanges
+                                    if key in exc["name"]
+                                ):
                                     exc["name"] = d_fuel_exchanges[key]["name"]
                                     exc["product"] = d_fuel_exchanges[key]["prod"]
                                     exc["location"] = d_fuel_exchanges[key]["loc"]
@@ -1094,12 +1124,12 @@ class CarculatorInventory(BaseInventoryImport):
             "market for transport, passenger car",
         ]
 
-        self.db = [
-            x
-            for x in self.db
-            if not any(y for y in activities_to_remove if y in x["name"])
+        self.database = [
+            dataset
+            for dataset in self.database
+            if not any(y for y in activities_to_remove if y in dataset["name"])
         ]
-        self.db.extend(self.import_db.data)
+        self.database.extend(self.import_db.data)
 
         exchanges_to_modify = [
             "market for transport, passenger car, large size, petol, EURO 4",
@@ -1108,10 +1138,10 @@ class CarculatorInventory(BaseInventoryImport):
             "market for transport, passenger car, large size, diesel, EURO 4",
             "market for transport, passenger car, large size, diesel, EURO 5",
         ]
-        for ds in self.db:
+        for dataset in self.database:
             excs = (
                 exc
-                for exc in ds["exchanges"]
+                for exc in dataset["exchanges"]
                 if exc["name"] in exchanges_to_modify and exc["type"] == "technosphere"
             )
 
@@ -1120,7 +1150,7 @@ class CarculatorInventory(BaseInventoryImport):
                 try:
 
                     new_supplier = ws.get_one(
-                        self.db,
+                        self.database,
                         *[
                             ws.contains(
                                 "name",
@@ -1128,7 +1158,7 @@ class CarculatorInventory(BaseInventoryImport):
                             ),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(ds["location"]),
+                                self.geomap.ecoinvent_to_iam_location(dataset["location"]),
                             ),
                             ws.contains("reference product", "transport"),
                         ],
@@ -1142,7 +1172,7 @@ class CarculatorInventory(BaseInventoryImport):
                 except ws.NoResults:
 
                     new_supplier = ws.get_one(
-                        self.db,
+                        self.database,
                         *[
                             ws.contains(
                                 "name",
@@ -1160,7 +1190,8 @@ class CarculatorInventory(BaseInventoryImport):
 
         print("Done!")
 
-        return self.db
+        return self.database
+
 
 class TruckInventory(BaseInventoryImport):
     """
@@ -1182,7 +1213,9 @@ class TruckInventory(BaseInventoryImport):
 
         self.db_year = year
         self.model = model
-        self.geomap = Geomap(model=model, current_regions=iam_data.coords["region"].values.tolist())
+        self.geomap = Geomap(
+            model=model, current_regions=iam_data.coords["region"].values.tolist()
+        )
         self.regions = regions
         self.fleet_file = fleet_file
         self.filter = ["fleet average"]
@@ -1264,15 +1297,15 @@ class TruckInventory(BaseInventoryImport):
                 "fu": {"fleet": fleet.sel(vintage_year=years), "unit": "tkm"},
             }
 
-            bc = {
+            background_configuration = {
                 "country": region,
             }
 
-            ic = carculator_truck.InventoryCalculation(
-                tm, scope=scope, background_configuration=bc,
+            inventory = carculator_truck.InventoryCalculation(
+                tm, scope=scope, background_configuration=background_configuration,
             )
 
-            i = ic.export_lci_to_bw(
+            i = inventory.export_lci_to_bw(
                 presamples=False,
                 ecoinvent_version=str(self.version),
                 create_vehicle_datasets=False,
@@ -1280,23 +1313,23 @@ class TruckInventory(BaseInventoryImport):
 
             # filter out trucks if anything given in `self.filter`
             i.data = [
-                x
-                for x in i.data
-                if "transport, " not in x["name"]
+                dataset
+                for dataset in i.data
+                if "transport, " not in dataset["name"]
                 or (
-                    any(y.lower() in x["name"].lower() for y in self.filter)
-                    and str(self.db_year) in x["name"]
+                    any(y.lower() in dataset["name"].lower() for y in self.filter)
+                    and str(self.db_year) in dataset["name"]
                 )
             ]
 
             # we want to remove all fuel and electricity supply datatsets
             # to only keep the one corresponding to the fleet year
             i.data = [
-                x
-                for x in i.data
+                dataset
+                for dataset in i.data
                 if not any(
-                    y in x["name"]
-                    for y in [
+                    forbidden_term in dataset["name"]
+                    for forbidden_term in [
                         "fuel supply for",
                         "electricity supply for",
                         "electricity market for fuel preparation",
@@ -1308,63 +1341,66 @@ class TruckInventory(BaseInventoryImport):
             # we want to rename the lorry transport datasets
             # by removing the year in the name
             # we also want to change the names of fuel supply exchanges
-            for x in i.data:
+            for dataset in i.data:
 
-                if "transport, freight, lorry, " in x["name"]:
+                if "transport, freight, lorry, " in dataset["name"]:
 
-                    x["name"] = x["name"][:-6]
-                    for exc in ws.production(x):
+                    dataset["name"] = dataset["name"][:-6]
+                    for exc in ws.production(dataset):
                         exc["name"] = exc["name"][:-6]
 
-                if x["name"] == "transport, freight, lorry, fleet average":
-                    x["name"] = 'market for transport, freight, lorry, unspecified'
-                    x["reference product"] = 'transport, freight, lorry, unspecified'
-                    for exc in ws.production(x):
-                        exc["name"] = 'market for transport, freight, lorry, unspecified'
-                        exc["product"] = 'transport, freight, lorry, unspecified'
+                if dataset["name"] == "transport, freight, lorry, fleet average":
+                    dataset["name"] = "market for transport, freight, lorry, unspecified"
+                    dataset["reference product"] = "transport, freight, lorry, unspecified"
+                    for exc in ws.production(dataset):
+                        exc[
+                            "name"
+                        ] = "market for transport, freight, lorry, unspecified"
+                        exc["product"] = "transport, freight, lorry, unspecified"
 
                 d_fuel_exchanges = {
                     "fuel supply for gasoline vehicles": {
                         "name": "market for petrol, low-sulfur",
                         "prod": "petrol, low-sulfur",
-                        "loc": "RoW"
+                        "loc": "RoW",
                     },
                     "fuel supply for diesel vehicles": {
                         "name": "market for diesel, low-sulfur",
                         "prod": "diesel, low-sulfur",
-                        "loc": "RoW"
+                        "loc": "RoW",
                     },
                     "fuel supply for gas vehicles": {
                         "name": "market for natural gas, low pressure, vehicle grade",
                         "prod": "natural gas, low pressure, vehicle grade",
-                        "loc": "GLO"
+                        "loc": "GLO",
                     },
                     "fuel supply for hydrogen vehicles": {
                         "name": "market for hydrogen, gaseous",
                         "prod": "hydrogen, gaseous",
-                        "loc": "GLO"
+                        "loc": "GLO",
                     },
                     "electricity supply for electric vehicles": {
                         "name": "market group for electricity, low voltage",
                         "prod": "electricity, low voltage",
-                        "loc": "RER"
+                        "loc": "RER",
                     },
                     "electricity market for fuel preparation": {
                         "name": "market group for electricity, low voltage",
                         "prod": "electricity, low voltage",
-                        "loc": "RER"
+                        "loc": "RER",
                     },
                     "electricity market for energy storage": {
                         "name": "market group for electricity, low voltage",
                         "prod": "electricity, low voltage",
-                        "loc": "CN"
+                        "loc": "CN",
                     },
                 }
 
-
-                for exc in ws.technosphere(x):
+                for exc in ws.technosphere(dataset):
                     if any(d in exc["name"] for d in d_fuel_exchanges):
-                        for key in (key for key in d_fuel_exchanges if key in exc["name"]):
+                        for key in (
+                            key for key in d_fuel_exchanges if key in exc["name"]
+                        ):
 
                             exc["name"] = d_fuel_exchanges[key]["name"]
                             exc["product"] = d_fuel_exchanges[key]["prod"]
@@ -1377,9 +1413,9 @@ class TruckInventory(BaseInventoryImport):
             else:
                 # remove duplicate items if iterating over several regions
                 i.data = [
-                    x
-                    for x in i.data
-                    if (x["name"].lower(), x["location"])
+                    dataset
+                    for dataset in i.data
+                    if (dataset["name"].lower(), dataset["location"])
                     not in [(z["name"].lower(), z["location"]) for z in import_db.data]
                 ]
                 import_db.data.extend(i.data)
@@ -1399,17 +1435,15 @@ class TruckInventory(BaseInventoryImport):
             "transport, freight, lorry",
         ]
 
-        self.db = [
-            x
-            for x in self.db
-            if not any(y in x["name"] for y in activities_to_remove)
+        self.database = [
+            dataset for dataset in self.database if not any(y in dataset["name"] for y in activities_to_remove)
         ]
-        self.db.extend(self.import_db.data)
+        self.database.extend(self.import_db.data)
 
-        for ds in self.db:
+        for dataset in self.database:
             excs = (
                 exc
-                for exc in ds["exchanges"]
+                for exc in dataset["exchanges"]
                 if "transport, freight, lorry" in exc["name"]
                 and exc["type"] == "technosphere"
             )
@@ -1428,19 +1462,19 @@ class TruckInventory(BaseInventoryImport):
                     search_for = "market for transport, freight, lorry, unspecified"
 
                 if not any(
-                    x in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
-                    for x in exc["name"]
+                    sub_string in ["3.5-7.5", "7.5-16", "16-32", ">32", "unspecified"]
+                    for sub_string in exc["name"]
                 ):
                     search_for = "market for transport, freight, lorry, unspecified"
 
                 try:
                     new_supplier = ws.get_one(
-                        self.db,
+                        self.database,
                         *[
                             ws.equals("name", search_for),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(ds["location"]),
+                                self.geomap.ecoinvent_to_iam_location(dataset["location"]),
                             ),
                             ws.contains(
                                 "reference product", "transport, freight, lorry"
@@ -1459,17 +1493,18 @@ class TruckInventory(BaseInventoryImport):
 
                     try:
                         new_supplier = ws.get_one(
-                            self.db,
+                            self.database,
                             *[
                                 ws.equals("name", search_for),
                                 ws.equals(
                                     "location",
                                     self.geomap.ecoinvent_to_iam_location(
-                                        ds["location"]
+                                        dataset["location"]
                                     ),
                                 ),
                                 ws.contains(
-                                    "reference product", "transport, freight, lorry, unspecified"
+                                    "reference product",
+                                    "transport, freight, lorry, unspecified",
                                 ),
                             ],
                         )
@@ -1480,11 +1515,12 @@ class TruckInventory(BaseInventoryImport):
 
                         try:
                             new_supplier = ws.get_one(
-                                self.db,
+                                self.database,
                                 *[
                                     ws.equals("name", search_for),
                                     ws.contains(
-                                        "reference product", "transport, freight, lorry, unspecified"
+                                        "reference product",
+                                        "transport, freight, lorry, unspecified",
                                     ),
                                 ],
                             )
@@ -1493,16 +1529,16 @@ class TruckInventory(BaseInventoryImport):
                             print(f"no results for {exc['name']} in {exc['location']}")
 
                             print("available trucks")
-                            for dataset in self.db:
-                                if "transport, freight, lorry" in dataset["name"]:
-                                    print(dataset["name"], dataset["location"])
+                            for available_dataset in self.database:
+                                if "transport, freight, lorry" in available_dataset["name"]:
+                                    print(available_dataset["name"], available_dataset["location"])
 
                         except ws.MultipleResults:
                             # If multiple trucks are available, but none of the correct region,
                             # we pick a a truck from the "World" region
                             print("found several suppliers")
                             new_supplier = ws.get_one(
-                                self.db,
+                                self.database,
                                 *[
                                     ws.equals("name", search_for),
                                     ws.equals("location", "World"),
@@ -1519,4 +1555,4 @@ class TruckInventory(BaseInventoryImport):
 
         print("Done!")
 
-        return self.db
+        return self.database

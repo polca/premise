@@ -5,6 +5,7 @@ from wurst import searching as ws
 from .utils import *
 
 
+
 class SolarPV:
     """
     Class that modifies solar PVs efficiency. It iterates through photovoltaic panel installation activities
@@ -17,7 +18,7 @@ class SolarPV:
     This considers efficiencies of current and mature technologies today (18-20%), to efficiencies of PV currently in
     development for 2050 (24.5-25%), according to https://science.sciencemag.org/content/352/6283/aad4424/tab-pdf.
     :ivar db: database
-    :vartype db: dict
+    :vartype database: dict
     :ivar year: year
     :vartype year: int
 
@@ -27,7 +28,7 @@ class SolarPV:
         self.db = db
         self.year = year
 
-    def update_efficiency_of_solar_PV(self):
+    def update_efficiency_of_solar_pv(self):
         """
         Update the efficiency of solar PV modules.
         We look at how many square meters are needed per kilowatt of installed capacity
