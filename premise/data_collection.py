@@ -1,21 +1,138 @@
-from . import DATA_DIR
-import pandas as pd
+"""
+data_collection.py contains the IAMDataCollection class which collects a number of data, mostly from the IAM file.
+This class will have as attributed market shares, efficiency and emission values for different sectors.
+Additional external sources of data have to be used as well, notably for cement production (GNR data), and for
+non-CO2 emissions (GAINS data).
+"""
+
+
 from pathlib import Path
 import csv
-from cryptography.fernet import Fernet
 from io import StringIO
 import numpy as np
 import xarray as xr
+import pandas as pd
+from cryptography.fernet import Fernet
+from . import DATA_DIR
 
 
 IAM_ELEC_MARKETS = DATA_DIR / "electricity" / "electricity_markets.csv"
 IAM_FUELS_MARKETS = DATA_DIR / "fuels" / "fuel_labels.csv"
-IAM_FUELS_EFFICIENCIES = DATA_DIR / "fuels" / "fuel_efficiencies.csv"
-IAM_ELEC_EFFICIENCIES = DATA_DIR / "electricity" / "electricity_efficiencies.csv"
+IAM_FUELS_EFFICIENCY_VARS = DATA_DIR / "fuels" / "fuel_efficiencies.csv"
+IAM_ELEC_EFFICIENCY_VARS = (
+    DATA_DIR / "electricity" / "electricity_efficiency_variables.csv"
+)
+IAM_CEMENT_EFFICIENCY_VARS = DATA_DIR / "cement" / "cement_efficiency_variables.csv"
+IAM_STEEL_EFFICIENCY_VARS = DATA_DIR / "steel" / "steel_efficiency_variables.csv"
 IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
 IAM_ELEC_EMISSIONS = DATA_DIR / "electricity" / "electricity_emissions.csv"
+IAM_PROD_VOLUMES = DATA_DIR / "iam_output_files" / "production_vars.csv"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
+IAM_CARBON_CAPTURE_VARS = DATA_DIR / "iam_output_files" / "carbon_capture_vars.csv"
+
+
+def get_lifetime(list_tech):
+    """
+    Fetch lifetime values for different technologies from a .csv file.
+    :param list_tech: technology labels to find lifetime values for.
+    :type list_tech: list
+    :return: a numpy array with technology lifetime values
+    :rtype: np.array
+    """
+    dict_ = {}
+    with open(IAM_LIFETIMES, encoding="utf-8") as file:
+        reader = csv.reader(file, delimiter=";")
+        for row in reader:
+            dict_[row[0]] = row[1]
+
+    arr = np.zeros_like(list_tech)
+
+    for i, tech in enumerate(list_tech):
+        lifetime = dict_[tech]
+        arr[i] = lifetime
+
+    return arr.astype(float)
+
+
+def get_gnr_data():
+    """
+    Read the GNR csv file on cement production and return an `xarray` with dimensions:
+    * region
+    * year
+    * variables
+
+    :return: an multi-dimensional array with GNR data about cement production
+    :rtype: xarray.core.dataarray.DataArray
+
+    """
+    dataframe = pd.read_csv(GNR_DATA)
+    dataframe = dataframe[["region", "year", "variables", "value"]]
+
+    gnr_array = (
+        dataframe.groupby(["region", "year", "variables"]).mean()["value"].to_xarray()
+    )
+    gnr_array = gnr_array.interpolate_na(
+        dim="year", method="linear", fill_value="extrapolate"
+    )
+    gnr_array = gnr_array.interp(year=2020)
+    gnr_array = gnr_array.fillna(0)
+
+    return gnr_array
+
+
+def get_gains_data():
+    """
+    Read the GAINS emissions csv file and return an `xarray` with dimensions:
+    * region
+    * pollutant
+    * sector
+    * year
+
+    :return: an multi-dimensional array with GAINS emissions data
+    :rtype: xarray.core.dataarray.DataArray
+
+    """
+    filename = "GAINS emission factors.csv"
+    filepath = DATA_DIR / "GAINS_emission_factors" / filename
+
+    gains_emi = pd.read_csv(
+        filepath,
+        skiprows=4,
+        names=["year", "region", "GAINS", "pollutant", "pathway", "factor"],
+    )
+    gains_emi["unit"] = "Mt/TWa"
+    gains_emi = gains_emi[gains_emi.pathway == "SSP2"]
+
+    sector_mapping = pd.read_csv(GAINS_TO_IAM_FILEPATH).drop(
+        ["noef", "elasticity"], axis=1
+    )
+
+    gains_emi = (
+        gains_emi.join(sector_mapping.set_index("GAINS"), on="GAINS")
+        .dropna()
+        .drop(["pathway", "REMIND"], axis=1)
+        .pivot_table(
+            index=["region", "GAINS", "pollutant", "unit"],
+            values="factor",
+            columns="year",
+        )
+    )
+
+    gains_emi = gains_emi.reset_index()
+    gains_emi = gains_emi.melt(
+        id_vars=["region", "pollutant", "unit", "GAINS"],
+        var_name="year",
+        value_name="value",
+    )[["region", "pollutant", "GAINS", "year", "value"]]
+    gains_emi = gains_emi.rename(columns={"GAINS": "sector"})
+    array = (
+        gains_emi.groupby(["region", "pollutant", "year", "sector"])["value"]
+        .mean()
+        .to_xarray()
+    )
+
+    return array / 8760  # per TWha --> per TWh
 
 
 class IAMDataCollection:
@@ -31,34 +148,60 @@ class IAMDataCollection:
 
     """
 
-    def __init__(self, model, pathway, year, filepath_iam_files, key, system_model="attributionl", time_horizon=30):
+    def __init__(
+        self,
+        model,
+        pathway,
+        year,
+        filepath_iam_files,
+        key,
+        system_model="attributionl",
+        time_horizon=30,
+    ):
         self.model = model
         self.pathway = pathway
         self.year = year
-        self.filepath_iam_files = filepath_iam_files
-        self.key = key
-        self.data = self.get_iam_data()
-        self.regions = [r for r in self.data.region.values]
+        key = key or None
+        data = self.__get_iam_data(key=key, filepath=filepath_iam_files)
+        self.regions = data.region.values.tolist()
         self.system_model = system_model
         self.time_horizon = time_horizon
 
-        self.gains_data = self.get_gains_data()
-        self.gnr_data = self.get_gnr_data()
-        self.electricity_market_labels = self.get_iam_variable_labels(IAM_ELEC_MARKETS)
-        self.electricity_efficiency_labels = self.get_iam_variable_labels(IAM_ELEC_EFFICIENCIES)
-        self.electricity_emission_labels = self.get_iam_variable_labels(IAM_ELEC_EMISSIONS)
+        gains_data = get_gains_data()
+        self.gnr_data = get_gnr_data()
 
-        self.electricity_markets = self.get_iam_electricity_markets()
-        self.electricity_efficiencies = self.get_iam_electricity_efficiencies()
-        self.electricity_emissions = self.get_gains_electricity_emissions()
-        self.cement_emissions = self.get_gains_cement_emissions()
-        self.steel_emissions = self.get_gains_steel_emissions()
-        self.fuel_market_labels = self.get_iam_variable_labels(IAM_FUELS_MARKETS)
-        self.fuel_efficiency_labels = self.get_iam_variable_labels(IAM_FUELS_EFFICIENCIES)
-        self.fuel_markets = self.get_iam_fuel_markets()
-        self.fuel_efficiencies = self.get_iam_fuel_efficiencies()
+        self.electricity_markets = self.__get_iam_electricity_markets(data=data)
+        self.fuel_markets = self.__get_iam_fuel_markets(data=data)
 
-    def get_iam_variable_labels(self, filepath):
+        self.production_volumes = self.__get_iam_production_volumes(
+            self.__get_iam_variable_labels(IAM_PROD_VOLUMES), data=data
+        )
+        self.carbon_capture_rate = self.__get_carbon_capture_rate(
+            dict_vars=self.__get_iam_variable_labels(IAM_CARBON_CAPTURE_VARS), data=data
+        )
+
+        electricity_efficiencies = self.__get_iam_electricity_efficiencies(data=data)
+        electricity_emissions = self.__get_gains_electricity_emissions(data=gains_data)
+        cement_emissions = self.__get_gains_cement_emissions(data=gains_data)
+        cement_efficiencies = self.__get_iam_cement_efficiencies(data=data)
+        steel_emissions = self.__get_gains_steel_emissions(data=gains_data)
+        steel_efficiencies = self.__get_iam_steel_efficiencies(data=data)
+        fuel_efficiencies = self.__get_iam_fuel_efficiencies(data=data)
+
+        self.efficiency = xr.concat(
+            [
+                electricity_efficiencies,
+                steel_efficiencies,
+                cement_efficiencies,
+                fuel_efficiencies,
+            ],
+            dim="variables",
+        )
+        self.emissions = xr.concat(
+            [electricity_emissions, steel_emissions, cement_emissions,], dim="sector",
+        )
+
+    def __get_iam_variable_labels(self, filepath):
         """
         Loads a csv file into a dictionary.
         This dictionary contains common terminology to `premise`
@@ -69,16 +212,24 @@ class IAMDataCollection:
         :rtype: dict
         """
 
-        d = dict()
-        with open(filepath) as f:
-            reader = csv.reader(f, delimiter=";")
+        dict_vars = {}
+        with open(filepath, encoding="utf-8") as file:
+            reader = csv.reader(file, delimiter=";")
             for row in reader:
                 if row[0] == self.model:
-                    d[row[1]] = row[2]
+                    if row[1] in dict_vars:
+                        if isinstance(dict_vars[row[1]], list):
+                            dict_vars[row[1]].append(row[-1])
+                        else:
+                            old_val = [dict_vars[row[1]]]
+                            old_val.append(row[-1])
+                            dict_vars[row[1]] = old_val
+                    else:
+                        dict_vars[row[1]] = row[-1]
 
-        return d
+        return dict_vars
 
-    def get_iam_data(self):
+    def __get_iam_data(self, key, filepath):
         """
         Read the IAM result file and return an `xarray` with dimensions:
         * region
@@ -91,10 +242,9 @@ class IAMDataCollection:
         """
 
         file_ext = self.model + "_" + self.pathway + ".csv"
-        filepath = Path(self.filepath_iam_files) / file_ext
+        filepath = Path(filepath) / file_ext
 
-
-        if self.key is None:
+        if key is None:
             # Uses a non-encrypted file
             try:
                 with open(filepath, "rb") as file:
@@ -102,44 +252,58 @@ class IAMDataCollection:
                     encrypted_data = file.read()
             except FileNotFoundError:
                 file_ext = self.model + "_" + self.pathway + ".mif"
-                filepath = Path(self.filepath_iam_files) / file_ext
+                filepath = Path(filepath) / file_ext
                 with open(filepath, "rb") as file:
                     # read the encrypted data
                     encrypted_data = file.read()
 
             # create a temp csv-like file to pass to pandas.read_csv()
-            DATA = StringIO(str(encrypted_data, 'latin-1'))
+            data = StringIO(str(encrypted_data, "latin-1"))
 
         else:
             # Uses an encrypted file
-            f = Fernet(self.key)
+            fernet_obj = Fernet(key)
             with open(filepath, "rb") as file:
                 # read the encrypted data
                 encrypted_data = file.read()
 
             # decrypt data
-            decrypted_data = f.decrypt(encrypted_data)
-            DATA = StringIO(str(decrypted_data, 'latin-1'))
+            decrypted_data = fernet_obj.decrypt(encrypted_data)
+            data = StringIO(str(decrypted_data, "latin-1"))
 
         if self.model == "remind":
-            df = pd.read_csv(
-                DATA, sep=";", index_col=["Region", "Variable", "Unit"], encoding="latin-1"
+            dataframe = pd.read_csv(
+                data,
+                sep=";",
+                index_col=["Region", "Variable", "Unit"],
+                encoding="latin-1",
             ).drop(columns=["Model", "Scenario"])
 
             # Filter the dataframe
-            list_var = ("SE", "Tech", "FE", "Production", "Emi|CCO2", "Emi|CO2")
+            list_var = (
+                "SE",
+                "Tech",
+                "FE",
+                "Production",
+                "Emi|CCO2",
+                "Emi|CO2",
+                "Specific Energy",
+            )
 
             # if new sub-European regions a represent, we remove EUR and NEU
-            if any(x in df.index.get_level_values("Region").unique() for x in ["ESC", "DEU", "NEN"]):
-                df = df.loc[~df.index.get_level_values("Region").isin(["EUR", "NEU"])]
+            if any(
+                x in dataframe.index.get_level_values("Region").unique()
+                for x in ["ESC", "DEU", "NEN"]
+            ):
+                dataframe = dataframe.loc[
+                    ~dataframe.index.get_level_values("Region").isin(["EUR", "NEU"])
+                ]
 
         elif self.model == "image":
 
-            df = pd.read_csv(DATA, index_col=[2, 3, 4],
-                             encoding="latin-1",
-                             sep=";").drop(
-                columns=["Model", "Scenario"]
-            )
+            dataframe = pd.read_csv(
+                data, index_col=[2, 3, 4], encoding="latin-1", sep=";"
+            ).drop(columns=["Model", "Scenario"])
 
             # Filter the dataframe
             list_var = (
@@ -149,25 +313,27 @@ class IAMDataCollection:
                 "Production",
                 "Emissions",
                 "Land Use",
-                "Emission Factor"
+                "Emission Factor",
             )
         else:
-            raise ValueError("The IAM model name {} is not valid. Currently supported: 'remind' or 'image'".format(self.model))
+            raise ValueError(
+                f"The IAM model name {self.model.upper()} is not valid. Currently supported: 'REMIND' or 'IMAGE'"
+            )
 
-        if len(df.columns == 20):
-            df.drop(columns=df.columns[-1], inplace=True)
+        if len(dataframe.columns == 20):
+            dataframe.drop(columns=dataframe.columns[-1], inplace=True)
 
-        df.columns = df.columns.astype(int)
-        df = df.reset_index()
+        dataframe.columns = dataframe.columns.astype(int)
+        dataframe = dataframe.reset_index()
 
-        df = df.loc[df["Variable"].str.startswith(list_var)]
+        dataframe = dataframe.loc[dataframe["Variable"].str.startswith(list_var)]
 
-        df = df.rename(
+        dataframe = dataframe.rename(
             columns={"Region": "region", "Variable": "variables", "Unit": "unit"}
         )
 
         array = (
-            df.melt(
+            dataframe.melt(
                 id_vars=["region", "variables", "unit"],
                 var_name="year",
                 value_name="value",
@@ -179,102 +345,12 @@ class IAMDataCollection:
 
         return array
 
-    @staticmethod
-    def get_gains_data():
+    def __transform_to_marginal_markets(self, data):
         """
-        Read the GAINS emissions csv file and return an `xarray` with dimensions:
-        * region
-        * pollutant
-        * sector
-        * year
-
-        :return: an multi-dimensional array with GAINS emissions data
-        :rtype: xarray.core.dataarray.DataArray
-
+        Used for consequential modeling only. Returns marginal market mixes.
+        :param data: IAM data
+        :return: marginal market mixes
         """
-        filename = "GAINS emission factors.csv"
-        filepath = DATA_DIR / "GAINS_emission_factors" / filename
-
-        gains_emi = pd.read_csv(
-            filepath,
-            skiprows=4,
-            names=["year", "region", "GAINS", "pollutant", "pathway", "factor"],
-        )
-        gains_emi["unit"] = "Mt/TWa"
-        gains_emi = gains_emi[gains_emi.pathway == "SSP2"]
-
-        sector_mapping = pd.read_csv(GAINS_TO_IAM_FILEPATH).drop(
-            ["noef", "elasticity"], axis=1
-        )
-
-        gains_emi = (
-            gains_emi.join(sector_mapping.set_index("GAINS"), on="GAINS")
-            .dropna()
-            .drop(["pathway", "REMIND"], axis=1)
-            .pivot_table(
-                index=["region", "GAINS", "pollutant", "unit"],
-                values="factor",
-                columns="year",
-            )
-        )
-
-        gains_emi = gains_emi.reset_index()
-        gains_emi = gains_emi.melt(
-            id_vars=["region", "pollutant", "unit", "GAINS"],
-            var_name="year",
-            value_name="value",
-        )[["region", "pollutant", "GAINS", "year", "value"]]
-        gains_emi = gains_emi.rename(columns={"GAINS": "sector"})
-        array = (
-            gains_emi.groupby(["region", "pollutant", "year", "sector"])["value"]
-            .mean()
-            .to_xarray()
-        )
-
-        return array / 8760  # per TWha --> per TWh
-
-    def get_gnr_data(self):
-        """
-        Read the GNR csv file on cement production and return an `xarray` with dimensions:
-        * region
-        * year
-        * variables
-
-        :return: an multi-dimensional array with GNR data
-        :rtype: xarray.core.dataarray.DataArray
-
-        :return:
-        """
-        df = pd.read_csv(GNR_DATA)
-        df = df[["region", "year", "variables", "value"]]
-
-        gnr_array = (
-            df.groupby(["region", "year", "variables"]).mean()["value"].to_xarray()
-        )
-        gnr_array = gnr_array.interpolate_na(
-            dim="year", method="linear", fill_value="extrapolate"
-        )
-        gnr_array = gnr_array.interp(year=2020)
-        gnr_array = gnr_array.fillna(0)
-
-        return gnr_array
-
-    def get_lifetime(self, list_tech):
-        d = dict()
-        with open(IAM_LIFETIMES) as f:
-            reader = csv.reader(f, delimiter=";")
-            for row in reader:
-                d[row[0]] = row[1]
-
-        arr = np.zeros_like(list_tech)
-
-        for i, tech in enumerate(list_tech):
-            lifetime = d[tech]
-            arr[i] = lifetime
-
-        return arr.astype(float)
-
-    def transform_to_marginal_markets(self, data):
 
         shape = list(data.shape)
         shape[-1] = 1
@@ -282,64 +358,77 @@ class IAMDataCollection:
         market_shares = xr.DataArray(
             np.zeros(tuple(shape)),
             dims=["region", "variables", "year"],
-            coords={"region": data.coords["region"], "variables": data.variables, "year": [self.year]}
+            coords={
+                "region": data.coords["region"],
+                "variables": data.variables,
+                "year": [self.year],
+            },
         )
 
         for region in data.coords["region"].values:
 
-
-            current_shares = (
-                data.sel(region=region, year=self.year) / data.sel(region=region, year=self.year).sum(dim="variables")
-            )
+            current_shares = data.sel(region=region, year=self.year) / data.sel(
+                region=region, year=self.year
+            ).sum(dim="variables")
 
             # we first need to calculate the average capital replacement rate of the market
             # which is here defined as the inverse of the production-weighted average lifetime
-            lifetime = self.get_lifetime(current_shares.variables.values)
+            lifetime = get_lifetime(current_shares.variables.values)
 
             avg_lifetime = np.sum(current_shares.values * lifetime)
 
-
             avg_cap_repl_rate = -1 / avg_lifetime
 
-            volume_change = (data.sel(region=region).sum(dim="variables").interp(year=self.year + self.time_horizon) /
-                data.sel(region=region).sum(dim="variables").interp(year=self.year)) - 1
-
+            volume_change = (
+                data.sel(region=region)
+                .sum(dim="variables")
+                .interp(year=self.year + self.time_horizon)
+                / data.sel(region=region).sum(dim="variables").interp(year=self.year)
+            ) - 1
 
             # first, we set CHP suppliers to zero
             # as electricity production is not a determining product for CHPs
-            tech_to_ignore = [
-                "CHP",
-                "biomethane"
-            ]
-            data.loc[dict(variables=[v for v in data.variables.values
-                                     if any(x in v for x in tech_to_ignore)], region=region)] = 0
+            tech_to_ignore = ["CHP", "biomethane"]
+            data.loc[
+                dict(
+                    variables=[
+                        v
+                        for v in data.variables.values
+                        if any(x in v for x in tech_to_ignore)
+                    ],
+                    region=region,
+                )
+            ] = 0
 
             # second, we fetch the ratio between production in `self.year` and `self.year` + `time_horizon`
             # for each technology
             market_shares.loc[dict(region=region)] = (
-                                                             data.sel(region=region).interp(
-                                                                 year=self.year + self.time_horizon).values
-                                                             / data.sel(region=region).interp(year=self.year).values
-                                                     )[:, None] - 1
+                data.sel(region=region)
+                .interp(year=self.year + self.time_horizon)
+                .values
+                / data.sel(region=region).interp(year=self.year).values
+            )[:, None] - 1
 
-
-
-            market_shares.loc[dict(region=region)] = market_shares.loc[dict(region=region)].round(3)
-
-
+            market_shares.loc[dict(region=region)] = market_shares.loc[
+                dict(region=region)
+            ].round(3)
 
             if region == "WEU":
                 print(market_shares.loc[dict(region=region)])
 
             # we remove NaNs and np.inf
-            market_shares.loc[dict(region=region)].values[market_shares.loc[dict(region=region)].values == np.inf] = 0
-            market_shares.loc[dict(region=region)] = market_shares.loc[dict(region=region)].fillna(0)
+            market_shares.loc[dict(region=region)].values[
+                market_shares.loc[dict(region=region)].values == np.inf
+            ] = 0
+            market_shares.loc[dict(region=region)] = market_shares.loc[
+                dict(region=region)
+            ].fillna(0)
 
             if region == "WEU":
                 print(market_shares.loc[dict(region=region)])
 
             # we fetch the technologies' lifetimes
-            lifetime = self.get_lifetime(market_shares.variables.values)
+            lifetime = get_lifetime(market_shares.variables.values)
             # get the capital replacement rate
             # which is here defined as -1 / lifetime
             cap_repl_rate = -1 / lifetime
@@ -354,8 +443,6 @@ class IAMDataCollection:
             if region == "WEU":
                 print(market_shares.loc[dict(region=region)])
 
-
-
             # market decreasing faster than the average capital renewal rate
             # in this case, the idea is that oldest/non-competitive technologies
             # are likely to supply by increasing their lifetime
@@ -365,15 +452,22 @@ class IAMDataCollection:
                 print("decrease")
 
                 # we remove suppliers with a positive growth
-                market_shares.loc[dict(region=region)].values[market_shares.loc[dict(region=region)].values > 0] = 0
+                market_shares.loc[dict(region=region)].values[
+                    market_shares.loc[dict(region=region)].values > 0
+                ] = 0
                 # we reverse the sign of negative growth suppliers
                 market_shares.loc[dict(region=region)] *= -1
-                market_shares.loc[dict(region=region)] /= market_shares.loc[dict(region=region)].sum(dim="variables")
+                market_shares.loc[dict(region=region)] /= market_shares.loc[
+                    dict(region=region)
+                ].sum(dim="variables")
 
                 # multiply by volumes at T0
-                market_shares.loc[dict(region=region)] *= data.sel(region=region, year=self.year)
-                market_shares.loc[dict(region=region)] /= market_shares.loc[dict(region=region)].sum(dim="variables")
-
+                market_shares.loc[dict(region=region)] *= data.sel(
+                    region=region, year=self.year
+                )
+                market_shares.loc[dict(region=region)] /= market_shares.loc[
+                    dict(region=region)
+                ].sum(dim="variables")
 
             # increasing market or
             # market decreasing slowlier than the
@@ -383,16 +477,24 @@ class IAMDataCollection:
                 print("increase")
 
                 # we remove suppliers with a negative growth
-                market_shares.loc[dict(region=region)].values[market_shares.loc[dict(region=region)].values < 0] = 0
-                market_shares.loc[dict(region=region)] /= market_shares.loc[dict(region=region)].sum(dim="variables")
+                market_shares.loc[dict(region=region)].values[
+                    market_shares.loc[dict(region=region)].values < 0
+                ] = 0
+                market_shares.loc[dict(region=region)] /= market_shares.loc[
+                    dict(region=region)
+                ].sum(dim="variables")
 
                 # multiply by volumes at T0
-                market_shares.loc[dict(region=region)] *= data.sel(region=region, year=self.year)
-                market_shares.loc[dict(region=region)] /= market_shares.loc[dict(region=region)].sum(dim="variables")
+                market_shares.loc[dict(region=region)] *= data.sel(
+                    region=region, year=self.year
+                )
+                market_shares.loc[dict(region=region)] /= market_shares.loc[
+                    dict(region=region)
+                ].sum(dim="variables")
 
         return market_shares
 
-    def get_iam_electricity_markets(self, drop_hydrogen=True):
+    def __get_iam_electricity_markets(self, data, drop_hydrogen=True):
         """
         This method retrieves the market share for each electricity-producing technology, for a specified year,
         for each region provided by the IAM.
@@ -404,48 +506,48 @@ class IAMDataCollection:
         :rtype: xarray.core.dataarray.DataArray
 
         """
+
+        labels = self.__get_iam_variable_labels(IAM_ELEC_MARKETS)
+
         # If hydrogen is not to be considered, it is removed from the technologies labels list
         if drop_hydrogen:
             list_technologies = [
-                l
-                for l in list(self.electricity_market_labels.values())
-                if "Hydrogen" not in l
+                l for l in list(labels.values()) if "Hydrogen" not in l
             ]
         else:
-            list_technologies = list(self.electricity_market_labels.values())
+            list_technologies = list(labels.values())
 
         # If the year specified is not contained within the range of years given by the IAM
-        if (
-            self.year < self.data.year.values.min()
-            or self.year > self.data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2100")
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        else:
-            # Interpolation between two periods
-            data_to_return = self.data.loc[
-                :, list_technologies, :
-            ]
-            # give the array common labels
-            list_vars = [var for var in list(self.electricity_market_labels.keys())
-                         if var != "Hydrogen"] \
-                if drop_hydrogen else list(self.electricity_market_labels.keys())
-
-            data_to_return.coords["variables"] = list_vars
-
-            if self.system_model == "consequential":
-
-                data_to_return = self.transform_to_marginal_markets(data_to_return)
-
-            else:
-                data_to_return /= self.data.loc[:, list_technologies, :].groupby("region").sum(
-                dim="variables"
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-            return data_to_return
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        # Interpolation between two periods
+        data_to_return = data.loc[:, list_technologies, :]
+        # give the array common labels
+        list_vars = (
+            [var for var in list(labels.keys()) if var != "Hydrogen"]
+            if drop_hydrogen
+            else list(labels.keys())
+        )
 
-    def get_iam_electricity_efficiencies(self, drop_hydrogen=True):
+        data_to_return.coords["variables"] = list_vars
+
+        if self.system_model == "consequential":
+
+            data_to_return = self.__transform_to_marginal_markets(data_to_return)
+
+        else:
+            data_to_return /= (
+                data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
+            )
+
+        return data_to_return
+
+    def __get_iam_electricity_efficiencies(self, data, drop_hydrogen=True):
         """
         This method retrieves efficiency values for electricity-producing technology, for a specified year,
         for each region provided by the IAM.
@@ -457,55 +559,197 @@ class IAMDataCollection:
         :rtype: xarray.core.dataarray.DataArray
 
         """
+
+        labels = self.__get_iam_variable_labels(IAM_ELEC_EFFICIENCY_VARS)
+
         # If hydrogen is not to be considered, it is removed from the technologies labels list
         if drop_hydrogen:
             list_technologies = [
-                l
-                for l in list(self.electricity_efficiency_labels.values())
-                if "Hydrogen" not in l
+                l for l in list(labels.values()) if "Hydrogen" not in l
             ]
         else:
-            list_technologies = list(self.electricity_efficiency_labels.values())
+            list_technologies = list(labels.values())
 
         # If the year specified is not contained within the range of years given by the IAM
-        if (
-            self.year < self.data.year.values.min()
-            or self.year > self.data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2100")
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        else:
-            # Interpolation between two periods
-            data = self.data.loc[:, list_technologies, :]
-
-            data = (
-                    data.interp(year=self.year)
-                    / data.sel(year=2020)
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-            # If we are looking at a year post 2020
-            # and the ratio in efficiency change is inferior to 1
-            # we correct it to 1, as we do not accept
-            # that efficiency degrades over time
-            if self.year > 2020:
-                data.values[data.values < 1] = 1
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        # Interpolation between two periods
+        data_to_return = data.loc[:, list_technologies, :]
 
-            # Inversely, if we are looking at a year prior to 2020
-            # and the ratio in efficiency change is superior to 1
-            # we correct it to 1, as we do not accept
-            # that efficiency in the past was higher than now
-            if self.year < 2020:
-                data.values[data.values > 1] = 1
+        data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
+            year=2020
+        )
 
-            # convert NaNs to ones
-            data = data.fillna(1)
+        # If we are looking at a year post 2020
+        # and the ratio in efficiency change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        if self.year > 2020:
+            data_to_return.values[data_to_return.values < 1] = 1
 
-            data.coords["variables"] = list(self.electricity_efficiency_labels.keys())
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in efficiency change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        if self.year < 2020:
+            data_to_return.values[data_to_return.values > 1] = 1
 
-            return data
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
 
-    def get_gains_electricity_emissions(self):
+        data_to_return.coords["variables"] = list(labels.keys())
+
+        return data_to_return
+
+    def __get_iam_cement_efficiencies(self, data):
+        """
+        This method retrieves specific energy use values for cement-producing technology,
+        for a specified year, for each region provided by the IAM.
+
+        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
+        :rtype: xarray.core.dataarray.DataArray
+
+        """
+
+        labels = self.__get_iam_variable_labels(IAM_CEMENT_EFFICIENCY_VARS)
+
+        # If the year specified is not contained within the range of years given by the IAM
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
+            )
+
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        # Interpolation between two periods
+
+        if "efficiency" in labels:
+            data_to_return = 1 / data.loc[:, [labels["efficiency"]], :]
+        else:
+            data_to_return = 1 / (
+                data.loc[:, labels["energy use"], :].sum(dim="variables")
+                / data.loc[:, [labels["production"]], :]
+            )
+
+        data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
+            year=2020
+        )
+
+        # If we are looking at a year post 2020
+        # and the ratio in specific energy use change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        if self.year > 2020:
+            data_to_return.values[data_to_return.values < 1] = 1
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in specific energy use change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        if self.year < 2020:
+            data_to_return.values[data_to_return.values > 1] = 1
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        # we also consider any improvement rate
+        # above 2 (+100%) or below 0.5 (-100%)
+        # to be incorrect
+        data_to_return = np.clip(data_to_return, 0.5, 2)
+
+        data_to_return.coords["variables"] = ["cement"]
+
+        return data_to_return
+
+    def __get_iam_steel_efficiencies(self, data):
+        """
+        This method retrieves specific energy use values for steel-producing technology,
+        for a specified year, for each region provided by the IAM.
+
+        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
+        :rtype: xarray.core.dataarray.DataArray
+
+        """
+
+        labels = self.__get_iam_variable_labels(IAM_STEEL_EFFICIENCY_VARS)
+
+        # If the year specified is not contained within the range of years given by the IAM
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
+            )
+
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        # Interpolation between two periods
+
+        # primary steel efficiency changes relative to 2020
+        energy_use_var = labels["energy use - primary"]
+        energy_use_var = (
+            [energy_use_var] if isinstance(energy_use_var, str) else energy_use_var
+        )
+        prod_var = [labels["production - primary"]]
+
+        data_primary = 1 / (
+            data.loc[:, energy_use_var, :].sum(dim="variables")
+            / data.loc[:, prod_var, :]
+        )
+
+        data_primary = data_primary.interp(year=self.year) / data_primary.sel(year=2020)
+
+        # secondary steel efficiency changes relative to 2020
+        energy_use_var = labels["energy use - secondary"]
+        energy_use_var = (
+            [energy_use_var] if isinstance(energy_use_var, str) else energy_use_var
+        )
+        prod_var = [labels["production - secondary"]]
+
+        data_secondary = 1 / (
+            data.loc[:, energy_use_var, :].sum(dim="variables")
+            / data.loc[:, prod_var, :]
+        )
+
+        data_secondary = data_secondary.interp(year=self.year) / data_secondary.sel(
+            year=2020
+        )
+
+        data_to_return = xr.concat([data_primary, data_secondary], dim="variables")
+
+        # If we are looking at a year post 2020
+        # and the ratio in specific energy use change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        if self.year > 2020:
+            data_to_return.values[data_to_return.values < 1] = 1
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in specific energy use change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        if self.year < 2020:
+            data_to_return.values[data_to_return.values > 1] = 1
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        # we also consider any improvement rate
+        # above 2 (+100%) or below 0.5 (-100%)
+        # to be incorrect
+        data_to_return = np.clip(data_to_return, 0.5, 2)
+
+        data_to_return.coords["variables"] = [
+            "primary steel",
+            "secondary steel",
+        ]
+
+        return data_to_return
+
+    def __get_gains_electricity_emissions(self, data):
         """
         This method retrieves emission values for electricity-producing technology, for a specified year,
         for each region provided by GAINS.
@@ -514,21 +758,49 @@ class IAMDataCollection:
         :rtype: xarray.core.dataarray.DataArray
 
         """
+
+        labels = self.__get_iam_variable_labels(IAM_ELEC_EMISSIONS)
+
         # If the year specified is not contained within the range of years given by the IAM
-        if (
-            self.year < self.gains_data.year.values.min()
-            or self.year > self.gains_data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2100")
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
+            )
 
         # Finally, if the specified year falls in between two periods provided by the IAM
-        else:
-            # Interpolation between two periods
-            return self.gains_data.sel(
-                sector=[v for v in self.electricity_emission_labels.values()]
-            ).interp(year=self.year)
+        # Interpolation between two periods
+        data_to_return = data.sel(sector=list(labels.values()))
 
-    def get_gains_cement_emissions(self):
+        # Example: 5g CO per kWh in 2030, against 10g in 2020
+        # 5/10 = 0.5
+        # 1/0.5 = 2. Improvement factor of 2.
+        data_to_return = 1 / (
+            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+        )
+
+        # If we are looking at a year post 2020
+        # and the ratio in efficiency change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        if self.year > 2020:
+            data_to_return.values[data_to_return.values < 1] = 1
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in efficiency change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        if self.year < 2020:
+            data_to_return.values[data_to_return.values > 1] = 1
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        data_to_return.coords["sector"] = list(labels.keys())
+
+        return data_to_return
+
+    def __get_gains_cement_emissions(self, data):
         """
         This method retrieves emission values for cement production, for a specified year,
         for each region provided by GAINS.
@@ -538,18 +810,45 @@ class IAMDataCollection:
 
         """
         # If the year specified is not contained within the range of years given by the IAM
-        if (
-            self.year < self.gains_data.year.values.min()
-            or self.year > self.gains_data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2100")
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
+            )
 
         # Finally, if the specified year falls in between two periods provided by the IAM
-        else:
-            # Interpolation between two periods
-            return self.gains_data.sel(sector="CEMENT")
+        # Interpolation between two periods
+        data_to_return = data.sel(sector=["CEMENT"])
 
-    def get_gains_steel_emissions(self):
+        # Example: 5g CO per kg cement in 2030, against 10g in 2020
+        # 5/10 = 0.5
+        # 1/0.5 = 2. Improvement factor of 2.
+        data_to_return = 1 / (
+            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+        )
+
+        # If we are looking at a year post 2020
+        # and the ratio in efficiency change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        if self.year > 2020:
+            data_to_return.values[data_to_return.values < 1] = 1
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in efficiency change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        if self.year < 2020:
+            data_to_return.values[data_to_return.values > 1] = 1
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        data_to_return.coords["sector"] = ["cement"]
+
+        return data_to_return
+
+    def __get_gains_steel_emissions(self, data):
         """
         This method retrieves emission values for steel production, for a specified year,
         for each region provided by GAINS.
@@ -559,18 +858,45 @@ class IAMDataCollection:
 
         """
         # If the year specified is not contained within the range of years given by the IAM
-        if (
-            self.year < self.gains_data.year.values.min()
-            or self.year > self.gains_data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2100")
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
+            )
 
         # Finally, if the specified year falls in between two periods provided by the IAM
-        else:
-            # Interpolation between two periods
-            return self.gains_data.sel(sector="STEEL")
+        # Interpolation between two periods
+        data_to_return = data.sel(sector=["STEEL"])
 
-    def get_iam_fuel_markets(self):
+        # Example: 5g CO per kg cement in 2030, against 10g in 2020
+        # 5/10 = 0.5
+        # 1/0.5 = 2. Improvement factor of 2.
+        data_to_return = 1 / (
+            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+        )
+
+        # If we are looking at a year post 2020
+        # and the ratio in efficiency change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        if self.year > 2020:
+            data_to_return.values[data_to_return.values < 1] = 1
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in efficiency change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        if self.year < 2020:
+            data_to_return.values[data_to_return.values > 1] = 1
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        data_to_return.coords["sector"] = ["steel"]
+
+        return data_to_return
+
+    def __get_iam_fuel_markets(self, data):
         """
         This method retrieves the market share for each fuel-producing technology,
         for a specified year, for each region provided by the IAM.
@@ -580,51 +906,50 @@ class IAMDataCollection:
 
         """
 
-        list_technologies = list(self.fuel_market_labels.values())
+        labels = self.__get_iam_variable_labels(IAM_FUELS_MARKETS)
+
+        list_technologies = list(labels.values())
 
         # If the year specified is not contained within the range of years given by the IAM
-        if (
-            self.year < self.data.year.values.min()
-            or self.year > self.data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2100")
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
+            )
 
         # Finally, if the specified year falls in between two periods provided by the IAM
-        else:
+        # sometimes, the World region is either neglected
+        # or wrongly evaluated
+        # so we fix that here
 
-            # sometimes, the World region is either neglected
-            # or wrongly evaluated
-            # so we fix that here
-
-            self.data.loc[dict(region="World", variables=list_technologies)] = self.data.loc[
-                dict(
-                    region=[r for r in self.data.coords["region"].values
-                            if r != "World"],
-                    variables=list_technologies
-                )
-            ].sum(dim="region")
-
-            # Interpolation between two periods
-            data_to_return = self.data.loc[
-                :, list_technologies, :
-            ]
-
-            data_to_return.coords["variables"] = list(self.fuel_market_labels.keys())
-
-            if self.system_model == "consequential":
-
-                data_to_return = self.transform_to_marginal_markets(data_to_return)
-
-            else:
-                data_to_return = data_to_return.interp(year=self.year)
-                data_to_return /= self.data.loc[:, list_technologies, :].interp(year=self.year).groupby("region").sum(
-                dim="variables"
+        data.loc[dict(region="World", variables=list_technologies)] = data.loc[
+            dict(
+                region=[r for r in data.coords["region"].values if r != "World"],
+                variables=list_technologies,
             )
-            
+        ].sum(dim="region")
 
-            return data_to_return
+        # Interpolation between two periods
+        data_to_return = data.loc[:, list_technologies, :]
 
-    def get_iam_fuel_efficiencies(self):
+        data_to_return.coords["variables"] = list(labels.keys())
+
+        if self.system_model == "consequential":
+
+            data_to_return = self.__transform_to_marginal_markets(data_to_return)
+
+        else:
+            data_to_return = data_to_return.interp(year=self.year)
+            data_to_return /= (
+                data.loc[:, list_technologies, :]
+                .interp(year=self.year)
+                .groupby("region")
+                .sum(dim="variables")
+            )
+
+        return data_to_return
+
+    def __get_iam_fuel_efficiencies(self, data):
         """
         This method retrieves the change in fuel production efficiency between the year in question and 2020,
         for each region provided by the IAM.
@@ -635,41 +960,138 @@ class IAMDataCollection:
 
         """
 
-        list_technologies = list(self.fuel_efficiency_labels.values())
+        labels = self.__get_iam_variable_labels(IAM_FUELS_EFFICIENCY_VARS)
+
+        list_technologies = list(labels.values())
 
         # If the year specified is not contained within the range of years given by the IAM
-        if (
-            self.year < self.data.year.values.min()
-            or self.year > self.data.year.values.max()
-        ):
-            raise KeyError("year not valid, must be between 2005 and 2100")
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        else:
-            # Interpolation between two periods
-            data_to_interp_from = self.data.loc[:, list_technologies, :]
-
-
-            data = (
-               data_to_interp_from.interp(year=self.year)
-                / data_to_interp_from.sel(year=2020)
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-            # If we are looking at a year post 2020
-            # and the ratio in efficiency change is inferior to 1
-            # we correct it to 1, as we do not accept
-            # that efficiency degrades over time
-            if self.year > 2020:
-                data.values[data.values < 1] = 1
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        # Interpolation between two periods
+        data_to_return = data.loc[:, list_technologies, :]
 
-            # Inversely, if we are looking at a year prior to 2020
-            # and the ratio in efficiency change is superior to 1
-            # we correct it to 1, as we do not accept
-            # that efficiency in the past was higher than now
-            if self.year < 2020:
-                data.values[data.values > 1] = 1
+        data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
+            year=2020
+        )
 
-            data.coords["variables"] = list(self.fuel_efficiency_labels.keys())
+        # If we are looking at a year post 2020
+        # and the ratio in efficiency change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        if self.year > 2020:
+            data_to_return.values[data_to_return.values < 1] = 1
 
-            return data
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in efficiency change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        if self.year < 2020:
+            data_to_return.values[data_to_return.values > 1] = 1
 
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        # we also consider any improvement rate
+        # above 2 (+100%) or below 0.5 (-100%)
+        # to be incorrect
+        data_to_return = np.clip(data_to_return, 0.5, 2)
+
+        data_to_return.coords["variables"] = list(labels.keys())
+
+        return data_to_return
+
+    def __get_carbon_capture_rate(self, dict_vars, data):
+        """
+        Returns an xarray with carbon capture rates for steel and cement production.
+        :return: an xarray with carbon capture rates
+        :rtype: xarray
+        """
+
+        # If the year specified is not contained within the range of years given by the IAM
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
+            )
+
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        # Interpolation between two periods
+        cement_rate = data.loc[:, [dict_vars["cement - cco2"]], :] / data.loc[
+            :, [dict_vars["cement - co2"], dict_vars["cement - cco2"]], :
+        ].sum(dim="variables")
+        cement_rate.coords["variables"] = ["cement"]
+
+        steel_rate = data.loc[:, [dict_vars["steel - cco2"]], :] / data.loc[
+            :, [dict_vars["steel - co2"], dict_vars["steel - cco2"]], :
+        ].sum(dim="variables")
+        steel_rate.coords["variables"] = ["steel"]
+
+        rate = xr.concat([cement_rate, steel_rate], dim="variables")
+
+        # we need to fix the rate for "World"
+        # as it is sometimes neglected in the
+        # IAM files
+
+
+
+        rate.loc[dict(region="World", variables="cement")] = (data.loc[
+            dict(
+                region=[r for r in self.regions if r != "World"],
+                variables=[dict_vars["cement - cco2"]],
+            )
+        ].sum(dim="region").values / data.loc[
+            dict(
+                region=[r for r in self.regions if r != "World"],
+                variables=[dict_vars["cement - co2"], dict_vars["cement - cco2"]],
+            )
+        ].sum(
+            dim=["variables", "region"]
+        ).values).T.sum(axis=-1)
+
+        rate.loc[dict(region="World", variables="steel")] = (data.loc[
+            dict(
+                region=[r for r in self.regions if r != "World"],
+                variables=[dict_vars["steel - cco2"]],
+            )
+        ].sum(dim="region").values / data.loc[
+            dict(
+                region=[r for r in self.regions if r != "World"],
+                variables=[dict_vars["steel - co2"], dict_vars["steel - cco2"]],
+            )
+        ].sum(
+            dim=["variables", "region"]
+        ).values).T.sum(axis=-1)
+
+        # we ensure that the rate can only be between 0 and 1
+        rate = np.clip(rate, 0, 1)
+
+        return rate.interp(year=self.year)
+
+    def __get_iam_production_volumes(self, dict_products, data):
+        """
+        Returns an xarray with production volumes for different sectors: electricity, steel, cement, fuels.
+        :param dict_products: a dictionary that contains common labels as keys, and IAM labels as values.
+        :param data: IAM data
+        :return: an xarray
+        """
+
+        list_products = list(dict_products.values())
+
+        # If the year specified is not contained within the range of years given by the IAM
+        if self.year < data.year.values.min() or self.year > data.year.values.max():
+            raise KeyError(
+                f"{self.year} is outside of the boundaries "
+                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
+            )
+
+        # Finally, if the specified year falls in between two periods provided by the IAM
+        # Interpolation between two periods
+        data_to_return = data.loc[:, list_products, :]
+        data_to_return.coords["variables"] = list(dict_products.keys())
+
+        return data_to_return

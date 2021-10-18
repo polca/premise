@@ -5,6 +5,7 @@ import json
 REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
 ADDITIONAL_DEFINITIONS = DATA_DIR / "additional_definitions.json"
 
+
 class Geomap:
     """
     Map ecoinvent locations to REMIND regions and vice-versa.
@@ -21,10 +22,11 @@ class Geomap:
         if len(current_regions) > 0:
             self.add_or_remove_regions(current_regions)
 
-        self.iam_regions = [x[1] for x in list(self.geo.keys())
-                            if isinstance(x, tuple)
-                            and x[0] == self.model.upper()
-                            ]
+        self.iam_regions = [
+            x[1]
+            for x in list(self.geo.keys())
+            if isinstance(x, tuple) and x[0] == self.model.upper()
+        ]
 
     def add_or_remove_regions(self, regions):
 
@@ -34,11 +36,14 @@ class Geomap:
         # add regions that do not have a topological definition in `wurst`
         for r in regions:
             if (self.model.upper(), r) not in self.geo.keys():
-                self.geo.add_definitions({r:additional_regions[r]}, self.model.upper())
+                self.geo.add_definitions({r: additional_regions[r]}, self.model.upper())
 
         for k in list(self.geo.keys()):
-            if isinstance(k, tuple) and k[0] == self.model.upper()\
-                    and k[1] not in regions:
+            if (
+                isinstance(k, tuple)
+                and k[0] == self.model.upper()
+                and k[1] not in regions
+            ):
                 self.geo[k].clear()
                 del self.geo[k]
 
@@ -102,7 +107,9 @@ class Geomap:
         # Second, it can be an ecoinvent region
         mapping = {
             "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
-            "Europe without Switzerland and Austria": "EUR" if self.model == "remind" else "WEU",
+            "Europe without Switzerland and Austria": "EUR"
+            if self.model == "remind"
+            else "WEU",
             "Europe without Switzerland": "EUR" if self.model == "remind" else "WEU",
             "North America without Quebec": "USA",
             "RER w/o RU": "EUR" if self.model == "remind" else "WEU",
@@ -119,8 +126,12 @@ class Geomap:
             "IAI Area, Africa": "SSA" if self.model == "remind" else "RSAF",
             "RER w/o CH+DE": "EUR" if self.model == "remind" else "WEU",
             "RER w/o DE+NL+RU": "EUR" if self.model == "remind" else "WEU",
-            "IAI Area, Asia, without China and GCC": "OAS" if self.model == "remind" else "SEAS",
-            "Europe, without Russia and Turkey": "EUR" if self.model == "remind" else "WEU",
+            "IAI Area, Asia, without China and GCC": "OAS"
+            if self.model == "remind"
+            else "SEAS",
+            "Europe, without Russia and Turkey": "EUR"
+            if self.model == "remind"
+            else "WEU",
             "WECC": "USA",
             "WEU": "EUR" if self.model == "remind" else "WEU",
             "UCTE": "EUR" if self.model == "remind" else "WEU",
@@ -129,10 +140,13 @@ class Geomap:
             "ENTSO-E": "EUR" if self.model == "remind" else "WEU",
             "RLA": "LAM" if self.model == "remind" else "RSAM",
             "IAI Area, South America": "LAM" if self.model == "remind" else "RSAM",
-            "IAI Area, Russia & RER w/o EU27 & EFTA": "REF" if self.model == "remind" else "RUS",
+            "IAI Area, Russia & RER w/o EU27 & EFTA": "REF"
+            if self.model == "remind"
+            else "RUS",
             "IAI Area, North America": "USA",
             "OCE": "CAZ" if self.model == "remind" else "OCE",
             "US-PR": "USA",
+            "US only": "USA",
         }
 
         if location in mapping:
@@ -166,7 +180,11 @@ class Geomap:
             ]
 
         if len(iam_location) == 0:
-            print("Cannot find the IAM location for {} from IAM model {}.".format(location, self.model))
+            print(
+                "Cannot find the IAM location for {} from IAM model {}.".format(
+                    location, self.model
+                )
+            )
             return "World"
 
         elif len(iam_location) == 1:

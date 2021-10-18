@@ -7,8 +7,8 @@ import wurst
 import bw2io
 from bw2data.database import DatabaseChooser
 
-FILEPATH_FIX_NAMES = (DATA_DIR / "fix_names.csv")
-FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "dict_biosphere.txt")
+FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
 
 
 class DatabaseCleaner:
@@ -27,13 +27,15 @@ class DatabaseCleaner:
 
     def __init__(self, source_db, source_type, source_file_path):
 
-        if source_type == 'brightway':
+        if source_type == "brightway":
             # Check that database exists
             if len(DatabaseChooser(source_db)) == 0:
-                raise NameError('The database selected is empty. Make sure the name is correct')
+                raise NameError(
+                    "The database selected is empty. Make sure the name is correct"
+                )
             self.db = wurst.extract_brightway2_databases(source_db)
 
-        if source_type == 'ecospold':
+        if source_type == "ecospold":
             # The ecospold data needs to be formatted
             ei = bw2io.SingleOutputEcospold2Importer(source_file_path, source_db)
             ei.apply_strategies()
@@ -57,8 +59,12 @@ class DatabaseCleaner:
         Modifies in place (does not return anything).
 
         """
-        for ds in ws.get_many(self.db, ws.contains('name', 'storage'), ws.equals('database', 'Carma CCS')):
-            for exc in ws.biosphere(ds, ws.equals('name', 'Carbon dioxide, non-fossil')):
+        for ds in ws.get_many(
+            self.db, ws.contains("name", "storage"), ws.equals("database", "Carma CCS")
+        ):
+            for exc in ws.biosphere(
+                ds, ws.equals("name", "Carbon dioxide, non-fossil")
+            ):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
     def change_biogenic_co2_name(self):
@@ -76,7 +82,9 @@ class DatabaseCleaner:
                 exc["name"] = "Carbon dioxide, to soil or biomass stock"
                 exc["categories"] = ("soil",)
 
-            for exc in ws.biosphere(ds, ws.equals("name", "Carbon dioxide, non-fossil")):
+            for exc in ws.biosphere(
+                ds, ws.equals("name", "Carbon dioxide, non-fossil")
+            ):
                 exc["name"] = "Carbon dioxide, from soil or biomass stock"
                 exc["categories"] = ("air",)
 
@@ -143,7 +151,9 @@ class DatabaseCleaner:
         with open(FILEPATH_BIOSPHERE_FLOWS) as f:
             input_dict = csv.reader(f, delimiter=";")
             for row in input_dict:
-                csv_dict[row[-1]] = (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
+                csv_dict[row[-1]] = (
+                    (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
+                )
 
         return csv_dict
 
@@ -197,31 +207,31 @@ class DatabaseCleaner:
 
     def add_location_field_to_exchanges(self):
         """Add the `location` key to the production and
-        technosphere exchanges in :attr:`db`.
+        technosphere exchanges in :attr:`database`.
 
         :raises IndexError: if no corresponding activity (and reference product) can be found.
 
         """
-        d_location = {(a['database'], a['code']): a['location'] for a in self.db}
+        d_location = {(a["database"], a["code"]): a["location"] for a in self.db}
         for a in self.db:
-            for e in a['exchanges']:
-                if e['type'] == 'technosphere':
-                    exc_input = e['input']
-                    e['location'] = d_location[exc_input]
+            for e in a["exchanges"]:
+                if e["type"] == "technosphere":
+                    exc_input = e["input"]
+                    e["location"] = d_location[exc_input]
 
     def add_product_field_to_exchanges(self):
         """Add the `product` key to the production and
-        technosphere exchanges in :attr:`db`.
+        technosphere exchanges in :attr:`database`.
 
         For production exchanges, use the value of the `reference_product` field.
-        For technosphere exchanges, search the activities in :attr:`db` and
+        For technosphere exchanges, search the activities in :attr:`database` and
         use the reference product.
 
         :raises IndexError: if no corresponding activity (and reference product) can be found.
 
         """
         # Create a dictionary that contains the 'code' field as key and the 'product' field as value
-        d_product = {a['code']: (a['reference product'], a['name']) for a in self.db}
+        d_product = {a["code"]: (a["reference product"], a["name"]) for a in self.db}
         # Add a `product` field to the production exchange
         for x in self.db:
             for y in x["exchanges"]:
@@ -237,28 +247,28 @@ class DatabaseCleaner:
             for y in x["exchanges"]:
                 if y["type"] == "technosphere":
                     # Check if the field 'product' is present
-                    if 'product' not in y:
-                        y['product'] = d_product[y['input'][1]][0]
+                    if "product" not in y:
+                        y["product"] = d_product[y["input"][1]][0]
 
                     # If a 'reference product' field is present, we make sure it matches with the new 'product' field
-                    if 'reference product' in y:
+                    if "reference product" in y:
                         try:
-                            assert y['product'] == y['reference product']
+                            assert y["product"] == y["reference product"]
                         except AssertionError:
-                            y['product'] = d_product[y['input'][1]][0]
+                            y["product"] = d_product[y["input"][1]][0]
 
                     # Ensure the name is correct
-                    y['name'] = d_product[y['input'][1]][1]
+                    y["name"] = d_product[y["input"][1]][1]
 
     def transform_parameter_field(self):
         # When handling ecospold files directly, the parameter field is a list.
         # It is here transformed into a dictionary
         for x in self.db:
-            x['parameters'] = {k['name']: k['amount'] for k in x['parameters']}
+            x["parameters"] = {k["name"]: k["amount"] for k in x["parameters"]}
 
     # Functions to clean up Wurst import and additional technologies
     def fix_unset_technosphere_and_production_exchange_locations(
-            self, matching_fields=("name", "unit")
+        self, matching_fields=("name", "unit")
     ):
         """
         Give all the production and technopshere exchanges with a missing location name the location of the dataset
@@ -279,7 +289,9 @@ class DatabaseCleaner:
 
             for exc in wurst.technosphere(ds):
                 if "location" not in exc:
-                    locs = self.find_location_given_lookup_dict({k: exc.get(k) for k in matching_fields})
+                    locs = self.find_location_given_lookup_dict(
+                        {k: exc.get(k) for k in matching_fields}
+                    )
                     if len(locs) == 1:
                         exc["location"] = locs[0]
                     else:
@@ -306,21 +318,30 @@ class DatabaseCleaner:
                             if exc["input"][1] in dict_bio_cat:
                                 exc["categories"] = dict_bio_cat[exc["input"][1]]
                             else:
-                                print(f"Missing flow category for {exc['name']} with UUID {exc['input'][1]}. It will be deleted.")
+                                print(
+                                    f"Missing flow category for {exc['name']} with UUID {exc['input'][1]}. It will be deleted."
+                                )
                                 exc["delete"] = True
                         else:
-                            print(f"Missing flow category for {exc['name']}. It will be deleted.")
+                            print(
+                                f"Missing flow category for {exc['name']}. It will be deleted."
+                            )
                             exc["delete"] = True
-                    
+
                     if "input" not in exc:
                         if "categories" in exc:
                             # from the category, fetch the uuid of that biosphere flow
-                            cat = exc["categories"] if len(exc["categories"]) > 1 else (exc["categories"][0], "unspecified")
-                            uuid = dict_bio_uuid[exc["name"], cat[0], cat[1], exc["unit"]]
+                            cat = (
+                                exc["categories"]
+                                if len(exc["categories"]) > 1
+                                else (exc["categories"][0], "unspecified")
+                            )
+                            uuid = dict_bio_uuid[
+                                exc["name"], cat[0], cat[1], exc["unit"]
+                            ]
                             exc["input"] = ("biosphere3", uuid)
 
             ds["exchanges"] = [exc for exc in ds["exchanges"] if "delete" not in exc]
-
 
     def prepare_datasets(self):
         """

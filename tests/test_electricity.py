@@ -42,7 +42,7 @@ rdc = IAMDataCollection(model="remind",
                         filepath_iam_files=DATA_DIR / "iam_output_files",
                         key=os.environ['IAM_FILES_KEY'])
 db, _ = get_db()
-el = Electricity(db=db, iam_data=rdc, model="remind", pathway='SSP2-Base', year=2012)
+el = Electricity(database=db, iam_data=rdc, model="remind", pathway='SSP2-Base', year=2012)
 
 
 def test_losses():

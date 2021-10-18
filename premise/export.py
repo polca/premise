@@ -10,7 +10,6 @@ import pandas as pd
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
 
 
-
 def create_index_of_A_matrix(db):
     """
     Create a dictionary with row/column indices of the A matrix as key and a tuple (activity name, reference product,
@@ -28,6 +27,7 @@ def create_index_of_A_matrix(db):
         for i in range(0, len(db))
     }
 
+
 def create_codes_index_of_A_matrix(db):
     """
     Create a dictionary with row/column indices of the A matrix as key and the activity code as value.
@@ -36,11 +36,10 @@ def create_codes_index_of_A_matrix(db):
     """
     return {db[i]["code"]: i for i in range(0, len(db))}
 
+
 def create_codes_index_of_B_matrix():
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-        raise FileNotFoundError(
-            "The dictionary of biosphere flows could not be found."
-        )
+        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = dict()
 
@@ -51,11 +50,10 @@ def create_codes_index_of_B_matrix():
 
     return csv_dict
 
+
 def create_index_of_B_matrix():
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-        raise FileNotFoundError(
-            "The dictionary of biosphere flows could not be found."
-        )
+        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = dict()
 
@@ -79,7 +77,7 @@ class Export:
     Dictionaries to map row numbers to activities and products names are also exported.
 
     :ivar db: transformed database
-    :vartype db: dict
+    :vartype database: dict
     :ivar scenario: name of a Remind pathway
     :vartype pathway: str
     :ivar year: year of a Remind pathway
@@ -112,12 +110,7 @@ class Export:
                             )
                         ],
                         index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
+                            (exc["name"], exc["product"], exc["unit"], exc["location"],)
                         ],
                         exc["amount"],
                     ]
@@ -133,12 +126,7 @@ class Export:
                             )
                         ],
                         index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
+                            (exc["name"], exc["product"], exc["unit"], exc["location"],)
                         ],
                         exc["amount"] * -1,
                     ]
@@ -183,7 +171,6 @@ class Export:
 
     def export_db_to_matrices(self):
 
-
         if not os.path.exists(self.filepath):
             os.makedirs(self.filepath)
 
@@ -194,7 +181,6 @@ class Export:
             rows = self.create_A_matrix_coordinates()
             for row in rows:
                 writer.writerow(row)
-
 
         # Export A index
         with open(self.filepath / "A_matrix_index.csv", "w") as f:
@@ -213,7 +199,6 @@ class Export:
             rows = self.create_B_matrix_coordinates()
             for row in rows:
                 writer.writerow(row)
-
 
         # Export B index
         with open(self.filepath / "B_matrix_index.csv", "w") as f:
@@ -278,7 +263,7 @@ class Export:
             dict_cat[cat_code] = {
                 "category 1": category_1,
                 "category 2": category_2,
-                "category 3": category_3
+                "category 3": category_3,
             }
 
         return dict_cat
@@ -328,32 +313,65 @@ class Export:
                     if len(ds["classifications"]) > 0:
                         for x in ds["classifications"]:
                             if x[0] == "ISIC rev.4 ecoinvent":
-                                main_category = dict_classifications[x[1].split(":")[0].strip()]["category 1"]
+                                main_category = dict_classifications[
+                                    x[1].split(":")[0].strip()
+                                ]["category 1"]
 
-                                if dict_classifications[x[1].split(":")[0].strip()]["category 3"] != "":
-                                    category = (dict_classifications[x[1].split(":")[0].strip()]["category 2"] + "\ ".strip()
-                                     + dict_classifications[x[1].split(":")[0].strip()]["category 3"])
+                                if (
+                                    dict_classifications[x[1].split(":")[0].strip()][
+                                        "category 3"
+                                    ]
+                                    != ""
+                                ):
+                                    category = (
+                                        dict_classifications[
+                                            x[1].split(":")[0].strip()
+                                        ]["category 2"]
+                                        + "\ ".strip()
+                                        + dict_classifications[
+                                            x[1].split(":")[0].strip()
+                                        ]["category 3"]
+                                    )
                                 else:
-                                    category = dict_classifications[x[1].split(":")[0].strip()]["category 2"]
+                                    category = dict_classifications[
+                                        x[1].split(":")[0].strip()
+                                    ]["category 2"]
 
                         if not main_category:
                             for x in ds["classifications"]:
                                 if x[0] == "CPC":
-                                    main_category = dict_classifications[x[1].split(":")[0].strip()]["category 1"]
+                                    main_category = dict_classifications[
+                                        x[1].split(":")[0].strip()
+                                    ]["category 1"]
 
-                                    if dict_classifications[x[1].split(":")[0].strip()]["category 3"] != "":
-                                        category = (dict_classifications[x[1].split(":")[0].strip()][
-                                                        "category 2"] + "\ ".strip()
-                                                    + dict_classifications[x[1].split(":")[0].strip()]["category 3"])
+                                    if (
+                                        dict_classifications[
+                                            x[1].split(":")[0].strip()
+                                        ]["category 3"]
+                                        != ""
+                                    ):
+                                        category = (
+                                            dict_classifications[
+                                                x[1].split(":")[0].strip()
+                                            ]["category 2"]
+                                            + "\ ".strip()
+                                            + dict_classifications[
+                                                x[1].split(":")[0].strip()
+                                            ]["category 3"]
+                                        )
                                     else:
-                                        category = dict_classifications[x[1].split(":")[0].strip()]["category 2"]
+                                        category = dict_classifications[
+                                            x[1].split(":")[0].strip()
+                                        ]["category 2"]
 
                 if not main_category:
                     main_category = "material"
                     category = "Others"
 
-                dict_categories[(ds["name"], ds["reference product"])] = {"main category": main_category,
-                                                                          "category": category}
+                dict_categories[(ds["name"], ds["reference product"])] = {
+                    "main category": main_category,
+                    "category": category,
+                }
 
         return dict_categories
 
@@ -365,9 +383,7 @@ class Export:
         filename = "references.csv"
         filepath = DATA_DIR / filename
         if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of references could not be found."
-            )
+            raise FileNotFoundError("The dictionary of references could not be found.")
         with open(filepath) as f:
             csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
         header, *data = csv_list
@@ -375,10 +391,7 @@ class Export:
         dict_reference = {}
         for row in data:
             name, source, description = row
-            dict_reference[name] = {
-                "source": source,
-                "description": description
-            }
+            dict_reference[name] = {"source": source, "description": description}
 
         return dict_reference
 
@@ -489,7 +502,9 @@ class Export:
         dict_cat = self.get_category_of_exchange()
         dict_refs = self.load_references()
 
-        with open(self.filepath / filename, "w", newline="", encoding="utf-8") as csvFile:
+        with open(
+            self.filepath / filename, "w", newline="", encoding="utf-8"
+        ) as csvFile:
             writer = csv.writer(csvFile, delimiter=";")
             for item in headers:
                 writer.writerow([item])
@@ -501,32 +516,50 @@ class Export:
 
                 if ds["name"] in dict_cat_simapro:
 
-                    main_category, category = (dict_cat_simapro[ds["name"]]["main category"],
-                                               dict_cat_simapro[ds["name"]]["category"])
+                    main_category, category = (
+                        dict_cat_simapro[ds["name"]]["main category"],
+                        dict_cat_simapro[ds["name"]]["category"],
+                    )
                 else:
 
-                    if any(i in ds["name"] for i in ("transport, passenger car", "transport, heavy", "transport, medium")):
+                    if any(
+                        i in ds["name"]
+                        for i in (
+                            "transport, passenger car",
+                            "transport, heavy",
+                            "transport, medium",
+                        )
+                    ):
                         main_category, category = ("transport", r"Road\Transformation")
 
-                    if any(i in ds["name"] for i in ("Passenger car", "Heavy duty", "Medium duty")):
+                    if any(
+                        i in ds["name"]
+                        for i in ("Passenger car", "Heavy duty", "Medium duty")
+                    ):
                         main_category, category = ("transport", r"Road\Infrastructure")
 
                     if main_category == "":
 
-                        main_category, category = (dict_cat[(ds["name"], ds["reference product"])]["main category"],
-                                                   dict_cat[(ds["name"], ds["reference product"])]["category"])
+                        main_category, category = (
+                            dict_cat[(ds["name"], ds["reference product"])][
+                                "main category"
+                            ],
+                            dict_cat[(ds["name"], ds["reference product"])]["category"],
+                        )
 
                 for item in fields:
 
-                    if main_category.lower() == "waste treatment" and item == "Products":
+                    if (
+                        main_category.lower() == "waste treatment"
+                        and item == "Products"
+                    ):
                         continue
 
-                    if main_category.lower() != "waste treatment"\
-                            and item in ("Waste treatment",
-                                         "Waste treatment allocation"
-                                         ):
+                    if main_category.lower() != "waste treatment" and item in (
+                        "Waste treatment",
+                        "Waste treatment allocation",
+                    ):
                         continue
-
 
                     writer.writerow([item])
 
@@ -562,17 +595,22 @@ class Export:
                     if item == "Comment":
 
                         if ds["name"] in dict_refs:
-                            string = re.sub('[^a-zA-Z0-9 \.,]', '', dict_refs[ds["name"]]["source"])
+                            string = re.sub(
+                                "[^a-zA-Z0-9 \.,]", "", dict_refs[ds["name"]]["source"]
+                            )
 
                             if dict_refs[ds["name"]]["description"] != "":
-                                string += " " + re.sub('[^a-zA-Z0-9 \.,]', '', dict_refs[ds["name"]]["description"])
+                                string += " " + re.sub(
+                                    "[^a-zA-Z0-9 \.,]",
+                                    "",
+                                    dict_refs[ds["name"]]["description"],
+                                )
 
                             writer.writerow([string])
                         else:
                             if "comment" in ds:
-                                string = re.sub('[^a-zA-Z0-9 \.,]', '', ds["comment"])
+                                string = re.sub("[^a-zA-Z0-9 \.,]", "", ds["comment"])
                                 writer.writerow([string])
-
 
                     if item in (
                         "Cut off rules",
@@ -641,9 +679,13 @@ class Export:
                             if e["type"] == "technosphere":
 
                                 if e["name"] in dict_cat_simapro:
-                                    exc_cat = dict_cat_simapro[e["name"]]["main category"].lower()
+                                    exc_cat = dict_cat_simapro[e["name"]][
+                                        "main category"
+                                    ].lower()
                                 else:
-                                    exc_cat = dict_cat[e["name"], e["product"]]["main category"].lower()
+                                    exc_cat = dict_cat[e["name"], e["product"]][
+                                        "main category"
+                                    ].lower()
 
                                 if exc_cat != "waste treatment":
                                     name = (
@@ -751,9 +793,13 @@ class Export:
                             if e["type"] == "technosphere":
 
                                 if e["name"] in dict_cat_simapro:
-                                    exc_cat = dict_cat_simapro[e["name"]]["main category"].lower()
+                                    exc_cat = dict_cat_simapro[e["name"]][
+                                        "main category"
+                                    ].lower()
                                 else:
-                                    exc_cat = dict_cat[e["name"], e["product"]]["main category"].lower()
+                                    exc_cat = dict_cat[e["name"], e["product"]][
+                                        "main category"
+                                    ].lower()
 
                                 if exc_cat == "waste treatment":
 
@@ -848,7 +894,7 @@ class Export:
                 i["reference product"],
                 i["database"],
                 i["location"],
-                i["unit"]
+                i["unit"],
             ): x
             for x, i in enumerate(self.db)
         }
@@ -877,4 +923,3 @@ class Export:
     def get_bio_code(self, idx):
 
         return self.bio_codes[idx]
-

@@ -69,7 +69,7 @@ def test_biosphere_dict_2():
     open(testpath, "w")
     dbc = BaseInventoryImport(db, version, testpath)
 
-    for act in dbc.db:
+    for act in dbc.database:
         for exc in act['exchanges']:
             if exc['type'] == 'biosphere':
                 assert dbc.biosphere_dict[(
@@ -94,9 +94,9 @@ def test_load_biofuel():
 
 
 #def test_load_carculator():
-#    db, version = get_db()
+#    database, version = get_db()
 #    carc = CarculatorInventory(
-#        database=db,
+#        database=database,
 #        version="3.7.1",
 #        fleet_file=DATA_DIR / "iam_output_files" / "fleet_files" / "remind" / "passenger_cars" / "fleet_file.csv",
 #        model="remind",

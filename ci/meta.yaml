@@ -30,6 +30,7 @@ requirements:
     - carculator_truck
     - pycountry
     - cryptography
+    - premise_gwp
 
 test:
   imports:
@@ -38,5 +39,5 @@ test:
 about:
   home: https://github.com/romainsacchi/premise
   license: BSD License
-  summary: 'Coupling Integrated Assessment Models output to ecoinvent inventory database.'
+  summary: 'Coupling Integrated Assessment Model (IAM) scenarios output with ecoinvent inventory database.'
 license_family: BSD

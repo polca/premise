@@ -43,7 +43,8 @@ setup(
         'carculator_truck',
         'prettytable',
         'pycountry',
-        'cryptography'
+        'cryptography',
+        'premise_gwp'
     ],
     url="https://github.com/romainsacchi/premise",
     description='Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA',
