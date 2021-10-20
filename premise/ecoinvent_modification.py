@@ -2,6 +2,7 @@ import sys, os, copy, pickle
 from pathlib import Path
 from datetime import date
 import wurst
+import numpy as np
 from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
@@ -21,7 +22,7 @@ from .cement import Cement
 from .steel import Steel
 from .fuels import Fuels
 from .export import Export
-from .utils import eidb_label, add_modified_tags, build_superstructure_db, convert_db_to_dataframe
+from .utils import eidb_label, add_modified_tags, build_superstructure_db, convert_db_to_dataframe, c
 
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
@@ -627,6 +628,10 @@ class NewDatabase:
                 system_model=self.system_model,
                 time_horizon=self.time_horizon,
             )
+
+            self.database[
+                (f"{scenario['model']}::{scenario['pathway']}::{scenario['year']}", c.cons_amount)
+            ] = np.nan
 
 
 

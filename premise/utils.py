@@ -44,8 +44,12 @@ class c(enum.Enum):
 
 def convert_db_to_dataframe(database):
     """
-
+    Convert the wurst database into a pd.DataFrame.
+    Does not extract uncertainty information.
+    :param database: wurst database
+    :type database: list
     :return: returns a dataframe
+    :rtype: pd.DataFrame
     """
 
     data_to_ret = []
@@ -66,6 +70,14 @@ def convert_db_to_dataframe(database):
                 producer_product = iexc["product"]
                 producer_location = iexc["location"]
 
+            comment = ""
+            if iexc["type"] == "production":
+                comment = ids.get("comment", "")
+
+            if iexc["type"] in ("technosphere", "biosphere"):
+                comment = iexc.get("comment", "")
+
+
             data_to_ret.append(
                 (
                     consumer_name,
@@ -77,7 +89,7 @@ def convert_db_to_dataframe(database):
                     producer_type,
                     iexc["amount"],
                     iexc["unit"],
-                    ids.get("comment", ""),
+                    comment,
                 )
             )
     return pd.DataFrame(
