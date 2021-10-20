@@ -302,6 +302,13 @@ def check_exclude(list_exc):
 
 
 def check_fleet(fleet, model, vehicle_type):
+    """
+    Check that any fleet file specified is properly defined.
+    :param fleet:
+    :param model:
+    :param vehicle_type:
+    :return:
+    """
     if "fleet file" not in fleet:
         print(
             f"No fleet composition file is provided for {vehicle_type}.\n"
@@ -354,6 +361,11 @@ def check_fleet(fleet, model, vehicle_type):
 
 
 def check_additional_inventories(inventories_list):
+    """
+    Check that any additional inventories that need to be imported are properly listed.
+    :param inventories_list: list of dicitonnaries
+    :return:
+    """
 
     if not isinstance(inventories_list, list):
         raise TypeError(
@@ -396,6 +408,11 @@ def check_additional_inventories(inventories_list):
 
 
 def check_db_version(version):
+    """
+    Check that the ecoinvent database version is supported
+    :param version:
+    :return:
+    """
     version = str(version)
     if version not in SUPPORTED_EI_VERSIONS:
         raise ValueError(
@@ -492,7 +509,7 @@ def check_time_horizon(th):
 
     return int(th)
 
-def warming_about_biogenic_co2():
+def warning_about_biogenic_co2():
     """
     Prints a simple warning about characterizing biogenic CO2 flows.
     :return: Does not return anything.
@@ -578,7 +595,7 @@ class NewDatabase:
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
 
         # warning about biogenic CO2
-        warming_about_biogenic_co2()
+        warning_about_biogenic_co2()
 
         if additional_inventories:
             self.additional_inventories = check_additional_inventories(
