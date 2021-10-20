@@ -1,15 +1,18 @@
-from .export import *
-from wurst import searching as ws
-from datetime import date
+import enum
 import uuid
-from itertools import chain
-from wurst import log
-from wurst.errors import InvalidLink
-from wurst.searching import reference_product, get_many, equals, get_one
-from wurst.transformations.uncertainty import rescale_exchange
-from constructive_geometries import resolved_row
 from copy import deepcopy
+from datetime import date
+from itertools import chain
+
+import pandas as pd
+from constructive_geometries import resolved_row
+from wurst import log
+from wurst import searching as ws
+from wurst.searching import reference_product, get_many, equals
+from wurst.transformations.uncertainty import rescale_exchange
+
 from . import geomap
+from .export import *
 
 CO2_FUELS = DATA_DIR / "fuels" / "fuel_co2_emission_factor.txt"
 LHV_FUELS = DATA_DIR / "fuels" / "fuels_lower_heating_value.txt"
@@ -24,6 +27,62 @@ METALS_RECYCLING_SHARES = DATA_DIR / "metals" / "metals_recycling_shares.csv"
 
 REMIND_TO_FUELS = DATA_DIR / "steel" / "remind_fuels_correspondance.txt"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
+
+
+class c(enum.Enum):
+    prod_name = "from activity"
+    prod_prod = "from product"
+    prod_loc = "from location"
+    cons_name = "to activity"
+    cons_prod = "to product"
+    cons_loc = "to location"
+    type = "type"
+    cons_amount = "amount"
+    unit = "unit"
+    comment = "comment"
+
+
+def convert_db_to_dataframe(database):
+    """
+
+    :return: returns a dataframe
+    """
+
+    data_to_ret = []
+
+    for ids in database:
+        consumer_name = ids["name"]
+        consumer_product = ids["reference product"]
+        consumer_loc = ids["location"]
+
+        for iexc in ids["exchanges"]:
+            producer_name = iexc["name"]
+            producer_type = iexc["type"]
+
+            if iexc["type"] == "biosphere":
+                producer_product = "-"
+                producer_location = iexc["categories"]
+            else:
+                producer_product = iexc["product"]
+                producer_location = iexc["location"]
+
+            data_to_ret.append(
+                (
+                    consumer_name,
+                    consumer_product,
+                    consumer_loc,
+                    producer_name,
+                    producer_product,
+                    producer_location,
+                    producer_type,
+                    iexc["amount"],
+                    iexc["unit"],
+                    ids.get("comment", ""),
+                )
+            )
+    return pd.DataFrame(
+        data_to_ret, columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
+    )
 
 
 def eidb_label(model, scenario, year):

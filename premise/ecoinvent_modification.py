@@ -21,7 +21,7 @@ from .cement import Cement
 from .steel import Steel
 from .fuels import Fuels
 from .export import Export
-from .utils import eidb_label, add_modified_tags, build_superstructure_db
+from .utils import eidb_label, add_modified_tags, build_superstructure_db, convert_db_to_dataframe
 
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
@@ -613,6 +613,10 @@ class NewDatabase:
         )
         self.__import_inventories(direct_import)
 
+        self.database = convert_db_to_dataframe(self.database)
+
+
+
         for scenario in self.scenarios:
             scenario["external data"] = IAMDataCollection(
                 model=scenario["model"],
@@ -623,7 +627,8 @@ class NewDatabase:
                 system_model=self.system_model,
                 time_horizon=self.time_horizon,
             )
-            scenario["database"] = copy.deepcopy(self.database)
+
+
 
     def __clean_database(self):
         """
