@@ -1,7 +1,7 @@
 """
 cement.py contains the class `Cement`, which inherits from `BaseTransformation`.
 This class transforms the cement markets and clinker and cement production activities of the wurst database,
-based on projections from the IAM scenario.
+based on projections from the IAM pathway.
 It also the generic market for cement to reflect the projected clinker-to-cement ratio.
 It eventually re-links all the cement-consuming activities (e.g., concrete production) of the wurst database to
 the newly created cement markets.
@@ -701,7 +701,7 @@ class Cement(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log deleted cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log deleted cement datasets {self.model} {self.pathway} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -710,7 +710,7 @@ class Cement(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log created cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log created cement datasets {self.model} {self.pathway} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -860,7 +860,7 @@ class Cement(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log created cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log created cement datasets {self.model} {self.pathway} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8"
         ) as csv_file:

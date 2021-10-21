@@ -22,7 +22,14 @@ from .cement import Cement
 from .steel import Steel
 from .fuels import Fuels
 from .export import Export
-from .utils import eidb_label, add_modified_tags, build_superstructure_db, convert_db_to_dataframe, c
+from .utils import (
+    eidb_label,
+    add_modified_tags,
+    build_superstructure_db,
+    convert_db_to_dataframe,
+    c,
+    create_scenario_label,
+)
 
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
@@ -180,11 +187,13 @@ LIST_TRANSF_FUNC = [
 
 # Disable printing
 def blockPrint():
-    sys.stdout = open(os.devnull, 'w')
+    sys.stdout = open(os.devnull, "w")
+
 
 # Restore printing
 def enablePrint():
     sys.stdout = sys.__stdout__
+
 
 def check_for_duplicates(database):
     """ Check for the absence of duplicates before export """
@@ -197,15 +206,14 @@ def check_for_duplicates(database):
     if len(db_names) == len(set(db_names)):
         return database
 
-
     print("One or multiple duplicates detected. Removing them...")
     seen = set()
     return [
         x
         for x in database
         if (x["name"].lower(), x["reference product"].lower(), x["location"])
-           not in seen
-           and not seen.add(
+        not in seen
+        and not seen.add(
             (x["name"].lower(), x["reference product"].lower(), x["location"])
         )
     ]
@@ -249,8 +257,8 @@ def check_pathway_name(name, filepath, model):
         if (filepath / name_check).with_suffix(".csv").is_file():
             return name
         raise ValueError(
-                f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
-            )
+            f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
+        )
     else:
         if model.lower() not in name:
             name_check = "_".join((model.lower(), name))
@@ -265,8 +273,8 @@ def check_pathway_name(name, filepath, model):
             return name
 
         raise ValueError(
-                f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
-            )
+            f"Cannot find the IAM pathway file at this location: {filepath / name_check}."
+        )
 
 
 def check_year(year):
@@ -439,7 +447,7 @@ def check_scenarios(scenario, key):
         else:
             raise PermissionError(
                 "You will need to provide a decryption key "
-                "if you want to use the IAM scenario files included "
+                "if you want to use the IAM pathway files included "
                 "in premise. If you do not have a key, "
                 "please contact the developers."
             )
@@ -510,24 +518,29 @@ def check_time_horizon(th):
 
     return int(th)
 
+
 def warning_about_biogenic_co2():
     """
     Prints a simple warning about characterizing biogenic CO2 flows.
     :return: Does not return anything.
     """
     t = PrettyTable(["Warning"])
-    t.add_row(["Because some of the scenarios can yield LCI databases\n"
-               "containing net negative emission technologies (NET),\n"
-               "it is advised to account for biogenic CO2 flows when calculating\n"
-               "Global Warming potential indicators.\n"
-               "`premise_gwp` provides characterization factors for such flows.\n\n"
-               "Install it via\n"
-               "pip install premise_gwp\n"
-               "or\n"
-               "conda install -c romainsacchi premise_gwp\n\n"
-               "Within in your bw2 project:\n"
-               "from premise_gwp import add_premise_gwp\n"
-                "add_premise_gwp()"])
+    t.add_row(
+        [
+            "Because some of the scenarios can yield LCI databases\n"
+            "containing net negative emission technologies (NET),\n"
+            "it is advised to account for biogenic CO2 flows when calculating\n"
+            "Global Warming potential indicators.\n"
+            "`premise_gwp` provides characterization factors for such flows.\n\n"
+            "Install it via\n"
+            "pip install premise_gwp\n"
+            "or\n"
+            "conda install -c romainsacchi premise_gwp\n\n"
+            "Within your bw2 project:\n"
+            "from premise_gwp import add_premise_gwp\n"
+            "add_premise_gwp()"
+        ]
+    )
     # align text to the left
     t.align = "l"
     print(t)
@@ -537,13 +550,15 @@ class HiddenPrints:
     """
     From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
     """
+
     def __enter__(self):
         self._original_stdout = sys.stdout
-        sys.stdout = open(os.devnull, 'w')
+        sys.stdout = open(os.devnull, "w")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         sys.stdout.close()
         sys.stdout = self._original_stdout
+
 
 class NewDatabase:
     """
@@ -616,8 +631,6 @@ class NewDatabase:
 
         self.database = convert_db_to_dataframe(self.database)
 
-
-
         for scenario in self.scenarios:
             scenario["external data"] = IAMDataCollection(
                 model=scenario["model"],
@@ -629,11 +642,17 @@ class NewDatabase:
                 time_horizon=self.time_horizon,
             )
 
-            self.database[
-                (f"{scenario['model']}::{scenario['pathway']}::{scenario['year']}", c.cons_amount)
-            ] = np.nan
+            # add additional columns to host pathway-specific data
+            scenario_label = create_scenario_label(
+                model=scenario["model"],
+                pathway=scenario["pathway"],
+                year=scenario["year"],
+            )
 
+            for col in [c.cons_amount]:
+                self.database[(scenario_label, col)] = np.nan
 
+            self.database[(scenario_label, c.comment)] = ""
 
     def __clean_database(self):
         """
@@ -692,12 +711,18 @@ class NewDatabase:
                     (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
                     (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
                     (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-                    (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES, "3.7"),
+                    (
+                        FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
+                        "3.7",
+                    ),
                     (
                         FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
                         "3.7",
                     ),
-                    (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES, "3.7"),
+                    (
+                        FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
+                        "3.7",
+                    ),
                     (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
                     (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                     (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
@@ -776,10 +801,7 @@ class NewDatabase:
         print("\n/////////////////// CEMENT ////////////////////")
 
         for scenario in self.scenarios:
-            if (
-                    "exclude" not in scenario
-                    or "update_cement" not in scenario["exclude"]
-                ):
+            if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
 
                 cement = Cement(
                     database=scenario["database"],
@@ -797,10 +819,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
 
-            if (
-                "exclude" not in scenario
-                or "update_steel" not in scenario["exclude"]
-            ):
+            if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
                 steel = Steel(
                     db=scenario["database"],
@@ -960,6 +979,8 @@ class NewDatabase:
         :type name: str
         """
 
+        #FIXME: remember to add the original ecoinvent's comments
+
         if name:
             if isinstance(name, str):
                 name = [name]
@@ -972,7 +993,8 @@ class NewDatabase:
                 raise TypeError("`name` should be a string or a sequence of strings.")
         else:
             name = [
-                eidb_label(scenario["model"], scenario["pathway"], scenario["year"]) for scenario in self.scenarios
+                eidb_label(scenario["model"], scenario["pathway"], scenario["year"])
+                for scenario in self.scenarios
             ]
 
         if len(name) != len(self.scenarios):
@@ -1101,4 +1123,6 @@ class NewDatabase:
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
 
-            wurst.write_brightway25_database(scenario["database"], name[scen], self.source)
+            wurst.write_brightway25_database(
+                scenario["database"], name[scen], self.source
+            )

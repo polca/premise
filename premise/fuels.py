@@ -1132,7 +1132,7 @@ class Fuels:
 
                         string = (
                             f"The process conversion efficiency has been rescaled by premise by {progress_factor}.\n"
-                            f"To be in line with the scenario {self.scenario} of {self.model.upper()} "
+                            f"To be in line with the pathway {self.scenario} of {self.model.upper()} "
                             f"in {self.year} in the region {region}.\n"
                         )
 
@@ -1195,7 +1195,7 @@ class Fuels:
 
                                 string = (
                                     f"The land area occupied has been modified to {land_use}, "
-                                    f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                                    f"to be in line with the pathway {self.scenario} of {self.model.upper()} "
                                     f"in {self.year} in the region {region}."
                                 )
                                 if "comment" in ds:
@@ -1254,7 +1254,7 @@ class Fuels:
 
                         string = (
                             f"{land_use_co2} kg of land use-induced CO2 has been added by premise, "
-                            f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                            f"to be in line with the pathway {self.scenario} of {self.model.upper()} "
                             f"in {self.year} in the region {region}."
                         )
 

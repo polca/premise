@@ -17,7 +17,6 @@ methane, biogenic;50
 diesel;43
 gasoline;42.6
 petrol;42.6
-hydrogen;120
 hydrogen, petroleum;120
 hydrogen, electrolysis;120
 hydrogen, biomass;120
@@ -27,13 +26,14 @@ hydrogen, nat. gas;120
 hydrogen, nat. gas, with CCS;120
 hydrogen, biogas;120
 hydrogen, biogas, with CCS;120
-bioethanol;26.5
+hydrogen;120
+biodiesel, oil;38
 biodiesel;38
 bioethanol, woody;26.5
 bioethanol, grassy;26.5
 bioethanol, grain;26.5
 bioethanol, sugar;26.5
-biodiesel, oil;38
+bioethanol;26.5
 methanol, wood;19.9
 methanol, grass;19.9
 petrol, synthetic, hydrogen;42.6
@@ -46,13 +46,15 @@ diesel, synthetic, grass;43
 diesel, synthetic, grass, with CCS;43
 liquified petroleum gas, natural;45.5
 liquified petroleum gas, synthetic;45.5
-uranium, enriched 3.8%, in fuel element for light water reactor; 4199040
-nuclear fuel element, for boiling water reactor, uo2 3.8%; 4147200
-nuclear fuel element, for boiling water reactor, uo2 4.0%; 4147200
-nuclear fuel element, for pressure water reactor, uo2 3.8%; 4579200
-nuclear fuel element, for pressure water reactor, uo2 4.0%; 4579200
-nuclear fuel element, for pressure water reactor, uo2 4.2%; 4579200
-uranium hexafluoride; 709166
+uranium, enriched 3.8%, in fuel element for light water reactor;4199040
+nuclear fuel element, for boiling water reactor, uo2 3.8%;4147200
+nuclear fuel element, for boiling water reactor, uo2 4.0%;4147200
+nuclear fuel element, for pressure water reactor, uo2 3.8%;4579200
+nuclear fuel element, for pressure water reactor, uo2 4.0%;4579200
+nuclear fuel element, for pressure water reactor, uo2 4.2%;4579200
+uranium hexafluoride;709166
+enriched uranium, 4.2%;4579200
+mox fuel element;4579200
 heat, from hard coal;1
 heat, from lignite;1
 heat, from petroleum coke;1
@@ -74,4 +76,9 @@ heat, from liquified petroleum gas, natural;1
 heat, from liquified petroleum gas, synthetic;1
 heat, from underground;1
 heat;1
-
+bagasse, from sugarcane; 15.4
+bagasse, from sweet sorghum; 13.8
+energy, kinetic;1
+cottonseed;23.8
+flax husks;21.5
+coconut husk;20

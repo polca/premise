@@ -3,6 +3,10 @@ import uuid
 from copy import deepcopy
 from datetime import date
 from itertools import chain
+from typing import List
+from functools import lru_cache
+from difflib import SequenceMatcher
+import pprint
 
 import pandas as pd
 from constructive_geometries import resolved_row
@@ -39,7 +43,169 @@ class c(enum.Enum):
     type = "type"
     cons_amount = "amount"
     unit = "unit"
+    efficiency = "efficiency"
     comment = "comment"
+
+
+def match_similarity(
+    reference: str, candidates: List[str], threshold: float = 0.8
+) -> List[str]:
+    """
+    Matches a string with a list of candidates and returns the most likely matches based on the match rating.
+    The threshold is cutting the match rating.
+
+    :param reference:
+    :param candidates:
+    :param threshold:
+    :return:
+    """
+
+    return [
+        i for i in candidates if SequenceMatcher(None, reference, i).ratio() > threshold
+    ]
+
+
+def match(reference: str, candidates: List[str]) -> [str, None]:
+    """
+    Matches a string with a list of candidates and returns the most likely matches based on the match rating.
+    The threshold is cutting the match rating.
+
+    :param reference:
+    :param candidates:
+    :return:
+    """
+    reference = reference.replace(" ", "").strip().lower()
+
+    for i in candidates:
+        if i in reference:
+            return i
+
+
+def calculate_dataset_efficiency(exchanges: List[dict]) -> float:
+    """
+    Returns the efficiency rate of the dataset by looking up the fuel inputs
+    and calculating the fuel input-to-output ratio.
+
+    :param exchanges: list of exchanges
+    :return: efficiency rate
+    :rtype: float
+    """
+
+    output_energy = 0.0
+    input_energy = 0.0
+
+
+
+    for iexc in exchanges:
+        if iexc["type"] == "production":
+            output_energy += extract_energy(iexc)
+        if iexc["type"] in ("technosphere", "biosphere"):
+            input_energy += extract_energy(iexc)
+
+    if input_energy < 1e-12:
+        if output_energy > 1e-6:
+
+
+            # raise ArithmeticError(
+            #     f"input energy was zero and output energy was {output_energy}! \n "
+            #     f"{pprint.pformat([(i['name'], i['type'], i['amount'], i['unit']) for i in exchanges])}"
+            # )
+            print(
+                f"{pprint.pformat([(i['name'], i['type'], i['amount'], i['unit']) for i in exchanges])} {output_energy} {input_energy}\n"
+            )
+        else:
+            return 0.0  # TODO: double-check whether this is really not an energy conversion process
+    # FIXME: add LHV for bagasse in fuels_lower_heating_value.txt
+    return output_energy / input_energy
+
+    # def calculate_input_energy(fuel_name, fuel_amount, fuel_unit):
+    #     """
+    #     Returns the amount of energy entering the conversion process, in MJ
+    #     :param fuel_name: name of the liquid, gaseous or solid fuel
+    #     :param fuel_amount: amount of fuel input
+    #     :param fuel_unit: unit of fuel
+    #     :return: amount of fuel energy, in MJ
+    #     """
+    #
+    #     # if fuel input other than MJ
+    #     if fuel_unit in ["kilogram", "cubic meter", "kilowatt hour"]:
+    #         lhv = [self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()][
+    #             0
+    #         ]
+    #         return float(lhv) * fuel_amount
+    #
+    #     # if already in MJ
+    #     return fuel_amount
+    #
+    # not_allowed = ["thermal"]
+    # key = []
+    # if "parameters" in dataset:
+    #     key = list(
+    #         key
+    #         for key in dataset["parameters"]
+    #         if "efficiency" in key and not any(item in key for item in not_allowed)
+    #     )
+    #
+    # if len(key) > 0:
+    #     return dataset["parameters"][key[0]]
+    #
+    # energy_input = np.sum(
+    #     np.sum(
+    #         np.asarray(
+    #             [
+    #                 calculate_input_energy(exc["name"], exc["amount"], exc["unit"])
+    #                 for exc in dataset["exchanges"]
+    #                 if exc["name"] in fuel_filters and exc["type"] == "technosphere"
+    #             ]
+    #         )
+    #     )
+    # )
+    #
+    # current_efficiency = float(energy_out) / energy_input
+    #
+    # if current_efficiency in (np.nan, np.inf):
+    #     current_efficiency = 1
+    #
+    # if "parameters" in dataset:
+    #     dataset["parameters"]["efficiency"] = current_efficiency
+    # else:
+    #     dataset["parameters"] = {"efficiency": current_efficiency}
+    #
+    # return current_efficiency
+
+
+def extract_energy(iexc: dict) -> float:
+    """
+    Extracts the energy input or output of the exchange
+
+    :param iexc:
+    :param input_energy:
+    :return:
+    """
+    fuels_lhv = get_lower_heating_values()
+    fuel_names = list(fuels_lhv.keys())
+    amount = max((iexc["amount"], 0))
+
+    if iexc["unit"].strip().lower() == "megajoule":
+        input_energy = amount
+    elif iexc["unit"].strip().lower() == "kilowatt hour":
+        input_energy = amount * 3.6
+    else:
+        candidates = match(
+            iexc["product"]
+            if iexc["type"] in ("production", "technosphere")
+            else iexc["name"],
+            fuel_names,
+        )
+        if not candidates:
+            # print(f"{iexc['product']}")
+            input_energy = 0.0  #
+        # if len(candidates) == 0:
+        #     input_energy = 0
+        else:
+            input_energy = amount * fuels_lhv[candidates]
+
+    return input_energy
 
 
 def convert_db_to_dataframe(database):
@@ -52,12 +218,40 @@ def convert_db_to_dataframe(database):
     :rtype: pd.DataFrame
     """
 
+    exceptions_list = [
+        "treatment of",
+        "heat production",
+        "electricity voltage transformation",
+        "Recycled Content cut-off"
+    ]
+
     data_to_ret = []
 
     for ids in database:
         consumer_name = ids["name"]
         consumer_product = ids["reference product"]
         consumer_loc = ids["location"]
+
+        # calculate the efficiency of the dataset
+        # except if it is a waste incineration process
+
+        if ids["unit"] != "unit":
+            try:
+                energy_efficiency = calculate_dataset_efficiency(exchanges=ids["exchanges"])
+            except ZeroDivisionError as e:
+                if not any(i.lower() in consumer_name.lower() for i in exceptions_list):
+                    #print(consumer_name)
+                    #print(consumer_loc)
+                    #print(consumer_product)
+                    #print(exceptions_list)
+                    #print([i.lower() in consumer_name.lower() for i in exceptions_list])
+                    #raise e
+                    #FIXME: re-enable after listing all LHV values
+                    energy_efficiency = 0.0
+                else:
+                    energy_efficiency = 0.0
+        else:
+            energy_efficiency = 0.0
 
         for iexc in ids["exchanges"]:
             producer_name = iexc["name"]
@@ -77,7 +271,6 @@ def convert_db_to_dataframe(database):
             if iexc["type"] in ("technosphere", "biosphere"):
                 comment = iexc.get("comment", "")
 
-
             data_to_ret.append(
                 (
                     consumer_name,
@@ -89,9 +282,11 @@ def convert_db_to_dataframe(database):
                     producer_type,
                     iexc["amount"],
                     iexc["unit"],
+                    energy_efficiency,
                     comment,
                 )
             )
+
     return pd.DataFrame(
         data_to_ret, columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
     )
@@ -154,6 +349,7 @@ def get_fuel_co2_emission_factors():
     return d
 
 
+@lru_cache
 def get_lower_heating_values():
     """
     Loads a csv file into a dictionary. This dictionary contains lower heating values for a number of fuel types.
@@ -164,8 +360,8 @@ def get_lower_heating_values():
     """
     with open(LHV_FUELS) as f:
         d = dict(filter(None, csv.reader(f, delimiter=";")))
-        d = {k: float(v) for k, v in d.items()}
-        return d
+        d = {k.replace(" ", "").strip().lower(): float(v) for k, v in d.items()}
+    return d
 
 
 def get_efficiency_ratio_solar_PV(year, power):
@@ -479,7 +675,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         [a["model"] + " - " + a["pathway"] + " - " + str(a["year"]) for a in scenarios]
     )
 
-    print("Export a scenario difference file.")
+    print("Export a pathway difference file.")
 
     l_modified = [columns]
 
@@ -548,7 +744,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     if fp is not None:
         filepath = Path(fp)
     else:
-        filepath = DATA_DIR / "export" / "scenario diff files"
+        filepath = DATA_DIR / "export" / "pathway diff files"
 
     if not os.path.exists(filepath):
         os.makedirs(filepath)
@@ -882,3 +1078,8 @@ def default_global_location(database):
     for ds in get_many(database, *[equals("location", None)]):
         ds["location"] = "GLO"
     return database
+
+
+def create_scenario_label(model: str, pathway: str, year: int) -> str:
+
+    return f"{model}::{pathway}::{year}"

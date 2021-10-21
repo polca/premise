@@ -1,7 +1,7 @@
 """
 electricity.py contains the class `Electricity`, which inherits from `BaseTransformation`.
 This class transforms the electricity markets and power plants of the wurst database,
-based on projections from the IAM scenario.
+based on projections from the IAM pathway.
 It also creates electricity markets which mix is an weighted-average
 over a certain period (e.g., 10, 20 years).
 It eventually re-links all the electricity-consuming activities of the wurst database to
@@ -219,7 +219,7 @@ class Electricity(BaseTransformation):
                         "database": self.database[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario} for the year {self.year}.",
+                        f" using the pathway {self.pathway} for the year {self.year}.",
                     }
                     # First, add the reference product exchange
                     new_exchanges = [
@@ -245,7 +245,7 @@ class Electricity(BaseTransformation):
                         "database": self.database[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario}. Average electricity mix over a {period}"
+                        f" using the pathway {self.pathway}. Average electricity mix over a {period}"
                         f"-year period {self.year}-{self.year + period}.",
                     }
                     # First, add the reference product exchange
@@ -360,7 +360,7 @@ class Electricity(BaseTransformation):
                             if period == 0:
                                 log_created_markets.append(
                                     [
-                                        f"low voltage, {self.scenario}, {self.year}",
+                                        f"low voltage, {self.pathway}, {self.year}",
                                         "n/a",
                                         region,
                                         0,
@@ -374,7 +374,7 @@ class Electricity(BaseTransformation):
                             else:
                                 log_created_markets.append(
                                     [
-                                        f"low voltage, {self.scenario}, {self.year}, {period}-year period",
+                                        f"low voltage, {self.pathway}, {self.year}, {period}-year period",
                                         "n/a",
                                         region,
                                         0,
@@ -425,12 +425,12 @@ class Electricity(BaseTransformation):
 
                     log_created_markets.append(
                         [
-                            f"low voltage, {self.scenario}, {self.year}",
+                            f"low voltage, {self.pathway}, {self.year}",
                             "n/a",
                             region,
                             transf_loss,
                             distr_loss,
-                            f"low voltage, {self.scenario}, {self.year}",
+                            f"low voltage, {self.pathway}, {self.year}",
                             region,
                             1,
                             (1 - solar_amount) * (1 + distr_loss),
@@ -468,12 +468,12 @@ class Electricity(BaseTransformation):
 
                     log_created_markets.append(
                         [
-                            f"low voltage, {self.scenario}, {self.year}, {period}-year period",
+                            f"low voltage, {self.pathway}, {self.year}, {period}-year period",
                             "n/a",
                             region,
                             transf_loss,
                             distr_loss,
-                            f"low voltage, {self.scenario}, {self.year}",
+                            f"low voltage, {self.pathway}, {self.year}",
                             region,
                             1,
                             (1 - solar_amount) * (1 + distr_loss),
@@ -494,7 +494,7 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log created electricity markets {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
@@ -533,7 +533,7 @@ class Electricity(BaseTransformation):
                         "database": self.database[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario} for the year {self.year}.",
+                        f" using the pathway {self.pathway} for the year {self.year}.",
                     }
 
                     # First, add the reference product exchange
@@ -561,7 +561,7 @@ class Electricity(BaseTransformation):
                         "database": self.database[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario}. Average electricity mix over a {period}"
+                        f" using the pathway {self.pathway}. Average electricity mix over a {period}"
                         f"-year period {self.year}-{self.year + period}.",
                     }
 
@@ -696,12 +696,12 @@ class Electricity(BaseTransformation):
 
                     log_created_markets.append(
                         [
-                            f"medium voltage, {self.scenario}, {self.year}",
+                            f"medium voltage, {self.pathway}, {self.year}",
                             "n/a",
                             region,
                             transf_loss,
                             distr_loss,
-                            "medium voltage, {self.scenario}, {self.year}",
+                            "medium voltage, {self.pathway}, {self.year}",
                             region,
                             1,
                             1 + distr_loss,
@@ -712,12 +712,12 @@ class Electricity(BaseTransformation):
 
                     log_created_markets.append(
                         [
-                            f"medium voltage, {self.scenario}, {self.year}, {period}-year period",
+                            f"medium voltage, {self.pathway}, {self.year}, {period}-year period",
                             "n/a",
                             region,
                             transf_loss,
                             distr_loss,
-                            f"medium voltage, {self.scenario}, {self.year}",
+                            f"medium voltage, {self.pathway}, {self.year}",
                             region,
                             1,
                             1 + distr_loss,
@@ -737,7 +737,7 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log created electricity markets {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
@@ -747,7 +747,7 @@ class Electricity(BaseTransformation):
 
     def create_new_markets_high_voltage(self):
         """
-        Create high voltage market groups for electricity, based on electricity mixes given by the IAM scenario.
+        Create high voltage market groups for electricity, based on electricity mixes given by the IAM pathway.
         Contribution from solar power is added in low voltage market groups.
         Does not return anything. Modifies the database in place.
         """
@@ -785,7 +785,7 @@ class Electricity(BaseTransformation):
                         "database": self.database[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario} for the year {self.year}.",
+                        f" using the pathway {self.pathway} for the year {self.year}.",
                     }
 
                     # First, add the reference product exchange
@@ -813,7 +813,7 @@ class Electricity(BaseTransformation):
                         "database": self.database[1]["database"],
                         "code": str(uuid.uuid4().hex),
                         "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario}. Average electricity mix over a {period}"
+                        f" using the pathway {self.pathway}. Average electricity mix over a {period}"
                         f"-year period {self.year}-{self.year + period}.",
                     }
 
@@ -911,7 +911,7 @@ class Electricity(BaseTransformation):
 
                                 log_created_markets.append(
                                     [
-                                        f"high voltage, {self.scenario}, {self.year}",
+                                        f"high voltage, {self.pathway}, {self.year}",
                                         technology,
                                         region,
                                         transf_loss,
@@ -925,7 +925,7 @@ class Electricity(BaseTransformation):
                             else:
                                 log_created_markets.append(
                                     [
-                                        f"high voltage, {self.scenario}, {self.year}, {period}-year period",
+                                        f"high voltage, {self.pathway}, {self.year}, {period}-year period",
                                         technology,
                                         region,
                                         transf_loss,
@@ -955,7 +955,7 @@ class Electricity(BaseTransformation):
         # Writing log of created markets
         with open(
             DATA_DIR
-            / f"logs/log created electricity markets {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -979,7 +979,7 @@ class Electricity(BaseTransformation):
     def update_electricity_efficiency(self):
         """
         This method modifies each ecoinvent coal, gas,
-        oil and biomass dataset using data from the IAM scenario.
+        oil and biomass dataset using data from the IAM pathway.
         Return a wurst database with modified datasets.
 
         :return: a wurst database, with rescaled electricity-producing datasets.
@@ -1002,7 +1002,7 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log power plant efficiencies change {self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log power plant efficiencies change {self.model.upper()} {self.pathway} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -1088,7 +1088,7 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log power plant efficiencies change {self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log power plant efficiencies change {self.model.upper()} {self.pathway} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
@@ -1138,7 +1138,7 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log deleted electricity markets {self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log deleted electricity markets {self.model.upper()} {self.pathway} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
