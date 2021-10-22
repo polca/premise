@@ -8,29 +8,28 @@ source:
 build:
   noarch: python
   number: 0
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  script: python -m pip install --no-deps --ignore-installed .
   script_env:
-   - VERSION
-   - CONDA_BLD_PATH
+    - VERSION
+    - CONDA_BLD_PATH
 
 requirements:
   build:
     - python
     - setuptools
   run:
-    - python
-    - wurst
+    - brightway2
     - numpy
     - pandas
-    - bw2io
+    - bw2io >=0.8
     - bw2data
-    - xarray
+    - wurst >=0.3
+    - xarray <0.18
     - prettytable
     - carculator
     - carculator_truck
     - pycountry
     - cryptography
-    - premise_gwp
 
 test:
   imports:
@@ -39,5 +38,5 @@ test:
 about:
   home: https://github.com/romainsacchi/premise
   license: BSD License
-  summary: 'Coupling Integrated Assessment Model (IAM) scenarios output with ecoinvent inventory database.'
+  summary: 'Coupling Integrated Assessment Models and Life Cycle Assessment.'
 license_family: BSD
