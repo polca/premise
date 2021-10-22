@@ -7,6 +7,8 @@ from typing import List
 from functools import lru_cache
 from difflib import SequenceMatcher
 import pprint
+import numpy as np
+import hashlib
 
 import pandas as pd
 from constructive_geometries import resolved_row
@@ -45,6 +47,10 @@ class c(enum.Enum):
     unit = "unit"
     efficiency = "efficiency"
     comment = "comment"
+    tag = "tag"
+    exc_key = "from/to key"
+    cons_key = "to key"
+    prod_key = "from key"
 
 
 def match_similarity(
@@ -81,7 +87,7 @@ def match(reference: str, candidates: List[str]) -> [str, None]:
             return i
 
 
-def calculate_dataset_efficiency(exchanges: List[dict]) -> float:
+def calculate_dataset_efficiency(exchanges: List[dict], ds_name) -> float:
     """
     Returns the efficiency rate of the dataset by looking up the fuel inputs
     and calculating the fuel input-to-output ratio.
@@ -94,7 +100,17 @@ def calculate_dataset_efficiency(exchanges: List[dict]) -> float:
     output_energy = 0.0
     input_energy = 0.0
 
-
+    exceptions_list = [
+        "treatment of",
+        "heat production",
+        "electricity voltage transformation",
+        "Recycled Content cut-off",
+        "energy saving",
+        "to generic market for energy",
+        "to generic market for protein",
+        "desulfurisation",
+        "passenger car",
+    ]
 
     for iexc in exchanges:
         if iexc["type"] == "production":
@@ -105,73 +121,19 @@ def calculate_dataset_efficiency(exchanges: List[dict]) -> float:
     if input_energy < 1e-12:
         if output_energy > 1e-6:
 
-
             # raise ArithmeticError(
             #     f"input energy was zero and output energy was {output_energy}! \n "
             #     f"{pprint.pformat([(i['name'], i['type'], i['amount'], i['unit']) for i in exchanges])}"
             # )
-            print(
-                f"{pprint.pformat([(i['name'], i['type'], i['amount'], i['unit']) for i in exchanges])} {output_energy} {input_energy}\n"
-            )
+
+            if not any(i in ds_name for i in exceptions_list):
+                print(
+                    f"{pprint.pformat([(i['name'], i['type'], i['amount'], i['unit']) for i in exchanges])} {output_energy} {input_energy}\n"
+                )
         else:
             return 0.0  # TODO: double-check whether this is really not an energy conversion process
     # FIXME: add LHV for bagasse in fuels_lower_heating_value.txt
     return output_energy / input_energy
-
-    # def calculate_input_energy(fuel_name, fuel_amount, fuel_unit):
-    #     """
-    #     Returns the amount of energy entering the conversion process, in MJ
-    #     :param fuel_name: name of the liquid, gaseous or solid fuel
-    #     :param fuel_amount: amount of fuel input
-    #     :param fuel_unit: unit of fuel
-    #     :return: amount of fuel energy, in MJ
-    #     """
-    #
-    #     # if fuel input other than MJ
-    #     if fuel_unit in ["kilogram", "cubic meter", "kilowatt hour"]:
-    #         lhv = [self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()][
-    #             0
-    #         ]
-    #         return float(lhv) * fuel_amount
-    #
-    #     # if already in MJ
-    #     return fuel_amount
-    #
-    # not_allowed = ["thermal"]
-    # key = []
-    # if "parameters" in dataset:
-    #     key = list(
-    #         key
-    #         for key in dataset["parameters"]
-    #         if "efficiency" in key and not any(item in key for item in not_allowed)
-    #     )
-    #
-    # if len(key) > 0:
-    #     return dataset["parameters"][key[0]]
-    #
-    # energy_input = np.sum(
-    #     np.sum(
-    #         np.asarray(
-    #             [
-    #                 calculate_input_energy(exc["name"], exc["amount"], exc["unit"])
-    #                 for exc in dataset["exchanges"]
-    #                 if exc["name"] in fuel_filters and exc["type"] == "technosphere"
-    #             ]
-    #         )
-    #     )
-    # )
-    #
-    # current_efficiency = float(energy_out) / energy_input
-    #
-    # if current_efficiency in (np.nan, np.inf):
-    #     current_efficiency = 1
-    #
-    # if "parameters" in dataset:
-    #     dataset["parameters"]["efficiency"] = current_efficiency
-    # else:
-    #     dataset["parameters"] = {"efficiency": current_efficiency}
-    #
-    # return current_efficiency
 
 
 def extract_energy(iexc: dict) -> float:
@@ -193,7 +155,7 @@ def extract_energy(iexc: dict) -> float:
     else:
         candidates = match(
             iexc["product"]
-            if iexc["type"] in ("production", "technosphere")
+            if iexc["type"] in ("production", "technosphere") and iexc["unit"] != "unit"
             else iexc["name"],
             fuel_names,
         )
@@ -208,6 +170,86 @@ def extract_energy(iexc: dict) -> float:
     return input_energy
 
 
+def find_efficiency(ids):
+
+    fuels_lhv = get_lower_heating_values()
+    fuel_names = list(fuels_lhv.keys())
+
+    # TODO: put all that into an external file
+    white_list = [
+        "treatment of",
+        "heat production",
+        "electricity voltage transformation",
+        "Recycled Content cut-off",
+        "energy saving",
+        "to generic market for energy",
+        "to generic market for protein",
+        "desulfurisation",
+        "passenger car",
+    ]
+
+    black_list = [
+        "sulfate production",
+        "mine operation",
+        "drying",
+        "milling",
+        "treatment of",
+        "pipeline",
+        "process-specific",
+        "H2 power plant",
+        "briquettes",
+        "hydrogenation",
+        "hydrogen embrittlement",
+        "hydrogen fluoride",
+        "hydrogen sulfide",
+        "hydrogen sulfite",
+        "hydrogen peroxyde",
+        "trichloropropane",
+        "storage",
+        "market for",
+        "market group for",
+        "wheat production",
+        "sugarcane processing",
+        "Farming and supply of",
+        "sweetening",
+        "blending",
+        "purification",
+    ]
+
+    if (
+        ids["unit"] in ("megajoule", "kilowatt hour", "cubic meter")
+        and not any(i.lower() in ids["name"].lower() for i in black_list)
+    ) or (
+        ids["unit"] == "kilogram"
+        and any(i.lower() in ids["name"].lower() for i in fuel_names)
+        and not any(i.lower() in ids["name"].lower() for i in black_list)
+    ):
+        try:
+            energy_efficiency = calculate_dataset_efficiency(
+                exchanges=ids["exchanges"], ds_name=ids["name"]
+            )
+        except ZeroDivisionError as e:
+            if not any(i.lower() in ids["name"].lower() for i in white_list):
+                print(f"issue with {ids['name']}")
+                energy_efficiency = np.nan
+            else:
+                energy_efficiency = np.nan
+    else:
+        energy_efficiency = np.nan
+
+    return energy_efficiency
+
+
+def create_hash(*items):
+
+    hasher = hashlib.blake2b(digest_size=12)
+
+    for item in items:
+        hasher.update(str(item).encode())
+
+    return int(hasher.hexdigest(), 16)
+
+
 def convert_db_to_dataframe(database):
     """
     Convert the wurst database into a pd.DataFrame.
@@ -218,13 +260,6 @@ def convert_db_to_dataframe(database):
     :rtype: pd.DataFrame
     """
 
-    exceptions_list = [
-        "treatment of",
-        "heat production",
-        "electricity voltage transformation",
-        "Recycled Content cut-off"
-    ]
-
     data_to_ret = []
 
     for ids in database:
@@ -232,26 +267,45 @@ def convert_db_to_dataframe(database):
         consumer_product = ids["reference product"]
         consumer_loc = ids["location"]
 
-        # calculate the efficiency of the dataset
-        # except if it is a waste incineration process
+        consumer_key = create_hash(consumer_name, consumer_product, consumer_loc)
 
-        if ids["unit"] != "unit":
-            try:
-                energy_efficiency = calculate_dataset_efficiency(exchanges=ids["exchanges"])
-            except ZeroDivisionError as e:
-                if not any(i.lower() in consumer_name.lower() for i in exceptions_list):
-                    #print(consumer_name)
-                    #print(consumer_loc)
-                    #print(consumer_product)
-                    #print(exceptions_list)
-                    #print([i.lower() in consumer_name.lower() for i in exceptions_list])
-                    #raise e
-                    #FIXME: re-enable after listing all LHV values
-                    energy_efficiency = 0.0
+        # calculate the efficiency of the dataset
+
+        # check first if a `parameters` or `efficiency` key is present
+        if any(i in ids for i in ["parameters", "efficiency"]):
+
+            if "parameters" in ids:
+                key = list(
+                    key
+                    for key in ids["parameters"]
+                    if "efficiency" in key
+                    and not any(item in key for item in ["thermal"])
+                )
+
+                if len(key) > 0:
+                    energy_efficiency = ids["parameters"][key[0]]
                 else:
-                    energy_efficiency = 0.0
+                    energy_efficiency = find_efficiency(ids)
+            else:
+                energy_efficiency = ids["efficiency"]
+
         else:
-            energy_efficiency = 0.0
+            energy_efficiency = find_efficiency(ids)
+
+            # except ZeroDivisionError as e:
+            #    if not any(i.lower() in consumer_name.lower() for i in exceptions_list):
+            # print(consumer_name)
+            # print(consumer_loc)
+            # print(consumer_product)
+            # print(exceptions_list)
+            # print([i.lower() in consumer_name.lower() for i in exceptions_list])
+            # raise e
+            # FIXME: re-enable after listing all LHV values
+            #        energy_efficiency = 0.0
+            #    else:
+            #        energy_efficiency = 0.0
+        # else:
+        #    energy_efficiency = 0.0
 
         for iexc in ids["exchanges"]:
             producer_name = iexc["name"]
@@ -264,6 +318,10 @@ def convert_db_to_dataframe(database):
                 producer_product = iexc["product"]
                 producer_location = iexc["location"]
 
+            producer_key = create_hash(
+                producer_name, producer_product, producer_location
+            )
+
             comment = ""
             if iexc["type"] == "production":
                 comment = ids.get("comment", "")
@@ -271,6 +329,14 @@ def convert_db_to_dataframe(database):
             if iexc["type"] in ("technosphere", "biosphere"):
                 comment = iexc.get("comment", "")
 
+            exchange_key = create_hash(
+                consumer_name,
+                consumer_product,
+                consumer_loc,
+                producer_name,
+                producer_product,
+                producer_location,
+            )
             data_to_ret.append(
                 (
                     consumer_name,
@@ -282,10 +348,15 @@ def convert_db_to_dataframe(database):
                     producer_type,
                     iexc["amount"],
                     iexc["unit"],
-                    energy_efficiency,
+                    energy_efficiency if producer_type == "production" else np.nan,
                     comment,
+                    "",
+                    exchange_key,
+                    consumer_key,
+                    producer_key,
                 )
             )
+
 
     return pd.DataFrame(
         data_to_ret, columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),

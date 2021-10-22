@@ -7,9 +7,13 @@ wood chips;18.9
 natural gas, high pressure;47.5
 natural gas, low pressure;47.5
 natural gas;47.5
+Gas, natural, in ground;47.5
+refinery gas;50.3
+propane;46.46
 heavy fuel oil;38.5
 light fuel oil;40.6
-biogas;21.5
+Oil, crude, in ground;42.3
+biogas;22.73
 biomethane;47.5
 waste;14
 methane, fossil;50
@@ -34,6 +38,7 @@ bioethanol, grassy;26.5
 bioethanol, grain;26.5
 bioethanol, sugar;26.5
 bioethanol;26.5
+ethanol;26.5
 methanol, wood;19.9
 methanol, grass;19.9
 petrol, synthetic, hydrogen;42.6
@@ -75,10 +80,28 @@ heat, from biodiesel;1
 heat, from liquified petroleum gas, natural;1
 heat, from liquified petroleum gas, synthetic;1
 heat, from underground;1
+heat, district or industrial;1
 heat;1
 bagasse, from sugarcane; 15.4
 bagasse, from sweet sorghum; 13.8
+sweet sorghum stem;4.45
 energy, kinetic;1
-cottonseed;23.8
+cottonseed;21.97
 flax husks;21.5
 coconut husk;20
+sugar beet pulp;5.11
+cleft timber;13.095
+rape meal;31.1
+molasse, from sugar beet;16.65
+sugar beet;4.1
+barkey grain;19.49
+rye grain;12
+sugarcane;5.3
+palm date;10.8
+synthetic gas;6.21
+whey;1.28
+straw;15.5
+grass;17
+Syngas, RWGS;23.9
+manure, liquid;0.875
+manure, solid;3.6
