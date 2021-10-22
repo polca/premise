@@ -1,5 +1,6 @@
 from .utils import c
 
+
 def get_ecoinvent_locs(database):
     """
     Return a list of unique locations in ecoinvent
@@ -9,4 +10,3 @@ def get_ecoinvent_locs(database):
     """
 
     return database[c.cons_loc].unique()
-

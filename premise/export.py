@@ -1,11 +1,13 @@
-import os
-from . import DATA_DIR, __version__
 import csv
-from pathlib import Path
 import datetime
 import json
+import os
 import re
+from pathlib import Path
+
 import pandas as pd
+
+from . import DATA_DIR, __version__
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
 
@@ -110,7 +112,12 @@ class Export:
                             )
                         ],
                         index_A[
-                            (exc["name"], exc["product"], exc["unit"], exc["location"],)
+                            (
+                                exc["name"],
+                                exc["product"],
+                                exc["unit"],
+                                exc["location"],
+                            )
                         ],
                         exc["amount"],
                     ]
@@ -126,7 +133,12 @@ class Export:
                             )
                         ],
                         index_A[
-                            (exc["name"], exc["product"], exc["unit"], exc["location"],)
+                            (
+                                exc["name"],
+                                exc["product"],
+                                exc["unit"],
+                                exc["location"],
+                            )
                         ],
                         exc["amount"] * -1,
                     ]
@@ -176,7 +188,11 @@ class Export:
 
         # Export A matrix
         with open(self.filepath / "A_matrix.csv", "w") as f:
-            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
+            writer = csv.writer(
+                f,
+                delimiter=";",
+                lineterminator="\n",
+            )
             writer.writerow(["index of activity", "index of product", "value"])
             rows = self.create_A_matrix_coordinates()
             for row in rows:
@@ -184,7 +200,11 @@ class Export:
 
         # Export A index
         with open(self.filepath / "A_matrix_index.csv", "w") as f:
-            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
+            writer = csv.writer(
+                f,
+                delimiter=";",
+                lineterminator="\n",
+            )
             index_A = create_index_of_A_matrix(self.db)
             for d in index_A:
                 data = list(d) + [index_A[d]]
@@ -194,7 +214,11 @@ class Export:
 
         # Export B matrix
         with open(self.filepath / "B_matrix.csv", "w") as f:
-            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
+            writer = csv.writer(
+                f,
+                delimiter=";",
+                lineterminator="\n",
+            )
             writer.writerow(["index of activity", "index of biosphere flow", "value"])
             rows = self.create_B_matrix_coordinates()
             for row in rows:
@@ -202,7 +226,11 @@ class Export:
 
         # Export B index
         with open(self.filepath / "B_matrix_index.csv", "w") as f:
-            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
+            writer = csv.writer(
+                f,
+                delimiter=";",
+                lineterminator="\n",
+            )
             for d in index_B:
                 data = list(d) + [index_B[d]]
                 writer.writerow(data)

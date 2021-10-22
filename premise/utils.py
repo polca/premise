@@ -1,20 +1,20 @@
 import enum
+import hashlib
+import pprint
 import uuid
 from copy import deepcopy
 from datetime import date
+from difflib import SequenceMatcher
+from functools import lru_cache
 from itertools import chain
 from typing import List
-from functools import lru_cache
-from difflib import SequenceMatcher
-import pprint
-import numpy as np
-import hashlib
 
+import numpy as np
 import pandas as pd
 from constructive_geometries import resolved_row
 from wurst import log
 from wurst import searching as ws
-from wurst.searching import reference_product, get_many, equals
+from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
 
 from . import geomap
@@ -357,9 +357,9 @@ def convert_db_to_dataframe(database):
                 )
             )
 
-
     return pd.DataFrame(
-        data_to_ret, columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
+        data_to_ret,
+        columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
     )
 
 
@@ -369,11 +369,11 @@ def eidb_label(model, scenario, year):
 
 def get_land_use_for_crops(model):
     """
-        Return a dictionary with crop names as keys and IAM labels as values
-        relating to land use per crop type
+    Return a dictionary with crop names as keys and IAM labels as values
+    relating to land use per crop type
 
-        :return: dict
-        """
+    :return: dict
+    """
     d = {}
     with open(CROPS_LAND_USE) as f:
         r = csv.reader(f, delimiter=";")
@@ -386,11 +386,11 @@ def get_land_use_for_crops(model):
 
 def get_land_use_change_CO2_for_crops(model):
     """
-        Return a dictionary with crop names as keys and IAM labels as values
-        relating to land use change CO2 per crop type
+    Return a dictionary with crop names as keys and IAM labels as values
+    relating to land use change CO2 per crop type
 
-        :return: dict
-        """
+    :return: dict
+    """
     d = {}
     with open(CROPS_LAND_USE_CHANGE_CO2) as f:
         r = csv.reader(f, delimiter=";")
@@ -528,7 +528,12 @@ def create_codes_and_names_of_A_matrix(db):
     :rtype: dict
     """
     return {
-        (i["name"], i["reference product"], i["unit"], i["location"],): i["code"]
+        (
+            i["name"],
+            i["reference product"],
+            i["unit"],
+            i["location"],
+        ): i["code"]
         for i in db
     }
 

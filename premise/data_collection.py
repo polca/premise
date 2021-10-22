@@ -6,15 +6,16 @@ non-CO2 emissions (GAINS data).
 """
 
 
-from pathlib import Path
 import csv
 from io import StringIO
-import numpy as np
-import xarray as xr
-import pandas as pd
-from cryptography.fernet import Fernet
-from . import DATA_DIR
+from pathlib import Path
 
+import numpy as np
+import pandas as pd
+import xarray as xr
+from cryptography.fernet import Fernet
+
+from . import DATA_DIR
 
 IAM_ELEC_MARKETS = DATA_DIR / "electricity" / "electricity_markets.csv"
 IAM_FUELS_MARKETS = DATA_DIR / "fuels" / "fuel_labels.csv"
@@ -198,7 +199,12 @@ class IAMDataCollection:
             dim="variables",
         )
         self.emissions = xr.concat(
-            [electricity_emissions, steel_emissions, cement_emissions,], dim="sector",
+            [
+                electricity_emissions,
+                steel_emissions,
+                cement_emissions,
+            ],
+            dim="sector",
         )
 
     def __get_iam_variable_labels(self, filepath):
@@ -1037,35 +1043,43 @@ class IAMDataCollection:
         # as it is sometimes neglected in the
         # IAM files
 
+        rate.loc[dict(region="World", variables="cement")] = (
+            data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=[dict_vars["cement - cco2"]],
+                )
+            ]
+            .sum(dim="region")
+            .values
+            / data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=[dict_vars["cement - co2"], dict_vars["cement - cco2"]],
+                )
+            ]
+            .sum(dim=["variables", "region"])
+            .values
+        ).T.sum(axis=-1)
 
-
-        rate.loc[dict(region="World", variables="cement")] = (data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=[dict_vars["cement - cco2"]],
-            )
-        ].sum(dim="region").values / data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=[dict_vars["cement - co2"], dict_vars["cement - cco2"]],
-            )
-        ].sum(
-            dim=["variables", "region"]
-        ).values).T.sum(axis=-1)
-
-        rate.loc[dict(region="World", variables="steel")] = (data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=[dict_vars["steel - cco2"]],
-            )
-        ].sum(dim="region").values / data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=[dict_vars["steel - co2"], dict_vars["steel - cco2"]],
-            )
-        ].sum(
-            dim=["variables", "region"]
-        ).values).T.sum(axis=-1)
+        rate.loc[dict(region="World", variables="steel")] = (
+            data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=[dict_vars["steel - cco2"]],
+                )
+            ]
+            .sum(dim="region")
+            .values
+            / data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=[dict_vars["steel - co2"], dict_vars["steel - cco2"]],
+                )
+            ]
+            .sum(dim=["variables", "region"])
+            .values
+        ).T.sum(axis=-1)
 
         # we ensure that the rate can only be between 0 and 1
         rate = np.clip(rate, 0, 1)

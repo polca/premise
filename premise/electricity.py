@@ -10,9 +10,11 @@ the newly created electricity markets.
 """
 
 import os
+
 import wurst
-from .transformation import *
+
 from .activity_maps import InventorySet
+from .transformation import *
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -199,7 +201,9 @@ class Electricity(BaseTransformation):
                 mix = dict(
                     zip(
                         self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(region=region,)
+                        self.iam_data.electricity_markets.sel(
+                            region=region,
+                        )
                         .interp(
                             year=np.arange(self.year, self.year + period + 1),
                             kwargs={"fill_value": "extrapolate"},
@@ -487,8 +491,11 @@ class Electricity(BaseTransformation):
         self.list_datasets.extend(
             [
                 (
-                    "market group for electricity, low voltage", "electricity, low voltage", dataset[2]
-                ) for dataset in log_created_markets
+                    "market group for electricity, low voltage",
+                    "electricity, low voltage",
+                    dataset[2],
+                )
+                for dataset in log_created_markets
             ]
         )
 
@@ -730,8 +737,11 @@ class Electricity(BaseTransformation):
         self.list_datasets.extend(
             [
                 (
-                    "market group for electricity, medium voltage", "electricity, medium voltage", dataset[2]
-                ) for dataset in log_created_markets
+                    "market group for electricity, medium voltage",
+                    "electricity, medium voltage",
+                    dataset[2],
+                )
+                for dataset in log_created_markets
             ]
         )
 
@@ -761,7 +771,9 @@ class Electricity(BaseTransformation):
                 electriciy_mix = dict(
                     zip(
                         self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(region=region,)
+                        self.iam_data.electricity_markets.sel(
+                            region=region,
+                        )
                         .interp(
                             year=np.arange(self.year, self.year + period + 1),
                             kwargs={"fill_value": "extrapolate"},
@@ -941,14 +953,15 @@ class Electricity(BaseTransformation):
 
                 self.database.append(new_dataset)
 
-
-
         # update `self.list_datasets`
         self.list_datasets.extend(
             [
                 (
-                    "market group for electricity, high voltage", "electricity, high voltage", dataset[2]
-                ) for dataset in log_created_markets
+                    "market group for electricity, high voltage",
+                    "electricity, high voltage",
+                    dataset[2],
+                )
+                for dataset in log_created_markets
             ]
         )
 
@@ -1127,10 +1140,13 @@ class Electricity(BaseTransformation):
             [i["name"], i["location"]]
             for i in self.database
             if any(item_to_remove in i["name"] for item_to_remove in list_to_remove)
-            and not any(item_to_keep in i["reference product"] for item_to_keep in [
-                "cobalt industry",
-                "for reuse in municipal waste incineration"
-            ])
+            and not any(
+                item_to_keep in i["reference product"]
+                for item_to_keep in [
+                    "cobalt industry",
+                    "for reuse in municipal waste incineration",
+                ]
+            )
         ]
 
         if not os.path.exists(DATA_DIR / "logs"):
@@ -1167,13 +1183,14 @@ class Electricity(BaseTransformation):
         # Finally, we need to relink all electricity-consuming activities to the new electricity markets
         print("Link activities to new electricity markets.")
 
-        self.relink_datasets(excludes_datasets=["cobalt industry", "market group for electricity"],
-                             alternative_names=[
-                                 "market group for electricity, high voltage",
-                                 "market group for electricity, medium voltage",
-                                 "market group for electricity, low voltage"
-                             ]
-                             )
+        self.relink_datasets(
+            excludes_datasets=["cobalt industry", "market group for electricity"],
+            alternative_names=[
+                "market group for electricity, high voltage",
+                "market group for electricity, medium voltage",
+                "market group for electricity, low voltage",
+            ],
+        )
 
         print(f"Log of deleted electricity markets saved in {DATA_DIR}/logs")
         print(f"Log of created electricity markets saved in {DATA_DIR}/logs")

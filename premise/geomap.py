@@ -1,6 +1,8 @@
-from wurst import geomatcher
-from premise import DATA_DIR
 import json
+
+from wurst import geomatcher
+
+from premise import DATA_DIR
 
 REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
 ADDITIONAL_DEFINITIONS = DATA_DIR / "additional_definitions.json"

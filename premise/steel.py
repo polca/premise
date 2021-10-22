@@ -1,10 +1,12 @@
+import copy
+
+import numpy as np
 import wurst
 from wurst import transformations as wt
-from .geomap import Geomap
+
 from .activity_maps import InventorySet
-import copy
+from .geomap import Geomap
 from .utils import *
-import numpy as np
 
 
 class Steel:
@@ -19,7 +21,7 @@ class Steel:
     :vartype iam_data: xarray.DataArray
     :ivar year: year, from :attr:`.NewDatabase.year`
     :vartype year: int
-    
+
     """
 
     def __init__(self, db, model, iam_data, year):
@@ -468,7 +470,10 @@ class Steel:
                 .interp(year=self.year)
                 .sum(dim=["region", "variables"])
                 / self.iam_data.data.loc[
-                    dict(region=[loc] if isinstance(loc, str) else loc, variables=prod,)
+                    dict(
+                        region=[loc] if isinstance(loc, str) else loc,
+                        variables=prod,
+                    )
                 ]
                 .interp(year=self.year)
                 .sum(dim="region")
@@ -764,7 +769,7 @@ class Steel:
     def generate_activities(self):
         """
         This function generates new activities for primary and secondary steel production and add them to the ecoinvent database.
-        
+
         :return: Returns a modified database with newly added steel activities for the corresponding year
         """
 

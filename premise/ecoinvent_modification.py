@@ -1,36 +1,40 @@
-import sys, os, copy, pickle
-from pathlib import Path
+import copy
+import os
+import pickle
+import sys
 from datetime import date
-import wurst
+from pathlib import Path
+
 import numpy as np
+import wurst
 from prettytable import PrettyTable
+
 from . import DATA_DIR, INVENTORY_DIR
+from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .renewables import SolarPV
-from .inventory_imports import (
-    DefaultInventory,
-    CarculatorInventory,
-    TruckInventory,
-    VariousVehicles,
-    AdditionalInventory,
-    PassengerCars,
-    Trucks,
-)
-from .cement import Cement
-from .steel import Steel
-from .fuels import Fuels
 from .export import Export
+from .fuels import Fuels
+from .inventory_imports import (
+    AdditionalInventory,
+    CarculatorInventory,
+    DefaultInventory,
+    PassengerCars,
+    TruckInventory,
+    Trucks,
+    VariousVehicles,
+)
+from .renewables import SolarPV
+from .steel import Steel
 from .utils import (
-    eidb_label,
     add_modified_tags,
     build_superstructure_db,
-    convert_db_to_dataframe,
     c,
+    convert_db_to_dataframe,
     create_scenario_label,
+    eidb_label,
 )
-
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -196,7 +200,7 @@ def enablePrint():
 
 
 def check_for_duplicates(database):
-    """ Check for the absence of duplicates before export """
+    """Check for the absence of duplicates before export"""
 
     db_names = [
         (x["name"].lower(), x["reference product"].lower(), x["location"])
@@ -220,7 +224,7 @@ def check_for_duplicates(database):
 
 
 def check_ei_filepath(filepath):
-    """ Check for the existence of the file path."""
+    """Check for the existence of the file path."""
 
     if not Path(filepath).is_dir():
         raise FileNotFoundError(
@@ -230,7 +234,7 @@ def check_ei_filepath(filepath):
 
 
 def check_model_name(name):
-    """ Check for the validity of the IAM model name."""
+    """Check for the validity of the IAM model name."""
     if name.lower() not in SUPPORTED_MODELS:
         raise ValueError(
             f"Only {SUPPORTED_MODELS} are currently supported, not {name}."
@@ -239,7 +243,7 @@ def check_model_name(name):
 
 
 def check_pathway_name(name, filepath, model):
-    """ Check the pathway name"""
+    """Check the pathway name"""
 
     if name not in SUPPORTED_PATHWAYS:
         # If the pathway name is not a default one, check that the filepath + pathway name
@@ -278,7 +282,7 @@ def check_pathway_name(name, filepath, model):
 
 
 def check_year(year):
-    """ Check for the validity of the year passed. """
+    """Check for the validity of the year passed."""
     try:
         year = int(year)
     except ValueError as err:
@@ -967,7 +971,8 @@ class NewDatabase:
         print("Done!")
 
         wurst.write_brightway2_database(
-            self.database, name,
+            self.database,
+            name,
         )
 
     def write_db_to_brightway(self, name=None):
@@ -979,7 +984,7 @@ class NewDatabase:
         :type name: str
         """
 
-        #FIXME: remember to add the original ecoinvent's comments
+        # FIXME: remember to add the original ecoinvent's comments
 
         if name:
             if isinstance(name, str):
@@ -1009,7 +1014,8 @@ class NewDatabase:
             scenario["database"] = check_for_duplicates(scenario["database"])
 
             wurst.write_brightway2_database(
-                scenario["database"], name[scen],
+                scenario["database"],
+                name[scen],
             )
 
     def write_db_to_matrices(self, filepath=None):

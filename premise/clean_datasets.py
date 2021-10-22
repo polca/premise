@@ -1,11 +1,12 @@
-from . import DATA_DIR
-
-from wurst import searching as ws
 import csv
 import pprint
-import wurst
+
 import bw2io
+import wurst
 from bw2data.database import DatabaseChooser
+from wurst import searching as ws
+
+from . import DATA_DIR
 
 FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
@@ -302,8 +303,8 @@ class DatabaseCleaner:
                         )
 
     def fix_biosphere_flow_categories(self):
-        """ Add a `categories` for biosphere flows if missing.
-        This happens when importing directly from ecospold files """
+        """Add a `categories` for biosphere flows if missing.
+        This happens when importing directly from ecospold files"""
 
         dict_bio_cat = self.get_biosphere_flow_categories()
         dict_bio_uuid = self.get_biosphere_flow_uuid()

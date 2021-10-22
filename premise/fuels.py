@@ -1,11 +1,13 @@
-from wurst import transformations as wt
-import wurst
-from .utils import *
-from .geomap import Geomap
+import uuid
+
 import numpy as np
+import wurst
+from wurst import transformations as wt
+
 from . import DATA_DIR
 from .activity_maps import InventorySet
-import uuid
+from .geomap import Geomap
+from .utils import *
 
 CROP_CLIMATE_MAP = DATA_DIR / "fuels" / "crop_climate_mapping.csv"
 REGION_CLIMATE_MAP = DATA_DIR / "fuels" / "region_climate_mapping.csv"
@@ -14,10 +16,10 @@ FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"
 
 class Fuels:
     """
-        Class that modifies fuel inventories and markets in ecoinvent based on IAM output data.
+    Class that modifies fuel inventories and markets in ecoinvent based on IAM output data.
 
-        :ivar scenario: name of an IAM pathway
-        :vartype pathway: str
+    :ivar scenario: name of an IAM pathway
+    :vartype pathway: str
 
     """
 
@@ -46,8 +48,8 @@ class Fuels:
         self.new_fuel_markets = {}
 
     def get_crop_climate_mapping(self):
-        """ Returns a dictionnary thatindictes the type of crop
-        used for bioethanol production per type of climate """
+        """Returns a dictionnary thatindictes the type of crop
+        used for bioethanol production per type of climate"""
 
         d = {}
         with open(CROP_CLIMATE_MAP) as f:
@@ -65,8 +67,8 @@ class Fuels:
         return d
 
     def get_region_climate_mapping(self):
-        """ Returns a dicitonnary that indicates the type of climate
-         for each IAM region"""
+        """Returns a dicitonnary that indicates the type of climate
+        for each IAM region"""
 
         d = {}
         with open(REGION_CLIMATE_MAP) as f:
@@ -78,8 +80,8 @@ class Fuels:
         return d
 
     def get_compression_effort(self, p_in, p_out, flow_rate):
-        """ Calculate the required electricity consumption from the compressor given
-        an inlet and outlet pressure and a flow rate for hydrogen. """
+        """Calculate the required electricity consumption from the compressor given
+        an inlet and outlet pressure and a flow rate for hydrogen."""
         # result is shaft power [kW] and compressor size [kW]
         # flow_rate = mass flow rate (kg/day)
         # p_in =  input pressure (bar)
@@ -105,7 +107,7 @@ class Fuels:
 
     def generate_DAC_activities(self):
 
-        """ Generate regional variants of the DAC process with varying heat sources """
+        """Generate regional variants of the DAC process with varying heat sources"""
 
         # define heat sources
         heat_map_ds = {
@@ -1033,7 +1035,7 @@ class Fuels:
                     self.db.append(ds_copy)
 
     def get_biofuel_production_volume(self, region, fuel_label):
-        """ Fetch from the IAM data the consumption (or production) volume. """
+        """Fetch from the IAM data the consumption (or production) volume."""
 
         return (
             self.iam_data.data.sel(variables=fuel_label, region=region)
@@ -1248,7 +1250,10 @@ class Fuels:
                                 "biosphere3",
                                 "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
                             ),
-                            "categories": ("air", "non-urban air or from high stacks",),
+                            "categories": (
+                                "air",
+                                "non-urban air or from high stacks",
+                            ),
                         }
                         ds["exchanges"].append(land_use_co2_exc)
 
@@ -1365,7 +1370,7 @@ class Fuels:
         }
 
     def fetch_fuel_share(self, fuel, fuel_types, region):
-        """ Return a fuel mix for a specific IAM region, for a specific year. """
+        """Return a fuel mix for a specific IAM region, for a specific year."""
 
         vars = [
             v
@@ -1655,7 +1660,7 @@ class Fuels:
         return possible_suppliers
 
     def generate_fuel_supply_chains(self):
-        """ Duplicate fuel chains and make them IAM region-specific """
+        """Duplicate fuel chains and make them IAM region-specific"""
 
         # DAC datasets
         print("Generate region-specific direct air capture processes.")
@@ -1677,8 +1682,8 @@ class Fuels:
         self.generate_biofuel_activities()
 
     def generate_fuel_markets(self):
-        """ Create new fuel supply chains
-        and update existing fuel markets """
+        """Create new fuel supply chains
+        and update existing fuel markets"""
 
         # Create new fuel supply chains
         self.generate_fuel_supply_chains()
