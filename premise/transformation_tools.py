@@ -2,8 +2,9 @@
 transformation_tools.py contains a number of small functions that help manipulating the Pandas dataframe `database`.
 """
 
-from .utils import c
 from typing import List
+
+from .utils import c
 
 
 def get_dataframe_locs(database) -> List[str]:
@@ -16,6 +17,7 @@ def get_dataframe_locs(database) -> List[str]:
 
     return database[c.cons_loc].unique()
 
+
 def get_dataframe_consumers_keys(database) -> List[int]:
     """
     Return a list of unique consumers keys
@@ -25,6 +27,7 @@ def get_dataframe_consumers_keys(database) -> List[int]:
     """
 
     return database[c.cons_key].unique()
+
 
 def get_dataframe_producers_keys(database) -> List[int]:
     """
