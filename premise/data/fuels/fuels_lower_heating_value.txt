@@ -11,7 +11,7 @@ Gas, natural, in ground;47.5
 refinery gas;50.3
 propane;46.46
 heavy fuel oil;38.5
-light fuel oil;40.6
+light fuel oil;42.6
 Oil, crude, in ground;42.3
 biogas;22.73
 biomethane;47.5
@@ -20,7 +20,9 @@ methane, fossil;50
 methane, biogenic;50
 diesel;43
 gasoline;42.6
-petrol;42.6
+petrol, 5% ethanol;41.7
+petrol;42.5
+Syngas, RWGS;23.9
 hydrogen, petroleum;120
 hydrogen, electrolysis;120
 hydrogen, biomass;120
@@ -39,6 +41,7 @@ bioethanol, grain;26.5
 bioethanol, sugar;26.5
 bioethanol;26.5
 ethanol;26.5
+ethyl tert-butyl ether;37.97
 methanol, wood;19.9
 methanol, grass;19.9
 petrol, synthetic, hydrogen;42.6
@@ -90,7 +93,7 @@ cottonseed;21.97
 flax husks;21.5
 coconut husk;20
 sugar beet pulp;5.11
-cleft timber;13.095
+cleft timber;14.46
 rape meal;31.1
 molasse, from sugar beet;16.65
 sugar beet;4.1
@@ -102,6 +105,6 @@ synthetic gas;6.21
 whey;1.28
 straw;15.5
 grass;17
-Syngas, RWGS;23.9
 manure, liquid;0.875
 manure, solid;3.6
+Carbon monoxide, from RWGS;10.83

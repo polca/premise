@@ -30,6 +30,7 @@ requirements:
     - carculator_truck
     - pycountry
     - cryptography
+    - pyyaml
 
 test:
   imports:

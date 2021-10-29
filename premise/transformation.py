@@ -13,7 +13,7 @@ import numpy as np
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from premise.transformation_tools import get_ecoinvent_locs
+from premise.transformation_tools import get_dataframe_locs
 
 from . import DATA_DIR
 from .activity_maps import InventorySet
@@ -128,7 +128,7 @@ class BaseTransformation:
         self.list_datasets = get_tuples_from_database(self.database)
         self.ecoinvent_to_iam_loc = {
             loc: self.geo.ecoinvent_to_iam_location(loc)
-            for loc in get_ecoinvent_locs(self.database)
+            for loc in get_dataframe_locs(self.database)
         }
 
     def update_ecoinvent_efficiency_parameter(self, dataset, old_ei_eff, new_eff):
