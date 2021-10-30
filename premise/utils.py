@@ -381,10 +381,12 @@ def get_fuel_properties():
     :rtype: dict
     """
 
-    with open(FUELS_PROPERTIES, 'r') as stream:
+    with open(FUELS_PROPERTIES, "r") as stream:
         fuel_props = yaml.safe_load(stream)
 
-    fuel_props = dict((k.replace(" ", "").strip().lower(), v) for k, v in fuel_props.items())
+    fuel_props = dict(
+        (k.replace(" ", "").strip().lower(), v) for k, v in fuel_props.items()
+    )
     return fuel_props
 
 

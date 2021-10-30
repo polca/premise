@@ -1,6 +1,4 @@
-
 import yaml
-
 from wurst import geomatcher
 
 from premise import DATA_DIR
@@ -8,21 +6,23 @@ from premise import DATA_DIR
 ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
 
+
 def get_additional_mapping():
     """
     Return a dictionary with additional ecoinvent to IAM mappings
     """
-    with open(ECO_IAM_MAPPING, 'r') as stream:
+    with open(ECO_IAM_MAPPING, "r") as stream:
         out = yaml.safe_load(stream)
 
     return out
+
 
 def get_iam_to_iam_mapping():
     """
     Return a dictionary with IAM to IAM mappings
     :return:
     """
-    with open(IAM_TO_IAM_MAPPING, 'r') as stream:
+    with open(IAM_TO_IAM_MAPPING, "r") as stream:
         out = yaml.safe_load(stream)
 
     return out
@@ -187,4 +187,3 @@ class Geomap:
         :return: the equivalent location
         """
         return self.iam_to_iam_mappings[self.model][location][to_iam]
-
