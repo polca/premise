@@ -8,10 +8,10 @@ from difflib import SequenceMatcher
 from functools import lru_cache
 from itertools import chain
 from typing import List
-import yaml
 
 import numpy as np
 import pandas as pd
+import yaml
 from constructive_geometries import resolved_row
 from wurst import log
 from wurst import searching as ws
@@ -86,7 +86,9 @@ def match(reference: str, candidates: List[str]) -> [str, None]:
             return i
 
 
-def calculate_dataset_efficiency(exchanges: List[dict], ds_name: str, white_list: list) -> float:
+def calculate_dataset_efficiency(
+    exchanges: List[dict], ds_name: str, white_list: list
+) -> float:
     """
     Returns the efficiency rate of the dataset by looking up the fuel inputs
     and calculating the fuel input-to-output ratio.
@@ -191,7 +193,7 @@ def find_efficiency(ids: dict) -> float:
     # activity should either be skipped
     # or forgiven if an error is thrown
 
-    with open(BLACK_WHITE_LISTS, 'r') as stream:
+    with open(BLACK_WHITE_LISTS, "r") as stream:
         out = yaml.safe_load(stream)
     black_list = out["blacklist"]
     white_list = out["whitelist"]
@@ -206,7 +208,7 @@ def find_efficiency(ids: dict) -> float:
     ):
         try:
             energy_efficiency = calculate_dataset_efficiency(
-                exchanges=ids["exchanges"], ds_name=ids["name"], white_list = white_list
+                exchanges=ids["exchanges"], ds_name=ids["name"], white_list=white_list
             )
         except ZeroDivisionError as e:
             if not any(i.lower() in ids["name"].lower() for i in white_list):
