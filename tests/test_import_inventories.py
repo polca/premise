@@ -110,18 +110,3 @@ def test_load_biofuel():
     db, version = get_db()
     bio = BiofuelInventory(db, version, FILEPATH_BIOFUEL_INVENTORIES)
     assert len(bio.import_db.data) == 35
-
-
-# def test_load_carculator():
-#    database, version = get_db()
-#    carc = CarculatorInventory(
-#        database=database,
-#        version="3.7.1",
-#        fleet_file=DATA_DIR / "iam_output_files" / "fleet_files" / "remind" / "passenger_cars" / "fleet_file.csv",
-#        model="remind",
-#        year=2015,
-#        regions=["EUR"],
-#        filters=None,
-#        iam_data=
-#    )
-#    assert len(carc.import_db.data) >= 335

@@ -9,6 +9,7 @@ non-CO2 emissions (GAINS data).
 import csv
 from io import StringIO
 from pathlib import Path
+import yaml
 
 import numpy as np
 import pandas as pd
@@ -17,20 +18,14 @@ from cryptography.fernet import Fernet
 
 from . import DATA_DIR
 
-IAM_ELEC_MARKETS = DATA_DIR / "electricity" / "electricity_markets.csv"
-IAM_FUELS_MARKETS = DATA_DIR / "fuels" / "fuel_labels.csv"
-IAM_FUELS_EFFICIENCY_VARS = DATA_DIR / "fuels" / "fuel_efficiencies.csv"
-IAM_ELEC_EFFICIENCY_VARS = (
-    DATA_DIR / "electricity" / "electricity_efficiency_variables.csv"
-)
-IAM_CEMENT_EFFICIENCY_VARS = DATA_DIR / "cement" / "cement_efficiency_variables.csv"
-IAM_STEEL_EFFICIENCY_VARS = DATA_DIR / "steel" / "steel_efficiency_variables.csv"
+IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
+IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
+IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
+IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
 IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
-IAM_ELEC_EMISSIONS = DATA_DIR / "electricity" / "electricity_emissions.csv"
-IAM_PROD_VOLUMES = DATA_DIR / "iam_output_files" / "production_vars.csv"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
-IAM_CARBON_CAPTURE_VARS = DATA_DIR / "iam_output_files" / "carbon_capture_vars.csv"
+IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 
 
 def get_lifetime(list_tech):
@@ -174,11 +169,16 @@ class IAMDataCollection:
         self.electricity_markets = self.__get_iam_electricity_markets(data=data)
         self.fuel_markets = self.__get_iam_fuel_markets(data=data)
 
+        prod_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="name_aliases")
+        prod_vars.update(self.__get_iam_variable_labels(IAM_FUELS_VARS, key="name_aliases"))
+        prod_vars.update(self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="name_aliases"))
+        prod_vars.update(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="name_aliases"))
+
         self.production_volumes = self.__get_iam_production_volumes(
-            self.__get_iam_variable_labels(IAM_PROD_VOLUMES), data=data
+            prod_vars, data=data
         )
         self.carbon_capture_rate = self.__get_carbon_capture_rate(
-            dict_vars=self.__get_iam_variable_labels(IAM_CARBON_CAPTURE_VARS), data=data
+            dict_vars=self.__get_iam_variable_labels(IAM_CARBON_CAPTURE_VARS, key="name_aliases"), data=data
         )
 
         electricity_efficiencies = self.__get_iam_electricity_efficiencies(data=data)
@@ -207,7 +207,7 @@ class IAMDataCollection:
             dim="sector",
         )
 
-    def __get_iam_variable_labels(self, filepath):
+    def __get_iam_variable_labels(self, filepath, key):
         """
         Loads a csv file into a dictionary.
         This dictionary contains common terminology to `premise`
@@ -219,19 +219,14 @@ class IAMDataCollection:
         """
 
         dict_vars = {}
-        with open(filepath, encoding="utf-8") as file:
-            reader = csv.reader(file, delimiter=";")
-            for row in reader:
-                if row[0] == self.model:
-                    if row[1] in dict_vars:
-                        if isinstance(dict_vars[row[1]], list):
-                            dict_vars[row[1]].append(row[-1])
-                        else:
-                            old_val = [dict_vars[row[1]]]
-                            old_val.append(row[-1])
-                            dict_vars[row[1]] = old_val
-                    else:
-                        dict_vars[row[1]] = row[-1]
+
+        with open(filepath, 'r') as stream:
+            out = yaml.safe_load(stream)
+
+        for k, v in out.items():
+            if key in v:
+                if self.model in v[key]:
+                    dict_vars[k]=v[key][self.model]
 
         return dict_vars
 
@@ -419,8 +414,6 @@ class IAMDataCollection:
                 dict(region=region)
             ].round(3)
 
-            if region == "WEU":
-                print(market_shares.loc[dict(region=region)])
 
             # we remove NaNs and np.inf
             market_shares.loc[dict(region=region)].values[
@@ -430,32 +423,21 @@ class IAMDataCollection:
                 dict(region=region)
             ].fillna(0)
 
-            if region == "WEU":
-                print(market_shares.loc[dict(region=region)])
-
             # we fetch the technologies' lifetimes
             lifetime = get_lifetime(market_shares.variables.values)
             # get the capital replacement rate
             # which is here defined as -1 / lifetime
             cap_repl_rate = -1 / lifetime
 
-            if region == "WEU":
-                print(cap_repl_rate)
-
             # subtract the capital replacement (which is negative) rate
             # to the changes market share
             market_shares.loc[dict(region=region, year=self.year)] += cap_repl_rate
-
-            if region == "WEU":
-                print(market_shares.loc[dict(region=region)])
 
             # market decreasing faster than the average capital renewal rate
             # in this case, the idea is that oldest/non-competitive technologies
             # are likely to supply by increasing their lifetime
             # as the market does not justify additional capacity installation
             if volume_change < avg_cap_repl_rate:
-
-                print("decrease")
 
                 # we remove suppliers with a positive growth
                 market_shares.loc[dict(region=region)].values[
@@ -479,8 +461,6 @@ class IAMDataCollection:
             # market decreasing slowlier than the
             # capital renewal rate
             else:
-
-                print("increase")
 
                 # we remove suppliers with a negative growth
                 market_shares.loc[dict(region=region)].values[
@@ -513,7 +493,7 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_ELEC_MARKETS)
+        labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="name_aliases")
 
         # If hydrogen is not to be considered, it is removed from the technologies labels list
         if drop_hydrogen:
@@ -566,7 +546,7 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_ELEC_EFFICIENCY_VARS)
+        labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="eff_aliases")
 
         # If hydrogen is not to be considered, it is removed from the technologies labels list
         if drop_hydrogen:
@@ -622,8 +602,6 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_CEMENT_EFFICIENCY_VARS)
-
         # If the year specified is not contained within the range of years given by the IAM
         if self.year < data.year.values.min() or self.year > data.year.values.max():
             raise KeyError(
@@ -631,15 +609,18 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        # Interpolation between two periods
 
-        if "efficiency" in labels:
-            data_to_return = 1 / data.loc[:, [labels["efficiency"]], :]
+        if len(self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="eff_aliases")) > 0:
+            eff = self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="eff_aliases")
+
+            data_to_return = 1 / data.loc[:, [eff["cement"]], :]
         else:
+            prod = self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="name_aliases")
+            energy = self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="energy_use_aliases")
+
             data_to_return = 1 / (
-                data.loc[:, labels["energy use"], :].sum(dim="variables")
-                / data.loc[:, [labels["production"]], :]
+                    data.loc[:, energy["cement"], :].sum(dim="variables")
+                    / data.loc[:, [prod["cement"]], :]
             )
 
         data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
@@ -682,8 +663,6 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_STEEL_EFFICIENCY_VARS)
-
         # If the year specified is not contained within the range of years given by the IAM
         if self.year < data.year.values.min() or self.year > data.year.values.max():
             raise KeyError(
@@ -691,35 +670,47 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        # Interpolation between two periods
+        labels = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
+
+
+        if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")) > 0:
+            eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
+            data_primary = 1 / data.loc[:, [eff["steel - primary"]], :]
+        else:
+            prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="name_aliases")
+            energy = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="energy_use_aliases")
+
+            if isinstance(energy["steel - primary"], str):
+                energy_in = [energy["steel - primary"]]
+            else:
+                energy_in = energy["steel - primary"]
+
+            data_primary = 1 / (
+                    data.loc[:, energy_in, :].sum(dim="variables")
+                    / data.loc[:, [prod["steel - primary"]], :]
+            )
 
         # primary steel efficiency changes relative to 2020
-        energy_use_var = labels["energy use - primary"]
-        energy_use_var = (
-            [energy_use_var] if isinstance(energy_use_var, str) else energy_use_var
-        )
-        prod_var = [labels["production - primary"]]
-
-        data_primary = 1 / (
-            data.loc[:, energy_use_var, :].sum(dim="variables")
-            / data.loc[:, prod_var, :]
-        )
-
         data_primary = data_primary.interp(year=self.year) / data_primary.sel(year=2020)
 
+        if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")) > 0:
+            eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
+            data_secondary = 1 / data.loc[:, [eff["steel - secondary"]], :]
+        else:
+            prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="name_aliases")
+            energy = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="energy_use_aliases")
+
+            if isinstance(energy["steel - secondary"], str):
+                energy_in = [energy["steel - secondary"]]
+            else:
+                energy_in = energy["steel - secondary"]
+
+            data_secondary = 1 / (
+                    data.loc[:, energy_in, :].sum(dim="variables")
+                    / data.loc[:, [prod["steel - secondary"]], :]
+            )
+
         # secondary steel efficiency changes relative to 2020
-        energy_use_var = labels["energy use - secondary"]
-        energy_use_var = (
-            [energy_use_var] if isinstance(energy_use_var, str) else energy_use_var
-        )
-        prod_var = [labels["production - secondary"]]
-
-        data_secondary = 1 / (
-            data.loc[:, energy_use_var, :].sum(dim="variables")
-            / data.loc[:, prod_var, :]
-        )
-
         data_secondary = data_secondary.interp(year=self.year) / data_secondary.sel(
             year=2020
         )
@@ -765,7 +756,7 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_ELEC_EMISSIONS)
+        labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="gains_aliases")
 
         # If the year specified is not contained within the range of years given by the IAM
         if self.year < data.year.values.min() or self.year > data.year.values.max():
@@ -912,7 +903,7 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_FUELS_MARKETS)
+        labels = self.__get_iam_variable_labels(IAM_FUELS_VARS, key="name_aliases")
 
         list_technologies = list(labels.values())
 
@@ -966,7 +957,7 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_FUELS_EFFICIENCY_VARS)
+        labels = self.__get_iam_variable_labels(IAM_FUELS_VARS, key="eff_aliases")
 
         list_technologies = list(labels.values())
 

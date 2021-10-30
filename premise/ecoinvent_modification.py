@@ -635,6 +635,10 @@ class NewDatabase:
 
         self.database = convert_db_to_dataframe(self.database)
 
+        print(
+            "\n////////////////////// EXTRACTING IAM DATA ///////////////////////"
+        )
+
         for scenario in self.scenarios:
             scenario["external data"] = IAMDataCollection(
                 model=scenario["model"],

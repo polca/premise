@@ -8,8 +8,8 @@ from wurst import searching as ws
 
 from . import DATA_DIR
 
-FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
+FILEPATH_FIX_NAMES = (DATA_DIR / "utils" / "fix_names.csv")
+FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "utils" / "export" / "dict_biosphere.txt")
 
 
 class DatabaseCleaner:

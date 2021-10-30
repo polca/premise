@@ -21,8 +21,7 @@ from .geomap import Geomap
 from .utils import (
     c,
     create_scenario_label,
-    get_fuel_co2_emission_factors,
-    get_lower_heating_values,
+    get_fuel_properties,
     relink_technosphere_exchanges,
 )
 
@@ -120,7 +119,7 @@ class BaseTransformation:
         self.geo = Geomap(model=model, current_regions=self.regions)
         self.pathway = pathway
         self.year = year
-        self.fuels_lhv = get_lower_heating_values()
+        self.fuels_lhv = get_fuel_properties()
         mapping = InventorySet(self.database)
         self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
         self.fuel_map = mapping.generate_fuel_map()

@@ -33,7 +33,7 @@ class Fuels:
         )
         self.scenario = pathway
         self.year = year
-        self.fuels_lhv = get_lower_heating_values()
+        self.fuels_lhv = get_fuel_properties()
         self.fuel_labels = self.iam_data.fuel_markets.coords["variables"].values
         self.list_iam_regions = (
             regions or iam_data.data.coords["region"].values.tolist()

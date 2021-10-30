@@ -21,21 +21,16 @@ from wurst.transformations.uncertainty import rescale_exchange
 from . import geomap
 from .export import *
 
-CO2_FUELS = DATA_DIR / "fuels" / "fuel_co2_emission_factor.txt"
-LHV_FUELS = DATA_DIR / "fuels" / "fuels_lower_heating_value.txt"
-CROPS_LAND_USE = DATA_DIR / "fuels" / "crops_land_use.csv"
-CROPS_LAND_USE_CHANGE_CO2 = DATA_DIR / "fuels" / "crops_land_use_change_CO2.csv"
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
 
 STEEL_RECYCLING_SHARES = DATA_DIR / "steel" / "steel_recycling_shares.csv"
-METALS_RECYCLING_SHARES = DATA_DIR / "metals" / "metals_recycling_shares.csv"
 
-REMIND_TO_FUELS = DATA_DIR / "steel" / "remind_fuels_correspondance.txt"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 BLACK_WHITE_LISTS = DATA_DIR / "utils" / "black_white_list_efficiency.yml"
+FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 
 
 class c(enum.Enum):
@@ -119,14 +114,15 @@ def calculate_dataset_efficiency(exchanges: List[dict], ds_name: str, white_list
 
     # test in case no energy input is found
     # if an energy output is found
-    # this is pontentially an issue
+    # this is potentially an issue
     if input_energy < 1e-12:
-        if output_energy > 1e-6:
+        if output_energy > 1e-12:
 
             if not any(i in ds_name for i in white_list):
                 print(
                     f"{pprint.pformat([(i['name'], i['type'], i['amount'], i['unit']) for i in exchanges])} {output_energy} {input_energy}\n"
                 )
+                print(input_energy, output_energy)
         else:
             # no energy input
             # but no energy output either
@@ -147,7 +143,7 @@ def extract_energy(iexc: dict) -> float:
     :param iexc: a dictionary containing an exchange
     :return: an amount of energy, in MJ
     """
-    fuels_lhv = get_lower_heating_values()
+    fuels_lhv = get_fuel_properties()
     fuel_names = list(fuels_lhv.keys())
     amount = max((iexc["amount"], 0))
 
@@ -155,7 +151,7 @@ def extract_energy(iexc: dict) -> float:
         input_energy = amount
     elif iexc["unit"].strip().lower() == "kilowatt hour":
         input_energy = amount * 3.6
-    else:
+    elif iexc["unit"] in ("kilogram", "cubic meter"):
         # if the calorific value of the exchange needs to be found
         # we look up the `product` of the exchange if it is of `type`
         # technosphere or production
@@ -170,7 +166,10 @@ def extract_energy(iexc: dict) -> float:
         if not best_match:
             input_energy = 0.0
         else:
-            input_energy = amount * fuels_lhv[best_match]
+            input_energy = amount * fuels_lhv[best_match]["lhv"]
+
+    else:
+        input_energy = 0.0
 
     return input_energy
 
@@ -183,7 +182,7 @@ def find_efficiency(ids: dict) -> float:
     """
 
     # dictionary with fuels as keys, calorific values as values
-    fuels_lhv = get_lower_heating_values()
+    fuels_lhv = get_fuel_properties()
     # list of fuels names
     fuel_names = list(fuels_lhv.keys())
 
@@ -367,38 +366,24 @@ def get_land_use_change_CO2_for_crops(model):
     return d
 
 
-def get_fuel_co2_emission_factors():
-    """
-    Return a dictionary with fuel names as keys and, as values:
-    * CO_2 emission factor, in kg CO2 per MJ of lower heating value
-    * share of biogenic CO2
-
-    Source: https://www.plateformeco2.ch/portal/documents/10279/16917/IPCC+(2006),%20Guidelines+for+National+Greenhouse+Gas+Inventories.pdf/a3838a98-5ad6-4da5-82f3-c9430007a158
-
-    :return: dict
-    """
-    d = {}
-    with open(CO2_FUELS) as f:
-        r = csv.reader(f, delimiter=";")
-        for row in r:
-            d[row[0]] = {"co2": float(row[1]), "bio_share": float(row[2])}
-
-    return d
-
-
 @lru_cache
-def get_lower_heating_values():
+def get_fuel_properties():
     """
-    Loads a csv file into a dictionary. This dictionary contains lower heating values for a number of fuel types.
-    Mostly taken from: https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html
+    Loads a yaml file into a dictionary.
+    This dictionary contains lower heating values
+    and CO2 emission factors for a number of fuel types.
+    Mostly taken from ecoinvent and
+    https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html
 
     :return: dictionary that contains lower heating values
     :rtype: dict
     """
-    with open(LHV_FUELS) as f:
-        d = dict(filter(None, csv.reader(f, delimiter=";")))
-        d = {k.replace(" ", "").strip().lower(): float(v) for k, v in d.items()}
-    return d
+
+    with open(FUELS_PROPERTIES, 'r') as stream:
+        fuel_props = yaml.safe_load(stream)
+
+    fuel_props = dict((k.replace(" ", "").strip().lower(), v) for k, v in fuel_props.items())
+    return fuel_props
 
 
 def get_efficiency_ratio_solar_PV(year, power):

@@ -18,8 +18,7 @@ from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
 from .utils import relink_technosphere_exchanges
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
-
+FILEPATH_BIOSPHERE_FLOWS = (DATA_DIR / "utils" / "export" / "dict_biosphere.txt")
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
 
