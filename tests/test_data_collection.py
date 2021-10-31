@@ -6,7 +6,6 @@ import pytest
 
 from premise.data_collection import *
 
-
 fp = Path(DATA_DIR / "iam_output_files")
 
 dc = IAMDataCollection(

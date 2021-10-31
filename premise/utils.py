@@ -342,7 +342,7 @@ def get_crops_properties():
 
     :return: dict
     """
-    with open(CROPS_PROPERTIES, 'r') as stream:
+    with open(CROPS_PROPERTIES, "r") as stream:
         crop_props = yaml.safe_load(stream)
 
     return crop_props
