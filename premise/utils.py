@@ -177,6 +177,15 @@ def extract_energy(iexc: dict) -> float:
 
     return input_energy
 
+@lru_cache
+def get_black_white_list():
+    with open(BLACK_WHITE_LISTS, "r") as stream:
+        out = yaml.safe_load(stream)
+    black_list = out["blacklist"]
+    white_list = out["whitelist"]
+
+    return white_list, black_list
+
 
 def find_efficiency(ids: dict) -> float:
     """
@@ -190,15 +199,12 @@ def find_efficiency(ids: dict) -> float:
     # list of fuels names
     fuel_names = list(fuels_lhv.keys())
 
-    # list of strings that, if contained
+    # lists of strings that, if contained
     # in activity name, indicate that said
     # activity should either be skipped
     # or forgiven if an error is thrown
 
-    with open(BLACK_WHITE_LISTS, "r") as stream:
-        out = yaml.safe_load(stream)
-    black_list = out["blacklist"]
-    white_list = out["whitelist"]
+    white_list, black_list = get_black_white_list()
 
     if (
         ids["unit"] in ("megajoule", "kilowatt hour", "cubic meter")

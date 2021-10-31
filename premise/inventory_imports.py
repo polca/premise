@@ -280,11 +280,11 @@ class BaseInventoryImport:
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
-                    if "reference product" in y:
-                        try:
-                            assert y["product"] == y["reference product"]
-                        except AssertionError:
-                            y["product"] = self.correct_product_field(y)
+                    #if "reference product" in y:
+                    #    try:
+                    #        assert y["product"] == y["reference product"]
+                    #    except AssertionError:
+                    #        y["product"] = self.correct_product_field(y)
 
         # Add a `code` field if missing
         for x in self.import_db.data:
