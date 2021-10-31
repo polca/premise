@@ -28,27 +28,21 @@ class Fuels:
         self.original_db = original_db
         self.iam_data = iam_data
         self.model = model
-        self.geo = Geomap(
-            model=model, current_regions=iam_data.data.coords["region"].values.tolist()
-        )
+        self.geo = Geomap(model=model)
         self.scenario = pathway
         self.year = year
-        self.fuels_lhv = get_fuel_properties()
         self.fuel_labels = self.iam_data.fuel_markets.coords["variables"].values
         self.list_iam_regions = (
             regions or iam_data.data.coords["region"].values.tolist()
         )
         mapping = InventorySet(self.db)
         self.fuels_map = mapping.generate_fuel_map()
-        self.fuel_co2 = get_fuel_co2_emission_factors()
-        self.land_use_per_crop_type = get_land_use_for_crops(model=self.model)
-        self.land_use_change_CO2_per_crop_type = get_land_use_change_CO2_for_crops(
-            model=self.model
-        )
+        self.fuel_properties = get_fuel_properties()
+        self.crops_properties = get_crops_properties()
         self.new_fuel_markets = {}
 
     def get_crop_climate_mapping(self):
-        """Returns a dictionnary thatindictes the type of crop
+        """Returns a dictionnary that indicates the type of crop
         used for bioethanol production per type of climate"""
 
         d = {}
@@ -1157,7 +1151,7 @@ class Fuels:
                     # and if we have land use info from the IAM
                     if (
                         "farming and supply" in ds["name"].lower()
-                        and crop_type.lower() in self.land_use_per_crop_type
+                        and crop_type.lower() in self.crops_properties
                     ):
 
                         # lower heating value, as received
@@ -1176,7 +1170,7 @@ class Fuels:
                                     self.iam_data.data.loc[
                                         dict(
                                             region=region,
-                                            variables=self.land_use_per_crop_type[
+                                            variables=self.crops_properties[
                                                 crop_type
                                             ],
                                         )
@@ -1210,7 +1204,7 @@ class Fuels:
                     # and if we have land use change CO2 info from the IAM
                     if (
                         "farming and supply" in ds["name"].lower()
-                        and crop_type.lower() in self.land_use_change_CO2_per_crop_type
+                        and crop_type.lower() in self.crops_properties
                     ):
 
                         # then, we should include the Land Use Change-induced CO2 emissions
@@ -1221,9 +1215,7 @@ class Fuels:
                             self.iam_data.data.loc[
                                 dict(
                                     region=region,
-                                    variables=self.land_use_change_CO2_per_crop_type[
-                                        crop_type
-                                    ],
+                                    variables=self.crops_properties[crop_type]["land_use_change"][self.model],
                                 )
                             ]
                             .interp(year=self.year)
@@ -1811,24 +1803,24 @@ class Fuels:
 
                                     amount = (
                                         supplier_share
-                                        * (reference_LHV / self.fuels_lhv[fuel])
+                                        * (reference_LHV / self.fuel_properties[fuel]["lhv"])
                                         * conversion_factor
                                     )
 
                                     fossil_co2 += (
                                         amount
-                                        * self.fuels_lhv[fuel]
-                                        * self.fuel_co2[fuel]["co2"]
-                                        * (1 - self.fuel_co2[fuel]["bio_share"])
+                                        * self.fuel_properties[fuel]["lhv"]
+                                        * self.fuel_properties[fuel]["co2"]
+                                        * (1 - self.fuel_properties[fuel]["biogenic_share"])
                                     )
                                     non_fossil_co2 += (
                                         amount
-                                        * self.fuels_lhv[fuel]
-                                        * self.fuel_co2[fuel]["co2"]
-                                        * self.fuel_co2[fuel]["bio_share"]
+                                        * self.fuel_properties[fuel]["lhv"]
+                                        * self.fuel_properties[fuel]["co2"]
+                                        * self.fuel_properties[fuel]["biogenic_share"]
                                     )
 
-                                    final_lhv += amount * self.fuels_lhv[fuel]
+                                    final_lhv += amount * self.fuel_properties[fuel]["lhv"]
 
                                     ds["exchanges"].append(
                                         {
@@ -1856,13 +1848,13 @@ class Fuels:
                                             supplier[-1],
                                             share,
                                             amount,
-                                            self.fuels_lhv[fuel],
-                                            self.fuel_co2[fuel]["co2"],
-                                            self.fuel_co2[fuel]["bio_share"],
+                                            self.fuel_properties[fuel]["lhv"],
+                                            self.fuel_properties[fuel]["co2"],
+                                            self.fuel_properties[fuel]["biogenic_share"],
                                         ]
                                     )
 
-                                string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuels_lhv[fuel]} MJ/kg. "
+                                string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuel_properties[fuel]['lhv']} MJ/kg. "
 
                     string += f"Final average LHV of {final_lhv} MJ/kg."
 

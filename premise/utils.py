@@ -31,6 +31,7 @@ EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 BLACK_WHITE_LISTS = DATA_DIR / "utils" / "black_white_list_efficiency.yml"
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
+CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 
 
 class c(enum.Enum):
@@ -334,38 +335,17 @@ def eidb_label(model, scenario, year):
     return "ecoinvent_" + model + "_" + scenario + "_" + str(year)
 
 
-def get_land_use_for_crops(model):
-    """
-    Return a dictionary with crop names as keys and IAM labels as values
-    relating to land use per crop type
-
-    :return: dict
-    """
-    d = {}
-    with open(CROPS_LAND_USE) as f:
-        r = csv.reader(f, delimiter=";")
-        for row in r:
-            if row[0] == model:
-                d[row[1]] = row[2]
-
-    return d
-
-
-def get_land_use_change_CO2_for_crops(model):
+def get_crops_properties():
     """
     Return a dictionary with crop names as keys and IAM labels as values
     relating to land use change CO2 per crop type
 
     :return: dict
     """
-    d = {}
-    with open(CROPS_LAND_USE_CHANGE_CO2) as f:
-        r = csv.reader(f, delimiter=";")
-        for row in r:
-            if row[0] == model:
-                d[row[1]] = row[2]
+    with open(CROPS_PROPERTIES, 'r') as stream:
+        crop_props = yaml.safe_load(stream)
 
-    return d
+    return crop_props
 
 
 @lru_cache

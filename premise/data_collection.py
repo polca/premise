@@ -752,8 +752,8 @@ class IAMDataCollection:
         data_to_return = np.clip(data_to_return, 0.5, 2)
 
         data_to_return.coords["variables"] = [
-            "primary steel",
-            "secondary steel",
+            "steel - primary",
+            "steel - secondary",
         ]
 
         return data_to_return
