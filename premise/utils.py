@@ -41,6 +41,7 @@ class c(enum.Enum):
     cons_name = "to activity"
     cons_prod = "to product"
     cons_loc = "to location"
+    cons_prod_vol = "production volume"
     type = "type"
     cons_amount = "amount"
     unit = "unit"
@@ -252,8 +253,9 @@ def convert_db_to_dataframe(database):
 
         consumer_key = create_hash(consumer_name, consumer_product, consumer_loc)
 
-        # calculate the efficiency of the dataset
+        consumer_prod_vol = np.nan
 
+        # calculate the efficiency of the dataset
         # check first if a `parameters` or `efficiency` key is present
         if any(i in ids for i in ["parameters", "efficiency"]):
 
@@ -294,6 +296,9 @@ def convert_db_to_dataframe(database):
             if iexc["type"] == "production":
                 comment = ids.get("comment", "")
 
+                if "production volume" in iexc:
+                    consumer_prod_vol = iexc["production volume"]
+
             if iexc["type"] in ("technosphere", "biosphere"):
                 comment = iexc.get("comment", "")
 
@@ -313,6 +318,7 @@ def convert_db_to_dataframe(database):
                     consumer_name,
                     consumer_product,
                     consumer_loc,
+                    consumer_prod_vol,
                     producer_type,
                     iexc["amount"],
                     iexc["unit"],
@@ -326,8 +332,7 @@ def convert_db_to_dataframe(database):
             )
 
     return pd.DataFrame(
-        data_to_ret,
-        columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
+        data_to_ret, columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
     )
 
 
@@ -342,7 +347,7 @@ def get_crops_properties():
 
     :return: dict
     """
-    with open(CROPS_PROPERTIES, 'r') as stream:
+    with open(CROPS_PROPERTIES, "r") as stream:
         crop_props = yaml.safe_load(stream)
 
     return crop_props
@@ -463,12 +468,7 @@ def create_codes_and_names_of_A_matrix(db):
     :rtype: dict
     """
     return {
-        (
-            i["name"],
-            i["reference product"],
-            i["unit"],
-            i["location"],
-        ): i["code"]
+        (i["name"], i["reference product"], i["unit"], i["location"],): i["code"]
         for i in db
     }
 

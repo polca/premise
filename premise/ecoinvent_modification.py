@@ -660,6 +660,8 @@ class NewDatabase:
 
             self.database[(scenario_label, c.comment)] = ""
 
+        print("\nDone!")
+
     def __clean_database(self):
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
