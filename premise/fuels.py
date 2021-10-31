@@ -1170,9 +1170,7 @@ class Fuels:
                                     self.iam_data.data.loc[
                                         dict(
                                             region=region,
-                                            variables=self.crops_properties[
-                                                crop_type
-                                            ],
+                                            variables=self.crops_properties[crop_type],
                                         )
                                     ]
                                     .interp(year=self.year)
@@ -1215,7 +1213,9 @@ class Fuels:
                             self.iam_data.data.loc[
                                 dict(
                                     region=region,
-                                    variables=self.crops_properties[crop_type]["land_use_change"][self.model],
+                                    variables=self.crops_properties[crop_type][
+                                        "land_use_change"
+                                    ][self.model],
                                 )
                             ]
                             .interp(year=self.year)
@@ -1803,7 +1803,10 @@ class Fuels:
 
                                     amount = (
                                         supplier_share
-                                        * (reference_LHV / self.fuel_properties[fuel]["lhv"])
+                                        * (
+                                            reference_LHV
+                                            / self.fuel_properties[fuel]["lhv"]
+                                        )
                                         * conversion_factor
                                     )
 
@@ -1811,7 +1814,12 @@ class Fuels:
                                         amount
                                         * self.fuel_properties[fuel]["lhv"]
                                         * self.fuel_properties[fuel]["co2"]
-                                        * (1 - self.fuel_properties[fuel]["biogenic_share"])
+                                        * (
+                                            1
+                                            - self.fuel_properties[fuel][
+                                                "biogenic_share"
+                                            ]
+                                        )
                                     )
                                     non_fossil_co2 += (
                                         amount
@@ -1820,7 +1828,9 @@ class Fuels:
                                         * self.fuel_properties[fuel]["biogenic_share"]
                                     )
 
-                                    final_lhv += amount * self.fuel_properties[fuel]["lhv"]
+                                    final_lhv += (
+                                        amount * self.fuel_properties[fuel]["lhv"]
+                                    )
 
                                     ds["exchanges"].append(
                                         {
@@ -1850,7 +1860,9 @@ class Fuels:
                                             amount,
                                             self.fuel_properties[fuel]["lhv"],
                                             self.fuel_properties[fuel]["co2"],
-                                            self.fuel_properties[fuel]["biogenic_share"],
+                                            self.fuel_properties[fuel][
+                                                "biogenic_share"
+                                            ],
                                         ]
                                     )
 
