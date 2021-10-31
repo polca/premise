@@ -280,7 +280,7 @@ class BaseInventoryImport:
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
-                    #if "reference product" in y:
+                    # if "reference product" in y:
                     #    try:
                     #        assert y["product"] == y["reference product"]
                     #    except AssertionError:

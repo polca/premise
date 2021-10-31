@@ -177,6 +177,7 @@ def extract_energy(iexc: dict) -> float:
 
     return input_energy
 
+
 @lru_cache
 def get_black_white_list():
     with open(BLACK_WHITE_LISTS, "r") as stream:
