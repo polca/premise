@@ -332,7 +332,8 @@ def convert_db_to_dataframe(database):
             )
 
     return pd.DataFrame(
-        data_to_ret, columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
+        data_to_ret,
+        columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
     )
 
 
@@ -468,7 +469,12 @@ def create_codes_and_names_of_A_matrix(db):
     :rtype: dict
     """
     return {
-        (i["name"], i["reference product"], i["unit"], i["location"],): i["code"]
+        (
+            i["name"],
+            i["reference product"],
+            i["unit"],
+            i["location"],
+        ): i["code"]
         for i in db
     }
 
