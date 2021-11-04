@@ -107,11 +107,10 @@ jobs:
         shell: bash -l {0}
         run: conda info
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
-      - name: Test
-        run: echo "${BRANCH_NAME}"
+      - name: Git checkout
+        uses: actions/checkout@v1
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
 
       - name: Publish distribution 📦 to Anaconda if Push
         if: github.ref == 'refs/heads/master'
@@ -134,7 +133,7 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          PKG_NAME=premise + "_" + $BRANCH_NAME
+          PKG_NAME=premise + "_" + ${GITHUB_REF##*/}
           USER=romainsacchi
           conda install anaconda-client
           mkdir ~/conda-bld
