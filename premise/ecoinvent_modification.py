@@ -714,7 +714,9 @@ class NewDatabase:
         # check that directory exists, otherwise create it
         Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
         # build file path
-        file_name = Path(DIR_CACHED_DB / f"cached_{db_name.strip().lower()}_inventories.pickle")
+        file_name = Path(
+            DIR_CACHED_DB / f"cached_{db_name.strip().lower()}_inventories.pickle"
+        )
 
         # check that file path leads to an existing file
         if file_name.exists():
@@ -722,7 +724,9 @@ class NewDatabase:
             return pickle.load(open(file_name, "rb"))
         else:
             # extract the database, pickle it for next time and return it
-            print("Cannot find cached inventories. Will create them now for next time...")
+            print(
+                "Cannot find cached inventories. Will create them now for next time..."
+            )
             data = self.__import_inventories()
             pickle.dump(data, open(file_name, "wb"))
             return None
@@ -1029,7 +1033,8 @@ class NewDatabase:
         print("Done!")
 
         wurst.write_brightway2_database(
-            self.database, name,
+            self.database,
+            name,
         )
 
     def write_db_to_brightway(self, name=None):
@@ -1071,7 +1076,8 @@ class NewDatabase:
             scenario["database"] = check_for_duplicates(scenario["database"])
 
             wurst.write_brightway2_database(
-                scenario["database"], name[scen],
+                scenario["database"],
+                name[scen],
             )
 
     def write_db_to_matrices(self, filepath=None):
