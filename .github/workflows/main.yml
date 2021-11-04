@@ -152,7 +152,7 @@ jobs:
   test conda:
     name: (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    needs: build
+    needs: conda
 
     strategy:
       fail-fast: false
