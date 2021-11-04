@@ -4,9 +4,7 @@ from pathlib import Path
 import pytest
 
 from premise import DATA_DIR, INVENTORY_DIR
-from premise.inventory_imports import (
-    DefaultInventory
-)
+from premise.inventory_imports import DefaultInventory
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
@@ -91,9 +89,9 @@ def test_biosphere_dict_2():
                     == "38a622c6-f086-4763-a952-7c6b3b1c42ba"
                 )
 
+
 def test_load_inventories():
     db, version = get_db()
     testpath = Path("tests/data/somefile.xlsx")
     carma = DefaultInventory(db, version_in="3.7", path=testpath, version_out="3.7")
     assert len(carma.import_db.data) == 22
-

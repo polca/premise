@@ -104,7 +104,6 @@ class BaseInventoryImport:
                     f"The inventory file {self.path} could not be found."
                 )
 
-
         self.import_db = self.load_inventory(path)
 
         # register migration maps
