@@ -108,10 +108,10 @@ jobs:
         run: conda info
 
       - name: Extract branch name
-          shell: bash
-          run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
-            - name: Test
-              run: echo "${BRANCH_NAME}"
+        shell: bash
+        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+          - name: Test
+            run: echo "${BRANCH_NAME}"
 
       - name: Publish distribution 📦 to Anaconda if Push
         if: github.ref == 'refs/heads/master'
@@ -130,20 +130,20 @@ jobs:
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
       - name: Publish distribution 📦 to Anaconda if Push from non-master branch
-          if: github.ref != 'refs/heads/master'
-          shell: bash -l {0}
+        if: github.ref != 'refs/heads/master'
+        shell: bash -l {0}
 
-          run: |
-            PKG_NAME=premise + "_" + $BRANCH_NAME
-            USER=romainsacchi
-            conda install anaconda-client
-            mkdir ~/conda-bld
-            conda config --set anaconda_upload no
-            export CONDA_BLD_PATH=~/conda-bld
-            export VERSION=`date +%Y.%m.%d`
-            conda build "conda/" --old-build-string
-            ls $CONDA_BLD_PATH/noarch/
-            anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
+        run: |
+          PKG_NAME=premise + "_" + $BRANCH_NAME
+          USER=romainsacchi
+          conda install anaconda-client
+          mkdir ~/conda-bld
+          conda config --set anaconda_upload no
+          export CONDA_BLD_PATH=~/conda-bld
+          export VERSION=`date +%Y.%m.%d`
+          conda build "conda/" --old-build-string
+          ls $CONDA_BLD_PATH/noarch/
+          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
   Pypi:
     runs-on: ubuntu-latest
