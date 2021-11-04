@@ -134,7 +134,7 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          PKG_NAME=premise_${GITHUB_REF##*/}
+          PKG_NAME=premise
           USER=romainsacchi
           conda install anaconda-client
           conda install conda-verify
