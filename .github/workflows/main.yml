@@ -82,8 +82,8 @@ jobs:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
 
   conda:
-    name: (${{ matrix.python-version }}, ${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: (${{ matrix.python-version }}, ubuntu-latest)
+    runs-on: ubuntu-latest
     needs: build
 
     strategy:
