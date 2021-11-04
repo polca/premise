@@ -171,7 +171,7 @@ jobs:
           conda-build-version: 3.21.4
           activate-environment: test
 
-      - name: Pull distribution 📦 from Anaconda and test it
+      - name: Pull distribution 📦 from Anaconda and test it if master branch
         if: github.ref == 'refs/heads/master'
         shell: bash -l {0}
 
@@ -182,7 +182,7 @@ jobs:
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
 
-      - name: Pull distribution 📦 from Anaconda and test it
+      - name: Pull distribution 📦 from Anaconda and test it if non-master branch
         if: github.ref != 'refs/heads/master'
         shell: bash -l {0}
 
@@ -220,6 +220,7 @@ jobs:
         with:
           user: ${{ secrets.PYPI_USER }}
           password: ${{ secrets.PYPI_PASSWORD }}
+          skip_existing: true
 
       - name: Publish distribution 📦 to Test PyPI if Push
         uses: pypa/gh-action-pypi-publish@master
@@ -227,3 +228,4 @@ jobs:
           user: ${{ secrets.TEST_PYPI_USER }}
           password: ${{ secrets.TEST_PYPI_PASSWORD }}
           repository_url: https://test.pypi.org/legacy/
+          skip_existing: true
