@@ -130,7 +130,7 @@ jobs:
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
       - name: Publish distribution 📦 to Anaconda if Push from non-master branch
-        if: github.ref != 'refs/heads/master'
+        if: github.ref ! 'refs/heads/master'
         shell: bash -l {0}
 
         run: |
