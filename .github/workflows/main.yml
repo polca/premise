@@ -143,7 +143,7 @@ jobs:
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=${GITHUB_REF##*/}_`date +%Y.%m.%d`
           conda build "conda/" --old-build-string
-          conda-verify $CONDA_BLD_PATH/noarch/$PKG_NAME
+          conda-verify $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
           ls $CONDA_BLD_PATH/noarch/
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
