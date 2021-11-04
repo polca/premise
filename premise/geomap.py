@@ -38,7 +38,7 @@ class Geomap:
         self.model = model
         self.geo = geomatcher
         self.additional_mappings = get_additional_mapping()
-        self.iam_to_iam_mappings = get_additional_mapping()
+        self.iam_to_iam_mappings = get_iam_to_iam_mapping()
 
         self.iam_regions = [
             x[1]
@@ -186,4 +186,5 @@ class Geomap:
         :param: to_iam: the IAM to search the equivalent for
         :return: the equivalent location
         """
+
         return self.iam_to_iam_mappings[self.model][location][to_iam]

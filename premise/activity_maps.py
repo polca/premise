@@ -2,8 +2,8 @@ import csv
 
 from . import DATA_DIR
 
-REMIND_TO_ECOINVENT_EMISSION_FILEPATH = (
-    DATA_DIR / "ecoinvent_to_gains_emission_mappping.csv"
+GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
+    DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
 )
 
 
@@ -599,14 +599,14 @@ class InventorySet:
         :rtype: dict
         """
 
-        if not REMIND_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
+        if not GAINS_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
             raise FileNotFoundError(
                 "The dictionary of emission labels correspondences could not be found."
             )
 
         csv_dict = {}
 
-        with open(REMIND_TO_ECOINVENT_EMISSION_FILEPATH) as f:
+        with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH) as f:
             input_dict = csv.reader(f, delimiter=";")
             for row in input_dict:
                 csv_dict[row[0]] = row[1]
