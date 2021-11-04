@@ -191,7 +191,7 @@ class BaseInventoryImport:
         """
 
         self.prepare_inventory()
-        self.database.extend(self.import_db)
+        return self.import_db
 
     def search_exchanges(self, srchdict):
         """Search :attr:`import_db` by field values.

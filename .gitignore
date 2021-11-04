@@ -9,6 +9,7 @@ data/export/
 */data/logs/*
 */data/export/*
 */data/matrices/*
+*/data/cache/*
 
 *.pyc
 
