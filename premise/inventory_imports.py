@@ -94,14 +94,16 @@ class BaseInventoryImport:
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code()
 
-        path = Path(path)
-
-        if path != Path("."):
-            if not path.is_file():
-                raise FileNotFoundError(
-                    f"The inventory file {path} could not be found."
-                )
+        if not isinstance(path, Path):
+            path = Path(path)
         self.path = path
+
+        if self.path != Path("."):
+            if not self.path.exists():
+                raise FileNotFoundError(
+                    f"The inventory file {self.path} could not be found."
+                )
+
 
         self.import_db = self.load_inventory(path)
 

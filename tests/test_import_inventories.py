@@ -5,10 +5,7 @@ import pytest
 
 from premise import DATA_DIR, INVENTORY_DIR
 from premise.inventory_imports import (
-    BaseInventoryImport,
-    BiofuelInventory,
-    CarculatorInventory,
-    CarmaCCSInventory,
+    DefaultInventory
 )
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -57,15 +54,14 @@ def get_db():
 def test_file_exists():
     db, version = get_db()
     with pytest.raises(FileNotFoundError) as wrapped_error:
-        BaseInventoryImport(db, version, "testfile")
+        DefaultInventory(db, version_in=version, path="somepath", version_out="3.7")
     assert wrapped_error.type == FileNotFoundError
 
 
 def test_biosphere_dict():
     db, version = get_db()
-    testpath = Path("testfile")
-    open(testpath, "w")
-    dbc = BaseInventoryImport(db, version, testpath)
+    testpath = Path("tests/data/somefile.xlsx")
+    dbc = DefaultInventory(db, version_in=version, path=testpath, version_out="3.7")
     assert (
         dbc.biosphere_dict[
             ("1,4-Butanediol", "air", "urban air close to ground", "kilogram")
@@ -73,14 +69,12 @@ def test_biosphere_dict():
         == "38a622c6-f086-4763-a952-7c6b3b1c42ba"
     )
 
-    testpath.unlink()
-
 
 def test_biosphere_dict_2():
     db, version = get_db()
-    testpath = Path("testfile")
-    open(testpath, "w")
-    dbc = BaseInventoryImport(db, version, testpath)
+    testpath = Path("tests/data/somefile.xlsx")
+
+    dbc = DefaultInventory(db, version_in=version, path=testpath, version_out="3.7")
 
     for act in dbc.database:
         for exc in act["exchanges"]:
@@ -97,16 +91,9 @@ def test_biosphere_dict_2():
                     == "38a622c6-f086-4763-a952-7c6b3b1c42ba"
                 )
 
-    testpath.unlink()
-
-
-def test_load_carma():
+def test_load_inventories():
     db, version = get_db()
-    carma = CarmaCCSInventory(db, version, FILEPATH_CARMA_INVENTORIES)
-    assert len(carma.import_db.data) == 148
+    testpath = Path("tests/data/somefile.xlsx")
+    carma = DefaultInventory(db, version_in="3.7", path=testpath, version_out="3.7")
+    assert len(carma.import_db.data) == 22
 
-
-def test_load_biofuel():
-    db, version = get_db()
-    bio = BiofuelInventory(db, version, FILEPATH_BIOFUEL_INVENTORIES)
-    assert len(bio.import_db.data) == 35
