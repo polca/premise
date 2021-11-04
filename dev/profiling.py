@@ -6,6 +6,7 @@ import brightway2 as bw
 
 from premise import *
 
+
 def main():
     NewDatabase(
         scenarios=[
