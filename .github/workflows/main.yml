@@ -133,7 +133,7 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          PKG_NAME=premise + "_" + ${GITHUB_REF##*/}
+          PKG_NAME=premise-${GITHUB_REF##*/}
           USER=romainsacchi
           conda install anaconda-client
           mkdir ~/conda-bld
