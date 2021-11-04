@@ -1,3 +1,5 @@
+import pytest
+
 from premise.geomap import Geomap
 
 geomap = Geomap(model="remind")
@@ -8,6 +10,14 @@ def test_ecoinvent_to_REMIND():
     assert geomap.ecoinvent_to_iam_location("DE") == "EUR"
     # CN is in CHA
     assert geomap.ecoinvent_to_iam_location("CN") == "CHA"
+    # Latin America in Latin America
+    assert geomap.ecoinvent_to_iam_location("RLA") == "LAM"
+
+
+def test_REMIND_to_IMAGE():
+    # CHA should give CHN
+    assert geomap.iam_to_iam_region("CHA", to_iam="image") == "CHN"
+
 
 def test_REMIND_to_ecoinvent():
     # DE and CH are in EUR and NEU
@@ -21,5 +31,7 @@ def test_REMIND_to_ecoinvent():
 
 def test_REMIND_to_ecoinvent_contained():
     # RU is not contained in EUR
-    assert "RU" not in geomap.iam_to_ecoinvent_location(
-        "EUR", contained=True)
+    assert "RU" not in geomap.iam_to_ecoinvent_location("EUR", contained=True)
+    with pytest.raises(AssertionError) as wrapped_error:
+        assert "ENTSO-E" in geomap.iam_to_ecoinvent_location("EUR", contained=True)
+    assert wrapped_error.type == AssertionError

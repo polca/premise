@@ -1,23 +1,24 @@
-import sys
 import csv
-import pickle
 import itertools
+import pickle
+import sys
 import uuid
 from pathlib import Path
-from prettytable import PrettyTable
-from wurst import transformations as wt
-from wurst import searching as ws
+
+import carculator
+import carculator_truck
 import numpy as np
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
-import carculator
-import carculator_truck
+from prettytable import PrettyTable
+from wurst import searching as ws
+from wurst import transformations as wt
+
+from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
 from .utils import relink_technosphere_exchanges
-from . import DATA_DIR, INVENTORY_DIR
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
-
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "dict_biosphere.txt"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
 
@@ -30,9 +31,7 @@ def get_biosphere_code():
     """
 
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-        raise FileNotFoundError(
-            "The dictionary of biosphere flows could not be found."
-        )
+        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = {}
 
@@ -42,6 +41,7 @@ def get_biosphere_code():
             csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
 
     return csv_dict
+
 
 def generate_migration_maps(origin, destination):
 
@@ -94,14 +94,15 @@ class BaseInventoryImport:
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code()
 
-        path = Path(path)
-
-        if path != Path("."):
-            if not path.is_file():
-                raise FileNotFoundError(
-                    f"The inventory file {path} could not be found."
-                )
+        if not isinstance(path, Path):
+            path = Path(path)
         self.path = path
+
+        if self.path != Path("."):
+            if not self.path.exists():
+                raise FileNotFoundError(
+                    f"The inventory file {self.path} could not be found."
+                )
 
         self.import_db = self.load_inventory(path)
 
@@ -118,7 +119,6 @@ class BaseInventoryImport:
                         description=f"Change technosphere names due to change from {r[0]} to {r[1]}",
                     )
 
-
     def load_inventory(self, path):
         """Load an inventory from a specified path.
 
@@ -129,7 +129,6 @@ class BaseInventoryImport:
 
         """
 
-
     def prepare_inventory(self):
         """Prepare the inventory for the merger with Ecoinvent.
 
@@ -138,7 +137,6 @@ class BaseInventoryImport:
         :returns: Nothing
 
         """
-
 
     def check_for_duplicates(self):
         """
@@ -168,7 +166,9 @@ class BaseInventoryImport:
             )
             t = PrettyTable(["Name", "Reference product", "Location", "File"])
             for dataset in already_exist:
-                t.add_row([dataset[0][:50], dataset[1][:30], dataset[2], self.path.name])
+                t.add_row(
+                    [dataset[0][:50], dataset[1][:30], dataset[2], self.path.name]
+                )
 
             print(t)
 
@@ -281,11 +281,11 @@ class BaseInventoryImport:
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
-                    if "reference product" in y:
-                        try:
-                            assert y["product"] == y["reference product"]
-                        except AssertionError:
-                            y["product"] = self.correct_product_field(y)
+                    # if "reference product" in y:
+                    #    try:
+                    #        assert y["product"] == y["reference product"]
+                    #    except AssertionError:
+                    #        y["product"] = self.correct_product_field(y)
 
         # Add a `code` field if missing
         for x in self.import_db.data:
@@ -624,7 +624,9 @@ class PassengerCars(BaseInventoryImport):
                             ),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(dataset["location"]),
+                                self.geomap.ecoinvent_to_iam_location(
+                                    dataset["location"]
+                                ),
                             ),
                             ws.contains("reference product", "transport"),
                         ],
@@ -748,7 +750,9 @@ class Trucks(BaseInventoryImport):
                             ws.equals("name", search_for),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(dataset["location"])
+                                self.geomap.ecoinvent_to_iam_location(
+                                    dataset["location"]
+                                )
                                 if dataset not in self.regions
                                 else dataset["location"],
                             ),
@@ -904,8 +908,7 @@ class CarculatorInventory(BaseInventoryImport):
         super().__init__(database, version, path=Path("."))
 
     def load_inventory(self, path):
-        """Create `carculator` fleet average inventories for a given range of years.
-        """
+        """Create `carculator` fleet average inventories for a given range of years."""
 
         cip = carculator.CarInputParameters()
         cip.static()
@@ -1158,7 +1161,9 @@ class CarculatorInventory(BaseInventoryImport):
                             ),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(dataset["location"]),
+                                self.geomap.ecoinvent_to_iam_location(
+                                    dataset["location"]
+                                ),
                             ),
                             ws.contains("reference product", "transport"),
                         ],
@@ -1227,8 +1232,7 @@ class TruckInventory(BaseInventoryImport):
         super().__init__(database, version_in, version_out, Path("."))
 
     def load_inventory(self, path):
-        """Create `carculator_truck` fleet average inventories for a given range of years.
-        """
+        """Create `carculator_truck` fleet average inventories for a given range of years."""
 
         fleet_array = carculator_truck.create_fleet_composition_from_IAM_file(
             self.fleet_file
@@ -1302,7 +1306,9 @@ class TruckInventory(BaseInventoryImport):
             }
 
             inventory = carculator_truck.InventoryCalculation(
-                tm, scope=scope, background_configuration=background_configuration,
+                tm,
+                scope=scope,
+                background_configuration=background_configuration,
             )
 
             i = inventory.export_lci_to_bw(
@@ -1350,8 +1356,12 @@ class TruckInventory(BaseInventoryImport):
                         exc["name"] = exc["name"][:-6]
 
                 if dataset["name"] == "transport, freight, lorry, fleet average":
-                    dataset["name"] = "market for transport, freight, lorry, unspecified"
-                    dataset["reference product"] = "transport, freight, lorry, unspecified"
+                    dataset[
+                        "name"
+                    ] = "market for transport, freight, lorry, unspecified"
+                    dataset[
+                        "reference product"
+                    ] = "transport, freight, lorry, unspecified"
                     for exc in ws.production(dataset):
                         exc[
                             "name"
@@ -1436,7 +1446,9 @@ class TruckInventory(BaseInventoryImport):
         ]
 
         self.database = [
-            dataset for dataset in self.database if not any(y in dataset["name"] for y in activities_to_remove)
+            dataset
+            for dataset in self.database
+            if not any(y in dataset["name"] for y in activities_to_remove)
         ]
         self.database.extend(self.import_db.data)
 
@@ -1474,7 +1486,9 @@ class TruckInventory(BaseInventoryImport):
                             ws.equals("name", search_for),
                             ws.equals(
                                 "location",
-                                self.geomap.ecoinvent_to_iam_location(dataset["location"]),
+                                self.geomap.ecoinvent_to_iam_location(
+                                    dataset["location"]
+                                ),
                             ),
                             ws.contains(
                                 "reference product", "transport, freight, lorry"
@@ -1530,8 +1544,14 @@ class TruckInventory(BaseInventoryImport):
 
                             print("available trucks")
                             for available_dataset in self.database:
-                                if "transport, freight, lorry" in available_dataset["name"]:
-                                    print(available_dataset["name"], available_dataset["location"])
+                                if (
+                                    "transport, freight, lorry"
+                                    in available_dataset["name"]
+                                ):
+                                    print(
+                                        available_dataset["name"],
+                                        available_dataset["location"],
+                                    )
 
                         except ws.MultipleResults:
                             # If multiple trucks are available, but none of the correct region,

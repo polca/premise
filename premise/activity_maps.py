@@ -1,8 +1,9 @@
-from . import DATA_DIR
 import csv
 
-REMIND_TO_ECOINVENT_EMISSION_FILEPATH = (
-    DATA_DIR / "ecoinvent_to_gains_emission_mappping.csv"
+from . import DATA_DIR
+
+GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
+    DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
 )
 
 
@@ -157,8 +158,10 @@ class InventorySet:
             "mask": ["factory", "plant", "briquettes", "ash"],
         },  # OK
         "petroleum coke": {"fltr": "market for petroleum coke"},  # OK
-        "wood pellet": {"fltr": "market for wood pellet",
-                        "mask": {"name": ["clinker", "factory"]}},  # OK
+        "wood pellet": {
+            "fltr": "market for wood pellet",
+            "mask": {"name": ["clinker", "factory"]},
+        },  # OK
         "waste": {
             "fltr": {"reference product": ["waste plastic, mixture"]},
             "mask": {"name": ["market for", "treatment", "market group"]},
@@ -278,7 +281,9 @@ class InventorySet:
         "Biomass ST": {
             "fltr": "Wood chips, burned in power plant 20 MW, truck 25km, no CCS"
         },
-        "Biomass CHP": {"fltr": ["market for wood chips, wet, measured as dry mass"],},
+        "Biomass CHP": {
+            "fltr": ["market for wood chips, wet, measured as dry mass"],
+        },
         "Biomass CHP CCS": {
             "fltr": "heat and power co-generation, wood chips, 6667 kW"
         },
@@ -398,7 +403,9 @@ class InventorySet:
             "fltr": "electricity production, at wood burning power plant 20 MW, truck 25km, no CCS"
         },
         "Biomass CHP": {
-            "fltr": ["heat and power co-generation, wood chips",],
+            "fltr": [
+                "heat and power co-generation, wood chips",
+            ],
             "mask": {"reference product": "heat"},
         },
         "Biomass CHP CCS": {
@@ -502,7 +509,9 @@ class InventorySet:
             "mask": {"name": "aluminium"},
         },
         "Oil CHP": {
-            "fltr": ["heat and power co-generation, oil",],
+            "fltr": [
+                "heat and power co-generation, oil",
+            ],
             "mask": {"name": "aluminium", "reference product": "heat"},
         },
         "Oil CHP CCS": {
@@ -590,14 +599,14 @@ class InventorySet:
         :rtype: dict
         """
 
-        if not REMIND_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
+        if not GAINS_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
             raise FileNotFoundError(
                 "The dictionary of emission labels correspondences could not be found."
             )
 
         csv_dict = {}
 
-        with open(REMIND_TO_ECOINVENT_EMISSION_FILEPATH) as f:
+        with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH) as f:
             input_dict = csv.reader(f, delimiter=";")
             for row in input_dict:
                 csv_dict[row[0]] = row[1]

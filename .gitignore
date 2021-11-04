@@ -7,6 +7,7 @@ dist/
 data/export/
 *.eggs/
 */data/logs/*
+*/data/export/*
 */data/matrices/*
 
 *.pyc

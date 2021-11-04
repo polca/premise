@@ -1,16 +1,19 @@
 """
 cement.py contains the class `Cement`, which inherits from `BaseTransformation`.
 This class transforms the cement markets and clinker and cement production activities of the wurst database,
-based on projections from the IAM scenario.
+based on projections from the IAM pathway.
 It also the generic market for cement to reflect the projected clinker-to-cement ratio.
 It eventually re-links all the cement-consuming activities (e.g., concrete production) of the wurst database to
 the newly created cement markets.
 
 """
 import os
+
 import wurst
+
 from .transformation import *
 from .utils import get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
+
 
 def remove_exchanges(datasets_dict, list_exc):
     """
@@ -89,7 +92,7 @@ class Cement(BaseTransformation):
                 location=self.geo.iam_to_GAINS_region(
                     self.geo.ecoinvent_to_iam_location(dataset["location"])
                 ),
-                sector="cement"
+                sector="cement",
             )
 
             if exc["amount"] == 0:
@@ -147,7 +150,9 @@ class Cement(BaseTransformation):
 
             # Production volume by kiln type
             energy_input_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(key) if self.model == "image" else key,
+                region=self.geo.iam_to_iam_region(key)
+                if self.model == "image"
+                else key,
                 variables=[
                     v
                     for v in self.iam_data.gnr_data.variables.values
@@ -158,7 +163,9 @@ class Cement(BaseTransformation):
             energy_input_per_kiln_type /= energy_input_per_kiln_type.sum(axis=0)
 
             energy_eff_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(key) if self.model == "image" else key,
+                region=self.geo.iam_to_iam_region(key)
+                if self.model == "image"
+                else key,
                 variables=[
                     v
                     for v in self.iam_data.gnr_data.variables.values
@@ -188,7 +195,9 @@ class Cement(BaseTransformation):
                     "Share biomass fuel",
                     "Share fossil fuel",
                 ],
-                region=self.geo.iam_to_iam_region(key) if self.model == "image" else key,
+                region=self.geo.iam_to_iam_region(key)
+                if self.model == "image"
+                else key,
             ).clip(0, 1)
 
             fuel_mix /= fuel_mix.sum(axis=0)
@@ -266,7 +275,11 @@ class Cement(BaseTransformation):
                 # if they cannot be found for the ecoinvent locations concerned
                 # we widen the scope to EU-based datasets, and RoW
                 ecoinvent_regions = self.geo.iam_to_ecoinvent_location(key)
-                possible_locations = [ecoinvent_regions, ["RER", "Europe without Switzerland"], ["RoW", "GLO"]]
+                possible_locations = [
+                    ecoinvent_regions,
+                    ["RER", "Europe without Switzerland"],
+                    ["RoW", "GLO"],
+                ]
                 suppliers, counter = [], 0
 
                 while len(suppliers) == 0:
@@ -311,7 +324,9 @@ class Cement(BaseTransformation):
             # Update fossil CO2 exchange, add 525 kg of fossil CO_2 from calcination
             try:
                 fossil_co2_exc = [
-                    e for e in value["exchanges"] if e["name"] == "Carbon dioxide, fossil"
+                    e
+                    for e in value["exchanges"]
+                    if e["name"] == "Carbon dioxide, fossil"
                 ][0]
 
                 fossil_co2_exc["amount"] = (
@@ -387,7 +402,8 @@ class Cement(BaseTransformation):
                 # share = sum of biogenic fuel emissions / (sum of fossil fuel emission
                 # + sum of biogenic fuel emissions + 525 kg from calcination)
                 for exc in ws.biosphere(
-                    ccs, ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
+                    ccs,
+                    ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
                 ):
                     exc["amount"] = (
                         fuel_biogenic_co2_per_type.sum()
@@ -433,12 +449,15 @@ class Cement(BaseTransformation):
                 # the cement plant is expected to produce as excess heat
 
                 # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
-                excess_heat_generation = self.iam_data.gnr_data.sel(
-                    variables="Share of recovered energy, per ton clinker",
-                    region=self.geo.iam_to_iam_region(value["location"])
-                    if self.model == "image"
-                    else value["location"],
-                ).values * (energy_input_per_ton_clinker.sum() / 1000)
+                excess_heat_generation = (
+                    self.iam_data.gnr_data.sel(
+                        variables="Share of recovered energy, per ton clinker",
+                        region=self.geo.iam_to_iam_region(value["location"])
+                        if self.model == "image"
+                        else value["location"],
+                    ).values
+                    * (energy_input_per_ton_clinker.sum() / 1000)
+                )
 
                 for exc in ws.technosphere(
                     ccs, ws.contains("name", "steam production")
@@ -475,22 +494,20 @@ class Cement(BaseTransformation):
             value["exchanges"] = [v for v in value["exchanges"] if v]
 
             share_fossil_from_fuel = int(
-                        (
-                            fuel_fossil_co2_per_type.sum()
-                            / (fuel_fossil_co2_per_type.sum() + 525)
-                        )
-                        * 100
-                    )
+                (
+                    fuel_fossil_co2_per_type.sum()
+                    / (fuel_fossil_co2_per_type.sum() + 525)
+                )
+                * 100
+            )
 
-            share_fossil_from_calcination = (100
-                    - int(
-                        (
-                            fuel_fossil_co2_per_type.sum()
-                            / np.sum(fuel_fossil_co2_per_type.sum() + 525)
-                        )
-                        * 100
-                    )
-                                             )
+            share_fossil_from_calcination = 100 - int(
+                (
+                    fuel_fossil_co2_per_type.sum()
+                    / np.sum(fuel_fossil_co2_per_type.sum() + 525)
+                )
+                * 100
+            )
 
             value["comment"] = (
                 "Dataset modified by `premise` based on WBCSD's GNR data and IAM projections "
@@ -510,14 +527,13 @@ class Cement(BaseTransformation):
             "Adjusting emissions of hot pollutants for clinker production datasets..."
         )
         d_act_clinker = {
-            k: self.update_pollutant_emissions(v)
-            for k, v in d_act_clinker.items()
+            k: self.update_pollutant_emissions(v) for k, v in d_act_clinker.items()
         }
 
         return d_act_clinker
 
     def adjust_clinker_ratio(self, d_act):
-        """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
+        """Adjust the cement suppliers composition for "cement, unspecified", in order to reach
         the average clinker-to-cement ratio given by the IAM.
 
         The supply of the cement with the highest clinker-to-cement ratio is decreased by 1% to the favor of
@@ -537,7 +553,9 @@ class Cement(BaseTransformation):
             # different pace across regions.
             ratio_to_reach = self.clinker_ratio_remind.sel(
                 dict(
-                    region=self.geo.iam_to_iam_region(region) if self.model == "image" else region
+                    region=self.geo.iam_to_iam_region(region)
+                    if self.model == "image"
+                    else region
                 )
             ).values
 
@@ -701,7 +719,7 @@ class Cement(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log deleted cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log deleted cement datasets {self.model} {self.pathway} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -710,7 +728,7 @@ class Cement(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log created cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log created cement datasets {self.model} {self.pathway} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -731,12 +749,14 @@ class Cement(BaseTransformation):
         )
 
         print("\nCreate new clinker market datasets and delete old datasets")
-        clinker_market_datasets = list(self.fetch_proxies(
+        clinker_market_datasets = list(
+            self.fetch_proxies(
                 name="market for clinker",
                 ref_prod="clinker",
                 production_variable="cement",
                 relink=False,
-            ).values())
+            ).values()
+        )
 
         self.database.extend(clinker_market_datasets)
 
@@ -789,7 +809,7 @@ class Cement(BaseTransformation):
                 name=dataset["name"],
                 ref_prod=dataset["reference product"],
                 production_variable="cement",
-                relink=False, # if `True`, it will find the best suited providers for each exchange
+                relink=False,  # if `True`, it will find the best suited providers for each exchange
                 # in the new market datasets, which is time-consuming, but more accurate
             )
 
@@ -801,11 +821,12 @@ class Cement(BaseTransformation):
                 ]
             )
             print("relink")
-            self.relink_datasets(name=dataset["name"],
-                                 ref_product=dataset["reference product"],
-                                 unit="kilogram",
-                                 excludes_datasets=[dataset["name"]]
-                                 )
+            self.relink_datasets(
+                name=dataset["name"],
+                ref_product=dataset["reference product"],
+                unit="kilogram",
+                excludes_datasets=[dataset["name"]],
+            )
 
         print(
             "\nCreate new cement production datasets and adjust electricity consumption"
@@ -843,10 +864,12 @@ class Cement(BaseTransformation):
                     for act in new_cement_production.values()
                 ]
             )
-            self.relink_datasets(name=dataset["name"],
-                                 ref_product=dataset["reference product"],
-                                 unit="kilogram",
-                                 excludes_datasets=[dataset["name"]])
+            self.relink_datasets(
+                name=dataset["name"],
+                ref_product=dataset["reference product"],
+                unit="kilogram",
+                excludes_datasets=[dataset["name"]],
+            )
 
         # relink new cement market datasets to the new generic market for cement
         if self.version == 3.5:
@@ -856,27 +879,29 @@ class Cement(BaseTransformation):
         else:
             name = "cement, all types to generic market for cement, unspecified"
             ref_prod = "cement, unspecified"
-        self.relink_datasets(name=name, ref_product=ref_prod, unit="kilogram", excludes_datasets=[name])
+        self.relink_datasets(
+            name=name, ref_product=ref_prod, unit="kilogram", excludes_datasets=[name]
+        )
 
         with open(
             DATA_DIR
-            / f"logs/log created cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log created cement datasets {self.model} {self.pathway} {self.year}-{date.today()}.csv",
             "a",
-            encoding="utf-8"
+            encoding="utf-8",
         ) as csv_file:
             writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
             for line in created_datasets:
                 writer.writerow(line)
 
         print("Relink cement production datasets to new clinker market datasets")
-        self.relink_datasets(name="market for clinker",
-                             ref_product="clinker",
-                             unit="kilogram")
+        self.relink_datasets(
+            name="market for clinker", ref_product="clinker", unit="kilogram"
+        )
 
         print("Relink clinker market datasets to new clinker production datasets")
-        self.relink_datasets(name="clinker production",
-                             ref_product="clinker",
-                             unit="kilogram")
+        self.relink_datasets(
+            name="clinker production", ref_product="clinker", unit="kilogram"
+        )
 
         print("Done!")
 

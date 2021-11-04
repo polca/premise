@@ -4,20 +4,25 @@ It provides basic methods usually used for electricity, cement, steel sectors tr
 on the wurst database.
 """
 
-import uuid
 import csv
+import uuid
 from datetime import date
-import numpy as np
 from itertools import product
+
+import numpy as np
 from wurst import searching as ws
 from wurst import transformations as wt
+
+from premise.transformation_tools import get_dataframe_locs
+
 from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
 from .utils import (
-    get_lower_heating_values,
+    c,
+    create_scenario_label,
+    get_fuel_properties,
     relink_technosphere_exchanges,
-    get_fuel_co2_emission_factors,
 )
 
 
@@ -72,7 +77,12 @@ def get_shares_from_production_volume(ds_list):
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
             dict_act[
-                (act["name"], act["location"], act["reference product"], act["unit"],)
+                (
+                    act["name"],
+                    act["location"],
+                    act["reference product"],
+                    act["unit"],
+                )
             ] = production_volume
             total_production_volume += production_volume
 
@@ -107,27 +117,18 @@ class BaseTransformation:
         self.model = model
         self.regions = iam_data.regions
         self.geo = Geomap(model=model, current_regions=self.regions)
-        self.scenario = pathway
+        self.pathway = pathway
         self.year = year
-        self.fuels_lhv = get_lower_heating_values()
+        self.fuels_lhv = get_fuel_properties()
         mapping = InventorySet(self.database)
         self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
         self.fuel_map = mapping.generate_fuel_map()
         self.fuels_co2 = get_fuel_co2_emission_factors()
         self.list_datasets = get_tuples_from_database(self.database)
-        self.ecoinvent_to_iam_loc = {loc: self.geo.ecoinvent_to_iam_location(loc) for loc in self.get_ecoinvent_locs()}
-
-    def get_ecoinvent_locs(self):
-        """
-        Rerun a list of unique locations in ecoinvent
-
-        :return: list of location
-        :rtype: list
-        """
-
-        return list(set(
-            [a["location"] for a in self.database]
-        ))
+        self.ecoinvent_to_iam_loc = {
+            loc: self.geo.ecoinvent_to_iam_location(loc)
+            for loc in get_dataframe_locs(self.database)
+        }
 
     def update_ecoinvent_efficiency_parameter(self, dataset, old_ei_eff, new_eff):
         """
@@ -137,94 +138,19 @@ class BaseTransformation:
         :param scaling_factor: scaling factor (new efficiency / old efficiency)
         :type scaling_factor: float
         """
-        parameters = dataset["parameters"]
-        possibles = ["efficiency", "efficiency_oil_country", "efficiency_electrical"]
-
-        if any(i in dataset for i in possibles):
-            for key in possibles:
-                if key in parameters:
-                    dataset["parameters"][key] = new_eff
-        else:
-            dataset["parameters"]["efficiency"] = new_eff
-
-        iam_region = self.ecoinvent_to_iam_loc[dataset["location"]]
+        iam_region = self.ecoinvent_to_iam_loc[dataset[(c.cons_loc)]]
 
         new_txt = (
             f" 'premise' has modified the efficiency of this dataset, from an original "
-            f"{int(old_ei_eff * 100)}% to {int(new_eff * 100)}%, according to IAM model {self.model.upper()}, scenario {self.scenario} "
-            f"for the region {iam_region}."
+            f"{int(old_ei_eff * 100)}% to {int(new_eff * 100)}%, according to IAM model {self.model.upper()}, "
+            f"scenario {self.pathway} for the region {iam_region}."
         )
 
-        if "comment" in dataset:
-            dataset["comment"] += new_txt
-        else:
-            dataset["comment"] = new_txt
-
-    def find_fuel_efficiency(self, dataset, fuel_filters, energy_out):
-        """
-        This method calculates the efficiency value set initially, in case it is not specified in the parameter
-        field of the dataset. In Carma datasets, fuel inputs are expressed in megajoules instead of kilograms.
-
-        :param dataset: a wurst dataset of an electricity-producing technology
-        :param fuel_filters: wurst filter to filter fuel input exchanges
-        :param energy_out: the amount of energy expect as output, in MJ
-        :return: the efficiency value set initially
-        """
-
-        def calculate_input_energy(fuel_name, fuel_amount, fuel_unit):
-            """
-            Returns the amount of energy entering the conversion process, in MJ
-            :param fuel_name: name of the liquid, gaseous or solid fuel
-            :param fuel_amount: amount of fuel input
-            :param fuel_unit: unit of fuel
-            :return: amount of fuel energy, in MJ
-            """
-
-            # if fuel input other than MJ
-            if fuel_unit in ["kilogram", "cubic meter", "kilowatt hour"]:
-                lhv = [
-                    self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()
-                ][0]
-                return float(lhv) * fuel_amount
-
-            # if already in MJ
-            return fuel_amount
-
-        not_allowed = ["thermal"]
-        key = []
-        if "parameters" in dataset:
-            key = list(
-                key
-                for key in dataset["parameters"]
-                if "efficiency" in key and not any(item in key for item in not_allowed)
-            )
-
-        if len(key) > 0:
-            return dataset["parameters"][key[0]]
-
-        energy_input = np.sum(
-            np.sum(
-                np.asarray(
-                    [
-                        calculate_input_energy(exc["name"], exc["amount"], exc["unit"])
-                        for exc in dataset["exchanges"]
-                        if exc["name"] in fuel_filters and exc["type"] == "technosphere"
-                    ]
-                )
-            )
+        scenario_label = create_scenario_label(
+            model=self.model, pathway=self.pathway, year=self.year
         )
 
-        current_efficiency = float(energy_out) / energy_input
-
-        if current_efficiency in (np.nan, np.inf):
-            current_efficiency = 1
-
-        if "parameters" in dataset:
-            dataset["parameters"]["efficiency"] = current_efficiency
-        else:
-            dataset["parameters"] = {"efficiency": current_efficiency}
-
-        return current_efficiency
+        dataset[(scenario_label, c.comment)] += new_txt
 
     def get_iam_mapping(self, activity_map, fuels_map, technologies):
         """
@@ -337,7 +263,7 @@ class BaseTransformation:
 
         with open(
             DATA_DIR
-            / f"logs/log deleted datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log deleted datasets {self.model} {self.pathway} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
@@ -369,9 +295,7 @@ class BaseTransformation:
 
         return d_act
 
-    def relink_datasets(
-        self, excludes_datasets, alternative_names=None
-    ):
+    def relink_datasets(self, excludes_datasets, alternative_names=None):
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
@@ -390,37 +314,54 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database, ws.doesnt_contain_any("name", excludes_datasets),
+            self.database,
+            ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
 
             excs_to_relink = (
-                exc for exc in act["exchanges"]
+                exc
+                for exc in act["exchanges"]
                 if exc["type"] == "technosphere"
-                and (exc["name"], exc["product"], exc["location"]) not in self.list_datasets
+                and (exc["name"], exc["product"], exc["location"])
+                not in self.list_datasets
             )
 
-            unique_excs_to_relink = list(set(
-                (exc["name"], exc["product"], exc["unit"]) for exc in excs_to_relink
-            ))
+            unique_excs_to_relink = list(
+                set(
+                    (exc["name"], exc["product"], exc["unit"]) for exc in excs_to_relink
+                )
+            )
 
             for exc in unique_excs_to_relink:
 
-                #print(f"searching alt. for {exc['name'], exc['location']} in {act['name'], act['location']}")
+                # print(f"searching alt. for {exc['name'], exc['location']} in {act['name'], act['location']}")
 
                 alternative_names = [exc[0], *alternative_names]
-                alternative_locations = [act["location"]] if act["location"] in self.regions else [self.ecoinvent_to_iam_loc[act["location"]]]
+                alternative_locations = (
+                    [act["location"]]
+                    if act["location"] in self.regions
+                    else [self.ecoinvent_to_iam_loc[act["location"]]]
+                )
 
-                for alt_name, alt_loc in product(alternative_names, alternative_locations):
+                for alt_name, alt_loc in product(
+                    alternative_names, alternative_locations
+                ):
 
                     if (alt_name, exc[1], alt_loc) in self.list_datasets:
-                        #print(f"found! {alt_name, alt_loc}")
+                        # print(f"found! {alt_name, alt_loc}")
                         break
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset
-                amount = sum(e["amount"] for e in excs_to_relink if (e["name"], e["product"]) == exc)
-                act["exchanges"] = [e for e in act["exchanges"] if (e["name"], e.get("product")) != exc]
+                amount = sum(
+                    e["amount"]
+                    for e in excs_to_relink
+                    if (e["name"], e["product"]) == exc
+                )
+                act["exchanges"] = [
+                    e for e in act["exchanges"] if (e["name"], e.get("product")) != exc
+                ]
 
                 # create a new exchange, with the new provider
                 try:
@@ -430,13 +371,15 @@ class BaseTransformation:
                         "amount": amount,
                         "type": "technosphere",
                         "unit": exc[2],
-                        "location": alt_loc
+                        "location": alt_loc,
                     }
 
                     act["exchanges"].append(new_exc)
 
                 except:
-                    print(f"No alternative provider found for {exc[0], act['location']}.")
+                    print(
+                        f"No alternative provider found for {exc[0], act['location']}."
+                    )
 
     def get_carbon_capture_rate(self, loc, sector):
         """
@@ -453,7 +396,8 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector, region=loc,
+                variables=sector,
+                region=loc,
             ).values
         else:
             rate = 0
@@ -471,7 +415,11 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(region=location, pollutant=pollutant, sector=sector,)
+            dict(
+                region=location,
+                pollutant=pollutant,
+                sector=sector,
+            )
         ].values.item(0)
 
         return scaling_factor

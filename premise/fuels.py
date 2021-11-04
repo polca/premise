@@ -1,11 +1,13 @@
-from wurst import transformations as wt
-import wurst
-from .utils import *
-from .geomap import Geomap
+import uuid
+
 import numpy as np
+import wurst
+from wurst import transformations as wt
+
 from . import DATA_DIR
 from .activity_maps import InventorySet
-import uuid
+from .geomap import Geomap
+from .utils import *
 
 CROP_CLIMATE_MAP = DATA_DIR / "fuels" / "crop_climate_mapping.csv"
 REGION_CLIMATE_MAP = DATA_DIR / "fuels" / "region_climate_mapping.csv"
@@ -14,10 +16,10 @@ FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"
 
 class Fuels:
     """
-        Class that modifies fuel inventories and markets in ecoinvent based on IAM output data.
+    Class that modifies fuel inventories and markets in ecoinvent based on IAM output data.
 
-        :ivar scenario: name of an IAM pathway
-        :vartype pathway: str
+    :ivar scenario: name of an IAM pathway
+    :vartype pathway: str
 
     """
 
@@ -26,28 +28,22 @@ class Fuels:
         self.original_db = original_db
         self.iam_data = iam_data
         self.model = model
-        self.geo = Geomap(
-            model=model, current_regions=iam_data.data.coords["region"].values.tolist()
-        )
+        self.geo = Geomap(model=model)
         self.scenario = pathway
         self.year = year
-        self.fuels_lhv = get_lower_heating_values()
         self.fuel_labels = self.iam_data.fuel_markets.coords["variables"].values
         self.list_iam_regions = (
             regions or iam_data.data.coords["region"].values.tolist()
         )
         mapping = InventorySet(self.db)
         self.fuels_map = mapping.generate_fuel_map()
-        self.fuel_co2 = get_fuel_co2_emission_factors()
-        self.land_use_per_crop_type = get_land_use_for_crops(model=self.model)
-        self.land_use_change_CO2_per_crop_type = get_land_use_change_CO2_for_crops(
-            model=self.model
-        )
+        self.fuel_properties = get_fuel_properties()
+        self.crops_properties = get_crops_properties()
         self.new_fuel_markets = {}
 
     def get_crop_climate_mapping(self):
-        """ Returns a dictionnary thatindictes the type of crop
-        used for bioethanol production per type of climate """
+        """Returns a dictionnary that indicates the type of crop
+        used for bioethanol production per type of climate"""
 
         d = {}
         with open(CROP_CLIMATE_MAP) as f:
@@ -65,8 +61,8 @@ class Fuels:
         return d
 
     def get_region_climate_mapping(self):
-        """ Returns a dicitonnary that indicates the type of climate
-         for each IAM region"""
+        """Returns a dicitonnary that indicates the type of climate
+        for each IAM region"""
 
         d = {}
         with open(REGION_CLIMATE_MAP) as f:
@@ -78,8 +74,8 @@ class Fuels:
         return d
 
     def get_compression_effort(self, p_in, p_out, flow_rate):
-        """ Calculate the required electricity consumption from the compressor given
-        an inlet and outlet pressure and a flow rate for hydrogen. """
+        """Calculate the required electricity consumption from the compressor given
+        an inlet and outlet pressure and a flow rate for hydrogen."""
         # result is shaft power [kW] and compressor size [kW]
         # flow_rate = mass flow rate (kg/day)
         # p_in =  input pressure (bar)
@@ -105,7 +101,7 @@ class Fuels:
 
     def generate_DAC_activities(self):
 
-        """ Generate regional variants of the DAC process with varying heat sources """
+        """Generate regional variants of the DAC process with varying heat sources"""
 
         # define heat sources
         heat_map_ds = {
@@ -1033,7 +1029,7 @@ class Fuels:
                     self.db.append(ds_copy)
 
     def get_biofuel_production_volume(self, region, fuel_label):
-        """ Fetch from the IAM data the consumption (or production) volume. """
+        """Fetch from the IAM data the consumption (or production) volume."""
 
         return (
             self.iam_data.data.sel(variables=fuel_label, region=region)
@@ -1132,7 +1128,7 @@ class Fuels:
 
                         string = (
                             f"The process conversion efficiency has been rescaled by premise by {progress_factor}.\n"
-                            f"To be in line with the scenario {self.scenario} of {self.model.upper()} "
+                            f"To be in line with the pathway {self.scenario} of {self.model.upper()} "
                             f"in {self.year} in the region {region}.\n"
                         )
 
@@ -1155,7 +1151,7 @@ class Fuels:
                     # and if we have land use info from the IAM
                     if (
                         "farming and supply" in ds["name"].lower()
-                        and crop_type.lower() in self.land_use_per_crop_type
+                        and crop_type.lower() in self.crops_properties
                     ):
 
                         # lower heating value, as received
@@ -1174,9 +1170,7 @@ class Fuels:
                                     self.iam_data.data.loc[
                                         dict(
                                             region=region,
-                                            variables=self.land_use_per_crop_type[
-                                                crop_type
-                                            ],
+                                            variables=self.crops_properties[crop_type],
                                         )
                                     ]
                                     .interp(year=self.year)
@@ -1195,7 +1189,7 @@ class Fuels:
 
                                 string = (
                                     f"The land area occupied has been modified to {land_use}, "
-                                    f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                                    f"to be in line with the pathway {self.scenario} of {self.model.upper()} "
                                     f"in {self.year} in the region {region}."
                                 )
                                 if "comment" in ds:
@@ -1208,7 +1202,7 @@ class Fuels:
                     # and if we have land use change CO2 info from the IAM
                     if (
                         "farming and supply" in ds["name"].lower()
-                        and crop_type.lower() in self.land_use_change_CO2_per_crop_type
+                        and crop_type.lower() in self.crops_properties
                     ):
 
                         # then, we should include the Land Use Change-induced CO2 emissions
@@ -1219,9 +1213,9 @@ class Fuels:
                             self.iam_data.data.loc[
                                 dict(
                                     region=region,
-                                    variables=self.land_use_change_CO2_per_crop_type[
-                                        crop_type
-                                    ],
+                                    variables=self.crops_properties[crop_type][
+                                        "land_use_change"
+                                    ][self.model],
                                 )
                             ]
                             .interp(year=self.year)
@@ -1248,13 +1242,16 @@ class Fuels:
                                 "biosphere3",
                                 "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
                             ),
-                            "categories": ("air", "non-urban air or from high stacks",),
+                            "categories": (
+                                "air",
+                                "non-urban air or from high stacks",
+                            ),
                         }
                         ds["exchanges"].append(land_use_co2_exc)
 
                         string = (
                             f"{land_use_co2} kg of land use-induced CO2 has been added by premise, "
-                            f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                            f"to be in line with the pathway {self.scenario} of {self.model.upper()} "
                             f"in {self.year} in the region {region}."
                         )
 
@@ -1365,7 +1362,7 @@ class Fuels:
         }
 
     def fetch_fuel_share(self, fuel, fuel_types, region):
-        """ Return a fuel mix for a specific IAM region, for a specific year. """
+        """Return a fuel mix for a specific IAM region, for a specific year."""
 
         vars = [
             v
@@ -1655,7 +1652,7 @@ class Fuels:
         return possible_suppliers
 
     def generate_fuel_supply_chains(self):
-        """ Duplicate fuel chains and make them IAM region-specific """
+        """Duplicate fuel chains and make them IAM region-specific"""
 
         # DAC datasets
         print("Generate region-specific direct air capture processes.")
@@ -1677,8 +1674,8 @@ class Fuels:
         self.generate_biofuel_activities()
 
     def generate_fuel_markets(self):
-        """ Create new fuel supply chains
-        and update existing fuel markets """
+        """Create new fuel supply chains
+        and update existing fuel markets"""
 
         # Create new fuel supply chains
         self.generate_fuel_supply_chains()
@@ -1806,24 +1803,34 @@ class Fuels:
 
                                     amount = (
                                         supplier_share
-                                        * (reference_LHV / self.fuels_lhv[fuel])
+                                        * (
+                                            reference_LHV
+                                            / self.fuel_properties[fuel]["lhv"]
+                                        )
                                         * conversion_factor
                                     )
 
                                     fossil_co2 += (
                                         amount
-                                        * self.fuels_lhv[fuel]
-                                        * self.fuel_co2[fuel]["co2"]
-                                        * (1 - self.fuel_co2[fuel]["bio_share"])
+                                        * self.fuel_properties[fuel]["lhv"]
+                                        * self.fuel_properties[fuel]["co2"]
+                                        * (
+                                            1
+                                            - self.fuel_properties[fuel][
+                                                "biogenic_share"
+                                            ]
+                                        )
                                     )
                                     non_fossil_co2 += (
                                         amount
-                                        * self.fuels_lhv[fuel]
-                                        * self.fuel_co2[fuel]["co2"]
-                                        * self.fuel_co2[fuel]["bio_share"]
+                                        * self.fuel_properties[fuel]["lhv"]
+                                        * self.fuel_properties[fuel]["co2"]
+                                        * self.fuel_properties[fuel]["biogenic_share"]
                                     )
 
-                                    final_lhv += amount * self.fuels_lhv[fuel]
+                                    final_lhv += (
+                                        amount * self.fuel_properties[fuel]["lhv"]
+                                    )
 
                                     ds["exchanges"].append(
                                         {
@@ -1851,13 +1858,15 @@ class Fuels:
                                             supplier[-1],
                                             share,
                                             amount,
-                                            self.fuels_lhv[fuel],
-                                            self.fuel_co2[fuel]["co2"],
-                                            self.fuel_co2[fuel]["bio_share"],
+                                            self.fuel_properties[fuel]["lhv"],
+                                            self.fuel_properties[fuel]["co2"],
+                                            self.fuel_properties[fuel][
+                                                "biogenic_share"
+                                            ],
                                         ]
                                     )
 
-                                string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuels_lhv[fuel]} MJ/kg. "
+                                string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuel_properties[fuel]['lhv']} MJ/kg. "
 
                     string += f"Final average LHV of {final_lhv} MJ/kg."
 

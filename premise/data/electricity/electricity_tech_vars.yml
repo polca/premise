@@ -1,0 +1,191 @@
+# mapping between `premise` and IAM terminology
+# to refer to electricity production technologies
+# name_aliases --> name of the technology in the IAM file
+# eff_aliases --> name of the variable referring to the efficiency of the technology in the IAM file
+# gains_aliases --> name of the variable referring to the technology in the GAINS file for non-CO2 emissions
+---
+Biomass CHP:
+  name_aliases:
+    remind: SE|Electricity|Biomass|CHP|w/o CCS
+    image: Secondary Energy|Electricity|Biomass|w/o CCS|3
+  eff_aliases:
+    remind: Tech|Electricity|Biomass|CHP|w/o CCS|Efficiency
+    image: Efficiency|Electricity|Biomass|w/o CCS|3
+  gains_aliases: Power_Gen_Bio_Trad
+Biomass CHP CCS:
+  name_aliases:
+    image: Secondary Energy|Electricity|Biomass|w/ CCS|2
+  eff_aliases:
+    image: Efficiency|Electricity|Biomass|w/ CCS|2
+  gains_aliases: Power_Gen_Bio_Trad
+Biomass ST:
+  name_aliases:
+    image: Secondary Energy|Electricity|Biomass|w/o CCS|1
+  eff_aliases:
+    image: Efficiency|Electricity|Biomass|w/o CCS|1
+  gains_aliases: Power_Gen_Bio_Trad
+Biomass IGCC CCS:
+  name_aliases:
+    remind: SE|Electricity|Biomass|IGCCC|w/ CCS
+    image: Secondary Energy|Electricity|Biomass|w/ CCS|1
+  eff_aliases:
+    remind: Tech|Electricity|Biomass|IGCCC|w/ CCS|Efficiency
+    image: Efficiency|Electricity|Biomass|w/ CCS|1
+  gains_aliases: Power_Gen_Bio_Trad
+Biomass IGCC:
+  name_aliases:
+    remind: SE|Electricity|Biomass|IGCC|w/o CCS
+    image: Secondary Energy|Electricity|Biomass|w/o CCS|2
+  eff_aliases:
+    remind: Tech|Electricity|Biomass|IGCC|w/o CCS|Efficiency
+    image: Efficiency|Electricity|Biomass|w/o CCS|2
+  gains_aliases: Power_Gen_Bio_Trad
+Coal PC:
+  name_aliases:
+    remind: SE|Electricity|Coal|PC|w/o CCS
+    image: Secondary Energy|Electricity|Coal|w/o CCS|1
+  eff_aliases:
+    remind: Tech|Electricity|Coal|PC|w/o CCS|Efficiency
+    image: Efficiency|Electricity|Coal|w/o CCS|1
+  gains_aliases: Power_Gen_Coal
+Coal IGCC:
+  name_aliases:
+    remind: SE|Electricity|Coal|IGCC|w/o CCS
+    image: Secondary Energy|Electricity|Coal|w/o CCS|2
+  eff_aliases:
+    remind: Tech|Electricity|Coal|IGCC|w/o CCS|Efficiency
+    image: Efficiency|Electricity|Coal|w/o CCS|2
+  gains_aliases: Power_Gen_Coal
+Coal PC CCS:
+  name_aliases:
+    remind: SE|Electricity|Coal|PCC|w/ CCS
+  eff_aliases:
+    remind: Tech|Electricity|Coal|PCC|w/ CCS|Efficiency
+  gains_aliases: Power_Gen_Coal
+Coal IGCC CCS:
+  name_aliases:
+    remind: SE|Electricity|Coal|IGCCC|w/ CCS
+    image: Secondary Energy|Electricity|Coal|w/ CCS|1
+  eff_aliases:
+    remind: Tech|Electricity|Coal|IGCCC|w/ CCS|Efficiency
+    image: Efficiency|Electricity|Coal|w/ CCS|1
+  gains_aliases: Power_Gen_Coal
+Coal CHP:
+  name_aliases:
+    remind: SE|Electricity|Coal|CHP|w/o CCS
+    image: Secondary Energy|Electricity|Coal|w/o CCS|3
+  eff_aliases:
+    remind: Tech|Electricity|Coal|CHP|w/o CCS|Efficiency
+    image: Efficiency|Electricity|Coal|w/o CCS|3
+  gains_aliases: Power_Gen_Coal
+Coal CHP CCS:
+  name_aliases:
+    image: Secondary Energy|Electricity|Coal|w/ CCS|2
+  eff_aliases:
+    image: Efficiency|Electricity|Coal|w/ CCS|2
+  gains_aliases: Power_Gen_Coal
+Gas OC:
+  name_aliases:
+    remind: SE|Electricity|Gas|GT
+    image: Secondary Energy|Electricity|Gas|w/o CCS|1
+  eff_aliases:
+    remind: Tech|Electricity|Gas|GT|Efficiency
+    image: Efficiency|Electricity|Gas|w/o CCS|1
+  gains_aliases: Power_Gen_NatGas
+Gas CC:
+  name_aliases:
+    remind: SE|Electricity|Gas|CC|w/o CCS
+    image: Secondary Energy|Electricity|Gas|w/o CCS|2
+  eff_aliases:
+    remind: Tech|Electricity|Gas|CC|w/o CCS|Efficiency
+    image: Efficiency|Electricity|Gas|w/o CCS|2
+  gains_aliases: Power_Gen_NatGas
+Gas CHP:
+  name_aliases:
+    remind: SE|Electricity|Gas|CHP|w/o CCS
+    image: Secondary Energy|Electricity|Gas|w/o CCS|3
+  eff_aliases:
+    remind: Tech|Electricity|Gas|CHP|w/o CCS|Efficiency
+    image: Efficiency|Electricity|Gas|w/o CCS|3
+  gains_aliases: Power_Gen_NatGas
+Gas CHP CCS:
+  name_aliases:
+    image: Secondary Energy|Electricity|Gas|w/ CCS|2
+  eff_aliases:
+    image: Efficiency|Electricity|Gas|w/ CCS|2
+  gains_aliases: Power_Gen_NatGas
+Gas CC CCS:
+  name_aliases:
+    remind: SE|Electricity|Gas|w/ CCS
+    image: Secondary Energy|Electricity|Gas|w/ CCS|1
+  eff_aliases:
+    remind: Tech|Electricity|Gas|CCC|w/ CCS|Efficiency
+    image: Efficiency|Electricity|Gas|w/ CCS|1
+  gains_aliases: Power_Gen_NatGas
+Geothermal:
+  name_aliases:
+    remind: SE|Electricity|Geothermal
+    image: Secondary Energy|Electricity|Other
+Hydro:
+  name_aliases:
+    remind: SE|Electricity|Hydro
+    image: Secondary Energy|Electricity|Hydro
+Hydrogen:
+  name_aliases:
+    remind: SE|Electricity|Hydrogen
+Nuclear:
+  name_aliases:
+    remind: SE|Electricity|Nuclear
+    image: Secondary Energy|Electricity|Nuclear
+  eff_aliases:
+    image: Efficiency|Electricity|Nuclear
+Oil ST:
+  name_aliases:
+    remind: SE|Electricity|Oil|w/o CCS
+    image: Secondary Energy|Electricity|Oil|w/o CCS|1
+  eff_aliases:
+    remind: Tech|Electricity|Oil|DOT|Efficiency
+    image: Efficiency|Electricity|Oil|w/o CCS|1
+  gains_aliases: Power_Gen_LLF
+Oil CC:
+  name_aliases:
+    image: Secondary Energy|Electricity|Oil|w/o CCS|2
+  eff_aliases:
+    image: Efficiency|Electricity|Oil|w/o CCS|2
+  gains_aliases: Power_Gen_LLF
+Oil CC CCS:
+  name_aliases:
+    image: Secondary Energy|Electricity|Oil|w/ CCS|1
+  eff_aliases:
+    image: Efficiency|Electricity|Oil|w/ CCS|1
+  gains_aliases: Power_Gen_LLF
+Oil CHP:
+  name_aliases:
+    image: Secondary Energy|Electricity|Oil|w/o CCS|3
+  eff_aliases:
+    image: Efficiency|Electricity|Oil|w/o CCS|3
+  gains_aliases: Power_Gen_LLF
+Oil CHP CCS:
+  name_aliases:
+    image: Secondary Energy|Electricity|Oil|w/ CCS|2
+  eff_aliases:
+    image: Efficiency|Electricity|Oil|w/ CCS|2
+  gains_aliases: Power_Gen_LLF
+Solar CSP:
+  name_aliases:
+    remind: SE|Electricity|Solar|CSP
+    image: Secondary Energy|Electricity|Solar|CSP
+Solar PV Centralized:
+  name_aliases:
+    remind: SE|Electricity|Solar|PV
+    image: Secondary Energy|Electricity|Solar|PV|1
+Solar PV Residential:
+  name_aliases:
+    image: Secondary Energy|Electricity|Solar|PV|2
+Wind Onshore:
+  name_aliases:
+    image: Secondary Energy|Electricity|Wind|1
+Wind Offshore:
+  name_aliases:
+    remind: SE|Electricity|Wind
+    image: Secondary Energy|Electricity|Wind|2

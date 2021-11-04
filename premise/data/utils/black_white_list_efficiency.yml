@@ -1,0 +1,49 @@
+# blacklist: list of strings that, if contained in an activity name
+# indicate that the activity should be skipped
+# whitelist: list of strings that, if contained in an activity name
+# and that activity name returns no efficiency, should not throw an error
+---
+blacklist:
+  - sulfate production
+  - mine operation
+  - drying
+  - milling
+  - treatment of
+  - pipeline
+  - process-specific
+  - H2 power plant
+  - briquettes
+  - hydrogenation
+  - hydrogen embrittlement
+  - hydrogen fluoride
+  - hydrogen sulfide
+  - hydrogen sulfite
+  - hydrogen peroxide
+  - trichloropropane
+  - storage
+  - market for
+  - market group for
+  - wheat production
+  - sugarcane processing
+  - Farming and supply of
+  - sweetening
+  - blending
+  - purification
+  - grass seed production
+  - sowing
+  - transformation from
+  - import from
+  - photovoltaic
+  - solar thermal parabolic
+  - solar tower
+
+whitelist:
+  - treatment of
+  - heat production
+  - electricity voltage transformation
+  - Recycled Content cut-off
+  - energy saving
+  - to generic market for energy
+  - to generic market for protein
+  - desulfurisation
+  - passenger car
