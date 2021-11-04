@@ -134,7 +134,7 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          PKG_NAME=premise
+          PKG_NAME=premise-dev
           USER=romainsacchi
           conda install anaconda-client
           conda install conda-verify
