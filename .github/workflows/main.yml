@@ -179,6 +179,8 @@ jobs:
           conda install -c romainsacchi premise
           conda install pytest
           pytest -m "not ecoinvent"
+        env:
+          IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
 
       - name: Pull distribution 📦 from Anaconda and test it
         if: github.ref != 'refs/heads/master'
@@ -188,6 +190,8 @@ jobs:
           conda install -c romainsacchi premise-dev
           conda install pytest
           pytest -m "not ecoinvent"
+        env:
+          IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
 
   Pypi:
     runs-on: ubuntu-latest
