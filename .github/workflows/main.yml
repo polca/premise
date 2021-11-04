@@ -176,8 +176,7 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          PKG_NAME=premise
-          conda install -c romainsacchi PKG_NAME
+          conda install -c romainsacchi premise
           conda install pytest
           pytest -m "not ecoinvent"
 
@@ -186,8 +185,7 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          PKG_NAME=premise-dev
-          conda install -c romainsacchi PKG_NAME
+          conda install -c romainsacchi premise-dev
           conda install pytest
           pytest -m "not ecoinvent"
 
