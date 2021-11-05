@@ -2,7 +2,7 @@
 transformation_tools.py contains a number of small functions that help manipulating the Pandas dataframe `database`.
 """
 
-from typing import List
+from typing import List, Callable, Tuple
 
 from .utils import c
 import pandas as pd
@@ -30,11 +30,14 @@ def get_dataframe_consumers_keys(database) -> List[int]:
     return database[c.cons_key].unique()
 
 
-def contains(key: c, value: str):
+def contains(key: c, value: str) -> Callable:
+    return lambda df: df[key].str.contains(value)
 
-def equals(key, value):
+def equals(key: c, value: str) -> Callable:
+    return lambda df: df[key]==value
 
-def excludes(key, value):
+def excludes(key: c, value: str) -> Callable:
+    return lambda df: ~df[key].str.contains(value)
 
 
 def get_dataframe_producers_keys(database) -> List[int]:
@@ -47,13 +50,12 @@ def get_dataframe_producers_keys(database) -> List[int]:
 
     return database[c.prod_key].unique()
 
-def get_many(df: pd.DataFrame, filters: dict) -> List[pd.Series]:
+def get_many(df: pd.DataFrame, *filters: Tuple[Callable]) -> List[pd.Series]:
 
     selector = ~df[("ecoinvent", c.cons_name)].isnull()
 
-    for col, name in filters.items():
-        #FIXME: contains or equals?
-        selector *= df[("ecoinvent", col)].str.contains(name)
+    for ifilter in filters:
+        selector *= ifilter(df)
 
     for _, data in df[selector].iterrows():
         yield data
