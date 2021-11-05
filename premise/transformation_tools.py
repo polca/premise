@@ -36,8 +36,8 @@ def contains(key: c, value: str) -> Callable:
 def equals(key: c, value: str) -> Callable:
     return lambda df: df[key]==value
 
-def excludes(key: c, value: str) -> Callable:
-    return lambda df: ~df[key].str.contains(value)
+def does_not_contain(key: c, value: str) -> Callable:
+    return lambda df: ~(df[key].str.contains(value))
 
 
 def get_dataframe_producers_keys(database) -> List[int]:
