@@ -31,15 +31,15 @@ def get_dataframe_consumers_keys(database) -> List[int]:
     return database[c.cons_key].unique()
 
 
-def contains(key: c, value: str) -> Callable:
+def contains(key: c, value: str) -> Callable[[pd.DataFrame], pd.Series]:
     return lambda df: df[key].str.contains(value)
 
 
-def equals(key: c, value: str) -> Callable:
+def equals(key: c, value: str) -> Callable[[pd.DataFrame], pd.Series]:
     return lambda df: df[key] == value
 
 
-def does_not_contain(key: c, value: str) -> Callable:
+def does_not_contain(key: c, value: str) -> Callable[[pd.DataFrame], pd.Series]:
     return lambda df: ~(df[key].str.contains(value))
 
 
