@@ -26,7 +26,8 @@ def main():
         source_db="ecoinvent 3.8 cutoff",
         source_version="3.8",
         key="tUePmX_S5B8ieZkkM7WUU2CnO8SmShwmAeWK9x2rTFo=",
-        direct_import=False,
+        use_cached_inventories=True,
+        use_cached_database=True,
     )
 
 

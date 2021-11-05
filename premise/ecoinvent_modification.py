@@ -189,6 +189,8 @@ LIST_TRANSF_FUNC = [
     "update_fuels",
 ]
 
+DIR_CACHED_DB = DATA_DIR / "cache"
+
 # Disable printing
 def blockPrint():
     sys.stdout = open(os.devnull, "w")
@@ -592,9 +594,10 @@ class NewDatabase:
         source_db=None,
         source_file_path=None,
         additional_inventories=None,
-        direct_import=True,
+        use_cached_inventories=True,
         system_model="attributional",
         time_horison=None,
+        use_cached_database=False,
     ):
 
         self.source = source_db
@@ -627,11 +630,27 @@ class NewDatabase:
         print(
             "\n////////////////////// EXTRACTING SOURCE DATABASE ///////////////////////"
         )
-        self.database = self.__clean_database()
+
+        if use_cached_database:
+            self.database = self.__find_cached_db(source_db)
+            print("Done!")
+        else:
+            self.database = self.__clean_database()
+
         print(
             "\n/////////////////// IMPORTING DEFAULT INVENTORIES ////////////////////"
         )
-        self.__import_inventories(direct_import)
+
+        if use_cached_inventories:
+            data = self.__find_cached_inventories(source_db)
+            if data is not None:
+                self.database.extend(data)
+                print("Done!")
+        else:
+            self.__import_inventories()
+
+        if self.additional_inventories:
+            self.__import_additional_inventories()
 
         self.database = convert_db_to_dataframe(self.database)
 
@@ -662,6 +681,56 @@ class NewDatabase:
 
         print("\nDone!")
 
+    def __find_cached_db(self, db_name):
+        """
+        If `use_cached_db` = True, then we look for a cached database.
+        If cannot be found, we create a cache for next time.
+        :param db_name: database name
+        :return: database
+        """
+        # check that directory exists, otherwise create it
+        Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
+        # build file path
+        file_name = Path(DIR_CACHED_DB / f"cached_{db_name.strip().lower()}.pickle")
+
+        # check that file path leads to an existing file
+        if file_name.exists():
+            # return the cached database
+            return pickle.load(open(file_name, "rb"))
+        else:
+            # extract the database, pickle it for next time and return it
+            print("Cannot find cached database. Will create one now for next time...")
+            db = self.__clean_database()
+            pickle.dump(db, open(file_name, "wb"))
+            return db
+
+    def __find_cached_inventories(self, db_name):
+        """
+        If `use_cached_inventories` = True, then we look for a cached inventories.
+        If cannot be found, we create a cache for next time.
+        :param db_name: database name
+        :return: database
+        """
+        # check that directory exists, otherwise create it
+        Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
+        # build file path
+        file_name = Path(
+            DIR_CACHED_DB / f"cached_{db_name.strip().lower()}_inventories.pickle"
+        )
+
+        # check that file path leads to an existing file
+        if file_name.exists():
+            # return the cached database
+            return pickle.load(open(file_name, "rb"))
+        else:
+            # extract the database, pickle it for next time and return it
+            print(
+                "Cannot find cached inventories. Will create them now for next time..."
+            )
+            data = self.__import_inventories()
+            pickle.dump(data, open(file_name, "wb"))
+            return None
+
     def __clean_database(self):
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
@@ -672,98 +741,87 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
-    def __import_inventories(self, direct_import):
+    def __import_inventories(self):
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
         """
 
-        print("Importing necessary inventories...\n")
+        print("Importing default inventories...\n")
 
-        if direct_import:
+        with HiddenPrints():
+            # Manual import
+            # file path and original ecoinvent version
+            data = []
+            filepaths = [
+                (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
+                (FILEPATH_CARMA_INVENTORIES, "3.5"),
+                (FILEPATH_CHP_INVENTORIES, "3.5"),
+                (FILEPATH_DAC_INVENTORIES, "3.7"),
+                (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
+                (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
+                (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
+                (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
+                (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
+                (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
+                    "3.7",
+                ),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
+                    "3.7",
+                ),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
+                    "3.7",
+                ),
+                (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
+                (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+            ]
+            for filepath in filepaths:
+                inventory = DefaultInventory(
+                    database=self.database,
+                    version_in=filepath[1],
+                    version_out=self.version,
+                    path=filepath[0],
+                )
+                datasets = inventory.merge_inventory()
+                data.extend(datasets)
+                self.database.extend(datasets)
 
-            # we unpickle inventories here
-            # and append them directly to the end of the database
-            if self.version == "3.8":
-                filepath = FILE_PATH_INVENTORIES_EI_38
-            elif self.version in ["3.7", "3.7.1"]:
-                self.version = "3.7"
-                filepath = FILE_PATH_INVENTORIES_EI_37
-            elif self.version == "3.6":
-                filepath = FILE_PATH_INVENTORIES_EI_36
-            else:
-                filepath = FILE_PATH_INVENTORIES_EI_35
+        print("Done!\n")
+        return data
 
-            with open(filepath, "rb") as handle:
-                data = check_for_duplicates(pickle.load(handle))
-                self.database.extend(data)
+    def __import_additional_inventories(self):
 
-        else:
-            with HiddenPrints():
-                # Manual import
-                # file path and original ecoinvent version
-                filepaths = [
-                    (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
-                    (FILEPATH_CARMA_INVENTORIES, "3.5"),
-                    (FILEPATH_CHP_INVENTORIES, "3.5"),
-                    (FILEPATH_DAC_INVENTORIES, "3.7"),
-                    (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
-                    (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
-                    (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
-                    (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
-                    (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
-                    (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-                    (
-                        FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
-                        "3.7",
-                    ),
-                    (
-                        FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
-                        "3.7",
-                    ),
-                    (
-                        FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
-                        "3.7",
-                    ),
-                    (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
-                    (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
-                    (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
-                    (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
-                ]
-                for filepath in filepaths:
-                    inventory = DefaultInventory(
-                        database=self.database,
-                        version_in=filepath[1],
-                        version_out=self.version,
-                        path=filepath[0],
-                    )
-                    inventory.merge_inventory()
+        print(
+            "\n/////////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////////"
+        )
+
+        data = []
+
+        for file in self.additional_inventories:
+            additional = AdditionalInventory(
+                database=self.database,
+                version_in=file["ecoinvent version"],
+                version_out=self.version,
+                path=file["filepath"],
+            )
+            additional.prepare_inventory()
+            data.extend(additional.merge_inventory())
 
         print("Done!\n")
 
-        if self.additional_inventories:
-
-            print(
-                "\n/////////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////////"
-            )
-
-            for file in self.additional_inventories:
-                additional = AdditionalInventory(
-                    database=self.database,
-                    version_in=file["ecoinvent version"],
-                    version_out=self.version,
-                    path=file["filepath"],
-                )
-                additional.prepare_inventory()
-                additional.merge_inventory()
-
-            print("Done!\n")
+        return data
 
     def update_electricity(self):
 
