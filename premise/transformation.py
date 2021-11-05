@@ -306,8 +306,8 @@ class BaseTransformation:
         :type ref_product: str
         :param unit: unit of the dataset
         :type unit: str
-        :param excludes: list of terms that, if contained in the name of an exchange, should be ignored
-        :type excludes: list
+        :param does_not_contain: list of terms that, if contained in the name of an exchange, should be ignored
+        :type does_not_contain: list
         :returns: does not return anything. Modifies in place.
         """
 

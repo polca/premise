@@ -290,7 +290,7 @@ def convert_db_to_dataframe(database):
 
             if iexc["type"] == "biosphere":
                 producer_product = "-"
-                producer_location = iexc["categories"]
+                producer_location = "::".join(iexc["categories"])
             else:
                 producer_product = iexc["product"]
                 producer_location = iexc["location"]
