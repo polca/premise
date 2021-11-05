@@ -197,7 +197,7 @@ class BaseTransformation:
             for d in ws.get_many(
                 self.database,
                 ws.equals("name", name),
-                ws.equals("reference product", ref_prod)
+                ws.equals("reference product", ref_prod),
             )
         }
 
@@ -212,7 +212,6 @@ class BaseTransformation:
                     ws.equals("name", name),
                     ws.equals("reference product", ref_prod),
                     ws.equals("location", d_iam_to_eco[region]),
-
                 )
 
             except ws.NoResults:
