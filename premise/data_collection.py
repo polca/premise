@@ -720,7 +720,9 @@ class IAMDataCollection:
             )
 
         # primary steel efficiency changes relative to 2020
-        data_primary = data_primary.interp(year=[self.year]) / data_primary.sel(year=2020)
+        data_primary = data_primary.interp(year=[self.year]) / data_primary.sel(
+            year=2020
+        )
 
         if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")) > 0:
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
