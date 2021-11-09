@@ -4,6 +4,7 @@ import pickle
 import sys
 from datetime import date
 from pathlib import Path
+import xarray as xr
 
 import numpy as np
 import wurst
@@ -29,12 +30,12 @@ from .renewables import SolarPV
 from .steel import Steel
 from .utils import (
     add_modified_tags,
-    build_superstructure_db,
     c,
     convert_db_to_dataframe,
     create_scenario_label,
     eidb_label,
 )
+from typing import List
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -565,6 +566,25 @@ class HiddenPrints:
         sys.stdout.close()
         sys.stdout = self._original_stdout
 
+class IAMData():
+    """
+    Class that contains all the IAM data needed to perform
+    subsequent operations, for every scenario.
+
+    :var list_data: list of data packages returned by IAMDataCollection
+    """
+
+    def __init__(self, list_data: List[IAMDataCollection]):
+
+        self.electricity_markets = xr.concat([d.electricity_markets for d in list_data], dim="scenario")
+        self.production_volumes = xr.concat([d.production_volumes for d in list_data], dim="scenario")
+        self.fuel_markets = xr.concat([d.fuel_markets for d in list_data], dim="scenario")
+        self.gnr_data = list_data[0].gnr_data
+        self.carbon_capture_rate = xr.concat([d.carbon_capture_rate for d in list_data], dim="scenario")
+        self.efficiency = xr.concat([d.efficiency for d in list_data], dim="scenario")
+        self.emissions = xr.concat([d.emissions for d in list_data], dim="scenario")
+
+
 
 class NewDatabase:
     """
@@ -617,6 +637,8 @@ class NewDatabase:
 
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
 
+        self.iam_data = None
+
         # warning about biogenic CO2
         warning_about_biogenic_co2()
 
@@ -656,8 +678,9 @@ class NewDatabase:
 
         print("\n////////////////////// EXTRACTING IAM DATA ///////////////////////")
 
+        list_data = []
         for scenario in self.scenarios:
-            scenario["external data"] = IAMDataCollection(
+            data = IAMDataCollection(
                 model=scenario["model"],
                 pathway=scenario["pathway"],
                 year=scenario["year"],
@@ -666,6 +689,7 @@ class NewDatabase:
                 system_model=self.system_model,
                 time_horizon=self.time_horizon,
             )
+            list_data.append(data)
 
             # add additional columns to host pathway-specific data
             scenario_label = create_scenario_label(
@@ -674,10 +698,15 @@ class NewDatabase:
                 year=scenario["year"],
             )
 
-            for col in [c.cons_amount]:
+            for col in [c.amount, c.cons_prod_vol]:
+                self.database[(scenario_label, col)] = np.nan
                 self.database[(scenario_label, col)] = np.nan
 
             self.database[(scenario_label, c.comment)] = ""
+            self.database[(scenario_label, c.cons_loc)] = ""
+            self.database[(scenario_label, c.prod_loc)] = ""
+
+        self.iam_data = IAMData(list_data)
 
         print("\nDone!")
 

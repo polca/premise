@@ -106,6 +106,7 @@ class Geomap:
         # Second, it can be an ecoinvent region
         # with no native mapping
         if location in self.additional_mappings:
+
             if self.additional_mappings[location][self.model] in self.iam_regions:
                 return self.additional_mappings[location][self.model]
             # likely a case of missing "EUR" region

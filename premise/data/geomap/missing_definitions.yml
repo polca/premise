@@ -6,7 +6,7 @@ Europe without Austria:
   image: WEU
 Europe without Switzerland and Austria:
   remind: EUR
-  inage: WEU
+  image: WEU
 Europe without Switzerland:
   remind: EUR
   image: WEU
@@ -29,8 +29,8 @@ RNA:
   remind: USA
   image: USA
 SAS:
-  remind: OAS
-  image: SEAS,
+  remind: IND
+  image: INDIA
 IAI Area, EU27 & EFTA:
   remind: EUR
   image: WEU

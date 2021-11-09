@@ -15,6 +15,7 @@ import pandas as pd
 import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
+from .utils import create_scenario_label
 
 from . import DATA_DIR
 
@@ -238,6 +239,7 @@ class IAMDataCollection:
                     dict_vars[k] = v[key][self.model]
 
         return dict_vars
+
 
     def __get_iam_data(self, key, filepath):
         """
@@ -539,7 +541,14 @@ class IAMDataCollection:
                 data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
             )
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+
+        return data_exp
 
     def __get_iam_electricity_efficiencies(self, data, drop_hydrogen=True):
         """
@@ -598,7 +607,13 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list(labels.keys())
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_iam_cement_efficiencies(self, data):
         """
@@ -660,7 +675,13 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = ["cement"]
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_iam_steel_efficiencies(self, data):
         """
@@ -756,7 +777,13 @@ class IAMDataCollection:
             "steel - secondary",
         ]
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_gains_electricity_emissions(self, data):
         """
@@ -807,7 +834,13 @@ class IAMDataCollection:
 
         data_to_return.coords["sector"] = list(labels.keys())
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_gains_cement_emissions(self, data):
         """
@@ -855,7 +888,13 @@ class IAMDataCollection:
 
         data_to_return.coords["sector"] = ["cement"]
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_gains_steel_emissions(self, data):
         """
@@ -903,7 +942,13 @@ class IAMDataCollection:
 
         data_to_return.coords["sector"] = ["steel"]
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_iam_fuel_markets(self, data):
         """
@@ -956,7 +1001,13 @@ class IAMDataCollection:
                 .sum(dim="variables")
             )
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_iam_fuel_efficiencies(self, data):
         """
@@ -1012,7 +1063,13 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list(labels.keys())
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_carbon_capture_rate(self, dict_vars, data):
         """
@@ -1087,7 +1144,15 @@ class IAMDataCollection:
         # we ensure that the rate can only be between 0 and 1
         rate = np.clip(rate, 0, 1)
 
-        return rate.interp(year=self.year)
+        rate = rate.interp(year=self.year)
+
+        data_new = rate.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
 
     def __get_iam_production_volumes(self, dict_products, data):
         """
@@ -1111,4 +1176,10 @@ class IAMDataCollection:
         data_to_return = data.loc[:, list_products, :]
         data_to_return.coords["variables"] = list(dict_products.keys())
 
-        return data_to_return
+        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
+            self.model, self.pathway, self.year
+        ))
+
+        data_exp = data_new.expand_dims('scenario')
+
+        return data_exp
