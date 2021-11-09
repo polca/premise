@@ -15,9 +15,9 @@ import pandas as pd
 import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
-from .utils import create_scenario_label
 
 from . import DATA_DIR
+from .utils import create_scenario_label
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
@@ -239,7 +239,6 @@ class IAMDataCollection:
                     dict_vars[k] = v[key][self.model]
 
         return dict_vars
-
 
     def __get_iam_data(self, key, filepath):
         """
@@ -541,12 +540,11 @@ class IAMDataCollection:
                 data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
             )
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
-
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -607,11 +605,11 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list(labels.keys())
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -675,11 +673,11 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = ["cement"]
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -777,11 +775,11 @@ class IAMDataCollection:
             "steel - secondary",
         ]
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -834,11 +832,11 @@ class IAMDataCollection:
 
         data_to_return.coords["sector"] = list(labels.keys())
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -888,11 +886,11 @@ class IAMDataCollection:
 
         data_to_return.coords["sector"] = ["cement"]
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -942,11 +940,11 @@ class IAMDataCollection:
 
         data_to_return.coords["sector"] = ["steel"]
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -1001,11 +999,11 @@ class IAMDataCollection:
                 .sum(dim="variables")
             )
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -1063,11 +1061,11 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list(labels.keys())
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -1146,11 +1144,11 @@ class IAMDataCollection:
 
         rate = rate.interp(year=self.year)
 
-        data_new = rate.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = rate.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp
 
@@ -1176,10 +1174,10 @@ class IAMDataCollection:
         data_to_return = data.loc[:, list_products, :]
         data_to_return.coords["variables"] = list(dict_products.keys())
 
-        data_new = data_to_return.assign_coords(scenario=create_scenario_label(
-            self.model, self.pathway, self.year
-        ))
+        data_new = data_to_return.assign_coords(
+            scenario=create_scenario_label(self.model, self.pathway, self.year)
+        )
 
-        data_exp = data_new.expand_dims('scenario')
+        data_exp = data_new.expand_dims("scenario")
 
         return data_exp

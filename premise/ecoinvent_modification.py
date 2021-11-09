@@ -4,10 +4,11 @@ import pickle
 import sys
 from datetime import date
 from pathlib import Path
-import xarray as xr
+from typing import List
 
 import numpy as np
 import wurst
+import xarray as xr
 from prettytable import PrettyTable
 
 from . import DATA_DIR, INVENTORY_DIR
@@ -35,7 +36,6 @@ from .utils import (
     create_scenario_label,
     eidb_label,
 )
-from typing import List
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -566,7 +566,8 @@ class HiddenPrints:
         sys.stdout.close()
         sys.stdout = self._original_stdout
 
-class IAMData():
+
+class IAMData:
     """
     Class that contains all the IAM data needed to perform
     subsequent operations, for every scenario.
@@ -576,14 +577,21 @@ class IAMData():
 
     def __init__(self, list_data: List[IAMDataCollection]):
 
-        self.electricity_markets = xr.concat([d.electricity_markets for d in list_data], dim="scenario")
-        self.production_volumes = xr.concat([d.production_volumes for d in list_data], dim="scenario")
-        self.fuel_markets = xr.concat([d.fuel_markets for d in list_data], dim="scenario")
+        self.electricity_markets = xr.concat(
+            [d.electricity_markets for d in list_data], dim="scenario"
+        )
+        self.production_volumes = xr.concat(
+            [d.production_volumes for d in list_data], dim="scenario"
+        )
+        self.fuel_markets = xr.concat(
+            [d.fuel_markets for d in list_data], dim="scenario"
+        )
         self.gnr_data = list_data[0].gnr_data
-        self.carbon_capture_rate = xr.concat([d.carbon_capture_rate for d in list_data], dim="scenario")
+        self.carbon_capture_rate = xr.concat(
+            [d.carbon_capture_rate for d in list_data], dim="scenario"
+        )
         self.efficiency = xr.concat([d.efficiency for d in list_data], dim="scenario")
         self.emissions = xr.concat([d.emissions for d in list_data], dim="scenario")
-
 
 
 class NewDatabase:
