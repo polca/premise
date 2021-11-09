@@ -584,7 +584,7 @@ class IAMDataCollection:
         # Interpolation between two periods
         data_to_return = data.loc[:, list_technologies, :]
 
-        data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
+        data_to_return = data_to_return.interp(year=[self.year]) / data_to_return.sel(
             year=2020
         )
 
@@ -647,7 +647,7 @@ class IAMDataCollection:
                 / data.loc[:, [prod["cement"]], :]
             )
 
-        data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
+        data_to_return = data_to_return.interp(year=[self.year]) / data_to_return.sel(
             year=2020
         )
 
@@ -722,7 +722,7 @@ class IAMDataCollection:
             )
 
         # primary steel efficiency changes relative to 2020
-        data_primary = data_primary.interp(year=self.year) / data_primary.sel(year=2020)
+        data_primary = data_primary.interp(year=[self.year]) / data_primary.sel(year=2020)
 
         if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")) > 0:
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
@@ -744,7 +744,7 @@ class IAMDataCollection:
             )
 
         # secondary steel efficiency changes relative to 2020
-        data_secondary = data_secondary.interp(year=self.year) / data_secondary.sel(
+        data_secondary = data_secondary.interp(year=[self.year]) / data_secondary.sel(
             year=2020
         )
 
@@ -812,7 +812,7 @@ class IAMDataCollection:
         # 5/10 = 0.5
         # 1/0.5 = 2. Improvement factor of 2.
         data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+            data_to_return.interp(year=[self.year]) / data_to_return.sel(year=2020)
         )
 
         # If we are looking at a year post 2020
@@ -866,7 +866,7 @@ class IAMDataCollection:
         # 5/10 = 0.5
         # 1/0.5 = 2. Improvement factor of 2.
         data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+            data_to_return.interp(year=[self.year]) / data_to_return.sel(year=2020)
         )
 
         # If we are looking at a year post 2020
@@ -920,7 +920,7 @@ class IAMDataCollection:
         # 5/10 = 0.5
         # 1/0.5 = 2. Improvement factor of 2.
         data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+            data_to_return.interp(year=[self.year]) / data_to_return.sel(year=2020)
         )
 
         # If we are looking at a year post 2020
@@ -1035,7 +1035,7 @@ class IAMDataCollection:
         # Interpolation between two periods
         data_to_return = data.loc[:, list_technologies, :]
 
-        data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
+        data_to_return = data_to_return.interp(year=[self.year]) / data_to_return.sel(
             year=2020
         )
 
