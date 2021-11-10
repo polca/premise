@@ -10,11 +10,11 @@ from datetime import date
 from itertools import product
 
 import numpy as np
+import xarray as xr
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from premise.transformation_tools import get_dataframe_locs
-
+from premise.transformation_tools import *
 from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
@@ -22,7 +22,6 @@ from .utils import (
     c,
     create_scenario_label,
     get_fuel_properties,
-    relink_technosphere_exchanges,
 )
 
 
@@ -77,12 +76,7 @@ def get_shares_from_production_volume(ds_list):
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
             dict_act[
-                (
-                    act["name"],
-                    act["location"],
-                    act["reference product"],
-                    act["unit"],
-                )
+                (act["name"], act["location"], act["reference product"], act["unit"],)
             ] = production_volume
             total_production_volume += production_volume
 
@@ -111,24 +105,48 @@ class BaseTransformation:
     Base transformation class.
     """
 
-    def __init__(self, database, iam_data, model, pathway, year):
+    def __init__(
+        self,
+        database: pd.DataFrame,
+        iam_data: xr.DataArray,
+        scenarios: dict,
+        # model: str,
+        # pathway: str,
+        # year: int,
+    ):
         self.database = database
         self.iam_data = iam_data
-        self.model = model
-        self.regions = iam_data.regions
-        self.geo = Geomap(model=model, current_regions=self.regions)
-        self.pathway = pathway
-        self.year = year
+        self.scenarios = scenarios
+        self.scenario_labels = [
+            create_scenario_label(
+                scenario["model"], scenario["pathway"], scenario["year"]
+            )
+            for scenario in self.scenarios
+        ]
+        self.regions = {}
+        for label in self.scenario_labels:
+            self.regions[
+                label
+            ] = self.iam_data.electricity_markets.region.values.tolist()
+
+        # self.geo = Geomap(model=model)
+
         self.fuels_lhv = get_fuel_properties()
-        mapping = InventorySet(self.database)
-        self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
-        self.fuel_map = mapping.generate_fuel_map()
-        self.fuels_co2 = get_fuel_co2_emission_factors()
-        self.list_datasets = get_tuples_from_database(self.database)
-        self.ecoinvent_to_iam_loc = {
-            loc: self.geo.ecoinvent_to_iam_location(loc)
-            for loc in get_dataframe_locs(self.database)
-        }
+        # mapping = InventorySet(self.database)
+        # self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
+        # self.fuel_map = mapping.generate_fuel_map()
+        self.fuels_co2 = get_fuel_properties()
+        # self.list_datasets = get_tuples_from_database(self.database)
+
+        self.ecoinvent_to_iam_loc = {label: {} for label in self.scenario_labels}
+        for s, scenario in enumerate(scenarios):
+            geo = Geomap(model=scenario["model"])
+            self.ecoinvent_to_iam_loc[self.scenario_labels[s]] = {
+                loc: geo.ecoinvent_to_iam_location(loc)
+                for loc in get_dataframe_locs(self.database)
+            }
+
+        self.exchange_stack = []
 
     def update_ecoinvent_efficiency_parameter(self, dataset, old_ei_eff, new_eff):
         """
@@ -192,106 +210,90 @@ class BaseTransformation:
         :return:
         """
 
-        d_map = {
-            self.ecoinvent_to_iam_loc[d["location"]]: d["location"]
-            for d in ws.get_many(
-                self.database,
-                ws.equals("name", name),
-                ws.equals("reference product", ref_prod),
-            )
-        }
+        d_map = {}
 
-        d_iam_to_eco = {region: d_map.get(region, "RoW") for region in self.regions}
-
-        d_act = {}
-
-        for region in d_iam_to_eco:
-            try:
-                dataset = ws.get_one(
+        for label in self.scenario_labels:
+            d_map[label] = {
+                self.ecoinvent_to_iam_loc[label][loc]: loc
+                for loc in get_many(
                     self.database,
-                    ws.equals("name", name),
-                    ws.equals("reference product", ref_prod),
-                    ws.equals("location", d_iam_to_eco[region]),
+                    "and",
+                    contains(("ecoinvent", c.cons_name), name),
+                    contains(("ecoinvent", c.cons_prod), ref_prod),
+                    equals(("ecoinvent", c.type), "production"),
                 )
+                               .loc[:, ("ecoinvent", c.cons_loc)]
+                    .unique()
+                    .tolist()
+            }
 
-            except ws.NoResults:
+        # FIXME: doing so omits activity datasets that have a location
+        # that can also be part of an IAM region
+        # when there are multiple candidates, the last one is picked
 
-                # trying with `GLO`
-                dataset = ws.get_one(
+        d_iam_to_eco = {}
+        for label in self.scenario_labels:
+            d_iam_to_eco[label] = {
+                region: d_map[label].get(region, "RoW")
+                for region in self.regions[label]
+            }
+
+
+        d_act = {scenario: {} for scenario in self.scenario_labels}
+
+        for scenario in self.scenario_labels:
+            for region in d_iam_to_eco[scenario]:
+
+                dataset = get_many(
                     self.database,
-                    ws.equals("name", name),
-                    ws.equals("reference product", ref_prod),
-                    ws.equals("location", "GLO"),
+                    "and",
+                    contains(("ecoinvent", c.cons_name), name),
+                    contains(("ecoinvent", c.cons_prod), ref_prod),
+                    equals(("ecoinvent", c.cons_loc), d_iam_to_eco[scenario][region]),
+                ).copy()
+
+                d_act[scenario][region] = copy_to_new_location(
+                    dataset, scenario, region,
                 )
 
-            d_act[region] = wt.copy_to_new_location(dataset, region)
-            d_act[region]["code"] = str(uuid.uuid4().hex)
-
-            for exc in ws.production(d_act[region]):
-                if "input" in exc:
-                    exc.pop("input")
-
-            if "input" in d_act[region]:
-                d_act[region].pop("input")
-
-            # Add `production volume` field
-            if isinstance(production_variable, str):
-                production_variable = [production_variable]
-            prod_vol = (
-                self.iam_data.production_volumes.sel(
-                    region=region, variables=production_variable
-                )
-                .interp(year=self.year)
-                .sum(dim="variables")
-                .values.item(0)
-            )
-
-            for prod in ws.production(d_act[region]):
-                prod["location"] = region
-                prod["production volume"] = prod_vol
-
-            if relink:
-                d_act[region] = relink_technosphere_exchanges(
-                    d_act[region], self.database, self.model
+                # Add `production volume` field
+                prod_vol = (
+                    self.iam_data.production_volumes.sel(
+                        region=region, variables=production_variable
+                    )
+                        .interp(year=int(scenario.split("::")[-1]))
+                        .values.item(0)
                 )
 
-        deleted_markets = [
-            (act["name"], act["reference product"], act["location"])
-            for act in self.database
-            if (act["name"], act["reference product"]) == (name, ref_prod)
-        ]
+                d_act[scenario][region] = change_production_volume(
+                    d_act[scenario][region], scenario, prod_vol,
+                )
 
-        with open(
-            DATA_DIR
-            / f"logs/log deleted datasets {self.model} {self.pathway} {self.year}-{date.today()}.csv",
-            "a",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            for line in deleted_markets:
-                writer.writerow(line)
+                if relink:
+                    d_act[region] = relink_technosphere_exchanges(
+                        d_act[region], self.database, self.model
+                    )
 
-        # Remove old datasets
-        self.database = [
-            act
-            for act in self.database
-            if (act["name"], act["reference product"]) != (name, ref_prod)
-        ]
+                # TODO: empty original datasets
+                empty_datasets(
+                    self.database,
+                    scenario,
+                    contains(("ecoinvent", c.cons_name), name),
+                    contains(("ecoinvent", c.cons_prod), ref_prod),
+                    equals(("ecoinvent", c.cons_loc), d_iam_to_eco[scenario][region]),
+                )
 
-        # Remove deleted datasets from `self.list_datasets`
-        self.list_datasets = [
-            dataset
-            for dataset in self.list_datasets
-            if (dataset[0], dataset[1]) != (name, ref_prod)
-        ]
+                # TODO: empties original datasets should point to new datasets
+                new_exc = redirect_datasets(
+                    self.database,
+                    scenario,
+                    region,
+                    contains(("ecoinvent", c.cons_name), name),
+                    contains(("ecoinvent", c.cons_prod), ref_prod),
+                    equals(("ecoinvent", c.cons_loc), d_iam_to_eco[scenario][region]),
+                )
 
-        # Add created datasets to `self.list_datasets`
-        self.list_datasets.extend(
-            [
-                (dataset["name"], dataset["reference product"], dataset["location"])
-                for dataset in d_act.values()
-            ]
-        )
+                self.exchange_stack.append(new_exc)
 
         return d_act
 
@@ -314,8 +316,7 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database,
-            ws.doesnt_contain_any("name", excludes_datasets),
+            self.database, ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
 
@@ -396,8 +397,7 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector,
-                region=loc,
+                variables=sector, region=loc,
             ).values
         else:
             rate = 0
@@ -415,11 +415,7 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(
-                region=location,
-                pollutant=pollutant,
-                sector=sector,
-            )
+            dict(region=location, pollutant=pollutant, sector=sector,)
         ].values.item(0)
 
         return scaling_factor

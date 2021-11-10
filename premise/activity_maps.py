@@ -1,6 +1,8 @@
 import csv
 
 from . import DATA_DIR
+from .utils import c
+from .transformation_tools import *
 
 GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
     DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
@@ -662,37 +664,63 @@ class InventorySet:
                 return b not in a
 
         assert len(fltr) > 0, "Filter dict must not be empty."
+
+        list_filters = []
+
+        fields_map = {
+            "name": c.cons_name,
+            "reference product": c.cons_prod
+        }
+
         for field in fltr:
             condition = fltr[field]
             if type(condition) == list:
                 for el in condition:
+                    list_filters.append(
+                        contains(("ecoinvent", fields_map[field]), el)
+                    )
                     # this is effectively connecting the statements by *or*
-                    result.extend([act for act in db if like(act[field], el)])
+                    #result.extend([act for act in db if like(act[field], el)])
             else:
-                result.extend([act for act in db if like(act[field], condition)])
+                list_filters.append(
+                    contains(("ecoinvent", fields_map[field]), condition)
+                )
+                #result.extend([act for act in db if like(act[field], condition)])
 
         for field in mask:
             condition = mask[field]
             if type(condition) == list:
                 for el in condition:
+                    list_filters.append(
+                        does_not_contain(("ecoinvent", fields_map[field]), el)
+                    )
                     # this is effectively connecting the statements by *and*
-                    result = [act for act in result if notlike(act[field], el)]
+                    #result = [act for act in result if notlike(act[field], el)]
             else:
-                result = [act for act in result if notlike(act[field], condition)]
-        return result
+                list_filters.append(
+                    does_not_contain(("ecoinvent", fields_map[field]), condition)
+                )
+                #result = [act for act in result if notlike(act[field], condition)]
+
+        results = get_many_production_exchanges(
+            db, "and", *list_filters
+        )[("ecoinvent", c.cons_name)].unique()
+
+        return results
 
     def generate_sets_from_filters(self, filtr):
         """
         Generate a dictionary with sets of activity names for
         technologies from the filter specifications.
 
-            :param filtr:
-            :func:`activity_maps.InventorySet.act_fltr`.
+        :param filtr:
+        :func:`activity_maps.InventorySet.act_fltr`.
         :return: dictionary with the same keys as provided in filter
             and a set of activity data set names as values.
         :rtype: dict
         """
         techs = {tech: self.act_fltr(self.db, **fltr) for tech, fltr in filtr.items()}
+
         return {
-            tech: set([act["name"] for act in actlst]) for tech, actlst in techs.items()
+            tech: set(actlst) for tech, actlst in techs.items()
         }

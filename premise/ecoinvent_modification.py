@@ -706,13 +706,10 @@ class NewDatabase:
                 year=scenario["year"],
             )
 
-            for col in [c.amount, c.cons_prod_vol]:
-                self.database[(scenario_label, col)] = np.nan
+            for col in [c.amount, c.cons_prod_vol, c.efficiency]:
                 self.database[(scenario_label, col)] = np.nan
 
             self.database[(scenario_label, c.comment)] = ""
-            self.database[(scenario_label, c.cons_loc)] = ""
-            self.database[(scenario_label, c.prod_loc)] = ""
 
         self.iam_data = IAMData(list_data)
 
