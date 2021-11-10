@@ -4,7 +4,6 @@ import pprint
 from difflib import SequenceMatcher
 from functools import lru_cache
 from typing import List
-from .geomap import Geomap
 
 import numpy as np
 import pandas as pd
@@ -12,6 +11,7 @@ import yaml
 from wurst import searching as ws
 
 from .export import *
+from .geomap import Geomap
 
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
@@ -324,7 +324,7 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
                     iexc["unit"],
                     energy_efficiency if producer_type == "production" else np.nan,
                     comment,
-                    "", #FIXME: this is useless for now. It's where a tag should go to identify fuel inputs, etc.
+                    "",  # FIXME: this is useless for now. It's where a tag should go to identify fuel inputs, etc.
                     exchange_key,
                     consumer_key,
                     producer_key,
@@ -332,7 +332,8 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
             )
 
     return pd.DataFrame(
-        data_to_ret, columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
+        data_to_ret,
+        columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
     )
 
 
@@ -468,7 +469,12 @@ def create_codes_and_names_of_A_matrix(db):
     :rtype: dict
     """
     return {
-        (i["name"], i["reference product"], i["unit"], i["location"],): i["code"]
+        (
+            i["name"],
+            i["reference product"],
+            i["unit"],
+            i["location"],
+        ): i["code"]
         for i in db
     }
 
@@ -561,9 +567,11 @@ def add_modified_tags(original_db, scenarios):
 
     return scenarios
 
+
 def create_scenario_label(model: str, pathway: str, year: int) -> str:
 
     return f"{model}::{pathway}::{year}"
+
 
 def relink_technosphere_exchanges(
     ds,

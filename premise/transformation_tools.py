@@ -4,12 +4,12 @@ transformation_tools.py contains a number of small functions that help manipulat
 
 from typing import Callable, List, Tuple
 
+import numpy as np
 import pandas as pd
 from constructive_geometries import resolved_row
 
 from . import geomap
 from .utils import c, create_hash
-import numpy as np
 
 
 def get_dataframe_locs(database) -> List[str]:
@@ -80,6 +80,7 @@ def get_many(
             selector += ifilter(df)
 
     return df[selector]
+
 
 def get_many_production_exchanges(
     df: pd.DataFrame, filtering_method: str = "and", *filters: Callable
@@ -197,7 +198,6 @@ def redirect_datasets(df, scenario, redirect_to, *filters):
 
     new_exc.loc[:, ("ecoinvent", c.cons_prod_vol)] = np.nan
     new_exc.loc[:, ("ecoinvent", c.comment)] = ""
-
 
     new_exc.loc[
         :, [("ecoinvent", c.prod_name), ("ecoinvent", c.prod_prod)]
@@ -335,7 +335,8 @@ def change_production_volume(
 
     # update production volume in the (scenario, c.cons_prod_loc) column
     df.loc[
-        df[("ecoinvent", c.exc_key)].isin(hashes_prod_exc), (scenario, c.cons_prod_vol),
+        df[("ecoinvent", c.exc_key)].isin(hashes_prod_exc),
+        (scenario, c.cons_prod_vol),
     ] = new_prod_vol
 
     return df

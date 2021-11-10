@@ -15,14 +15,11 @@ from wurst import searching as ws
 from wurst import transformations as wt
 
 from premise.transformation_tools import *
+
 from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
-from .utils import (
-    c,
-    create_scenario_label,
-    get_fuel_properties,
-)
+from .utils import c, create_scenario_label, get_fuel_properties
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -76,7 +73,12 @@ def get_shares_from_production_volume(ds_list):
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
             dict_act[
-                (act["name"], act["location"], act["reference product"], act["unit"],)
+                (
+                    act["name"],
+                    act["location"],
+                    act["reference product"],
+                    act["unit"],
+                )
             ] = production_volume
             total_production_volume += production_volume
 
@@ -222,9 +224,9 @@ class BaseTransformation:
                     contains(("ecoinvent", c.cons_prod), ref_prod),
                     equals(("ecoinvent", c.type), "production"),
                 )
-                               .loc[:, ("ecoinvent", c.cons_loc)]
-                    .unique()
-                    .tolist()
+                .loc[:, ("ecoinvent", c.cons_loc)]
+                .unique()
+                .tolist()
             }
 
         # FIXME: doing so omits activity datasets that have a location
@@ -237,7 +239,6 @@ class BaseTransformation:
                 region: d_map[label].get(region, "RoW")
                 for region in self.regions[label]
             }
-
 
         d_act = {scenario: {} for scenario in self.scenario_labels}
 
@@ -253,7 +254,9 @@ class BaseTransformation:
                 ).copy()
 
                 d_act[scenario][region] = copy_to_new_location(
-                    dataset, scenario, region,
+                    dataset,
+                    scenario,
+                    region,
                 )
 
                 # Add `production volume` field
@@ -261,12 +264,14 @@ class BaseTransformation:
                     self.iam_data.production_volumes.sel(
                         region=region, variables=production_variable
                     )
-                        .interp(year=int(scenario.split("::")[-1]))
-                        .values.item(0)
+                    .interp(year=int(scenario.split("::")[-1]))
+                    .values.item(0)
                 )
 
                 d_act[scenario][region] = change_production_volume(
-                    d_act[scenario][region], scenario, prod_vol,
+                    d_act[scenario][region],
+                    scenario,
+                    prod_vol,
                 )
 
                 if relink:
@@ -316,7 +321,8 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database, ws.doesnt_contain_any("name", excludes_datasets),
+            self.database,
+            ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
 
@@ -397,7 +403,8 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector, region=loc,
+                variables=sector,
+                region=loc,
             ).values
         else:
             rate = 0
@@ -415,7 +422,11 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(region=location, pollutant=pollutant, sector=sector,)
+            dict(
+                region=location,
+                pollutant=pollutant,
+                sector=sector,
+            )
         ].values.item(0)
 
         return scaling_factor
