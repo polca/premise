@@ -35,7 +35,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "numpy",
-        "wurst>=0.3",
+        "wurst==0.3",
         "bw2io>=0.8",
         "pandas",
         "bw2data",
