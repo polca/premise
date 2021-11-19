@@ -8,8 +8,10 @@ import numpy as np
 import pandas as pd
 from constructive_geometries import resolved_row
 
+from premise.framework import contains, does_not_contain, equals
+
 from . import geomap
-from .utils import c, create_hash
+from .utils import c, create_hash, s
 
 
 def get_dataframe_locs(database) -> List[str]:
@@ -21,41 +23,6 @@ def get_dataframe_locs(database) -> List[str]:
     """
 
     return database[("ecoinvent", c.cons_loc)].unique()
-
-
-def does_not_contain(
-    key: Tuple[str, c], value: str
-) -> Callable[[pd.DataFrame], pd.Series]:
-    """
-    Return a function that selects rows that do NOT contain `value`
-    in the column `key`
-    :param key: column of dataframe
-    :param value: string
-    :return: lambda function
-    """
-    return lambda df: ~(df[key].str.contains(value, regex=False))
-
-
-def contains(key: Tuple[str, c], value: str) -> Callable[[pd.DataFrame], pd.Series]:
-    """
-    Return a function that selects rows that contain `value`
-    in the column `key`
-    :param key: column of dataframe
-    :param value: string
-    :return: lambda function
-    """
-    return lambda df: df[key].str.contains(value, regex=False)
-
-
-def equals(key: Tuple[str, c], value: str) -> Callable[[pd.DataFrame], pd.Series]:
-    """
-    Return a function that selects rows that equal `value`
-    in the column `key`
-    :param key: column of dataframe
-    :param value: string
-    :return: lambda function
-    """
-    return lambda df: df[key] == value
 
 
 def get_many(
@@ -151,7 +118,7 @@ def remove_datasets(df: pd.DataFrame, scenario, *filters: Callable):
     df.loc[df[("ecoinvent", c.cons_key)].isin(hashes), (scenario, c.amount)] = 0
 
 
-def empty_datasets(df: pd.DataFrame, scenario, *filters: Callable):
+def emptying_datasets(df: pd.DataFrame, scenario, filters: Callable):
     """
     Zero out technosphere and biosphere exchanges of datasets in `scenario`,
     based on the list of filters specified, but preserves production exchanges,
@@ -162,72 +129,63 @@ def empty_datasets(df: pd.DataFrame, scenario, *filters: Callable):
     """
 
     # filter for production exchanges
-    filter_prod_exchanges = equals(("ecoinvent", c.type), "production")
+    filter_excluding_exchanges = filters & does_not_contain(
+        (s.exchange, c.type), "production"
+    )
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_single_column(
-        df, ("ecoinvent", c.exc_key), "and", *filters
-    )
 
-    # return hashes of all exchanges of `production` type
-    hashes_prod_exc = get_many_single_column(
-        df, ("ecoinvent", c.exc_key), "and", filter_prod_exchanges
-    )
-
-    # subtract production exchange hashes to the hash list
-    hashes = set(hashes_all_exc) - set(hashes_prod_exc)
+    hashes = filter_excluding_exchanges(df)[(s.exchange, c.exc_key)]
 
     # zero out all exchanges contained in hash list
-    df.loc[df[("ecoinvent", c.exc_key)].isin(hashes), (scenario, c.amount)] = 0
+    df.loc[df[(s.exchange, c.exc_key)].isin(hashes), (scenario, c.amount)] = 0
 
 
-def redirect_datasets(df, scenario, redirect_to, *filters):
+def empty_and_redirect_datasets(
+    df: pd.DataFrame, scenario: str, redirect_to: str, filters: Callable
+):
     """
     Empty a dataset, and make it point to another one
     :return:
     """
-
+    emptying_datasets(df, scenario, filters)
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_single_column(
-        df, ("ecoinvent", c.exc_key), "and", *filters
-    )
+    hashes = filters(df)[(s.exchange, c.exc_key)]
 
     # retrieve one row of the dataset
-    hash = hashes_all_exc[-1]
-    new_exc = df.loc[df[("ecoinvent", c.exc_key)].isin([hash]), :].copy()
+    _hash = hashes[-1]
 
-    new_exc.loc[:, ("ecoinvent", c.cons_prod_vol)] = np.nan
-    new_exc.loc[:, ("ecoinvent", c.comment)] = ""
+    new_exc = df.loc[df[(s.exchange, c.exc_key)] == _hash, :].copy()
 
-    new_exc.loc[
-        :, [("ecoinvent", c.prod_name), ("ecoinvent", c.prod_prod)]
-    ] = new_exc.loc[:, [("ecoinvent", c.cons_name), ("ecoinvent", c.cons_prod)]]
+    new_exc[(s.ecoinvent, c.cons_prod_vol)] = np.nan
+    new_exc[(scenario, c.cons_prod_vol)] = np.nan
 
-    new_exc.loc[:, ("ecoinvent", c.prod_loc)] = redirect_to
-    new_exc.loc[:, ("ecoinvent", c.type)] = "technosphere"
+    new_exc[(s.ecoinvent, c.comment)] = ""
+    new_exc[(scenario, c.comment)] = "redirect to regional dataset"
 
-    new_exc.loc[:, ("ecoinvent", c.amount)] = 0
-    new_exc.loc[:, (scenario, c.amount)] = 1
+    new_exc[(scenario, c.prod_name)] = new_exc[(s.ecoinvent, c.cons_name)]
+    new_exc[(scenario, c.prod_prod)] = new_exc[(s.ecoinvent, c.cons_prod)]
 
-    new_exc[("ecoinvent", c.prod_key)] = new_exc.apply(
-        lambda row: create_hash(
-            row[("ecoinvent", c.prod_name)],
-            row[("ecoinvent", c.prod_prod)],
-            row[("ecoinvent", c.prod_loc)],
-        ),
-        axis=1,
+    new_exc[(scenario, c.prod_loc)] = redirect_to
+
+    new_exc[(s.exchange, c.type)] = "technosphere"
+
+    new_exc[(s.ecoinvent, c.amount)] = 0
+    new_exc[(scenario, c.amount)] = 1
+
+    new_exc[(s.exchange, c.prod_key)] = create_hash(
+        new_exc[(s.exchange, c.prod_name)],
+        new_exc[(s.exchange, c.prod_prod)],
+        new_exc[(s.exchange, c.prod_loc)],
     )
 
-    new_exc[("ecoinvent", c.exc_key)] = new_exc.apply(
-        lambda row: create_hash(
-            row[("ecoinvent", c.prod_name)],
-            row[("ecoinvent", c.prod_name)],
-            row[("ecoinvent", c.prod_name)],
-            row[("ecoinvent", c.cons_key)],
-            row[("ecoinvent", c.cons_key)],
-            row[("ecoinvent", c.cons_key)],
-        ),
-        axis=1,
+    new_exc[(s.exchange, c.exc_key)] = create_hash(
+        new_exc[(s.exchange, c.prod_name)],
+        new_exc[(s.exchange, c.prod_prod)],
+        new_exc[(s.exchange, c.prod_loc)],
+        new_exc[(s.exchange, c.cons_name)],
+        new_exc[(s.exchange, c.cons_prod)],
+        new_exc[(s.exchange, c.cons_loc)],
     )
 
     return new_exc
@@ -337,8 +295,7 @@ def change_production_volume(
 
     # update production volume in the (scenario, c.cons_prod_loc) column
     df.loc[
-        df[("ecoinvent", c.exc_key)].isin(hashes_prod_exc),
-        (scenario, c.cons_prod_vol),
+        df[("ecoinvent", c.exc_key)].isin(hashes_prod_exc), (scenario, c.cons_prod_vol),
     ] = new_prod_vol
 
     return df

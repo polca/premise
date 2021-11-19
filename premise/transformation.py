@@ -15,6 +15,7 @@ import xarray as xr
 from wurst import searching as ws
 from wurst import transformations as wt
 
+from premise.framework.logical import contains, does_not_contain, equals
 from premise.transformation_tools import *
 
 from . import DATA_DIR
@@ -74,12 +75,7 @@ def get_shares_from_production_volume(ds_list):
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
             dict_act[
-                (
-                    act["name"],
-                    act["location"],
-                    act["reference product"],
-                    act["unit"],
-                )
+                (act["name"], act["location"], act["reference product"], act["unit"],)
             ] = production_volume
             total_production_volume += production_volume
 
@@ -216,15 +212,14 @@ class BaseTransformation:
         d_map = {}
 
         for label in self.scenario_labels:
+            _filter = (
+                contains(("ecoinvent", c.cons_name), name)
+                & contains(("ecoinvent", c.cons_prod), ref_prod)
+                & equals(("ecoinvent", c.type), "production")
+            )
             d_map[label] = {
                 self.ecoinvent_to_iam_loc[label][loc]: loc
-                for loc in get_many(
-                    self.database,
-                    "and",
-                    contains(("ecoinvent", c.cons_name), name),
-                    contains(("ecoinvent", c.cons_prod), ref_prod),
-                    equals(("ecoinvent", c.type), "production"),
-                )
+                for loc in _filter(self.database)
                 .loc[:, ("ecoinvent", c.cons_loc)]
                 .unique()
             }
@@ -241,20 +236,14 @@ class BaseTransformation:
 
         for scenario in self.scenario_labels:
             for region in d_map[scenario]:
-
-                dataset = get_many(
-                    self.database,
-                    "and",
-                    contains(("ecoinvent", c.cons_name), name),
-                    contains(("ecoinvent", c.cons_prod), ref_prod),
-                    equals(("ecoinvent", c.cons_loc), d_map[scenario][region]),
-                ).copy()
-
-                d_act[scenario][region] = rename_location(
-                    dataset,
-                    scenario,
-                    region,
+                _filter = (
+                    contains(("ecoinvent", c.cons_name), name)
+                    & contains(("ecoinvent", c.cons_prod), ref_prod)
+                    & equals(("ecoinvent", c.cons_loc), d_map[scenario][region])
                 )
+                dataset = _filter(self.database).copy()
+
+                d_act[scenario][region] = rename_location(dataset, scenario, region,)
 
                 # Add `production volume` field
                 prod_vol = (
@@ -266,9 +255,7 @@ class BaseTransformation:
                 )
 
                 d_act[scenario][region] = change_production_volume(
-                    d_act[scenario][region],
-                    scenario,
-                    prod_vol,
+                    d_act[scenario][region], scenario, prod_vol,
                 )
 
                 if relink:
@@ -276,23 +263,14 @@ class BaseTransformation:
                         d_act[region], self.database, self.model
                     )
 
-                # TODO: empty original datasets
-                empty_datasets(
-                    self.database,
-                    scenario,
-                    contains(("ecoinvent", c.cons_name), name),
-                    contains(("ecoinvent", c.cons_prod), ref_prod),
-                    equals(("ecoinvent", c.cons_loc), d_map[scenario][region]),
-                )
-
                 # TODO: empties original datasets should point to new datasets
-                new_exc = redirect_datasets(
-                    self.database,
-                    scenario,
-                    region,
-                    contains(("ecoinvent", c.cons_name), name),
-                    contains(("ecoinvent", c.cons_prod), ref_prod),
-                    equals(("ecoinvent", c.cons_loc), d_map[scenario][region]),
+                _filter = (
+                    contains(("ecoinvent", c.cons_name), name)
+                    & contains(("ecoinvent", c.cons_prod), ref_prod)
+                    & equals(("ecoinvent", c.cons_loc), d_map[scenario][region])
+                )
+                new_exc = empty_and_redirect_datasets(
+                    self.database, scenario, region, _filter
                 )
 
                 self.exchange_stack.append(new_exc)
@@ -302,7 +280,7 @@ class BaseTransformation:
     def relink_datasets(self, excludes_datasets, alternative_names=None):
         """
         For a given exchange name, product and unit, change its location to an IAM location,
-        to effectively link to the newly built market(s)/activity(ies).
+        to effectively link to the newly buil_t market(s)/activity(ies).
 
         :param name: dataset name
         :type name: str
@@ -318,8 +296,7 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database,
-            ws.doesnt_contain_any("name", excludes_datasets),
+            self.database, ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
 
@@ -400,8 +377,7 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector,
-                region=loc,
+                variables=sector, region=loc,
             ).values
         else:
             rate = 0
@@ -419,11 +395,7 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(
-                region=location,
-                pollutant=pollutant,
-                sector=sector,
-            )
+            dict(region=location, pollutant=pollutant, sector=sector,)
         ].values.item(0)
 
         return scaling_factor
