@@ -6,9 +6,9 @@ on the wurst database.
 
 import csv
 import uuid
+from collections import defaultdict
 from datetime import date
 from itertools import product
-from collections import defaultdict
 
 import numpy as np
 import xarray as xr
@@ -74,7 +74,12 @@ def get_shares_from_production_volume(ds_list):
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
             dict_act[
-                (act["name"], act["location"], act["reference product"], act["unit"],)
+                (
+                    act["name"],
+                    act["location"],
+                    act["reference product"],
+                    act["unit"],
+                )
             ] = production_volume
             total_production_volume += production_volume
 
@@ -246,7 +251,9 @@ class BaseTransformation:
                 ).copy()
 
                 d_act[scenario][region] = rename_location(
-                    dataset, scenario, region,
+                    dataset,
+                    scenario,
+                    region,
                 )
 
                 # Add `production volume` field
@@ -259,7 +266,9 @@ class BaseTransformation:
                 )
 
                 d_act[scenario][region] = change_production_volume(
-                    d_act[scenario][region], scenario, prod_vol,
+                    d_act[scenario][region],
+                    scenario,
+                    prod_vol,
                 )
 
                 if relink:
@@ -309,7 +318,8 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database, ws.doesnt_contain_any("name", excludes_datasets),
+            self.database,
+            ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
 
@@ -390,7 +400,8 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector, region=loc,
+                variables=sector,
+                region=loc,
             ).values
         else:
             rate = 0
@@ -408,7 +419,11 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(region=location, pollutant=pollutant, sector=sector,)
+            dict(
+                region=location,
+                pollutant=pollutant,
+                sector=sector,
+            )
         ].values.item(0)
 
         return scaling_factor
