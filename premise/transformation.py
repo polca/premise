@@ -15,8 +15,8 @@ import xarray as xr
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from premise.transformation_tools import *
 from premise.framework.logics import contains, does_not_contain, equals
+from premise.transformation_tools import *
 
 from . import DATA_DIR
 from .activity_maps import InventorySet
@@ -75,7 +75,12 @@ def get_shares_from_production_volume(ds_list):
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
             dict_act[
-                (act["name"], act["location"], act["reference product"], act["unit"],)
+                (
+                    act["name"],
+                    act["location"],
+                    act["reference product"],
+                    act["unit"],
+                )
             ] = production_volume
             total_production_volume += production_volume
 
@@ -245,7 +250,9 @@ class BaseTransformation:
 
                 dataset = self.database[_filter].copy()
 
-                d_act[scenario][region] = rename_location(df=dataset, scenario=scenario, new_loc=region)
+                d_act[scenario][region] = rename_location(
+                    df=dataset, scenario=scenario, new_loc=region
+                )
 
                 # Add `production volume` field
                 prod_vol = (
@@ -257,10 +264,14 @@ class BaseTransformation:
                 )
 
                 d_act[scenario][region] = change_production_volume(
-                    d_act[scenario][region], scenario, prod_vol,
+                    d_act[scenario][region],
+                    scenario,
+                    prod_vol,
                 )
 
-                sel = _filter * ~equals((s.exchange, c.type), "production")(self.database)
+                sel = _filter * ~equals((s.exchange, c.type), "production")(
+                    self.database
+                )
                 self.database.loc[sel, (scenario, c.amount)] = 0
 
                 new_exc = empty_and_redirect_datasets(
@@ -290,7 +301,8 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database, ws.doesnt_contain_any("name", excludes_datasets),
+            self.database,
+            ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
 
@@ -371,7 +383,8 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector, region=loc,
+                variables=sector,
+                region=loc,
             ).values
         else:
             rate = 0
@@ -389,7 +402,11 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(region=location, pollutant=pollutant, sector=sector,)
+            dict(
+                region=location,
+                pollutant=pollutant,
+                sector=sector,
+            )
         ].values.item(0)
 
         return scaling_factor

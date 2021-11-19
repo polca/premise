@@ -11,7 +11,7 @@ from constructive_geometries import resolved_row
 from premise.framework.logics import contains, does_not_contain, equals
 
 from . import geomap
-from .utils import c, create_hash, s, recalculate_hash
+from .utils import c, create_hash, recalculate_hash, s
 
 
 def get_dataframe_locs(database) -> List[str]:
@@ -179,9 +179,7 @@ def rename_location(df: pd.DataFrame, scenario: str, new_loc: str) -> pd.DataFra
 
     df.loc[:, (s.exchange, c.cons_loc)] = new_loc
 
-    _filter = (
-        equals((s.exchange, c.type), "production")
-    )(df)
+    _filter = (equals((s.exchange, c.type), "production"))(df)
 
     df.loc[_filter, (s.exchange, c.prod_loc)] = new_loc
 

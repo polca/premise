@@ -239,6 +239,7 @@ def create_hash(*items):
 
     return int(hasher.hexdigest(), 16)
 
+
 def recalculate_hash(df):
 
     df[(s.exchange, c.prod_key)] = df.apply(
@@ -268,7 +269,6 @@ def recalculate_hash(df):
         ),
         axis=1,
     )
-
 
 
 def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
