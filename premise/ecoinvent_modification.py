@@ -706,7 +706,7 @@ class NewDatabase:
                 year=scenario["year"],
             )
 
-            for col in [c.amount, c.cons_prod_vol, c.efficiency]:
+            for col in [c.cons_prod_vol, c.amount, c.efficiency]:
                 self.database[(scenario_label, col)] = np.nan
 
             self.database[(scenario_label, c.comment)] = ""

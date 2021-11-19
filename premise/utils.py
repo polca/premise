@@ -33,16 +33,22 @@ class c(enum.Enum):
     cons_name = "to activity"
     cons_prod = "to product"
     cons_loc = "to location"
-    cons_prod_vol = "production volume"
-    type = "type"
-    amount = "amount"
     unit = "unit"
+    type = "type"
+    prod_key = "from key"
+    cons_key = "to key"
+    exc_key = "from/to key"
+    # the above are exchange identifiers
+
+    # fields below are ecoinvent data
+    cons_prod_vol = "production volume"
+    amount = "amount"
     efficiency = "efficiency"
     comment = "comment"
-    tag = "tag"
-    exc_key = "from/to key"
-    cons_key = "to key"
-    prod_key = "from key"
+
+class s(enum.Enum):
+    exchange = "exchange"
+    ecoinvent = "ecoinvent"
 
 
 def match_similarity(
@@ -318,22 +324,30 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
                     consumer_name,
                     consumer_product,
                     consumer_loc,
-                    consumer_prod_vol,
-                    producer_type,
-                    iexc["amount"],
                     iexc["unit"],
+                    producer_type,
+                    producer_key,
+                    consumer_key,
+                    exchange_key,
+                    consumer_prod_vol,
+                    iexc["amount"],
                     energy_efficiency if producer_type == "production" else np.nan,
                     comment,
-                    "",  # FIXME: this is useless for now. It's where a tag should go to identify fuel inputs, etc.
-                    exchange_key,
-                    consumer_key,
-                    producer_key,
                 )
             )
 
+
+    tuples = []
+
+    for idx, col in enumerate(list(c)):
+        if idx < 11:
+            tuples.append((s.exchange, col))
+        else:
+            tuples.append((s.ecoinvent, col))
+
     return pd.DataFrame(
         data_to_ret,
-        columns=pd.MultiIndex.from_product([["ecoinvent"], list(c)]),
+        columns=pd.MultiIndex.from_tuples(tuples),
     )
 
 

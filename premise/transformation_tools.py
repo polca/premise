@@ -73,11 +73,14 @@ def get_many(
     selector = ~df[("ecoinvent", c.cons_name)].isnull()
 
     for ifilter in filters:
-        if filtering_method == "and":
+        if filtering_method.lower() == "and":
             selector *= ifilter(df)
-        else:
+        elif filtering_method.lower() == "or":
             # or
             selector += ifilter(df)
+        else:
+            raise ArithmeticError("Only `and` or `or` operations"
+                                  "are implemented.")
 
     return df[selector]
 
@@ -111,32 +114,30 @@ def get_many_production_exchanges(
     return df[selector]
 
 
-def get_many_hashes(
+def get_many_single_column(
     df: pd.DataFrame,
-    hash_col: Tuple[str, c],
+    column: Tuple[str, c],
     filtering_method: str = "and",
     *filters: Callable
 ) -> List[int]:
     """
-    Return a list of hashes contained in column `scenario` that satisfy
+    Return a list of values contained in column `column` that satisfy
     the list of filters specified
     :param df: pd.Dataframe that contains the database
-    :param hash_col: column to return hash from
+    :param column: column to return hash from
     :param filtering_method: can be "and" or "or". Determines whether filters multiply or sum up.
     :param filters: list of filters functions
     :return: list hashes
     """
 
-    selector = ~df[("ecoinvent", c.cons_name)].isnull()
+    df = get_many(
+        df,
+        filtering_method,
+        *filters
+    )
 
-    for ifilter in filters:
-        if filtering_method == "and":
-            selector *= ifilter(df)
-        else:
-            # or
-            selector += ifilter(df)
     # return unique hashes from the specified column
-    return df.loc[selector, hash_col].unique().tolist()
+    return df[column].unique()
 
 
 def remove_datasets(df: pd.DataFrame, scenario, *filters: Callable):
@@ -149,7 +150,7 @@ def remove_datasets(df: pd.DataFrame, scenario, *filters: Callable):
     """
 
     # return hashes from the `c.cons_key` column
-    hashes = get_many_hashes(df, ("ecoinvent", c.cons_key), "and", *filters)
+    hashes = get_many_single_column(df, ("ecoinvent", c.cons_key), "and", *filters)
 
     # zero out all exchanges contained in hash list
     df.loc[df[("ecoinvent", c.cons_key)].isin(hashes), (scenario, c.amount)] = 0
@@ -169,10 +170,10 @@ def empty_datasets(df: pd.DataFrame, scenario, *filters: Callable):
     filter_prod_exchanges = equals(("ecoinvent", c.type), "production")
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_hashes(df, ("ecoinvent", c.exc_key), "and", *filters)
+    hashes_all_exc = get_many_single_column(df, ("ecoinvent", c.exc_key), "and", *filters)
 
     # return hashes of all exchanges of `production` type
-    hashes_prod_exc = get_many_hashes(
+    hashes_prod_exc = get_many_single_column(
         df, ("ecoinvent", c.exc_key), "and", filter_prod_exchanges
     )
 
@@ -190,7 +191,7 @@ def redirect_datasets(df, scenario, redirect_to, *filters):
     """
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_hashes(df, ("ecoinvent", c.exc_key), "and", *filters)
+    hashes_all_exc = get_many_single_column(df, ("ecoinvent", c.exc_key), "and", *filters)
 
     # retrieve one row of the dataset
     hash = hashes_all_exc[-1]
@@ -233,7 +234,7 @@ def redirect_datasets(df, scenario, redirect_to, *filters):
     return new_exc
 
 
-def copy_to_new_location(
+def rename_location(
     df: pd.DataFrame, scenario: str, new_loc: str, *filters: Callable
 ) -> pd.DataFrame:
     """
@@ -247,7 +248,7 @@ def copy_to_new_location(
     """
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_hashes(df, ("ecoinvent", c.exc_key), "and", *filters)
+    hashes_all_exc = get_many_single_column(df, ("ecoinvent", c.exc_key), "and", *filters)
 
     df.loc[
         df[("ecoinvent", c.exc_key)].isin(hashes_all_exc), (scenario, c.amount)
@@ -264,7 +265,7 @@ def copy_to_new_location(
     filter_prod_exchanges = equals(("ecoinvent", c.type), "production")
 
     # return hashes of all exchanges of `production` type
-    hashes_all_prod_exc = get_many_hashes(
+    hashes_all_prod_exc = get_many_single_column(
         df, ("ecoinvent", c.exc_key), "and", filter_prod_exchanges
     )
 
@@ -329,7 +330,7 @@ def change_production_volume(
     filter_prod_exchanges = equals(("ecoinvent", c.type), "production")
 
     # return hashes of all exchanges of `production` type
-    hashes_prod_exc = get_many_hashes(
+    hashes_prod_exc = get_many_single_column(
         df, ("ecoinvent", c.exc_key), "and", filter_prod_exchanges
     )
 
@@ -357,13 +358,13 @@ def scale_exchanges_by_constant_factor(
     """
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_hashes(df, ("ecoinvent", c.exc_key), "and", *filters)
+    hashes_all_exc = get_many_single_column(df, ("ecoinvent", c.exc_key), "and", *filters)
 
     # filter for production exchanges
     filter_prod_exchanges = equals(("ecoinvent", c.type), "production")
 
     # return hashes of all exchanges of `production` type
-    hashes_all_prod_exc = get_many_hashes(
+    hashes_all_prod_exc = get_many_single_column(
         df, ("ecoinvent", c.exc_key), "and", filter_prod_exchanges
     )
 

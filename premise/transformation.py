@@ -8,6 +8,7 @@ import csv
 import uuid
 from datetime import date
 from itertools import product
+from collections import defaultdict
 
 import numpy as np
 import xarray as xr
@@ -73,12 +74,7 @@ def get_shares_from_production_volume(ds_list):
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
             dict_act[
-                (
-                    act["name"],
-                    act["location"],
-                    act["reference product"],
-                    act["unit"],
-                )
+                (act["name"], act["location"], act["reference product"], act["unit"],)
             ] = production_volume
             total_production_volume += production_volume
 
@@ -226,37 +222,31 @@ class BaseTransformation:
                 )
                 .loc[:, ("ecoinvent", c.cons_loc)]
                 .unique()
-                .tolist()
             }
 
         # FIXME: doing so omits activity datasets that have a location
         # that can also be part of an IAM region
         # when there are multiple candidates, the last one is picked
 
-        d_iam_to_eco = {}
         for label in self.scenario_labels:
-            d_iam_to_eco[label] = {
-                region: d_map[label].get(region, "RoW")
-                for region in self.regions[label]
-            }
+            for region in set(self.regions[label]).difference(d_map[label].keys()):
+                d_map[label][region] = "RoW"
 
-        d_act = {scenario: {} for scenario in self.scenario_labels}
+        d_act = defaultdict(dict)
 
         for scenario in self.scenario_labels:
-            for region in d_iam_to_eco[scenario]:
+            for region in d_map[scenario]:
 
                 dataset = get_many(
                     self.database,
                     "and",
                     contains(("ecoinvent", c.cons_name), name),
                     contains(("ecoinvent", c.cons_prod), ref_prod),
-                    equals(("ecoinvent", c.cons_loc), d_iam_to_eco[scenario][region]),
+                    equals(("ecoinvent", c.cons_loc), d_map[scenario][region]),
                 ).copy()
 
-                d_act[scenario][region] = copy_to_new_location(
-                    dataset,
-                    scenario,
-                    region,
+                d_act[scenario][region] = rename_location(
+                    dataset, scenario, region,
                 )
 
                 # Add `production volume` field
@@ -269,9 +259,7 @@ class BaseTransformation:
                 )
 
                 d_act[scenario][region] = change_production_volume(
-                    d_act[scenario][region],
-                    scenario,
-                    prod_vol,
+                    d_act[scenario][region], scenario, prod_vol,
                 )
 
                 if relink:
@@ -285,7 +273,7 @@ class BaseTransformation:
                     scenario,
                     contains(("ecoinvent", c.cons_name), name),
                     contains(("ecoinvent", c.cons_prod), ref_prod),
-                    equals(("ecoinvent", c.cons_loc), d_iam_to_eco[scenario][region]),
+                    equals(("ecoinvent", c.cons_loc), d_map[scenario][region]),
                 )
 
                 # TODO: empties original datasets should point to new datasets
@@ -295,7 +283,7 @@ class BaseTransformation:
                     region,
                     contains(("ecoinvent", c.cons_name), name),
                     contains(("ecoinvent", c.cons_prod), ref_prod),
-                    equals(("ecoinvent", c.cons_loc), d_iam_to_eco[scenario][region]),
+                    equals(("ecoinvent", c.cons_loc), d_map[scenario][region]),
                 )
 
                 self.exchange_stack.append(new_exc)
@@ -321,8 +309,7 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database,
-            ws.doesnt_contain_any("name", excludes_datasets),
+            self.database, ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
 
@@ -403,8 +390,7 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector,
-                region=loc,
+                variables=sector, region=loc,
             ).values
         else:
             rate = 0
@@ -422,11 +408,7 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(
-                region=location,
-                pollutant=pollutant,
-                sector=sector,
-            )
+            dict(region=location, pollutant=pollutant, sector=sector,)
         ].values.item(0)
 
         return scaling_factor
