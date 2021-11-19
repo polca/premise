@@ -1,8 +1,6 @@
-﻿
-
-class LogOps:
+﻿class LogOps:
     """
-    This class serves as an encapsulation for logical operations based 
+    This class serves as an encapsulation for logical operations based
     on selectors (arrays of True False values) which are under a
     delayed execution.
     """
@@ -34,9 +32,7 @@ class LogOps:
 
 
 class BasicOperation:
-    """
-
-    """
+    """ """
 
     def __call__(self, df):
         return self._selector(df)
