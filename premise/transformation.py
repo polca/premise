@@ -15,8 +15,8 @@ import xarray as xr
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from premise.framework.logical import contains, does_not_contain, equals
 from premise.transformation_tools import *
+from premise.framework.logics import contains, does_not_contain, equals
 
 from . import DATA_DIR
 from .activity_maps import InventorySet
@@ -213,14 +213,15 @@ class BaseTransformation:
 
         for label in self.scenario_labels:
             _filter = (
-                contains(("ecoinvent", c.cons_name), name)
-                & contains(("ecoinvent", c.cons_prod), ref_prod)
-                & equals(("ecoinvent", c.type), "production")
-            )
+                contains((s.exchange, c.cons_name), name)
+                & contains((s.exchange, c.cons_prod), ref_prod)
+                & equals((s.exchange, c.type), "production")
+            )(self.database)
+
             d_map[label] = {
                 self.ecoinvent_to_iam_loc[label][loc]: loc
-                for loc in _filter(self.database)
-                .loc[:, ("ecoinvent", c.cons_loc)]
+                for loc in self.database[_filter]
+                .loc[:, (s.exchange, c.cons_loc)]
                 .unique()
             }
 
@@ -237,13 +238,14 @@ class BaseTransformation:
         for scenario in self.scenario_labels:
             for region in d_map[scenario]:
                 _filter = (
-                    contains(("ecoinvent", c.cons_name), name)
-                    & contains(("ecoinvent", c.cons_prod), ref_prod)
-                    & equals(("ecoinvent", c.cons_loc), d_map[scenario][region])
-                )
-                dataset = _filter(self.database).copy()
+                    contains((s.exchange, c.cons_name), name)
+                    & contains((s.exchange, c.cons_prod), ref_prod)
+                    & equals((s.exchange, c.cons_loc), d_map[scenario][region])
+                )(self.database)
 
-                d_act[scenario][region] = rename_location(dataset, scenario, region,)
+                dataset = self.database[_filter].copy()
+
+                d_act[scenario][region] = rename_location(df=dataset, scenario=scenario, new_loc=region)
 
                 # Add `production volume` field
                 prod_vol = (
@@ -258,19 +260,11 @@ class BaseTransformation:
                     d_act[scenario][region], scenario, prod_vol,
                 )
 
-                if relink:
-                    d_act[region] = relink_technosphere_exchanges(
-                        d_act[region], self.database, self.model
-                    )
+                sel = _filter * ~equals((s.exchange, c.type), "production")(self.database)
+                self.database.loc[sel, (scenario, c.amount)] = 0
 
-                # TODO: empties original datasets should point to new datasets
-                _filter = (
-                    contains(("ecoinvent", c.cons_name), name)
-                    & contains(("ecoinvent", c.cons_prod), ref_prod)
-                    & equals(("ecoinvent", c.cons_loc), d_map[scenario][region])
-                )
                 new_exc = empty_and_redirect_datasets(
-                    self.database, scenario, region, _filter
+                    dataset, scenario, region, original_loc=d_map[label][region]
                 )
 
                 self.exchange_stack.append(new_exc)

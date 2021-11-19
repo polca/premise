@@ -673,12 +673,12 @@ class InventorySet:
             condition = fltr[field]
             if type(condition) == list:
                 for el in condition:
-                    list_filters.append(contains(("ecoinvent", fields_map[field]), el))
+                    list_filters.append(contains((s.ecoinvent, fields_map[field]), el))
                     # this is effectively connecting the statements by *or*
                     # result.extend([act for act in db if like(act[field], el)])
             else:
                 list_filters.append(
-                    contains(("ecoinvent", fields_map[field]), condition)
+                    contains((s.ecoinvent, fields_map[field]), condition)
                 )
                 # result.extend([act for act in db if like(act[field], condition)])
 
@@ -687,18 +687,17 @@ class InventorySet:
             if type(condition) == list:
                 for el in condition:
                     list_filters.append(
-                        does_not_contain(("ecoinvent", fields_map[field]), el)
+                        does_not_contain((s.ecoinvent, fields_map[field]), el)
                     )
                     # this is effectively connecting the statements by *and*
                     # result = [act for act in result if notlike(act[field], el)]
             else:
                 list_filters.append(
-                    does_not_contain(("ecoinvent", fields_map[field]), condition)
+                    does_not_contain((s.ecoinvent, fields_map[field]), condition)
                 )
-                # result = [act for act in result if notlike(act[field], condition)]
 
         results = get_many_production_exchanges(db, "and", *list_filters)[
-            ("ecoinvent", c.cons_name)
+            (s.ecoinvent, c.cons_name)
         ].unique()
 
         return results

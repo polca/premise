@@ -239,6 +239,37 @@ def create_hash(*items):
 
     return int(hasher.hexdigest(), 16)
 
+def recalculate_hash(df):
+
+    df[(s.exchange, c.prod_key)] = df.apply(
+        lambda row: create_hash(
+            row[(s.exchange, c.prod_name)],
+            row[(s.exchange, c.prod_prod)],
+            row[(s.exchange, c.prod_loc)],
+        ),
+        axis=1,
+    )
+    df[(s.exchange, c.cons_key)] = df.apply(
+        lambda row: create_hash(
+            row[(s.exchange, c.cons_name)],
+            row[(s.exchange, c.cons_prod)],
+            row[(s.exchange, c.cons_loc)],
+        ),
+        axis=1,
+    )
+    df[(s.exchange, c.exc_key)] = df.apply(
+        lambda row: create_hash(
+            row[(s.exchange, c.prod_name)],
+            row[(s.exchange, c.prod_prod)],
+            row[(s.exchange, c.prod_loc)],
+            row[(s.exchange, c.cons_name)],
+            row[(s.exchange, c.cons_prod)],
+            row[(s.exchange, c.cons_loc)],
+        ),
+        axis=1,
+    )
+
+
 
 def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
     """

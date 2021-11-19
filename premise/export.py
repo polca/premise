@@ -886,7 +886,7 @@ class Export:
             writer.writerow(["Literature reference"])
             writer.writerow([])
             writer.writerow(["Name"])
-            writer.writerow(["Ecoinvent"])
+            writer.writerow([s.ecoinvent])
             writer.writerow([])
             writer.writerow(["Documentation link"])
             writer.writerow(["https://www.ecoinvent.org"])
