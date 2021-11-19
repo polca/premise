@@ -79,8 +79,7 @@ def get_many(
             # or
             selector += ifilter(df)
         else:
-            raise ArithmeticError("Only `and` or `or` operations"
-                                  "are implemented.")
+            raise ArithmeticError("Only `and` or `or` operations" "are implemented.")
 
     return df[selector]
 
@@ -130,11 +129,7 @@ def get_many_single_column(
     :return: list hashes
     """
 
-    df = get_many(
-        df,
-        filtering_method,
-        *filters
-    )
+    df = get_many(df, filtering_method, *filters)
 
     # return unique hashes from the specified column
     return df[column].unique()
@@ -170,7 +165,9 @@ def empty_datasets(df: pd.DataFrame, scenario, *filters: Callable):
     filter_prod_exchanges = equals(("ecoinvent", c.type), "production")
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_single_column(df, ("ecoinvent", c.exc_key), "and", *filters)
+    hashes_all_exc = get_many_single_column(
+        df, ("ecoinvent", c.exc_key), "and", *filters
+    )
 
     # return hashes of all exchanges of `production` type
     hashes_prod_exc = get_many_single_column(
@@ -191,7 +188,9 @@ def redirect_datasets(df, scenario, redirect_to, *filters):
     """
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_single_column(df, ("ecoinvent", c.exc_key), "and", *filters)
+    hashes_all_exc = get_many_single_column(
+        df, ("ecoinvent", c.exc_key), "and", *filters
+    )
 
     # retrieve one row of the dataset
     hash = hashes_all_exc[-1]
@@ -248,7 +247,9 @@ def rename_location(
     """
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_single_column(df, ("ecoinvent", c.exc_key), "and", *filters)
+    hashes_all_exc = get_many_single_column(
+        df, ("ecoinvent", c.exc_key), "and", *filters
+    )
 
     df.loc[
         df[("ecoinvent", c.exc_key)].isin(hashes_all_exc), (scenario, c.amount)
@@ -358,7 +359,9 @@ def scale_exchanges_by_constant_factor(
     """
 
     # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_single_column(df, ("ecoinvent", c.exc_key), "and", *filters)
+    hashes_all_exc = get_many_single_column(
+        df, ("ecoinvent", c.exc_key), "and", *filters
+    )
 
     # filter for production exchanges
     filter_prod_exchanges = equals(("ecoinvent", c.type), "production")

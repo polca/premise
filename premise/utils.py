@@ -46,6 +46,7 @@ class c(enum.Enum):
     efficiency = "efficiency"
     comment = "comment"
 
+
 class s(enum.Enum):
     exchange = "exchange"
     ecoinvent = "ecoinvent"
@@ -335,7 +336,6 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
                     comment,
                 )
             )
-
 
     tuples = []
 
