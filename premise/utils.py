@@ -345,7 +345,10 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
         else:
             tuples.append((s.ecoinvent, col))
 
-    return pd.DataFrame(data_to_ret, columns=pd.MultiIndex.from_tuples(tuples),)
+    return pd.DataFrame(
+        data_to_ret,
+        columns=pd.MultiIndex.from_tuples(tuples),
+    )
 
 
 def eidb_label(model, scenario, year):
@@ -480,7 +483,12 @@ def create_codes_and_names_of_A_matrix(db):
     :rtype: dict
     """
     return {
-        (i["name"], i["reference product"], i["unit"], i["location"],): i["code"]
+        (
+            i["name"],
+            i["reference product"],
+            i["unit"],
+            i["location"],
+        ): i["code"]
         for i in db
     }
 

@@ -295,7 +295,8 @@ def change_production_volume(
 
     # update production volume in the (scenario, c.cons_prod_loc) column
     df.loc[
-        df[("ecoinvent", c.exc_key)].isin(hashes_prod_exc), (scenario, c.cons_prod_vol),
+        df[("ecoinvent", c.exc_key)].isin(hashes_prod_exc),
+        (scenario, c.cons_prod_vol),
     ] = new_prod_vol
 
     return df
