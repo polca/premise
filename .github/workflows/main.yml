@@ -69,11 +69,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip3 install -r requirements.txt --upgrade pip3
-          pip3 install -e .
-          pip3 install pytest
-          pip3 install pytest-cov
-          pip3 install coveralls
+          pip install -r requirements.txt --upgrade pip
+          pip install -e .
+          pip install pytest
+          pip install pytest-cov
+          pip install coveralls
 
       - name: Run tests
         run: |

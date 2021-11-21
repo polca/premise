@@ -36,7 +36,7 @@ setup(
     install_requires=[
         "numpy",
         "wurst==0.3",
-        "bw2io>=0.8",
+        "bw2io",
         "pandas",
         "bw2data",
         "brightway2",
