@@ -40,7 +40,7 @@ setup(
         "pandas",
         "bw2data",
         "brightway2",
-        "xarray",
+        "xarray==0.17",
         "carculator",
         "carculator_truck",
         "prettytable",
