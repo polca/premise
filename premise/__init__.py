@@ -1,5 +1,5 @@
 __all__ = ("NewDatabase", "Geomap", "DATA_DIR", "INVENTORY_DIR")
-__version__ = (0, 4, 4)
+__version__ = (0, 4, 5)
 
 from pathlib import Path
 
