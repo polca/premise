@@ -516,6 +516,25 @@ class Export:
             "guest night": "guestnight",
         }
 
+        simapro_subs = {
+            "low population density, long-term": "low. pop., long-term",
+            "lower stratosphere + upper troposphere": "stratosphere + troposphere",
+            "non-urban air or from high stacks": "low. pop.",
+            "urban air close to ground": "high. pop.",
+            "biotic": "biotic",
+            "in air": "in air",
+            "in ground": "in ground",
+            "in water": "in water",
+            "land": "land",
+            "agricultural": "agricultural",
+            "forestry": "forestry",
+            "industrial": "industrial",
+            "ground-": "groundwater",
+            "ground-, long-term": "groundwater, long-term",
+            "ocean": "ocean",
+            "surface water": "river",
+        }
+
         filename = (
             "simapro_export_"
             + self.model
@@ -744,10 +763,15 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "natural resource"
                             ):
+                                if len(e["categories"]) > 1:
+                                    sub_compartment = simapro_subs.get(e["categories"][1], "")
+                                else:
+                                    sub_compartment = ""
+
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        "",
+                                        sub_compartment,
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",
@@ -760,6 +784,11 @@ class Export:
                         for e in ds["exchanges"]:
                             if e["type"] == "biosphere" and e["categories"][0] == "air":
 
+                                if len(e["categories"]) > 1:
+                                    sub_compartment = simapro_subs.get(e["categories"][1], "")
+                                else:
+                                    sub_compartment = ""
+
                                 if e["name"].lower() == "water":
                                     e["unit"] = "kilogram"
                                     e["amount"] /= 1000
@@ -767,7 +796,7 @@ class Export:
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        "",
+                                        sub_compartment,
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",
@@ -786,10 +815,15 @@ class Export:
                                     e["unit"] = "kilogram"
                                     e["amount"] /= 1000
 
+                                if len(e["categories"]) > 1:
+                                    sub_compartment = simapro_subs.get(e["categories"][1], "")
+                                else:
+                                    sub_compartment = ""
+
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        "",
+                                        sub_compartment,
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",
@@ -804,10 +838,15 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "soil"
                             ):
+                                if len(e["categories"]) > 1:
+                                    sub_compartment = simapro_subs.get(e["categories"][1], "")
+                                else:
+                                    sub_compartment = ""
+
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        "",
+                                        sub_compartment,
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",
