@@ -67,6 +67,9 @@ jobs:
       - name: create environment
         run: pyenv local 3.9.0 && python -mvenv .venv390
 
+      - name: activate environment
+        run: pyenv activate .venv390
+
       - name: Install dependencies
         run: |
           pip3 install -r requirements.txt --upgrade pip
