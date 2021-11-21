@@ -9,6 +9,7 @@ import uuid
 from collections import defaultdict
 from datetime import date
 from itertools import product
+from collections import Counter
 
 import numpy as np
 import xarray as xr
@@ -241,11 +242,12 @@ class BaseTransformation:
         d_act = defaultdict(dict)
 
         for scenario in self.scenario_labels:
-            for region in d_map[scenario]:
+            regions = (r for r in d_map[scenario] if r != "World")
+            for region in regions:
                 _filter = (
-                    contains((s.exchange, c.cons_name), name)
-                    & contains((s.exchange, c.cons_prod), ref_prod)
-                    & equals((s.exchange, c.cons_loc), d_map[scenario][region])
+                        contains((s.exchange, c.cons_name), name)
+                        & contains((s.exchange, c.cons_prod), ref_prod)
+                        & equals((s.exchange, c.cons_loc), d_map[scenario][region])
                 )(self.database)
 
                 dataset = self.database[_filter].copy()
@@ -259,8 +261,8 @@ class BaseTransformation:
                     self.iam_data.production_volumes.sel(
                         region=region, variables=production_variable
                     )
-                    .interp(year=int(scenario.split("::")[-1]))
-                    .values.item(0)
+                        .interp(year=int(scenario.split("::")[-1]))
+                        .values.item(0)
                 )
 
                 d_act[scenario][region] = change_production_volume(
@@ -269,16 +271,42 @@ class BaseTransformation:
                     prod_vol,
                 )
 
+                # empty original dataset
                 sel = _filter * ~equals((s.exchange, c.type), "production")(
                     self.database
                 )
                 self.database.loc[sel, (scenario, c.amount)] = 0
 
+                # add a redirect exchange to the new dataset
                 new_exc = empty_and_redirect_datasets(
                     dataset, scenario, region, original_loc=d_map[label][region]
                 )
+                # temporarily store the production volume in this new exchange
+                new_exc[(scenario, c.cons_prod_vol)] = prod_vol
 
                 self.exchange_stack.append(new_exc)
+
+            # if a redirect exchange location links to more
+            # than one IAM regional dataset
+            # the amounts should be weighted based
+            # on their respective production volume
+
+            counts = Counter(d_map[scenario].values())
+            repeated_locs = [loc for loc, count in counts.items() if count > 1]
+
+            total_prod_vol = 0
+            for loc in repeated_locs:
+                for exc in self.exchange_stack:
+                    if exc[(s.exchange, c.cons_loc)] == loc:
+                        total_prod_vol += exc[(scenario, c.cons_prod_vol)]
+
+            for loc in repeated_locs:
+                for exc in self.exchange_stack:
+                    if exc[(s.exchange, c.cons_loc)] == loc:
+                        exc[(scenario, c.amount)] = exc[(scenario, c.cons_prod_vol)] / total_prod_vol
+                        # delete the production volume value
+                        exc[(scenario, c.cons_prod_vol)] = np.nan
+
 
         return d_act
 

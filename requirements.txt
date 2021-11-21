@@ -1,4 +1,4 @@
-brightway2
+            brightway2
 numpy
 pandas
 bw2io

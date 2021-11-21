@@ -202,6 +202,8 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 35;37;plywood production, for outdoor use;wood chips, dry, measured as dry mass;RER;plywood production;;
 35;38;market for chemicals, inorganic;chemical, inorganic;GLO;market for chemical, inorganic;;
 36;38;market for chemicals, inorganic;chemical, inorganic;GLO;market for chemical, inorganic;;
+38;36;market for chemical, inorganic;chemical, inorganic;GLO;market for chemicals, inorganic;;
+38;35;market for chemical, inorganic;chemical, inorganic;GLO;market for chemicals, inorganic;;
 35;38;market for cellulose fibre, inclusive blowing in;cellulose fibre, inclusive blowing in;GLO;market for cellulose fibre;cellulose fibre;RoW
 36;38;market for cellulose fibre, inclusive blowing in;cellulose fibre, inclusive blowing in;GLO;market for cellulose fibre;cellulose fibre;RoW
 35;37;market for cellulose fibre, inclusive blowing in;cellulose fibre, inclusive blowing in;GLO;market for cellulose fibre;cellulose fibre;RoW

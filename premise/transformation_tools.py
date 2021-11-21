@@ -102,22 +102,6 @@ def get_many_single_column(
     return df[column].unique()
 
 
-def remove_datasets(df: pd.DataFrame, scenario, *filters: Callable):
-    """
-    Zero out exchanges of datasets that should not exist in `scenario`,
-    based on the list of filters specified
-    :param df: pd.Dataframe that contains the database
-    :param: scenario column to return hash from
-    :param filters: list of filters functions
-    """
-
-    # return hashes from the `c.cons_key` column
-    hashes = get_many_single_column(df, (s.exchange, c.cons_key), "and", *filters)
-
-    # zero out all exchanges contained in hash list
-    df.loc[df[(s.exchange, c.cons_key)].isin(hashes), (scenario, c.amount)] = 0
-
-
 def emptying_datasets(df: pd.DataFrame, scenario, filters: Callable):
     """
     Zero out technosphere and biosphere exchanges of datasets in `scenario`,
@@ -155,6 +139,8 @@ def empty_and_redirect_datasets(
 
     new_exc[(s.exchange, c.prod_name)] = new_exc[(s.exchange, c.cons_name)]
     new_exc[(s.exchange, c.prod_prod)] = new_exc[(s.exchange, c.cons_prod)]
+
+
 
     new_exc[(s.exchange, c.prod_loc)] = new_loc
     new_exc[(s.exchange, c.cons_loc)] = original_loc
