@@ -6,10 +6,9 @@ on the wurst database.
 
 import csv
 import uuid
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import date
 from itertools import product
-from collections import Counter
 
 import numpy as np
 import xarray as xr
@@ -245,9 +244,9 @@ class BaseTransformation:
             regions = (r for r in d_map[scenario] if r != "World")
             for region in regions:
                 _filter = (
-                        contains((s.exchange, c.cons_name), name)
-                        & contains((s.exchange, c.cons_prod), ref_prod)
-                        & equals((s.exchange, c.cons_loc), d_map[scenario][region])
+                    contains((s.exchange, c.cons_name), name)
+                    & contains((s.exchange, c.cons_prod), ref_prod)
+                    & equals((s.exchange, c.cons_loc), d_map[scenario][region])
                 )(self.database)
 
                 dataset = self.database[_filter].copy()
@@ -261,8 +260,8 @@ class BaseTransformation:
                     self.iam_data.production_volumes.sel(
                         region=region, variables=production_variable
                     )
-                        .interp(year=int(scenario.split("::")[-1]))
-                        .values.item(0)
+                    .interp(year=int(scenario.split("::")[-1]))
+                    .values.item(0)
                 )
 
                 d_act[scenario][region] = change_production_volume(
@@ -303,10 +302,11 @@ class BaseTransformation:
             for loc in repeated_locs:
                 for exc in self.exchange_stack:
                     if exc[(s.exchange, c.cons_loc)] == loc:
-                        exc[(scenario, c.amount)] = exc[(scenario, c.cons_prod_vol)] / total_prod_vol
+                        exc[(scenario, c.amount)] = (
+                            exc[(scenario, c.cons_prod_vol)] / total_prod_vol
+                        )
                         # delete the production volume value
                         exc[(scenario, c.cons_prod_vol)] = np.nan
-
 
         return d_act
 

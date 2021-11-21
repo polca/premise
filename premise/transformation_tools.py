@@ -140,8 +140,6 @@ def empty_and_redirect_datasets(
     new_exc[(s.exchange, c.prod_name)] = new_exc[(s.exchange, c.cons_name)]
     new_exc[(s.exchange, c.prod_prod)] = new_exc[(s.exchange, c.cons_prod)]
 
-
-
     new_exc[(s.exchange, c.prod_loc)] = new_loc
     new_exc[(s.exchange, c.cons_loc)] = original_loc
 
