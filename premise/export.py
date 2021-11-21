@@ -764,7 +764,9 @@ class Export:
                                 and e["categories"][0] == "natural resource"
                             ):
                                 if len(e["categories"]) > 1:
-                                    sub_compartment = simapro_subs.get(e["categories"][1], "")
+                                    sub_compartment = simapro_subs.get(
+                                        e["categories"][1], ""
+                                    )
                                 else:
                                     sub_compartment = ""
 
@@ -785,7 +787,9 @@ class Export:
                             if e["type"] == "biosphere" and e["categories"][0] == "air":
 
                                 if len(e["categories"]) > 1:
-                                    sub_compartment = simapro_subs.get(e["categories"][1], "")
+                                    sub_compartment = simapro_subs.get(
+                                        e["categories"][1], ""
+                                    )
                                 else:
                                     sub_compartment = ""
 
@@ -816,7 +820,9 @@ class Export:
                                     e["amount"] /= 1000
 
                                 if len(e["categories"]) > 1:
-                                    sub_compartment = simapro_subs.get(e["categories"][1], "")
+                                    sub_compartment = simapro_subs.get(
+                                        e["categories"][1], ""
+                                    )
                                 else:
                                     sub_compartment = ""
 
@@ -839,7 +845,9 @@ class Export:
                                 and e["categories"][0] == "soil"
                             ):
                                 if len(e["categories"]) > 1:
-                                    sub_compartment = simapro_subs.get(e["categories"][1], "")
+                                    sub_compartment = simapro_subs.get(
+                                        e["categories"][1], ""
+                                    )
                                 else:
                                     sub_compartment = ""
 
