@@ -67,12 +67,9 @@ jobs:
       - name: create environment
         run: pyenv local 3.9.0 && python -mvenv .venv390
 
-      - name: activate environment
-        run: pyenv activate .venv390
-
       - name: Install dependencies
         run: |
-          pip3 install -r requirements.txt --upgrade pip
+          pip3 install -r requirements.txt --upgrade pip3
           pip3 install -e .
           pip3 install pytest
           pip3 install pytest-cov
