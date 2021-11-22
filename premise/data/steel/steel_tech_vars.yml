@@ -1,7 +1,7 @@
 # mapping between premise and IAM terminology regarding steel
 ---
 steel - primary:
-  name_aliases:
+  iam_aliases:
     remind: Production|Industry|Steel|Primary
     image: Production|Steel
   energy_use_aliases:
@@ -13,8 +13,14 @@ steel - primary:
       - Final Energy|Industry|Steel|Hydrogen
       - Final Energy|Industry|Steel|Liquids
       - Final Energy|Industry|Steel|Solids
+  ecoinvent_aliases:
+    fltr:
+      - steel production, converter
+    mask:
+      - hot rolled
+
 steel - secondary:
-  name_aliases:
+  iam_aliases:
     remind: Production|Industry|Steel|Secondary
     image: Production|Steel
   energy_use_aliases:
@@ -26,3 +32,12 @@ steel - secondary:
       - Final Energy|Industry|Steel|Hydrogen
       - Final Energy|Industry|Steel|Liquids
       - Final Energy|Industry|Steel|Solids
+  ecoinvent_aliases:
+    fltr:
+      - steel production, electric
+    mask:
+      name:
+        - hot rolled
+      reference product:
+        - heat
+

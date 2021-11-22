@@ -34,7 +34,7 @@ class Steel:
         )
         self.model = model
         mapping = InventorySet(self.db)
-        self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
+        self.emissions_map = mapping.get_gains_to_ecoinvent_emissions()
         self.fuel_map = mapping.generate_fuel_map()
         self.material_map = mapping.generate_material_map()
         self.recycling_rates = get_steel_recycling_rates(year=self.year)

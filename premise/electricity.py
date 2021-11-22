@@ -14,6 +14,7 @@ import os
 import wurst
 
 from .activity_maps import InventorySet
+from .framework.logics import equals
 from .transformation import *
 
 PRODUCTION_PER_TECH = (
@@ -84,8 +85,8 @@ class Electricity(BaseTransformation):
 
     """
 
-    def __init__(self, database, iam_data, model, pathway, year):
-        super().__init__(database, iam_data, model, pathway, year)
+    def __init__(self, database, iam_data, scenarios):
+        super().__init__(database, iam_data, scenarios)
         mapping = InventorySet(self.database)
         self.powerplant_map = mapping.generate_powerplant_map()
         self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
@@ -1013,16 +1014,19 @@ class Electricity(BaseTransformation):
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
 
-        with open(
-            DATA_DIR
-            / f"logs/log power plant efficiencies change {self.model.upper()} {self.pathway} {self.year}-{date.today()}.csv",
-            "w",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            writer.writerow(
-                ["dataset name", "location", "original efficiency", "new efficiency"]
-            )
+        for scenario in self.scenario_labels:
+            model, pathway, year = scenario.split("::")
+
+            with open(
+                DATA_DIR
+                / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
+                "w",
+                encoding="utf-8",
+            ) as csv_file:
+                writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+                writer.writerow(
+                    ["dataset name", "location", "original efficiency", "new efficiency"]
+                )
 
         print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")
 
@@ -1032,6 +1036,22 @@ class Electricity(BaseTransformation):
         for technology in technologies_map:
             dict_technology = technologies_map[technology]
             print("Rescale inventories and emissions for", technology)
+            print(dict_technology)
+
+            list_filters = []
+
+            for tech in dict_technology["technology filters"]:
+                print(tech)
+                list_filters.append(equals((s.exchange, c.cons_name), tech))
+
+            filters = list_filters[0]
+
+            for f in list_filters:
+                filters = filters & f
+
+            datasets = self.database[filters(self.database)]
+
+            print(datasets)
 
             datasets = [
                 d

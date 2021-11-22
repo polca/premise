@@ -52,24 +52,6 @@ class s(enum.Enum):
     ecoinvent = "ecoinvent"
 
 
-def match_similarity(
-    reference: str, candidates: List[str], threshold: float = 0.8
-) -> List[str]:
-    """
-    Matches a string with a list of candidates and returns the most likely matches based on the match rating.
-    The threshold is cutting the match rating.
-
-    :param reference:
-    :param candidates:
-    :param threshold:
-    :return:
-    """
-
-    return [
-        i for i in candidates if SequenceMatcher(None, reference, i).ratio() > threshold
-    ]
-
-
 def match(reference: str, candidates: List[str]) -> [str, None]:
     """
     Matches a string with a list of fuel candidates and returns the candidate whose label

@@ -51,57 +51,6 @@ def get_many(
     return df[selector]
 
 
-def get_many_production_exchanges(
-    df: pd.DataFrame, filtering_method: str = "and", *filters: Callable
-) -> pd.DataFrame:
-    """
-    Return a list of pd.Series (rows, or exchanges) that satisfy
-    the list of filters specified
-    :param df: pd.Dataframe that contains the database
-    :param filtering_method: can be "and" or "or". Determines whether filters multiply or sum up.
-    :param filters: list of filters functions
-    :return: list of pd.Series
-    """
-
-    selector = ~df[(s.exchange, c.cons_name)].isnull()
-
-    for ifilter in filters:
-        if filtering_method == "and":
-            selector *= ifilter(df)
-        else:
-            # or
-            selector += ifilter(df)
-
-    # filter for production exchanges
-    filter_prod_exchanges = equals((s.exchange, c.type), "production")
-
-    selector *= filter_prod_exchanges(df)
-
-    return df[selector]
-
-
-def get_many_single_column(
-    df: pd.DataFrame,
-    column: Tuple[str, c],
-    filtering_method: str = "and",
-    *filters: Callable
-) -> List[int]:
-    """
-    Return a list of values contained in column `column` that satisfy
-    the list of filters specified
-    :param df: pd.Dataframe that contains the database
-    :param column: column to return hash from
-    :param filtering_method: can be "and" or "or". Determines whether filters multiply or sum up.
-    :param filters: list of filters functions
-    :return: list hashes
-    """
-
-    df = get_many(df, filtering_method, *filters)
-
-    # return unique hashes from the specified column
-    return df[column].unique()
-
-
 def emptying_datasets(df: pd.DataFrame, scenario, filters: Callable):
     """
     Zero out technosphere and biosphere exchanges of datasets in `scenario`,
@@ -139,8 +88,6 @@ def empty_and_redirect_datasets(
 
     new_exc[(s.exchange, c.prod_name)] = new_exc[(s.exchange, c.cons_name)]
     new_exc[(s.exchange, c.prod_prod)] = new_exc[(s.exchange, c.cons_prod)]
-
-
 
     new_exc[(s.exchange, c.prod_loc)] = new_loc
     new_exc[(s.exchange, c.cons_loc)] = original_loc
@@ -192,7 +139,7 @@ def change_production_volume(
 
 
 def scale_exchanges_by_constant_factor(
-    df: pd.DataFrame, scenario: str, factor: float, *filters: Callable
+    df: pd.DataFrame, scenario: str, factor: float, filters: Callable
 ) -> pd.DataFrame:
     """
     Change the exchange amounts of datasets in `scenario`,
@@ -205,23 +152,12 @@ def scale_exchanges_by_constant_factor(
     :return: pd.DataFrame with datasets with new locations
     """
 
-    # return hashes of all exchanges that satisfy `filters`
-    hashes_all_exc = get_many_single_column(
-        df, (s.ecoinvent, c.exc_key), "and", *filters
-    )
-
-    # filter for production exchanges
-    filter_prod_exchanges = equals((s.ecoinvent, c.type), "production")
-
-    # return hashes of all exchanges of `production` type
-    hashes_all_prod_exc = get_many_single_column(
-        df, (s.ecoinvent, c.exc_key), "and", filter_prod_exchanges
-    )
-
-    # subtract production exchange hashes to the hash list
-    hashes = set(hashes_all_exc) - set(hashes_all_prod_exc)
+    # filter out the production exchanges
+    _filters = (
+            filters & does_not_contain((s.exchange, c.type), "production")
+    )(df)
 
     # update location in the (scenario, c.cons_loc) column
-    df.loc[df[(s.ecoinvent, c.exc_key)].isin(hashes), (scenario, c.amount)] *= factor
+    df.loc[_filters, (scenario, c.amount)] *= factor
 
     return df

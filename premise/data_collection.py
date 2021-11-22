@@ -170,15 +170,15 @@ class IAMDataCollection:
         self.electricity_markets = self.__get_iam_electricity_markets(data=data)
         self.fuel_markets = self.__get_iam_fuel_markets(data=data)
 
-        prod_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="name_aliases")
+        prod_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="iam_aliases")
         prod_vars.update(
-            self.__get_iam_variable_labels(IAM_FUELS_VARS, key="name_aliases")
+            self.__get_iam_variable_labels(IAM_FUELS_VARS, key="iam_aliases")
         )
         prod_vars.update(
-            self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="name_aliases")
+            self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="iam_aliases")
         )
         prod_vars.update(
-            self.__get_iam_variable_labels(IAM_STEEL_VARS, key="name_aliases")
+            self.__get_iam_variable_labels(IAM_STEEL_VARS, key="iam_aliases")
         )
 
         self.production_volumes = self.__get_iam_production_volumes(
@@ -186,7 +186,7 @@ class IAMDataCollection:
         )
         self.carbon_capture_rate = self.__get_carbon_capture_rate(
             dict_vars=self.__get_iam_variable_labels(
-                IAM_CARBON_CAPTURE_VARS, key="name_aliases"
+                IAM_CARBON_CAPTURE_VARS, key="iam_aliases"
             ),
             data=data,
         )
@@ -502,7 +502,7 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="name_aliases")
+        labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="iam_aliases")
 
         # If hydrogen is not to be considered, it is removed from the technologies labels list
         if drop_hydrogen:
@@ -635,7 +635,7 @@ class IAMDataCollection:
 
             data_to_return = 1 / data.loc[:, [eff["cement"]], :]
         else:
-            prod = self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="name_aliases")
+            prod = self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="iam_aliases")
             energy = self.__get_iam_variable_labels(
                 IAM_CEMENT_VARS, key="energy_use_aliases"
             )
@@ -704,7 +704,7 @@ class IAMDataCollection:
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
             data_primary = 1 / data.loc[:, [eff["steel - primary"]], :]
         else:
-            prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="name_aliases")
+            prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="iam_aliases")
             energy = self.__get_iam_variable_labels(
                 IAM_STEEL_VARS, key="energy_use_aliases"
             )
@@ -728,7 +728,7 @@ class IAMDataCollection:
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
             data_secondary = 1 / data.loc[:, [eff["steel - secondary"]], :]
         else:
-            prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="name_aliases")
+            prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="iam_aliases")
             energy = self.__get_iam_variable_labels(
                 IAM_STEEL_VARS, key="energy_use_aliases"
             )
@@ -960,7 +960,7 @@ class IAMDataCollection:
 
         """
 
-        labels = self.__get_iam_variable_labels(IAM_FUELS_VARS, key="name_aliases")
+        labels = self.__get_iam_variable_labels(IAM_FUELS_VARS, key="iam_aliases")
 
         list_technologies = list(labels.values())
 

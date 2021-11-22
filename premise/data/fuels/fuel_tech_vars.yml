@@ -1,6 +1,6 @@
 # calorific (wet basis)
 # CO2 emission factors (including biogenic share)
-# name_aliases and eff_aliases for different IAMs
+# iam_aliases and eff_aliases for different IAMs
 # of different energy vectors.
 # LHVs are from ecoinvent when possible. If not, they are either from
 # engineeringtoolbox.com or phyllis.nl
@@ -16,38 +16,77 @@ hard coal:
   lhv: 20.1
   co2: 0.098
   biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      - market for hard coal
+    mask:
+      name:
+        - factory
+        - plant
+        - briquettes
+        - ash
+        - clinker
 lignite:
   lhv: 9.9
   co2: 0.101
   biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      - market for lignite
+    mask:
+      name:
+        - factory
+        - plant
+        - briquettes
+        - ash
 petroleum coke:
   lhv: 31.3
   co2: 0.0975
   biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      - market for petroleum coke
 wood pellet:
   lhv: 16.2
   co2: 0.112
   biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      - market for wood pellets
+    mask:
+      name:
+        - clinker
+        - factory
 wood chips:
   lhv: 18.9
   co2: 0.112
   biogenic_share: 1
-natural gas, high pressure:
-  lhv: 45
-  co2: 0.0564
-  biogenic_share: 0
-natural gas, low pressure:
-  lhv: 45
-  co2: 0.0564
-  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      - market for wood chips
 natural gas:
-  lhv: 47.5
+  lhv: 45
   co2: 0.0564
   biogenic_share: 0
-  name_aliases:
+  iam_aliases:
     remind: SE|Gases|Non-Biomass
-Gas, natural, in ground:
-  lhv: 47.5
+  ecoinvent_aliases:
+    fltr:
+      - natural gas, high pressure
+      - natural gas, medium pressure
+      - natural gas, low pressure
+      - gas, natural, in ground
+    mask:
+      name:
+        - market
+        - import
+        - synthetic
+        - burned
+        - vehicle grade
+        - electric
+        - evaporation
+gas, natural, in ground:
+  lhv: 45
   co2: 0.0564
   biogenic_share: 0
 refinery gas:
@@ -62,297 +101,515 @@ heavy fuel oil:
   lhv: 38.5
   co2: 0.0739
   biogenic_share: 0
+oil, crude, in ground:
+  lhv: 38.5
+  co2: 0.0739
+  biogenic_share: 0
 light fuel oil:
   lhv: 42.6
   co2: 0.0686
   biogenic_share: 0
-Oil, crude, in ground:
-  lhv: 42.3
-  co2: 0.0733
-  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      - light fuel oil
 biogas:
   lhv: 22.73
   co2: 0.058
   biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      - biogas
 biomethane:
   lhv: 47.5
   co2: 0.058
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Gases|Biomass
   eff_aliases:
     remind: Tech|Gases|Biomass|w/o CCS|Efficiency
+  ecoinvent_aliases:
+    fltr:
+      - biomethane, gaseous
+    mask:
+      name:
+        - burned
 waste:
   lhv: 14
   co2: 0.0917
   biogenic_share: 0.34
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+        - waste plastic, mixture
+    mask:
+      name:
+        - market for
+        - treatment
+        - market group
 methane, fossil:
   lhv: 47.5
   co2: 0.058
   biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      - methane, fossil
 methane, biogenic:
   lhv: 47.5
   co2: 0.058
   biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      - methane, biogenic
+methane, synthetic:
+  lhv: 47.5
+  co2: 0.058
+  biogenic_share: 1
+  ecoinvent_fuels_aliases:
+    fltr:
+      - methane, synthetic, gaseous
+      - methane, from electrochemical methanation
 diesel:
   lhv: 43
   co2: 0.0732
   biogenic_share: 0
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Oil
     image: Secondary Energy|Consumption|Liquids|Fossil
   eff_aliases:
     remind: Tech|Liquids|Oil|Efficiency
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+        - diesel
+        - diesel, low-sulfur
+    mask:
+      name:
+        - market
+        - import
+        - synthetic
+        - burned
+        - methanol
+        - electric
+        - biodiesel
 gasoline:
   lhv: 42.6
   co2: 0.0737
   biogenic_share: 0
-petrol, 5% ethanol:
-  lhv: 41.7
-  co2: 0.0735
-  biogenic_share: 0.05
-petrol:
-  lhv: 42.6
-  co2: 0.0737
-  biogenic_share: 0
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Oil
     image: Secondary Energy|Consumption|Liquids|Fossil
   eff_aliases:
     remind: Tech|Liquids|Oil|Efficiency
-Syngas, RWGS:
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+        - petrol, low-sulfur
+        - petrol, unleaded
+      name:
+        - petrol production
+    mask:
+      name:
+        - market
+        - import
+        - synthetic
+        - burned
+petrol, 5% ethanol:
+  lhv: 41.7
+  co2: 0.0735
+  biogenic_share: 0.05
+  ecoinvent_aliases:
+    fltr:
+      - petrol, 5% ethanol
+syngas:
   lhv: 23.9
   biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      - Syngas, RWGS
 petrol, synthetic, hydrogen:
   lhv: 42.6
   co2: 0.0737
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Hydrogen
   biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      - gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station
 petrol, synthetic, coal:
   lhv: 42.6
   co2: 0.0737
   biogenic_share: 0
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Coal|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - gasoline production, synthetic, from methanol, hydrogen from coal gasification, CO2 from DAC, energy allocation, at fuelling station
 diesel, synthetic, hydrogen:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Hydrogen
+  ecoinvent_aliases:
+    fltr:
+      - diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station
 diesel, synthetic, coal:
   lhv: 43
   co2: 0.0732
   biogenic_share: 0
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Coal|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, energy allocation, at fuelling station
 diesel, synthetic, wood:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Biomass|Biofuel|BioFTR|w/o CCS
     image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/oCCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station
 diesel, synthetic, wood, with CCS:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Biomass|Biofuel|BioFTRC|w/ CCS
     image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      - diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation, at fuelling station
 diesel, synthetic, grass:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Grassy|w/oCCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station
 diesel, synthetic, grass, with CCS:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Grassy|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      - diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation, at fuelling station
 heat, from hydrogen:
   lhv: 1
 hydrogen, petroleum:
   lhv: 120
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen production, gaseous, petroleum refinery operation
 hydrogen, electrolysis:
   lhv: 120
-  name_aliases:
+  iam_aliases:
     remind: SE|Hydrogen|Electricity
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen supply, from electrolysis
+      - hydrogen production, gaseous, 25 bar, from electrolysis
+      - hydrogen production, gaseous, 700 bar, from electrolysis
 hydrogen, biomass:
   lhv: 120
-  name_aliases:
+  iam_aliases:
     remind: SE|Hydrogen|Biomass|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen supply, from gasification of biomass
+      - hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant
+      - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant
 hydrogen, biomass, with CCS:
   lhv: 120
-  name_aliases:
+  iam_aliases:
     remind: SE|Hydrogen|Biomass|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant
+      - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant
 hydrogen, coal:
   lhv: 120
-  name_aliases:
+  iam_aliases:
     remind: SE|Hydrogen|Coal|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen supply, from coal gasification
 hydrogen, nat. gas:
   lhv: 120
-  name_aliases:
+  iam_aliases:
     remind: SE|Hydrogen|Gas|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen supply, from SMR of nat. gas
 hydrogen, nat. gas, with CCS:
   lhv: 120
-  name_aliases:
+  iam_aliases:
     remind: SE|Hydrogen|Gas|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen supply, from SMR of nat. gas, with CCS
 hydrogen, biogas:
   lhv: 120
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen supply, from SMR of biogas
 hydrogen, biogas, with CCS:
   lhv: 120
+  ecoinvent_aliases:
+    fltr:
+      - hydrogen supply, from SMR of biogas, with CCS
 hydrogen:
   lhv: 120
 biodiesel, oil:
   lhv: 38
   co2: 0.0734
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Biomass|Biofuel|Biodiesel|w/o CCS
     image: Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS
   eff_aliases:
     remind: Tech|Liquids|Biomass|Biofuel|Biodiesel|w/o CCS|Efficiency
     image: Efficiency|Liquids|Biomass|Biodiesel|Oilcrops|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - biodiesel production, via transesterification
+        - biodiesel
+    mask:
+      name:
+        - expansion
+        - economic
 biodiesel, oil, with CCS:
   lhv: 38
   co2: 0.0734
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Biodiesel|Oilcrops|w/ CCS
-biodiesel:
-  lhv: 38
-  co2: 0.0734
-  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - biodiesel production, via transesterification
+    mask:
+      name:
+        - expansion
+        - economic
 bioethanol, woody:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Biomass|Cellulosic|w/o CCS
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS
   eff_aliases:
     remind: Tech|Liquids|Biomass|Biofuel|Ethanol|Cellulosic|w/o CCS|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - ethanol production, via fermentation, from forest
+      - ethanol production, via fermentation, from eucalyptus
+      - ethanol production, via fermentation, from poplar
+      - ethanol production, via fermentation, from willow
+    mask:
+      name:
+        - expansion
+        - economic
+
 bioethanol, woody, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Biomass|Cellulosic|w/ CCS
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      - ethanol production, via fermentation, from forest
+      - ethanol production, via fermentation, from eucalyptus
+      - ethanol production, via fermentation, from poplar
+      - ethanol production, via fermentation, from willow
+    mask:
+      name:
+        - expansion
+        - economic
 bioethanol, grassy:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Biomass|Non-Cellulosic
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Grassy|w/oCCS
   eff_aliases:
     remind: Tech|Liquids|Biomass|Biofuel|Ethanol|Cellulosic|w/o CCS|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Grassy|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - ethanol production, via fermentation, from switchgrass
+      - ethanol production, via fermentation, from miscanthus
+      - ethanol production, via fermentation, from sorghum
+    mask:
+      name:
+        - expansion
+        - economic
 bioethanol, grassy, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Grassy|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Ethanol|Grassy|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      - ethanol production, via fermentation, from switchgrass
+      - ethanol production, via fermentation, from miscanthus
+      - ethanol production, via fermentation, from sorghum
+    mask:
+      name:
+        - expansion
+        - economic
 bioethanol, grain:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Biomass|Conventional Ethanol
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Maize|w/oCCS
   eff_aliases:
     remind: Tech|Liquids|Biomass|Biofuel|Ethanol|Conventional|w/o CCS|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Maize|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - ethanol production, via fermentation, from wheat grains
+      - ethanol production, via fermentation, from corn
+    mask:
+      name:
+        - expansion
+        - economic
+        - carbon
 bioethanol, grain, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Maize|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Ethanol|Maize|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      - ethanol production, via fermentation, from corn, with carbon capture
+    mask:
+      name:
+        - expansion
+        - economic
 bioethanol, sugar:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     remind: SE|Liquids|Biomass|Conventional Ethanol
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/oCCS
   eff_aliases:
     remind: Tech|Liquids|Biomass|Biofuel|Ethanol|Conventional|w/o CCS|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Sugar|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - ethanol production, via fermentation, from sugarbeet
+      - ethanol production, via fermentation, from sugarcane
+    mask:
+      name:
+        - expansion
+        - economic
 bioethanol, sugar, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Ethanol|Sugar|w/ CCS
-bioethanol:
-  lhv: 26.5
-  co2: 0.0739
-  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      - ethanol production, via fermentation, from sugarbeet
+      - ethanol production, via fermentation, from sugarcane
+    mask:
+      name:
+        - expansion
+        - economic
 ethanol:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      - market for ethanol
+      - bioethanol
 ethyl tert-butyl ether:
   lhv: 37.97
+  ecoinvent_aliases:
+    fltr:
+      - ethyl tert-butyl ether
 methanol, wood:
   lhv: 19.9
   co2: 0.05477
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/oCCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Methanol|Woody|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - market for methanol, from biomass
 methanol, grass:
   lhv: 19.9
   co2: 0.05477
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/oCCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Methanol|Grassy|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - market for methanol, from biomass
 methanol, wood, with CCS:
   lhv: 19.9
   co2: 0.05477
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Methanol|Woody|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      - market for methanol, from biomass
 methanol, grass, with CCS:
   lhv: 19.9
   co2: 0.05477
   biogenic_share: 1
-  name_aliases:
+  iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Methanol|Grassy|w/ CCS
-
+  ecoinvent_aliases:
+    fltr:
+      - market for methanol, from biomass
 liquified petroleum gas, natural:
   lhv: 45.5
   co2: 0.0631
@@ -505,3 +762,62 @@ manure, solid:
   lhv: 3.6
 Carbon monoxide, from RWGS:
   lhv: 10.83
+kerosene, from petroleum:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, petroleum refinery operation
+sweet gas, burned:
+  lhv:
+kerosene, synthetic, from electrolysis, energy allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from electrolysis-based hydrogen, energy allocation
+    - Kerosene, synthetic, from MTO, hydrogen from electrolysis, energy allocation
+kerosene, synthetic, from electrolysis, economic allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from electrolysis-based hydrogen, economic allocation
+    - Kerosene, synthetic, from MTO, hydrogen from electrolysis, economic allocation
+kerosene, synthetic, from coal, energy allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from coal-based hydrogen, energy allocation, at fuelling station
+kerosene, synthetic, from coal, economic allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from coal-based hydrogen, economic allocation, at fuelling station
+kerosene, synthetic, from natural gas, energy allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from natural gas-based hydrogen, energy allocation, at fuelling station
+kerosene, synthetic, from natural gas, economic allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from natural gas-based hydrogen, economic allocation, at fuelling station
+kerosene, synthetic, from biomethane, energy allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from biomethane-based hydrogen, energy allocation, at fuelling station
+kerosene, synthetic, from biomethane, economic allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from biomethane-based hydrogen, economic allocation, at fuelling station
+kerosene, synthetic, from biomass, energy allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from biomass-based hydrogen, energy allocation, at fuelling station
+kerosene, synthetic, from biomass, economic allocation:
+  lhv: 43
+  ecoinvent_aliases:
+    fltr:
+    - Kerosene, synthetic, from biomass-based hydrogen, economic allocation, at fuelling station

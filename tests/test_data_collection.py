@@ -47,7 +47,7 @@ def test_electricity_markets():
 
 
 def test_iam_variable_names():
-    d = dc._IAMDataCollection__get_iam_variable_labels(IAM_ELEC_VARS, "name_aliases")
+    d = dc._IAMDataCollection__get_iam_variable_labels(IAM_ELEC_VARS, "iam_aliases")
     assert d["Hydro"] == "SE|Electricity|Hydro"
 
 

@@ -1,7 +1,7 @@
 # mapping between premise and IAM terminology regarding cement
 ---
 cement:
-  name_aliases:
+  iam_aliases:
     remind: Production|Industry|Cement
     image: Production|Cement
   energy_use_aliases:
