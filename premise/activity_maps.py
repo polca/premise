@@ -1,16 +1,19 @@
 import csv
+
 import yaml
+
+from premise.framework.logics import contains, does_not_contain
 
 from . import DATA_DIR
 from .transformation_tools import *
 from .utils import c
-from premise.framework.logics import contains, does_not_contain
 
 GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
     DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
 )
 POWERPLANT_TECHS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 FUELS_TECHS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
+
 
 def get_mapping(filepath, var):
 
@@ -41,10 +44,13 @@ class InventorySet:
 
     def __init__(self, db):
         self.db = db
-        self.powerplant_filters = get_mapping(filepath=POWERPLANT_TECHS, var="ecoinvent_aliases")
-        self.powerplant_fuels_filters = get_mapping(filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases")
+        self.powerplant_filters = get_mapping(
+            filepath=POWERPLANT_TECHS, var="ecoinvent_aliases"
+        )
+        self.powerplant_fuels_filters = get_mapping(
+            filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases"
+        )
         self.fuels_filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
-
 
     def generate_powerplant_map(self):
         """
@@ -148,7 +154,9 @@ class InventorySet:
                 for el in condition:
                     list_filters.append(contains((s.exchange, fields_map[field]), el))
             else:
-                list_filters.append(contains((s.exchange, fields_map[field]), condition))
+                list_filters.append(
+                    contains((s.exchange, fields_map[field]), condition)
+                )
 
         must_contain_filters = list_filters[0]
 
@@ -161,9 +169,13 @@ class InventorySet:
             condition = mask[field]
             if type(condition) == list:
                 for el in condition:
-                    list_filters.append(does_not_contain((s.exchange, fields_map[field]), el))
+                    list_filters.append(
+                        does_not_contain((s.exchange, fields_map[field]), el)
+                    )
             else:
-                list_filters.append(does_not_contain((s.exchange, fields_map[field]), condition))
+                list_filters.append(
+                    does_not_contain((s.exchange, fields_map[field]), condition)
+                )
 
         if len(list_filters) > 0:
             must_exclude_filters = list_filters[0]

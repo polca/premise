@@ -1025,7 +1025,12 @@ class Electricity(BaseTransformation):
             ) as csv_file:
                 writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
                 writer.writerow(
-                    ["dataset name", "location", "original efficiency", "new efficiency"]
+                    [
+                        "dataset name",
+                        "location",
+                        "original efficiency",
+                        "new efficiency",
+                    ]
                 )
 
         print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")

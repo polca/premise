@@ -153,9 +153,7 @@ def scale_exchanges_by_constant_factor(
     """
 
     # filter out the production exchanges
-    _filters = (
-            filters & does_not_contain((s.exchange, c.type), "production")
-    )(df)
+    _filters = (filters & does_not_contain((s.exchange, c.type), "production"))(df)
 
     # update location in the (scenario, c.cons_loc) column
     df.loc[_filters, (scenario, c.amount)] *= factor
