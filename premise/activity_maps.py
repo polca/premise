@@ -49,6 +49,7 @@ def get_gains_to_ecoinvent_emissions():
 
     return csv_dict
 
+
 class InventorySet:
     """
     Hosts different filter sets to for ecoinvent activities and exchanges.

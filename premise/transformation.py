@@ -158,7 +158,9 @@ class BaseTransformation:
 
         self.exchange_stack = []
 
-    def update_new_efficiency_in_comment(self, dataset, scenario, iam_loc, old_ei_eff, new_eff):
+    def update_new_efficiency_in_comment(
+        self, dataset, scenario, iam_loc, old_ei_eff, new_eff
+    ):
         """
         Update the old efficiency value in the ecoinvent dataset by the newly calculated one.
         :param dataset: dataset
@@ -462,4 +464,3 @@ class BaseTransformation:
             scaling_factor = 1
 
         return scaling_factor
-

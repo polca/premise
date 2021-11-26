@@ -20,6 +20,7 @@ class equals(BasicOperation):
         self._selector = lambda df: df[key] == val
         self._repr = f"<filter df[{key}] == {val}>"
 
+
 class contains_any_from_list(BasicOperation):
     def __init__(self, key, list_of_val):
         self._selector = lambda df: df[key].isin(list_of_val)

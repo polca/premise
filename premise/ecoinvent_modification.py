@@ -657,9 +657,7 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        print(
-            "\n////////////////////// EXTRACTING SOURCE DATABASE //////////////////"
-        )
+        print("\n////////////////////// EXTRACTING SOURCE DATABASE //////////////////")
 
         if use_cached_database:
             self.database = self.__find_cached_db(source_db)
@@ -667,9 +665,7 @@ class NewDatabase:
         else:
             self.database = self.__clean_database()
 
-        print(
-            "\n/////////////////// IMPORTING DEFAULT INVENTORIES //////////////////"
-        )
+        print("\n/////////////////// IMPORTING DEFAULT INVENTORIES //////////////////")
 
         if use_cached_inventories:
             data = self.__find_cached_inventories(source_db)

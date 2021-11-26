@@ -12,8 +12,9 @@ the newly created electricity markets.
 import os
 
 import wurst
-from .transformation import *
+
 from .activity_maps import get_gains_to_ecoinvent_emissions
+from .transformation import *
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -1001,7 +1002,6 @@ class Electricity(BaseTransformation):
 
         print("Adjust efficiency of power plants...")
 
-
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
 
@@ -1009,10 +1009,10 @@ class Electricity(BaseTransformation):
             model, pathway, year = scenario.split("::")
 
             with open(
-                    DATA_DIR
-                    / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
-                    "w",
-                    encoding="utf-8",
+                DATA_DIR
+                / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
+                "w",
+                encoding="utf-8",
             ) as csv_file:
                 writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
                 writer.writerow(
@@ -1024,15 +1024,19 @@ class Electricity(BaseTransformation):
                     ]
                 )
 
-            print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")
-
-
+            print(
+                f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs"
+            )
 
             eff_labels = self.iam_data.efficiency.variables.values
-            all_techs = [tech for tech in self.iam_data.electricity_markets.variables.values
-                         if self.iam_data.electricity_markets.sel(variables=tech,
-                                                                  scenario=scenario).sum(
-                    dim=["region", "year"]) > 0]
+            all_techs = [
+                tech
+                for tech in self.iam_data.electricity_markets.variables.values
+                if self.iam_data.electricity_markets.sel(
+                    variables=tech, scenario=scenario
+                ).sum(dim=["region", "year"])
+                > 0
+            ]
 
             technologies_map = self.get_iam_mapping(
                 activity_map=self.powerplant_map,
@@ -1047,22 +1051,31 @@ class Electricity(BaseTransformation):
                 print("Rescale inventories and emissions for", technology)
 
                 _filters = (
-                        contains_any_from_list((s.exchange, c.cons_name), list(dict_technology["technology filters"]))
-                        & equals((s.exchange, c.unit), "kilowatt hour")
+                    contains_any_from_list(
+                        (s.exchange, c.cons_name),
+                        list(dict_technology["technology filters"]),
+                    )
+                    & equals((s.exchange, c.unit), "kilowatt hour")
                 )(self.database)
 
-                datasets_ids = self.database.loc[_filters, (s.exchange, c.cons_key)].unique()
+                datasets_ids = self.database.loc[
+                    _filters, (s.exchange, c.cons_key)
+                ].unique()
 
                 # no activities found? Check filters!
                 assert len(datasets_ids) > 0, f"No dataset found for {technology}"
 
                 for id in datasets_ids:
 
-                    dataset = self.database.loc[self.database[(s.exchange, c.cons_key)] == id]
+                    dataset = self.database.loc[
+                        self.database[(s.exchange, c.cons_key)] == id
+                    ]
 
                     print(dataset._is_copy)
 
-                    production_exc = dataset.loc[dataset[(s.exchange, c.type)] == "production"]
+                    production_exc = dataset.loc[
+                        dataset[(s.exchange, c.type)] == "production"
+                    ]
                     # Find current efficiency
                     ei_eff = production_exc[(s.ecoinvent, c.efficiency)].iloc[0]
                     # Find the location
@@ -1079,7 +1092,12 @@ class Electricity(BaseTransformation):
 
                     # we log changes in efficiency
                     eff_change_log.append(
-                        [production_exc[(s.exchange, c.cons_name)].iloc[0], ei_loc, ei_eff, new_efficiency]
+                        [
+                            production_exc[(s.exchange, c.cons_name)].iloc[0],
+                            ei_loc,
+                            ei_eff,
+                            new_efficiency,
+                        ]
                     )
 
                     self.update_new_efficiency_in_comment(
@@ -1092,10 +1110,7 @@ class Electricity(BaseTransformation):
                     # from the IAM efficiency values
                     _filters = equals((s.exchange, c.type), "technosphere")
                     dataset = scale_exchanges_by_constant_factor(
-                        dataset,
-                        scenario,
-                        scaling_factor,
-                        _filters
+                        dataset, scenario, scaling_factor, _filters
                     )
 
                     if technology in self.iam_data.emissions.sector:
@@ -1109,17 +1124,14 @@ class Electricity(BaseTransformation):
                             )
 
                             dataset = scale_exchanges_by_constant_factor(
-                                dataset,
-                                scenario,
-                                scaling_factor,
-                                _filters
+                                dataset, scenario, scaling_factor, _filters
                             )
 
             with open(
-                    DATA_DIR
-                    / f"logs/log power plant efficiencies change {model.upper()} {pathway} {year}-{date.today()}.csv",
-                    "a",
-                    encoding="utf-8",
+                DATA_DIR
+                / f"logs/log power plant efficiencies change {model.upper()} {pathway} {year}-{date.today()}.csv",
+                "a",
+                encoding="utf-8",
             ) as csv_file:
                 writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
                 for row in eff_change_log:
