@@ -235,8 +235,11 @@ class IAMDataCollection:
 
         for k, v in out.items():
             if key in v:
-                if self.model in v[key]:
-                    dict_vars[k] = v[key][self.model]
+                if key == "gains_aliases":
+                    dict_vars[k] = v[key]
+                else:
+                    if self.model in v[key]:
+                        dict_vars[k] = v[key][self.model]
 
         return dict_vars
 

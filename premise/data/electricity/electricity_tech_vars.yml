@@ -4,7 +4,7 @@
 # eff_aliases --> name of the variable referring to the efficiency of the technology in the IAM file
 # gains_aliases --> name of the variable referring to the technology in the GAINS file for non-CO2 emissions
 # ecoinvent_aliases --> list of names to be found in the ecoinvent database
-# ecoinvent_fuels_aliases --> list of names of fuels consumed by a given technology to be found in the ecoinvent database
+# ecoinvent_fuel_aliases --> list of names of fuels consumed by a given technology to be found in the ecoinvent database
 ---
 Biomass CHP:
   iam_aliases:
@@ -245,15 +245,13 @@ Gas CHP:
     fltr:
       - heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical
       - heat and power co-generation, natural gas, conventional power plant, 100MW electrical
-      - heat and power co-generation, biogas
     mask:
       reference product: heat
-  ecoinvent_fuels_aliases:
+  ecoinvent_fuel_aliases:
     fltr:
       - market for natural gas, high pressure
       - market for natural gas, medium pressure
       - market for natural gas, low pressure
-      - market for biogas
     mask:
       - liquids
       - liquefied

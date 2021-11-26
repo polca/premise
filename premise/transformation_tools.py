@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from constructive_geometries import resolved_row
 
-from premise.framework.logics import contains, does_not_contain, equals
+from premise.framework.logics import contains, does_not_contain, equals, contains_any_from_list
 
 from . import geomap
 from .utils import c, create_hash, recalculate_hash, s
@@ -139,7 +139,7 @@ def change_production_volume(
 
 
 def scale_exchanges_by_constant_factor(
-    df: pd.DataFrame, scenario: str, factor: float, filters: Callable
+    df: pd.DataFrame, scenario: str, factor: float, filters
 ) -> pd.DataFrame:
     """
     Change the exchange amounts of datasets in `scenario`,
@@ -156,6 +156,9 @@ def scale_exchanges_by_constant_factor(
     _filters = (filters & does_not_contain((s.exchange, c.type), "production"))(df)
 
     # update location in the (scenario, c.cons_loc) column
-    df.loc[_filters, (scenario, c.amount)] *= factor
+    df.loc[_filters, (scenario, c.amount)] = (
+        df.loc[_filters, (s.ecoinvent, c.amount)]
+        * factor
+    )
 
     return df

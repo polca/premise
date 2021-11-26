@@ -133,8 +133,6 @@ class BaseTransformation:
                 label
             ] = self.iam_data.electricity_markets.region.values.tolist()
 
-        # self.geo = Geomap(model=model)
-
         self.fuels_lhv = get_fuel_properties()
         # mapping = InventorySet(self.database)
         # self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
@@ -150,9 +148,17 @@ class BaseTransformation:
                 for loc in get_dataframe_locs(self.database)
             }
 
+        self.iam_to_gains = {}
+        for s, scenario in enumerate(scenarios):
+            geo = Geomap(model=scenario["model"])
+            self.iam_to_gains[self.scenario_labels[s]] = {
+                loc: geo.iam_to_GAINS_region(loc)
+                for loc in self.regions[self.scenario_labels[s]]
+            }
+
         self.exchange_stack = []
 
-    def update_ecoinvent_efficiency_parameter(self, dataset, old_ei_eff, new_eff):
+    def update_new_efficiency_in_comment(self, dataset, scenario, iam_loc, old_ei_eff, new_eff):
         """
         Update the old efficiency value in the ecoinvent dataset by the newly calculated one.
         :param dataset: dataset
@@ -160,19 +166,19 @@ class BaseTransformation:
         :param scaling_factor: scaling factor (new efficiency / old efficiency)
         :type scaling_factor: float
         """
-        iam_region = self.ecoinvent_to_iam_loc[dataset[(c.cons_loc)]]
+
+        model, pathway, year = scenario.split("::")
 
         new_txt = (
             f" 'premise' has modified the efficiency of this dataset, from an original "
-            f"{int(old_ei_eff * 100)}% to {int(new_eff * 100)}%, according to IAM model {self.model.upper()}, "
-            f"scenario {self.pathway} for the region {iam_region}."
+            f"{int(old_ei_eff * 100)}% to {int(new_eff * 100)}%, according to IAM model {model.upper()}, "
+            f"scenario {pathway} for the region {iam_loc} in {year}."
         )
 
-        scenario_label = create_scenario_label(
-            model=self.model, pathway=self.pathway, year=self.year
-        )
-
-        dataset[(scenario_label, c.comment)] += new_txt
+        # update comment
+        dataset[(scenario, c.comment)] += new_txt
+        # update efficiency value
+        dataset[(scenario, c.efficiency)] = new_eff
 
     def get_iam_mapping(self, activity_map, fuels_map, technologies):
         """
@@ -456,3 +462,4 @@ class BaseTransformation:
             scaling_factor = 1
 
         return scaling_factor
+

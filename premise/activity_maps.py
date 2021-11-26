@@ -28,6 +28,27 @@ def get_mapping(filepath, var):
     return mapping
 
 
+def get_gains_to_ecoinvent_emissions():
+    """
+    Retrieve the correspondence between GAINS and ecoinvent emission labels.
+    :return: GAINS emission labels as keys and ecoinvent emission labels as values
+    :rtype: dict
+    """
+
+    if not GAINS_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
+        raise FileNotFoundError(
+            "The dictionary of emission labels correspondences could not be found."
+        )
+
+    csv_dict = {}
+
+    with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH) as f:
+        input_dict = csv.reader(f, delimiter=";")
+        for row in input_dict:
+            csv_dict[row[0]] = row[1]
+
+    return csv_dict
+
 class InventorySet:
     """
     Hosts different filter sets to for ecoinvent activities and exchanges.
@@ -84,28 +105,6 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.fuels_filters)
-
-    @staticmethod
-    def get_gains_to_ecoinvent_emissions():
-        """
-        Retrieve the correspondence between GAINS and ecoinvent emission labels.
-        :return: GAINS emission labels as keys and ecoinvent emission labels as values
-        :rtype: dict
-        """
-
-        if not GAINS_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
-            raise FileNotFoundError(
-                "The dictionary of emission labels correspondences could not be found."
-            )
-
-        csv_dict = {}
-
-        with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH) as f:
-            input_dict = csv.reader(f, delimiter=";")
-            for row in input_dict:
-                csv_dict[row[0]] = row[1]
-
-        return csv_dict
 
     @staticmethod
     def act_fltr(db, fltr=None, mask=None):
@@ -184,9 +183,6 @@ class InventorySet:
                 must_exclude_filters = must_exclude_filters & f
 
             filters = (must_contain_filters) & (must_exclude_filters)
-
-            print(filters)
-
         else:
             filters = must_contain_filters
 

@@ -12,10 +12,8 @@ the newly created electricity markets.
 import os
 
 import wurst
-
-from .activity_maps import InventorySet
-from .framework.logics import equals
 from .transformation import *
+from .activity_maps import get_gains_to_ecoinvent_emissions
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -92,6 +90,7 @@ class Electricity(BaseTransformation):
         self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
         self.losses = get_losses_per_country_dict()
         self.production_per_tech = get_production_per_tech_dict()
+        self.gains_substances = get_gains_to_ecoinvent_emissions()
 
     def get_production_weighted_losses(self, voltage, region):
         """
@@ -1002,14 +1001,6 @@ class Electricity(BaseTransformation):
 
         print("Adjust efficiency of power plants...")
 
-        eff_labels = self.iam_data.efficiency.variables.values
-        all_techs = self.iam_data.electricity_markets.variables.values
-
-        technologies_map = self.get_iam_mapping(
-            activity_map=self.powerplant_map,
-            fuels_map=self.powerplant_fuels_map,
-            technologies=list(set(eff_labels).intersection(all_techs)),
-        )
 
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
@@ -1018,10 +1009,10 @@ class Electricity(BaseTransformation):
             model, pathway, year = scenario.split("::")
 
             with open(
-                DATA_DIR
-                / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
-                "w",
-                encoding="utf-8",
+                    DATA_DIR
+                    / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
+                    "w",
+                    encoding="utf-8",
             ) as csv_file:
                 writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
                 writer.writerow(
@@ -1033,106 +1024,106 @@ class Electricity(BaseTransformation):
                     ]
                 )
 
-        print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")
+            print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")
 
-        # to store changes in efficiency
-        eff_change_log = []
 
-        for technology in technologies_map:
-            dict_technology = technologies_map[technology]
-            print("Rescale inventories and emissions for", technology)
-            print(dict_technology)
 
-            list_filters = []
+            eff_labels = self.iam_data.efficiency.variables.values
+            all_techs = [tech for tech in self.iam_data.electricity_markets.variables.values
+                         if self.iam_data.electricity_markets.sel(variables=tech,
+                                                                  scenario=scenario).sum(
+                    dim=["region", "year"]) > 0]
 
-            for tech in dict_technology["technology filters"]:
-                print(tech)
-                list_filters.append(equals((s.exchange, c.cons_name), tech))
+            technologies_map = self.get_iam_mapping(
+                activity_map=self.powerplant_map,
+                fuels_map=self.powerplant_fuels_map,
+                technologies=list(set(eff_labels).intersection(all_techs)),
+            )
+            # to store changes in efficiency
+            eff_change_log = []
 
-            filters = list_filters[0]
+            for technology in technologies_map:
+                dict_technology = technologies_map[technology]
+                print("Rescale inventories and emissions for", technology)
 
-            for f in list_filters:
-                filters = filters & f
+                _filters = (
+                        contains_any_from_list((s.exchange, c.cons_name), list(dict_technology["technology filters"]))
+                        & equals((s.exchange, c.unit), "kilowatt hour")
+                )(self.database)
 
-            datasets = self.database[filters(self.database)]
+                datasets_ids = self.database.loc[_filters, (s.exchange, c.cons_key)].unique()
 
-            print(datasets)
+                # no activities found? Check filters!
+                assert len(datasets_ids) > 0, f"No dataset found for {technology}"
 
-            datasets = [
-                d
-                for d in self.database
-                if d["name"] in dict_technology["technology filters"]
-                and d["unit"] == "kilowatt hour"
-            ]
+                for id in datasets_ids:
 
-            # no activities found? Check filters!
-            assert len(datasets) > 0, f"No dataset found for {technology}"
+                    dataset = self.database.loc[self.database[(s.exchange, c.cons_key)] == id]
 
-            for dataset in datasets:
+                    print(dataset._is_copy)
 
-                # Find current efficiency
-                ei_eff = dict_technology["current_eff_func"](
-                    dataset, dict_technology["fuel filters"], 3.6
-                )
+                    production_exc = dataset.loc[dataset[(s.exchange, c.type)] == "production"]
+                    # Find current efficiency
+                    ei_eff = production_exc[(s.ecoinvent, c.efficiency)].iloc[0]
+                    # Find the location
+                    ei_loc = production_exc[(s.exchange, c.cons_loc)].iloc[0]
 
-                # Find relative efficiency change indicated by the IAM
-                scaling_factor = 1 / dict_technology["IAM_eff_func"](
-                    variable=technology,
-                    location=self.geo.ecoinvent_to_iam_location(dataset["location"]),
-                )
-
-                new_efficiency = ei_eff * scaling_factor
-
-                # we log changes in efficiency
-                eff_change_log.append(
-                    [dataset["name"], dataset["location"], ei_eff, new_efficiency]
-                )
-
-                self.update_ecoinvent_efficiency_parameter(
-                    dataset, ei_eff, new_efficiency
-                )
-
-                # Rescale all the technosphere exchanges
-                # according to the change in efficiency between `year` and 2020
-                # from the IAM efficiency values
-                wurst.change_exchanges_by_constant_factor(
-                    dataset,
-                    1 / float(scaling_factor),
-                    [],
-                    [ws.doesnt_contain_any("name", self.emissions_map)],
-                )
-
-                # Update biosphere exchanges according to GAINS emission values
-                for exc in ws.biosphere(
-                    dataset,
-                    ws.either(*[ws.contains("name", x) for x in self.emissions_map]),
-                ):
-                    pollutant = self.emissions_map[exc["name"]]
-
-                    scaling_factor = self.find_gains_emissions_change(
-                        pollutant=pollutant,
-                        sector=technology,
-                        location=self.geo.iam_to_GAINS_region(
-                            self.geo.ecoinvent_to_iam_location(dataset["location"])
-                        ),
+                    # Find relative efficiency change indicated by the IAM
+                    iam_loc = self.ecoinvent_to_iam_loc[scenario][ei_loc]
+                    scaling_factor = 1 / dict_technology["IAM_eff_func"](
+                        variable=technology,
+                        location=iam_loc,
                     )
 
-                    if exc["amount"] == 0:
-                        wurst.rescale_exchange(
-                            exc, scaling_factor / 1, remove_uncertainty=True
-                        )
-                    else:
-                        wurst.rescale_exchange(exc, 1 / scaling_factor)
+                    new_efficiency = ei_eff * scaling_factor
 
-        with open(
-            DATA_DIR
-            / f"logs/log power plant efficiencies change {self.model.upper()} {self.pathway} {self.year}-{date.today()}.csv",
-            "a",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            for row in eff_change_log:
-                writer.writerow(row)
+                    # we log changes in efficiency
+                    eff_change_log.append(
+                        [production_exc[(s.exchange, c.cons_name)].iloc[0], ei_loc, ei_eff, new_efficiency]
+                    )
+
+                    self.update_new_efficiency_in_comment(
+                        dataset, scenario, iam_loc, ei_eff, new_efficiency
+                    )
+
+                    # Rescale all the technosphere exchanges
+                    # according to the change in efficiency
+                    # between `year` and 2020
+                    # from the IAM efficiency values
+                    _filters = equals((s.exchange, c.type), "technosphere")
+                    dataset = scale_exchanges_by_constant_factor(
+                        dataset,
+                        scenario,
+                        scaling_factor,
+                        _filters
+                    )
+
+                    if technology in self.iam_data.emissions.sector:
+                        for ei_sub, gains_sub in self.gains_substances.items():
+                            _filters = equals((s.exchange, c.prod_name), ei_sub)
+
+                            scaling_factor = self.find_gains_emissions_change(
+                                pollutant=gains_sub,
+                                sector=technology,
+                                location=self.iam_to_gains[scenario][iam_loc],
+                            )
+
+                            dataset = scale_exchanges_by_constant_factor(
+                                dataset,
+                                scenario,
+                                scaling_factor,
+                                _filters
+                            )
+
+            with open(
+                    DATA_DIR
+                    / f"logs/log power plant efficiencies change {model.upper()} {pathway} {year}-{date.today()}.csv",
+                    "a",
+                    encoding="utf-8",
+            ) as csv_file:
+                writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+                for row in eff_change_log:
+                    writer.writerow(row)
 
         print("Done!")
 

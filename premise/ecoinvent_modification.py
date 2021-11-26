@@ -658,7 +658,7 @@ class NewDatabase:
             self.additional_inventories = None
 
         print(
-            "\n////////////////////// EXTRACTING SOURCE DATABASE ///////////////////////"
+            "\n////////////////////// EXTRACTING SOURCE DATABASE //////////////////"
         )
 
         if use_cached_database:
@@ -668,7 +668,7 @@ class NewDatabase:
             self.database = self.__clean_database()
 
         print(
-            "\n/////////////////// IMPORTING DEFAULT INVENTORIES ////////////////////"
+            "\n/////////////////// IMPORTING DEFAULT INVENTORIES //////////////////"
         )
 
         if use_cached_inventories:
@@ -684,7 +684,7 @@ class NewDatabase:
 
         self.database = convert_db_to_dataframe(self.database)
 
-        print("\n////////////////////// EXTRACTING IAM DATA ///////////////////////")
+        print("\n////////////////////// EXTRACTING IAM DATA /////////////////////////")
 
         list_data = []
         for scenario in self.scenarios:
@@ -713,7 +713,7 @@ class NewDatabase:
 
         self.iam_data = IAMData(list_data)
 
-        print("\nDone!")
+        print("Done!")
 
     def __find_cached_db(self, db_name):
         """
