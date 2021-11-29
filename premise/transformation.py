@@ -21,7 +21,7 @@ from premise.transformation_tools import *
 from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
-from .utils import s, c, create_scenario_label, get_fuel_properties
+from .utils import c, create_scenario_label, get_fuel_properties, s
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -268,9 +268,7 @@ class BaseTransformation:
                 # Add `production volume` field
                 prod_vol = (
                     self.iam_data.production_volumes.sel(
-                        scenario=scenario,
-                        region=region,
-                        variables=production_variable
+                        scenario=scenario, region=region, variables=production_variable
                     )
                     .interp(year=int(scenario.split("::")[-1]))
                     .sum()

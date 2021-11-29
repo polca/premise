@@ -774,8 +774,7 @@ class Electricity(BaseTransformation):
                         zip(
                             self.iam_data.electricity_markets.variables.values,
                             self.iam_data.electricity_markets.sel(
-                                region=region,
-                                scenario=scenario
+                                region=region, scenario=scenario
                             )
                             .interp(
                                 year=np.arange(self.year, self.year + period + 1),
@@ -803,12 +802,14 @@ class Electricity(BaseTransformation):
                         "electricity, high voltage",
                         region,
                     ]
-                    comment = f"New regional electricity market created by `premise`, for the region" \
-                              f" {region} in {year}, according to the scenario {scenario}."
+                    comment = (
+                        f"New regional electricity market created by `premise`, for the region"
+                        f" {region} in {year}, according to the scenario {scenario}."
+                    )
 
                     if period != 0:
                         producer[0] += f", {period}-year period"
-                        comment +=  f"Average electricity mix over a {period}-year period {self.year}-{self.year + period}."
+                        comment += f"Average electricity mix over a {period}-year period {self.year}-{self.year + period}."
 
                     prod_key = create_hash(producer)
                     cons_key = create_hash(consumer)
@@ -818,47 +819,47 @@ class Electricity(BaseTransformation):
                         self.iam_data.production_volumes.sel(
                             scenario=scenario,
                             region=region,
-                            variables=self.iam_data.electricity_markets.variables.values
+                            variables=self.iam_data.electricity_markets.variables.values,
                         )
-                            .interp(year=int(scenario.split("::")[-1]))
-                            .sum()
-                            .values.item(0)
+                        .interp(year=int(scenario.split("::")[-1]))
+                        .sum()
+                        .values.item(0)
                     )
 
                     exchanges = [np.nan, np.nan, np.nan, ""] * len(self.scenario_labels)
                     pos = [c[0] for c in self.database.columns].index(scenario)
 
-                    exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3] = (
-                        prod_vol, 1, np.nan, comment,
+                    (
+                        exchanges[pos],
+                        exchanges[pos + 1],
+                        exchanges[pos + 2],
+                        exchanges[pos + 3],
+                    ) = (
+                        prod_vol,
+                        1,
+                        np.nan,
+                        comment,
                     )
 
                     new_exc.append(
-                        producer
-                        + consumer
-                        +
-                        [
-                            prod_key,
-                            cons_key,
-                            exc_key
-                        ]
-                        + exchanges
+                        producer + consumer + [prod_key, cons_key, exc_key] + exchanges
                     )
 
                     # Second, add transformation loss
                     transf_loss = self.get_production_weighted_losses("high", region)
-                    exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3] = (
-                        np.nan, transf_loss, np.nan, "",
+                    (
+                        exchanges[pos],
+                        exchanges[pos + 1],
+                        exchanges[pos + 2],
+                        exchanges[pos + 3],
+                    ) = (
+                        np.nan,
+                        transf_loss,
+                        np.nan,
+                        "",
                     )
                     new_exc.append(
-                        producer
-                        + consumer
-                        +
-                        [
-                            prod_key,
-                            cons_key,
-                            exc_key
-                        ]
-                        + exchanges
+                        producer + consumer + [prod_key, cons_key, exc_key] + exchanges
                     )
 
                     # Fetch solar contribution in the mix, to subtract it
@@ -892,16 +893,24 @@ class Electricity(BaseTransformation):
 
                             while len(suppliers) == 0:
                                 _filters = (
-                                    contains_any_from_list((s.exchange, c.cons_loc), possible_locations[counter])
-                                    & contains_any_from_list((s.exchange, c.cons_name), ecoinvent_technologies)
-                                    & contains((s.exchange, c.cons_prod),"electricity")
+                                    contains_any_from_list(
+                                        (s.exchange, c.cons_loc),
+                                        possible_locations[counter],
+                                    )
+                                    & contains_any_from_list(
+                                        (s.exchange, c.cons_name),
+                                        ecoinvent_technologies,
+                                    )
+                                    & contains((s.exchange, c.cons_prod), "electricity")
                                     & equals((s.exchange, c.unit), "kilowatt hour")
                                     & equals((s.exchange, c.type), "production")
                                 )
                                 suppliers = self.database(_filters(self.database))
                                 counter += 1
 
-                            total_production_vol = suppliers[(s.ecoinvent, c.cons_prod_vol)].sum(axis=0)
+                            total_production_vol = suppliers[
+                                (s.ecoinvent, c.cons_prod_vol)
+                            ].sum(axis=0)
 
                             for _, row in suppliers.iterrows():
                                 producer = [
@@ -912,35 +921,39 @@ class Electricity(BaseTransformation):
                                 prod_key = create_hash(producer)
                                 exc_key = create_hash(producer + consumer)
                                 prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]
-                                share = prod_vol/total_production_vol
+                                share = prod_vol / total_production_vol
                                 exc_amount = (amount * share) / (1 - solar_amount)
-                                exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3] = (
-                                    np.nan, exc_amount, np.nan, "",
+                                (
+                                    exchanges[pos],
+                                    exchanges[pos + 1],
+                                    exchanges[pos + 2],
+                                    exchanges[pos + 3],
+                                ) = (
+                                    np.nan,
+                                    exc_amount,
+                                    np.nan,
+                                    "",
                                 )
 
                                 new_exc.append(
                                     producer
                                     + consumer
-                                    + [
-                                        prod_key,
-                                        cons_key,
-                                        exc_key
-                                    ]
+                                    + [prod_key, cons_key, exc_key]
                                     + exchanges
                                 )
 
                                 log_created_markets.append(
-                                        [
-                                            consumer[0],
-                                            technology,
-                                            region,
-                                            transf_loss,
-                                            0.0,
-                                            producer[0],
-                                            producer[1],
-                                            share,
-                                            (amount * share) / (1 - solar_amount),
-                                        ]
+                                    [
+                                        consumer[0],
+                                        technology,
+                                        region,
+                                        transf_loss,
+                                        0.0,
+                                        producer[0],
+                                        producer[1],
+                                        share,
+                                        (amount * share) / (1 - solar_amount),
+                                    ]
                                 )
 
                     self.exchange_stack.append(new_exc)
