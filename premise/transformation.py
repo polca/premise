@@ -158,9 +158,7 @@ class BaseTransformation:
 
         self.exchange_stack = []
 
-    def update_new_efficiency_in_comment(
-        self, dataset, scenario, iam_loc, old_ei_eff, new_eff
-    ):
+    def update_new_efficiency_in_comment(self, scenario, iam_loc, old_ei_eff, new_eff):
         """
         Update the old efficiency value in the ecoinvent dataset by the newly calculated one.
         :param dataset: dataset
@@ -177,10 +175,7 @@ class BaseTransformation:
             f"scenario {pathway} for the region {iam_loc} in {year}."
         )
 
-        # update comment
-        dataset[(scenario, c.comment)] += new_txt
-        # update efficiency value
-        dataset[(scenario, c.efficiency)] = new_eff
+        return new_txt
 
     def get_iam_mapping(self, activity_map, fuels_map, technologies):
         """

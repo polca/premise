@@ -10,6 +10,7 @@ the newly created electricity markets.
 """
 
 import os
+from collections import defaultdict
 
 import wurst
 
@@ -1024,9 +1025,8 @@ class Electricity(BaseTransformation):
                     ]
                 )
 
-            print(
-                f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs"
-            )
+
+            print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")
 
             eff_labels = self.iam_data.efficiency.variables.values
             all_techs = [
@@ -1051,80 +1051,103 @@ class Electricity(BaseTransformation):
                 print("Rescale inventories and emissions for", technology)
 
                 _filters = (
-                    contains_any_from_list(
-                        (s.exchange, c.cons_name),
-                        list(dict_technology["technology filters"]),
-                    )
-                    & equals((s.exchange, c.unit), "kilowatt hour")
-                )(self.database)
 
-                datasets_ids = self.database.loc[
-                    _filters, (s.exchange, c.cons_key)
-                ].unique()
+                        contains_any_from_list((s.exchange, c.cons_name), list(dict_technology["technology filters"]))
+                )
+
+                datasets_locs = self.database.loc[_filters(self.database),
+                                                  (s.exchange, c.cons_loc)].unique()
+                locs_map = defaultdict(list)
+
+
+                for loc in datasets_locs:
+                    if self.ecoinvent_to_iam_loc[scenario][loc] in locs_map:
+                        locs_map[self.ecoinvent_to_iam_loc[scenario][loc]].append(loc)
+                    else:
+                        locs_map[self.ecoinvent_to_iam_loc[scenario][loc]] = [loc]
+
 
                 # no activities found? Check filters!
-                assert len(datasets_ids) > 0, f"No dataset found for {technology}"
+                assert len(datasets_locs) > 0, f"No dataset found for {technology}"
 
-                for id in datasets_ids:
-
-                    dataset = self.database.loc[
-                        self.database[(s.exchange, c.cons_key)] == id
-                    ]
-
-                    print(dataset._is_copy)
-
-                    production_exc = dataset.loc[
-                        dataset[(s.exchange, c.type)] == "production"
-                    ]
-                    # Find current efficiency
-                    ei_eff = production_exc[(s.ecoinvent, c.efficiency)].iloc[0]
-                    # Find the location
-                    ei_loc = production_exc[(s.exchange, c.cons_loc)].iloc[0]
+                for loc in locs_map:
 
                     # Find relative efficiency change indicated by the IAM
-                    iam_loc = self.ecoinvent_to_iam_loc[scenario][ei_loc]
                     scaling_factor = 1 / dict_technology["IAM_eff_func"](
                         variable=technology,
-                        location=iam_loc,
+                        location=loc,
                     )
 
-                    new_efficiency = ei_eff * scaling_factor
+                    __filters = (
+                            _filters
+                            & contains_any_from_list((s.exchange, c.cons_loc), locs_map[loc])
+                    )
 
                     # we log changes in efficiency
-                    eff_change_log.append(
-                        [
-                            production_exc[(s.exchange, c.cons_name)].iloc[0],
-                            ei_loc,
-                            ei_eff,
-                            new_efficiency,
-                        ]
+
+                    __filters_prod = (
+                        __filters & equals((s.exchange, c.type), "production")
                     )
 
-                    self.update_new_efficiency_in_comment(
-                        dataset, scenario, iam_loc, ei_eff, new_efficiency
-                    )
+                    new_eff_list = []
+                    new_comment_list = []
+                    for _, row in self.database.loc[__filters_prod(self.database)].iterrows():
+                        ei_eff = row[(s.ecoinvent, c.efficiency)]
+                        new_eff = row[(s.ecoinvent, c.efficiency)] * scaling_factor
+
+                        # log change in efficiency
+                        eff_change_log.append([row[(s.exchange, c.cons_name)],
+                                               row[(s.exchange, c.cons_loc)],
+                                               ei_eff,
+                                               new_eff])
+
+                        # generate text for `comment` field
+                        new_text = row[(s.ecoinvent, c.comment)] + self.update_new_efficiency_in_comment(
+                            scenario,
+                            loc,
+                            ei_eff,
+                            new_eff
+                        )
+
+                        new_eff_list.append(new_eff)
+                        new_comment_list.append(new_text)
+
+                    self.database.loc[__filters_prod(self.database), (scenario, c.efficiency)] = new_eff_list
+                    self.database.loc[__filters_prod(self.database), (scenario, c.comment)] = new_comment_list
 
                     # Rescale all the technosphere exchanges
                     # according to the change in efficiency
                     # between `year` and 2020
                     # from the IAM efficiency values
-                    _filters = equals((s.exchange, c.type), "technosphere")
-                    dataset = scale_exchanges_by_constant_factor(
-                        dataset, scenario, scaling_factor, _filters
+
+                    # filter out the production exchanges
+                    __filters_tech = (
+                        __filters & equals((s.exchange, c.type), "technosphere")
+                    )
+
+                    self.database.loc[__filters_tech(self.database), (scenario, c.amount)] = (
+                            self.database.loc[__filters_tech(self.database), (s.ecoinvent, c.amount)]
+                            * scaling_factor
                     )
 
                     if technology in self.iam_data.emissions.sector:
                         for ei_sub, gains_sub in self.gains_substances.items():
-                            _filters = equals((s.exchange, c.prod_name), ei_sub)
 
-                            scaling_factor = self.find_gains_emissions_change(
+                            scaling_factor = 1 / self.find_gains_emissions_change(
                                 pollutant=gains_sub,
                                 sector=technology,
-                                location=self.iam_to_gains[scenario][iam_loc],
+                                location=self.iam_to_gains[scenario][loc],
                             )
 
-                            dataset = scale_exchanges_by_constant_factor(
-                                dataset, scenario, scaling_factor, _filters
+                            __filters_bio = (
+                                    __filters
+                                    & equals((s.exchange, c.prod_name), ei_sub)
+                                    )
+
+                            # update location in the (scenario, c.cons_loc) column
+                            self.database.loc[__filters_bio(self.database), (scenario, c.amount)] = (
+                                    self.database.loc[__filters_bio(self.database), (s.ecoinvent, c.amount)]
+                                    * scaling_factor
                             )
 
             with open(
