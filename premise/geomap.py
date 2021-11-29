@@ -74,8 +74,8 @@ class Geomap:
             # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
             if location != (self.model.upper(), "World"):
                 ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
-
             return ecoinvent_locations
+
         except KeyError:
             print("Can't find location {} using the geomatcher.".format(location))
             return ["RoW"]

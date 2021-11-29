@@ -21,7 +21,7 @@ from premise.transformation_tools import *
 from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
-from .utils import c, create_scenario_label, get_fuel_properties
+from .utils import s, c, create_scenario_label, get_fuel_properties
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -156,6 +156,14 @@ class BaseTransformation:
                 for loc in self.regions[self.scenario_labels[s]]
             }
 
+        self.iam_to_ecoinvent_loc = {label: {} for label in self.scenario_labels}
+        for s, scenario in enumerate(scenarios):
+            geo = Geomap(model=scenario["model"])
+            self.iam_to_ecoinvent_loc[self.scenario_labels[s]] = {
+                loc: geo.iam_to_ecoinvent_location(loc)
+                for loc in self.regions[scenario]
+            }
+
         self.exchange_stack = []
 
     def update_new_efficiency_in_comment(self, scenario, iam_loc, old_ei_eff, new_eff):
@@ -260,9 +268,12 @@ class BaseTransformation:
                 # Add `production volume` field
                 prod_vol = (
                     self.iam_data.production_volumes.sel(
-                        region=region, variables=production_variable
+                        scenario=scenario,
+                        region=region,
+                        variables=production_variable
                     )
                     .interp(year=int(scenario.split("::")[-1]))
+                    .sum()
                     .values.item(0)
                 )
 
