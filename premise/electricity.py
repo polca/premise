@@ -1003,8 +1003,9 @@ class Electricity(BaseTransformation):
                     ]
                 )
 
-
-            print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")
+            print(
+                f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs"
+            )
 
             eff_labels = self.iam_data.efficiency.variables.values
             all_techs = [
@@ -1028,22 +1029,21 @@ class Electricity(BaseTransformation):
                 dict_technology = technologies_map[technology]
                 print("Rescale inventories and emissions for", technology)
 
-                _filters = (
-
-                        contains_any_from_list((s.exchange, c.cons_name), list(dict_technology["technology filters"]))
+                _filters = contains_any_from_list(
+                    (s.exchange, c.cons_name),
+                    list(dict_technology["technology filters"]),
                 )
 
-                datasets_locs = self.database.loc[_filters(self.database),
-                                                  (s.exchange, c.cons_loc)].unique()
+                datasets_locs = self.database.loc[
+                    _filters(self.database), (s.exchange, c.cons_loc)
+                ].unique()
                 locs_map = defaultdict(list)
-
 
                 for loc in datasets_locs:
                     if self.ecoinvent_to_iam_loc[scenario][loc] in locs_map:
                         locs_map[self.ecoinvent_to_iam_loc[scenario][loc]].append(loc)
                     else:
                         locs_map[self.ecoinvent_to_iam_loc[scenario][loc]] = [loc]
-
 
                 # no activities found? Check filters!
                 assert len(datasets_locs) > 0, f"No dataset found for {technology}"
@@ -1056,42 +1056,50 @@ class Electricity(BaseTransformation):
                         location=loc,
                     )
 
-                    __filters = (
-                            _filters
-                            & contains_any_from_list((s.exchange, c.cons_loc), locs_map[loc])
+                    __filters = _filters & contains_any_from_list(
+                        (s.exchange, c.cons_loc), locs_map[loc]
                     )
 
                     # we log changes in efficiency
 
-                    __filters_prod = (
-                        __filters & equals((s.exchange, c.type), "production")
+                    __filters_prod = __filters & equals(
+                        (s.exchange, c.type), "production"
                     )
 
                     new_eff_list = []
                     new_comment_list = []
-                    for _, row in self.database.loc[__filters_prod(self.database)].iterrows():
+                    for _, row in self.database.loc[
+                        __filters_prod(self.database)
+                    ].iterrows():
                         ei_eff = row[(s.ecoinvent, c.efficiency)]
                         new_eff = row[(s.ecoinvent, c.efficiency)] * scaling_factor
 
                         # log change in efficiency
-                        eff_change_log.append([row[(s.exchange, c.cons_name)],
-                                               row[(s.exchange, c.cons_loc)],
-                                               ei_eff,
-                                               new_eff])
+                        eff_change_log.append(
+                            [
+                                row[(s.exchange, c.cons_name)],
+                                row[(s.exchange, c.cons_loc)],
+                                ei_eff,
+                                new_eff,
+                            ]
+                        )
 
                         # generate text for `comment` field
-                        new_text = row[(s.ecoinvent, c.comment)] + self.update_new_efficiency_in_comment(
-                            scenario,
-                            loc,
-                            ei_eff,
-                            new_eff
+                        new_text = row[
+                            (s.ecoinvent, c.comment)
+                        ] + self.update_new_efficiency_in_comment(
+                            scenario, loc, ei_eff, new_eff
                         )
 
                         new_eff_list.append(new_eff)
                         new_comment_list.append(new_text)
 
-                    self.database.loc[__filters_prod(self.database), (scenario, c.efficiency)] = new_eff_list
-                    self.database.loc[__filters_prod(self.database), (scenario, c.comment)] = new_comment_list
+                    self.database.loc[
+                        __filters_prod(self.database), (scenario, c.efficiency)
+                    ] = new_eff_list
+                    self.database.loc[
+                        __filters_prod(self.database), (scenario, c.comment)
+                    ] = new_comment_list
 
                     # Rescale all the technosphere exchanges
                     # according to the change in efficiency
@@ -1099,13 +1107,17 @@ class Electricity(BaseTransformation):
                     # from the IAM efficiency values
 
                     # filter out the production exchanges
-                    __filters_tech = (
-                        __filters & equals((s.exchange, c.type), "technosphere")
+                    __filters_tech = __filters & equals(
+                        (s.exchange, c.type), "technosphere"
                     )
 
-                    self.database.loc[__filters_tech(self.database), (scenario, c.amount)] = (
-                            self.database.loc[__filters_tech(self.database), (s.ecoinvent, c.amount)]
-                            * scaling_factor
+                    self.database.loc[
+                        __filters_tech(self.database), (scenario, c.amount)
+                    ] = (
+                        self.database.loc[
+                            __filters_tech(self.database), (s.ecoinvent, c.amount)
+                        ]
+                        * scaling_factor
                     )
 
                     if technology in self.iam_data.emissions.sector:
@@ -1117,15 +1129,19 @@ class Electricity(BaseTransformation):
                                 location=self.iam_to_gains[scenario][loc],
                             )
 
-                            __filters_bio = (
-                                    __filters
-                                    & equals((s.exchange, c.prod_name), ei_sub)
-                                    )
+                            __filters_bio = __filters & equals(
+                                (s.exchange, c.prod_name), ei_sub
+                            )
 
                             # update location in the (scenario, c.cons_loc) column
-                            self.database.loc[__filters_bio(self.database), (scenario, c.amount)] = (
-                                    self.database.loc[__filters_bio(self.database), (s.ecoinvent, c.amount)]
-                                    * scaling_factor
+                            self.database.loc[
+                                __filters_bio(self.database), (scenario, c.amount)
+                            ] = (
+                                self.database.loc[
+                                    __filters_bio(self.database),
+                                    (s.ecoinvent, c.amount),
+                                ]
+                                * scaling_factor
                             )
 
             with open(
