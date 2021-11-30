@@ -55,4 +55,5 @@ ehthumbs.db
 Thumbs.db
 0_installinginstructions.dat
 main.py
-
+dev/.ipynb_checkpoints
+.vscode/settings.json
