@@ -73,6 +73,7 @@ jobs:
           pip install pytest
           pip install pytest-cov
           pip install coveralls
+          pip install pathlib
       - name: Run tests
         run: |
           pytest -m "not ecoinvent" -s --cov=premise
