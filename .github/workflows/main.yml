@@ -68,12 +68,13 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install pathlib
           pip install -r requirements.txt --upgrade pip
           pip install -e .
           pip install pytest
           pip install pytest-cov
           pip install coveralls
-          pip install pathlib
+          
       - name: Run tests
         run: |
           pytest -m "not ecoinvent" -s --cov=premise
