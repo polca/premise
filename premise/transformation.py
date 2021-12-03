@@ -131,7 +131,8 @@ class BaseTransformation:
         for label in self.scenario_labels:
             self.regions[
                 label
-            ] = self.iam_data.electricity_markets.region.values.tolist()
+            ] = [r for r in self.iam_data.electricity_markets.sel(scenario=label).region.values
+                 if self.iam_data.electricity_markets.sel(scenario=label, region=r).sum() > 0]
 
         self.fuels_lhv = get_fuel_properties()
         # mapping = InventorySet(self.database)
@@ -157,11 +158,12 @@ class BaseTransformation:
             }
 
         self.iam_to_ecoinvent_loc = {label: {} for label in self.scenario_labels}
+
         for s, scenario in enumerate(scenarios):
             geo = Geomap(model=scenario["model"])
             self.iam_to_ecoinvent_loc[self.scenario_labels[s]] = {
                 loc: geo.iam_to_ecoinvent_location(loc)
-                for loc in self.regions[scenario]
+                for loc in self.regions[self.scenario_labels[s]]
             }
 
         self.exchange_stack = []
@@ -450,7 +452,7 @@ class BaseTransformation:
 
         return scaling_factor
 
-    def find_iam_efficiency_change(self, variable, location):
+    def find_iam_efficiency_change(self, variable, location, year, scenario):
         """
         Return the relative change in efficiency for `variable` in `location`
         relative to 2020.
@@ -461,7 +463,7 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.efficiency.sel(
-            region=location, variables=variable
+            region=location, variables=variable, year=int(year), scenario=scenario
         ).values.item(0)
 
         if scaling_factor in (np.nan, np.inf):

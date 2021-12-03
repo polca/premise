@@ -1,4 +1,4 @@
-import copy
+import collections
 import os
 import pickle
 import sys
@@ -12,6 +12,7 @@ import xarray as xr
 from prettytable import PrettyTable
 
 from . import DATA_DIR, INVENTORY_DIR
+from .utils import (add_modified_tags, c, convert_db_to_dataframe, create_scenario_label, eidb_label, s, convert_df_to_dict)
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
@@ -29,13 +30,7 @@ from .inventory_imports import (
 )
 from .renewables import SolarPV
 from .steel import Steel
-from .utils import (
-    add_modified_tags,
-    c,
-    convert_db_to_dataframe,
-    create_scenario_label,
-    eidb_label,
-)
+
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -205,26 +200,19 @@ def enablePrint():
 def check_for_duplicates(database):
     """Check for the absence of duplicates before export"""
 
-    db_names = [
-        (x["name"].lower(), x["reference product"].lower(), x["location"])
-        for x in database
-    ]
+    if len(database.loc[:, (s.exchange, c.exc_key)]) != len(
+        database.loc[:, (s.exchange, c.exc_key)].unique()
+    ):
 
-    if len(db_names) == len(set(db_names)):
-        return database
+        duplicates = [
+            exc
+            for exc, count in collections.Counter(
+                database.loc[:, (s.exchange, c.exc_key)]
+            ).items()
+            if count > 1
+        ]
 
-    print("One or multiple duplicates detected. Removing them...")
-    seen = set()
-    return [
-        x
-        for x in database
-        if (x["name"].lower(), x["reference product"].lower(), x["location"])
-        not in seen
-        and not seen.add(
-            (x["name"].lower(), x["reference product"].lower(), x["location"])
-        )
-    ]
-
+        raise ValueError(f"Duplicate exchanges found, under following exchange keys: {duplicates}.")
 
 def check_ei_filepath(filepath):
     """Check for the existence of the file path."""
@@ -800,18 +788,12 @@ class NewDatabase:
                 (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
                 (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
                 (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-                (
-                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
-                    "3.7",
-                ),
+                (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES, "3.7",),
                 (
                     FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
                     "3.7",
                 ),
-                (
-                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
-                    "3.7",
-                ),
+                (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES, "3.7",),
                 (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
                 (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
@@ -1063,8 +1045,7 @@ class NewDatabase:
         print("Done!")
 
         wurst.write_brightway2_database(
-            self.database,
-            name,
+            self.database, name,
         )
 
     def write_db_to_brightway(self, name=None):
@@ -1099,16 +1080,20 @@ class NewDatabase:
                 "The number of databases does not match the number of `name` given."
             )
 
-        print("Write new database(s) to Brightway2.")
-        for scen, scenario in enumerate(self.scenarios):
 
-            # we ensure first the absence of duplicate datasets
-            scenario["database"] = check_for_duplicates(scenario["database"])
+
+
+        # we ensure first the absence of duplicate datasets
+        # FIXME: some duplicates are legit! Example: electricity losses in markets.
+        #check_for_duplicates(self.database)
+
+        print("Write new database(s) to Brightway2.")
+        for scen, scenario in enumerate(convert_df_to_dict(self.database)):
 
             wurst.write_brightway2_database(
-                scenario["database"],
-                name[scen],
+                scenario, name[scen],
             )
+
 
     def write_db_to_matrices(self, filepath=None):
         """

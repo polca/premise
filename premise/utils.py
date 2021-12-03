@@ -1,7 +1,6 @@
 import enum
 import hashlib
 import pprint
-from difflib import SequenceMatcher
 from functools import lru_cache
 from typing import List
 
@@ -272,8 +271,6 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
 
         consumer_key = create_hash(consumer_name, consumer_product, consumer_loc)
 
-        consumer_prod_vol = np.nan
-
         # calculate the efficiency of the dataset
         # check first if a `parameters` or `efficiency` key is present
         if any(i in ids for i in ["parameters", "efficiency"]):
@@ -303,13 +300,13 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
             if iexc["type"] == "biosphere":
                 producer_product = "-"
                 producer_location = "::".join(iexc["categories"])
+                producer_key = iexc["input"][1]
             else:
                 producer_product = iexc["product"]
                 producer_location = iexc["location"]
-
-            producer_key = create_hash(
-                producer_name, producer_product, producer_location
-            )
+                producer_key = create_hash(
+                    producer_name, producer_product, producer_location
+                )
 
             comment = ""
             consumer_prod_vol = 0
@@ -362,6 +359,78 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
         data_to_ret,
         columns=pd.MultiIndex.from_tuples(tuples),
     )
+
+def extract_exc(row):
+    if row[c.type] == "production":
+        exc = {
+            "name": row[c.prod_name],
+            "product": row[c.prod_prod],
+            "location": row[c.prod_loc],
+            "type": row[c.type],
+            "uncertainty type": 0,
+            "unit": row[c.unit],
+            "production volume": row[c.cons_prod_vol],
+            "amount": row[c.amount]
+        }
+
+    elif row[c.type] == "technosphere":
+        exc = {
+            "name": row[c.prod_name],
+            "product": row[c.prod_prod],
+            "location": row[c.prod_loc],
+            "type": row[c.type],
+            "uncertainty type": 0,
+            "unit": row[c.unit],
+            "amount": row[c.amount]
+        }
+
+    else:
+        exc = {
+            "name": row[c.prod_name],
+            "categories": tuple(row[c.prod_loc].split("::")),
+            "type": row[c.type],
+            "uncertainty type": 0,
+            "unit": row[c.unit],
+            "amount": row[c.amount],
+            "input": ("biosphere3", row[c.prod_key])
+        }
+
+    return exc
+
+def transf(df, col):
+    prod_exc = df.loc[df[c.type] == "production", :].iloc[0]
+
+    outer = {
+        "name": prod_exc[c.cons_name],
+        "reference product": prod_exc[c.cons_prod],
+        "location": prod_exc[c.cons_loc],
+        "unit": prod_exc[c.unit],
+        "comment": prod_exc[c.comment],
+        "database": col,
+        "code": str(prod_exc[c.cons_key]),
+        "exchanges": list(df.apply(extract_exc, axis=1)),
+    }
+
+    return outer
+
+def convert_df_to_dict(df):
+
+    scenarios = [col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent]]
+
+    for col in scenarios:
+        if col[1] == c.comment:
+            sel = df[col] == ""
+        else:
+            sel = df[col].isna()
+
+        df.loc[sel, col] = df.loc[sel, (s.ecoinvent, col[1])]
+
+    cols = {col[0] for col in scenarios}
+
+    for col in cols:
+        temp = df.loc[:, ((s.exchange, col), slice(None))].droplevel(level=0, axis=1)
+        yield [transf(group[1], col) for group in temp.groupby(c.cons_key)]
+
 
 
 def eidb_label(model, scenario, year):

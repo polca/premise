@@ -999,6 +999,7 @@ class Electricity(BaseTransformation):
 
         for scenario in self.scenario_labels:
             model, pathway, year = scenario.split("::")
+            year = int(year)
 
             with open(
                 DATA_DIR
@@ -1025,8 +1026,8 @@ class Electricity(BaseTransformation):
                 tech
                 for tech in self.iam_data.electricity_markets.variables.values
                 if self.iam_data.electricity_markets.sel(
-                    variables=tech, scenario=scenario
-                ).sum(dim=["region", "year"])
+                    variables=tech, scenario=scenario, year=year
+                ).sum()
                 > 0
             ]
 
@@ -1067,7 +1068,12 @@ class Electricity(BaseTransformation):
                     scaling_factor = 1 / dict_technology["IAM_eff_func"](
                         variable=technology,
                         location=loc,
+                        year=year,
+                        scenario=scenario
                     )
+
+                    assert not np.isnan(scaling_factor), (f"Scaling factor in {loc} for {technology} "
+                                                          f"in scenario {scenario} in {year} is NaN.")
 
                     __filters = _filters & contains_any_from_list(
                         (s.exchange, c.cons_loc), locs_map[loc]
@@ -1084,8 +1090,9 @@ class Electricity(BaseTransformation):
                     for _, row in self.database.loc[
                         __filters_prod(self.database)
                     ].iterrows():
+
                         ei_eff = row[(s.ecoinvent, c.efficiency)]
-                        new_eff = row[(s.ecoinvent, c.efficiency)] * scaling_factor
+                        new_eff = row[(s.ecoinvent, c.efficiency)] * 1 / scaling_factor
 
                         # log change in efficiency
                         eff_change_log.append(

@@ -3,13 +3,14 @@ import datetime
 import json
 import os
 import re
-from pathlib import Path
-
-import pandas as pd
 
 from . import DATA_DIR, __version__
 
+
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
+
+
+
 
 
 def create_index_of_A_matrix(db):
@@ -886,7 +887,7 @@ class Export:
             writer.writerow(["Literature reference"])
             writer.writerow([])
             writer.writerow(["Name"])
-            writer.writerow([s.ecoinvent])
+            writer.writerow(["ecoinvent"])
             writer.writerow([])
             writer.writerow(["Documentation link"])
             writer.writerow(["https://www.ecoinvent.org"])

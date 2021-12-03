@@ -11,7 +11,7 @@ import os
 
 import wurst
 
-from .transformation import *
+from .transformation import BaseTransformation
 from .utils import get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
 
 
