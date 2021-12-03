@@ -360,6 +360,7 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
         columns=pd.MultiIndex.from_tuples(tuples),
     )
 
+
 def extract_exc(row):
     if row[c.type] == "production":
         exc = {
@@ -370,7 +371,7 @@ def extract_exc(row):
             "uncertainty type": 0,
             "unit": row[c.unit],
             "production volume": row[c.cons_prod_vol],
-            "amount": row[c.amount]
+            "amount": row[c.amount],
         }
 
     elif row[c.type] == "technosphere":
@@ -381,7 +382,7 @@ def extract_exc(row):
             "type": row[c.type],
             "uncertainty type": 0,
             "unit": row[c.unit],
-            "amount": row[c.amount]
+            "amount": row[c.amount],
         }
 
     else:
@@ -392,10 +393,11 @@ def extract_exc(row):
             "uncertainty type": 0,
             "unit": row[c.unit],
             "amount": row[c.amount],
-            "input": ("biosphere3", row[c.prod_key])
+            "input": ("biosphere3", row[c.prod_key]),
         }
 
     return exc
+
 
 def transf(df, col):
     prod_exc = df.loc[df[c.type] == "production", :].iloc[0]
@@ -412,6 +414,7 @@ def transf(df, col):
     }
 
     return outer
+
 
 def convert_df_to_dict(df):
 
@@ -430,7 +433,6 @@ def convert_df_to_dict(df):
     for col in cols:
         temp = df.loc[:, ((s.exchange, col), slice(None))].droplevel(level=0, axis=1)
         yield [transf(group[1], col) for group in temp.groupby(c.cons_key)]
-
 
 
 def eidb_label(model, scenario, year):

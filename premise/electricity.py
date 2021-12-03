@@ -1066,14 +1066,13 @@ class Electricity(BaseTransformation):
 
                     # Find relative efficiency change indicated by the IAM
                     scaling_factor = 1 / dict_technology["IAM_eff_func"](
-                        variable=technology,
-                        location=loc,
-                        year=year,
-                        scenario=scenario
+                        variable=technology, location=loc, year=year, scenario=scenario
                     )
 
-                    assert not np.isnan(scaling_factor), (f"Scaling factor in {loc} for {technology} "
-                                                          f"in scenario {scenario} in {year} is NaN.")
+                    assert not np.isnan(scaling_factor), (
+                        f"Scaling factor in {loc} for {technology} "
+                        f"in scenario {scenario} in {year} is NaN."
+                    )
 
                     __filters = _filters & contains_any_from_list(
                         (s.exchange, c.cons_loc), locs_map[loc]

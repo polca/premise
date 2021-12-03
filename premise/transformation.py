@@ -129,10 +129,14 @@ class BaseTransformation:
         ]
         self.regions = {}
         for label in self.scenario_labels:
-            self.regions[
-                label
-            ] = [r for r in self.iam_data.electricity_markets.sel(scenario=label).region.values
-                 if self.iam_data.electricity_markets.sel(scenario=label, region=r).sum() > 0]
+            self.regions[label] = [
+                r
+                for r in self.iam_data.electricity_markets.sel(
+                    scenario=label
+                ).region.values
+                if self.iam_data.electricity_markets.sel(scenario=label, region=r).sum()
+                > 0
+            ]
 
         self.fuels_lhv = get_fuel_properties()
         # mapping = InventorySet(self.database)
