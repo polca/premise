@@ -1,5 +1,5 @@
-image;sugar;Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Sugar
-image;oil;Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Oilcrops
-image;wood;Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Woody
-image;grass;Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Grassy
-image;grain;Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Maize
+image;sugar;Emission Factor|CO2|Energy|Supply|Biomass|Average|Sugar
+image;oil;Emission Factor|CO2|Energy|Supply|Biomass|Average|Oilcrops
+image;wood;Emission Factor|CO2|Energy|Supply|Biomass|Average|Woody
+image;grass;Emission Factor|CO2|Energy|Supply|Biomass|Average|Grassy
+image;grain;Emission Factor|CO2|Energy|Supply|Biomass|Average|Maize

@@ -14,6 +14,7 @@ import xarray as xr
 import pandas as pd
 from cryptography.fernet import Fernet
 from . import DATA_DIR
+from .utils import get_land_use_change_CO2_for_crops, get_land_use_for_crops
 
 
 IAM_ELEC_MARKETS = DATA_DIR / "electricity" / "electricity_markets.csv"
@@ -30,7 +31,6 @@ IAM_PROD_VOLUMES = DATA_DIR / "iam_output_files" / "production_vars.csv"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "iam_output_files" / "carbon_capture_vars.csv"
-
 
 def get_lifetime(list_tech):
     """
@@ -200,6 +200,13 @@ class IAMDataCollection:
         self.emissions = xr.concat(
             [electricity_emissions, steel_emissions, cement_emissions,], dim="sector",
         )
+
+        if self.model == "image":
+            self.land_use = self.__get_iam_land_use(data=data)
+            self.land_use_change = self.__get_iam_land_use_change_emissions(data=data)
+        else:
+            self.land_use = None
+            self.land_use_change = None
 
     def __get_iam_variable_labels(self, filepath):
         """
@@ -660,7 +667,7 @@ class IAMDataCollection:
         # we also consider any improvement rate
         # above 2 (+100%) or below 0.5 (-100%)
         # to be incorrect
-        data_to_return = np.clip(data_to_return, 0.5, 2)
+        data_to_return.values = np.clip(data_to_return.values, 0.5, 2)
 
         data_to_return.coords["variables"] = ["cement"]
 
@@ -740,7 +747,7 @@ class IAMDataCollection:
         # we also consider any improvement rate
         # above 2 (+100%) or below 0.5 (-100%)
         # to be incorrect
-        data_to_return = np.clip(data_to_return, 0.5, 2)
+        data_to_return.values = np.clip(data_to_return.values, 0.5, 2)
 
         data_to_return.coords["variables"] = [
             "primary steel",
@@ -949,6 +956,27 @@ class IAMDataCollection:
 
         return data_to_return
 
+    def __get_iam_land_use(self, data):
+
+        labels = get_land_use_for_crops(model=self.model)
+        list_vars = list(labels.values())
+
+        data_to_return = data.loc[:, list_vars, :]
+        data_to_return.coords["variables"] = list(labels.keys())
+
+        return data_to_return
+
+    def __get_iam_land_use_change_emissions(self, data):
+
+        labels = get_land_use_change_CO2_for_crops(model=self.model)
+        list_vars = list(labels.values())
+
+        data_to_return = data.loc[:, list_vars, :]
+        data_to_return.coords["variables"] = list(labels.keys())
+
+        return data_to_return
+
+
     def __get_iam_fuel_efficiencies(self, data):
         """
         This method retrieves the change in fuel production efficiency between the year in question and 2020,
@@ -999,7 +1027,7 @@ class IAMDataCollection:
         # we also consider any improvement rate
         # above 2 (+100%) or below 0.5 (-100%)
         # to be incorrect
-        data_to_return = np.clip(data_to_return, 0.5, 2)
+        data_to_return.values = np.clip(data_to_return.values, 0.5, 2)
 
         data_to_return.coords["variables"] = list(labels.keys())
 

@@ -23,6 +23,7 @@ from .fuels import Fuels
 from .export import Export
 from .utils import eidb_label, add_modified_tags, build_superstructure_db
 
+DIR_CACHED_DB = DATA_DIR / "cache"
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -179,11 +180,13 @@ LIST_TRANSF_FUNC = [
 
 # Disable printing
 def blockPrint():
-    sys.stdout = open(os.devnull, 'w')
+    sys.stdout = open(os.devnull, "w")
+
 
 # Restore printing
 def enablePrint():
     sys.stdout = sys.__stdout__
+
 
 def check_for_duplicates(database):
     """ Check for the absence of duplicates before export """
@@ -196,15 +199,14 @@ def check_for_duplicates(database):
     if len(db_names) == len(set(db_names)):
         return database
 
-
     print("One or multiple duplicates detected. Removing them...")
     seen = set()
     return [
         x
         for x in database
         if (x["name"].lower(), x["reference product"].lower(), x["location"])
-           not in seen
-           and not seen.add(
+        not in seen
+        and not seen.add(
             (x["name"].lower(), x["reference product"].lower(), x["location"])
         )
     ]
@@ -248,8 +250,8 @@ def check_pathway_name(name, filepath, model):
         if (filepath / name_check).with_suffix(".csv").is_file():
             return name
         raise ValueError(
-                f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
-            )
+            f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
+        )
     else:
         if model.lower() not in name:
             name_check = "_".join((model.lower(), name))
@@ -264,8 +266,8 @@ def check_pathway_name(name, filepath, model):
             return name
 
         raise ValueError(
-                f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
-            )
+            f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
+        )
 
 
 def check_year(year):
@@ -509,24 +511,29 @@ def check_time_horizon(th):
 
     return int(th)
 
+
 def warning_about_biogenic_co2():
     """
     Prints a simple warning about characterizing biogenic CO2 flows.
     :return: Does not return anything.
     """
     t = PrettyTable(["Warning"])
-    t.add_row(["Because some of the scenarios can yield LCI databases\n"
-               "containing net negative emission technologies (NET),\n"
-               "it is advised to account for biogenic CO2 flows when calculating\n"
-               "Global Warming potential indicators.\n"
-               "`premise_gwp` provides characterization factors for such flows.\n\n"
-               "Install it via\n"
-               "pip install premise_gwp\n"
-               "or\n"
-               "conda install -c romainsacchi premise_gwp\n\n"
-               "Within in your bw2 project:\n"
-               "from premise_gwp import add_premise_gwp\n"
-                "add_premise_gwp()"])
+    t.add_row(
+        [
+            "Because some of the scenarios can yield LCI databases\n"
+            "containing net negative emission technologies (NET),\n"
+            "it is advised to account for biogenic CO2 flows when calculating\n"
+            "Global Warming potential indicators.\n"
+            "`premise_gwp` provides characterization factors for such flows.\n\n"
+            "Install it via\n"
+            "pip install premise_gwp\n"
+            "or\n"
+            "conda install -c romainsacchi premise_gwp\n\n"
+            "Within in your bw2 project:\n"
+            "from premise_gwp import add_premise_gwp\n"
+            "add_premise_gwp()"
+        ]
+    )
     # align text to the left
     t.align = "l"
     print(t)
@@ -536,13 +543,15 @@ class HiddenPrints:
     """
     From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
     """
+
     def __enter__(self):
         self._original_stdout = sys.stdout
-        sys.stdout = open(os.devnull, 'w')
+        sys.stdout = open(os.devnull, "w")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         sys.stdout.close()
         sys.stdout = self._original_stdout
+
 
 class NewDatabase:
     """
@@ -572,9 +581,10 @@ class NewDatabase:
         source_db=None,
         source_file_path=None,
         additional_inventories=None,
-        direct_import=True,
         system_model="attributional",
         time_horison=None,
+        use_cached_inventories=True,
+        use_cached_database=True,
     ):
 
         self.source = source_db
@@ -604,14 +614,26 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        print(
-            "\n////////////////////// EXTRACTING SOURCE DATABASE ///////////////////////"
-        )
-        self.database = self.__clean_database()
-        print(
-            "\n/////////////////// IMPORTING DEFAULT INVENTORIES ////////////////////"
-        )
-        self.__import_inventories(direct_import)
+        print("\n////////////////////// EXTRACTING SOURCE DATABASE //////////////////")
+        if use_cached_database:
+            self.database = self.__find_cached_db(source_db)
+            print("Done!")
+        else:
+            self.database = self.__clean_database()
+
+        print("\n/////////////////// IMPORTING DEFAULT INVENTORIES //////////////////")
+        if use_cached_inventories:
+            data = self.__find_cached_inventories(source_db)
+            if data is not None:
+                self.database.extend(data)
+                print("Done!")
+        else:
+            self.__import_inventories()
+
+        if self.additional_inventories:
+            self.__import_additional_inventories()
+
+        print("\n///////////////////// EXTRACTING IAM DATA //////////////////////////")
 
         for scenario in self.scenarios:
             scenario["external data"] = IAMDataCollection(
@@ -625,6 +647,58 @@ class NewDatabase:
             )
             scenario["database"] = copy.deepcopy(self.database)
 
+        print("Done!")
+
+    def __find_cached_db(self, db_name):
+        """
+        If `use_cached_db` = True, then we look for a cached database.
+        If cannot be found, we create a cache for next time.
+        :param db_name: database name
+        :return: database
+        """
+        # check that directory exists, otherwise create it
+        Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
+        # build file path
+        file_name = Path(DIR_CACHED_DB / f"cached_{db_name.strip().lower()}.pickle")
+
+        # check that file path leads to an existing file
+        if file_name.exists():
+            # return the cached database
+            return pickle.load(open(file_name, "rb"))
+        else:
+            # extract the database, pickle it for next time and return it
+            print("Cannot find cached database. Will create one now for next time...")
+            db = self.__clean_database()
+            pickle.dump(db, open(file_name, "wb"))
+            return db
+
+    def __find_cached_inventories(self, db_name):
+        """
+        If `use_cached_inventories` = True, then we look for a cached inventories.
+        If cannot be found, we create a cache for next time.
+        :param db_name: database name
+        :return: database
+        """
+        # check that directory exists, otherwise create it
+        Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
+        # build file path
+        file_name = Path(
+            DIR_CACHED_DB / f"cached_{db_name.strip().lower()}_inventories.pickle"
+        )
+
+        # check that file path leads to an existing file
+        if file_name.exists():
+            # return the cached database
+            return pickle.load(open(file_name, "rb"))
+        else:
+            # extract the database, pickle it for next time and return it
+            print(
+                "Cannot find cached inventories. Will create them now for next time..."
+            )
+            data = self.__import_inventories()
+            pickle.dump(data, open(file_name, "wb"))
+            return None
+
     def __clean_database(self):
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
@@ -635,96 +709,85 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
-    def __import_inventories(self, direct_import):
+    def __import_inventories(self):
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
         """
 
-        print("Importing necessary inventories...\n")
+        print("Importing default inventories...\n")
 
-        if direct_import:
+        with HiddenPrints():
+            # Manual import
+            # file path and original ecoinvent version
+            data = []
+            filepaths = [
+                (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
+                (FILEPATH_CARMA_INVENTORIES, "3.5"),
+                (FILEPATH_CHP_INVENTORIES, "3.5"),
+                (FILEPATH_DAC_INVENTORIES, "3.7"),
+                (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
+                (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
+                (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
+                (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
+                (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
+                (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
+                (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES, "3.7",),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
+                    "3.7",
+                ),
+                (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES, "3.7",),
+                (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
+                (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+            ]
+            for filepath in filepaths:
+                inventory = DefaultInventory(
+                    database=self.database,
+                    version_in=filepath[1],
+                    version_out=self.version,
+                    path=filepath[0],
+                )
+                datasets = inventory.merge_inventory()
+                data.extend(datasets)
+                self.database.extend(datasets)
 
-            # we unpickle inventories here
-            # and append them directly to the end of the database
-            if self.version == "3.8":
-                filepath = FILE_PATH_INVENTORIES_EI_38
-            elif self.version in ["3.7", "3.7.1"]:
-                self.version = "3.7"
-                filepath = FILE_PATH_INVENTORIES_EI_37
-            elif self.version == "3.6":
-                filepath = FILE_PATH_INVENTORIES_EI_36
-            else:
-                filepath = FILE_PATH_INVENTORIES_EI_35
+        print("Done!\n")
+        return data
 
-            with open(filepath, "rb") as handle:
-                data = check_for_duplicates(pickle.load(handle))
-                self.database.extend(data)
+    def __import_additional_inventories(self):
 
-        else:
-            with HiddenPrints():
-                # Manual import
-                # file path and original ecoinvent version
-                filepaths = [
-                    (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
-                    (FILEPATH_CARMA_INVENTORIES, "3.5"),
-                    (FILEPATH_CHP_INVENTORIES, "3.5"),
-                    (FILEPATH_DAC_INVENTORIES, "3.7"),
-                    (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
-                    (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
-                    (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
-                    (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
-                    (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
-                    (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
-                    (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-                    (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES, "3.7"),
-                    (
-                        FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
-                        "3.7",
-                    ),
-                    (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES, "3.7"),
-                    (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
-                    (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
-                    (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
-                    (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
-                ]
-                for filepath in filepaths:
-                    inventory = DefaultInventory(
-                        database=self.database,
-                        version_in=filepath[1],
-                        version_out=self.version,
-                        path=filepath[0],
-                    )
-                    inventory.merge_inventory()
+        print(
+            "\n/////////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////////"
+        )
+
+        data = []
+
+        for file in self.additional_inventories:
+            additional = AdditionalInventory(
+                database=self.database,
+                version_in=file["ecoinvent version"],
+                version_out=self.version,
+                path=file["filepath"],
+            )
+            additional.prepare_inventory()
+            data.extend(additional.merge_inventory())
 
         print("Done!\n")
 
-        if self.additional_inventories:
-
-            print(
-                "\n/////////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////////"
-            )
-
-            for file in self.additional_inventories:
-                additional = AdditionalInventory(
-                    database=self.database,
-                    version_in=file["ecoinvent version"],
-                    version_out=self.version,
-                    path=file["filepath"],
-                )
-                additional.prepare_inventory()
-                additional.merge_inventory()
-
-            print("Done!\n")
+        return data
 
     def update_electricity(self):
 
-        print("\n/////////////////// ELECTRICITY ////////////////////")
+        print("\n/////////////////////////// ELECTRICITY ////////////////////////////")
 
         for scenario in self.scenarios:
             if (
@@ -742,34 +805,29 @@ class NewDatabase:
                 scenario["database"] = electricity.update_electricity_efficiency()
 
     def update_fuels(self):
-        print("\n/////////////////// FUELS ////////////////////")
+        print("\n////////////////////////////// FUELS ///////////////////////////////")
 
         for scenario in self.scenarios:
 
             if "exclude" not in scenario or "update_fuels" not in scenario["exclude"]:
 
                 fuels = Fuels(
-                    db=scenario["database"],
-                    original_db=self.database,
+                    database=scenario["database"],
+                    iam_data=scenario["external data"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
                     year=scenario["year"],
-                    regions=scenario["fuels"]["regions"]
-                    if "fuels" in scenario
-                    else None,
+                    version=self.version,
+                    original_db=self.database
                 )
 
                 scenario["database"] = fuels.generate_fuel_markets()
 
     def update_cement(self):
-        print("\n/////////////////// CEMENT ////////////////////")
+        print("\n//////////////////////////// CEMENT /////////////////////////////")
 
         for scenario in self.scenarios:
-            if (
-                    "exclude" not in scenario
-                    or "update_cement" not in scenario["exclude"]
-                ):
+            if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
 
                 cement = Cement(
                     database=scenario["database"],
@@ -783,25 +841,24 @@ class NewDatabase:
                 scenario["database"] = cement.add_datasets_to_database()
 
     def update_steel(self):
-        print("\n/////////////////// STEEL ////////////////////")
+        print("\n//////////////////////////// STEEL /////////////////////////////")
 
         for scenario in self.scenarios:
 
-            if (
-                "exclude" not in scenario
-                or "update_steel" not in scenario["exclude"]
-            ):
+            if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
 
                 steel = Steel(
-                    db=scenario["database"],
+                    database=scenario["database"],
                     model=scenario["model"],
+                    pathway=scenario["pathway"],
                     iam_data=scenario["external data"],
                     year=scenario["year"],
+                    version=self.version,
                 )
                 scenario["database"] = steel.generate_activities()
 
     def update_cars(self):
-        print("\n/////////////////// PASSENGER CARS ////////////////////")
+        print("\n////////////////////////// PASSENGER CARS //////////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cars" not in scenario["exclude"]:
@@ -837,7 +894,7 @@ class NewDatabase:
                 scenario["database"] = cars.merge_inventory()
 
     def update_two_wheelers(self):
-        print("\n/////////////////// TWO-WHEELERS ////////////////////")
+        print("\n/////////////////////////// TWO-WHEELERS ///////////////////////////")
 
         for scenario in self.scenarios:
             if (
@@ -860,7 +917,7 @@ class NewDatabase:
 
     def update_trucks(self):
 
-        print("\n/////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
+        print("\n////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_trucks" not in scenario["exclude"]:
@@ -898,7 +955,7 @@ class NewDatabase:
                 scenario["database"] = trucks.merge_inventory()
 
     def update_solar_pv(self):
-        print("\n/////////////////// SOLAR PV ////////////////////")
+        print("\n/////////////////////////// SOLAR PV ////////////////////////////")
 
         for scenario in self.scenarios:
             if (
@@ -962,7 +1019,8 @@ class NewDatabase:
                 raise TypeError("`name` should be a string or a sequence of strings.")
         else:
             name = [
-                eidb_label(scenario["model"], scenario["pathway"], scenario["year"]) for scenario in self.scenarios
+                eidb_label(scenario["model"], scenario["pathway"], scenario["year"])
+                for scenario in self.scenarios
             ]
 
         if len(name) != len(self.scenarios):
@@ -1091,4 +1149,6 @@ class NewDatabase:
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
 
-            wurst.write_brightway25_database(scenario["database"], name[scen], self.source)
+            wurst.write_brightway25_database(
+                scenario["database"], name[scen], self.source
+            )
