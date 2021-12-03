@@ -4,20 +4,23 @@ It provides basic methods usually used for electricity, cement, steel sectors tr
 on the wurst database.
 """
 
-import uuid
 import csv
+import uuid
 from datetime import date
-import numpy as np
 from itertools import product
+
+import numpy as np
+import wurst
 from wurst import searching as ws
 from wurst import transformations as wt
+
 from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
 from .utils import (
+    get_fuel_co2_emission_factors,
     get_lower_heating_values,
     relink_technosphere_exchanges,
-    get_fuel_co2_emission_factors,
 )
 
 
@@ -96,6 +99,29 @@ def get_tuples_from_database(database):
     ]
 
 
+def remove_exchanges(datasets_dict, list_exc):
+    """
+    Returns the same `datasets_dict`, where the list of exchanges in these datasets
+    has been filtered out: unwanted exchanges has been removed.
+    :param datasets_dict: a dictionary with IAM region as key, dataset as value
+    :param list_exc: list of names (e.g., ["coal", "lignite"]) which are checked against exchanges' names in the dataset
+    :return: returns `datasets_dict` without the exchanges whose names check with `list_exc`
+    :rtype: dict
+    """
+    keep = lambda x: {
+        key: value
+        for key, value in x.items()
+        if not any(ele in x.get("product", []) for ele in list_exc)
+    }
+
+    for region in datasets_dict:
+        datasets_dict[region]["exchanges"] = [
+            keep(exc) for exc in datasets_dict[region]["exchanges"]
+        ]
+
+    return datasets_dict
+
+
 class BaseTransformation:
     """
     Base transformation class.
@@ -113,9 +139,14 @@ class BaseTransformation:
         mapping = InventorySet(self.database)
         self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
         self.fuel_map = mapping.generate_fuel_map()
+        self.material_map = mapping.generate_material_map()
         self.fuels_co2 = get_fuel_co2_emission_factors()
         self.list_datasets = get_tuples_from_database(self.database)
-        self.ecoinvent_to_iam_loc = {loc: self.geo.ecoinvent_to_iam_location(loc) for loc in self.get_ecoinvent_locs()}
+        self.ecoinvent_to_iam_loc = {
+            loc: self.geo.ecoinvent_to_iam_location(loc)
+            for loc in self.get_ecoinvent_locs()
+        }
+        self.cache = {}
 
     def get_ecoinvent_locs(self):
         """
@@ -125,9 +156,7 @@ class BaseTransformation:
         :rtype: list
         """
 
-        return list(set(
-            [a["location"] for a in self.database]
-        ))
+        return list(set([a["location"] for a in self.database]))
 
     def update_ecoinvent_efficiency_parameter(self, dataset, old_ei_eff, new_eff):
         """
@@ -271,7 +300,7 @@ class BaseTransformation:
             for d in ws.get_many(
                 self.database,
                 ws.equals("name", name),
-                ws.equals("reference product", ref_prod),
+                ws.contains("reference product", ref_prod),
             )
         }
 
@@ -280,11 +309,12 @@ class BaseTransformation:
         d_act = {}
 
         for region in d_iam_to_eco:
+
             try:
                 dataset = ws.get_one(
                     self.database,
                     ws.equals("name", name),
-                    ws.equals("reference product", ref_prod),
+                    ws.contains("reference product", ref_prod),
                     ws.equals("location", d_iam_to_eco[region]),
                 )
 
@@ -294,7 +324,7 @@ class BaseTransformation:
                 dataset = ws.get_one(
                     self.database,
                     ws.equals("name", name),
-                    ws.equals("reference product", ref_prod),
+                    ws.contains("reference product", ref_prod),
                     ws.equals("location", "GLO"),
                 )
 
@@ -311,6 +341,7 @@ class BaseTransformation:
             # Add `production volume` field
             if isinstance(production_variable, str):
                 production_variable = [production_variable]
+
             prod_vol = (
                 self.iam_data.production_volumes.sel(
                     region=region, variables=production_variable
@@ -329,10 +360,13 @@ class BaseTransformation:
                     d_act[region], self.database, self.model
                 )
 
+            ds_name = d_act[region]["name"]
+            ds_ref_prod = d_act[region]["reference product"]
+
         deleted_markets = [
             (act["name"], act["reference product"], act["location"])
             for act in self.database
-            if (act["name"], act["reference product"]) == (name, ref_prod)
+            if (act["name"], act["reference product"]) == (ds_name, ds_ref_prod)
         ]
 
         with open(
@@ -349,14 +383,14 @@ class BaseTransformation:
         self.database = [
             act
             for act in self.database
-            if (act["name"], act["reference product"]) != (name, ref_prod)
+            if (act["name"], act["reference product"]) != (ds_name, ds_ref_prod)
         ]
 
         # Remove deleted datasets from `self.list_datasets`
         self.list_datasets = [
             dataset
             for dataset in self.list_datasets
-            if (dataset[0], dataset[1]) != (name, ref_prod)
+            if (dataset[0], dataset[1]) != (ds_name, ds_ref_prod)
         ]
 
         # Add created datasets to `self.list_datasets`
@@ -369,9 +403,7 @@ class BaseTransformation:
 
         return d_act
 
-    def relink_datasets(
-        self, excludes_datasets, alternative_names=None
-    ):
+    def relink_datasets(self, excludes_datasets, alternative_names=None):
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
@@ -387,6 +419,9 @@ class BaseTransformation:
         :returns: does not return anything. Modifies in place.
         """
 
+        if alternative_names is None:
+            alternative_names = []
+
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
@@ -394,49 +429,96 @@ class BaseTransformation:
         ):
             # and find exchanges of datasets to relink
 
-            excs_to_relink = (
-                exc for exc in act["exchanges"]
+            excs_to_relink = [
+                exc
+                for exc in act["exchanges"]
                 if exc["type"] == "technosphere"
-                and (exc["name"], exc["product"], exc["location"]) not in self.list_datasets
+                and (exc["name"], exc["product"], exc["location"])
+                not in self.list_datasets
+            ]
+
+            unique_excs_to_relink = list(
+                set(
+                    (exc["name"], exc["product"], exc["location"], exc["unit"])
+                    for exc in excs_to_relink
+                )
             )
 
-            unique_excs_to_relink = list(set(
-                (exc["name"], exc["product"], exc["unit"]) for exc in excs_to_relink
-            ))
+
 
             for exc in unique_excs_to_relink:
 
-                #print(f"searching alt. for {exc['name'], exc['location']} in {act['name'], act['location']}")
+                try:
+                    new_name, new_prod, new_loc, new_unit = self.cache[act["location"]][
+                        exc
+                    ]
 
-                alternative_names = [exc[0], *alternative_names]
-                alternative_locations = [act["location"]] if act["location"] in self.regions else [self.ecoinvent_to_iam_loc[act["location"]]]
+                except KeyError:
 
-                for alt_name, alt_loc in product(alternative_names, alternative_locations):
+                    alternative_names = [exc[0], *alternative_names]
+                    alternative_locations = (
+                        [act["location"]]
+                        if act["location"] in self.regions
+                        else [self.ecoinvent_to_iam_loc[act["location"]]]
+                    )
 
-                    if (alt_name, exc[1], alt_loc) in self.list_datasets:
-                        #print(f"found! {alt_name, alt_loc}")
-                        break
+                    for alt_name, alt_loc in product(
+                        alternative_names, alternative_locations
+                    ):
+
+                        if (alt_name, exc[1], alt_loc) in self.list_datasets:
+                            new_name, new_prod, new_loc, new_unit = (
+                                alt_name,
+                                exc[1],
+                                alt_loc,
+                                exc[-1],
+                            )
+
+                            if act["location"] in self.cache:
+                                self.cache[act["location"]][exc] = (
+                                    alt_name,
+                                    exc[1],
+                                    alt_loc,
+                                    exc[-1],
+                                )
+                            else:
+                                self.cache[act["location"]] = {
+                                    exc: (alt_name, exc[1], alt_loc, exc[-1])
+                                }
+                            break
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset
-                amount = sum(e["amount"] for e in excs_to_relink if (e["name"], e["product"]) == exc)
-                act["exchanges"] = [e for e in act["exchanges"] if (e["name"], e.get("product")) != exc]
+                amount = sum(
+                    e["amount"]
+                    for e in excs_to_relink
+                    if (e["name"], e["product"], e["location"], e["unit"]) == exc
+                )
+
+                act["exchanges"] = [
+                    e
+                    for e in act["exchanges"]
+                    if (e["name"], e.get("product"), e.get("location"), e["unit"])
+                    != exc
+                ]
 
                 # create a new exchange, with the new provider
                 try:
                     new_exc = {
-                        "name": alt_name,
-                        "product": exc[1],
+                        "name": new_name,
+                        "product": new_prod,
                         "amount": amount,
                         "type": "technosphere",
-                        "unit": exc[2],
-                        "location": alt_loc
+                        "unit": new_unit,
+                        "location": new_loc,
                     }
 
                     act["exchanges"].append(new_exc)
 
                 except:
-                    print(f"No alternative provider found for {exc[0], act['location']}.")
+                    print(
+                        f"No alternative provider found for {exc[0], act['location']}."
+                    )
 
     def get_carbon_capture_rate(self, loc, sector):
         """
@@ -494,3 +576,38 @@ class BaseTransformation:
             scaling_factor = 1
 
         return scaling_factor
+
+    def update_pollutant_emissions(self, dataset, sector):
+        """
+        Update pollutant emissions based on GAINS data.
+        We apply a correction factor equal to the relative change in emissions compared
+        to 2020
+        :return: Does not return anything. Modified in place.
+        """
+
+        # Update biosphere exchanges according to GAINS emission values
+        for exc in ws.biosphere(
+            dataset, ws.either(*[ws.contains("name", x) for x in self.emissions_map])
+        ):
+
+            pollutant = self.emissions_map[exc["name"]]
+
+            scaling_factor = self.find_gains_emissions_change(
+                pollutant=pollutant,
+                location=self.geo.iam_to_GAINS_region(
+                    self.geo.ecoinvent_to_iam_location(dataset["location"])
+                ),
+                sector=sector,
+            )
+
+            if exc["amount"] == 0:
+                wurst.rescale_exchange(exc, scaling_factor / 1, remove_uncertainty=True)
+            else:
+                wurst.rescale_exchange(exc, 1 / scaling_factor)
+
+            exc["comment"] = (
+                f"This exchange has been modified based on GAINS projections for "
+                f"the {sector} sector by `premise`."
+            )
+
+        return dataset

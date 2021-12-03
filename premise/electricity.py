@@ -1173,7 +1173,7 @@ class Electricity(BaseTransformation):
                                  "market group for electricity, medium voltage",
                                  "market group for electricity, low voltage"
                              ]
-                             )
+        )
 
         print(f"Log of deleted electricity markets saved in {DATA_DIR}/logs")
         print(f"Log of created electricity markets saved in {DATA_DIR}/logs")

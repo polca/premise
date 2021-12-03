@@ -12,28 +12,6 @@ import wurst
 from .transformation import *
 from .utils import get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
 
-def remove_exchanges(datasets_dict, list_exc):
-    """
-    Returns the same `datasets_dict`, where the list of exchanges in these datasets
-    has been filtered out: unwanted exchanges has been removed.
-    :param datasets_dict: a dictionary with IAM region as key, dataset as value
-    :param list_exc: list of names (e.g., ["coal", "lignite"]) which are checked against exchanges' names in the dataset
-    :return: returns `datasets_dict` without the exchanges whose names check with `list_exc`
-    :rtype: dict
-    """
-    keep = lambda x: {
-        key: value
-        for key, value in x.items()
-        if not any(ele in x.get("product", []) for ele in list_exc)
-    }
-
-    for region in datasets_dict:
-        datasets_dict[region]["exchanges"] = [
-            keep(exc) for exc in datasets_dict[region]["exchanges"]
-        ]
-
-    return datasets_dict
-
 
 class Cement(BaseTransformation):
     """
@@ -68,40 +46,6 @@ class Cement(BaseTransformation):
         self.version = version
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio_remind = get_clinker_ratio_remind(self.year)
-
-    def update_pollutant_emissions(self, dataset):
-        """
-        Update pollutant emissions based on GAINS data.
-        We apply a correction factor equal to the relative change in emissions compared
-        to 2020
-        :return: Does not return anything. Modified in place.
-        """
-
-        # Update biosphere exchanges according to GAINS emission values
-        for exc in ws.biosphere(
-            dataset, ws.either(*[ws.contains("name", x) for x in self.emissions_map])
-        ):
-
-            pollutant = self.emissions_map[exc["name"]]
-
-            scaling_factor = self.find_gains_emissions_change(
-                pollutant=pollutant,
-                location=self.geo.iam_to_GAINS_region(
-                    self.geo.ecoinvent_to_iam_location(dataset["location"])
-                ),
-                sector="cement"
-            )
-
-            if exc["amount"] == 0:
-                wurst.rescale_exchange(exc, scaling_factor / 1, remove_uncertainty=True)
-            else:
-                wurst.rescale_exchange(exc, 1 / scaling_factor)
-
-            exc[
-                "comment"
-            ] = "This exchange has been modified based on GAINS projections for the cement sector by `premise`."
-
-        return dataset
 
     def build_clinker_production_datasets(self):
         """
@@ -147,7 +91,9 @@ class Cement(BaseTransformation):
 
             # Production volume by kiln type
             energy_input_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(key) if self.model == "image" else key,
+                region=self.geo.iam_to_iam_region(key)
+                if self.model == "image"
+                else key,
                 variables=[
                     v
                     for v in self.iam_data.gnr_data.variables.values
@@ -158,7 +104,9 @@ class Cement(BaseTransformation):
             energy_input_per_kiln_type /= energy_input_per_kiln_type.sum(axis=0)
 
             energy_eff_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(key) if self.model == "image" else key,
+                region=self.geo.iam_to_iam_region(key)
+                if self.model == "image"
+                else key,
                 variables=[
                     v
                     for v in self.iam_data.gnr_data.variables.values
@@ -176,10 +124,9 @@ class Cement(BaseTransformation):
             # divided by the ratio fuel/output in 2020
 
             correction_factor = self.find_iam_efficiency_change(
-                variable="cement",
-                location=value["location"],
+                variable="cement", location=value["location"],
             )
-            energy_input_per_ton_clinker *= correction_factor
+            energy_input_per_ton_clinker *= (1 / correction_factor)
 
             # Fuel mix (waste, biomass, fossil)
             fuel_mix = self.iam_data.gnr_data.sel(
@@ -188,7 +135,9 @@ class Cement(BaseTransformation):
                     "Share biomass fuel",
                     "Share fossil fuel",
                 ],
-                region=self.geo.iam_to_iam_region(key) if self.model == "image" else key,
+                region=self.geo.iam_to_iam_region(key)
+                if self.model == "image"
+                else key,
             ).clip(0, 1)
 
             fuel_mix /= fuel_mix.sum(axis=0)
@@ -266,7 +215,11 @@ class Cement(BaseTransformation):
                 # if they cannot be found for the ecoinvent locations concerned
                 # we widen the scope to EU-based datasets, and RoW
                 ecoinvent_regions = self.geo.iam_to_ecoinvent_location(key)
-                possible_locations = [ecoinvent_regions, ["RER", "Europe without Switzerland"], ["RoW", "GLO"]]
+                possible_locations = [
+                    ecoinvent_regions,
+                    ["RER", "Europe without Switzerland"],
+                    ["RoW", "GLO"],
+                ]
                 suppliers, counter = [], 0
 
                 while len(suppliers) == 0:
@@ -311,7 +264,9 @@ class Cement(BaseTransformation):
             # Update fossil CO2 exchange, add 525 kg of fossil CO_2 from calcination
             try:
                 fossil_co2_exc = [
-                    e for e in value["exchanges"] if e["name"] == "Carbon dioxide, fossil"
+                    e
+                    for e in value["exchanges"]
+                    if e["name"] == "Carbon dioxide, fossil"
                 ][0]
 
                 fossil_co2_exc["amount"] = (
@@ -475,22 +430,20 @@ class Cement(BaseTransformation):
             value["exchanges"] = [v for v in value["exchanges"] if v]
 
             share_fossil_from_fuel = int(
-                        (
-                            fuel_fossil_co2_per_type.sum()
-                            / (fuel_fossil_co2_per_type.sum() + 525)
-                        )
-                        * 100
-                    )
+                (
+                    fuel_fossil_co2_per_type.sum()
+                    / (fuel_fossil_co2_per_type.sum() + 525)
+                )
+                * 100
+            )
 
-            share_fossil_from_calcination = (100
-                    - int(
-                        (
-                            fuel_fossil_co2_per_type.sum()
-                            / np.sum(fuel_fossil_co2_per_type.sum() + 525)
-                        )
-                        * 100
-                    )
-                                             )
+            share_fossil_from_calcination = 100 - int(
+                (
+                    fuel_fossil_co2_per_type.sum()
+                    / np.sum(fuel_fossil_co2_per_type.sum() + 525)
+                )
+                * 100
+            )
 
             value["comment"] = (
                 "Dataset modified by `premise` based on WBCSD's GNR data and IAM projections "
@@ -510,7 +463,7 @@ class Cement(BaseTransformation):
             "Adjusting emissions of hot pollutants for clinker production datasets..."
         )
         d_act_clinker = {
-            k: self.update_pollutant_emissions(v)
+            k: self.update_pollutant_emissions(dataset=v, sector="cement")
             for k, v in d_act_clinker.items()
         }
 
@@ -537,7 +490,9 @@ class Cement(BaseTransformation):
             # different pace across regions.
             ratio_to_reach = self.clinker_ratio_remind.sel(
                 dict(
-                    region=self.geo.iam_to_iam_region(region) if self.model == "image" else region
+                    region=self.geo.iam_to_iam_region(region)
+                    if self.model == "image"
+                    else region
                 )
             ).values
 
@@ -731,12 +686,14 @@ class Cement(BaseTransformation):
         )
 
         print("\nCreate new clinker market datasets and delete old datasets")
-        clinker_market_datasets = list(self.fetch_proxies(
+        clinker_market_datasets = list(
+            self.fetch_proxies(
                 name="market for clinker",
                 ref_prod="clinker",
                 production_variable="cement",
                 relink=False,
-            ).values())
+            ).values()
+        )
 
         self.database.extend(clinker_market_datasets)
 
@@ -758,10 +715,7 @@ class Cement(BaseTransformation):
             ref_prod = "cement, unspecified"
 
         act_cement_unspecified = self.fetch_proxies(
-            name=name,
-            ref_prod=ref_prod,
-            production_variable="cement",
-            relink=False,
+            name=name, ref_prod=ref_prod, production_variable="cement", relink=False,
         )
         act_cement_unspecified = self.adjust_clinker_ratio(act_cement_unspecified)
         self.database.extend(list(act_cement_unspecified.values()))
@@ -783,13 +737,11 @@ class Cement(BaseTransformation):
         )
 
         for dataset in markets:
-            print(dataset["name"], dataset["location"])
-            print("fetch proxies")
             new_cement_markets = self.fetch_proxies(
                 name=dataset["name"],
                 ref_prod=dataset["reference product"],
                 production_variable="cement",
-                relink=False, # if `True`, it will find the best suited providers for each exchange
+                relink=False,  # if `True`, it will find the best suited providers for each exchange
                 # in the new market datasets, which is time-consuming, but more accurate
             )
 
@@ -800,12 +752,6 @@ class Cement(BaseTransformation):
                     for act in new_cement_markets.values()
                 ]
             )
-            print("relink")
-            self.relink_datasets(name=dataset["name"],
-                                 ref_product=dataset["reference product"],
-                                 unit="kilogram",
-                                 excludes_datasets=[dataset["name"]]
-                                 )
 
         print(
             "\nCreate new cement production datasets and adjust electricity consumption"
@@ -843,10 +789,6 @@ class Cement(BaseTransformation):
                     for act in new_cement_production.values()
                 ]
             )
-            self.relink_datasets(name=dataset["name"],
-                                 ref_product=dataset["reference product"],
-                                 unit="kilogram",
-                                 excludes_datasets=[dataset["name"]])
 
         # relink new cement market datasets to the new generic market for cement
         if self.version == 3.5:
@@ -856,27 +798,29 @@ class Cement(BaseTransformation):
         else:
             name = "cement, all types to generic market for cement, unspecified"
             ref_prod = "cement, unspecified"
-        self.relink_datasets(name=name, ref_product=ref_prod, unit="kilogram", excludes_datasets=[name])
 
         with open(
             DATA_DIR
             / f"logs/log created cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
             "a",
-            encoding="utf-8"
+            encoding="utf-8",
         ) as csv_file:
             writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
             for line in created_datasets:
                 writer.writerow(line)
 
         print("Relink cement production datasets to new clinker market datasets")
-        self.relink_datasets(name="market for clinker",
-                             ref_product="clinker",
-                             unit="kilogram")
 
         print("Relink clinker market datasets to new clinker production datasets")
-        self.relink_datasets(name="clinker production",
-                             ref_product="clinker",
-                             unit="kilogram")
+
+        self.relink_datasets(
+            excludes_datasets=[
+                "market for cement",
+                "cement production",
+                "clinker production",
+                "market for clinker",
+            ]
+        )
 
         print("Done!")
 
