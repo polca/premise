@@ -360,7 +360,12 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
         columns=pd.MultiIndex.from_tuples(tuples),
     )
 
-def extract_exc(row):
+def extract_exc(row: pd.Series) -> dict:
+    """
+    Returns a dictionary that represents an exchange.
+    :param row: pd.Series, containing an exchange.
+    :return: dict., containing the items necessary to define an exchange.
+    """
     if row[c.type] == "production":
         exc = {
             "name": row[c.prod_name],
@@ -397,7 +402,13 @@ def extract_exc(row):
 
     return exc
 
-def transf(df, col):
+def transf(df: pd.DataFrame, col: str) -> dict:
+    """
+    Returns the first level items of the dictionary of a dataset.
+    :param df: pd.DataFrame, containing the database in a tabular form.
+    :param col: str. Scenario name, to locate the correct column in `df`.
+    :return: dict. that contains the first level items of a dataset.
+    """
     prod_exc = df.loc[df[c.type] == "production", :].iloc[0]
 
     outer = {
@@ -413,7 +424,12 @@ def transf(df, col):
 
     return outer
 
-def convert_df_to_dict(df):
+def convert_df_to_dict(df: pd.DataFrame) -> List[dict]:
+    """
+    Converts ds into lists of dictionaries. Each list is a scenario database.
+    :param df: pd.DataFrame. Contains the database in a tabular form.
+    :return: List of dictionaries that can be consumed by `wurst`
+    """
 
     scenarios = [col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent]]
 
@@ -432,8 +448,7 @@ def convert_df_to_dict(df):
         yield [transf(group[1], col) for group in temp.groupby(c.cons_key)]
 
 
-
-def eidb_label(model, scenario, year):
+def eidb_label(model: str, scenario: str, year: int) -> str:
     return "ecoinvent_" + model + "_" + scenario + "_" + str(year)
 
 
