@@ -12,7 +12,6 @@ import xarray as xr
 from prettytable import PrettyTable
 
 from . import DATA_DIR, INVENTORY_DIR
-from .utils import (add_modified_tags, c, convert_db_to_dataframe, create_scenario_label, eidb_label, s, convert_df_to_dict)
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
@@ -30,7 +29,15 @@ from .inventory_imports import (
 )
 from .renewables import SolarPV
 from .steel import Steel
-
+from .utils import (
+    add_modified_tags,
+    c,
+    convert_db_to_dataframe,
+    convert_df_to_dict,
+    create_scenario_label,
+    eidb_label,
+    s,
+)
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -212,7 +219,10 @@ def check_for_duplicates(database):
             if count > 1
         ]
 
-        raise ValueError(f"Duplicate exchanges found, under following exchange keys: {duplicates}.")
+        raise ValueError(
+            f"Duplicate exchanges found, under following exchange keys: {duplicates}."
+        )
+
 
 def check_ei_filepath(filepath):
     """Check for the existence of the file path."""
@@ -788,12 +798,18 @@ class NewDatabase:
                 (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
                 (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
                 (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-                (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES, "3.7",),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
+                    "3.7",
+                ),
                 (
                     FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
                     "3.7",
                 ),
-                (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES, "3.7",),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
+                    "3.7",
+                ),
                 (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
                 (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
@@ -1045,7 +1061,8 @@ class NewDatabase:
         print("Done!")
 
         wurst.write_brightway2_database(
-            self.database, name,
+            self.database,
+            name,
         )
 
     def write_db_to_brightway(self, name=None):
@@ -1080,20 +1097,17 @@ class NewDatabase:
                 "The number of databases does not match the number of `name` given."
             )
 
-
-
-
         # we ensure first the absence of duplicate datasets
         # FIXME: some duplicates are legit! Example: electricity losses in markets.
-        #check_for_duplicates(self.database)
+        # check_for_duplicates(self.database)
 
         print("Write new database(s) to Brightway2.")
         for scen, scenario in enumerate(convert_df_to_dict(self.database)):
 
             wurst.write_brightway2_database(
-                scenario, name[scen],
+                scenario,
+                name[scen],
             )
-
 
     def write_db_to_matrices(self, filepath=None):
         """

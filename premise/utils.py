@@ -360,12 +360,14 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
         columns=pd.MultiIndex.from_tuples(tuples),
     )
 
+
 def extract_exc(row: pd.Series) -> dict:
     """
     Returns a dictionary that represents an exchange.
     :param row: pd.Series, containing an exchange.
     :return: dict., containing the items necessary to define an exchange.
     """
+
     if row[c.type] == "production":
         exc = {
             "name": row[c.prod_name],
@@ -375,7 +377,7 @@ def extract_exc(row: pd.Series) -> dict:
             "uncertainty type": 0,
             "unit": row[c.unit],
             "production volume": row[c.cons_prod_vol],
-            "amount": row[c.amount]
+            "amount": row[c.amount],
         }
 
     elif row[c.type] == "technosphere":
@@ -386,7 +388,7 @@ def extract_exc(row: pd.Series) -> dict:
             "type": row[c.type],
             "uncertainty type": 0,
             "unit": row[c.unit],
-            "amount": row[c.amount]
+            "amount": row[c.amount],
         }
 
     else:
@@ -397,7 +399,7 @@ def extract_exc(row: pd.Series) -> dict:
             "uncertainty type": 0,
             "unit": row[c.unit],
             "amount": row[c.amount],
-            "input": ("biosphere3", row[c.prod_key])
+            "input": ("biosphere3", row[c.prod_key]),
         }
 
     return exc
@@ -409,6 +411,7 @@ def transf(df: pd.DataFrame, col: str) -> dict:
     :param col: str. Scenario name, to locate the correct column in `df`.
     :return: dict. that contains the first level items of a dataset.
     """
+
     prod_exc = df.loc[df[c.type] == "production", :].iloc[0]
 
     outer = {
@@ -423,6 +426,7 @@ def transf(df: pd.DataFrame, col: str) -> dict:
     }
 
     return outer
+
 
 def convert_df_to_dict(df: pd.DataFrame) -> List[dict]:
     """
@@ -447,8 +451,8 @@ def convert_df_to_dict(df: pd.DataFrame) -> List[dict]:
         temp = df.loc[:, ((s.exchange, col), slice(None))].droplevel(level=0, axis=1)
         yield [transf(group[1], col) for group in temp.groupby(c.cons_key)]
 
-
 def eidb_label(model: str, scenario: str, year: int) -> str:
+
     return "ecoinvent_" + model + "_" + scenario + "_" + str(year)
 
 
