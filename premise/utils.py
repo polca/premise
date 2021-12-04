@@ -404,6 +404,7 @@ def extract_exc(row: pd.Series) -> dict:
 
     return exc
 
+
 def transf(df: pd.DataFrame, col: str) -> dict:
     """
     Returns the first level items of the dictionary of a dataset.
@@ -450,6 +451,7 @@ def convert_df_to_dict(df: pd.DataFrame) -> List[dict]:
     for col in cols:
         temp = df.loc[:, ((s.exchange, col), slice(None))].droplevel(level=0, axis=1)
         yield [transf(group[1], col) for group in temp.groupby(c.cons_key)]
+
 
 def eidb_label(model: str, scenario: str, year: int) -> str:
 
