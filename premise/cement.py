@@ -8,7 +8,6 @@ the newly created cement markets.
 
 """
 import os
-import wurst
 from .transformation import *
 from .utils import get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
 
@@ -47,6 +46,61 @@ class Cement(BaseTransformation):
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio_remind = get_clinker_ratio_remind(self.year)
 
+    def create_ccs_dataset(self, loc, bio_co2_stored, bio_co2_leaked, energy_input):
+        dataset = ws.get_one(
+            self.database,
+            ws.equals(
+                "name",
+                "CO2 capture, at cement production plant, "
+                "with underground storage, post, 200 km",
+            ),
+            ws.equals("location", "RER"),
+        )
+
+        ccs = wt.copy_to_new_location(dataset, loc)
+        ccs["code"] = str(uuid.uuid4().hex)
+        ccs = relink_technosphere_exchanges(ccs, self.database, self.model)
+
+        if "input" in ccs:
+            ccs.pop("input")
+
+        # we first fix the biogenic CO2 permanent storage
+        for exc in ws.biosphere(
+            ccs, ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
+        ):
+            exc["amount"] = bio_co2_stored
+
+        # then the biogenic CO2 leaked
+        for exc in ws.biosphere(
+            ccs, ws.equals("name", "Carbon dioxide, from soil or biomass stock"),
+        ):
+            exc["amount"] = bio_co2_leaked
+
+        # the rest of CO2 leaked is fossil
+        for exc in ws.biosphere(ccs, ws.equals("name", "Carbon dioxide, fossil")):
+            exc["amount"] = 0.11 - bio_co2_leaked
+
+        # we adjust the heat needs by subtraction 3.66 MJ with what
+        # the cement plant is expected to produce as excess heat
+
+        # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
+        excess_heat_generation = self.iam_data.gnr_data.sel(
+            variables="Share of recovered energy, per ton clinker",
+            region=self.geo.iam_to_iam_region(loc) if self.model == "image" else loc,
+        ).values * (energy_input.sum() / 1000)
+
+        for exc in ws.technosphere(ccs, ws.contains("name", "steam production")):
+            exc["amount"] = np.clip(3.66 - excess_heat_generation, 0, 3.66)
+
+        # then, we need to find local suppliers of electricity, water, steam, etc.
+        relink_technosphere_exchanges(ccs, self.database, self.model)
+
+        # Add created dataset to `self.list_datasets`
+        self.list_datasets.append((ccs["name"], ccs["reference product"], ccs["location"]))
+
+        # finally, we add this new dataset to the database
+        self.database.append(ccs)
+
     def build_clinker_production_datasets(self):
         """
         Builds clinker production datasets for each IAM region.
@@ -75,7 +129,6 @@ class Cement(BaseTransformation):
             "meat",
             "gas",
             "oil",
-            "electricity",
             "wood",
             "waste",
         ]
@@ -87,13 +140,13 @@ class Cement(BaseTransformation):
         # Remove fuel and electricity exchanges in each activity
         d_act_clinker = remove_exchanges(d_act_clinker, list_fuels)
 
-        for key, value in d_act_clinker.items():
+        for region, dataset in d_act_clinker.items():
 
             # Production volume by kiln type
             energy_input_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(key)
+                region=self.geo.iam_to_iam_region(region)
                 if self.model == "image"
-                else key,
+                else region,
                 variables=[
                     v
                     for v in self.iam_data.gnr_data.variables.values
@@ -104,9 +157,9 @@ class Cement(BaseTransformation):
             energy_input_per_kiln_type /= energy_input_per_kiln_type.sum(axis=0)
 
             energy_eff_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(key)
+                region=self.geo.iam_to_iam_region(region)
                 if self.model == "image"
-                else key,
+                else region,
                 variables=[
                     v
                     for v in self.iam_data.gnr_data.variables.values
@@ -123,10 +176,10 @@ class Cement(BaseTransformation):
             # equal to the ratio fuel/output in the year in question
             # divided by the ratio fuel/output in 2020
 
-            correction_factor = self.find_iam_efficiency_change(
-                variable="cement", location=value["location"],
+            scaling_factor = 1 / self.find_iam_efficiency_change(
+                variable="cement", location=dataset["location"],
             )
-            energy_input_per_ton_clinker *= (1 / correction_factor)
+            energy_input_per_ton_clinker *= scaling_factor
 
             # Fuel mix (waste, biomass, fossil)
             fuel_mix = self.iam_data.gnr_data.sel(
@@ -135,9 +188,9 @@ class Cement(BaseTransformation):
                     "Share biomass fuel",
                     "Share fossil fuel",
                 ],
-                region=self.geo.iam_to_iam_region(key)
+                region=self.geo.iam_to_iam_region(region)
                 if self.model == "image"
-                else key,
+                else region,
             ).clip(0, 1)
 
             fuel_mix /= fuel_mix.sum(axis=0)
@@ -214,7 +267,7 @@ class Cement(BaseTransformation):
                 # Fetch respective shares based on production volumes
                 # if they cannot be found for the ecoinvent locations concerned
                 # we widen the scope to EU-based datasets, and RoW
-                ecoinvent_regions = self.geo.iam_to_ecoinvent_location(key)
+                ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
                 possible_locations = [
                     ecoinvent_regions,
                     ["RER", "Europe without Switzerland"],
@@ -251,30 +304,28 @@ class Cement(BaseTransformation):
                         }
                     )
 
-            value["exchanges"].extend(new_exchanges)
+            dataset["exchanges"].extend(new_exchanges)
 
-            value["exchanges"] = [v for v in value["exchanges"] if v]
+            dataset["exchanges"] = [v for v in dataset["exchanges"] if v]
 
             # Carbon capture rate: share of capture of total CO2 emitted
-
             carbon_capture_rate = self.get_carbon_capture_rate(
-                loc=value["location"], sector="cement"
+                loc=dataset["location"], sector="cement"
             )
 
             # Update fossil CO2 exchange, add 525 kg of fossil CO_2 from calcination
-            try:
-                fossil_co2_exc = [
-                    e
-                    for e in value["exchanges"]
-                    if e["name"] == "Carbon dioxide, fossil"
-                ][0]
+            co2_exc = [
+                e for e in dataset["exchanges"] if e["name"] == "Carbon dioxide, fossil"
+            ]
 
+            if co2_exc:
+                fossil_co2_exc = co2_exc[0]
                 fossil_co2_exc["amount"] = (
                     (fuel_fossil_co2_per_type.sum().values + 525) / 1000
                 ) * (1 - carbon_capture_rate)
                 fossil_co2_exc["uncertainty type"] = 0
 
-            except IndexError:
+            else:
                 # the fossil CO2 flow does not exist
                 amount = ((fuel_fossil_co2_per_type.sum().values + 525) / 1000) * (
                     1 - carbon_capture_rate
@@ -288,21 +339,23 @@ class Cement(BaseTransformation):
                     "unit": "kilogram",
                     "categories": ("air",),
                 }
-                value["exchanges"].append(fossil_co2_exc)
+                dataset["exchanges"].append(fossil_co2_exc)
 
-            try:
+            co2_exc = [
+                e
+                for e in dataset["exchanges"]
+                if e["name"] == "Carbon dioxide, non-fossil"
+            ]
+
+            if co2_exc:
                 # Update biogenic CO2 exchange
-                biogenic_co2_exc = [
-                    e
-                    for e in value["exchanges"]
-                    if e["name"] == "Carbon dioxide, non-fossil"
-                ][0]
+                biogenic_co2_exc = co2_exc[0]
                 biogenic_co2_exc["amount"] = (
                     fuel_biogenic_co2_per_type.sum().values / 1000
                 ) * (1 - carbon_capture_rate)
                 biogenic_co2_exc["uncertainty type"] = 0
 
-            except IndexError:
+            else:
                 # There isn't a biogenic CO2 emission exchange
                 amount = (fuel_biogenic_co2_per_type.sum().values / 1000) * (
                     1 - carbon_capture_rate
@@ -317,117 +370,53 @@ class Cement(BaseTransformation):
                     "input": ("biosphere3", "eba59fd6-f37e-41dc-9ca3-c7ea22d602c7"),
                     "categories": ("air",),
                 }
-                value["exchanges"].append(biogenic_co2_exc)
+                dataset["exchanges"].append(biogenic_co2_exc)
 
             # add CCS-related dataset
             if carbon_capture_rate > 0:
 
-                dataset = ws.get_one(
-                    self.database,
-                    ws.equals(
-                        "name",
-                        "CO2 capture, at cement production plant, with underground storage, post, 200 km",
-                    ),
-                    ws.equals("location", "RER"),
+                # total CO2 emissions = bio CO2 emissions + fossil CO2 emissions + calcination emissions
+                total_co2_emissions = (
+                    fuel_fossil_co2_per_type.sum()
+                    + fuel_biogenic_co2_per_type.sum()
+                    + 525
                 )
-
-                ccs = wt.copy_to_new_location(dataset, value["location"])
-                ccs["code"] = str(uuid.uuid4().hex)
-                ccs = relink_technosphere_exchanges(ccs, self.database, self.model)
-
-                if "input" in ccs:
-                    ccs.pop("input")
-
-                # we first fix the biogenic CO2 permanent storage
-                # share = sum of biogenic fuel emissions / (sum of fossil fuel emission
-                # + sum of biogenic fuel emissions + 525 kg from calcination)
-                for exc in ws.biosphere(
-                    ccs, ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
-                ):
-                    exc["amount"] = (
-                        fuel_biogenic_co2_per_type.sum()
-                        / (
-                            fuel_fossil_co2_per_type.sum()
-                            + fuel_biogenic_co2_per_type.sum()
-                            + 525
-                        )
-                    ).values.item(0)
+                # share bio CO2 stored = sum of biogenic fuel emissions / total CO2 emissions
+                bio_co2_stored = (
+                    fuel_biogenic_co2_per_type.sum() / total_co2_emissions
+                ).values.item(0)
 
                 # 0.11 kg CO2 leaks per kg captured
                 # we need to align the CO2 composition with
                 # the CO2 composition of the cement plant
-                for exc in ws.biosphere(
-                    ccs,
-                    ws.equals("name", "Carbon dioxide, from soil or biomass stock"),
-                ):
-                    exc["amount"] = (
-                        fuel_biogenic_co2_per_type.sum()
-                        / (
-                            fuel_fossil_co2_per_type.sum()
-                            + fuel_biogenic_co2_per_type.sum()
-                            + 525
-                        )
-                    ).values.item(0) * 0.11
+                bio_co2_leaked = (
+                    fuel_biogenic_co2_per_type.sum() / total_co2_emissions
+                ).values.item(0) * 0.11
 
-                for exc in ws.biosphere(
-                    ccs, ws.equals("name", "Carbon dioxide, fossil")
-                ):
-                    exc["amount"] = 0.11 - (
-                        (
-                            fuel_biogenic_co2_per_type.sum()
-                            / (
-                                fuel_fossil_co2_per_type.sum()
-                                + fuel_biogenic_co2_per_type.sum()
-                                + 525
-                            )
-                        )
-                        * 0.11
-                    ).values.item(0)
-
-                # we adjust the heat needs by subtraction 3.66 MJ with what
-                # the cement plant is expected to produce as excess heat
-
-                # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
-                excess_heat_generation = self.iam_data.gnr_data.sel(
-                    variables="Share of recovered energy, per ton clinker",
-                    region=self.geo.iam_to_iam_region(value["location"])
-                    if self.model == "image"
-                    else value["location"],
-                ).values * (energy_input_per_ton_clinker.sum() / 1000)
-
-                for exc in ws.technosphere(
-                    ccs, ws.contains("name", "steam production")
-                ):
-                    exc["amount"] = np.clip(3.66 - excess_heat_generation, 0, 3.66)
-
-                # then, we need to find local suppliers of electricity, water, steam, etc.
-                relink_technosphere_exchanges(ccs, self.database, self.model)
-
-                # we add this new dataset to the database
-                self.database.append(ccs)
+                # create the CCS dataset to fit this clinker production dataset
+                # and add it to the database
+                self.create_ccs_dataset(
+                    region,
+                    bio_co2_stored,
+                    bio_co2_leaked,
+                    energy_input_per_ton_clinker.sum(),
+                )
 
                 # add an input from this CCS dataset in the clinker dataset
                 ccs_exc = {
                     "uncertainty type": 0,
                     "loc": 0,
-                    "amount": (
-                        (
-                            fuel_fossil_co2_per_type.sum().values
-                            + fuel_biogenic_co2_per_type.sum().values
-                        )
-                        / 1000
-                    )
-                    * carbon_capture_rate,
+                    "amount": (total_co2_emissions / 1000) * carbon_capture_rate,
                     "type": "technosphere",
                     "production volume": 0,
                     "name": "CO2 capture, at cement production plant, with underground storage, post, 200 km",
                     "unit": "kilogram",
-                    "location": value["location"],
+                    "location": dataset["location"],
                     "product": "CO2, captured and stored",
                 }
-                value["exchanges"].append(ccs_exc)
+                dataset["exchanges"].append(ccs_exc)
 
-            value["exchanges"] = [v for v in value["exchanges"] if v]
+            dataset["exchanges"] = [v for v in dataset["exchanges"] if v]
 
             share_fossil_from_fuel = int(
                 (
@@ -445,19 +434,19 @@ class Cement(BaseTransformation):
                 * 100
             )
 
-            value["comment"] = (
+            dataset["comment"] = (
                 "Dataset modified by `premise` based on WBCSD's GNR data and IAM projections "
                 + " for the cement industry.\n"
                 + f"Calculated energy input per kg clinker: {np.round(energy_input_per_ton_clinker.sum(), 1) / 1000}"
                 f" MJ/kg clinker.\n"
-                + f"Improvement of specific energy use compared to 2020: {(correction_factor - 1) * 100} %.\n"
+                + f"Improvement of specific energy use compared to 2020: {(scaling_factor - 1) * 100} %.\n"
                 + f"Share of biomass fuel energy-wise: {int(fuel_mix[1] * 100)} pct.\n"
                 + f"Share of waste fuel energy-wise: {int(fuel_mix[0] * 100)} pct.\n"
                 + f"Share of fossil carbon in waste fuel energy-wise: {int(self.fuels_co2['waste']['bio_share'] * 100)} pct.\n"
                 + f"Share of fossil CO2 emissions from fuel combustion: {share_fossil_from_fuel} pct.\n"
                 + f"Share of fossil CO2 emissions from calcination: {share_fossil_from_calcination} pct.\n"
                 + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"
-            ) + value["comment"]
+            ) + dataset["comment"]
 
         print(
             "Adjusting emissions of hot pollutants for clinker production datasets..."
@@ -564,28 +553,20 @@ class Cement(BaseTransformation):
         for region in d_act:
 
             new_exchanges = []
+
+            electricity = (
+                self.iam_data.gnr_data.loc[
+                    dict(
+                        variables=["Power generation", "Power consumption"],
+                        region=self.geo.iam_to_GAINS_region(region),
+                    )
+                ]
+                / 1000
+            )
             electricity_needed = (
-                self.iam_data.gnr_data.loc[
-                    dict(
-                        variables="Power consumption",
-                        region=self.geo.iam_to_iam_region(region)
-                        if self.model == "image"
-                        else region,
-                    )
-                ].values
-                / 1000
-            )
-            electricity_recovered = (
-                self.iam_data.gnr_data.loc[
-                    dict(
-                        variables="Power generation",
-                        region=self.geo.iam_to_iam_region(region)
-                        if self.model == "image"
-                        else region,
-                    )
-                ].values
-                / 1000
-            )
+                electricity.sel(variables="Power consumption")
+                - electricity.sel(variables="Power generation")
+            ).values
 
             # Fetch electricity-producing technologies contained in the IAM region
             # if they cannot be found for the ecoinvent locations concerned
@@ -612,8 +593,8 @@ class Cement(BaseTransformation):
                 new_exchanges.append(
                     {
                         "uncertainty type": 0,
-                        "loc": (electricity_needed - electricity_recovered) * share,
-                        "amount": (electricity_needed - electricity_recovered) * share,
+                        "loc": electricity_needed * share,
+                        "amount": electricity_needed * share,
                         "type": "technosphere",
                         "production volume": 0,
                         "product": supplier[2],
@@ -629,7 +610,7 @@ class Cement(BaseTransformation):
             txt = (
                 "Dataset modified by `premise` based on WBCSD's GNR data and 2018 IEA roadmap for the cement industry.\n "
                 f"Electricity consumption per kg cement: {electricity_needed} kWh."
-                f"Of which {electricity_recovered} kWh were generated from on-site waste heat recovery.\n"
+                f"Of which a part was generated from on-site waste heat recovery.\n"
             )
 
             if "comment" in d_act[region]:
@@ -728,18 +709,22 @@ class Cement(BaseTransformation):
         )
 
         print("\nCreate new cement market datasets")
+
         # cement markets
         markets = ws.get_many(
             self.database,
             ws.contains("name", "market for cement"),
             ws.contains("reference product", "cement"),
             ws.doesnt_contain_any("name", ["factory", "tile", "sulphate", "plaster"]),
+            ws.doesnt_contain_any("location", self.regions),
         )
+
+        markets = {(m["name"], m["reference product"]) for m in markets}
 
         for dataset in markets:
             new_cement_markets = self.fetch_proxies(
-                name=dataset["name"],
-                ref_prod=dataset["reference product"],
+                name=dataset[0],
+                ref_prod=dataset[1],
                 production_variable="cement",
                 relink=False,  # if `True`, it will find the best suited providers for each exchange
                 # in the new market datasets, which is time-consuming, but more accurate
@@ -764,13 +749,14 @@ class Cement(BaseTransformation):
             ws.doesnt_contain_any("name", ["factory", "tile", "sulphate", "plaster"]),
         )
 
-        for dataset in production:
+        production = {(p["name"], p["reference product"]) for p in production}
 
+        for dataset in production:
             # Fetch proxy datasets (one per IAM region)
             # Delete old datasets
             new_cement_production = self.fetch_proxies(
-                name=dataset["name"],
-                ref_prod=dataset["reference product"],
+                name=dataset[0],
+                ref_prod=dataset[1],
                 production_variable="cement",
                 relink=False,
             )
@@ -790,15 +776,6 @@ class Cement(BaseTransformation):
                 ]
             )
 
-        # relink new cement market datasets to the new generic market for cement
-        if self.version == 3.5:
-            name = "market for cement, unspecified"
-            ref_prod = "cement, unspecified"
-
-        else:
-            name = "cement, all types to generic market for cement, unspecified"
-            ref_prod = "cement, unspecified"
-
         with open(
             DATA_DIR
             / f"logs/log created cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
@@ -813,14 +790,7 @@ class Cement(BaseTransformation):
 
         print("Relink clinker market datasets to new clinker production datasets")
 
-        self.relink_datasets(
-            excludes_datasets=[
-                "market for cement",
-                "cement production",
-                "clinker production",
-                "market for clinker",
-            ]
-        )
+        self.relink_datasets()
 
         print("Done!")
 
