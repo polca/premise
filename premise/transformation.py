@@ -403,7 +403,7 @@ class BaseTransformation:
 
         return d_act
 
-    def relink_datasets(self, excludes_datasets, alternative_names=None):
+    def relink_datasets(self, excludes_datasets=None, alt_names=None):
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
@@ -419,8 +419,10 @@ class BaseTransformation:
         :returns: does not return anything. Modifies in place.
         """
 
-        if alternative_names is None:
-            alternative_names = []
+        if alt_names is None:
+            alt_names = []
+        if excludes_datasets is None:
+            excludes_datasets = []
 
         # loop through the database
         # ignore datasets which name contains `name`
@@ -428,7 +430,6 @@ class BaseTransformation:
             self.database, ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
-
             excs_to_relink = [
                 exc
                 for exc in act["exchanges"]
@@ -437,55 +438,60 @@ class BaseTransformation:
                 not in self.list_datasets
             ]
 
-            unique_excs_to_relink = list(
-                set(
+            unique_excs_to_relink = set(
                     (exc["name"], exc["product"], exc["location"], exc["unit"])
                     for exc in excs_to_relink
                 )
-            )
 
-
+            list_new_exc = []
 
             for exc in unique_excs_to_relink:
 
                 try:
-                    new_name, new_prod, new_loc, new_unit = self.cache[act["location"]][
-                        exc
-                    ]
+                    new_name, new_prod, new_loc, new_unit = self.cache[act["location"]][exc]
 
                 except KeyError:
 
-                    alternative_names = [exc[0], *alternative_names]
+                    names_to_look_for = [exc[0], *alt_names]
                     alternative_locations = (
                         [act["location"]]
                         if act["location"] in self.regions
                         else [self.ecoinvent_to_iam_loc[act["location"]]]
                     )
 
-                    for alt_name, alt_loc in product(
-                        alternative_names, alternative_locations
+                    is_found = False
+
+                    for name_to_look_for, alt_loc in product(
+                        names_to_look_for, alternative_locations
                     ):
 
-                        if (alt_name, exc[1], alt_loc) in self.list_datasets:
+                        if (name_to_look_for, exc[1], alt_loc) in self.list_datasets:
                             new_name, new_prod, new_loc, new_unit = (
-                                alt_name,
+                                name_to_look_for,
                                 exc[1],
                                 alt_loc,
                                 exc[-1],
                             )
 
+                            is_found = True
+
                             if act["location"] in self.cache:
                                 self.cache[act["location"]][exc] = (
-                                    alt_name,
+                                    name_to_look_for,
                                     exc[1],
                                     alt_loc,
                                     exc[-1],
                                 )
                             else:
                                 self.cache[act["location"]] = {
-                                    exc: (alt_name, exc[1], alt_loc, exc[-1])
+                                    exc: (name_to_look_for, exc[1], alt_loc, exc[-1])
                                 }
                             break
+
+                    if not is_found:
+                        print(f"cannot find act for {exc}")
+                        print(names_to_look_for)
+                        print(alternative_locations)
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset
@@ -495,30 +501,34 @@ class BaseTransformation:
                     if (e["name"], e["product"], e["location"], e["unit"]) == exc
                 )
 
-                act["exchanges"] = [
-                    e
-                    for e in act["exchanges"]
-                    if (e["name"], e.get("product"), e.get("location"), e["unit"])
-                    != exc
-                ]
+                if amount > 0:
+                    exists = False
+                    for e in list_new_exc:
+                        if (e["name"], e["product"], e["unit"], e["location"]) == (
+                            new_name, new_prod, new_unit, new_loc
+                        ):
+                            e["amount"] += amount
+                            exists = True
 
-                # create a new exchange, with the new provider
-                try:
-                    new_exc = {
-                        "name": new_name,
-                        "product": new_prod,
-                        "amount": amount,
-                        "type": "technosphere",
-                        "unit": new_unit,
-                        "location": new_loc,
-                    }
+                    if not exists:
+                        list_new_exc.append(
+                            {
+                                "name": new_name,
+                                "product": new_prod,
+                                "amount": amount,
+                                "type": "technosphere",
+                                "unit": new_unit,
+                                "location": new_loc,
+                            }
+                        )
 
-                    act["exchanges"].append(new_exc)
-
-                except:
-                    print(
-                        f"No alternative provider found for {exc[0], act['location']}."
-                    )
+            act["exchanges"] = [
+                e
+                for e in act["exchanges"]
+                if (e["name"], e.get("product"), e.get("location"), e["unit"])
+                not in [(iex[0], iex[1], iex[2], iex[3]) for iex in unique_excs_to_relink]
+            ]
+            act["exchanges"].extend(list_new_exc)
 
     def get_carbon_capture_rate(self, loc, sector):
         """
@@ -592,7 +602,7 @@ class BaseTransformation:
 
             pollutant = self.emissions_map[exc["name"]]
 
-            scaling_factor = self.find_gains_emissions_change(
+            scaling_factor = 1 / self.find_gains_emissions_change(
                 pollutant=pollutant,
                 location=self.geo.iam_to_GAINS_region(
                     self.geo.ecoinvent_to_iam_location(dataset["location"])
@@ -600,14 +610,13 @@ class BaseTransformation:
                 sector=sector,
             )
 
-            if exc["amount"] == 0:
-                wurst.rescale_exchange(exc, scaling_factor / 1, remove_uncertainty=True)
-            else:
-                wurst.rescale_exchange(exc, 1 / scaling_factor)
+            if exc["amount"] != 0:
+                wurst.rescale_exchange(exc, scaling_factor , remove_uncertainty=True)
+
 
             exc["comment"] = (
-                f"This exchange has been modified based on GAINS projections for "
-                f"the {sector} sector by `premise`."
+                f"This exchange has been modified by a factor {scaling_factor} based on "
+                f"GAINS projections for the {sector} sector by `premise`."
             )
 
         return dataset

@@ -44,6 +44,83 @@ def get_losses_per_country_dict():
     return csv_dict
 
 
+def get_production_weighted_losses(losses, locs):
+    """
+    Return the transformation, transmission and distribution losses at a given voltage level for a given location.
+    A weighted average is made of the locations contained in the IAM region.
+
+    """
+
+    # Fetch locations contained in IAM region
+
+    cumul_prod, transf_loss = 0, 0
+    for loc in locs:
+        dict_loss = losses.get(
+            loc, {"Transformation loss, high voltage": 0, "Production volume": 0},
+        )
+
+        transf_loss += (
+            dict_loss["Transformation loss, high voltage"]
+            * dict_loss["Production volume"]
+        )
+        cumul_prod += dict_loss["Production volume"]
+    transf_loss /= cumul_prod
+
+    high = {"transf_loss": transf_loss, "distr_loss": 0}
+
+    cumul_prod, transf_loss, distr_loss = 0, 0, 0
+
+    for loc in locs:
+        dict_loss = losses.get(
+            loc,
+            {
+                "Transformation loss, medium voltage": 0,
+                "Transmission loss to medium voltage": 0,
+                "Production volume": 0,
+            },
+        )
+        transf_loss += (
+            dict_loss["Transformation loss, medium voltage"]
+            * dict_loss["Production volume"]
+        )
+        distr_loss += (
+            dict_loss["Transmission loss to medium voltage"]
+            * dict_loss["Production volume"]
+        )
+        cumul_prod += dict_loss["Production volume"]
+    transf_loss /= cumul_prod
+    distr_loss /= cumul_prod
+
+    medium = {"transf_loss": transf_loss, "distr_loss": distr_loss}
+
+    cumul_prod, transf_loss, distr_loss = 0, 0, 0
+
+    for loc in locs:
+        dict_loss = losses.get(
+            loc,
+            {
+                "Transformation loss, low voltage": 0,
+                "Transmission loss to low voltage": 0,
+                "Production volume": 0,
+            },
+        )
+        transf_loss += (
+            dict_loss["Transformation loss, low voltage"]
+            * dict_loss["Production volume"]
+        )
+        distr_loss += (
+            dict_loss["Transmission loss to low voltage"]
+            * dict_loss["Production volume"]
+        )
+        cumul_prod += dict_loss["Production volume"]
+    transf_loss /= cumul_prod
+    distr_loss /= cumul_prod
+
+    low = {"transf_loss": transf_loss, "distr_loss": distr_loss}
+
+    return {"high": high, "medium": medium, "low": low}
+
+
 def get_production_per_tech_dict():
     """
     Create a dictionary with tuples (technology, country) as keys and production volumes as values.
@@ -87,92 +164,14 @@ class Electricity(BaseTransformation):
         mapping = InventorySet(self.database)
         self.powerplant_map = mapping.generate_powerplant_map()
         self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
-        self.losses = get_losses_per_country_dict()
         self.production_per_tech = get_production_per_tech_dict()
-
-    def get_production_weighted_losses(self, voltage, region):
-        """
-        Return the transformation, transmission and distribution losses at a given voltage level for a given location.
-        A weighted average is made of the locations contained in the IAM region.
-
-        :param voltage: voltage level (high, medium or low)
-        :type voltage: str
-        :param region: IAM region
-        :type region: str
-        :return: tuple that contains transformation and distribution losses
-        :rtype: tuple
-        """
-
-        # Fetch locations contained in IAM region
-        locations = self.geo.iam_to_ecoinvent_location(region)
-
-        if voltage == "high":
-
-            cumul_prod, transf_loss = 0, 0
-            for loc in locations:
-                dict_loss = self.losses.get(
-                    loc,
-                    {"Transformation loss, high voltage": 0, "Production volume": 0},
-                )
-
-                transf_loss += (
-                    dict_loss["Transformation loss, high voltage"]
-                    * dict_loss["Production volume"]
-                )
-                cumul_prod += dict_loss["Production volume"]
-            transf_loss /= cumul_prod
-            return transf_loss
-
-        if voltage == "medium":
-
-            cumul_prod, transf_loss, distr_loss = 0, 0, 0
-            for loc in locations:
-                dict_loss = self.losses.get(
-                    loc,
-                    {
-                        "Transformation loss, medium voltage": 0,
-                        "Transmission loss to medium voltage": 0,
-                        "Production volume": 0,
-                    },
-                )
-                transf_loss += (
-                    dict_loss["Transformation loss, medium voltage"]
-                    * dict_loss["Production volume"]
-                )
-                distr_loss += (
-                    dict_loss["Transmission loss to medium voltage"]
-                    * dict_loss["Production volume"]
-                )
-                cumul_prod += dict_loss["Production volume"]
-            transf_loss /= cumul_prod
-            distr_loss /= cumul_prod
-            return transf_loss, distr_loss
-
-        if voltage == "low":
-
-            cumul_prod, transf_loss, distr_loss = 0, 0, 0
-
-            for loc in locations:
-                dict_loss = self.losses.get(
-                    loc,
-                    {
-                        "Transformation loss, low voltage": 0,
-                        "Transmission loss to low voltage": 0,
-                        "Production volume": 0,
-                    },
-                )
-                transf_loss += (
-                    dict_loss["Transformation loss, low voltage"]
-                    * dict_loss["Production volume"]
-                )
-                distr_loss += (
-                    dict_loss["Transmission loss to low voltage"]
-                    * dict_loss["Production volume"]
-                )
-                cumul_prod += dict_loss["Production volume"]
-            transf_loss /= cumul_prod
-            distr_loss /= cumul_prod
-            return transf_loss, distr_loss
+        losses = get_losses_per_country_dict()
+        self.network_loss = {
+            loc: get_production_weighted_losses(
+                losses, self.geo.iam_to_ecoinvent_location(loc)
+            )
+            for loc in self.regions
+        }
 
     def create_new_markets_low_voltage(self):
         """
@@ -210,58 +209,40 @@ class Electricity(BaseTransformation):
                 )
 
                 # Create an empty dataset
-                if period == 0:
-                    new_dataset = {
-                        "location": region,
-                        "name": "market group for electricity, low voltage",
-                        "reference product": "electricity, low voltage",
-                        "unit": "kilowatt hour",
-                        "database": self.database[1]["database"],
-                        "code": str(uuid.uuid4().hex),
-                        "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario} for the year {self.year}.",
-                    }
-                    # First, add the reference product exchange
-                    new_exchanges = [
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "production",
-                            "production volume": 0,
-                            "product": "electricity, low voltage",
-                            "name": "market group for electricity, low voltage",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    ]
+                new_dataset = {
+                    "location": region,
+                    "name": "market group for electricity, low voltage",
+                    "reference product": "electricity, low voltage",
+                    "unit": "kilowatt hour",
+                    "database": self.database[1]["database"],
+                    "code": str(uuid.uuid4().hex),
+                    "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
+                    f" using the pathway {self.scenario} for the year {self.year}.",
+                }
 
-                else:
-                    new_dataset = {
-                        "location": region,
-                        "name": f"market group for electricity, low voltage, {period}-year period",
-                        "reference product": "electricity, low voltage",
+                # First, add the reference product exchange
+                new_exchanges = [
+                    {
+                        "uncertainty type": 0,
+                        "loc": 1,
+                        "amount": 1,
+                        "type": "production",
+                        "production volume": 0,
+                        "product": "electricity, low voltage",
+                        "name": "market group for electricity, low voltage",
                         "unit": "kilowatt hour",
-                        "database": self.database[1]["database"],
-                        "code": str(uuid.uuid4().hex),
-                        "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario}. Average electricity mix over a {period}"
-                        f"-year period {self.year}-{self.year + period}.",
+                        "location": region,
                     }
-                    # First, add the reference product exchange
-                    new_exchanges = [
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "production",
-                            "production volume": 0,
-                            "product": "electricity, low voltage",
-                            "name": f"market group for electricity, low voltage, {period}-year period",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    ]
+                ]
+
+                if period != 0:
+                    # this dataset is for a period of time
+                    new_dataset["name"] += f", {period}-year period"
+                    new_dataset["comment"] += (
+                        f" Average electricity mix over a {period}"
+                        f"-year period {self.year}-{self.year + period}."
+                    )
+                    new_exchanges[0]["name"] += f", {period}-year period"
 
                 # Second, add an input of sulfur hexafluoride (SF6) emission to compensate the transformer's leakage
                 # And an emission of a corresponding amount
@@ -357,128 +338,76 @@ class Electricity(BaseTransformation):
                                 }
                             )
 
-                            if period == 0:
-                                log_created_markets.append(
-                                    [
-                                        f"low voltage, {self.scenario}, {self.year}",
-                                        "n/a",
-                                        region,
-                                        0,
-                                        0,
-                                        supplier[0],
-                                        supplier[1],
-                                        share,
-                                        (share * amount),
-                                    ]
-                                )
-                            else:
-                                log_created_markets.append(
-                                    [
-                                        f"low voltage, {self.scenario}, {self.year}, {period}-year period",
-                                        "n/a",
-                                        region,
-                                        0,
-                                        0,
-                                        supplier[0],
-                                        supplier[1],
-                                        share,
-                                        (share * amount),
-                                    ]
-                                )
+                            log_created_markets.append(
+                                [
+                                    f"low voltage, {self.scenario}, {self.year}"
+                                    if period == 0
+                                    else f"low voltage, {self.scenario}, {self.year}, {period}-year period",
+                                    "n/a",
+                                    region,
+                                    0,
+                                    0,
+                                    supplier[0],
+                                    supplier[1],
+                                    share,
+                                    (share * amount),
+                                ]
+                            )
 
                 # Fifth, add:
                 # * an input from the medium voltage market minus solar contribution, including distribution loss
                 # * an self-consuming input for transformation loss
 
-                transf_loss, distr_loss = self.get_production_weighted_losses(
-                    "low", region
+                transf_loss = self.network_loss[region]["low"]["transf_loss"]
+                distr_loss = self.network_loss[region]["low"]["distr_loss"]
+
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 0,
+                        "amount": (1 - solar_amount) * (1 + distr_loss),
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "electricity, medium voltage",
+                        "name": "market group for electricity, medium voltage"
+                        if period == 0
+                        else f"market group for electricity, medium voltage, {period}-year period",
+                        "unit": "kilowatt hour",
+                        "location": region,
+                    }
                 )
 
-                if period == 0:
-                    new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": (1 - solar_amount) * (1 + distr_loss),
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, medium voltage",
-                            "name": "market group for electricity, medium voltage",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    )
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 0,
+                        "amount": transf_loss,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "electricity, low voltage",
+                        "name": "market group for electricity, low voltage"
+                        if period == 0
+                        else f"market group for electricity, low voltage, {period}-year period",
+                        "unit": "kilowatt hour",
+                        "location": region,
+                    }
+                )
 
-                    new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": transf_loss,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, low voltage",
-                            "name": "market group for electricity, low voltage",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    )
-
-                    log_created_markets.append(
-                        [
-                            f"low voltage, {self.scenario}, {self.year}",
-                            "n/a",
-                            region,
-                            transf_loss,
-                            distr_loss,
-                            f"low voltage, {self.scenario}, {self.year}",
-                            region,
-                            1,
-                            (1 - solar_amount) * (1 + distr_loss),
-                        ]
-                    )
-
-                else:
-                    new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": (1 - solar_amount) * (1 + distr_loss),
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, medium voltage",
-                            "name": f"market group for electricity, medium voltage, {period}-year period",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    )
-
-                    new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": transf_loss,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, low voltage",
-                            "name": f"market group for electricity, low voltage, {period}-year period",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    )
-
-                    log_created_markets.append(
-                        [
-                            f"low voltage, {self.scenario}, {self.year}, {period}-year period",
-                            "n/a",
-                            region,
-                            transf_loss,
-                            distr_loss,
-                            f"low voltage, {self.scenario}, {self.year}",
-                            region,
-                            1,
-                            (1 - solar_amount) * (1 + distr_loss),
-                        ]
-                    )
+                log_created_markets.append(
+                    [
+                        f"low voltage, {self.scenario}, {self.year}"
+                        if period == 0
+                        else f"low voltage, {self.scenario}, {self.year}, {period}-year period",
+                        "n/a",
+                        region,
+                        transf_loss,
+                        distr_loss,
+                        f"low voltage, {self.scenario}, {self.year}",
+                        region,
+                        1,
+                        (1 - solar_amount) * (1 + distr_loss),
+                    ]
+                )
 
                 new_dataset["exchanges"] = new_exchanges
                 self.database.append(new_dataset)
@@ -487,8 +416,11 @@ class Electricity(BaseTransformation):
         self.list_datasets.extend(
             [
                 (
-                    "market group for electricity, low voltage", "electricity, low voltage", dataset[2]
-                ) for dataset in log_created_markets
+                    "market group for electricity, low voltage",
+                    "electricity, low voltage",
+                    dataset[2],
+                )
+                for dataset in log_created_markets
             ]
         )
 
@@ -523,129 +455,80 @@ class Electricity(BaseTransformation):
 
                 # Create an empty dataset
 
-                if period == 0:
-                    # this dataset is for year = `self.year`
-                    new_dataset = {
-                        "location": region,
+                new_dataset = {
+                    "location": region,
+                    "name": "market group for electricity, medium voltage",
+                    "reference product": "electricity, medium voltage",
+                    "unit": "kilowatt hour",
+                    "database": self.database[1]["database"],
+                    "code": str(uuid.uuid4().hex),
+                    "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
+                    f" using the pathway {self.scenario} for the year {self.year}.",
+                }
+
+                # First, add the reference product exchange
+                new_exchanges = [
+                    {
+                        "uncertainty type": 0,
+                        "loc": 1,
+                        "amount": 1,
+                        "type": "production",
+                        "production volume": 0,
+                        "product": "electricity, medium voltage",
                         "name": "market group for electricity, medium voltage",
-                        "reference product": "electricity, medium voltage",
                         "unit": "kilowatt hour",
-                        "database": self.database[1]["database"],
-                        "code": str(uuid.uuid4().hex),
-                        "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario} for the year {self.year}.",
-                    }
-
-                    # First, add the reference product exchange
-                    new_exchanges = [
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "production",
-                            "production volume": 0,
-                            "product": "electricity, medium voltage",
-                            "name": "market group for electricity, medium voltage",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    ]
-
-                else:
-                    # this dataset is for a period of time
-                    new_dataset = {
                         "location": region,
-                        "name": f"market group for electricity, medium voltage, {period}-year period",
-                        "reference product": "electricity, medium voltage",
-                        "unit": "kilowatt hour",
-                        "database": self.database[1]["database"],
-                        "code": str(uuid.uuid4().hex),
-                        "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario}. Average electricity mix over a {period}"
-                        f"-year period {self.year}-{self.year + period}.",
                     }
+                ]
 
-                    # First, add the reference product exchange
-                    new_exchanges = [
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "production",
-                            "production volume": 0,
-                            "product": "electricity, medium voltage",
-                            "name": f"market group for electricity, medium voltage, {period}-year period",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    ]
+                if period != 0:
+                    # this dataset is for a period of time
+                    new_dataset["name"] += f", {period}-year period"
+                    new_dataset["comment"] += (
+                        f" Average electricity mix over a {period}"
+                        f"-year period {self.year}-{self.year + period}."
+                    )
+                    new_exchanges[0]["name"] += f", {period}-year period"
 
                 # Second, add:
                 # * an input from the high voltage market, including transmission loss
                 # * an self-consuming input for transformation loss
 
-                transf_loss, distr_loss = self.get_production_weighted_losses(
-                    "medium", region
+
+                transf_loss = self.network_loss[region]["medium"]["transf_loss"]
+                distr_loss = self.network_loss[region]["medium"]["distr_loss"]
+
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 0,
+                        "amount": 1 + distr_loss,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "electricity, high voltage",
+                        "name": "market group for electricity, high voltage"
+                        if period == 0
+                        else f"market group for electricity, high voltage, {period}-year period",
+                        "unit": "kilowatt hour",
+                        "location": region,
+                    }
                 )
 
-                if period == 0:
-                    new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": 1 + distr_loss,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, high voltage",
-                            "name": "market group for electricity, high voltage",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    )
-
-                    new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": transf_loss,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, medium voltage",
-                            "name": "market group for electricity, medium voltage",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    )
-
-                else:
-
-                    new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": 1 + distr_loss,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, high voltage",
-                            "name": f"market group for electricity, high voltage, {period}-year period",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    )
-
-                    new_exchanges.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": transf_loss,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, medium voltage",
-                            "name": f"market group for electricity, medium voltage, {period}-year period",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    )
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 0,
+                        "amount": transf_loss,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": "electricity, medium voltage",
+                        "name": "market group for electricity, medium voltage"
+                        if period == 0
+                        else f"market group for electricity, medium voltage, {period}-year period",
+                        "unit": "kilowatt hour",
+                        "location": region,
+                    }
+                )
 
                 # Third, add an input to of sulfur hexafluoride emission to compensate the transformer's leakage
                 # And an emission of a corresponding amount
@@ -692,37 +575,21 @@ class Electricity(BaseTransformation):
 
                 new_dataset["exchanges"] = new_exchanges
 
-                if period == 0:
-
-                    log_created_markets.append(
-                        [
-                            f"medium voltage, {self.scenario}, {self.year}",
-                            "n/a",
-                            region,
-                            transf_loss,
-                            distr_loss,
-                            "medium voltage, {self.scenario}, {self.year}",
-                            region,
-                            1,
-                            1 + distr_loss,
-                        ]
-                    )
-
-                else:
-
-                    log_created_markets.append(
-                        [
-                            f"medium voltage, {self.scenario}, {self.year}, {period}-year period",
-                            "n/a",
-                            region,
-                            transf_loss,
-                            distr_loss,
-                            f"medium voltage, {self.scenario}, {self.year}",
-                            region,
-                            1,
-                            1 + distr_loss,
-                        ]
-                    )
+                log_created_markets.append(
+                    [
+                        f"medium voltage, {self.scenario}, {self.year}"
+                        if period == 0
+                        else f"medium voltage, {self.scenario}, {self.year}, {period}-year period",
+                        "n/a",
+                        region,
+                        transf_loss,
+                        distr_loss,
+                        f"medium voltage, {self.scenario}, {self.year}",
+                        region,
+                        1,
+                        1 + distr_loss,
+                    ]
+                )
 
                 self.database.append(new_dataset)
 
@@ -730,8 +597,11 @@ class Electricity(BaseTransformation):
         self.list_datasets.extend(
             [
                 (
-                    "market group for electricity, medium voltage", "electricity, medium voltage", dataset[2]
-                ) for dataset in log_created_markets
+                    "market group for electricity, medium voltage",
+                    "electricity, medium voltage",
+                    dataset[2],
+                )
+                for dataset in log_created_markets
             ]
         )
 
@@ -755,9 +625,7 @@ class Electricity(BaseTransformation):
         log_created_markets = []
 
         for region in self.regions:
-
             for period in range(0, 60, 10):
-
                 electriciy_mix = dict(
                     zip(
                         self.iam_data.electricity_markets.variables.values,
@@ -774,66 +642,43 @@ class Electricity(BaseTransformation):
                 # Fetch ecoinvent regions contained in the IAM region
                 ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
 
-                # Create an empty dataset
-                if period == 0:
-                    # this dataset is for one year
-                    new_dataset = {
-                        "location": region,
+                new_dataset = {
+                    "location": region,
+                    "name": "market group for electricity, high voltage",
+                    "reference product": "electricity, high voltage",
+                    "unit": "kilowatt hour",
+                    "database": self.database[1]["database"],
+                    "code": str(uuid.uuid4().hex),
+                    "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
+                    f" using the pathway {self.scenario} for the year {self.year}.",
+                }
+
+                # First, add the reference product exchange
+                new_exchanges = [
+                    {
+                        "uncertainty type": 0,
+                        "loc": 1,
+                        "amount": 1,
+                        "type": "production",
+                        "production volume": 0,
+                        "product": "electricity, high voltage",
                         "name": "market group for electricity, high voltage",
-                        "reference product": "electricity, high voltage",
                         "unit": "kilowatt hour",
-                        "database": self.database[1]["database"],
-                        "code": str(uuid.uuid4().hex),
-                        "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario} for the year {self.year}.",
-                    }
-
-                    # First, add the reference product exchange
-                    new_exchanges = [
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "production",
-                            "production volume": 0,
-                            "product": "electricity, high voltage",
-                            "name": "market group for electricity, high voltage",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    ]
-
-                else:
-                    # this dataset is for a period of time
-                    new_dataset = {
                         "location": region,
-                        "name": f"market group for electricity, high voltage, {period}-year period",
-                        "reference product": "electricity, high voltage",
-                        "unit": "kilowatt hour",
-                        "database": self.database[1]["database"],
-                        "code": str(uuid.uuid4().hex),
-                        "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                        f" using the pathway {self.scenario}. Average electricity mix over a {period}"
-                        f"-year period {self.year}-{self.year + period}.",
                     }
+                ]
 
-                    # First, add the reference product exchange
-                    new_exchanges = [
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "production",
-                            "production volume": 0,
-                            "product": "electricity, high voltage",
-                            "name": f"market group for electricity, high voltage, {period}-year period",
-                            "unit": "kilowatt hour",
-                            "location": region,
-                        }
-                    ]
+                if period != 0:
+                    # this dataset is for a period of time
+                    new_dataset["name"] += f", {period}-year period"
+                    new_dataset["comment"] += (
+                        f" Average electricity mix over a {period}"
+                        f"-year period {self.year}-{self.year + period}."
+                    )
+                    new_exchanges[0]["name"] += f", {period}-year period"
 
                 # Second, add transformation loss
-                transf_loss = self.get_production_weighted_losses("high", region)
+                transf_loss = self.network_loss[region]["high"]["transf_loss"]
                 new_exchanges.append(
                     {
                         "uncertainty type": 0,
@@ -892,7 +737,6 @@ class Electricity(BaseTransformation):
                         suppliers = get_shares_from_production_volume(suppliers)
 
                         for supplier, share in suppliers.items():
-
                             new_exchanges.append(
                                 {
                                     "uncertainty type": 0,
@@ -907,48 +751,35 @@ class Electricity(BaseTransformation):
                                 }
                             )
 
-                            if period == 0:
-
-                                log_created_markets.append(
-                                    [
-                                        f"high voltage, {self.scenario}, {self.year}",
-                                        technology,
-                                        region,
-                                        transf_loss,
-                                        0.0,
-                                        supplier[0],
-                                        supplier[1],
-                                        share,
-                                        (amount * share) / (1 - solar_amount),
-                                    ]
-                                )
-                            else:
-                                log_created_markets.append(
-                                    [
-                                        f"high voltage, {self.scenario}, {self.year}, {period}-year period",
-                                        technology,
-                                        region,
-                                        transf_loss,
-                                        0.0,
-                                        supplier[0],
-                                        supplier[1],
-                                        share,
-                                        (amount * share) / (1 - solar_amount),
-                                    ]
-                                )
+                            log_created_markets.append(
+                                [
+                                    f"high voltage, {self.scenario}, {self.year}"
+                                    if period == 0
+                                    else f"high voltage, {self.scenario}, {self.year}, {period}-year period",
+                                    technology,
+                                    region,
+                                    transf_loss,
+                                    0.0,
+                                    supplier[0],
+                                    supplier[1],
+                                    share,
+                                    (amount * share) / (1 - solar_amount),
+                                ]
+                            )
 
                 new_dataset["exchanges"] = new_exchanges
 
                 self.database.append(new_dataset)
 
-
-
         # update `self.list_datasets`
         self.list_datasets.extend(
             [
                 (
-                    "market group for electricity, high voltage", "electricity, high voltage", dataset[2]
-                ) for dataset in log_created_markets
+                    "market group for electricity, high voltage",
+                    "electricity, high voltage",
+                    dataset[2],
+                )
+                for dataset in log_created_markets
             ]
         )
 
@@ -1020,17 +851,16 @@ class Electricity(BaseTransformation):
             dict_technology = technologies_map[technology]
             print("Rescale inventories and emissions for", technology)
 
-            datasets = [
-                d
-                for d in self.database
-                if d["name"] in dict_technology["technology filters"]
-                and d["unit"] == "kilowatt hour"
-            ]
-
-            # no activities found? Check filters!
-            assert len(datasets) > 0, f"No dataset found for {technology}"
-
-            for dataset in datasets:
+            for dataset in ws.get_many(
+                self.database,
+                ws.equals("unit", "kilowatt hour"),
+                ws.either(
+                    *[
+                        ws.contains("name", n)
+                        for n in dict_technology["technology filters"]
+                    ]
+                ),
+            ):
 
                 # Find current efficiency
                 ei_eff = dict_technology["current_eff_func"](
@@ -1043,7 +873,7 @@ class Electricity(BaseTransformation):
                     location=self.geo.ecoinvent_to_iam_location(dataset["location"]),
                 )
 
-                new_efficiency = ei_eff * scaling_factor
+                new_efficiency = ei_eff * 1 / scaling_factor
 
                 # we log changes in efficiency
                 eff_change_log.append(
@@ -1059,32 +889,15 @@ class Electricity(BaseTransformation):
                 # from the IAM efficiency values
                 wurst.change_exchanges_by_constant_factor(
                     dataset,
-                    1 / float(scaling_factor),
+                    scaling_factor,
                     [],
                     [ws.doesnt_contain_any("name", self.emissions_map)],
                 )
 
-                # Update biosphere exchanges according to GAINS emission values
-                for exc in ws.biosphere(
-                    dataset,
-                    ws.either(*[ws.contains("name", x) for x in self.emissions_map]),
-                ):
-                    pollutant = self.emissions_map[exc["name"]]
-
-                    scaling_factor = self.find_gains_emissions_change(
-                        pollutant=pollutant,
-                        sector=technology,
-                        location=self.geo.iam_to_GAINS_region(
-                            self.geo.ecoinvent_to_iam_location(dataset["location"])
-                        ),
-                    )
-
-                    if exc["amount"] == 0:
-                        wurst.rescale_exchange(
-                            exc, scaling_factor / 1, remove_uncertainty=True
-                        )
-                    else:
-                        wurst.rescale_exchange(exc, 1 / scaling_factor)
+                # update the emissions of pollutants
+                dataset = self.update_pollutant_emissions(
+                    dataset=dataset, sector=technology
+                )
 
         with open(
             DATA_DIR
@@ -1118,19 +931,28 @@ class Electricity(BaseTransformation):
             "electricity, high voltage, production mix",
         ]
 
+        # we want to preserve some electricity-related datasets
+        list_to_preserve = [
+            "cobalt industry",
+            "aluminium industry",
+            "label-certified",
+            "renewable energy products",
+            "for reuse in municipal waste incineration",
+            "Swiss Federal Railways",
+        ]
+
         # Writing log of deleted markets
-        # We want to preserve special markets for the cobalt industry
-        # because if we delete cobalt industry-specific electricity markets
-        # the carbon footprint of cobalt mining explodes (as it is currently mostly
-        # mined in the RDC with 95% hydro-power)!
+        # We want to preserve special markets for the cobalt/aluminium industry
+        # because those industries have their own on-site power plants
+        # and are therefore not fed by the grid
         markets_to_delete = [
             [i["name"], i["location"]]
             for i in self.database
             if any(item_to_remove in i["name"] for item_to_remove in list_to_remove)
-            and not any(item_to_keep in i["reference product"] for item_to_keep in [
-                "cobalt industry",
-                "for reuse in municipal waste incineration"
-            ])
+            and not any(
+                item_to_keep in i["reference product"]
+                for item_to_keep in list_to_preserve
+            )
         ]
 
         if not os.path.exists(DATA_DIR / "logs"):
@@ -1150,8 +972,8 @@ class Electricity(BaseTransformation):
         self.database = [
             i
             for i in self.database
-            if not any(stop in i["name"] for stop in list_to_remove)
-            or "cobalt industry" in i["reference product"]
+            if not any(item in i["name"] for item in list_to_remove)
+            or any(item in i["reference product"] for item in list_to_preserve)
         ]
         # update `self.list_datasets`
         self.list_datasets = get_tuples_from_database(self.database)
@@ -1167,12 +989,13 @@ class Electricity(BaseTransformation):
         # Finally, we need to relink all electricity-consuming activities to the new electricity markets
         print("Link activities to new electricity markets.")
 
-        self.relink_datasets(excludes_datasets=["cobalt industry", "market group for electricity"],
-                             alternative_names=[
-                                 "market group for electricity, high voltage",
-                                 "market group for electricity, medium voltage",
-                                 "market group for electricity, low voltage"
-                             ]
+        self.relink_datasets(
+            excludes_datasets=["cobalt industry", "market group for electricity"],
+            alt_names=[
+                "market group for electricity, high voltage",
+                "market group for electricity, medium voltage",
+                "market group for electricity, low voltage",
+            ],
         )
 
         print(f"Log of deleted electricity markets saved in {DATA_DIR}/logs")

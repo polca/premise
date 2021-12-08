@@ -291,7 +291,7 @@ class Geomap:
             "UKR": "REF",
             "USA": "USA",
             "WAF": "SSA",
-            "WEU": "EUR",
+            "WEU": "NEU",
             "World": "EUR",
         }
 
