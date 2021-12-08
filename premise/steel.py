@@ -44,188 +44,71 @@ class Steel(BaseTransformation):
             # Electricity: 0.024 kWh/kg CO2 for capture, 0.146 kWh/kg CO2 for compression
             carbon_capture_electricity = (amount_CO2 * rate) * (0.146 + 0.024)
 
-            try:
-                new_supplier = ws.get_one(
-                    self.database,
-                    ws.equals("name", "market group for electricity, medium voltage"),
-                    ws.equals("location", loc),
-                    ws.equals("reference product", "electricity, medium voltage"),
+            ecoinvent_regions = self.geo.iam_to_ecoinvent_location(loc)
+            possible_locations = [[loc], ecoinvent_regions, ["RER"], ["RoW"]]
+            suppliers, counter = [], 0
+
+            while len(suppliers) == 0:
+                suppliers = list(
+                    get_suppliers_of_a_region(
+                        database=self.database,
+                        locations=possible_locations[counter],
+                        names=["electricity, medium voltage"],
+                        reference_product="electricity",
+                        unit="kilowatt hour",
+                    )
                 )
+                counter += 1
+
+            suppliers = get_shares_from_production_volume(suppliers)
+
+            for supplier, share in suppliers.items():
                 new_exchanges.append(
                     {
                         "uncertainty type": 0,
                         "loc": 1,
-                        "amount": carbon_capture_electricity,
+                        "amount": carbon_capture_electricity * share,
                         "type": "technosphere",
                         "production volume": 0,
-                        "product": "electricity, medium voltage",
-                        "name": "market group for electricity, medium voltage",
-                        "unit": "kilowatt hour",
-                        "location": new_supplier["location"],
+                        "product": supplier["reference product"],
+                        "name": supplier["name"],
+                        "unit": supplier["unit"],
+                        "location": supplier["location"],
                     }
                 )
 
-            except ws.NoResults:
-                # maybe update_electricity has not been applied
-                try:
-                    new_supplier = ws.get_one(
-                        self.database,
-                        ws.equals(
-                            "name", "market group for electricity, medium voltage"
-                        ),
-                        ws.either(
-                            *[
-                                ws.equals("location", l[1])
-                                if isinstance(l, tuple)
-                                else ws.equals("location", l)
-                                for l in self.geo.iam_to_ecoinvent_location(loc)
-                            ]
-                        ),
-                        ws.equals("reference product", "electricity, medium voltage"),
-                    )
-                    new_exchanges = [
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": carbon_capture_electricity,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": "electricity, medium voltage",
-                            "name": "market group for electricity, medium voltage",
-                            "unit": "kilowatt hour",
-                            "location": new_supplier["location"],
-                        }
-                    ]
-                except ws.MultipleResults:
-                    # We have several potential electricity suppliers
-                    # We will look up their respective production volumes
-                    # And include them proportionally to it
-
-                    possible_suppliers = ws.get_many(
-                        self.database,
-                        ws.equals(
-                            "name", "market group for electricity, medium voltage"
-                        ),
-                        ws.either(
-                            *[
-                                ws.equals("location", l[1])
-                                if isinstance(l, tuple)
-                                else ws.equals("location", l)
-                                for l in self.geo.iam_to_ecoinvent_location(loc)
-                            ]
-                        ),
-                        ws.equals("reference product", "electricity, medium voltage"),
-                    )
-
-                    possible_suppliers = get_shares_from_production_volume(
-                        possible_suppliers
-                    )
-
-                    new_exchanges = []
-                    for supplier in possible_suppliers:
-                        new_exchanges.append(
-                            {
-                                "uncertainty type": 0,
-                                "loc": 1,
-                                "amount": carbon_capture_electricity
-                                * possible_suppliers[supplier],
-                                "type": "technosphere",
-                                "production volume": 0,
-                                "product": "electricity, medium voltage",
-                                "name": "market group for electricity, medium voltage",
-                                "unit": "kilowatt hour",
-                                "location": supplier[1],
-                            }
-                        )
-
-                except ws.NoResults:
-                    # there's no "market group for electricity" matching the location
-                    # we try with "market for electricity"
-                    try:
-                        new_supplier = ws.get_one(
-                            self.database,
-                            ws.equals("name", "market for electricity, medium voltage"),
-                            ws.either(
-                                *[
-                                    ws.equals("location", l[1])
-                                    if isinstance(l, tuple)
-                                    else ws.equals("location", l)
-                                    for l in self.geo.iam_to_ecoinvent_location(loc)
-                                ]
-                            ),
-                            ws.equals(
-                                "reference product", "electricity, medium voltage"
-                            ),
-                        )
-                        new_exchanges = [
-                            {
-                                "uncertainty type": 0,
-                                "loc": 1,
-                                "amount": carbon_capture_electricity,
-                                "type": "technosphere",
-                                "production volume": 0,
-                                "product": "electricity, medium voltage",
-                                "name": "market for electricity, medium voltage",
-                                "unit": "kilowatt hour",
-                                "location": new_supplier["location"],
-                            }
-                        ]
-                    except ws.MultipleResults:
-                        # We have several potential electricity suppliers
-                        # We will look up their respective production volumes
-                        # And include them proportionally to it
-
-                        possible_suppliers = ws.get_many(
-                            self.database,
-                            ws.equals("name", "market for electricity, medium voltage"),
-                            ws.either(
-                                *[
-                                    ws.equals("location", l[1])
-                                    if isinstance(l, tuple)
-                                    else ws.equals("location", l)
-                                    for l in self.geo.iam_to_ecoinvent_location(loc)
-                                ]
-                            ),
-                            ws.equals(
-                                "reference product", "electricity, medium voltage"
-                            ),
-                        )
-                        possible_suppliers = get_shares_from_production_volume(
-                            possible_suppliers
-                        )
-
-                        new_exchanges = []
-                        for supplier in possible_suppliers:
-                            new_exchanges.append(
-                                {
-                                    "uncertainty type": 0,
-                                    "loc": 1,
-                                    "amount": carbon_capture_electricity
-                                    * possible_suppliers[supplier],
-                                    "type": "technosphere",
-                                    "production volume": 0,
-                                    "product": "electricity, medium voltage",
-                                    "name": "market for electricity, medium voltage",
-                                    "unit": "kilowatt hour",
-                                    "location": supplier[1],
-                                }
-                            )
-
             carbon_capture_heat = (amount_CO2 * rate) * 3.48
 
-            new_exchanges.append(
-                {
-                    "uncertainty type": 0,
-                    "loc": 1,
-                    "amount": carbon_capture_heat,
-                    "type": "technosphere",
-                    "production volume": 0,
-                    "product": "heat, from steam, in chemical industry",
-                    "name": "steam production, as energy carrier, in chemical industry",
-                    "unit": "megajoule",
-                    "location": "RoW",
-                }
-            )
+            while len(suppliers) == 0:
+                suppliers = list(
+                    get_suppliers_of_a_region(
+                        database=self.database,
+                        locations=possible_locations[counter],
+                        names=[
+                            "steam production, as energy carrier, in chemical industry"
+                        ],
+                        reference_product="heat, from steam, in chemical industry",
+                        unit="megajoule",
+                    )
+                )
+                counter += 1
+
+            suppliers = get_shares_from_production_volume(suppliers)
+
+            for supplier, share in suppliers.items():
+                new_exchanges.append(
+                    {
+                        "uncertainty type": 0,
+                        "loc": 1,
+                        "amount": carbon_capture_heat * share,
+                        "type": "technosphere",
+                        "production volume": 0,
+                        "product": supplier["reference product"],
+                        "name": supplier["name"],
+                        "unit": supplier["unit"],
+                        "location": supplier["location"],
+                    }
+                )
 
         return rate, new_exchanges
 
@@ -251,9 +134,9 @@ class Steel(BaseTransformation):
         print("Create steel markets for different regions")
 
         for i in (
-                ("market for steel, low-alloyed", "steel, low-alloyed"),
-                ("market for steel, unalloyed", "steel, unalloyed"),
-                ("market for steel, chromium steel 18/8", "steel, chromium steel 18/8"),
+            ("market for steel, low-alloyed", "steel, low-alloyed"),
+            ("market for steel, unalloyed", "steel, unalloyed"),
+            ("market for steel, chromium steel 18/8", "steel, chromium steel 18/8"),
         ):
             steel_markets = self.fetch_proxies(
                 name=i[0],
@@ -262,7 +145,7 @@ class Steel(BaseTransformation):
                 relink=False,
             )
 
-            steel_markets = {r: d for r,d in steel_markets.items() if r!= "World"}
+            steel_markets = {r: d for r, d in steel_markets.items() if r != "World"}
 
             # adjust share of primary and secondary steel
             if i[0] == "market for steel, low-alloyed":
@@ -309,21 +192,23 @@ class Steel(BaseTransformation):
                     ]
 
                     dataset["exchanges"] = [
-                        e for e in dataset["exchanges"] if e["type"] == "production"
-                                                           or e["unit"] == "ton kilometer"
+                        e
+                        for e in dataset["exchanges"]
+                        if e["type"] == "production" or e["unit"] == "ton kilometer"
                     ]
                     dataset["exchanges"].extend(new_exc)
 
             else:
                 for loc, dataset in steel_markets.items():
-                    dataset["exchanges"] = [
-                        e for e in dataset["exchanges"]
-                        if e["type"] == "production" or
-                           e["unit"] == "ton kilometer"
-                    ]
+                    name_ref = [(e["name"], e.get("product")) for e in dataset["exchanges"]
+                                if "steel production" in e["name"]][0]
+                    name, ref = name_ref
 
-                    name = i[0].replace("market for ", "").replace("steel,", "steel production,")
-                    ref_prod = i[1]
+                    dataset["exchanges"] = [
+                        e
+                        for e in dataset["exchanges"]
+                        if e["type"] == "production" or e["unit"] == "ton kilometer"
+                    ]
 
                     dataset["exchanges"].append(
                         {
@@ -332,7 +217,7 @@ class Steel(BaseTransformation):
                             "amount": 1,
                             "type": "technosphere",
                             "production volume": 1,
-                            "product": ref_prod,
+                            "product": ref,
                             "name": name,
                             "unit": "kilogram",
                             "location": loc,
@@ -340,6 +225,8 @@ class Steel(BaseTransformation):
                     )
 
             self.database.extend([v for v in steel_markets.values()])
+
+
 
             created_datasets.extend(
                 [
@@ -349,12 +236,12 @@ class Steel(BaseTransformation):
             )
 
             # Create global market for steel
-            region = ws.get_one(
+            region = list(ws.get_many(
                 self.database,
                 ws.equals("name", i[0]),
                 ws.contains("reference product", "steel"),
-                ws.equals("location", "WEU" if self.model == "image" else "EUR"),
-            )
+            ))[0]
+
             d = copy.deepcopy(region)
             d["location"] = "World"
             d["code"] = str(uuid.uuid4().hex)
@@ -373,16 +260,16 @@ class Steel(BaseTransformation):
             regions = [r for r in self.regions if r != "World"]
             for region in regions:
                 share = (
-                        self.iam_data.production_volumes.sel(
-                            variables=["primary steel", "secondary steel"], region=region
-                        )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
-                        / self.iam_data.production_volumes.sel(
-                    variables=["primary steel", "secondary steel"], region="World"
-                )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
+                    self.iam_data.production_volumes.sel(
+                        variables=["primary steel", "secondary steel"], region=region
+                    )
+                    .interp(year=self.year)
+                    .sum(dim="variables")
+                    / self.iam_data.production_volumes.sel(
+                        variables=["primary steel", "secondary steel"], region="World"
+                    )
+                    .interp(year=self.year)
+                    .sum(dim="variables")
                 ).values.item(0)
 
                 d["exchanges"].append(
@@ -402,14 +289,6 @@ class Steel(BaseTransformation):
             self.list_datasets.append(
                 (d["name"], d["reference product"], d["location"])
             )
-
-        self.relink_datasets(
-            excludes_datasets=[
-                "market for steel, low-alloyed",
-                "market for steel, unalloyed",
-                "market for steel, chromium steel 18/8",
-            ]
-        )
 
         # Determine all steel activities in the database. Delete old datasets.
         print("Create new steel production datasets and delete old datasets")
@@ -452,11 +331,12 @@ class Steel(BaseTransformation):
             "oil",
             "electricity",
             "natural gas",
+            "steam"
         ]
 
         for steel in d_act_steel:
 
-            for region in d_act_steel[steel]:
+            for region, activity in d_act_steel[steel].items():
 
                 # the correction factor applied to all fuel/electricity input is
                 # equal to the ration fuel/output in the year in question
@@ -464,87 +344,60 @@ class Steel(BaseTransformation):
 
                 sector = (
                     "primary steel"
-                    if "converter" in d_act_steel[steel][region]["name"]
+                    if "converter" in activity["name"]
                     else "secondary steel"
                 )
-                correction_factor = self.find_iam_efficiency_change(
-                    variable=sector, location=d_act_steel[steel][region]["location"],
+                scaling_factor = 1 / self.find_iam_efficiency_change(
+                    variable=sector, location=activity["location"],
                 )
 
                 # update comments
-                text = f"This dataset has been modified by `premise`, according to " \
-                    f"the performance for steel production indicated by the IAM model {self.model.upper()} " \
-                    f"for the IAM region {region} in {self.year}, following the scenario {self.scenario}. " \
-                    f"Among other things, the energy efficiency of the process " \
-                    f"has been improved by {int((correction_factor - 1) * 100)}%. "
+                text = (
+                    f"This dataset has been modified by `premise`, according to "
+                    f"the performance for steel production indicated by the IAM model {self.model.upper()} "
+                    f"for the IAM region {region} in {self.year}, following the scenario {self.scenario}. "
+                    f"The energy efficiency of the process "
+                    f"has been improved by {int(1 - (1 / scaling_factor) * 100)}%. "
+                )
 
-                d_act_steel[steel][region]["comment"] = text + d_act_steel[steel][region]["comment"]
+                d_act_steel[steel][region]["comment"] = text + activity["comment"]
 
-                for exc in ws.technosphere(
-                    d_act_steel[steel][region],
-                    ws.either(*[ws.contains("name", x) for x in list_fuels]),
+                wurst.change_exchanges_by_constant_factor(
+                    activity,
+                    scaling_factor,
+                    technosphere_filters=[
+                        ws.either(*[ws.contains("name", x) for x in list_fuels])
+                    ],
+                    biosphere_filters=[ws.contains("name", "Carbon dioxide, fossil")],
+                )
+
+                # Add carbon capture-related energy exchanges
+                # Carbon capture rate: share of capture of total CO2 emitted
+                # Note: only if variables exist in IAM data
+
+                for bio in ws.biosphere(
+                    activity, ws.contains("name", "Carbon dioxide, fossil")
                 ):
-                    if correction_factor != 0 and ~np.isnan(correction_factor):
-                        if exc["amount"] == 0:
-                            wurst.rescale_exchange(
-                                exc, correction_factor / 1, remove_uncertainty=True
-                            )
-                        else:
-                            wurst.rescale_exchange(exc, 1 / correction_factor)
-
-                        exc[
-                            "comment"
-                        ] = "This exchange has been modified based on IAM projections " \
-                            "for the steel sector by `premise`."
-
-                for exc in ws.biosphere(
-                    d_act_steel[steel][region],
-                    ws.contains("name", "Carbon dioxide, fossil"),
-                ):
-                    if correction_factor != 0 and ~np.isnan(correction_factor):
-                        if exc["amount"] == 0:
-                            wurst.rescale_exchange(
-                                exc, correction_factor / 1, remove_uncertainty=True
-                            )
-                        else:
-                            wurst.rescale_exchange(exc, 1 / correction_factor)
-
-                        exc[
-                            "comment"
-                        ] = "This exchange has been modified based on IAM projections " \
-                            "for the steel sector by `premise`."
-
-                    # Add carbon capture-related energy exchanges
-                    # Carbon capture rate: share of capture of total CO2 emitted
-                    # Note: only if variables exist in IAM data
 
                     (
                         carbon_capture_rate,
                         new_exchanges,
                     ) = self.get_carbon_capture_energy_inputs(
-                        exc["amount"], region, sector=sector
+                        bio["amount"], region, sector=sector
                     )
 
                     if carbon_capture_rate > 0:
-                        exc["amount"] *= 1 - carbon_capture_rate
-                        d_act_steel[steel][region]["exchanges"].extend(new_exchanges)
+                        bio["amount"] *= 1 - carbon_capture_rate
+                        activity["exchanges"].extend(new_exchanges)
 
                 # Update hot pollutant emission according to GAINS
-                self.update_pollutant_emissions(
-                    dataset=d_act_steel[steel][region], sector="steel"
-                )
+                dataset = self.update_pollutant_emissions(dataset=activity, sector="steel")
 
             self.database.extend([v for v in d_act_steel[steel].values()])
 
         print("Relink new steel production datasets to steel-consuming activities")
 
-        self.relink_datasets(
-            excludes_datasets=[
-                "steel production, electric, chromium steel 18/8",
-                "steel production, electric, low-alloyed",
-                "steel production, converter, unalloyed",
-            ]
-        )
+        self.relink_datasets()
 
         print("Done!")
 

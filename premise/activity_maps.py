@@ -80,9 +80,11 @@ class InventorySet:
         "petrol": {
             "fltr": {
                 "reference product": ["petrol, low-sulfur", "petrol, unleaded"],
-                "name": "petrol production, unleaded",
+                "name": ["petrol production, unleaded",
+                         "petrol production, unleaded, petroleum refinery operation"
+                         ],
             },
-            "mask": {"name": ["market", "import", "synthetic", "burned"]},
+            "mask": {"name": ["market", "import", "synthetic", "burned", "wax"]},
         },  # OK
         "bioethanol": {"fltr": ["market for ethanol", "Ethanol, from"]},  # OK
         "bioethanol, woody": {
