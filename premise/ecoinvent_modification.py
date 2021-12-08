@@ -10,13 +10,16 @@ from .electricity import Electricity
 from .renewables import SolarPV
 from .inventory_imports import (
     DefaultInventory,
+    CarculatorInventory,
+    TruckInventory,
     VariousVehicles,
     AdditionalInventory,
+    PassengerCars,
+    Trucks,
 )
 from .cement import Cement
 from .steel import Steel
 from .fuels import Fuels
-from .transport import Transport
 from .export import Export
 from .utils import eidb_label, add_modified_tags, build_superstructure_db
 
@@ -84,9 +87,7 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
-FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
-
-
+FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILE_PATH_INVENTORIES_EI_38 = INVENTORY_DIR / "inventory_data_ei_38.pickle"
 FILE_PATH_INVENTORIES_EI_37 = INVENTORY_DIR / "inventory_data_ei_37.pickle"
 FILE_PATH_INVENTORIES_EI_36 = INVENTORY_DIR / "inventory_data_ei_36.pickle"
@@ -175,7 +176,7 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_solar_pv",
     "update_fuels",
-    "update_buses",
+    "update_buses"
 ]
 
 # Disable printing
@@ -582,7 +583,7 @@ class NewDatabase:
         source_file_path=None,
         additional_inventories=None,
         system_model="attributional",
-        time_horizon=None,
+        time_horison=None,
         use_cached_inventories=True,
         use_cached_database=True,
     ):
@@ -592,7 +593,7 @@ class NewDatabase:
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
         self.time_horizon = (
-            check_time_horizon(time_horizon)
+            check_time_horizon(time_horison)
             if system_model == "consequential"
             else None
         )
@@ -614,14 +615,14 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
+        print("\n////////////////////// EXTRACTING SOURCE DATABASE //////////////////")
         if use_cached_database:
             self.database = self.__find_cached_db(source_db)
             print("Done!")
         else:
             self.database = self.__clean_database()
 
-        print("\n////////////////// IMPORTING DEFAULT INVENTORIES ///////////////////")
+        print("\n/////////////////// IMPORTING DEFAULT INVENTORIES //////////////////")
         if use_cached_inventories:
             data = self.__find_cached_inventories(source_db)
             if data is not None:
@@ -633,7 +634,7 @@ class NewDatabase:
         if self.additional_inventories:
             self.__import_additional_inventories()
 
-        print("\n/////////////////////// EXTRACTING IAM DATA ////////////////////////")
+        print("\n///////////////////// EXTRACTING IAM DATA //////////////////////////")
 
         for scenario in self.scenarios:
             scenario["external data"] = IAMDataCollection(
@@ -728,7 +729,6 @@ class NewDatabase:
                 (FILEPATH_DAC_INVENTORIES, "3.7"),
                 (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
                 (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
-                (FILEPATH_BATTERIES, "3.8"),
                 (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
                 (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
                 (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
@@ -819,13 +819,13 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     year=scenario["year"],
                     version=self.version,
-                    original_db=self.database,
+                    original_db=self.database
                 )
 
                 scenario["database"] = fuels.generate_fuel_markets()
 
     def update_cement(self):
-        print("\n///////////////////////////// CEMENT //////////////////////////////")
+        print("\n//////////////////////////// CEMENT /////////////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
@@ -842,7 +842,7 @@ class NewDatabase:
                 scenario["database"] = cement.add_datasets_to_database()
 
     def update_steel(self):
-        print("\n////////////////////////////// STEEL //////////////////////////////")
+        print("\n//////////////////////////// STEEL /////////////////////////////")
 
         for scenario in self.scenarios:
 
@@ -859,26 +859,43 @@ class NewDatabase:
                 scenario["database"] = steel.generate_activities()
 
     def update_cars(self):
-        print("\n///////////////////////// PASSENGER CARS ///////////////////////////")
+        print("\n////////////////////////// PASSENGER CARS //////////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cars" not in scenario["exclude"]:
-                trsp = Transport(
-                    database=scenario["database"],
-                    year=scenario["year"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
-                    version=self.version,
-                    vehicle_type="car",
-                    relink=False,
-                    has_fleet=True,
-                )
 
-                scenario["database"] = trsp.create_vehicle_markets()
+                if scenario["passenger_cars"]:
+                    # Load fleet-specific inventories
+                    # Import `carculator` inventories if wanted
+                    cars = CarculatorInventory(
+                        database=scenario["database"],
+                        version=self.version,
+                        fleet_file=scenario["passenger_cars"]["fleet file"],
+                        model=scenario["model"],
+                        year=scenario["year"],
+                        regions=scenario["passenger_cars"]["regions"],
+                        filters=scenario["passenger_cars"]["filters"],
+                        iam_data=scenario["external data"].data,
+                    )
+
+                else:
+                    # Load fleet default inventories
+                    cars = PassengerCars(
+                        database=scenario["database"],
+                        version_in="3.7",
+                        version_out=self.version,
+                        model=scenario["model"],
+                        year=scenario["year"],
+                        regions=scenario["external data"]
+                        .data.coords["region"]
+                        .values.tolist(),
+                        iam_data=scenario["external data"].data,
+                    )
+
+                scenario["database"] = cars.merge_inventory()
 
     def update_two_wheelers(self):
-        print("\n////////////////////////// TWO-WHEELERS ////////////////////////////")
+        print("\n/////////////////////////// TWO-WHEELERS ///////////////////////////")
 
         for scenario in self.scenarios:
             if (
@@ -886,19 +903,18 @@ class NewDatabase:
                 or "update_two_wheelers" not in scenario["exclude"]
             ):
 
-                trsp = Transport(
+                various_veh = VariousVehicles(
                     database=scenario["database"],
+                    version_in="3.7",
+                    version_out=self.version,
+                    path=FILEPATH_TWO_WHEELERS,
                     year=scenario["year"],
+                    regions=scenario["external data"]
+                    .data.coords["region"]
+                    .values.tolist(),
                     model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
-                    version=self.version,
-                    vehicle_type="two wheeler",
-                    relink=False,
-                    has_fleet=True,
                 )
-
-                scenario["database"] = trsp.create_vehicle_markets()
+                scenario["database"] = various_veh.merge_inventory()
 
     def update_trucks(self):
 
@@ -906,41 +922,38 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_trucks" not in scenario["exclude"]:
+                if scenario["trucks"]:
 
-                trsp = Transport(
-                    database=scenario["database"],
-                    year=scenario["year"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
-                    version=self.version,
-                    vehicle_type="truck",
-                    relink=False,
-                    has_fleet=True,
-                )
+                    # Load fleet-specific inventories
+                    # Import `carculator_truck` inventories if wanted
 
-                scenario["database"] = trsp.create_vehicle_markets()
+                    trucks = TruckInventory(
+                        database=scenario["database"],
+                        version_in="3.7",
+                        version_out=self.version,
+                        fleet_file=scenario["trucks"]["fleet file"],
+                        model=scenario["model"],
+                        year=scenario["year"],
+                        regions=scenario["trucks"]["regions"],
+                        filters=scenario["trucks"]["filters"],
+                        iam_data=scenario["external data"].data,
+                    )
 
-    def update_buses(self):
+                else:
+                    # Load default trucks inventories
+                    trucks = Trucks(
+                        database=scenario["database"],
+                        version_in="3.7",
+                        version_out=self.version,
+                        model=scenario["model"],
+                        year=scenario["year"],
+                        regions=scenario["external data"]
+                        .data.coords["region"]
+                        .values.tolist(),
+                        iam_data=scenario["external data"].data,
+                    )
 
-        print("\n////////////////////////////// BUSES ///////////////////////////////")
-
-        for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_buses" not in scenario["exclude"]:
-
-                trsp = Transport(
-                    database=scenario["database"],
-                    year=scenario["year"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
-                    version=self.version,
-                    vehicle_type="bus",
-                    relink=False,
-                    has_fleet=True,
-                )
-
-                scenario["database"] = trsp.create_vehicle_markets()
+                scenario["database"] = trucks.merge_inventory()
 
     def update_solar_pv(self):
         print("\n/////////////////////////// SOLAR PV ////////////////////////////")
@@ -962,7 +975,6 @@ class NewDatabase:
         self.update_two_wheelers()
         self.update_cars()
         self.update_trucks()
-        self.update_buses()
         self.update_electricity()
         self.update_solar_pv()
         self.update_cement()
