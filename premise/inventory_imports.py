@@ -5,8 +5,6 @@ import sys
 import uuid
 from pathlib import Path
 
-import carculator
-import carculator_truck
 import numpy as np
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter

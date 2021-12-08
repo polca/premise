@@ -176,6 +176,7 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_solar_pv",
     "update_fuels",
+    "update_buses"
 ]
 
 # Disable printing
