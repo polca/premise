@@ -243,7 +243,10 @@ class BaseTransformation:
             )
         )
 
-        current_efficiency = float(energy_out) / energy_input
+        if energy_input != 0 and float(energy_out) != 0:
+            current_efficiency = float(energy_out) / energy_input
+        else:
+            current_efficiency = np.nan
 
         if current_efficiency in (np.nan, np.inf):
             current_efficiency = 1

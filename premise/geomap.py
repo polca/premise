@@ -265,7 +265,7 @@ class Geomap:
         :return:
         """
 
-        d_map_region = {
+        d_map_region_image_to_remind = {
             "BRA": "LAM",
             "CAN": "CAZ",
             "CEU": "EUR",
@@ -291,14 +291,28 @@ class Geomap:
             "UKR": "REF",
             "USA": "USA",
             "WAF": "SSA",
-            "WEU": "NEU",
-            "World": "EUR",
+            "WEU": "EUR",
+            "World": "World"
         }
 
-        d_map_region_rev = {v: k for k, v in d_map_region.items()}
+        d_map_region_remind_to_image = {
+            "LAM": "RSAM",
+            "CAZ": "OCE",
+            "EUR": "WEU",
+            "CHA": "CHN",
+            "SSA": "SAF",
+            "IND": "INDIA",
+            "OAS": "RSAS",
+            "JPN": "JAP",
+            "USA": "USA",
+            "NEU": "WEU",
+            "MEA": "ME",
+            "REF": "RUS",
+            "World": "World"
+        }
 
         if self.model == "image":
-            return d_map_region[location]
+            return d_map_region_image_to_remind[location]
 
         if self.model == "remind":
-            return d_map_region_rev[location]
+            return d_map_region_remind_to_image[location]
