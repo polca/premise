@@ -290,7 +290,7 @@ class Electricity(BaseTransformation):
                 # Fourth, add the contribution of solar power
                 solar_amount = 0
 
-                for technology in (t for t in mix if "solar" in t.lower()):
+                for technology in (t for t in mix if "solar pv residential" in t.lower()):
                     # If the solar power technology contributes to the mix
                     if mix[technology] > 0:
                         # Fetch ecoinvent regions contained in the IAM region
@@ -693,17 +693,17 @@ class Electricity(BaseTransformation):
                     }
                 )
 
-                # Fetch solar contribution in the mix, to subtract it
+                # Fetch residential solar PV contribution in the mix, to subtract it
                 # as solar energy is an input of low-voltage markets
 
                 solar_amount = 0
                 for tech in electriciy_mix:
-                    if "solar" in tech.lower():
+                    if "solar pv residential" in tech.lower():
                         solar_amount += electriciy_mix[tech]
 
                 # Loop through the technologies
                 technologies = (
-                    tech for tech in electriciy_mix if "solar" not in tech.lower()
+                    tech for tech in electriciy_mix if "solar pv residential" not in tech.lower()
                 )
                 for technology in technologies:
 

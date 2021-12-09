@@ -311,7 +311,7 @@ class Fuels(BaseTransformation):
                     ):
                         for exc in ws.technosphere(dataset):
                             if "market group for electricity" in exc["name"]:
-                                exc["amount"] = -0.3538 * (self.year - 2010) + 58.589
+                                exc["amount"] = np.clip(-0.3538 * (self.year - 2010) + 58.589, 44, None)
 
                         string = f" The electricity input per kg of H2 has been adapted to the year {self.year}."
                         if "comment" in dataset:
