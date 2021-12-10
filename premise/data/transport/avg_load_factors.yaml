@@ -1,0 +1,25 @@
+# average load factors for trucks
+# to convert vehicle-kilometers into ton-kilometers
+---
+truck:
+  urban delivery:
+    3.5t: 0.26
+    7.5t: 0.52
+    18t: 1.35
+    26t: 2.05
+    32t: 6.1
+    40t: 6.1
+  regional delivery:
+    3.5t: 0.26
+    7.5t: 0.52
+    18t: 1.35
+    26t: 2.05
+    32t: 6.1
+    40t: 6.1
+  long haul:
+    3.5t: 0.8
+    7.5t: 1.6
+    18t: 4.1
+    26t: 6.2
+    32t: 9.1
+    40t: 9.1

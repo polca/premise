@@ -1,10 +1,10 @@
 import wurst
 from .transformation import *
 from .inventory_imports import VariousVehicles
-import copy
 from .utils import *
 from .ecoinvent_modification import INVENTORY_DIR
 import numpy as np
+import yaml
 
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
@@ -13,46 +13,48 @@ FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
 FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
+FILEPATH_TRUCK_LOAD_FACTORS = DATA_DIR / "transport" / "avg_load_factors.yaml"
+FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
+
+
+def get_average_truck_load_factors():
+    with open(FILEPATH_TRUCK_LOAD_FACTORS, "r") as stream:
+        out = yaml.safe_load(stream)
+    return out
+
+
+def get_vehicles_mapping():
+    with open(FILEPATH_VEHICLES_MAP, "r") as stream:
+        out = yaml.safe_load(stream)
+    return out
+
+
+def normalize_exchange_amounts(list_act):
+
+    for act in list_act:
+        total = 0
+        for exc in act["exchanges"]:
+            if exc["type"] == "technosphere":
+                total += exc["amount"]
+
+        for exc in act["exchanges"]:
+            if exc["type"] == "technosphere":
+                exc["amount"] /= total
+
+    return list_act
 
 
 def create_fleet_vehicles(
     datasets, regions_mapping, vehicle_type, year, model, scenario, regions
 ):
+    print("Create fleet average vehicles...")
 
     if not FILEPATH_FLEET_COMP.is_file():
         raise FileNotFoundError("The fleet composition file could not be found.")
 
     dataframe = pd.read_csv(FILEPATH_FLEET_COMP, sep=";")
-
-    print(dataframe["region"].unique())
-
     dataframe["region"] = dataframe["region"].map(regions_mapping)
-
     dataframe = dataframe.loc[~dataframe["region"].isnull()]
-
-    print(dataframe["region"].unique())
-
-    # add missing IMAGE regions
-    d_missing_regions = {
-        "BRA": "RSAM",
-        "CEU": "WEU",
-        "CAN": "OCE",
-        "KOR": "SAS",
-        "SAF": "WAF",
-        "RUS": "UKR",
-        "INDO": "SEA",
-        "ME": "STAN",
-        "RSAF": "EAF",
-    }
-
-    for region in regions:
-        if region not in dataframe["region"].unique():
-            if region in d_missing_regions:
-                print(region)
-                add_df = dataframe.loc[dataframe["region"] == d_missing_regions[region]].copy()
-                print(len(add_df))
-                add_df["region"] = region
-                dataframe = pd.concat([dataframe, add_df])
 
     arr = (
         dataframe.groupby(["year", "region", "powertrain", "construction_year", "size"])
@@ -61,20 +63,7 @@ def create_fleet_vehicles(
     )
     arr = arr.fillna(0)
 
-    vehicles_names = {
-        "bus": ["13m single deck urban bus"],
-        "truck": ["18t", "26t", "3.5t", "7.5t", "40t"],
-        "car": [
-            "Mini",
-            "Small",
-            "Lower medium",
-            "Medium",
-            "Medium SUV",
-            "Large",
-            "Large SUV",
-            "Van",
-        ],
-    }
+    vehicles_map = get_vehicles_mapping()
 
     constr_year_map = {
         y: int(y.split("-")[-1]) for y in arr.coords["construction_year"].values
@@ -100,21 +89,7 @@ def create_fleet_vehicles(
     available_years = np.arange(2000, 2055, 5)
     ref_year = min(available_years, key=lambda x: abs(x - year))
 
-    available_ds = []
-
-    pwt_map = {
-        "fuel cell electric": "FCEV",
-        "battery electric - opportunity charging": "BEV-opp",
-        "battery electric - overnight charging": "BEV-depot",
-        "battery electric - battery-equipped trolleybus": "BEV-motion",
-        "battery electric": "BEV",
-        "diesel hybrid": "HEV-d",
-        "plugin diesel hybrid": "PHEV-d",
-        "diesel": "ICEV-d",
-        "compressed gas": "ICEV-g",
-    }
-
-    d_names = {}
+    available_ds, d_names = [], {}
 
     for ds in datasets:
         if ds["name"].startswith("transport, "):
@@ -147,131 +122,81 @@ def create_fleet_vehicles(
                     _, _, pwt, size, y = ds["name"].split(", ")
 
             if vehicle_type == "truck":
-                d_names[(pwt_map[pwt], size, int(y), type)] = (
+                d_names[(vehicles_map["powertrain"][pwt], size, int(y), type)] = (
                     ds["name"],
                     ds["reference product"],
                     ds["unit"],
                 )
-                available_ds.append((pwt_map[pwt], size, int(y)))
+                available_ds.append((vehicles_map["powertrain"][pwt], size, int(y)))
 
             else:
-                d_names[(pwt_map[pwt], size, int(y))] = (
+                d_names[(vehicles_map["powertrain"][pwt], size, int(y))] = (
                     ds["name"],
                     ds["reference product"],
                     ds["unit"],
                 )
-                available_ds.append((pwt_map[pwt], size, int(y)))
-
-    name_map = {"bus": "transport, passenger bus", "truck": "transport, freight, lorry"}
-    unit_map = {"bus": "passenger-kilometer", "truck": "ton kilometer"}
+                available_ds.append((vehicles_map["powertrain"][pwt], size, int(y)))
 
     list_act = []
 
     # average load factors for trucks
     # to convert vkm to tkm
-    avg_load = {
-        "urban delivery": {
-            "3.5t": 0.26,
-            "7.5t": 0.52,
-            "18t": 1.35,
-            "26t": 2.05,
-            "32t": 6.1,
-            "40t": 6.1,
-        },
-        "regional delivery": {
-            "3.5t": 0.26,
-            "7.5t": 0.52,
-            "18t": 1.35,
-            "26t": 2.05,
-            "32t": 6.1,
-            "40t": 6.1,
-        },
-        "long haul": {
-            "3.5t": 0.8,
-            "7.5t": 1.6,
-            "18t": 4.1,
-            "26t": 6.2,
-            "32t": 9.1,
-            "40t": 9.1,
-        },
+    avg_load = get_average_truck_load_factors()
+
+    # add missing IMAGE regions
+    d_missing_regions = {
+        "BRA": "RSAM",
+        "CEU": "WEU",
+        "CAN": "OCE",
+        "KOR": "SEAS",
+        "SAF": "WAF",
+        "RUS": "UKR",
+        "INDO": "SEAS",
+        "ME": "TUR",
+        "RSAF": "WAF",
+        "EAF": "WAF",
+        "MEX": "RSAM",
+        "NAF": "WAF",
+        "RCAM": "RSAM",
+        "RSAS": "SEAS",
+        "STAN": "TUR",
     }
 
     for region in regions:
 
-        sel = arr.sel(region=region, size=vehicles_names[vehicle_type], year=ref_year)
+        if region not in arr.coords["region"].values:
+            fleet_region = d_missing_regions[region]
+        else:
+            fleet_region = region
+
+        sel = arr.sel(
+            region=fleet_region, size=vehicles_map[vehicle_type]["sizes"], year=ref_year
+        )
         total_km = sel.sum()
 
         if total_km > 0:
 
             if vehicle_type == "truck":
-                act_urban = {
-                    "name": f"{name_map[vehicle_type]}, unspecified, urban delivery",
-                    "reference product": name_map[vehicle_type],
-                    "unit": unit_map[vehicle_type],
-                    "location": region,
-                    "exchanges": [
-                        {
-                            "name": f"{name_map[vehicle_type]}, unspecified, urban delivery",
-                            "product": name_map[vehicle_type],
-                            "unit": unit_map[vehicle_type],
-                            "location": region,
-                            "type": "production",
-                            "amount": 1,
-                        }
-                    ],
-                    "code": str(uuid.uuid4().hex),
-                    "database": eidb_label(model, scenario, year),
-                }
-
-                act_regional = {
-                    "name": f"{name_map[vehicle_type]}, unspecified, regional delivery",
-                    "reference product": name_map[vehicle_type],
-                    "unit": unit_map[vehicle_type],
-                    "location": region,
-                    "exchanges": [
-                        {
-                            "name": f"{name_map[vehicle_type]}, unspecified, regional delivery",
-                            "product": name_map[vehicle_type],
-                            "unit": unit_map[vehicle_type],
-                            "location": region,
-                            "type": "production",
-                            "amount": 1,
-                        }
-                    ],
-                    "code": str(uuid.uuid4().hex),
-                    "database": eidb_label(model, scenario, year),
-                }
-
-                act_long_haul = {
-                    "name": f"{name_map[vehicle_type]}, unspecified, long haul",
-                    "reference product": name_map[vehicle_type],
-                    "unit": unit_map[vehicle_type],
-                    "location": region,
-                    "exchanges": [
-                        {
-                            "name": f"{name_map[vehicle_type]}, unspecified, long haul",
-                            "product": name_map[vehicle_type],
-                            "unit": unit_map[vehicle_type],
-                            "location": region,
-                            "type": "production",
-                            "amount": 1,
-                        }
-                    ],
-                    "code": str(uuid.uuid4().hex),
-                    "database": eidb_label(model, scenario, year),
-                }
-
+                driving_cycles = ["urban delivery", "regional delivery", "long haul"]
             else:
+                driving_cycles = [""]
+
+            for driving_cycle in driving_cycles:
+                name = (
+                    f"{vehicles_map[vehicle_type]['name']}, unspecified, {driving_cycle}"
+                    if driving_cycle == "truck"
+                    else f"{vehicles_map[vehicle_type]['name']}, unspecified"
+                )
                 act = {
-                    "name": f"{name_map[vehicle_type]}, unspecified",
-                    "reference product": name_map[vehicle_type],
-                    "unit": unit_map[vehicle_type],
+                    "name": name,
+                    "reference product": vehicles_map[vehicle_type]["name"],
+                    "unit": vehicles_map[vehicle_type]["unit"],
                     "location": region,
                     "exchanges": [
                         {
-                            "name": f"{name_map[vehicle_type]}, unspecified",
-                            "product": name_map[vehicle_type],
-                            "unit": unit_map[vehicle_type],
+                            "name": name,
+                            "product": vehicles_map[vehicle_type]["name"],
+                            "unit": vehicles_map[vehicle_type]["unit"],
                             "location": region,
                             "type": "production",
                             "amount": 1,
@@ -279,130 +204,52 @@ def create_fleet_vehicles(
                     ],
                     "code": str(uuid.uuid4().hex),
                     "database": eidb_label(model, scenario, year),
+                    "comment": f"Fleet-average vehicle for the year {year}, for the region {region}."
                 }
 
-            for s in vehicles_names[vehicle_type]:
-                for y in sel.coords["construction_year"].values:
-                    for pt in sel.coords["powertrain"].values:
-                        indiv_km = sel.sel(size=s, construction_year=y, powertrain=pt)
-                        if indiv_km > 0 and (pt, s, constr_year_map[y]) in available_ds:
-                            indiv_share = (indiv_km / total_km).values.item(0)
+                for s in vehicles_map[vehicle_type]["sizes"]:
+                    for y in sel.coords["construction_year"].values:
+                        for pt in sel.coords["powertrain"].values:
+                            indiv_km = sel.sel(
+                                size=s, construction_year=y, powertrain=pt
+                            )
+                            if (
+                                indiv_km > 0
+                                and (pt, s, constr_year_map[y]) in available_ds
+                            ):
+                                indiv_share = (indiv_km / total_km).values.item(0)
 
-                            if vehicle_type == "truck":
-                                if (
-                                    pt,
-                                    s,
-                                    constr_year_map[y],
-                                    "urban delivery",
-                                ) in d_names:
+                                if vehicle_type == "truck":
+                                    load = avg_load[vehicle_type][driving_cycle][s]
+                                    to_look_for = (
+                                        pt,
+                                        s,
+                                        constr_year_map[y],
+                                        driving_cycle,
+                                    )
+                                else:
+                                    load = 1
+                                    to_look_for = (pt, s, constr_year_map[y])
 
-                                    name, ref, unit = d_names[
-                                        (pt, s, constr_year_map[y], "urban delivery")
-                                    ]
+                                if to_look_for in d_names:
 
-                                    act_urban["exchanges"].append(
+                                    name, ref, unit = d_names[to_look_for]
+
+                                    act["exchanges"].append(
                                         {
                                             "name": name,
                                             "product": ref,
                                             "unit": unit,
                                             "location": region,
                                             "type": "technosphere",
-                                            "amount": indiv_share
-                                            * avg_load["urban delivery"][s],
+                                            "amount": indiv_share * load,
                                         }
                                     )
 
-                                if (
-                                    pt,
-                                    s,
-                                    constr_year_map[y],
-                                    "regional delivery",
-                                ) in d_names:
+                if len(act["exchanges"]) > 1:
+                    list_act.append(act)
 
-                                    name, ref, unit = d_names[
-                                        (pt, s, constr_year_map[y], "regional delivery")
-                                    ]
-                                    act_regional["exchanges"].append(
-                                        {
-                                            "name": name,
-                                            "product": ref,
-                                            "unit": unit,
-                                            "location": region,
-                                            "type": "technosphere",
-                                            "amount": indiv_share
-                                            * avg_load["regional delivery"][s],
-                                        }
-                                    )
-
-                                if (pt, s, constr_year_map[y], "long haul") in d_names:
-
-                                    name, ref, unit = d_names[
-                                        (pt, s, constr_year_map[y], "long haul")
-                                    ]
-                                    act_long_haul["exchanges"].append(
-                                        {
-                                            "name": name,
-                                            "product": ref,
-                                            "unit": unit,
-                                            "location": region,
-                                            "type": "technosphere",
-                                            "amount": indiv_share
-                                            * avg_load["long haul"][s],
-                                        }
-                                    )
-
-                            else:
-                                name, ref, unit = d_names[(pt, s, constr_year_map[y])]
-
-                                act["exchanges"].append(
-                                    {
-                                        "name": name,
-                                        "product": ref,
-                                        "unit": unit,
-                                        "location": region,
-                                        "type": "technosphere",
-                                        "amount": indiv_share,
-                                    }
-                                )
-
-            if vehicle_type == "truck":
-                total = 0
-                for exc in act_urban["exchanges"]:
-                    if exc["type"] == "technosphere":
-                        total += exc["amount"]
-
-                for exc in act_urban["exchanges"]:
-                    if exc["type"] == "technosphere":
-                        exc["amount"] /= total
-
-                total = 0
-                for exc in act_regional["exchanges"]:
-                    if exc["type"] == "technosphere":
-                        total += exc["amount"]
-
-                for exc in act_regional["exchanges"]:
-                    if exc["type"] == "technosphere":
-                        exc["amount"] /= total
-
-                total = 0
-                for exc in act_long_haul["exchanges"]:
-                    if exc["type"] == "technosphere":
-                        total += exc["amount"]
-
-                for exc in act_long_haul["exchanges"]:
-                    if exc["type"] == "technosphere":
-                        exc["amount"] /= total
-
-                if len(act_urban["exchanges"]) > 1:
-                    list_act.append(act_urban)
-                if len(act_regional["exchanges"]) > 1:
-                    list_act.append(act_regional)
-                if len(act_long_haul["exchanges"]) > 1:
-                    list_act.append(act_long_haul)
-            else:
-                list_act.append(act)
-
-    return list_act
+    return normalize_exchange_amounts(list_act)
 
 
 class Transport(BaseTransformation):
@@ -495,7 +342,6 @@ class Transport(BaseTransformation):
                 region_map = {
                     self.geo.iam_to_iam_region(loc): loc for loc in self.regions
                 }
-                print(region_map)
             else:
                 region_map = {loc: loc for loc in self.regions}
 
@@ -518,7 +364,7 @@ class Transport(BaseTransformation):
                 year=self.year,
                 model=self.model,
                 scenario=self.scenario,
-                regions=self.regions
+                regions=self.regions,
             )
 
             datasets.import_db.data.extend(fleet_act)
@@ -617,3 +463,5 @@ class Transport(BaseTransformation):
                     )
 
         self.database = datasets.merge_inventory()
+
+        return self.database

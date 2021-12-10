@@ -1,0 +1,42 @@
+# mapping for different vehicles attributes
+---
+bus:
+  sizes:
+    - 13m single deck urban bus
+  unit: passenger-kilometer
+  name: transport, passenger bus
+
+car:
+  sizes:
+    - Mini
+    - Small
+    - Lower medium
+    - Medium
+    - Medium SUV
+    - Large
+    - Large SUV
+    - Van
+  unit: vehicle-kilometer
+  name: transport, passenger car
+
+truck:
+  sizes:
+    - 18t
+    - 26t
+    - 3.5t
+    - 7.5t
+    - 40t
+  unit: ton kilometer
+  name: transport, freight, lorry
+
+
+powertrain:
+  fuel cell electric: FCEV
+  battery electric - opportunity charging: BEV-opp
+  battery electric - overnight charging: BEV-depot
+  battery electric - battery-equipped trolleybus: BEV-motion
+  battery electric: BEV
+  diesel hybrid: HEV-d
+  plugin diesel hybrid: PHEV-d
+  diesel: ICEV-d
+  compressed gas: ICEV-g
