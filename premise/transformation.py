@@ -191,7 +191,7 @@ class BaseTransformation:
 
         return new_txt
 
-    def get_iam_mapping(self, activity_map, fuels_map, technologies):
+    def get_iam_mapping(self, activity_map, technologies):
         """
         Define filter functions that decide which wurst datasets to modify.
         :param activity_map: a dictionary that contains 'technologies' as keys and activity names as values.
@@ -204,8 +204,7 @@ class BaseTransformation:
         return {
             tech: {
                 "IAM_eff_func": self.find_iam_efficiency_change,
-                "technology filters": activity_map[tech],
-                "fuel filters": fuels_map[tech],
+                "technology filters": activity_map[tech]
             }
             for tech in technologies
         }

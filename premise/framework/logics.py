@@ -23,5 +23,10 @@ class equals(BasicOperation):
 
 class contains_any_from_list(BasicOperation):
     def __init__(self, key, list_of_val):
+        self.key = key
+        self.val = list_of_val
         self._selector = lambda df: df[key].isin(list_of_val)
         self._repr = f"<filter df[{key}].isin({list_of_val})>"
+
+    def __invert__(self):
+        return lambda df: ~df[self.key].isin(self.val)

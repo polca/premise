@@ -855,20 +855,13 @@ class NewDatabase:
 
         print("\n/////////////////// ELECTRICITY ////////////////////")
 
-        for scenario in self.scenarios:
-            if (
-                "exclude" not in scenario
-                or "update_electricity" not in scenario["exclude"]
-            ):
-                electricity = Electricity(
-                    database=scenario["database"],
-                    iam_data=scenario["external data"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    year=scenario["year"],
-                )
-                scenario["database"] = electricity.update_electricity_markets()
-                scenario["database"] = electricity.update_electricity_efficiency()
+        electricity = Electricity(
+            database=self.database,
+            iam_data=self.iam_data,
+            scenarios=self.scenarios
+        )
+        #scenario["database"] = electricity.update_electricity_markets()
+        self.database = electricity.update_electricity_efficiency()
 
     def update_fuels(self):
         print("\n/////////////////// FUELS ////////////////////")

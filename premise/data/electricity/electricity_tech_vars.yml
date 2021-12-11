@@ -183,7 +183,7 @@ Coal CHP CCS:
     fltr:
       - electricity production, at co-generation power plant/hard coal, oxy, pipeline
       - electricity production, at co-generation power plant/hard coal, post, pipeline
-  ecoinvnet_fuel_aliases:
+  ecoinvent_fuel_aliases:
     fltr:
       - heat and power co-generation, hard coal
 Gas OC:
