@@ -856,11 +856,9 @@ class NewDatabase:
         print("\n/////////////////// ELECTRICITY ////////////////////")
 
         electricity = Electricity(
-            database=self.database,
-            iam_data=self.iam_data,
-            scenarios=self.scenarios
+            database=self.database, iam_data=self.iam_data, scenarios=self.scenarios
         )
-        #scenario["database"] = electricity.update_electricity_markets()
+        # scenario["database"] = electricity.update_electricity_markets()
         self.database = electricity.update_electricity_efficiency()
 
     def update_fuels(self):

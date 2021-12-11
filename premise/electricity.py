@@ -203,7 +203,9 @@ class Electricity(BaseTransformation):
                 mix = dict(
                     zip(
                         self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(region=region,)
+                        self.iam_data.electricity_markets.sel(
+                            region=region,
+                        )
                         .interp(
                             year=np.arange(self.year, self.year + period + 1),
                             kwargs={"fill_value": "extrapolate"},
@@ -1026,7 +1028,8 @@ class Electricity(BaseTransformation):
         ]
 
         technologies_map = self.get_iam_mapping(
-            activity_map=self.powerplant_map, technologies=all_techs,
+            activity_map=self.powerplant_map,
+            technologies=all_techs,
         )
 
         list_subsets = []
@@ -1037,7 +1040,8 @@ class Electricity(BaseTransformation):
             print("Rescale inventories and emissions for", technology)
 
             _filters = contains_any_from_list(
-                (s.exchange, c.cons_name), list(dict_technology["technology filters"]),
+                (s.exchange, c.cons_name),
+                list(dict_technology["technology filters"]),
             )
 
             subset = self.database[_filters(self.database)]
@@ -1047,7 +1051,11 @@ class Electricity(BaseTransformation):
                 model, pathway, year = scenario.split("::")
                 year = int(year)
 
-                if self.scenarios[s_].get("exclude") is None or "update_electricity" not in self.scenarios[s_].get("exclude"):
+                if self.scenarios[s_].get(
+                    "exclude"
+                ) is None or "update_electricity" not in self.scenarios[s_].get(
+                    "exclude"
+                ):
 
                     # to store changes in efficiency
                     eff_change_log = []
@@ -1065,14 +1073,18 @@ class Electricity(BaseTransformation):
 
                         for loc in datasets_locs:
                             if self.ecoinvent_to_iam_loc[scenario][loc] in locs_map:
-                                locs_map[self.ecoinvent_to_iam_loc[scenario][loc]].append(
-                                    loc
-                                )
+                                locs_map[
+                                    self.ecoinvent_to_iam_loc[scenario][loc]
+                                ].append(loc)
                             else:
-                                locs_map[self.ecoinvent_to_iam_loc[scenario][loc]] = [loc]
+                                locs_map[self.ecoinvent_to_iam_loc[scenario][loc]] = [
+                                    loc
+                                ]
 
                         # no activities found? Check filters!
-                        assert len(datasets_locs) > 0, f"No dataset found for {technology}"
+                        assert (
+                            len(datasets_locs) > 0
+                        ), f"No dataset found for {technology}"
 
                         for loc in locs_map:
 
@@ -1108,9 +1120,7 @@ class Electricity(BaseTransformation):
                                 if np.isnan(ei_eff):
                                     continue
 
-                                new_eff = (
-                                    ei_eff * 1 / scaling_factor
-                                )
+                                new_eff = ei_eff * 1 / scaling_factor
 
                                 # log change in efficiency
                                 eff_change_log.append(
@@ -1149,24 +1159,30 @@ class Electricity(BaseTransformation):
                             # we update technosphere exchanges
                             # as well as emissions except those
                             # covered by GAINS
-                            __filters_tech = (
-                                    __filters
-                                    & equals((s.exchange, c.type), "technosphere")
-                                    | ~contains_any_from_list((s.exchange, c.prod_name), list(self.gains_substances.keys()))
+                            __filters_tech = __filters & equals(
+                                (s.exchange, c.type), "technosphere"
+                            ) | ~contains_any_from_list(
+                                (s.exchange, c.prod_name),
+                                list(self.gains_substances.keys()),
                             )
 
                             subset.loc[__filters_tech(subset), (scenario, c.amount)] = (
-                                subset.loc[__filters_tech(subset), (s.ecoinvent, c.amount)]
+                                subset.loc[
+                                    __filters_tech(subset), (s.ecoinvent, c.amount)
+                                ]
                                 * scaling_factor
                             )
 
                             if technology in self.iam_data.emissions.sector:
                                 for ei_sub, gains_sub in self.gains_substances.items():
 
-                                    scaling_factor = 1 / self.find_gains_emissions_change(
-                                        pollutant=gains_sub,
-                                        sector=technology,
-                                        location=self.iam_to_gains[scenario][loc],
+                                    scaling_factor = (
+                                        1
+                                        / self.find_gains_emissions_change(
+                                            pollutant=gains_sub,
+                                            sector=technology,
+                                            location=self.iam_to_gains[scenario][loc],
+                                        )
                                     )
 
                                     __filters_bio = __filters & equals(
@@ -1178,7 +1194,8 @@ class Electricity(BaseTransformation):
                                         __filters_bio(subset), (scenario, c.amount)
                                     ] = (
                                         subset.loc[
-                                            __filters_bio(subset), (s.ecoinvent, c.amount),
+                                            __filters_bio(subset),
+                                            (s.ecoinvent, c.amount),
                                         ]
                                         * scaling_factor
                                     )
@@ -1189,11 +1206,13 @@ class Electricity(BaseTransformation):
                         "a",
                         encoding="utf-8",
                     ) as csv_file:
-                        writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+                        writer = csv.writer(
+                            csv_file, delimiter=";", lineterminator="\n"
+                        )
                         for row in eff_change_log:
                             writer.writerow(row)
 
-            #list_subsets.append(subset)
+            # list_subsets.append(subset)
 
             self.database = pd.concat([self.database, subset])
 

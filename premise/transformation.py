@@ -204,7 +204,7 @@ class BaseTransformation:
         return {
             tech: {
                 "IAM_eff_func": self.find_iam_efficiency_change,
-                "technology filters": activity_map[tech]
+                "technology filters": activity_map[tech],
             }
             for tech in technologies
         }
