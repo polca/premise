@@ -1,9 +1,0 @@
-model;product;type;variable
-remind;cement - co2;Emi|CO2|FFaI|Industry|Cement
-remind;cement - cco2;Emi|CCO2|FFaI|Industry|Cement
-image;cement - co2;Emissions|CO2|Industry|Cement|Gross
-image;cement - cco2;Emissions|CO2|Industry|Cement|Sequestered
-remind;steel - co2;Emi|CO2|FFaI|Industry|Steel
-remind;steel - cco2;Emi|CCO2|FFaI|Industry|Steel
-image;steel - co2;Emissions|CO2|Industry|Steel|Gross
-image;steel - cco2;Emissions|CO2|Industry|Steel|Sequestered

@@ -1,10 +1,11 @@
-import wurst
-from .transformation import *
-from .inventory_imports import VariousVehicles
-from .utils import *
-from .ecoinvent_modification import INVENTORY_DIR
 import numpy as np
+import pandas as pd
 import yaml
+
+from .ecoinvent_modification import INVENTORY_DIR
+from .inventory_imports import VariousVehicles
+from .transformation import *
+from .utils import *
 
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
@@ -116,10 +117,12 @@ def create_fleet_vehicles(
                 size = size.replace(" gross weight", "")
 
             else:
+
                 if len(ds["name"].split(", ")) == 6:
                     _, _, pwt, _, size, y = ds["name"].split(", ")
                 else:
                     _, _, pwt, size, y = ds["name"].split(", ")
+
 
             if vehicle_type == "truck":
                 d_names[(vehicles_map["powertrain"][pwt], size, int(y), type)] = (
@@ -184,7 +187,7 @@ def create_fleet_vehicles(
             for driving_cycle in driving_cycles:
                 name = (
                     f"{vehicles_map[vehicle_type]['name']}, unspecified, {driving_cycle}"
-                    if driving_cycle == "truck"
+                    if vehicle_type == "truck"
                     else f"{vehicles_map[vehicle_type]['name']}, unspecified"
                 )
                 act = {

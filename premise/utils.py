@@ -9,11 +9,13 @@ from wurst.transformations.uncertainty import rescale_exchange
 from constructive_geometries import resolved_row
 from copy import deepcopy
 from . import geomap
+import yaml
+from functools import lru_cache
+import pandas as pd
+from pathlib import Path
 
-CO2_FUELS = DATA_DIR / "fuels" / "fuel_co2_emission_factor.txt"
-LHV_FUELS = DATA_DIR / "fuels" / "fuels_lower_heating_value.txt"
-CROPS_LAND_USE = DATA_DIR / "fuels" / "crops_land_use.csv"
-CROPS_LAND_USE_CHANGE_CO2 = DATA_DIR / "fuels" / "crops_land_use_change_CO2.csv"
+FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
+CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
@@ -28,87 +30,47 @@ EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 def eidb_label(model, scenario, year):
     return "ecoinvent_" + model + "_" + scenario + "_" + str(year)
 
-
-def get_land_use_for_crops(model):
+@lru_cache
+def get_fuel_properties():
     """
-        Return a dictionary with crop names as keys and IAM labels as values
-        relating to land use per crop type
-
-        :return: dict
-        """
-    d = {}
-    with open(CROPS_LAND_USE) as f:
-        r = csv.reader(f, delimiter=";")
-        for row in r:
-            if row[0] == model:
-                d[row[1]] = row[2]
-
-    return d
-
-
-def get_land_use_change_CO2_for_crops(model):
-    """
-        Return a dictionary with crop names as keys and IAM labels as values
-        relating to land use change CO2 per crop type
-
-        :return: dict
-        """
-    d = {}
-    with open(CROPS_LAND_USE_CHANGE_CO2) as f:
-        r = csv.reader(f, delimiter=";")
-        for row in r:
-            if row[0] == model:
-                d[row[1]] = row[2]
-
-    return d
-
-
-def get_fuel_co2_emission_factors():
-    """
-    Return a dictionary with fuel names as keys and, as values:
-    * CO_2 emission factor, in kg CO2 per MJ of lower heating value
-    * share of biogenic CO2
-
-    Source: https://www.plateformeco2.ch/portal/documents/10279/16917/IPCC+(2006),%20Guidelines+for+National+Greenhouse+Gas+Inventories.pdf/a3838a98-5ad6-4da5-82f3-c9430007a158
-
-    :return: dict
-    """
-    d = {}
-    with open(CO2_FUELS) as f:
-        r = csv.reader(f, delimiter=";")
-        for row in r:
-            d[row[0]] = {"co2": float(row[1]), "bio_share": float(row[2])}
-
-    return d
-
-
-def get_lower_heating_values():
-    """
-    Loads a csv file into a dictionary. This dictionary contains lower heating values for a number of fuel types.
-    Mostly taken from: https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html
-
+    Loads a yaml file into a dictionary.
+    This dictionary contains lower heating values
+    and CO2 emission factors for a number of fuel types.
+    Mostly taken from ecoinvent and
+    https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html
     :return: dictionary that contains lower heating values
     :rtype: dict
     """
-    with open(LHV_FUELS) as f:
-        d = dict(filter(None, csv.reader(f, delimiter=";")))
-        d = {k: float(v) for k, v in d.items()}
-        return d
+
+    with open(FUELS_PROPERTIES, "r") as stream:
+        fuel_props = yaml.safe_load(stream)
+
+    return fuel_props
 
 
-def get_efficiency_ratio_solar_PV(year, power):
+def get_crops_properties():
+    """
+    Return a dictionary with crop names as keys and IAM labels as values
+    relating to land use change CO2 per crop type
+    :return: dict
+    """
+    with open(CROPS_PROPERTIES, "r") as stream:
+        crop_props = yaml.safe_load(stream)
+
+    return crop_props
+
+def get_efficiency_ratio_solar_PV():
     """
     Return a dictionary with years as keys and efficiency ratios as values
     :return: dict
     """
 
-    df = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=",")
+    df = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
 
     return (
-        df.groupby(["power", "year"])
-        .mean()["value"]
+        df.groupby(["technology", "year"])
+        .mean()["efficiency"]
         .to_xarray()
-        .interp(year=year, power=power, kwargs={"fill_value": "extrapolate"})
     )
 
 

@@ -1,0 +1,18 @@
+# mapping between premise and IAM terminology regarding carbon capture variables
+---
+cement - co2:
+  iam_aliases:
+    remind: Emi|CO2|FFaI|Industry|Cement
+    image: Emissions|CO2|Industry|Cement|Gross
+cement - cco2:
+  iam_aliases:
+    remind: Emi|CCO2|FFaI|Industry|Cement
+    image: Emissions|CO2|Industry|Cement|Sequestered
+steel - co2:
+  iam_aliases:
+    remind: Emi|CO2|FFaI|Industry|Steel
+    image: Emissions|CO2|Industry|Steel|Gross
+steel - cco2:
+  iam_aliases:
+    remind: Emi|CCO2|FFaI|Industry|Steel
+    image: Emissions|CO2|Industry|Steel|Sequestered

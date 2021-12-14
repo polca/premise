@@ -1,13 +1,60 @@
 import os
 from . import DATA_DIR, __version__
 import csv
-from pathlib import Path
 import datetime
 import json
 import re
-import pandas as pd
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_37.txt"
+
+
+def remove_uncertainty(database):
+    """
+    Remove uncertainty information from database exchanges.
+    :param database:
+    :return:
+    """
+
+    keys_to_remove = [
+        "loc",
+        "scale",
+        "pedigree",
+    ]
+
+    for dataset in database:
+        for exc in dataset["exchanges"]:
+            if "uncertainty type" in exc:
+                if "uncertainty type" != 0:
+                    exc["uncertainty type"] = 0
+
+                    for key in keys_to_remove:
+                        if key in exc:
+                            del exc[key]
+
+    return database
+
+def check_for_duplicates(database):
+    """ Check for the absence of duplicates before export """
+
+    db_names = [
+        (x["name"].lower(), x["reference product"].lower(), x["location"])
+        for x in database
+    ]
+
+    if len(db_names) == len(set(db_names)):
+        return database
+
+    print("One or multiple duplicates detected. Removing them...")
+    seen = set()
+    return [
+        x
+        for x in database
+        if (x["name"].lower(), x["reference product"].lower(), x["location"])
+           not in seen
+           and not seen.add(
+            (x["name"].lower(), x["reference product"].lower(), x["location"])
+        )
+    ]
 
 
 def create_index_of_A_matrix(db):
@@ -166,6 +213,7 @@ class Export:
                             exc["name"],
                             exc["categories"],
                         )
+                        row = ()
                     list_rows.append(row)
         return list_rows
 
@@ -488,6 +536,26 @@ class Export:
             "guest night": "guestnight",
         }
 
+        simapro_subs = {
+            "low population density, long-term": "low. pop., long-term",
+            "lower stratosphere + upper troposphere": "stratosphere + troposphere",
+            "non-urban air or from high stacks": "low. pop.",
+            "urban air close to ground": "high. pop.",
+            "biotic": "biotic",
+            "in air": "in air",
+            "in ground": "in ground",
+            "in water": "in water",
+            "land": "land",
+            "agricultural": "agricultural",
+            "forestry": "forestry",
+            "industrial": "industrial",
+            "ground-": "groundwater",
+            "ground-, long-term": "groundwater, long-term",
+            "ocean": "ocean",
+            "surface water": "river",
+        }
+
+
         filename = (
             "simapro_export_"
             + self.model
@@ -596,12 +664,12 @@ class Export:
 
                         if ds["name"] in dict_refs:
                             string = re.sub(
-                                "[^a-zA-Z0-9 \.,]", "", dict_refs[ds["name"]]["source"]
+                                "[^a-zA-Z0-9 .,]", "", dict_refs[ds["name"]]["source"]
                             )
 
                             if dict_refs[ds["name"]]["description"] != "":
                                 string += " " + re.sub(
-                                    "[^a-zA-Z0-9 \.,]",
+                                    "[^a-zA-Z0-9 .,]",
                                     "",
                                     dict_refs[ds["name"]]["description"],
                                 )
@@ -609,7 +677,7 @@ class Export:
                             writer.writerow([string])
                         else:
                             if "comment" in ds:
-                                string = re.sub("[^a-zA-Z0-9 \.,]", "", ds["comment"])
+                                string = re.sub("[^a-zA-Z0-9 .,]", "", ds["comment"])
                                 writer.writerow([string])
 
                     if item in (
@@ -732,6 +800,13 @@ class Export:
                         for e in ds["exchanges"]:
                             if e["type"] == "biosphere" and e["categories"][0] == "air":
 
+                                if len(e["categories"]) > 1:
+                                    sub_compartment = simapro_subs.get(
+                                        e["categories"][1], ""
+                                    )
+                                else:
+                                    sub_compartment = ""
+
                                 if e["name"].lower() == "water":
                                     e["unit"] = "kilogram"
                                     e["amount"] /= 1000
@@ -739,7 +814,7 @@ class Export:
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        "",
+                                        sub_compartment,
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",
@@ -754,6 +829,13 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "water"
                             ):
+                                if len(e["categories"]) > 1:
+                                    sub_compartment = simapro_subs.get(
+                                        e["categories"][1], ""
+                                    )
+                                else:
+                                    sub_compartment = ""
+
                                 if e["name"].lower() == "water":
                                     e["unit"] = "kilogram"
                                     e["amount"] /= 1000
@@ -761,7 +843,7 @@ class Export:
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        "",
+                                        sub_compartment,
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",
@@ -776,10 +858,17 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "soil"
                             ):
+                                if len(e["categories"]) > 1:
+                                    sub_compartment = simapro_subs.get(
+                                        e["categories"][1], ""
+                                    )
+                                else:
+                                    sub_compartment = ""
+
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        "",
+                                        sub_compartment,
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",

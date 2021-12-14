@@ -9,14 +9,11 @@ from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
 from prettytable import PrettyTable
 from wurst import searching as ws
-from wurst import transformations as wt
-import re
 
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
-from .utils import relink_technosphere_exchanges
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "dict_biosphere.txt"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
 def get_biosphere_code():
@@ -65,16 +62,13 @@ class BaseInventoryImport:
     :ivar database: the target database for the import (the Ecoinvent database),
               unpacked to a list of dicts
     :vartype database: list
-    :ivar version: the target Ecoinvent database version
-    :vartype version: str
     """
 
     def __init__(self, database, version_in, version_out, path):
         """Create a :class:`BaseInventoryImport` instance.
         :param list database: the target database for the import (the Ecoinvent database),
                               unpacked to a list of dicts
-        :param version: the version of the target database ("3.5", "3.6", "3.7", "3.7.1")
-        :type version: str
+
         :param path: Path to the imported inventory.
         :type path: str or Path
         """
