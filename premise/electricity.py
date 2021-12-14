@@ -10,7 +10,6 @@ the newly created electricity markets.
 """
 
 import os
-import wurst
 from .transformation import *
 from .activity_maps import InventorySet
 
@@ -42,6 +41,8 @@ def get_losses_per_country_dict():
         csv_dict[key] = {key: float(value) for key, value in zip(header, values)}
 
     return csv_dict
+
+
 
 
 def get_production_weighted_losses(losses, locs):
@@ -172,6 +173,49 @@ class Electricity(BaseTransformation):
             )
             for loc in self.regions
         }
+
+    def check_for_production_volume(self, suppliers):
+
+        # Remove suppliers that do not have a production volume
+        return [
+            supplier
+            for supplier in suppliers
+            if self.get_production_weighted_share(supplier, suppliers) != 0
+        ]
+
+    def get_production_weighted_share(self, supplier, suppliers):
+        """
+        Return the share of production of an electricity-producing dataset in a specific location,
+        relative to the summed production of similar technologies in locations contained in
+        the same IAM region.
+        :param supplier: electricity-producing dataset
+        :type supplier: wurst dataset
+        :param suppliers: list of electricity-producing datasets
+        :type suppliers: list of wurst datasets
+        :return: share of production relative to the total population
+        :rtype: float
+        """
+
+        # Fetch the production volume of the supplier
+        loc_production = float(
+            self.production_per_tech.get((supplier["name"], supplier["location"]), 0)
+        )
+
+        # Fetch the total production volume of similar technologies in other locations
+        # contained within the IAM region.
+
+        total_production = 0
+        for loc in suppliers:
+            total_production += float(
+                self.production_per_tech.get((loc["name"], loc["location"]), 0)
+            )
+
+        # If a corresponding production volume is found.
+        if total_production != 0:
+            return loc_production / total_production
+        else:
+            # If not, we allocate an equal share of supply
+            return 1 / len(suppliers)
 
     def create_new_markets_low_voltage(self):
         """
@@ -306,8 +350,9 @@ class Electricity(BaseTransformation):
                         # Fetch electricity-producing technologies contained in the IAM region
                         # if they cannot be found for the ecoinvent locations concerned
                         # we widen the scope to EU-based datasets, and RoW
-                        possible_locations = [ecoinvent_regions, ["RER"], ["RoW"]]
+                        possible_locations = [ecoinvent_regions, ["RER"], ["RoW"], ["CH"]]
                         suppliers, counter = [], 0
+
 
                         while len(suppliers) == 0:
                             suppliers = list(
@@ -321,9 +366,15 @@ class Electricity(BaseTransformation):
                             )
                             counter += 1
 
-                        suppliers = get_shares_from_production_volume(suppliers)
+                        #suppliers = get_shares_from_production_volume(suppliers)
+                        suppliers = self.check_for_production_volume(suppliers)
 
-                        for supplier, share in suppliers.items():
+                        for supplier in suppliers:
+
+                            share = self.get_production_weighted_share(
+                                supplier, suppliers
+                            )
+
                             new_exchanges.append(
                                 {
                                     "uncertainty type": 0,
@@ -331,10 +382,10 @@ class Electricity(BaseTransformation):
                                     "amount": (amount * share),
                                     "type": "technosphere",
                                     "production volume": 0,
-                                    "product": supplier[2],
-                                    "name": supplier[0],
-                                    "unit": supplier[-1],
-                                    "location": supplier[1],
+                                    "product": supplier["reference product"],
+                                    "name": supplier["name"],
+                                    "unit": supplier["unit"],
+                                    "location": supplier["location"],
                                 }
                             )
 
@@ -347,8 +398,8 @@ class Electricity(BaseTransformation):
                                     region,
                                     0,
                                     0,
-                                    supplier[0],
-                                    supplier[1],
+                                    supplier["name"],
+                                    supplier["location"],
                                     share,
                                     (share * amount),
                                 ]
@@ -718,8 +769,10 @@ class Electricity(BaseTransformation):
 
                         # Fetch electricity-producing technologies contained in the IAM region
                         # if they cannot be found for the ecoinvent locations concerned
-                        # we widen the scope to EU-based datasets, and RoW
-                        possible_locations = [ecoinvent_regions, ["RER"], ["RoW"]]
+                        # we widen the scope to EU-based datasets, and RoW, and finally Switzerland
+
+                        possible_locations = [ecoinvent_regions, ["RER"], ["RoW"], ["CH"]]
+
                         suppliers, counter = [], 0
 
                         while len(suppliers) == 0:
@@ -734,9 +787,15 @@ class Electricity(BaseTransformation):
                             )
                             counter += 1
 
-                        suppliers = get_shares_from_production_volume(suppliers)
+                        #suppliers = get_shares_from_production_volume(suppliers)
+                        suppliers = self.check_for_production_volume(suppliers)
 
-                        for supplier, share in suppliers.items():
+                        for supplier in suppliers:
+
+                            share = self.get_production_weighted_share(
+                                supplier, suppliers
+                            )
+
                             new_exchanges.append(
                                 {
                                     "uncertainty type": 0,
@@ -744,10 +803,10 @@ class Electricity(BaseTransformation):
                                     "amount": (amount * share) / (1 - solar_amount),
                                     "type": "technosphere",
                                     "production volume": 0,
-                                    "product": supplier[2],
-                                    "name": supplier[0],
-                                    "unit": supplier[-1],
-                                    "location": supplier[1],
+                                    "product": supplier["reference product"],
+                                    "name": supplier["name"],
+                                    "unit": supplier["unit"],
+                                    "location": supplier["location"],
                                 }
                             )
 
@@ -760,8 +819,8 @@ class Electricity(BaseTransformation):
                                     region,
                                     transf_loss,
                                     0.0,
-                                    supplier[0],
-                                    supplier[1],
+                                    supplier["name"],
+                                    supplier["location"],
                                     share,
                                     (amount * share) / (1 - solar_amount),
                                 ]

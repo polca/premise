@@ -203,9 +203,9 @@ class Cement(BaseTransformation):
                 * 1
                 / np.array(
                     [
-                        float(self.fuels_lhv["waste"]),
-                        float(self.fuels_lhv["wood pellet"]),
-                        float(self.fuels_lhv["hard coal"]),
+                        float(self.fuels_specs["waste"]["lhv"]),
+                        float(self.fuels_specs["wood pellet"]["lhv"]),
+                        float(self.fuels_specs["hard coal"]["lhv"]),
                     ]
                 )
             )
@@ -216,16 +216,16 @@ class Cement(BaseTransformation):
                 * np.array(
                     [
                         (
-                            self.fuels_co2["waste"]["co2"]
-                            * (1 - self.fuels_co2["waste"]["bio_share"])
+                            self.fuels_specs["waste"]["co2"]
+                            * (1 - self.fuels_specs["waste"]["biogenic_share"])
                         ),
                         (
-                            self.fuels_co2["wood pellet"]["co2"]
-                            * (1 - self.fuels_co2["wood pellet"]["bio_share"])
+                            self.fuels_specs["wood pellet"]["co2"]
+                            * (1 - self.fuels_specs["wood pellet"]["biogenic_share"])
                         ),
                         (
-                            self.fuels_co2["hard coal"]["co2"]
-                            * (1 - self.fuels_co2["hard coal"]["bio_share"])
+                            self.fuels_specs["hard coal"]["co2"]
+                            * (1 - self.fuels_specs["hard coal"]["biogenic_share"])
                         ),
                     ]
                 )
@@ -237,16 +237,16 @@ class Cement(BaseTransformation):
                 * np.array(
                     [
                         (
-                            self.fuels_co2["waste"]["co2"]
-                            * (self.fuels_co2["waste"]["bio_share"])
+                            self.fuels_specs["waste"]["co2"]
+                            * (self.fuels_specs["waste"]["biogenic_share"])
                         ),
                         (
-                            self.fuels_co2["wood pellet"]["co2"]
-                            * (self.fuels_co2["wood pellet"]["bio_share"])
+                            self.fuels_specs["wood pellet"]["co2"]
+                            * (self.fuels_specs["wood pellet"]["biogenic_share"])
                         ),
                         (
-                            self.fuels_co2["hard coal"]["co2"]
-                            * (self.fuels_co2["hard coal"]["bio_share"])
+                            self.fuels_specs["hard coal"]["co2"]
+                            * (self.fuels_specs["hard coal"]["biogenic_share"])
                         ),
                     ]
                 )
@@ -442,7 +442,7 @@ class Cement(BaseTransformation):
                 + f"Improvement of specific energy use compared to 2020: {(scaling_factor - 1) * 100} %.\n"
                 + f"Share of biomass fuel energy-wise: {int(fuel_mix[1] * 100)} pct.\n"
                 + f"Share of waste fuel energy-wise: {int(fuel_mix[0] * 100)} pct.\n"
-                + f"Share of fossil carbon in waste fuel energy-wise: {int(self.fuels_co2['waste']['bio_share'] * 100)} pct.\n"
+                + f"Share of fossil carbon in waste fuel energy-wise: {int(self.fuels_specs['waste']['biogenic_share'] * 100)} pct.\n"
                 + f"Share of fossil CO2 emissions from fuel combustion: {share_fossil_from_fuel} pct.\n"
                 + f"Share of fossil CO2 emissions from calcination: {share_fossil_from_calcination} pct.\n"
                 + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"

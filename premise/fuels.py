@@ -1,5 +1,5 @@
 from .transformation import *
-from .utils import DATA_DIR, get_land_use_change_CO2_for_crops, get_land_use_for_crops
+from .utils import DATA_DIR, get_crops_properties
 
 CROP_CLIMATE_MAP = DATA_DIR / "fuels" / "crop_climate_mapping.csv"
 REGION_CLIMATE_MAP = DATA_DIR / "fuels" / "region_climate_mapping.csv"
@@ -11,7 +11,7 @@ def filter_results(item_to_look_for, results, field_to_look_at):
 
 
 def get_crop_climate_mapping():
-    """ Returns a dictionnary thatindictes the type of crop
+    """ Returns a dictionary that indictes the type of crop
     used for bioethanol production per type of climate """
 
     d = {}
@@ -31,7 +31,7 @@ def get_crop_climate_mapping():
 
 
 def get_region_climate_mapping():
-    """ Returns a dicitonnary that indicates the type of climate
+    """ Returns a dicitonary that indicates the type of climate
      for each IAM region"""
 
     d = {}
@@ -69,7 +69,7 @@ def get_compression_effort(p_in, p_out, flow_rate):
     return power_req * 24 / flow_rate
 
 
-def get_pre_cooling_energy(year, t_amb, cap_util):
+def get_pre_cooling_energy(t_amb, cap_util):
 
     el_pre_cooling = (0.3 / 1.6 * np.exp(-0.018 * t_amb)) + (
         (25 * np.log(t_amb) - 21) / cap_util
@@ -82,22 +82,15 @@ class Fuels(BaseTransformation):
     """
         Class that modifies fuel inventories and markets in ecoinvent based on IAM output data.
 
-        :ivar scenario: name of an IAM pathway
-        :vartype pathway: str
-
     """
 
     def __init__(self, database, iam_data, model, pathway, year, version, original_db):
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
         self.original_db = original_db
-        self.fuels_lhv = get_lower_heating_values()
         self.fuel_labels = self.iam_data.fuel_markets.coords["variables"].values
-        self.fuel_co2 = get_fuel_co2_emission_factors()
-        self.land_use_per_crop_type = get_land_use_for_crops(model=self.model)
-        self.land_use_change_CO2_per_crop_type = get_land_use_change_CO2_for_crops(
-            model=self.model
-        )
+        self.land_use_per_crop_type = get_crops_properties()
+        self.land_use_change_CO2_per_crop_type = get_crops_properties()
         self.new_fuel_markets = {}
 
     def generate_dac_activities(self):
@@ -865,7 +858,7 @@ class Fuels(BaseTransformation):
                                 t_amb = 25
                                 cap_util = np.interp(self.year, [2020, 2050], [10, 150])
                                 el_pre_cooling = get_pre_cooling_energy(
-                                    self.year, t_amb, cap_util
+                                    t_amb, cap_util
                                 )
 
                                 new_exc.append(
@@ -1687,24 +1680,24 @@ class Fuels(BaseTransformation):
 
                                     amount = (
                                         supplier_share
-                                        * (reference_lhv / self.fuels_lhv[fuel])
+                                        * (reference_lhv / self.fuels_specs[fuel]["lhv"])
                                         * conversion_factor
                                     )
 
                                     fossil_co2 += (
                                         amount
-                                        * self.fuels_lhv[fuel]
-                                        * self.fuel_co2[fuel]["co2"]
-                                        * (1 - self.fuel_co2[fuel]["bio_share"])
+                                        * self.fuels_specs[fuel]["lhv"]
+                                        * self.fuels_specs[fuel]["co2"]
+                                        * (1 - self.fuels_specs[fuel]["biogenic_share"])
                                     )
                                     non_fossil_co2 += (
                                         amount
-                                        * self.fuels_lhv[fuel]
-                                        * self.fuel_co2[fuel]["co2"]
-                                        * self.fuel_co2[fuel]["bio_share"]
+                                        * self.fuels_specs[fuel]["lhv"]
+                                        * self.fuels_specs[fuel]["co2"]
+                                        * self.fuels_specs[fuel]["biogenic_share"]
                                     )
 
-                                    final_lhv += amount * self.fuels_lhv[fuel]
+                                    final_lhv += amount * self.fuels_specs[fuel]["lhv"]
 
                                     dataset["exchanges"].append(
                                         {
@@ -1732,13 +1725,13 @@ class Fuels(BaseTransformation):
                                             key[-1],
                                             share,
                                             amount,
-                                            self.fuels_lhv[fuel],
-                                            self.fuel_co2[fuel]["co2"],
-                                            self.fuel_co2[fuel]["bio_share"],
+                                            self.fuels_specs[fuel]["lhv"],
+                                            self.fuels_specs[fuel]["co2"],
+                                            self.fuels_specs[fuel]["biogenic_share"]
                                         ]
                                     )
 
-                                string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuels_lhv[fuel]} MJ/kg. "
+                                string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuels_specs[fuel]['lhv']} MJ/kg. "
 
                     string += f"Final average LHV of {final_lhv} MJ/kg."
 

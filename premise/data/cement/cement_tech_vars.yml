@@ -1,0 +1,17 @@
+# mapping between premise and IAM terminology regarding cement
+---
+cement:
+  iam_aliases:
+    remind: Production|Industry|Cement
+    image: Production|Cement
+  energy_use_aliases:
+    remind: FE|Industry|Cement
+    image:
+      - Final Energy|Industry|Cement|Electricity
+      - Final Energy|Industry|Cement|Gases
+      - Final Energy|Industry|Cement|Heat
+      - Final Energy|Industry|Cement|Hydrogen
+      - Final Energy|Industry|Cement|Liquids
+      - Final Energy|Industry|Cement|Solids
+  eff_aliases:
+    remind: Specific Energy Consumption|Production|Cement

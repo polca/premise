@@ -8,6 +8,7 @@ import csv
 import uuid
 from datetime import date
 from itertools import product
+from collections import Counter
 
 import numpy as np
 import wurst
@@ -15,11 +16,10 @@ from wurst import searching as ws
 from wurst import transformations as wt
 
 from . import DATA_DIR
-from .activity_maps import InventorySet
+from .activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
 from .geomap import Geomap
 from .utils import (
-    get_fuel_co2_emission_factors,
-    get_lower_heating_values,
+    get_fuel_properties,
     relink_technosphere_exchanges,
 )
 
@@ -135,12 +135,11 @@ class BaseTransformation:
         self.geo = Geomap(model=model, current_regions=self.regions)
         self.scenario = pathway
         self.year = year
-        self.fuels_lhv = get_lower_heating_values()
+        self.fuels_specs = get_fuel_properties()
         mapping = InventorySet(self.database)
-        self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
+        self.emissions_map = get_gains_to_ecoinvent_emissions()
         self.fuel_map = mapping.generate_fuel_map()
         self.material_map = mapping.generate_material_map()
-        self.fuels_co2 = get_fuel_co2_emission_factors()
         self.list_datasets = get_tuples_from_database(self.database)
         self.ecoinvent_to_iam_loc = {
             loc: self.geo.ecoinvent_to_iam_location(loc)
@@ -163,8 +162,6 @@ class BaseTransformation:
         Update the old efficiency value in the ecoinvent dataset by the newly calculated one.
         :param dataset: dataset
         :type dataset: dict
-        :param scaling_factor: scaling factor (new efficiency / old efficiency)
-        :type scaling_factor: float
         """
         parameters = dataset["parameters"]
         possibles = ["efficiency", "efficiency_oil_country", "efficiency_electrical"]
@@ -189,6 +186,28 @@ class BaseTransformation:
         else:
             dataset["comment"] = new_txt
 
+    def calculate_input_energy(self, fuel_name, fuel_amount, fuel_unit):
+        """
+        Returns the amount of energy entering the conversion process, in MJ
+        :param fuel_name: name of the liquid, gaseous or solid fuel
+        :param fuel_amount: amount of fuel input
+        :param fuel_unit: unit of fuel
+        :return: amount of fuel energy, in MJ
+        """
+
+        # if fuel input other than MJ
+        if fuel_unit in ["kilogram", "cubic meter", "kilowatt hour"]:
+
+            lhv = [
+                self.fuels_specs[k]["lhv"]
+                for k in self.fuels_specs
+                if k in fuel_name.lower()
+            ][0]
+            return float(lhv) * fuel_amount
+
+        # if already in MJ
+        return fuel_amount
+
     def find_fuel_efficiency(self, dataset, fuel_filters, energy_out):
         """
         This method calculates the efficiency value set initially, in case it is not specified in the parameter
@@ -199,25 +218,6 @@ class BaseTransformation:
         :param energy_out: the amount of energy expect as output, in MJ
         :return: the efficiency value set initially
         """
-
-        def calculate_input_energy(fuel_name, fuel_amount, fuel_unit):
-            """
-            Returns the amount of energy entering the conversion process, in MJ
-            :param fuel_name: name of the liquid, gaseous or solid fuel
-            :param fuel_amount: amount of fuel input
-            :param fuel_unit: unit of fuel
-            :return: amount of fuel energy, in MJ
-            """
-
-            # if fuel input other than MJ
-            if fuel_unit in ["kilogram", "cubic meter", "kilowatt hour"]:
-                lhv = [
-                    self.fuels_lhv[k] for k in self.fuels_lhv if k in fuel_name.lower()
-                ][0]
-                return float(lhv) * fuel_amount
-
-            # if already in MJ
-            return fuel_amount
 
         not_allowed = ["thermal"]
         key = []
@@ -235,7 +235,9 @@ class BaseTransformation:
             np.sum(
                 np.asarray(
                     [
-                        calculate_input_energy(exc["name"], exc["amount"], exc["unit"])
+                        self.calculate_input_energy(
+                            exc["name"], exc["amount"], exc["unit"]
+                        )
                         for exc in dataset["exchanges"]
                         if exc["name"] in fuel_filters and exc["type"] == "technosphere"
                     ]
@@ -331,6 +333,8 @@ class BaseTransformation:
                     ws.equals("location", "GLO"),
                 )
 
+                d_iam_to_eco[region] = "GLO"
+
             d_act[region] = wt.copy_to_new_location(dataset, region)
             d_act[region]["code"] = str(uuid.uuid4().hex)
 
@@ -366,37 +370,14 @@ class BaseTransformation:
             ds_name = d_act[region]["name"]
             ds_ref_prod = d_act[region]["reference product"]
 
-        deleted_markets = [
-            (act["name"], act["reference product"], act["location"])
-            for act in self.database
-            if (act["name"], act["reference product"]) == (ds_name, ds_ref_prod)
-        ]
-
-        with open(
-            DATA_DIR
-            / f"logs/log deleted datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
-            "a",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            for line in deleted_markets:
-                writer.writerow(line)
-
-        # Remove old datasets
-        self.database = [
-            act
-            for act in self.database
-            if (act["name"], act["reference product"]) != (ds_name, ds_ref_prod)
-        ]
-
-        # Remove deleted datasets from `self.list_datasets`
+        # Remove original datasets from `self.list_datasets`
         self.list_datasets = [
             dataset
             for dataset in self.list_datasets
             if (dataset[0], dataset[1]) != (ds_name, ds_ref_prod)
         ]
 
-        # Add created datasets to `self.list_datasets`
+        # Add new regional datasets to `self.list_datasets`
         self.list_datasets.extend(
             [
                 (dataset["name"], dataset["reference product"], dataset["location"])
@@ -404,22 +385,70 @@ class BaseTransformation:
             ]
         )
 
+        # empty original datasets
+        # and make them link to new regional datasets
+        self.empty_original_datasets(
+            name=name,
+            ref_prod=ref_prod,
+            loc_map=d_iam_to_eco,
+            production_variable=production_variable,
+        )
+
         return d_act
+
+    def empty_original_datasets(self, name, ref_prod, loc_map, production_variable):
+
+        counts = Counter(loc_map.values())
+
+        for loc, count in counts.items():
+            ds = ws.get_one(
+                self.database,
+                ws.equals("name", name),
+                ws.contains("reference product", ref_prod),
+                ws.equals("location", loc),
+            )
+
+            ds["exchanges"] = [e for e in ds["exchanges"] if e["type"] == "production"]
+
+            iam_locs = [k for k, v in loc_map.items() if v == loc and k != "World"]
+
+            total_prod_vol = (
+                self.iam_data.production_volumes.sel(
+                    region=iam_locs, variables=production_variable
+                )
+                .interp(year=self.year)
+                .sum(dim=["variables", "region"])
+                .values.item(0)
+            )
+
+            for iam_loc in iam_locs:
+
+                region_prod = (
+                    self.iam_data.production_volumes.sel(
+                        region=iam_loc, variables=production_variable
+                    )
+                        .interp(year=self.year)
+                        .sum(dim="variables")
+                        .values.item(0)
+                )
+                share = region_prod / total_prod_vol
+                ds["exchanges"].append(
+                    {
+                        "name": ds["name"],
+                        "product": ds["reference product"],
+                        "amount": share,
+                        "unit": ds["unit"],
+                        "uncertainty type": 0,
+                        "location": iam_loc,
+                        "type": "technosphere"
+                    }
+                )
 
     def relink_datasets(self, excludes_datasets=None, alt_names=None):
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
 
-        :param name: dataset name
-        :type name: str
-        :param ref_product: reference product of the dataset
-        :type ref_product: str
-        :param unit: unit of the dataset
-        :type unit: str
-        :param excludes: list of terms that, if contained in the name of an exchange, should be ignored
-        :type excludes: list
-        :returns: does not return anything. Modifies in place.
         """
 
         if alt_names is None:
@@ -442,16 +471,18 @@ class BaseTransformation:
             ]
 
             unique_excs_to_relink = set(
-                    (exc["name"], exc["product"], exc["location"], exc["unit"])
-                    for exc in excs_to_relink
-                )
+                (exc["name"], exc["product"], exc["location"], exc["unit"])
+                for exc in excs_to_relink
+            )
 
             list_new_exc = []
 
             for exc in unique_excs_to_relink:
 
                 try:
-                    new_name, new_prod, new_loc, new_unit = self.cache[act["location"]][exc]
+                    new_name, new_prod, new_loc, new_unit = self.cache[act["location"]][
+                        exc
+                    ]
 
                 except KeyError:
 
@@ -492,7 +523,9 @@ class BaseTransformation:
                             break
 
                     if not is_found:
-                        print(f"cannot find act for {exc}")
+                        print(
+                            f"cannot find act for {exc} in {act['name'], act['location']}"
+                        )
                         print(names_to_look_for)
                         print(alternative_locations)
 
@@ -508,7 +541,10 @@ class BaseTransformation:
                     exists = False
                     for e in list_new_exc:
                         if (e["name"], e["product"], e["unit"], e["location"]) == (
-                            new_name, new_prod, new_unit, new_loc
+                            new_name,
+                            new_prod,
+                            new_unit,
+                            new_loc,
                         ):
                             e["amount"] += amount
                             exists = True
@@ -529,7 +565,9 @@ class BaseTransformation:
                 e
                 for e in act["exchanges"]
                 if (e["name"], e.get("product"), e.get("location"), e["unit"])
-                not in [(iex[0], iex[1], iex[2], iex[3]) for iex in unique_excs_to_relink]
+                not in [
+                    (iex[0], iex[1], iex[2], iex[3]) for iex in unique_excs_to_relink
+                ]
             ]
             act["exchanges"].extend(list_new_exc)
 
@@ -614,8 +652,7 @@ class BaseTransformation:
             )
 
             if exc["amount"] != 0:
-                wurst.rescale_exchange(exc, scaling_factor , remove_uncertainty=True)
-
+                wurst.rescale_exchange(exc, scaling_factor, remove_uncertainty=True)
 
             exc["comment"] = (
                 f"This exchange has been modified by a factor {scaling_factor} based on "

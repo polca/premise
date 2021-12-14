@@ -1,15 +1,61 @@
+import os
+from . import DATA_DIR, __version__
 import csv
 import datetime
 import json
-import os
 import re
-from pathlib import Path
 
-import pandas as pd
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_37.txt"
 
-from . import DATA_DIR, __version__
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
+def remove_uncertainty(database):
+    """
+    Remove uncertainty information from database exchanges.
+    :param database:
+    :return:
+    """
+
+    keys_to_remove = [
+        "loc",
+        "scale",
+        "pedigree",
+    ]
+
+    for dataset in database:
+        for exc in dataset["exchanges"]:
+            if "uncertainty type" in exc:
+                if "uncertainty type" != 0:
+                    exc["uncertainty type"] = 0
+
+                    for key in keys_to_remove:
+                        if key in exc:
+                            del exc[key]
+
+    return database
+
+def check_for_duplicates(database):
+    """ Check for the absence of duplicates before export """
+
+    db_names = [
+        (x["name"].lower(), x["reference product"].lower(), x["location"])
+        for x in database
+    ]
+
+    if len(db_names) == len(set(db_names)):
+        return database
+
+    print("One or multiple duplicates detected. Removing them...")
+    seen = set()
+    return [
+        x
+        for x in database
+        if (x["name"].lower(), x["reference product"].lower(), x["location"])
+           not in seen
+           and not seen.add(
+            (x["name"].lower(), x["reference product"].lower(), x["location"])
+        )
+    ]
+
 
 def create_index_of_A_matrix(db):
     """
@@ -167,6 +213,7 @@ class Export:
                             exc["name"],
                             exc["categories"],
                         )
+                        row = ()
                     list_rows.append(row)
         return list_rows
 
@@ -177,11 +224,7 @@ class Export:
 
         # Export A matrix
         with open(self.filepath / "A_matrix.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             writer.writerow(["index of activity", "index of product", "value"])
             rows = self.create_A_matrix_coordinates()
             for row in rows:
@@ -189,11 +232,7 @@ class Export:
 
         # Export A index
         with open(self.filepath / "A_matrix_index.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             index_A = create_index_of_A_matrix(self.db)
             for d in index_A:
                 data = list(d) + [index_A[d]]
@@ -203,11 +242,7 @@ class Export:
 
         # Export B matrix
         with open(self.filepath / "B_matrix.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             writer.writerow(["index of activity", "index of biosphere flow", "value"])
             rows = self.create_B_matrix_coordinates()
             for row in rows:
@@ -215,11 +250,7 @@ class Export:
 
         # Export B index
         with open(self.filepath / "B_matrix_index.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             for d in index_B:
                 data = list(d) + [index_B[d]]
                 writer.writerow(data)
@@ -524,6 +555,7 @@ class Export:
             "surface water": "river",
         }
 
+
         filename = (
             "simapro_export_"
             + self.model
@@ -632,12 +664,12 @@ class Export:
 
                         if ds["name"] in dict_refs:
                             string = re.sub(
-                                "[^a-zA-Z0-9 \.,]", "", dict_refs[ds["name"]]["source"]
+                                "[^a-zA-Z0-9 .,]", "", dict_refs[ds["name"]]["source"]
                             )
 
                             if dict_refs[ds["name"]]["description"] != "":
                                 string += " " + re.sub(
-                                    "[^a-zA-Z0-9 \.,]",
+                                    "[^a-zA-Z0-9 .,]",
                                     "",
                                     dict_refs[ds["name"]]["description"],
                                 )
@@ -645,7 +677,7 @@ class Export:
                             writer.writerow([string])
                         else:
                             if "comment" in ds:
-                                string = re.sub("[^a-zA-Z0-9 \.,]", "", ds["comment"])
+                                string = re.sub("[^a-zA-Z0-9 .,]", "", ds["comment"])
                                 writer.writerow([string])
 
                     if item in (
@@ -752,17 +784,10 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "natural resource"
                             ):
-                                if len(e["categories"]) > 1:
-                                    sub_compartment = simapro_subs.get(
-                                        e["categories"][1], ""
-                                    )
-                                else:
-                                    sub_compartment = ""
-
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        sub_compartment,
+                                        "",
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",
@@ -804,16 +829,16 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "water"
                             ):
-                                if e["name"].lower() == "water":
-                                    e["unit"] = "kilogram"
-                                    e["amount"] /= 1000
-
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
                                         e["categories"][1], ""
                                     )
                                 else:
                                     sub_compartment = ""
+
+                                if e["name"].lower() == "water":
+                                    e["unit"] = "kilogram"
+                                    e["amount"] /= 1000
 
                                 writer.writerow(
                                     [

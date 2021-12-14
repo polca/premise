@@ -147,6 +147,7 @@ class Geomap:
             "OCE": "CAZ" if self.model == "remind" else "OCE",
             "US-PR": "USA",
             "US only": "USA",
+            "APAC": "CHA" if self.model == "remind" else "CHN"
         }
 
         if location in mapping:

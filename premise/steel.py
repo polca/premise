@@ -1,8 +1,6 @@
-import wurst
 from .transformation import *
 import copy
 from .utils import *
-import numpy as np
 
 
 class Steel(BaseTransformation):
@@ -23,7 +21,6 @@ class Steel(BaseTransformation):
     def __init__(self, database, iam_data, model, pathway, year, version):
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
-        self.recycling_rates = get_steel_recycling_rates(year=self.year)
 
     def get_carbon_capture_energy_inputs(self, amount_CO2, loc, sector):
         """
@@ -141,7 +138,7 @@ class Steel(BaseTransformation):
             steel_markets = self.fetch_proxies(
                 name=i[0],
                 ref_prod=i[1],
-                production_variable=["primary steel", "secondary steel"],
+                production_variable=["steel - primary", "steel - secondary"],
                 relink=False,
             )
 
@@ -151,11 +148,11 @@ class Steel(BaseTransformation):
             if i[0] == "market for steel, low-alloyed":
                 for loc, dataset in steel_markets.items():
                     primary_share = self.iam_data.production_volumes.sel(
-                        region=loc, variables="primary steel"
+                        region=loc, variables="steel - primary"
                     ).interp(year=self.year).values.item(
                         0
                     ) / self.iam_data.production_volumes.sel(
-                        region=loc, variables=["primary steel", "secondary steel"]
+                        region=loc, variables=["steel - primary", "steel - secondary"]
                     ).interp(
                         year=self.year
                     ).sum(
@@ -226,8 +223,6 @@ class Steel(BaseTransformation):
 
             self.database.extend([v for v in steel_markets.values()])
 
-
-
             created_datasets.extend(
                 [
                     (act["name"], act["reference product"], act["location"])
@@ -261,12 +256,12 @@ class Steel(BaseTransformation):
             for region in regions:
                 share = (
                     self.iam_data.production_volumes.sel(
-                        variables=["primary steel", "secondary steel"], region=region
+                        variables=["steel - primary", "steel - secondary"], region=region
                     )
                     .interp(year=self.year)
                     .sum(dim="variables")
                     / self.iam_data.production_volumes.sel(
-                        variables=["primary steel", "secondary steel"], region="World"
+                        variables=["steel - primary", "steel - secondary"], region="World"
                     )
                     .interp(year=self.year)
                     .sum(dim="variables")
@@ -296,24 +291,24 @@ class Steel(BaseTransformation):
             mat: self.fetch_proxies(
                 name=mat[0],
                 ref_prod=mat[1],
-                production_variable=["primary steel"],
+                production_variable=["steel - primary"],
                 relink=True,
             )
             for mat in zip(
-                self.material_map["steel, primary"],
-                ["steel"] * len(self.material_map["steel, primary"]),
+                self.material_map["steel - primary"],
+                ["steel"] * len(self.material_map["steel - primary"]),
             )
         }
         d_act_secondary_steel = {
             mat: self.fetch_proxies(
                 name=mat[0],
                 ref_prod=mat[1],
-                production_variable=["secondary steel"],
+                production_variable=["steel - secondary"],
                 relink=True,
             )
             for mat in zip(
-                self.material_map["steel, secondary"],
-                ["steel"] * len(self.material_map["steel, secondary"]),
+                self.material_map["steel - secondary"],
+                ["steel"] * len(self.material_map["steel - secondary"]),
             )
         }
         d_act_steel = {**d_act_primary_steel, **d_act_secondary_steel}
@@ -343,9 +338,9 @@ class Steel(BaseTransformation):
                 # divided by the ratio fuel/output in 2020
 
                 sector = (
-                    "primary steel"
+                    "steel - primary"
                     if "converter" in activity["name"]
-                    else "secondary steel"
+                    else "steel - secondary"
                 )
                 scaling_factor = 1 / self.find_iam_efficiency_change(
                     variable=sector, location=activity["location"],
