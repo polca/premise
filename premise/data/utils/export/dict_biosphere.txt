@@ -4319,3 +4319,6 @@ Benzene, hexachloro-;air;non-urban air or from high stacks;kilogram;a028cff8-e40
 Beryllium;water;ocean;kilogram;7672267f-4541-4c9a-9ca0-ec2f41b95cbc
 Triflumuron;soil;agricultural;kilogram;165e28f3-4377-573c-9d2f-52c664f43d42
 Bromine;air;unspecified;kilogram;c24f5894-f95e-4661-ba76-130397348894
+Oxygen;air;unspecified;kilogram;9ec076d9-6d9f-4a0b-9851-730626ed4319
+Oxygen;water;unspecified;kilogram;c2fa3c88-ff02-5b95-8f4a-8fa1e5183873
+Oxygen;natural resource;in air;kilogram;af01e564-f816-4906-bd4f-b7c932f926b9
