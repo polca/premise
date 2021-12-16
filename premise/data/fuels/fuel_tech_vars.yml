@@ -310,11 +310,15 @@ heat, from hydrogen:
   lhv: 1
 hydrogen, petroleum:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - hydrogen production, gaseous, petroleum refinery operation
 hydrogen, electrolysis:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Electricity
   ecoinvent_aliases:
@@ -324,6 +328,8 @@ hydrogen, electrolysis:
       - hydrogen production, gaseous, 700 bar, from electrolysis
 hydrogen, biomass:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Biomass|w/o CCS
   ecoinvent_aliases:
@@ -333,6 +339,8 @@ hydrogen, biomass:
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant
 hydrogen, biomass, with CCS:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Biomass|w/ CCS
   ecoinvent_aliases:
@@ -341,34 +349,47 @@ hydrogen, biomass, with CCS:
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant
 hydrogen, coal:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Coal|w/o CCS
   ecoinvent_aliases:
     fltr: hydrogen supply, from coal gasification, by truck, as gaseous, over 500 km
 hydrogen, nat. gas:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Gas|w/o CCS
   ecoinvent_aliases:
     fltr: hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
 hydrogen, nat. gas, with CCS:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Gas|w/ CCS
   ecoinvent_aliases:
     fltr: hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
 hydrogen, biogas:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - hydrogen supply, from SMR of biogas
 hydrogen, biogas, with CCS:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - hydrogen supply, from SMR of biogas, with CCS
 hydrogen:
   lhv: 120
+  co2: 0
+  biogenic_share: 1
+
 biodiesel, oil:
   lhv: 38
   co2: 0.0734
@@ -388,6 +409,7 @@ biodiesel, oil:
       name:
         - expansion
         - economic
+
 biodiesel, oil, with CCS:
   lhv: 38
   co2: 0.0734
@@ -404,7 +426,8 @@ biodiesel, oil, with CCS:
       name:
         - expansion
         - economic
-bioethanol, woody:
+
+bioethanol, wood:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -425,7 +448,7 @@ bioethanol, woody:
         - expansion
         - economic
 
-bioethanol, woody, with CCS:
+bioethanol, wood, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -444,7 +467,8 @@ bioethanol, woody, with CCS:
       name:
         - expansion
         - economic
-bioethanol, grassy:
+
+bioethanol, grass:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -463,7 +487,8 @@ bioethanol, grassy:
       name:
         - expansion
         - economic
-bioethanol, grassy, with CCS:
+
+bioethanol, grass, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1

@@ -7,20 +7,17 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .renewables import SolarPV
+from .photovoltaics import SolarPV
 from .inventory_imports import (
     DefaultInventory,
-    CarculatorInventory,
-    TruckInventory,
-    VariousVehicles,
     AdditionalInventory,
-    PassengerCars,
-    Trucks,
 )
 from .cement import Cement
 from .steel import Steel
 from .fuels import Fuels
-from .export import Export
+from .natural_gas import update_ng_production_ds
+from .transport import Transport
+from .export import Export, check_for_duplicates, remove_uncertainty
 from .utils import eidb_label, add_modified_tags, build_superstructure_db
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -87,7 +84,10 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
-FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
+FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
+FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
+
+
 FILE_PATH_INVENTORIES_EI_38 = INVENTORY_DIR / "inventory_data_ei_38.pickle"
 FILE_PATH_INVENTORIES_EI_37 = INVENTORY_DIR / "inventory_data_ei_37.pickle"
 FILE_PATH_INVENTORIES_EI_36 = INVENTORY_DIR / "inventory_data_ei_36.pickle"
@@ -176,7 +176,7 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_solar_pv",
     "update_fuels",
-    "update_buses"
+    "update_buses",
 ]
 
 # Disable printing
@@ -189,28 +189,6 @@ def enablePrint():
     sys.stdout = sys.__stdout__
 
 
-def check_for_duplicates(database):
-    """ Check for the absence of duplicates before export """
-
-    db_names = [
-        (x["name"].lower(), x["reference product"].lower(), x["location"])
-        for x in database
-    ]
-
-    if len(db_names) == len(set(db_names)):
-        return database
-
-    print("One or multiple duplicates detected. Removing them...")
-    seen = set()
-    return [
-        x
-        for x in database
-        if (x["name"].lower(), x["reference product"].lower(), x["location"])
-        not in seen
-        and not seen.add(
-            (x["name"].lower(), x["reference product"].lower(), x["location"])
-        )
-    ]
 
 
 def check_ei_filepath(filepath):
@@ -404,7 +382,8 @@ def check_additional_inventories(inventories_list):
 
         if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8"]:
             raise ValueError(
-                "A lot of trouble will be avoided if the additional inventories to import are ecoinvent 3.7 or 3.8-compliant."
+                "A lot of trouble will be avoided if the additional "
+                f"inventories to import are ecoinvent 3.7 or 3.8-compliant, not {inventory['ecoinvent version']}."
             )
 
     return inventories_list
@@ -525,12 +504,13 @@ def warning_about_biogenic_co2():
             "containing net negative emission technologies (NET),\n"
             "it is advised to account for biogenic CO2 flows when calculating\n"
             "Global Warming potential indicators.\n"
-            "`premise_gwp` provides characterization factors for such flows.\n\n"
+            "`premise_gwp` provides characterization factors for such flows.\n"
+            "It also provides factors for hydrogen emissions to air.\n\n"
             "Install it via\n"
             "pip install premise_gwp\n"
             "or\n"
             "conda install -c romainsacchi premise_gwp\n\n"
-            "Within in your bw2 project:\n"
+            "Within your bw2 project:\n"
             "from premise_gwp import add_premise_gwp\n"
             "add_premise_gwp()"
         ]
@@ -565,9 +545,6 @@ class NewDatabase:
     :ivar source_version: version of the ecoinvent source database.
         Currently works with ecoinvent cut-off 3.5, 3.6, 3.7, 3.7.1 and 3.8.
     :vartype source_version: str
-    :ivar direct_import: If True, appends pickled inventories to database.
-    If False, import inventories via bw2io importer.
-    :vartype direct_import: bool
     :ivar system_model: Can be `attributional` (default) or `consequential`.
     :vartype system_model: str
 
@@ -583,7 +560,7 @@ class NewDatabase:
         source_file_path=None,
         additional_inventories=None,
         system_model="attributional",
-        time_horison=None,
+        time_horizon=None,
         use_cached_inventories=True,
         use_cached_database=True,
     ):
@@ -593,7 +570,7 @@ class NewDatabase:
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
         self.time_horizon = (
-            check_time_horizon(time_horison)
+            check_time_horizon(time_horizon)
             if system_model == "consequential"
             else None
         )
@@ -615,14 +592,14 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        print("\n////////////////////// EXTRACTING SOURCE DATABASE //////////////////")
+        print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
             self.database = self.__find_cached_db(source_db)
             print("Done!")
         else:
             self.database = self.__clean_database()
 
-        print("\n/////////////////// IMPORTING DEFAULT INVENTORIES //////////////////")
+        print("\n////////////////// IMPORTING DEFAULT INVENTORIES ///////////////////")
         if use_cached_inventories:
             data = self.__find_cached_inventories(source_db)
             if data is not None:
@@ -634,7 +611,7 @@ class NewDatabase:
         if self.additional_inventories:
             self.__import_additional_inventories()
 
-        print("\n///////////////////// EXTRACTING IAM DATA //////////////////////////")
+        print("\n/////////////////////// EXTRACTING IAM DATA ////////////////////////")
 
         for scenario in self.scenarios:
             scenario["external data"] = IAMDataCollection(
@@ -729,6 +706,8 @@ class NewDatabase:
                 (FILEPATH_DAC_INVENTORIES, "3.7"),
                 (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
                 (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_BATTERIES, "3.8"),
+                (FILEPATH_PHOTOVOLTAICS, "3.7"),
                 (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
                 (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
                 (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
@@ -819,13 +798,26 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     year=scenario["year"],
                     version=self.version,
-                    original_db=self.database
+                    original_db=self.database,
                 )
 
                 scenario["database"] = fuels.generate_fuel_markets()
 
+    def update_ng(self):
+        print("\n//////////////////////////// NATURAL GAS /////////////////////////////")
+
+        for scenario in self.scenarios:
+
+            if "exclude" not in scenario or "update_ng" not in scenario["exclude"]:
+
+                scenario["database"] = update_ng_production_ds(
+                    database=scenario["database"]
+                )
+
+        print("Done!")
+
     def update_cement(self):
-        print("\n//////////////////////////// CEMENT /////////////////////////////")
+        print("\n///////////////////////////// CEMENT //////////////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
@@ -842,7 +834,7 @@ class NewDatabase:
                 scenario["database"] = cement.add_datasets_to_database()
 
     def update_steel(self):
-        print("\n//////////////////////////// STEEL /////////////////////////////")
+        print("\n////////////////////////////// STEEL //////////////////////////////")
 
         for scenario in self.scenarios:
 
@@ -859,43 +851,26 @@ class NewDatabase:
                 scenario["database"] = steel.generate_activities()
 
     def update_cars(self):
-        print("\n////////////////////////// PASSENGER CARS //////////////////////////")
+        print("\n///////////////////////// PASSENGER CARS ///////////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cars" not in scenario["exclude"]:
+                trsp = Transport(
+                    database=scenario["database"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["external data"],
+                    version=self.version,
+                    vehicle_type="car",
+                    relink=False,
+                    has_fleet=True,
+                )
 
-                if scenario["passenger_cars"]:
-                    # Load fleet-specific inventories
-                    # Import `carculator` inventories if wanted
-                    cars = CarculatorInventory(
-                        database=scenario["database"],
-                        version=self.version,
-                        fleet_file=scenario["passenger_cars"]["fleet file"],
-                        model=scenario["model"],
-                        year=scenario["year"],
-                        regions=scenario["passenger_cars"]["regions"],
-                        filters=scenario["passenger_cars"]["filters"],
-                        iam_data=scenario["external data"].data,
-                    )
-
-                else:
-                    # Load fleet default inventories
-                    cars = PassengerCars(
-                        database=scenario["database"],
-                        version_in="3.7",
-                        version_out=self.version,
-                        model=scenario["model"],
-                        year=scenario["year"],
-                        regions=scenario["external data"]
-                        .data.coords["region"]
-                        .values.tolist(),
-                        iam_data=scenario["external data"].data,
-                    )
-
-                scenario["database"] = cars.merge_inventory()
+                scenario["database"] = trsp.create_vehicle_markets()
 
     def update_two_wheelers(self):
-        print("\n/////////////////////////// TWO-WHEELERS ///////////////////////////")
+        print("\n////////////////////////// TWO-WHEELERS ////////////////////////////")
 
         for scenario in self.scenarios:
             if (
@@ -903,18 +878,19 @@ class NewDatabase:
                 or "update_two_wheelers" not in scenario["exclude"]
             ):
 
-                various_veh = VariousVehicles(
+                trsp = Transport(
                     database=scenario["database"],
-                    version_in="3.7",
-                    version_out=self.version,
-                    path=FILEPATH_TWO_WHEELERS,
                     year=scenario["year"],
-                    regions=scenario["external data"]
-                    .data.coords["region"]
-                    .values.tolist(),
                     model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["external data"],
+                    version=self.version,
+                    vehicle_type="two wheeler",
+                    relink=False,
+                    has_fleet=False,
                 )
-                scenario["database"] = various_veh.merge_inventory()
+
+                scenario["database"] = trsp.create_vehicle_markets()
 
     def update_trucks(self):
 
@@ -922,48 +898,56 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_trucks" not in scenario["exclude"]:
-                if scenario["trucks"]:
 
-                    # Load fleet-specific inventories
-                    # Import `carculator_truck` inventories if wanted
+                trsp = Transport(
+                    database=scenario["database"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["external data"],
+                    version=self.version,
+                    vehicle_type="truck",
+                    relink=False,
+                    has_fleet=True,
+                )
 
-                    trucks = TruckInventory(
-                        database=scenario["database"],
-                        version_in="3.7",
-                        version_out=self.version,
-                        fleet_file=scenario["trucks"]["fleet file"],
-                        model=scenario["model"],
-                        year=scenario["year"],
-                        regions=scenario["trucks"]["regions"],
-                        filters=scenario["trucks"]["filters"],
-                        iam_data=scenario["external data"].data,
-                    )
+                scenario["database"] = trsp.create_vehicle_markets()
 
-                else:
-                    # Load default trucks inventories
-                    trucks = Trucks(
-                        database=scenario["database"],
-                        version_in="3.7",
-                        version_out=self.version,
-                        model=scenario["model"],
-                        year=scenario["year"],
-                        regions=scenario["external data"]
-                        .data.coords["region"]
-                        .values.tolist(),
-                        iam_data=scenario["external data"].data,
-                    )
+    def update_buses(self):
 
-                scenario["database"] = trucks.merge_inventory()
+        print("\n////////////////////////////// BUSES ///////////////////////////////")
+
+        for scenario in self.scenarios:
+            if "exclude" not in scenario or "update_buses" not in scenario["exclude"]:
+
+                trsp = Transport(
+                    database=scenario["database"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["external data"],
+                    version=self.version,
+                    vehicle_type="bus",
+                    relink=False,
+                    has_fleet=True,
+                )
+
+                scenario["database"] = trsp.create_vehicle_markets()
 
     def update_solar_pv(self):
-        print("\n/////////////////////////// SOLAR PV ////////////////////////////")
+        print("\n///////////////////////////// SOLAR PV //////////////////////////////")
 
         for scenario in self.scenarios:
             if (
                 "exclude" not in scenario
                 or "update_solar_pv" not in scenario["exclude"]
             ):
-                solar_pv = SolarPV(db=scenario["database"], year=scenario["year"])
+                solar_pv = SolarPV(
+                    db=scenario["database"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                    scenario=scenario["pathway"]
+                )
                 print("Update efficiency of solar PVs.\n")
                 scenario["database"] = solar_pv.update_efficiency_of_solar_pv()
 
@@ -975,8 +959,10 @@ class NewDatabase:
         self.update_two_wheelers()
         self.update_cars()
         self.update_trucks()
-        self.update_electricity()
+        self.update_buses()
+        self.update_ng()
         self.update_solar_pv()
+        self.update_electricity()
         self.update_cement()
         self.update_steel()
         self.update_fuels()
@@ -988,6 +974,10 @@ class NewDatabase:
         Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
         :return: filepath of the "scenarios difference file"
         """
+
+        # we ensure first the absence of duplicate datasets
+        self.database = check_for_duplicates(self.database)
+        self.database = remove_uncertainty(self.database)
 
         self.database = build_superstructure_db(
             self.database, self.scenarios, db_name=name, fp=filepath
@@ -1034,6 +1024,7 @@ class NewDatabase:
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
+            scenario["database"] = remove_uncertainty(scenario["database"])
 
             wurst.write_brightway2_database(
                 scenario["database"], name[scen],
@@ -1078,6 +1069,7 @@ class NewDatabase:
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
+            scenario["database"] = remove_uncertainty(scenario["database"])
 
             Export(
                 scenario["database"],
@@ -1106,6 +1098,7 @@ class NewDatabase:
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
+            scenario["database"] = remove_uncertainty(scenario["database"])
 
             Export(
                 scenario["database"],

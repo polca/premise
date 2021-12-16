@@ -89,7 +89,7 @@ class Steel(BaseTransformation):
                     )
                 )
                 counter += 1
-
+v
             suppliers = get_shares_from_production_volume(suppliers)
 
             for supplier, share in suppliers.items():

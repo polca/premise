@@ -1,0 +1,14 @@
+from electrolysis: hydrogen production, gaseous, 25 bar, from electrolysis
+from SMR of biogas, with CCS: hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar
+from SMR of biogas: hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar
+from ATR of biogas: hydrogen production, auto-thermal reforming, from biomethane, 25 bar
+from ATR of biogas, with CCS: hydrogen production, auto-thermal reforming, from biomethane, with CCS (MDEA, 98% eff.), 25 bar
+from SMR of nat. gas: hydrogen production, steam methane reforming of natural gas, 25 bar
+from SMR of nat. gas, with CCS: hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar
+from ATR of nat. gas: hydrogen production, auto-thermal reforming of natural gas, 25 bar
+from ATR of nat. gas, with CCS: hydrogen production, auto-thermal reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar
+from gasification of biomass by heatpipe reformer, with CCS: hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant
+from gasification of biomass by heatpipe reformer: hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant
+from gasification of biomass, with CCS: hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant
+from gasification of biomass: hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant
+from coal gasification: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant

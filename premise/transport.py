@@ -248,9 +248,73 @@ def create_fleet_vehicles(
                                             "amount": indiv_share * load,
                                         }
                                     )
-
                 if len(act["exchanges"]) > 1:
                     list_act.append(act)
+
+                # also create size-specific fleet vehicles
+                if vehicle_type == "truck":
+                    for s in vehicles_map[vehicle_type]["sizes"]:
+                        total_size_km = sel.sel(size=s).sum()
+
+                        if total_size_km > 0:
+
+                            name = f"{vehicles_map[vehicle_type]['name']}, {s} gross weight, " \
+                                   f"unspecified powertrain, {driving_cycle}"
+                            act = {
+                                "name": name,
+                                "reference product": vehicles_map[vehicle_type]["name"],
+                                "unit": vehicles_map[vehicle_type]["unit"],
+                                "location": region,
+                                "exchanges": [
+                                    {
+                                        "name": name,
+                                        "product": vehicles_map[vehicle_type]["name"],
+                                        "unit": vehicles_map[vehicle_type]["unit"],
+                                        "location": region,
+                                        "type": "production",
+                                        "amount": 1,
+                                    }
+                                ],
+                                "code": str(uuid.uuid4().hex),
+                                "database": eidb_label(model, scenario, year),
+                                "comment": f"Fleet-average vehicle for the year {year}, for the region {region}."
+                            }
+
+                            for y in sel.coords["construction_year"].values:
+                                for pt in sel.coords["powertrain"].values:
+                                    indiv_km = sel.sel(
+                                        size=s, construction_year=y, powertrain=pt
+                                    )
+                                    if (
+                                            indiv_km > 0
+                                            and (pt, s, constr_year_map[y]) in available_ds
+                                    ):
+                                        indiv_share = (indiv_km / total_size_km).values.item(0)
+                                        load = avg_load[vehicle_type][driving_cycle][s]
+                                        to_look_for = (
+                                            pt,
+                                            s,
+                                            constr_year_map[y],
+                                            driving_cycle,
+                                        )
+                                        if to_look_for in d_names:
+
+                                            name, ref, unit = d_names[to_look_for]
+
+                                            act["exchanges"].append(
+                                                {
+                                                    "name": name,
+                                                    "product": ref,
+                                                    "unit": unit,
+                                                    "location": region,
+                                                    "type": "technosphere",
+                                                    "amount": indiv_share * load,
+                                                }
+                                            )
+
+                            if len(act["exchanges"]) > 1:
+                                list_act.append(act)
+
 
     return normalize_exchange_amounts(list_act)
 
@@ -426,6 +490,8 @@ class Transport(BaseTransformation):
         # if trucks, need to reconnect everything
         # loop through datasets that use lorry transport
         if self.vehicle_type == "truck":
+            vehicles_map = get_vehicles_mapping()
+            list_created_trucks = [(a["name"], a["location"]) for a in fleet_act]
             for dataset in ws.get_many(
                 self.database,
                 ws.doesnt_contain_any("name", ["freight, lorry"]),
@@ -437,24 +503,31 @@ class Transport(BaseTransformation):
                     ws.equals("unit", "ton kilometer"),
                 ):
 
+                    key = [k for k in vehicles_map["truck"]["old_trucks"]
+                           if k.lower() in exc["name"].lower()][0]
+
                     if "input" in exc:
                         del exc["input"]
 
                     if dataset["unit"] == "kilogram":
                         if exc["amount"] * 1000 <= 150:
-                            exc[
-                                "name"
-                            ] = "transport, freight, lorry, unspecified, urban delivery"
-
+                            name = f"{vehicles_map['truck']['old_trucks'][key]}, urban delivery"
+                            cycle = ", urban delivery"
                         elif 150 < exc["amount"] * 1000 <= 450:
-                            exc[
-                                "name"
-                            ] = "transport, freight, lorry, unspecified, regional delivery"
+                            name = f"{vehicles_map['truck']['old_trucks'][key]}, regional delivery"
+                            cycle = ", regional delivery"
+                        else:
+                            name = f"{vehicles_map['truck']['old_trucks'][key]}, long haul"
+                            cycle = ", long haul"
+
+                        loc = self.geo.ecoinvent_to_iam_location(
+                            dataset["location"]
+                        )
+                        if (name, loc) in list_created_trucks:
+                            exc["name"] = name
 
                         else:
-                            exc[
-                                "name"
-                            ] = "transport, freight, lorry, unspecified, long haul"
+                            exc["name"] = "transport, freight, lorry, unspecified" + cycle
                     else:
                         exc[
                             "name"
