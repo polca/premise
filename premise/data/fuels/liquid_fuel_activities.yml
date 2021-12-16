@@ -1,0 +1,20 @@
+methanol:
+  - methanol
+  - hydrogen from electrolysis
+  - energy allocation,
+methanol, from coal:
+  - methanol
+  - hydrogen from coal gasification
+  - energy allocation
+fischer-tropsch:
+  - Fischer Tropsch process
+  - hydrogen from electrolysis
+  - energy allocation
+fischer-tropsch, from woody biomass:
+  - Fischer Tropsch process
+  - hydrogen from wood gasification
+  - energy allocation
+fischer-tropsch, from coal:
+  - Fischer Tropsch process
+  - hydrogen from coal gasification
+  - energy allocation

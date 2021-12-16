@@ -280,7 +280,7 @@ class BaseTransformation:
             for tech in technologies
         }
 
-    def fetch_proxies(self, name, ref_prod, production_variable, relink=False):
+    def fetch_proxies(self, name, ref_prod, production_variable, relink=False, regions=None):
         """
         Fetch dataset proxies, given a dataset `name` and `reference product`.
         Store a copy for each IAM region.
@@ -306,34 +306,32 @@ class BaseTransformation:
                 self.database,
                 ws.equals("name", name),
                 ws.contains("reference product", ref_prod),
-            )
+            ) if d["location"] not in self.regions
         }
 
-        d_iam_to_eco = {region: d_map.get(region, "RoW") for region in self.regions}
+        if not regions:
+            regions = self.regions
+
+        if "RoW" in d_map.values():
+            fallback_loc = "RoW"
+        else:
+            if "GLO" in d_map.values():
+                fallback_loc = "GLO"
+            else:
+                fallback_loc = list(d_map.values())[0]
+
+        d_iam_to_eco = {region: d_map.get(region, fallback_loc) for region in regions}
 
         d_act = {}
 
         for region in d_iam_to_eco:
 
-            try:
-                dataset = ws.get_one(
-                    self.database,
-                    ws.equals("name", name),
-                    ws.contains("reference product", ref_prod),
-                    ws.equals("location", d_iam_to_eco[region]),
-                )
-
-            except ws.NoResults:
-
-                # trying with `GLO`
-                dataset = ws.get_one(
-                    self.database,
-                    ws.equals("name", name),
-                    ws.contains("reference product", ref_prod),
-                    ws.equals("location", "GLO"),
-                )
-
-                d_iam_to_eco[region] = "GLO"
+            dataset = ws.get_one(
+                self.database,
+                ws.equals("name", name),
+                ws.contains("reference product", ref_prod),
+                ws.equals("location", d_iam_to_eco[region]),
+            )
 
             d_act[region] = wt.copy_to_new_location(dataset, region)
             d_act[region]["code"] = str(uuid.uuid4().hex)
@@ -409,6 +407,10 @@ class BaseTransformation:
             )
 
             ds["exchanges"] = [e for e in ds["exchanges"] if e["type"] == "production"]
+
+            if len(ds["exchanges"]) == 0:
+                print(f"ISSUE: no exchanges found in {ds['name']} in {ds['location']}")
+
 
             iam_locs = [k for k, v in loc_map.items() if v == loc and k != "World"]
 
@@ -523,11 +525,22 @@ class BaseTransformation:
                             break
 
                     if not is_found:
-                        print(
-                            f"cannot find act for {exc} in {act['name'], act['location']}"
-                        )
-                        print(names_to_look_for)
-                        print(alternative_locations)
+                        print(exc[0], exc[2], act["name"], act["location"])
+
+                        if (exc[0], exc[2]) == (act["name"], act["location"]):
+                            print("yes")
+                            new_name, new_prod, new_loc, new_unit = (
+                                act["name"],
+                                act["reference product"],
+                                act["location"],
+                                act["unit"],
+                            )
+                        else:
+                            print(
+                                f"cannot find act for {exc} in {act['name'], act['location']}"
+                            )
+                            print(names_to_look_for)
+                            print(alternative_locations)
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset

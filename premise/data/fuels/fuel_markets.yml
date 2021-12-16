@@ -1,0 +1,30 @@
+petrol, unleaded:
+  name: market for petrol, unleaded
+  reference product: petrol, unleaded
+  unit: kilogram
+  lhv: 42.6
+petrol, low-sulfur:
+  name: market for petrol, low-sulfur
+  reference product: petrol, low-sulfur
+  unit: kilogram
+  lhv: 42.6
+diesel, low-sulfur:
+  name: market for diesel, low-sulfur
+  reference product: diesel, low-sulfur
+  unit: kilogram
+  lhv: 43
+diesel:
+  name: market for diesel
+  reference product: diesel
+  unit: kilogram
+  lhv: 43
+natural gas:
+  name: market for natural gas, high pressure
+  reference product: natural gas, high pressure
+  unit: cubic meter
+  lhv: 47.5
+hydrogen:
+  name: market for hydrogen, gaseous
+  reference product: hydrogen, gaseous
+  unit: kilogram
+  lhv: 120

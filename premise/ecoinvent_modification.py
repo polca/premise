@@ -7,17 +7,17 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .renewables import SolarPV
+from .photovoltaics import SolarPV
 from .inventory_imports import (
     DefaultInventory,
-    VariousVehicles,
     AdditionalInventory,
 )
 from .cement import Cement
 from .steel import Steel
 from .fuels import Fuels
+from .natural_gas import update_ng_production_ds
 from .transport import Transport
-from .export import Export
+from .export import Export, check_for_duplicates, remove_uncertainty
 from .utils import eidb_label, add_modified_tags, build_superstructure_db
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -85,6 +85,7 @@ FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
 FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
+FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
 
 
 FILE_PATH_INVENTORIES_EI_38 = INVENTORY_DIR / "inventory_data_ei_38.pickle"
@@ -188,28 +189,6 @@ def enablePrint():
     sys.stdout = sys.__stdout__
 
 
-def check_for_duplicates(database):
-    """ Check for the absence of duplicates before export """
-
-    db_names = [
-        (x["name"].lower(), x["reference product"].lower(), x["location"])
-        for x in database
-    ]
-
-    if len(db_names) == len(set(db_names)):
-        return database
-
-    print("One or multiple duplicates detected. Removing them...")
-    seen = set()
-    return [
-        x
-        for x in database
-        if (x["name"].lower(), x["reference product"].lower(), x["location"])
-        not in seen
-        and not seen.add(
-            (x["name"].lower(), x["reference product"].lower(), x["location"])
-        )
-    ]
 
 
 def check_ei_filepath(filepath):
@@ -403,7 +382,8 @@ def check_additional_inventories(inventories_list):
 
         if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8"]:
             raise ValueError(
-                "A lot of trouble will be avoided if the additional inventories to import are ecoinvent 3.7 or 3.8-compliant."
+                "A lot of trouble will be avoided if the additional "
+                f"inventories to import are ecoinvent 3.7 or 3.8-compliant, not {inventory['ecoinvent version']}."
             )
 
     return inventories_list
@@ -524,12 +504,13 @@ def warning_about_biogenic_co2():
             "containing net negative emission technologies (NET),\n"
             "it is advised to account for biogenic CO2 flows when calculating\n"
             "Global Warming potential indicators.\n"
-            "`premise_gwp` provides characterization factors for such flows.\n\n"
+            "`premise_gwp` provides characterization factors for such flows.\n"
+            "It also provides factors for hydrogen emissions to air.\n\n"
             "Install it via\n"
             "pip install premise_gwp\n"
             "or\n"
             "conda install -c romainsacchi premise_gwp\n\n"
-            "Within in your bw2 project:\n"
+            "Within your bw2 project:\n"
             "from premise_gwp import add_premise_gwp\n"
             "add_premise_gwp()"
         ]
@@ -564,9 +545,6 @@ class NewDatabase:
     :ivar source_version: version of the ecoinvent source database.
         Currently works with ecoinvent cut-off 3.5, 3.6, 3.7, 3.7.1 and 3.8.
     :vartype source_version: str
-    :ivar direct_import: If True, appends pickled inventories to database.
-    If False, import inventories via bw2io importer.
-    :vartype direct_import: bool
     :ivar system_model: Can be `attributional` (default) or `consequential`.
     :vartype system_model: str
 
@@ -729,6 +707,7 @@ class NewDatabase:
                 (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
                 (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
                 (FILEPATH_BATTERIES, "3.8"),
+                (FILEPATH_PHOTOVOLTAICS, "3.7"),
                 (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
                 (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
                 (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
@@ -824,6 +803,19 @@ class NewDatabase:
 
                 scenario["database"] = fuels.generate_fuel_markets()
 
+    def update_ng(self):
+        print("\n//////////////////////////// NATURAL GAS /////////////////////////////")
+
+        for scenario in self.scenarios:
+
+            if "exclude" not in scenario or "update_ng" not in scenario["exclude"]:
+
+                scenario["database"] = update_ng_production_ds(
+                    database=scenario["database"]
+                )
+
+        print("Done!")
+
     def update_cement(self):
         print("\n///////////////////////////// CEMENT //////////////////////////////")
 
@@ -895,7 +887,7 @@ class NewDatabase:
                     version=self.version,
                     vehicle_type="two wheeler",
                     relink=False,
-                    has_fleet=True,
+                    has_fleet=False,
                 )
 
                 scenario["database"] = trsp.create_vehicle_markets()
@@ -943,14 +935,19 @@ class NewDatabase:
                 scenario["database"] = trsp.create_vehicle_markets()
 
     def update_solar_pv(self):
-        print("\n/////////////////////////// SOLAR PV ////////////////////////////")
+        print("\n///////////////////////////// SOLAR PV //////////////////////////////")
 
         for scenario in self.scenarios:
             if (
                 "exclude" not in scenario
                 or "update_solar_pv" not in scenario["exclude"]
             ):
-                solar_pv = SolarPV(db=scenario["database"], year=scenario["year"])
+                solar_pv = SolarPV(
+                    db=scenario["database"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                    scenario=scenario["pathway"]
+                )
                 print("Update efficiency of solar PVs.\n")
                 scenario["database"] = solar_pv.update_efficiency_of_solar_pv()
 
@@ -963,8 +960,9 @@ class NewDatabase:
         self.update_cars()
         self.update_trucks()
         self.update_buses()
-        self.update_electricity()
+        self.update_ng()
         self.update_solar_pv()
+        self.update_electricity()
         self.update_cement()
         self.update_steel()
         self.update_fuels()
@@ -976,6 +974,10 @@ class NewDatabase:
         Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
         :return: filepath of the "scenarios difference file"
         """
+
+        # we ensure first the absence of duplicate datasets
+        self.database = check_for_duplicates(self.database)
+        self.database = remove_uncertainty(self.database)
 
         self.database = build_superstructure_db(
             self.database, self.scenarios, db_name=name, fp=filepath
@@ -1022,6 +1024,7 @@ class NewDatabase:
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
+            scenario["database"] = remove_uncertainty(scenario["database"])
 
             wurst.write_brightway2_database(
                 scenario["database"], name[scen],
@@ -1066,6 +1069,7 @@ class NewDatabase:
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
+            scenario["database"] = remove_uncertainty(scenario["database"])
 
             Export(
                 scenario["database"],
@@ -1094,6 +1098,7 @@ class NewDatabase:
 
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
+            scenario["database"] = remove_uncertainty(scenario["database"])
 
             Export(
                 scenario["database"],

@@ -26,6 +26,8 @@ image:
   UKR: temperate
   WAF: tropical
   WEU: temperate
+
+remind:
   LAM: tropical
   CAZ: temperate
   EUR: temperate
@@ -38,14 +40,3 @@ image:
   NEU: temperate
   REF: temperate
   USA: temperate
-  ESC: temperate
-  ECE: temperate
-  DEU: temperate
-  ESW: temperate
-  FRA: temperate
-  UKI: temperate
-  ENC: temperate
-  EWN: temperate
-  ECS: temperate
-  NEN: temperate
-  NES: temperate

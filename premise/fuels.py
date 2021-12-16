@@ -1,47 +1,29 @@
 from .transformation import *
 from .utils import DATA_DIR, get_crops_properties
+import yaml
 
-CROP_CLIMATE_MAP = DATA_DIR / "fuels" / "crop_climate_mapping.csv"
-REGION_CLIMATE_MAP = DATA_DIR / "fuels" / "region_climate_mapping.csv"
+REGION_CLIMATE_MAP = DATA_DIR / "fuels" / "region_to_climate.yml"
 FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"
+SUPPLY_CHAIN_SCENARIOS = DATA_DIR / "fuels" / "supply_chain_scenarios.yml"
+HEAT_SOURCES = DATA_DIR / "fuels" / "heat_sources_map.yml"
+HYDROGEN_SOURCES = DATA_DIR / "fuels" / "hydrogen_activities.yml"
+HYDROGEN_SUPPLY_LOSSES = DATA_DIR / "fuels" / "hydrogen_supply_losses.yml"
+METHANE_SOURCES = DATA_DIR / "fuels" / "methane_activities.yml"
+LIQUID_FUEL_SOURCES = DATA_DIR / "fuels" / "liquid_fuel_activities.yml"
+FUEL_MARKETS = DATA_DIR / "fuels" / "fuel_markets.yml"
+BIOFUEL_SOURCES = DATA_DIR / "fuels" / "biofuels_activities.yml"
 
 
 def filter_results(item_to_look_for, results, field_to_look_at):
     return [r for r in results if item_to_look_for not in r[field_to_look_at]]
 
 
-def get_crop_climate_mapping():
-    """ Returns a dictionary that indictes the type of crop
-    used for bioethanol production per type of climate """
+def fetch_mapping(filepath):
+    """ Returns a dictionary from a YML file"""
 
-    d = {}
-    with open(CROP_CLIMATE_MAP, encoding="utf-8") as f:
-        r = csv.reader(f, delimiter=";")
-        next(r)
-        for line in r:
-            climate, sugar, oil, wood, grass, grain = line
-            d[climate] = {
-                "sugar": sugar,
-                "oil": oil,
-                "wood": wood,
-                "grass": grass,
-                "grain": grain,
-            }
-    return d
-
-
-def get_region_climate_mapping():
-    """ Returns a dicitonary that indicates the type of climate
-     for each IAM region"""
-
-    d = {}
-    with open(REGION_CLIMATE_MAP, encoding="utf-8") as f:
-        r = csv.reader(f, delimiter=";")
-        next(r)
-        for line in r:
-            region, climate = line
-            d[region] = climate
-    return d
+    with open(filepath, "r") as stream:
+        map = yaml.safe_load(stream)
+    return map
 
 
 def get_compression_effort(p_in, p_out, flow_rate):
@@ -78,6 +60,11 @@ def get_pre_cooling_energy(t_amb, cap_util):
     return el_pre_cooling
 
 
+def get_electrolysis_electricity_requirement(year):
+    # from 58 kWh/kg H2 in 2010, down to 44 kWh in 2050
+    return np.clip(-0.3538 * (year - 2010) + 58.589, 44, None)
+
+
 class Fuels(BaseTransformation):
     """
         Class that modifies fuel inventories and markets in ecoinvent based on IAM output data.
@@ -89,29 +76,16 @@ class Fuels(BaseTransformation):
         self.version = version
         self.original_db = original_db
         self.fuel_labels = self.iam_data.fuel_markets.coords["variables"].values
-        self.land_use_per_crop_type = get_crops_properties()
-        self.land_use_change_CO2_per_crop_type = get_crops_properties()
+        self.crops_props = get_crops_properties()
         self.new_fuel_markets = {}
+        self.cached_suppliers = {}
 
     def generate_dac_activities(self):
 
         """ Generate regional variants of the DAC process with varying heat sources """
 
         # define heat sources
-        heat_map_ds = {
-            "waste heat": (
-                "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
-                "heat, district or industrial, other than natural gas",
-            ),
-            "industrial steam heat": (
-                "market for heat, from steam, in chemical industry",
-                "heat, from steam, in chemical industry",
-            ),
-            "heat pump heat": (
-                "market group for electricity, low voltage",
-                "electricity, low voltage",
-            ),
-        }
+        heat_map_ds = fetch_mapping(HEAT_SOURCES)
 
         # loop through IAM regions
         for region in self.regions:
@@ -136,8 +110,8 @@ class Fuels(BaseTransformation):
 
                 for exc in ws.technosphere(dataset):
                     if "heat" in exc["name"]:
-                        exc["name"] = activities[0]
-                        exc["product"] = activities[1]
+                        exc["name"] = activities["name"]
+                        exc["product"] = activities["reference product"]
                         exc["location"] = "RoW"
 
                         if heat_type == "heat pump heat":
@@ -194,21 +168,48 @@ class Fuels(BaseTransformation):
             dataset["location"],
         )
 
+    def find_suppliers(self, name, ref_prod, unit, loc):
+
+        if (name, ref_prod, loc) in self.cached_suppliers:
+            return self.cached_suppliers[(name, ref_prod, loc)]
+
+        ecoinvent_regions = self.geo.iam_to_ecoinvent_location(loc)
+        possible_locations = [[loc], ecoinvent_regions, ["RER"], ["RoW"], ["GLO"]]
+        suppliers, counter = [], 0
+
+        while len(suppliers) == 0:
+            suppliers = list(
+                get_suppliers_of_a_region(
+                    database=self.database,
+                    locations=possible_locations[counter],
+                    names=[name] if isinstance(name, str) else name,
+                    reference_product=ref_prod,
+                    unit=unit,
+                )
+            )
+            counter += 1
+
+        suppliers = get_shares_from_production_volume(suppliers)
+
+        self.cached_suppliers[(name, ref_prod, loc)] = suppliers
+
+        return suppliers
+
     def generate_hydrogen_activities(self):
         """
 
         Defines regional variants for hydrogen production, but also different supply
         chain designs:
-        * by truck (100, 200, 500 and 1000 km), gaseous, liquid and LOHC
-        * by reassigned CNG pipeline (100, 200, 500 and 1000 km), gaseous, with and without inhibitors
-        * by dedicated H2 pipeline (100, 200, 500 and 1000 km), gaseous
-        * by ship, liquid (1000, 2000, 5000 km)
+        * by truck (500 km), gaseous, liquid and LOHC
+        * by reassigned CNG pipeline (500 km), gaseous, with and without inhibitors
+        * by dedicated H2 pipeline (500 km), gaseous
+        * by ship, liquid (2000 km)
 
         For truck and pipeline supply chains, we assume a transmission and a distribution part, for which
         we have specific pipeline designs. We also assume a means for regional storage in between (salt cavern).
         We apply distance-based losses along the way.
 
-        Most of these supply chain design options are based on the work:
+        Most of these supply chain design options are based on the work of:
         * Wulf C, Reuß M, Grube T, Zapp P, Robinius M, Hake JF, et al.
           Life Cycle Assessment of hydrogen transport and distribution options.
           J Clean Prod 2018;199:431–43. https://doi.org/10.1016/j.jclepro.2018.07.180.
@@ -218,272 +219,64 @@ class Fuels(BaseTransformation):
         * Petitpas G. Boil-off losses along the LH2 pathway. US Dep Energy Off Sci Tech Inf 2018.
 
         We also assume efficiency gains over time for the PEM electrolysis process: from 58 kWh/kg H2 in 2010,
-        down to 44 kWh by 2050, according to a literature review conducted by the Paul Scherrer Institut.
+        down to 44 kWh by 2050, according to a literature review conducted by the Paul Scherrer Institute.
 
         """
 
-        fuel_activities = {
-            "hydrogen": [
-                (
-                    "hydrogen production, gaseous, 25 bar, from electrolysis",
-                    "from electrolysis",
-                ),
-                (
-                    "hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar",
-                    "from SMR of biogas, with CCS",
-                ),
-                (
-                    "hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar",
-                    "from SMR of biogas",
-                ),
-                (
-                    "hydrogen production, auto-thermal reforming, from biomethane, 25 bar",
-                    "from ATR of biogas",
-                ),
-                (
-                    "hydrogen production, auto-thermal reforming, from biomethane, with CCS (MDEA, 98% eff.), 25 bar",
-                    "from ATR of biogas, with CCS",
-                ),
-                (
-                    "hydrogen production, steam methane reforming of natural gas, 25 bar",
-                    "from SMR of nat. gas",
-                ),
-                (
-                    "hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar",
-                    "from SMR of nat. gas, with CCS",
-                ),
-                (
-                    "hydrogen production, auto-thermal reforming of natural gas, 25 bar",
-                    "from ATR of nat. gas",
-                ),
-                (
-                    "hydrogen production, auto-thermal reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar",
-                    "from ATR of nat. gas, with CCS",
-                ),
-                (
-                    "hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant",
-                    "from gasification of biomass by heatpipe reformer, with CCS",
-                ),
-                (
-                    "hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant",
-                    "from gasification of biomass by heatpipe reformer",
-                ),
-                (
-                    "hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant",
-                    "from gasification of biomass, with CCS",
-                ),
-                (
-                    "hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant",
-                    "from gasification of biomass",
-                ),
-                (
-                    "hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant",
-                    "from coal gasification",
-                ),
-            ]
-        }
+        hydrogen_sources = fetch_mapping(HYDROGEN_SOURCES)
 
         for region in self.regions:
-            for fuel, activities in fuel_activities.items():
-                for act in activities:
+            for hydrogen_type, hydrogen_activity in hydrogen_sources.items():
 
-                    dataset = wt.copy_to_new_location(
-                        ws.get_one(self.original_db, ws.contains("name", act[0])),
-                        region,
+                dataset = wt.copy_to_new_location(
+                    ws.get_one(
+                        self.original_db, ws.contains("name", hydrogen_activity)
+                    ),
+                    region,
+                )
+
+                for exc in ws.production(dataset):
+                    if "input" in exc:
+                        exc.pop("input")
+
+                # we adjust the electrolysis efficiency
+                if hydrogen_type == "from electrolysis":
+                    for exc in ws.technosphere(dataset):
+                        if "market group for electricity" in exc["name"]:
+                            exc["amount"] = get_electrolysis_electricity_requirement(
+                                self.year
+                            )
+
+                    string = f" The electricity input per kg of H2 has been adapted to the year {self.year}."
+                    if "comment" in dataset:
+                        dataset["comment"] += string
+                    else:
+                        dataset["comment"] = string
+
+                dataset = relink_technosphere_exchanges(
+                    dataset, self.database, self.model
+                )
+
+                dataset[
+                    "comment"
+                ] = "Region-specific hydrogen production dataset generated by `premise`. "
+
+                self.database.append(dataset)
+                # Add created dataset to `self.list_datasets`
+                self.list_datasets.append(
+                    (
+                        dataset["name"],
+                        dataset["reference product"],
+                        dataset["location"],
                     )
-
-                    for exc in ws.production(dataset):
-                        if "input" in exc:
-                            exc.pop("input")
-
-                    # we adjust the electrolysis efficiency
-                    # from 58 kWh/kg H2 in 2010, down to 44 kWh in 2050
-                    if (
-                        act[0]
-                        == "hydrogen production, gaseous, 25 bar, from electrolysis"
-                    ):
-                        for exc in ws.technosphere(dataset):
-                            if "market group for electricity" in exc["name"]:
-                                exc["amount"] = np.clip(-0.3538 * (self.year - 2010) + 58.589, 44, None)
-
-                        string = f" The electricity input per kg of H2 has been adapted to the year {self.year}."
-                        if "comment" in dataset:
-                            dataset["comment"] += string
-                        else:
-                            dataset["comment"] = string
-
-                    dataset = relink_technosphere_exchanges(
-                        dataset, self.database, self.model
-                    )
-
-                    dataset[
-                        "comment"
-                    ] = "Region-specific hydrogen production dataset generated by `premise`. "
-
-                    self.database.append(dataset)
-                    # Add created dataset to `self.list_datasets`
-                    self.list_datasets.append(
-                        (
-                            dataset["name"],
-                            dataset["reference product"],
-                            dataset["location"],
-                        )
-                    )
+                )
 
         print("Generate region-specific hydrogen supply chains.")
-        # loss coefficients for hydrogen supply
-        losses = {
-            "truck": {
-                "gaseous": (
-                    lambda d: 0.005,  # compression, per operation,
-                    " 0.5% loss during compression.",
-                ),
-                "liquid": (
-                    lambda d: (
-                        0.013  # liquefaction, per operation
-                        + 0.02  # vaporization, per operation
-                        + np.power(1.002, d / 50 / 24)
-                        - 1  # boil-off, per day, 50 km/h on average
-                    ),
-                    "1.3% loss during liquefaction. Boil-off loss of 0.2% per day of truck driving. "
-                    "2% loss caused by vaporization during tank filling at fuelling station.",
-                ),
-                "liquid organic compound": (
-                    lambda d: 0.005,
-                    "0.5% loss during hydrogenation.",
-                ),
-            },
-            "ship": {
-                "liquid": (
-                    lambda d: (
-                        0.013  # liquefaction, per operation
-                        + 0.02  # vaporization, per operation
-                        + np.power(
-                            0.2, d / 36 / 24
-                        )  # boil-off, per day, 36 km/h on average
-                    ),
-                    "1.3% loss during liquefaction. Boil-off loss of 0.2% per day of shipping. "
-                    "2% loss caused by vaporization during tank filling at fuelling station.",
-                ),
-            },
-            "H2 pipeline": {
-                "gaseous": (
-                    lambda d: (
-                        0.005  # compression, per operation
-                        + 0.023  # storage, unused buffer gas
-                        + 0.01  # storage, yearly leakage rate
-                        + 4e-5 * d  # pipeline leakage, per km
-                    ),
-                    "0.5% loss during compression. 3.3% loss at regional storage."
-                    "Leakage rate of 4e-5 kg H2 per km of pipeline.",
-                )
-            },
-            "CNG pipeline": {
-                "gaseous": (
-                    lambda d: (
-                        0.005  # compression, per operation
-                        + 0.023  # storage, unused buffer gas
-                        + 0.01  # storage, yearly leakage rate
-                        + 4e-5 * d  # pipeline leakage, per km
-                        + 0.07  # purification, per operation
-                    ),
-                    "0.5% loss during compression. 3.3% loss at regional storage."
-                    "Leakage rate of 4e-5 kg H2 per km of pipeline. 7% loss during sepration of H2"
-                    "from inhibitor gas.",
-                )
-            },
-        }
 
-        supply_chain_scenarios = {
-            "truck": {
-                "type": [
-                    (
-                        "market for transport, freight, lorry, unspecified",
-                        "transport, freight, lorry, unspecified",
-                        "ton kilometer",
-                        "RER",
-                    )
-                ],
-                "state": ["gaseous", "liquid", "liquid organic compound"],
-                "distance": [
-                    500,
-                    # 1000
-                ],
-            },
-            "ship": {
-                "type": [
-                    self.find_transport_activity(
-                        items_to_look_for=[
-                            "market for transport, freight, sea",
-                            "liquefied",
-                        ],
-                        items_to_exclude=["other"],
-                        loc="RoW",
-                    )
-                ],
-                "state": ["liquid"],
-                "distance": [
-                    2000,
-                    # 5000
-                ],
-            },
-            "H2 pipeline": {
-                "type": [
-                    (
-                        "distribution pipeline for hydrogen, dedicated hydrogen pipeline",
-                        "pipeline, for hydrogen distribution",
-                        "kilometer",
-                        "RER",
-                    ),
-                    (
-                        "transmission pipeline for hydrogen, dedicated hydrogen pipeline",
-                        "pipeline, for hydrogen transmission",
-                        "kilometer",
-                        "RER",
-                    ),
-                ],
-                "state": ["gaseous"],
-                "distance": [
-                    500,
-                    # 1000
-                ],
-                "regional storage": (
-                    "geological hydrogen storage",
-                    "hydrogen storage",
-                    "kilogram",
-                    "RER",
-                ),
-                "lifetime": 40 * 400000 * 1e3,
-            },
-            "CNG pipeline": {
-                "type": [
-                    (
-                        "distribution pipeline for hydrogen, reassigned CNG pipeline",
-                        "pipeline, for hydrogen distribution",
-                        "kilometer",
-                        "RER",
-                    ),
-                    (
-                        "transmission pipeline for hydrogen, reassigned CNG pipeline",
-                        "pipeline, for hydrogen transmission",
-                        "kilometer",
-                        "RER",
-                    ),
-                ],
-                "state": ["gaseous"],
-                "distance": [
-                    500,
-                    # 1000
-                ],
-                "regional storage": (
-                    "geological hydrogen storage",
-                    "hydrogen storage",
-                    "kilogram",
-                    "RER",
-                ),
-                "lifetime": 40 * 400000 * 1e3,
-            },
-        }
+        # loss coefficients for hydrogen supply
+        losses = fetch_mapping(HYDROGEN_SUPPLY_LOSSES)
+
+        supply_chain_scenarios = fetch_mapping(SUPPLY_CHAIN_SCENARIOS)
 
         for region in self.regions:
 
@@ -513,140 +306,161 @@ class Fuels(BaseTransformation):
                     (dataset["name"], dataset["reference product"], dataset["location"])
                 )
 
-            for fuel, activities in fuel_activities.items():
-                for act in activities:
-                    for vehicle, config in supply_chain_scenarios.items():
-                        for state in config["state"]:
-                            for distance in config["distance"]:
+            for hydrogen_type, hydrogen_activity in hydrogen_sources.items():
+                for vehicle, config in supply_chain_scenarios.items():
+                    for state in config["state"]:
+                        for distance in config["distance"]:
 
-                                # dataset creation
-                                new_act = {
-                                    "location": region,
-                                    "name": f"hydrogen supply, {act[1]}, by {vehicle}, as {state}, over {distance} km",
-                                    "reference product": "hydrogen, 700 bar",
+                            # dataset creation
+                            new_act = {
+                                "location": region,
+                                "name": f"hydrogen supply, {hydrogen_type}, by {vehicle}, as {state}, over {distance} km",
+                                "reference product": "hydrogen, 700 bar",
+                                "unit": "kilogram",
+                                "database": self.database[1]["database"],
+                                "code": str(uuid.uuid4().hex),
+                                "comment": f"Dataset representing hydrogen supply, generated by `premise`.",
+                            }
+
+                            # production flow
+                            new_exc = [
+                                {
+                                    "uncertainty type": 0,
+                                    "loc": 1,
+                                    "amount": 1,
+                                    "type": "production",
+                                    "production volume": 1,
+                                    "product": "hydrogen, 700 bar",
+                                    "name": f"hydrogen supply, {hydrogen_type}, "
+                                    f"by {vehicle}, as {state}, over {distance} km",
                                     "unit": "kilogram",
-                                    "database": self.database[1]["database"],
-                                    "code": str(uuid.uuid4().hex),
-                                    "comment": f"Dataset representing {fuel} supply, generated by `premise`.",
+                                    "location": region,
                                 }
+                            ]
 
-                                # production flow
-                                new_exc = [
-                                    {
-                                        "uncertainty type": 0,
-                                        "loc": 1,
-                                        "amount": 1,
-                                        "type": "production",
-                                        "production volume": 1,
-                                        "product": "hydrogen, 700 bar",
-                                        "name": f"hydrogen supply, {act[1]}, by {vehicle}, as {state}, over {distance} km",
-                                        "unit": "kilogram",
-                                        "location": region,
-                                    }
-                                ]
+                            # transport
+                            for trspt in config["vehicle"]:
 
-                                # transport
-                                for trspt_type in config["type"]:
+                                suppliers = self.find_suppliers(
+                                    name=trspt["name"],
+                                    ref_prod=trspt["reference product"],
+                                    unit=trspt["unit"],
+                                    loc=region,
+                                )
+
+                                for supplier, share in suppliers.items():
                                     new_exc.append(
                                         {
                                             "uncertainty type": 0,
-                                            "amount": distance / 1000
-                                            if trspt_type[2] == "ton kilometer"
+                                            "amount": distance * share / 1000
+                                            if supplier[-1] == "ton kilometer"
                                             else distance
+                                            * share
                                             / 2
-                                            * (1 / config["lifetime"]),
+                                            * (1 / eval(config["lifetime"])),
                                             "type": "technosphere",
-                                            "product": trspt_type[1],
-                                            "name": trspt_type[0],
-                                            "unit": trspt_type[2],
-                                            "location": trspt_type[3],
+                                            "product": supplier[2],
+                                            "name": supplier[0],
+                                            "unit": supplier[-1],
+                                            "location": supplier[1],
                                             "comment": f"Transport over {distance} km by {vehicle}.",
                                         }
                                     )
 
-                                    string = (
-                                        f"Transport over {distance} km by {vehicle}."
-                                    )
+                                string = f"Transport over {distance} km by {vehicle}."
 
-                                    if "comment" in new_act:
-                                        new_act["comment"] += string
-                                    else:
-                                        new_act["comment"] = string
+                                if "comment" in new_act:
+                                    new_act["comment"] += string
+                                else:
+                                    new_act["comment"] = string
 
-                                # need for inhibitor and purification if CNG pipeline
-                                # electricity for purification: 2.46 kWh/kg H2
-                                if vehicle == "CNG pipeline":
+                            # need for inhibitor and purification if CNG pipeline
+                            # electricity for purification: 2.46 kWh/kg H2
+                            if vehicle == "CNG pipeline":
 
-                                    inhibbitor_ds = ws.get_one(
-                                        self.database,
-                                        ws.contains(
-                                            "name", "hydrogen embrittlement inhibition"
-                                        ),
-                                        ws.equals("location", region),
-                                    )
+                                inhibbitor_ds = ws.get_one(
+                                    self.database,
+                                    ws.contains(
+                                        "name", "hydrogen embrittlement inhibition"
+                                    ),
+                                    ws.equals("location", region),
+                                )
 
-                                    new_exc.append(
-                                        {
-                                            "uncertainty type": 0,
-                                            "amount": 1,
-                                            "type": "technosphere",
-                                            "product": inhibbitor_ds[
-                                                "reference product"
-                                            ],
-                                            "name": inhibbitor_ds["name"],
-                                            "unit": inhibbitor_ds["unit"],
-                                            "location": region,
-                                            "comment": "Injection of an inhibiting gas (oxygen) to prevent embritllement of metal.",
-                                        }
-                                    )
+                                new_exc.append(
+                                    {
+                                        "uncertainty type": 0,
+                                        "amount": 1,
+                                        "type": "technosphere",
+                                        "product": inhibbitor_ds["reference product"],
+                                        "name": inhibbitor_ds["name"],
+                                        "unit": inhibbitor_ds["unit"],
+                                        "location": region,
+                                        "comment": "Injection of an inhibiting gas (oxygen) to prevent embritllement of metal. ",
+                                    }
+                                )
 
-                                    string = (
-                                        " 2.46 kWh/kg H2 is needed to purify the hydrogen from the inhibiting gas."
-                                        " The recovery rate for hydrogen after separation from the inhibitor gas is 93%."
-                                    )
-                                    if "comment" in new_act:
-                                        new_act["comment"] += string
-                                    else:
-                                        new_act["comment"] = string
+                                string = (
+                                    "2.46 kWh/kg H2 is needed to purify the hydrogen from the inhibiting gas. "
+                                    "The recovery rate for hydrogen after separation from the inhibitor gas is 93%."
+                                )
+                                if "comment" in new_act:
+                                    new_act["comment"] += string
+                                else:
+                                    new_act["comment"] = string
 
-                                if "regional storage" in config:
+                            if "regional storage" in config:
 
-                                    storage_ds = ws.get_one(
-                                        self.database,
-                                        ws.contains(
-                                            "name", "geological hydrogen storage"
-                                        ),
-                                        ws.equals("location", region),
-                                    )
+                                storage_ds = ws.get_one(
+                                    self.database,
+                                    ws.contains(
+                                        "name", config["regional storage"]["name"]
+                                    ),
+                                    ws.contains(
+                                        "reference product",
+                                        config["regional storage"]["reference product"],
+                                    ),
+                                    ws.equals("location", region),
+                                    ws.equals(
+                                        "unit", config["regional storage"]["unit"]
+                                    ),
+                                )
 
-                                    new_exc.append(
-                                        {
-                                            "uncertainty type": 0,
-                                            "amount": 1,
-                                            "type": "technosphere",
-                                            "product": storage_ds["reference product"],
-                                            "name": storage_ds["name"],
-                                            "unit": storage_ds["unit"],
-                                            "location": region,
-                                            "comment": "Geological storage (salt cavern).",
-                                        }
-                                    )
+                                new_exc.append(
+                                    {
+                                        "uncertainty type": 0,
+                                        "amount": 1,
+                                        "type": "technosphere",
+                                        "product": storage_ds["reference product"],
+                                        "name": storage_ds["name"],
+                                        "unit": storage_ds["unit"],
+                                        "location": region,
+                                        "comment": "Geological storage (salt cavern).",
+                                    }
+                                )
 
-                                    string = " Geological storage is added. It includes 0.344 kWh for the injection and pumping of 1 kg of H2."
-                                    if "comment" in new_act:
-                                        new_act["comment"] += string
-                                    else:
-                                        new_act["comment"] = string
+                                string = " Geological storage is added. It includes 0.344 kWh for the injection and pumping of 1 kg of H2."
+                                if "comment" in new_act:
+                                    new_act["comment"] += string
+                                else:
+                                    new_act["comment"] = string
 
-                                # electricity for compression
+                            # electricity for compression
+                            if state in ["gaseous", "liquid"]:
+                                # if gaseous
+                                # if transport by truck, compression from 25 bar to 500 bar for the transport
+                                # and from 500 bar to 900 bar for dispensing in 700 bar storage tanks
+
+                                # if transport by pipeline, initial compression from 25 bar to 100 bar
+                                # and 0.6 kWh re-compression every 250 km
+                                # and finally from 100 bar to 900 bar for dispensing in 700 bar storage tanks
+
+                                # if liquid
+                                # liquefaction electricity need
+                                # currently, 12 kWh/kg H2
+                                # mid-term, 8 kWh/ kg H2
+                                # by 2050, 6 kWh/kg H2
+
                                 if state == "gaseous":
-
-                                    # if transport by truck, compression from 25 bar to 500 bar for teh transport
-                                    # and from 500 bar to 900 bar for dispensing in 700 bar storage tanks
-
-                                    # if transport by pipeline, initial compression from 25 bar to 100 bar
-                                    # and 0.6 kWh re-compression every 250 km
-                                    # and finally from 100 bar to 900 bar for dispensing in 700 bar storage tanks
 
                                     if vehicle == "truck":
                                         electricity_comp = get_compression_effort(
@@ -663,256 +477,286 @@ class Fuels(BaseTransformation):
                                             100, 900, 1000
                                         )
 
-                                    new_exc.append(
-                                        {
-                                            "uncertainty type": 0,
-                                            "amount": electricity_comp,
-                                            "type": "technosphere",
-                                            "product": "electricity, low voltage",
-                                            "name": "market group for electricity, low voltage",
-                                            "unit": "kilowatt hour",
-                                            "location": "RoW",
-                                        }
-                                    )
-
                                     string = (
                                         f" {electricity_comp} kWh is added to compress from 25 bar 100 bar (if pipeline)"
                                         f"or 500 bar (if truck), and then to 900 bar to dispense in storage tanks at 700 bar. "
                                         " Additionally, if transported by pipeline, there is re-compression (0.6 kWh) every 250 km."
                                     )
 
-                                    if "comment" in new_act:
-                                        new_act["comment"] += string
-                                    else:
-                                        new_act["comment"] = string
-
-                                # electricity for liquefaction
-                                if state == "liquid":
-                                    # liquefaction electricity need
-                                    # currently, 12 kWh/kg H2
-                                    # mid-term, 8 kWh/ kg H2
-                                    # by 2050, 6 kWh/kg H2
+                                else:
                                     electricity_comp = np.clip(
                                         np.interp(
-                                            self.year, [2020, 2035, 2050], [12, 8, 6]
+                                            self.year, [2020, 2035, 2050], [12, 8, 6],
                                         ),
                                         12,
                                         6,
                                     )
-                                    new_exc.append(
-                                        {
-                                            "uncertainty type": 0,
-                                            "amount": electricity_comp,
-                                            "type": "technosphere",
-                                            "product": "electricity, low voltage",
-                                            "name": "market group for electricity, low voltage",
-                                            "unit": "kilowatt hour",
-                                            "location": "RoW",
-                                        }
-                                    )
 
                                     string = f" {electricity_comp} kWh is added to liquefy the hydrogen. "
-                                    if "comment" in new_act:
-                                        new_act["comment"] += string
-                                    else:
-                                        new_act["comment"] = string
 
-                                # electricity for hydrogenation, dehydrogenation and compression at delivery
-                                if state == "liquid organic compound":
+                                suppliers = self.find_suppliers(
+                                    name="market group for electricity, low voltage",
+                                    ref_prod="electricity, low voltage",
+                                    unit="kilowatt hour",
+                                    loc=region,
+                                )
 
-                                    hydrogenation_ds = ws.get_one(
-                                        self.database,
-                                        ws.equals("name", "hydrogenation of hydrogen"),
-                                        ws.equals("location", region),
-                                    )
-
-                                    dehydrogenation_ds = ws.get_one(
-                                        self.database,
-                                        ws.equals(
-                                            "name", "dehydrogenation of hydrogen"
-                                        ),
-                                        ws.equals("location", region),
-                                    )
-
-                                    new_exc.extend(
-                                        [
-                                            {
-                                                "uncertainty type": 0,
-                                                "amount": 1,
-                                                "type": "technosphere",
-                                                "product": hydrogenation_ds[
-                                                    "reference product"
-                                                ],
-                                                "name": hydrogenation_ds["name"],
-                                                "unit": hydrogenation_ds["unit"],
-                                                "location": region,
-                                            },
-                                            {
-                                                "uncertainty type": 0,
-                                                "amount": 1,
-                                                "type": "technosphere",
-                                                "product": dehydrogenation_ds[
-                                                    "reference product"
-                                                ],
-                                                "name": dehydrogenation_ds["name"],
-                                                "unit": dehydrogenation_ds["unit"],
-                                                "location": region,
-                                            },
-                                        ]
-                                    )
-
-                                    # After dehydrogenation at ambient temperature at delivery
-                                    # the hydrogen needs to be compressed up to 900 bar to be dispensed
-                                    # in 700 bar storage tanks
-
-                                    electricity_comp = get_compression_effort(
-                                        25, 900, 1000
-                                    )
-
+                                for supplier, share in suppliers.items():
                                     new_exc.append(
                                         {
                                             "uncertainty type": 0,
-                                            "amount": electricity_comp,
+                                            "amount": electricity_comp * share,
                                             "type": "technosphere",
-                                            "product": "electricity, low voltage",
-                                            "name": "market group for electricity, low voltage",
-                                            "unit": "kilowatt hour",
-                                            "location": "RoW",
+                                            "product": supplier[2],
+                                            "name": supplier[0],
+                                            "unit": supplier[-1],
+                                            "location": supplier[1],
                                         }
                                     )
 
-                                    string = (
-                                        " Hydrogenation and dehydrogenation of hydrogen included. "
-                                        "Compression at delivery after dehydrogenation also included."
-                                    )
-                                    if "comment" in new_act:
-                                        new_act["comment"] += string
-                                    else:
-                                        new_act["comment"] = string
-
-                                # fetch the H2 production activity
-                                h2_ds = ws.get_one(
-                                    self.database,
-                                    ws.equals("name", act[0]),
-                                    ws.equals("location", region),
-                                )
-
-                                # include losses along the way
-                                new_exc.append(
-                                    {
-                                        "uncertainty type": 0,
-                                        "amount": 1
-                                        + losses[vehicle][state][0](distance),
-                                        "type": "technosphere",
-                                        "product": h2_ds["reference product"],
-                                        "name": h2_ds["name"],
-                                        "unit": h2_ds["unit"],
-                                        "location": region,
-                                    }
-                                )
-
-                                string = losses[vehicle][state][1]
                                 if "comment" in new_act:
                                     new_act["comment"] += string
                                 else:
                                     new_act["comment"] = string
 
-                                # add fuelling station, including storage tank
-                                ds_h2_station = ws.get_one(
+                            # electricity for hydrogenation, dehydrogenation and
+                            # compression at delivery
+                            if state == "liquid organic compound":
+
+                                hydrogenation_ds = ws.get_one(
                                     self.database,
-                                    ws.equals("name", "Hydrogen refuelling station"),
+                                    ws.equals("name", "hydrogenation of hydrogen"),
                                     ws.equals("location", region),
                                 )
 
-                                new_exc.append(
-                                    {
-                                        "uncertainty type": 0,
-                                        "amount": 1
-                                        / (
-                                            600 * 365 * 40
-                                        ),  # 1 over lifetime: 40 years, 600 kg H2/day
-                                        "type": "technosphere",
-                                        "product": ds_h2_station["reference product"],
-                                        "name": ds_h2_station["name"],
-                                        "unit": ds_h2_station["unit"],
-                                        "location": region,
-                                    }
+                                dehydrogenation_ds = ws.get_one(
+                                    self.database,
+                                    ws.equals("name", "dehydrogenation of hydrogen"),
+                                    ws.equals("location", region),
                                 )
 
-                                # finally, add pre-cooling
-                                # pre-cooling is needed before filling vehicle tanks
-                                # as the hydrogen is pumped, the ambient temperature
-                                # vaporizes the gas, and because of the Thomson-Joule effect,
-                                # the gas temperature increases.
-                                # Hence, a refrigerant is needed to keep the H2 as low as
-                                # -30 C during pumping.
-
-                                # https://www.osti.gov/servlets/purl/1422579 gives us a formula
-                                # to estimate pre-cooling electricity need
-                                # it requires a capacity utilization for the fuelling station
-                                # as well as an ambient temperature
-                                # we will use a temp of 25 C
-                                # and a capacity utilization going from 10 kg H2/day in 2020
-                                # to 150 kg H2/day in 2050
-
-                                t_amb = 25
-                                cap_util = np.interp(self.year, [2020, 2050], [10, 150])
-                                el_pre_cooling = get_pre_cooling_energy(
-                                    t_amb, cap_util
+                                new_exc.extend(
+                                    [
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": 1,
+                                            "type": "technosphere",
+                                            "product": hydrogenation_ds[
+                                                "reference product"
+                                            ],
+                                            "name": hydrogenation_ds["name"],
+                                            "unit": hydrogenation_ds["unit"],
+                                            "location": region,
+                                        },
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": 1,
+                                            "type": "technosphere",
+                                            "product": dehydrogenation_ds[
+                                                "reference product"
+                                            ],
+                                            "name": dehydrogenation_ds["name"],
+                                            "unit": dehydrogenation_ds["unit"],
+                                            "location": region,
+                                        },
+                                    ]
                                 )
 
-                                new_exc.append(
-                                    {
-                                        "uncertainty type": 0,
-                                        "amount": el_pre_cooling,
-                                        "type": "technosphere",
-                                        "product": "electricity, low voltage",
-                                        "name": "market group for electricity, low voltage",
-                                        "unit": "kilowatt hour",
-                                        "location": "RoW",
-                                    }
+                                # After dehydrogenation at ambient temperature at delivery
+                                # the hydrogen needs to be compressed up to 900 bar to be dispensed
+                                # in 700 bar storage tanks
+
+                                electricity_comp = get_compression_effort(25, 900, 1000)
+
+                                suppliers = self.find_suppliers(
+                                    name="market group for electricity, low voltage",
+                                    ref_prod="electricity, low voltage",
+                                    unit="kilowatt hour",
+                                    loc=region,
                                 )
+
+                                for supplier, share in suppliers.items():
+                                    new_exc.append(
+                                        {
+                                            "uncertainty type": 0,
+                                            "amount": electricity_comp * share,
+                                            "type": "technosphere",
+                                            "product": supplier[2],
+                                            "name": supplier[0],
+                                            "unit": supplier[-1],
+                                            "location": supplier[1],
+                                        }
+                                    )
 
                                 string = (
-                                    f"Pre-cooling electricity is considered ({el_pre_cooling}), "
-                                    f"assuming an ambiant temperature of {t_amb}C "
-                                    f"and a capacity utilization for the fuel station of {cap_util} kg/day."
+                                    " Hydrogenation and dehydrogenation of hydrogen included. "
+                                    "Compression at delivery after dehydrogenation also included."
                                 )
                                 if "comment" in new_act:
                                     new_act["comment"] += string
                                 else:
                                     new_act["comment"] = string
 
-                                new_act["exchanges"] = new_exc
+                            # fetch the H2 production activity
+                            h2_ds = ws.get_one(
+                                self.database,
+                                ws.equals("name", hydrogen_activity),
+                                ws.equals("location", region),
+                            )
 
-                                new_act = relink_technosphere_exchanges(
-                                    new_act, self.database, self.model
+                            # include losses along the way
+                            string = ""
+                            total_loss = 1
+                            for loss, val in losses[vehicle][state].items():
+
+                                val = float(val)
+
+                                if loss == "boil-off":
+                                    if vehicle == "truck":
+                                        # average truck speed
+                                        speed = 50
+                                    else:
+                                        # average ship speed
+                                        speed = 36
+                                    days = distance / speed / 24
+                                    # boil-off losses, function of days in transit
+                                    total_loss *= np.power(1 + val, days)
+
+                                    string += f"Boil-off losses: {int((np.power(1 + val, days) - 1) * 100)}%. "
+
+                                elif loss == "pipeline_leak":
+                                    # pipeline losses, function of distance
+                                    total_loss *= 1 + (val * distance)
+                                    string += f"Pipeline losses: {int((1 + (val * distance) - 1) * 100)}%. "
+                                else:
+                                    total_loss *= 1 + val
+                                    string += f"{loss} losses: {int(val * 100)}%. "
+
+                            new_exc.append(
+                                {
+                                    "uncertainty type": 0,
+                                    "amount": 1 * total_loss,
+                                    "type": "technosphere",
+                                    "product": h2_ds["reference product"],
+                                    "name": h2_ds["name"],
+                                    "unit": h2_ds["unit"],
+                                    "location": region,
+                                }
+                            )
+
+                            # adds losses as hydrogen emission to air
+                            new_exc.append(
+                                {
+                                    "uncertainty type": 0,
+                                    "amount": total_loss - 1,
+                                    "type": "biosphere",
+                                    "name": "Hydrogen",
+                                    "unit": "kilogram",
+                                    "categories": ("air",),
+                                    "input": (
+                                        "biosphere3",
+                                        "b301fa9a-ba60-4eac-8ccc-6ccbdf099b35",
+                                    ),
+                                }
+                            )
+
+                            if "comment" in new_act:
+                                new_act["comment"] += string
+                            else:
+                                new_act["comment"] = string
+
+                            # add fuelling station, including storage tank
+                            ds_h2_station = ws.get_one(
+                                self.database,
+                                ws.equals("name", "Hydrogen refuelling station"),
+                                ws.equals("location", region),
+                            )
+
+                            new_exc.append(
+                                {
+                                    "uncertainty type": 0,
+                                    "amount": 1
+                                    / (
+                                        600 * 365 * 40
+                                    ),  # 1 over lifetime: 40 years, 600 kg H2/day
+                                    "type": "technosphere",
+                                    "product": ds_h2_station["reference product"],
+                                    "name": ds_h2_station["name"],
+                                    "unit": ds_h2_station["unit"],
+                                    "location": region,
+                                }
+                            )
+
+                            # finally, add pre-cooling
+                            # pre-cooling is needed before filling vehicle tanks
+                            # as the hydrogen is pumped, the ambient temperature
+                            # vaporizes the gas, and because of the Thomson-Joule effect,
+                            # the gas temperature increases.
+                            # Hence, a refrigerant is needed to keep the H2 as low as
+                            # -30 C during pumping.
+
+                            # https://www.osti.gov/servlets/purl/1422579 gives us a formula
+                            # to estimate pre-cooling electricity need
+                            # it requires a capacity utilization for the fuelling station
+                            # as well as an ambient temperature
+                            # we will use a temp of 25 C
+                            # and a capacity utilization going from 10 kg H2/day in 2020
+                            # to 150 kg H2/day in 2050
+
+                            t_amb = 25
+                            cap_util = np.interp(self.year, [2020, 2050], [10, 150])
+                            el_pre_cooling = get_pre_cooling_energy(t_amb, cap_util)
+
+                            suppliers = self.find_suppliers(
+                                name="market group for electricity, low voltage",
+                                ref_prod="electricity, low voltage",
+                                unit="kilowatt hour",
+                                loc=region,
+                            )
+
+                            for supplier, share in suppliers.items():
+                                new_exc.append(
+                                    {
+                                        "uncertainty type": 0,
+                                        "amount": el_pre_cooling * share,
+                                        "type": "technosphere",
+                                        "product": supplier[2],
+                                        "name": supplier[0],
+                                        "unit": supplier[-1],
+                                        "location": supplier[1],
+                                    }
                                 )
 
-                                self.database.append(new_act)
+                            string = (
+                                f"Pre-cooling electricity is considered ({el_pre_cooling}), "
+                                f"assuming an ambiant temperature of {t_amb}C "
+                                f"and a capacity utilization for the fuel station of {cap_util} kg/day."
+                            )
+                            if "comment" in new_act:
+                                new_act["comment"] += string
+                            else:
+                                new_act["comment"] = string
 
-                                # Add created dataset to `self.list_datasets`
-                                self.list_datasets.append(
-                                    (
-                                        new_act["name"],
-                                        new_act["reference product"],
-                                        new_act["location"],
-                                    )
+                            new_act["exchanges"] = new_exc
+
+                            new_act = relink_technosphere_exchanges(
+                                new_act, self.database, self.model
+                            )
+
+                            self.database.append(new_act)
+
+                            # Add created dataset to `self.list_datasets`
+                            self.list_datasets.append(
+                                (
+                                    new_act["name"],
+                                    new_act["reference product"],
+                                    new_act["location"],
                                 )
+                            )
 
     def generate_biogas_activities(self):
 
-        fuel_activities = {
-            "methane, from biomass": [
-                "production of 2 wt-% potassium",
-                "biogas upgrading - sewage sludge",
-                "Biomethane, gaseous",
-            ],
-            "methane, synthetic": [
-                "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture",
-                "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation, at fuelling station",
-            ],
-        }
+        fuel_activities = fetch_mapping(METHANE_SOURCES)
 
         for region in self.regions:
             for fuel, activities in fuel_activities.items():
@@ -1003,39 +847,15 @@ class Fuels(BaseTransformation):
 
     def generate_synthetic_fuel_activities(self):
 
-        fuel_activities = {
-            "methanol": ["methanol", "hydrogen from electrolysis", "energy allocation"],
-            "methanol, from coal": [
-                "methanol",
-                "hydrogen from coal gasification",
-                "energy allocation",
-            ],
-            "fischer-tropsch": [
-                "Fischer Tropsch process",
-                "hydrogen from electrolysis",
-                "energy allocation",
-            ],
-            "fischer-tropsch, from woody biomass": [
-                "Fischer Tropsch process",
-                "hydrogen from wood gasification",
-                "energy allocation",
-            ],
-            "fischer-tropsch, from coal": [
-                "Fischer Tropsch process",
-                "hydrogen from coal gasification",
-                "energy allocation",
-            ],
-        }
+        fuel_activities = fetch_mapping(LIQUID_FUEL_SOURCES)
 
         for region in self.regions:
             for fuel, activities in fuel_activities.items():
-
                 filter_ds = ws.get_many(
                     self.original_db, *[ws.contains("name", n) for n in activities],
                 )
 
                 for dataset in filter_ds:
-
                     ds_copy = wt.copy_to_new_location(dataset, region)
 
                     for exc in ws.production(ds_copy):
@@ -1075,228 +895,211 @@ class Fuels(BaseTransformation):
         """
 
         # region -> climate dictionary
-        d_region_climate = get_region_climate_mapping()
+        d_region_climate = fetch_mapping(REGION_CLIMATE_MAP)[self.model]
         # climate --> {crop type --> crop} dictionary
-        d_climate_crop_type = get_crop_climate_mapping()
+        crop_types = list(self.crops_props.keys())
+        climates = set(d_region_climate.values())
+        d_climate_crop_type = {
+            clim: {
+                crop_type: self.crops_props[crop_type]["crop_type"][self.model][clim]
+                for crop_type in crop_types
+            }
+            for clim in climates
+        }
 
-        added_acts = []
+        biofuel_activities = fetch_mapping(BIOFUEL_SOURCES)
+        l_crops = []
 
-        regions = (r for r in self.regions if r != "World")
-        for region in regions:
-            climate_type = d_region_climate[region]
+        for climate in ["tropical", "temperate"]:
+            regions = [k for k, v in d_region_climate.items() if v == climate]
+            for crop_type in d_climate_crop_type[climate]:
+                specific_crop = d_climate_crop_type[climate][crop_type]
+                names = biofuel_activities[crop_type][specific_crop]
 
-            for crop_type in d_climate_crop_type[climate_type]:
-                crop = d_climate_crop_type[climate_type][crop_type]
+                if specific_crop not in l_crops:
+                    l_crops.append(specific_crop)
+                else:
+                    continue
 
-                for original_ds in ws.get_many(
-                    self.original_db,
-                    ws.contains("name", crop),
-                    ws.either(
-                        *[
-                            ws.contains("name", "supply of"),
-                            ws.contains(
-                                "name",
-                                "via fermentation"
-                                if crop_type != "oil"
-                                else "via transesterification",
-                            ),
-                        ]
-                    ),
-                ):
+                if specific_crop == "corn":
+                    regions = list(d_region_climate.keys())
 
-                    dataset = wt.copy_to_new_location(original_ds, region)
+                for name in names:
+                    prod_label = [l for l in self.fuel_labels if crop_type in l][0]
 
-                    for exc in ws.production(dataset):
-                        if "input" in exc:
-                            exc.pop("input")
+                    print(crop_type, specific_crop, name)
 
-                    dataset = relink_technosphere_exchanges(
-                        dataset, self.database, self.model
+                    new_ds = self.fetch_proxies(
+                        name=name,
+                        ref_prod=" ",
+                        production_variable=prod_label,
+                        relink=True,
+                        regions=regions,
                     )
 
-                    # give it a production volume
-                    for label in self.fuel_labels:
-                        if crop_type in label:
+                    # modify efficiency
+                    # fetch the `scaling factor`, compared to 2020
+                    vars = [
+                        v
+                        for v in self.iam_data.efficiency.variables.values
+                        if crop_type.lower() in v.lower()
+                        and any(
+                            x.lower() in v.lower() for x in ["bioethanol", "biodiesel"]
+                        )
+                    ]
 
-                            dataset["production volume"] = (
-                                self.iam_data.production_volumes.sel(
-                                    region=region, variables=label
-                                )
-                                .interp(year=self.year)
-                                .values.item(0)
-                            )
+                    for region in regions:
+                        if len(vars) > 0 and any(
+                            i in new_ds[region]["name"]
+                            for i in ["Ethanol production", "Biodiesel production"]
+                        ):
 
-                    # if this is a fuel conversion process
-                    # we want to update the conversion efficiency
-                    if any(
-                        x in dataset["name"]
-                        for x in ["fermentation", "transesterification"]
-                    ) and any(
-                        x in dataset["name"]
-                        for x in ["Ethanol production", "Biodiesel production"]
-                    ):
-                        # modify efficiency
-                        # fetch the `progress factor`, compared to 2020
-
-                        vars = [
-                            v
-                            for v in self.iam_data.fuel_markets.variables.values
-                            if crop_type.lower() in v.lower()
-                            and any(
-                                x.lower() in v.lower()
-                                for x in ["bioethanol", "biodiesel"]
-                            )
-                        ]
-
-                        if len(vars) > 0:
                             scaling_factor = 1 / self.find_iam_efficiency_change(
                                 variable=vars, location=region,
                             )
 
                             # Rescale all the technosphere exchanges according to the IAM efficiency values
-
                             wurst.change_exchanges_by_constant_factor(
-                                dataset,
+                                new_ds[region],
                                 scaling_factor,
                                 [],
                                 [ws.doesnt_contain_any("name", self.emissions_map)],
                             )
 
                             string = (
-                                f"The process conversion efficiency has been rescaled by `premise` by {int((scaling_factor - 1) * 100)}%.\n"
+                                f"The process conversion efficiency has been rescaled by `premise` "
+                                f"by {int((scaling_factor - 1) * 100)}%.\n"
                                 f"To be in line with the scenario {self.scenario} of {self.model.upper()} "
                                 f"in {self.year} in the region {region}.\n"
                             )
 
-                            if "comment" in dataset:
-                                dataset["comment"] += string
+                            if "comment" in new_ds[region]:
+                                new_ds[region]["comment"] += string
                             else:
-                                dataset["comment"] = string
+                                new_ds[region]["comment"] = string
 
-                            if "ethanol" in dataset["name"].lower():
-                                dataset[
+                            if "ethanol" in new_ds[region]["name"].lower():
+                                new_ds[region][
                                     "comment"
                                 ] += "Bioethanol has a combustion CO2 emission factor of 1.91 kg CO2/kg."
-                            if "biodiesel" in dataset["name"].lower():
-                                dataset[
+                            if "biodiesel" in new_ds[region]["name"].lower():
+                                new_ds[region][
                                     "comment"
                                 ] += "Biodiesel has a combustion CO2 emission factor of 2.85 kg CO2/kg."
 
-                    # if this is a farming activity
-                    # and if the product (crop) is not a residue
-                    # and if we have land use info from the IAM
-                    if (
-                        "farming and supply" in dataset["name"].lower()
-                        and crop_type.lower() in self.land_use_per_crop_type
-                    ):
+                            # if this is a farming activity
+                            # and if the product (crop) is not a residue
+                            # and if we have land use info from the IAM
+                            if not self.iam_data.land_use is None:
+                                if (
+                                    "farming and supply"
+                                    in new_ds[region]["name"].lower()
+                                    and crop_type.lower()
+                                    in self.iam_data.land_use.variables.values
+                                ):
 
-                        for exc in dataset["exchanges"]:
-                            # we adjust the land use
-                            if exc["type"] == "biosphere" and exc["name"].startswith(
-                                "Occupation"
-                            ):
+                                    for exc in new_ds["exchanges"]:
+                                        # we adjust the land use
+                                        if exc["type"] == "biosphere" and exc[
+                                            "name"
+                                        ].startswith("Occupation"):
 
-                                # lower heating value, as received
-                                lhv_ar = dataset["LHV [MJ/kg dry]"] * (
-                                        1 - dataset["Moisture content [% wt]"]
-                                )
+                                            # lower heating value, dry basis
+                                            lhv_ar = new_ds[region]["LHV [MJ/kg dry]"]
 
-                                # Ha/GJ
-                                land_use = (
-                                    self.iam_data.land_use.sel(
-                                        region=region, variables=crop_type
+                                            # Ha/GJ
+                                            land_use = (
+                                                self.iam_data.land_use.sel(
+                                                    region=region, variables=crop_type
+                                                )
+                                                .interp(year=self.year)
+                                                .values
+                                            )
+
+                                            if land_use > 0:
+                                                # HA to m2
+                                                land_use *= 10000
+                                                # m2/GJ to m2/MJ
+                                                land_use /= 1000
+                                                # m2/kg, as received
+                                                land_use *= lhv_ar
+                                                # update exchange value
+                                                exc["amount"] = land_use
+
+                                                string = (
+                                                    f"The land area occupied has been modified to {land_use}, "
+                                                    f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                                                    f"in {self.year} in the region {region}. "
+                                                )
+                                                if "comment" in new_ds[region]:
+                                                    new_ds[region]["comment"] += string
+                                                else:
+                                                    new_ds[region]["comment"] = string
+
+                            # if this is a farming activity
+                            # and if the product (crop) is not a residue
+                            # and if we have land use change CO2 info from the IAM
+                            if not self.iam_data.land_use_change is None:
+                                if (
+                                    "farming and supply"
+                                    in new_ds[region]["name"].lower()
+                                    and crop_type.lower()
+                                    in self.iam_data.land_use_change.variables.values
+                                ):
+
+                                    # then, we should include the Land Use Change-induced CO2 emissions
+                                    # those are given in kg CO2-eq./GJ of primary crop energy
+
+                                    # kg CO2/GJ
+                                    land_use_co2 = (
+                                        self.iam_data.land_use_change.sel(
+                                            region=region, variables=crop_type
+                                        )
+                                        .interp(year=self.year)
+                                        .values
                                     )
-                                    .interp(year=self.year)
-                                    .values
-                                )
-                                # HA to m2
-                                land_use *= 10000
-                                # m2/GJ to m2/MJ
-                                land_use /= 1000
 
-                                # m2/kg, as received
-                                land_use *= lhv_ar
+                                    if land_use_co2 > 0:
 
-                                # update exchange value
-                                exc["amount"] = land_use
+                                        # lower heating value, as received
+                                        lhv_ar = new_ds[region]["LHV [MJ/kg dry]"]
 
-                                string = (
-                                    f"The land area occupied has been modified to {land_use}, "
-                                    f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
-                                    f"in {self.year} in the region {region}. "
-                                )
-                                if "comment" in dataset:
-                                    dataset["comment"] += string
-                                else:
-                                    dataset["comment"] = string
+                                        # kg CO2/MJ
+                                        land_use_co2 /= 1000
+                                        land_use_co2 *= lhv_ar
 
-                    # if this is a farming activity
-                    # and if the product (crop) is not a residue
-                    # and if we have land use change CO2 info from the IAM
-                    if (
-                        "farming and supply" in dataset["name"].lower()
-                        and crop_type.lower() in self.land_use_change_CO2_per_crop_type
-                    ):
+                                        land_use_co2_exc = {
+                                            "uncertainty type": 0,
+                                            "loc": land_use_co2,
+                                            "amount": land_use_co2,
+                                            "type": "biosphere",
+                                            "name": "Carbon dioxide, from soil or biomass stock",
+                                            "unit": "kilogram",
+                                            "input": (
+                                                "biosphere3",
+                                                "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
+                                            ),
+                                            "categories": (
+                                                "air",
+                                                "non-urban air or from high stacks",
+                                            ),
+                                        }
+                                        new_ds[region]["exchanges"].append(
+                                            land_use_co2_exc
+                                        )
 
-                        # then, we should include the Land Use Change-induced CO2 emissions
-                        # those are given in kg CO2-eq./GJ of primary crop energy
+                                        string = (
+                                            f"{land_use_co2} kg of land use-induced CO2 has been added by premise, "
+                                            f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                                            f"in {self.year} in the region {region}."
+                                        )
 
-                        # kg CO2/GJ
-                        land_use_co2 = (
-                            self.iam_data.land_use_change.sel(
-                                region=region, variables=crop_type
-                            )
-                            .interp(year=self.year)
-                            .values
-                        )
+                                        if "comment" in new_ds[region]:
+                                            new_ds[region]["comment"] += string
+                                        else:
+                                            new_ds[region]["comment"] = string
 
-                        # lower heating value, as received
-                        lhv_ar = dataset["LHV [MJ/kg dry]"] * (
-                            1 - dataset["Moisture content [% wt]"]
-                        )
-
-                        # kg CO2/MJ
-                        land_use_co2 /= 1000
-                        land_use_co2 *= lhv_ar
-
-                        land_use_co2_exc = {
-                            "uncertainty type": 0,
-                            "loc": land_use_co2,
-                            "amount": land_use_co2,
-                            "type": "biosphere",
-                            "name": "Carbon dioxide, from soil or biomass stock",
-                            "unit": "kilogram",
-                            "input": (
-                                "biosphere3",
-                                "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
-                            ),
-                            "categories": ("air", "non-urban air or from high stacks",),
-                        }
-                        dataset["exchanges"].append(land_use_co2_exc)
-
-                        string = (
-                            f"{land_use_co2} kg of land use-induced CO2 has been added by premise, "
-                            f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
-                            f"in {self.year} in the region {region}."
-                        )
-
-                        if "comment" in dataset:
-                            dataset["comment"] += string
-                        else:
-                            dataset["comment"] = string
-
-                    if (dataset["name"], dataset["location"]) not in added_acts:
-                        added_acts.append((dataset["name"], dataset["location"]))
-                        self.database.append(dataset)
-
-                        # Add created dataset to `self.list_datasets`
-                        self.list_datasets.append(
-                            (
-                                dataset["name"],
-                                dataset["reference product"],
-                                dataset["location"],
-                            )
-                        )
+                    self.database.extend(new_ds.values())
 
     def get_fuel_mapping(self):
         """
@@ -1336,8 +1139,16 @@ class Fuels(BaseTransformation):
         Does not return anything.
         """
 
+        fuel_markets = [v["name"] for v in fetch_mapping(FUEL_MARKETS).values()]
+
+        self.relink_datasets(
+            excludes_datasets=fuel_markets
+        )
+
         # Filter all activities that consume fuels
         acts_to_ignore = set(x[0] for x in self.new_fuel_markets)
+
+        fuel_markets = fetch_mapping(FUEL_MARKETS)
 
         for dataset in ws.get_many(
             self.database,
@@ -1352,33 +1163,17 @@ class Fuels(BaseTransformation):
             ):
                 amount_fossil_co2, amount_non_fossil_co2 = [0, 0]
 
-                for name in [
-                    ("market for petrol, unleaded", "petrol, unleaded", "kilogram"),
-                    ("market for petrol, low-sulfur", "petrol, low-sulfur", "kilogram"),
-                    ("market for diesel, low-sulfur", "diesel, low-sulfur", "kilogram"),
-                    ("market for diesel", "diesel", "kilogram"),
-                    (
-                        "market for natural gas, high pressure",
-                        "natural gas, high pressure",
-                        "cubic meter",
-                    ),
-                    ("market for hydrogen, gaseous", "hydrogen, gaseous", "kilogram"),
-                ]:
+                for _, activity in fuel_markets.items():
 
                     # checking that it is one of the markets
                     # that has been newly created
-                    if name[0] in acts_to_ignore:
+                    if activity["name"] in acts_to_ignore:
 
                         excs = list(
                             ws.get_many(
                                 dataset["exchanges"],
-                                ws.equals("name", name[0]),
-                                ws.either(
-                                    *[
-                                        ws.equals("unit", "kilogram"),
-                                        ws.equals("unit", "cubic meter"),
-                                    ]
-                                ),
+                                ws.equals("name", activity["name"]),
+                                ws.equals("unit", activity["unit"]),
                                 ws.equals("type", "technosphere"),
                             )
                         )
@@ -1403,11 +1198,11 @@ class Fuels(BaseTransformation):
                                 )
 
                             new_exc = {
-                                "name": name[0],
-                                "product": name[1],
+                                "name": activity["name"],
+                                "product": activity["reference product"],
                                 "amount": amount,
                                 "type": "technosphere",
-                                "unit": name[2],
+                                "unit": activity["unit"],
                                 "location": supplier_loc,
                             }
 
@@ -1415,15 +1210,15 @@ class Fuels(BaseTransformation):
 
                             amount_fossil_co2 += (
                                 amount
-                                * self.new_fuel_markets[(name[0], supplier_loc)][
-                                    "fossil CO2"
-                                ]
+                                * self.new_fuel_markets[
+                                    (activity["name"], supplier_loc)
+                                ]["fossil CO2"]
                             )
                             amount_non_fossil_co2 += (
                                 amount
-                                * self.new_fuel_markets[(name[0], supplier_loc)][
-                                    "non-fossil CO2"
-                                ]
+                                * self.new_fuel_markets[
+                                    (activity["name"], supplier_loc)
+                                ]["non-fossil CO2"]
                             )
 
                 # update fossil and biogenic CO2 emissions
@@ -1510,7 +1305,8 @@ class Fuels(BaseTransformation):
                 suppliers = filter_results(
                     item_to_look_for="unleaded",
                     results=suppliers,
-                    field_to_look_at="reference product")
+                    field_to_look_at="reference product",
+                )
 
             if "unleaded" in dataset["name"]:
                 suppliers = filter_results(
@@ -1543,7 +1339,7 @@ class Fuels(BaseTransformation):
         self.generate_synthetic_fuel_activities()
 
         # biofuels
-        print("Generate region-specific biofuel fuel supply chains.")
+        print("Generate region-specific biofuel supply chains.")
         self.generate_biofuel_activities()
 
     def generate_fuel_markets(self):
@@ -1555,19 +1351,7 @@ class Fuels(BaseTransformation):
 
         print("Generate new fuel markets.")
 
-        fuel_markets = [
-            ("market for petrol, unleaded", "petrol, unleaded", "kilogram", 42.6),
-            ("market for petrol, low-sulfur", "petrol, low-sulfur", "kilogram", 42.6),
-            ("market for diesel, low-sulfur", "diesel, low-sulfur", "kilogram", 43),
-            ("market for diesel", "diesel", "kilogram", 43),
-            (
-                "market for natural gas, high pressure",
-                "natural gas, high pressure",
-                "cubic meter",
-                47.5,
-            ),
-            ("market for hydrogen, gaseous", "hydrogen, gaseous", "kilogram", 120),
-        ]
+        fuel_markets = fetch_mapping(FUEL_MARKETS)
 
         # refresh the fuel filters
         # as some have been created in the meanwhile
@@ -1595,17 +1379,18 @@ class Fuels(BaseTransformation):
             ]
         ]
 
-        for fuel_market in fuel_markets:
+        for fuel, activity in fuel_markets.items():
 
-            print(f"--> {fuel_market[0]}")
+            print(f"--> {fuel}")
 
             if any(
-                fuel_market[1].split(", ", maxsplit=1)[0] in f for f in self.fuel_labels
+                activity["reference product"].split(", ", maxsplit=1)[0] in f
+                for f in self.fuel_labels
             ):
 
                 d_act = self.fetch_proxies(
-                    name=fuel_market[0],
-                    ref_prod=fuel_market[1],
+                    name=activity["name"],
+                    ref_prod=activity["reference product"],
                     production_variable=self.iam_data.fuel_markets.variables.values,
                     relink=True,
                 )
@@ -1629,13 +1414,13 @@ class Fuels(BaseTransformation):
                         )
                     ]
 
-                    if "petrol" in fuel_market[0]:
+                    if "petrol" in activity["name"]:
                         look_for = ["petrol", "ethanol", "methanol", "gasoline"]
 
-                    elif "diesel" in fuel_market[0]:
+                    elif "diesel" in activity["name"]:
                         look_for = ["diesel", "biodiesel"]
 
-                    elif "natural gas" in fuel_market[0]:
+                    elif "natural gas" in activity["name"]:
                         look_for = ["natural gas", "biomethane"]
 
                     else:
@@ -1643,26 +1428,26 @@ class Fuels(BaseTransformation):
 
                     fuels = (f for f in d_fuels if any(x in f for x in look_for))
 
-                    for fuel in fuels:
-                        if fuel in self.fuel_labels:
+                    for f in fuels:
+                        if f in self.fuel_labels:
 
-                            share = d_fuels[fuel]["find_share"](fuel, look_for, region)
+                            share = d_fuels[f]["find_share"](f, look_for, region)
 
                             if share > 0:
                                 possible_suppliers = self.select_multiple_suppliers(
-                                    fuel, d_fuels, dataset, look_for
+                                    f, d_fuels, dataset, look_for
                                 )
 
                                 if not possible_suppliers:
                                     print(
-                                        f"ISSUE with {fuel} in {region} for ds in location {dataset['location']}"
+                                        f"ISSUE with {f} in {region} for ds in location {dataset['location']}"
                                     )
 
-                                    print(d_fuels[fuel])
+                                    print(d_fuels[f])
 
                                 for key, val in possible_suppliers.items():
                                     # m3 to kg conversion
-                                    if key[-1] != fuel_market[2]:
+                                    if key[-1] != activity["unit"]:
                                         conversion_factor = 0.679
                                     else:
                                         # kg to kg
@@ -1671,7 +1456,7 @@ class Fuels(BaseTransformation):
                                     supplier_share = share * val
 
                                     # LHV of the fuel before update
-                                    reference_lhv = fuel_market[3]
+                                    reference_lhv = activity["lhv"]
 
                                     # amount of fuel input
                                     # corrected by the LHV of the initial fuel
@@ -1680,24 +1465,27 @@ class Fuels(BaseTransformation):
 
                                     amount = (
                                         supplier_share
-                                        * (reference_lhv / self.fuels_specs[fuel]["lhv"])
+                                        * (
+                                            reference_lhv
+                                            / self.fuels_specs[f]["lhv"]
+                                        )
                                         * conversion_factor
                                     )
 
                                     fossil_co2 += (
                                         amount
-                                        * self.fuels_specs[fuel]["lhv"]
-                                        * self.fuels_specs[fuel]["co2"]
-                                        * (1 - self.fuels_specs[fuel]["biogenic_share"])
+                                        * self.fuels_specs[f]["lhv"]
+                                        * self.fuels_specs[f]["co2"]
+                                        * (1 - self.fuels_specs[f]["biogenic_share"])
                                     )
                                     non_fossil_co2 += (
                                         amount
-                                        * self.fuels_specs[fuel]["lhv"]
-                                        * self.fuels_specs[fuel]["co2"]
-                                        * self.fuels_specs[fuel]["biogenic_share"]
+                                        * self.fuels_specs[f]["lhv"]
+                                        * self.fuels_specs[f]["co2"]
+                                        * self.fuels_specs[f]["biogenic_share"]
                                     )
 
-                                    final_lhv += amount * self.fuels_specs[fuel]["lhv"]
+                                    final_lhv += amount * self.fuels_specs[f]["lhv"]
 
                                     dataset["exchanges"].append(
                                         {
@@ -1725,13 +1513,13 @@ class Fuels(BaseTransformation):
                                             key[-1],
                                             share,
                                             amount,
-                                            self.fuels_specs[fuel]["lhv"],
-                                            self.fuels_specs[fuel]["co2"],
-                                            self.fuels_specs[fuel]["biogenic_share"]
+                                            self.fuels_specs[f]["lhv"],
+                                            self.fuels_specs[f]["co2"],
+                                            self.fuels_specs[f]["biogenic_share"],
                                         ]
                                     )
 
-                                string += f"{fuel.capitalize()}: {(share * 100):.1f} pct @ {self.fuels_specs[fuel]['lhv']} MJ/kg. "
+                                string += f"{f.capitalize()}: {(share * 100):.1f} pct @ {self.fuels_specs[f]['lhv']} MJ/kg. "
 
                     string += f"Final average LHV of {final_lhv} MJ/kg."
 
