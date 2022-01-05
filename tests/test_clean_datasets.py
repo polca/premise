@@ -3,6 +3,7 @@ import pytest
 from bw2data.database import DatabaseChooser
 
 from premise.clean_datasets import DatabaseCleaner
+from pathlib import Path
 
 
 def get_dict():
@@ -44,7 +45,7 @@ def get_dict():
 
 def test_presence_db():
     with pytest.raises(NameError) as wrapped_error:
-        DatabaseCleaner("bla", "brightway", "x")
+        DatabaseCleaner("bla", "brightway", Path("."))
     assert wrapped_error.type == NameError
 
 
@@ -56,5 +57,5 @@ def test_validity_db():
     db_act = DatabaseChooser("dummy_db")
     db_act.write(dummy_db)
 
-    dbc = DatabaseCleaner("dummy_db", "brightway", "x")
+    dbc = DatabaseCleaner("dummy_db", "brightway", Path("."))
     assert dbc.db[0]["name"] == "fake activity"
