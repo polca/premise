@@ -131,12 +131,13 @@ jobs:
           conda-verify $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
           ls $CONDA_BLD_PATH/noarch/
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
+
       - name: Publish distribution 📦 to Anaconda if Push from non-master branch
         if: github.ref != 'refs/heads/master'
         shell: bash -l {0}
 
         run: |
-          PKG_NAME=premise-fuels-dev
+          PKG_NAME=premise-fuels
           USER=romainsacchi
           conda install anaconda-client
           conda install conda-verify
@@ -144,7 +145,7 @@ jobs:
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
           export CONDA_BLD_PATH=~/conda-bld
-          export VERSION=`date +%Y.%m.%d`
+          export VERSION=fuels-`date +%Y.%m.%d`
           conda build "conda/" --old-build-string
           conda-verify $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
           ls $CONDA_BLD_PATH/noarch/
