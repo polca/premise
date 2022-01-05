@@ -9,13 +9,13 @@ non-CO2 emissions (GAINS data).
 import csv
 from io import StringIO
 from pathlib import Path
+from typing import Dict, List, Union
 
 import numpy as np
 import pandas as pd
 import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
-from typing import List, Dict, Union
 
 from . import DATA_DIR
 from .utils import get_crops_properties
@@ -29,6 +29,7 @@ IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
+
 
 def get_lifetime(list_tech: List) -> np.array:
     """
@@ -228,7 +229,9 @@ class IAMDataCollection:
             self.land_use = None
             self.land_use_change = None
 
-    def __get_iam_variable_labels(self, filepath: Path, key: str) -> Dict[str, Union[str, List[str]]]:
+    def __get_iam_variable_labels(
+        self, filepath: Path, key: str
+    ) -> Dict[str, Union[str, List[str]]]:
         """
         Loads a csv file into a dictionary.
         This dictionary contains common terminology to `premise`
@@ -549,7 +552,6 @@ class IAMDataCollection:
         # give the array common labels
         list_vars = list(labels.keys())
 
-
         data_to_return.coords["variables"] = list_vars
 
         if self.system_model == "consequential":
@@ -644,8 +646,8 @@ class IAMDataCollection:
             )
 
             data_to_return = 1 / (
-                    data.loc[:, energy["cement"], :].sum(dim="variables")
-                    / data.loc[:, [prod["cement"]], :]
+                data.loc[:, energy["cement"], :].sum(dim="variables")
+                / data.loc[:, [prod["cement"]], :]
             )
 
         data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
@@ -710,14 +712,12 @@ class IAMDataCollection:
                 energy_in = energy["steel - primary"]
 
             data_primary = 1 / (
-                    data.loc[:, energy_in, :].sum(dim="variables")
-                    / data.loc[:, [prod["steel - primary"]], :]
+                data.loc[:, energy_in, :].sum(dim="variables")
+                / data.loc[:, [prod["steel - primary"]], :]
             )
 
         # primary steel efficiency changes relative to 2020
-        data_primary = data_primary.interp(year=self.year) / data_primary.sel(
-            year=2020
-        )
+        data_primary = data_primary.interp(year=self.year) / data_primary.sel(year=2020)
 
         if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")) > 0:
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
@@ -734,8 +734,8 @@ class IAMDataCollection:
                 energy_in = energy["steel - secondary"]
 
             data_secondary = 1 / (
-                    data.loc[:, energy_in, :].sum(dim="variables")
-                    / data.loc[:, [prod["steel - secondary"]], :]
+                data.loc[:, energy_in, :].sum(dim="variables")
+                / data.loc[:, [prod["steel - secondary"]], :]
             )
 
         # secondary steel efficiency changes relative to 2020
@@ -996,7 +996,6 @@ class IAMDataCollection:
 
         return data_to_return
 
-
     def __get_iam_fuel_efficiencies(self, data):
         """
         This method retrieves the change in fuel production efficiency between the year in question and 2020,
@@ -1087,33 +1086,43 @@ class IAMDataCollection:
         # as it is sometimes neglected in the
         # IAM files
 
-        rate.loc[dict(region="World", variables="cement")] = (data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=[dict_vars["cement - cco2"]],
-            )
-        ].sum(dim="region").values / data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=[dict_vars["cement - co2"], dict_vars["cement - cco2"]],
-            )
-        ].sum(
-            dim=["variables", "region"]
-        ).values).T.sum(axis=-1)
+        rate.loc[dict(region="World", variables="cement")] = (
+            data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=[dict_vars["cement - cco2"]],
+                )
+            ]
+            .sum(dim="region")
+            .values
+            / data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=[dict_vars["cement - co2"], dict_vars["cement - cco2"]],
+                )
+            ]
+            .sum(dim=["variables", "region"])
+            .values
+        ).T.sum(axis=-1)
 
-        rate.loc[dict(region="World", variables="steel")] = (data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=[dict_vars["steel - cco2"]],
-            )
-        ].sum(dim="region").values / data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=[dict_vars["steel - co2"], dict_vars["steel - cco2"]],
-            )
-        ].sum(
-            dim=["variables", "region"]
-        ).values).T.sum(axis=-1)
+        rate.loc[dict(region="World", variables="steel")] = (
+            data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=[dict_vars["steel - cco2"]],
+                )
+            ]
+            .sum(dim="region")
+            .values
+            / data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=[dict_vars["steel - co2"], dict_vars["steel - cco2"]],
+                )
+            ]
+            .sum(dim=["variables", "region"])
+            .values
+        ).T.sum(axis=-1)
 
         # we ensure that the rate can only be between 0 and 1
         rate = np.clip(rate, 0, 1)

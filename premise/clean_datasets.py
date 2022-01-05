@@ -1,13 +1,14 @@
-from . import DATA_DIR
-
-from wurst import searching as ws
 import csv
 import pprint
-import wurst
-import bw2io
-from bw2data.database import DatabaseChooser
 from pathlib import Path
 from typing import Dict, List, Tuple, Union
+
+import bw2io
+import wurst
+from bw2data.database import DatabaseChooser
+from wurst import searching as ws
+
+from . import DATA_DIR
 
 FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
@@ -27,7 +28,9 @@ class DatabaseCleaner:
 
     """
 
-    def __init__(self, source_db: str, source_type: str, source_file_path: Path) -> None:
+    def __init__(
+        self, source_db: str, source_type: str, source_file_path: Path
+    ) -> None:
 
         if source_type == "brightway":
             # Check that database exists
@@ -135,7 +138,9 @@ class DatabaseCleaner:
         return csv_dict
 
     @staticmethod
-    def get_biosphere_flow_categories() -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
+    def get_biosphere_flow_categories() -> Dict[
+        str, Union[Tuple[str], Tuple[str, str]]
+    ]:
         """
         Retrieve a dictionary with biosphere flow uuids and categories.
 
@@ -272,7 +277,7 @@ class DatabaseCleaner:
 
     # Functions to clean up Wurst import and additional technologies
     def fix_unset_technosphere_and_production_exchange_locations(
-        self, matching_fields: Tuple[str, str] =("name", "unit")
+        self, matching_fields: Tuple[str, str] = ("name", "unit")
     ) -> None:
         """
         Give all the production and technopshere exchanges with a missing location name the location of the dataset
@@ -306,8 +311,8 @@ class DatabaseCleaner:
                         )
 
     def fix_biosphere_flow_categories(self) -> None:
-        """ Add a `categories` for biosphere flows if missing.
-        This happens when importing directly from ecospold files """
+        """Add a `categories` for biosphere flows if missing.
+        This happens when importing directly from ecospold files"""
 
         dict_bio_cat = self.get_biosphere_flow_categories()
         dict_bio_uuid = self.get_biosphere_flow_uuid()

@@ -1,6 +1,8 @@
-from wurst import geomatcher
-from premise import DATA_DIR
 import json
+
+from wurst import geomatcher
+
+from premise import DATA_DIR
 
 REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
 ADDITIONAL_DEFINITIONS = DATA_DIR / "additional_definitions.json"
@@ -147,7 +149,7 @@ class Geomap:
             "OCE": "CAZ" if self.model == "remind" else "OCE",
             "US-PR": "USA",
             "US only": "USA",
-            "APAC": "CHA" if self.model == "remind" else "CHN"
+            "APAC": "CHA" if self.model == "remind" else "CHN",
         }
 
         if location in mapping:
@@ -293,7 +295,7 @@ class Geomap:
             "USA": "USA",
             "WAF": "SSA",
             "WEU": "EUR",
-            "World": "World"
+            "World": "World",
         }
 
         d_map_region_remind_to_image = {
@@ -309,7 +311,7 @@ class Geomap:
             "NEU": "WEU",
             "MEA": "ME",
             "REF": "RUS",
-            "World": "World"
+            "World": "World",
         }
 
         if self.model == "image":

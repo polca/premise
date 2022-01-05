@@ -9,16 +9,16 @@ the newly created electricity markets.
 
 """
 
+import csv
 import os
 import re
-
-import yaml
-import csv
 from datetime import date
 
+import yaml
+
+from .data_collection import IAMDataCollection
 from .transformation import *
 from .utils import eidb_label, get_efficiency_ratio_solar_PV
-from .data_collection import IAMDataCollection
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -65,7 +65,8 @@ def get_production_weighted_losses(
     cumul_prod, transf_loss = 0.0, 0.0
     for loc in locs:
         dict_loss = losses.get(
-            loc, {"Transformation loss, high voltage": 0.0, "Production volume": 0.0},
+            loc,
+            {"Transformation loss, high voltage": 0.0, "Production volume": 0.0},
         )
 
         transf_loss += (
@@ -260,7 +261,9 @@ class Electricity(BaseTransformation):
                 mix = dict(
                     zip(
                         self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(region=region,)
+                        self.iam_data.electricity_markets.sel(
+                            region=region,
+                        )
                         .interp(
                             year=np.arange(self.year, self.year + period + 1),
                             kwargs={"fill_value": "extrapolate"},
@@ -703,7 +706,9 @@ class Electricity(BaseTransformation):
                 electriciy_mix = dict(
                     zip(
                         self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(region=region,)
+                        self.iam_data.electricity_markets.sel(
+                            region=region,
+                        )
                         .interp(
                             year=np.arange(self.year, self.year + period + 1),
                             kwargs={"fill_value": "extrapolate"},
@@ -1311,9 +1316,7 @@ class Electricity(BaseTransformation):
                 )
 
                 # update the emissions of pollutants
-                self.update_pollutant_emissions(
-                    dataset=dataset, sector=technology
-                )
+                self.update_pollutant_emissions(dataset=dataset, sector=technology)
 
         with open(
             DATA_DIR
@@ -1412,16 +1415,16 @@ class Electricity(BaseTransformation):
         self.create_new_markets_low_voltage()
 
         # Finally, we need to relink all electricity-consuming activities to the new electricity markets
-        #print("Link activities to new electricity markets.")
+        # print("Link activities to new electricity markets.")
 
-        #self.relink_datasets(
+        # self.relink_datasets(
         #    excludes_datasets=["cobalt industry", "market group for electricity"],
         #    alt_names=[
         #        "market group for electricity, high voltage",
         #        "market group for electricity, medium voltage",
         #        "market group for electricity, low voltage",
         #    ],
-        #)
+        # )
 
         print(f"Log of deleted electricity markets saved in {DATA_DIR}/logs")
         print(f"Log of created electricity markets saved in {DATA_DIR}/logs")

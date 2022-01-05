@@ -4,26 +4,23 @@ It provides basic methods usually used for electricity, cement, steel sectors tr
 on the wurst database.
 """
 
+import csv
 import uuid
 from collections import Counter
+from datetime import date
 from itertools import product
-from typing import Any, List, Dict, Tuple, Set
+from typing import Any, Dict, List, Set, Tuple
 
 import numpy as np
 import wurst
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from .activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
-from .geomap import Geomap
-from .utils import (
-    get_fuel_properties,
-    relink_technosphere_exchanges,
-)
-from .data_collection import IAMDataCollection
 from . import DATA_DIR
-import csv
-from datetime import date
+from .activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
+from .data_collection import IAMDataCollection
+from .geomap import Geomap
+from .utils import get_fuel_properties, relink_technosphere_exchanges
 
 
 def get_suppliers_of_a_region(
@@ -32,7 +29,7 @@ def get_suppliers_of_a_region(
     names: List[str],
     reference_product: str,
     unit: str,
-    exclude: List[str] = None
+    exclude: List[str] = None,
 ) -> filter:
     """
     Return a list of datasets, for which the location, name, reference production and unit correspond
@@ -61,9 +58,7 @@ def get_suppliers_of_a_region(
     ]
 
     if exclude:
-        filters.append(
-            ws.doesnt_contain_any("name", exclude)
-        )
+        filters.append(ws.doesnt_contain_any("name", exclude))
 
     return ws.get_many(
         database,
@@ -94,7 +89,12 @@ def get_shares_from_production_volume(
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
             dict_act[
-                (act["name"], act["location"], act["reference product"], act["unit"],)
+                (
+                    act["name"],
+                    act["location"],
+                    act["reference product"],
+                    act["unit"],
+                )
             ] = production_volume
             total_production_volume += production_volume
 
@@ -114,7 +114,8 @@ def get_tuples_from_database(database: List[dict]) -> List[Tuple[str, str, str]]
     """
     return [
         (dataset["name"], dataset["reference product"], dataset["location"])
-        for dataset in database if "has_downstream_consumer" not in dataset
+        for dataset in database
+        if "has_downstream_consumer" not in dataset
     ]
 
 
@@ -316,7 +317,9 @@ class BaseTransformation:
             for tech in technologies
         }
 
-    def region_to_proxy_dataset_mapping(self, name: str, ref_prod: str, regions: List[str] = None) -> Dict[str, str]:
+    def region_to_proxy_dataset_mapping(
+        self, name: str, ref_prod: str, regions: List[str] = None
+    ) -> Dict[str, str]:
 
         d_map = {
             self.ecoinvent_to_iam_loc[d["location"]]: d["location"]
@@ -362,7 +365,6 @@ class BaseTransformation:
         :type relink: bool
         :return:
         """
-
 
         d_iam_to_eco = self.region_to_proxy_dataset_mapping(
             name=name, ref_prod=ref_prod, regions=regions
@@ -540,7 +542,8 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database, ws.doesnt_contain_any("name", excludes_datasets),
+            self.database,
+            ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
             excs_to_relink = [
@@ -678,7 +681,8 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector, region=loc,
+                variables=sector,
+                region=loc,
             ).values
         else:
             rate = 0
@@ -696,7 +700,11 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(region=location, pollutant=pollutant, sector=sector,)
+            dict(
+                region=location,
+                pollutant=pollutant,
+                sector=sector,
+            )
         ].values.item(0)
 
         return scaling_factor
