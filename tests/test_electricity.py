@@ -61,6 +61,7 @@ def test_losses():
     assert len(el.network_loss) == 174
     assert el.network_loss["AL"]["low"]["transf_loss"] == 0.0593
 
+
 def test_powerplant_map():
     s = el.powerplant_map["Biomass IGCC CCS"]
     assert isinstance(s, set)
