@@ -28,6 +28,7 @@ requirements:
     - prettytable
     - pycountry
     - cryptography
+    - pyYaml
 
 test:
   imports:
