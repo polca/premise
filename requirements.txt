@@ -9,4 +9,3 @@ prettytable
 pycountry
 cryptography
 premise_gwp
-yaml

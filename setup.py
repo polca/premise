@@ -45,7 +45,6 @@ setup(
         "pycountry",
         "cryptography",
         "premise_gwp",
-        "yaml"
     ],
     url="https://github.com/romainsacchi/premise",
     description="Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA",
