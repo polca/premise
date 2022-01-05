@@ -25,9 +25,9 @@ def package_files(directory):
 
 setup(
     name='premise',
-    version="0.4.2",
+    version="0.4.6",
     packages=packages,
-    author="Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>, Tom Terlouw <tom.terlouw@psi.ch>, Romain Sacchi <romain.sacchi@psi.ch>",
+    author="Romain Sacchi <romain.sacchi@psi.ch>, Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>",
     license=open('LICENSE').read(),
     # Only if you have non-python data (CSV, etc.). Might need to change the directory name as well.
     include_package_data=True,

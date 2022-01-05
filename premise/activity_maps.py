@@ -1,16 +1,18 @@
 from . import DATA_DIR
 import csv
 import yaml
+from pathlib import Path
+from typing import List, Union
 
 GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
-        DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
+    DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
 )
 POWERPLANT_TECHS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 FUELS_TECHS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
 
 
-def get_mapping(filepath, var):
+def get_mapping(filepath: Path, var: str) -> dict:
 
     with open(filepath, "r") as stream:
         techs = yaml.safe_load(stream)
@@ -22,7 +24,8 @@ def get_mapping(filepath, var):
 
     return mapping
 
-def get_gains_to_ecoinvent_emissions():
+
+def get_gains_to_ecoinvent_emissions() -> dict:
     """
     Retrieve the correspondence between GAINS and ecoinvent emission labels.
     :return: GAINS emission labels as keys and ecoinvent emission labels as values
@@ -43,6 +46,7 @@ def get_gains_to_ecoinvent_emissions():
 
     return csv_dict
 
+
 class InventorySet:
     """
     Hosts different filter sets to for ecoinvent activities and exchanges.
@@ -57,7 +61,7 @@ class InventorySet:
     These functions return the result of applying :func:`act_fltr` to the filter dictionaries.
     """
 
-    def __init__(self, db):
+    def __init__(self, db: List[dict]) -> None:
         self.db = db
         self.powerplant_filters = get_mapping(
             filepath=POWERPLANT_TECHS, var="ecoinvent_aliases"
@@ -66,9 +70,11 @@ class InventorySet:
             filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases"
         )
         self.fuels_filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
-        self.materials_filters = get_mapping(filepath=MATERIALS_TECHS, var="ecoinvent_aliases")
+        self.materials_filters = get_mapping(
+            filepath=MATERIALS_TECHS, var="ecoinvent_aliases"
+        )
 
-    def generate_powerplant_map(self):
+    def generate_powerplant_map(self) -> dict:
         """
         Filter ecoinvent processes related to electricity production.
 
@@ -79,7 +85,7 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.powerplant_filters)
 
-    def generate_powerplant_fuels_map(self):
+    def generate_powerplant_fuels_map(self) -> dict:
         """
         Filter ecoinvent processes related to electricity production.
 
@@ -90,7 +96,7 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.powerplant_fuels_filters)
 
-    def generate_fuel_map(self):
+    def generate_fuel_map(self) -> dict:
         """
         Filter ecoinvent processes related to fuel supply.
 
@@ -101,12 +107,17 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.fuels_filters)
 
-    def generate_material_map(self):
+    def generate_material_map(self) -> dict:
         return self.generate_sets_from_filters(self.materials_filters)
 
-
     @staticmethod
-    def act_fltr(db, fltr=None, mask=None, filter_exact=False, mask_exact=False):
+    def act_fltr(
+        db: List[dict],
+        fltr: Union[str, List[str]] = None,
+        mask: Union[str, List[str]] = None,
+        filter_exact: bool = False,
+        mask_exact: bool = False,
+    ) -> List[dict]:
         """Filter `database` for activities matching field contents given by `fltr` excluding strings in `mask`.
         `fltr`: string, list of strings or dictionary.
         If a string is provided, it is used to match the name field from the start (*startswith*).
@@ -173,7 +184,7 @@ class InventorySet:
                 result = [act for act in result if notlike(act[field], condition)]
         return result
 
-    def generate_sets_from_filters(self, filtr):
+    def generate_sets_from_filters(self, filtr: dict) -> dict:
         """
         Generate a dictionary with sets of activity names for
         technologies from the filter specifications.

@@ -29,18 +29,32 @@ truck:
   unit: ton kilometer
   name: transport, freight, lorry
   old_trucks:
-    transport, freight, lorry, unspecified: transport, freight, lorry, unspecified
-    transport, freight, lorry 16-32 metric ton: transport, freight, lorry, 26t gross weight, unspecified powertrain
-    transport, freight, lorry 28 metric ton, fatty acid methyl ester 100%: transport, freight, lorry, 26t gross weight, unspecified powertrain
-    transport, freight, lorry 3.5-7.5 metric ton: transport, freight, lorry, 3.5t gross weight, unspecified powertrain
-    transport, freight, lorry 7.5-16 metric ton: transport, freight, lorry, 7.5t gross weight, unspecified powertrain
-    transport, freight, lorry >32 metric ton: transport, freight, lorry, 40t gross weight, unspecified powertrain
-    transport, freight, lorry with reefer, cooling: transport, freight, lorry, unspecified
-    transport, freight, lorry with reefer, freezing: transport, freight, lorry, unspecified
-    transport, freight, lorry with refrigeration machine, 3.5-7.5 ton: transport, freight, lorry, 3.5t gross weight, unspecified powertrain
-    transport, freight, lorry with refrigeration machine, 7.5-16 ton: transport, freight, lorry, 7.5t gross weight, unspecified powertrain
-    transport, freight, lorry with refrigeration machine, cooling: transport, freight, lorry, unspecified
-    transport, freight, lorry with refrigeration machine, freezing: transport, freight, lorry, unspecified
+    remind:
+      transport, freight, lorry, unspecified: transport, freight, lorry, unspecified
+      transport, freight, lorry 16-32 metric ton: transport, freight, lorry, 26t gross weight, unspecified powertrain
+      transport, freight, lorry 28 metric ton, fatty acid methyl ester 100%: transport, freight, lorry, 26t gross weight, unspecified powertrain
+      transport, freight, lorry 3.5-7.5 metric ton: transport, freight, lorry, 3.5t gross weight, unspecified powertrain
+      transport, freight, lorry 7.5-16 metric ton: transport, freight, lorry, 7.5t gross weight, unspecified powertrain
+      transport, freight, lorry >32 metric ton: transport, freight, lorry, 40t gross weight, unspecified powertrain
+      transport, freight, lorry with reefer, cooling: transport, freight, lorry, unspecified
+      transport, freight, lorry with reefer, freezing: transport, freight, lorry, unspecified
+      transport, freight, lorry with refrigeration machine, 3.5-7.5 ton: transport, freight, lorry, 3.5t gross weight, unspecified powertrain
+      transport, freight, lorry with refrigeration machine, 7.5-16 ton: transport, freight, lorry, 7.5t gross weight, unspecified powertrain
+      transport, freight, lorry with refrigeration machine, cooling: transport, freight, lorry, unspecified
+      transport, freight, lorry with refrigeration machine, freezing: transport, freight, lorry, unspecified
+    image:
+      transport, freight, lorry, unspecified: transport, freight, lorry, unspecified
+      transport, freight, lorry 16-32 metric ton: transport, freight, lorry, 26t gross weight, unspecified powertrain
+      transport, freight, lorry 28 metric ton, fatty acid methyl ester 100%: transport, freight, lorry, 26t gross weight, unspecified powertrain
+      transport, freight, lorry 3.5-7.5 metric ton: transport, freight, lorry, 26t gross weight, unspecified powertrain
+      transport, freight, lorry 7.5-16 metric ton: transport, freight, lorry, 26t gross weight, unspecified powertrain
+      transport, freight, lorry >32 metric ton: transport, freight, lorry, 40t gross weight, unspecified powertrain
+      transport, freight, lorry with reefer, cooling: transport, freight, lorry, unspecified
+      transport, freight, lorry with reefer, freezing: transport, freight, lorry, unspecified
+      transport, freight, lorry with refrigeration machine, 3.5-7.5 ton: transport, freight, lorry, 26t gross weight, unspecified powertrain
+      transport, freight, lorry with refrigeration machine, 7.5-16 ton: transport, freight, lorry, 26t gross weight, unspecified powertrain
+      transport, freight, lorry with refrigeration machine, cooling: transport, freight, lorry, unspecified
+      transport, freight, lorry with refrigeration machine, freezing: transport, freight, lorry, unspecified
 
 powertrain:
   fuel cell electric: FCEV

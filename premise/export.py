@@ -5,7 +5,7 @@ import datetime
 import json
 import re
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_37.txt"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
 
 def remove_uncertainty(database):

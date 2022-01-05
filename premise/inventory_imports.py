@@ -13,7 +13,7 @@ from wurst import searching as ws
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "dict_biosphere.txt"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
 def get_biosphere_code():

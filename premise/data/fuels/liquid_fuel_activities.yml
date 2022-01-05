@@ -1,20 +1,15 @@
 methanol:
-  - methanol
-  - hydrogen from electrolysis
-  - energy allocation,
+  - methanol distillation, hydrogen from electrolysis, CO2 from DAC
+
 methanol, from coal:
-  - methanol
-  - hydrogen from coal gasification
-  - energy allocation
+  - methanol distillation, hydrogen from coal gasification, CO2 from DAC
+
 fischer-tropsch:
-  - Fischer Tropsch process
-  - hydrogen from electrolysis
-  - energy allocation
+  - Diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation
+
 fischer-tropsch, from woody biomass:
-  - Fischer Tropsch process
-  - hydrogen from wood gasification
-  - energy allocation
+  - Diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation
+  - Diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation
+
 fischer-tropsch, from coal:
-  - Fischer Tropsch process
-  - hydrogen from coal gasification
-  - energy allocation
+  - Diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, energy allocation
