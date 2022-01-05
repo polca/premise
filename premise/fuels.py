@@ -1,10 +1,11 @@
+import copy
+
+import yaml
 from numpy import ndarray
 
+from .data_collection import IAMDataCollection
 from .transformation import *
 from .utils import DATA_DIR, get_crops_properties
-from .data_collection import IAMDataCollection
-import yaml
-import copy
 
 REGION_CLIMATE_MAP = DATA_DIR / "fuels" / "region_to_climate.yml"
 FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"
@@ -25,7 +26,7 @@ def filter_results(
 
 
 def fetch_mapping(filepath: str) -> dict:
-    """ Returns a dictionary from a YML file"""
+    """Returns a dictionary from a YML file"""
 
     with open(filepath, "r") as stream:
         map = yaml.safe_load(stream)
@@ -33,8 +34,8 @@ def fetch_mapping(filepath: str) -> dict:
 
 
 def get_compression_effort(p_in: int, p_out: int, flow_rate: int) -> float:
-    """ Calculate the required electricity consumption from the compressor given
-    an inlet and outlet pressure and a flow rate for hydrogen. """
+    """Calculate the required electricity consumption from the compressor given
+    an inlet and outlet pressure and a flow rate for hydrogen."""
 
     # result is shaft power [kW] and compressor size [kW]
     # flow_rate = mass flow rate (kg/day)
@@ -73,7 +74,7 @@ def adjust_electrolysis_electricity_requirement(year: int) -> ndarray:
 
 class Fuels(BaseTransformation):
     """
-        Class that modifies fuel inventories and markets in ecoinvent based on IAM output data.
+    Class that modifies fuel inventories and markets in ecoinvent based on IAM output data.
     """
 
     def __init__(
@@ -99,13 +100,16 @@ class Fuels(BaseTransformation):
 
     def generate_dac_activities(self) -> None:
 
-        """ Generate regional variants of the DAC process with varying heat sources """
+        """Generate regional variants of the DAC process with varying heat sources"""
 
         # define heat sources
         heat_map_ds = fetch_mapping(HEAT_SOURCES)
 
         name = "carbon dioxide, captured from atmosphere"
-        original_ds = self.fetch_proxies(name=name, ref_prod="carbon dioxide",)
+        original_ds = self.fetch_proxies(
+            name=name,
+            ref_prod="carbon dioxide",
+        )
 
         # delete original
         self.database = [x for x in self.database if x["name"] != name]
@@ -160,11 +164,14 @@ class Fuels(BaseTransformation):
 
             # Add created dataset to `self.list_datasets`
             self.list_datasets.extend(
-                [(
-                    act["name"],
-                    act["reference product"],
-                    act["location"],
-                ) for act in new_ds.values()]
+                [
+                    (
+                        act["name"],
+                        act["reference product"],
+                        act["location"],
+                    )
+                    for act in new_ds.values()
+                ]
             )
 
     def find_transport_activity(
@@ -508,7 +515,9 @@ class Fuels(BaseTransformation):
                                 else:
                                     electricity_comp = np.clip(
                                         np.interp(
-                                            self.year, [2020, 2035, 2050], [12, 8, 6],
+                                            self.year,
+                                            [2020, 2035, 2050],
+                                            [12, 8, 6],
                                         ),
                                         12,
                                         6,
@@ -788,7 +797,7 @@ class Fuels(BaseTransformation):
 
                 original_ds = self.fetch_proxies(name=f, ref_prod=" ")
                 # delete original
-                #self.database = [x for x in self.database if x["name"] != f]
+                # self.database = [x for x in self.database if x["name"] != f]
 
                 if fuel == "methane, synthetic":
                     for CO2_type in [
@@ -823,7 +832,6 @@ class Fuels(BaseTransformation):
                                     exc["product"] = CO2_type[1]
                                     exc["location"] = region
 
-
                             for exc in ws.technosphere(ds):
 
                                 if (
@@ -848,11 +856,14 @@ class Fuels(BaseTransformation):
 
                         # Add created dataset to `self.list_datasets`
                         self.list_datasets.extend(
-                            [(
-                                act["name"],
-                                act["reference product"],
-                                act["location"],
-                            ) for act in new_ds.values()]
+                            [
+                                (
+                                    act["name"],
+                                    act["reference product"],
+                                    act["location"],
+                                )
+                                for act in new_ds.values()
+                            ]
                         )
 
                 else:
@@ -874,11 +885,14 @@ class Fuels(BaseTransformation):
 
                     # Add created dataset to `self.list_datasets`
                     self.list_datasets.extend(
-                        [(
-                            act["name"],
-                            act["reference product"],
-                            act["location"],
-                        ) for act in new_ds.values()]
+                        [
+                            (
+                                act["name"],
+                                act["reference product"],
+                                act["location"],
+                            )
+                            for act in new_ds.values()
+                        ]
                     )
 
     def generate_synthetic_fuel_activities(self):
@@ -974,8 +988,14 @@ class Fuels(BaseTransformation):
                 "type": "biosphere",
                 "name": "Carbon dioxide, from soil or biomass stock",
                 "unit": "kilogram",
-                "input": ("biosphere3", "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",),
-                "categories": ("air", "non-urban air or from high stacks",),
+                "input": (
+                    "biosphere3",
+                    "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
+                ),
+                "categories": (
+                    "air",
+                    "non-urban air or from high stacks",
+                ),
             }
             dataset["exchanges"].append(land_use_co2_exc)
 
@@ -1006,7 +1026,8 @@ class Fuels(BaseTransformation):
         if vars:
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable=vars, location=region,
+                variable=vars,
+                location=region,
             )
 
             # Rescale all the technosphere exchanges according to the IAM efficiency values
@@ -1161,7 +1182,7 @@ class Fuels(BaseTransformation):
         }
 
     def fetch_fuel_share(self, fuel, fuel_types, region):
-        """ Return a fuel mix for a specific IAM region, for a specific year. """
+        """Return a fuel mix for a specific IAM region, for a specific year."""
 
         variables = [
             v
@@ -1358,7 +1379,7 @@ class Fuels(BaseTransformation):
         return suppliers
 
     def generate_fuel_supply_chains(self):
-        """ Duplicate fuel chains and make them IAM region-specific """
+        """Duplicate fuel chains and make them IAM region-specific"""
 
         # DAC datasets
         print("Generate region-specific direct air capture processes.")
@@ -1381,8 +1402,8 @@ class Fuels(BaseTransformation):
         self.generate_biofuel_activities()
 
     def generate_fuel_markets(self):
-        """ Create new fuel supply chains
-        and update existing fuel markets """
+        """Create new fuel supply chains
+        and update existing fuel markets"""
 
         # Create new fuel supply chains
         self.generate_fuel_supply_chains()
@@ -1428,14 +1449,7 @@ class Fuels(BaseTransformation):
 
         for fuel, activity in fuel_markets.items():
 
-            if [
-                i
-                for e in self.fuel_labels
-                for i in vars_map[
-                    fuel
-                ]
-                if e in i
-            ]:
+            if [i for e in self.fuel_labels for i in vars_map[fuel] if e in i]:
 
                 print(f"--> {fuel}")
 

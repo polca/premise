@@ -6,7 +6,9 @@ from .utils import *
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
 )
-FILEPATH_IMAGE_TRUCKS_FLEET_COMP = DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
+FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
+    DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
+)
 FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
@@ -72,9 +74,7 @@ def create_fleet_vehicles(
             y: int(y.split("-")[-1]) for y in arr.coords["construction_year"].values
         }
     else:
-        constr_year_map = {
-            y: y for y in arr.coords["construction_year"].values
-        }
+        constr_year_map = {y: y for y in arr.coords["construction_year"].values}
 
     # fleet data does not go below 2015
     if year < 2015:
@@ -177,11 +177,12 @@ def create_fleet_vehicles(
         else:
             fleet_region = region
 
-        sizes = [s for s in vehicles_map[vehicle_type]["sizes"]
-                 if s in arr.coords["size"].values]
-        sel = arr.sel(
-            region=fleet_region, size=sizes, year=ref_year
-        )
+        sizes = [
+            s
+            for s in vehicles_map[vehicle_type]["sizes"]
+            if s in arr.coords["size"].values
+        ]
+        sel = arr.sel(region=fleet_region, size=sizes, year=ref_year)
         total_km = sel.sum()
 
         if total_km > 0:
@@ -214,7 +215,7 @@ def create_fleet_vehicles(
                     ],
                     "code": str(uuid.uuid4().hex),
                     "database": eidb_label(model, scenario, year),
-                    "comment": f"Fleet-average vehicle for the year {year}, for the region {region}."
+                    "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
                 }
 
                 for s in sizes:
@@ -265,8 +266,10 @@ def create_fleet_vehicles(
 
                         if total_size_km > 0:
 
-                            name = f"{vehicles_map[vehicle_type]['name']}, {s} gross weight, " \
-                                   f"unspecified powertrain, {driving_cycle}"
+                            name = (
+                                f"{vehicles_map[vehicle_type]['name']}, {s} gross weight, "
+                                f"unspecified powertrain, {driving_cycle}"
+                            )
                             act = {
                                 "name": name,
                                 "reference product": vehicles_map[vehicle_type]["name"],
@@ -284,7 +287,7 @@ def create_fleet_vehicles(
                                 ],
                                 "code": str(uuid.uuid4().hex),
                                 "database": eidb_label(model, scenario, year),
-                                "comment": f"Fleet-average vehicle for the year {year}, for the region {region}."
+                                "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
                             }
 
                             for y in sel.coords["construction_year"].values:
@@ -293,10 +296,12 @@ def create_fleet_vehicles(
                                         size=s, construction_year=y, powertrain=pt
                                     )
                                     if (
-                                            indiv_km > 0
-                                            and (pt, s, constr_year_map[y]) in available_ds
+                                        indiv_km > 0
+                                        and (pt, s, constr_year_map[y]) in available_ds
                                     ):
-                                        indiv_share = (indiv_km / total_size_km).values.item(0)
+                                        indiv_share = (
+                                            indiv_km / total_size_km
+                                        ).values.item(0)
                                         load = avg_load[vehicle_type][driving_cycle][s]
                                         to_look_for = (
                                             pt,
@@ -322,7 +327,6 @@ def create_fleet_vehicles(
                             if len(act["exchanges"]) > 1:
                                 list_act.append(act)
 
-
     return normalize_exchange_amounts(list_act)
 
 
@@ -338,7 +342,7 @@ class Transport(BaseTransformation):
     :vartype iam_data: xarray.DataArray
     :ivar year: year, from :attr:`.NewDatabase.year`
     :vartype year: int
-    
+
     """
 
     def __init__(
@@ -481,7 +485,11 @@ class Transport(BaseTransformation):
 
                     if self.relink:
                         self.cache, new_ds = relink_technosphere_exchanges(
-                            new_ds, self.database, self.model, iam_regions=self.regions, cache=self.cache
+                            new_ds,
+                            self.database,
+                            self.model,
+                            iam_regions=self.regions,
+                            cache=self.cache,
                         )
 
                     list_new_ds.append(new_ds)
@@ -510,8 +518,11 @@ class Transport(BaseTransformation):
                     ws.equals("unit", "ton kilometer"),
                 ):
 
-                    key = [k for k in vehicles_map["truck"]["old_trucks"][self.model]
-                           if k.lower() in exc["name"].lower()][0]
+                    key = [
+                        k
+                        for k in vehicles_map["truck"]["old_trucks"][self.model]
+                        if k.lower() in exc["name"].lower()
+                    ][0]
 
                     if "input" in exc:
                         del exc["input"]
@@ -527,14 +538,14 @@ class Transport(BaseTransformation):
                             name = f"{vehicles_map['truck']['old_trucks'][self.model][key]}, long haul"
                             cycle = ", long haul"
 
-                        loc = self.geo.ecoinvent_to_iam_location(
-                            dataset["location"]
-                        )
+                        loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
                         if (name, loc) in list_created_trucks:
                             exc["name"] = name
 
                         else:
-                            exc["name"] = "transport, freight, lorry, unspecified" + cycle
+                            exc["name"] = (
+                                "transport, freight, lorry, unspecified" + cycle
+                            )
                     else:
                         exc[
                             "name"
@@ -546,4 +557,3 @@ class Transport(BaseTransformation):
                     )
 
         self.database = datasets.merge_inventory()
-

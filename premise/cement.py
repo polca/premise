@@ -59,7 +59,13 @@ class Cement(BaseTransformation):
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio_remind = get_clinker_ratio_remind(self.year)
 
-    def create_ccs_dataset(self, loc: str, bio_co2_stored: float, bio_co2_leaked: float, energy_input: xr.DataArray) -> None:
+    def create_ccs_dataset(
+        self,
+        loc: str,
+        bio_co2_stored: float,
+        bio_co2_leaked: float,
+        energy_input: xr.DataArray,
+    ) -> None:
         dataset = ws.get_one(
             self.database,
             ws.equals(
@@ -72,20 +78,24 @@ class Cement(BaseTransformation):
 
         ccs = wt.copy_to_new_location(dataset, loc)
         ccs["code"] = str(uuid.uuid4().hex)
-        self.cache, ccs = relink_technosphere_exchanges(ccs, self.database, self.model, cache=self.cache)
+        self.cache, ccs = relink_technosphere_exchanges(
+            ccs, self.database, self.model, cache=self.cache
+        )
 
         if "input" in ccs:
             ccs.pop("input")
 
         # we first fix the biogenic CO2 permanent storage
         for exc in ws.biosphere(
-            ccs, ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
+            ccs,
+            ws.equals("name", "Carbon dioxide, to soil or biomass stock"),
         ):
             exc["amount"] = bio_co2_stored
 
         # then the biogenic CO2 leaked
         for exc in ws.biosphere(
-            ccs, ws.equals("name", "Carbon dioxide, from soil or biomass stock"),
+            ccs,
+            ws.equals("name", "Carbon dioxide, from soil or biomass stock"),
         ):
             exc["amount"] = bio_co2_leaked
 
@@ -97,16 +107,23 @@ class Cement(BaseTransformation):
         # the cement plant is expected to produce as excess heat
 
         # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
-        excess_heat_generation = self.iam_data.gnr_data.sel(
-            variables="Share of recovered energy, per ton clinker",
-            region=self.geo.iam_to_iam_region(loc) if self.model == "image" else loc,
-        ).values * (energy_input.sum() / 1000)
+        excess_heat_generation = (
+            self.iam_data.gnr_data.sel(
+                variables="Share of recovered energy, per ton clinker",
+                region=self.geo.iam_to_iam_region(loc)
+                if self.model == "image"
+                else loc,
+            ).values
+            * (energy_input.sum() / 1000)
+        )
 
         for exc in ws.technosphere(ccs, ws.contains("name", "steam production")):
             exc["amount"] = np.clip(3.66 - excess_heat_generation, 0, 3.66)
 
         # then, we need to find local suppliers of electricity, water, steam, etc.
-        self.cache, ccs = relink_technosphere_exchanges(ccs, self.database, self.model, cache=self.cache)
+        self.cache, ccs = relink_technosphere_exchanges(
+            ccs, self.database, self.model, cache=self.cache
+        )
 
         # Add created dataset to `self.list_datasets`
         self.list_datasets.append(
@@ -192,7 +209,8 @@ class Cement(BaseTransformation):
             # divided by the ratio fuel/output in 2020
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable="cement", location=dataset["location"],
+                variable="cement",
+                location=dataset["location"],
             )
             energy_input_per_ton_clinker *= scaling_factor
 
@@ -474,7 +492,7 @@ class Cement(BaseTransformation):
         return d_act_clinker
 
     def adjust_clinker_ratio(self, d_act: Dict[str, dict]) -> Dict[str, dict]:
-        """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
+        """Adjust the cement suppliers composition for "cement, unspecified", in order to reach
         the average clinker-to-cement ratio given by the IAM.
 
         The supply of the cement with the highest clinker-to-cement ratio is decreased by 1% to the favor of
@@ -710,7 +728,9 @@ class Cement(BaseTransformation):
             ref_prod = "cement, unspecified"
 
         act_cement_unspecified = self.fetch_proxies(
-            name=name, ref_prod=ref_prod, production_variable="cement",
+            name=name,
+            ref_prod=ref_prod,
+            production_variable="cement",
         )
         act_cement_unspecified = self.adjust_clinker_ratio(act_cement_unspecified)
         self.database.extend(list(act_cement_unspecified.values()))
@@ -801,8 +821,8 @@ class Cement(BaseTransformation):
 
         print("Relink cement production datasets to new clinker market datasets")
 
-        #print("Relink clinker market datasets to new clinker production datasets")
+        # print("Relink clinker market datasets to new clinker production datasets")
 
-        #self.relink_datasets()
+        # self.relink_datasets()
 
         print("Done!")

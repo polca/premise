@@ -23,9 +23,9 @@ from .export import Export, check_for_duplicates, remove_uncertainty
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .steel import Steel
+from .transformation import BaseTransformation
 from .transport import Transport
 from .utils import add_modified_tags, build_superstructure_db, eidb_label
-from .transformation import BaseTransformation
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -185,7 +185,7 @@ def enablePrint():
 
 
 def check_ei_filepath(filepath: str) -> Path:
-    """ Check for the existence of the file path."""
+    """Check for the existence of the file path."""
 
     if not Path(filepath).is_dir():
         raise FileNotFoundError(
@@ -195,7 +195,7 @@ def check_ei_filepath(filepath: str) -> Path:
 
 
 def check_model_name(name: str) -> str:
-    """ Check for the validity of the IAM model name."""
+    """Check for the validity of the IAM model name."""
     if name.lower() not in SUPPORTED_MODELS:
         raise ValueError(
             f"Only {SUPPORTED_MODELS} are currently supported, not {name}."
@@ -204,7 +204,7 @@ def check_model_name(name: str) -> str:
 
 
 def check_pathway_name(name: str, filepath: Path, model: str):
-    """ Check the pathway name"""
+    """Check the pathway name"""
 
     if name not in SUPPORTED_PATHWAYS:
         # If the pathway name is not a default one,
@@ -244,7 +244,7 @@ def check_pathway_name(name: str, filepath: Path, model: str):
 
 
 def check_year(year: [int, float]) -> int:
-    """ Check for the validity of the year passed. """
+    """Check for the validity of the year passed."""
     try:
         year = int(year)
     except ValueError as err:
@@ -645,12 +645,18 @@ class NewDatabase:
                 (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
                 (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
                 (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-                (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES, "3.7",),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
+                    "3.7",
+                ),
                 (
                     FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
                     "3.7",
                 ),
-                (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES, "3.7",),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
+                    "3.7",
+                ),
                 (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
                 (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
@@ -898,7 +904,7 @@ class NewDatabase:
                     "market group for electricity, low voltage",
                     "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
                     "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat"
+                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
                 ],
             )
             scenario["database"] = base.database
@@ -916,7 +922,8 @@ class NewDatabase:
         self.database = check_for_duplicates(self.database)
 
         wurst.write_brightway2_database(
-            self.database, name,
+            self.database,
+            name,
         )
 
     def write_db_to_brightway(self, name: [str, List[str]] = None):
@@ -965,13 +972,13 @@ class NewDatabase:
             base.relink_datasets(
                 excludes_datasets=["cobalt industry", "market group for electricity"],
                 alt_names=[
-                        "market group for electricity, high voltage",
-                        "market group for electricity, medium voltage",
-                        "market group for electricity, low voltage",
-                        "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
-                        "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                        "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat"
-                    ],
+                    "market group for electricity, high voltage",
+                    "market group for electricity, medium voltage",
+                    "market group for electricity, low voltage",
+                    "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
+                    "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
+                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
+                ],
             )
             scenario["database"] = base.database
 
@@ -980,7 +987,8 @@ class NewDatabase:
             scenario["database"] = remove_uncertainty(scenario["database"])
 
             wurst.write_brightway2_database(
-                scenario["database"], name[scen],
+                scenario["database"],
+                name[scen],
             )
 
     def write_db_to_matrices(self, filepath: str = None):
@@ -1038,7 +1046,7 @@ class NewDatabase:
                     "market group for electricity, low voltage",
                     "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
                     "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat"
+                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
                 ],
             )
             scenario["database"] = base.database
@@ -1090,7 +1098,7 @@ class NewDatabase:
                     "market group for electricity, low voltage",
                     "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
                     "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat"
+                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
                 ],
             )
             scenario["database"] = base.database

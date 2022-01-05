@@ -1,8 +1,10 @@
-from . import DATA_DIR
 import csv
-import yaml
 from pathlib import Path
 from typing import List, Union
+
+import yaml
+
+from . import DATA_DIR
 
 GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
     DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
