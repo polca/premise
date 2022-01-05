@@ -1,9 +1,10 @@
 # content of test_activity_maps.py
+from pathlib import Path
+
 import pytest
 from bw2data.database import DatabaseChooser
 
 from premise.clean_datasets import DatabaseCleaner
-from pathlib import Path
 
 
 def get_dict():
