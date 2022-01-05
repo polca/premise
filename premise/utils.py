@@ -1,20 +1,22 @@
-from .export import *
-from wurst import searching as ws
-from datetime import date
 import uuid
-from itertools import chain
-from wurst import log
-from wurst.searching import reference_product, get_many, equals
-from wurst.transformations.uncertainty import rescale_exchange
-from constructive_geometries import resolved_row
 from copy import deepcopy
-from . import geomap
-import yaml
+from datetime import date
 from functools import lru_cache
-import pandas as pd
+from itertools import chain
 from pathlib import Path
+from typing import Dict, List, Tuple
+
+import pandas as pd
 import xarray as xr
-from typing import List, Tuple, Dict
+import yaml
+from constructive_geometries import resolved_row
+from wurst import log
+from wurst import searching as ws
+from wurst.searching import equals, get_many, reference_product
+from wurst.transformations.uncertainty import rescale_exchange
+
+from . import geomap
+from .export import *
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
@@ -122,7 +124,12 @@ def create_codes_and_names_of_A_matrix(db: List[dict]):
     :rtype: dict
     """
     return {
-        (i["name"], i["reference product"], i["unit"], i["location"],): i["code"]
+        (
+            i["name"],
+            i["reference product"],
+            i["unit"],
+            i["location"],
+        ): i["code"]
         for i in db
     }
 
@@ -619,16 +626,18 @@ def relink_technosphere_exchanges(
             else:
 
                 new_exchanges.extend(
-                    [{
-                        "name": i[0],
-                        "product": i[1],
-                        "unit": i[3],
-                        "location": i[2],
-                        "type": "technosphere",
-                        "amount": exc["amount"] * i[-1],
-                    } for i in e]
+                    [
+                        {
+                            "name": i[0],
+                            "product": i[1],
+                            "unit": i[3],
+                            "location": i[2],
+                            "type": "technosphere",
+                            "amount": exc["amount"] * i[-1],
+                        }
+                        for i in e
+                    ]
                 )
-
 
         except KeyError:
             possible_datasets = [
@@ -741,7 +750,12 @@ def relink_technosphere_exchanges(
 
                 if ds["location"] in cache:
                     cache[ds["location"]][
-                        (exc["name"], exc["product"], exc["location"], exc["unit"],)
+                        (
+                            exc["name"],
+                            exc["product"],
+                            exc["location"],
+                            exc["unit"],
+                        )
                     ] = [
                         (e["name"], e["product"], e["location"], e["unit"], s)
                         for e, s in zip(allocated, share)
@@ -760,7 +774,12 @@ def relink_technosphere_exchanges(
                 # add to cache
                 if ds["location"] in cache:
                     cache[ds["location"]][
-                        (exc["name"], exc["product"], exc["location"], exc["unit"],)
+                        (
+                            exc["name"],
+                            exc["product"],
+                            exc["location"],
+                            exc["unit"],
+                        )
                     ] = (
                         exc["name"],
                         exc["product"],
@@ -806,7 +825,7 @@ def allocate_inputs(exc, lst):
     return [
         new_exchange(exc, obj["location"], factor / total)
         for obj, factor in zip(lst, pvs)
-    ], [p/total for p in pvs]
+    ], [p / total for p in pvs]
 
 
 def get_possibles(exchange, data):

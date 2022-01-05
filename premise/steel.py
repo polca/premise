@@ -1,5 +1,6 @@
-from .transformation import *
 import copy
+
+from .transformation import *
 from .utils import *
 
 
@@ -15,7 +16,7 @@ class Steel(BaseTransformation):
     :vartype iam_data: xarray.DataArray
     :ivar year: year, from :attr:`.NewDatabase.year`
     :vartype year: int
-    
+
     """
 
     def __init__(self, database, iam_data, model, pathway, year, version):
@@ -112,7 +113,7 @@ class Steel(BaseTransformation):
     def generate_activities(self):
         """
         This function generates new activities for primary and secondary steel production and add them to the ecoinvent database.
-        
+
         :return: Returns a modified database with newly added steel activities for the corresponding year
         """
 
@@ -150,7 +151,8 @@ class Steel(BaseTransformation):
                         ).interp(year=self.year).values.item(
                             0
                         ) / self.iam_data.production_volumes.sel(
-                            region=loc, variables=["steel - primary", "steel - secondary"]
+                            region=loc,
+                            variables=["steel - primary", "steel - secondary"],
                         ).interp(
                             year=self.year
                         ).sum(
@@ -196,8 +198,11 @@ class Steel(BaseTransformation):
             else:
                 for loc, dataset in steel_markets.items():
                     if loc != "World":
-                        name_ref = [(e["name"], e.get("product")) for e in dataset["exchanges"]
-                                    if "steel production" in e["name"]][0]
+                        name_ref = [
+                            (e["name"], e.get("product"))
+                            for e in dataset["exchanges"]
+                            if "steel production" in e["name"]
+                        ][0]
                         name, ref = name_ref
 
                         dataset["exchanges"] = [
@@ -222,21 +227,27 @@ class Steel(BaseTransformation):
 
             # populate World dataset
 
-            steel_markets["World"]["exchanges"] = [x for x in steel_markets["World"]["exchanges"] if x["type"] == "production"]
+            steel_markets["World"]["exchanges"] = [
+                x
+                for x in steel_markets["World"]["exchanges"]
+                if x["type"] == "production"
+            ]
             regions = [r for r in self.regions if r != "World"]
 
             for region in regions:
                 share = (
-                        self.iam_data.production_volumes.sel(
-                            variables=["steel - primary", "steel - secondary"], region=region
-                        )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
-                        / self.iam_data.production_volumes.sel(
-                    variables=["steel - primary", "steel - secondary"], region="World"
-                )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
+                    self.iam_data.production_volumes.sel(
+                        variables=["steel - primary", "steel - secondary"],
+                        region=region,
+                    )
+                    .interp(year=self.year)
+                    .sum(dim="variables")
+                    / self.iam_data.production_volumes.sel(
+                        variables=["steel - primary", "steel - secondary"],
+                        region="World",
+                    )
+                    .interp(year=self.year)
+                    .sum(dim="variables")
                 ).values.item(0)
 
                 steel_markets["World"]["exchanges"].append(
@@ -249,7 +260,6 @@ class Steel(BaseTransformation):
                         "location": region,
                     }
                 )
-
 
             self.database.extend([v for v in steel_markets.values()])
 
@@ -301,7 +311,7 @@ class Steel(BaseTransformation):
             "oil",
             "electricity",
             "natural gas",
-            "steam"
+            "steam",
         ]
 
         for steel in d_act_steel:
@@ -318,7 +328,8 @@ class Steel(BaseTransformation):
                     else "steel - secondary"
                 )
                 scaling_factor = 1 / self.find_iam_efficiency_change(
-                    variable=sector, location=activity["location"],
+                    variable=sector,
+                    location=activity["location"],
                 )
 
                 # update comments
@@ -361,12 +372,14 @@ class Steel(BaseTransformation):
                         activity["exchanges"].extend(new_exchanges)
 
                 # Update hot pollutant emission according to GAINS
-                dataset = self.update_pollutant_emissions(dataset=activity, sector="steel")
+                dataset = self.update_pollutant_emissions(
+                    dataset=activity, sector="steel"
+                )
 
             self.database.extend([v for v in d_act_steel[steel].values()])
 
-        #print("Relink new steel production datasets to steel-consuming activities")
+        # print("Relink new steel production datasets to steel-consuming activities")
 
-        #self.relink_datasets()
+        # self.relink_datasets()
 
         print("Done!")

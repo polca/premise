@@ -16,6 +16,7 @@ from .geomap import Geomap
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
+
 def get_biosphere_code():
     """
     Retrieve a dictionary with biosphere flow names and uuid codes.
@@ -801,4 +802,3 @@ class AdditionalInventory(BaseInventoryImport):
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_duplicates()
-
