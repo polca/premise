@@ -1,24 +1,31 @@
-import sys, os, copy, pickle
-from pathlib import Path
+"""
+ecoinvent_modification.py exposes methods to create a database, perform transformations on it,
+as well as export it back.
+"""
+
+import copy
+import os
+import pickle
+import sys
 from datetime import date
+from pathlib import Path
+from typing import List
+
 import wurst
 from prettytable import PrettyTable
+
 from . import DATA_DIR, INVENTORY_DIR
+from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .photovoltaics import SolarPV
-from .inventory_imports import (
-    DefaultInventory,
-    AdditionalInventory,
-)
-from .cement import Cement
-from .steel import Steel
-from .fuels import Fuels
-from .natural_gas import update_ng_production_ds
-from .transport import Transport
 from .export import Export, check_for_duplicates, remove_uncertainty
-from .utils import eidb_label, add_modified_tags, build_superstructure_db
+from .fuels import Fuels
+from .inventory_imports import AdditionalInventory, DefaultInventory
+from .steel import Steel
+from .transport import Transport
+from .utils import add_modified_tags, build_superstructure_db, eidb_label
+from .transformation import BaseTransformation
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -124,17 +131,6 @@ LIST_REMIND_REGIONS = [
     "SSA",
     "USA",
     "World",
-    "ESC",
-    "ECE",
-    "DEU",
-    "ESW",
-    "FRA",
-    "UKI",
-    "ENC",
-    "EWN",
-    "ECS",
-    "NEN",
-    "NES",
 ]
 
 LIST_IMAGE_REGIONS = [
@@ -171,12 +167,11 @@ LIST_TRANSF_FUNC = [
     "update_electricity",
     "update_cement",
     "update_steel",
-    "update_cars",
     "update_two_wheelers",
+    "update_cars",
     "update_trucks",
-    "update_solar_pv",
-    "update_fuels",
     "update_buses",
+    "update_fuels",
 ]
 
 # Disable printing
@@ -189,9 +184,7 @@ def enablePrint():
     sys.stdout = sys.__stdout__
 
 
-
-
-def check_ei_filepath(filepath):
+def check_ei_filepath(filepath: str) -> Path:
     """ Check for the existence of the file path."""
 
     if not Path(filepath).is_dir():
@@ -201,7 +194,7 @@ def check_ei_filepath(filepath):
     return Path(filepath)
 
 
-def check_model_name(name):
+def check_model_name(name: str) -> str:
     """ Check for the validity of the IAM model name."""
     if name.lower() not in SUPPORTED_MODELS:
         raise ValueError(
@@ -210,11 +203,12 @@ def check_model_name(name):
     return name.lower()
 
 
-def check_pathway_name(name, filepath, model):
+def check_pathway_name(name: str, filepath: Path, model: str):
     """ Check the pathway name"""
 
     if name not in SUPPORTED_PATHWAYS:
-        # If the pathway name is not a default one, check that the filepath + pathway name
+        # If the pathway name is not a default one,
+        # check that the filepath + pathway name
         # leads to an actual file
 
         if model.lower() not in name:
@@ -249,7 +243,7 @@ def check_pathway_name(name, filepath, model):
         )
 
 
-def check_year(year):
+def check_year(year: [int, float]) -> int:
     """ Check for the validity of the year passed. """
     try:
         year = int(year)
@@ -264,13 +258,13 @@ def check_year(year):
     return year
 
 
-def check_filepath(path):
+def check_filepath(path: str) -> Path:
     if not Path(path).is_dir():
         raise FileNotFoundError(f"The IAM output directory {path} could not be found.")
     return Path(path)
 
 
-def check_exclude(list_exc):
+def check_exclude(list_exc: List[str]) -> List[str]:
 
     if not isinstance(list_exc, list):
         raise TypeError("`exclude` should be a sequence of strings.")
@@ -282,66 +276,7 @@ def check_exclude(list_exc):
     return list_exc
 
 
-def check_fleet(fleet, model, vehicle_type):
-    """
-    Check that any fleet file specified is properly defined.
-    :param fleet:
-    :param model:
-    :param vehicle_type:
-    :return:
-    """
-    if "fleet file" not in fleet:
-        print(
-            f"No fleet composition file is provided for {vehicle_type}.\n"
-            "Fleet average vehicles will be built using default fleet projection."
-        )
-
-        fleet["fleet file"] = (
-            DATA_DIR
-            / "iam_output_files"
-            / "fleet_files"
-            / model
-            / vehicle_type
-            / "fleet_file.csv"
-        )
-    else:
-        filepath = fleet["fleet file"]
-        if not Path(filepath).is_file():
-            raise FileNotFoundError(f"The fleet file {filepath} could not be found.")
-
-    if "regions" in fleet:
-        if isinstance(fleet["regions"], str):
-            fleet["regions"] = list(fleet["regions"])
-
-        if model == "remind":
-            if not set(fleet["regions"]).issubset(LIST_REMIND_REGIONS):
-                raise ValueError(
-                    "One or several regions specified for the fleet "
-                    "of passenger_cars is invalid."
-                )
-
-        if model == "image":
-            if not set(fleet["regions"]).issubset(LIST_IMAGE_REGIONS):
-                raise ValueError(
-                    "One or several regions specified for the fleet "
-                    "of passenger_cars is invalid."
-                )
-    else:
-        if model == "remind":
-            fleet["regions"] = LIST_REMIND_REGIONS
-        if model == "image":
-            fleet["regions"] = LIST_IMAGE_REGIONS
-
-    if "filters" not in fleet:
-        fleet["filters"] = None
-    else:
-        if isinstance(fleet["fleet"], str):
-            fleet["filters"] = list(fleet["filters"])
-
-    return fleet
-
-
-def check_additional_inventories(inventories_list):
+def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
     """
     Check that any additional inventories that need to be imported are properly listed.
     :param inventories_list: list of dicitonnaries
@@ -389,7 +324,7 @@ def check_additional_inventories(inventories_list):
     return inventories_list
 
 
-def check_db_version(version):
+def check_db_version(version: [str, float]) -> str:
     """
     Check that the ecoinvent database version is supported
     :param version:
@@ -403,7 +338,7 @@ def check_db_version(version):
     return version
 
 
-def check_scenarios(scenario, key):
+def check_scenarios(scenario: dict, key: str) -> dict:
 
     if not all(name in scenario for name in ["model", "pathway", "year"]):
         raise ValueError(
@@ -434,24 +369,10 @@ def check_scenarios(scenario, key):
     if "exclude" in scenario:
         scenario["exclude"] = check_exclude(scenario["exclude"])
 
-    if "passenger_cars" in scenario:
-        scenario["passenger_cars"] = check_fleet(
-            scenario["passenger_cars"], scenario["model"], "passenger_cars"
-        )
-    else:
-        scenario["passenger_cars"] = False
-
-    if "trucks" in scenario:
-        scenario["trucks"] = check_fleet(
-            scenario["trucks"], scenario["model"], "trucks"
-        )
-    else:
-        scenario["trucks"] = False
-
     return scenario
 
 
-def check_system_model(system_model):
+def check_system_model(system_model: str) -> str:
 
     if not isinstance(system_model, str):
         raise TypeError(
@@ -468,7 +389,12 @@ def check_system_model(system_model):
     return system_model
 
 
-def check_time_horizon(th):
+def check_time_horizon(th: int) -> int:
+    """
+    Check teh validity of the time horizon provided (in years).
+    :param th: time horizon (in years), to determine marginal mixes for consequential modelling.
+    :return: time horizon (in years)
+    """
 
     if th is None:
         print(
@@ -481,18 +407,18 @@ def check_time_horizon(th):
         int(th)
     except ValueError as err:
         raise Exception(
-            "`time_horizon` must be an integer or float with a value between 5 and 50 years."
+            "`time_horizon` must be an integer with a value between 5 and 50 years."
         ) from err
 
     if th < 5 or th > 50:
         raise ValueError(
-            "`time_horizon` must be an integer or float with a value between 5 and 50 years."
+            "`time_horizon` must be an integer with a value between 5 and 50 years."
         )
 
     return int(th)
 
 
-def warning_about_biogenic_co2():
+def warning_about_biogenic_co2() -> None:
     """
     Prints a simple warning about characterizing biogenic CO2 flows.
     :return: Does not return anything.
@@ -552,18 +478,18 @@ class NewDatabase:
 
     def __init__(
         self,
-        scenarios,
-        source_version="3.8",
-        source_type="brightway",
-        key=None,
-        source_db=None,
-        source_file_path=None,
-        additional_inventories=None,
-        system_model="attributional",
-        time_horizon=None,
-        use_cached_inventories=True,
-        use_cached_database=True,
-    ):
+        scenarios: List[dict],
+        source_version: str = "3.8",
+        source_type: str = "brightway",
+        key: str = None,
+        source_db: str = None,
+        source_file_path: str = None,
+        additional_inventories: List[dict] = None,
+        system_model: str = "attributional",
+        time_horizon: int = None,
+        use_cached_inventories: bool = True,
+        use_cached_database: bool = True,
+    ) -> None:
 
         self.source = source_db
         self.version = check_db_version(source_version)
@@ -609,7 +535,8 @@ class NewDatabase:
             self.__import_inventories()
 
         if self.additional_inventories:
-            self.__import_additional_inventories()
+            data = self.__import_additional_inventories()
+            self.database.extend(data)
 
         print("\n/////////////////////// EXTRACTING IAM DATA ////////////////////////")
 
@@ -627,7 +554,7 @@ class NewDatabase:
 
         print("Done!")
 
-    def __find_cached_db(self, db_name):
+    def __find_cached_db(self, db_name: str) -> List[dict]:
         """
         If `use_cached_db` = True, then we look for a cached database.
         If cannot be found, we create a cache for next time.
@@ -650,7 +577,7 @@ class NewDatabase:
             pickle.dump(db, open(file_name, "wb"))
             return db
 
-    def __find_cached_inventories(self, db_name):
+    def __find_cached_inventories(self, db_name: str) -> List[dict]:
         """
         If `use_cached_inventories` = True, then we look for a cached inventories.
         If cannot be found, we create a cache for next time.
@@ -677,7 +604,7 @@ class NewDatabase:
             pickle.dump(data, open(file_name, "wb"))
             return None
 
-    def __clean_database(self):
+    def __clean_database(self) -> List[dict]:
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
         (adds missing locations, reference products, etc.).
@@ -687,7 +614,7 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
-    def __import_inventories(self):
+    def __import_inventories(self) -> List[dict]:
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
@@ -743,7 +670,7 @@ class NewDatabase:
         print("Done!\n")
         return data
 
-    def __import_additional_inventories(self):
+    def __import_additional_inventories(self) -> List[dict]:
 
         print(
             "\n/////////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////////"
@@ -765,7 +692,7 @@ class NewDatabase:
 
         return data
 
-    def update_electricity(self):
+    def update_electricity(self) -> None:
 
         print("\n/////////////////////////// ELECTRICITY ////////////////////////////")
 
@@ -781,10 +708,15 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     year=scenario["year"],
                 )
-                scenario["database"] = electricity.update_electricity_markets()
-                scenario["database"] = electricity.update_electricity_efficiency()
 
-    def update_fuels(self):
+                electricity.update_ng_production_ds()
+                electricity.update_efficiency_of_solar_pv()
+                electricity.create_biomass_markets()
+                electricity.update_electricity_markets()
+                electricity.update_electricity_efficiency()
+                scenario["database"] = electricity.database
+
+    def update_fuels(self) -> None:
         print("\n////////////////////////////// FUELS ///////////////////////////////")
 
         for scenario in self.scenarios:
@@ -798,25 +730,11 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     year=scenario["year"],
                     version=self.version,
-                    original_db=self.database,
                 )
+                fuels.generate_fuel_markets()
+                scenario["database"] = fuels.database
 
-                scenario["database"] = fuels.generate_fuel_markets()
-
-    def update_ng(self):
-        print("\n//////////////////////////// NATURAL GAS /////////////////////////////")
-
-        for scenario in self.scenarios:
-
-            if "exclude" not in scenario or "update_ng" not in scenario["exclude"]:
-
-                scenario["database"] = update_ng_production_ds(
-                    database=scenario["database"]
-                )
-
-        print("Done!")
-
-    def update_cement(self):
+    def update_cement(self) -> None:
         print("\n///////////////////////////// CEMENT //////////////////////////////")
 
         for scenario in self.scenarios:
@@ -831,9 +749,10 @@ class NewDatabase:
                     version=self.version,
                 )
 
-                scenario["database"] = cement.add_datasets_to_database()
+                cement.add_datasets_to_database()
+                scenario["database"] = cement.database
 
-    def update_steel(self):
+    def update_steel(self) -> None:
         print("\n////////////////////////////// STEEL //////////////////////////////")
 
         for scenario in self.scenarios:
@@ -848,14 +767,15 @@ class NewDatabase:
                     year=scenario["year"],
                     version=self.version,
                 )
-                scenario["database"] = steel.generate_activities()
+                steel.generate_activities()
+                scenario["database"] = steel.database
 
-    def update_cars(self):
+    def update_cars(self) -> None:
         print("\n///////////////////////// PASSENGER CARS ///////////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cars" not in scenario["exclude"]:
-                trsp = Transport(
+                trspt = Transport(
                     database=scenario["database"],
                     year=scenario["year"],
                     model=scenario["model"],
@@ -866,10 +786,10 @@ class NewDatabase:
                     relink=False,
                     has_fleet=True,
                 )
+                trspt.create_vehicle_markets()
+                scenario["database"] = trspt.database
 
-                scenario["database"] = trsp.create_vehicle_markets()
-
-    def update_two_wheelers(self):
+    def update_two_wheelers(self) -> None:
         print("\n////////////////////////// TWO-WHEELERS ////////////////////////////")
 
         for scenario in self.scenarios:
@@ -878,7 +798,7 @@ class NewDatabase:
                 or "update_two_wheelers" not in scenario["exclude"]
             ):
 
-                trsp = Transport(
+                trspt = Transport(
                     database=scenario["database"],
                     year=scenario["year"],
                     model=scenario["model"],
@@ -889,17 +809,17 @@ class NewDatabase:
                     relink=False,
                     has_fleet=False,
                 )
+                trspt.create_vehicle_markets()
+                scenario["database"] = trspt.database
 
-                scenario["database"] = trsp.create_vehicle_markets()
-
-    def update_trucks(self):
+    def update_trucks(self) -> None:
 
         print("\n////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_trucks" not in scenario["exclude"]:
 
-                trsp = Transport(
+                trspt = Transport(
                     database=scenario["database"],
                     year=scenario["year"],
                     model=scenario["model"],
@@ -911,16 +831,17 @@ class NewDatabase:
                     has_fleet=True,
                 )
 
-                scenario["database"] = trsp.create_vehicle_markets()
+                trspt.create_vehicle_markets()
+                scenario["database"] = trspt.database
 
-    def update_buses(self):
+    def update_buses(self) -> None:
 
         print("\n////////////////////////////// BUSES ///////////////////////////////")
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_buses" not in scenario["exclude"]:
 
-                trsp = Transport(
+                trspt = Transport(
                     database=scenario["database"],
                     year=scenario["year"],
                     model=scenario["model"],
@@ -932,26 +853,10 @@ class NewDatabase:
                     has_fleet=True,
                 )
 
-                scenario["database"] = trsp.create_vehicle_markets()
+                trspt.create_vehicle_markets()
+                scenario["database"] = trspt.database
 
-    def update_solar_pv(self):
-        print("\n///////////////////////////// SOLAR PV //////////////////////////////")
-
-        for scenario in self.scenarios:
-            if (
-                "exclude" not in scenario
-                or "update_solar_pv" not in scenario["exclude"]
-            ):
-                solar_pv = SolarPV(
-                    db=scenario["database"],
-                    year=scenario["year"],
-                    model=scenario["model"],
-                    scenario=scenario["pathway"]
-                )
-                print("Update efficiency of solar PVs.\n")
-                scenario["database"] = solar_pv.update_efficiency_of_solar_pv()
-
-    def update_all(self):
+    def update_all(self) -> None:
         """
         Shortcut method to execute all transformation functions.
         """
@@ -960,24 +865,47 @@ class NewDatabase:
         self.update_cars()
         self.update_trucks()
         self.update_buses()
-        self.update_ng()
-        self.update_solar_pv()
         self.update_electricity()
         self.update_cement()
         self.update_steel()
         self.update_fuels()
 
     def write_superstructure_db_to_brightway(
-        self, name=f"super_db_{date.today()}", filepath=None
-    ):
+        self, name: str = f"super_db_{date.today()}", filepath: str = None
+    ) -> None:
         """
         Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
         :return: filepath of the "scenarios difference file"
         """
 
-        # we ensure first the absence of duplicate datasets
-        self.database = check_for_duplicates(self.database)
-        self.database = remove_uncertainty(self.database)
+        for scen, scenario in enumerate(self.scenarios):
+
+            print(f"Relink activities of database {scen + 1}.")
+
+            base = BaseTransformation(
+                database=scenario["database"],
+                iam_data=scenario["external data"],
+                model=scenario["model"],
+                pathway=scenario["pathway"],
+                year=scenario["year"],
+            )
+
+            base.relink_datasets(
+                excludes_datasets=["cobalt industry", "market group for electricity"],
+                alt_names=[
+                    "market group for electricity, high voltage",
+                    "market group for electricity, medium voltage",
+                    "market group for electricity, low voltage",
+                    "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
+                    "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
+                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat"
+                ],
+            )
+            scenario["database"] = base.database
+
+            # we ensure first the absence of duplicate datasets
+            scenario["database"] = check_for_duplicates(scenario["database"])
+            scenario["database"] = remove_uncertainty(scenario["database"])
 
         self.database = build_superstructure_db(
             self.database, self.scenarios, db_name=name, fp=filepath
@@ -985,11 +913,13 @@ class NewDatabase:
 
         print("Done!")
 
+        self.database = check_for_duplicates(self.database)
+
         wurst.write_brightway2_database(
             self.database, name,
         )
 
-    def write_db_to_brightway(self, name=None):
+    def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
         Register the new database into an open brightway2 project.
         :param name: to give a (list) of custom name(s) to the database.
@@ -1022,6 +952,29 @@ class NewDatabase:
         print("Write new database(s) to Brightway2.")
         for scen, scenario in enumerate(self.scenarios):
 
+            print("Relink activities.")
+
+            base = BaseTransformation(
+                database=scenario["database"],
+                iam_data=scenario["external data"],
+                model=scenario["model"],
+                pathway=scenario["pathway"],
+                year=scenario["year"],
+            )
+
+            base.relink_datasets(
+                excludes_datasets=["cobalt industry", "market group for electricity"],
+                alt_names=[
+                        "market group for electricity, high voltage",
+                        "market group for electricity, medium voltage",
+                        "market group for electricity, low voltage",
+                        "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
+                        "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
+                        "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat"
+                    ],
+            )
+            scenario["database"] = base.database
+
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
             scenario["database"] = remove_uncertainty(scenario["database"])
@@ -1030,7 +983,7 @@ class NewDatabase:
                 scenario["database"], name[scen],
             )
 
-    def write_db_to_matrices(self, filepath=None):
+    def write_db_to_matrices(self, filepath: str = None):
         """
 
         Exports the new database as a sparse matrix representation in csv files.
@@ -1067,6 +1020,29 @@ class NewDatabase:
         print("Write new database(s) to matrix.")
         for scen, scenario in enumerate(self.scenarios):
 
+            print("Relink activities.")
+
+            base = BaseTransformation(
+                database=scenario["database"],
+                iam_data=scenario["external data"],
+                model=scenario["model"],
+                pathway=scenario["pathway"],
+                year=scenario["year"],
+            )
+
+            base.relink_datasets(
+                excludes_datasets=["cobalt industry", "market group for electricity"],
+                alt_names=[
+                    "market group for electricity, high voltage",
+                    "market group for electricity, medium voltage",
+                    "market group for electricity, low voltage",
+                    "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
+                    "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
+                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat"
+                ],
+            )
+            scenario["database"] = base.database
+
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
             scenario["database"] = remove_uncertainty(scenario["database"])
@@ -1079,7 +1055,7 @@ class NewDatabase:
                 filepath[scen],
             ).export_db_to_matrices()
 
-    def write_db_to_simapro(self, filepath=None):
+    def write_db_to_simapro(self, filepath: str = None):
         """
         Exports database as a CSV file to be imported in Simapro 9.x
 
@@ -1096,6 +1072,29 @@ class NewDatabase:
         print("Write Simapro import file(s).")
         for scenario in self.scenarios:
 
+            print("Relink activities.")
+
+            base = BaseTransformation(
+                database=scenario["database"],
+                iam_data=scenario["external data"],
+                model=scenario["model"],
+                pathway=scenario["pathway"],
+                year=scenario["year"],
+            )
+
+            base.relink_datasets(
+                excludes_datasets=["cobalt industry", "market group for electricity"],
+                alt_names=[
+                    "market group for electricity, high voltage",
+                    "market group for electricity, medium voltage",
+                    "market group for electricity, low voltage",
+                    "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
+                    "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
+                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat"
+                ],
+            )
+            scenario["database"] = base.database
+
             # we ensure first the absence of duplicate datasets
             scenario["database"] = check_for_duplicates(scenario["database"])
             scenario["database"] = remove_uncertainty(scenario["database"])
@@ -1108,7 +1107,7 @@ class NewDatabase:
                 filepath,
             ).export_db_to_simapro()
 
-    def write_db_to_brightway25(self, name=None):
+    def write_db_to_brightway25(self, name: str = None):
         """
         Register the new database into the current brightway2.5 project.
         """

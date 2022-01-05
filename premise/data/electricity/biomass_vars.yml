@@ -1,0 +1,18 @@
+biomass - purpose grown:
+  iam_aliases:
+    image: Primary Energy|Biomass|Energy Crops
+    remind: SE|Electricity|Biomass|Energy Crops
+  ecoinvent_aliases:
+    name:
+      - market for wood chips
+    reference product:
+      - wood chips
+biomass - residual:
+  iam_aliases:
+    image: Primary Energy|Biomass|Residues
+    remind: SE|Electricity|Biomass|Residues
+  ecoinvent_aliases:
+    name:
+      - Supply of forest residue
+    reference product:
+      - Forest residue

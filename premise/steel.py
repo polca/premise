@@ -89,7 +89,7 @@ class Steel(BaseTransformation):
                     )
                 )
                 counter += 1
-v
+
             suppliers = get_shares_from_production_volume(suppliers)
 
             for supplier, share in suppliers.items():
@@ -139,135 +139,107 @@ v
                 name=i[0],
                 ref_prod=i[1],
                 production_variable=["steel - primary", "steel - secondary"],
-                relink=False,
             )
-
-            steel_markets = {r: d for r, d in steel_markets.items() if r != "World"}
 
             # adjust share of primary and secondary steel
             if i[0] == "market for steel, low-alloyed":
                 for loc, dataset in steel_markets.items():
-                    primary_share = self.iam_data.production_volumes.sel(
-                        region=loc, variables="steel - primary"
-                    ).interp(year=self.year).values.item(
-                        0
-                    ) / self.iam_data.production_volumes.sel(
-                        region=loc, variables=["steel - primary", "steel - secondary"]
-                    ).interp(
-                        year=self.year
-                    ).sum(
-                        dim="variables"
-                    ).values.item(
-                        0
-                    )
+                    if loc != "World":
+                        primary_share = self.iam_data.production_volumes.sel(
+                            region=loc, variables="steel - primary"
+                        ).interp(year=self.year).values.item(
+                            0
+                        ) / self.iam_data.production_volumes.sel(
+                            region=loc, variables=["steel - primary", "steel - secondary"]
+                        ).interp(
+                            year=self.year
+                        ).sum(
+                            dim="variables"
+                        ).values.item(
+                            0
+                        )
 
-                    secondary_share = 1 - primary_share
+                        secondary_share = 1 - primary_share
 
-                    new_exc = [
-                        {
-                            "uncertainty type": 0,
-                            "loc": primary_share,
-                            "amount": primary_share,
-                            "type": "technosphere",
-                            "production volume": 1,
-                            "product": "steel, low-alloyed",
-                            "name": "steel production, converter, low-alloyed",
-                            "unit": "kilogram",
-                            "location": loc,
-                        },
-                        {
-                            "uncertainty type": 0,
-                            "loc": secondary_share,
-                            "amount": secondary_share,
-                            "type": "technosphere",
-                            "production volume": 1,
-                            "product": "steel, low-alloyed",
-                            "name": "steel production, electric, low-alloyed",
-                            "unit": "kilogram",
-                            "location": loc,
-                        },
-                    ]
+                        new_exc = [
+                            {
+                                "uncertainty type": 0,
+                                "loc": primary_share,
+                                "amount": primary_share,
+                                "type": "technosphere",
+                                "production volume": 1,
+                                "product": "steel, low-alloyed",
+                                "name": "steel production, converter, low-alloyed",
+                                "unit": "kilogram",
+                                "location": loc,
+                            },
+                            {
+                                "uncertainty type": 0,
+                                "loc": secondary_share,
+                                "amount": secondary_share,
+                                "type": "technosphere",
+                                "production volume": 1,
+                                "product": "steel, low-alloyed",
+                                "name": "steel production, electric, low-alloyed",
+                                "unit": "kilogram",
+                                "location": loc,
+                            },
+                        ]
 
-                    dataset["exchanges"] = [
-                        e
-                        for e in dataset["exchanges"]
-                        if e["type"] == "production" or e["unit"] == "ton kilometer"
-                    ]
-                    dataset["exchanges"].extend(new_exc)
+                        dataset["exchanges"] = [
+                            e
+                            for e in dataset["exchanges"]
+                            if e["type"] == "production" or e["unit"] == "ton kilometer"
+                        ]
+                        dataset["exchanges"].extend(new_exc)
 
             else:
                 for loc, dataset in steel_markets.items():
-                    name_ref = [(e["name"], e.get("product")) for e in dataset["exchanges"]
-                                if "steel production" in e["name"]][0]
-                    name, ref = name_ref
+                    if loc != "World":
+                        name_ref = [(e["name"], e.get("product")) for e in dataset["exchanges"]
+                                    if "steel production" in e["name"]][0]
+                        name, ref = name_ref
 
-                    dataset["exchanges"] = [
-                        e
-                        for e in dataset["exchanges"]
-                        if e["type"] == "production" or e["unit"] == "ton kilometer"
-                    ]
+                        dataset["exchanges"] = [
+                            e
+                            for e in dataset["exchanges"]
+                            if e["type"] == "production" or e["unit"] == "ton kilometer"
+                        ]
 
-                    dataset["exchanges"].append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "technosphere",
-                            "production volume": 1,
-                            "product": ref,
-                            "name": name,
-                            "unit": "kilogram",
-                            "location": loc,
-                        }
-                    )
+                        dataset["exchanges"].append(
+                            {
+                                "uncertainty type": 0,
+                                "loc": 1,
+                                "amount": 1,
+                                "type": "technosphere",
+                                "production volume": 1,
+                                "product": ref,
+                                "name": name,
+                                "unit": "kilogram",
+                                "location": loc,
+                            }
+                        )
 
-            self.database.extend([v for v in steel_markets.values()])
+            # populate World dataset
 
-            created_datasets.extend(
-                [
-                    (act["name"], act["reference product"], act["location"])
-                    for act in steel_markets.values()
-                ]
-            )
-
-            # Create global market for steel
-            region = list(ws.get_many(
-                self.database,
-                ws.equals("name", i[0]),
-                ws.contains("reference product", "steel"),
-            ))[0]
-
-            d = copy.deepcopy(region)
-            d["location"] = "World"
-            d["code"] = str(uuid.uuid4().hex)
-
-            if "input" in d:
-                d.pop("input")
-
-            for prod in ws.production(d):
-                prod["location"] = d["location"]
-
-                if "input" in prod:
-                    prod.pop("input")
-
-            d["exchanges"] = [x for x in d["exchanges"] if x["type"] == "production"]
-
+            steel_markets["World"]["exchanges"] = [x for x in steel_markets["World"]["exchanges"] if x["type"] == "production"]
             regions = [r for r in self.regions if r != "World"]
+
             for region in regions:
                 share = (
-                    self.iam_data.production_volumes.sel(
-                        variables=["steel - primary", "steel - secondary"], region=region
-                    )
-                    .interp(year=self.year)
-                    .sum(dim="variables")
-                    / self.iam_data.production_volumes.sel(
-                        variables=["steel - primary", "steel - secondary"], region="World"
-                    )
-                    .interp(year=self.year)
-                    .sum(dim="variables")
+                        self.iam_data.production_volumes.sel(
+                            variables=["steel - primary", "steel - secondary"], region=region
+                        )
+                        .interp(year=self.year)
+                        .sum(dim="variables")
+                        / self.iam_data.production_volumes.sel(
+                    variables=["steel - primary", "steel - secondary"], region="World"
+                )
+                        .interp(year=self.year)
+                        .sum(dim="variables")
                 ).values.item(0)
 
-                d["exchanges"].append(
+                steel_markets["World"]["exchanges"].append(
                     {
                         "name": i[0],
                         "product": i[1],
@@ -278,15 +250,18 @@ v
                     }
                 )
 
-            self.database.append(d)
 
-            # Add created datasets to `self.list_datasets`
-            self.list_datasets.append(
-                (d["name"], d["reference product"], d["location"])
+            self.database.extend([v for v in steel_markets.values()])
+
+            created_datasets.extend(
+                [
+                    (act["name"], act["reference product"], act["location"])
+                    for act in steel_markets.values()
+                ]
             )
 
-        # Determine all steel activities in the database. Delete old datasets.
-        print("Create new steel production datasets and delete old datasets")
+        # Determine all steel activities in the database. Empty old datasets.
+        print("Create new steel production datasets and empty old datasets")
         d_act_primary_steel = {
             mat: self.fetch_proxies(
                 name=mat[0],
@@ -352,7 +327,7 @@ v
                     f"the performance for steel production indicated by the IAM model {self.model.upper()} "
                     f"for the IAM region {region} in {self.year}, following the scenario {self.scenario}. "
                     f"The energy efficiency of the process "
-                    f"has been improved by {int(1 - (1 / scaling_factor) * 100)}%. "
+                    f"has been improved by {int((1 - scaling_factor) * 100)}%. "
                 )
 
                 d_act_steel[steel][region]["comment"] = text + activity["comment"]
@@ -390,10 +365,8 @@ v
 
             self.database.extend([v for v in d_act_steel[steel].values()])
 
-        print("Relink new steel production datasets to steel-consuming activities")
+        #print("Relink new steel production datasets to steel-consuming activities")
 
-        self.relink_datasets()
+        #self.relink_datasets()
 
         print("Done!")
-
-        return self.database

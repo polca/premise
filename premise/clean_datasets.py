@@ -6,9 +6,11 @@ import pprint
 import wurst
 import bw2io
 from bw2data.database import DatabaseChooser
+from pathlib import Path
+from typing import Dict, List, Tuple, Union
 
 FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "dict_biosphere.txt"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
 
 class DatabaseCleaner:
@@ -25,7 +27,7 @@ class DatabaseCleaner:
 
     """
 
-    def __init__(self, source_db, source_type, source_file_path):
+    def __init__(self, source_db: str, source_type: str, source_file_path: Path) -> None:
 
         if source_type == "brightway":
             # Check that database exists
@@ -47,7 +49,7 @@ class DatabaseCleaner:
             # Parameter field is converted from a list to a dictionary
             self.transform_parameter_field()
 
-    def add_negative_CO2_flows_for_biomass_ccs(self):
+    def add_negative_CO2_flows_for_biomass_ccs(self) -> None:
         """
         Rescale the amount of all exchanges of carbon dioxide, non-fossil by a factor -9 (.9/-.1),
         to account for sequestered CO2.
@@ -67,7 +69,7 @@ class DatabaseCleaner:
             ):
                 wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
 
-    def change_biogenic_co2_name(self):
+    def change_biogenic_co2_name(self) -> None:
         """
         CO2 capture through biomass growth is represented with `Carbon dioxide, in air`.
         However, such flow does not have a CF in the IPCC method. This becomes an issue when biommas
@@ -89,7 +91,7 @@ class DatabaseCleaner:
                 exc["categories"] = ("air",)
 
     @staticmethod
-    def get_fix_names_dict():
+    def get_fix_names_dict() -> Dict[str, str]:
         """
         Loads a csv file into a dictionary. This dictionary contains a few location names
         that need correction in the wurst inventory database.
@@ -100,7 +102,7 @@ class DatabaseCleaner:
         with open(FILEPATH_FIX_NAMES) as f:
             return dict(filter(None, csv.reader(f, delimiter=";")))
 
-    def get_rev_fix_names_dict(self):
+    def get_rev_fix_names_dict(self) -> Dict[str, str]:
         """
         Reverse the fix_names dictionary.
 
@@ -110,7 +112,7 @@ class DatabaseCleaner:
         return {v: k for k, v in self.get_fix_names_dict().items()}
 
     @staticmethod
-    def get_biosphere_flow_uuid():
+    def get_biosphere_flow_uuid() -> Dict[Tuple[str, str, str, str], str]:
         """
         Retrieve a dictionary with biosphere flow (name, categories, unit) --> uuid.
 
@@ -133,7 +135,7 @@ class DatabaseCleaner:
         return csv_dict
 
     @staticmethod
-    def get_biosphere_flow_categories():
+    def get_biosphere_flow_categories() -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
         """
         Retrieve a dictionary with biosphere flow uuids and categories.
 
@@ -158,7 +160,7 @@ class DatabaseCleaner:
         return csv_dict
 
     @staticmethod
-    def remove_nones(db):
+    def remove_nones(db: List[dict]) -> List[dict]:
         """
         Remove empty exchanges in the datasets of the wurst inventory database.
         Modifies in place (does not return anything).
@@ -171,7 +173,9 @@ class DatabaseCleaner:
         for ds in db:
             ds["exchanges"] = [exists(exc) for exc in ds["exchanges"]]
 
-    def find_product_given_lookup_dict(self, lookup_dict):
+        return db
+
+    def find_product_given_lookup_dict(self, lookup_dict: Dict[str, str]) -> List[str]:
         """
         Return a list of location names, given the filtering conditions given in `lookup_dict`.
         It is, for example, used to return a list of location names based on the name and the unit of a dataset.
@@ -188,7 +192,7 @@ class DatabaseCleaner:
             )
         ]
 
-    def find_location_given_lookup_dict(self, lookup_dict):
+    def find_location_given_lookup_dict(self, lookup_dict: Dict[str, str]) -> List[str]:
         """
         Return a list of location names, given the filtering conditions given in `lookup_dict`.
         It is, for example, used to return a list of location names based on the name and the unit of a dataset.
@@ -205,7 +209,7 @@ class DatabaseCleaner:
             )
         ]
 
-    def add_location_field_to_exchanges(self):
+    def add_location_field_to_exchanges(self) -> None:
         """Add the `location` key to the production and
         technosphere exchanges in :attr:`database`.
 
@@ -219,7 +223,7 @@ class DatabaseCleaner:
                     exc_input = e["input"]
                     e["location"] = d_location[exc_input]
 
-    def add_product_field_to_exchanges(self):
+    def add_product_field_to_exchanges(self) -> None:
         """Add the `product` key to the production and
         technosphere exchanges in :attr:`database`.
 
@@ -260,7 +264,7 @@ class DatabaseCleaner:
                     # Ensure the name is correct
                     y["name"] = d_product[y["input"][1]][1]
 
-    def transform_parameter_field(self):
+    def transform_parameter_field(self) -> None:
         # When handling ecospold files directly, the parameter field is a list.
         # It is here transformed into a dictionary
         for x in self.db:
@@ -268,8 +272,8 @@ class DatabaseCleaner:
 
     # Functions to clean up Wurst import and additional technologies
     def fix_unset_technosphere_and_production_exchange_locations(
-        self, matching_fields=("name", "unit")
-    ):
+        self, matching_fields: Tuple[str, str] =("name", "unit")
+    ) -> None:
         """
         Give all the production and technopshere exchanges with a missing location name the location of the dataset
         they belong to.
@@ -301,7 +305,7 @@ class DatabaseCleaner:
                             )
                         )
 
-    def fix_biosphere_flow_categories(self):
+    def fix_biosphere_flow_categories(self) -> None:
         """ Add a `categories` for biosphere flows if missing.
         This happens when importing directly from ecospold files """
 
@@ -343,7 +347,7 @@ class DatabaseCleaner:
 
             ds["exchanges"] = [exc for exc in ds["exchanges"] if "delete" not in exc]
 
-    def prepare_datasets(self):
+    def prepare_datasets(self) -> List[dict]:
         """
         Clean datasets for all databases listed in scenarios: fix location names, remove
         empty exchanges, etc.

@@ -213,6 +213,7 @@ gasoline:
         - import
         - synthetic
         - burned
+        - ETBE
 petrol, 5% ethanol:
   lhv: 41.7
   co2: 0.0735
@@ -334,7 +335,8 @@ hydrogen, biomass:
     remind: SE|Hydrogen|Biomass|w/o CCS
   ecoinvent_aliases:
     fltr:
-      - hydrogen supply, from gasification of biomass
+      - hydrogen supply, from gasification of biomass, by
+      - hydrogen supply, from gasification of biomass by heatpipe reformer, by
       - hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant
 hydrogen, biomass, with CCS:
@@ -345,6 +347,8 @@ hydrogen, biomass, with CCS:
     remind: SE|Hydrogen|Biomass|w/ CCS
   ecoinvent_aliases:
     fltr:
+      - hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS
+      - hydrogen supply, from gasification of biomass, with CCS
       - hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant
 hydrogen, coal:
@@ -377,7 +381,7 @@ hydrogen, biogas:
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - hydrogen supply, from SMR of biogas
+      - hydrogen supply, from SMR of biogas, by
 hydrogen, biogas, with CCS:
   lhv: 120
   co2: 0

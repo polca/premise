@@ -303,9 +303,6 @@ Hydro:
     fltr:
       - electricity production, hydro, reservoir
       - electricity production, hydro, run-of-river
-Hydrogen:
-  iam_aliases:
-    remind: SE|Electricity|Hydrogen
 Nuclear:
   iam_aliases:
     remind: SE|Electricity|Nuclear

@@ -8,6 +8,11 @@ the newly created cement markets.
 
 """
 import os
+from typing import Dict, List
+
+import xarray as xr
+
+from .data_collection import IAMDataCollection
 from .transformation import *
 from .utils import get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
 
@@ -40,13 +45,21 @@ class Cement(BaseTransformation):
 
     """
 
-    def __init__(self, database, iam_data, model, pathway, year, version):
+    def __init__(
+        self,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
+    ):
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio_remind = get_clinker_ratio_remind(self.year)
 
-    def create_ccs_dataset(self, loc, bio_co2_stored, bio_co2_leaked, energy_input):
+    def create_ccs_dataset(self, loc: str, bio_co2_stored: float, bio_co2_leaked: float, energy_input: xr.DataArray) -> None:
         dataset = ws.get_one(
             self.database,
             ws.equals(
@@ -59,7 +72,7 @@ class Cement(BaseTransformation):
 
         ccs = wt.copy_to_new_location(dataset, loc)
         ccs["code"] = str(uuid.uuid4().hex)
-        ccs = relink_technosphere_exchanges(ccs, self.database, self.model)
+        self.cache, ccs = relink_technosphere_exchanges(ccs, self.database, self.model, cache=self.cache)
 
         if "input" in ccs:
             ccs.pop("input")
@@ -93,15 +106,17 @@ class Cement(BaseTransformation):
             exc["amount"] = np.clip(3.66 - excess_heat_generation, 0, 3.66)
 
         # then, we need to find local suppliers of electricity, water, steam, etc.
-        relink_technosphere_exchanges(ccs, self.database, self.model)
+        self.cache, ccs = relink_technosphere_exchanges(ccs, self.database, self.model, cache=self.cache)
 
         # Add created dataset to `self.list_datasets`
-        self.list_datasets.append((ccs["name"], ccs["reference product"], ccs["location"]))
+        self.list_datasets.append(
+            (ccs["name"], ccs["reference product"], ccs["location"])
+        )
 
         # finally, we add this new dataset to the database
         self.database.append(ccs)
 
-    def build_clinker_production_datasets(self):
+    def build_clinker_production_datasets(self) -> Dict[str, dict]:
         """
         Builds clinker production datasets for each IAM region.
         Adds CO2 capture and Storage, if needed.
@@ -332,8 +347,8 @@ class Cement(BaseTransformation):
                 )
                 fossil_co2_exc = {
                     "uncertainty type": 0,
-                    "loc": amount,
-                    "amount": amount,
+                    "loc": float(amount),
+                    "amount": float(amount),
                     "type": "biosphere",
                     "name": "Carbon dioxide, fossil",
                     "unit": "kilogram",
@@ -362,8 +377,8 @@ class Cement(BaseTransformation):
                 )
                 biogenic_co2_exc = {
                     "uncertainty type": 0,
-                    "loc": amount,
-                    "amount": amount,
+                    "loc": float(amount),
+                    "amount": float(amount),
                     "type": "biosphere",
                     "name": "Carbon dioxide, non-fossil",
                     "unit": "kilogram",
@@ -406,7 +421,7 @@ class Cement(BaseTransformation):
                 ccs_exc = {
                     "uncertainty type": 0,
                     "loc": 0,
-                    "amount": (total_co2_emissions / 1000) * carbon_capture_rate,
+                    "amount": float((total_co2_emissions / 1000) * carbon_capture_rate),
                     "type": "technosphere",
                     "production volume": 0,
                     "name": "CO2 capture, at cement production plant, with underground storage, post, 200 km",
@@ -458,7 +473,7 @@ class Cement(BaseTransformation):
 
         return d_act_clinker
 
-    def adjust_clinker_ratio(self, d_act):
+    def adjust_clinker_ratio(self, d_act: Dict[str, dict]) -> Dict[str, dict]:
         """ Adjust the cement suppliers composition for "cement, unspecified", in order to reach
         the average clinker-to-cement ratio given by the IAM.
 
@@ -539,7 +554,7 @@ class Cement(BaseTransformation):
 
         return d_act
 
-    def update_electricity_exchanges(self, d_act):
+    def update_electricity_exchanges(self, d_act: Dict[str, dict]) -> Dict[str, dict]:
         """
         Update electricity exchanges in cement production datasets.
         Here, we use data from the GNR database for current consumption, and the 2018 IEA/GNR roadmap publication
@@ -620,7 +635,7 @@ class Cement(BaseTransformation):
 
         return d_act
 
-    def add_datasets_to_database(self):
+    def add_datasets_to_database(self) -> None:
         """
         Runs a series of methods that create new clinker and cement production datasets
         and new cement market datasets.
@@ -672,7 +687,6 @@ class Cement(BaseTransformation):
                 name="market for clinker",
                 ref_prod="clinker",
                 production_variable="cement",
-                relink=False,
             ).values()
         )
 
@@ -696,7 +710,7 @@ class Cement(BaseTransformation):
             ref_prod = "cement, unspecified"
 
         act_cement_unspecified = self.fetch_proxies(
-            name=name, ref_prod=ref_prod, production_variable="cement", relink=False,
+            name=name, ref_prod=ref_prod, production_variable="cement",
         )
         act_cement_unspecified = self.adjust_clinker_ratio(act_cement_unspecified)
         self.database.extend(list(act_cement_unspecified.values()))
@@ -726,7 +740,7 @@ class Cement(BaseTransformation):
                 name=dataset[0],
                 ref_prod=dataset[1],
                 production_variable="cement",
-                relink=False,  # if `True`, it will find the best suited providers for each exchange
+                # if `True`, it will find the best suited providers for each exchange
                 # in the new market datasets, which is time-consuming, but more accurate
             )
 
@@ -758,7 +772,6 @@ class Cement(BaseTransformation):
                 name=dataset[0],
                 ref_prod=dataset[1],
                 production_variable="cement",
-                relink=False,
             )
             # Update electricity use
             new_cement_production = self.update_electricity_exchanges(
@@ -788,10 +801,8 @@ class Cement(BaseTransformation):
 
         print("Relink cement production datasets to new clinker market datasets")
 
-        print("Relink clinker market datasets to new clinker production datasets")
+        #print("Relink clinker market datasets to new clinker production datasets")
 
-        self.relink_datasets()
+        #self.relink_datasets()
 
         print("Done!")
-
-        return self.database

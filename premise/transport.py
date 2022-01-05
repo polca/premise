@@ -1,7 +1,3 @@
-import numpy as np
-import pandas as pd
-import yaml
-
 from .ecoinvent_modification import INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import *
@@ -10,6 +6,7 @@ from .utils import *
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
 )
+FILEPATH_IMAGE_TRUCKS_FLEET_COMP = DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
 FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
@@ -53,8 +50,12 @@ def create_fleet_vehicles(
     if not FILEPATH_FLEET_COMP.is_file():
         raise FileNotFoundError("The fleet composition file could not be found.")
 
-    dataframe = pd.read_csv(FILEPATH_FLEET_COMP, sep=";")
-    dataframe["region"] = dataframe["region"].map(regions_mapping)
+    if model == "remind" or vehicle_type != "truck":
+        dataframe = pd.read_csv(FILEPATH_FLEET_COMP, sep=";")
+        dataframe["region"] = dataframe["region"].map(regions_mapping)
+    else:
+        dataframe = pd.read_csv(FILEPATH_IMAGE_TRUCKS_FLEET_COMP, sep=";")
+
     dataframe = dataframe.loc[~dataframe["region"].isnull()]
 
     arr = (
@@ -66,9 +67,14 @@ def create_fleet_vehicles(
 
     vehicles_map = get_vehicles_mapping()
 
-    constr_year_map = {
-        y: int(y.split("-")[-1]) for y in arr.coords["construction_year"].values
-    }
+    if model == "remind":
+        constr_year_map = {
+            y: int(y.split("-")[-1]) for y in arr.coords["construction_year"].values
+        }
+    else:
+        constr_year_map = {
+            y: y for y in arr.coords["construction_year"].values
+        }
 
     # fleet data does not go below 2015
     if year < 2015:
@@ -123,7 +129,6 @@ def create_fleet_vehicles(
                 else:
                     _, _, pwt, size, y = ds["name"].split(", ")
 
-
             if vehicle_type == "truck":
                 d_names[(vehicles_map["powertrain"][pwt], size, int(y), type)] = (
                     ds["name"],
@@ -172,8 +177,10 @@ def create_fleet_vehicles(
         else:
             fleet_region = region
 
+        sizes = [s for s in vehicles_map[vehicle_type]["sizes"]
+                 if s in arr.coords["size"].values]
         sel = arr.sel(
-            region=fleet_region, size=vehicles_map[vehicle_type]["sizes"], year=ref_year
+            region=fleet_region, size=sizes, year=ref_year
         )
         total_km = sel.sum()
 
@@ -210,7 +217,7 @@ def create_fleet_vehicles(
                     "comment": f"Fleet-average vehicle for the year {year}, for the region {region}."
                 }
 
-                for s in vehicles_map[vehicle_type]["sizes"]:
+                for s in sizes:
                     for y in sel.coords["construction_year"].values:
                         for pt in sel.coords["powertrain"].values:
                             indiv_km = sel.sel(
@@ -253,7 +260,7 @@ def create_fleet_vehicles(
 
                 # also create size-specific fleet vehicles
                 if vehicle_type == "truck":
-                    for s in vehicles_map[vehicle_type]["sizes"]:
+                    for s in sizes:
                         total_size_km = sel.sel(size=s).sum()
 
                         if total_size_km > 0:
@@ -473,8 +480,8 @@ class Transport(BaseTransformation):
                             exc.pop("input")
 
                     if self.relink:
-                        new_ds = relink_technosphere_exchanges(
-                            new_ds, self.database, self.model, iam_regions=self.regions
+                        self.cache, new_ds = relink_technosphere_exchanges(
+                            new_ds, self.database, self.model, iam_regions=self.regions, cache=self.cache
                         )
 
                     list_new_ds.append(new_ds)
@@ -503,7 +510,7 @@ class Transport(BaseTransformation):
                     ws.equals("unit", "ton kilometer"),
                 ):
 
-                    key = [k for k in vehicles_map["truck"]["old_trucks"]
+                    key = [k for k in vehicles_map["truck"]["old_trucks"][self.model]
                            if k.lower() in exc["name"].lower()][0]
 
                     if "input" in exc:
@@ -511,13 +518,13 @@ class Transport(BaseTransformation):
 
                     if dataset["unit"] == "kilogram":
                         if exc["amount"] * 1000 <= 150:
-                            name = f"{vehicles_map['truck']['old_trucks'][key]}, urban delivery"
+                            name = f"{vehicles_map['truck']['old_trucks'][self.model][key]}, urban delivery"
                             cycle = ", urban delivery"
                         elif 150 < exc["amount"] * 1000 <= 450:
-                            name = f"{vehicles_map['truck']['old_trucks'][key]}, regional delivery"
+                            name = f"{vehicles_map['truck']['old_trucks'][self.model][key]}, regional delivery"
                             cycle = ", regional delivery"
                         else:
-                            name = f"{vehicles_map['truck']['old_trucks'][key]}, long haul"
+                            name = f"{vehicles_map['truck']['old_trucks'][self.model][key]}, long haul"
                             cycle = ", long haul"
 
                         loc = self.geo.ecoinvent_to_iam_location(
@@ -540,4 +547,3 @@ class Transport(BaseTransformation):
 
         self.database = datasets.merge_inventory()
 
-        return self.database

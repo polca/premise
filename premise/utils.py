@@ -13,6 +13,8 @@ import yaml
 from functools import lru_cache
 import pandas as pd
 from pathlib import Path
+import xarray as xr
+from typing import List, Tuple, Dict
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
@@ -27,15 +29,23 @@ REMIND_TO_FUELS = DATA_DIR / "steel" / "remind_fuels_correspondance.txt"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 
-def eidb_label(model, scenario, year):
-    return "ecoinvent_" + model + "_" + scenario + "_" + str(year)
+def eidb_label(model: str, scenario: str, year: int) -> str:
+    """
+    Return a label to name a scenario.
+    :param model: IAM model
+    :param scenario: SSP/RCP scenario
+    :param year: year
+    :return: scenario label, str.
+    """
+    return f"ecoinvent_{model}_{scenario}_{year}"
+
 
 @lru_cache
-def get_fuel_properties():
+def get_fuel_properties() -> dict:
     """
     Loads a yaml file into a dictionary.
     This dictionary contains lower heating values
-    and CO2 emission factors for a number of fuel types.
+    CO2 emission factors, biogenic carbon share, for a number of fuel types.
     Mostly taken from ecoinvent and
     https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html
     :return: dictionary that contains lower heating values
@@ -48,7 +58,7 @@ def get_fuel_properties():
     return fuel_props
 
 
-def get_crops_properties():
+def get_crops_properties() -> dict:
     """
     Return a dictionary with crop names as keys and IAM labels as values
     relating to land use change CO2 per crop type
@@ -59,28 +69,25 @@ def get_crops_properties():
 
     return crop_props
 
-def get_efficiency_ratio_solar_PV():
+
+def get_efficiency_ratio_solar_PV() -> xr.DataArray:
     """
-    Return a dictionary with years as keys and efficiency ratios as values
-    :return: dict
+    Return an array with PV module efficiencies in function of year and technology.
+    :return: xr.DataArray with PV module efficiencies
     """
 
     df = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
 
-    return (
-        df.groupby(["technology", "year"])
-        .mean()["efficiency"]
-        .to_xarray()
-    )
+    return df.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
 
 
-def get_clinker_ratio_ecoinvent(version):
+def get_clinker_ratio_ecoinvent(version: str) -> Dict[Tuple[str, str], float]:
     """
     Return a dictionary with (cement names, location) as keys and clinker-to-cement ratios as values,
     as found in ecoinvent.
     :return: dict
     """
-    if version == 3.5:
+    if version == "3.5":
         fp = CLINKER_RATIO_ECOINVENT_35
     else:
         fp = CLINKER_RATIO_ECOINVENT_36
@@ -92,7 +99,7 @@ def get_clinker_ratio_ecoinvent(version):
     return d
 
 
-def get_clinker_ratio_remind(year):
+def get_clinker_ratio_remind(year: int) -> xr.DataArray:
     """
     Return an array with the average clinker-to-cement ratio per year and per region, as given by REMIND.
     :return: xarray
@@ -103,47 +110,11 @@ def get_clinker_ratio_remind(year):
     return df.groupby(["region", "year"]).mean()["value"].to_xarray().interp(year=year)
 
 
-def get_steel_recycling_rates(year):
-    """
-    Return an array with the average shares for primary (Basic oxygen furnace) and secondary (Electric furnace)
-    steel production per year and per region, as given by: https://www.bir.org/publications/facts-figures/download/643/175/36?method=view
-    for 2015-2019, further linearly extrapolated to 2020, 2030, 2040 and 2050.
-    :return: xarray
-    :return:
-    """
-    df = pd.read_csv(STEEL_RECYCLING_SHARES, sep=";")
-
-    return (
-        df.groupby(["region", "year", "type"])
-        .mean()[["share", "world_share"]]
-        .to_xarray()
-        .interp(year=year)
-    )
-
-
-def get_metals_recycling_rates(year):
-    """
-    Return an array with the average shares for some metals,
-    as given by: https://static-content.springer.com/esm/art%3A10.1038%2Fs43246-020-00095-x/MediaObjects/43246_2020_95_MOESM1_ESM.pdf
-    for 2025, 2035, 2045.
-    :return: xarray
-    :return:
-    """
-    df = pd.read_csv(METALS_RECYCLING_SHARES, sep=";")
-
-    return (
-        df.groupby(["metal", "year", "type"])
-        .mean()["share"]
-        .to_xarray()
-        .interp(year=year)
-    )
-
-
-def rev_index(inds):
+def rev_index(inds: dict) -> dict:
     return {v: k for k, v in inds.items()}
 
 
-def create_codes_and_names_of_A_matrix(db):
+def create_codes_and_names_of_A_matrix(db: List[dict]):
     """
     Create a dictionary a tuple (activity name, reference product,
     unit, location) as key, and its code as value.
@@ -374,7 +345,6 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     l_modified = [columns]
 
     for m in modified:
-
         if m[1][2] == "biosphere3":
             d = [
                 m[1][0],
@@ -513,7 +483,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     ]
     list_to_add = list(set(list_to_add))
 
-    data = []
+    acts_to_add = []
     for add in list_to_add:
         act_to_add = {
             "location": add[3],
@@ -526,11 +496,11 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         }
 
         acts = (act for act in modified if act[0] == add)
-
+        excs_to_add = []
         for act in acts:
             if isinstance(act[1][1], tuple):
                 # this is a biosphere flow
-                act_to_add["exchanges"].append(
+                excs_to_add.append(
                     {
                         "uncertainty type": 0,
                         "loc": 0,
@@ -551,7 +521,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             else:
 
                 if act[1] == act[0]:
-                    act_to_add["exchanges"].append(
+                    excs_to_add.append(
                         {
                             "uncertainty type": 0,
                             "loc": 1,
@@ -567,7 +537,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
                 else:
 
-                    act_to_add["exchanges"].append(
+                    excs_to_add.append(
                         {
                             "uncertainty type": 0,
                             "loc": 0,
@@ -580,8 +550,10 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                             "location": act[1][3],
                         }
                     )
-        data.append(act_to_add)
-    origin_db.extend(data)
+        act_to_add["exchanges"].extend(excs_to_add)
+        acts_to_add.append(act_to_add)
+
+    origin_db.extend(acts_to_add)
 
     return origin_db
 
@@ -590,6 +562,7 @@ def relink_technosphere_exchanges(
     ds,
     data,
     model,
+    cache,
     exclusive=True,
     drop_invalid=False,
     biggest_first=False,
@@ -624,111 +597,192 @@ def relink_technosphere_exchanges(
 
     for exc in filter(technosphere, ds["exchanges"]):
 
-        possible_datasets = [
-            x for x in get_possibles(exc, data) if x["location"] in list_loc
-        ]
-        possible_locations = [obj["location"] for obj in possible_datasets]
-
-        if ds["location"] in possible_locations:
-            exc["location"] = ds["location"]
-            new_exchanges.append(exc)
-            continue
-
-        possible_locations = [
-            (model.upper(), p) if p in geomatcher.iam_regions else p
-            for p in possible_locations
-        ]
-
-        if len(possible_datasets) > 0:
-
-            with resolved_row(possible_locations, geomatcher.geo) as g:
-                func = g.contained if contained else g.intersects
-
-                if ds["location"] in geomatcher.iam_regions:
-                    location = (model.upper(), ds["location"])
-                else:
-                    location = ds["location"]
-
-                gis_match = func(
-                    location,
-                    include_self=True,
-                    exclusive=exclusive,
-                    biggest_first=biggest_first,
-                    only=possible_locations,
-                )
-
-            kept = [
-                ds
-                for loc in gis_match
-                for ds in possible_datasets
-                if ds["location"] == loc
+        try:
+            e = cache[ds["location"]][
+                (exc["name"], exc["product"], exc["location"], exc["unit"])
             ]
 
-            if kept:
-                missing_faces = geomatcher.geo[location].difference(
-                    set.union(*[geomatcher.geo[obj["location"]] for obj in kept])
+            if isinstance(e, tuple):
+                name, prod, unit, loc = e
+
+                new_exchanges.append(
+                    {
+                        "name": name,
+                        "product": prod,
+                        "unit": unit,
+                        "location": loc,
+                        "type": "technosphere",
+                        "amount": exc["amount"],
+                    }
                 )
-                if missing_faces and "RoW" in possible_locations:
-                    kept.extend(
-                        [obj for obj in possible_datasets if obj["location"] == "RoW"]
+
+            else:
+
+                new_exchanges.extend(
+                    [{
+                        "name": i[0],
+                        "product": i[1],
+                        "unit": i[3],
+                        "location": i[2],
+                        "type": "technosphere",
+                        "amount": exc["amount"] * i[-1],
+                    } for i in e]
+                )
+
+
+        except KeyError:
+            possible_datasets = [
+                x for x in get_possibles(exc, data) if x["location"] in list_loc
+            ]
+            possible_locations = [obj["location"] for obj in possible_datasets]
+
+            if ds["location"] in possible_locations:
+                exc["location"] = ds["location"]
+                new_exchanges.append(exc)
+                continue
+
+            possible_locations = [
+                (model.upper(), p) if p in geomatcher.iam_regions else p
+                for p in possible_locations
+            ]
+
+            if len(possible_datasets) > 0:
+
+                with resolved_row(possible_locations, geomatcher.geo) as g:
+                    func = g.contained if contained else g.intersects
+
+                    if ds["location"] in geomatcher.iam_regions:
+                        location = (model.upper(), ds["location"])
+                    else:
+                        location = ds["location"]
+
+                    gis_match = func(
+                        location,
+                        include_self=True,
+                        exclusive=exclusive,
+                        biggest_first=biggest_first,
+                        only=possible_locations,
                     )
-            elif "RoW" in possible_locations:
-                kept = [obj for obj in possible_datasets if obj["location"] == "RoW"]
 
-            if not kept and "GLO" in possible_locations:
-                kept = [obj for obj in possible_datasets if obj["location"] == "GLO"]
-
-            if not kept and any(x in possible_locations for x in ["RER", "EUR", "WEU"]):
                 kept = [
-                    obj
-                    for obj in possible_datasets
-                    if obj["location"] in ["RER", "EUR", "WEU"]
+                    ds
+                    for loc in gis_match
+                    for ds in possible_datasets
+                    if ds["location"] == loc
                 ]
 
-            if not kept:
-                if drop_invalid:
+                if kept:
+                    missing_faces = geomatcher.geo[location].difference(
+                        set.union(*[geomatcher.geo[obj["location"]] for obj in kept])
+                    )
+                    if missing_faces and "RoW" in possible_locations:
+                        kept.extend(
+                            [
+                                obj
+                                for obj in possible_datasets
+                                if obj["location"] == "RoW"
+                            ]
+                        )
+                elif "RoW" in possible_locations:
+                    kept = [
+                        obj for obj in possible_datasets if obj["location"] == "RoW"
+                    ]
+
+                if not kept and "GLO" in possible_locations:
+                    kept = [
+                        obj for obj in possible_datasets if obj["location"] == "GLO"
+                    ]
+
+                if not kept and any(
+                    x in possible_locations for x in ["RER", "EUR", "WEU"]
+                ):
+                    kept = [
+                        obj
+                        for obj in possible_datasets
+                        if obj["location"] in ["RER", "EUR", "WEU"]
+                    ]
+
+                if not kept:
+                    if drop_invalid:
+                        log(
+                            {
+                                "function": "relink_technosphere_exchanges",
+                                "message": DROPPED.format(
+                                    exc["name"], exc["product"], exc["unit"]
+                                ),
+                            },
+                            ds,
+                        )
+                        continue
+                    else:
+                        new_exchanges.append(exc)
+                        continue
+
+                allocated, share = allocate_inputs(exc, kept)
+
+                for obj in allocated:
                     log(
                         {
                             "function": "relink_technosphere_exchanges",
-                            "message": DROPPED.format(
-                                exc["name"], exc["product"], exc["unit"]
+                            "message": MESSAGE.format(
+                                exc["name"],
+                                exc["product"],
+                                exc["unit"],
+                                exc["amount"],
+                                ds["location"],
+                                obj["amount"],
+                                obj["location"],
                             ),
                         },
                         ds,
                     )
-                    continue
+
+                new_exchanges.extend(allocated)
+
+                if ds["location"] in cache:
+                    cache[ds["location"]][
+                        (exc["name"], exc["product"], exc["location"], exc["unit"],)
+                    ] = [
+                        (e["name"], e["product"], e["location"], e["unit"], s)
+                        for e, s in zip(allocated, share)
+                    ]
+
                 else:
-                    new_exchanges.append(exc)
-                    continue
 
-            allocated = allocate_inputs(exc, kept)
+                    cache[ds["location"]] = {
+                        (exc["name"], exc["product"], exc["location"], exc["unit"],): [
+                            (e["name"], e["product"], e["location"], e["unit"], s)
+                            for e, s in zip(allocated, share)
+                        ]
+                    }
+            else:
+                new_exchanges.append(exc)
+                # add to cache
+                if ds["location"] in cache:
+                    cache[ds["location"]][
+                        (exc["name"], exc["product"], exc["location"], exc["unit"],)
+                    ] = (
+                        exc["name"],
+                        exc["product"],
+                        exc["location"],
+                        exc["unit"],
+                    )
 
-            for obj in allocated:
-                log(
-                    {
-                        "function": "relink_technosphere_exchanges",
-                        "message": MESSAGE.format(
+                else:
+                    cache[ds["location"]] = {
+                        (exc["name"], exc["product"], exc["location"], exc["unit"],): (
                             exc["name"],
                             exc["product"],
+                            exc["location"],
                             exc["unit"],
-                            exc["amount"],
-                            ds["location"],
-                            obj["amount"],
-                            obj["location"],
-                        ),
-                    },
-                    ds,
-                )
-
-            new_exchanges.extend(allocated)
-
-        else:
-            new_exchanges.append(exc)
+                        )
+                    }
 
     ds["exchanges"] = [
         exc for exc in ds["exchanges"] if exc["type"] != "technosphere"
     ] + new_exchanges
-    return ds
+
+    return cache, ds
 
 
 def allocate_inputs(exc, lst):
@@ -752,7 +806,7 @@ def allocate_inputs(exc, lst):
     return [
         new_exchange(exc, obj["location"], factor / total)
         for obj, factor in zip(lst, pvs)
-    ]
+    ], [p/total for p in pvs]
 
 
 def get_possibles(exchange, data):

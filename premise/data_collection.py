@@ -15,12 +15,14 @@ import pandas as pd
 import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
+from typing import List, Dict, Union
 
 from . import DATA_DIR
 from .utils import get_crops_properties
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
+IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
 IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
 IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
 IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
@@ -28,7 +30,7 @@ GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtech
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 
-def get_lifetime(list_tech):
+def get_lifetime(list_tech: List) -> np.array:
     """
     Fetch lifetime values for different technologies from a .csv file.
     :param list_tech: technology labels to find lifetime values for.
@@ -51,7 +53,7 @@ def get_lifetime(list_tech):
     return arr.astype(float)
 
 
-def get_gnr_data():
+def get_gnr_data() -> xr.DataArray:
     """
     Read the GNR csv file on cement production and return an `xarray` with dimensions:
     * region
@@ -77,7 +79,7 @@ def get_gnr_data():
     return gnr_array
 
 
-def get_gains_data():
+def get_gains_data() -> xr.DataArray:
     """
     Read the GAINS emissions csv file and return an `xarray` with dimensions:
     * region
@@ -146,14 +148,14 @@ class IAMDataCollection:
 
     def __init__(
         self,
-        model,
-        pathway,
-        year,
-        filepath_iam_files,
-        key,
-        system_model="attributionl",
-        time_horizon=30,
-    ):
+        model: str,
+        pathway: str,
+        year: int,
+        filepath_iam_files: Path,
+        key: str,
+        system_model: str = "attributionl",
+        time_horizon: int = 30,
+    ) -> None:
         self.model = model
         self.pathway = pathway
         self.year = year
@@ -178,6 +180,9 @@ class IAMDataCollection:
         )
         prod_vars.update(
             self.__get_iam_variable_labels(IAM_STEEL_VARS, key="iam_aliases")
+        )
+        prod_vars.update(
+            self.__get_iam_variable_labels(IAM_BIOMASS_VARS, key="iam_aliases")
         )
 
         self.production_volumes = self.__get_iam_production_volumes(
@@ -223,7 +228,7 @@ class IAMDataCollection:
             self.land_use = None
             self.land_use_change = None
 
-    def __get_iam_variable_labels(self, filepath, key):
+    def __get_iam_variable_labels(self, filepath: Path, key: str) -> Dict[str, Union[str, List[str]]]:
         """
         Loads a csv file into a dictionary.
         This dictionary contains common terminology to `premise`
@@ -248,7 +253,7 @@ class IAMDataCollection:
 
         return dict_vars
 
-    def __get_iam_data(self, key, filepath):
+    def __get_iam_data(self, key: str, filepath: Path) -> xr.DataArray:
         """
         Read the IAM result file and return an `xarray` with dimensions:
         * region
@@ -327,6 +332,7 @@ class IAMDataCollection:
             # Filter the dataframe
             list_var = (
                 "Secondary Energy",
+                "Primary Energy|Biomass",
                 "Efficiency",
                 "Final Energy",
                 "Production",
@@ -364,7 +370,7 @@ class IAMDataCollection:
 
         return array
 
-    def __transform_to_marginal_markets(self, data):
+    def __transform_to_marginal_markets(self, data: xr.DataArray) -> xr.DataArray:
         """
         Used for consequential modeling only. Returns marginal market mixes.
         :param data: IAM data
@@ -513,7 +519,7 @@ class IAMDataCollection:
 
         return market_shares
 
-    def __get_iam_electricity_markets(self, data, drop_hydrogen=True):
+    def __get_iam_electricity_markets(self, data: xr.DataArray) -> xr.DataArray:
         """
         This method retrieves the market share for each electricity-producing technology, for a specified year,
         for each region provided by the IAM.
@@ -528,13 +534,7 @@ class IAMDataCollection:
 
         labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="iam_aliases")
 
-        # If hydrogen is not to be considered, it is removed from the technologies labels list
-        if drop_hydrogen:
-            list_technologies = [
-                l for l in list(labels.values()) if "Hydrogen" not in l
-            ]
-        else:
-            list_technologies = list(labels.values())
+        list_technologies = list(labels.values())
 
         # If the year specified is not contained within the range of years given by the IAM
         if self.year < data.year.values.min() or self.year > data.year.values.max():
@@ -547,11 +547,8 @@ class IAMDataCollection:
         # Interpolation between two periods
         data_to_return = data.loc[:, list_technologies, :]
         # give the array common labels
-        list_vars = (
-            [var for var in list(labels.keys()) if var != "Hydrogen"]
-            if drop_hydrogen
-            else list(labels.keys())
-        )
+        list_vars = list(labels.keys())
+
 
         data_to_return.coords["variables"] = list_vars
 
@@ -566,7 +563,7 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_iam_electricity_efficiencies(self, data, drop_hydrogen=True):
+    def __get_iam_electricity_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
         """
         This method retrieves efficiency values for electricity-producing technology, for a specified year,
         for each region provided by the IAM.
@@ -581,13 +578,7 @@ class IAMDataCollection:
 
         labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="eff_aliases")
 
-        # If hydrogen is not to be considered, it is removed from the technologies labels list
-        if drop_hydrogen:
-            list_technologies = [
-                l for l in list(labels.values()) if "Hydrogen" not in l
-            ]
-        else:
-            list_technologies = list(labels.values())
+        list_technologies = list(labels.values())
 
         # If the year specified is not contained within the range of years given by the IAM
         if self.year < data.year.values.min() or self.year > data.year.values.max():
