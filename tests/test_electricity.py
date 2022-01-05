@@ -58,8 +58,8 @@ el = Electricity(
 
 
 def test_losses():
-    assert len(el.network_loss) == 174
-    assert el.network_loss["AL"]["low"]["transf_loss"] == 0.0593
+    assert len(el.network_loss) == 13
+    assert el.network_loss["CAZ"]["high"]["transf_loss"] == 0.035483703331573094
 
 def test_powerplant_map():
     s = el.powerplant_map["Biomass IGCC CCS"]
