@@ -1,6 +1,7 @@
 include premise/data/*.txt
 include premise/data/*.csv
 include premise/data/*.json
+include premise/data/*.yml
 include premise/data/iam_output_files/*.md
 include premise/data/iam_output_files/*.csv
 include premise/data/iam_output_files/fleet_files/image/passenger_cars/*.csv
@@ -16,6 +17,7 @@ include premise/data/cement/*.csv
 include premise/data/cement/*.yml
 include premise/data/steel/*.txt
 include premise/data/steel/*.csv
+include premise/data/steel/*.yml
 include premise/data/fuels/*.txt
 include premise/data/fuels/*.csv
 include premise/data/fuels/*.yml
@@ -25,5 +27,7 @@ include premise/data/geomap/*.yml
 include premise/data/renewables/*.csv
 include premise/data/utils/*.csv
 include premise/data/utils/*.yml
+include premise/data/utils/*.json
 include premise/data/utils/export/*.csv
 include premise/data/utils/export/*.json
+include premise/data/utils/export/*.yml
