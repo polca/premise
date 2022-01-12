@@ -66,3 +66,6 @@ powertrain:
   plugin diesel hybrid: PHEV-d
   diesel: ICEV-d
   compressed gas: ICEV-g
+  gasoline: ICEV-p
+  gasoline hybrid: HEV-p
+  plugin gasoline hybrid: PHEV-p
