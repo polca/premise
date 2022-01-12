@@ -132,7 +132,6 @@ def create_fleet_vehicles(
                 else:
                     _, _, pwt, size, y = ds["name"].split(", ")
 
-
             if vehicle_type == "truck":
                 d_names[(vehicles_map["powertrain"][pwt], size, int(y), type)] = (
                     ds["name"],
