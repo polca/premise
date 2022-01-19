@@ -351,9 +351,6 @@ class IAMDataCollection:
                 f"The IAM model name {self.model.upper()} is not valid. Currently supported: 'REMIND' or 'IMAGE'"
             )
 
-
-
-
         dataframe.columns = dataframe.columns.astype(int)
         dataframe = dataframe.reset_index()
 
