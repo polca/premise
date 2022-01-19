@@ -326,6 +326,9 @@ class IAMDataCollection:
                     ~dataframe.index.get_level_values("Region").isin(["EUR", "NEU"])
                 ]
 
+            if len(dataframe.columns == 20):
+                dataframe.drop(columns=dataframe.columns[-1], inplace=True)
+
         elif self.model == "image":
 
             dataframe = pd.read_csv(
@@ -347,6 +350,9 @@ class IAMDataCollection:
             raise ValueError(
                 f"The IAM model name {self.model.upper()} is not valid. Currently supported: 'REMIND' or 'IMAGE'"
             )
+
+
+
 
         dataframe.columns = dataframe.columns.astype(int)
         dataframe = dataframe.reset_index()
