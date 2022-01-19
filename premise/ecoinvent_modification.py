@@ -162,7 +162,6 @@ LIST_IMAGE_REGIONS = [
     "WEU",
     "World",
 ]
-
 LIST_TRANSF_FUNC = [
     "update_electricity",
     "update_cement",
@@ -173,6 +172,7 @@ LIST_TRANSF_FUNC = [
     "update_buses",
     "update_fuels",
 ]
+
 
 # Disable printing
 def blockPrint():
@@ -251,7 +251,7 @@ def check_year(year: [int, float]) -> int:
         raise Exception(f"{year} is not a valid year.") from err
 
     try:
-        assert 2005 <= year < 2100
+        assert 2005 <= year <= 2100
     except AssertionError as err:
         raise Exception(f"{year} must be comprised between 2005 and 2100.") from err
 
