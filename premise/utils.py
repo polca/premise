@@ -42,7 +42,7 @@ def eidb_label(model: str, scenario: str, year: int) -> str:
     return f"ecoinvent_{model}_{scenario}_{year}"
 
 
-@lru_cache
+@lru_cache(maxsize=None)
 def get_fuel_properties() -> dict:
     """
     Loads a yaml file into a dictionary.
