@@ -16,3 +16,5 @@ Technical Reference
    :toctree: _autosummary
    :template: custom-module-template.rst
    :recursive:
+
+    code
