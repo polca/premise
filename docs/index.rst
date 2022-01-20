@@ -12,8 +12,7 @@ Index
 Technical Reference
 ===================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Technical Reference
-
-   code
+.. autosummary::
+   :toctree: _autosummary
+   :template: custom-module-template.rst
+   :recursive:
