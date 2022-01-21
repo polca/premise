@@ -1,25 +1,5 @@
-.. image:: large.png
-   :width: 100pt
-
 In a nutshell
 """""""""""""
-
-
-.. image:: https://travis-ci.org/romainsacchi/premise.svg?branch=master
-    :target: https://travis-ci.org/romainsacchi/premise
-    :alt: Travis status
-
-.. image:: https://coveralls.io/repos/github/romainsacchi/premise/badge.svg?branch=master
-    :target: https://coveralls.io/github/romainsacchi/premise?branch=master
-    :alt: Coveralls status
-
-.. image:: https://readthedocs.org/projects/premise/badge/?version=latest
-    :target: https://premise.readthedocs.io/en/latest/
-    :alt: Readthedocs status
-
-.. image:: https://badge.fury.io/py/premise.svg
-    :target: https://badge.fury.io/py/premise
-    :alt: Pypi package version
 
 
 Purpose
@@ -83,7 +63,7 @@ How to install this package?
 Two options:
 
 A development version with the latest advancements (but with the risks of unseen bugs),
-is available on Conda:
+is available on Anaconda Cloud:
 
 .. code-block:: python
 
