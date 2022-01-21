@@ -15,7 +15,14 @@ import yaml
 
 from .ecoinvent_modification import INVENTORY_DIR
 from .inventory_imports import VariousVehicles
-from .transformation import (BaseTransformation, DATA_DIR, IAMDataCollection, relink_technosphere_exchanges, ws, wt)
+from .transformation import (
+    DATA_DIR,
+    BaseTransformation,
+    IAMDataCollection,
+    relink_technosphere_exchanges,
+    ws,
+    wt,
+)
 from .utils import eidb_label
 
 FILEPATH_FLEET_COMP = (
@@ -123,10 +130,13 @@ def create_fleet_vehicles(
 
     if model == "remind":
         constr_year_map = {
-            year: int(year.split("-")[-1]) for year in arr.coords["construction_year"].values
+            year: int(year.split("-")[-1])
+            for year in arr.coords["construction_year"].values
         }
     else:
-        constr_year_map = {year: year for year in arr.coords["construction_year"].values}
+        constr_year_map = {
+            year: year for year in arr.coords["construction_year"].values
+        }
 
     # fleet data does not go below 2015
     if year < 2015:
@@ -165,10 +175,14 @@ def create_fleet_vehicles(
             elif vehicle_type == "truck":
                 if len(dataset["name"].split(", ")) == 8:
                     if "battery electric" in dataset["name"].split(", ")[3]:
-                        _, _, _, pwt, _, size, year, cycle_type = dataset["name"].split(", ")
+                        _, _, _, pwt, _, size, year, cycle_type = dataset["name"].split(
+                            ", "
+                        )
 
                     else:
-                        _, _, _, pwt, size, year, _, cycle_type = dataset["name"].split(", ")
+                        _, _, _, pwt, size, year, _, cycle_type = dataset["name"].split(
+                            ", "
+                        )
                 else:
                     _, _, _, pwt, size, year, cycle_type = dataset["name"].split(", ")
 
@@ -185,7 +199,9 @@ def create_fleet_vehicles(
                     _, _, pwt, size, year = dataset["name"].split(", ")
 
             if vehicle_type == "truck":
-                d_names[(vehicles_map["powertrain"][pwt], size, int(year), cycle_type)] = (
+                d_names[
+                    (vehicles_map["powertrain"][pwt], size, int(year), cycle_type)
+                ] = (
                     dataset["name"],
                     dataset["reference product"],
                     dataset["unit"],
@@ -348,16 +364,21 @@ def create_fleet_vehicles(
                             for year in sel.coords["construction_year"].values:
                                 for pwt in sel.coords["powertrain"].values:
                                     indiv_km = sel.sel(
-                                        size=size, construction_year=year, powertrain=pwt
+                                        size=size,
+                                        construction_year=year,
+                                        powertrain=pwt,
                                     )
                                     if (
                                         indiv_km > 0
-                                        and (pwt, size, constr_year_map[year]) in available_ds
+                                        and (pwt, size, constr_year_map[year])
+                                        in available_ds
                                     ):
                                         indiv_share = (
                                             indiv_km / total_size_km
                                         ).values.item(0)
-                                        load = avg_load[vehicle_type][driving_cycle][size]
+                                        load = avg_load[vehicle_type][driving_cycle][
+                                            size
+                                        ]
                                         to_look_for = (
                                             pwt,
                                             size,
@@ -475,7 +496,8 @@ class Transport(BaseTransformation):
             # the fleet data is originally defined for REMIND regions
             if self.model != "remind":
                 region_map = {
-                    self.geo.iam_to_iam_region(loc, to_iam="remind"): loc for loc in self.regions
+                    self.geo.iam_to_iam_region(loc, to_iam="remind"): loc
+                    for loc in self.regions
                 }
             else:
                 region_map = {loc: loc for loc in self.regions}
@@ -483,10 +505,14 @@ class Transport(BaseTransformation):
             datasets.import_db.data = [
                 dataset
                 for dataset in datasets.import_db.data
-                if not any(vehicle in dataset["name"].lower() for vehicle in list_vehicles)
+                if not any(
+                    vehicle in dataset["name"].lower() for vehicle in list_vehicles
+                )
                 or (
                     not any(
-                        z for z in re.findall(r"\d+", dataset["name"]) if int(z) > self.year
+                        z
+                        for z in re.findall(r"\d+", dataset["name"])
+                        if int(z) > self.year
                     )
                     and "label-certified electricity" not in dataset["name"]
                 )

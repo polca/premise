@@ -449,7 +449,9 @@ class BaseTransformation:
 
         return d_act
 
-    def empty_original_datasets(self, name: str, ref_prod: str, loc_map: dict, production_variable: str) -> None:
+    def empty_original_datasets(
+        self, name: str, ref_prod: str, loc_map: dict, production_variable: str
+    ) -> None:
         """
         Empty original ecoinvent dataset and introduce an input to the regional IAM
         dataset that geographically comprises it.
@@ -532,7 +534,9 @@ class BaseTransformation:
                     }
                 )
 
-    def relink_datasets(self, excludes_datasets: List[str] = None, alt_names: List[str] = None) -> None:
+    def relink_datasets(
+        self, excludes_datasets: List[str] = None, alt_names: List[str] = None
+    ) -> None:
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
@@ -691,7 +695,9 @@ class BaseTransformation:
 
         return rate
 
-    def find_gains_emissions_change(self, pollutant: str, location: str, sector: str) -> float:
+    def find_gains_emissions_change(
+        self, pollutant: str, location: str, sector: str
+    ) -> float:
         """
         Return the relative change in emissions compared to 2020
         for a given pollutant, location and sector.
