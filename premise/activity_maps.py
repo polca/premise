@@ -1,3 +1,8 @@
+"""
+activity_maps.py contains InventorySet, which is a class that provides all necessary
+mapping between ``premise`` vocabulary and ``ecoinvent`` vocabulary.
+"""
+
 import csv
 from pathlib import Path
 from typing import List, Union
@@ -15,6 +20,12 @@ MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
 
 
 def get_mapping(filepath: Path, var: str) -> dict:
+    """
+    Loa a YAML file and return a dictionary given a variable.
+    :param filepath: YAML file path
+    :param var: variable to return the dictionary for.
+    :return: a dictionary
+    """
 
     with open(filepath, "r") as stream:
         techs = yaml.safe_load(stream)
@@ -31,7 +42,6 @@ def get_gains_to_ecoinvent_emissions() -> dict:
     """
     Retrieve the correspondence between GAINS and ecoinvent emission labels.
     :return: GAINS emission labels as keys and ecoinvent emission labels as values
-    :rtype: dict
     """
 
     if not GAINS_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
@@ -51,14 +61,18 @@ def get_gains_to_ecoinvent_emissions() -> dict:
 
 class InventorySet:
     """
-    Hosts different filter sets to for ecoinvent activities and exchanges.
+    Hosts different filter sets to find equivalencies
+    between ``premise`` terms and ``ecoinvent`` activities and exchanges.
 
     It stores:
     * material_filters: filters for activities related to materials.
     * powerplant_filters: filters for activities related to power generation technologies.
+    * powerplant_fuel_filters: filters for fuel providers in power generation technologies.
+    * fuel_filters: filters for fuel providers in general.
     * emissions_map: REMIND emission labels as keys, ecoinvent emission labels as values
 
-    The functions :func:`generate_material_map` and :func:`generate_powerplant_map` can
+    The functions :func:`generate_material_map`, :func:`generate_powerplant_map`
+    and :func:`generate_fuel_map` can
     be used to extract the actual activity objects as dictionaries.
     These functions return the result of applying :func:`act_fltr` to the filter dictionaries.
     """
