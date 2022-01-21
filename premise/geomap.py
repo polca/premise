@@ -1,28 +1,53 @@
-import json
+"""
+geomap.py contains the Geomap class that allows to find equivalents between
+the IAM locations and ecoinvent locations.
+"""
 
+from typing import Union, List
+
+import yaml
 from wurst import geomatcher
 
 from premise import DATA_DIR
 
-REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
-ADDITIONAL_DEFINITIONS = DATA_DIR / "additional_definitions.json"
+ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
+IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
 
+
+def get_additional_mapping():
+    """
+    Return a dictionary with additional ecoinvent to IAM mappings
+    """
+    with open(ECO_IAM_MAPPING, "r") as stream:
+        out = yaml.safe_load(stream)
+
+    return out
+
+
+def get_iam_to_iam_mapping():
+    """
+    Return a dictionary with IAM to IAM mappings
+    :return:
+    """
+    with open(IAM_TO_IAM_MAPPING, "r") as stream:
+        out = yaml.safe_load(stream)
+
+    return out
 
 class Geomap:
     """
-    Map ecoinvent locations to REMIND regions and vice-versa.
+    Map ecoinvent locations to IAM regions and vice-versa.
+
+    :var model: IAM model (e.g., "remind", "image")
+
     """
 
-    def __init__(self, model, current_regions=[]):
+    def __init__(self, model: str) -> str:
 
         self.model = model
         self.geo = geomatcher
-
-        if not isinstance(current_regions, list):
-            current_regions = list(current_regions)
-
-        if len(current_regions) > 0:
-            self.add_or_remove_regions(current_regions)
+        self.additional_mappings = get_additional_mapping()
+        self.iam_to_iam_mappings = get_iam_to_iam_mapping()
 
         self.iam_regions = [
             x[1]
@@ -30,36 +55,14 @@ class Geomap:
             if isinstance(x, tuple) and x[0] == self.model.upper()
         ]
 
-    def add_or_remove_regions(self, regions):
-
-        with open(ADDITIONAL_DEFINITIONS) as json_file:
-            additional_regions = json.load(json_file)
-
-        # add regions that do not have a topological definition in `wurst`
-        for r in regions:
-            if (self.model.upper(), r) not in self.geo.keys():
-                self.geo.add_definitions({r: additional_regions[r]}, self.model.upper())
-
-        for k in list(self.geo.keys()):
-            if (
-                isinstance(k, tuple)
-                and k[0] == self.model.upper()
-                and k[1] not in regions
-            ):
-                self.geo[k].clear()
-                del self.geo[k]
-
-    def iam_to_ecoinvent_location(self, location, contained=True):
+    def iam_to_ecoinvent_location(self, location: str, contained: bool = True) -> Union[List[str], str]:
         """
         Find the corresponding ecoinvent region given an IAM region.
-
         :param location: name of a IAM region
-        :type location: str
-        :param contained: whether only geographies that are contained within the IAM region should be returned.
-        By default, `contained` is False, meaning the function also returns geographies that intersects with IAM region.
-        :type contained: bool
+        :param contained: whether only geographies that are contained within
+        the IAM region should be returned. By default, `contained` is False,
+        meaning the function also returns geographies that intersects with IAM region.
         :return: name(s) of an ecoinvent region
-        :rtype: list
         """
 
         location = (self.model.upper(), location)
@@ -77,21 +80,18 @@ class Geomap:
             # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
             if location != (self.model.upper(), "World"):
                 ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
-
             return ecoinvent_locations
+
         except KeyError:
             print("Can't find location {} using the geomatcher.".format(location))
             return ["RoW"]
 
-    def ecoinvent_to_iam_location(self, location):
+    def ecoinvent_to_iam_location(self, location: str) -> str:
         """
-        Return an IAM region name for a 2-digit ISO country code given.
+        Return an IAM region name for an ecoinvent location given.
         Set rules in case two IAM regions are within the ecoinvent region.
-
-        :param location: 2-digit ISO country code
-        :type location: str
+        :param location: ecoinvent location
         :return: IAM region name
-        :rtype: str
         """
 
         # First, it can be that the location is already
@@ -107,57 +107,14 @@ class Geomap:
             return location
 
         # Second, it can be an ecoinvent region
-        mapping = {
-            "Europe without Austria": "EUR" if self.model == "remind" else "WEU",
-            "Europe without Switzerland and Austria": "EUR"
-            if self.model == "remind"
-            else "WEU",
-            "Europe without Switzerland": "EUR" if self.model == "remind" else "WEU",
-            "North America without Quebec": "USA",
-            "RER w/o RU": "EUR" if self.model == "remind" else "WEU",
-            "RER": "EUR" if self.model == "remind" else "WEU",
-            "RoW": "World",
-            "GLO": "World",
-            "RNA": "USA",
-            "SAS": "OAS" if self.model == "remind" else "SEAS",
-            "IAI Area, EU27 & EFTA": "EUR" if self.model == "remind" else "WEU",
-            "UN-OCEANIA": "CAZ" if self.model == "remind" else "OCE",
-            "UN-SEASIA": "OAS" if self.model == "remind" else "SEAS",
-            "RAF": "SSA" if self.model == "remind" else "RSAF",
-            "RAS": "CHA" if self.model == "remind" else "CHN",
-            "IAI Area, Africa": "SSA" if self.model == "remind" else "RSAF",
-            "RER w/o CH+DE": "EUR" if self.model == "remind" else "WEU",
-            "RER w/o DE+NL+RU": "EUR" if self.model == "remind" else "WEU",
-            "IAI Area, Asia, without China and GCC": "OAS"
-            if self.model == "remind"
-            else "SEAS",
-            "Europe, without Russia and Turkey": "EUR"
-            if self.model == "remind"
-            else "WEU",
-            "WECC": "USA",
-            "WEU": "EUR" if self.model == "remind" else "WEU",
-            "UCTE": "EUR" if self.model == "remind" else "WEU",
-            "UCTE without Germany": "EUR" if self.model == "remind" else "WEU",
-            "NORDEL": "NEU" if self.model == "remind" else "WEU",
-            "ENTSO-E": "EUR" if self.model == "remind" else "WEU",
-            "RLA": "LAM" if self.model == "remind" else "RSAM",
-            "IAI Area, South America": "LAM" if self.model == "remind" else "RSAM",
-            "IAI Area, Russia & RER w/o EU27 & EFTA": "REF"
-            if self.model == "remind"
-            else "RUS",
-            "IAI Area, North America": "USA",
-            "OCE": "CAZ" if self.model == "remind" else "OCE",
-            "US-PR": "USA",
-            "US only": "USA",
-            "APAC": "CHA" if self.model == "remind" else "CHN",
-        }
+        # with no native mapping
+        if location in self.additional_mappings:
 
-        if location in mapping:
-            if mapping[location] in self.iam_regions:
-                return mapping[location]
+            if self.additional_mappings[location][self.model] in self.iam_regions:
+                return self.additional_mappings[location][self.model]
             # likely a case of missing "EUR" region
             else:
-                return "DEU"
+                raise ValueError(f"Could not find equivalent for {location}.")
 
         # If not, then we look for IAM regions that contain it
         iam_location = [
@@ -218,104 +175,22 @@ class Geomap:
             # more than one region is found
             print(f"More than one region found for {location}:{iam_location}")
 
-    def iam_to_GAINS_region(self, location):
+    def iam_to_GAINS_region(self, location: str) -> str:
         """
-        Regions defined in GAINS emission data follows REMIND naming convention, but is different from IMAGE.
-        :param location:
-        :return:
+        Regions defined in GAINS emission data follows REMIND naming
+        convention, but those are different for other IAMs.
+        :param location: IAM location
+        :return: GAINS location
         """
+        return self.iam_to_iam_mappings[self.model][location]["gains"]
 
-        d_map_region = {
-            "BRA": "LAM",
-            "CAN": "CAZ",
-            "CEU": "EUR",
-            "CHN": "CHA",
-            "EAF": "SSA",
-            "INDIA": "IND",
-            "INDO": "OAS",
-            "JAP": "JPN",
-            "KOR": "OAS",
-            "ME": "MEA",
-            "MEX": "LAM",
-            "NAF": "SSA",
-            "OCE": "CAZ",
-            "RCAM": "LAM",
-            "RSAF": "SSA",
-            "RSAM": "LAM",
-            "RSAS": "OAS",
-            "RUS": "REF",
-            "SAF": "SSA",
-            "SEAS": "OAS",
-            "STAN": "MEA",
-            "TUR": "MEA",
-            "UKR": "REF",
-            "USA": "USA",
-            "WAF": "SSA",
-            "WEU": "EUR",
-            "World": "EUR",
-        }
-
-        if self.model == "remind":
-            return "EUR" if location == "World" else location
-
-        if self.model == "image":
-            return d_map_region[location]
-
-    def iam_to_iam_region(self, location):
+    def iam_to_iam_region(self, location: str, to_iam: str) -> str:
         """
-        When data is defined according to one IAM geography naming convention but needs to be used with another IAM.
-        :param location:
-        :return:
+        When data is defined according to one IAM geography naming convention
+        but needs to be used with another IAM.
+        :param location: location to search the equivalent for
+        :param: to_iam: the IAM to search the equivalent for
+        :return: the equivalent location
         """
 
-        d_map_region_image_to_remind = {
-            "BRA": "LAM",
-            "CAN": "CAZ",
-            "CEU": "EUR",
-            "CHN": "CHA",
-            "EAF": "SSA",
-            "INDIA": "IND",
-            "INDO": "OAS",
-            "JAP": "JPN",
-            "KOR": "OAS",
-            "ME": "MEA",
-            "MEX": "LAM",
-            "NAF": "SSA",
-            "OCE": "CAZ",
-            "RCAM": "LAM",
-            "RSAF": "SSA",
-            "RSAM": "LAM",
-            "RSAS": "OAS",
-            "RUS": "REF",
-            "SAF": "SSA",
-            "SEAS": "OAS",
-            "STAN": "MEA",
-            "TUR": "MEA",
-            "UKR": "REF",
-            "USA": "USA",
-            "WAF": "SSA",
-            "WEU": "EUR",
-            "World": "World",
-        }
-
-        d_map_region_remind_to_image = {
-            "LAM": "RSAM",
-            "CAZ": "OCE",
-            "EUR": "WEU",
-            "CHA": "CHN",
-            "SSA": "SAF",
-            "IND": "INDIA",
-            "OAS": "RSAS",
-            "JPN": "JAP",
-            "USA": "USA",
-            "NEU": "WEU",
-            "MEA": "ME",
-            "REF": "RUS",
-            "World": "World",
-        }
-
-        if self.model == "image":
-            return d_map_region_image_to_remind[location]
-
-        if self.model == "remind":
-            return d_map_region_remind_to_image[location]
+        return self.iam_to_iam_mappings[self.model][location][to_iam]

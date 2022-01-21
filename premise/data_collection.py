@@ -1,9 +1,9 @@
 """
 data_collection.py contains the IAMDataCollection class which collects a number of data,
-mostly from the IAM file. This class will have as attributed market shares, efficiency
-and emission values for different sectors. Additional external sources of data have to
-be used as well, notably for cement production (GNR data), and for non-CO2 emissions
-(GAINS data).
+mostly from the IAM file. This class will have offer market shares, efficiency
+and emission values for different sectors, carbon capture rates, etc.
+Additional external sources of data have to be used as well, notably for cement
+production (GNR data), and for non-CO2 emissions (GAINS data).
 """
 
 
@@ -57,6 +57,7 @@ def get_lifetime(list_tech: List) -> np.array:
 def get_gnr_data() -> xr.DataArray:
     """
     Read the GNR csv file on cement production and return an `xarray` with dimensions:
+
     * region
     * year
     * variables
@@ -257,6 +258,7 @@ class IAMDataCollection:
     def __get_iam_data(self, key: str, filepath: Path) -> xr.DataArray:
         """
         Read the IAM result file and return an `xarray` with dimensions:
+
         * region
         * variable
         * year
@@ -376,6 +378,7 @@ class IAMDataCollection:
     def __transform_to_marginal_markets(self, data: xr.DataArray) -> xr.DataArray:
         """
         Used for consequential modeling only. Returns marginal market mixes.
+
         :param data: IAM data
         :return: marginal market mixes
         """
@@ -825,7 +828,7 @@ class IAMDataCollection:
         This method retrieves emission values for cement production,
         for a specified year, for each region provided by GAINS.
 
-        :return: an multi-dimensional array with emissions for different technologies
+        :return: a multi-dimensional array with emissions for different technologies
         for a given year, for all regions.
 
 
@@ -974,7 +977,8 @@ class IAMDataCollection:
         associated with growing a given crop type, in hectares per GJ of that crop,
         for each region and year. This land occupation is added to the LCI
         for crop farming in fuels.py.
-        :param data:
+
+        :param data: IAM data
         :return: a multi-dimensional array with land use
         for different crops types, for all years, for all regions.
         """
@@ -994,7 +998,8 @@ class IAMDataCollection:
         associated with growing a given crop type, per GJ of that crop,
         for each region and year. Such LUC emissions are added to the LCI
         for crop farming in fuels.py.
-        :param data:
+
+        :param data: IAM data
         :return: a multi-dimensional array with land use change CO2 emissions
         for different crops types, for all years, for all regions.
         """
@@ -1071,6 +1076,9 @@ class IAMDataCollection:
     ) -> xr.DataArray:
         """
         Returns a xarray with carbon capture rates for steel and cement production.
+
+        :param dict_vars: dictionary that contains AIM variables to search for
+        :param data: IAM data
         :return: a xarray with carbon capture rates, for each year and region
         """
 
