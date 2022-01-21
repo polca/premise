@@ -5,10 +5,12 @@ import sys
 import uuid
 from pathlib import Path
 
+import bw2io
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
 from prettytable import PrettyTable
 from wurst import searching as ws
+from typing import List, Dict, Union
 
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
@@ -17,11 +19,11 @@ FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.c
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
 
-def get_biosphere_code():
+def get_biosphere_code() -> dict:
     """
     Retrieve a dictionary with biosphere flow names and uuid codes.
-    :returns: dictionary with biosphere flow names as keys and uuid code as values
-    :rtype: dict
+    :returns: dictionary with biosphere flow names as keys and uuid codes as values
+
     """
 
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
@@ -37,7 +39,13 @@ def get_biosphere_code():
     return csv_dict
 
 
-def generate_migration_maps(origin, destination):
+def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
+    """
+    Generate mapping for ecoinvent datasets across different database versions.
+    :param origin: ecoinvent database version to find equivalence from (e.g., "3.6")
+    :param destination: ecoinvent database version to find equivalence for (e.g., "3.8")
+    :return: a migration map dicitonary for bw2io
+    """
 
     response = {"fields": ["name", "reference product", "location"], "data": []}
 
@@ -59,19 +67,26 @@ def generate_migration_maps(origin, destination):
 
 class BaseInventoryImport:
     """
-    Base class for inventories that are to be merged with the ecoinvent database.
-    :ivar database: the target database for the import (the Ecoinvent database),
-              unpacked to a list of dicts
-    :vartype database: list
+    Base class for inventories that are to be merged with the wurst database.
+
+    :ivar database: the target database for the import (the ecoinvent database),
+    unpacked to a list of dicts
+    :ivar version_in: the ecoinvent database version of the inventory to import
+    :ivar version_out: the ecoinvent database version the imported inventories
+    should comply with
+    :ivar path: the filepath of the inventories to import
+
     """
 
-    def __init__(self, database, version_in, version_out, path):
+    def __init__(
+        self,
+        database: List[dict],
+        version_in: str,
+        version_out: str,
+        path: Union[str, Path],
+    ) -> None:
         """Create a :class:`BaseInventoryImport` instance.
-        :param list database: the target database for the import (the Ecoinvent database),
-                              unpacked to a list of dicts
 
-        :param path: Path to the imported inventory.
-        :type path: str or Path
         """
         self.database = database
         self.db_code = [x["code"] for x in self.database]
@@ -107,20 +122,20 @@ class BaseInventoryImport:
                         description=f"Change technosphere names due to change from {r[0]} to {r[1]}",
                     )
 
-    def load_inventory(self, path):
+    def load_inventory(self, path: Union[str, Path]) -> None:
         """Load an inventory from a specified path.
         Sets the :attr:`import_db` attribute.
         :param str path: Path to the inventory file
         :returns: Nothing.
         """
 
-    def prepare_inventory(self):
+    def prepare_inventory(self) -> None:
         """Prepare the inventory for the merger with Ecoinvent.
         Modifies :attr:`import_db` in-place.
         :returns: Nothing
         """
 
-    def check_for_duplicates(self):
+    def check_for_duplicates(self) -> None:
         """
         Check whether the inventories to be imported are not
         already in the source database.
@@ -163,7 +178,7 @@ class BaseInventoryImport:
             if (x["name"], x["reference product"], x["location"]) not in self.db_names
         ]
 
-    def merge_inventory(self):
+    def merge_inventory(self) -> List[dict]:
         """Prepare :attr:`import_db` and merge the inventory to the ecoinvent :attr:`database`.
         Calls :meth:`prepare_inventory`. Changes the :attr:`database` attribute.
         :returns: Nothing
@@ -172,20 +187,7 @@ class BaseInventoryImport:
         self.prepare_inventory()
         return self.import_db
 
-    def search_exchanges(self, srchdict):
-        """Search :attr:`import_db` by field values.
-        :param dict srchdict: dict with the name of the fields and the values.
-        :returns: the activities with the exchanges that match the search.
-        :rtype: dict
-        """
-        results = []
-        for act in self.import_db.data:
-            for ex in act["exchanges"]:
-                if len(srchdict.items() - ex.items()) == 0:
-                    results.append(act)
-        return results
-
-    def search_missing_exchanges(self, label, value):
+    def search_missing_exchanges(self, label: str, value: str) -> List[dict]:
         """
         Return a list of activities for which
         a given exchange cannot be found
@@ -204,11 +206,12 @@ class BaseInventoryImport:
 
         return results
 
-    def search_missing_field(self, field, scope="activity"):
+    def search_missing_field(self, field: str, scope: str = "activity") -> List[dict]:
         """Find exchanges and activities that do not contain a specific field
         in :attr:`imort_db`
-        :param scope:
         :param str field: label of the field to search for.
+        :param scope: "activity" or "all". whether to search in the activity
+        or the activity and its exchanges
         :returns: a list of dictionaries, activities and exchanges
         :rtype: list
         """
@@ -223,7 +226,7 @@ class BaseInventoryImport:
                         results.append(ex)
         return results
 
-    def add_product_field_to_exchanges(self):
+    def add_product_field_to_exchanges(self) -> None:
         """Add the `product` key to the production and
         technosphere exchanges in :attr:`import_db`.
         Also add `code` field if missing.
@@ -264,12 +267,12 @@ class BaseInventoryImport:
             if "code" not in x:
                 x["code"] = str(uuid.uuid4().hex)
 
-    def correct_product_field(self, exc):
+    def correct_product_field(self, exc: dict) -> str:
         """
         Find the correct name for the `product` field of the exchange
         :param exc: a dataset exchange
         :return: name of the product field of the exchange
-        :rtype: str
+
         """
         # Look first in the imported inventories
         candidate = next(
@@ -297,18 +300,17 @@ class BaseInventoryImport:
         if candidate is not None:
             return candidate["reference product"]
 
-        # raise IndexError(
-        #    f"An inventory exchange in {self.import_db.db_name} cannot be linked to the "
-        #    f"biosphere or the ecoinvent database: {exc}"
-        # )
+
         print(
             f"An inventory exchange in {self.import_db.db_name} cannot be linked to the "
             f"biosphere or the ecoinvent database: {exc}"
         )
 
-    def add_biosphere_links(self, delete_missing=False):
+    def add_biosphere_links(self, delete_missing: bool = False) -> None:
         """Add links for biosphere exchanges to :attr:`import_db`
         Modifies the :attr:`import_db` attribute in place.
+
+        :param delete_missing: whether unlinked exchanges should be deleted or not.
         """
         for x in self.import_db.data:
             for y in x["exchanges"]:
@@ -356,7 +358,7 @@ class BaseInventoryImport:
                                 raise
             x["exchanges"] = [ex for ex in x["exchanges"] if "flag_deletion" not in ex]
 
-    def remove_ds_and_modifiy_exchanges(self, name, ex_data):
+    def remove_ds_and_modifiy_exchanges(self, name: str, ex_data: dict) -> None:
         """
         Remove an activity dataset from :attr:`import_db` and replace the corresponding
         technosphere exchanges by what is given as second argument.
@@ -384,13 +386,17 @@ class BaseInventoryImport:
 
 
 class DefaultInventory(BaseInventoryImport):
+    """
+    Importing class. Inherits from :class:`BaseInventoryImport`.
+
+    """
     def __init__(self, database, version_in, version_out, path):
         super().__init__(database, version_in, version_out, path)
 
-    def load_inventory(self, path):
+    def load_inventory(self, path: Union[str, Path]) -> bw2io.ExcelImporter:
         return ExcelImporter(path)
 
-    def prepare_inventory(self):
+    def prepare_inventory(self) -> None:
 
         if self.version_in != self.version_out:
             self.import_db.migrate(
@@ -407,22 +413,36 @@ class DefaultInventory(BaseInventoryImport):
 class VariousVehicles(BaseInventoryImport):
     """
     Imports various future vehicles' inventories (two-wheelers, buses, trams, etc.).
+
+    :ivar database: wurst database
+    :ivar version_in: original ecoinvent version of the inventories
+    :ivar version_out: ecoinvent version the inventories should comply with
+    :ivar path: filepath of the inventories
+    :ivar year: year of teh database
+    :ivar regions:
+    :ivar model: IAM model
+    :ivar scenario: IAM scenario
+    :ivar vehicle_type: "two-wheeler", "car, "truck" or "bus"
+    :ivar relink: whether suppliers within a dataset need to be relinked
+    :ivar has_fleet: whether the `vehicle_type` has associated fleet information
     """
+
+
 
     def __init__(
         self,
-        database,
-        version_in,
-        version_out,
-        path,
-        year,
-        regions,
-        model,
-        scenario,
-        vehicle_type,
-        relink=False,
-        has_fleet=False,
-    ):
+        database: List[dict],
+        version_in: str,
+        version_out: str,
+        path: Union[str, Path],
+        year: int,
+        regions: List[str],
+        model: str,
+        scenario: str,
+        vehicle_type: str,
+        relink: bool = False,
+        has_fleet: bool = False,
+    ) -> None:
         super().__init__(database, version_in, version_out, path)
         self.year = year
         self.regions = regions
@@ -455,268 +475,6 @@ class VariousVehicles(BaseInventoryImport):
         print("Done!")
 
         return self.database
-
-
-class PassengerCars(BaseInventoryImport):
-    """
-    Imports default inventories for passenger cars.
-    """
-
-    def __init__(
-        self, database, version_in, version_out, model, year, regions, iam_data
-    ):
-        super().__init__(database, version_in, version_out, Path("."))
-
-        self.db = database
-        self.regions = regions
-        self.model = model
-        self.geomap = Geomap(
-            model=model, current_regions=iam_data.coords["region"].values.tolist()
-        )
-
-        inventory_year = min(
-            [2020, 2025, 2030, 2040, 2045, 2050], key=lambda x: abs(x - year)
-        )
-
-        filename = (
-            model + "_pass_cars_inventory_data_ei_37_" + str(inventory_year) + ".pickle"
-        )
-        fp = INVENTORY_DIR / filename
-
-        self.import_db = LCIImporter("passenger_cars")
-
-        with open(fp, "rb") as handle:
-            self.import_db.data = pickle.load(handle)
-
-    def load_inventory(self, path):
-        pass
-
-    def prepare_inventory(self):
-        # initially links to ei37
-        if self.version_in != self.version_out:
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
-            print(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-        # Check for duplicates
-        self.check_for_duplicates()
-
-        for x in self.import_db.data:
-            x["code"] = str(uuid.uuid4().hex)
-
-    def merge_inventory(self):
-        self.prepare_inventory()
-
-        activities_to_remove = [
-            "transport, passenger car",
-            "market for passenger car",
-            "market for transport, passenger car",
-        ]
-
-        self.db = [
-            x
-            for x in self.db
-            if not any(y for y in activities_to_remove if y in x["name"])
-        ]
-        self.db.extend(self.import_db.data)
-
-        exchanges_to_modify = [
-            "market for transport, passenger car, large size, petrol, EURO 4",
-            "market for transport, passenger car",
-            "market for transport, passenger car, large size, petrol, EURO 3",
-            "market for transport, passenger car, large size, diesel, EURO 4",
-            "market for transport, passenger car, large size, diesel, EURO 5",
-        ]
-        for dataset in self.db:
-            excs = (
-                exc
-                for exc in dataset["exchanges"]
-                if exc["name"] in exchanges_to_modify and exc["type"] == "technosphere"
-            )
-
-            for exc in excs:
-
-                try:
-
-                    new_supplier = ws.get_one(
-                        self.db,
-                        *[
-                            ws.contains(
-                                "name",
-                                "transport, passenger car, fleet average, all powertrains",
-                            ),
-                            ws.equals(
-                                "location",
-                                self.geomap.ecoinvent_to_iam_location(
-                                    dataset["location"]
-                                ),
-                            ),
-                            ws.contains("reference product", "transport"),
-                        ],
-                    )
-
-                    exc["name"] = new_supplier["name"]
-                    exc["location"] = new_supplier["location"]
-                    exc["product"] = new_supplier["reference product"]
-                    exc["unit"] = new_supplier["unit"]
-
-                except ws.NoResults:
-
-                    new_supplier = ws.get_one(
-                        self.db,
-                        *[
-                            ws.contains(
-                                "name",
-                                "transport, passenger car, fleet average, all powertrains",
-                            ),
-                            ws.equals("location", self.regions[0]),
-                            ws.contains("reference product", "transport"),
-                        ],
-                    )
-
-                    exc["name"] = new_supplier["name"]
-                    exc["location"] = new_supplier["location"]
-                    exc["product"] = new_supplier["reference product"]
-                    exc["unit"] = new_supplier["unit"]
-
-                if "input" in exc:
-                    exc.pop("input")
-
-        return self.db
-
-
-class Trucks(BaseInventoryImport):
-    """
-    Imports default inventories for trucks.
-    """
-
-    def __init__(
-        self, database, version_in, version_out, model, year, regions, iam_data
-    ):
-        super().__init__(database, version_in, version_out, Path("."))
-
-        self.db = database
-        self.regions = regions
-        self.geomap = Geomap(
-            model=model, current_regions=iam_data.coords["region"].values.tolist()
-        )
-
-        inventory_year = min(
-            [2020, 2025, 2030, 2040, 2045, 2050], key=lambda x: abs(x - year)
-        )
-
-        filename = (
-            model + "_trucks_inventory_data_ei_37_" + str(inventory_year) + ".pickle"
-        )
-        fp = INVENTORY_DIR / filename
-
-        self.import_db = LCIImporter("trucks")
-
-        with open(fp, "rb") as handle:
-            self.import_db.data = pickle.load(handle)
-
-    def load_inventory(self, path):
-        pass
-
-    def prepare_inventory(self):
-        # initially links to ei37
-        if self.version_in != self.version_out:
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-        # Check for duplicates
-        self.check_for_duplicates()
-
-        for x in self.import_db.data:
-            x["code"] = str(uuid.uuid4().hex)
-
-    def merge_inventory(self):
-        self.prepare_inventory()
-
-        # remove the old lorry transport datasets
-        self.db = [x for x in self.db if "transport, freight, lorry" not in x["name"]]
-
-        # add the new ones
-        self.db.extend(self.import_db.data)
-
-        # loop through datasets that use lorry transport
-        for dataset in self.db:
-            excs = (
-                exc
-                for exc in dataset["exchanges"]
-                if "transport, freight, lorry" in exc["name"]
-                and exc["type"] == "technosphere"
-            )
-
-            for exc in excs:
-
-                if "3.5-7.5" in exc["name"]:
-                    search_for = "transport, freight, lorry, fleet average, 3.5t"
-                elif "7.5-16" in exc["name"]:
-                    search_for = "transport, freight, lorry, fleet average, 7.5t"
-                elif "16-32" in exc["name"]:
-                    search_for = "transport, freight, lorry, fleet average, 26t"
-                elif ">32" in exc["name"]:
-                    search_for = "transport, freight, lorry, fleet average, 40t"
-                elif "unspecified" in exc["name"]:
-                    search_for = "transport, freight, lorry, fleet average"
-                else:
-                    search_for = "transport, freight, lorry, fleet average"
-
-                try:
-                    new_supplier = ws.get_one(
-                        self.db,
-                        *[
-                            ws.equals("name", search_for),
-                            ws.equals(
-                                "location",
-                                self.geomap.ecoinvent_to_iam_location(
-                                    dataset["location"]
-                                )
-                                if dataset not in self.regions
-                                else dataset["location"],
-                            ),
-                            ws.contains(
-                                "reference product", "transport, freight, lorry"
-                            ),
-                        ],
-                    )
-
-                    exc["name"] = new_supplier["name"]
-                    exc["location"] = new_supplier["location"]
-                    exc["product"] = new_supplier["reference product"]
-                    exc["unit"] = new_supplier["unit"]
-
-                except ws.NoResults:
-
-                    new_supplier = ws.get_one(
-                        self.db,
-                        *[
-                            ws.equals("name", search_for),
-                            ws.equals("location", "World"),
-                            ws.contains(
-                                "reference product", "transport, freight, lorry"
-                            ),
-                        ],
-                    )
-
-                    exc["name"] = new_supplier["name"]
-                    exc["location"] = new_supplier["location"]
-                    exc["product"] = new_supplier["reference product"]
-                    exc["unit"] = new_supplier["unit"]
-
-                if "input" in exc:
-                    exc.pop("input")
-
-        return self.db
 
 
 class AdditionalInventory(BaseInventoryImport):
