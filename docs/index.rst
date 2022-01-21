@@ -2,6 +2,7 @@
    :width: 200pt
    :align: center
 
+
 .. image:: https://travis-ci.org/romainsacchi/premise.svg?branch=master
     :target: https://travis-ci.org/romainsacchi/premise
     :alt: Travis status
@@ -23,8 +24,9 @@
 
 
 
-Index
-=====
+
+User guide
+==========
 
 .. toctree::
    :maxdepth: 2
