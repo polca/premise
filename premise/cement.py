@@ -97,11 +97,17 @@ class Cement(BaseTransformation):
         # we first fix the biogenic CO2 permanent storage
         # this corresponds to teh share of biogenic CO2
         # in the fossil + biogenic CO2 emissions of the cement plant
-        for exc in ws.biosphere(ccs, ws.equals("name", "Carbon dioxide, in air"),):
+        for exc in ws.biosphere(
+            ccs,
+            ws.equals("name", "Carbon dioxide, in air"),
+        ):
             exc["amount"] = bio_co2_stored
 
         # then the biogenic CO2 leaked during the capture process
-        for exc in ws.biosphere(ccs, ws.equals("name", "Carbon dioxide, non-fossil"),):
+        for exc in ws.biosphere(
+            ccs,
+            ws.equals("name", "Carbon dioxide, non-fossil"),
+        ):
             exc["amount"] = bio_co2_leaked
 
         # the rest of CO2 leaked is fossil
@@ -112,10 +118,15 @@ class Cement(BaseTransformation):
         # the cement plant is expected to produce as excess heat
 
         # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
-        excess_heat_generation = self.iam_data.gnr_data.sel(
-            variables="Share of recovered energy, per ton clinker",
-            region=self.geo.iam_to_iam_region(loc) if self.model == "image" else loc,
-        ).values * (energy_input.sum() / 1000)
+        excess_heat_generation = (
+            self.iam_data.gnr_data.sel(
+                variables="Share of recovered energy, per ton clinker",
+                region=self.geo.iam_to_iam_region(loc)
+                if self.model == "image"
+                else loc,
+            ).values
+            * (energy_input.sum() / 1000)
+        )
 
         for exc in ws.technosphere(ccs, ws.contains("name", "steam production")):
             exc["amount"] = np.clip(3.66 - excess_heat_generation, 0, 3.66)
@@ -208,7 +219,8 @@ class Cement(BaseTransformation):
             # divided by the ratio fuel/output in 2020
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable="cement", location=dataset["location"],
+                variable="cement",
+                location=dataset["location"],
             )
             energy_input_per_ton_clinker *= scaling_factor
 
@@ -727,7 +739,9 @@ class Cement(BaseTransformation):
             ref_prod = "cement, unspecified"
 
         act_cement_unspecified = self.fetch_proxies(
-            name=name, ref_prod=ref_prod, production_variable="cement",
+            name=name,
+            ref_prod=ref_prod,
+            production_variable="cement",
         )
         act_cement_unspecified = self.adjust_clinker_ratio(act_cement_unspecified)
         self.database.extend(list(act_cement_unspecified.values()))
@@ -786,7 +800,9 @@ class Cement(BaseTransformation):
             # Fetch proxy datasets (one per IAM region)
             # Delete old datasets
             new_cement_production = self.fetch_proxies(
-                name=dataset[0], ref_prod=dataset[1], production_variable="cement",
+                name=dataset[0],
+                ref_prod=dataset[1],
+                production_variable="cement",
             )
             # Update electricity use
             new_cement_production = self.update_electricity_exchanges(
