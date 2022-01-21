@@ -1,3 +1,6 @@
+EXTRACT
+=======
+
 Supported version for ecoinvent
 """""""""""""""""""""""""""""""
 
