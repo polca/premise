@@ -1,5 +1,5 @@
 .. image:: large.png
-   :width: 100pt
+   :width: 300pt
    :align: center
 
 .. image:: https://travis-ci.org/romainsacchi/premise.svg?branch=master
