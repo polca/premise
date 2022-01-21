@@ -213,7 +213,12 @@ class IAMDataCollection:
             dim="variables",
         )
         self.emissions = xr.concat(
-            [electricity_emissions, steel_emissions, cement_emissions,], dim="sector",
+            [
+                electricity_emissions,
+                steel_emissions,
+                cement_emissions,
+            ],
+            dim="sector",
         )
 
         if self.model == "image":
