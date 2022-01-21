@@ -33,9 +33,9 @@ User guide
    :caption: Contents
 
    introduction
-   extraction
-   transformation
-   loading
+   extract
+   transform
+   load
    
 
 Technical Reference
