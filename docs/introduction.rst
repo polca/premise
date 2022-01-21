@@ -1,5 +1,9 @@
+.. image:: large.png
+   :width: 100pt
+
 In a nutshell
 """""""""""""
+
 
 .. image:: https://travis-ci.org/romainsacchi/premise.svg?branch=master
     :target: https://travis-ci.org/romainsacchi/premise
