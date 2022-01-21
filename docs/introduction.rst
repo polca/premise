@@ -1,7 +1,6 @@
 In a nutshell
 """""""""""""
 
-
 Purpose
 -------
 
@@ -20,7 +19,7 @@ Workflow
 .. image:: main_workflow.png
 
 
-As shown in the workflow diagram above, *premise* will:
+As shown in the workflow diagram above, *premise* follows an Extract, Transform, Load (ETL_) process:
 
 * extract the ecoinvent database (from a brightway_ project, or from ecospold2_ files).
 * add to this database a number of additional inventories relating to future pathways for producing certain commodities (electricity, steel, cement, etc.)
@@ -29,6 +28,8 @@ As shown in the workflow diagram above, *premise* will:
 
 .. _brightway: https://brightway.dev/
 .. _ecospold2: https://ecoinvent.org/the-ecoinvent-database/data-formats/ecospold2/
+.. _ETL: https://www.guru99.com/etl-extract-load-process.html#:~:text=ETL%20is%20a%20process%20that,is%20Extract%2C%20Transform%20and%20Load.
+
 
 Provided a decryption key (ask the maintainers_), the following IAM scenarios are available when installing *premise*:
 
