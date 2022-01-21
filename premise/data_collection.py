@@ -83,6 +83,7 @@ def get_gnr_data() -> xr.DataArray:
 def get_gains_data() -> xr.DataArray:
     """
     Read the GAINS emissions csv file and return an `xarray` with dimensions:
+
     * region
     * pollutant
     * sector
@@ -134,13 +135,15 @@ def get_gains_data() -> xr.DataArray:
 
 
 class IAMDataCollection:
+
     """
-    Class that extracts data from IAM output files.
-
-    :ivar pathway: name of a IAM pathway
-    :ivar system_model: Can be `attributional` or `consequential`.
-    :ivar system_model: Time horizon (in years) to consider if `system_model` == `consequential`.
-
+    :var model: name of the IAM model (e.g., "remind")
+    :var pathway: name of the IAM scenario (e.g., "SSP2-Base")
+    :var year: year to produce teh database for
+    :var filepath_iam_files: if a custom file is provided, the filepath to it
+    :var key: decryption key, provided by user, if built-in IAM files are to be used
+    :var system_model: "attributional" or "consequential" (not yet implemented.
+    :var time_horizon: for consequential modelling (not yet implemented.
     """
 
     def __init__(
@@ -150,7 +153,7 @@ class IAMDataCollection:
         year: int,
         filepath_iam_files: Path,
         key: str,
-        system_model: str = "attributionl",
+        system_model: str = "attributional",
         time_horizon: int = 30,
     ) -> None:
         self.model = model
