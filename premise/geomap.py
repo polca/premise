@@ -3,7 +3,7 @@ geomap.py contains the Geomap class that allows to find equivalents between
 the IAM locations and ecoinvent locations.
 """
 
-from typing import Union, List
+from typing import List, Union
 
 import yaml
 from wurst import geomatcher
@@ -34,6 +34,7 @@ def get_iam_to_iam_mapping():
 
     return out
 
+
 class Geomap:
     """
     Map ecoinvent locations to IAM regions and vice-versa.
@@ -55,7 +56,9 @@ class Geomap:
             if isinstance(x, tuple) and x[0] == self.model.upper()
         ]
 
-    def iam_to_ecoinvent_location(self, location: str, contained: bool = True) -> Union[List[str], str]:
+    def iam_to_ecoinvent_location(
+        self, location: str, contained: bool = True
+    ) -> Union[List[str], str]:
         """
         Find the corresponding ecoinvent region given an IAM region.
         :param location: name of a IAM region
