@@ -3,7 +3,7 @@ geomap.py contains the Geomap class that allows to find equivalents between
 the IAM locations and ecoinvent locations.
 """
 
-from typing import List, Union
+from typing import Dict, List, Union
 
 import yaml
 from wurst import geomatcher
@@ -14,7 +14,7 @@ ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
 
 
-def get_additional_mapping():
+def get_additional_mapping() -> Dict[str, str]:
     """
     Return a dictionary with additional ecoinvent to IAM mappings
     """
@@ -24,10 +24,11 @@ def get_additional_mapping():
     return out
 
 
-def get_iam_to_iam_mapping():
+def get_iam_to_iam_mapping() -> Dict[str, str]:
     """
     Return a dictionary with IAM to IAM mappings
-    :return:
+    :return: dictionary with IAM to IAM location mapping
+
     """
     with open(IAM_TO_IAM_MAPPING, "r") as stream:
         out = yaml.safe_load(stream)
@@ -39,11 +40,11 @@ class Geomap:
     """
     Map ecoinvent locations to IAM regions and vice-versa.
 
-    :var model: IAM model (e.g., "remind", "image")
+    :ivar model: IAM model (e.g., "remind", "image")
 
     """
 
-    def __init__(self, model: str) -> str:
+    def __init__(self, model: str) -> None:
 
         self.model = model
         self.geo = geomatcher
