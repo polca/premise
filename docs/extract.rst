@@ -4,14 +4,14 @@ EXTRACT
 Supported version for ecoinvent
 """""""""""""""""""""""""""""""
 
+Supported sources for ecoinvent
+"""""""""""""""""""""""""""""""
+
 From a brightway2 project
 -------------------------
 
 From ecospold2 files
 --------------------
-
-Supported sources for ecoinvent
-"""""""""""""""""""""""""""""""
 
 Import of additional inventories
 """"""""""""""""""""""""""""""""
