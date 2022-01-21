@@ -1,6 +1,5 @@
-Coupling Integrated Assessment Models and ecoinvent for prospective environmental impact assessment
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+In a nutshell
+"""""""""""""
 
 .. image:: https://travis-ci.org/romainsacchi/premise.svg?branch=master
     :target: https://travis-ci.org/romainsacchi/premise
@@ -18,37 +17,32 @@ Coupling Integrated Assessment Models and ecoinvent for prospective environmenta
     :target: https://badge.fury.io/py/premise
     :alt: Pypi package version
 
-Introduction
-============
 
-**premise** allows to align the life cycle inventories contained in the life cycle inventory database **ecoinvent 3 cutoff**
-with the output results of Integrated Assessment Models (IAM), such as **REMIND** or **IMAGE**,
+*premise* allows to align the life cycle inventories contained in the *ecoinvent_ 3 cutoff* database.
+with the output results of Integrated Assessment Models (IAM), such as *REMIND_* or *IMAGE_*,
 in order to produce life cycle inventories under future policy scenarios for any year between 2005 and 2100.
 
-More specifically, **premise** will apply a series of transformation functions to ecoinvent.
+.. _ecoinvent: https://ecoinvent.org/
+.. _REMIND: https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind
+.. _IMAGE: https://models.pbl.nl/image/index.php/Welcome_to_IMAGE_3.2_Documentation
 
-In the latest version (0.1.7), the following transformation functions are available:
+More specifically, *premise* will:
 
-* **update_electricity()**: alignment of regional electricity production mixes as well as efficiencies for a number of
-  electricity production technologies, including Carbon Capture and Storage technologies.
-* **update_vehicles()**: fuel markets that supply transport vehicles are adjusted according to the IAM projections,
-  including penetration of bio- and synthetic fuels.
-* **update_cement()**: adjustment of technologies for cement production (dry, semi-dry, wet, with pre-heater or not),
-  fuel efficiency of kilns, fuel mix of kilns (including biomass and waste fuels) and clinker-to-cement ratio.
-* **update_steel()**: adjustment of process efficiency, fuel mix and share of secondary steel in steel markets.
-* **update_solar_PV()**: adjustment of solar PV modules with projected developments reported in `Bauer et al. <https://www.psi.ch/sites/default/files/import/ta/PublicationTab/Final-Report-BFE-Project.pdf>`_
+* extract the ecoinvent database.
+* add to this database a number of additional inventories relating to future pathways for producing certain commodities (electricity, steel, cement, etc.)
+* modify the ecoinvent database in terms of process efficiency and markets, mostly.
+* load the database back into a brightway project, or as a set of CSV files.
 
-However, whether or not these transformation functions can be applied will depend on the existence of the necessary variables in
-the IAM file you use as input.
+The following IAM scenarios come together with the library:
 
++-------------------+-------------------------------------------------------------------------------------------+------------------+-------------+
+| SSP/RCP scenario  | Description                                                                               | REMIND           | IMAGE       |
++===================+===========================================================================================+==================+=============+
+| SSP2-RCP6.5       | Counter-factual scenario with no stringent climate policy implemented.                    | SSP2-Base        | SSP2-Base   |
+| SSP2-RCP2.6       | Limit the global temperature increase to <2C by 2100, compared to pre-industrial levels.  | SSP2-PkBudg1300  | SSP2-RCP26  |
+| SSP2-RCP1.9       | Limit the global temperature increase to 1.5C by 2100, compared to pre-industrial levels. | SSP2-PkBudg900   | SSP2-RCP19  |
++-------------------+-------------------------------------------------------------------------------------------+------------------+-------------+
 
-.. csv-table:: Availability of transformation functions
-    :file: table_1.csv
-    :widths: 10 10 30 10 10 10 10
-    :header-rows: 1
-
-
-The following REMIND IAM files come with the library:
 
 * SSP2
     1.  **Base:** counter-factual scenario with no climate policy implemented

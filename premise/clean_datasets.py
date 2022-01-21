@@ -147,7 +147,6 @@ class DatabaseCleaner:
 
         :param lookup_dict: a dictionary with filtering conditions
         :return: a list of location names
-        :rtype: list
         """
         return [
             x["product"]
@@ -164,7 +163,6 @@ class DatabaseCleaner:
 
         :param lookup_dict: a dictionary with filtering conditions
         :return: a list of location names
-        :rtype: list
         """
         return [
             x["location"]
