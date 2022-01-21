@@ -22,26 +22,33 @@ In a nutshell
     :alt: Pypi package version
 
 
+Purpose
+-------
+
 *premise* allows to align the life cycle inventories contained in the ecoinvent_ 3 cutoff database.
 with the output results of Integrated Assessment Models (IAM), such as REMIND_ or IMAGE_,
-in order to produce life cycle inventories under future policy scenarios for any year between 2005 and 2100.
+in order to produce life cycle inventory databases under future policy scenarios for any year between 2005 and 2100.
 
 .. _ecoinvent: https://ecoinvent.org/
 .. _REMIND: https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind
 .. _IMAGE: https://models.pbl.nl/image/index.php/Welcome_to_IMAGE_3.2_Documentation
 
 
+Workflow
+--------
+
 .. image:: main_workflow.png
 
 
 As shown in the workflow diagram above, *premise* will:
 
-* extract the ecoinvent database.
+* extract the ecoinvent database (from a brightway_ project, or from ecospold2_ files).
 * add to this database a number of additional inventories relating to future pathways for producing certain commodities (electricity, steel, cement, etc.)
 * modify the ecoinvent database in terms of process efficiency and markets, mostly.
-* load the database back into a brightway project, or as a set of CSV files.
+* load the database back into a brightway project, or as a set of CSV files (e.g., Simapro CSV file).
 
-
+.. _brightway: https://brightway.dev/
+.. _ecospold2: https://ecoinvent.org/the-ecoinvent-database/data-formats/ecospold2/
 
 Provided a decryption key (ask the maintainers_), the following IAM scenarios are available when installing *premise*:
 
@@ -100,11 +107,10 @@ Examples notebook
 you everything you need to know to use *premise*.
 
 
-
 Main contributors
 -----------------
 
 * `Romain Sacchi <https://github.com/romainsacchi>`_
-* `Alois Dirnaichner <https://github.com/Loisel>`_,
-* `Chris Mutel <https://github.com/cmutel>`_,
-* `Brian Cox <https://github.com/brianlcox>`_,
+* `Alois Dirnaichner <https://github.com/Loisel>`_
+* `Chris Mutel <https://github.com/cmutel>`_
+* `Brian Cox <https://github.com/brianlcox>`_
