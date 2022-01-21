@@ -156,7 +156,7 @@ class BaseTransformation:
         self.iam_data: IAMDataCollection = iam_data
         self.model: str = model
         self.regions: List[str] = iam_data.regions
-        self.geo: Geomap = Geomap(model=model, current_regions=self.regions)
+        self.geo: Geomap = Geomap(model=model)
         self.scenario: str = pathway
         self.year: int = year
         self.fuels_specs: dict = get_fuel_properties()
@@ -462,7 +462,7 @@ class BaseTransformation:
 
         counts = Counter(loc_map.values())
 
-        for loc, count in counts.items():
+        for loc, _ in counts.items():
             ds = ws.get_one(
                 self.database,
                 ws.equals("name", name),

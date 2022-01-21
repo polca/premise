@@ -598,7 +598,7 @@ def relink_technosphere_exchanges(
     new_exchanges = []
     technosphere = lambda x: x["type"] == "technosphere"
 
-    geomatcher = geomap.Geomap(model=model, current_regions=iam_regions)
+    geomatcher = geomap.Geomap(model=model)
 
     list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()]
 
