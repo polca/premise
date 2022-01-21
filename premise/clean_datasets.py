@@ -1,3 +1,9 @@
+"""
+clean_datasets.py contains a number of functions that clean a list of
+datasets or databases. They perform operations like removing useless fields,
+filling missing exchange information, etc.
+"""
+
 import csv
 import pprint
 from pathlib import Path
@@ -12,6 +18,78 @@ from . import DATA_DIR
 
 FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+
+def get_fix_names_dict() -> Dict[str, str]:
+    """
+    Loads a csv file into a dictionary. This dictionary contains a few location names
+    that need correction in the wurst inventory database.
+
+    :return: dictionary that contains names equivalence
+    :rtype: dict
+    """
+    with open(FILEPATH_FIX_NAMES) as f:
+        return dict(filter(None, csv.reader(f, delimiter=";")))
+
+
+def get_biosphere_flow_uuid() -> Dict[Tuple[str, str, str, str], str]:
+    """
+    Retrieve a dictionary with biosphere flow (name, categories, unit) --> uuid.
+
+    :returns: dictionary with biosphere flow (name, categories, unit) --> uuid
+    :rtype: dict
+    """
+
+    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
+
+    csv_dict = {}
+
+    with open(FILEPATH_BIOSPHERE_FLOWS) as f:
+        input_dict = csv.reader(f, delimiter=";")
+        for row in input_dict:
+            csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
+
+    return csv_dict
+
+
+def get_biosphere_flow_categories() -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
+    """
+    Retrieve a dictionary with biosphere flow uuids and categories.
+
+    :returns: dictionary with biosphere flow uuids as keys and categories as values
+    :rtype: dict
+    """
+
+    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
+
+    csv_dict = {}
+
+    with open(FILEPATH_BIOSPHERE_FLOWS) as f:
+        input_dict = csv.reader(f, delimiter=";")
+        for row in input_dict:
+            csv_dict[row[-1]] = (
+                (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
+            )
+
+    return csv_dict
+
+
+def remove_nones(db: List[dict]) -> List[dict]:
+    """
+    Remove empty exchanges in the datasets of the wurst inventory database.
+    Modifies in place (does not return anything).
+
+    :param db: wurst inventory database
+    :type db: list
+
+    """
+    exists = lambda x: {k: v for k, v in x.items() if v is not None}
+    for ds in db:
+        ds["exchanges"] = [exists(exc) for exc in ds["exchanges"]]
+
+    return db
 
 
 class DatabaseCleaner:
@@ -52,59 +130,6 @@ class DatabaseCleaner:
             # Parameter field is converted from a list to a dictionary
             self.transform_parameter_field()
 
-    def add_negative_CO2_flows_for_biomass_ccs(self) -> None:
-        """
-        Rescale the amount of all exchanges of carbon dioxide, non-fossil by a factor -9 (.9/-.1),
-        to account for sequestered CO2.
-
-        All CO2 capture and storage in the Carma datasets is assumed to be 90% efficient.
-        Thus, we can simply find out what the new CO2 emission is and then we know how much gets stored in the ground.
-        It's very important that we ONLY do this for biomass CCS plants, as only they will have negative emissions!
-
-        Modifies in place (does not return anything).
-
-        """
-        for ds in ws.get_many(
-            self.db, ws.contains("name", "storage"), ws.equals("database", "Carma CCS")
-        ):
-            for exc in ws.biosphere(
-                ds, ws.equals("name", "Carbon dioxide, non-fossil")
-            ):
-                wurst.rescale_exchange(exc, (0.9 / -0.1), remove_uncertainty=True)
-
-    def change_biogenic_co2_name(self) -> None:
-        """
-        CO2 capture through biomass growth is represented with `Carbon dioxide, in air`.
-        However, such flow does not have a CF in the IPCC method. This becomes an issue when biommas
-        is used together with CCS.
-        Hence, we change th flow name to `Carbon dioxide, to soil or biomass stock`, for which the IPPCC
-        has a CF of -1.
-        :return:
-        """
-
-        for ds in self.db:
-            for exc in ws.biosphere(ds, ws.equals("name", "Carbon dioxide, in air")):
-                exc["name"] = "Carbon dioxide, to soil or biomass stock"
-                exc["categories"] = ("soil",)
-
-            for exc in ws.biosphere(
-                ds, ws.equals("name", "Carbon dioxide, non-fossil")
-            ):
-                exc["name"] = "Carbon dioxide, from soil or biomass stock"
-                exc["categories"] = ("air",)
-
-    @staticmethod
-    def get_fix_names_dict() -> Dict[str, str]:
-        """
-        Loads a csv file into a dictionary. This dictionary contains a few location names
-        that need correction in the wurst inventory database.
-
-        :return: dictionary that contains names equivalence
-        :rtype: dict
-        """
-        with open(FILEPATH_FIX_NAMES) as f:
-            return dict(filter(None, csv.reader(f, delimiter=";")))
-
     def get_rev_fix_names_dict(self) -> Dict[str, str]:
         """
         Reverse the fix_names dictionary.
@@ -112,73 +137,7 @@ class DatabaseCleaner:
         :return: dictionary that contains names equivalence
         :rtype: dict
         """
-        return {v: k for k, v in self.get_fix_names_dict().items()}
-
-    @staticmethod
-    def get_biosphere_flow_uuid() -> Dict[Tuple[str, str, str, str], str]:
-        """
-        Retrieve a dictionary with biosphere flow (name, categories, unit) --> uuid.
-
-        :returns: dictionary with biosphere flow (name, categories, unit) --> uuid
-        :rtype: dict
-        """
-
-        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flows could not be found."
-            )
-
-        csv_dict = {}
-
-        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
-            input_dict = csv.reader(f, delimiter=";")
-            for row in input_dict:
-                csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
-
-        return csv_dict
-
-    @staticmethod
-    def get_biosphere_flow_categories() -> Dict[
-        str, Union[Tuple[str], Tuple[str, str]]
-    ]:
-        """
-        Retrieve a dictionary with biosphere flow uuids and categories.
-
-        :returns: dictionary with biosphere flow uuids as keys and categories as values
-        :rtype: dict
-        """
-
-        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flows could not be found."
-            )
-
-        csv_dict = {}
-
-        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
-            input_dict = csv.reader(f, delimiter=";")
-            for row in input_dict:
-                csv_dict[row[-1]] = (
-                    (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
-                )
-
-        return csv_dict
-
-    @staticmethod
-    def remove_nones(db: List[dict]) -> List[dict]:
-        """
-        Remove empty exchanges in the datasets of the wurst inventory database.
-        Modifies in place (does not return anything).
-
-        :param db: wurst inventory database
-        :type db: list
-
-        """
-        exists = lambda x: {k: v for k, v in x.items() if v is not None}
-        for ds in db:
-            ds["exchanges"] = [exists(exc) for exc in ds["exchanges"]]
-
-        return db
+        return {v: k for k, v in get_fix_names_dict().items()}
 
     def find_product_given_lookup_dict(self, lookup_dict: Dict[str, str]) -> List[str]:
         """
@@ -314,8 +273,8 @@ class DatabaseCleaner:
         """Add a `categories` for biosphere flows if missing.
         This happens when importing directly from ecospold files"""
 
-        dict_bio_cat = self.get_biosphere_flow_categories()
-        dict_bio_uuid = self.get_biosphere_flow_uuid()
+        dict_bio_cat = get_biosphere_flow_categories()
+        dict_bio_uuid = get_biosphere_flow_uuid()
 
         for ds in self.db:
             for exc in ds["exchanges"]:
@@ -374,6 +333,6 @@ class DatabaseCleaner:
 
         # Remove empty exchanges
         print("Remove empty exchanges.")
-        self.remove_nones(self.db)
+        remove_nones(self.db)
 
         return self.db

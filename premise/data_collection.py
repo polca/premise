@@ -1,8 +1,9 @@
 """
-data_collection.py contains the IAMDataCollection class which collects a number of data, mostly from the IAM file.
-This class will have as attributed market shares, efficiency and emission values for different sectors.
-Additional external sources of data have to be used as well, notably for cement production (GNR data), and for
-non-CO2 emissions (GAINS data).
+data_collection.py contains the IAMDataCollection class which collects a number of data,
+mostly from the IAM file. This class will have as attributed market shares, efficiency
+and emission values for different sectors. Additional external sources of data have to
+be used as well, notably for cement production (GNR data), and for non-CO2 emissions
+(GAINS data).
 """
 
 
@@ -34,10 +35,9 @@ IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 def get_lifetime(list_tech: List) -> np.array:
     """
     Fetch lifetime values for different technologies from a .csv file.
+    This is only used for consequential databases.
     :param list_tech: technology labels to find lifetime values for.
-    :type list_tech: list
     :return: a numpy array with technology lifetime values
-    :rtype: np.array
     """
     dict_ = {}
     with open(IAM_LIFETIMES, encoding="utf-8") as file:
@@ -60,9 +60,9 @@ def get_gnr_data() -> xr.DataArray:
     * region
     * year
     * variables
+    This data is further used in cement.py.
 
-    :return: an multi-dimensional array with GNR data about cement production
-    :rtype: xarray.core.dataarray.DataArray
+    :return: a multi-dimensional array with GNR data about cement production
 
     """
     dataframe = pd.read_csv(GNR_DATA)
@@ -88,8 +88,7 @@ def get_gains_data() -> xr.DataArray:
     * sector
     * year
 
-    :return: an multi-dimensional array with GAINS emissions data
-    :rtype: xarray.core.dataarray.DataArray
+    :return: a multi-dimensional array with GAINS emissions data
 
     """
     filename = "GAINS emission factors.csv"
@@ -139,11 +138,8 @@ class IAMDataCollection:
     Class that extracts data from IAM output files.
 
     :ivar pathway: name of a IAM pathway
-    :vartype pathway: str
     :ivar system_model: Can be `attributional` or `consequential`.
-    :vartype pathway: str
     :ivar system_model: Time horizon (in years) to consider if `system_model` == `consequential`.
-    :vartype pathway: int
 
     """
 
@@ -234,11 +230,10 @@ class IAMDataCollection:
     ) -> Dict[str, Union[str, List[str]]]:
         """
         Loads a csv file into a dictionary.
-        This dictionary contains common terminology to `premise`
+        This dictionary contains common terminology to ``premise``
         (fuel names, electricity production technologies, etc.) and its
-        equivalent variable name in the IAM.
+        equivalent variable name in the IAM file.
         :return: dictionary that contains fuel production names equivalence
-        :rtype: dict
         """
 
         dict_vars = {}
@@ -263,8 +258,10 @@ class IAMDataCollection:
         * variable
         * year
 
-        :return: an multi-dimensional array with IAM data
-        :rtype: xarray.core.dataarray.DataArray
+        :param key: encryption key, if provided by user
+        :param filepath: file path to IAM file
+
+        :return: a multi-dimensional array with IAM data
 
         """
 
@@ -524,14 +521,11 @@ class IAMDataCollection:
 
     def __get_iam_electricity_markets(self, data: xr.DataArray) -> xr.DataArray:
         """
-        This method retrieves the market share for each electricity-producing technology, for a specified year,
-        for each region provided by the IAM.
-        Electricity production from hydrogen can be removed from the mix (unless specified, it is removed).
+        This method retrieves the market share for each electricity-producing technology,
+        or a specified year, for each region provided by the IAM.
 
-        :param drop_hydrogen: removes hydrogen from the region-specific electricity mix if `True`.
-        :type drop_hydrogen: bool
-        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
+        :return: a multi-dimensional array with electricity technologies market share
+        for a given year, for all regions.
 
         """
 
@@ -567,14 +561,12 @@ class IAMDataCollection:
 
     def __get_iam_electricity_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
         """
-        This method retrieves efficiency values for electricity-producing technology, for a specified year,
-        for each region provided by the IAM.
-        Electricity production from hydrogen can be removed from the mix (unless specified, it is removed).
+        This method retrieves efficiency values for electricity-producing technology,
+        for a specified year, for each region provided by the IAM.
+        Electricity production from hydrogen can be removed from the mix
+        (unless specified, it is removed).
 
-        :param drop_hydrogen: removes hydrogen from the region-specific electricity mix if `True`.
-        :type drop_hydrogen: bool
-        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
+        :return: a multi-dimensional array with electricity technologies market share for a given year, for all regions.
 
         """
 
@@ -618,13 +610,13 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_iam_cement_efficiencies(self, data):
+    def __get_iam_cement_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
         """
         This method retrieves specific energy use values for cement-producing technology,
         for a specified year, for each region provided by the IAM.
 
-        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
+        :return: a multi-dimensional array with electricity technologies market share
+        for a given year, for all regions.
 
         """
 
@@ -680,13 +672,13 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_iam_steel_efficiencies(self, data):
+    def __get_iam_steel_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
         """
         This method retrieves specific energy use values for steel-producing technology,
         for a specified year, for each region provided by the IAM.
 
-        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
+        :return: a multi-dimensional array with electricity technologies market share
+        for a given year, for all regions.
 
         """
 
@@ -878,8 +870,8 @@ class IAMDataCollection:
         This method retrieves emission values for steel production, for a specified year,
         for each region provided by GAINS.
 
-        :return: an multi-dimensional array with emissions for different technologies for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
+        :return: a multi-dimensional array with emissions for different technologies for a given year, for all regions.
+        :rtype: xarray.DataArray
 
         """
         # If the year specified is not contained within the range of years given by the IAM
@@ -926,8 +918,8 @@ class IAMDataCollection:
         This method retrieves the market share for each fuel-producing technology,
         for a specified year, for each region provided by the IAM.
 
-        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
+        :return: a multi-dimensional array with electricity technologies market share for a given year, for all regions.
+        :rtype: xarray.DataArray
 
         """
 
@@ -944,8 +936,7 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # sometimes, the World region is either neglected
-        # or wrongly evaluated
-        # so we fix that here
+        # or wrongly evaluated so we fix that here
 
         data.loc[dict(region="World", variables=list_technologies)] = data.loc[
             dict(
@@ -1054,9 +1045,9 @@ class IAMDataCollection:
 
     def __get_carbon_capture_rate(self, dict_vars, data):
         """
-        Returns an xarray with carbon capture rates for steel and cement production.
-        :return: an xarray with carbon capture rates
-        :rtype: xarray
+        Returns a xarray with carbon capture rates for steel and cement production.
+        :return: a xarray with carbon capture rates
+        :rtype: xr.DataArray
         """
 
         # If the year specified is not contained within the range of years given by the IAM
@@ -1129,12 +1120,15 @@ class IAMDataCollection:
 
         return rate.interp(year=self.year)
 
-    def __get_iam_production_volumes(self, dict_products, data):
+    def __get_iam_production_volumes(self, dict_products, data) -> xr.DataArray:
         """
-        Returns an xarray with production volumes for different sectors: electricity, steel, cement, fuels.
+        Returns n xarray with production volumes for different sectors:
+        electricity, steel, cement, fuels.
+        This is used to build markets: we use the production volumes of each region for example,
+        to build the World market.
         :param dict_products: a dictionary that contains common labels as keys, and IAM labels as values.
         :param data: IAM data
-        :return: an xarray
+        :return: a xarray with production volumes for different commodities (electricity, cement, etc.)
         """
 
         list_products = list(dict_products.values())
