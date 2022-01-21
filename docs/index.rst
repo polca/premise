@@ -7,6 +7,9 @@ Index
    :caption: Contents
 
    introduction
+   extraction
+   transformation
+   loading
    
 
 Technical Reference

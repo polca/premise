@@ -1,6 +1,6 @@
 """
 activity_maps.py contains InventorySet, which is a class that provides all necessary
-mapping between ``premise`` vocabulary and ``ecoinvent`` vocabulary.
+mapping between ``premise`` and ``ecoinvent`` terminology.
 """
 
 import csv

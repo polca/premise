@@ -203,7 +203,7 @@ def check_model_name(name: str) -> str:
     return name.lower()
 
 
-def check_pathway_name(name: str, filepath: Path, model: str):
+def check_pathway_name(name: str, filepath: Path, model: str) -> None:
     """Check the pathway name"""
 
     if name not in SUPPORTED_PATHWAYS:
