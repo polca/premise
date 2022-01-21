@@ -6,6 +6,8 @@
 User guide
 ==========
 
+This user guide will help you navigate the inner workings of *premise*.
+
 .. toctree::
    :maxdepth: 4
    :caption: Contents
