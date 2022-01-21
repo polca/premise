@@ -1,11 +1,11 @@
 EXTRACT
 =======
 
-Supported version for ecoinvent
+Supported versions of ecoinvent
 """""""""""""""""""""""""""""""
 
-Supported sources for ecoinvent
-"""""""""""""""""""""""""""""""
+Supported sources of ecoinvent
+""""""""""""""""""""""""""""""
 
 From a brightway2 project
 -------------------------
@@ -40,8 +40,8 @@ Biofuels
 Synthetic fuels
 ---------------
 
-Vehicles
---------
+Road vehicles
+-------------
 
 Two-wheelers
 ************
