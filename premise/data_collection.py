@@ -210,12 +210,7 @@ class IAMDataCollection:
             dim="variables",
         )
         self.emissions = xr.concat(
-            [
-                electricity_emissions,
-                steel_emissions,
-                cement_emissions,
-            ],
-            dim="sector",
+            [electricity_emissions, steel_emissions, cement_emissions,], dim="sector",
         )
 
         if self.model == "image":
@@ -766,13 +761,13 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_gains_electricity_emissions(self, data):
+    def __get_gains_electricity_emissions(self, data: xr.DataArray) -> xr.DataArray:
         """
-        This method retrieves emission values for electricity-producing technology, for a specified year,
-        for each region provided by GAINS.
+        This method retrieves emission values for electricity-producing technology,
+        for a specified year, for each region provided by GAINS.
 
-        :return: an multi-dimensional array with emissions for different technologies for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
+        :return: an multi-dimensional array with emissions for different technologies
+        for a given year, for all regions.
 
         """
 
@@ -817,13 +812,14 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_gains_cement_emissions(self, data):
+    def __get_gains_cement_emissions(self, data: xr.DataArray) -> xr.DataArray:
         """
-        This method retrieves emission values for cement production, for a specified year,
-        for each region provided by GAINS.
+        This method retrieves emission values for cement production,
+        for a specified year, for each region provided by GAINS.
 
-        :return: an multi-dimensional array with emissions for different technologies for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
+        :return: an multi-dimensional array with emissions for different technologies
+        for a given year, for all regions.
+
 
         """
         # If the year specified is not contained within the range of years given by the IAM
@@ -865,13 +861,13 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_gains_steel_emissions(self, data):
+    def __get_gains_steel_emissions(self, data: xr.DataArray) -> xr.DataArray:
         """
         This method retrieves emission values for steel production, for a specified year,
         for each region provided by GAINS.
 
-        :return: a multi-dimensional array with emissions for different technologies for a given year, for all regions.
-        :rtype: xarray.DataArray
+        :return: a multi-dimensional array with emissions for different technologies
+        for a given year, for all regions.
 
         """
         # If the year specified is not contained within the range of years given by the IAM
@@ -913,13 +909,12 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_iam_fuel_markets(self, data):
+    def __get_iam_fuel_markets(self, data: xr.DataArray) -> xr.DataArray:
         """
         This method retrieves the market share for each fuel-producing technology,
         for a specified year, for each region provided by the IAM.
 
         :return: a multi-dimensional array with electricity technologies market share for a given year, for all regions.
-        :rtype: xarray.DataArray
 
         """
 
@@ -966,6 +961,15 @@ class IAMDataCollection:
         return data_to_return
 
     def __get_iam_land_use(self, data):
+        """
+        Only provided by IMAGE at the moment. Those are land footprint
+        associated with growing a given crop type, in hectares per GJ of that crop,
+        for each region and year. This land occupation is added to the LCI
+        for crop farming in fuels.py.
+        :param data:
+        :return: a multi-dimensional array with land use
+        for different crops types, for all years, for all regions.
+        """
 
         crops_vars = get_crops_properties()
         labels = list(crops_vars.keys())
@@ -976,7 +980,16 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_iam_land_use_change_emissions(self, data):
+    def __get_iam_land_use_change_emissions(self, data: xr.DataArray) -> xr.DataArray:
+        """
+        Only provided by IMAGE at the moment. Those are CO2-eq. emissions
+        associated with growing a given crop type, per GJ of that crop,
+        for each region and year. Such LUC emissions are added to the LCI
+        for crop farming in fuels.py.
+        :param data:
+        :return: a multi-dimensional array with land use change CO2 emissions
+        for different crops types, for all years, for all regions.
+        """
 
         crops_vars = get_crops_properties()
         labels = list(crops_vars.keys())
@@ -987,15 +1000,17 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_iam_fuel_efficiencies(self, data):
+    def __get_iam_fuel_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
         """
-        This method retrieves the change in fuel production efficiency between the year in question and 2020,
-        for each region provided by the IAM.
-        If the efficiency drops after 2020, we ignore it and keep the change in efficiency ratio to 1.
+        This method retrieves the change in fuel production efficiency
+        between the year in question and 2020, for each region provided by the IAM.
+        Because we assume that the fuel conversion efficiency in ecoinvent or imported
+        inventories are current (hence, representative of 2020).
+        If the efficiency drops after 2020, we ignore it and keep the change
+        in efficiency ratio to 1.
 
-        :return: an multi-dimensional array with electricity technologies market share for a given year, for all regions.
-        :rtype: xarray.core.dataarray.DataArray
-
+        :return: a multi-dimensional array with electricity technologies market
+        share for a given year, for all regions.
         """
 
         labels = self.__get_iam_variable_labels(IAM_FUELS_VARS, key="eff_aliases")
@@ -1043,11 +1058,12 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def __get_carbon_capture_rate(self, dict_vars, data):
+    def __get_carbon_capture_rate(
+        self, dict_vars: Dict[str, str], data: xr.DataArray
+    ) -> xr.DataArray:
         """
         Returns a xarray with carbon capture rates for steel and cement production.
-        :return: a xarray with carbon capture rates
-        :rtype: xr.DataArray
+        :return: a xarray with carbon capture rates, for each year and region
         """
 
         # If the year specified is not contained within the range of years given by the IAM
