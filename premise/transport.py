@@ -1,7 +1,22 @@
+"""
+transport.py contains the class Transport, which takes care of importing inventories
+for a number of different vehicle types, and create fleet average vehicles base don
+IAM data, and integrate them into the database.
+"""
+
+
+import re
+import uuid
+from typing import Dict, List
+
+import numpy as np
+import pandas as pd
+import yaml
+
 from .ecoinvent_modification import INVENTORY_DIR
 from .inventory_imports import VariousVehicles
-from .transformation import *
-from .utils import *
+from .transformation import (BaseTransformation, DATA_DIR, IAMDataCollection, relink_technosphere_exchanges, ws, wt)
+from .utils import eidb_label
 
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
@@ -17,19 +32,38 @@ FILEPATH_TRUCK_LOAD_FACTORS = DATA_DIR / "transport" / "avg_load_factors.yaml"
 FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
 
-def get_average_truck_load_factors():
-    with open(FILEPATH_TRUCK_LOAD_FACTORS, "r") as stream:
+def get_average_truck_load_factors() -> Dict[str, Dict[str, Dict[str, float]]]:
+    """
+    Load average load factors for trucks
+    to convert transport demand in vkm into tkm.
+    :return: dictionary with load factors per truck size class
+    """
+    with open(FILEPATH_TRUCK_LOAD_FACTORS, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
     return out
 
 
-def get_vehicles_mapping():
-    with open(FILEPATH_VEHICLES_MAP, "r") as stream:
+def get_vehicles_mapping() -> Dict[str, dict]:
+    """
+    Return a dictionary that contains mapping
+    between `carculator` terminology and `ecoinvent` terminology
+    regarding size classes, powertrain types, etc.
+    :return: dictionary to map terminology between carculator and ecoinvent
+    """
+    with open(FILEPATH_VEHICLES_MAP, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
     return out
 
 
-def normalize_exchange_amounts(list_act):
+def normalize_exchange_amounts(list_act: List[dict]) -> List[dict]:
+    """
+    In vehicle market datasets, we need to ensure that the total contribution
+    of single vehicle types equal 1.
+
+    :param list_act: list of transport market activities
+    :return: same list, with activity exchanges normalized to 1
+
+    """
 
     for act in list_act:
         total = 0
@@ -45,8 +79,26 @@ def normalize_exchange_amounts(list_act):
 
 
 def create_fleet_vehicles(
-    datasets, regions_mapping, vehicle_type, year, model, scenario, regions
-):
+    datasets: List[dict],
+    regions_mapping: Dict[str, str],
+    vehicle_type: str,
+    year: int,
+    model: str,
+    scenario: str,
+    regions: List[str],
+) -> List[dict]:
+    """
+    Create datasets for fleet average vehicles based on IAM fleet data.
+
+    :param datasets: vehicle datasets of all size, powertrain and construction years.
+    :param regions_mapping: mapping between two IAM location terminologies
+    :param vehicle_type: "car", "truck"
+    :param year: year for the fleet average vehicle
+    :param model: IAM model
+    :param scenario: IAM scenario
+    :param regions: IAM regions
+    :return: list of fleet average vehicle datasets
+    """
     print("Create fleet average vehicles...")
 
     if not FILEPATH_FLEET_COMP.is_file():
@@ -71,10 +123,10 @@ def create_fleet_vehicles(
 
     if model == "remind":
         constr_year_map = {
-            y: int(y.split("-")[-1]) for y in arr.coords["construction_year"].values
+            year: int(year.split("-")[-1]) for year in arr.coords["construction_year"].values
         }
     else:
-        constr_year_map = {y: y for y in arr.coords["construction_year"].values}
+        constr_year_map = {year: year for year in arr.coords["construction_year"].values}
 
     # fleet data does not go below 2015
     if year < 2015:
@@ -98,55 +150,55 @@ def create_fleet_vehicles(
 
     available_ds, d_names = [], {}
 
-    for ds in datasets:
-        if ds["name"].startswith("transport, "):
+    for dataset in datasets:
+        if dataset["name"].startswith("transport, "):
             if vehicle_type == "bus":
-                if len(ds["name"].split(", ")) == 6:
-                    if "battery electric" in ds["name"].split(", ")[2]:
-                        _, _, pwt, _, size, y = ds["name"].split(", ")
+                if len(dataset["name"].split(", ")) == 6:
+                    if "battery electric" in dataset["name"].split(", ")[2]:
+                        _, _, pwt, _, size, year = dataset["name"].split(", ")
 
                     else:
-                        _, _, pwt, size, y, _ = ds["name"].split(", ")
+                        _, _, pwt, size, year, _ = dataset["name"].split(", ")
                 else:
-                    _, _, pwt, size, y = ds["name"].split(", ")
+                    _, _, pwt, size, year = dataset["name"].split(", ")
 
             elif vehicle_type == "truck":
-                if len(ds["name"].split(", ")) == 8:
-                    if "battery electric" in ds["name"].split(", ")[3]:
-                        _, _, _, pwt, _, size, y, type = ds["name"].split(", ")
+                if len(dataset["name"].split(", ")) == 8:
+                    if "battery electric" in dataset["name"].split(", ")[3]:
+                        _, _, _, pwt, _, size, year, cycle_type = dataset["name"].split(", ")
 
                     else:
-                        _, _, _, pwt, size, y, _, type = ds["name"].split(", ")
+                        _, _, _, pwt, size, year, _, cycle_type = dataset["name"].split(", ")
                 else:
-                    _, _, _, pwt, size, y, type = ds["name"].split(", ")
+                    _, _, _, pwt, size, year, cycle_type = dataset["name"].split(", ")
 
                 size = size.replace(" gross weight", "")
 
             else:
 
-                if len(ds["name"].split(", ")) == 6:
-                    if ds["name"].split(", ")[2] == "battery electric":
-                        _, _, pwt, _, size, y = ds["name"].split(", ")
+                if len(dataset["name"].split(", ")) == 6:
+                    if dataset["name"].split(", ")[2] == "battery electric":
+                        _, _, pwt, _, size, year = dataset["name"].split(", ")
                     else:
-                        _, _, pwt, size, y, _ = ds["name"].split(", ")
+                        _, _, pwt, size, year, _ = dataset["name"].split(", ")
                 else:
-                    _, _, pwt, size, y = ds["name"].split(", ")
+                    _, _, pwt, size, year = dataset["name"].split(", ")
 
             if vehicle_type == "truck":
-                d_names[(vehicles_map["powertrain"][pwt], size, int(y), type)] = (
-                    ds["name"],
-                    ds["reference product"],
-                    ds["unit"],
+                d_names[(vehicles_map["powertrain"][pwt], size, int(year), cycle_type)] = (
+                    dataset["name"],
+                    dataset["reference product"],
+                    dataset["unit"],
                 )
-                available_ds.append((vehicles_map["powertrain"][pwt], size, int(y)))
+                available_ds.append((vehicles_map["powertrain"][pwt], size, int(year)))
 
             else:
-                d_names[(vehicles_map["powertrain"][pwt], size, int(y))] = (
-                    ds["name"],
-                    ds["reference product"],
-                    ds["unit"],
+                d_names[(vehicles_map["powertrain"][pwt], size, int(year))] = (
+                    dataset["name"],
+                    dataset["reference product"],
+                    dataset["unit"],
                 )
-                available_ds.append((vehicles_map["powertrain"][pwt], size, int(y)))
+                available_ds.append((vehicles_map["powertrain"][pwt], size, int(year)))
 
     list_act = []
 
@@ -221,29 +273,29 @@ def create_fleet_vehicles(
                     "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
                 }
 
-                for s in sizes:
-                    for y in sel.coords["construction_year"].values:
-                        for pt in sel.coords["powertrain"].values:
+                for size in sizes:
+                    for year in sel.coords["construction_year"].values:
+                        for pwt in sel.coords["powertrain"].values:
                             indiv_km = sel.sel(
-                                size=s, construction_year=y, powertrain=pt
+                                size=size, construction_year=year, powertrain=pwt
                             )
                             if (
                                 indiv_km > 0
-                                and (pt, s, constr_year_map[y]) in available_ds
+                                and (pwt, size, constr_year_map[year]) in available_ds
                             ):
                                 indiv_share = (indiv_km / total_km).values.item(0)
 
                                 if vehicle_type == "truck":
-                                    load = avg_load[vehicle_type][driving_cycle][s]
+                                    load = avg_load[vehicle_type][driving_cycle][size]
                                     to_look_for = (
-                                        pt,
-                                        s,
-                                        constr_year_map[y],
+                                        pwt,
+                                        size,
+                                        constr_year_map[year],
                                         driving_cycle,
                                     )
                                 else:
                                     load = 1
-                                    to_look_for = (pt, s, constr_year_map[y])
+                                    to_look_for = (pwt, size, constr_year_map[year])
 
                                 if to_look_for in d_names:
 
@@ -264,13 +316,13 @@ def create_fleet_vehicles(
 
                 # also create size-specific fleet vehicles
                 if vehicle_type == "truck":
-                    for s in sizes:
-                        total_size_km = sel.sel(size=s).sum()
+                    for size in sizes:
+                        total_size_km = sel.sel(size=size).sum()
 
                         if total_size_km > 0:
 
                             name = (
-                                f"{vehicles_map[vehicle_type]['name']}, {s} gross weight, "
+                                f"{vehicles_map[vehicle_type]['name']}, {size} gross weight, "
                                 f"unspecified powertrain, {driving_cycle}"
                             )
                             act = {
@@ -293,23 +345,23 @@ def create_fleet_vehicles(
                                 "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
                             }
 
-                            for y in sel.coords["construction_year"].values:
-                                for pt in sel.coords["powertrain"].values:
+                            for year in sel.coords["construction_year"].values:
+                                for pwt in sel.coords["powertrain"].values:
                                     indiv_km = sel.sel(
-                                        size=s, construction_year=y, powertrain=pt
+                                        size=size, construction_year=year, powertrain=pwt
                                     )
                                     if (
                                         indiv_km > 0
-                                        and (pt, s, constr_year_map[y]) in available_ds
+                                        and (pwt, size, constr_year_map[year]) in available_ds
                                     ):
                                         indiv_share = (
                                             indiv_km / total_size_km
                                         ).values.item(0)
-                                        load = avg_load[vehicle_type][driving_cycle][s]
+                                        load = avg_load[vehicle_type][driving_cycle][size]
                                         to_look_for = (
-                                            pt,
-                                            s,
-                                            constr_year_map[y],
+                                            pwt,
+                                            size,
+                                            constr_year_map[year],
                                             driving_cycle,
                                         )
                                         if to_look_for in d_names:
@@ -338,27 +390,29 @@ class Transport(BaseTransformation):
     Class that modifies transport markets in ecoinvent based on IAM output data.
 
     :ivar database: database dictionary from :attr:`.NewDatabase.database`
-    :vartype database: dict
-    :ivar model: can be 'remind' or 'image'. str from :attr:`.NewDatabase.model`
-    :vartype model: str
     :ivar iam_data: xarray that contains IAM data, from :attr:`.NewDatabase.rdc`
-    :vartype iam_data: xarray.DataArray
+    :ivar model: can be 'remind' or 'image'. str from :attr:`.NewDatabase.model`
+    :ivar pathway: file path to vehicle inventories
     :ivar year: year, from :attr:`.NewDatabase.year`
-    :vartype year: int
+    :ivar version: ecoinvent database version
+    :ivar relink: whether to relink supplier of datasets to better-fitted suppliers
+    :ivar vehicle_type: "two-wheeler", "car", "bus" or "truck"
+    :ivar has_fleet: whether `vehicle_type` has associated fleet data or not
+
 
     """
 
     def __init__(
         self,
-        database,
-        iam_data,
-        model,
-        pathway,
-        year,
-        version,
-        relink,
-        vehicle_type,
-        has_fleet,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
+        relink: bool,
+        vehicle_type: str,
+        has_fleet: bool,
     ):
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
@@ -369,19 +423,19 @@ class Transport(BaseTransformation):
     def generate_vehicles_datasets(self):
 
         if self.vehicle_type == "car":
-            fp = FILEPATH_PASS_CARS
+            filepath = FILEPATH_PASS_CARS
         elif self.vehicle_type == "truck":
-            fp = FILEPATH_TRUCKS
+            filepath = FILEPATH_TRUCKS
         elif self.vehicle_type == "bus":
-            fp = FILEPATH_BUSES
+            filepath = FILEPATH_BUSES
         else:
-            fp = FILEPATH_TWO_WHEELERS
+            filepath = FILEPATH_TWO_WHEELERS
 
         various_veh = VariousVehicles(
             database=self.database,
             version_in="3.7",
             version_out=self.version,
-            path=fp,
+            path=filepath,
             year=self.year,
             regions=self.regions,
             model=self.model,
@@ -421,20 +475,20 @@ class Transport(BaseTransformation):
             # the fleet data is originally defined for REMIND regions
             if self.model != "remind":
                 region_map = {
-                    self.geo.iam_to_iam_region(loc): loc for loc in self.regions
+                    self.geo.iam_to_iam_region(loc, to_iam="remind"): loc for loc in self.regions
                 }
             else:
                 region_map = {loc: loc for loc in self.regions}
 
             datasets.import_db.data = [
-                x
-                for x in datasets.import_db.data
-                if not any(y in x["name"].lower() for y in list_vehicles)
+                dataset
+                for dataset in datasets.import_db.data
+                if not any(vehicle in dataset["name"].lower() for vehicle in list_vehicles)
                 or (
                     not any(
-                        z for z in re.findall(r"\d+", x["name"]) if int(z) > self.year
+                        z for z in re.findall(r"\d+", dataset["name"]) if int(z) > self.year
                     )
-                    and "label-certified electricity" not in x["name"]
+                    and "label-certified electricity" not in dataset["name"]
                 )
             ]
 
@@ -453,21 +507,21 @@ class Transport(BaseTransformation):
         else:
 
             datasets.import_db.data = [
-                x
-                for x in datasets.import_db.data
-                if not any(y in x["name"] for y in list_vehicles)
+                dataset
+                for dataset in datasets.import_db.data
+                if not any(vehicle in dataset["name"] for vehicle in list_vehicles)
                 or (
-                    str(closest_year) in x["name"]
-                    and "label-certified electricity" not in x["name"]
+                    str(closest_year) in dataset["name"]
+                    and "label-certified electricity" not in dataset["name"]
                 )
             ]
 
             # remove the year in the name
             str_to_replace = ", " + str(closest_year)
-            for ds in datasets.import_db.data:
-                if str_to_replace in ds["name"]:
-                    ds["name"] = ds["name"].replace(str_to_replace, "")
-                    for exc in ds["exchanges"]:
+            for dataset in datasets.import_db.data:
+                if str_to_replace in dataset["name"]:
+                    dataset["name"] = dataset["name"].replace(str_to_replace, "")
+                    for exc in dataset["exchanges"]:
                         if str_to_replace in exc["name"]:
                             exc["name"] = exc["name"].replace(str_to_replace, "")
 
@@ -500,10 +554,10 @@ class Transport(BaseTransformation):
         datasets.import_db.data.extend(list_new_ds)
 
         # remove empty fields
-        for x in datasets.import_db.data:
-            for k, v in list(x.items()):
+        for dataset in datasets.import_db.data:
+            for k, v in list(dataset.items()):
                 if not v:
-                    del x[k]
+                    del dataset[k]
 
         # if trucks, need to reconnect everything
         # loop through datasets that use lorry transport

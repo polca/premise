@@ -1,13 +1,12 @@
 """
-transformation.py contains the base class TransformationBase, used by other modules.
-It provides basic methods usually used for electricity, cement, steel sectors transformation
+transformation.py contains the base class TransformationBase,
+used by other classes (e.g. Transport, Electricity, Steel, Cement, etc.).
+It provides basic methods usually used for electricity, cement, steel sector transformation
 on the wurst database.
 """
 
-import csv
 import uuid
 from collections import Counter
-from datetime import date
 from itertools import product
 from typing import Any, Dict, List, Set, Tuple
 
@@ -16,7 +15,6 @@ import wurst
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from . import DATA_DIR
 from .activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
 from .data_collection import IAMDataCollection
 from .geomap import Geomap
@@ -32,22 +30,17 @@ def get_suppliers_of_a_region(
     exclude: List[str] = None,
 ) -> filter:
     """
-    Return a list of datasets, for which the location, name, reference production and unit correspond
-    to the region and name given, respectively.
+    Return a list of datasets, for which the location, name,
+    reference product and unit correspondto the region and name
+    given, respectively.
 
     :param database: database to search
-    :type database: list of dictionaries
     :param locations: list of locations
-    :type locations: list
     :param names: names of datasets
-    :type names: list
     :param unit: unit of dataset
-    :type unit: str
     :param reference_product: reference product of dataset
-    :type reference_product: str
     :return: list of wurst datasets
-    :rtype: list
-    :param exlude: list of terms to exclude
+    :param exclude: list of terms to exclude
     """
 
     filters = [
@@ -70,11 +63,9 @@ def get_shares_from_production_volume(
     ds_list: List[dict],
 ) -> Dict[Tuple[Any, Any, Any, Any], float]:
     """
-    Return shares of supply of each datasets in `ds_list` based on respective production volumes
+    Return shares of supply of each dataset in `ds_list` based on respective production volumes
     :param ds_list: list of datasets
-    :type ds_list: list
     :return: dictionary with (dataset name, dataset location, ref prod, unit) as keys, shares as values. Shares total 1.
-    :rtype: dict
     """
 
     if not isinstance(ds_list, list):
@@ -108,9 +99,8 @@ def get_tuples_from_database(database: List[dict]) -> List[Tuple[str, str, str]]
     """
     Return a list of tuples (name, reference product, location)
     for each dataset in database.
-    :param database:
+    :param database: wurst database
     :return: a list of tuples
-    :rtype: list
     """
     return [
         (dataset["name"], dataset["reference product"], dataset["location"])
@@ -123,10 +113,10 @@ def remove_exchanges(datasets_dict: Dict[str, dict], list_exc: List) -> Dict[str
     """
     Returns the same `datasets_dict`, where the list of exchanges in these datasets
     has been filtered out: unwanted exchanges has been removed.
-    :param datasets_dict: a dictionary with IAM region as key, dataset as value
+
+    :param datasets_dict: a dictionary with IAM regions as keys, datasets as value
     :param list_exc: list of names (e.g., ["coal", "lignite"]) which are checked against exchanges' names in the dataset
     :return: returns `datasets_dict` without the exchanges whose names check with `list_exc`
-    :rtype: dict
     """
     keep = lambda x: {
         key: value
@@ -145,6 +135,12 @@ def remove_exchanges(datasets_dict: Dict[str, dict], list_exc: List) -> Dict[str
 class BaseTransformation:
     """
     Base transformation class.
+
+    :ivar database: wurst database
+    :ivar iam_data: IAMDataCollection object_
+    :ivar model: IAM model
+    :ivar pathway: IAM scenario
+    :ivar year: database year
     """
 
     def __init__(
@@ -155,6 +151,7 @@ class BaseTransformation:
         pathway: str,
         year: int,
     ) -> None:
+
         self.database: List[dict] = database
         self.iam_data: IAMDataCollection = iam_data
         self.model: str = model
@@ -180,7 +177,7 @@ class BaseTransformation:
         """
         Rerun a list of unique locations in ecoinvent
 
-        :return: list of location
+        :return: list of locations
         :rtype: list
         """
 
@@ -188,11 +185,13 @@ class BaseTransformation:
 
     def update_ecoinvent_efficiency_parameter(
         self, dataset: dict, old_ei_eff: float, new_eff: float
-    ):
+    ) -> None:
         """
         Update the old efficiency value in the ecoinvent dataset by the newly calculated one.
         :param dataset: dataset
-        :type dataset: dict
+        :param old_ei_eff: conversion efficiency of the original ecoinvent dataset
+        :param new_eff: new conversion efficiency
+        :return: nothing. Modifies the `comment` and `parameters` fields of the dataset.
         """
         parameters = dataset["parameters"]
         possibles = ["efficiency", "efficiency_oil_country", "efficiency_electrical"]
@@ -346,7 +345,7 @@ class BaseTransformation:
 
     def fetch_proxies(
         self, name, ref_prod, production_variable=None, relink=True, regions=None
-    ):
+    ) -> Dict[str, dict]:
         """
         Fetch dataset proxies, given a dataset `name` and `reference product`.
         Store a copy for each IAM region.
@@ -355,15 +354,12 @@ class BaseTransformation:
         Delete original datasets from the database.
 
         :param name: name of the datasets to find
-        :type name: str
         :param ref_prod: reference product of the datasets to find
-        :type ref_prod: str
         :param production_variable: name of variable in IAM data that refers to production volume
-        :type production_variable: list or str
         :param relink: if `relink`, exchanges from the datasets will be relinked to
         the most geographically-appropriate providers from the database. This is computer-intensive.
-        :type relink: bool
-        :return:
+        :param regions: regions to create proxy datasets for. if None, all regions are considered.
+        :return: dictionary with IAM regions as keys, proxy datasets as values.
         """
 
         d_iam_to_eco = self.region_to_proxy_dataset_mapping(
@@ -453,7 +449,16 @@ class BaseTransformation:
 
         return d_act
 
-    def empty_original_datasets(self, name, ref_prod, loc_map, production_variable):
+    def empty_original_datasets(self, name: str, ref_prod: str, loc_map: dict, production_variable: str) -> None:
+        """
+        Empty original ecoinvent dataset and introduce an input to the regional IAM
+        dataset that geographically comprises it.
+        :param name: dataset name
+        :param ref_prod: dataset reference product
+        :param loc_map: ecoinvent location to IAM location mapping for this activity
+        :param production_variable: IAM production variable
+        :return: Does not return anything. Just empties the original dataset.
+        """
 
         counts = Counter(loc_map.values())
 
@@ -527,7 +532,7 @@ class BaseTransformation:
                     }
                 )
 
-    def relink_datasets(self, excludes_datasets=None, alt_names=None):
+    def relink_datasets(self, excludes_datasets: List[str] = None, alt_names: List[str] = None) -> None:
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
@@ -666,17 +671,14 @@ class BaseTransformation:
             ]
             act["exchanges"].extend(list_new_exc)
 
-    def get_carbon_capture_rate(self, loc, sector):
+    def get_carbon_capture_rate(self, loc: str, sector: str) -> float:
         """
-        Returns the carbon capture rate as indicated by the IAM
+        Returns the carbon capture rate (between 0 and 1) as indicated by the IAM
         It is calculated as CO2 captured / (CO2 captured + CO2 emitted)
 
         :param loc: location of the dataset
-        :return: rate of carbon capture
         :param sector: name of the sector to look capture rate for
-        :type sector: str or list
-
-        :rtype: float
+        :return: rate of carbon capture
         """
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
@@ -689,14 +691,14 @@ class BaseTransformation:
 
         return rate
 
-    def find_gains_emissions_change(self, pollutant, location, sector):
+    def find_gains_emissions_change(self, pollutant: str, location: str, sector: str) -> float:
         """
-        Return the relative change in emissions for a given pollutant, location and sector.
+        Return the relative change in emissions compared to 2020
+        for a given pollutant, location and sector.
         :param pollutant: name of pollutant
         :param sector: name of technology/sector
         :param location: location of emitting dataset
         :return: a scaling factor
-        :rtype: float
         """
 
         scaling_factor = self.iam_data.emissions.loc[
@@ -709,14 +711,13 @@ class BaseTransformation:
 
         return scaling_factor
 
-    def find_iam_efficiency_change(self, variable, location):
+    def find_iam_efficiency_change(self, variable: str, location: str) -> float:
         """
         Return the relative change in efficiency for `variable` in `location`
         relative to 2020.
         :param variable: IAM variable name
         :param location: IAM region
         :return: relative efficiency change (e.g., 1.05)
-        :rtype: float
         """
 
         scaling_factor = self.iam_data.efficiency.sel(
@@ -728,11 +729,14 @@ class BaseTransformation:
 
         return scaling_factor
 
-    def update_pollutant_emissions(self, dataset, sector):
+    def update_pollutant_emissions(self, dataset: dict, sector: str) -> dict:
         """
         Update pollutant emissions based on GAINS data.
         We apply a correction factor equal to the relative change in emissions compared
         to 2020
+
+        :param dataset: dataset to adjust non-CO2 emission for
+        :param sector: GAINS industrial sector to look up
         :return: Does not return anything. Modified in place.
         """
 
