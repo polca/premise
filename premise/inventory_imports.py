@@ -4,13 +4,13 @@ import pickle
 import sys
 import uuid
 from pathlib import Path
+from typing import Dict, List, Union
 
 import bw2io
 from bw2io import ExcelImporter, Migration
 from bw2io.importers.base_lci import LCIImporter
 from prettytable import PrettyTable
 from wurst import searching as ws
-from typing import List, Dict, Union
 
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
@@ -85,9 +85,7 @@ class BaseInventoryImport:
         version_out: str,
         path: Union[str, Path],
     ) -> None:
-        """Create a :class:`BaseInventoryImport` instance.
-
-        """
+        """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
         self.db_code = [x["code"] for x in self.database]
         self.db_names = [
@@ -300,7 +298,6 @@ class BaseInventoryImport:
         if candidate is not None:
             return candidate["reference product"]
 
-
         print(
             f"An inventory exchange in {self.import_db.db_name} cannot be linked to the "
             f"biosphere or the ecoinvent database: {exc}"
@@ -390,6 +387,7 @@ class DefaultInventory(BaseInventoryImport):
     Importing class. Inherits from :class:`BaseInventoryImport`.
 
     """
+
     def __init__(self, database, version_in, version_out, path):
         super().__init__(database, version_in, version_out, path)
 
@@ -426,8 +424,6 @@ class VariousVehicles(BaseInventoryImport):
     :ivar relink: whether suppliers within a dataset need to be relinked
     :ivar has_fleet: whether the `vehicle_type` has associated fleet information
     """
-
-
 
     def __init__(
         self,
