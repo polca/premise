@@ -95,7 +95,7 @@ class Cement(BaseTransformation):
             ccs.pop("input")
 
         # we first fix the biogenic CO2 permanent storage
-        # this corresponds to teh share of biogenic CO2
+        # this corresponds to the share of biogenic CO2
         # in the fossil + biogenic CO2 emissions of the cement plant
         for exc in ws.biosphere(
             ccs,
