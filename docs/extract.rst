@@ -409,9 +409,9 @@ The geothermal power plant construction inventories are from Maeder_ Bachelor Th
 The co-generation unit has been removed and replaced by heat exchanger and
 district heating pipes. Gross heat output of 1,483 TJ, with 80% efficiency.
 
-The inventories can be consulted here: LCI_geothermal_.
+The inventories can be consulted here: LCIgeothermal_.
 
-.. _LCI_geothermal: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-geothermal.xlsx
+.. _LCIgeothermal: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-geothermal.xlsx
 
 They introduce the following datasets (only heat production datasets shown):
 
