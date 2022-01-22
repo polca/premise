@@ -404,6 +404,7 @@ Geothermal
 
 Heat production by means of a geothermal well are not represented in ecoinvent.
 The geothermal power plant construction inventories are from Maeder_ Bachelor Thesis.
+
 .. _Maeder: https://www.psi.ch/sites/default/files/import/ta/PublicationTab/BSc_Mattia_Maeder_2016.pdf
 
 The co-generation unit has been removed and replaced by heat exchanger and
