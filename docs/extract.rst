@@ -110,39 +110,39 @@ They originate from Volkart et al. 2013_, and can be consulted here_.
 .. _2013: https://doi.org/10.1016/j.ijggc.2013.03.003
 .. _here: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-Carma-CCS.xlsx
 
-The table below lists the names of the new activities.
+The table below lists the names of the new activities (only production datasets are shown).
 
- =============================================================================================================
-  Power generation with CCS (activities list)
- =============================================================================================================
-  electricity production, at power plant/hard coal, IGCC, no CCS
-  electricity production, at power plant/hard coal, PC, no CCS
-  electricity production, at power plant/hard coal, oxy, pipeline 200km, storage 1000m
-  electricity production, at power plant/hard coal, oxy, pipeline 400km, storage 3000m
-  electricity production, at power plant/hard coal, post, pipeline 200km, storage 1000m
-  electricity production, at power plant/hard coal, post, pipeline 400km, storage 1000m
-  electricity production, at power plant/hard coal, post, pipeline 400km, storage 3000m
-  electricity production, at power plant/hard coal, pre, pipeline 200km, storage 1000m
-  electricity production, at power plant/hard coal, pre, pipeline 400km, storage 3000m
-  electricity production, at power plant/lignite, IGCC, no CCS
-  electricity production, at power plant/lignite, PC, no CCS
-  electricity production, at power plant/lignite, oxy, pipeline 200km, storage 1000m
-  electricity production, at power plant/lignite, oxy, pipeline 400km, storage 3000m
-  electricity production, at power plant/lignite, post, pipeline 200km, storage 1000m
-  electricity production, at power plant/lignite, post, pipeline 400km, storage 3000m
-  electricity production, at power plant/lignite, pre, pipeline 200km, storage 1000m
-  electricity production, at power plant/lignite, pre, pipeline 400km, storage 3000m
-  electricity production, at power plant/natural gas, ATR H2-CC, no CCS
-  electricity production, at power plant/natural gas, NGCC, no CCS/kWh
-  electricity production, at power plant/natural gas, post, pipeline 200km, storage 1000m
-  electricity production, at power plant/natural gas, post, pipeline 400km, storage 1000m
-  electricity production, at power plant/natural gas, post, pipeline 400km, storage 3000m
-  electricity production, at power plant/natural gas, pre, pipeline 200km, storage 1000m
-  electricity production, at power plant/natural gas, pre, pipeline 400km, storage 3000m
-  electricity production, at wood burning power plant 20 MW, truck 25km, no CCS
-  electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
-  electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m
- =============================================================================================================
+ ============================================================================================================= ===========
+  Power generation with CCS (activities list)                                                                   location
+ ============================================================================================================= ===========
+  electricity production, at power plant/hard coal, IGCC, no CCS                                                RER
+  electricity production, at power plant/hard coal, PC, no CCS                                                  RER
+  electricity production, at power plant/hard coal, oxy, pipeline 200km, storage 1000m                          RER
+  electricity production, at power plant/hard coal, oxy, pipeline 400km, storage 3000m                          RER
+  electricity production, at power plant/hard coal, post, pipeline 200km, storage 1000m                         RER
+  electricity production, at power plant/hard coal, post, pipeline 400km, storage 1000m                         RER
+  electricity production, at power plant/hard coal, post, pipeline 400km, storage 3000m                         RER
+  electricity production, at power plant/hard coal, pre, pipeline 200km, storage 1000m                          RER
+  electricity production, at power plant/hard coal, pre, pipeline 400km, storage 3000m                          RER
+  electricity production, at power plant/lignite, IGCC, no CCS                                                  RER
+  electricity production, at power plant/lignite, PC, no CCS                                                    RER
+  electricity production, at power plant/lignite, oxy, pipeline 200km, storage 1000m                            RER
+  electricity production, at power plant/lignite, oxy, pipeline 400km, storage 3000m                            RER
+  electricity production, at power plant/lignite, post, pipeline 200km, storage 1000m                           RER
+  electricity production, at power plant/lignite, post, pipeline 400km, storage 3000m                           RER
+  electricity production, at power plant/lignite, pre, pipeline 200km, storage 1000m                            RER
+  electricity production, at power plant/lignite, pre, pipeline 400km, storage 3000m                            RER
+  electricity production, at power plant/natural gas, ATR H2-CC, no CCS                                         RER
+  electricity production, at power plant/natural gas, NGCC, no CCS/kWh                                          RER
+  electricity production, at power plant/natural gas, post, pipeline 200km, storage 1000m                       RER
+  electricity production, at power plant/natural gas, post, pipeline 400km, storage 1000m                       RER
+  electricity production, at power plant/natural gas, post, pipeline 400km, storage 3000m                       RER
+  electricity production, at power plant/natural gas, pre, pipeline 200km, storage 1000m                        RER
+  electricity production, at power plant/natural gas, pre, pipeline 400km, storage 3000m                        RER
+  electricity production, at wood burning power plant 20 MW, truck 25km, no CCS                                 RER
+  electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m    RER
+  electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m    RER
+ ============================================================================================================= ===========
 
 
 Natural gas
@@ -176,58 +176,26 @@ the original supply chains, which remain unchanged.
 
 The table below lists the names of the new activities.
 
- =======================================================================
-  Natural gas and crude oil extraction (activities list)
- =======================================================================
-  Diesel, burned in diesel-electric generating set, at extraction site
-  crude oil, at production
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production onshore
-  crude oil, import mix, at long distance transport
-  diesel, burned in diesel-electric generating set
-  diesel-electric generating set production 10MW
-  discharge, produced water, offshore
-  discharge, produced water, onshore
-  natural gas, at long-distance pipeline
-  natural gas, at production
-  natural gas, at production offshore
-  natural gas, at production onshore
-  natural gas, burned in gas turbine
-  natural gas, high pressure, at consumer
-  natural gas, liquefied, at freight ship
-  natural gas, liquefied, at liquefaction plant
-  natural gas, low pressure, at consumer
-  natural gas, production DE, at long-distance pipeline
-  natural gas, production DZ, at evaporation plant
-  natural gas, production DZ, at long-distance pipeline
-  natural gas, production NG, at evaporation plant
-  natural gas, production NG, at long-distance pipeline
-  natural gas, production NO, at evaporation plant
-  natural gas, production NO, at long-distance pipeline
-  natural gas, production QA, at evaporation plant
-  natural gas, production QA, at long-distance pipeline
-  natural gas, production RU, at evaporation plant
-  natural gas, production RU, at long-distance pipeline
-  natural gas, production US, at evaporation plant
-  natural gas, sour, burned in production flare
-  natural gas, sweet, burned in production flare
-  natural gas, vented
-  plant onshore, natural gas, production
-  platform, crude oil, offshore
-  production plant crude oil, onshore
-  sweet gas, burned in gas turbine, production
-  transport, liquefied natural gas DZ, freight ship
-  transport, liquefied natural gas NG, freight ship
-  transport, liquefied natural gas NO, freight ship
-  transport, liquefied natural gas QA, freight ship
-  transport, liquefied natural gas RU, freight ship
-  transport, liquefied natural gas US, freight ship
-  transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  well for exploration and production, offshore
-  well for exploration and production, onshore
- =======================================================================
+ ============================= ===========
+  Natural gas extraction        location
+ ============================= ===========
+  natural gas, at production    AZ
+  natural gas, at production    RO
+  natural gas, at production    LY
+  natural gas, at production    SA
+  natural gas, at production    IQ
+  natural gas, at production    RU
+  natural gas, at production    NL
+  natural gas, at production    DZ
+  natural gas, at production    NG
+  natural gas, at production    DE
+  natural gas, at production    KZ
+  natural gas, at production    NO
+  natural gas, at production    QA
+  natural gas, at production    GB
+  natural gas, at production    MX
+  natural gas, at production    US
+ ============================= ===========
 
 
 Photovoltaic panels
