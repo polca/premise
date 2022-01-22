@@ -89,6 +89,6 @@ Regional supply chains
 Fuel markets
 ++++++++++++
 
-CO2 emission update
-+++++++++++++++++++
+CO2 emissions update
+++++++++++++++++++++
 
