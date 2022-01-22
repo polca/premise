@@ -761,9 +761,12 @@ The following datasets for two-wheelers are imported.
 Inventories are from Sacchi_ et al. 2022. The vehicles are available
 for different years and emission standards. *premise* will only
 import vehicles which production year is equal or inferior to
-the scenario year considered.
+the scenario year considered. The inventories can be consulted
+here: LCItwowheelers_.
+
 
 .. _Sacchi: https://zenodo.org/deposit/5720779
+.. _LCItwowheelers: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-two_wheelers.xlsx
 
  ====================================== ==================
   Two-wheeler datasets                   location
@@ -1071,9 +1074,12 @@ Inventories are from Sacchi2_ et al. 2022 (in review). The vehicles are availabl
 for different years and emission standards and for each IAM region. *premise* will only
 import vehicles which production year is equal or inferior to
 the scenario year considered. *premise* will create fleet average vehicles
-during the *Transport* transformation for each IAM region.
+during the *Transport* transformation for each IAM region. The inventories can be consulted
+here: LCIpasscars_.
 
 .. _Sacchi2: https://www.psi.ch/en/media/72391/download
+.. _LCIpasscars: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx
+
 
 Medium and heavy duty trucks
 ****************************
@@ -1305,8 +1311,10 @@ Inventories are from Sacchi3_ et al. 2021. The vehicles are available
 for different years and emission standards and for each IAM region. *premise* will only
 import vehicles which production year is equal or inferior to
 the scenario year considered. *premise* will create fleet average vehicles
-during the *Transport* transformation for each IAM region.
+during the *Transport* transformation for each IAM region. The inventories can be consulted
+here: LCItrucks_.
 
+.. _LCItrucks: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx
 .. _Sacchi3: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
 
 Buses
@@ -1393,11 +1401,29 @@ Inventories are from Sacchi_ et al. 2021. The vehicles are available
 for different years and emission standards and for each IAM region. *premise* will only
 import vehicles which production year is equal or inferior to
 the scenario year considered. *premise* will create fleet average vehicles
-during the *Transport* transformation for each IAM region.
+during the *Transport* transformation for each IAM region. The inventories can be consulted
+here: LCIbuses_.
+
+.. _LCIbuses: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-buses.xlsx
+
 
 
 Migration between ecoinvent versions
 ------------------------------------
+
+Because the additional inventories that are imported may be composed
+of exchanges meant to link with an ecoinvent version different
+than what the user specifies to *premise* upon the database creation,
+it is necessary to be able to "translate" the imported inventories
+so that they correctly link to any ecoinvent version *premise* is
+compatible with.
+
+Therefore, *premise* has a migration map that is used to convert
+certain exchanges to be compatible with a given ecoinvent version.
+
+This migration map is provided here: migrationmap_.
+
+.. _migrationmap:
 
 IAM data collection
 """""""""""""""""""
