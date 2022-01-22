@@ -175,8 +175,9 @@ LIST_TRANSF_FUNC = [
 
 # clear the cache folder
 def clear_cache():
-    [f.unlink() for f in Path(DATA_DIR/"cache").glob("*") if f.is_file()]
+    [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file()]
     print("Cache folder cleared!")
+
 
 # Disable printing
 def blockPrint():
