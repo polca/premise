@@ -411,6 +411,8 @@ district heating pipes. Gross heat output of 1,483 TJ, with 80% efficiency.
 
 The inventories can be consulted here: LCI_geothermal_.
 
+.. _LCI_geothermal: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-geothermal.xlsx
+
 They introduce the following datasets (only heat production datasets shown):
 
  =================================== ===========
@@ -434,8 +436,183 @@ They introduce the following datasets (only heat production datasets shown):
 Hydrogen
 --------
 
+*premise* imports inventories for hydrogen production via the following pathways:
+
+* Steam Methane Reforming, using natural gas
+* Steam Methane Reforming, using natural gas, with Carbon Capture and Storage
+* Steam Methane Reforming, using bio-methane
+* Steam Methane Reforming, using bio-methane, with Carbon Capture and Storage
+* Auto Thermal Reforming, using natural gas
+* Auto Thermal Reforming, using natural gas, with Carbon Capture and Storage
+* Auto Thermal Reforming, using bio-methane
+* Auto Thermal Reforming, using bio-methane, with Carbon Capture and Storage
+* Woody biomass gasification, using a fluidized bed
+* Woody biomass gasification, using a fluidized bed, with Carbon Capture and Storage
+* Woody biomass gasification, using an entrained flow gasifier
+* Woody biomass gasification, using an entrained flow gasifier, with Carbon Capture and Storage
+* Coal gasification
+* Electrolysis
+
+Inventories using Steam Methane Reforming are from Antonini_ et al. 2021.
+They can be consulted here: LCI_SMR_.
+Inventories using Auto Thermal Reforming are from Antonini_ et al. 2021.
+They can be consulted here: LCI_ATR_.
+Inventories using Woody biomass gasification are from Antonini2_ et al. 2021.
+They can be consulted here: LCI_woody_.
+Inventories using coal gasification are from Wokaun_ et al. 2011.
+They can be consulted here: LCI_coal_.
+Inventories using electrolysis are from Bareiss_ et al. 2019.
+They can be consulted here: LCI_electrolysis_.
+
+.. _Antonini: https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00222d
+.. _Antonini2: https://pubs.rsc.org/en/Content/ArticleLanding/2021/SE/D0SE01637C
+.. _Wokaun: https://www.cambridge.org/core/books/transition-to-hydrogen/43144AF26ED80E7106B675A6E83B1579
+.. _Bareiss: https://www.sciencedirect.com/science/article/pii/S0306261919300017
+.. _LCI_SMR: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
+.. _LCI_ATR: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
+.. _LCI_woody: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
+.. _LCI_coal: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-coal-gasification.xlsx
+.. _LCI_electrolysis: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-electrolysis.xlsx
+
+The new datasets introduced are listed in the table below (only production datasets are shown).
+
+ ======================================================================================================================================= ===========
+  Hydrogen production                                                                                                                     location
+ ======================================================================================================================================= ===========
+  hydrogen production, steam methane reforming of natural gas, 25 bar                                                                     CH
+  hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar                                          CH
+  hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar              CH
+  hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar                                         CH
+  hydrogen production, auto-thermal reforming, from biomethane, 25 bar                                                                    CH
+  hydrogen production, auto-thermal reforming, from biomethane, with CCS (MDEA, 98% eff.), 25 bar                                         CH
+  hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant              CH
+  hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant                       CH
+  hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant    CH
+  hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant              CH
+  hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant                             RER
+  hydrogen production, gaseous, 25 bar, from electrolysis                                                                                 RER
+ ======================================================================================================================================= ===========
+
+Hydrogen storage and distribution
+*********************************
+
+A number of datasets relating to hydrogen storage and distribution are also imported.
+
+They are necessary to model the distribution of hydrogen:
+
+* via re-assigned transmission and distribution CNG pipelines, in a gaseous state
+* via dedicated transmission and distribution hydrogen pipelines, in a gaseous state
+* as a liquid organic compound, by hydrogenation
+* via truck, in a liquid state
+* hydrogen refuelling station
+
+
+Small and large storage solutions are also provided:
+* high pressure hydrogen storage tank
+* geological storage tank
+
+These datasets originate from the work of Wulff_ et al. 2018, and can be
+consulted here: LCI_H2_distr_. For re-assigned CNG pipelines, which require the hydrogen
+to be mixed together with oxygen to limit metal embrittlement,
+some parameters are taken from the work of Cerniauskas_ et al. 2020.
+
+The datasets introduced are listed in the table below.
+
+ ================================================================== ===========
+  Hydrogen distribution                                              location
+ ================================================================== ===========
+  Hydrogen refuelling station                                        GLO
+  high pressure hydrogen storage tank                                GLO
+  distribution pipeline for hydrogen, dedicated hydrogen pipeline    RER
+  transmission pipeline for hydrogen, dedicated hydrogen pipeline    RER
+  zinc coating for hydrogen pipeline                                 RER
+  hydrogenation of hydrogen                                          RER
+  dehydrogenation of hydrogen                                        RER
+  dibenzyltoluene production                                         RER
+  solution mining for geological hydrogen storage                    RER
+  geological hydrogen storage                                        RER
+  hydrogen embrittlement inhibition                                  RER
+  distribution pipeline for hydrogen, reassigned CNG pipeline        RER
+  transmission pipeline for hydrogen, reassigned CNG pipeline        RER
+ ================================================================== ===========
+
+
+.. _Wulff:
+.. _LCI_H2_distr: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-distribution.xlsx
+.. _Cerniauskas: https://doi.org/10.1016/j.ijhydene.2020.02.121
+
 Biofuels
 --------
+
+Inventories for energy crops- and residues-based production of bioethanol and biodiesel
+are imported, and can be consulted here: LCI_biofuels_. They include the farming of the crop,
+the conversion of hte biomass to fuel, as well as its distribution. The conversion process
+often leads to the production of co-products (dried distiller's grain, electricity, CO2, bagasse.).
+Hence, energy, economic and system expansion partitioning approaches are available.
+These inventories originate from several different sources
+(Wu_ et al. 2006 (2020 update), Cozzolini_ 2018, Pereira_ et al. 2019 and Gonzalez-Garcia_ et al. 2012),
+indicated in the table below.
+
+.. _LCI_biofuels: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-biofuels.xlsx
+.. _Cozzolini: https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf
+.. _Gonzalez-Garcia: https://doi.org/10.1016/j.scitotenv.2012.07.044
+.. _Wu: http://greet.es.anl.gov/publication-2lli584z
+.. _Pereira: http://task39.sites.olt.ubc.ca/files/2019/04/Task-39-GHS-models-Final-Report-Phase-1.pdf
+
+The following datasets are introduced:
+
+ ================================================================================== =========== =============================
+  Activity                                                                           Location    Source
+ ================================================================================== =========== =============================
+  Farming and supply of switchgrass                                                  US          GREET
+  Farming and supply of poplar                                                       US          GREET
+  Farming and supply of willow                                                       US          GREET
+  Supply of forest residue                                                           US          GREET
+  Farming and supply of miscanthus                                                   US          GREET
+  Farming and supply of corn stover                                                  US          GREET
+  Farming and supply of sugarcane                                                    US          GREET
+  Farming and supply of Grain Sorghum                                                US          GREET
+  Farming and supply of Sweet Sorghum                                                US          GREET
+  Farming and supply of Forage Sorghum                                               US          GREET
+  Farming and supply of corn                                                         US          GREET
+  Farming and supply of sugarcane                                                    BR          Pereira et al. 2019/RED II
+  Farming and supply of sugarcane straw                                              BR          Pereira et al. 2019
+  Farming and supply of eucalyptus                                                   ES          Gonzalez-Garcia et al. 2012
+  Farming and supply of wheat grains                                                 RER         Cozzolini 2018
+  Farming and supply of wheat straw                                                  RER         Cozzolini 2018
+  Farming and supply of corn                                                         RER         Cozzolini 2018/RED II
+  Farming and supply of sugarbeet                                                    RER         Cozzolini 2018
+  Supply of forest residue                                                           RER         Cozzolini 2018
+  Supply and refining of waste cooking oil                                           RER         Cozzolini 2018
+  Farming and supply of rapeseed                                                     RER         Cozzolini 2018/RED II
+  Farming and supply of palm fresh fruit bunch                                       RER         Cozzolini 2018
+  Farming and supply of dry algae                                                    RER         Cozzolini 2018
+  Ethanol production, via fermentation, from switchgrass                             US          GREET
+  Ethanol production, via fermentation, from poplar                                  US          GREET
+  Ethanol production, via fermentation, from willow                                  US          GREET
+  Ethanol production, via fermentation, from forest residue                          US          GREET
+  Ethanol production, via fermentation, from miscanthus                              US          GREET
+  Ethanol production, via fermentation, from corn stover                             US          GREET
+  Ethanol production, via fermentation, from sugarcane                               US          GREET
+  Ethanol production, via fermentation, from grain sorghum                           US          GREET
+  Ethanol production, via fermentation, from sweet sorghum                           US          GREET
+  Ethanol production, via fermentation, from forage sorghum                          US          GREET
+  Ethanol production, via fermentation, from corn                                    US          GREET/JEC 2020
+  Ethanol production, via fermentation, from corn, with carbon capture               US          GREET
+  Ethanol production, via fermentation, from sugarcane                               BR          Pereira et al. 2019
+  Ethanol production, via fermentation, from sugarcane straw                         BR          Pereira et al. 2019
+  Ethanol production, via fermentation, from eucalyptus                              ES          Gonzalez-Garcia et al. 2012
+  Ethanol production, via fermentation, from wheat grains                            RER         Cozzolini 2018
+  Ethanol production, via fermentation, from wheat straw                             RER         Cozzolini 2018
+  Ethanol production, via fermentation, from corn starch                             RER         Cozzolini 2018
+  Ethanol production, via fermentation, from sugarbeet                               RER         Cozzolini 2018
+  Ethanol production, via fermentation, from forest residue                          RER         Cozzolini 2018
+  Biodiesel production, via transesterification, from used cooking oil               RER         Cozzolini 2018
+  Biodiesel production, via transesterification, from rapeseed oil                   RER         Cozzolini 2018
+  Biodiesel production, via transesterification, from palm oil, energy allocation    RER         Cozzolini 2018
+  Biodiesel production, via transesterification, from algae, energy allocation       RER         Cozzolini 2018
+ ================================================================================== =========== =============================
+
 
 Direct Air Capture
 ------------------
