@@ -1280,7 +1280,7 @@ certain exchanges to be compatible with a given ecoinvent version.
 
 This migration map is provided here: migrationmap_.
 
-.. _migrationmap:
+.. _migrationmap: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/migration_map.csv
 
 IAM data collection
 """""""""""""""""""
@@ -1307,7 +1307,7 @@ The table below shows the correspondence between *premise*, REMIND, IMAGE
 and LCI terminology, regarding electricity producing technologies.
 
  ========================== ===================================== ================================================= ===================================================================================================
-  name in premise            name in IMAGE                         name in REMIND                                    name in LCI database
+  name in premise            name in REMIND                         name in IMAGE                                    name in LCI database (only first of several shown)
  ========================== ===================================== ================================================= ===================================================================================================
   Biomass CHP                SE|Electricity|Biomass|CHP|w/o CCS    Secondary Energy|Electricity|Biomass|w/o CCS|3    heat and power co-generation, wood chips
   Biomass CHP CCS                                                  Secondary Energy|Electricity|Biomass|w/ CCS|2     electricity production, at co-generation power plant/wood, post, pipeline 200km, storage 1000m
@@ -1346,7 +1346,7 @@ The table below shows the correspondence between *premise*, REMIND, IMAGE
 and LCI terminology, regarding steel and cement producing technologies.
 
  ==================== ====================================== ============================= ==============================
-  name in premise      name in IMAGE                          name in REMIND                name in LCI database
+  name in premise      name in REMIND                          name in IMAGE                name in LCI database
  ==================== ====================================== ============================= ==============================
   cement               Production|Industry|Cement             Production|Cement             cement production, Portland
   steel - primary      Production|Industry|Steel|Primary      Production|Steel|Primary      steel production, converter
@@ -1357,7 +1357,7 @@ The table below shows the correspondence between *premise*, REMIND, IMAGE
 and LCI terminology, regarding fuel producing technologies.
 
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
-  name in premise                      name in IMAGE                                   name in REMIND                                                            name in LCI database (only first of several shown)
+  name in premise                      name in REMIND                                   name in IMAGE                                                            name in LCI database (only first of several shown)
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
   natural gas                          SE|Gases|Non-Biomass                                                                                                      natural gas, high pressure
   biomethane                           SE|Gases|Biomass                                                                                                          biomethane, gaseous
@@ -1393,9 +1393,101 @@ and LCI terminology, regarding fuel producing technologies.
   methanol, grass, with CCS                                                            Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/CCS        market for methanol, from biomass
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
 
+The production volumes considered for a given scenario can be consulted, like so:
+
+.. code-block:: python
+
+    ndb.scenarios[0]["external data"].production_volumes
+
 
 Efficiencies
 ------------
+
+The efficiency of the different technologies producing
+commodities (e.g., electricity, steel, cement, fuel) is modelled to change over time
+by the IAM. *premise* stores the relative change in efficiency of such technologies.
+
+The table below shows the correspondence between *premise*, REMIND, IMAGE,
+regarding efficiency variables for electricity producing technologies.
+
+ ================== ================================================== ===========================================
+  name in premise    name in REMIND                                      name in IMAGE
+ ================== ================================================== ===========================================
+  Biomass CHP        Tech|Electricity|Biomass|CHP|w/o CCS|Efficiency    Efficiency|Electricity|Biomass|w/o CCS|3
+  Biomass CHP CCS                                                       Efficiency|Electricity|Biomass|w/ CCS|2
+  Biomass ST                                                            Efficiency|Electricity|Biomass|w/o CCS|1
+  Biomass IGCC CCS   Tech|Electricity|Biomass|IGCCC|w/ CCS|Efficiency   Efficiency|Electricity|Biomass|w/ CCS|1
+  Biomass IGCC       Tech|Electricity|Biomass|IGCC|w/o CCS|Efficiency   Efficiency|Electricity|Biomass|w/o CCS|2
+  Coal PC            Tech|Electricity|Coal|PC|w/o CCS|Efficiency        Efficiency|Electricity|Coal|w/o CCS|1
+  Coal IGCC          Tech|Electricity|Coal|IGCC|w/o CCS|Efficiency      Efficiency|Electricity|Coal|w/o CCS|2
+  Coal PC CCS        Tech|Electricity|Coal|PCC|w/ CCS|Efficiency
+  Coal IGCC CCS      Tech|Electricity|Coal|IGCCC|w/ CCS|Efficiency      Efficiency|Electricity|Coal|w/ CCS|1
+  Coal CHP           Tech|Electricity|Coal|CHP|w/o CCS|Efficiency       Efficiency|Electricity|Coal|w/o CCS|3
+  Coal CHP CCS                                                          Efficiency|Electricity|Coal|w/ CCS|2
+  Gas OC             Tech|Electricity|Gas|GT|Efficiency                 Efficiency|Electricity|Gas|w/o CCS|1
+  Gas CC             Tech|Electricity|Gas|CC|w/o CCS|Efficiency         Efficiency|Electricity|Gas|w/o CCS|2
+  Gas CHP            Tech|Electricity|Gas|CHP|w/o CCS|Efficiency        Efficiency|Electricity|Gas|w/o CCS|3
+  Gas CHP CCS                                                           Efficiency|Electricity|Gas|w/ CCS|2
+  Gas CC CCS         Tech|Electricity|Gas|CCC|w/ CCS|Efficiency         Efficiency|Electricity|Gas|w/ CCS|1
+  Nuclear                                                               Efficiency|Electricity|Nuclear
+  Oil ST             Tech|Electricity|Oil|DOT|Efficiency                Efficiency|Electricity|Oil|w/o CCS|1
+  Oil CC                                                                Efficiency|Electricity|Oil|w/o CCS|2
+  Oil CC CCS                                                            Efficiency|Electricity|Oil|w/ CCS|1
+  Oil CHP                                                               Efficiency|Electricity|Oil|w/o CCS|3
+  Oil CHP CCS                                                           Efficiency|Electricity|Oil|w/ CCS|2
+ ================== ================================================== ===========================================
+
+The table below shows the correspondence between *premise*, REMIND, IMAGE,
+regarding efficiency variables for cement and steel
+producing technologies. For cement and steel, it is different, as *premise*
+derives efficiencies by dividing the the final energy demand by the produciton volume
+(to obtain GJ/t steel or cement). This is because efficiency variables for cement
+and steel is not always given as such.
+
+ ==================== ========================================== ==============================
+  name in premise      name in REMIND                              name in IMAGE
+ ==================== ========================================== ==============================
+  cement               Final Energy|Industry|Cement               FE|Industry|Cement
+  steel - primary      Final Energy|Industry|Steel                FE|Industry|Steel|Primary
+  steel - secondary    Final Energy|Industry|Steel|Electricity    FE|Industry|Steel|Secondary
+ ==================== ========================================== ==============================
+
+The table below shows the correspondence between *premise*, REMIND, IMAGE,
+regarding efficiency variables for fuels producing technologies.
+
+ ==================================== ======================================================================= ========================================================
+  name in premise                      name in REMIND                                                           name in IMAGE
+ ==================================== ======================================================================= ========================================================
+  biomethane                           Tech|Gases|Biomass|w/o CCS|Efficiency
+  diesel                               Tech|Liquids|Oil|Efficiency
+  gasoline                             Tech|Liquids|Oil|Efficiency
+  diesel, synthetic, wood                                                                                      Efficiency|Liquids|Biomass|FT Diesel|Woody|w/o CCS
+  diesel, synthetic, wood, with CCS                                                                            Efficiency|Liquids|Biomass|FT Diesel|Woody|w/ CCS
+  diesel, synthetic, grass                                                                                     Efficiency|Liquids|Biomass|FT Diesel|Woody|w/o CCS
+  diesel, synthetic, grass, with CCS                                                                           Efficiency|Liquids|Biomass|FT Diesel|Woody|w/ CCS
+  biodiesel, oil                       Tech|Liquids|Biomass|Biofuel|Biodiesel|w/o CCS|Efficiency               Efficiency|Liquids|Biomass|Biodiesel|Oilcrops|w/o CCS
+  biodiesel, oil, with CCS                                                                                     Efficiency|Liquids|Biomass|Biodiesel|Oilcrops|w/ CCS
+  bioethanol, wood                     Tech|Liquids|Biomass|Biofuel|Ethanol|Cellulosic|w/o CCS|Efficiency      Efficiency|Liquids|Biomass|Ethanol|Woody|w/o CCS
+  bioethanol, wood, with CCS                                                                                   Efficiency|Liquids|Biomass|Ethanol|Woody|w/ CCS
+  bioethanol, grass                    Tech|Liquids|Biomass|Biofuel|Ethanol|Cellulosic|w/o CCS|Efficiency      Efficiency|Liquids|Biomass|Ethanol|Grassy|w/o CCS
+  bioethanol, grass, with CCS                                                                                  Efficiency|Liquids|Biomass|Ethanol|Grassy|w/ CCS
+  bioethanol, grain                    Tech|Liquids|Biomass|Biofuel|Ethanol|Conventional|w/o CCS|Efficiency    Efficiency|Liquids|Biomass|Ethanol|Maize|w/o CCS
+  bioethanol, grain, with CCS                                                                                  Efficiency|Liquids|Biomass|Ethanol|Maize|w/ CCS
+  bioethanol, sugar                    Tech|Liquids|Biomass|Biofuel|Ethanol|Conventional|w/o CCS|Efficiency    Efficiency|Liquids|Biomass|Ethanol|Sugar|w/o CCS
+  bioethanol, sugar, with CCS                                                                                  Efficiency|Liquids|Biomass|Ethanol|Sugar|w/ CCS
+  methanol, wood                                                                                               Efficiency|Liquids|Biomass|Methanol|Woody|w/o CCS
+  methanol, grass                                                                                              Efficiency|Liquids|Biomass|Methanol|Grassy|w/o CCS
+  methanol, wood, with CCS                                                                                     Efficiency|Liquids|Biomass|Methanol|Woody|w/ CCS
+  methanol, grass, with CCS                                                                                    Efficiency|Liquids|Biomass|Methanol|Grassy|w/ CCS
+ ==================================== ======================================================================= ========================================================
+
+
+*premise* stores the change in efficiency (called *scaling factor*) of a given technology
+relative to 2020. This is based on the fact that the efficiency of ecoinvent datasets
+are believed to reflect current (2020) efficiency. Hence, if a technology, in a given region,
+has a *scaling factor* of 1.2 in 2030, this means that the corresponding ecoinvent dataset
+is adjusted so that its efficiency is improved by 20%. In other words, *premise* does not use
+the efficiency given by the IAM, but rather its change over time relative to 2020.
 
 Land use and land use change
 ----------------------------
