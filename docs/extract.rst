@@ -1489,11 +1489,17 @@ has a *scaling factor* of 1.2 in 2030, this means that the corresponding ecoinve
 is adjusted so that its efficiency is improved by 20%. In other words, *premise* does not use
 the efficiency given by the IAM, but rather its change over time relative to 2020.
 
+The *scaling factors* considered for a given scenario can be consulted, like so:
+
+.. code-block:: python
+
+    ndb.scenarios[0]["external data"].efficiency
+
 Land use and land use change
 ----------------------------
 
 When building prospective databases using the IAM IMAGE model, the latter provides
-additional variables relating to average land use and land use change emissions, for each type of
+additional variables relating to average *land use* and *land use change* emissions, for each type of
 crop grown to be used in biofuel production.
 Upon the creation of biofuel supply chains in the *Fuels* transformation function, such information
 is used to adjust the inventories of crop farming datasets. The table below shows the IMAGE variables
@@ -1509,6 +1515,42 @@ used to that effect.
   grain                     corn                       Land Use|Average|Biomass|Maize             Emission Factor|CO2|Energy|Supply|Biomass|Average|Maize
  ========================= ========================== ========================================== =============================================================
 
+The *land use* and *land use change* emissions considered for a given scenario
+can be consulted, like so:
+
+.. code-block:: python
+
+    ndb.scenarios[0]["external data"].land_use
+    ndb.scenarios[0]["external data"].land_use_change
+
+Carbon Capture and Storage
+--------------------------
+
+Some scenarios involve the capture and storage of CO2 emissions
+of certain sectors (e.g., cement and steel).
+The capture rate of a given sector is calculated
+from the IAM data file, as the amount of CO2 captured over the sum
+of captured and not captured CO2 emissions.
+
+The table below lists the variables needed to calculate those rates.
+
+ ============================== =============================== ============================================
+  name in premise                name in REMIND                  name in IMAGE
+ ============================== =============================== ============================================
+  cement - CO2 (not captured)    Emi|CO2|FFaI|Industry|Cement    Emissions|CO2|Industry|Cement|Gross
+  cement - CCO2 (captured)       Emi|CCO2|FFaI|Industry|Cement   Emissions|CO2|Industry|Cement|Sequestered
+  steel - CO2 (not captured)     Emi|CO2|FFaI|Industry|Steel     Emissions|CO2|Industry|Steel|Gross
+  steel - CCO2 (captured)        Emi|CCO2|FFaI|Industry|Steel    Emissions|CO2|Industry|Steel|Sequestered
+ ============================== =============================== ============================================
+
+
+The *carbon capture rates* which are floating values
+comprised between 0 and 1, can be consulted like so:
+
+.. code-block:: python
+
+    ndb.scenarios[0]["external data"].carbon_capture_rate
+
 
 Data sources external to the IAM
 --------------------------------
@@ -1520,6 +1562,71 @@ as well as fuel mixes and power generation for the cement industry.
 
 Air emissions
 *************
+
+*premise* relies on projections from the air emissions model GAINS_
+to adjust the emissions of pollutants for different sectors.
+As with efficiencies, *premise* stores the change in emissions (called *scaling factor*)
+of a given technology relative to 2020. This is based on the fact that the emissions of
+ecoinvent datasets are believed to reflect the current (2020) situation.
+Hence, if a technology, in a given region, has a *scaling factor* of 1.2 in 2030,
+this means that the corresponding ecoinvent dataset is adjusted so that its emissions
+of a given substance is improved by 20%. In other words, *premise* does not use
+the emissions level given by GAINS, but rather its change over time relative to 2020.
+
+.. _GAINS: https://gains.iiasa.ac.at/models/
+
+
+The equivalence between the technology terminology in *premise* and GAINS
+are shown in the table below.
+
+ ================== =====================
+  name in premise    name in GAINS
+ ================== =====================
+  Biomass CHP        Power_Gen_Bio_Trad
+  Biomass CHP CCS    Power_Gen_Bio_Trad
+  Biomass ST         Power_Gen_Bio_Trad
+  Biomass IGCC CCS   Power_Gen_Bio_Trad
+  Biomass IGCC       Power_Gen_Bio_Trad
+  Coal PC            Power_Gen_Coal
+  Coal IGCC          Power_Gen_Coal
+  Coal PC CCS        Power_Gen_Coal
+  Coal IGCC CCS      Power_Gen_Coal
+  Coal CHP           Power_Gen_Coal
+  Coal CHP CCS       Power_Gen_Coal
+  Gas OC             Power_Gen_NatGas
+  Gas CC             Power_Gen_NatGas
+  Gas CHP            Power_Gen_NatGas
+  Gas CHP CCS        Power_Gen_NatGas
+  Gas CC CCS         Power_Gen_NatGas
+  Oil ST             Power_Gen_LLF
+  Oil CC             Power_Gen_LLF
+  Oil CC CCS         Power_Gen_LLF
+  Oil CHP            Power_Gen_LLF
+  Oil CHP CCS        Power_Gen_LLF
+  cement             CEMENT
+  steel - primary    STEEL
+  steel - secondary  STEEL
+ ================== =====================
+
+The equivalence between the substance variables in GAINS and in the LCA biosphere
+are shown in the table below.
+
+ ================ ====================================================================
+  name in GAINS    name in biosphere
+ ================ ====================================================================
+  SO2              Sulfur dioxide
+  CO               Carbon monoxide, fossil
+  NOx              Nitrogen oxides
+  NH3              Ammonia
+  VOC              NMVOC, non-methane volatile organic compounds, unspecified origin
+ ================ ====================================================================
+
+The non-CO2 emissions *scaling factors* considered for a given scenario
+can be consulted, like so:
+
+.. code-block:: python
+
+    ndb.scenarios[0]["external data"].emissions
 
 Cement production
 *****************
