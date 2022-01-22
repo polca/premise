@@ -804,13 +804,6 @@ Passenger cars
 **************
 
 The following datasets for passenger cars are imported.
-Inventories are from Sacchi2_ et al. 2022 (in review). The vehicles are available
-for different years and emission standards. *premise* will only
-import vehicles which production year is equal or inferior to
-the scenario year considered. *premise* will create fleet average vehicles
-during the *Transport* transformation for each IAM region.
-
-.. _Sacchi2: https://www.psi.ch/en/media/72391/download
 
  =============================================================================== ==================
   Passenger car datasets                                                          location
@@ -1074,14 +1067,334 @@ during the *Transport* transformation for each IAM region.
   transport, passenger car, diesel hybrid, Van, EURO-6d                           all IAM regions
  =============================================================================== ==================
 
+Inventories are from Sacchi2_ et al. 2022 (in review). The vehicles are available
+for different years and emission standards and for each IAM region. *premise* will only
+import vehicles which production year is equal or inferior to
+the scenario year considered. *premise* will create fleet average vehicles
+during the *Transport* transformation for each IAM region.
+
+.. _Sacchi2: https://www.psi.ch/en/media/72391/download
 
 Medium and heavy duty trucks
 ****************************
 
+The following datasets for medium and heavy-duty trucks are imported.
 
+ ===================================================================================================== ==================
+  Truck datasets                                                                                        location
+ ===================================================================================================== ==================
+  transport, freight, lorry, battery electric, NMC-622 battery, 3.5t gross weight, long haul            all IAM regions
+  transport, freight, lorry, fuel cell electric, 3.5t gross weight, long haul                           all IAM regions
+  transport, freight, lorry, diesel hybrid, 3.5t gross weight, EURO-VI, long haul                       all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-III, long haul                             all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-IV, long haul                              all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-V, long haul                               all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI, long haul                              all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-III, long haul                     all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-IV, long haul                      all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-V, long haul                       all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI, long haul                      all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 3.5t gross weight, EURO-VI, long haul                all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 7.5t gross weight, long haul            all IAM regions
+  transport, freight, lorry, fuel cell electric, 7.5t gross weight, long haul                           all IAM regions
+  transport, freight, lorry, diesel hybrid, 7.5t gross weight, EURO-VI, long haul                       all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-III, long haul                             all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-IV, long haul                              all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-V, long haul                               all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI, long haul                              all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-III, long haul                     all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-IV, long haul                      all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-V, long haul                       all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI, long haul                      all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 7.5t gross weight, EURO-VI, long haul                all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, long haul             all IAM regions
+  transport, freight, lorry, fuel cell electric, 18t gross weight, long haul                            all IAM regions
+  transport, freight, lorry, diesel hybrid, 18t gross weight, EURO-VI, long haul                        all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-III, long haul                              all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-IV, long haul                               all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-V, long haul                                all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-VI, long haul                               all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-III, long haul                      all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-IV, long haul                       all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-V, long haul                        all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, long haul                       all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 18t gross weight, EURO-VI, long haul                 all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 26t gross weight, long haul             all IAM regions
+  transport, freight, lorry, fuel cell electric, 26t gross weight, long haul                            all IAM regions
+  transport, freight, lorry, diesel hybrid, 26t gross weight, EURO-VI, long haul                        all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-III, long haul                              all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-IV, long haul                               all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-V, long haul                                all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-VI, long haul                               all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-III, long haul                      all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-IV, long haul                       all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-V, long haul                        all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI, long haul                       all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 26t gross weight, EURO-VI, long haul                 all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 32t gross weight, long haul             all IAM regions
+  transport, freight, lorry, fuel cell electric, 32t gross weight, long haul                            all IAM regions
+  transport, freight, lorry, diesel hybrid, 32t gross weight, EURO-VI, long haul                        all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-III, long haul                              all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-IV, long haul                               all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-V, long haul                                all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-VI, long haul                               all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-III, long haul                      all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-IV, long haul                       all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-V, long haul                        all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-VI, long haul                       all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 32t gross weight, EURO-VI, long haul                 all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 40t gross weight, long haul             all IAM regions
+  transport, freight, lorry, fuel cell electric, 40t gross weight, long haul                            all IAM regions
+  transport, freight, lorry, diesel hybrid, 40t gross weight, EURO-VI, long haul                        all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-III, long haul                              all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-IV, long haul                               all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-V, long haul                                all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-VI, long haul                               all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-III, long haul                      all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-IV, long haul                       all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-V, long haul                        all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI, long haul                       all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 40t gross weight, EURO-VI, long haul                 all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 3.5t gross weight, regional delivery    all IAM regions
+  transport, freight, lorry, fuel cell electric, 3.5t gross weight, regional delivery                   all IAM regions
+  transport, freight, lorry, diesel hybrid, 3.5t gross weight, EURO-VI, regional delivery               all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-III, regional delivery                     all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-IV, regional delivery                      all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-V, regional delivery                       all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI, regional delivery                      all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-III, regional delivery             all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-IV, regional delivery              all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-V, regional delivery               all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI, regional delivery              all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 3.5t gross weight, EURO-VI, regional delivery        all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 7.5t gross weight, regional delivery    all IAM regions
+  transport, freight, lorry, fuel cell electric, 7.5t gross weight, regional delivery                   all IAM regions
+  transport, freight, lorry, diesel hybrid, 7.5t gross weight, EURO-VI, regional delivery               all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-III, regional delivery                     all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-IV, regional delivery                      all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-V, regional delivery                       all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI, regional delivery                      all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-III, regional delivery             all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-IV, regional delivery              all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-V, regional delivery               all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI, regional delivery              all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 7.5t gross weight, EURO-VI, regional delivery        all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, regional delivery     all IAM regions
+  transport, freight, lorry, fuel cell electric, 18t gross weight, regional delivery                    all IAM regions
+  transport, freight, lorry, diesel hybrid, 18t gross weight, EURO-VI, regional delivery                all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-III, regional delivery                      all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-IV, regional delivery                       all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-V, regional delivery                        all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-VI, regional delivery                       all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-III, regional delivery              all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-IV, regional delivery               all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-V, regional delivery                all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, regional delivery               all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 18t gross weight, EURO-VI, regional delivery         all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 26t gross weight, regional delivery     all IAM regions
+  transport, freight, lorry, fuel cell electric, 26t gross weight, regional delivery                    all IAM regions
+  transport, freight, lorry, diesel hybrid, 26t gross weight, EURO-VI, regional delivery                all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-III, regional delivery                      all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-IV, regional delivery                       all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-V, regional delivery                        all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-VI, regional delivery                       all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-III, regional delivery              all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-IV, regional delivery               all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-V, regional delivery                all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI, regional delivery               all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 26t gross weight, EURO-VI, regional delivery         all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 32t gross weight, regional delivery     all IAM regions
+  transport, freight, lorry, fuel cell electric, 32t gross weight, regional delivery                    all IAM regions
+  transport, freight, lorry, diesel hybrid, 32t gross weight, EURO-VI, regional delivery                all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-III, regional delivery                      all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-IV, regional delivery                       all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-V, regional delivery                        all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-VI, regional delivery                       all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-III, regional delivery              all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-IV, regional delivery               all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-V, regional delivery                all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-VI, regional delivery               all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 32t gross weight, EURO-VI, regional delivery         all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 40t gross weight, regional delivery     all IAM regions
+  transport, freight, lorry, fuel cell electric, 40t gross weight, regional delivery                    all IAM regions
+  transport, freight, lorry, diesel hybrid, 40t gross weight, EURO-VI, regional delivery                all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-III, regional delivery                      all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-IV, regional delivery                       all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-V, regional delivery                        all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-VI, regional delivery                       all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-III, regional delivery              all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-IV, regional delivery               all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-V, regional delivery                all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI, regional delivery               all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 40t gross weight, EURO-VI, regional delivery         all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 3.5t gross weight, urban delivery       all IAM regions
+  transport, freight, lorry, fuel cell electric, 3.5t gross weight, urban delivery                      all IAM regions
+  transport, freight, lorry, diesel hybrid, 3.5t gross weight, EURO-VI, urban delivery                  all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-III, urban delivery                        all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-IV, urban delivery                         all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-V, urban delivery                          all IAM regions
+  transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI, urban delivery                         all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-III, urban delivery                all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-IV, urban delivery                 all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-V, urban delivery                  all IAM regions
+  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI, urban delivery                 all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 3.5t gross weight, EURO-VI, urban delivery           all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 7.5t gross weight, urban delivery       all IAM regions
+  transport, freight, lorry, fuel cell electric, 7.5t gross weight, urban delivery                      all IAM regions
+  transport, freight, lorry, diesel hybrid, 7.5t gross weight, EURO-VI, urban delivery                  all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-III, urban delivery                        all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-IV, urban delivery                         all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-V, urban delivery                          all IAM regions
+  transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI, urban delivery                         all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-III, urban delivery                all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-IV, urban delivery                 all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-V, urban delivery                  all IAM regions
+  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI, urban delivery                 all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 7.5t gross weight, EURO-VI, urban delivery           all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, urban delivery        all IAM regions
+  transport, freight, lorry, fuel cell electric, 18t gross weight, urban delivery                       all IAM regions
+  transport, freight, lorry, diesel hybrid, 18t gross weight, EURO-VI, urban delivery                   all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-III, urban delivery                         all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-IV, urban delivery                          all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-V, urban delivery                           all IAM regions
+  transport, freight, lorry, diesel, 18t gross weight, EURO-VI, urban delivery                          all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-III, urban delivery                 all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-IV, urban delivery                  all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-V, urban delivery                   all IAM regions
+  transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, urban delivery                  all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 18t gross weight, EURO-VI, urban delivery            all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 26t gross weight, urban delivery        all IAM regions
+  transport, freight, lorry, fuel cell electric, 26t gross weight, urban delivery                       all IAM regions
+  transport, freight, lorry, diesel hybrid, 26t gross weight, EURO-VI, urban delivery                   all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-III, urban delivery                         all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-IV, urban delivery                          all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-V, urban delivery                           all IAM regions
+  transport, freight, lorry, diesel, 26t gross weight, EURO-VI, urban delivery                          all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-III, urban delivery                 all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-IV, urban delivery                  all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-V, urban delivery                   all IAM regions
+  transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI, urban delivery                  all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 26t gross weight, EURO-VI, urban delivery            all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 32t gross weight, urban delivery        all IAM regions
+  transport, freight, lorry, fuel cell electric, 32t gross weight, urban delivery                       all IAM regions
+  transport, freight, lorry, diesel hybrid, 32t gross weight, EURO-VI, urban delivery                   all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-III, urban delivery                         all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-IV, urban delivery                          all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-V, urban delivery                           all IAM regions
+  transport, freight, lorry, diesel, 32t gross weight, EURO-VI, urban delivery                          all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-III, urban delivery                 all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-IV, urban delivery                  all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-V, urban delivery                   all IAM regions
+  transport, freight, lorry, compressed gas, 32t gross weight, EURO-VI, urban delivery                  all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 32t gross weight, EURO-VI, urban delivery            all IAM regions
+  transport, freight, lorry, battery electric, NMC-622 battery, 40t gross weight, urban delivery        all IAM regions
+  transport, freight, lorry, fuel cell electric, 40t gross weight, urban delivery                       all IAM regions
+  transport, freight, lorry, diesel hybrid, 40t gross weight, EURO-VI, urban delivery                   all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-III, urban delivery                         all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-IV, urban delivery                          all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-V, urban delivery                           all IAM regions
+  transport, freight, lorry, diesel, 40t gross weight, EURO-VI, urban delivery                          all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-III, urban delivery                 all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-IV, urban delivery                  all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-V, urban delivery                   all IAM regions
+  transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI, urban delivery                  all IAM regions
+  transport, freight, lorry, plugin diesel hybrid, 40t gross weight, EURO-VI, urban delivery            all IAM regions
+ ===================================================================================================== ==================
+
+Inventories are from Sacchi3_ et al. 2021. The vehicles are available
+for different years and emission standards and for each IAM region. *premise* will only
+import vehicles which production year is equal or inferior to
+the scenario year considered. *premise* will create fleet average vehicles
+during the *Transport* transformation for each IAM region.
+
+.. _Sacchi3: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
 
 Buses
 *****
+
+The following datasets for city and coach buses are imported.
+
+  =================================================================================================================== ==================
+  Bus datasets                                                                                                        location
+ =================================================================================================================== ==================
+  transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 9m midibus                        all IAM regions
+  transport, passenger bus, battery electric - opportunity charging, LTO battery, 9m midibus                          all IAM regions
+  transport, passenger bus, fuel cell electric, 9m midibus                                                            all IAM regions
+  transport, passenger bus, diesel hybrid, 9m midibus, EURO-VI                                                        all IAM regions
+  transport, passenger bus, diesel, 9m midibus, EURO-III                                                              all IAM regions
+  transport, passenger bus, diesel, 9m midibus, EURO-IV                                                               all IAM regions
+  transport, passenger bus, diesel, 9m midibus, EURO-V                                                                all IAM regions
+  transport, passenger bus, diesel, 9m midibus, EURO-VI                                                               all IAM regions
+  transport, passenger bus, compressed gas, 9m midibus, EURO-III                                                      all IAM regions
+  transport, passenger bus, compressed gas, 9m midibus, EURO-IV                                                       all IAM regions
+  transport, passenger bus, compressed gas, 9m midibus, EURO-V                                                        all IAM regions
+  transport, passenger bus, compressed gas, 9m midibus, EURO-VI                                                       all IAM regions
+  transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 13m single deck urban bus         all IAM regions
+  transport, passenger bus, battery electric - battery-equipped trolleybus, LTO battery, 13m single deck urban bus    all IAM regions
+  transport, passenger bus, battery electric - opportunity charging, LTO battery, 13m single deck urban bus           all IAM regions
+  transport, passenger bus, fuel cell electric, 13m single deck urban bus                                             all IAM regions
+  transport, passenger bus, diesel hybrid, 13m single deck urban bus, EURO-VI                                         all IAM regions
+  transport, passenger bus, diesel, 13m single deck urban bus, EURO-III                                               all IAM regions
+  transport, passenger bus, diesel, 13m single deck urban bus, EURO-IV                                                all IAM regions
+  transport, passenger bus, diesel, 13m single deck urban bus, EURO-V                                                 all IAM regions
+  transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI                                                all IAM regions
+  transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-III                                       all IAM regions
+  transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-IV                                        all IAM regions
+  transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-V                                         all IAM regions
+  transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-VI                                        all IAM regions
+  transport, passenger bus, fuel cell electric, 13m single deck coach bus                                             all IAM regions
+  transport, passenger bus, diesel hybrid, 13m single deck coach bus, EURO-VI                                         all IAM regions
+  transport, passenger bus, diesel, 13m single deck coach bus, EURO-III                                               all IAM regions
+  transport, passenger bus, diesel, 13m single deck coach bus, EURO-IV                                                all IAM regions
+  transport, passenger bus, diesel, 13m single deck coach bus, EURO-V                                                 all IAM regions
+  transport, passenger bus, diesel, 13m single deck coach bus, EURO-VI                                                all IAM regions
+  transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-III                                       all IAM regions
+  transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-IV                                        all IAM regions
+  transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-V                                         all IAM regions
+  transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-VI                                        all IAM regions
+  transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 13m double deck urban bus         all IAM regions
+  transport, passenger bus, battery electric - opportunity charging, LTO battery, 13m double deck urban bus           all IAM regions
+  transport, passenger bus, fuel cell electric, 13m double deck urban bus                                             all IAM regions
+  transport, passenger bus, diesel hybrid, 13m double deck urban bus, EURO-VI                                         all IAM regions
+  transport, passenger bus, diesel, 13m double deck urban bus, EURO-III                                               all IAM regions
+  transport, passenger bus, diesel, 13m double deck urban bus, EURO-IV                                                all IAM regions
+  transport, passenger bus, diesel, 13m double deck urban bus, EURO-V                                                 all IAM regions
+  transport, passenger bus, diesel, 13m double deck urban bus, EURO-VI                                                all IAM regions
+  transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-III                                       all IAM regions
+  transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-IV                                        all IAM regions
+  transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-V                                         all IAM regions
+  transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-VI                                        all IAM regions
+  transport, passenger bus, fuel cell electric, 13m double deck coach bus                                             all IAM regions
+  transport, passenger bus, diesel hybrid, 13m double deck coach bus, EURO-VI                                         all IAM regions
+  transport, passenger bus, diesel, 13m double deck coach bus, EURO-III                                               all IAM regions
+  transport, passenger bus, diesel, 13m double deck coach bus, EURO-IV                                                all IAM regions
+  transport, passenger bus, diesel, 13m double deck coach bus, EURO-V                                                 all IAM regions
+  transport, passenger bus, diesel, 13m double deck coach bus, EURO-VI                                                all IAM regions
+  transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-III                                       all IAM regions
+  transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-IV                                        all IAM regions
+  transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-V                                         all IAM regions
+  transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-VI                                        all IAM regions
+  transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 18m articulated urban bus         all IAM regions
+  transport, passenger bus, battery electric - battery-equipped trolleybus, LTO battery, 18m articulated urban bus    all IAM regions
+  transport, passenger bus, battery electric - opportunity charging, LTO battery, 18m articulated urban bus           all IAM regions
+  transport, passenger bus, fuel cell electric, 18m articulated urban bus                                             all IAM regions
+  transport, passenger bus, diesel hybrid, 18m articulated urban bus, EURO-VI                                         all IAM regions
+  transport, passenger bus, diesel, 18m articulated urban bus, EURO-III                                               all IAM regions
+  transport, passenger bus, diesel, 18m articulated urban bus, EURO-IV                                                all IAM regions
+  transport, passenger bus, diesel, 18m articulated urban bus, EURO-V                                                 all IAM regions
+  transport, passenger bus, diesel, 18m articulated urban bus, EURO-VI                                                all IAM regions
+  transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-III                                       all IAM regions
+  transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-IV                                        all IAM regions
+  transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-V                                         all IAM regions
+  transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-VI                                        all IAM regions
+ =================================================================================================================== ==================
+
+Inventories are from Sacchi_ et al. 2021. The vehicles are available
+for different years and emission standards and for each IAM region. *premise* will only
+import vehicles which production year is equal or inferior to
+the scenario year considered. *premise* will create fleet average vehicles
+during the *Transport* transformation for each IAM region.
+
 
 Migration between ecoinvent versions
 ------------------------------------
