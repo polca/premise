@@ -288,191 +288,35 @@ The table below lists the names of the new activities.
  =======================================================================
   Diesel, burned in diesel-electric generating set, at extraction site
   crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
-  crude oil, at production offshore
   crude oil, at production offshore
   crude oil, at production offshore
   crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, at production onshore
-  crude oil, import mix, at long distance transport
   crude oil, import mix, at long distance transport
   diesel, burned in diesel-electric generating set
   diesel-electric generating set production 10MW
   discharge, produced water, offshore
   discharge, produced water, onshore
   natural gas, at long-distance pipeline
-  natural gas, at long-distance pipeline
-  natural gas, at long-distance pipeline
-  natural gas, at long-distance pipeline
-  natural gas, at long-distance pipeline
-  natural gas, at long-distance pipeline
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
-  natural gas, at production
   natural gas, at production
   natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
-  natural gas, at production offshore
   natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, at production onshore
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
-  natural gas, burned in gas turbine
   natural gas, burned in gas turbine
   natural gas, high pressure, at consumer
-  natural gas, high pressure, at consumer
-  natural gas, high pressure, at consumer
-  natural gas, high pressure, at consumer
-  natural gas, high pressure, at consumer
-  natural gas, high pressure, at consumer
-  natural gas, liquefied, at freight ship
-  natural gas, liquefied, at freight ship
-  natural gas, liquefied, at freight ship
-  natural gas, liquefied, at freight ship
-  natural gas, liquefied, at freight ship
   natural gas, liquefied, at freight ship
   natural gas, liquefied, at liquefaction plant
-  natural gas, liquefied, at liquefaction plant
-  natural gas, liquefied, at liquefaction plant
-  natural gas, liquefied, at liquefaction plant
-  natural gas, liquefied, at liquefaction plant
-  natural gas, liquefied, at liquefaction plant
   natural gas, low pressure, at consumer
-  natural gas, low pressure, at consumer
-  natural gas, low pressure, at consumer
-  natural gas, low pressure, at consumer
-  natural gas, low pressure, at consumer
-  natural gas, low pressure, at consumer
-  natural gas, production DE, at long-distance pipeline
   natural gas, production DE, at long-distance pipeline
   natural gas, production DZ, at evaporation plant
   natural gas, production DZ, at long-distance pipeline
-  natural gas, production DZ, at long-distance pipeline
-  natural gas, production DZ, at long-distance pipeline
-  natural gas, production GB, at long-distance pipeline
-  natural gas, production LY, at long-distance pipeline
-  natural gas, production LY, at long-distance pipeline
   natural gas, production NG, at evaporation plant
   natural gas, production NG, at long-distance pipeline
-  natural gas, production NG, at long-distance pipeline
-  natural gas, production NG, at long-distance pipeline
-  natural gas, production NL, at long-distance pipeline
-  natural gas, production NL, at long-distance pipeline
-  natural gas, production NL, at long-distance pipeline
-  natural gas, production NL, at long-distance pipeline
-  natural gas, production NL, at long-distance pipeline
   natural gas, production NO, at evaporation plant
-  natural gas, production NO, at long-distance pipeline
-  natural gas, production NO, at long-distance pipeline
-  natural gas, production NO, at long-distance pipeline
-  natural gas, production NO, at long-distance pipeline
   natural gas, production NO, at long-distance pipeline
   natural gas, production QA, at evaporation plant
   natural gas, production QA, at long-distance pipeline
-  natural gas, production QA, at long-distance pipeline
-  natural gas, production QA, at long-distance pipeline
-  natural gas, production RO, at long-distance pipeline
   natural gas, production RU, at evaporation plant
   natural gas, production RU, at long-distance pipeline
-  natural gas, production RU, at long-distance pipeline
-  natural gas, production RU, at long-distance pipeline
-  natural gas, production RU, at long-distance pipeline
-  natural gas, production RU, at long-distance pipeline
   natural gas, production US, at evaporation plant
-  natural gas, production US, at long-distance pipeline
-  natural gas, production US, at long-distance pipeline
-  natural gas, production US, at long-distance pipeline
   natural gas, sour, burned in production flare
   natural gas, sweet, burned in production flare
   natural gas, vented
@@ -487,23 +331,6 @@ The table below lists the names of the new activities.
   transport, liquefied natural gas RU, freight ship
   transport, liquefied natural gas US, freight ship
   transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, offshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
-  transport, natural gas, onshore pipeline, long distance
   transport, natural gas, onshore pipeline, long distance
   well for exploration and production, offshore
   well for exploration and production, onshore
