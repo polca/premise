@@ -363,7 +363,7 @@ between residential (<=3kWp) and commercial (>3kWp) installations
   electricity production, photovoltaic, commercial     LU
  ==================================================== ===========
 
-Hence, inside the residential PV mix of Spain (electricity production, photovoltaic, residential),
+Hence, inside the *residential* PV mix of Spain ("electricity production, photovoltaic, residential"),
 one will find the following inputs for the production of 1kWh:
 
  ========================================================================================== ============== =========== ============
@@ -401,6 +401,35 @@ PV mix datasets, which supply at low voltage only.
 
 Geothermal
 **********
+
+Heat production by means of a geothermal well are not represented in ecoinvent.
+The geothermal power plant construction inventories are from Maeder_ Bachelor Thesis.
+.. _Maeder: https://www.psi.ch/sites/default/files/import/ta/PublicationTab/BSc_Mattia_Maeder_2016.pdf
+
+The co-generation unit has been removed and replaced by heat exchanger and
+district heating pipes. Gross heat output of 1,483 TJ, with 80% efficiency.
+
+The inventories can be consulted here: LCI_geothermal_.
+
+They introduce the following datasets (only heat production datasets shown):
+
+ =================================== ===========
+  Geothermal heat production          location
+ =================================== ===========
+  heat production, deep geothermal    RAS
+  heat production, deep geothermal    GLO
+  heat production, deep geothermal    RAF
+  heat production, deep geothermal    RME
+  heat production, deep geothermal    RLA
+  heat production, deep geothermal    RU
+  heat production, deep geothermal    CA
+  heat production, deep geothermal    JP
+  heat production, deep geothermal    US
+  heat production, deep geothermal    IN
+  heat production, deep geothermal    CN
+  heat production, deep geothermal    RER
+ =================================== ===========
+
 
 Hydrogen
 --------
