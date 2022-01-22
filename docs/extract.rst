@@ -614,6 +614,66 @@ The following datasets are introduced:
   Biodiesel production, via transesterification, from algae, energy allocation       RER         Cozzolini 2018
  ================================================================================== =========== =============================
 
+Synthetic fuels
+---------------
+
+*premise* imports inventories for the synthesis of hydrocarbon fuels
+following two pathways:
+
+* *Fischer-Tropsch*: it uses hydrogen and CO (from CO2 via a reverse water gas
+shit process) to produce syncrude, which is cracked into diesel, kerosene,
+naphtha and lubricating oil. Inventories are from van der Giesen_ et al. 2014.
+* *Methanol-to-liquids*: methanol is synthesized from hydrogen and CO2, and further
+distilled into gasoline, diesel, LGP and kerosene. Synthetic methanol inventories
+are from Hank_ et al. 2019. The methanol to fuel process specifications are from
+FVV_ 2013.
+* *Electro-chemical methanation*: methane is produced from hydrogen and CO2 using
+a Sabatier methanation reactor. Inventories are from Zhang_ et al, 2019.
+
+.. _Giesen: https://pubs.acs.org/doi/abs/10.1021/es500191g
+.. _Hank: https://doi.org/10.1039/C9SE00658C
+.. _FVV: https://www.fvv-net.de/fileadmin/user_upload/medien/materialien/FVV-Kraftstoffstudie_LBST_2013-10-30.pdf
+.. _Zhang: https://doi.org/10.1039/C9SE00986H
+
+In their default configuration, these fuels use hydrogen from electrolysis and CO2
+from direct air capture (DAC). However, *premise* builds different configurations
+(i.e., CO2 and hydrogen sources) for these fuels, for each IAM region:
+
+ ============================================================================================================================================================================ ================== =============================
+  Fuel production dataset                                                                                                                                                      location           source
+ ============================================================================================================================================================================ ================== =============================
+  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, at fuelling station                                                             all IAM regions    van der Giesen et al. 2014
+  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, at fuelling station                                                                  all IAM regions    van der Giesen et al. 2014
+  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, at fuelling station                                                             all IAM regions    van der Giesen et al. 2014
+  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, at fuelling station                                                   all IAM regions    van der Giesen et al. 2014
+  Diesel production, synthetic, from methanol, hydrogen from coal gasification, CO2 from DAC, at fuelling station                                                              all IAM regions    Hank et al, 2019
+  Diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, at fuelling station                                                          all IAM regions    Hank et al, 2019
+  Diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                                   all IAM regions    Hank et al, 2019
+  Gasoline production, synthetic, from methanol, hydrogen from coal gasification, CO2 from DAC, at fuelling station                                                            all IAM regions    Hank et al, 2019
+  Gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, at fuelling station                                                        all IAM regions    Hank et al, 2019
+  Gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                                 all IAM regions    Hank et al, 2019
+  Kerosene production, from methanol, hydrogen from coal gasification, CO2 from DAC                                                                                            all IAM regions    Hank et al, 2019
+  Kerosene production, from methanol, hydrogen from electrolysis, CO2 from cement plant                                                                                        all IAM regions    Hank et al, 2019
+  Kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC                                                                                                 all IAM regions    Hank et al, 2019
+  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification                                                                                     all IAM regions    van der Giesen et al. 2014
+  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis                                                                                          all IAM regions    van der Giesen et al. 2014
+  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification                                                                                     all IAM regions    van der Giesen et al. 2014
+  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS                                                                           all IAM regions    van der Giesen et al. 2014
+  Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from coal gasification                                                                              all IAM regions    van der Giesen et al. 2014
+  Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from electrolysis                                                                                   all IAM regions    van der Giesen et al. 2014
+  Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification                                                                              all IAM regions    van der Giesen et al. 2014
+  Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS                                                                    all IAM regions    van der Giesen et al. 2014
+  Methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station                                                                                            all IAM regions    Zhang et al, 2019
+  Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat    all IAM regions    Zhang et al, 2019
+  Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using waste heat), at fuelling station, using waste heat            all IAM regions    Zhang et al, 2019
+  Methane, synthetic, gaseous, 5 bar, from electrochemical methanation, at fuelling station                                                                                    all IAM regions    Zhang et al, 2019
+  Naphtha production, synthetic, Fischer Tropsch process, hydrogen from coal gasification                                                                                      all IAM regions    van der Giesen et al. 2014
+  Naphtha production, synthetic, Fischer Tropsch process, hydrogen from electrolysis                                                                                           all IAM regions    van der Giesen et al. 2014
+  Naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification                                                                                      all IAM regions    van der Giesen et al. 2014
+  Naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS                                                                            all IAM regions    van der Giesen et al. 2014
+  Liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                  all IAM regions    Hank et al, 2019
+ ============================================================================================================================================================================ ================== =============================
+
 
 Direct Air Capture
 ------------------
@@ -635,7 +695,18 @@ They introduce the following datasets:
  ================================================================================== ===========
 
 In its default configuration, the DAC process uses "free of burden" excess heat
-and grid-supplied electricity.
+and grid-supplied electricity. *premise* creates various configurations of that
+same process, using different sources for heat (industrial steam heat, heat
+pump heat), which are found under the following names, for each IAM region:
+
+ ============================================================================================= ==================
+  name                                                                                          location
+ ============================================================================================= ==================
+  carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity           all IAM regions
+  carbon dioxide, captured from atmosphere, with industrial steam heat, and grid electricity    all IAM regions
+  carbon dioxide, captured from atmosphere, with waste heat, and grid electricity               all IAM regions
+ ============================================================================================= ==================
+
 
 Li-ion battery
 --------------
@@ -646,12 +717,13 @@ LFP and LTO Lithium-ion battery inventories are from  Schmidt_ et al. 2019.
 Additionally, *premise* uses new inventories for natural graphite, from Engels_
 et al. 2022,to partly replace the synthetic graphite used in Dai's inventories,
 to represent a 50:50 split between natural and synthetic graphite.
-LFP and LTO Lithium-ion battery inventories are from .
+These inventories can be found here: LCI_batteries_.
 
 .. _Dai: https://www.mdpi.com/2313-0105/5/2/48
 .. _Crenna: https://doi.org/10.1016/j.resconrec.2021.105619
 .. _Schmidt: https://doi.org/10.1021/acs.est.8b05313
 .. _Engels: https://doi.org/10.1016/j.jclepro.2022.130474
+.. _LCI_batteries: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-batteries.xlsx
 
 They introduce the following datasets:
 
@@ -672,8 +744,6 @@ These battery inventories are mostly used by battery electric vehicles
 (also imported by *premise*), and are to be preferred to battery
 inventories coming with ecoinvent.
 
-Synthetic fuels
----------------
 
 Road vehicles
 -------------
