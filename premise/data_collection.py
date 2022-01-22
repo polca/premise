@@ -140,7 +140,7 @@ class IAMDataCollection:
     """
     :var model: name of the IAM model (e.g., "remind")
     :var pathway: name of the IAM scenario (e.g., "SSP2-Base")
-    :var year: year to produce teh database for
+    :var year: year to produce the database for
     :var filepath_iam_files: if a custom file is provided, the filepath to it
     :var key: decryption key, provided by user, if built-in IAM files are to be used
     :var system_model: "attributional" or "consequential" (not yet implemented.

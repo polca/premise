@@ -416,7 +416,7 @@ class VariousVehicles(BaseInventoryImport):
     :ivar version_in: original ecoinvent version of the inventories
     :ivar version_out: ecoinvent version the inventories should comply with
     :ivar path: filepath of the inventories
-    :ivar year: year of teh database
+    :ivar year: year of the database
     :ivar regions:
     :ivar model: IAM model
     :ivar scenario: IAM scenario

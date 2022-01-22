@@ -396,7 +396,7 @@ def check_system_model(system_model: str) -> str:
 
 def check_time_horizon(th: int) -> int:
     """
-    Check teh validity of the time horizon provided (in years).
+    Check the validity of the time horizon provided (in years).
     :param th: time horizon (in years), to determine marginal mixes for consequential modelling.
     :return: time horizon (in years)
     """
