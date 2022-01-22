@@ -110,9 +110,10 @@ They originate from Volkart et al. 2013_, and can be consulted here_.
 .. _2013: https://doi.org/10.1016/j.ijggc.2013.03.003
 .. _here: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-Carma-CCS.xlsx
 
+The table below lists the names of the new activities.
 
  =============================================================================================================
-  Power generation with CCS (activities lsit)
+  Power generation with CCS (activities list)
  =============================================================================================================
   ATR-H2 GT power plant, 400MWe
   CO2 capture/at H2 production plant, pre, pipeline 200km, storage 1000m
@@ -253,6 +254,261 @@ They originate from Volkart et al. 2013_, and can be consulted here_.
 
 Natural gas
 ***********
+
+Updated inventories relating to natural gas extraction and distribution
+are imported to substitute some of the original ecoinvent dataset.
+These datasets originate from ESU Services and come with a report_.
+They have been adapted to a brightway2-compatible format.
+These new inventories have, among other things, higher methane slip
+emissions along teh natural gas supply chain, especially at extraction.
+
+.. _report: http://www.esu-services.ch/fileadmin/download/publicLCI/meili-2021-LCI%20for%20the%20oil%20and%20gas%20extraction.pdf
+
+ ========================================================== ==============================================================
+  Original dataset                                           Replaced by
+ ========================================================== ==============================================================
+  natural gas production (natural gas, high pressure), DE    natural gas, at production (natural gas, high pressure), DE
+  natural gas production (natural gas, high pressure), DZ    natural gas, at production (natural gas, high pressure), DZ
+  natural gas production (natural gas, high pressure), US    natural gas, at production (natural gas, high pressure), US
+  natural gas production (natural gas, high pressure), RU    natural gas, at production (natural gas, high pressure), RU
+  petroleum and gas production, GB                           natural gas, at production (natural gas, high pressure), GB
+  petroleum and gas production, NG                           natural gas, at production (natural gas, high pressure), NG
+  petroleum and gas production, NL                           natural gas, at production (natural gas, high pressure), NL
+  petroleum and gas production, NO                           natural gas, at production (natural gas, high pressure), NO
+ ========================================================== ==============================================================
+
+The original natural gas datasets are preserved, but they do not provide input to any
+other datasets in the database. The new datasets provide natural gas at high pressure to
+the original supply chains, which remain unchanged.
+
+The table below lists the names of the new activities.
+
+ =======================================================================
+  Natural gas and crude oil extraction (activities list)
+ =======================================================================
+  Diesel, burned in diesel-electric generating set, at extraction site
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production offshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, at production onshore
+  crude oil, import mix, at long distance transport
+  crude oil, import mix, at long distance transport
+  diesel, burned in diesel-electric generating set
+  diesel-electric generating set production 10MW
+  discharge, produced water, offshore
+  discharge, produced water, onshore
+  natural gas, at long-distance pipeline
+  natural gas, at long-distance pipeline
+  natural gas, at long-distance pipeline
+  natural gas, at long-distance pipeline
+  natural gas, at long-distance pipeline
+  natural gas, at long-distance pipeline
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production offshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, at production onshore
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, burned in gas turbine
+  natural gas, high pressure, at consumer
+  natural gas, high pressure, at consumer
+  natural gas, high pressure, at consumer
+  natural gas, high pressure, at consumer
+  natural gas, high pressure, at consumer
+  natural gas, high pressure, at consumer
+  natural gas, liquefied, at freight ship
+  natural gas, liquefied, at freight ship
+  natural gas, liquefied, at freight ship
+  natural gas, liquefied, at freight ship
+  natural gas, liquefied, at freight ship
+  natural gas, liquefied, at freight ship
+  natural gas, liquefied, at liquefaction plant
+  natural gas, liquefied, at liquefaction plant
+  natural gas, liquefied, at liquefaction plant
+  natural gas, liquefied, at liquefaction plant
+  natural gas, liquefied, at liquefaction plant
+  natural gas, liquefied, at liquefaction plant
+  natural gas, low pressure, at consumer
+  natural gas, low pressure, at consumer
+  natural gas, low pressure, at consumer
+  natural gas, low pressure, at consumer
+  natural gas, low pressure, at consumer
+  natural gas, low pressure, at consumer
+  natural gas, production DE, at long-distance pipeline
+  natural gas, production DE, at long-distance pipeline
+  natural gas, production DZ, at evaporation plant
+  natural gas, production DZ, at long-distance pipeline
+  natural gas, production DZ, at long-distance pipeline
+  natural gas, production DZ, at long-distance pipeline
+  natural gas, production GB, at long-distance pipeline
+  natural gas, production LY, at long-distance pipeline
+  natural gas, production LY, at long-distance pipeline
+  natural gas, production NG, at evaporation plant
+  natural gas, production NG, at long-distance pipeline
+  natural gas, production NG, at long-distance pipeline
+  natural gas, production NG, at long-distance pipeline
+  natural gas, production NL, at long-distance pipeline
+  natural gas, production NL, at long-distance pipeline
+  natural gas, production NL, at long-distance pipeline
+  natural gas, production NL, at long-distance pipeline
+  natural gas, production NL, at long-distance pipeline
+  natural gas, production NO, at evaporation plant
+  natural gas, production NO, at long-distance pipeline
+  natural gas, production NO, at long-distance pipeline
+  natural gas, production NO, at long-distance pipeline
+  natural gas, production NO, at long-distance pipeline
+  natural gas, production NO, at long-distance pipeline
+  natural gas, production QA, at evaporation plant
+  natural gas, production QA, at long-distance pipeline
+  natural gas, production QA, at long-distance pipeline
+  natural gas, production QA, at long-distance pipeline
+  natural gas, production RO, at long-distance pipeline
+  natural gas, production RU, at evaporation plant
+  natural gas, production RU, at long-distance pipeline
+  natural gas, production RU, at long-distance pipeline
+  natural gas, production RU, at long-distance pipeline
+  natural gas, production RU, at long-distance pipeline
+  natural gas, production RU, at long-distance pipeline
+  natural gas, production US, at evaporation plant
+  natural gas, production US, at long-distance pipeline
+  natural gas, production US, at long-distance pipeline
+  natural gas, production US, at long-distance pipeline
+  natural gas, sour, burned in production flare
+  natural gas, sweet, burned in production flare
+  natural gas, vented
+  plant onshore, natural gas, production
+  platform, crude oil, offshore
+  production plant crude oil, onshore
+  sweet gas, burned in gas turbine, production
+  transport, liquefied natural gas DZ, freight ship
+  transport, liquefied natural gas NG, freight ship
+  transport, liquefied natural gas NO, freight ship
+  transport, liquefied natural gas QA, freight ship
+  transport, liquefied natural gas RU, freight ship
+  transport, liquefied natural gas US, freight ship
+  transport, natural gas, offshore pipeline, long distance
+  transport, natural gas, offshore pipeline, long distance
+  transport, natural gas, offshore pipeline, long distance
+  transport, natural gas, offshore pipeline, long distance
+  transport, natural gas, offshore pipeline, long distance
+  transport, natural gas, offshore pipeline, long distance
+  transport, natural gas, offshore pipeline, long distance
+  transport, natural gas, offshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  transport, natural gas, onshore pipeline, long distance
+  well for exploration and production, offshore
+  well for exploration and production, onshore
+ =======================================================================
+
 
 Photovoltaic panels
 *******************
