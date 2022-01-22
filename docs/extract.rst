@@ -565,17 +565,17 @@ The following datasets are introduced:
  ================================================================================== =========== =============================
   Activity                                                                           Location    Source
  ================================================================================== =========== =============================
-  Farming and supply of switchgrass                                                  US          GREET
-  Farming and supply of poplar                                                       US          GREET
-  Farming and supply of willow                                                       US          GREET
-  Supply of forest residue                                                           US          GREET
-  Farming and supply of miscanthus                                                   US          GREET
-  Farming and supply of corn stover                                                  US          GREET
-  Farming and supply of sugarcane                                                    US          GREET
-  Farming and supply of Grain Sorghum                                                US          GREET
-  Farming and supply of Sweet Sorghum                                                US          GREET
-  Farming and supply of Forage Sorghum                                               US          GREET
-  Farming and supply of corn                                                         US          GREET
+  Farming and supply of switchgrass                                                  US          Wu et al. 2006 (2020 update)
+  Farming and supply of poplar                                                       US          Wu et al. 2006 (2020 update)
+  Farming and supply of willow                                                       US          Wu et al. 2006 (2020 update)
+  Supply of forest residue                                                           US          Wu et al. 2006 (2020 update)
+  Farming and supply of miscanthus                                                   US          Wu et al. 2006 (2020 update)
+  Farming and supply of corn stover                                                  US          Wu et al. 2006 (2020 update)
+  Farming and supply of sugarcane                                                    US          Wu et al. 2006 (2020 update)
+  Farming and supply of Grain Sorghum                                                US          Wu et al. 2006 (2020 update)
+  Farming and supply of Sweet Sorghum                                                US          Wu et al. 2006 (2020 update)
+  Farming and supply of Forage Sorghum                                               US          Wu et al. 2006 (2020 update)
+  Farming and supply of corn                                                         US          Wu et al. 2006 (2020 update)
   Farming and supply of sugarcane                                                    BR          Pereira et al. 2019/RED II
   Farming and supply of sugarcane straw                                              BR          Pereira et al. 2019
   Farming and supply of eucalyptus                                                   ES          Gonzalez-Garcia et al. 2012
@@ -588,18 +588,18 @@ The following datasets are introduced:
   Farming and supply of rapeseed                                                     RER         Cozzolini 2018/RED II
   Farming and supply of palm fresh fruit bunch                                       RER         Cozzolini 2018
   Farming and supply of dry algae                                                    RER         Cozzolini 2018
-  Ethanol production, via fermentation, from switchgrass                             US          GREET
-  Ethanol production, via fermentation, from poplar                                  US          GREET
-  Ethanol production, via fermentation, from willow                                  US          GREET
-  Ethanol production, via fermentation, from forest residue                          US          GREET
-  Ethanol production, via fermentation, from miscanthus                              US          GREET
-  Ethanol production, via fermentation, from corn stover                             US          GREET
-  Ethanol production, via fermentation, from sugarcane                               US          GREET
-  Ethanol production, via fermentation, from grain sorghum                           US          GREET
-  Ethanol production, via fermentation, from sweet sorghum                           US          GREET
-  Ethanol production, via fermentation, from forage sorghum                          US          GREET
-  Ethanol production, via fermentation, from corn                                    US          GREET/JEC 2020
-  Ethanol production, via fermentation, from corn, with carbon capture               US          GREET
+  Ethanol production, via fermentation, from switchgrass                             US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from poplar                                  US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from willow                                  US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from forest residue                          US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from miscanthus                              US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from corn stover                             US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from sugarcane                               US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from grain sorghum                           US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from sweet sorghum                           US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from forage sorghum                          US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from corn                                    US          Wu et al. 2006 (2020 update)
+  Ethanol production, via fermentation, from corn, with carbon capture               US          Wu et al. 2006 (2020 update)
   Ethanol production, via fermentation, from sugarcane                               BR          Pereira et al. 2019
   Ethanol production, via fermentation, from sugarcane straw                         BR          Pereira et al. 2019
   Ethanol production, via fermentation, from eucalyptus                              ES          Gonzalez-Garcia et al. 2012
@@ -640,7 +640,37 @@ and grid-supplied electricity.
 Li-ion battery
 --------------
 
+NMC-111, NMC-6222 NMC-811 and NCA Lithium-ion battery inventories are originally
+from Dai_ et al. 2019. They have been adapted to ecoinvent by Crenna_ et al, 2021.
+LFP and LTO Lithium-ion battery inventories are from  Schmidt_ et al. 2019.
+Additionally, *premise* uses new inventories for natural graphite, from Engels_
+et al. 2022,to partly replace the synthetic graphite used in Dai's inventories,
+to represent a 50:50 split between natural and synthetic graphite.
+LFP and LTO Lithium-ion battery inventories are from .
 
+.. _Dai: https://www.mdpi.com/2313-0105/5/2/48
+.. _Crenna: https://doi.org/10.1016/j.resconrec.2021.105619
+.. _Schmidt: https://doi.org/10.1021/acs.est.8b05313
+.. _Engels: https://doi.org/10.1016/j.jclepro.2022.130474
+
+They introduce the following datasets:
+
+ ============================== =========== ======================================
+  Battery components             location    source
+ ============================== =========== ======================================
+  Battery BoP                    GLO         Schmidt et al. 2019
+  Battery cell, NMC-111          GLO         Dai et al. 2019, Crenna et al. 2021
+  Battery cell, NMC-622          GLO         Dai et al. 2019, Crenna et al. 2021
+  Battery cell, NMC-811          GLO         Dai et al. 2019, Crenna et al. 2021
+  Battery cell, NCA              GLO         Dai et al. 2019, Crenna et al. 2021
+  Battery cell, LFP              GLO         Schmidt et al. 2019
+  Battery cell, LTO              GLO         Schmidt et al. 2019
+  coating of natural graphite    CN          Engels et al. 2022
+ ============================== =========== ======================================
+
+These battery inventories are mostly used by battery electric vehicles
+(also imported by *premise*), and are to be preferred to battery
+inventories coming with ecoinvent.
 
 Synthetic fuels
 ---------------
