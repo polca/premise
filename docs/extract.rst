@@ -618,8 +618,29 @@ The following datasets are introduced:
 Direct Air Capture
 ------------------
 
+Inventories for direct air capture of CO2 using ClimeWork's low-temperature
+process are imported. They originate from the work of Terlouw_ et al. 2021.
+They can be consulted here: LCI_DAC_.
+
+.. _Terlouw: https://pubs.acs.org/doi/10.1021/acs.est.1c03263
+.. _LCI_DAC: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-direct-air-capture.xlsx
+
+They introduce the following datasets:
+
+
+ ================================================================================== ===========
+  Activity                                                                           Location
+ ================================================================================== ===========
+  carbon dioxide, captured from the atmosphere                                       RER
+ ================================================================================== ===========
+
+In its default configuration, the DAC process uses "free of burden" excess heat
+and grid-supplied electricity.
+
 Li-ion battery
 --------------
+
+
 
 Synthetic fuels
 ---------------
