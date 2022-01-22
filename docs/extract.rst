@@ -717,7 +717,7 @@ NMC-111, NMC-6222 NMC-811 and NCA Lithium-ion battery inventories are originally
 from Dai_ et al. 2019. They have been adapted to ecoinvent by Crenna_ et al, 2021.
 LFP and LTO Lithium-ion battery inventories are from  Schmidt_ et al. 2019.
 Additionally, *premise* uses new inventories for natural graphite, from Engels_
-et al. 2022,to partly replace the synthetic graphite used in Dai's inventories,
+et al. 2022, to partly replace the synthetic graphite used in Dai's inventories,
 to represent a 50:50 split between natural and synthetic graphite.
 These inventories can be found here: LCI_batteries_.
 
@@ -768,40 +768,56 @@ here: LCItwowheelers_.
 .. _Sacchi: https://zenodo.org/deposit/5720779
 .. _LCItwowheelers: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-two_wheelers.xlsx
 
- ====================================== ==================
-  Two-wheeler datasets                   location
- ====================================== ==================
-  Kick Scooter, electric, <1kW           all IAM regions
-  Bicycle, conventional, urban           all IAM regions
-  Bicycle, electric (<25 km/h)           all IAM regions
-  Bicycle, electric (<45 km/h)           all IAM regions
-  Bicycle, electric, cargo bike          all IAM regions
-  Moped, gasoline, <4kW, EURO-3          all IAM regions
-  Moped, gasoline, <4kW, EURO-4          all IAM regions
-  Moped, gasoline, <4kW, EURO-5          all IAM regions
-  Scooter, gasoline, <4kW, EURO-3        all IAM regions
-  Scooter, gasoline, <4kW, EURO-4        all IAM regions
-  Scooter, gasoline, <4kW, EURO-5        all IAM regions
-  Scooter, gasoline, 4-11kW, EURO-3      all IAM regions
-  Scooter, gasoline, 4-11kW, EURO-4      all IAM regions
-  Scooter, gasoline, 4-11kW, EURO-5      all IAM regions
-  Scooter, electric, <4kW                all IAM regions
-  Scooter, electric, 4-11kW              all IAM regions
-  Motorbike, gasoline, 4-11kW, EURO-3    all IAM regions
-  Motorbike, gasoline, 4-11kW, EURO-4    all IAM regions
-  Motorbike, gasoline, 4-11kW, EURO-5    all IAM regions
-  Motorbike, gasoline, 11-35kW, EURO-3   all IAM regions
-  Motorbike, gasoline, 11-35kW, EURO-4   all IAM regions
-  Motorbike, gasoline, 11-35kW, EURO-5   all IAM regions
-  Motorbike, gasoline, >35kW, EURO-3     all IAM regions
-  Motorbike, gasoline, >35kW, EURO-4     all IAM regions
-  Motorbike, gasoline, >35kW, EURO-5     all IAM regions
-  Motorbike, electric, <4kW              all IAM regions
-  Motorbike, electric, 4-11kW            all IAM regions
-  Motorbike, electric, 11-35kW           all IAM regions
-  Motorbike, electric, >35kW             all IAM regions
- ====================================== ==================
+ ================================================= ==================
+  Two-wheeler datasets                              location
+ ================================================= ==================
+  transport, Kick Scooter, electric, <1kW           all IAM regions
+  transport, Bicycle, conventional, urban           all IAM regions
+  transport, Bicycle, electric (<25 km/h)           all IAM regions
+  transport, Bicycle, electric (<45 km/h)           all IAM regions
+  transport, Bicycle, electric, cargo bike          all IAM regions
+  transport, Moped, gasoline, <4kW, EURO-3          all IAM regions
+  transport, Moped, gasoline, <4kW, EURO-4          all IAM regions
+  transport, Moped, gasoline, <4kW, EURO-5          all IAM regions
+  transport, Scooter, gasoline, <4kW, EURO-3        all IAM regions
+  transport, Scooter, gasoline, <4kW, EURO-4        all IAM regions
+  transport, Scooter, gasoline, <4kW, EURO-5        all IAM regions
+  transport, Scooter, gasoline, 4-11kW, EURO-3      all IAM regions
+  transport, Scooter, gasoline, 4-11kW, EURO-4      all IAM regions
+  transport, Scooter, gasoline, 4-11kW, EURO-5      all IAM regions
+  transport, Scooter, electric, <4kW                all IAM regions
+  transport, Scooter, electric, 4-11kW              all IAM regions
+  transport, Motorbike, gasoline, 4-11kW, EURO-3    all IAM regions
+  transport, Motorbike, gasoline, 4-11kW, EURO-4    all IAM regions
+  transport, Motorbike, gasoline, 4-11kW, EURO-5    all IAM regions
+  transport, Motorbike, gasoline, 11-35kW, EURO-3   all IAM regions
+  transport, Motorbike, gasoline, 11-35kW, EURO-4   all IAM regions
+  transport, Motorbike, gasoline, 11-35kW, EURO-5   all IAM regions
+  transport, Motorbike, gasoline, >35kW, EURO-3     all IAM regions
+  transport, Motorbike, gasoline, >35kW, EURO-4     all IAM regions
+  transport, Motorbike, gasoline, >35kW, EURO-5     all IAM regions
+  transport, Motorbike, electric, <4kW              all IAM regions
+  transport, Motorbike, electric, 4-11kW            all IAM regions
+  transport, Motorbike, electric, 11-35kW           all IAM regions
+  transport, Motorbike, electric, >35kW             all IAM regions
+ ================================================= ==================
 
+These inventories do not supply inputs to other activities in the LCI database.
+As such, they are optional.
+
+They can be excluded upon database creation by specifying it in
+`exclude`, like so:
+
+.. code-block:: python
+
+    ndb = NewDatabase(
+                scenarios=[
+                    {"model":"image", "pathway":"SSP2-Base", "year":2029, "exclude": ["update_two_wheelers"]}
+                ],
+                source_db="ecoinvent 3.8 cutoff",
+                source_version="3.8",
+                key='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
 
 Passenger cars
 **************
@@ -1080,6 +1096,22 @@ here: LCIpasscars_.
 .. _Sacchi2: https://www.psi.ch/en/media/72391/download
 .. _LCIpasscars: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx
 
+At the moment. these inventories do not supply inputs to other activities in the LCI database.
+As such, they are optional.
+
+They can be excluded upon database creation by specifying it in
+`exclude`, like so:
+
+.. code-block:: python
+
+    ndb = NewDatabase(
+                scenarios=[
+                    {"model":"image", "pathway":"SSP2-Base", "year":2029, "exclude": ["update_cars"]}
+                ],
+                source_db="ecoinvent 3.8 cutoff",
+                source_version="3.8",
+                key='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
 
 Medium and heavy duty trucks
 ****************************
@@ -1174,6 +1206,22 @@ here: LCItrucks_.
 .. _LCItrucks: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx
 .. _Sacchi3: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
 
+
+While these inventories do provide inputs to other activities in the LCI database,
+they can be excluded upon database creation by specifying it in
+`exclude`, like so:
+
+.. code-block:: python
+
+    ndb = NewDatabase(
+                scenarios=[
+                    {"model":"image", "pathway":"SSP2-Base", "year":2029, "exclude": ["update_trucks"]}
+                ],
+                source_db="ecoinvent 3.8 cutoff",
+                source_version="3.8",
+                key='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+
 Buses
 *****
 
@@ -1263,7 +1311,22 @@ here: LCIbuses_.
 
 .. _LCIbuses: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-buses.xlsx
 
+At the moment. these inventories do not supply inputs to other activities in the LCI database.
+As such, they are optional.
 
+They can be excluded upon database creation by specifying it in
+`exclude`, like so:
+
+.. code-block:: python
+
+    ndb = NewDatabase(
+                scenarios=[
+                    {"model":"image", "pathway":"SSP2-Base", "year":2029, "exclude": ["update_buses"]}
+                ],
+                source_db="ecoinvent 3.8 cutoff",
+                source_version="3.8",
+                key='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
 
 Migration between ecoinvent versions
 ------------------------------------
@@ -1646,5 +1709,11 @@ These two sources are combined and used to derive the following parameters:
 * fuel efficiency
 * heat recovery rate
 * electricity use
+
+This data is available here: GNRdata_.
+
+.. _GNRdata: https://github.com/romainsacchi/premise/blob/master/premise/data/cement/additional_data_GNR.csv
+
+
 
 
