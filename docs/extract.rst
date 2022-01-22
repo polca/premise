@@ -710,8 +710,8 @@ pump heat), which are found under the following names, for each IAM region:
  ============================================================================================= ==================
 
 
-Li-ion battery
---------------
+Li-ion batteries
+----------------
 
 NMC-111, NMC-6222 NMC-811 and NCA Lithium-ion battery inventories are originally
 from Dai_ et al. 2019. They have been adapted to ecoinvent by Crenna_ et al, 2021.
@@ -1492,8 +1492,31 @@ the efficiency given by the IAM, but rather its change over time relative to 202
 Land use and land use change
 ----------------------------
 
+When building prospective databases using the IAM IMAGE model, the latter provides
+additional variables relating to average land use and land use change emissions, for each type of
+crop grown to be used in biofuel production.
+Upon the creation of biofuel supply chains in the *Fuels* transformation function, such information
+is used to adjust the inventories of crop farming datasets. The table below shows the IMAGE variables
+used to that effect.
+
+ ========================= ========================== ========================================== =============================================================
+  Crop family in premise    Crop type in premise       Land use variable in IMAGE [Ha/GJ-Prim]    Land use change variable in IMAGE [kg CO2/GJ-Prim]
+ ========================= ========================== ========================================== =============================================================
+  sugar                     sugarbeet, sugarcane       Land Use|Average|Biomass|Sugar             Emission Factor|CO2|Energy|Supply|Biomass|Average|Sugar
+  oil                       rapeseed, palm oil         Land Use|Average|Biomass|OilCrop           Emission Factor|CO2|Energy|Supply|Biomass|Average|Oilcrops
+  wood                      poplar, eucalyptus         Land Use|Average|Biomass|Woody             Emission Factor|CO2|Energy|Supply|Biomass|Average|Woody
+  grass                     switchgrass, miscanthus    Land Use|Average|Biomass|Grassy            Emission Factor|CO2|Energy|Supply|Biomass|Average|Grassy
+  grain                     corn                       Land Use|Average|Biomass|Maize             Emission Factor|CO2|Energy|Supply|Biomass|Average|Maize
+ ========================= ========================== ========================================== =============================================================
+
+
 Data sources external to the IAM
 --------------------------------
+
+*premise* tries to adhere to the IAM scenario data as much as possible. There are
+however a number of cases where external data sources are used. This is notably the case
+for non-CO2 pollutants emissions for different sectors (electricity, steel and cement),
+as well as fuel mixes and power generation for the cement industry.
 
 Air emissions
 *************
