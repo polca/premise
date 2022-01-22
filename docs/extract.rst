@@ -91,7 +91,7 @@ in `source_file_path`, as well as indicate the database format in `source_type`:
 Import of additional inventories
 """"""""""""""""""""""""""""""""
 
-After the eecoinvent database is extracted and checked, a number of additional invenotries
+After the ecoinvent database is extracted and checked, a number of additional invenotries
 are imported, regardless of the year of scenario that is being considered.
 
 
@@ -115,54 +115,6 @@ The table below lists the names of the new activities.
  =============================================================================================================
   Power generation with CCS (activities list)
  =============================================================================================================
-  ATR-H2 GT power plant, 400MWe
-  CO2 capture/at H2 production plant, pre, pipeline 200km, storage 1000m
-  CO2 capture/at H2 production plant, pre, pipeline 400km, storage 3000m
-  CO2 capture/at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
-  CO2 capture/at wood burning power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m
-  CO2 capture/hard coal, oxy, pipeline 200km, storage 1000m
-  CO2 capture/hard coal, oxy, pipeline 400km, storage 3000m
-  CO2 capture/hard coal, post, pipeline 200km, storage 1000m
-  CO2 capture/hard coal, post, pipeline 400km, storage 1000m
-  CO2 capture/hard coal, post, pipeline 400km, storage 3000m
-  CO2 capture/hard coal, pre, pipeline 200km, storage 1000m
-  CO2 capture/hard coal, pre, pipeline 400km, storage 3000m
-  CO2 capture/lignite, oxy, pipeline 200km, storage 1000m
-  CO2 capture/lignite, oxy, pipeline 400km, storage 3000m
-  CO2 capture/lignite, post, pipeline 200km, storage 1000m
-  CO2 capture/lignite, post, pipeline 400km, storage 3000m
-  CO2 capture/lignite, pre, pipeline 200km, storage 1000m
-  CO2 capture/lignite, pre, pipeline 400km, storage 3000m
-  CO2 capture/natural gas, post, 200km pipeline, storage 1000m
-  CO2 capture/natural gas, post, 400km pipeline, storage 1000m
-  CO2 capture/natural gas, post, 400km pipeline, storage 3000m
-  CO2 capture/natural gas, pre, 200km pipeline, storage 1000m
-  CO2 capture/natural gas, pre, 400km pipeline, storage 3000m
-  CO2 storage/100% SNG, post, 200km pipeline, storage 1000m
-  CO2 storage/100% SNG, post, 400km pipeline, storage 3000m
-  CO2 storage/at H2 production plant, pre, pipeline 400km, storage 3000m
-  CO2 storage/at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
-  CO2 storage/at wood burning power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m
-  CO2 storage/hard coal, oxy, pipeline 200km, storage 1000m
-  CO2 storage/hard coal, oxy, pipeline 400km, storage 3000m
-  CO2 storage/hard coal, post, pipeline 200km, storage 1000m
-  CO2 storage/hard coal, post, pipeline 400km, storage 1000m
-  CO2 storage/hard coal, post, pipeline 400km, storage 3000m
-  CO2 storage/hard coal, pre, pipeline 200km, storage 1000m
-  CO2 storage/hard coal, pre, pipeline 400km, storage 3000m
-  CO2 storage/lignite, oxy, pipeline 200km, storage 1000m
-  CO2 storage/lignite, oxy, pipeline 400km, storage 3000m
-  CO2 storage/lignite, post, pipeline 200km, storage 1000m
-  CO2 storage/lignite, post, pipeline 400km, storage 3000m
-  CO2 storage/lignite, pre, pipeline 200km, storage 1000m
-  CO2 storage/lignite, pre, pipeline 400km, storage 3000m
-  CO2 storage/natural gas, post, 200km pipeline, storage 1000m
-  CO2 storage/natural gas, post, 400km pipeline, storage 1000m
-  CO2 storage/natural gas, post, 400km pipeline, storage 3000m
-  CO2 storage/natural gas, pre, 200km pipeline, storage 1000m
-  CO2 storage/natural gas, pre, 400km pipeline, storage 3000m
-  Construction, BIGCC power plant 450MW
-  Dismantling, BIGCC power plant 450MW
   electricity production, at power plant/hard coal, IGCC, no CCS
   electricity production, at power plant/hard coal, PC, no CCS
   electricity production, at power plant/hard coal, oxy, pipeline 200km, storage 1000m
@@ -190,67 +142,8 @@ The table below lists the names of the new activities.
   electricity production, at wood burning power plant 20 MW, truck 25km, no CCS
   electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
   electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m
-  Hard coal IGCC power plant 450MW
-  Hard coal IGCC power plant, operation, no CCS
-  Hard coal IGCC power plant, operation, with CCS
-  Hard coal, burned in power plant/IGCC, no CCS
-  Hard coal, burned in power plant/PC, no CCS
-  Hard coal, burned in power plant/oxy, pipeline 200km, storage 1000m
-  Hard coal, burned in power plant/oxy, pipeline 400km, storage 3000m
-  Hard coal, burned in power plant/post, pipeline 200km, storage 1000m
-  Hard coal, burned in power plant/post, pipeline 400km, storage 1000m
-  Hard coal, burned in power plant/post, pipeline 400km, storage 3000m
-  Hard coal, burned in power plant/pre, pipeline 200km, storage 1000m
-  Hard coal, burned in power plant/pre, pipeline 400km, storage 3000m
-  Hydrogen, from steam reforming of biomass gas, at reforming plant, no CCS
-  Hydrogen, from steam reforming of biomassgas, at reforming plant, pre, pipeline 200km, storage 1000m
-  Hydrogen, from steam reforming of biomassgas, at reforming plant, pre, pipeline 400km, storage 3000m
-  Lignite IGCC power plant 450MW
-  Lignite IGCC power plant, operation, no CCS
-  Lignite IGCC power plant, operation, with CCS
-  Lignite, burned in power plant/IGCC, no CCS
-  Lignite, burned in power plant/PC, no CCS
-  Lignite, burned in power plant/oxy, pipeline 200km, storage 1000m
-  Lignite, burned in power plant/oxy, pipeline 400km, storage 3000m
-  Lignite, burned in power plant/post, pipeline 200km, storage 1000m
-  Lignite, burned in power plant/post, pipeline 400km, storage 3000m
-  Lignite, burned in power plant/pre, pipeline 200km, storage 1000m
-  Lignite, burned in power plant/pre, pipeline 400km, storage 3000m
-  Natural gas, burned in power plant/NGCC, no CCS
-  Natural gas, burned in power plant/post, pipeline 200km, storage 1000m/RER
-  Natural gas, burned in power plant/post, pipeline 400km, storage 1000m/RER
-  Natural gas, burned in power plant/post, pipeline 400km, storage 3000m/RER
-  Natural gas, in ATR H2-CC/no CCS/MJ
-  Natural gas, in ATR H2-CC/pre, pipeline 200km, storage 1000m
-  Natural gas, in ATR H2-CC/pre, pipeline 400km, storage 3000m
-  Operation, H2 power plant 450MW, no CCS
-  Operation, H2 power plant 450MW, pre, pipeline 200km, storage 1000m
-  Rape Methyl Ester, at plant
-  SNG from wood, 70 bar, at consumer, CH (wood transport: lorry, 25km)
-  SNG from wood, production plant
-  SNG production plant
-  Selexol (Dimethylether of polyethylene glycol)/RER
-  Syngas production plant
-  Syngas, from biomass gasification, no CCS
-  Syngas, from biomass gasification, pre, pipeline 200km, storage 1000m
-  Syngas, from biomass gasification, pre, pipeline 400km, storage 3000m
-  Synthetic natural gas from wood, 70 bar, at plant, CH (wood transport: lorry, 25km)
-  Wood chips, burned in power plant 20 MW, truck 25km, no CCS
-  Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
-  Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m
-  Wood combustion power plant 20 MW
-  construction, hard coal IGCC power plant 450MW/p
-  construction, lignite IGCC power plant 450MW
-  dismantling, hard coal IGCC power plant 450MW/p
-  dismantling, lignite IGCC power plant 450MW
-  market for gas power plant, combined cycle, 400MW electrical
-  market for hard coal power plant
-  transport, pipeline, supercritical CO2, 200km w recompression
-  CO2 storage/at H2 production plant, pre, pipeline 200km, storage 1000m
-  transport, pipeline, supercritical CO2, 200km w/o recompression
-  pipeline, supercritical CO2/km
-  drilling, deep borehole/m
  =============================================================================================================
+
 
 Natural gas
 ***********
