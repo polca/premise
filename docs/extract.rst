@@ -105,10 +105,10 @@ Power plants with CCS
 *********************
 
 Datasets for power generation with Carbon Capture and Storage are imported.
-They originate from Volkart et al. 2013_, and can be consulted here_.
+They originate from Volkart et al. 2013_, and can be consulted here: LCI_Power_generation_.
 
 .. _2013: https://doi.org/10.1016/j.ijggc.2013.03.003
-.. _here: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-Carma-CCS.xlsx
+.. _LCI_Power_generation: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-Carma-CCS.xlsx
 
 The table below lists the names of the new activities (only production datasets are shown).
 
@@ -150,7 +150,11 @@ Natural gas
 
 Updated inventories relating to natural gas extraction and distribution
 are imported to substitute some of the original ecoinvent dataset.
-These datasets originate from ESU Services and come with a report_.
+These datasets originate from ESU Services and come with a report_,
+and can be consulted here: LCI_Oil_NG_.
+
+.. _LCI_Oil_NG: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-ESU-oil-and-gas.xlsx
+
 They have been adapted to a brightway2-compatible format.
 These new inventories have, among other things, higher methane slip
 emissions along teh natural gas supply chain, especially at extraction.
