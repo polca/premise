@@ -1529,8 +1529,9 @@ Carbon Capture and Storage
 Some scenarios involve the capture and storage of CO2 emissions
 of certain sectors (e.g., cement and steel).
 The capture rate of a given sector is calculated
-from the IAM data file, as the amount of CO2 captured over the sum
-of captured and not captured CO2 emissions.
+from the IAM data file, as::
+
+    rate = amount of CO2 captured / (amount of CO2 captured + amount of CO2 not captured)
 
 The table below lists the variables needed to calculate those rates.
 
@@ -1621,8 +1622,8 @@ are shown in the table below.
   VOC              NMVOC, non-methane volatile organic compounds, unspecified origin
  ================ ====================================================================
 
-The non-CO2 emissions *scaling factors* considered for a given scenario
-can be consulted, like so:
+The *scaling factors* for non-CO2 emissions considered for a given scenario
+can be consulted like so:
 
 .. code-block:: python
 
@@ -1630,4 +1631,20 @@ can be consulted, like so:
 
 Cement production
 *****************
+
+A number of parameters to model future clinker/cement production is not sourced from the
+IAM file, but from data from the GCCA_ database "Getting the Numbers Right", as well as
+from the IEA_ roadmap report for the cement industry.
+
+.. _GCCA: https://gccassociation.org/sustainability-innovation/gnr-gcca-in-numbers/
+.. _IEA: https://www.wbcsd.org/contentwbc/download/4586/61682/1
+
+These two sources are combined and used to derive the following parameters:
+
+* share of kiln technology (wet, dry, wet with pre-heater, etc.)
+* fuel mix
+* fuel efficiency
+* heat recovery rate
+* electricity use
+
 
