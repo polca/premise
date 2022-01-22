@@ -18,7 +18,7 @@ import yaml
 
 from .data_collection import IAMDataCollection
 from .transformation import *
-from .utils import eidb_label, get_efficiency_ratio_solar_PV, DATA_DIR
+from .utils import DATA_DIR, eidb_label, get_efficiency_ratio_solar_PV
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"

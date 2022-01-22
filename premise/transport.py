@@ -22,7 +22,7 @@ from .transformation import (
     ws,
     wt,
 )
-from .utils import eidb_label, DATA_DIR
+from .utils import DATA_DIR, eidb_label
 
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
