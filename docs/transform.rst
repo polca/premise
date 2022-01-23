@@ -440,10 +440,10 @@ regional market, which "includes" it in terms of geography.
   Output                                       _           _                _
  ============================================ =========== ================ ===========
   producer                                     amount      unit             location
-  market for electricity, low voltage          1.00E+00    kilowatt hour    GB
+  market for electricity, low voltage          1.00E+00    kilowatt hour    **GB**
   Input                                        _           _                _
   supplier                                     amount      unit             location
-  market group for electricity, low voltage    1.00E+00    kilowatt hour    WEU
+  market group for electricity, low voltage    1.00E+00    kilowatt hour    **WEU**
  ============================================ =========== ================ ===========
 
 Relinking
@@ -603,10 +603,10 @@ regional market, which "includes" it in terms of geography.
   Output                                       _           _                _
  ============================================ =========== ================ ===========
   producer                                     amount      unit             location
-  market for clinker                           1.00E+00    kilogram         ZA
+  market for clinker                           1.00E+00    kilogram         **ZA**
   Input                                        _           _                _
   supplier                                     amount      unit             location
-  market for clinker                           1.00E+00    kilogram         SAF
+  market for clinker                           1.00E+00    kilogram         ***SAF**
  ============================================ =========== ================ ===========
 
 
@@ -697,8 +697,8 @@ furnace process (secondary steel).
   market group for transport, freight train                         0.35         ton kilometer    GLO
   market for transport, freight, sea, bulk carrier for dry goods    0.38         ton kilometer    GLO
   transport, freight, lorry, unspecified, regional delivery         0.12         ton kilometer    IND
-  steel production, converter, low-alloyed                          0.66         kilogram         IND
-  steel production, electric, low-alloyed                           0.34         kilogram         IND
+  steel production, **converter**, low-alloyed                      0.66         kilogram         IND
+  steel production, **electric**, low-alloyed                       0.34         kilogram         IND
  ================================================================= ============ ================ ===========
 
 
@@ -718,10 +718,10 @@ regional market, which "includes" it in terms of geography.
   Output                                       _           _                _
  ============================================ =========== ================ ===========
   producer                                     amount      unit             location
-  market for clinker                           1.00E+00    kilogram         ZA
+  market for clinker                           1.00E+00    kilogram         **ZA**
   Input                                        _           _                _
   supplier                                     amount      unit             location
-  market for clinker                           1.00E+00    kilogram         SAF
+  market for clinker                           1.00E+00    kilogram         **SAF**
  ============================================ =========== ================ ===========
 
 
@@ -747,7 +747,8 @@ These inventories are available for the construction year of 2000
 to 2050, by steps of 5 years, but *premise* only imports vehicles
 with a construction year inferior or equal to the scenario year
 (vehicle from 2050 will not be imported in a database for the
-scenario year of 2030).
+scenario year of 2030, but vehicles from 2020 will, as they are
+necessary to build the fleet average vehicles).
 
 Trucks
 ++++++
@@ -819,10 +820,8 @@ demand from "vehicle-kilometers" to "ton-kilometers":
 *premise* uses the fleet data to produce fleet average trucks for each
 IAM region, and more specifically:
 
-* a fleet average trucks, all powertrains and size classes considered
-* a fleet average trucks, all size classes considered, for a given powertrain
-* a fleet average trucks, all powertrains considered, for a given size class
-
+* a fleet average truck, all powertrains and size classes considered
+* a fleet average truck, all powertrains considered, for a given size class
 
 They appear in the LCI database as the following:
 
@@ -854,7 +853,7 @@ Regarding trucks, *premise* re-links truck transport-consuming activities
 to the newly created fleet average truck datasets.
 
 The following table shows the correspondence between the original
-truck transport datasets and the new ones:
+truck transport datasets and the new ones replacing them:
 
  ======================================================================== ======================================================================= =======================================================================
   Original dataset                                                         Replaced by (REMIND)                                                    Replaced by (IMAGE)
@@ -884,17 +883,17 @@ flour indicates that the flour has been transported over 560 km.
 On this basis, *premise* chooses one of the following
 driving cycles:
 
-- urban delivery, if the distance is inferior to 150 km
-- regional delivery, if the distance is between 150 and 450 km
-- long haul, if the distance is superior to 450 km
+- *urban delivery*, if the distance is inferior to 150 km
+- *regional delivery*, if the distance is between 150 and 450 km
+- *long haul*, if the distance is superior to 450 km
 
 
 Hence, in the following dataset for "market for steel, low-alloyed"
 for the IAM region of India, *premise* chose the *regional delivery*
 driving cycle since the kilogram of steel has been transported on
-average over 120 km. The truck used to transport that kilogram of steel
-is a fleet average vehicle built upon the REMIND fleet data for the India
-region.
+average over 120 km by truck. The truck used to transport that kilogram of steel
+is a fleet average vehicle built upon the REMIND fleet data for the region
+of India.
 
 
  ================================================================= ============ ================ ===========
@@ -907,7 +906,7 @@ region.
   market group for transport, freight, inland waterways, barge      0.5          ton kilometer    GLO
   market group for transport, freight train                         0.35         ton kilometer    GLO
   market for transport, freight, sea, bulk carrier for dry goods    0.38         ton kilometer    GLO
-  transport, freight, lorry, unspecified, regional delivery         0.12         ton kilometer    IND
+  transport, freight, lorry, unspecified, **regional delivery**     0.12         ton kilometer    IND
   steel production, converter, low-alloyed                          0.66         kilogram         IND
   steel production, electric, low-alloyed                           0.34         kilogram         IND
  ================================================================= ============ ================ ===========
@@ -940,14 +939,14 @@ IAM models have slightly different geographical resolutions and definitions.
 Map of IMAGE regions
 
 .. image:: map_image.png
-   :width: 200pt
+   :width: 400pt
    :align: center
 
 
 Map of REMIND regions
 
 .. image:: map_remind.png
-   :width: 200pt
+   :width: 400pt
    :align: center
 
 *premise* uses the following correspondence between ecoinvent locations
