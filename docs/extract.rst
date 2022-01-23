@@ -1622,7 +1622,8 @@ Data sources external to the IAM
 *premise* tries to adhere to the IAM scenario data as much as possible. There are
 however a number of cases where external data sources are used. This is notably the case
 for non-CO2 pollutants emissions for different sectors (electricity, steel and cement),
-as well as fuel mixes and power generation for the cement industry.
+fuel mixes and power generation for the cement industry, as well as expected efficiency gains
+for photovoltaic panels.
 
 Air emissions
 *************
@@ -1713,6 +1714,33 @@ These two sources are combined and used to derive the following parameters:
 This data is available here: GNRdata_.
 
 .. _GNRdata: https://github.com/romainsacchi/premise/blob/master/premise/data/cement/additional_data_GNR.csv
+
+Photovoltaic panels
+*******************
+
+Module efficiencies in 2010 for micro-Si and single-Si are from IEA_ Task 12
+report. For multi-Si, CIGS, CIS and CdTe, they are from IEA2_ road map report
+on PV panels.
+
+.. _IEA2: https://iea.blob.core.windows.net/assets/3a99654f-ffff-469f-b83c-bf0386ed8537/pv_roadmap.pdf
+
+Current (2020) module efficiencies for all PV types are given by a 2021 report
+from the Fraunhofer_ Institute.
+
+The efficiencies indicated for 2050 are what has been obtained in laboratory
+conditions by the Fraunhofer_ Institute. In other words, it is assumed that by 2050,
+solar PVs will reach production level efficiencies equal to those observed today
+in laboratories.
+
+.. _Fraunhofer: https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdff
+
+ ====================== =========== ============ =========== ======= ====== =======
+  % module efficiency    micro-Si    single-Si    multi-Si    CIGS    CIS    CdTe
+ ====================== =========== ============ =========== ======= ====== =======
+  2010                   10          15.1         14          11      11     10
+  2020                   11.9        17.9         16.8        14      14     16.8
+  2050                   12.5        26.7         24.4        23.4    23.4   21
+ ====================== =========== ============ =========== ======= ====== =======
 
 
 
