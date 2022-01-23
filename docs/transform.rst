@@ -919,7 +919,6 @@ Fuels
 and fuel markets, based on data from the IAM scenario.
 
 
-
 Efficiency adjustment
 +++++++++++++++++++++
 
@@ -983,6 +982,110 @@ CO2 emissions per kg of crop farmed are calculated as::
 Regional supply chains
 ++++++++++++++++++++++
 
+*premise* builds several supply chains for synthetic fuels, for each IAM
+region. THe reason for this is that synthetic fuels can be produced from
+a variety of hydrogen and CO2 sources. Additionally, hydrogen can be supplied
+by different means of transport, and in different states.
+
+Hydrogen
+________
+
+*premise* starts by building different supply chains for hydrogen by varying:
+
+* the transport mode: truck, hydrogen pipeline, re-assigned CNG pipeline, ship,
+* the distance: 500 km, 2000 km
+* the state of the hydrogen: gaseous, liquid, liquid organic compound,
+* the hydrogen production route: electrolysis, SMR, ATR, biomass gasifier (coal, woody biommas)
+
+Hence, for each IAM region, the following supply chains for hydrogen are built:
+
+- hydrogen supply, from electrolysis, by ship, as liquid, over 2000 km
+- hydrogen supply, from gasification of biomass by heatpipe reformer, by H2 pipeline, as gaseous, over 500 km
+- hydrogen supply, from ATR of nat. gas, by truck, as gaseous, over 500 km
+- hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from SMR of nat. gas, with CCS, by ship, as liquid, over 2000 km
+- hydrogen supply, from coal gasification, by CNG pipeline, as gaseous, over 500 km
+- hydrogen supply, from SMR of nat. gas, by ship, as liquid, over 2000 km
+- hydrogen supply, from coal gasification, by truck, as liquid, over 500 km
+- hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as liquid, over 500 km
+- hydrogen supply, from ATR of nat. gas, with CCS, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as liquid, over 500 km
+- hydrogen supply, from electrolysis, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from gasification of biomass, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from ATR of nat. gas, by CNG pipeline, as gaseous, over 500 km
+- hydrogen supply, from ATR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+- hydrogen supply, from SMR of biogas, with CCS, by CNG pipeline, as gaseous, over 500 km
+- hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
+- hydrogen supply, from ATR of biogas, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from ATR of nat. gas, with CCS, by ship, as liquid, over 2000 km
+- hydrogen supply, from SMR of nat. gas, by H2 pipeline, as gaseous, over 500 km
+- hydrogen supply, from gasification of biomass, with CCS, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from gasification of biomass, by ship, as liquid, over 2000 km
+- hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from ATR of biogas, with CCS, by CNG pipeline, as gaseous, over 500 km
+- hydrogen supply, from ATR of biogas, with CCS, by truck, as gaseous, over 500 km
+- hydrogen supply, from ATR of nat. gas, by truck, as liquid, over 500 km
+- hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as gaseous, over 500 km
+
+Each supply route is associated with specific losses.
+Losses for the transport of H2 by truck and hydrogen pipelines, and losses
+at the regional storage storage (salt cavern) are from Wulff et al, 2018.
+Boil-off loss values during shipping are from Hank et al, 2020.
+Losses when transporting H2 via re-assigned CNG pipelines are from C et al, 2020.
+
+
+ ========================== ================= ======== ======= ============== =============== ====================
+  _                          _                 truck    ship    H2 pipeline    CNG pipeline    reference flow
+ ========================== ================= ======== ======= ============== =============== ====================
+  gaseous                    compression       0.5%             0.5%           0.5%            per kg H2
+  _                          storage buffer                     2.3%           2.3%            per kg H2
+  _                          storage leak                       1.0%           1.0%            per kg H2
+  _                          pipeline leak                      0.004%         0.004%          per kg H2, per km
+  _                          purification                                      7.0%            per kg H2
+  liquid                     liquefaction      1.3%     1.3%                                   per kg H2
+  _                          vaporization      2.0%     2.0%                                   per kg H2
+  _                          boil-off          0.2%     0.2%                                   per kg H2, per day
+  liquid organic compound    hydrogenation     0.5%                                            per kg H2
+ ========================== ================= ======== ======= ============== =============== ====================
+
+Losses are cumulative along the supply chain and range anywhere between 5 and 20%.
+The table below shows the example of 1 kg of hydrogen transport via re-assigned CNG pipelines,
+as a gas, over 500 km.
+A total of 0.13 kg of hydrogen is lost along the supply chain (13% loss):
+
+- 7% during the purification of hydrogen: when using CNG pipelines, the hydrogen has to be
+  mixed with another gas to prevent the embrittlement of the pipelines. The separation process
+  at the other end leads to significant losses
+- 2% lost along the 500 km of pipeline
+- 3% at the regional storage (salt cavern)
+
+Also, in this same case, electricity is used:
+
+- 1.9 kWh to compress the H2 from 25 bar to 100 bar to inject it into the pipeline
+- 1.2 kWh to recompress the H2 along the pipeline every 250 km
+- 0.34 kWh for injecting and pumping H2 into a salt cavern
+- 2.46 kWh to blend the H2 with oxygen on one end, and purify on the other
+- 0.5 kWh tp pre-cool the H2 at the fuelling station (necessary if used in fuel cells, for example)
+
+
+ =============================================================================== ============== ================ ===========
+  Output                                                                          _              _                _
+ =============================================================================== ============== ================ ===========
+  producer                                                                        amount         unit             location
+  hydrogen supply, from electrolysis, by CNG pipeline, as gaseous, over 500 km    1              kilogram         OCE
+  Input
+  supplier                                                                        amount         unit             location
+  hydrogen production, gaseous, 25 bar, from electrolysis                         1.133          kilogram         OCE
+  market group for electricity, low voltage                                       3.091          kilowatt hour    OCE
+  market group for electricity, low voltage                                       0.516          kilowatt hour    OCE
+  hydrogen embrittlement inhibition                                               1              kilogram         OCE
+  geological hydrogen storage                                                     1              kilogram         OCE
+  Hydrogen refuelling station                                                     1.14E-07       unit             OCE
+  distribution pipeline for hydrogen, reassigned CNG pipeline                     1.56E-08       kilometer        RER
+  transmission pipeline for hydrogen, reassigned CNG pipeline                     1.56E-08       kilometer        RER
+ =============================================================================== ============== ================ ===========
 
 
 Fuel markets
@@ -1001,7 +1104,7 @@ based on the IAM scenario data regarding the composition of
 liquid and gaseous secondary energy carriers:
 
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
-  name in premise                      name in REMIND                                   name in IMAGE                                                            name in LCI database (only first of several shown)
+  name in premise                      name in REMIND                                   name in IMAGE                                                            name in LCI database
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
   natural gas                          SE|Gases|Non-Biomass                                                                                                      natural gas, high pressure
   biomethane                           SE|Gases|Biomass                                                                                                          biomethane, gaseous
@@ -1037,9 +1140,9 @@ liquid and gaseous secondary energy carriers:
   methanol, grass, with CCS                                                            Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/CCS        market for methanol, from biomass
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
 
-Because not all competing fuels of a same type have the same calorific value,
+Because not all competing fuels of a same type have similar calorific values,
 some adjustments are made. The table below shows the example of the market for
-petrol, for the IMAGE region of Western Europe in 2050.
+gasoline, for the IMAGE region of Western Europe in 2050.
 The sum of fuel inputs is superior to 1 (i.e., 1.4 kg).
 This is because methanol and bioethanol have low
 calorific values comparatively to petrol
@@ -1103,7 +1206,6 @@ new diesel market of the REMIND region for India.
   Nitrogen oxides                            0.0008      0.0008     kilogram         _
   Nitrogen oxides                            0.0003      0.0003     kilogram         _
  ========================================== =========== ========== ================ ===========
-
 
 
 Geographical mapping
