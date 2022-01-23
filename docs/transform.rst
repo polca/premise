@@ -1031,10 +1031,13 @@ Hence, for each IAM region, the following supply chains for hydrogen are built:
 
 Each supply route is associated with specific losses.
 Losses for the transport of H2 by truck and hydrogen pipelines, and losses
-at the regional storage storage (salt cavern) are from Wulff et al, 2018.
-Boil-off loss values during shipping are from Hank et al, 2020.
-Losses when transporting H2 via re-assigned CNG pipelines are from C et al, 2020.
+at the regional storage storage (salt cavern) are from Wulf_ et al, 2018.
+Boil-off loss values during shipping are from Hank_ et al, 2020.
+Losses when transporting H2 via re-assigned CNG pipelines are from Cerniauskas_ et al, 2020.
 
+.. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X
+.. _Cerniauskas: https://doi.org/10.1016/j.ijhydene.2020.02.121
+.. _Hank: https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00067a
 
  ========================== ================= ======== ======= ============== =============== ====================
   _                          _                 truck    ship    H2 pipeline    CNG pipeline    reference flow
@@ -1055,20 +1058,6 @@ The table below shows the example of 1 kg of hydrogen transport via re-assigned 
 as a gas, over 500 km.
 A total of 0.13 kg of hydrogen is lost along the supply chain (13% loss):
 
-- 7% during the purification of hydrogen: when using CNG pipelines, the hydrogen has to be
-  mixed with another gas to prevent the embrittlement of the pipelines. The separation process
-  at the other end leads to significant losses
-- 2% lost along the 500 km of pipeline
-- 3% at the regional storage (salt cavern)
-
-Also, in this same case, electricity is used:
-
-- 1.9 kWh to compress the H2 from 25 bar to 100 bar to inject it into the pipeline
-- 1.2 kWh to recompress the H2 along the pipeline every 250 km
-- 0.34 kWh for injecting and pumping H2 into a salt cavern
-- 2.46 kWh to blend the H2 with oxygen on one end, and purify on the other
-- 0.5 kWh tp pre-cool the H2 at the fuelling station (necessary if used in fuel cells, for example)
-
 
  =============================================================================== ============== ================ ===========
   Output                                                                          _              _                _
@@ -1086,6 +1075,21 @@ Also, in this same case, electricity is used:
   distribution pipeline for hydrogen, reassigned CNG pipeline                     1.56E-08       kilometer        RER
   transmission pipeline for hydrogen, reassigned CNG pipeline                     1.56E-08       kilometer        RER
  =============================================================================== ============== ================ ===========
+
+
+- 7% during the purification of hydrogen: when using CNG pipelines, the hydrogen has to be
+  mixed with another gas to prevent the embrittlement of the pipelines. The separation process
+  at the other end leads to significant losses
+- 2% lost along the 500 km of pipeline
+- 3% at the regional storage (salt cavern)
+
+Also, in this same case, electricity is used:
+
+- 1.9 kWh to compress the H2 from 25 bar to 100 bar to inject it into the pipeline
+- 1.2 kWh to recompress the H2 along the pipeline every 250 km
+- 0.34 kWh for injecting and pumping H2 into a salt cavern
+- 2.46 kWh to blend the H2 with oxygen on one end, and purify on the other
+- 0.5 kWh to pre-cool the H2 at the fuelling station (necessary if used in fuel cells, for example)
 
 
 Fuel markets
