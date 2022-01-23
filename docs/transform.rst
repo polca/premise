@@ -294,9 +294,135 @@ and transport it to the powerplant, but no other forestry-related burden is incl
 Regional electricity markets
 ----------------------------
 
+High voltage regional markets
+_____________________________
+
+*premise* creates high, medium and low-voltage electricity markets for each IAM region.
+It starts by creating high-voltage markets and define the share of each supplying technology
+by their respective production volumes in respect to the total volume produced.
+
+High voltage supplying technologies are all technologies besides:
+
+* residential (<=3kWp) photovoltaic power (low voltage)
+* waste incineration co-generating powerplants (medium voltage)
+
+Several datasets can qualify for a given technology, in a given IAM region.
+To define to which extent a given dataset should be supplying in the market,
+*premise* uses the current production volume of the dataset.
+
+For example, if coal-fired powerplants are to supply 25% of the high voltage
+electricity in the IAM region "Europe", *premise* fetches the production volumes
+of all coal-fired powerplants which ecoinvent location is *included* in the
+IAM region "Europe" (e.g., DE, PL, LT, etc.), and allocates to each of those
+a supply share based on their respective production volume in respect to the
+total production volume of coal-fired powerplants.
+
+For example, the table below shows the contribution of biomass-fired CHP powerplants
+in the regional high voltage electricity market for IMAGE's "WEU" region
+(Western Europe). The biomass CHP technology represents 2.46% of the supply mix.
+Biomass CHP datasets included in the region "WEU" are given a supply share
+corresponding to their respective current production volumes.
+
+
+ ============== =========================================== ==================== ================================== =====================
+  energy type    Supplier name                               Supplier location    Contribution within energy type    Final contribution
+ ============== =========================================== ==================== ================================== =====================
+  Biomass CHP    heat and power co-generation, wood chips    FR                   3.80%                              0.09%
+  Biomass CHP    heat and power co-generation, wood chips    AT                   2.87%                              0.07%
+  Biomass CHP    heat and power co-generation, wood chips    NO                   0.06%                              0.00%
+  Biomass CHP    heat and power co-generation, wood chips    FI                   7.65%                              0.19%
+  Biomass CHP    heat and power co-generation, wood chips    SE                   9.04%                              0.22%
+  Biomass CHP    heat and power co-generation, wood chips    IT                   8.27%                              0.20%
+  Biomass CHP    heat and power co-generation, wood chips    BE                   4.59%                              0.11%
+  Biomass CHP    heat and power co-generation, wood chips    DE                   12.53%                             0.31%
+  Biomass CHP    heat and power co-generation, wood chips    LU                   0.05%                              0.00%
+  Biomass CHP    heat and power co-generation, wood chips    DK                   6.60%                              0.16%
+  Biomass CHP    heat and power co-generation, wood chips    GR                   0.01%                              0.00%
+  Biomass CHP    heat and power co-generation, wood chips    CH                   1.81%                              0.04%
+  Biomass CHP    heat and power co-generation, wood chips    ES                   5.10%                              0.13%
+  Biomass CHP    heat and power co-generation, wood chips    PT                   1.34%                              0.03%
+  Biomass CHP    heat and power co-generation, wood chips    IE                   0.77%                              0.02%
+  Biomass CHP    heat and power co-generation, wood chips    NL                   2.32%                              0.06%
+  Biomass CHP    heat and power co-generation, wood chips    GB                   33.18%                             0.81%
+                                                             Sum                  100.00%                            2.46%
+ ============== =========================================== ==================== ================================== =====================
+
+
+Transformation losses are added to the high-voltage market datasets.
+Transformation losses are the result of weighting country-specific
+high voltage losses (provided by ecoinvent) of countries included in the
+IAM region with their respective current production volumes (also provided by
+ecoinvent). This is not ideal as it supposes that future country-specific
+production volumes will remain the same in respect to one another.
+
+Medium voltage regional markets
+_______________________________
+
+The workflow is not too different from that of high voltage markets.
+There are however only two possible providers of electricity in medium
+voltage markets: the high voltage market, as well as waste incineration
+powerplants.
+
+High-to-medium transformation losses are added as an input of the medium voltage
+market to itself. Distribution losses are modelled the same way as for
+high voltage markets and are added to the input from high voltage market.
+
+Low voltage regional markets
+____________________________
+
+Low voltage regional markets receive an input from the medium voltage
+market, as well as from residential photovoltaic power.
+
+Medium-to-low transformation losses are added as an input from the low voltage
+market to itself. Distribution losses are modelled the same way as
+for high and medium voltage markets, and are added to the input
+from the medium voltage market.
+
+The table below shows the example of a low voltage market for the IAM IMAGE
+regional "WEU".
+
+ ============================================================== ============== ================ =========== ==================================================
+  supplier                                                       amount         unit             location    description
+ ============================================================== ============== ================ =========== ==================================================
+  market group for electricity, medium voltage                   1.023880481    kilowatt hour    WEU         input from medium voltage + distribution losses
+  market group for electricity, low voltage                      0.025538286    kilowatt hour    WEU         transformation losses (2.55%)
+  electricity production, photovoltaic, residential              0.00035691     kilowatt hour    DE
+  electricity production, photovoltaic, residential              0.000143875    kilowatt hour    IT
+  electricity production, photovoltaic, residential              9.38E-05       kilowatt hour    ES
+  electricity production, photovoltaic, residential              9.03E-05       kilowatt hour    GB
+  electricity production, photovoltaic, residential              7.82E-05       kilowatt hour    FR
+  electricity production, photovoltaic, residential              6.80E-05       kilowatt hour    NL
+  electricity production, photovoltaic, residential              3.76E-05       kilowatt hour    BE
+  electricity production, photovoltaic, residential              2.16E-05       kilowatt hour    GR
+  electricity production, photovoltaic, residential              2.08E-05       kilowatt hour    CH
+  electricity production, photovoltaic, residential              1.48E-05       kilowatt hour    AT
+  electricity production, photovoltaic, residential              9.44E-06       kilowatt hour    SE
+  electricity production, photovoltaic, residential              8.66E-06       kilowatt hour    DK
+  electricity production, photovoltaic, residential              6.83E-06       kilowatt hour    PT
+  electricity production, photovoltaic, residential              2.60E-06       kilowatt hour    FI
+  electricity production, photovoltaic, residential              1.30E-06       kilowatt hour    LU
+  electricity production, photovoltaic, residential              1.01E-06       kilowatt hour    NO
+  electricity production, photovoltaic, residential              2.40E-07       kilowatt hour    IE
+  distribution network construction, electricity, low voltage    8.74E-08       kilometer        RoW
+  market for sulfur hexafluoride, liquid                         2.99E-09       kilogram         RoW
+  sulfur hexafluoride                                            2.99E-09       kilogram                     transformer emissions
+ ============================================================== ============== ================ =========== ==================================================
+
+
 Long-term regional electricity markets
 --------------------------------------
 
+Long-term (i.e., 10, 20, 30, 40 and 50 years) regional markets are created
+for modelling the lifetime-weighted burden associated to electricity supply
+for systems that have a long lifetime (e.g., battery electric vehicles, buildings).
+
+These long-term markets contain a period-weighted electricity supply
+mix. For example, if the scenario year is 2030 and the period considered
+is 20 years, the supply mix represents the supply mixes between 2030 and 2050,
+with an equal weight given to each year.
+
+The rest of the modelling is similar to that of regular regional electricity
+markets described above.
 
 Cement production
 """""""""""""""""
