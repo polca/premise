@@ -426,7 +426,7 @@ class Fuels(BaseTransformation):
                                         "unit": inhibbitor_ds["unit"],
                                         "location": region,
                                         "comment": "Injection of an inhibiting gas (oxygen) "
-                                                   "to prevent embritllement of metal. ",
+                                        "to prevent embritllement of metal. ",
                                     }
                                 )
 
@@ -469,8 +469,10 @@ class Fuels(BaseTransformation):
                                     }
                                 )
 
-                                string = " Geological storage is added. It includes 0.344 kWh for " \
-                                         "the injection and pumping of 1 kg of H2."
+                                string = (
+                                    " Geological storage is added. It includes 0.344 kWh for "
+                                    "the injection and pumping of 1 kg of H2."
+                                )
                                 if "comment" in new_act:
                                     new_act["comment"] += string
                                 else:
