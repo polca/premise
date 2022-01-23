@@ -915,19 +915,159 @@ of India.
 Fuels
 """""
 
+*premise* create different region-specific fuel supply chains
+and fuel markets, based on data from the IAM scenario.
+
 
 
 Efficiency adjustment
 +++++++++++++++++++++
 
+Biofuels
+________
+
+The biomass-to-fuel efficiency ratio of bioethanol and biodiesel
+production datasets is adjusted according to the IAM scenario projections.
+
+Inputs to the biofuel production datasets are multiplied by a *scaling factor*
+that represents the change in efficiency relative to today (2020).
+
+Hydrogen
+________
+
+The process of producing hydrogen by electrolysis is expected to improve in
+the future. Upon import, *premise* adjusts the amount of electricity needed
+to produce 1 kg of hydrogen by electrolysis, on the basis of the following
+requirements, which are sourced from Bauer et al, 2022 (in review):
+
+- 58 kWh per kg H2 in 2010
+- 55 kWh per kg H2 in 2020
+- 44 kWh per kg H2 in 2050
+
 Land use and land use change
 ++++++++++++++++++++++++++++
+
+When building a database using IMAGE, land use and land use change emissions
+are available. Upon the import of crops farming datasets, *premise* adjusts
+the land occupation as well as CO2 emissions associated to land use and land
+use change, respectively.
+
+ =========================================================== ========= ==================== ===========
+  Output                                                      _         _                    _
+ =========================================================== ========= ==================== ===========
+  producer                                                    amount    unit                 location
+  Farming and supply of corn                                  1         kilogram             CEU
+  Input
+  supplier                                                    amount    unit                 location
+  market for diesel, burned in agricultural machinery         0.142     megajoule            GLO
+  petrol, unleaded, burned in machinery                       0.042     megajoule            GLO
+  market for natural gas, burned in gas motor, for storage    0.091     megajoule            GLO
+  market group for electricity, low voltage                   0.004     kilowatt hour        CEU
+  Energy, gross calorific value, in biomass                   15.910    megajoule
+  **Occupation, annual crop**                                 1.584     square meter-year
+  Carbon dioxide, in air                                      1.476     kilogram
+  **Carbon dioxide, from soil or biomass stock**              1.140     kilogram
+ =========================================================== ========= ====================
+
+The land use value is given from the IAM scenario in Ha/GJ of primary crop energy.
+Hence, the land occupation per kg of crop farmed is calculated as::
+
+    land_use = land_use [Ha/GJ] * 10000 [m2/Ha] / 1000 [MJ/GJ] * LHV [MJ/kg]
+
+Regarding land use change CO2 emissions, the principle is similar. The variable
+is expressed in kg CO2/GJ of primary crop energy. Hence, the land use change
+CO2 emissions per kg of crop farmed are calculated as::
+
+    land_use_co2 = land_use_co2 [kg CO2/GJ] / 1000 [MJ/GJ] * LHV [MJ/kg]
 
 Regional supply chains
 ++++++++++++++++++++++
 
 Fuel markets
 ++++++++++++
+
+*premise* builds markets for the following fuels:
+
+- market for petrol, unleaded
+- market for petrol, low-sulfur
+- market for diesel, low-sulfur
+- market for diesel
+- market for natural gas, high pressure
+- market for hydrogen, gaseous
+
+based on the IAM scenario data regarding the composition of
+liquid and gaseous secondary energy carriers:
+
+ ==================================== =============================================== ========================================================================= ================================================================================================================================================
+  name in premise                      name in REMIND                                   name in IMAGE                                                            name in LCI database (only first of several shown)
+ ==================================== =============================================== ========================================================================= ================================================================================================================================================
+  natural gas                          SE|Gases|Non-Biomass                                                                                                      natural gas, high pressure
+  biomethane                           SE|Gases|Biomass                                                                                                          biomethane, gaseous
+  diesel                               SE|Liquids|Oil                                  Secondary Energy|Consumption|Liquids|Fossil                               diesel production, low-sulfur
+  gasoline                             SE|Liquids|Oil                                  Secondary Energy|Consumption|Liquids|Fossil                               petrol production, low-sulfur
+  petrol, synthetic, hydrogen          SE|Liquids|Hydrogen                                                                                                       gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station
+  petrol, synthetic, coal              SE|Liquids|Coal|w/o CCS                                                                                                   gasoline production, synthetic, from methanol, hydrogen from coal gasification, CO2 from DAC, energy allocation, at fuelling station
+  diesel, synthetic, hydrogen          SE|Liquids|Hydrogen                                                                                                       diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station
+  diesel, synthetic, coal              SE|Liquids|Coal|w/o CCS                                                                                                   diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, energy allocation, at fuelling station
+  diesel, synthetic, wood              SE|Liquids|Biomass|Biofuel|BioFTR|w/o CCS       Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/oCCS       diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station
+  diesel, synthetic, wood, with CCS    SE|Liquids|Biomass|Biofuel|BioFTRC|w/ CCS       Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/CCS        diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation, at fuelling station
+  diesel, synthetic, grass                                                             Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Grassy|w/oCCS      diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station
+  diesel, synthetic, grass, with CCS                                                   Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Grassy|w/CCS       diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation, at fuelling station
+  hydrogen, electrolysis               SE|Hydrogen|Electricity                                                                                                   hydrogen supply, from electrolysis
+  hydrogen, biomass                    SE|Hydrogen|Biomass|w/o CCS                                                                                               hydrogen supply, from gasification of biomass, by
+  hydrogen, biomass, with CCS          SE|Hydrogen|Biomass|w/ CCS                                                                                                hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS
+  hydrogen, coal                       SE|Hydrogen|Coal|w/o CCS                                                                                                  hydrogen supply, from coal gasification, by truck, as gaseous, over 500 km
+  hydrogen, nat. gas                   SE|Hydrogen|Gas|w/o CCS                                                                                                   hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
+  hydrogen, nat. gas, with CCS         SE|Hydrogen|Gas|w/ CCS                                                                                                    hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+  biodiesel, oil                       SE|Liquids|Biomass|Biofuel|Biodiesel|w/o CCS    Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS    biodiesel production, via transesterification
+  biodiesel, oil, with CCS                                                             Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/CCS     biodiesel production, via transesterification
+  bioethanol, wood                     SE|Liquids|Biomass|Cellulosic|w/o CCS           Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS         ethanol production, via fermentation, from forest
+  bioethanol, wood, with CCS           SE|Liquids|Biomass|Cellulosic|w/ CCS            Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS          ethanol production, via fermentation, from forest
+  bioethanol, grass                    SE|Liquids|Biomass|Non-Cellulosic               Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Grassy|w/oCCS        ethanol production, via fermentation, from switchgrass
+  bioethanol, grass, with CCS                                                          Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Grassy|w/CCS         ethanol production, via fermentation, from switchgrass
+  bioethanol, grain                    SE|Liquids|Biomass|Conventional Ethanol         Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Maize|w/oCCS         ethanol production, via fermentation, from wheat grains
+  bioethanol, grain, with CCS                                                          Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Maize|w/CCS          ethanol production, via fermentation, from corn, with carbon capture
+  bioethanol, sugar                    SE|Liquids|Biomass|Conventional Ethanol         Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/oCCS         ethanol production, via fermentation, from sugarbeet
+  bioethanol, sugar, with CCS                                                          Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/CCS          ethanol production, via fermentation, from sugarbeet
+  methanol, wood                                                                       Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/oCCS        market for methanol, from biomass
+  methanol, grass                                                                      Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/oCCS       market for methanol, from biomass
+  methanol, wood, with CCS                                                             Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/CCS         market for methanol, from biomass
+  methanol, grass, with CCS                                                            Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/CCS        market for methanol, from biomass
+ ==================================== =============================================== ========================================================================= ================================================================================================================================================
+
+Because not all competing fuels of a same type have the same calorific value,
+some adjustments are made. The table below shows the example of the market for
+petrol, for the IMAGE region of Central Europe in 2050.
+The sum of fuel inputs is superior to 1 (i.e., 1.4 kg).
+This is because methanol and bioethanol have low
+calorific values comparatively to petrol
+(i.e., 19.9 and 26.5 MJ/kg respectively, vs. 42.6 MJ/kg for gasoline).
+Hence, their inputs are scaled up to reach an average calorific value
+of 42.6 MJ/kg of fuel supplied by the market.
+
+This is necessary as gasoline-consuming activities in the lCI database
+are modelled with the calorific value of conventional gasoline.
+
+ =================================================================== ========= =========== ===========
+  Output                                                              _         _           _
+ =================================================================== ========= =========== ===========
+  producer                                                            amount    unit        location
+  market for petrol, low-sulfur                                       1         kilogram    CEU
+  Input
+  supplier                                                            amount    unit        location
+  petrol production, low-sulfur                                       0.550     kilogram    CH
+  market for methanol, from biomass                                   0.169     kilogram    CH
+  market for methanol, from biomass                                   0.148     kilogram    CH
+  market for methanol, from biomass                                   0.122     kilogram    CH
+  market for methanol, from biomass                                   0.122     kilogram    CH
+  Ethanol production, via fermentation, from switchgrass              0.060     kilogram    WEU
+  Ethanol production, via fermentation, from switchgrass, with CCS    0.053     kilogram    WEU
+  Ethanol production, via fermentation, from sugarbeet                0.051     kilogram    WEU
+  Ethanol production, via fermentation, from sugarbeet, with CCS      0.051     kilogram    WEU
+  Ethanol production, via fermentation, from poplar, with CCS         0.041     kilogram    WEU
+  Ethanol production, via fermentation, from poplar                   0.041     kilogram    WEU
+ =================================================================== ========= =========== ===========
+
 
 CO2 emissions update
 ++++++++++++++++++++
