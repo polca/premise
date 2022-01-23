@@ -439,10 +439,10 @@ regional market, which "includes" it in terms of geography.
  ============================================ =========== ================ ===========
   Output                                       _           _                _
  ============================================ =========== ================ ===========
-  producer                                     amount      unit             location
+  *producer*                                   *amount*    *unit*           *location*
   market for electricity, low voltage          1.00E+00    kilowatt hour    **GB**
-  Input                                        _           _                _
-  supplier                                     amount      unit             location
+  **Input**                                    _           _                _
+  *supplier*                                   *amount*    *unit*           *location*
   market group for electricity, low voltage    1.00E+00    kilowatt hour    **WEU**
  ============================================ =========== ================ ===========
 
@@ -915,6 +915,8 @@ of India.
 Fuels
 """""
 
+
+
 Efficiency adjustment
 +++++++++++++++++++++
 
@@ -948,6 +950,7 @@ Map of REMIND regions
 .. image:: map_remind.png
    :width: 400pt
    :align: center
+
 
 *premise* uses the following correspondence between ecoinvent locations
 and IAM regions. This mapping is performed by the constructive_geometries_
