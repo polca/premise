@@ -344,7 +344,7 @@ corresponding to their respective current production volumes.
   Biomass CHP    heat and power co-generation, wood chips    IE                   0.77%                              0.02%
   Biomass CHP    heat and power co-generation, wood chips    NL                   2.32%                              0.06%
   Biomass CHP    heat and power co-generation, wood chips    GB                   33.18%                             0.81%
-                                                             Sum                  100.00%                            2.46%
+  _              _                                           Sum                  100.00%                            2.46%
  ============== =========================================== ==================== ================================== =====================
 
 
