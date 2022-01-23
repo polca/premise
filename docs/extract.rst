@@ -514,7 +514,7 @@ Small and large storage solutions are also provided:
 * high pressure hydrogen storage tank
 * geological storage tank
 
-These datasets originate from the work of Wulff_ et al. 2018, and can be
+These datasets originate from the work of Wulf_ et al. 2018, and can be
 consulted here: LCI_H2_distr_. For re-assigned CNG pipelines, which require the hydrogen
 to be mixed together with oxygen to limit metal embrittlement,
 some parameters are taken from the work of Cerniauskas_ et al. 2020.
@@ -540,7 +540,7 @@ The datasets introduced are listed in the table below.
  ================================================================== ===========
 
 
-.. _Wulff:
+.. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X
 .. _LCI_H2_distr: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-distribution.xlsx
 .. _Cerniauskas: https://doi.org/10.1016/j.ijhydene.2020.02.121
 
