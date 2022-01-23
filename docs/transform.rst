@@ -743,9 +743,11 @@ Transport
 * medium and heavy duty trucks
 * buses
 
-These inventories are available for teh vehicle construction year of 2000 to 2050,
-but *premise* only imports vehicles with a construction year inferior or equal to the
-scenario year.
+These inventories are available for the construction year of 2000
+to 2050, by steps of 5 years, but *premise* only imports vehicles
+with a construction year inferior or equal to the scenario year
+(vehicle from 2050 will not be imported in a database for the
+scenario year of 2030).
 
 Trucks
 ++++++
@@ -770,7 +772,7 @@ Each truck is available for a variety of powertrain types:
 - diesel
 - compressed gas
 
-but also for different driving cycles, to which a certain range autonomy
+but also for different driving cycles, to which a range autonomy
 of the vehicle is associated:
 
 - urban delivery (required range autonomy of 150 km)
@@ -786,7 +788,7 @@ Not all powertrain types are available for regional and long haul driving cycles
 This is specifically the case for battery electric trucks, for which the mass
 and size prevent them from completing the cycle, or surpasses the vehicle gross weight.
 
-The vehicle model is from Sacchi_ et al, 2021.
+The truck vehicle model is from Sacchi_ et al, 2021.
 
 .. _Sacchi: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
 
@@ -797,9 +799,9 @@ Fleet average trucks
 REMIND and IMAGE provide fleet composition data, per scenario, region and year.
 
 The fleet data is expressed in "vehicle-kilometer" performed by each
-type of vehicle.
+type of vehicle, in a given region and year.
 
-*premise* uses the following load factors to translate the transport
+*premise* uses the following loads to translate the transport
 demand from "vehicle-kilometers" to "ton-kilometers":
 
  ============== ================= ==================== ============
@@ -814,11 +816,15 @@ demand from "vehicle-kilometers" to "ton-kilometers":
  ============== ================= ==================== ============
 
 
-*premise* uses the fleet data to produce fleet average trucks, more specifically:
+*premise* uses the fleet data to produce fleet average trucks for each
+IAM region, and more specifically:
 
 * a fleet average trucks, all powertrains and size classes considered
 * a fleet average trucks, all size classes considered, for a given powertrain
 * a fleet average trucks, all powertrains considered, for a given size class
+
+
+They appear in the LCI database as the following:
 
  ========================================================================================= =============================================================
   truck transport dataset name                                                              description
@@ -835,14 +841,76 @@ demand from "vehicle-kilometers" to "ton-kilometers":
   transport, freight, lorry, 7.5t gross weight, unspecified powertrain, long haul           fleet average, for 7.5t size class, long haul cycle
   transport, freight, lorry, 7.5t gross weight, unspecified powertrain, regional delivery   fleet average, for 7.5t size class, regional delivery cycle
   transport, freight, lorry, 7.5t gross weight, unspecified powertrain, urban delivery      fleet average, for 7.5t size class, urban delivery cycle
-  transport, freight, lorry, unspecified, long haul,                                        fleet average, all powertrain types, all size classes
-  transport, freight, lorry, unspecified, regional delivery,                                fleet average, all powertrain types, all size classes
-  transport, freight, lorry, unspecified, urban delivery,                                   fleet average, all powertrain types, all size classes
+  transport, freight, lorry, unspecified, long haul                                         fleet average, all powertrain types, all size classes
+  transport, freight, lorry, unspecified, regional delivery                                 fleet average, all powertrain types, all size classes
+  transport, freight, lorry, unspecified, urban delivery                                    fleet average, all powertrain types, all size classes
  ========================================================================================= =============================================================
 
 
 Relinking
 ---------
+
+Regarding trucks, *premise* re-links truck transport-consuming activities
+to the newly created fleet average truck datasets.
+
+The following table shows the correspondence between the original
+truck transport datasets and the new ones:
+
+ ======================================================================== ======================================================================= =======================================================================
+  Original dataset                                                         Replaced by (REMIND)                                                    Replaced by (IMAGE)
+ ======================================================================== ======================================================================= =======================================================================
+  transport, freight, lorry, unspecified                                    transport, freight, lorry, unspecified                                  transport, freight, lorry, unspecified
+  transport, freight, lorry 16-32 metric ton                                transport, freight, lorry, 26t gross weight, unspecified powertrain     transport, freight, lorry, 26t gross weight, unspecified powertrain
+  transport, freight, lorry 28 metric ton, fatty acid methyl ester 100%     transport, freight, lorry, 26t gross weight, unspecified powertrain     transport, freight, lorry, 26t gross weight, unspecified powertrain
+  transport, freight, lorry 3.5-7.5 metric ton                              transport, freight, lorry, 3.5t gross weight, unspecified powertrain    transport, freight, lorry, 26t gross weight, unspecified powertrain
+  transport, freight, lorry 7.5-16 metric ton                               transport, freight, lorry, 7.5t gross weight, unspecified powertrain    transport, freight, lorry, 26t gross weight, unspecified powertrain
+  transport, freight, lorry >32 metric ton                                  transport, freight, lorry, 40t gross weight, unspecified powertrain     transport, freight, lorry, 40t gross weight, unspecified powertrain
+  transport, freight, lorry with reefer, cooling                            transport, freight, lorry, unspecified                                  transport, freight, lorry, unspecified
+  transport, freight, lorry with reefer, freezing                           transport, freight, lorry, unspecified                                  transport, freight, lorry, unspecified
+  transport, freight, lorry with refrigeration machine, 3.5-7.5 ton         transport, freight, lorry, 3.5t gross weight, unspecified powertrain    transport, freight, lorry, 26t gross weight, unspecified powertrain
+  transport, freight, lorry with refrigeration machine, 7.5-16 ton          transport, freight, lorry, 7.5t gross weight, unspecified powertrain    transport, freight, lorry, 26t gross weight, unspecified powertrain
+  transport, freight, lorry with refrigeration machine, cooling             transport, freight, lorry, unspecified                                  transport, freight, lorry, unspecified
+  transport, freight, lorry with refrigeration machine, freezing            transport, freight, lorry, unspecified                                  transport, freight, lorry, unspecified
+ ======================================================================== ======================================================================= =======================================================================
+
+Note that IMAGE fleet data only uses 26t and 40t trucks.
+
+Additionally, *premise* iterates through each truck transport-consuming
+activities to calculate the driving distance required. When the reference
+unit of the dataset is 1 kilogram, the distance driven by truck can easily
+be inferred. Indeed, for example, 0.56 tkm of truck transport for 1 kg of
+flour indicates that the flour has been transported over 560 km.
+
+On this basis, *premise* chooses one of the following
+driving cycles:
+
+- urban delivery, if the distance is inferior to 150 km
+- regional delivery, if the distance is between 150 and 450 km
+- long haul, if the distance is superior to 450 km
+
+
+Hence, in the following dataset for "market for steel, low-alloyed"
+for the IAM region of India, *premise* chose the *regional delivery*
+driving cycle since the kilogram of steel has been transported on
+average over 120 km. The truck used to transport that kilogram of steel
+is a fleet average vehicle built upon the REMIND fleet data for the India
+region.
+
+
+ ================================================================= ============ ================ ===========
+  Output                                                            _            _                _
+ ================================================================= ============ ================ ===========
+  producer                                                          amount       unit             location
+  market for steel, low-alloyed                                     1            kilogram         IND
+  Input
+  supplier                                                          amount       unit             location
+  market group for transport, freight, inland waterways, barge      0.5          ton kilometer    GLO
+  market group for transport, freight train                         0.35         ton kilometer    GLO
+  market for transport, freight, sea, bulk carrier for dry goods    0.38         ton kilometer    GLO
+  transport, freight, lorry, unspecified, regional delivery         0.12         ton kilometer    IND
+  steel production, converter, low-alloyed                          0.66         kilogram         IND
+  steel production, electric, low-alloyed                           0.34         kilogram         IND
+ ================================================================= ============ ================ ===========
 
 
 Fuels
