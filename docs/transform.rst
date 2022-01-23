@@ -424,6 +424,29 @@ with an equal weight given to each year.
 The rest of the modelling is similar to that of regular regional electricity
 markets described above.
 
+Original market datasets
+________________________
+
+Market datasets originally present in the ecoinvent LCI database are cleared
+from any inputs. Instead, an input from the newly created regional market
+is added, depending on the location of the dataset.
+
+The table below shows the example of the low voltage electricity market
+for Great Britain, which now only includes an input from the "WEU"
+regional market, which "includes" it in terms of geography.
+
+
+ ============================================ =========== ================ ===========
+  Output                                       _           _                _
+ ============================================ =========== ================ ===========
+  producer                                     amount      unit             location
+  market for electricity, low voltage          1.00E+00    kilowatt hour    GB
+  Input                                        _           _                _
+  supplier                                     amount      unit             location
+  market group for electricity, low voltage    1.00E+00    kilowatt hour    WEU
+ ============================================ =========== ================ ===========
+
+
 Cement production
 """""""""""""""""
 
