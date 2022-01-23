@@ -1414,18 +1414,6 @@ class Electricity(BaseTransformation):
         print("Create low voltage markets.")
         self.create_new_markets_low_voltage()
 
-        # Finally, we need to relink all electricity-consuming activities to the new electricity markets
-        # print("Link activities to new electricity markets.")
-
-        # self.relink_datasets(
-        #    excludes_datasets=["cobalt industry", "market group for electricity"],
-        #    alt_names=[
-        #        "market group for electricity, high voltage",
-        #        "market group for electricity, medium voltage",
-        #        "market group for electricity, low voltage",
-        #    ],
-        # )
-
         print(f"Log of deleted electricity markets saved in {DATA_DIR}/logs")
         print(f"Log of created electricity markets saved in {DATA_DIR}/logs")
 
