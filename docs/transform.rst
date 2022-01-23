@@ -736,23 +736,114 @@ of the consumer.
 Transport
 """""""""
 
-Two-wheelers
-++++++++++++
+*premise* imports inventories for transport activity operated by:
 
-Passenger cars
-++++++++++++++
+* two-wheelers
+* passenger cars
+* medium and heavy duty trucks
+* buses
+
+These inventories are available for teh vehicle construction year of 2000 to 2050,
+but *premise* only imports vehicles with a construction year inferior or equal to the
+scenario year.
 
 Trucks
 ++++++
 
+The following size classes of medium and heavy duty trucks are imported:
+
+- 3.5t
+- 7.5t
+- 18t
+- 26t
+- 40t
+
+These weights refer to the vehicle gross mass (the maximum weight the vehicle is
+allowed to reach, fully loaded).
+
+Each truck is available for a variety of powertrain types:
+
+- fuel cell electric
+- battery electric
+- diesel hybrid
+- plugin diesel hybrid
+- diesel
+- compressed gas
+
+but also for different driving cycles, to which a certain range autonomy
+of the vehicle is associated:
+
+- urban delivery (required range autonomy of 150 km)
+- regional delivery (required range autonomy of 400 km)
+- long haul (required range autonomy of 800 km)
+
+Those are driving cycles developed for the software VECTO_,
+which have become standard in measuring the CO2 emissions of trucks.
+
+.. _VECTO: https://ec.europa.eu/clima/eu-action/transport-emissions/road-transport-reducing-co2-emissions-vehicles/vehicle-energy-consumption-calculation-tool-vecto_en
+
+Not all powertrain types are available for regional and long haul driving cycles.
+This is specifically the case for battery electric trucks, for which the mass
+and size prevent them from completing the cycle, or surpasses the vehicle gross weight.
+
+The vehicle model is from Sacchi_ et al, 2021.
+
+.. _Sacchi: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
+
+
 Fleet average trucks
 --------------------
 
-Driving cycles
---------------
+REMIND and IMAGE provide fleet composition data, per scenario, region and year.
 
-Buses
-+++++
+The fleet data is expressed in "vehicle-kilometer" performed by each
+type of vehicle.
+
+*premise* uses the following load factors to translate the transport
+demand from "vehicle-kilometers" to "ton-kilometers":
+
+ ============== ================= ==================== ============
+  load [tons]    urban delivery    regional delivery    long haul
+ ============== ================= ==================== ============
+  3.5t           0.26              0.26                 0.8
+  7.5t           0.52              0.52                 1.6
+  18t            1.35              1.35                 4.1
+  26t            2.05              2.05                 6.2
+  32t            6.1               6.1                  9.1
+  40t            6.1               6.1                  9.1
+ ============== ================= ==================== ============
+
+
+*premise* uses the fleet data to produce fleet average trucks, more specifically:
+
+* a fleet average trucks, all powertrains and size classes considered
+* a fleet average trucks, all size classes considered, for a given powertrain
+* a fleet average trucks, all powertrains considered, for a given size class
+
+ ========================================================================================= =============================================================
+  truck transport dataset name                                                              description
+ ========================================================================================= =============================================================
+  transport, freight, lorry, 18t gross weight, unspecified powertrain, long haul            fleet average, for 18t size class, long haul cycle
+  transport, freight, lorry, 18t gross weight, unspecified powertrain, regional delivery    fleet average, for 18t size class, regional delivery cycle
+  transport, freight, lorry, 18t gross weight, unspecified powertrain, urban delivery       fleet average, for 18t size class, urban delivery cycle
+  transport, freight, lorry, 26t gross weight, unspecified powertrain, long haul            fleet average, for 26t size class, long haul cycle
+  transport, freight, lorry, 26t gross weight, unspecified powertrain, regional delivery    fleet average, for 26t size class, regional delivery cycle
+  transport, freight, lorry, 26t gross weight, unspecified powertrain, urban delivery       fleet average, for 26t size class, urban delivery cycle
+  transport, freight, lorry, 3.5t gross weight, unspecified powertrain, long haul           fleet average, for 3.5t size class, long haul cycle
+  transport, freight, lorry, 3.5t gross weight, unspecified powertrain, regional delivery   fleet average, for 3.5t size class, regional delivery cycle
+  transport, freight, lorry, 3.5t gross weight, unspecified powertrain, urban delivery      fleet average, for 3.5t size class, urban delivery cycle
+  transport, freight, lorry, 7.5t gross weight, unspecified powertrain, long haul           fleet average, for 7.5t size class, long haul cycle
+  transport, freight, lorry, 7.5t gross weight, unspecified powertrain, regional delivery   fleet average, for 7.5t size class, regional delivery cycle
+  transport, freight, lorry, 7.5t gross weight, unspecified powertrain, urban delivery      fleet average, for 7.5t size class, urban delivery cycle
+  transport, freight, lorry, unspecified, long haul,                                        fleet average, all powertrain types, all size classes
+  transport, freight, lorry, unspecified, regional delivery,                                fleet average, all powertrain types, all size classes
+  transport, freight, lorry, unspecified, urban delivery,                                   fleet average, all powertrain types, all size classes
+ ========================================================================================= =============================================================
+
+
+Relinking
+---------
+
 
 Fuels
 """""
