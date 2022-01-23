@@ -963,11 +963,11 @@ use change, respectively.
   petrol, unleaded, burned in machinery                       0.042     megajoule            GLO
   market for natural gas, burned in gas motor, for storage    0.091     megajoule            GLO
   market group for electricity, low voltage                   0.004     kilowatt hour        CEU
-  Energy, gross calorific value, in biomass                   15.910    megajoule
-  **Occupation, annual crop**                                 1.584     square meter-year
-  Carbon dioxide, in air                                      1.476     kilogram
-  **Carbon dioxide, from soil or biomass stock**              1.140     kilogram
- =========================================================== ========= ====================
+  Energy, gross calorific value, in biomass                   15.910    megajoule            _
+  **Occupation, annual crop**                                 1.584     square meter-year    _
+  Carbon dioxide, in air                                      1.476     kilogram             _
+  **Carbon dioxide, from soil or biomass stock**              1.140     kilogram             _
+ =========================================================== ========= ==================== ===========
 
 The land use value is given from the IAM scenario in Ha/GJ of primary crop energy.
 Hence, the land occupation per kg of crop farmed is calculated as::
