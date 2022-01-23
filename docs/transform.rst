@@ -23,7 +23,7 @@ If the IAM scenario foresees a change in efficiency for these processes, the inp
 are scaled up or down by the *scaling factor* to effectively reflect a change in fuel input
 per kWh produced.
 
-The origin of this *scaling factor* is explained here.
+The origin of this *scaling factor* is explained in XXX.
 
 To calculate the old and new efficiency of the dataset, it is necessary to know
 the net calorific content of the fuel. The table below shows the Lower Heating Value
@@ -176,10 +176,69 @@ which is what GAINS scenarios model.
   fuel-to-electricity efficiency                      77%         79%         %
  =================================================== =========== =========== =======
 
+*premise* has a couple of rules regarding projected *scaling factors*:
 
+* *scaling factors* inferior to 1 beyond 2020 are not accepted and are treated as 1.
+* *scaling factors* superior to 1 before 2020 are not accepted and are treated as 1.
+
+This is to prevent degrading the performance of a technology in the future, or
+improving its performance in the past, relative to today.
 
 Photovoltaics panels
 --------------------
+
+Photovoltaic panels are expected to improve over time. The following module efficiencies
+are considered for the different types of PV panels:
+
+
+ ====================== =========== ============ =========== ======= ====== =======
+  % module efficiency    micro-Si    single-Si    multi-Si    CIGS    CIS    CdTe
+ ====================== =========== ============ =========== ======= ====== =======
+  2010                   10          15.1         14          11      11     10
+  2020                   11.9        17.9         16.8        14      14     16.8
+  2050                   12.5        26.7         24.4        23.4    23.4   21
+ ====================== =========== ============ =========== ======= ====== =======
+
+The sources for these efficiencies are given in XXX.
+
+Given a scenario year, *premise* iterates through the different PV panel installation
+datasets to update their efficiency accordingly.
+To do so, the required surface of panel (in m2) per kW of capacity is
+adjusted down (or up, if the efficiency is lower than current).
+
+To calculate the current efficiency of a PV installation, *premise* assumes a solar
+irradiation of 1000 W/m2. Hence, the current efficiency is calculated as::
+
+    current_eff [%] = installation_power [W]  / (panel_surface [m2] * 1000 [W/m2])
+
+The *scaling factor* is calculated as::
+
+    scaling_factor = current_eff / new_eff
+
+The required surface of PV panel in the dataset is then adjusted like so::
+
+    new_surface = current_surface * (1 / scaling_factor)
+
+For scenario years beyond 2050, 2050 efficiency values are used.
+
+
+The table below provides such an example where a 450 kWp flat-roof installation
+sees its current (2020) module efficiency improving from 20% to 26% by 2050.
+THe are of PV panel (and mounting system) has been multiplied by 1 / (0.26/0.20),
+all other inputs remaining unchanged.
+
+ =================================================================== ========= ======== =======
+  450kWp flat roof installation                                       before    after    unit
+ =================================================================== ========= ======== =======
+  photovoltaic flat-roof installation, 450 kWp, single-SI, on roof    1         1        unit
+  inverter production, 500 kW                                         1.5       1.5      unit
+  photovoltaic mounting system, …                                     2300      1731     m2
+  photovoltaic panel, single-SI                                       2500      1881     m2
+  treatment, single-SI PV module                                      30000     30000    kg
+  electricity, low voltage                                            25        25       kWh
+  module efficiency                                                   20%       26%      %
+ =================================================================== ========= ======== =======
+
 
 Electricity markets
 +++++++++++++++++++
