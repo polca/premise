@@ -446,22 +446,143 @@ regional market, which "includes" it in terms of geography.
   market group for electricity, low voltage    1.00E+00    kilowatt hour    WEU
  ============================================ =========== ================ ===========
 
+Relinking
+_________
+
+Once the new markets are created, *premise* re-links all electricity-consuming
+activities to the new regional markets. The regional market it re-links to
+depends on the location of the consumer.
 
 Cement production
 """""""""""""""""
 
+Dataset proxies
++++++++++++++++
+
+*premise* duplicates clinker production datasets in ecoinvent (called
+"clinker production") so as to create a proxy dataset for each IAM region.
+The location of the proxy datasets used for a given IAM region is a location
+included in the IAM region. If no valid dataset is found, *premise* resorts
+to using a rest-of-the-world (RoW) dataset to represent the IAM region.
+
+*premise* changes the location of these duplicated datasets and fill
+in different fields, such as that of *production volume*.
+
+
 Efficiency adjustment
 +++++++++++++++++++++
+
+*premise* then adjusts the thermal efficiency of the process.
+It does so by calculating the technology-weighted energy requirements
+per ton of clinker.
+Based on GNR/IEA roadmap data, *premise* uses:
+
+* the share of kiln technology for a given region and year:
+    * wet,
+    * dry,
+    * dry with pre-heater
+    * and dry with pre-heater and pre-calciner
+
+* the energy requirement for each of these technologies.
+
+Once the energy required per ton clinker is known, *premise* determines
+the fuel mix required, here also based on the GNR/IEA data. Essentially,
+such fuel mix is composed of fossil fuel (i.e., coal), alternative fuel
+(i.e., refuse-derived fuel) and biomass (i.e., wood chips).
+
+Once the new ful mix is determined, *premise* modifies the fossil
+and biogenic CO2 emissions accordingly, based on the Lower Heating Value
+and CO2 emission factors for these fuels, shown in the table below.
+
+ =============== =========================== ============== =====================
+  name of fuel    LHV [MJ/kg, as received]    CO2 [kg/MJ]    Share non-fossil C
+ =============== =========================== ============== =====================
+  hard coal       26.7                        0.098          0
+  wood chips      18.9                        0.112          1
+  waste           14                          0.0917         0.34
+ =============== =========================== ============== =====================
+
+Note that the change in CO2 emissions only concerns the share
+that originates from the combustion of fuels. it does not
+concern the calcination emissions due to the production of
+calcium oxide (CaO) from calcium carbonate (CaCO3), which is set
+at a fix emission rate of 525 kg CO2/t clinker.
+
 
 Carbon Capture and Storage
 ++++++++++++++++++++++++++
 
-Clinker-to-cement ratio
-+++++++++++++++++++++++
+If the IAM scenario indicates that a share of the CO2 emissions
+for the cement sector in a given region and year is sequestered and stored,
+*premise* adds CCS to the corresponding clinker production dataset.
+
+The CCS dataset used to that effect is from Meunier_ et al., 2020.
+The dataset described the capture of CO2 from a cement plant.
+To that dataset, *premise* adds another dataset that models the storage
+of the CO2 underground, from Volkart_ et al, 2013.
+
+.. _Meunier: https://www.sciencedirect.com/science/article/pii/S0960148119310304
+.. _Volkart: https://doi.org/10.1016/j.ijggc.2013.03.003
+
+Besides electricity, the CCS process requires heat (3.66 MJ/kg CO2 captured)
+to regenerate the MEA sorbent. When coupling the clinker production datasets
+with that of the CCS, *premise* deducts from the heat required any amount
+of heat recovered from the kiln, as indicated by the GNR/IEA roadmap data.
+
 
 Cement markets
 ++++++++++++++
 
+When clinker production datasets are created for each IAM region,
+*premise* duplicates cement production datasets for each IAM region
+as well. These cement production datasets link the newly created
+clinker production dataset, corresponding to their IAM region.
+
+Clinker-to-cement ratio
++++++++++++++++++++++++
+
+Most cement datasets in ecoinvent have a determined composition in terms
+of clinker vs. supplementary cementitious materials (e.g., fly ash, blast
+furnace slag, limestone). The clinker-to-cement ratio cannot be altered
+for these cements, as it would render their label incorrect, but also
+the type of application they are meant to fulfill (e.g., precast, mortar,
+foundations).
+
+However, one dataset represents an "average" cement
+with an "average" composition. This dataset is called
+"market for cement, unspecified". This market dataset is composed
+of several types of cements, each having a clinker-to-cement ratio.
+*premise* alters the shares of each of these cement types with the
+"market for cement, unspecified" dataset so that the
+average clinker-to-cement ratio aligns with the GNR/IEA projections.
+
+GNR/IEA projections in terms of clinker-to-cement ratio are shown in the
+table below.
+
+ ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
+  clinker-to-cement ratio    2005    2010    2015    2020    2025    2030    2035    2040    2045    2050    2055    2060    2065    2070    2075    2080    2085    2090    2095    2100
+ ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
+  Canada                     81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
+  China                      58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%
+  Europe                     73%     72%     71%     71%     70%     69%     68%     67%     67%     66%     65%     64%     64%     63%     62%     61%     60%     60%     59%     58%
+  India                      71%     70%     70%     69%     68%     68%     67%     66%     66%     65%     64%     63%     63%     62%     61%     61%     60%     59%     59%     58%
+  Japan                      80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
+  Latin America              70%     69%     69%     68%     67%     67%     66%     66%     65%     64%     64%     63%     62%     62%     61%     61%     60%     59%     59%     58%
+  Middle East                81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
+  Norther Europe             81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
+  Other Asia                 80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
+  Russia                     80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
+  South Africa               77%     76%     75%     74%     73%     72%     71%     70%     69%     68%     67%     66%     65%     64%     63%     62%     61%     60%     59%     58%
+  United States              82%     81%     79%     78%     77%     76%     74%     73%     72%     71%     69%     68%     67%     66%     64%     63%     62%     61%     59%     58%
+ ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
+
+Relinking
++++++++++
+
+Once cement production and market datasets are created, *premise*
+re-links cement-consuming activities to the new regional markets for
+cement. The regional market it re-links to depends on the location
+of the consumer.
 
 Steel production
 """"""""""""""""

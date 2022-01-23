@@ -106,9 +106,9 @@ Power plants with CCS
 *********************
 
 Datasets for power generation with Carbon Capture and Storage are imported.
-They originate from Volkart et al. 2013_, and can be consulted here: LCI_Power_generation_.
+They originate from Volkart_ et al. 2013, and can be consulted here: LCI_Power_generation_.
 
-.. _2013: https://doi.org/10.1016/j.ijggc.2013.03.003
+.. _Volkart: https://doi.org/10.1016/j.ijggc.2013.03.003
 .. _LCI_Power_generation: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-Carma-CCS.xlsx
 
 The table below lists the names of the new activities (only production datasets are shown).
