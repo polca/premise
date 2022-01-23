@@ -159,7 +159,7 @@ conversion efficiency of 77%. If the IAM scenario indicates a *scaling factor*
 of 1.03 in 2030, this indicates tha the efficiency increases by 3% relative to current.
 As shown in the table below, this would results in a new efficiency of 79%, where
 all inputs, as well as CO2 emissions outputs are re-scaled by 1/1.03 (=0.97).
-This excludes non-CO2 emissions, such as CO  in this example, which are re-scaled separately,
+This excludes non-CO2 emissions, such as CO in this example, which are re-scaled separately,
 based on GAINS projections: such emissions, while partly correlated to fuel use,
 are mostly mitigated via investments in electrostatic precipitators,
 which is what GAINS scenarios model.
@@ -456,6 +456,10 @@ depends on the location of the consumer.
 Cement production
 """""""""""""""""
 
+The modelling of future improvements in the cement sector is relatively
+simple at the moment, and does not involve the emergence of new
+technologies (e.g., electric kilns).
+
 Dataset proxies
 +++++++++++++++
 
@@ -477,15 +481,19 @@ It does so by calculating the technology-weighted energy requirements
 per ton of clinker.
 Based on GNR/IEA roadmap data, *premise* uses:
 
-* the share of kiln technology for a given region and year:
+* the share of kiln technology for a given region today (2020):
     * wet,
     * dry,
-    * dry with pre-heater
+    * dry with pre-heater,
     * and dry with pre-heater and pre-calciner
 
-* the energy requirement for each of these technologies.
+* the energy requirement for each of these technologies today (2020).
 
-Once the energy required per ton clinker is known, *premise* determines
+Once the energy required per ton clinker today (2020) is known, it is
+multiplied by a *scaling factor* that represents a change in efficiency
+between today and the scenario year.
+
+Then, *premise* determines
 the fuel mix required, here also based on the GNR/IEA data. Essentially,
 such fuel mix is composed of fossil fuel (i.e., coal), alternative fuel
 (i.e., refuse-derived fuel) and biomass (i.e., wood chips).
@@ -507,6 +515,9 @@ that originates from the combustion of fuels. it does not
 concern the calcination emissions due to the production of
 calcium oxide (CaO) from calcium carbonate (CaCO3), which is set
 at a fix emission rate of 525 kg CO2/t clinker.
+
+Finally, another *scaling factor* is used to scale emissions of non-CO2 substances (CO, VOCs, etc.),
+based on GAINS projections for the cement sector, given a region and year.
 
 
 Carbon Capture and Storage
@@ -587,14 +598,74 @@ of the consumer.
 Steel production
 """"""""""""""""
 
+The modelling of future improvements in the steel sector is relatively
+simple at the moment, and does not involve the emergence of new
+technologies (e.g., hydrogen-based DRI, electro-winning).
+
+Dataset proxies
++++++++++++++++
+
+*premise* duplicates steel production datasets in ecoinvent for the
+production of primary and secondary steel (called respectively
+"steel production, converter" and "steel production, electric")
+so as to create a proxy dataset for each IAM region.
+
+The location of the proxy datasets used for a given IAM region is a location
+included in the IAM region. If no valid dataset is found, *premise* resorts
+to using a rest-of-the-world (RoW) dataset to represent the IAM region.
+
+*premise* changes the location of these duplicated datasets and fill
+in different fields, such as that of *production volume*.
+
 Efficiency adjustment
 +++++++++++++++++++++
+
+*premise* adjust the inputs of fuels found in the steel production
+datasets, by multiplying those by a *scaling factor* provided by the
+IAM scenario.
+
+Emissions of fossil and biogenic CO2 are scaled accordingly.
+
+Finally, another *scaling factor* is used to scale emissions of non-CO2
+substances (CO, VOCs, etc.), based on GAINS projections for the steel sector,
+given a region and year.
 
 Carbon Capture and Storage
 ++++++++++++++++++++++++++
 
+If the IAM scenario indicates that a share of the CO2 emissions
+for the steel sector in a given region and year is sequestered and stored,
+*premise* adds additional electricity and heat requirements from Volkart_ et al, 2013
+to the steel production dataset (in addition to reducing its CO2 emissions).
+
+*premise* adds 0.024 kWh/kg CO2 captured for the capture process,
+and 0.146 kWh/kg CO2 captured for compressing the gas.
+
+It also adds 3.48 MJ of industrial steam heat per kg CO2 captured,
+to regenerate the MEA sorbent.
+
 Steel markets
 +++++++++++++
+
+*premise* create a dataset "market for steel, low-alloyed" for each IAM region.
+Within each dataset, the supply shares of primary and secondary steel
+are adjusted to reflect the projections from the IAM scenario, for a given region
+and year.
+
+ ==================== ====================================== ============================= ==============================
+  name in premise      name in REMIND                          name in IMAGE                name in LCI database
+ ==================== ====================================== ============================= ==============================
+  steel - primary      Production|Industry|Steel|Primary      Production|Steel|Primary      steel production, converter
+  steel - secondary    Production|Industry|Steel|Secondary    Production|Steel|Secondary    steel production, electric
+ ==================== ====================================== ============================= ==============================
+
+Relinking
++++++++++
+
+Once steel production and market datasets are created, *premise*
+re-links steel-consuming activities to the new regional markets for
+steel. The regional market it re-links to depends on the location
+of the consumer.
 
 Transport
 """""""""

@@ -1707,11 +1707,12 @@ These two sources are combined and used to derive the following parameters:
 
 * share of kiln technology (wet, dry, wet with pre-heater, etc.)
 * fuel mix
-* fuel efficiency
 * heat recovery rate
 * electricity use
 
 This data is available here: GNRdata_.
+
+The expected change in fuel efficiency is based on IAM scenario projections.
 
 .. _GNRdata: https://github.com/romainsacchi/premise/blob/master/premise/data/cement/additional_data_GNR.csv
 
