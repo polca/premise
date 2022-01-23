@@ -1,14 +1,158 @@
 TRANSFORM
 =========
 
+A series of transformation are operation on the LCI database to align process performance
+and technology market shares with outputs from the IAM scenario.
+
 Power generation
 """"""""""""""""
 
 Efficiency adjustment
 +++++++++++++++++++++
 
+The energy conversion efficiency of powerplant datasets for a given technology
+is adjusted to align with the change in efficiency indicated by the IAM scenario.
+
 Combustion-based powerplants
 ----------------------------
+
+*premise* iterates through coal, lignite, natural gas, biogas and wood-fired powerplants
+datasets in teh LCI database to calculate their current efficiency (i.e., the ratio between
+the primary fuel energy entering the process and the output energy produced, which is often 1 kWh).
+If the IAM scenario foresees a change in efficiency for these processes, the input of the datasets
+are scaled up or down by the *scaling factor* to effectively reflect a change in fuel input
+per kWh produced.
+
+The origin of this *scaling factor* is explained here.
+
+To calculate the old and new efficiency of the dataset, it is necessary to know
+the net calorific content of the fuel. The table below shows the Lower Heating Value
+for the different fuels used in combustion-based powerplants.
+
+ ================================================================== ===========================
+  name of fuel                                                       LHV [MJ/kg, as received]
+ ================================================================== ===========================
+  hard coal                                                          26.7
+  lignite                                                            11.2
+  petroleum coke                                                     31.3
+  wood pellet                                                        16.2
+  wood chips                                                         18.9
+  natural gas                                                        45
+  gas, natural, in ground                                            45
+  refinery gas                                                       50.3
+  propane                                                            46.46
+  heavy fuel oil                                                     38.5
+  oil, crude, in ground                                              38.5
+  light fuel oil                                                     42.6
+  biogas                                                             22.73
+  biomethane                                                         47.5
+  waste                                                              14
+  methane, fossil                                                    47.5
+  methane, biogenic                                                  47.5
+  methane, synthetic                                                 47.5
+  diesel                                                             43
+  gasoline                                                           42.6
+  petrol, 5% ethanol                                                 41.7
+  petrol, synthetic, hydrogen                                        42.6
+  petrol, synthetic, coal                                            42.6
+  diesel, synthetic, hydrogen                                        43
+  diesel, synthetic, coal                                            43
+  diesel, synthetic, wood                                            43
+  diesel, synthetic, wood, with CCS                                  43
+  diesel, synthetic, grass                                           43
+  diesel, synthetic, grass, with CCS                                 43
+  hydrogen, petroleum                                                120
+  hydrogen, electrolysis                                             120
+  hydrogen, biomass                                                  120
+  hydrogen, biomass, with CCS                                        120
+  hydrogen, coal                                                     120
+  hydrogen, nat. gas                                                 120
+  hydrogen, nat. gas, with CCS                                       120
+  hydrogen, biogas                                                   120
+  hydrogen, biogas, with CCS                                         120
+  hydrogen                                                           120
+  biodiesel, oil                                                     38
+  biodiesel, oil, with CCS                                           38
+  bioethanol, wood                                                   26.5
+  bioethanol, wood, with CCS                                         26.5
+  bioethanol, grass                                                  26.5
+  bioethanol, grass, with CCS                                        26.5
+  bioethanol, grain                                                  26.5
+  bioethanol, grain, with CCS                                        26.5
+  bioethanol, sugar                                                  26.5
+  bioethanol, sugar, with CCS                                        26.5
+  ethanol                                                            26.5
+  methanol, wood                                                     19.9
+  methanol, grass                                                    19.9
+  methanol, wood, with CCS                                           19.9
+  methanol, grass, with CCS                                          19.9
+  liquified petroleum gas, natural                                   45.5
+  liquified petroleum gas, synthetic                                 45.5
+  uranium, enriched 3.8%, in fuel element for light water reactor    4199040
+  nuclear fuel element, for boiling water reactor, uo2 3.8%          4147200
+  nuclear fuel element, for boiling water reactor, uo2 4.0%          4147200
+  nuclear fuel element, for pressure water reactor, uo2 3.8%         4579200
+  nuclear fuel element, for pressure water reactor, uo2 4.0%         4579200
+  nuclear fuel element, for pressure water reactor, uo2 4.2%         4579200
+  uranium hexafluoride                                               709166
+  enriched uranium, 4.2%                                             4579200
+  mox fuel element                                                   4579200
+  heat, from hard coal                                               1
+  heat, from lignite                                                 1
+  heat, from petroleum coke                                          1
+  heat, from wood pellet                                             1
+  heat, from natural gas, high pressure                              1
+  heat, from natural gas, low pressure                               1
+  heat, from heavy fuel oil                                          1
+  heat, from light fuel oil                                          1
+  heat, from biogas                                                  1
+  heat, from waste                                                   1
+  heat, from methane, fossil                                         1
+  heat, from methane, biogenic                                       1
+  heat, from diesel                                                  1
+  heat, from gasoline                                                1
+  heat, from bioethanol                                              1
+  heat, from biodiesel                                               1
+  heat, from liquified petroleum gas, natural                        1
+  heat, from liquified petroleum gas, synthetic                      1
+  bagasse, from sugarcane                                            15.4
+  bagasse, from sweet sorghum                                        13.8
+  sweet sorghum stem                                                 4.45
+  cottonseed                                                         21.97
+  flax husks                                                         21.5
+  coconut husk                                                       20
+  sugar beet pulp                                                    5.11
+  cleft timber                                                       14.46
+  rape meal                                                          31.1
+  molasse, from sugar beet                                           16.65
+  sugar beet                                                         4.1
+  barkey grain                                                       19.49
+  rye grain                                                          12
+  sugarcane                                                          5.3
+  palm date                                                          10.8
+  whey                                                               1.28
+  straw                                                              15.5
+  grass                                                              17
+  manure, liquid                                                     0.875
+  manure, solid                                                      3.6
+  kerosene, from petroleum                                           43
+  kerosene, synthetic, from electrolysis, energy allocation          43
+  kerosene, synthetic, from electrolysis, economic allocation        43
+  kerosene, synthetic, from coal, energy allocation                  43
+  kerosene, synthetic, from coal, economic allocation                43
+  kerosene, synthetic, from natural gas, energy allocation           43
+  kerosene, synthetic, from natural gas, economic allocation         43
+  kerosene, synthetic, from biomethane, energy allocation            43
+  kerosene, synthetic, from biomethane, economic allocation          43
+  kerosene, synthetic, from biomass, energy allocation               43
+  kerosene, synthetic, from biomass, economic allocation             43
+ ================================================================== ===========================
+
+Additionally, the biogenic and fossil CO2 emissions of the datasets are also scaled up or down
+by a same factor, as those are proportionate to the amount of fuel used.
+
+Finally, another *scaling factor* is used to scale emissions of non-CO2 substances (CO, VOCs, etc.),
+based on GAINS projections for the given technology, region and year.
 
 Photovoltaics panels
 --------------------
@@ -16,14 +160,15 @@ Photovoltaics panels
 Electricity markets
 +++++++++++++++++++
 
+Biomass markets
+---------------
+
 Regional markets
 ----------------
 
 Long-term electricity markets
 -----------------------------
 
-Biomass markets
----------------
 
 Cement production
 """""""""""""""""

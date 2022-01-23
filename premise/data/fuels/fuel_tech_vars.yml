@@ -3,7 +3,7 @@
 # iam_aliases and eff_aliases for different IAMs
 # of different energy vectors.
 # LHVs are from ecoinvent when possible. If not, they are either from
-# engineeringtoolbox.com or phyllis.nl
+# engineeringtoolbox.com or phyllis.nl or IPCC 2006 guidelines
 
 # lhv -> MJ/kg, wet basis
 # co2 -> kg CO2/MJ
@@ -13,7 +13,7 @@ electricity:
   lhv: 3.6
   biogenic_share: 0
 hard coal:
-  lhv: 20.1
+  lhv: 26.7
   co2: 0.098
   biogenic_share: 0
   ecoinvent_aliases:
@@ -27,7 +27,7 @@ hard coal:
         - ash
         - clinker
 lignite:
-  lhv: 9.9
+  lhv: 11.2
   co2: 0.101
   biogenic_share: 0
   ecoinvent_aliases:
@@ -788,6 +788,8 @@ Carbon monoxide, from RWGS:
   lhv: 10.83
 kerosene, from petroleum:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - kerosene production, petroleum refinery operation
@@ -795,53 +797,73 @@ sweet gas, burned:
   lhv:
 kerosene, synthetic, from electrolysis, energy allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from electrolysis-based hydrogen, energy allocation
       - Kerosene, synthetic, from MTO, hydrogen from electrolysis, energy allocation
 kerosene, synthetic, from electrolysis, economic allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from electrolysis-based hydrogen, economic allocation
       - Kerosene, synthetic, from MTO, hydrogen from electrolysis, economic allocation
 kerosene, synthetic, from coal, energy allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from coal-based hydrogen, energy allocation, at fuelling station
 kerosene, synthetic, from coal, economic allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from coal-based hydrogen, economic allocation, at fuelling station
 kerosene, synthetic, from natural gas, energy allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from natural gas-based hydrogen, energy allocation, at fuelling station
 kerosene, synthetic, from natural gas, economic allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from natural gas-based hydrogen, economic allocation, at fuelling station
 kerosene, synthetic, from biomethane, energy allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from biomethane-based hydrogen, energy allocation, at fuelling station
 kerosene, synthetic, from biomethane, economic allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from biomethane-based hydrogen, economic allocation, at fuelling station
 kerosene, synthetic, from biomass, energy allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from biomass-based hydrogen, energy allocation, at fuelling station
 kerosene, synthetic, from biomass, economic allocation:
   lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from biomass-based hydrogen, economic allocation, at fuelling station
