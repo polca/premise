@@ -983,6 +983,8 @@ CO2 emissions per kg of crop farmed are calculated as::
 Regional supply chains
 ++++++++++++++++++++++
 
+
+
 Fuel markets
 ++++++++++++
 
@@ -1037,7 +1039,7 @@ liquid and gaseous secondary energy carriers:
 
 Because not all competing fuels of a same type have the same calorific value,
 some adjustments are made. The table below shows the example of the market for
-petrol, for the IMAGE region of Central Europe in 2050.
+petrol, for the IMAGE region of Western Europe in 2050.
 The sum of fuel inputs is superior to 1 (i.e., 1.4 kg).
 This is because methanol and bioethanol have low
 calorific values comparatively to petrol
@@ -1052,7 +1054,7 @@ are modelled with the calorific value of conventional gasoline.
   Output                                                              _         _           _
  =================================================================== ========= =========== ===========
   producer                                                            amount    unit        location
-  market for petrol, low-sulfur                                       1         kilogram    CEU
+  market for petrol, low-sulfur                                       1         kilogram    WEU
   Input
   supplier                                                            amount    unit        location
   petrol production, low-sulfur                                       0.550     kilogram    CH
@@ -1096,11 +1098,11 @@ new diesel market of the REMIND region for India.
   treatment of brake wear emissions, lorry   -0.0005     -0.0005    kilogram         RER
   Light duty truck, diesel, 3.5t             1.39E-05    1.39E-05   unit             RER
   market for diesel, low-sulfur              0.1854      0.1854     kilogram         IND
-  **Carbon dioxide, fossil**                 0.5840      0.5667     kilogram
-  **Carbon dioxide, non-fossil**             0.0000      0.0173     kilogram
-  Nitrogen oxides                            0.0008      0.0008     kilogram
-  Nitrogen oxides                            0.0003      0.0003     kilogram
- ========================================== =========== ========== ================
+  **Carbon dioxide, fossil**                 0.5840      0.5667     kilogram         _
+  **Carbon dioxide, non-fossil**             0.0000      0.0173     kilogram         _
+  Nitrogen oxides                            0.0008      0.0008     kilogram         _
+  Nitrogen oxides                            0.0003      0.0003     kilogram         _
+ ========================================== =========== ========== ================ ===========
 
 
 
