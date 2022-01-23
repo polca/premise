@@ -1034,10 +1034,13 @@ Losses for the transport of H2 by truck and hydrogen pipelines, and losses
 at the regional storage storage (salt cavern) are from Wulf_ et al, 2018.
 Boil-off loss values during shipping are from Hank_ et al, 2020.
 Losses when transporting H2 via re-assigned CNG pipelines are from Cerniauskas_ et al, 2020.
+Losses along the pipeline are from Schori_ et al, 2012., but to be considered conservative, as those
+are initially for natural gas (and hydrogen has a higher potential for leaking).
 
 .. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X
 .. _Cerniauskas: https://doi.org/10.1016/j.ijhydene.2020.02.121
 .. _Hank: https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00067a
+.. _Schori: https://treeze.ch/fileadmin/user_upload/downloads/PublicLCI/Schori_2012_NaturalGas.pdf
 
  ========================== ================= ======== ======= ============== =============== ====================
   _                          _                 truck    ship    H2 pipeline    CNG pipeline    reference flow
