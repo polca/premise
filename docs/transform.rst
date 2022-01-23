@@ -775,6 +775,20 @@ CO2 emissions update
 Geographical mapping
 """"""""""""""""""""
 
+IAM models have slightly different geographical resolutions and definitions.
+
+
+Map of IMAGE regions
+.. image:: map_image.png
+   :width: 200pt
+   :align: center
+
+
+Map of REMIND regions
+.. image:: map_remind.png
+   :width: 200pt
+   :align: center
+
 *premise* uses the following correspondence between ecoinvent locations
 and IAM regions. This mapping is performed by the constructive_geometries_
 implementation in the wurst_ library.
