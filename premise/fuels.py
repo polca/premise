@@ -1,9 +1,10 @@
 import copy
+import csv
+from datetime import date
 
 import yaml
 from numpy import ndarray
 
-from .data_collection import IAMDataCollection
 from .transformation import *
 from .utils import DATA_DIR, get_crops_properties
 
