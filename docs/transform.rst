@@ -938,12 +938,14 @@ IAM models have slightly different geographical resolutions and definitions.
 
 
 Map of IMAGE regions
+
 .. image:: map_image.png
    :width: 200pt
    :align: center
 
 
 Map of REMIND regions
+
 .. image:: map_remind.png
    :width: 200pt
    :align: center
