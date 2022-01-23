@@ -932,6 +932,38 @@ Fuel markets
 CO2 emissions update
 ++++++++++++++++++++
 
+*premise* iterates through activities that consume any of the newly created
+fuel markets to update the way CO2 emissions are modelled. Based on the fuel
+market composition, CO2 emissions within the fuel-consuming activity are
+split between fossil and non-fossil emissions.
+
+The table below shows the example where the CO2 emissions of a 3.5t truck
+have been split into biogenic and fossil fractions after re-link to the
+new diesel market of the REMIND region for India.
+
+ ========================================== =========== ========== ================ ===========
+  Output                                     before      after      _                _
+ ========================================== =========== ========== ================ ===========
+  producer                                   amount      amount     unit             location
+  transport, freight, lorry, diesel, 3.5t    1           1          ton-kilometer    IND
+  Input
+  supplier                                   amount      amount     unit             location
+  treatment of tyre wear emissions, lorry    -0.0009     -0.0009    kilogram         RER
+  market for road maintenance                0.0049      0.0049     meter-year       RER
+  market for road                            0.0041      0.0041     meter-year       GLO
+  treatment of road wear emissions, lorry    -0.0008     -0.0008    kilogram         RER
+  market for refrigerant R134a               2.84E-05    2.84E-05   kilogram         GLO
+  treatment of brake wear emissions, lorry   -0.0005     -0.0005    kilogram         RER
+  Light duty truck, diesel, 3.5t             1.39E-05    1.39E-05   unit             RER
+  market for diesel, low-sulfur              0.1854      0.1854     kilogram         IND
+  **Carbon dioxide, fossil**                 0.5840      0.5667     kilogram
+  **Carbon dioxide, non-fossil**             0.0000      0.0173     kilogram
+  Nitrogen oxides                            0.0008      0.0008     kilogram
+  Nitrogen oxides                            0.0003      0.0003     kilogram
+ ========================================== =========== ========== ================
+
+
+
 Geographical mapping
 """"""""""""""""""""
 
