@@ -587,6 +587,29 @@ table below.
   United States              82%     81%     79%     78%     77%     76%     74%     73%     72%     71%     69%     68%     67%     66%     64%     63%     62%     61%     59%     58%
  ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
 
+Original market datasets
+________________________
+
+Market datasets originally present in the ecoinvent LCI database are cleared
+from any inputs. Instead, an input from the newly created regional market
+is added, depending on the location of the dataset.
+
+The table below shows the example of the clinker market
+for South Africa, which now only includes an input from the "SAF"
+regional market, which "includes" it in terms of geography.
+
+
+ ============================================ =========== ================ ===========
+  Output                                       _           _                _
+ ============================================ =========== ================ ===========
+  producer                                     amount      unit             location
+  market for clinker                           1.00E+00    kilogram         ZA
+  Input                                        _           _                _
+  supplier                                     amount      unit             location
+  market for clinker                           1.00E+00    kilogram         SAF
+ ============================================ =========== ================ ===========
+
+
 Relinking
 +++++++++
 
@@ -650,7 +673,7 @@ Steel markets
 *premise* create a dataset "market for steel, low-alloyed" for each IAM region.
 Within each dataset, the supply shares of primary and secondary steel
 are adjusted to reflect the projections from the IAM scenario, for a given region
-and year.
+and year, based on the variables below.
 
  ==================== ====================================== ============================= ==============================
   name in premise      name in REMIND                          name in IMAGE                name in LCI database
@@ -658,6 +681,49 @@ and year.
   steel - primary      Production|Industry|Steel|Primary      Production|Steel|Primary      steel production, converter
   steel - secondary    Production|Industry|Steel|Secondary    Production|Steel|Secondary    steel production, electric
  ==================== ====================================== ============================= ==============================
+
+The table below shows an example of the market for India, where 66% of the steel comes
+from an oxygen converter process (primary steel), while 34% comes from an electric arc
+furnace process (secondary steel).
+
+ ================================================================= ============ ================ ===========
+  Output                                                            _            _                _
+ ================================================================= ============ ================ ===========
+  producer                                                          amount       unit             location
+  market for steel, low-alloyed                                     1            kilogram         IND
+  Input
+  supplier                                                          amount       unit             location
+  market group for transport, freight, inland waterways, barge      0.5          ton kilometer    GLO
+  market group for transport, freight train                         0.35         ton kilometer    GLO
+  market for transport, freight, sea, bulk carrier for dry goods    0.38         ton kilometer    GLO
+  transport, freight, lorry, unspecified, regional delivery         0.12         ton kilometer    IND
+  steel production, converter, low-alloyed                          0.66         kilogram         IND
+  steel production, electric, low-alloyed                           0.34         kilogram         IND
+ ================================================================= ============ ================ ===========
+
+
+Original market datasets
+________________________
+
+Market datasets originally present in the ecoinvent LCI database are cleared
+from any inputs. Instead, an input from the newly created regional market
+is added, depending on the location of the dataset.
+
+The table below shows the example of the clinker market
+for South Africa, which now only includes an input from the "SAF"
+regional market, which "includes" it in terms of geography.
+
+
+ ============================================ =========== ================ ===========
+  Output                                       _           _                _
+ ============================================ =========== ================ ===========
+  producer                                     amount      unit             location
+  market for clinker                           1.00E+00    kilogram         ZA
+  Input                                        _           _                _
+  supplier                                     amount      unit             location
+  market for clinker                           1.00E+00    kilogram         SAF
+ ============================================ =========== ================ ===========
+
 
 Relinking
 +++++++++
@@ -705,4 +771,322 @@ Fuel markets
 
 CO2 emissions update
 ++++++++++++++++++++
+
+Geographical mapping
+""""""""""""""""""""
+
+*premise* uses the following correspondence between ecoinvent locations
+and IAM regions. This mapping is performed by the constructive_geometries_
+implementation in the wurst_ library.
+
+.. _constructive_geometries: https://github.com/cmutel/constructive_geometries
+.. _wurst: https://github.com/polca/wurst
+
+ ========================================= ================ ===============
+  ecoinvent location                        REMIND region    IMAGE region
+ ========================================= ================ ===============
+  AE                                        MEA              ME
+  AL                                        NEU              CEU
+  AM                                        REF              RUS
+  AO                                        SSA              RSAF
+  APAC                                      OAS              SEAS
+  AR                                        LAM              RSAM
+  AT                                        EUR              WEU
+  AU                                        CAZ              OCE
+  AZ                                        REF              RUS
+  BA                                        NEU              CEU
+  BD                                        OAS              RSAS
+  BE                                        EUR              WEU
+  BG                                        EUR              CEU
+  BH                                        MEA              ME
+  BJ                                        SSA              WAF
+  BN                                        OAS              SEAS
+  BO                                        LAM              RSAM
+  BR                                        LAM              BRA
+  BR-AC                                     LAM              BRA
+  BR-AL                                     LAM              BRA
+  BR-AM                                     LAM              BRA
+  BR-AP                                     LAM              BRA
+  BR-BA                                     LAM              BRA
+  BR-CE                                     LAM              BRA
+  BR-DF                                     LAM              BRA
+  BR-ES                                     LAM              BRA
+  BR-GO                                     LAM              BRA
+  BR-MA                                     LAM              BRA
+  BR-MG                                     LAM              BRA
+  BR-Mid-western grid                       LAM              BRA
+  BR-MS                                     LAM              BRA
+  BR-MT                                     LAM              BRA
+  BR-North-eastern grid                     LAM              BRA
+  BR-Northern grid                          LAM              BRA
+  BR-PA                                     LAM              BRA
+  BR-PB                                     LAM              BRA
+  BR-PE                                     LAM              BRA
+  BR-PI                                     LAM              BRA
+  BR-PR                                     LAM              BRA
+  BR-RJ                                     LAM              BRA
+  BR-RN                                     LAM              BRA
+  BR-RO                                     LAM              BRA
+  BR-RR                                     LAM              BRA
+  BR-RS                                     LAM              BRA
+  BR-SC                                     LAM              BRA
+  BR-SE                                     LAM              BRA
+  BR-South-eastern grid                     LAM              BRA
+  BR-Southern grid                          LAM              BRA
+  BR-SP                                     LAM              BRA
+  BR-TO                                     LAM              BRA
+  BW                                        SSA              RSAF
+  BY                                        REF              UKR
+  CA                                        CAZ              CAN
+  CA-AB                                     CAZ              CAN
+  CA-BC                                     CAZ              CAN
+  CA-MB                                     CAZ              CAN
+  Canada without Quebec                     CAZ              CAN
+  CA-NB                                     CAZ              CAN
+  CA-NF                                     CAZ              CAN
+  CA-NS                                     CAZ              CAN
+  CA-NT                                     CAZ              CAN
+  CA-NU                                     CAZ              CAN
+  CA-ON                                     CAZ              CAN
+  CA-PE                                     CAZ              CAN
+  CA-QC                                     CAZ              CAN
+  CA-SK                                     CAZ              CAN
+  CA-YK                                     CAZ              CAN
+  CD                                        SSA              WAF
+  CENTREL                                   EUR              CEU
+  CG                                        SSA              WAF
+  CH                                        NEU              WEU
+  CI                                        SSA              WAF
+  CL                                        LAM              RSAM
+  CM                                        SSA              WAF
+  CN                                        CHA              CHN
+  CN-AH                                     CHA              CHN
+  CN-BJ                                     CHA              CHN
+  CN-CQ                                     CHA              CHN
+  CN-CSG                                    CHA              CHN
+  CN-FJ                                     CHA              CHN
+  CN-GD                                     CHA              CHN
+  CN-GS                                     CHA              CHN
+  CN-GX                                     CHA              CHN
+  CN-GZ                                     CHA              CHN
+  CN-HA                                     CHA              CHN
+  CN-HB                                     CHA              CHN
+  CN-HE                                     CHA              CHN
+  CN-HL                                     CHA              CHN
+  CN-HN                                     CHA              CHN
+  CN-HU                                     CHA              CHN
+  CN-JL                                     CHA              CHN
+  CN-JS                                     CHA              CHN
+  CN-JX                                     CHA              CHN
+  CN-LN                                     CHA              CHN
+  CN-NM                                     CHA              CHN
+  CN-NX                                     CHA              CHN
+  CN-QH                                     CHA              CHN
+  CN-SA                                     CHA              CHN
+  CN-SC                                     CHA              CHN
+  CN-SD                                     CHA              CHN
+  CN-SGCC                                   CHA              CHN
+  CN-SH                                     CHA              CHN
+  CN-SX                                     CHA              CHN
+  CN-TJ                                     CHA              CHN
+  CN-XJ                                     CHA              CHN
+  CN-XZ                                     CHA              CHN
+  CN-YN                                     CHA              CHN
+  CN-ZJ                                     CHA              CHN
+  CO                                        LAM              RSAM
+  CR                                        LAM              RCAM
+  CU                                        LAM              RCAM
+  CW                                        LAM              RCAM
+  CY                                        EUR              CEU
+  CZ                                        EUR              CEU
+  DE                                        EUR              WEU
+  DK                                        EUR              WEU
+  DO                                        LAM              RCAM
+  DZ                                        MEA              NAF
+  EC                                        LAM              RSAM
+  EE                                        EUR              CEU
+  EG                                        MEA              NAF
+  ENTSO-E                                   EUR              WEU
+  ER                                        SSA              EAF
+  ES                                        EUR              WEU
+  ET                                        SSA              EAF
+  Europe without Austria                    EUR              WEU
+  Europe without Switzerland                EUR              WEU
+  Europe without Switzerland and Austria    EUR              WEU
+  Europe, without Russia and Turkey         EUR              WEU
+  FI                                        EUR              WEU
+  FR                                        EUR              WEU
+  GA                                        SSA              WAF
+  GB                                        EUR              WEU
+  GE                                        REF              RUS
+  GH                                        SSA              WAF
+  GI                                        EUR              WEU
+  GLO                                       World            World
+  GR                                        EUR              WEU
+  GT                                        LAM              RCAM
+  HK                                        CHA              CHN
+  HN                                        LAM              RCAM
+  HR                                        EUR              CEU
+  HT                                        LAM              RCAM
+  HU                                        EUR              CEU
+  IAI Area, Africa                          SSA              RSAF
+  IAI Area, Asia, without China and GCC     OAS              SEAS
+  IAI Area, EU27 & EFTA                     EUR              WEU
+  IAI Area, Gulf Cooperation Council        MEA              ME
+  IAI Area, North America                   USA              USA
+  IAI Area, Russia & RER w/o EU27 & EFTA    REF              RUS
+  IAI Area, South America                   LAM              RSAM
+  ID                                        OAS              INDO
+  IE                                        EUR              WEU
+  IL                                        MEA              ME
+  IN                                        IND              INDIA
+  IN-AP                                     IND              INDIA
+  IN-AR                                     IND              INDIA
+  IN-AS                                     IND              INDIA
+  IN-BR                                     IND              INDIA
+  IN-CT                                     IND              INDIA
+  IN-DL                                     IND              INDIA
+  IN-Eastern grid                           IND              INDIA
+  IN-GA                                     IND              INDIA
+  IN-GJ                                     IND              INDIA
+  IN-HP                                     IND              INDIA
+  IN-HR                                     IND              INDIA
+  IN-JH                                     IND              INDIA
+  IN-JK                                     IND              INDIA
+  IN-KA                                     IND              INDIA
+  IN-KL                                     IND              INDIA
+  IN-MH                                     IND              INDIA
+  IN-ML                                     IND              INDIA
+  IN-MN                                     IND              INDIA
+  IN-MP                                     IND              INDIA
+  IN-NL                                     IND              INDIA
+  IN-North-eastern grid                     IND              INDIA
+  IN-Northern grid                          IND              INDIA
+  IN-OR                                     IND              INDIA
+  IN-PB                                     IND              INDIA
+  IN-PY                                     IND              INDIA
+  IN-RJ                                     IND              INDIA
+  IN-SK                                     IND              INDIA
+  IN-Southern grid                          IND              INDIA
+  IN-TN                                     IND              INDIA
+  IN-TR                                     IND              INDIA
+  IN-UP                                     IND              INDIA
+  IN-UT                                     IND              INDIA
+  IN-WB                                     IND              INDIA
+  IN-Western grid                           IND              INDIA
+  IQ                                        MEA              ME
+  IR                                        MEA              ME
+  IS                                        NEU              WEU
+  IT                                        EUR              WEU
+  JM                                        LAM              RCAM
+  JO                                        MEA              ME
+  JP                                        JPN              JAP
+  KE                                        SSA              EAF
+  KG                                        REF              STAN
+  KH                                        OAS              SEAS
+  KP                                        OAS              KOR
+  KR                                        OAS              KOR
+  KW                                        MEA              ME
+  KZ                                        REF              STAN
+  LB                                        MEA              ME
+  LK                                        OAS              RSAS
+  LT                                        EUR              CEU
+  LU                                        EUR              WEU
+  LV                                        EUR              CEU
+  LY                                        MEA              NAF
+  MA                                        MEA              NAF
+  MD                                        REF              UKR
+  ME                                        NEU              ME
+  MG                                        SSA              EAF
+  MK                                        NEU              CEU
+  MM                                        OAS              SEAS
+  MN                                        OAS              CHN
+  MT                                        EUR              WEU
+  MU                                        SSA              EAF
+  MX                                        LAM              MEX
+  MY                                        OAS              SEAS
+  MZ                                        SSA              RSAF
+  NA                                        SSA              RSAF
+  NE                                        SSA              WAF
+  NG                                        SSA              WAF
+  NI                                        LAM              RCAM
+  NL                                        EUR              WEU
+  NO                                        NEU              WEU
+  NORDEL                                    NEU              WEU
+  North America without Quebec              USA              USA
+  NP                                        OAS              RSAS
+  NZ                                        CAZ              OCE
+  OCE                                       CAZ              OCE
+  OM                                        MEA              ME
+  PA                                        LAM              RCAM
+  PE                                        LAM              RSAM
+  PG                                        OAS              INDO
+  PH                                        OAS              SEAS
+  PK                                        OAS              RSAS
+  PL                                        EUR              CEU
+  PT                                        EUR              WEU
+  PY                                        LAM              RSAM
+  QA                                        MEA              ME
+  RAF                                       SSA              RSAF
+  RAS                                       CHA              CHN
+  RER                                       EUR              WEU
+  RER w/o CH+DE                             EUR              WEU
+  RER w/o DE+NL+RU                          EUR              WEU
+  RER w/o RU                                EUR              WEU
+  RLA                                       LAM              RSAM
+  RME                                       MEA              ME
+  RNA                                       USA              USA
+  RO                                        EUR              CEU
+  RoW                                       World            World
+  RS                                        NEU              CEU
+  RU                                        REF              RUS
+  RW                                        SSA              EAF
+  SA                                        MEA              ME
+  SAS                                       IND              INDIA
+  SD                                        MEA              EAF
+  SE                                        EUR              WEU
+  SG                                        OAS              SEAS
+  SI                                        EUR              CEU
+  SK                                        EUR              CEU
+  SN                                        SSA              WAF
+  SS                                        SSA              EAF
+  SV                                        LAM              RCAM
+  SY                                        MEA              ME
+  TG                                        SSA              WAF
+  TH                                        OAS              SEAS
+  TJ                                        REF              STAN
+  TM                                        REF              STAN
+  TN                                        MEA              NAF
+  TR                                        MEA              TUR
+  TT                                        LAM              RCAM
+  TW                                        CHA              CHN
+  TZ                                        SSA              RSAF
+  UA                                        REF              UKR
+  UCTE                                      EUR              WEU
+  UCTE without Germany                      EUR              WEU
+  UN-OCEANIA                                CAZ              OCE
+  UN-SEASIA                                 OAS              SEAS
+  US                                        USA              USA
+  US-ASCC                                   USA              USA
+  US-HICC                                   USA              USA
+  US-MRO                                    USA              USA
+  US-NPCC                                   USA              USA
+  US-PR                                     USA              USA
+  US-RFC                                    USA              USA
+  US-SERC                                   USA              USA
+  US-TRE                                    USA              USA
+  US-WECC                                   USA              USA
+  UY                                        LAM              RSAM
+  UZ                                        REF              STAN
+  VE                                        LAM              RSAM
+  VN                                        OAS              SEAS
+  WECC                                      USA              USA
+  WEU                                       EUR              WEU
+  XK                                        EUR              CEU
+  YE                                        MEA              ME
+  ZA                                        SSA              SAF
+  ZM                                        SSA              RSAF
+  ZW                                        SSA              RSAF
+ ========================================= ================ ===============
+
 
