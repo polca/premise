@@ -17,7 +17,7 @@ Combustion-based powerplants
 ----------------------------
 
 *premise* iterates through coal, lignite, natural gas, biogas and wood-fired powerplants
-datasets in teh LCI database to calculate their current efficiency (i.e., the ratio between
+datasets in the LCI database to calculate their current efficiency (i.e., the ratio between
 the primary fuel energy entering the process and the output energy produced, which is often 1 kWh).
 If the IAM scenario foresees a change in efficiency for these processes, the input of the datasets
 are scaled up or down by the *scaling factor* to effectively reflect a change in fuel input
@@ -149,10 +149,34 @@ for the different fuels used in combustion-based powerplants.
  ================================================================== ===========================
 
 Additionally, the biogenic and fossil CO2 emissions of the datasets are also scaled up or down
-by a same factor, as those are proportionate to the amount of fuel used.
+by the same factor, as those are proportionate to the amount of fuel used.
 
 Finally, another *scaling factor* is used to scale emissions of non-CO2 substances (CO, VOCs, etc.),
 based on GAINS projections for the given technology, region and year.
+
+We provide below an example of a natural gas powerplant, with a current (2020)
+conversion efficiency of 77%. If the IAM scenario indicates a *scaling factor*
+of 1.03 in 2030, this indicates tha the efficiency increases by 3% relative to current.
+As shown in the table below, this would results in a new efficiency of 79%, where
+all inputs, as well as CO2 emissions outputs are re-scaled by 1/1.03 (=0.97).
+This excludes non-CO2 emissions, such as CO  in this example, which are re-scaled separately,
+based on GAINS projections: such emissions, while partly correlated to fuel use,
+are mostly mitigated via investments in electrostatic precipitators,
+which is what GAINS scenarios model.
+
+ =================================================== =========== =========== =======
+  electricity production, natura gas, conventional    before      after       unit
+ =================================================== =========== =========== =======
+  electricity production                              1           1           kWh
+  natural gas                                         0.1040      0.1010      m3
+  water                                               0.0200      0.0194      m3
+  powerplant construction                             1.00E-08    9.71E-09    unit
+  CO2, fossil                                         0.0059      0.0057      kg
+  CO, fossil                                          5.87E-06    5.42E-03    kg
+  fuel-to-electricity efficiency                      77%         79%         %
+ =================================================== =========== =========== =======
+
+
 
 Photovoltaics panels
 --------------------
