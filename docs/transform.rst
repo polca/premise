@@ -240,17 +240,62 @@ all other inputs remaining unchanged.
  =================================================================== ========= ======== =======
 
 
-Electricity markets
-+++++++++++++++++++
+Markets
++++++++
 
-Biomass markets
----------------
+*premise* creates additional datasets that represent the average supply and
+production pathway for a given commodity for a given scenario, year and region.
 
-Regional markets
-----------------
+Such datasets are called *regional markets*. Hence, a regional market for high voltage
+electricity contains the different technologies that supply electricity at high voltage
+in a given IAM region, in proportion to their respective production volumes.
 
-Long-term electricity markets
------------------------------
+Regional biomass markets
+------------------------
+
+*premise* creates regional markets for biomass which is meant to be used as fuel
+in biomass-fired powerplants. Originally in ecoinvent, the biomass being supplied
+to biomass-fired powerplants is "purpose grown" biomass that originate forestry
+activities (called "market for wood chips" in ecoinvent). While this type of biomass
+is suitable for such purpose, it is considered a co-product of the forestry activity,
+and bears a share of the environmental burden of the process it originates from (notably
+the land footprint, emissions, potential use of chemicals, etc.).
+
+However, not all the biomass projected to be used in IAM scenarios is "purpose grown".
+In fact, significant shares are expected to originate from forestry residues. In such
+cases, the environmental burden of the forestry activity is entirely allocated to the
+determining product (e.g., timber), not to the residue, which comes "free of burden".
+
+Hence, *premise* creates average regional markets for biomass, which represents the
+average shares of "purpose grown" and "residual" biomass being fed to biomass-fired powerplants.
+
+The following market is created for each IAM region:
+
+ =================================== ==================
+  market name                         location
+ =================================== ==================
+  market for biomass, used as fuel    all IAM regions
+ =================================== ==================
+
+inside of which, the shares of "purpose grown" and "residual" biomass
+is represented by the following activities:
+
+========================== ===================================== ======================================= ===========================
+  name in premise            name in REMIND                         name in IMAGE                         name in LCI database
+========================== ===================================== ======================================= ===========================
+  biomass - purpose grown    SE|Electricity|Biomass|Energy Crops   Primary Energy|Biomass|Energy Crops    market for wood chips
+  biomass - residual         SE|Electricity|Biomass|Residues       Primary Energy|Biomass|Residues        Supply of forest residue
+========================== ===================================== ======================================= ===========================
+
+The sum of those shares equal 1. The activity "Supply of forest residue" includes
+the energy, transport and associated emissions to chip the residual biomass
+and transport it to the powerplant, but no other forestry-related burden is included.
+
+Regional electricity markets
+----------------------------
+
+Long-term regional electricity markets
+--------------------------------------
 
 
 Cement production
