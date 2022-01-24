@@ -324,7 +324,7 @@ class Export:
 
         # Load the matching dictionary
         filename = "simapro_classification.csv"
-        filepath = DATA_DIR / filename
+        filepath = DATA_DIR / "utils" / "export" / filename
         if not filepath.is_file():
             raise FileNotFoundError(
                 "The dictionary of Simapro categories could not be found."
@@ -351,7 +351,7 @@ class Export:
 
         # Load the matching dictionary
         filename = "simapro_categories.csv"
-        filepath = DATA_DIR / filename
+        filepath = DATA_DIR / "utils" / "export" / filename
         if not filepath.is_file():
             raise FileNotFoundError(
                 "The dictionary of Simapro categories could not be found."
@@ -457,7 +457,7 @@ class Export:
 
         # Load the matching dictionary
         filename = "references.csv"
-        filepath = DATA_DIR / filename
+        filepath = DATA_DIR / "utils" / "export" / filename
         if not filepath.is_file():
             raise FileNotFoundError("The dictionary of references could not be found.")
         with open(filepath) as f:
