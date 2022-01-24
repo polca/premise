@@ -153,7 +153,7 @@ class IAMDataCollection:
         pathway: str,
         year: int,
         filepath_iam_files: Path,
-        key: str,
+        key: bytes,
         system_model: str = "attributional",
         time_horizon: int = 30,
     ) -> None:
@@ -255,7 +255,7 @@ class IAMDataCollection:
 
         return dict_vars
 
-    def __get_iam_data(self, key: str, filepath: Path) -> xr.DataArray:
+    def __get_iam_data(self, key: bytes, filepath: Path) -> xr.DataArray:
         """
         Read the IAM result file and return an `xarray` with dimensions:
 

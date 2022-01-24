@@ -7,13 +7,14 @@ It eventually re-links all the cement-consuming activities (e.g., concrete produ
 of the wurst database to the newly created cement markets.
 
 """
+import csv
 import os
 
 import xarray as xr
 
 from .transformation import *
-from .utils import get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
-
+from .utils import DATA_DIR, get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
+from datetime import date
 
 class Cement(BaseTransformation):
     """
@@ -121,7 +122,7 @@ class Cement(BaseTransformation):
         excess_heat_generation = (
             self.iam_data.gnr_data.sel(
                 variables="Share of recovered energy, per ton clinker",
-                region=self.geo.iam_to_iam_region(loc)
+                region=self.geo.iam_to_iam_region(loc, from_iam="remind")
                 if self.model == "image"
                 else loc,
             ).values
@@ -185,7 +186,7 @@ class Cement(BaseTransformation):
 
             # Production volume by kiln type
             energy_input_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(region)
+                region=self.geo.iam_to_iam_region(region, from_iam="remind")
                 if self.model == "image"
                 else region,
                 variables=[
@@ -199,7 +200,7 @@ class Cement(BaseTransformation):
             energy_input_per_kiln_type /= energy_input_per_kiln_type.sum(axis=0)
 
             energy_eff_per_kiln_type = self.iam_data.gnr_data.sel(
-                region=self.geo.iam_to_iam_region(region)
+                region=self.geo.iam_to_iam_region(region, from_iam="remind")
                 if self.model == "image"
                 else region,
                 variables=[
@@ -231,7 +232,7 @@ class Cement(BaseTransformation):
                     "Share biomass fuel",
                     "Share fossil fuel",
                 ],
-                region=self.geo.iam_to_iam_region(region)
+                region=self.geo.iam_to_iam_region(region, from_iam="remind")
                 if self.model == "image"
                 else region,
             ).clip(0, 1)
@@ -522,7 +523,7 @@ class Cement(BaseTransformation):
             # different pace across regions.
             ratio_to_reach = self.clinker_ratio_remind.sel(
                 dict(
-                    region=self.geo.iam_to_iam_region(region)
+                    region=self.geo.iam_to_iam_region(region, from_iam="remind")
                     if self.model == "image"
                     else region
                 )

@@ -1,6 +1,5 @@
 import csv
 import itertools
-import pickle
 import sys
 import uuid
 from pathlib import Path
@@ -8,7 +7,6 @@ from typing import Dict, List, Union
 
 import bw2io
 from bw2io import ExcelImporter, Migration
-from bw2io.importers.base_lci import LCIImporter
 from prettytable import PrettyTable
 from wurst import searching as ws
 

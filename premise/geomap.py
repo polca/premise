@@ -188,7 +188,7 @@ class Geomap:
         """
         return self.iam_to_iam_mappings[self.model][location]["gains"]
 
-    def iam_to_iam_region(self, location: str, to_iam: str) -> str:
+    def iam_to_iam_region(self, location: str, from_iam: str) -> str:
         """
         When data is defined according to one IAM geography naming convention
         but needs to be used with another IAM.
@@ -197,4 +197,4 @@ class Geomap:
         :return: the equivalent location
         """
 
-        return self.iam_to_iam_mappings[self.model][location][to_iam]
+        return self.iam_to_iam_mappings[self.model][location][from_iam]

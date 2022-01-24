@@ -7,7 +7,7 @@ IAM data, and integrate them into the database.
 
 import re
 import uuid
-from typing import Dict, List
+from typing import Dict, List, Union, Any
 
 import numpy as np
 import pandas as pd
@@ -92,7 +92,7 @@ def create_fleet_vehicles(
     model: str,
     scenario: str,
     regions: List[str],
-) -> List[dict]:
+) -> List[dict[str, Union[Union[str, float], Any]]]:
     """
     Create datasets for fleet average vehicles based on IAM fleet data.
 
@@ -157,7 +157,8 @@ def create_fleet_vehicles(
     available_years = np.arange(2000, 2055, 5)
     ref_year = min(available_years, key=lambda x: abs(x - year))
 
-    available_ds, d_names = [], {}
+    available_ds, d_names, cycle_type = [], {}, None
+
 
     for dataset in datasets:
         if dataset["name"].startswith("transport, "):
@@ -241,7 +242,6 @@ def create_fleet_vehicles(
     }
 
     for region in regions:
-
         if region not in arr.coords["region"].values:
             fleet_region = d_missing_regions[region]
         else:
@@ -252,6 +252,7 @@ def create_fleet_vehicles(
             for s in vehicles_map[vehicle_type]["sizes"]
             if s in arr.coords["size"].values
         ]
+
         sel = arr.sel(region=fleet_region, size=sizes, year=ref_year)
         total_km = sel.sum()
 
@@ -489,15 +490,17 @@ class Transport(BaseTransformation):
         # We filter  vehicles by year of manufacture
         available_years = [2020, 2030, 2040, 2050]
         closest_year = min(available_years, key=lambda x: abs(x - self.year))
+        fleet_act = None
 
         if self.has_fleet:
 
             # the fleet data is originally defined for REMIND regions
             if self.model != "remind":
                 region_map = {
-                    self.geo.iam_to_iam_region(loc, to_iam="remind"): loc
+                    self.geo.iam_to_iam_region(loc, from_iam="remind"): loc
                     for loc in self.regions
                 }
+
             else:
                 region_map = {loc: loc for loc in self.regions}
 
@@ -570,7 +573,6 @@ class Transport(BaseTransformation):
                             new_ds,
                             self.database,
                             self.model,
-                            iam_regions=self.regions,
                             cache=self.cache,
                         )
 
