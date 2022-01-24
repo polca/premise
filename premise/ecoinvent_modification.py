@@ -9,7 +9,7 @@ import pickle
 import sys
 from datetime import date
 from pathlib import Path
-from typing import List
+from typing import List, Union
 
 import wurst
 from prettytable import PrettyTable
@@ -208,7 +208,7 @@ def check_model_name(name: str) -> str:
     return name.lower()
 
 
-def check_pathway_name(name: str, filepath: Path, model: str) -> None:
+def check_pathway_name(name: str, filepath: Path, model: str) -> str:
     """Check the pathway name"""
 
     if name not in SUPPORTED_PATHWAYS:
@@ -343,7 +343,7 @@ def check_db_version(version: [str, float]) -> str:
     return version
 
 
-def check_scenarios(scenario: dict, key: str) -> dict:
+def check_scenarios(scenario: dict, key: bytes) -> dict:
 
     if not all(name in scenario for name in ["model", "pathway", "year"]):
         raise ValueError(
@@ -486,7 +486,7 @@ class NewDatabase:
         scenarios: List[dict],
         source_version: str = "3.8",
         source_type: str = "brightway",
-        key: str = None,
+        key: bytes = None,
         source_db: str = None,
         source_file_path: str = None,
         additional_inventories: List[dict] = None,
@@ -582,7 +582,7 @@ class NewDatabase:
             pickle.dump(db, open(file_name, "wb"))
             return db
 
-    def __find_cached_inventories(self, db_name: str) -> List[dict]:
+    def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
         """
         If `use_cached_inventories` = True, then we look for a cached inventories.
         If cannot be found, we create a cache for next time.
@@ -600,14 +600,14 @@ class NewDatabase:
         if file_name.exists():
             # return the cached database
             return pickle.load(open(file_name, "rb"))
-        else:
-            # extract the database, pickle it for next time and return it
-            print(
-                "Cannot find cached inventories. Will create them now for next time..."
-            )
-            data = self.__import_inventories()
-            pickle.dump(data, open(file_name, "wb"))
-            return None
+
+        # else, extract the database, pickle it for next time and return it
+        print(
+            "Cannot find cached inventories. Will create them now for next time..."
+        )
+        data = self.__import_inventories()
+        pickle.dump(data, open(file_name, "wb"))
+        return None
 
     def __clean_database(self) -> List[dict]:
         """

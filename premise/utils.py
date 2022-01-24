@@ -116,7 +116,7 @@ def rev_index(inds: dict) -> dict:
     return {v: k for k, v in inds.items()}
 
 
-def create_codes_and_names_of_A_matrix(db: List[dict]):
+def create_codes_and_names_of_tech_matrix(db: List[dict]):
     """
     Create a dictionary a tuple (activity name, reference product,
     unit, location) as key, and its code as value.
@@ -150,8 +150,8 @@ def add_modified_tags(original_db, scenarios):
     coords_A = exp.create_A_matrix_coordinates()
     # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
     original = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
-    # Collect a dictionary with activities' names and correponding codes
-    codes_names = create_codes_and_names_of_A_matrix(original_db)
+    # Collect a dictionary with activities' names and corresponding codes
+    codes_names = create_codes_and_names_of_tech_matrix(original_db)
     # Collect list of substances
     rev_ind_B = rev_index(create_codes_index_of_B_matrix())
     # Retrieve list of coordinates of the B matrix [activity index, substance index, value]
@@ -574,7 +574,6 @@ def relink_technosphere_exchanges(
     drop_invalid=False,
     biggest_first=False,
     contained=True,
-    iam_regions=[],
 ):
     """Find new technosphere providers based on the location of the dataset.
     Designed to be used when the dataset's location changes, or when new datasets are added.
@@ -593,6 +592,7 @@ def relink_technosphere_exchanges(
         * ``contained``: Bool, default is ``True``. If true, only use providers whose location is completely within the ``dataset`` location; otherwise use all intersecting locations.
         * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
     Modifies the dataset in place; returns the modified dataset."""
+
     MESSAGE = "Relinked technosphere exchange of {}/{}/{} from {}/{} to {}/{}."
     DROPPED = "Dropped technosphere exchange of {}/{}/{}; no valid providers."
     new_exchanges = []

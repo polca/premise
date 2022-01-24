@@ -305,7 +305,7 @@ class Export:
     def get_simapro_biosphere_dictionnary():
         # Load the matching dictionary between ecoinvent and Simapro biosphere flows
         filename = "simapro-biosphere.json"
-        filepath = DATA_DIR / filename
+        filepath = DATA_DIR / "utils" / "export" / filename
         if not filepath.is_file():
             raise FileNotFoundError(
                 "The dictionary of biosphere flow match between ecoinvent and Simapro could not be found."

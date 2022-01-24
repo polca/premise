@@ -1142,7 +1142,7 @@ class Fuels(BaseTransformation):
                         # if this is a farming activity
                         # and if the product (crop) is not a residue
                         # and if we have land use info from the IAM
-                        if not self.iam_data.land_use is None:
+                        if self.iam_data.land_use is not None:
                             if (
                                 "farming and supply" in new_ds[region]["name"].lower()
                                 and crop_type.lower()

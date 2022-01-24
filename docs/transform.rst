@@ -939,9 +939,12 @@ the future. Upon import, *premise* adjusts the amount of electricity needed
 to produce 1 kg of hydrogen by electrolysis, on the basis of the following
 requirements, which are sourced from Bauer et al, 2022 (in review):
 
-- 58 kWh per kg H2 in 2010
-- 55 kWh per kg H2 in 2020
-- 44 kWh per kg H2 in 2050
+ ==================== ======= ======= =======
+  kWh/kg H2, 25 bar    2010    2020    2050
+ ==================== ======= ======= =======
+  electricity          58      55      44
+ ==================== ======= ======= =======
+
 
 Land use and land use change
 ++++++++++++++++++++++++++++

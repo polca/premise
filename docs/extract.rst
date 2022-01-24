@@ -1471,7 +1471,10 @@ commodities (e.g., electricity, steel, cement, fuel) is modelled to change over 
 by the IAM. *premise* stores the relative change in efficiency of such technologies.
 
 The table below shows the correspondence between *premise*, REMIND, IMAGE,
-regarding efficiency variables for electricity producing technologies.
+regarding efficiency variables for electricity producing technologies. The mapping file is
+available in the library root folder: mappingElec_.
+
+.. _mappingElec: https://github.com/romainsacchi/premise/blob/master/premise/data/electricity/electricity_tech_vars.yml
 
  ================== ================================================== ===========================================
   name in premise    name in REMIND                                      name in IMAGE
@@ -1503,9 +1506,13 @@ regarding efficiency variables for electricity producing technologies.
 The table below shows the correspondence between *premise*, REMIND, IMAGE,
 regarding efficiency variables for cement and steel
 producing technologies. For cement and steel, it is different, as *premise*
-derives efficiencies by dividing the the final energy demand by the produciton volume
+derives efficiencies by dividing the the final energy demand by the production volume
 (to obtain GJ/t steel or cement). This is because efficiency variables for cement
-and steel is not always given as such.
+and steel is not always given as such. The mapping files are
+available in the library root folder: mappingCement_ and mappingSteel_.
+
+.. _mappingCement: https://github.com/romainsacchi/premise/blob/master/premise/data/cement/cement_tech_vars.yml
+.. _mappingSteel: https://github.com/romainsacchi/premise/blob/master/premise/data/steel/steel_tech_vars.yml
 
  ==================== ========================================== ==============================
   name in premise      name in REMIND                              name in IMAGE
@@ -1516,7 +1523,10 @@ and steel is not always given as such.
  ==================== ========================================== ==============================
 
 The table below shows the correspondence between *premise*, REMIND, IMAGE,
-regarding efficiency variables for fuels producing technologies.
+regarding efficiency variables for fuels producing technologies. The mapping file is
+available in the library root folder: mappingFuels_.
+
+.. _mappingFuels: https://github.com/romainsacchi/premise/blob/master/premise/data/fuels/fuel_tech_vars.yml
 
  ==================================== ======================================================================= ========================================================
   name in premise                      name in REMIND                                                           name in IMAGE
@@ -1566,7 +1576,10 @@ additional variables relating to average *land use* and *land use change* emissi
 crop grown to be used in biofuel production.
 Upon the creation of biofuel supply chains in the *Fuels* transformation function, such information
 is used to adjust the inventories of crop farming datasets. The table below shows the IMAGE variables
-used to that effect.
+used to that effect. The mapping file is
+available in the library root folder: mappingCrops_.
+
+.. _mappingCrops: https://github.com/romainsacchi/premise/blob/master/premise/data/fuels/crops_properties.yml
 
  ========================= ========================== ========================================== =============================================================
   Crop family in premise    Crop type in premise       Land use variable in IMAGE [Ha/GJ-Prim]    Land use change variable in IMAGE [kg CO2/GJ-Prim]

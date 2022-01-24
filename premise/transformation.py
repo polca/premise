@@ -8,7 +8,7 @@ on the wurst database.
 import uuid
 from collections import Counter
 from itertools import product
-from typing import Any, Dict, List, Set, Tuple
+from typing import Any, Dict, List, Set, Tuple, Union
 
 import numpy as np
 import wurst
@@ -60,7 +60,7 @@ def get_suppliers_of_a_region(
 
 
 def get_shares_from_production_volume(
-    ds_list: List[dict],
+    ds_list: Union[Dict[str, Any], List[Dict[str, Any]]],
 ) -> Dict[Tuple[Any, Any, Any, Any], float]:
     """
     Return shares of supply of each dataset in `ds_list` based on respective production volumes
@@ -73,6 +73,7 @@ def get_shares_from_production_volume(
 
     dict_act = {}
     total_production_volume = 0
+
     for act in ds_list:
         for exc in ws.production(act):
             # even if non-existent, we set a minimum value of 1e-9
@@ -368,6 +369,8 @@ class BaseTransformation:
 
         d_act = {}
 
+        ds_name, ds_ref_prod = [None, None]
+
         for region in d_iam_to_eco:
 
             dataset = ws.get_one(
@@ -424,11 +427,12 @@ class BaseTransformation:
             ds_ref_prod = d_act[region]["reference product"]
 
         # Remove original datasets from `self.list_datasets`
-        self.list_datasets = [
-            dataset
-            for dataset in self.list_datasets
-            if (dataset[0], dataset[1]) != (ds_name, ds_ref_prod)
-        ]
+        if ds_name:
+            self.list_datasets = [
+                dataset
+                for dataset in self.list_datasets
+                if (dataset[0], dataset[1]) != (ds_name, ds_ref_prod)
+            ]
 
         # Add new regional datasets to `self.list_datasets`
         self.list_datasets.extend(
@@ -444,7 +448,7 @@ class BaseTransformation:
             name=name,
             ref_prod=ref_prod,
             loc_map=d_iam_to_eco,
-            production_variable=None,
+            production_variable=production_variable,
         )
 
         return d_act
@@ -509,7 +513,7 @@ class BaseTransformation:
 
             for iam_loc in iam_locs:
 
-                if production_variable:
+                if production_variable and production_variable in self.iam_data.production_volumes.variables.values.tolist():
                     region_prod = (
                         self.iam_data.production_volumes.sel(
                             region=iam_loc, variables=production_variable
@@ -547,6 +551,8 @@ class BaseTransformation:
             alt_names = []
         if excludes_datasets is None:
             excludes_datasets = []
+
+        new_name, new_prod, new_unit, new_loc = None, None, None, None
 
         # loop through the database
         # ignore datasets which name contains `name`
@@ -619,7 +625,6 @@ class BaseTransformation:
                         print(exc[0], exc[2], act["name"], act["location"])
 
                         if (exc[0], exc[2]) == (act["name"], act["location"]):
-                            print("yes")
                             new_name, new_prod, new_loc, new_unit = (
                                 act["name"],
                                 act["reference product"],
@@ -717,7 +722,7 @@ class BaseTransformation:
 
         return scaling_factor
 
-    def find_iam_efficiency_change(self, variable: str, location: str) -> float:
+    def find_iam_efficiency_change(self, variable: Union[str, list], location: str) -> float:
         """
         Return the relative change in efficiency for `variable` in `location`
         relative to 2020.

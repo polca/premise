@@ -83,10 +83,10 @@ class Steel(BaseTransformation):
                         "amount": carbon_capture_electricity * share,
                         "type": "technosphere",
                         "production volume": 0,
-                        "product": supplier["reference product"],
-                        "name": supplier["name"],
-                        "unit": supplier["unit"],
-                        "location": supplier["location"],
+                        "product": supplier[2],
+                        "name": supplier[0],
+                        "unit": supplier[3],
+                        "location": supplier[1],
                     }
                 )
 
@@ -116,10 +116,10 @@ class Steel(BaseTransformation):
                         "amount": carbon_capture_heat * share,
                         "type": "technosphere",
                         "production volume": 0,
-                        "product": supplier["reference product"],
-                        "name": supplier["name"],
-                        "unit": supplier["unit"],
-                        "location": supplier["location"],
+                        "product": supplier[2],
+                        "name": supplier[0],
+                        "unit": supplier[3],
+                        "location": supplier[1],
                     }
                 )
 

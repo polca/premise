@@ -80,7 +80,7 @@ image:
     remind: EUR
     gains: EUR
   World:
-    remind: EUR
+    remind: World
     gains: EUR
 
 remind:

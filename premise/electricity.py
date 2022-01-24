@@ -2,7 +2,7 @@
 electricity.py contains the class `Electricity`, which inherits from `BaseTransformation`.
 This class transforms the electricity markets and power plants of the wurst database,
 based on projections from the IAM scenario.
-It also creates electricity markets which mix is an weighted-average
+It also creates electricity markets which mix is a weighted-average
 over a certain period (e.g., 10, 20 years).
 It eventually re-links all the electricity-consuming activities of the wurst database to
 the newly created electricity markets.
@@ -16,7 +16,6 @@ from datetime import date
 
 import yaml
 
-from .data_collection import IAMDataCollection
 from .transformation import *
 from .utils import DATA_DIR, eidb_label, get_efficiency_ratio_solar_PV
 
@@ -917,7 +916,8 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log photovoltaics efficiencies change {self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log photovoltaics efficiencies change "
+              f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -1013,7 +1013,8 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log photovoltaics efficiencies change {self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log photovoltaics efficiencies change "
+              f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
@@ -1254,7 +1255,8 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log power plant efficiencies change {self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log power plant efficiencies change "
+              f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -1320,7 +1322,8 @@ class Electricity(BaseTransformation):
 
         with open(
             DATA_DIR
-            / f"logs/log power plant efficiencies change {self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            / f"logs/log power plant efficiencies change "
+              f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
