@@ -7,7 +7,7 @@ IAM data, and integrate them into the database.
 
 import re
 import uuid
-from typing import Dict, List, Union, Any
+from typing import Any, Dict, List, Union
 
 import numpy as np
 import pandas as pd
@@ -158,7 +158,6 @@ def create_fleet_vehicles(
     ref_year = min(available_years, key=lambda x: abs(x - year))
 
     available_ds, d_names, cycle_type = [], {}, None
-
 
     for dataset in datasets:
         if dataset["name"].startswith("transport, "):

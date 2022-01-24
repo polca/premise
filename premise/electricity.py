@@ -915,9 +915,8 @@ class Electricity(BaseTransformation):
             os.makedirs(DATA_DIR / "logs")
 
         with open(
-            DATA_DIR
-            / f"logs/log photovoltaics efficiencies change "
-              f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            DATA_DIR / f"logs/log photovoltaics efficiencies change "
+            f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -1012,9 +1011,8 @@ class Electricity(BaseTransformation):
                         )
 
         with open(
-            DATA_DIR
-            / f"logs/log photovoltaics efficiencies change "
-              f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            DATA_DIR / f"logs/log photovoltaics efficiencies change "
+            f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
@@ -1254,9 +1252,8 @@ class Electricity(BaseTransformation):
             os.makedirs(DATA_DIR / "logs")
 
         with open(
-            DATA_DIR
-            / f"logs/log power plant efficiencies change "
-              f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            DATA_DIR / f"logs/log power plant efficiencies change "
+            f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
             "w",
             encoding="utf-8",
         ) as csv_file:
@@ -1321,9 +1318,8 @@ class Electricity(BaseTransformation):
                 self.update_pollutant_emissions(dataset=dataset, sector=technology)
 
         with open(
-            DATA_DIR
-            / f"logs/log power plant efficiencies change "
-              f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
+            DATA_DIR / f"logs/log power plant efficiencies change "
+            f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
