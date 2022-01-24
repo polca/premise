@@ -1419,7 +1419,7 @@ The mapping file is available in the library root folder: mappingElec_.
 .. note::
 
     Because of a lack of more diverse inventories, wind power is only represented
-    with relatively small installation (< 1MW, 1-3 MW and >3 MW), in respect to today's
+    with relatively small installations (< 1MW, 1-3 MW and >3 MW), in respect to today's
     standard. This can lead to overestimate the associated environmental burden.
 
 
@@ -1482,17 +1482,17 @@ available in the library root folder: mappingFuels_.
 
     Some fuel types are not properly represented in the LCI database. It is the case of
     methanol and bioethanol production, with CCS. Only inventories for the process without
-    CCS is available at the moment. This can be an issue for scenarios that rely extensively
-    in those.
+    CCS are available at the moment. This can be an issue for scenarios that rely extensively
+    on those.
 
     Also, available inventories for biomass-based methanol production do not differentiate
     between wood and grass as the feedstock.
 
 .. note::
 
-    Modelling choice: *premise* builds several potential supply chains for hydrogen.
-    Because the logistics to supply hydrogen is not known or indicated by the IAM,
-    the choice is made to supply it by truck over 500 km.
+    **Modelling choice**: *premise* builds several potential supply chains for hydrogen.
+    Because the logistics to supply hydrogen in the future is not known or indicated by the IAM,
+    the choice is made to supply it by truck over 500 km, in a gaseous state.
 
 
 The production volumes considered for a given scenario can be consulted, like so:
@@ -1596,10 +1596,15 @@ available in the library root folder: mappingFuels_.
 
 *premise* stores the change in efficiency (called *scaling factor*) of a given technology
 relative to 2020. This is based on the fact that the efficiency of ecoinvent datasets
-are believed to reflect current (2020) efficiency. Hence, if a technology, in a given region,
-has a *scaling factor* of 1.2 in 2030, this means that the corresponding ecoinvent dataset
-is adjusted so that its efficiency is improved by 20%. In other words, *premise* does not use
-the efficiency given by the IAM, but rather its change over time relative to 2020.
+are believed to reflect current (2020) efficiency.
+
+.. note::
+
+    If a technology, in a given region, is given a *scaling factor* of 1.2 in 2030,
+    this means that the corresponding ecoinvent dataset is adjusted so that its
+    efficiency is improved by 20% (by multiplying the dataset inputs by 1/1.2).
+    In other words, *premise* does not use the efficiency given by the IAM,
+    but rather its change over time relative to 2020.
 
 The *scaling factors* considered for a given scenario can be consulted, like so:
 
