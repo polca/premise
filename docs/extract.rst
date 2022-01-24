@@ -1367,7 +1367,12 @@ determine the gross supply mix of the market.
 
 
 The table below shows the correspondence between *premise*, REMIND, IMAGE
-and LCI terminology, regarding electricity producing technologies.
+and LCI terminology, regarding electricity producing technologies. *premise*
+production volumes given for secondary energy carriers for electricity.
+The mapping file is available in the library root folder: mappingElec_.
+
+.. _mappingElec: https://github.com/romainsacchi/premise/blob/master/premise/data/electricity/electricity_tech_vars.yml
+
 
  ========================== ===================================== ================================================= ===================================================================================================
   name in premise            name in REMIND                         name in IMAGE                                    name in LCI database (only first of several shown)
@@ -1405,8 +1410,23 @@ and LCI terminology, regarding electricity producing technologies.
   biomass - residual         SE|Electricity|Biomass|Residues       Primary Energy|Biomass|Residues                   Supply of forest residue
  ========================== ===================================== ================================================= ===================================================================================================
 
+.. note::
+
+    IAMs do not necessarily display the same variety of technologies.
+    For example, REMIND does not provide a variable for residential PV production.
+
+
+.. note::
+
+    Because of a lack of more diverse inventories, wind power is only represented
+    with relatively small installation (< 1MW, 1-3 MW and >3 MW), in respect to today's
+    standard. This can lead to overestimate the associated environmental burden.
+
+
 The table below shows the correspondence between *premise*, REMIND, IMAGE
-and LCI terminology, regarding steel and cement producing technologies.
+and LCI terminology, regarding steel and cement producing technologies. The mapping files are
+available in the library root folder: mappingCement_ and mappingSteel_.
+
 
  ==================== ====================================== ============================= ==============================
   name in premise      name in REMIND                          name in IMAGE                name in LCI database
@@ -1417,7 +1437,9 @@ and LCI terminology, regarding steel and cement producing technologies.
  ==================== ====================================== ============================= ==============================
 
 The table below shows the correspondence between *premise*, REMIND, IMAGE
-and LCI terminology, regarding fuel producing technologies.
+and LCI terminology, regarding fuel producing technologies. The mapping file is
+available in the library root folder: mappingFuels_.
+
 
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
   name in premise                      name in REMIND                                   name in IMAGE                                                            name in LCI database (only first of several shown)
@@ -1455,6 +1477,23 @@ and LCI terminology, regarding fuel producing technologies.
   methanol, wood, with CCS                                                             Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/CCS         market for methanol, from biomass
   methanol, grass, with CCS                                                            Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/CCS        market for methanol, from biomass
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
+
+.. warning::
+
+    Some fuel types are not properly represented in the LCI database. It is the case of
+    methanol and bioethanol production, with CCS. Only inventories for the process without
+    CCS is available at the moment. This can be an issue for scenarios that rely extensively
+    in those.
+
+    Also, available inventories for biomass-based methanol production do not differentiate
+    between wood and grass as the feedstock.
+
+.. note::
+
+    Modelling choice: *premise* builds several potential supply chains for hydrogen.
+    Because the logistics to supply hydrogen is not known or indicated by the IAM,
+    the choice is made to supply it by truck over 500 km.
+
 
 The production volumes considered for a given scenario can be consulted, like so:
 
