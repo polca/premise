@@ -602,9 +602,7 @@ class NewDatabase:
             return pickle.load(open(file_name, "rb"))
 
         # else, extract the database, pickle it for next time and return it
-        print(
-            "Cannot find cached inventories. Will create them now for next time..."
-        )
+        print("Cannot find cached inventories. Will create them now for next time...")
         data = self.__import_inventories()
         pickle.dump(data, open(file_name, "wb"))
         return None

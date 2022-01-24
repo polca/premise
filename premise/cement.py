@@ -9,12 +9,13 @@ of the wurst database to the newly created cement markets.
 """
 import csv
 import os
+from datetime import date
 
 import xarray as xr
 
 from .transformation import *
 from .utils import DATA_DIR, get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
-from datetime import date
+
 
 class Cement(BaseTransformation):
     """
