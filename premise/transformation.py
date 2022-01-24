@@ -513,7 +513,11 @@ class BaseTransformation:
 
             for iam_loc in iam_locs:
 
-                if production_variable and production_variable in self.iam_data.production_volumes.variables.values.tolist():
+                if (
+                    production_variable
+                    and production_variable
+                    in self.iam_data.production_volumes.variables.values.tolist()
+                ):
                     region_prod = (
                         self.iam_data.production_volumes.sel(
                             region=iam_loc, variables=production_variable
@@ -722,7 +726,9 @@ class BaseTransformation:
 
         return scaling_factor
 
-    def find_iam_efficiency_change(self, variable: Union[str, list], location: str) -> float:
+    def find_iam_efficiency_change(
+        self, variable: Union[str, list], location: str
+    ) -> float:
         """
         Return the relative change in efficiency for `variable` in `location`
         relative to 2020.
