@@ -785,13 +785,23 @@ which have become standard in measuring the CO2 emissions of trucks.
 
 .. _VECTO: https://ec.europa.eu/clima/eu-action/transport-emissions/road-transport-reducing-co2-emissions-vehicles/vehicle-energy-consumption-calculation-tool-vecto_en
 
-Not all powertrain types are available for regional and long haul driving cycles.
-This is specifically the case for battery electric trucks, for which the mass
-and size prevent them from completing the cycle, or surpasses the vehicle gross weight.
-
 The truck vehicle model is from Sacchi_ et al, 2021.
 
 .. _Sacchi: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
+
+.. note::
+
+    Not all powertrain types are available for regional and long haul driving cycles.
+    This is specifically the case for battery electric trucks, for which the mass
+    and size prevent them from completing the cycle, or surpasses the vehicle gross weight.
+
+.. warning::
+
+    A consequence of replacing original truck datasets with those provided by *premise*
+    may be a steep increase in CO2-eq. emissions, especially if the urban driving cycle
+    is chosen. Overall, considering and size classes, diesel truck datasets from ecoinvent
+    have lower fuel consumption and exhaust emissions.
+
 
 
 Fleet average trucks
@@ -828,18 +838,21 @@ They appear in the LCI database as the following:
  ========================================================================================= =============================================================
   truck transport dataset name                                                              description
  ========================================================================================= =============================================================
-  transport, freight, lorry, 18t gross weight, unspecified powertrain, long haul            fleet average, for 18t size class, long haul cycle
-  transport, freight, lorry, 18t gross weight, unspecified powertrain, regional delivery    fleet average, for 18t size class, regional delivery cycle
-  transport, freight, lorry, 18t gross weight, unspecified powertrain, urban delivery       fleet average, for 18t size class, urban delivery cycle
-  transport, freight, lorry, 26t gross weight, unspecified powertrain, long haul            fleet average, for 26t size class, long haul cycle
-  transport, freight, lorry, 26t gross weight, unspecified powertrain, regional delivery    fleet average, for 26t size class, regional delivery cycle
-  transport, freight, lorry, 26t gross weight, unspecified powertrain, urban delivery       fleet average, for 26t size class, urban delivery cycle
   transport, freight, lorry, 3.5t gross weight, unspecified powertrain, long haul           fleet average, for 3.5t size class, long haul cycle
   transport, freight, lorry, 3.5t gross weight, unspecified powertrain, regional delivery   fleet average, for 3.5t size class, regional delivery cycle
   transport, freight, lorry, 3.5t gross weight, unspecified powertrain, urban delivery      fleet average, for 3.5t size class, urban delivery cycle
   transport, freight, lorry, 7.5t gross weight, unspecified powertrain, long haul           fleet average, for 7.5t size class, long haul cycle
   transport, freight, lorry, 7.5t gross weight, unspecified powertrain, regional delivery   fleet average, for 7.5t size class, regional delivery cycle
   transport, freight, lorry, 7.5t gross weight, unspecified powertrain, urban delivery      fleet average, for 7.5t size class, urban delivery cycle
+  transport, freight, lorry, 18t gross weight, unspecified powertrain, long haul            fleet average, for 18t size class, long haul cycle
+  transport, freight, lorry, 18t gross weight, unspecified powertrain, regional delivery    fleet average, for 18t size class, regional delivery cycle
+  transport, freight, lorry, 18t gross weight, unspecified powertrain, urban delivery       fleet average, for 18t size class, urban delivery cycle
+  transport, freight, lorry, 26t gross weight, unspecified powertrain, long haul            fleet average, for 26t size class, long haul cycle
+  transport, freight, lorry, 26t gross weight, unspecified powertrain, regional delivery    fleet average, for 26t size class, regional delivery cycle
+  transport, freight, lorry, 26t gross weight, unspecified powertrain, urban delivery       fleet average, for 26t size class, urban delivery cycle
+  transport, freight, lorry, 40t gross weight, unspecified powertrain, long haul            fleet average, for 26t size class, long haul cycle
+  transport, freight, lorry, 40t gross weight, unspecified powertrain, regional delivery    fleet average, for 26t size class, regional delivery cycle
+  transport, freight, lorry, 40t gross weight, unspecified powertrain, urban delivery       fleet average, for 26t size class, urban delivery cycle
   transport, freight, lorry, unspecified, long haul                                         fleet average, all powertrain types, all size classes
   transport, freight, lorry, unspecified, regional delivery                                 fleet average, all powertrain types, all size classes
   transport, freight, lorry, unspecified, urban delivery                                    fleet average, all powertrain types, all size classes
@@ -883,8 +896,7 @@ flour indicates that the flour has been transported over 560 km.
 On this basis, *premise* chooses one of the following
 driving cycles:
 
-- *urban delivery*, if the distance is inferior to 150 km
-- *regional delivery*, if the distance is between 150 and 450 km
+- *regional delivery*, if the distance is inferior or equal to 450 km
 - *long haul*, if the distance is superior to 450 km
 
 

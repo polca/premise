@@ -258,7 +258,7 @@ def create_fleet_vehicles(
         if total_km > 0:
 
             if vehicle_type == "truck":
-                driving_cycles = ["urban delivery", "regional delivery", "long haul"]
+                driving_cycles = ["regional delivery", "long haul"]
             else:
                 driving_cycles = [""]
 
@@ -480,7 +480,6 @@ class Transport(BaseTransformation):
             "Moped,",
             "Scooter,",
             "Motorbike,",
-            "urban delivery",
             "regional delivery",
             "long haul",
             "passenger bus",
@@ -611,10 +610,7 @@ class Transport(BaseTransformation):
                         del exc["input"]
 
                     if dataset["unit"] == "kilogram":
-                        if exc["amount"] * 1000 <= 150:
-                            name = f"{vehicles_map['truck']['old_trucks'][self.model][key]}, urban delivery"
-                            cycle = ", urban delivery"
-                        elif 150 < exc["amount"] * 1000 <= 450:
+                        if exc["amount"] * 1000 <= 450:
                             name = f"{vehicles_map['truck']['old_trucks'][self.model][key]}, regional delivery"
                             cycle = ", regional delivery"
                         else:

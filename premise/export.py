@@ -9,6 +9,95 @@ from . import DATA_DIR, __version__
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
 
+def load_simapro_categories():
+    """Load a dictionary with categories to use for Simapro export"""
+
+    # Load the matching dictionary
+    filename = "simapro_classification.csv"
+    filepath = DATA_DIR / "utils" / "export" / filename
+    if not filepath.is_file():
+        raise FileNotFoundError(
+            "The dictionary of Simapro categories could not be found."
+        )
+    with open(filepath) as f:
+        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
+    header, *data = csv_list
+
+    dict_cat = {}
+    for row in data:
+        _, cat_code, category_1, category_2, category_3 = row
+        dict_cat[cat_code] = {
+            "category 1": category_1,
+            "category 2": category_2,
+            "category 3": category_3,
+        }
+
+    return dict_cat
+
+
+def get_simapro_category_of_exchange():
+
+    """Load a dictionary with categories to use for Simapro export based on ei 3.7"""
+
+    # Load the matching dictionary
+    filename = "simapro_categories.csv"
+    filepath = DATA_DIR / "utils" / "export" / filename
+    if not filepath.is_file():
+        raise FileNotFoundError(
+            "The dictionary of Simapro categories could not be found."
+        )
+    with open(filepath) as f:
+        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
+    header, *data = csv_list
+
+    dict_cat = {}
+    for row in data:
+        name, category_1, category_2 = row
+        dict_cat[name] = {
+            "main category": category_1,
+            "category": category_2,
+        }
+
+    return dict_cat
+
+
+def load_references():
+    """Load a dictionary with references of datasets"""
+
+    # Load the matching dictionary
+    filename = "references.csv"
+    filepath = DATA_DIR / "utils" / "export" / filename
+    if not filepath.is_file():
+        raise FileNotFoundError("The dictionary of references could not be found.")
+    with open(filepath) as f:
+        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
+    header, *data = csv_list
+
+    dict_reference = {}
+    for row in data:
+        name, source, description = row
+        dict_reference[name] = {"source": source, "description": description}
+
+    return dict_reference
+
+
+def get_simapro_biosphere_dictionnary():
+    # Load the matching dictionary between ecoinvent and Simapro biosphere flows
+    filename = "simapro-biosphere.json"
+    filepath = DATA_DIR / "utils" / "export" / filename
+    if not filepath.is_file():
+        raise FileNotFoundError(
+            "The dictionary of biosphere flow match between ecoinvent and Simapro could not be found."
+        )
+    with open(filepath) as json_file:
+        data = json.load(json_file)
+    dict_bio = {}
+    for d in data:
+        dict_bio[d[2]] = d[1]
+
+    return dict_bio
+
+
 def remove_uncertainty(database):
     """
     Remove uncertainty information from database exchanges.
@@ -159,12 +248,7 @@ class Export:
                             )
                         ],
                         index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
+                            (exc["name"], exc["product"], exc["unit"], exc["location"],)
                         ],
                         exc["amount"],
                     ]
@@ -180,12 +264,7 @@ class Export:
                             )
                         ],
                         index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
+                            (exc["name"], exc["product"], exc["unit"], exc["location"],)
                         ],
                         exc["amount"] * -1,
                     ]
@@ -236,11 +315,7 @@ class Export:
 
         # Export A matrix
         with open(self.filepath / "A_matrix.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             writer.writerow(["index of activity", "index of product", "value"])
             rows = self.create_A_matrix_coordinates()
             for row in rows:
@@ -248,11 +323,7 @@ class Export:
 
         # Export A index
         with open(self.filepath / "A_matrix_index.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             index_A = create_index_of_A_matrix(self.db)
             for d in index_A:
                 data = list(d) + [index_A[d]]
@@ -262,11 +333,7 @@ class Export:
 
         # Export B matrix
         with open(self.filepath / "B_matrix.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             writer.writerow(["index of activity", "index of biosphere flow", "value"])
             rows = self.create_B_matrix_coordinates()
             for row in rows:
@@ -274,11 +341,7 @@ class Export:
 
         # Export B index
         with open(self.filepath / "B_matrix_index.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             for d in index_B:
                 data = list(d) + [index_B[d]]
                 writer.writerow(data)
@@ -301,75 +364,6 @@ class Export:
 
         return csv_dict
 
-    @staticmethod
-    def get_simapro_biosphere_dictionnary():
-        # Load the matching dictionary between ecoinvent and Simapro biosphere flows
-        filename = "simapro-biosphere.json"
-        filepath = DATA_DIR / "utils" / "export" / filename
-        if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flow match between ecoinvent and Simapro could not be found."
-            )
-        with open(filepath) as json_file:
-            data = json.load(json_file)
-        dict_bio = {}
-        for d in data:
-            dict_bio[d[2]] = d[1]
-
-        return dict_bio
-
-    @staticmethod
-    def load_simapro_categories():
-        """Load a dictionary with categories to use for Simapro export"""
-
-        # Load the matching dictionary
-        filename = "simapro_classification.csv"
-        filepath = DATA_DIR / "utils" / "export" / filename
-        if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of Simapro categories could not be found."
-            )
-        with open(filepath) as f:
-            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-        header, *data = csv_list
-
-        dict_cat = {}
-        for row in data:
-            _, cat_code, category_1, category_2, category_3 = row
-            dict_cat[cat_code] = {
-                "category 1": category_1,
-                "category 2": category_2,
-                "category 3": category_3,
-            }
-
-        return dict_cat
-
-    @staticmethod
-    def get_simapro_category_of_exchange():
-
-        """Load a dictionary with categories to use for Simapro export based on ei 3.7"""
-
-        # Load the matching dictionary
-        filename = "simapro_categories.csv"
-        filepath = DATA_DIR / "utils" / "export" / filename
-        if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of Simapro categories could not be found."
-            )
-        with open(filepath) as f:
-            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-        header, *data = csv_list
-
-        dict_cat = {}
-        for row in data:
-            name, category_1, category_2 = row
-            dict_cat[name] = {
-                "main category": category_1,
-                "category": category_2,
-            }
-
-        return dict_cat
-
     def get_category_of_exchange(self):
         """
         This function returns a dictionnary with (name, reference product) as keys,
@@ -378,7 +372,7 @@ class Export:
         :return: dict
         """
 
-        dict_classifications = self.load_simapro_categories()
+        dict_classifications = load_simapro_categories()
         dict_categories = {}
 
         for ds in self.db:
@@ -451,32 +445,12 @@ class Export:
 
         return dict_categories
 
-    @staticmethod
-    def load_references():
-        """Load a dictionary with references of datasets"""
-
-        # Load the matching dictionary
-        filename = "references.csv"
-        filepath = DATA_DIR / "utils" / "export" / filename
-        if not filepath.is_file():
-            raise FileNotFoundError("The dictionary of references could not be found.")
-        with open(filepath) as f:
-            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-        header, *data = csv_list
-
-        dict_reference = {}
-        for row in data:
-            name, source, description = row
-            dict_reference[name] = {"source": source, "description": description}
-
-        return dict_reference
-
     def export_db_to_simapro(self):
 
         if not os.path.exists(self.filepath):
             os.makedirs(self.filepath)
 
-        dict_bio = self.get_simapro_biosphere_dictionnary()
+        dict_bio = get_simapro_biosphere_dictionnary()
 
         headers = [
             "{SimaPro 9.1.1.1}",
@@ -583,19 +557,11 @@ class Export:
             "surface water": "river",
         }
 
-        filename = (
-            "simapro_export_"
-            + self.model
-            + "_"
-            + self.scenario
-            + "_"
-            + str(self.year)
-            + ".csv"
-        )
+        filename = f"simapro_export_{self.model}_{self.scenario}_{self.year}.csv"
 
-        dict_cat_simapro = self.get_simapro_category_of_exchange()
+        dict_cat_simapro = get_simapro_category_of_exchange()
         dict_cat = self.get_category_of_exchange()
-        dict_refs = self.load_references()
+        dict_refs = load_references()
 
         with open(
             self.filepath / filename, "w", newline="", encoding="utf-8"
@@ -660,16 +626,8 @@ class Export:
 
                     if item == "Process name":
 
-                        name = (
-                            ds["reference product"]
-                            + " {"
-                            + ds.get("location", "GLO")
-                            + "}"
-                            + "| "
-                            + ds["name"]
-                            + " "
-                            + "| Cut-off, U"
-                        )
+                        name = f"{ds['reference product']} {{{ds.get('location', 'GLO')}}}| {ds['name']} | Cut-off, U"
+
                         writer.writerow([name])
 
                     if item == "Type":
