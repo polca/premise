@@ -434,8 +434,8 @@ class Export:
                                             x[1].split(":")[0].strip()
                                         ]["category 2"]
 
-                if not main_category:
-                    main_category = "material"
+                if not main_category or main_category == "":
+                    main_category = "unclassified"
                     category = "Others"
 
                 dict_categories[(ds["name"], ds["reference product"])] = {
