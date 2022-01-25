@@ -813,7 +813,9 @@ The fleet data is expressed in "vehicle-kilometer" performed by each
 type of vehicle, in a given region and year.
 
 *premise* uses the following loads to translate the transport
-demand from "vehicle-kilometers" to "ton-kilometers":
+demand from "vehicle-kilometers" to "ton-kilometers", derived from TRACCS_:
+
+.. _TRACCS: https://traccs.emisia.com/
 
  ============== ================= ==================== ============
   load [tons]    urban delivery    regional delivery    long haul
@@ -826,6 +828,13 @@ demand from "vehicle-kilometers" to "ton-kilometers":
   40t            6.1               6.1                  9.1
  ============== ================= ==================== ============
 
+.. note::
+
+    Loads from the TRACCS survey data are representative for EU-28 conditions.
+    *premise* applies these loads to all IAM regions. Hence, there might be
+    some inconsistency at this level.
+    Also, these loads are much lower than those assumed in original ecoinvent
+    truck datasets.
 
 *premise* uses the fleet data to produce fleet average trucks for each
 IAM region, and more specifically:
