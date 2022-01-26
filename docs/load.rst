@@ -131,5 +131,5 @@ This is done as follows:
     The categorization of activities in the Simapro activity tree looks different
     from that of the original ecoinvent database accessed from Simapro. That is because
     *premise* relies on ISIC v.4 and CCP classifications to categorize activities.
-    Also, a number of activities do not have a category and are found under *unclassified*.
+    Also, a number of activities do not have a category and are found under *Meterials/Others*.
 
