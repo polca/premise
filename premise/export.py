@@ -3,10 +3,37 @@ import datetime
 import json
 import os
 import re
+import yaml
+from typing import Dict
 
 from . import DATA_DIR, __version__
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
+FILEPATH_SIMAPRO_COMPARTMENTS = DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
+
+def get_simapro_units() -> Dict[str, str]:
+    """
+    Load a dictionary that maps brightway2 unit to Simapro units.
+    :return: a dictionary that maps brightway2 unit to Simapro units
+    """
+
+    with open(FILEPATH_SIMAPRO_UNITS, "r") as stream:
+        simapro_units = yaml.safe_load(stream)
+
+    return simapro_units
+
+
+def get_simapro_compartments() -> Dict[str, str]:
+    """
+    Load a dictionary that maps brightway2 unit to Simapro compartments.
+    :return: a dictionary that maps brightway2 unit to Simapro compartments.
+    """
+
+    with open(FILEPATH_SIMAPRO_COMPARTMENTS, "r") as stream:
+        simapro_comps = yaml.safe_load(stream)
+
+    return simapro_comps
 
 
 def load_simapro_categories():
@@ -461,7 +488,7 @@ class Export:
                                         ]["category 2"]
 
                 if not main_category or main_category == "":
-                    main_category = "unclassified"
+                    main_category = "material"
                     category = "Others"
 
                 dict_categories[(ds["name"], ds["reference product"])] = {
@@ -479,9 +506,9 @@ class Export:
         dict_bio = get_simapro_biosphere_dictionnary()
 
         headers = [
-            "{SimaPro 9.1.1.1}",
+            "{SimaPro 9.1.1.7}",
             "{processes}",
-            "{Project: carculator import"
+            "{Project: premise import"
             + f"{datetime.datetime.today():%d.%m.%Y}"
             + "}",
             "{CSV Format version: 9.0.0}",
@@ -492,7 +519,6 @@ class Export:
             "{Export platform IDs: No}",
             "{Skip empty fields: No}",
             "{Convert expressions to constants: No}",
-            "{Selection: Selection(1)}",
             "{Related objects(system descriptions, substances, units, etc.): Yes}",
             "{Include sub product stages and processes: Yes}",
         ]
@@ -537,51 +563,11 @@ class Export:
             "End",
         ]
 
-        simapro_units = {
-            "kilogram": "kg",
-            "cubic meter": "m3",
-            "cubic meter-year": "m3y",
-            "kilowatt hour": "kWh",
-            "kilometer": "km",
-            "ton kilometer": "tkm",
-            "ton-kilometer": "tkm",
-            "megajoule": "MJ",
-            "unit": "p",
-            "square meter": "m2",
-            "kilowatt": "p",
-            "hour": "hr",
-            "square meter-year": "m2a",
-            "meter": "m",
-            "vehicle-kilometer": "vkm",
-            "person-kilometer": "personkm",
-            "person kilometer": "personkm",
-            "meter-year": "my",
-            "kilo Becquerel": "kBq",
-            "kg*day": "kg*day",
-            "hectare": "ha",
-            "kilometer-year": "kmy",
-            "litre": "l",
-            "guest night": "guestnight",
-        }
+        # mapping between BW2 and Simapro units
+        simapro_units = get_simapro_units()
 
-        simapro_subs = {
-            "low population density, long-term": "low. pop., long-term",
-            "lower stratosphere + upper troposphere": "stratosphere + troposphere",
-            "non-urban air or from high stacks": "low. pop.",
-            "urban air close to ground": "high. pop.",
-            "biotic": "biotic",
-            "in air": "in air",
-            "in ground": "in ground",
-            "in water": "in water",
-            "land": "land",
-            "agricultural": "agricultural",
-            "forestry": "forestry",
-            "industrial": "industrial",
-            "ground-": "groundwater",
-            "ground-, long-term": "groundwater, long-term",
-            "ocean": "ocean",
-            "surface water": "river",
-        }
+        # mapping between BW2 and Simapro sub-compartments
+        simapro_subs = get_simapro_compartments()
 
         filename = f"simapro_export_{self.model}_{self.scenario}_{self.year}.csv"
 
@@ -590,7 +576,7 @@ class Export:
         dict_refs = load_references()
 
         with open(
-            self.filepath / filename, "w", newline="", encoding="utf-8"
+            self.filepath / filename, "w", newline="", encoding="latin1"
         ) as csvFile:
             writer = csv.writer(csvFile, delimiter=";")
             for item in headers:
