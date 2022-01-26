@@ -3,14 +3,18 @@ import datetime
 import json
 import os
 import re
-import yaml
 from typing import Dict
+
+import yaml
 
 from . import DATA_DIR, __version__
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
-FILEPATH_SIMAPRO_COMPARTMENTS = DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
+FILEPATH_SIMAPRO_COMPARTMENTS = (
+    DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
+)
+
 
 def get_simapro_units() -> Dict[str, str]:
     """
@@ -508,9 +512,7 @@ class Export:
         headers = [
             "{SimaPro 9.1.1.7}",
             "{processes}",
-            "{Project: premise import"
-            + f"{datetime.datetime.today():%d.%m.%Y}"
-            + "}",
+            "{Project: premise import" + f"{datetime.datetime.today():%d.%m.%Y}" + "}",
             "{CSV Format version: 9.0.0}",
             "{CSV separator: Semicolon}",
             "{Decimal separator: .}",
