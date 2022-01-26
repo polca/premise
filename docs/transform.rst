@@ -1171,11 +1171,31 @@ liquid and gaseous secondary energy carriers:
   methanol, grass, with CCS                                                            Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/CCS        market for methanol, from biomass
  ==================================== =============================================== ========================================================================= ================================================================================================================================================
 
+.. warning::
+
+    Some fuel types are not properly represented in the LCI database. It is the case of
+    methanol and bioethanol production, with CCS. Only inventories for the process without
+    CCS are available at the moment. This can be an issue for scenarios that rely extensively
+    on those.
+
+    Also, available inventories for biomass-based methanol production do not differentiate
+    between wood and grass as the feedstock.
+
+.. note::
+
+    **Modelling choice**: *premise* builds several potential supply chains for hydrogen.
+    Because the logistics to supply hydrogen in the future is not known or indicated by the IAM,
+    the choice is made to supply it by truck over 500 km, in a gaseous state.
+
+Influence of differing LHV on fuel market composition
+_____________________________________________________
+
 Because not all competing fuels of a same type have similar calorific values,
 some adjustments are made. The table below shows the example of the market for
 gasoline, for the IMAGE region of Western Europe in 2050.
 The sum of fuel inputs is superior to 1 (i.e., 1.4 kg).
-This is because methanol and bioethanol have low
+This is because the market dataset as "1 kg" as reference unit, and
+methanol and bioethanol have low
 calorific values comparatively to petrol
 (i.e., 19.9 and 26.5 MJ/kg respectively, vs. 42.6 MJ/kg for gasoline).
 Hence, their inputs are scaled up to reach an average calorific value
