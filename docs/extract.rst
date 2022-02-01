@@ -16,7 +16,7 @@ Supported versions of ecoinvent
 * v.3.5, cut-off
 * v.3.6, cut-off
 * v.3.7, cut-off
-* v.3.71., cut-off
+* v.3.7.1, cut-off
 * v.3.8, cut-off
 
 Work is being carried out to develop compatibility with the *consequential*
@@ -107,8 +107,11 @@ Power plants with CCS
 
 Datasets for power generation with Carbon Capture and Storage are imported.
 They originate from Volkart_ et al. 2013, and can be consulted here: LCI_Power_generation_.
+An exception to this are the inventories for biomass-based integrated gasification combined cycle power plants,
+which are from Briones-Hidrovo_ et al, 2020.
 
 .. _Volkart: https://doi.org/10.1016/j.ijggc.2013.03.003
+.. _Briones-Hidrovo: https://doi.org/10.1016/j.jclepro.2020.125680
 .. _LCI_Power_generation: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-Carma-CCS.xlsx
 
 The table below lists the names of the new activities (only production datasets are shown).
@@ -553,11 +556,11 @@ the conversion of hte biomass to fuel, as well as its distribution. The conversi
 often leads to the production of co-products (dried distiller's grain, electricity, CO2, bagasse.).
 Hence, energy, economic and system expansion partitioning approaches are available.
 These inventories originate from several different sources
-(Wu_ et al. 2006 (2020 update), Cozzolini_ 2018, Pereira_ et al. 2019 and Gonzalez-Garcia_ et al. 2012),
+(Wu_ et al. 2006 (2020 update), Cozzolino_ 2018, Pereira_ et al. 2019 and Gonzalez-Garcia_ et al. 2012),
 indicated in the table below.
 
 .. _LCI_biofuels: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-biofuels.xlsx
-.. _Cozzolini: https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf
+.. _Cozzolino: https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf
 .. _Gonzalez-Garcia: https://doi.org/10.1016/j.scitotenv.2012.07.044
 .. _Wu: http://greet.es.anl.gov/publication-2lli584z
 .. _Pereira: http://task39.sites.olt.ubc.ca/files/2019/04/Task-39-GHS-models-Final-Report-Phase-1.pdf
@@ -581,15 +584,15 @@ The following datasets are introduced:
   Farming and supply of sugarcane                                                    BR          Pereira et al. 2019/RED II
   Farming and supply of sugarcane straw                                              BR          Pereira et al. 2019
   Farming and supply of eucalyptus                                                   ES          Gonzalez-Garcia et al. 2012
-  Farming and supply of wheat grains                                                 RER         Cozzolini 2018
-  Farming and supply of wheat straw                                                  RER         Cozzolini 2018
-  Farming and supply of corn                                                         RER         Cozzolini 2018/RED II
-  Farming and supply of sugarbeet                                                    RER         Cozzolini 2018
-  Supply of forest residue                                                           RER         Cozzolini 2018
-  Supply and refining of waste cooking oil                                           RER         Cozzolini 2018
-  Farming and supply of rapeseed                                                     RER         Cozzolini 2018/RED II
-  Farming and supply of palm fresh fruit bunch                                       RER         Cozzolini 2018
-  Farming and supply of dry algae                                                    RER         Cozzolini 2018
+  Farming and supply of wheat grains                                                 RER         Cozzolino 2018
+  Farming and supply of wheat straw                                                  RER         Cozzolino 2018
+  Farming and supply of corn                                                         RER         Cozzolino 2018/RED II
+  Farming and supply of sugarbeet                                                    RER         Cozzolino 2018
+  Supply of forest residue                                                           RER         Cozzolino 2018
+  Supply and refining of waste cooking oil                                           RER         Cozzolino 2018
+  Farming and supply of rapeseed                                                     RER         Cozzolino 2018/RED II
+  Farming and supply of palm fresh fruit bunch                                       RER         Cozzolino 2018
+  Farming and supply of dry algae                                                    RER         Cozzolino 2018
   Ethanol production, via fermentation, from switchgrass                             US          Wu et al. 2006 (2020 update)
   Ethanol production, via fermentation, from poplar                                  US          Wu et al. 2006 (2020 update)
   Ethanol production, via fermentation, from willow                                  US          Wu et al. 2006 (2020 update)
@@ -605,15 +608,15 @@ The following datasets are introduced:
   Ethanol production, via fermentation, from sugarcane                               BR          Pereira et al. 2019
   Ethanol production, via fermentation, from sugarcane straw                         BR          Pereira et al. 2019
   Ethanol production, via fermentation, from eucalyptus                              ES          Gonzalez-Garcia et al. 2012
-  Ethanol production, via fermentation, from wheat grains                            RER         Cozzolini 2018
-  Ethanol production, via fermentation, from wheat straw                             RER         Cozzolini 2018
-  Ethanol production, via fermentation, from corn starch                             RER         Cozzolini 2018
-  Ethanol production, via fermentation, from sugarbeet                               RER         Cozzolini 2018
-  Ethanol production, via fermentation, from forest residue                          RER         Cozzolini 2018
-  Biodiesel production, via transesterification, from used cooking oil               RER         Cozzolini 2018
-  Biodiesel production, via transesterification, from rapeseed oil                   RER         Cozzolini 2018
-  Biodiesel production, via transesterification, from palm oil, energy allocation    RER         Cozzolini 2018
-  Biodiesel production, via transesterification, from algae, energy allocation       RER         Cozzolini 2018
+  Ethanol production, via fermentation, from wheat grains                            RER         Cozzolino 2018
+  Ethanol production, via fermentation, from wheat straw                             RER         Cozzolino 2018
+  Ethanol production, via fermentation, from corn starch                             RER         Cozzolino 2018
+  Ethanol production, via fermentation, from sugarbeet                               RER         Cozzolino 2018
+  Ethanol production, via fermentation, from forest residue                          RER         Cozzolino 2018
+  Biodiesel production, via transesterification, from used cooking oil               RER         Cozzolino 2018
+  Biodiesel production, via transesterification, from rapeseed oil                   RER         Cozzolino 2018
+  Biodiesel production, via transesterification, from palm oil, energy allocation    RER         Cozzolino 2018
+  Biodiesel production, via transesterification, from algae, energy allocation       RER         Cozzolino 2018
  ================================================================================== =========== =============================
 
 Synthetic fuels

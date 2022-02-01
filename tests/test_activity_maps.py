@@ -3,9 +3,9 @@ from premise.activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
 
 dummy_minimal_db = [
     {
-        "name": "electricity production, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m"
+        "name": "electricity production, at BIGCC power plant, pre, pipeline 200km, storage 1000m"
     },
-    {"name": "electricity production, at BIGCC power plant 450MW, no CCS"},
+    {"name": "electricity production, at BIGCC power plant, no CCS"},
     {"name": "electricity production, at power plant/lignite, IGCC, no CCS"},
     {
         "name": "electricity production, at power plant/hard coal, pre, pipeline 200km, storage 1000m"

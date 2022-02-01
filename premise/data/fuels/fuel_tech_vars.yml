@@ -75,7 +75,10 @@ natural gas:
       - natural gas, high pressure
       - natural gas, medium pressure
       - natural gas, low pressure
+      - natural gas, at production
       - gas, natural, in ground
+      - natural gas production
+      - petroleum and gas production, on-shore
     mask:
       name:
         - market
@@ -85,6 +88,8 @@ natural gas:
         - vehicle grade
         - electric
         - evaporation
+        - consumer
+        - petroleum
 gas, natural, in ground:
   lhv: 45
   co2: 0.0564
@@ -242,7 +247,7 @@ petrol, synthetic, coal:
     remind: SE|Liquids|Coal|w/o CCS
   ecoinvent_aliases:
     fltr:
-      - gasoline production, synthetic, from methanol, hydrogen from coal gasification, CO2 from DAC, energy allocation, at fuelling station
+      - gasoline production, synthetic, from methanol, hydrogen from coal gasification, energy allocation, at fuelling station
 diesel, synthetic, hydrogen:
   lhv: 43
   co2: 0.0732

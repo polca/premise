@@ -75,20 +75,26 @@ def get_shares_from_production_volume(
     total_production_volume = 0
 
     for act in ds_list:
-        for exc in ws.production(act):
-            # even if non-existent, we set a minimum value of 1e-9
-            # because if not, we risk dividing by zero!!!
-            production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
-            dict_act[
-                (
-                    act["name"],
-                    act["location"],
-                    act["reference product"],
-                    act["unit"],
-                )
-            ] = production_volume
-            total_production_volume += production_volume
+        production_volume = 0
+
+        if "production volume" in act:
+            production_volume = max(float(act["production volume"]), 1e-9)
+        else:
+            for exc in ws.production(act):
+                # even if non-existent, we set a minimum value of 1e-9
+                # because if not, we risk dividing by zero!!!
+                production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
+
+        dict_act[
+            (
+                act["name"],
+                act["location"],
+                act["reference product"],
+                act["unit"],
+            )
+        ] = production_volume
+        total_production_volume += production_volume
 
     for dataset in dict_act:
         dict_act[dataset] /= total_production_volume
@@ -445,8 +451,8 @@ class BaseTransformation:
         # empty original datasets
         # and make them link to new regional datasets
         self.empty_original_datasets(
-            name=name,
-            ref_prod=ref_prod,
+            name=ds_name,
+            ref_prod=ds_ref_prod,
             loc_map=d_iam_to_eco,
             production_variable=production_variable,
         )
@@ -466,81 +472,85 @@ class BaseTransformation:
         :return: Does not return anything. Just empties the original dataset.
         """
 
-        counts = Counter(loc_map.values())
+        existing_ds = ws.get_many(
+            self.database,
+            ws.equals("name", name),
+            ws.contains("reference product", ref_prod),
+            ws.doesnt_contain_any("location", self.regions)
+        )
 
-        for loc, _ in counts.items():
-            ds = ws.get_one(
-                self.database,
-                ws.equals("name", name),
-                ws.contains("reference product", ref_prod),
-                ws.equals("location", loc),
-            )
+        for ds in existing_ds:
 
-            # add tag
-            ds["has_downstream_consumer"] = False
+            iam_locs = [self.ecoinvent_to_iam_loc[ds["location"]]]
 
-            ds["exchanges"] = [e for e in ds["exchanges"] if e["type"] == "production"]
+            if iam_locs == ["World"] or ds["location"] == "RoW":
+                iam_locs = [r for r in self.regions if r != "World"]
 
-            if len(ds["exchanges"]) == 0:
-                print(f"ISSUE: no exchanges found in {ds['name']} in {ds['location']}")
+            if len(iam_locs) > 0:
 
-            iam_locs = [k for k, v in loc_map.items() if v == loc and k != "World"]
+                # add tag
+                ds["has_downstream_consumer"] = False
+                ds["exchanges"] = [e for e in ds["exchanges"] if e["type"] == "production"]
 
-            if production_variable:
-                # Add `production volume` field
-                if isinstance(production_variable, str):
-                    production_variable = [production_variable]
+                if len(ds["exchanges"]) == 0:
+                    print(f"ISSUE: no exchanges found in {ds['name']} in {ds['location']}")
 
-                if all(
-                    i in self.iam_data.production_volumes.variables
-                    for i in production_variable
-                ):
-                    total_prod_vol = np.clip(
-                        self.iam_data.production_volumes.sel(
-                            region=iam_locs, variables=production_variable
-                        )
-                        .interp(year=self.year)
-                        .sum(dim=["variables", "region"])
-                        .values.item(0),
-                        1,
-                        None,
-                    )
+                if production_variable:
+                    # Add `production volume` field
+                    if isinstance(production_variable, str):
+                        production_variable = [production_variable]
 
+                    if all(
+                            i in self.iam_data.production_volumes.variables
+                            for i in production_variable
+                    ):
+                        total_prod_vol = np.clip(
+                            self.iam_data.production_volumes.sel(
+                                region=iam_locs, variables=production_variable
+                            )
+                                .interp(year=self.year)
+                                .sum(dim=["variables", "region"])
+                                .values.item(0),
+                            1,
+                            None,
+                                )
+
+                    else:
+                        total_prod_vol = 1
                 else:
                     total_prod_vol = 1
-            else:
-                total_prod_vol = 1
 
-            for iam_loc in iam_locs:
+                for iam_loc in iam_locs:
 
-                if (
-                    production_variable
-                    and production_variable
-                    in self.iam_data.production_volumes.variables.values.tolist()
-                ):
-                    region_prod = (
-                        self.iam_data.production_volumes.sel(
-                            region=iam_loc, variables=production_variable
+                    if (
+                            production_variable
+                            and all(i in self.iam_data.production_volumes.variables.values.tolist()
+                        for i in production_variable)
+                    ):
+                        region_prod = (
+                            self.iam_data.production_volumes.sel(
+                                region=iam_loc, variables=production_variable
+                            )
+                                .interp(year=self.year)
+                                .sum(dim="variables")
+                                .values.item(0)
                         )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
-                        .values.item(0)
-                    )
-                    share = region_prod / total_prod_vol
-                else:
-                    share = 1 / len(iam_locs)
+                        share = region_prod / total_prod_vol
 
-                ds["exchanges"].append(
-                    {
-                        "name": ds["name"],
-                        "product": ds["reference product"],
-                        "amount": share,
-                        "unit": ds["unit"],
-                        "uncertainty type": 0,
-                        "location": iam_loc,
-                        "type": "technosphere",
-                    }
-                )
+                    else:
+                        share = 1 / len(iam_locs)
+
+                    ds["exchanges"].append(
+                        {
+                            "name": ds["name"],
+                            "product": ds["reference product"],
+                            "amount": share,
+                            "unit": ds["unit"],
+                            "uncertainty type": 0,
+                            "location": iam_loc,
+                            "type": "technosphere",
+                        }
+                    )
 
     def relink_datasets(
         self, excludes_datasets: List[str] = None, alt_names: List[str] = None
@@ -636,11 +646,10 @@ class BaseTransformation:
                                 act["unit"],
                             )
                         else:
-                            print(
-                                f"cannot find act for {exc} in {act['name'], act['location']}"
-                            )
-                            print(names_to_look_for)
-                            print(alternative_locations)
+                            #print(
+                            #    f"cannot find act for {exc} in {act['name'], act['location']}"
+                            #)
+                            continue
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset
