@@ -476,7 +476,7 @@ class BaseTransformation:
             self.database,
             ws.equals("name", name),
             ws.contains("reference product", ref_prod),
-            ws.doesnt_contain_any("location", self.regions)
+            ws.doesnt_contain_any("location", self.regions),
         )
 
         for ds in existing_ds:
@@ -490,10 +490,14 @@ class BaseTransformation:
 
                 # add tag
                 ds["has_downstream_consumer"] = False
-                ds["exchanges"] = [e for e in ds["exchanges"] if e["type"] == "production"]
+                ds["exchanges"] = [
+                    e for e in ds["exchanges"] if e["type"] == "production"
+                ]
 
                 if len(ds["exchanges"]) == 0:
-                    print(f"ISSUE: no exchanges found in {ds['name']} in {ds['location']}")
+                    print(
+                        f"ISSUE: no exchanges found in {ds['name']} in {ds['location']}"
+                    )
 
                 if production_variable:
                     # Add `production volume` field
@@ -501,19 +505,19 @@ class BaseTransformation:
                         production_variable = [production_variable]
 
                     if all(
-                            i in self.iam_data.production_volumes.variables
-                            for i in production_variable
+                        i in self.iam_data.production_volumes.variables
+                        for i in production_variable
                     ):
                         total_prod_vol = np.clip(
                             self.iam_data.production_volumes.sel(
                                 region=iam_locs, variables=production_variable
                             )
-                                .interp(year=self.year)
-                                .sum(dim=["variables", "region"])
-                                .values.item(0),
+                            .interp(year=self.year)
+                            .sum(dim=["variables", "region"])
+                            .values.item(0),
                             1,
                             None,
-                                )
+                        )
 
                     else:
                         total_prod_vol = 1
@@ -522,18 +526,17 @@ class BaseTransformation:
 
                 for iam_loc in iam_locs:
 
-                    if (
-                            production_variable
-                            and all(i in self.iam_data.production_volumes.variables.values.tolist()
-                        for i in production_variable)
+                    if production_variable and all(
+                        i in self.iam_data.production_volumes.variables.values.tolist()
+                        for i in production_variable
                     ):
                         region_prod = (
                             self.iam_data.production_volumes.sel(
                                 region=iam_loc, variables=production_variable
                             )
-                                .interp(year=self.year)
-                                .sum(dim="variables")
-                                .values.item(0)
+                            .interp(year=self.year)
+                            .sum(dim="variables")
+                            .values.item(0)
                         )
                         share = region_prod / total_prod_vol
 
@@ -646,9 +649,9 @@ class BaseTransformation:
                                 act["unit"],
                             )
                         else:
-                            #print(
+                            # print(
                             #    f"cannot find act for {exc} in {act['name'], act['location']}"
-                            #)
+                            # )
                             continue
 
                 # summing up the amounts provided by the unwanted exchanges

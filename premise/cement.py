@@ -120,15 +120,12 @@ class Cement(BaseTransformation):
         # the cement plant is expected to produce as excess heat
 
         # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
-        excess_heat_generation = (
-            self.iam_data.gnr_data.sel(
-                variables="Share of recovered energy, per ton clinker",
-                region=self.geo.iam_to_iam_region(loc, from_iam="remind")
-                if self.model == "image"
-                else loc,
-            ).values
-            * (energy_input.sum() / 1000)
-        )
+        excess_heat_generation = self.iam_data.gnr_data.sel(
+            variables="Share of recovered energy, per ton clinker",
+            region=self.geo.iam_to_iam_region(loc, from_iam="remind")
+            if self.model == "image"
+            else loc,
+        ).values * (energy_input.sum() / 1000)
 
         for exc in ws.technosphere(ccs, ws.contains("name", "steam production")):
             exc["amount"] = np.clip(3.66 - excess_heat_generation, 0, 3.66)

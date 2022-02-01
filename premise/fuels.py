@@ -107,7 +107,10 @@ class Fuels(BaseTransformation):
         heat_map_ds = fetch_mapping(HEAT_SOURCES)
 
         name = "carbon dioxide, captured from atmosphere"
-        original_ds = self.fetch_proxies(name=name, ref_prod="carbon dioxide",)
+        original_ds = self.fetch_proxies(
+            name=name,
+            ref_prod="carbon dioxide",
+        )
 
         # delete original
         self.database = [x for x in self.database if x["name"] != name]
@@ -163,7 +166,11 @@ class Fuels(BaseTransformation):
             # Add created dataset to `self.list_datasets`
             self.list_datasets.extend(
                 [
-                    (act["name"], act["reference product"], act["location"],)
+                    (
+                        act["name"],
+                        act["reference product"],
+                        act["location"],
+                    )
                     for act in new_ds.values()
                 ]
             )
@@ -513,7 +520,9 @@ class Fuels(BaseTransformation):
                                 else:
                                     electricity_comp = np.clip(
                                         np.interp(
-                                            self.year, [2020, 2035, 2050], [12, 8, 6],
+                                            self.year,
+                                            [2020, 2035, 2050],
+                                            [12, 8, 6],
                                         ),
                                         12,
                                         6,
@@ -882,7 +891,11 @@ class Fuels(BaseTransformation):
                     # Add created dataset to `self.list_datasets`
                     self.list_datasets.extend(
                         [
-                            (act["name"], act["reference product"], act["location"],)
+                            (
+                                act["name"],
+                                act["reference product"],
+                                act["location"],
+                            )
                             for act in new_ds.values()
                         ]
                     )
@@ -981,8 +994,14 @@ class Fuels(BaseTransformation):
                 "type": "biosphere",
                 "name": "Carbon dioxide, from soil or biomass stock",
                 "unit": "kilogram",
-                "input": ("biosphere3", "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",),
-                "categories": ("air", "non-urban air or from high stacks",),
+                "input": (
+                    "biosphere3",
+                    "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
+                ),
+                "categories": (
+                    "air",
+                    "non-urban air or from high stacks",
+                ),
             }
             dataset["exchanges"].append(land_use_co2_exc)
 
@@ -1013,7 +1032,8 @@ class Fuels(BaseTransformation):
         if vars:
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable=vars, location=region,
+                variable=vars,
+                location=region,
             )
 
             # Rescale all the technosphere exchanges according to the IAM efficiency values
@@ -1422,17 +1442,47 @@ class Fuels(BaseTransformation):
         # we start by creating region-specific "diesel, burned in" markets
         prod_vars = [p for p in self.fuel_labels if "diesel" in p]
         datasets_to_create = [
-            ("diesel, burned in agricultural machinery", "diesel, burned in agricultural machinery"),
-            ("diesel, burned in building machine", "diesel, burned in building machine"),
-            ("diesel, burned in diesel-electric generating set", "diesel, burned in diesel-electric generating set"),
-            ("diesel, burned in diesel-electric generating set, 10MW", "diesel, burned in diesel-electric generating set, 10MW"),
-            ("diesel, burned in diesel-electric generating set, 18.5kW", "diesel, burned in diesel-electric generating set, 18.5kW"),
+            (
+                "diesel, burned in agricultural machinery",
+                "diesel, burned in agricultural machinery",
+            ),
+            (
+                "diesel, burned in building machine",
+                "diesel, burned in building machine",
+            ),
+            (
+                "diesel, burned in diesel-electric generating set",
+                "diesel, burned in diesel-electric generating set",
+            ),
+            (
+                "diesel, burned in diesel-electric generating set, 10MW",
+                "diesel, burned in diesel-electric generating set, 10MW",
+            ),
+            (
+                "diesel, burned in diesel-electric generating set, 18.5kW",
+                "diesel, burned in diesel-electric generating set, 18.5kW",
+            ),
             ("diesel, burned in fishing vessel", "diesel, burned in fishing vessel"),
-            ("market for diesel, burned in agricultural machinery", "diesel, burned in agricultural machinery"),
-            ("market for diesel, burned in building machine", "diesel, burned in building machine"),
-            ("market for diesel, burned in diesel-electric generating set, 10MW", "diesel, burned in diesel-electric generating set, 10MW"),
-            ("market for diesel, burned in diesel-electric generating set, 18.5kW", "diesel, burned in diesel-electric generating set, 18.5kW"),
-            ("market for diesel, burned in fishing vessel", "diesel, burned in fishing vessel"),
+            (
+                "market for diesel, burned in agricultural machinery",
+                "diesel, burned in agricultural machinery",
+            ),
+            (
+                "market for diesel, burned in building machine",
+                "diesel, burned in building machine",
+            ),
+            (
+                "market for diesel, burned in diesel-electric generating set, 10MW",
+                "diesel, burned in diesel-electric generating set, 10MW",
+            ),
+            (
+                "market for diesel, burned in diesel-electric generating set, 18.5kW",
+                "diesel, burned in diesel-electric generating set, 18.5kW",
+            ),
+            (
+                "market for diesel, burned in fishing vessel",
+                "diesel, burned in fishing vessel",
+            ),
         ]
 
         for dataset in datasets_to_create:
