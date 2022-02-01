@@ -659,7 +659,7 @@ class NewDatabase:
                 (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
-                (FILEPATH_BIGCC, "3.8")
+                (FILEPATH_BIGCC, "3.8"),
             ]
             for filepath in filepaths:
                 inventory = DefaultInventory(

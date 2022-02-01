@@ -158,19 +158,19 @@ class Steel(BaseTransformation):
             if i[0] == "market for steel, low-alloyed":
                 for loc, dataset in steel_markets.items():
                     if loc != "World":
-                        primary_share = (
-                            self.iam_data.production_volumes.sel(
-                                region=loc, variables="steel - primary"
-                            )
-                            .interp(year=self.year)
-                            .values.item(0)
-                            / self.iam_data.production_volumes.sel(
-                                region=loc,
-                                variables=["steel - primary", "steel - secondary"],
-                            )
-                            .interp(year=self.year)
-                            .sum(dim="variables")
-                            .values.item(0)
+                        primary_share = self.iam_data.production_volumes.sel(
+                            region=loc, variables="steel - primary"
+                        ).interp(year=self.year).values.item(
+                            0
+                        ) / self.iam_data.production_volumes.sel(
+                            region=loc,
+                            variables=["steel - primary", "steel - secondary"],
+                        ).interp(
+                            year=self.year
+                        ).sum(
+                            dim="variables"
+                        ).values.item(
+                            0
                         )
 
                         secondary_share = 1 - primary_share

@@ -585,7 +585,10 @@ class Transport(BaseTransformation):
 
                     if self.relink:
                         self.cache, new_ds = relink_technosphere_exchanges(
-                            new_ds, self.database, self.model, cache=self.cache,
+                            new_ds,
+                            self.database,
+                            self.model,
+                            cache=self.cache,
                         )
 
                     list_new_ds.append(new_ds)
