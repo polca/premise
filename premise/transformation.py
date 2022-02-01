@@ -639,7 +639,7 @@ class BaseTransformation:
                             break
 
                     if not is_found:
-                        #print(exc[0], exc[2], act["name"], act["location"])
+                        # print(exc[0], exc[2], act["name"], act["location"])
 
                         if (exc[0], exc[2]) == (act["name"], act["location"]):
                             new_name, new_prod, new_loc, new_unit = (
