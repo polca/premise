@@ -1075,8 +1075,18 @@ class Electricity(BaseTransformation):
         with open(IAM_BIOMASS_VARS, "r") as stream:
             biomass_map = yaml.safe_load(stream)
 
-        for region in self.regions:
+        # create region-specific "Supply of forest residue" datasets
+        forest_residues_ds = self.fetch_proxies(
+            name=biomass_map["biomass - residual"]["ecoinvent_aliases"]["name"][0],
+            ref_prod=biomass_map["biomass - residual"]["ecoinvent_aliases"]["reference product"][0],
+            production_variable=biomass_map["biomass - residual"]["iam_aliases"][self.model][0],
+            relink=True,
+        )
 
+        # add them to the database
+        self.database.extend(forest_residues_ds.values())
+
+        for region in self.regions:
             act = {
                 "name": "market for biomass, used as fuel",
                 "reference product": "biomass, used as fuel",

@@ -528,6 +528,23 @@ class Transport(BaseTransformation):
                 regions=self.regions,
             )
 
+            # cleaning up
+            # we remove vehicles that
+            # are not used by fleet vehicles
+            fleet_vehicles = []
+
+            for a in fleet_act:
+                for e in a["exchanges"]:
+                    if e["type"] == "technosphere":
+                        fleet_vehicles.append(e["name"])
+
+            datasets.import_db.data = [
+                a
+                for a in datasets.import_db.data
+                if not a["name"].startswith("transport, ")
+                or a["name"] in fleet_vehicles
+            ]
+
             datasets.import_db.data.extend(fleet_act)
 
         else:
@@ -568,10 +585,7 @@ class Transport(BaseTransformation):
 
                     if self.relink:
                         self.cache, new_ds = relink_technosphere_exchanges(
-                            new_ds,
-                            self.database,
-                            self.model,
-                            cache=self.cache,
+                            new_ds, self.database, self.model, cache=self.cache,
                         )
 
                     list_new_ds.append(new_ds)
@@ -585,7 +599,7 @@ class Transport(BaseTransformation):
                     del dataset[k]
 
         # if trucks, need to reconnect everything
-        # loop through datasets that use lorry transport
+        # loop through datasets that use truck transport
         if self.vehicle_type == "truck":
             vehicles_map = get_vehicles_mapping()
             list_created_trucks = [(a["name"], a["location"]) for a in fleet_act]

@@ -107,10 +107,7 @@ class Fuels(BaseTransformation):
         heat_map_ds = fetch_mapping(HEAT_SOURCES)
 
         name = "carbon dioxide, captured from atmosphere"
-        original_ds = self.fetch_proxies(
-            name=name,
-            ref_prod="carbon dioxide",
-        )
+        original_ds = self.fetch_proxies(name=name, ref_prod="carbon dioxide",)
 
         # delete original
         self.database = [x for x in self.database if x["name"] != name]
@@ -166,11 +163,7 @@ class Fuels(BaseTransformation):
             # Add created dataset to `self.list_datasets`
             self.list_datasets.extend(
                 [
-                    (
-                        act["name"],
-                        act["reference product"],
-                        act["location"],
-                    )
+                    (act["name"], act["reference product"], act["location"],)
                     for act in new_ds.values()
                 ]
             )
@@ -520,9 +513,7 @@ class Fuels(BaseTransformation):
                                 else:
                                     electricity_comp = np.clip(
                                         np.interp(
-                                            self.year,
-                                            [2020, 2035, 2050],
-                                            [12, 8, 6],
+                                            self.year, [2020, 2035, 2050], [12, 8, 6],
                                         ),
                                         12,
                                         6,
@@ -891,11 +882,7 @@ class Fuels(BaseTransformation):
                     # Add created dataset to `self.list_datasets`
                     self.list_datasets.extend(
                         [
-                            (
-                                act["name"],
-                                act["reference product"],
-                                act["location"],
-                            )
+                            (act["name"], act["reference product"], act["location"],)
                             for act in new_ds.values()
                         ]
                     )
@@ -910,7 +897,7 @@ class Fuels(BaseTransformation):
                 for region, ds in new_ds.items():
                     for exc in ws.production(ds):
                         if "input" in exc:
-                            exc.pop("input")
+                            del exc["input"]
 
                     for exc in ws.technosphere(ds):
                         if "carbon dioxide, captured from atmosphere" in exc["name"]:
@@ -921,6 +908,7 @@ class Fuels(BaseTransformation):
                                 "product"
                             ] = "carbon dioxide, captured from the atmosphere"
                             exc["location"] = region
+                            exc["unit"] = "kilogram"
 
                     self.cache, ds = relink_technosphere_exchanges(
                         ds, self.database, self.model, cache=self.cache
@@ -993,14 +981,8 @@ class Fuels(BaseTransformation):
                 "type": "biosphere",
                 "name": "Carbon dioxide, from soil or biomass stock",
                 "unit": "kilogram",
-                "input": (
-                    "biosphere3",
-                    "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
-                ),
-                "categories": (
-                    "air",
-                    "non-urban air or from high stacks",
-                ),
+                "input": ("biosphere3", "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",),
+                "categories": ("air", "non-urban air or from high stacks",),
             }
             dataset["exchanges"].append(land_use_co2_exc)
 
@@ -1031,8 +1013,7 @@ class Fuels(BaseTransformation):
         if vars:
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable=vars,
-                location=region,
+                variable=vars, location=region,
             )
 
             # Rescale all the technosphere exchanges according to the IAM efficiency values
@@ -1220,11 +1201,17 @@ class Fuels(BaseTransformation):
         ):
 
             # check that a fuel input exchange is present in the list of inputs
+            # check also for "market group for" inputs
             if any(
                 f[0] == exc["name"]
                 for exc in dataset["exchanges"]
                 for f in self.new_fuel_markets
+            ) or any(
+                exc["name"] == f[0].replace("market for", "market group for")
+                for exc in dataset["exchanges"]
+                for f in self.new_fuel_markets
             ):
+
                 amount_fossil_co2, amount_non_fossil_co2 = [0, 0]
 
                 for _, activity in fuel_markets.items():
@@ -1236,7 +1223,15 @@ class Fuels(BaseTransformation):
                         excs = list(
                             ws.get_many(
                                 dataset["exchanges"],
-                                ws.equals("name", activity["name"]),
+                                ws.either(
+                                    ws.equals("name", activity["name"]),
+                                    ws.equals(
+                                        "name",
+                                        activity["name"].replace(
+                                            "market for", "market group for"
+                                        ),
+                                    ),
+                                ),
                                 ws.equals("unit", activity["unit"]),
                                 ws.equals("type", "technosphere"),
                             )
@@ -1340,7 +1335,7 @@ class Fuels(BaseTransformation):
         ecoinvent_regions = self.geo.iam_to_ecoinvent_location(dataset["location"])
         possible_locations = [
             dataset["location"],
-            *ecoinvent_regions,
+            [*ecoinvent_regions],
             "RER",
             "Europe without Switzerland",
             "RoW",
@@ -1350,16 +1345,25 @@ class Fuels(BaseTransformation):
         suppliers, counter = [], 0
 
         while not suppliers:
+
             suppliers = list(
                 ws.get_many(
                     self.database,
                     ws.either(*[ws.contains("name", sup) for sup in possible_names]),
-                    ws.equals("location", possible_locations[counter]),
+                    ws.either(
+                        *[
+                            ws.equals("location", item)
+                            for item in possible_locations[counter]
+                        ]
+                    )
+                    if isinstance(possible_locations[counter], list)
+                    else ws.equals("location", possible_locations[counter]),
                     ws.either(
                         *[ws.contains("reference product", item) for item in look_for]
                     ),
                     ws.doesnt_contain_any(
-                        "reference product", ["petroleum coke", "petroleum gas", "wax"]
+                        "reference product",
+                        ["petroleum coke", "petroleum gas", "wax", "low pressure"],
                     ),
                 )
             )
@@ -1414,6 +1418,33 @@ class Fuels(BaseTransformation):
         self.generate_fuel_supply_chains()
 
         print("Generate new fuel markets.")
+
+        # we start by creating region-specific "diesel, burned in" markets
+        prod_vars = [p for p in self.fuel_labels if "diesel" in p]
+        datasets_to_create = [
+            ("diesel, burned in agricultural machinery", "diesel, burned in agricultural machinery"),
+            ("diesel, burned in building machine", "diesel, burned in building machine"),
+            ("diesel, burned in diesel-electric generating set", "diesel, burned in diesel-electric generating set"),
+            ("diesel, burned in diesel-electric generating set, 10MW", "diesel, burned in diesel-electric generating set, 10MW"),
+            ("diesel, burned in diesel-electric generating set, 18.5kW", "diesel, burned in diesel-electric generating set, 18.5kW"),
+            ("diesel, burned in fishing vessel", "diesel, burned in fishing vessel"),
+            ("market for diesel, burned in agricultural machinery", "diesel, burned in agricultural machinery"),
+            ("market for diesel, burned in building machine", "diesel, burned in building machine"),
+            ("market for diesel, burned in diesel-electric generating set, 10MW", "diesel, burned in diesel-electric generating set, 10MW"),
+            ("market for diesel, burned in diesel-electric generating set, 18.5kW", "diesel, burned in diesel-electric generating set, 18.5kW"),
+            ("market for diesel, burned in fishing vessel", "diesel, burned in fishing vessel"),
+        ]
+
+        for dataset in datasets_to_create:
+            print(dataset)
+            new_ds = self.fetch_proxies(
+                name=dataset[0],
+                ref_prod=dataset[1],
+                production_variable=prod_vars,
+                relink=True,
+            )
+
+            self.database.extend(new_ds.values())
 
         fuel_markets = fetch_mapping(FUEL_MARKETS)
 
@@ -1502,7 +1533,6 @@ class Fuels(BaseTransformation):
                                 possible_suppliers = self.select_multiple_suppliers(
                                     var, d_fuels, dataset, vars_map[fuel]
                                 )
-
                                 if not possible_suppliers:
                                     print(
                                         f"ISSUE with {var} in {region} for ds in location {dataset['location']}"

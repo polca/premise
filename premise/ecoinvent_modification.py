@@ -93,12 +93,7 @@ FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
 )
 FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
-
-
-FILE_PATH_INVENTORIES_EI_38 = INVENTORY_DIR / "inventory_data_ei_38.pickle"
-FILE_PATH_INVENTORIES_EI_37 = INVENTORY_DIR / "inventory_data_ei_37.pickle"
-FILE_PATH_INVENTORIES_EI_36 = INVENTORY_DIR / "inventory_data_ei_36.pickle"
-FILE_PATH_INVENTORIES_EI_35 = INVENTORY_DIR / "inventory_data_ei_35.pickle"
+FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
 
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
 SUPPORTED_MODELS = ["remind", "image"]
@@ -664,6 +659,7 @@ class NewDatabase:
                 (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_BIGCC, "3.8")
             ]
             for filepath in filepaths:
                 inventory = DefaultInventory(

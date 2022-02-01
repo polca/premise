@@ -238,7 +238,6 @@ class Steel(BaseTransformation):
                         )
 
             # populate World dataset
-
             steel_markets["World"]["exchanges"] = [
                 x
                 for x in steel_markets["World"]["exchanges"]

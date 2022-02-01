@@ -1593,4 +1593,8 @@ implementation in the wurst_ library.
   ZW                                        SSA              RSAF
  ========================================= ================ ===============
 
+Logs
+""""
 
+*premise* generates log files for each transformation function applied to the database.
+They are found in teh library folder, under *premise/data/logs*.
