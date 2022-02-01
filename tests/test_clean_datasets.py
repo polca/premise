@@ -1,4 +1,6 @@
 # content of test_activity_maps.py
+from pathlib import Path
+
 import pytest
 from bw2data.database import DatabaseChooser
 
@@ -44,7 +46,7 @@ def get_dict():
 
 def test_presence_db():
     with pytest.raises(NameError) as wrapped_error:
-        DatabaseCleaner("bla", "brightway", "x")
+        DatabaseCleaner("bla", "brightway", Path("."))
     assert wrapped_error.type == NameError
 
 
@@ -56,5 +58,5 @@ def test_validity_db():
     db_act = DatabaseChooser("dummy_db")
     db_act.write(dummy_db)
 
-    dbc = DatabaseCleaner("dummy_db", "brightway", "x")
+    dbc = DatabaseCleaner("dummy_db", "brightway", Path("."))
     assert dbc.db[0]["name"] == "fake activity"

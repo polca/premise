@@ -3,13 +3,8 @@ from pathlib import Path
 
 import pytest
 
-from premise import DATA_DIR, INVENTORY_DIR
-from premise.inventory_imports import (
-    BaseInventoryImport,
-    BiofuelInventory,
-    CarculatorInventory,
-    CarmaCCSInventory,
-)
+from premise import INVENTORY_DIR
+from premise.inventory_imports import BaseInventoryImport, DefaultInventory
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
@@ -57,7 +52,7 @@ def get_db():
 def test_file_exists():
     db, version = get_db()
     with pytest.raises(FileNotFoundError) as wrapped_error:
-        BaseInventoryImport(db, version, "testfile")
+        BaseInventoryImport(db, version_in=version, version_out="3.8", path="testfile")
     assert wrapped_error.type == FileNotFoundError
 
 
@@ -65,7 +60,7 @@ def test_biosphere_dict():
     db, version = get_db()
     testpath = Path("testfile")
     open(testpath, "w")
-    dbc = BaseInventoryImport(db, version, testpath)
+    dbc = BaseInventoryImport(db, version_in=version, version_out="3.8", path=testpath)
     assert (
         dbc.biosphere_dict[
             ("1,4-Butanediol", "air", "urban air close to ground", "kilogram")
@@ -80,9 +75,9 @@ def test_biosphere_dict_2():
     db, version = get_db()
     testpath = Path("testfile")
     open(testpath, "w")
-    dbc = BaseInventoryImport(db, version, testpath)
+    dbc = BaseInventoryImport(db, version_in=version, version_out="3.8", path=testpath)
 
-    for act in dbc.db:
+    for act in dbc.database:
         for exc in act["exchanges"]:
             if exc["type"] == "biosphere":
                 assert (
@@ -102,26 +97,15 @@ def test_biosphere_dict_2():
 
 def test_load_carma():
     db, version = get_db()
-    carma = CarmaCCSInventory(db, version, FILEPATH_CARMA_INVENTORIES)
-    assert len(carma.import_db.data) == 148
+    carma = DefaultInventory(
+        db, version_in="3.5", version_out="3.8", path=FILEPATH_CARMA_INVENTORIES
+    )
+    assert len(carma.import_db.data) == 135
 
 
 def test_load_biofuel():
     db, version = get_db()
-    bio = BiofuelInventory(db, version, FILEPATH_BIOFUEL_INVENTORIES)
-    assert len(bio.import_db.data) == 36
-
-
-# def test_load_carculator():
-#    db, version = get_db()
-#    carc = CarculatorInventory(
-#        database=db,
-#        version="3.7.1",
-#        fleet_file=DATA_DIR / "iam_output_files" / "fleet_files" / "remind" / "passenger_cars" / "fleet_file.csv",
-#        model="remind",
-#        year=2015,
-#        regions=["EUR"],
-#        filters=None,
-#        iam_data=
-#    )
-#    assert len(carc.import_db.data) >= 335
+    bio = DefaultInventory(
+        db, version_in="3.7", version_out="3.8", path=FILEPATH_BIOFUEL_INVENTORIES
+    )
+    assert len(bio.import_db.data) == 130

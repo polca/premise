@@ -1,0 +1,64 @@
+# mapping between biofuel types, crop types, climate types
+# and aliases for land use and land use change
+
+---
+sugar:
+  crop_type:
+    image:
+      temperate: sugarbeet
+      tropical: sugarcane
+    remind:
+      temperate: sugarbeet
+      tropical: sugarcane
+  land_use:
+    image: Land Use|Average|Biomass|Sugar
+  land_use_change:
+    image: Emission Factor|CO2|Energy|Supply|Biomass|Average|Sugar
+oil:
+  crop_type:
+    image:
+      temperate: rapeseed
+      tropical: palm oil
+    remind:
+      temperate: rapeseed
+      tropical: palm oil
+  land_use:
+    image: Land Use|Average|Biomass|OilCrop
+  land_use_change:
+    image: Emission Factor|CO2|Energy|Supply|Biomass|Average|Oilcrops
+wood:
+  crop_type:
+    image:
+      temperate: poplar
+      tropical: eucalyptus
+    remind:
+      temperate: poplar
+      tropical: eucalyptus
+  land_use:
+    image: Land Use|Average|Biomass|Woody
+  land_use_change:
+    image: Emission Factor|CO2|Energy|Supply|Biomass|Average|Woody
+grass:
+  crop_type:
+    image:
+      temperate: switchgrass
+      tropical: miscanthus
+    remind:
+      temperate: switchgrass
+      tropical: miscanthus
+  land_use:
+    image: Land Use|Average|Biomass|Grassy
+  land_use_change:
+    image: Emission Factor|CO2|Energy|Supply|Biomass|Average|Grassy
+grain:
+  crop_type:
+    image:
+      temperate: corn
+      tropical: corn
+    remind:
+      temperate: corn
+      tropical: corn
+  land_use:
+    image: Land Use|Average|Biomass|Maize
+  land_use_change:
+    image: Emission Factor|CO2|Energy|Supply|Biomass|Average|Maize

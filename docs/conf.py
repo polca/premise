@@ -19,22 +19,23 @@ sys.path.insert(0, os.path.abspath(".."))
 
 project = "premise"
 copyright = (
-    "2020, Potsdam Institute for Climate Impact Research, Paul Scherrer Institut"
+    "2022, Paul Scherrer Institut, Potsdam Institute for Climate Impact Research"
 )
-author = "Alois Dirnaichner, Romain Sacchi, Chris Mutel"
+author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.0"
+release = "1.0.0"
 
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["sphinx.ext.autodoc"]
-
-autoapi_type = "python"
-autoapi_dirs = ["../premise"]
+extensions = [
+    "sphinx.ext.autodoc",  # Core library for html generation from docstrings
+    "sphinx.ext.autosummary",  # Create neat summary tables
+]
+autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 master_doc = "index"
 
@@ -44,7 +45,7 @@ templates_path = ["_templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = ["_build", "Thumbs.database", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
 

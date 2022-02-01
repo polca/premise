@@ -1,11 +1,11 @@
 # content of test_activity_maps.py
-from premise.activity_maps import InventorySet
+from premise.activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
 
 dummy_minimal_db = [
     {
-        "name": "electricity production, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m"
+        "name": "electricity production, at BIGCC power plant, pre, pipeline 200km, storage 1000m"
     },
-    {"name": "electricity production, at BIGCC power plant 450MW, no CCS"},
+    {"name": "electricity production, at BIGCC power plant, no CCS"},
     {"name": "electricity production, at power plant/lignite, IGCC, no CCS"},
     {
         "name": "electricity production, at power plant/hard coal, pre, pipeline 200km, storage 1000m"
@@ -47,14 +47,14 @@ for act in dummy_minimal_db:
 
 def test_presence_of_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert isinstance(maps.get_remind_to_ecoinvent_emissions(), dict)
+    assert isinstance(get_gains_to_ecoinvent_emissions(), dict)
     assert isinstance(maps.generate_material_map(), dict)
     assert isinstance(maps.generate_powerplant_map(), dict)
 
 
 def test_length_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert len(maps.get_remind_to_ecoinvent_emissions()) > 0
+    assert len(get_gains_to_ecoinvent_emissions()) > 0
     assert len(maps.generate_material_map()) > 0
     assert len(maps.generate_powerplant_map()) > 0
 
@@ -67,5 +67,5 @@ def test_content_dict():
     assert plants["Coal IGCC"] == {
         "electricity production, at power plant/lignite, IGCC, no CCS"
     }
-    emissions = maps.get_remind_to_ecoinvent_emissions()
+    emissions = get_gains_to_ecoinvent_emissions()
     assert emissions["Sulfur dioxide"] == "SO2"

@@ -52,16 +52,14 @@ rdc = IAMDataCollection(
     key=os.environ["IAM_FILES_KEY"],
 )
 db, _ = get_db()
-el = Electricity(db=db, iam_data=rdc, model="remind", pathway="SSP2-Base", year=2012)
+el = Electricity(
+    database=db, iam_data=rdc, model="remind", pathway="SSP2-Base", year=2012
+)
 
 
 def test_losses():
-    assert len(el.losses) == 174
-    assert el.losses["AL"]["Production volume"] == 7630
-
-
-def test_fuels_lhv():
-    assert float(el.fuels_lhv["hard coal"]) == 20.1
+    assert len(el.network_loss) == 13
+    assert el.network_loss["CAZ"]["high"]["transf_loss"] == 0.035483703331573094
 
 
 def test_powerplant_map():

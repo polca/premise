@@ -3,13 +3,180 @@ import datetime
 import json
 import os
 import re
-from pathlib import Path
+from typing import Dict
 
-import pandas as pd
+import yaml
 
 from . import DATA_DIR, __version__
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
+FILEPATH_SIMAPRO_COMPARTMENTS = (
+    DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
+)
+
+
+def get_simapro_units() -> Dict[str, str]:
+    """
+    Load a dictionary that maps brightway2 unit to Simapro units.
+    :return: a dictionary that maps brightway2 unit to Simapro units
+    """
+
+    with open(FILEPATH_SIMAPRO_UNITS, "r") as stream:
+        simapro_units = yaml.safe_load(stream)
+
+    return simapro_units
+
+
+def get_simapro_compartments() -> Dict[str, str]:
+    """
+    Load a dictionary that maps brightway2 unit to Simapro compartments.
+    :return: a dictionary that maps brightway2 unit to Simapro compartments.
+    """
+
+    with open(FILEPATH_SIMAPRO_COMPARTMENTS, "r") as stream:
+        simapro_comps = yaml.safe_load(stream)
+
+    return simapro_comps
+
+
+def load_simapro_categories():
+    """Load a dictionary with categories to use for Simapro export"""
+
+    # Load the matching dictionary
+    filename = "simapro_classification.csv"
+    filepath = DATA_DIR / "utils" / "export" / filename
+    if not filepath.is_file():
+        raise FileNotFoundError(
+            "The dictionary of Simapro categories could not be found."
+        )
+    with open(filepath) as f:
+        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
+    header, *data = csv_list
+
+    dict_cat = {}
+    for row in data:
+        _, cat_code, category_1, category_2, category_3 = row
+        dict_cat[cat_code] = {
+            "category 1": category_1,
+            "category 2": category_2,
+            "category 3": category_3,
+        }
+
+    return dict_cat
+
+
+def get_simapro_category_of_exchange():
+
+    """Load a dictionary with categories to use for Simapro export based on ei 3.7"""
+
+    # Load the matching dictionary
+    filename = "simapro_categories.csv"
+    filepath = DATA_DIR / "utils" / "export" / filename
+    if not filepath.is_file():
+        raise FileNotFoundError(
+            "The dictionary of Simapro categories could not be found."
+        )
+    with open(filepath) as f:
+        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
+    header, *data = csv_list
+
+    dict_cat = {}
+    for row in data:
+        name, category_1, category_2 = row
+        dict_cat[name] = {
+            "main category": category_1,
+            "category": category_2,
+        }
+
+    return dict_cat
+
+
+def load_references():
+    """Load a dictionary with references of datasets"""
+
+    # Load the matching dictionary
+    filename = "references.csv"
+    filepath = DATA_DIR / "utils" / "export" / filename
+    if not filepath.is_file():
+        raise FileNotFoundError("The dictionary of references could not be found.")
+    with open(filepath) as f:
+        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
+    header, *data = csv_list
+
+    dict_reference = {}
+    for row in data:
+        name, source, description = row
+        dict_reference[name] = {"source": source, "description": description}
+
+    return dict_reference
+
+
+def get_simapro_biosphere_dictionnary():
+    # Load the matching dictionary between ecoinvent and Simapro biosphere flows
+    filename = "simapro-biosphere.json"
+    filepath = DATA_DIR / "utils" / "export" / filename
+    if not filepath.is_file():
+        raise FileNotFoundError(
+            "The dictionary of biosphere flow match between ecoinvent and Simapro could not be found."
+        )
+    with open(filepath) as json_file:
+        data = json.load(json_file)
+    dict_bio = {}
+    for d in data:
+        dict_bio[d[2]] = d[1]
+
+    return dict_bio
+
+
+def remove_uncertainty(database):
+    """
+    Remove uncertainty information from database exchanges.
+    :param database:
+    :return:
+    """
+
+    keys_to_remove = [
+        "loc",
+        "scale",
+        "pedigree",
+    ]
+
+    for dataset in database:
+        for exc in dataset["exchanges"]:
+            if "uncertainty type" in exc:
+                if "uncertainty type" != 0:
+                    exc["uncertainty type"] = 0
+
+                    for key in keys_to_remove:
+                        if key in exc:
+                            del exc[key]
+
+    return database
+
+
+def check_for_duplicates(database):
+    """Check for the absence of duplicates before export"""
+
+    db_names = [
+        (x["name"].lower(), x["reference product"].lower(), x["location"])
+        for x in database
+    ]
+
+    if len(db_names) == len(set(db_names)):
+        return database
+
+    print("One or multiple duplicates detected. Removing them...")
+    seen = set()
+    return [
+        x
+        for x in database
+        if (x["name"].lower(), x["reference product"].lower(), x["location"])
+        not in seen
+        and not seen.add(
+            (x["name"].lower(), x["reference product"].lower(), x["location"])
+        )
+    ]
 
 
 def create_index_of_A_matrix(db):
@@ -79,7 +246,7 @@ class Export:
     Dictionaries to map row numbers to activities and products names are also exported.
 
     :ivar db: transformed database
-    :vartype db: dict
+    :vartype database: dict
     :ivar scenario: name of a Remind pathway
     :vartype pathway: str
     :ivar year: year of a Remind pathway
@@ -178,6 +345,7 @@ class Export:
                             exc["name"],
                             exc["categories"],
                         )
+                        row = ()
                     list_rows.append(row)
         return list_rows
 
@@ -253,75 +421,6 @@ class Export:
 
         return csv_dict
 
-    @staticmethod
-    def get_simapro_biosphere_dictionnary():
-        # Load the matching dictionary between ecoinvent and Simapro biosphere flows
-        filename = "simapro-biosphere.json"
-        filepath = DATA_DIR / filename
-        if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flow match between ecoinvent and Simapro could not be found."
-            )
-        with open(filepath) as json_file:
-            data = json.load(json_file)
-        dict_bio = {}
-        for d in data:
-            dict_bio[d[2]] = d[1]
-
-        return dict_bio
-
-    @staticmethod
-    def load_simapro_categories():
-        """Load a dictionary with categories to use for Simapro export"""
-
-        # Load the matching dictionary
-        filename = "simapro_classification.csv"
-        filepath = DATA_DIR / filename
-        if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of Simapro categories could not be found."
-            )
-        with open(filepath) as f:
-            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-        header, *data = csv_list
-
-        dict_cat = {}
-        for row in data:
-            _, cat_code, category_1, category_2, category_3 = row
-            dict_cat[cat_code] = {
-                "category 1": category_1,
-                "category 2": category_2,
-                "category 3": category_3,
-            }
-
-        return dict_cat
-
-    @staticmethod
-    def get_simapro_category_of_exchange():
-
-        """Load a dictionary with categories to use for Simapro export based on ei 3.7"""
-
-        # Load the matching dictionary
-        filename = "simapro_categories.csv"
-        filepath = DATA_DIR / filename
-        if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of Simapro categories could not be found."
-            )
-        with open(filepath) as f:
-            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-        header, *data = csv_list
-
-        dict_cat = {}
-        for row in data:
-            name, category_1, category_2 = row
-            dict_cat[name] = {
-                "main category": category_1,
-                "category": category_2,
-            }
-
-        return dict_cat
-
     def get_category_of_exchange(self):
         """
         This function returns a dictionnary with (name, reference product) as keys,
@@ -330,7 +429,7 @@ class Export:
         :return: dict
         """
 
-        dict_classifications = self.load_simapro_categories()
+        dict_classifications = load_simapro_categories()
         dict_categories = {}
 
         for ds in self.db:
@@ -392,7 +491,7 @@ class Export:
                                             x[1].split(":")[0].strip()
                                         ]["category 2"]
 
-                if not main_category:
+                if not main_category or main_category == "":
                     main_category = "material"
                     category = "Others"
 
@@ -403,39 +502,17 @@ class Export:
 
         return dict_categories
 
-    @staticmethod
-    def load_references():
-        """Load a dictionary with references of datasets"""
-
-        # Load the matching dictionary
-        filename = "references.csv"
-        filepath = DATA_DIR / filename
-        if not filepath.is_file():
-            raise FileNotFoundError("The dictionary of references could not be found.")
-        with open(filepath) as f:
-            csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-        header, *data = csv_list
-
-        dict_reference = {}
-        for row in data:
-            name, source, description = row
-            dict_reference[name] = {"source": source, "description": description}
-
-        return dict_reference
-
     def export_db_to_simapro(self):
 
         if not os.path.exists(self.filepath):
             os.makedirs(self.filepath)
 
-        dict_bio = self.get_simapro_biosphere_dictionnary()
+        dict_bio = get_simapro_biosphere_dictionnary()
 
         headers = [
-            "{SimaPro 9.1.1.1}",
+            "{SimaPro 9.1.1.7}",
             "{processes}",
-            "{Project: carculator import"
-            + f"{datetime.datetime.today():%d.%m.%Y}"
-            + "}",
+            "{Project: premise import" + f"{datetime.datetime.today():%d.%m.%Y}" + "}",
             "{CSV Format version: 9.0.0}",
             "{CSV separator: Semicolon}",
             "{Decimal separator: .}",
@@ -444,7 +521,6 @@ class Export:
             "{Export platform IDs: No}",
             "{Skip empty fields: No}",
             "{Convert expressions to constants: No}",
-            "{Selection: Selection(1)}",
             "{Related objects(system descriptions, substances, units, etc.): Yes}",
             "{Include sub product stages and processes: Yes}",
         ]
@@ -489,68 +565,20 @@ class Export:
             "End",
         ]
 
-        simapro_units = {
-            "kilogram": "kg",
-            "cubic meter": "m3",
-            "cubic meter-year": "m3y",
-            "kilowatt hour": "kWh",
-            "kilometer": "km",
-            "ton kilometer": "tkm",
-            "ton-kilometer": "tkm",
-            "megajoule": "MJ",
-            "unit": "p",
-            "square meter": "m2",
-            "kilowatt": "p",
-            "hour": "hr",
-            "square meter-year": "m2a",
-            "meter": "m",
-            "vehicle-kilometer": "vkm",
-            "person-kilometer": "personkm",
-            "person kilometer": "personkm",
-            "meter-year": "my",
-            "kilo Becquerel": "kBq",
-            "kg*day": "kg*day",
-            "hectare": "ha",
-            "kilometer-year": "kmy",
-            "litre": "l",
-            "guest night": "guestnight",
-        }
+        # mapping between BW2 and Simapro units
+        simapro_units = get_simapro_units()
 
-        simapro_subs = {
-            "low population density, long-term": "low. pop., long-term",
-            "lower stratosphere + upper troposphere": "stratosphere + troposphere",
-            "non-urban air or from high stacks": "low. pop.",
-            "urban air close to ground": "high. pop.",
-            "biotic": "biotic",
-            "in air": "in air",
-            "in ground": "in ground",
-            "in water": "in water",
-            "land": "land",
-            "agricultural": "agricultural",
-            "forestry": "forestry",
-            "industrial": "industrial",
-            "ground-": "groundwater",
-            "ground-, long-term": "groundwater, long-term",
-            "ocean": "ocean",
-            "surface water": "river",
-        }
+        # mapping between BW2 and Simapro sub-compartments
+        simapro_subs = get_simapro_compartments()
 
-        filename = (
-            "simapro_export_"
-            + self.model
-            + "_"
-            + self.scenario
-            + "_"
-            + str(self.year)
-            + ".csv"
-        )
+        filename = f"simapro_export_{self.model}_{self.scenario}_{self.year}.csv"
 
-        dict_cat_simapro = self.get_simapro_category_of_exchange()
+        dict_cat_simapro = get_simapro_category_of_exchange()
         dict_cat = self.get_category_of_exchange()
-        dict_refs = self.load_references()
+        dict_refs = load_references()
 
         with open(
-            self.filepath / filename, "w", newline="", encoding="utf-8"
+            self.filepath / filename, "w", newline="", encoding="latin1"
         ) as csvFile:
             writer = csv.writer(csvFile, delimiter=";")
             for item in headers:
@@ -612,16 +640,8 @@ class Export:
 
                     if item == "Process name":
 
-                        name = (
-                            ds["reference product"]
-                            + " {"
-                            + ds.get("location", "GLO")
-                            + "}"
-                            + "| "
-                            + ds["name"]
-                            + " "
-                            + "| Cut-off, U"
-                        )
+                        name = f"{ds['reference product']} {{{ds.get('location', 'GLO')}}}| {ds['name']} | Cut-off, U"
+
                         writer.writerow([name])
 
                     if item == "Type":
@@ -643,12 +663,12 @@ class Export:
 
                         if ds["name"] in dict_refs:
                             string = re.sub(
-                                "[^a-zA-Z0-9 \.,]", "", dict_refs[ds["name"]]["source"]
+                                "[^a-zA-Z0-9 .,]", "", dict_refs[ds["name"]]["source"]
                             )
 
                             if dict_refs[ds["name"]]["description"] != "":
                                 string += " " + re.sub(
-                                    "[^a-zA-Z0-9 \.,]",
+                                    "[^a-zA-Z0-9 .,]",
                                     "",
                                     dict_refs[ds["name"]]["description"],
                                 )
@@ -656,7 +676,7 @@ class Export:
                             writer.writerow([string])
                         else:
                             if "comment" in ds:
-                                string = re.sub("[^a-zA-Z0-9 \.,]", "", ds["comment"])
+                                string = re.sub("[^a-zA-Z0-9 .,]", "", ds["comment"])
                                 writer.writerow([string])
 
                     if item in (
@@ -763,17 +783,10 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "natural resource"
                             ):
-                                if len(e["categories"]) > 1:
-                                    sub_compartment = simapro_subs.get(
-                                        e["categories"][1], ""
-                                    )
-                                else:
-                                    sub_compartment = ""
-
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        sub_compartment,
+                                        "",
                                         simapro_units[e["unit"]],
                                         "{:.3E}".format(e["amount"]),
                                         "undefined",
@@ -815,16 +828,16 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "water"
                             ):
-                                if e["name"].lower() == "water":
-                                    e["unit"] = "kilogram"
-                                    e["amount"] /= 1000
-
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
                                         e["categories"][1], ""
                                     )
                                 else:
                                     sub_compartment = ""
+
+                                if e["name"].lower() == "water":
+                                    e["unit"] = "kilogram"
+                                    e["amount"] /= 1000
 
                                 writer.writerow(
                                     [

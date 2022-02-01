@@ -1,0 +1,43 @@
+# mapping between IAM regions and climate types
+---
+image:
+  BRA: tropical
+  CAN: temperate
+  CEU: temperate
+  CHN: temperate
+  EAF: tropical
+  INDIA: tropical
+  INDO: tropical
+  JAP: temperate
+  KOR: temperate
+  ME: tropical
+  MEX: temperate
+  NAF: tropical
+  OCE: tropical
+  RCAM: tropical
+  RSAF: temperate
+  RSAM: tropical
+  RSAS: tropical
+  RUS: temperate
+  SAF: tropical
+  SEAS: tropical
+  STAN: temperate
+  TUR: temperate
+  USA: temperate
+  UKR: temperate
+  WAF: tropical
+  WEU: temperate
+
+remind:
+  LAM: tropical
+  CAZ: temperate
+  EUR: temperate
+  CHA: temperate
+  SSA: tropical
+  IND: tropical
+  OAS: tropical
+  JPN: temperate
+  MEA: tropical
+  NEU: temperate
+  REF: temperate
+  USA: temperate
