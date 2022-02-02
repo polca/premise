@@ -121,13 +121,11 @@ jobs:
           PKG_NAME=premise
           USER=romainsacchi
           conda install anaconda-client
-          conda install conda-verify
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
           conda build "conda/" --old-build-string
-          conda-verify $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
           ls $CONDA_BLD_PATH/noarch/
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
