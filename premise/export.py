@@ -6,7 +6,7 @@ import re
 
 from . import DATA_DIR, __version__
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_37.csv"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_38.csv"
 
 
 def create_index_of_A_matrix(db):

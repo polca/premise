@@ -16,6 +16,7 @@ import wurst
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import *
+from .utils import c
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
