@@ -65,6 +65,7 @@ Biomass IGCC CCS:
       - 100% SNG, burned in CC plant, truck 25km, post, pipeline 200km, storage 1000m
       - Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
       - Hydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass with CCS, at gasification plant
+      - market for wood chips
 Biomass IGCC:
   iam_aliases:
     remind: SE|Electricity|Biomass|IGCC|w/o CCS
@@ -78,7 +79,7 @@ Biomass IGCC:
       - electricity production, at BIGCC power plant, no CCS
   ecoinvent_fuel_aliases:
     fltr:
-      - ydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass, at gasification plant
+      - market for wood chips
 Coal PC:
   iam_aliases:
     remind: SE|Electricity|Coal|PC|w/o CCS
