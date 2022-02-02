@@ -18,11 +18,7 @@ from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export
 from .fuels import Fuels
-from .inventory_imports import (
-    AdditionalInventory,
-    DefaultInventory,
-    VariousVehicles,
-)
+from .inventory_imports import AdditionalInventory, DefaultInventory, VariousVehicles
 from .renewables import SolarPV
 from .steel import Steel
 from .utils import (
@@ -180,7 +176,6 @@ LIST_TRANSF_FUNC = [
 def clear_cache():
     [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file()]
     print("Cache folder cleared!")
-
 
 
 # Disable printing
