@@ -100,3 +100,6 @@ US-PR:
 US only:
   remind: USA
   image: USA
+APAC:
+  remind: OAS
+  image: SEAS

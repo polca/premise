@@ -59,12 +59,13 @@ Biomass IGCC CCS:
     fltr:
       - electricity production, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m
       - electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
-      - electricity production, at BIGCC power plant 450MW, pre, pipeline 200km, storage 1000m
+      - electricity production, at BIGCC power plant, pre, pipeline 200km, storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
       - 100% SNG, burned in CC plant, truck 25km, post, pipeline 200km, storage 1000m
       - Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
       - Hydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass with CCS, at gasification plant
+      - market for wood chips
 Biomass IGCC:
   iam_aliases:
     remind: SE|Electricity|Biomass|IGCC|w/o CCS
@@ -75,10 +76,10 @@ Biomass IGCC:
   gains_aliases: Power_Gen_Bio_Trad
   ecoinvent_aliases:
     fltr:
-      - electricity production, at BIGCC power plant 450MW, no CCS
+      - electricity production, at BIGCC power plant, no CCS
   ecoinvent_fuel_aliases:
     fltr:
-      - ydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass, at gasification plant
+      - market for wood chips
 Coal PC:
   iam_aliases:
     remind: SE|Electricity|Coal|PC|w/o CCS
@@ -319,10 +320,10 @@ Nuclear:
       name: aluminium
   ecoinvent_fuel_aliases:
     fltr:
-    - market for uranium, enriched
-    - market for nuclear fuel element, for pressure water reactor
-    - market for nuclear fuel element, for boiling water reactor
-    - market for uranium hexafluoride
+      - market for uranium, enriched
+      - market for nuclear fuel element, for pressure water reactor
+      - market for nuclear fuel element, for boiling water reactor
+      - market for uranium hexafluoride
 Oil ST:
   iam_aliases:
     remind: SE|Electricity|Oil|w/o CCS
@@ -424,13 +425,13 @@ Solar PV Centralized:
     image: Secondary Energy|Electricity|Solar|PV|1
   ecoinvent_aliases:
     fltr:
-      - electricity production, photovoltaic, 570kWp
+      - electricity production, photovoltaic, commercial
 Solar PV Residential:
   iam_aliases:
     image: Secondary Energy|Electricity|Solar|PV|2
   ecoinvent_aliases:
     fltr:
-      - electricity production, photovoltaic, 3kWp
+      - electricity production, photovoltaic, residential
 Wind Onshore:
   iam_aliases:
     image: Secondary Energy|Electricity|Wind|1

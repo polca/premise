@@ -1,3 +1,10 @@
+"""
+geomap.py contains the Geomap class that allows to find equivalents between
+the IAM locations and ecoinvent locations.
+"""
+
+from typing import Dict, List, Union
+
 import yaml
 from wurst import geomatcher
 
@@ -7,7 +14,7 @@ ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
 
 
-def get_additional_mapping():
+def get_additional_mapping() -> Dict[str, str]:
     """
     Return a dictionary with additional ecoinvent to IAM mappings
     """
@@ -17,10 +24,10 @@ def get_additional_mapping():
     return out
 
 
-def get_iam_to_iam_mapping():
+def get_iam_to_iam_mapping() -> Dict[str, str]:
     """
     Return a dictionary with IAM to IAM mappings
-    :return:
+    :return: dictionary with IAM to IAM location mapping
     """
     with open(IAM_TO_IAM_MAPPING, "r") as stream:
         out = yaml.safe_load(stream)
@@ -30,10 +37,11 @@ def get_iam_to_iam_mapping():
 
 class Geomap:
     """
-    Map ecoinvent locations to REMIND regions and vice-versa.
+    Map ecoinvent locations to IAM regions and vice-versa.
+    :ivar model: IAM model (e.g., "remind", "image")
     """
 
-    def __init__(self, model):
+    def __init__(self, model: str) -> None:
 
         self.model = model
         self.geo = geomatcher
@@ -46,17 +54,16 @@ class Geomap:
             if isinstance(x, tuple) and x[0] == self.model.upper()
         ]
 
-    def iam_to_ecoinvent_location(self, location, contained=True):
+    def iam_to_ecoinvent_location(
+        self, location: str, contained: bool = True
+    ) -> Union[List[str], str]:
         """
         Find the corresponding ecoinvent region given an IAM region.
-
         :param location: name of a IAM region
-        :type location: str
-        :param contained: whether only geographies that are contained within the IAM region should be returned.
-        By default, `contained` is False, meaning the function also returns geographies that intersects with IAM region.
-        :type contained: bool
+        :param contained: whether only geographies that are contained within
+        the IAM region should be returned. By default, `contained` is False,
+        meaning the function also returns geographies that intersects with IAM region.
         :return: name(s) of an ecoinvent region
-        :rtype: list
         """
 
         location = (self.model.upper(), location)
@@ -80,15 +87,12 @@ class Geomap:
             print("Can't find location {} using the geomatcher.".format(location))
             return ["RoW"]
 
-    def ecoinvent_to_iam_location(self, location):
+    def ecoinvent_to_iam_location(self, location: str) -> str:
         """
-        Return an IAM region name for a 2-digit ISO country code given.
+        Return an IAM region name for an ecoinvent location given.
         Set rules in case two IAM regions are within the ecoinvent region.
-
-        :param location: 2-digit ISO country code
-        :type location: str
+        :param location: ecoinvent location
         :return: IAM region name
-        :rtype: str
         """
 
         # First, it can be that the location is already
@@ -172,20 +176,22 @@ class Geomap:
             # more than one region is found
             print(f"More than one region found for {location}:{iam_location}")
 
-    def iam_to_GAINS_region(self, location):
+    def iam_to_GAINS_region(self, location: str) -> str:
         """
-        Regions defined in GAINS emission data follows REMIND naming convention, but is different from IMAGE.
-        :param location:
-        :return:
+        Regions defined in GAINS emission data follows REMIND naming
+        convention, but those are different for other IAMs.
+        :param location: IAM location
+        :return: GAINS location
         """
         return self.iam_to_iam_mappings[self.model][location]["gains"]
 
-    def iam_to_iam_region(self, location, to_iam):
+    def iam_to_iam_region(self, location: str, from_iam: str) -> str:
         """
-        When data is defined according to one IAM geography naming convention but needs to be used with another IAM.
+        When data is defined according to one IAM geography naming convention
+        but needs to be used with another IAM.
         :param location: location to search the equivalent for
         :param: to_iam: the IAM to search the equivalent for
         :return: the equivalent location
         """
 
-        return self.iam_to_iam_mappings[self.model][location][to_iam]
+        return self.iam_to_iam_mappings[self.model][location][from_iam]

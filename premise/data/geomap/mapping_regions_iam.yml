@@ -80,8 +80,9 @@ image:
     remind: EUR
     gains: EUR
   World:
-    remind: EUR
+    remind: World
     gains: EUR
+
 remind:
   CAZ:
     image: CAN
@@ -122,6 +123,3 @@ remind:
   World:
     image: World
     gains: EUR
-
-  
-  

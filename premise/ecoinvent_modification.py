@@ -20,11 +20,7 @@ from .export import Export
 from .fuels import Fuels
 from .inventory_imports import (
     AdditionalInventory,
-    CarculatorInventory,
     DefaultInventory,
-    PassengerCars,
-    TruckInventory,
-    Trucks,
     VariousVehicles,
 )
 from .renewables import SolarPV
@@ -38,6 +34,8 @@ from .utils import (
     eidb_label,
     s,
 )
+
+DIR_CACHED_DB = DATA_DIR / "cache"
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -101,11 +99,9 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
-FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
-FILE_PATH_INVENTORIES_EI_38 = INVENTORY_DIR / "inventory_data_ei_38.pickle"
-FILE_PATH_INVENTORIES_EI_37 = INVENTORY_DIR / "inventory_data_ei_37.pickle"
-FILE_PATH_INVENTORIES_EI_36 = INVENTORY_DIR / "inventory_data_ei_36.pickle"
-FILE_PATH_INVENTORIES_EI_35 = INVENTORY_DIR / "inventory_data_ei_35.pickle"
+FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
+FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
+FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
 
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
 SUPPORTED_MODELS = ["remind", "image"]
@@ -138,17 +134,6 @@ LIST_REMIND_REGIONS = [
     "SSA",
     "USA",
     "World",
-    "ESC",
-    "ECE",
-    "DEU",
-    "ESW",
-    "FRA",
-    "UKI",
-    "ENC",
-    "EWN",
-    "ECS",
-    "NEN",
-    "NES",
 ]
 
 LIST_IMAGE_REGIONS = [
@@ -180,19 +165,23 @@ LIST_IMAGE_REGIONS = [
     "WEU",
     "World",
 ]
-
 LIST_TRANSF_FUNC = [
     "update_electricity",
     "update_cement",
     "update_steel",
-    "update_cars",
     "update_two_wheelers",
+    "update_cars",
     "update_trucks",
-    "update_solar_pv",
+    "update_buses",
     "update_fuels",
 ]
 
-DIR_CACHED_DB = DATA_DIR / "cache"
+# clear the cache folder
+def clear_cache():
+    [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file()]
+    print("Cache folder cleared!")
+
+
 
 # Disable printing
 def blockPrint():
@@ -769,7 +758,7 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path
         ).prepare_datasets()
 
-    def __import_inventories(self):
+    def __import_inventories(self) -> List[dict]:
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
@@ -788,6 +777,8 @@ class NewDatabase:
                 (FILEPATH_DAC_INVENTORIES, "3.7"),
                 (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
                 (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_BATTERIES, "3.8"),
+                (FILEPATH_PHOTOVOLTAICS, "3.7"),
                 (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
                 (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
                 (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
@@ -814,6 +805,7 @@ class NewDatabase:
                 (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_BIGCC, "3.8"),
             ]
             for filepath in filepaths:
                 inventory = DefaultInventory(
