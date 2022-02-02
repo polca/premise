@@ -137,6 +137,7 @@ jobs:
           PKG_NAME=premise_fuels
           USER=romainsacchi
           conda install anaconda-client
+          conda install conda-build
           conda install conda-verify
           conda install pytest
           mkdir ~/conda-bld
