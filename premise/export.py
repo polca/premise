@@ -5,8 +5,63 @@ import os
 import re
 
 from . import DATA_DIR, __version__
+from .utils import c, s
+import pandas as pd
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_38.csv"
+
+
+def build_superstructure_database(database, db_name, filepath):
+
+    df_exp = database[
+        [
+            (s.exchange, c.prod_name),
+            (s.exchange, c.prod_prod),
+            (s.exchange, c.prod_loc),
+            (s.exchange, c.cons_name),
+            (s.exchange, c.cons_prod),
+            (s.exchange, c.cons_loc),
+            (s.exchange, c.type)
+        ]
+    ][s.exchange]
+
+    df_exp.columns = [
+        "from activity name",
+        "from reference product",
+        "from location",
+        "to activity name",
+        "to reference product",
+        "to location",
+        "flow type",
+    ]
+
+    df_exp["from categories"] = df_exp.loc[df_exp["flow type"] == "biosphere", "from location"]
+    df_exp["to categories"] = df_exp.loc[df_exp["flow type"] == "biosphere", "to location"]
+    df_exp.loc[df_exp["flow type"] == "biosphere", ["from location", "to location"]] = ""
+
+    df_exp.loc[df_exp["flow type"] == "biosphere", "from database"] = "biosphere3"
+    df_exp.loc[df_exp["flow type"] != "biosphere", "from database"] = db_name
+    df_exp.loc[df_exp["flow type"] != "biosphere", "to database"] = db_name
+
+    df_vals = database[[t for t in database.columns if t[1] == c.amount]].droplevel(level=1, axis=1)
+
+    cols = [t for t in df_vals.columns if t != s.ecoinvent]
+    for t in cols:
+        df_vals[t] = df_vals[t].fillna(df_vals[s.ecoinvent])
+
+    pd.concat([df_exp[
+                   ["from activity name",
+                    "from reference product",
+                    "from location",
+                    "from categories",
+                    "to activity name",
+                    "to reference product",
+                    "to location",
+                    "to categories",
+                    "flow type", ]
+               ], df_vals], axis=1).to_excel(filepath, index=False)
+
+    print(f"Scenario difference file exported to {filepath}!")
 
 
 def create_index_of_A_matrix(db):

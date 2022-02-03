@@ -9,8 +9,10 @@ import pandas as pd
 import yaml
 from wurst import searching as ws
 
-from .export import *
 from .geomap import Geomap
+import csv
+from . import DATA_DIR
+
 
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
@@ -298,7 +300,7 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
             producer_type = iexc["type"]
 
             if iexc["type"] == "biosphere":
-                producer_product = "-"
+                producer_product = ""
                 producer_location = "::".join(iexc["categories"])
                 producer_key = iexc["input"][1]
             else:
@@ -429,7 +431,7 @@ def transf(df: pd.DataFrame, col: str) -> dict:
     return outer
 
 
-def convert_df_to_dict(df: pd.DataFrame) -> List[dict]:
+def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
     """
     Converts ds into lists of dictionaries. Each list is a scenario database.
     :param df: pd.DataFrame. Contains the database in a tabular form.
@@ -446,7 +448,7 @@ def convert_df_to_dict(df: pd.DataFrame) -> List[dict]:
 
         df.loc[sel, col] = df.loc[sel, (s.ecoinvent, col[1])]
 
-    cols = {col[0] for col in scenarios}
+    cols = {col[0] for col in scenarios} if db_type == "single" else {s.ecoinvent}
 
     for col in cols:
         temp = df.loc[:, ((s.exchange, col), slice(None))].droplevel(level=0, axis=1)
@@ -556,22 +558,6 @@ def get_steel_recycling_rates(year):
     )
 
 
-def get_metals_recycling_rates(year):
-    """
-    Return an array with the average shares for some metals,
-    as given by: https://static-content.springer.com/esm/art%3A10.1038%2Fs43246-020-00095-x/MediaObjects/43246_2020_95_MOESM1_ESM.pdf
-    for 2025, 2035, 2045.
-    :return: xarray
-    :return:
-    """
-    df = pd.read_csv(METALS_RECYCLING_SHARES, sep=";")
-
-    return (
-        df.groupby(["metal", "year", "type"])
-        .mean()["share"]
-        .to_xarray()
-        .interp(year=year)
-    )
 
 
 def rev_index(inds):
@@ -596,93 +582,6 @@ def create_codes_and_names_of_A_matrix(db):
     }
 
 
-def add_modified_tags(original_db, scenarios):
-    """
-    Add a `modified` label to any activity that is new
-    Also add a `modified` label to any exchange that has been added
-    or that has a different value than the source database.
-    :return:
-    """
-
-    # Class `Export` to which the original database is passed
-    exp = Export(original_db)
-    # Collect a dictionary of activities {row/col index in A matrix: code}
-    rev_ind_A = rev_index(create_codes_index_of_A_matrix(original_db))
-    # Retrieve list of coordinates [activity, activity, value]
-    coords_A = exp.create_A_matrix_coordinates()
-    # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
-    original = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
-    # Collect a dictionary with activities' names and correponding codes
-    codes_names = create_codes_and_names_of_A_matrix(original_db)
-    # Collect list of substances
-    rev_ind_B = rev_index(create_codes_index_of_B_matrix())
-    # Retrieve list of coordinates of the B matrix [activity index, substance index, value]
-    coords_B = exp.create_B_matrix_coordinates()
-    # Turn it into a dictionary {(activity code, substance code): value}
-    original.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
-
-    for s, scenario in enumerate(scenarios):
-        print(f"Looking for differences in database {s + 1} ...")
-        rev_ind_A = rev_index(create_codes_index_of_A_matrix(scenario["database"]))
-        exp = Export(
-            scenario["database"],
-            scenario["model"],
-            scenario["pathway"],
-            scenario["year"],
-            "",
-        )
-        coords_A = exp.create_A_matrix_coordinates()
-        new = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
-
-        rev_ind_B = rev_index(create_codes_index_of_B_matrix())
-        coords_B = exp.create_B_matrix_coordinates()
-        new.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
-
-        list_new = set(i[0] for i in original.keys()) ^ set(i[0] for i in new.keys())
-
-        ds = (d for d in scenario["database"] if d["code"] in list_new)
-
-        # Tag new activities
-        for d in ds:
-            d["modified"] = True
-
-        # List codes that belong to activities that contain modified exchanges
-        list_modified = (i[0] for i in new if i in original and new[i] != original[i])
-        #
-        # Filter for activities that have modified exchanges
-        for ds in ws.get_many(
-            scenario["database"],
-            ws.either(*[ws.equals("code", c) for c in set(list_modified)]),
-        ):
-            # Loop through biosphere exchanges and check if
-            # the exchange also exists in the original database
-            # and if it has the same value
-            # if any of these two conditions is False, we tag the exchange
-            excs = (exc for exc in ds["exchanges"] if exc["type"] == "biosphere")
-            for exc in excs:
-                if (ds["code"], exc["input"][0]) not in original or new[
-                    (ds["code"], exc["input"][0])
-                ] != original[(ds["code"], exc["input"][0])]:
-                    exc["modified"] = True
-            # Same thing for technosphere exchanges,
-            # except that we first need to look up the provider's code first
-            excs = (exc for exc in ds["exchanges"] if exc["type"] == "technosphere")
-            for exc in excs:
-                if (
-                    exc["name"],
-                    exc["product"],
-                    exc["unit"],
-                    exc["location"],
-                ) in codes_names:
-                    exc_code = codes_names[
-                        (exc["name"], exc["product"], exc["unit"], exc["location"])
-                    ]
-                    if new[(ds["code"], exc_code)] != original[(ds["code"], exc_code)]:
-                        exc["modified"] = True
-                else:
-                    exc["modified"] = True
-
-    return scenarios
 
 
 def create_scenario_label(model: str, pathway: str, year: int) -> str:
@@ -720,7 +619,7 @@ def relink_technosphere_exchanges(
     new_exchanges = []
     technosphere = lambda x: x["type"] == "technosphere"
 
-    geomatcher = geomap.Geomap(model=model)
+    geomatcher = Geomap(model=model)
 
     list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()]
 

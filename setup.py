@@ -41,8 +41,6 @@ setup(
         "bw2data",
         "brightway2",
         "xarray",
-        "carculator",
-        "carculator_truck",
         "prettytable",
         "pycountry",
         "cryptography",

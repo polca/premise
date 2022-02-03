@@ -16,13 +16,12 @@ from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import Export
+from .export import Export, build_superstructure_database
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory, VariousVehicles
 from .renewables import SolarPV
 from .steel import Steel
 from .utils import (
-    add_modified_tags,
     c,
     convert_db_to_dataframe,
     convert_df_to_dict,
@@ -596,18 +595,18 @@ class NewDatabase:
     """
 
     def __init__(
-        self,
-        scenarios,
-        source_version="3.8",
-        source_type="brightway",
-        key=None,
-        source_db=None,
-        source_file_path=None,
-        additional_inventories=None,
-        use_cached_inventories=True,
-        system_model="attributional",
-        time_horison=None,
-        use_cached_database=False,
+            self,
+            scenarios,
+            source_version="3.8",
+            source_type="brightway",
+            key=None,
+            source_db=None,
+            source_file_path=None,
+            additional_inventories=None,
+            use_cached_inventories=True,
+            system_model="attributional",
+            time_horison=None,
+            use_cached_database=False,
     ):
 
         self.source = source_db
@@ -646,6 +645,7 @@ class NewDatabase:
             print("Done!")
         else:
             self.database = self.__clean_database()
+            print("No cache of database created.")
 
         print("\n/////////////////// IMPORTING DEFAULT INVENTORIES //////////////////")
 
@@ -656,6 +656,7 @@ class NewDatabase:
                 print("Done!")
         else:
             self.__import_inventories()
+            print("No cache of inventories created.")
 
         if self.additional_inventories:
             self.__import_additional_inventories()
@@ -930,10 +931,10 @@ class NewDatabase:
                         model=scenario["model"],
                         year=scenario["year"],
                         regions=scenario["external data"]
-                        .data.coords["region"]
-                        .values.tolist(),
+                            .data.coords["region"]
+                            .values.tolist(),
                         iam_data=scenario["external data"].data,
-                    )
+                            )
 
                 scenario["database"] = cars.merge_inventory()
 
@@ -942,8 +943,8 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if (
-                "exclude" not in scenario
-                or "update_two_wheelers" not in scenario["exclude"]
+                    "exclude" not in scenario
+                    or "update_two_wheelers" not in scenario["exclude"]
             ):
 
                 various_veh = VariousVehicles(
@@ -953,10 +954,10 @@ class NewDatabase:
                     path=FILEPATH_TWO_WHEELERS,
                     year=scenario["year"],
                     regions=scenario["external data"]
-                    .data.coords["region"]
-                    .values.tolist(),
+                        .data.coords["region"]
+                        .values.tolist(),
                     model=scenario["model"],
-                )
+                        )
                 scenario["database"] = various_veh.merge_inventory()
 
     def update_trucks(self):
@@ -991,10 +992,10 @@ class NewDatabase:
                         model=scenario["model"],
                         year=scenario["year"],
                         regions=scenario["external data"]
-                        .data.coords["region"]
-                        .values.tolist(),
+                            .data.coords["region"]
+                            .values.tolist(),
                         iam_data=scenario["external data"].data,
-                    )
+                            )
 
                 scenario["database"] = trucks.merge_inventory()
 
@@ -1003,8 +1004,8 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if (
-                "exclude" not in scenario
-                or "update_solar_pv" not in scenario["exclude"]
+                    "exclude" not in scenario
+                    or "update_solar_pv" not in scenario["exclude"]
             ):
                 solar_pv = SolarPV(db=scenario["database"], year=scenario["year"])
                 print("Update efficiency of solar PVs.\n")
@@ -1025,23 +1026,38 @@ class NewDatabase:
         self.update_fuels()
 
     def write_superstructure_db_to_brightway(
-        self, name=f"super_db_{date.today()}", filepath=None
+            self, name=None, filepath=None
     ):
+
         """
         Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
         :return: filepath of the "scenarios difference file"
         """
 
-        self.database = build_superstructure_db(
-            self.database, self.scenarios, db_name=name, fp=filepath
+        if filepath is not None:
+            filepath = Path(filepath)
+        else:
+            filepath = DATA_DIR / "export" / "scenario diff files"
+
+        if not os.path.exists(filepath):
+            os.makedirs(filepath)
+
+        name = f"super_db_{self.version}_{date.today()}"
+        filepath = filepath / f"{name}.xlsx"
+
+        build_superstructure_database(
+            database=self.database, db_name=name, filepath=filepath
+        )
+
+        print(f"Exporting {name}...")
+
+        wurst.write_brightway2_database(
+            next(convert_df_to_dict(self.database, db_type="super")),
+            name,
         )
 
         print("Done!")
 
-        wurst.write_brightway2_database(
-            self.database,
-            name,
-        )
 
     def write_db_to_brightway(self, name=None):
         """
