@@ -595,18 +595,18 @@ class NewDatabase:
     """
 
     def __init__(
-            self,
-            scenarios,
-            source_version="3.8",
-            source_type="brightway",
-            key=None,
-            source_db=None,
-            source_file_path=None,
-            additional_inventories=None,
-            use_cached_inventories=True,
-            system_model="attributional",
-            time_horison=None,
-            use_cached_database=False,
+        self,
+        scenarios,
+        source_version="3.8",
+        source_type="brightway",
+        key=None,
+        source_db=None,
+        source_file_path=None,
+        additional_inventories=None,
+        use_cached_inventories=True,
+        system_model="attributional",
+        time_horison=None,
+        use_cached_database=False,
     ):
 
         self.source = source_db
@@ -931,10 +931,10 @@ class NewDatabase:
                         model=scenario["model"],
                         year=scenario["year"],
                         regions=scenario["external data"]
-                            .data.coords["region"]
-                            .values.tolist(),
+                        .data.coords["region"]
+                        .values.tolist(),
                         iam_data=scenario["external data"].data,
-                            )
+                    )
 
                 scenario["database"] = cars.merge_inventory()
 
@@ -943,8 +943,8 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if (
-                    "exclude" not in scenario
-                    or "update_two_wheelers" not in scenario["exclude"]
+                "exclude" not in scenario
+                or "update_two_wheelers" not in scenario["exclude"]
             ):
 
                 various_veh = VariousVehicles(
@@ -954,10 +954,10 @@ class NewDatabase:
                     path=FILEPATH_TWO_WHEELERS,
                     year=scenario["year"],
                     regions=scenario["external data"]
-                        .data.coords["region"]
-                        .values.tolist(),
+                    .data.coords["region"]
+                    .values.tolist(),
                     model=scenario["model"],
-                        )
+                )
                 scenario["database"] = various_veh.merge_inventory()
 
     def update_trucks(self):
@@ -992,10 +992,10 @@ class NewDatabase:
                         model=scenario["model"],
                         year=scenario["year"],
                         regions=scenario["external data"]
-                            .data.coords["region"]
-                            .values.tolist(),
+                        .data.coords["region"]
+                        .values.tolist(),
                         iam_data=scenario["external data"].data,
-                            )
+                    )
 
                 scenario["database"] = trucks.merge_inventory()
 
@@ -1004,8 +1004,8 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if (
-                    "exclude" not in scenario
-                    or "update_solar_pv" not in scenario["exclude"]
+                "exclude" not in scenario
+                or "update_solar_pv" not in scenario["exclude"]
             ):
                 solar_pv = SolarPV(db=scenario["database"], year=scenario["year"])
                 print("Update efficiency of solar PVs.\n")
@@ -1025,9 +1025,7 @@ class NewDatabase:
         self.update_steel()
         self.update_fuels()
 
-    def write_superstructure_db_to_brightway(
-            self, name=None, filepath=None
-    ):
+    def write_superstructure_db_to_brightway(self, name=None, filepath=None):
 
         """
         Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
@@ -1057,7 +1055,6 @@ class NewDatabase:
         )
 
         print("Done!")
-
 
     def write_db_to_brightway(self, name=None):
         """
