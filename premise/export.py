@@ -49,7 +49,7 @@ def build_superstructure_database(database, db_name, filepath):
     df_exp.loc[df_exp["flow type"] == "biosphere", "from database"] = "biosphere3"
     df_exp.loc[df_exp["flow type"] != "biosphere", "from database"] = db_name
     df_exp.loc[df_exp["flow type"] != "biosphere", "to database"] = db_name
-    
+
     df_vals = database[[t for t in database.columns if t[1] == c.amount]].droplevel(
         level=1, axis=1
     )
