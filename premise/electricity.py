@@ -801,6 +801,7 @@ class Electricity(BaseTransformation):
                         # we widen the scope to EU-based datasets, and RoW, and finally Switzerland
 
                         possible_locations = [
+                            [region],
                             ecoinvent_regions,
                             ["RER"],
                             ["RoW"],
@@ -1240,6 +1241,60 @@ class Electricity(BaseTransformation):
                 exc["name"] = "market for biomass, used as fuel"
                 exc["product"] = "biomass, used as fuel"
                 exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]]
+
+    def create_region_specific_power_plants(self):
+        """
+        Some power plant inventories are not native to ecoinvent
+        but imported. However, they are defined for a specific location
+        (mostly European), but are used in many electricity markets
+        (non-European). Hence, we create region-specific versions of these datasets,
+        to align inputs providers with the geographical scope of the region.
+
+        """
+
+        all_plants = []
+
+
+
+        techs = [
+            "Wood chips, burned in power plant",
+            "Natural gas, in ATR ",
+            "100% SNG, burned",
+            "Hard coal, burned",
+            "Lignite, burned",
+            "CO2 storage/",
+            "CO2 capture/",
+            "Biomass CHP CCS",
+            "Biomass ST",
+            "Biomass IGCC CCS",
+            "Biomass IGCC",
+            "Coal IGCC",
+            "Coal PC CCS",
+            "Coal CHP CCS",
+            "Coal IGCC CCS",
+            "Gas CHP CCS",
+            "Gas CC CCS",
+            "Oil CC CCS",
+        ]
+
+
+
+        for tech in techs:
+            for ds in ws.get_many(
+                self.database,
+                ws.either(*[ws.contains("name", n) for n in self.powerplant_map[tech]]) if tech in self.powerplant_map
+                else ws.contains("name", tech)
+            ):
+                new_plants = self.fetch_proxies(
+                   name=ds["name"],
+                    ref_prod=ds["reference product"],
+                    production_variable=tech,
+                    relink=True
+                )
+
+                all_plants.extend(new_plants.values())
+
+        self.database.extend(all_plants)
 
     def update_electricity_efficiency(self) -> None:
         """

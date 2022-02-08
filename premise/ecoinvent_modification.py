@@ -717,6 +717,7 @@ class NewDatabase:
                 electricity.update_ng_production_ds()
                 electricity.update_efficiency_of_solar_pv()
                 electricity.create_biomass_markets()
+                electricity.create_region_specific_power_plants()
                 electricity.update_electricity_markets()
                 electricity.update_electricity_efficiency()
                 scenario["database"] = electricity.database

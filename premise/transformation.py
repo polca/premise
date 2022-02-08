@@ -210,7 +210,10 @@ class BaseTransformation:
         else:
             dataset["parameters"]["efficiency"] = new_eff
 
-        iam_region = self.ecoinvent_to_iam_loc[dataset["location"]]
+        if dataset["location"] in self.regions:
+            iam_region = dataset["location"]
+        else:
+            iam_region = self.ecoinvent_to_iam_loc[dataset["location"]]
 
         new_txt = (
             f" 'premise' has modified the efficiency of this dataset, from an original "

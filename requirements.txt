@@ -10,3 +10,4 @@ pycountry
 cryptography
 premise_gwp
 pyYaml
+scipy==1.7.0

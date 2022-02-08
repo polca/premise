@@ -29,6 +29,7 @@ requirements:
     - pycountry
     - cryptography
     - pyYaml
+    - scipy ==1.7.0
 
 test:
   imports:

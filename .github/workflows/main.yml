@@ -226,7 +226,7 @@ jobs:
         shell: bash -l {0}
 
         run: |
-          conda install -c romainsacchi premise-fuels-dev
+          conda install -c romainsacchi premise-dev
           conda install pytest
           pytest -m "not ecoinvent"
         env:
