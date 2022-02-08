@@ -46,7 +46,7 @@ setup(
         "cryptography",
         "premise_gwp",
         "pyYaml",
-        "scipy==1.7.0"
+        "scipy==1.7.0",
     ],
     url="https://github.com/romainsacchi/premise",
     description="Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA",

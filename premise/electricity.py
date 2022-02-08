@@ -1254,8 +1254,6 @@ class Electricity(BaseTransformation):
 
         all_plants = []
 
-
-
         techs = [
             "Wood chips, burned in power plant",
             "Natural gas, in ATR ",
@@ -1277,19 +1275,18 @@ class Electricity(BaseTransformation):
             "Oil CC CCS",
         ]
 
-
-
         for tech in techs:
             for ds in ws.get_many(
                 self.database,
-                ws.either(*[ws.contains("name", n) for n in self.powerplant_map[tech]]) if tech in self.powerplant_map
-                else ws.contains("name", tech)
+                ws.either(*[ws.contains("name", n) for n in self.powerplant_map[tech]])
+                if tech in self.powerplant_map
+                else ws.contains("name", tech),
             ):
                 new_plants = self.fetch_proxies(
-                   name=ds["name"],
+                    name=ds["name"],
                     ref_prod=ds["reference product"],
                     production_variable=tech,
-                    relink=True
+                    relink=True,
                 )
 
                 all_plants.extend(new_plants.values())
