@@ -1,3 +1,4 @@
+import csv
 import enum
 import hashlib
 import pprint
@@ -9,10 +10,8 @@ import pandas as pd
 import yaml
 from wurst import searching as ws
 
-from .geomap import Geomap
-import csv
 from . import DATA_DIR
-
+from .geomap import Geomap
 
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
@@ -558,8 +557,6 @@ def get_steel_recycling_rates(year):
     )
 
 
-
-
 def rev_index(inds):
     return {v: k for k, v in inds.items()}
 
@@ -580,8 +577,6 @@ def create_codes_and_names_of_A_matrix(db):
         ): i["code"]
         for i in db
     }
-
-
 
 
 def create_scenario_label(model: str, pathway: str, year: int) -> str:
