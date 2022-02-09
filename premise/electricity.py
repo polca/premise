@@ -1160,12 +1160,12 @@ class Electricity(BaseTransformation):
                             # we update technosphere exchanges
                             # as well as emissions except those
                             # covered by GAINS
-                            __filters_tech = __filters & equals(
-                                (s.exchange, c.type), "technosphere"
-                            ) | ~contains_any_from_list(
-                                (s.exchange, c.prod_name),
+
+                            __filters_tech = (__filters
+                                              & does_not_contain((s.exchange, c.type), "production")
+                                              & ~contains_any_from_list((s.exchange, c.prod_name),
                                 list(self.gains_substances.keys()),
-                            )
+                            ))
 
                             subset.loc[__filters_tech(subset), (scenario, c.amount)] = (
                                 subset.loc[

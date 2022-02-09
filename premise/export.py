@@ -11,16 +11,22 @@ import pandas as pd
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_38.csv"
 
 
-def build_superstructure_database(database, db_name, filepath):
+def export_scenario_difference_file(database, db_name, filepath):
+
+    scenario_cols = [t for t in database.columns if t[1] == c.amount and t[0] != s.ecoinvent]
+
+    database = database.loc[~database[scenario_cols].isnull().all(1)]
 
     df_exp = database[
         [
             (s.exchange, c.prod_name),
             (s.exchange, c.prod_prod),
             (s.exchange, c.prod_loc),
+            (s.exchange, c.prod_key),
             (s.exchange, c.cons_name),
             (s.exchange, c.cons_prod),
             (s.exchange, c.cons_loc),
+            (s.exchange, c.cons_key),
             (s.exchange, c.type)
         ]
     ][s.exchange]
@@ -29,35 +35,49 @@ def build_superstructure_database(database, db_name, filepath):
         "from activity name",
         "from reference product",
         "from location",
+        "from code",
         "to activity name",
         "to reference product",
         "to location",
+        "to code",
         "flow type",
     ]
 
     df_exp["from categories"] = df_exp.loc[df_exp["flow type"] == "biosphere", "from location"]
-    df_exp["to categories"] = df_exp.loc[df_exp["flow type"] == "biosphere", "to location"]
-    df_exp.loc[df_exp["flow type"] == "biosphere", ["from location", "to location"]] = ""
+    df_exp.loc[:, "to categories"] = ""
+
+    df_exp.loc[df_exp["flow type"] == "biosphere", "from location"] = ""
 
     df_exp.loc[df_exp["flow type"] == "biosphere", "from database"] = "biosphere3"
     df_exp.loc[df_exp["flow type"] != "biosphere", "from database"] = db_name
-    df_exp.loc[df_exp["flow type"] != "biosphere", "to database"] = db_name
+    df_exp.loc[:, "to database"] = db_name
+
+    df_exp["from code"] = df_exp["from code"].astype("string")
+    df_exp["to code"] = df_exp["to code"].astype("string")
+
+    df_exp["from key"] = list(df_exp[["from database", "from code"]].to_records(index=False))
+    df_exp["to key"] = list(df_exp[["to database", "to code"]].to_records(index=False))
+
+
 
     df_vals = database[[t for t in database.columns if t[1] == c.amount]].droplevel(level=1, axis=1)
 
-    cols = [t for t in df_vals.columns if t != s.ecoinvent]
-    for t in cols:
-        df_vals[t] = df_vals[t].fillna(df_vals[s.ecoinvent])
+    #for t in cols:
+    #    df_vals[t] = df_vals[t].fillna(df_vals[s.ecoinvent])
 
     pd.concat([df_exp[
                    ["from activity name",
                     "from reference product",
                     "from location",
                     "from categories",
+                    "from database",
+                    "from key",
                     "to activity name",
                     "to reference product",
                     "to location",
                     "to categories",
+                    "to database",
+                    "to key",
                     "flow type", ]
                ], df_vals], axis=1).to_excel(filepath, index=False)
 

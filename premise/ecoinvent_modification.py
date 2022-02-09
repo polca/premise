@@ -16,7 +16,7 @@ from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import Export, build_superstructure_database
+from .export import Export, export_scenario_difference_file
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory, VariousVehicles
 from .renewables import SolarPV
@@ -520,10 +520,7 @@ def warning_about_biogenic_co2():
             "it is advised to account for biogenic CO2 flows when calculating\n"
             "Global Warming potential indicators.\n"
             "`premise_gwp` provides characterization factors for such flows.\n\n"
-            "Install it via\n"
-            "pip install premise_gwp\n"
-            "or\n"
-            "conda install -c romainsacchi premise_gwp\n\n"
+            
             "Within your bw2 project:\n"
             "from premise_gwp import add_premise_gwp\n"
             "add_premise_gwp()"
@@ -604,9 +601,9 @@ class NewDatabase:
             source_file_path=None,
             additional_inventories=None,
             use_cached_inventories=True,
+            use_cached_database=True,
             system_model="attributional",
             time_horison=None,
-            use_cached_database=False,
     ):
 
         self.source = source_db
@@ -647,7 +644,7 @@ class NewDatabase:
             self.database = self.__clean_database()
             print("No cache of database created.")
 
-        print("\n/////////////////// IMPORTING DEFAULT INVENTORIES //////////////////")
+        print("\n//////////////////// IMPORTING DEFAULT INVENTORIES /////////////////")
 
         if use_cached_inventories:
             data = self.__find_cached_inventories(source_db)
@@ -663,7 +660,7 @@ class NewDatabase:
 
         self.database = convert_db_to_dataframe(self.database)
 
-        print("\n////////////////////// EXTRACTING IAM DATA /////////////////////////")
+        print("\n//////////////////////// EXTRACTING IAM DATA ///////////////////////")
 
         list_data = []
         for scenario in self.scenarios:
@@ -841,7 +838,7 @@ class NewDatabase:
 
     def update_electricity(self):
 
-        print("\n/////////////////// ELECTRICITY ////////////////////")
+        print("\n//////////////////////// ELECTRICITY /////////////////////////")
 
         electricity = Electricity(
             database=self.database, iam_data=self.iam_data, scenarios=self.scenarios
@@ -850,7 +847,7 @@ class NewDatabase:
         self.database = electricity.update_electricity_efficiency()
 
     def update_fuels(self):
-        print("\n/////////////////// FUELS ////////////////////")
+        print("\n/////////////////////////// FUELS ////////////////////////////")
 
         for scenario in self.scenarios:
 
@@ -1042,10 +1039,12 @@ class NewDatabase:
         if not os.path.exists(filepath):
             os.makedirs(filepath)
 
-        name = f"super_db_{self.version}_{date.today()}"
+        if name is None:
+            name = f"super_db_{self.version}_{date.today()}"
+
         filepath = filepath / f"{name}.xlsx"
 
-        build_superstructure_database(
+        export_scenario_difference_file(
             database=self.database, db_name=name, filepath=filepath
         )
 
