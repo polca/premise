@@ -7,6 +7,7 @@ on the wurst database.
 import csv
 import uuid
 from collections import Counter, defaultdict
+from copy import deepcopy
 from datetime import date
 from itertools import product
 
@@ -22,6 +23,7 @@ from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
 from .utils import c, create_scenario_label, get_fuel_properties, s
+from wurst import geomatcher
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -172,6 +174,8 @@ class BaseTransformation:
 
         self.exchange_stack = []
 
+        self.cache = {}
+
     def update_new_efficiency_in_comment(self, scenario, iam_loc, old_ei_eff, new_eff):
         """
         Update the old efficiency value in the ecoinvent dataset by the newly calculated one.
@@ -271,20 +275,29 @@ class BaseTransformation:
                 )
 
                 # Add `production volume` field
-                prod_vol = (
-                    self.iam_data.production_volumes.sel(
-                        scenario=scenario, region=region, variables=production_variable
+                if production_variable in self.iam_data.production_volumes.variables:
+                    prod_vol = (
+                        self.iam_data.production_volumes.sel(
+                            scenario=scenario, region=region, variables=production_variable
+                        )
+                        .interp(year=int(scenario.split("::")[-1]))
+                        .sum()
+                        .values.item(0)
                     )
-                    .interp(year=int(scenario.split("::")[-1]))
-                    .sum()
-                    .values.item(0)
-                )
+                else:
+                    prod_vol = 0
 
                 d_act[scenario][region] = change_production_volume(
                     d_act[scenario][region],
                     scenario,
                     prod_vol,
                 )
+
+                # relink technopshere exchanges
+                if relink:
+                    d_act[scenario][region] = self.relink_technosphere_exchanges(
+                        d_act[scenario][region],
+                    )
 
                 # empty original dataset
                 sel = _filter * ~equals((s.exchange, c.type), "production")(
@@ -325,6 +338,221 @@ class BaseTransformation:
                         exc[(scenario, c.cons_prod_vol)] = np.nan
 
         return d_act
+
+    def relink_technosphere_exchanges(
+            self,
+            ds,
+            exclusive=True,
+            biggest_first=False,
+            contained=True,
+    ):
+
+        __filters_tech = equals(
+            (s.exchange, c.type), "technosphere"
+        )(ds)
+
+        new_exchanges = []
+
+        for _, exc in ds[__filters_tech].iterrows():
+
+
+            try:
+                e = self.cache[exc[(s.exchange, c.cons_loc)]][
+                    (
+                         exc[(s.exchange, c.prod_name)],
+                         exc[(s.exchange, c.prod_prod)],
+                         exc[(s.exchange, c.prod_loc)],
+                         exc[(s.exchange, c.unit)]
+                    )
+                ]
+
+                print("found in cache", e)
+
+                new_exchanges.extend(
+
+                    [
+                        pd.Series([
+                             i[0],
+                             i[1],
+                             i[2],
+                             exc[(s.exchange, c.cons_name)],
+                             exc[(s.exchange, c.cons_prod)],
+                             exc[(s.exchange, c.cons_loc)],
+                             exc[(s.exchange, c.unit)],
+                             "technosphere",
+                             i[3],
+                             exc[(s.exchange, c.cons_key)],
+                             create_hash(i[3] + exc[(s.exchange, c.cons_key)]),
+                             ]
+                            +
+                            [
+                                exc[(s.ecoinvent, c.amount)] * i[-1],
+                                exc[(s.ecoinvent, c.efficiency)],
+                                exc[(s.ecoinvent, c.comment)],
+                                exc[(s.ecoinvent, c.cons_prod_vol)],
+                            ] * (len(self.scenario_labels) + 1)
+                        )
+                        for i in e
+                    ]
+                )
+
+            except KeyError:
+
+                __filter = (equals(
+                    (s.exchange, c.type), "production"
+                ) & equals(
+                    (s.exchange, c.cons_name), exc[(s.exchange, c.prod_name)]
+                ) & equals((s.exchange, c.cons_prod), exc[(s.exchange, c.prod_prod)]))(self.database)
+
+                possible_datasets = self.database[__filter]
+
+                print("possible datasets", possible_datasets)
+
+                possible_locations = get_dataframe_locs(possible_datasets)
+
+                print("possible locs", possible_locations)
+
+                if exc[(s.exchange, c.cons_loc)] in possible_locations:
+
+                    print("ds loc in possible locs", exc[(s.exchange, c.cons_loc)], possible_locations)
+
+                    exc[(s.exchange, c.prod_loc)] = exc[(s.exchange, c.cons_loc)]
+                    new_exchanges.append(exc)
+                    continue
+
+                if len(possible_datasets) > 0:
+
+                    with resolved_row(possible_locations, geomatcher) as g:
+                        func = g.contained if contained else g.intersects
+
+                        # if exc[(s.exchange, c.cons_loc)] in self.regions:
+                        #     location = (model.upper(), ds["location"])
+                        # else:
+                        #     location = ds["location"]
+
+                        location = exc[(s.exchange, c.cons_loc)]
+
+                        gis_match = func(
+                            location,
+                            include_self=True,
+                            exclusive=exclusive,
+                            biggest_first=biggest_first,
+                            only=possible_locations,
+                        )
+
+                    kept = [
+                        ds
+                        for loc in gis_match
+                        for ds in possible_datasets
+                        if location == loc
+                    ]
+
+                    if kept:
+                        missing_faces = geomatcher.geo[location].difference(
+                            set.union(*[geomatcher.geo[obj[(s.exchange, c.cons_loc)]] for obj in kept])
+                        )
+                        if missing_faces and "RoW" in possible_locations:
+                            kept.extend(
+                                [
+                                    obj
+                                    for _, obj in possible_datasets.iterrows()
+                                    if obj[(s.exchange, c.cons_loc)] == "RoW"
+                                ]
+                            )
+                    elif "RoW" in possible_locations:
+                        kept = [
+                            obj for _, obj in possible_datasets.iterrows() if obj[(s.exchange, c.cons_loc)] == "RoW"
+                        ]
+
+                    if not kept and "GLO" in possible_locations:
+                        kept = [
+                            obj for _, obj in possible_datasets.iterrows() if obj[(s.exchange, c.cons_loc)] == "GLO"
+                        ]
+
+                    if not kept:
+                        new_exchanges.append(exc)
+                        continue
+
+                    allocated, share = self.allocate_inputs(exc, kept)
+
+                    new_exchanges.extend(allocated)
+
+                    if exc[(s.exchange, c.cons_loc)] not in self.cache:
+                        self.cache[(s.exchange, c.cons_loc)] = {}
+
+                    self.cache[exc[(s.exchange, c.cons_loc)]][
+                        (
+                            exc[(s.exchange, c.prod_name)],
+                            exc[(s.exchange, c.prod_prod)],
+                            exc[(s.exchange, c.prod_loc)],
+                            exc[(s.exchange, c.prod_key)],
+                        )
+                    ] = [
+                        (e[(s.exchange, c.cons_name)],
+                         e[(s.exchange, c.cons_prod)],
+                         e[(s.exchange, c.cons_loc)],
+                         e[(s.exchange, c.cons_key)],
+                         s)
+                        for e, s in zip(allocated, share)
+                    ]
+
+                else:
+
+                    new_exchanges.append(exc)
+                    # add to cache
+                    if exc[(s.exchange, c.cons_loc)] not in self.cache:
+                        self.cache[(s.exchange, c.cons_loc)] = {}
+
+                    self.cache[exc[(s.exchange, c.cons_loc)]][
+                        (
+                            exc[(s.exchange, c.prod_name)],
+                            exc[(s.exchange, c.prod_prod)],
+                            exc[(s.exchange, c.prod_loc)],
+                            exc[(s.exchange, c.prod_key)],
+                        )
+                    ] = [(
+                            exc[(s.exchange, c.prod_name)],
+                            exc[(s.exchange, c.prod_prod)],
+                            exc[(s.exchange, c.prod_loc)],
+                            exc[(s.exchange, c.prod_key)],
+                            1
+                        )]
+
+        __filters_tech = does_not_contain(
+            (s.exchange, c.type), "technosphere"
+        )
+
+        ds = __filters_tech(ds)
+
+        ds = pd.concat([ds, new_exchanges])
+
+        return ds
+
+    def allocate_inputs(self, exc, lst):
+        """Allocate the input exchanges in ``lst`` to ``exc``,
+        using production volumes where possible, and equal splitting otherwise.
+        Always uses equal splitting if ``RoW`` is present."""
+        has_row = any((x[(s.exchange, c.cons_loc)] in ("RoW", "GLO") for x in lst))
+        pvs = [i[(s.ecoinvent, c.cons_prod_vol)] or 0 for i in lst]
+        if all((x > 0 for x in pvs)) and not has_row:
+            # Allocate using production volume
+            total = sum(pvs)
+        else:
+            # Allocate evenly
+            total = len(lst)
+            pvs = [1 for _ in range(total)]
+
+        def new_exchange(exc, location, factor):
+            cp = deepcopy(exc)
+            print("cp", cp)
+            cp[(s.exchange, c.cons_loc)] = location
+            filter = equals((s.exchange, c.type), "technosphere")
+            return scale_exchanges_by_constant_factor(cp, s.ecoinvent, factor, filter)
+
+        return [
+                   new_exchange(exc, obj[(s.exchange, c.cons_loc)], factor / total)
+                   for obj, factor in zip(lst, pvs)
+               ], [p / total for p in pvs]
 
     def relink_datasets(self, excludes_datasets, alternative_names=None):
         """

@@ -1221,6 +1221,58 @@ class Electricity(BaseTransformation):
 
         return self.database
 
+    def create_region_specific_power_plants(self):
+        """
+        Some power plant inventories are not native to ecoinvent
+        but imported. However, they are defined for a specific location
+        (mostly European), but are used in many electricity markets
+        (non-European). Hence, we create region-specific versions of these datasets,
+        to align inputs providers with the geographical scope of the region.
+        """
+
+        techs = [
+            "Wood chips, burned in power plant",
+            "Natural gas, in ATR ",
+            "100% SNG, burned",
+            "Hard coal, burned",
+            "Lignite, burned",
+            "CO2 storage/",
+            "CO2 capture/",
+            "Biomass CHP CCS",
+            "Biomass ST",
+            "Biomass IGCC CCS",
+            "Biomass IGCC",
+            "Coal IGCC",
+            "Coal PC CCS",
+            "Coal CHP CCS",
+            "Coal IGCC CCS",
+            "Gas CHP CCS",
+            "Gas CC CCS",
+            "Oil CC CCS",
+        ]
+
+        for tech in techs:
+
+            __filter_prod = (contains(
+                (s.exchange, c.cons_name), tech
+            ) & equals((s.exchange, c.type), "production"))(self.database)
+
+
+            for _, ds in self.database[__filter_prod].iterrows():
+
+                print(len(ds))
+                print(ds)
+
+                new_plants = self.fetch_proxies(
+                    name=ds[(s.exchange, c.cons_name)],
+                    ref_prod=ds[(s.exchange, c.cons_prod)],
+                    production_variable=tech,
+                    relink=True,
+                )
+
+                print(new_plants)
+
+
     def update_electricity_markets(self):
         """
         Delete electricity markets. Create high, medium and low voltage market groups for electricity.
