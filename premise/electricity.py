@@ -1263,10 +1263,10 @@ class Electricity(BaseTransformation):
 
         for tech in techs:
 
-            __filter_prod = (contains(
-                (s.exchange, c.cons_name), tech
-            ) & equals((s.exchange, c.type), "production"))(self.database)
-
+            __filter_prod = (
+                contains((s.exchange, c.cons_name), tech)
+                & equals((s.exchange, c.type), "production")
+            )(self.database)
 
             for _, ds in self.database[__filter_prod].iterrows():
 
@@ -1281,7 +1281,6 @@ class Electricity(BaseTransformation):
                 )
 
                 print(new_plants)
-
 
     def update_electricity_markets(self):
         """

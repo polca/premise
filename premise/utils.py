@@ -582,6 +582,3 @@ def create_codes_and_names_of_A_matrix(db):
 def create_scenario_label(model: str, pathway: str, year: int) -> str:
 
     return f"{model}::{pathway}::{year}"
-
-
-

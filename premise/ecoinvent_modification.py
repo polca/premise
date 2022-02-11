@@ -844,7 +844,7 @@ class NewDatabase:
         )
         # scenario["database"] = electricity.update_electricity_markets()
         electricity.create_region_specific_power_plants()
-        #self.database = electricity.update_electricity_efficiency()
+        # self.database = electricity.update_electricity_efficiency()
 
     def update_fuels(self):
         print("\n/////////////////////////// FUELS ////////////////////////////")

@@ -13,6 +13,7 @@ from itertools import product
 
 import numpy as np
 import xarray as xr
+from wurst import geomatcher
 from wurst import searching as ws
 from wurst import transformations as wt
 
@@ -23,7 +24,6 @@ from . import DATA_DIR
 from .activity_maps import InventorySet
 from .geomap import Geomap
 from .utils import c, create_scenario_label, get_fuel_properties, s
-from wurst import geomatcher
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -278,7 +278,9 @@ class BaseTransformation:
                 if production_variable in self.iam_data.production_volumes.variables:
                     prod_vol = (
                         self.iam_data.production_volumes.sel(
-                            scenario=scenario, region=region, variables=production_variable
+                            scenario=scenario,
+                            region=region,
+                            variables=production_variable,
                         )
                         .interp(year=int(scenario.split("::")[-1]))
                         .sum()
@@ -340,57 +342,54 @@ class BaseTransformation:
         return d_act
 
     def relink_technosphere_exchanges(
-            self,
-            ds,
-            exclusive=True,
-            biggest_first=False,
-            contained=True,
+        self,
+        ds,
+        exclusive=True,
+        biggest_first=False,
+        contained=True,
     ):
 
-        __filters_tech = equals(
-            (s.exchange, c.type), "technosphere"
-        )(ds)
+        __filters_tech = equals((s.exchange, c.type), "technosphere")(ds)
 
         new_exchanges = []
 
         for _, exc in ds[__filters_tech].iterrows():
 
-
             try:
                 e = self.cache[exc[(s.exchange, c.cons_loc)]][
                     (
-                         exc[(s.exchange, c.prod_name)],
-                         exc[(s.exchange, c.prod_prod)],
-                         exc[(s.exchange, c.prod_loc)],
-                         exc[(s.exchange, c.unit)]
+                        exc[(s.exchange, c.prod_name)],
+                        exc[(s.exchange, c.prod_prod)],
+                        exc[(s.exchange, c.prod_loc)],
+                        exc[(s.exchange, c.unit)],
                     )
                 ]
 
                 print("found in cache", e)
 
                 new_exchanges.extend(
-
                     [
-                        pd.Series([
-                             i[0],
-                             i[1],
-                             i[2],
-                             exc[(s.exchange, c.cons_name)],
-                             exc[(s.exchange, c.cons_prod)],
-                             exc[(s.exchange, c.cons_loc)],
-                             exc[(s.exchange, c.unit)],
-                             "technosphere",
-                             i[3],
-                             exc[(s.exchange, c.cons_key)],
-                             create_hash(i[3] + exc[(s.exchange, c.cons_key)]),
-                             ]
-                            +
+                        pd.Series(
                             [
+                                i[0],
+                                i[1],
+                                i[2],
+                                exc[(s.exchange, c.cons_name)],
+                                exc[(s.exchange, c.cons_prod)],
+                                exc[(s.exchange, c.cons_loc)],
+                                exc[(s.exchange, c.unit)],
+                                "technosphere",
+                                i[3],
+                                exc[(s.exchange, c.cons_key)],
+                                create_hash(i[3] + exc[(s.exchange, c.cons_key)]),
+                            ]
+                            + [
                                 exc[(s.ecoinvent, c.amount)] * i[-1],
                                 exc[(s.ecoinvent, c.efficiency)],
                                 exc[(s.ecoinvent, c.comment)],
                                 exc[(s.ecoinvent, c.cons_prod_vol)],
-                            ] * (len(self.scenario_labels) + 1)
+                            ]
+                            * (len(self.scenario_labels) + 1)
                         )
                         for i in e
                     ]
@@ -398,11 +397,11 @@ class BaseTransformation:
 
             except KeyError:
 
-                __filter = (equals(
-                    (s.exchange, c.type), "production"
-                ) & equals(
-                    (s.exchange, c.cons_name), exc[(s.exchange, c.prod_name)]
-                ) & equals((s.exchange, c.cons_prod), exc[(s.exchange, c.prod_prod)]))(self.database)
+                __filter = (
+                    equals((s.exchange, c.type), "production")
+                    & equals((s.exchange, c.cons_name), exc[(s.exchange, c.prod_name)])
+                    & equals((s.exchange, c.cons_prod), exc[(s.exchange, c.prod_prod)])
+                )(self.database)
 
                 possible_datasets = self.database[__filter]
 
@@ -414,7 +413,11 @@ class BaseTransformation:
 
                 if exc[(s.exchange, c.cons_loc)] in possible_locations:
 
-                    print("ds loc in possible locs", exc[(s.exchange, c.cons_loc)], possible_locations)
+                    print(
+                        "ds loc in possible locs",
+                        exc[(s.exchange, c.cons_loc)],
+                        possible_locations,
+                    )
 
                     exc[(s.exchange, c.prod_loc)] = exc[(s.exchange, c.cons_loc)]
                     new_exchanges.append(exc)
@@ -449,7 +452,12 @@ class BaseTransformation:
 
                     if kept:
                         missing_faces = geomatcher.geo[location].difference(
-                            set.union(*[geomatcher.geo[obj[(s.exchange, c.cons_loc)]] for obj in kept])
+                            set.union(
+                                *[
+                                    geomatcher.geo[obj[(s.exchange, c.cons_loc)]]
+                                    for obj in kept
+                                ]
+                            )
                         )
                         if missing_faces and "RoW" in possible_locations:
                             kept.extend(
@@ -461,12 +469,16 @@ class BaseTransformation:
                             )
                     elif "RoW" in possible_locations:
                         kept = [
-                            obj for _, obj in possible_datasets.iterrows() if obj[(s.exchange, c.cons_loc)] == "RoW"
+                            obj
+                            for _, obj in possible_datasets.iterrows()
+                            if obj[(s.exchange, c.cons_loc)] == "RoW"
                         ]
 
                     if not kept and "GLO" in possible_locations:
                         kept = [
-                            obj for _, obj in possible_datasets.iterrows() if obj[(s.exchange, c.cons_loc)] == "GLO"
+                            obj
+                            for _, obj in possible_datasets.iterrows()
+                            if obj[(s.exchange, c.cons_loc)] == "GLO"
                         ]
 
                     if not kept:
@@ -488,11 +500,13 @@ class BaseTransformation:
                             exc[(s.exchange, c.prod_key)],
                         )
                     ] = [
-                        (e[(s.exchange, c.cons_name)],
-                         e[(s.exchange, c.cons_prod)],
-                         e[(s.exchange, c.cons_loc)],
-                         e[(s.exchange, c.cons_key)],
-                         s)
+                        (
+                            e[(s.exchange, c.cons_name)],
+                            e[(s.exchange, c.cons_prod)],
+                            e[(s.exchange, c.cons_loc)],
+                            e[(s.exchange, c.cons_key)],
+                            s,
+                        )
                         for e, s in zip(allocated, share)
                     ]
 
@@ -510,17 +524,17 @@ class BaseTransformation:
                             exc[(s.exchange, c.prod_loc)],
                             exc[(s.exchange, c.prod_key)],
                         )
-                    ] = [(
+                    ] = [
+                        (
                             exc[(s.exchange, c.prod_name)],
                             exc[(s.exchange, c.prod_prod)],
                             exc[(s.exchange, c.prod_loc)],
                             exc[(s.exchange, c.prod_key)],
-                            1
-                        )]
+                            1,
+                        )
+                    ]
 
-        __filters_tech = does_not_contain(
-            (s.exchange, c.type), "technosphere"
-        )
+        __filters_tech = does_not_contain((s.exchange, c.type), "technosphere")
 
         ds = __filters_tech(ds)
 
@@ -550,9 +564,9 @@ class BaseTransformation:
             return scale_exchanges_by_constant_factor(cp, s.ecoinvent, factor, filter)
 
         return [
-                   new_exchange(exc, obj[(s.exchange, c.cons_loc)], factor / total)
-                   for obj, factor in zip(lst, pvs)
-               ], [p / total for p in pvs]
+            new_exchange(exc, obj[(s.exchange, c.cons_loc)], factor / total)
+            for obj, factor in zip(lst, pvs)
+        ], [p / total for p in pvs]
 
     def relink_datasets(self, excludes_datasets, alternative_names=None):
         """
