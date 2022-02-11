@@ -787,7 +787,7 @@ class Electricity(BaseTransformation):
                     )
 
                     # Fetch ecoinvent regions contained in the IAM region
-                    ecoinvent_regions = self.iam_to_ecoinvent_loc[scenario][region]
+                    ecoinvent_locations = self.iam_to_ecoinvent_loc[scenario][region]
 
                     new_exc = []
 
@@ -868,12 +868,12 @@ class Electricity(BaseTransformation):
 
                     solar_amount = 0
                     for tech in electriciy_mix:
-                        if "solar" in tech.lower():
+                        if "residential" in tech.lower():
                             solar_amount += electriciy_mix[tech]
 
                     # Loop through the technologies
                     technologies = (
-                        tech for tech in electriciy_mix if "solar" not in tech.lower()
+                        tech for tech in electriciy_mix if "residential" not in tech.lower()
                     )
                     for technology in technologies:
 
@@ -889,7 +889,7 @@ class Electricity(BaseTransformation):
                             # Fetch electricity-producing technologies contained in the IAM region
                             # if they cannot be found for the ecoinvent locations concerned
                             # we widen the scope to EU-based datasets, and RoW
-                            possible_locations = [ecoinvent_regions, ["RER"], ["RoW"]]
+                            possible_locations = [ecoinvent_locations, ["RER"], ["RoW"], ["GLO"]]
                             suppliers, counter = [], 0
 
                             while len(suppliers) == 0:
