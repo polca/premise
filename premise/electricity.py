@@ -873,7 +873,9 @@ class Electricity(BaseTransformation):
 
                     # Loop through the technologies
                     technologies = (
-                        tech for tech in electriciy_mix if "residential" not in tech.lower()
+                        tech
+                        for tech in electriciy_mix
+                        if "residential" not in tech.lower()
                     )
                     for technology in technologies:
 
@@ -889,7 +891,12 @@ class Electricity(BaseTransformation):
                             # Fetch electricity-producing technologies contained in the IAM region
                             # if they cannot be found for the ecoinvent locations concerned
                             # we widen the scope to EU-based datasets, and RoW
-                            possible_locations = [ecoinvent_locations, ["RER"], ["RoW"], ["GLO"]]
+                            possible_locations = [
+                                ecoinvent_locations,
+                                ["RER"],
+                                ["RoW"],
+                                ["GLO"],
+                            ]
                             suppliers, counter = [], 0
 
                             while len(suppliers) == 0:
@@ -1161,11 +1168,14 @@ class Electricity(BaseTransformation):
                             # as well as emissions except those
                             # covered by GAINS
 
-                            __filters_tech = (__filters
-                                              & does_not_contain((s.exchange, c.type), "production")
-                                              & ~contains_any_from_list((s.exchange, c.prod_name),
-                                list(self.gains_substances.keys()),
-                            ))
+                            __filters_tech = (
+                                __filters
+                                & does_not_contain((s.exchange, c.type), "production")
+                                & ~contains_any_from_list(
+                                    (s.exchange, c.prod_name),
+                                    list(self.gains_substances.keys()),
+                                )
+                            )
 
                             subset.loc[__filters_tech(subset), (scenario, c.amount)] = (
                                 subset.loc[

@@ -4,16 +4,19 @@ import json
 import os
 import re
 
+import pandas as pd
+
 from . import DATA_DIR, __version__
 from .utils import c, s
-import pandas as pd
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_38.csv"
 
 
 def export_scenario_difference_file(database, db_name, filepath):
 
-    scenario_cols = [t for t in database.columns if t[1] == c.amount and t[0] != s.ecoinvent]
+    scenario_cols = [
+        t for t in database.columns if t[1] == c.amount and t[0] != s.ecoinvent
+    ]
 
     database = database.loc[~database[scenario_cols].isnull().all(1)]
 
@@ -27,7 +30,7 @@ def export_scenario_difference_file(database, db_name, filepath):
             (s.exchange, c.cons_prod),
             (s.exchange, c.cons_loc),
             (s.exchange, c.cons_key),
-            (s.exchange, c.type)
+            (s.exchange, c.type),
         ]
     ][s.exchange]
 
@@ -43,7 +46,9 @@ def export_scenario_difference_file(database, db_name, filepath):
         "flow type",
     ]
 
-    df_exp["from categories"] = df_exp.loc[df_exp["flow type"] == "biosphere", "from location"]
+    df_exp["from categories"] = df_exp.loc[
+        df_exp["flow type"] == "biosphere", "from location"
+    ]
     df_exp.loc[:, "to categories"] = ""
 
     df_exp.loc[df_exp["flow type"] == "biosphere", "from location"] = ""
@@ -55,18 +60,23 @@ def export_scenario_difference_file(database, db_name, filepath):
     df_exp["from code"] = df_exp["from code"].astype("string")
     df_exp["to code"] = df_exp["to code"].astype("string")
 
-    df_exp["from key"] = list(df_exp[["from database", "from code"]].to_records(index=False))
+    df_exp["from key"] = list(
+        df_exp[["from database", "from code"]].to_records(index=False)
+    )
     df_exp["to key"] = list(df_exp[["to database", "to code"]].to_records(index=False))
 
+    df_vals = database[[t for t in database.columns if t[1] == c.amount]].droplevel(
+        level=1, axis=1
+    )
 
-
-    df_vals = database[[t for t in database.columns if t[1] == c.amount]].droplevel(level=1, axis=1)
-
-    #for t in cols:
+    # for t in cols:
     #    df_vals[t] = df_vals[t].fillna(df_vals[s.ecoinvent])
 
-    pd.concat([df_exp[
-                   ["from activity name",
+    pd.concat(
+        [
+            df_exp[
+                [
+                    "from activity name",
                     "from reference product",
                     "from location",
                     "from categories",
@@ -78,8 +88,13 @@ def export_scenario_difference_file(database, db_name, filepath):
                     "to categories",
                     "to database",
                     "to key",
-                    "flow type", ]
-               ], df_vals], axis=1).to_excel(filepath, index=False)
+                    "flow type",
+                ]
+            ],
+            df_vals,
+        ],
+        axis=1,
+    ).to_excel(filepath, index=False)
 
     print(f"Scenario difference file exported to {filepath}!")
 
