@@ -564,6 +564,9 @@ class NewDatabase:
         # check that directory exists, otherwise create it
         Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
         # build file path
+        if db_name is None:
+            db_name = "unnamed"
+
         file_name = Path(DIR_CACHED_DB / f"cached_{db_name.strip().lower()}.pickle")
 
         # check that file path leads to an existing file
@@ -587,6 +590,9 @@ class NewDatabase:
         # check that directory exists, otherwise create it
         Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
         # build file path
+        if db_name is None:
+            db_name = "unnamed"
+
         file_name = Path(
             DIR_CACHED_DB / f"cached_{db_name.strip().lower()}_inventories.pickle"
         )

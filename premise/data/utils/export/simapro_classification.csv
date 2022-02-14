@@ -1,85 +1,84 @@
 classification;classification code;category 1;category 2;category 3
-03:Fishing and aquaculture;3;Material;Agricultural;Fish
-09:Mining support service activities;9;Material;Service;
-012:Growing of perennial crops;12;Material;Agricultural;Crops
-014:Animal production;14;Material;Agricultural;Cattle
+3:Fishing and aquaculture;3;Material;Agricultural;Fish
+9:Mining support service activities;9;Material;Service;
+12:Growing of perennial crops;12;Material;Agricultural;Crops
+14:Animal production;14;Material;Agricultural;Cattle
 19:Manufacture of coke and refined petroleum products;19;Processing;Refining;
 20:Manufacture of chemicals and chemical products;20;Processing;Chemicals;
 23:Manufacture of other non-metallic mineral products;23;Processing;Non-metallic mineral products;
 25:Manufacture of fabricated metal products except machinery and equipment;25;Processing;Iron and steel;
 27:Manufacture of electrical equipment;27;Processing;Electrical;
 28:Manufacture of machinery and equipment n.e.c.;28;Processing;Machines and equipment;
-032:Aquaculture;032;Material;Agricultural;Fish
+32:Aquaculture;032;Material;Agricultural;Fish
 35:Electricity gas steam and air conditioning supply;35;Energy;Heat;
 35:Electricity, gas, steam and air conditioning supply;35;Energy;Heat;
 38:Waste collection treatment and disposal activities, materials recovery;38;Waste treatment;Materials recovery;
 39:Wastes or scraps,;39;Waste treatment;Others;
 49:Land transport and transport via pipelines;49;Transport;Pipeline;
-051:Mining of hard coal;51;Material;Fuels;Coal
+51:Mining of hard coal;51;Material;Fuels;Coal
 68:Real estate activities;68;Use;Real estate;
-072:Mining of non-ferrous metal ores;072;Material;Metals;Non-ferrous metals
+72:Mining of non-ferrous metal ores;072;Material;Metals;Non-ferrous metals
 108:Manufacture of prepared animal feeds;108;Processing;Animal feed;
-0111:Growing of cereals (except rice) leguminous crops and oil seeds;0111;Material;Agricultural;Crops
-0111:Growing of cereals (except rice), leguminous crops and oil seeds;0111;Material;Agricultural;Crops
-0112:Growing of rice;0112;Material;Agricultural;Crops
-0113:Growing of vegetables and melons roots and tubers;0113;Material;Agricultural;Crops
-0113:Growing of vegetables and melons, roots and tubers;0113;Material;Agricultural;Crops
-0114:Growing of sugar cane;0114;Material;Agricultural;Crops
-0116:Growing of fibre crops;0116;Material;Agricultural;Crops
-0119:Growing of other non-perennial crops;0119;Material;Agricultural;Crops
-0121:Growing of grapes;0121;Material;Agricultural;Crops
-0122:Growing of tropical and subtropical fruits;0122;Material;Agricultural;Crops
-0123:Growing of citrus fruits;0123;Material;Agricultural;Crops
-0124:Growing of pome fruits and stone fruits;0124;Material;Agricultural;Crops
-0125:Growing of other tree and bush fruits and nuts;0125;Material;Agricultural;Crops
-0126:Growing of oleaginous fruits;0126;Material;Agricultural;Crops
-0127:Growing of beverage crops;0127;Material;Agricultural;Crops
-0128:Growing of spices aromatic drug and pharmaceutical crops;0128;Material;Agricultural;Crops
-0128:Growing of spices, aromatic, drug and pharmaceutical crops;0128;Material;Agricultural;Crops
-0129:Growing of other perennial crops;0129;Material;Agricultural;Crops
-0130:Plant propagation;0130;Material;Agricultural;Crops
+111:Growing of cereals (except rice) leguminous crops and oil seeds;0111;Material;Agricultural;Crops
+111:Growing of cereals (except rice), leguminous crops and oil seeds;0111;Material;Agricultural;Crops
+112:Growing of rice;0112;Material;Agricultural;Crops
+113:Growing of vegetables and melons roots and tubers;0113;Material;Agricultural;Crops
+113:Growing of vegetables and melons, roots and tubers;0113;Material;Agricultural;Crops
+114:Growing of sugar cane;0114;Material;Agricultural;Crops
+116:Growing of fibre crops;0116;Material;Agricultural;Crops
+119:Growing of other non-perennial crops;0119;Material;Agricultural;Crops
+121:Growing of grapes;0121;Material;Agricultural;Crops
+122:Growing of tropical and subtropical fruits;0122;Material;Agricultural;Crops
+123:Growing of citrus fruits;0123;Material;Agricultural;Crops
+124:Growing of pome fruits and stone fruits;0124;Material;Agricultural;Crops
+125:Growing of other tree and bush fruits and nuts;0125;Material;Agricultural;Crops
+126:Growing of oleaginous fruits;0126;Material;Agricultural;Crops
+127:Growing of beverage crops;0127;Material;Agricultural;Crops
+128:Growing of spices aromatic drug and pharmaceutical crops;0128;Material;Agricultural;Crops
+128:Growing of spices, aromatic, drug and pharmaceutical crops;0128;Material;Agricultural;Crops
+129:Growing of other perennial crops;0129;Material;Agricultural;Crops
+130:Plant propagation;0130;Material;Agricultural;Crops
 131:Spinning weaving and finishing of textiles;131;Processing;Textile;
-0141:Raising of cattle and buffaloes;0141;Material;Agricultural;Cattle
-0144:Raising of sheep and goats;0144;Material;Agricultural;Cattle
-0145:Raising of swine/pigs;0145;Material;Agricultural;Cattle
-0146:Raising of poultry;0146;Material;Agricultural;Poultry
-0149:Raising of other animals;0149;Material;Agricultural;Cattle
-0161:Support activities for crop production;0161;Material;Agricultural;Crops
-0162:Support activities for animal production;0162;Material;Agricultural;Cattle
+141:Raising of cattle and buffaloes;0141;Material;Agricultural;Cattle
+144:Raising of sheep and goats;0144;Material;Agricultural;Cattle
+145:Raising of swine/pigs;0145;Material;Agricultural;Cattle
+146:Raising of poultry;0146;Material;Agricultural;Poultry
+149:Raising of other animals;0149;Material;Agricultural;Cattle
+161:Support activities for crop production;0161;Material;Agricultural;Crops
+162:Support activities for animal production;0162;Material;Agricultural;Cattle
 162:Manufacture of products of wood, cork, straw and plaiting materials;162;Material;Agricultural;Cattle
-0163:Post-harvest crop activities;0163;Material;Agricultural;Crops
-0164:Seed processing for propagation;0164;Material;Agricultural;Crops
+163:Post-harvest crop activities;0163;Material;Agricultural;Crops
+164:Seed processing for propagation;0164;Material;Agricultural;Crops
 170:Manufacture of paper and paper products;170;Processing;Paper;
 201:Manufacture of basic chemicals, fertilizers and nitrogen compounds, plastics;201;Processing;Fertilizer;
-0210:Silviculture and other forestry activities;0210;Material;Agricultural;Forestry
-0220:Logging;0220;Material;Agricultural;Forestry
-0230:Gathering of non-wood forest products;0230;Material;Agricultural;Forestry
+210:Silviculture and other forestry activities;0210;Material;Agricultural;Forestry
+220:Logging;0220;Material;Agricultural;Forestry
+230:Gathering of non-wood forest products;0230;Material;Agricultural;Forestry
 239:Manufacture of non-metallic mineral products n.e.c.;239;Processing;Non-metallic mineral products;
 242:Manufacture of basic precious and other non-ferrous metals;242;Processing;Non-ferrous metals;
 243:Casting of metals;243;Processing;Iron and steel;
 259:Manufacture of other fabricated metal products, metalworking service activit;259;Processing;Iron and steel;
 259:Manufacture of other fabricated metal products, metalworking service activit;259;Processing;Iron and steel;
-0311:Marine fishing;0311;Material;Agricultural;Fish
-0322:Freshwater aquaculture;0322;Material;Agricultural;Fish
+311:Marine fishing;0311;Material;Agricultural;Fish
+322:Freshwater aquaculture;0322;Material;Agricultural;Fish
 374:Plaster, lime and cement,;374;Processing;Non-metallic mineral products;
 381:Waste collection;381;Waste treatment;Collection of non-hasardous waste;
 382:Waste treatment and disposal;382;Waste treatment;;
 492:Other land transport;492;Transport;Others;
-0510:Mining of hard coal;0510;Material;Fuels;Coal
-0520:Mining of lignite;0520;Material;Fuels;Lignite
-0610:Extraction of crude petroleum;0610;Material;Fuels;Crude oil
-0620:Extraction of natural gas;0620;Material;Fuels;Natural gas
-0710:Mining of iron ores;0710;Material;Metals;Iron
-0721:Mining of uranium and thorium ores;0721;Material;Fuels;Uranium
-0729:Mining of other non-ferrous metal ores;0729;Material;Metals;Non-ferrous metals
-0810:Quarrying of stone sand and clay;0810;Material;Minerals;Stone
-0810:Quarrying of stone, sand and clay;0810;Material;Minerals;Stone
-0891:Mining of chemical and fertilizer minerals;0891;Material;Extraction;Chemicals
-0892:Extraction of peat;0892;Material;Fuels;Peat
-0893:Extraction of salt;0893;Material;Extraction;Salt
-0899:Other mining and quarrying n.e.c.;0899;Material;Others;
-0910:Support activities for petroleum and natural gas extraction;0910;Material;Service;
-0990:Support activities for other mining and quarrying;0990;Material;Service;
+510:Mining of hard coal;0510;Material;Fuels;Coal
+520:Mining of lignite;0520;Material;Fuels;Lignite
+610:Extraction of crude petroleum;0610;Material;Fuels;Crude oil
+620:Extraction of natural gas;0620;Material;Fuels;Natural gas
+710:Mining of iron ores;0710;Material;Metals;Iron
+721:Mining of uranium and thorium ores;0721;Material;Fuels;Uranium
+729:Mining of other non-ferrous metal ores;0729;Material;Metals;Non-ferrous metals
+810:Quarrying of stone, sand and clay;0810;Material;Minerals;Stone
+891:Mining of chemical and fertilizer minerals;0891;Material;Extraction;Chemicals
+892:Extraction of peat;0892;Material;Fuels;Peat
+893:Extraction of salt;0893;Material;Extraction;Salt
+899:Other mining and quarrying n.e.c.;0899;Material;Others;
+910:Support activities for petroleum and natural gas extraction;0910;Material;Service;
+990:Support activities for other mining and quarrying;0990;Material;Service;
 1010:Processing and preserving of meat;1010;Processing;Meat;
 1020:Processing and preserving of fish crustaceans and molluscs;1020;Processing;Fish;
 1020:Processing and preserving of fish, crustaceans and molluscs;1020;Processing;Fish;
@@ -285,11 +284,11 @@ classification;classification code;category 1;category 2;category 3
 34232:Phosphoric acid;34232;;;
 23512:Beet sugar;23512;;;
 01212:Cabbages;01212;;;
-35230:Lactones n.e.c., heterocyclic compounds with nitrogen hetero-atom(s) only, containing an unfused pyrazole ring[…];35230;;;
+35230:Lactones n.e.c., heterocyclic compounds with nitrogen hetero-atom(s) only, containing an unfused pyrazole ring[ï¿½];35230;;;
 39110:Raw offal, inedible (including pigs' bristles, horse hair, animal guts, bird skins, feathers, bones and ivory);39110;;;
-44310:Converters, ladles, ingot moulds and casting machines, of a kind used in metallurgy or in metal foundries, met[…];44310;;;
+44310:Converters, ladles, ingot moulds and casting machines, of a kind used in metallurgy or in metal foundries, met[ï¿½];44310;;;
 87141:Maintenance and repair services of motor vehicles;87141;;;
-33690:Other radioactive elements and isotopes and compounds, alloys, dispersions, ceramic products and mixtures cont[…];33690;;;
+33690:Other radioactive elements and isotopes and compounds, alloys, dispersions, ceramic products and mixtures cont[ï¿½];33690;;;
 36230:Tubes, pipes and hoses of vulcanized rubber other than hard rubber;36230;;;
 463:Insulated wire and cable, optical fibre cables;463;;;
 34110:Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives;34110;;;
@@ -298,21 +297,21 @@ classification;classification code;category 1;category 2;category 3
 161:Chemical and fertilizer minerals;161;;;
 11050:Peat;11050;;;
 65319:Air transport services of other freight;65319;;;
-34170:Ethers, alcohol peroxides, ether peroxides, epoxides, acetals and hemiacetals, and their halogenated, sulphona[…];34170;;;
+34170:Ethers, alcohol peroxides, ether peroxides, epoxides, acetals and hemiacetals, and their halogenated, sulphona[ï¿½];34170;;;
 01912:Alfalfa for forage and silage;01912;;;
 41111:Pig iron and spiegeleisen in pigs, blocks or other primary forms;41111;;;
 3870:Prefabricated buildings;3870;;;
 14220:Nickel ores and concentrates;14220;;;
-37940:Bituminous mixtures based on natural and artificial stone materials and bitumen, natural asphalt or related su[…];37940;;;
-34800:Synthetic rubber and factice derived from oils, and mixtures thereof with natural rubber and similar natural g[…];34800;;;
+37940:Bituminous mixtures based on natural and artificial stone materials and bitumen, natural asphalt or related su[ï¿½];37940;;;
+34800:Synthetic rubber and factice derived from oils, and mixtures thereof with natural rubber and similar natural g[ï¿½];34800;;;
 434:Ovens and furnace burners and parts thereof;434;;;
 0118:Millet;0118;;;
 8614:Support and operation services to forestry and logging;8614;;;
 39141:Bagasse;39141;;;
-36330:Plates, sheets, film, foil and strip, of plastics, not self-adhesive, non-cellular and not reinforced, laminat[…];36330;;;
+36330:Plates, sheets, film, foil and strip, of plastics, not self-adhesive, non-cellular and not reinforced, laminat[ï¿½];36330;;;
 34280:Hydrogen peroxide, phosphides, carbides, hydrides, nitrides, azides, silicides and borides;34280;;;
 11030:Brown coal;11030;;;
-31600:Builders' joinery and carpentry of wood (including cellular wood panels, assembled parquet panels, shingles an[…];31600;;;
+31600:Builders' joinery and carpentry of wood (including cellular wood panels, assembled parquet panels, shingles an[ï¿½];31600;;;
 35499:Other chemical products n.e.c.;35499;;;
 39931:Pharmaceutical waste;39931;;;
 45264:Laser printers used with data processing machines;45264;;;
@@ -334,13 +333,13 @@ classification;classification code;category 1;category 2;category 3
 43143:Gas turbines other than turbo-jets and turbo-propellers;43143;;;
 45271:Fixed media storage units;45271;;;
 34730:Polymers of vinyl chloride or other halogenated olefins, in primary forms;34730;;;
-31921:Natural cork, debacked or roughly squared, or in blocks, plates, sheets or strip, crushed, granulated or groun[…];31921;;;
+31921:Natural cork, debacked or roughly squared, or in blocks, plates, sheets or strip, crushed, granulated or groun[ï¿½];31921;;;
 34661:Insecticides;34661;;;
 86112:Seed processing services;86112;;;
 031:Wood in the rough;031;;;
 46131:Parts of electric motors, generators and the like;46131;;;
 65212:Coastal and transoceanic water transport services of freight by tankers;65212;;;
-34310:Synthetic organic colouring matter and preparations based thereon, synthetic organic products of a kind used a[…];34310;;;
+34310:Synthetic organic colouring matter and preparations based thereon, synthetic organic products of a kind used a[ï¿½];34310;;;
 47160:Electronic integrated circuits;47160;;;
 34632:Potassium sulphate (sulphate of potash);34632;;;
 34641:Fertilizers containing three nutrients:nitrogen, phosphorus and potassium;34641;;;
@@ -350,7 +349,7 @@ classification;classification code;category 1;category 2;category 3
 353:Soap, cleaning preparations, perfumes and toilet preparations;353;;;
 393:Metal wastes or scraps;393;;;
 34290:Compounds of rare earth metals, of yttrium or of scandium;34290;;;
-4160:Other non-ferrous metals and articles thereof (including waste and scrap of some metals), cermets and articles […];4160;;;
+4160:Other non-ferrous metals and articles thereof (including waste and scrap of some metals), cermets and articles [ï¿½];4160;;;
 3429:Compounds of rare earth metals, of yttrium or of scandium;3429;;;
 01290:Vegetables, fresh, n.e.c.;01290;;;
 46113:Electric generating sets and rotary converters;46113;;;
@@ -365,7 +364,7 @@ classification;classification code;category 1;category 2;category 3
 12010:Petroleum oils and oils obtained from bituminous minerals, crude;12010;;;
 39950:Wastes from chemical or allied industries;39950;;;
 94110:Sewerage and sewage treatment services;94110;;;
-49129:Other parts and accessories n.e.c. of motor vehicles (including brakes, gear boxes, axles, road wheels, suspen[…];49129;;;
+49129:Other parts and accessories n.e.c. of motor vehicles (including brakes, gear boxes, axles, road wheels, suspen[ï¿½];49129;;;
 34649:Other mineral or chemical fertilizers containing at least two nutrients (nitrogen, phosphate, potash), n.e.c.;34649;;;
 379:Other non-metallic mineral products n.e.c.;379;;;
 31102:Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm, of non-coniferous wood;31102;;;
@@ -387,11 +386,11 @@ classification;classification code;category 1;category 2;category 3
 01161:Rye, seed;01161;;;
 23120:Other cereal flours;23120;;;
 69220:Distribution of steam, hot water and air-conditioning supply through mains (on own account);69220;;;
-32153:Cartons, boxes, cases, record sleeves and other packing containers (except bags) of paper, paperboard, cellulo[…];32153;;;
+32153:Cartons, boxes, cases, record sleeves and other packing containers (except bags) of paper, paperboard, cellulo[ï¿½];32153;;;
 4393:General-purpose machinery n.e.c.;4393;;;
 01658:Vanilla, raw;01658;;;
-49911:Motorcycles and cycles fitted with an auxiliary motor, with reciprocating internal combustion piston engine of[…];49911;;;
-45230:Automatic data processing machines, comprising in the same housing at least a central processing unit and an i[…];45230;;;
+49911:Motorcycles and cycles fitted with an auxiliary motor, with reciprocating internal combustion piston engine of[ï¿½];49911;;;
+45230:Automatic data processing machines, comprising in the same housing at least a central processing unit and an i[ï¿½];45230;;;
 34643:Monoammonium phosphate;34643;;;
 21215:Tunas, skipjack or stripe-bellied bonito, frozen;21215;;;
 32121:Newsprint;32121;;;
@@ -399,7 +398,7 @@ classification;classification code;category 1;category 2;category 3
 44922:Parts for the goods of subclasses 44914, 44917 and 45150;44922;;;
 41117:Granules and powders, of pig iron and spiegeleisen, or steel;41117;;;
 01342:Pears and quinces;01342;;;
-44427:Mechanical shovels, excavators and shovel loaders, except front-end shovel loaders and machinery with a 360-de[…];44427;;;
+44427:Mechanical shovels, excavators and shovel loaders, except front-end shovel loaders and machinery with a 360-de[ï¿½];44427;;;
 26510:Woven fabrics of silk or of silk waste;26510;;;
 471:Electronic valves and tubes, electronic components, parts thereof;471;;;
 46:Electrical machinery and apparatus;46;;;
@@ -414,12 +413,12 @@ classification;classification code;category 1;category 2;category 3
 01251:Carrots and turnips;01251;;;
 01922:Jute, kenaf, and other textile bast fibres, raw or retted, except flax, true hemp and ramie;01922;;;
 34629:Other phosphatic fertilizers, n.e.c.;34629;;;
-35250:Provitamins, vitamins and hormones, glycosides and vegetable alkaloids and their salts, ethers, esters and oth[…];35250;;;
+35250:Provitamins, vitamins and hormones, glycosides and vegetable alkaloids and their salts, ethers, esters and oth[ï¿½];35250;;;
 01919:Forage products, n.e.c.;01919;;;
 01215:Spinach;01215;;;
-34231:Chemical elements n.e.c., inorganic acids except phosphoric, nitric and sulphonitric, inorganic oxygen compoun[…];34231;;;
+34231:Chemical elements n.e.c., inorganic acids except phosphoric, nitric and sulphonitric, inorganic oxygen compoun[ï¿½];34231;;;
 34570:Glycerol;34570;;;
-26710:Woven fabrics of man-made filament yarn, obtained from high tenacity yarn of nylon or other polyamides, of pol[…];26710;;;
+26710:Woven fabrics of man-made filament yarn, obtained from high tenacity yarn of nylon or other polyamides, of pol[ï¿½];26710;;;
 65221:Inland water transport services of freight by refrigerator vessels;65221;;;
 01229:Cantaloupes and other melons;01229;;;
 15130:Granite, sandstone and other monumental or building stone;15130;;;
@@ -428,7 +427,7 @@ classification;classification code;category 1;category 2;category 3
 89310:Iron and steel casting services;89310;;;
 39217:Worn clothing and other worn textile articles;39217;;;
 01235:Pumpkins, squash and gourds;01235;;;
-37950:Artificial graphite, colloidal or semi-colloidal graphite, preparations based on graphite or other carbon in t[…];37950;;;
+37950:Artificial graphite, colloidal or semi-colloidal graphite, preparations based on graphite or other carbon in t[ï¿½];37950;;;
 5312:Non-residential buildings;5312;;;
 39283:Non-agglomerated wood waste and scrap;39283;;;
 4653:Lighting equipment;4653;;;
@@ -437,7 +436,7 @@ classification;classification code;category 1;category 2;category 3
 31101:Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm, of coniferous wood;31101;;;
 01422:Groundnuts, in shell;01422;;;
 26380:Yarn of vegetable textile fibres other than cotton (including flax, jute, coir and true hemp), paper yarn;26380;;;
-35321:Soap, organic surface-active products and preparations for use as soap, paper, wadding, felt and nonwovens, im[…];35321;;;
+35321:Soap, organic surface-active products and preparations for use as soap, paper, wadding, felt and nonwovens, im[ï¿½];35321;;;
 41330:Platinum, unwrought or in semi-manufactured forms, or in powder form;41330;;;
 3466:Insecticides, fungicides, herbicides and disinfectants;3466;;;
 54262:General construction services of power plants;54262;;;
@@ -460,20 +459,20 @@ classification;classification code;category 1;category 2;category 3
 01921:Cotton, whether or not ginned;01921;;;
 01213:Cauliflowers and broccoli;01213;;;
 33421:Ethylene, propylene, butylene, butadiene;33421;;;
-43410:Furnace burners for liquid fuel, for pulverized solid fuel or for gas, mechanical stokers, mechanical grates, […];43410;;;
+43410:Furnace burners for liquid fuel, for pulverized solid fuel or for gas, mechanical stokers, mechanical grates, [ï¿½];43410;;;
 3142:Other plywood, veneered panels and similar laminated wood, except of bamboo;3142;;;
 4132:Gold (including gold plated with platinum), unwrought or in semi-manufactured forms, or in powder form;4132;;;
 34120:Industrial monocarboxylic fatty acids, acid oils from refining;34120;;;
 38703:Prefabricated buildings, of plastics;38703;;;
 64119:Other land transportation services of passengers, n.e.c.;64119;;;
 44815:Fans and ventilating or recycling hoods of the domestic type;44815;;;
-42210:Reservoirs, tanks, vats and similar containers (other than for compressed or liquefied gas), of iron, steel or[…];42210;;;
+42210:Reservoirs, tanks, vats and similar containers (other than for compressed or liquefied gas), of iron, steel or[ï¿½];42210;;;
 3511:Paints and varnishes and related products;3511;;;
 34642:Diammonium hydrogenorthophosphate (diammonium phosphate);34642;;;
 94312:Ship-breaking and other dismantling of wrecks services;94312;;;
 532:Civil engineering works;532;;;
 11020:Patent fuel and similar solid fuels manufactured from hard coal;11020;;;
-36490:Other articles for the conveyance or packing of goods, of plastics, stoppers, lids, caps and other closures, o[…];36490;;;
+36490:Other articles for the conveyance or packing of goods, of plastics, stoppers, lids, caps and other closures, o[ï¿½];36490;;;
 13000:Uranium and thorium ores and concentrates;13000;;;
 01442:Mustard seed;01442;;;
 34240:Phosphates of triammonium, salts and peroxysalts of inorganic acids and metals n.e.c.;34240;;;
@@ -488,18 +487,18 @@ classification;classification code;category 1;category 2;category 3
 34646:Potassium nitrate;34646;;;
 12030:Bituminous or oil shale and tar sands;12030;;;
 88531:Glass manufacturing services;88531;;;
-44913:Machinery for making pulp of fibrous cellulosic material or for making or finishing paper or paperboard, machi[…];44913;;;
+44913:Machinery for making pulp of fibrous cellulosic material or for making or finishing paper or paperboard, machi[ï¿½];44913;;;
 49314:Other vessels for the transport of goods and other vessels for the transport of both persons and goods;49314;;;
 04211:Wild freshwater fish, live, fresh or chilled;04211;;;
 363:Semi-manufactures of plastics;363;;;
 49114:Motor vehicles n.e.c. for the transport of goods;49114;;;
 5326:Mines and industrial plants;5326;;;
 86122:Support services to farm animal husbandry;86122;;;
-33500:Petroleum jelly, paraffin wax, micro- crystalline petroleum wax, slack wax, ozokerite, lignite wax, peat wax, […];33500;;;
+33500:Petroleum jelly, paraffin wax, micro- crystalline petroleum wax, slack wax, ozokerite, lignite wax, peat wax, [ï¿½];33500;;;
 35310:Organic surface active agents, except soap;35310;;;
 34510:Wood charcoal;34510;;;
-32129:Other uncoated paper and paperboard, of a kind used for writing, printing or other graphic purposes, and punch[…];32129;;;
-482:Instruments and appliances for measuring, checking, testing, navigating and other purposes, except optical instr[…];482;;;
+32129:Other uncoated paper and paperboard, of a kind used for writing, printing or other graphic purposes, and punch[ï¿½];32129;;;
+482:Instruments and appliances for measuring, checking, testing, navigating and other purposes, except optical instr[ï¿½];482;;;
 3933:Waste and scrap of precious metal;3933;;;
 16:Other minerals;16;;;
 34639:Carnallite, sylvite and other potassic fertilizers, n.e.c.;34639;;;
@@ -513,18 +512,18 @@ classification;classification code;category 1;category 2;category 3
 35510:Synthetic filament tow and staple fibres, not carded or combed;35510;;;
 41442:Zinc, unwrought;41442;;;
 01444:Sesame seed;01444;;;
-34160:Organo-sulphur compounds and other organo-inorganic compounds, heterocyclic compounds n.e.c., nucleic acids an[…];34160;;;
+34160:Organo-sulphur compounds and other organo-inorganic compounds, heterocyclic compounds n.e.c., nucleic acids an[ï¿½];34160;;;
 54269:General construction services of other industrial plants;54269;;;
-43911:Producer gas or water gas generators, acetylene gas generators and similar water process gas generators, disti[…];43911;;;
+43911:Producer gas or water gas generators, acetylene gas generators and similar water process gas generators, disti[ï¿½];43911;;;
 84290:Other Internet telecommunications services;84290;;;
 15:Stone, sand and clay;15;;;
 01324:Tangerines, mandarins, clementines;01324;;;
-33620:Uranium enriched in U235 and its compounds, plutonium and its compounds, alloys, dispersions, ceramic products[…];33620;;;
+33620:Uranium enriched in U235 and its compounds, plutonium and its compounds, alloys, dispersions, ceramic products[ï¿½];33620;;;
 34631:Potassium chloride (muriate of potash);34631;;;
 9441:Site remediation and clean-up services;9441;;;
 346:Fertilizers and pesticides;346;;;
 41411:Copper mattes, cement copper;41411;;;
-01930:Plants and parts of plants used primarily in perfumery, in pharmacy, or for insecticidal, fungicidal or simila[…];01930;;;
+01930:Plants and parts of plants used primarily in perfumery, in pharmacy, or for insecticidal, fungicidal or simila[ï¿½];01930;;;
 31220:Wood wool, wood flour;31220;;;
 88150:Dairy product manufacturing services;88150;;;
 53252:Local cables and related works;53252;;;
@@ -537,7 +536,7 @@ classification;classification code;category 1;category 2;category 3
 94231:General waste collection services, residential;94231;;;
 01312:Bananas;01312;;;
 12020:Natural gas, liquefied or in the gaseous state;12020;;;
-34139:Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…];34139;;;
+34139:Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[ï¿½];34139;;;
 01510:Potatoes;01510;;;
 01330:Grapes;01330;;;
 83327:Engineering services for water, sewerage and drainage projects;83327;;;
@@ -546,7 +545,7 @@ classification;classification code;category 1;category 2;category 3
 39214:Cotton waste, except garnetted stock;39214;;;
 88766:Lifting and handling equipment manufacturing services;88766;;;
 41:Basic metals;41;;;
-42950:Wire, rods, tubes, plates, electrodes and similar products, of base metal or of metal carbides, coated or core[…];42950;;;
+42950:Wire, rods, tubes, plates, electrodes and similar products, of base metal or of metal carbides, coated or core[ï¿½];42950;;;
 01441:Linseed;01441;;;
 65213:Coastal and transoceanic water transport services of intermodal containers by container ships;65213;;;
 01412:Soya beans, other;01412;;;
@@ -555,10 +554,10 @@ classification;classification code;category 1;category 2;category 3
 4717:Parts for the goods of classes 4711, 4712 and 4714 to 4716;4717;;;
 21429:Other shelled nuts;21429;;;
 15310:Natural sands;15310;;;
-35450:Prepared explosives, safety fuses, detonating fuses, percussion or detonating caps, igniters, electric detonat[…];35450;;;
+35450:Prepared explosives, safety fuses, detonating fuses, percussion or detonating caps, igniters, electric detonat[ï¿½];35450;;;
 16390:Other minerals n.e.c.;16390;;;
 89320:Non-ferrous metal casting services;89320;;;
-49913:Motorcycles and cycles fitted with an auxiliary motor, other than those with reciprocating internal combustion[…];49913;;;
+49913:Motorcycles and cycles fitted with an auxiliary motor, other than those with reciprocating internal combustion[ï¿½];49913;;;
 54330:Excavating and earthmoving services;54330;;;
 53242:Long-distance communication and power lines (cables);53242;;;
 39370:Vessels and other floating structures for breaking up;39370;;;
@@ -581,35 +580,35 @@ classification;classification code;category 1;category 2;category 3
 4421:Machine-tools for working metal, machine-tools for working any material by laser or similar process;4421;;;
 01491:Palm nuts and kernels;01491;;;
 3338:Lubricants;3338;;;
-47150:Diodes, transistors and similar semi-conductor devices, photosensitive semi-conductor devices, light emitting […];47150;;;
+47150:Diodes, transistors and similar semi-conductor devices, photosensitive semi-conductor devices, light emitting [ï¿½];47150;;;
 01260:Vegetable seeds, except beet seeds;01260;;;
 01233:Eggplants (aubergines);01233;;;
 4482:Domestic cooking and heating equipment, non-electric;4482;;;
 321:Pulp, paper and paperboard;321;;;
 02151:Chickens;02151;;;
 9715:Dyeing and colouring services;9715;;;
-3815:Mattress supports, mattresses, fitted with springs or stuffed or internally fitted with any material or of cell[…];3815;;;
+3815:Mattress supports, mattresses, fitted with springs or stuffed or internally fitted with any material or of cell[ï¿½];3815;;;
 35470:Chemical elements and compounds doped for use in electronics;35470;;;
 04241:Wild fish of Gadiformes, live, fresh or chilled;04241;;;
 15400:Clays;15400;;;
 85400:Packaging services;85400;;;
 02111:Cattle;02111;;;
 41432:Alumina (aluminium oxide), except artificial corundum;41432;;;
-34250:Salts of oxometallic or peroxometallic acids, colloidal precious metals and compounds thereof, inorganic and o[…];34250;;;
+34250:Salts of oxometallic or peroxometallic acids, colloidal precious metals and compounds thereof, inorganic and o[ï¿½];34250;;;
 345:Miscellaneous basic chemical products;345;;;
 23511:Cane sugar;23511;;;
-41601:Tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium, gallium, hafnium, […];41601;;;
+41601:Tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium, gallium, hafnium, [ï¿½];41601;;;
 3461:Mineral or chemical fertilizers, nitrogenous;3461;;;
 32112:Chemical wood pulp, other than dissolving grades;32112;;;
 01449:Other oilseeds, n.e.c.;01449;;;
-34400:Activated natural mineral products, animal black, tall oil, terpenic oils produced by the treatment of conifer[…];34400;;;
+34400:Activated natural mineral products, animal black, tall oil, terpenic oils produced by the treatment of conifer[ï¿½];34400;;;
 4481:Domestic electric appliances, non-electric refrigerators and clothes drying machines;4481;;;
 53213:Airfield runways;53213;;;
 16200:Salt and pure sodium chloride, sea water;16200;;;
 22251:Cheese from milk of cattle, fresh or processed;22251;;;
 45261:Input peripherals (keyboard, joystick, mouse etc.);45261;;;
 26220:Artificial staple fibres, carded, combed or otherwise processed for spinning;26220;;;
-37990:Non-metallic mineral products n.e.c. (including mineral wool, expanded mineral materials, worked mica, article[…];37990;;;
+37990:Non-metallic mineral products n.e.c. (including mineral wool, expanded mineral materials, worked mica, article[ï¿½];37990;;;
 33370:Fuel oils n.e.c.;33370;;;
 33100:Coke and semi-coke of coal, of lignite or of peat, retort carbon;33100;;;
 33350:White spirit and special boiling point industrial spirits;33350;;;
@@ -632,7 +631,7 @@ classification;classification code;category 1;category 2;category 3
 543:Site preparation services;543;;;
 37116:Glass mirrors, multiple walled insulating units of glass;37116;;;
 41441:Lead, unwrought;41441;;;
-34740:Polyacetals, other polyethers and epoxide resins, in primary forms, polycarbonates, alkyd resins, polyallyl es[…];34740;;;
+34740:Polyacetals, other polyethers and epoxide resins, in primary forms, polycarbonates, alkyd resins, polyallyl es[ï¿½];34740;;;
 94339:Other non-hazardous waste treatment and disposal services;94339;;;
 3342:Ethylene, propylene, butylene, butadiene and other petroleum gases or gaseous hydrocarbons, except natural gas;3342;;;
 8729:Maintenance and repair services of other goods n.e.c.;8729;;;
@@ -641,13 +640,13 @@ classification;classification code;category 1;category 2;category 3
 47130:Printed circuits;47130;;;
 21419:Other dried fruit, n.e.c.;21419;;;
 16330:Chalk and dolomite;16330;;;
-333:Petroleum oils and oils obtained from bituminous materials, other than crude, preparations n.e.c. containing by […];333;;;
+333:Petroleum oils and oils obtained from bituminous materials, other than crude, preparations n.e.c. containing by [ï¿½];333;;;
 35130:Printing ink;35130;;;
-15200:Gypsum, anhydrite, limestone flux, limestone and other calcareous stone, of a kind used for the manufacture of[…];15200;;;
+15200:Gypsum, anhydrite, limestone flux, limestone and other calcareous stone, of a kind used for the manufacture of[ï¿½];15200;;;
 88170:Prepared animal feeds manufacturing services;88170;;;
 34260:Isotopes n.e.c. and compounds thereof (including heavy water);34260;;;
 01311:Avocados;01311;;;
-44831:Parts of the following appliances:electromechanical domestic appliances, shavers and hairclippers, with self-[…];44831;;;
+44831:Parts of the following appliances:electromechanical domestic appliances, shavers and hairclippers, with self-[ï¿½];44831;;;
 212:Prepared and preserved fish, crustaceans, molluscs and other aquatic invertebrates;212;;;
 4111:Primary materials of the iron and steel industry;4111;;;
 21611:Soya bean oil, crude;21611;;;
@@ -658,7 +657,7 @@ classification;classification code;category 1;category 2;category 3
 33360:Gas oil;33360;;;
 4:Metal products, machinery and equipment;4;;;
 88535:Cement, lime and plaster manufacturing services;88535;;;
-34270:Cyanides, cyanide oxides and complex cyanides, fulminates, cyanates and thiocyanates, silicates, borates, perb[…];34270;;;
+34270:Cyanides, cyanide oxides and complex cyanides, fulminates, cyanates and thiocyanates, silicates, borates, perb[ï¿½];34270;;;
 41121:Non-alloy steel in ingots or other primary forms, and semi-finished products of non-alloy steel;41121;;;
 8621:Support services to mining;8621;;;
 87290:Maintenance and repair services of other goods n.e.c.;87290;;;
@@ -669,7 +668,7 @@ classification;classification code;category 1;category 2;category 3
 3733:Refractory cements, mortars, concretes and similar compositions n.e.c.;3733;;;
 46430:Parts of primary cells, primary batteries and electric accumulators (including separators);46430;;;
 65219:Other coastal and transoceanic water transport services of other freight;65219;;;
-23210:Glucose and glucose syrup, fructose and fructose syrup, lactose and lactose syrup, invert sugar, sugars and su[…];23210;;;
+23210:Glucose and glucose syrup, fructose and fructose syrup, lactose and lactose syrup, invert sugar, sugars and su[ï¿½];23210;;;
 1202:Natural gas, liquefied or in the gaseous state;1202;;;
 24:Beverages;24;;;
 53121:Industrial buildings;53121;;;
@@ -688,7 +687,7 @@ classification;classification code;category 1;category 2;category 3
 34613:Ammonium nitrate;34613;;;
 26110:Raw silk (not thrown);26110;;;
 01371:Almonds, in shell;01371;;;
-49113:Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport[…];49113;;;
+49113:Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport[ï¿½];49113;;;
 54231:General construction services of aqueducts and other water supply conduits, except pipelines;54231;;;
 44114:Manure spreaders and fertilizer distributors;44114;;;
 49640:Parts of aircraft and spacecraft;49640;;;
@@ -697,27 +696,27 @@ classification;classification code;category 1;category 2;category 3
 85:Support services;85;;;
 49533:Railway or tramway goods vans and wagons, not self-propelled;49533;;;
 4153:Semi-finished products of aluminium or aluminium alloys;4153;;;
-31700:Packing cases, boxes, crates, drums and similar packings, of wood, cable-drums of wood, pallets, box pallets a[…];31700;;;
+31700:Packing cases, boxes, crates, drums and similar packings, of wood, cable-drums of wood, pallets, box pallets a[ï¿½];31700;;;
 01620:Tea leaves;01620;;;
 21661:Coconut oil, crude;21661;;;
 441:Agricultural or forestry machinery and parts thereof;441;;;
 34663:Herbicides, anti-sprouting products and plant-growth regulators;34663;;;
 21682:Cottonseed oil, refined;21682;;;
-3423:Chemical elements n.e.c., inorganic acids, inorganic oxygen compounds of boron, silicon and carbon, halogen or […];3423;;;
+3423:Chemical elements n.e.c., inorganic acids, inorganic oxygen compounds of boron, silicon and carbon, halogen or [ï¿½];3423;;;
 33410:Propane and butanes, liquefied;33410;;;
 21525:Fats and oils and their fractions, of fish, other than liver oils;21525;;;
 02211:Raw milk of cattle;02211;;;
 49941:Parts and accessories of motorcycles and side-cars;49941;;;
 47120:Electrical resistors (except heating resistors);47120;;;
 27922:Nonwovens;27922;;;
-34220:Zinc oxide, zinc peroxide, chromium oxides and hydroxides, manganese oxides, iron oxides and hydroxides, earth[…];34220;;;
+34220:Zinc oxide, zinc peroxide, chromium oxides and hydroxides, manganese oxides, iron oxides and hydroxides, earth[ï¿½];34220;;;
 41431:Unwrought aluminium;41431;;;
 49921:Bicycles and other cycles, not motorized;49921;;;
 266:Woven fabrics (except special fabrics) of cotton;266;;;
 41112:Ferro-manganese;41112;;;
-3932:Ash and residue (except from the manufacture of iron or steel), containing metals or metallic compounds, except[…];3932;;;
+3932:Ash and residue (except from the manufacture of iron or steel), containing metals or metallic compounds, except[ï¿½];3932;;;
 4121:Flat-rolled products of steel, not further worked than hot-rolled;4121;;;
-43914:Filtering or purifying machinery and apparatus, for liquids or gases, except oil filters, petrol filters and a[…];43914;;;
+43914:Filtering or purifying machinery and apparatus, for liquids or gases, except oil filters, petrol filters and a[ï¿½];43914;;;
 88731:Metal treatment and coating services;88731;;;
 88311:Wood manufacturing services;88311;;;
 373:Refractory products and structural non-refractory clay products;373;;;
@@ -730,13 +729,13 @@ classification;classification code;category 1;category 2;category 3
 54631:Heating equipment installation services;54631;;;
 69120:Gas distribution through mains (on own account);69120;;;
 34651:Ammonia, anhydrous;34651;;;
-34140:Carboxylic acids and their anhydrides, halides, peroxides and peroxyacids and their halogenated, sulphonated, […];34140;;;
+34140:Carboxylic acids and their anhydrides, halides, peroxides and peroxyacids and their halogenated, sulphonated, [ï¿½];34140;;;
 49621:Helicopters;49621;;;
-46950:Carbon electrodes, carbon brushes, lamp carbons, battery carbons and other articles of graphite or other carbo[…];46950;;;
+46950:Carbon electrodes, carbon brushes, lamp carbons, battery carbons and other articles of graphite or other carbo[ï¿½];46950;;;
 4611:Electric motors, generators and the like;4611;;;
 37510:Non-refractory mortars and concretes;37510;;;
 36920:Self-adhesive plates, sheets, film, foil, tape, strip and other flat shapes, of plastics;36920;;;
-44440:Machinery for sorting, screening, separating, washing, crushing, grinding, mixing or kneading earth, stone, or[…];44440;;;
+44440:Machinery for sorting, screening, separating, washing, crushing, grinding, mixing or kneading earth, stone, or[ï¿½];44440;;;
 43430:Parts for the goods of subclasses 43410 and 43420, parts of non-electric bakery ovens;43430;;;
 63111:Room or unit accommodation services for visitors, with daily housekeeping services;63111;;;
 4151:Semi-finished products of copper or copper alloys;4151;;;
@@ -749,7 +748,7 @@ classification;classification code;category 1;category 2;category 3
 47173:Parts for the goods of subclasses 47140 to 47160;47173;;;
 23130:Groats, meal and pellets of wheat and other cereals;23130;;;
 15320:Pebbles, gravel, broken or crushed stone, macadam, granules, chippings and powder of stone;15320;;;
-31212:Wood, continuously shaped along any of its edges or faces (including strips and friezes for parquet flooring, […];31212;;;
+31212:Wood, continuously shaped along any of its edges or faces (including strips and friezes for parquet flooring, [ï¿½];31212;;;
 33720:Spent (irradiated) fuel elements (cartridges) of nuclear reactors;33720;;;
 34210:Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases, inorganic oxygen compounds of non-metals n.e.c.;34210;;;
 88761:Engines and turbine manufacturing services;88761;;;
@@ -758,13 +757,13 @@ classification;classification code;category 1;category 2;category 3
 01318:Pineapples;01318;;;
 01151:Barley, seed;01151;;;
 4133:Platinum, unwrought or in semi-manufactured forms, or in powder form;4133;;;
-37191:Bottles, jars, phials and other containers, of glass, of a kind used for the conveyance or packing of goods, e[…];37191;;;
+37191:Bottles, jars, phials and other containers, of glass, of a kind used for the conveyance or packing of goods, e[ï¿½];37191;;;
 33429:Other petroleum gases or gaseous hydrocarbons, except natural gas;33429;;;
-37690:Other worked monumental or building stone and articles thereof, other artificially coloured granules, chipping[…];37690;;;
-3845:Fishing rods and other line fishing tackle, fish landing nets, butterfly nets and similar nets, decoy "birds" a[…];3845;;;
-32149:Other paper and paperboard, cellulose wadding and webs of cellulose fibres, coated, impregnated, gummed or adh[…];32149;;;
+37690:Other worked monumental or building stone and articles thereof, other artificially coloured granules, chipping[ï¿½];37690;;;
+3845:Fishing rods and other line fishing tackle, fish landing nets, butterfly nets and similar nets, decoy "birds" a[ï¿½];3845;;;
+32149:Other paper and paperboard, cellulose wadding and webs of cellulose fibres, coated, impregnated, gummed or adh[ï¿½];32149;;;
 53231:Aqueducts and other water supply conduits, except pipelines;53231;;;
-34540:Oils and other products of the distillation of high temperature coal tar, and similar products, pitch and pitc[…];34540;;;
+34540:Oils and other products of the distillation of high temperature coal tar, and similar products, pitch and pitc[ï¿½];34540;;;
 01353:Raspberries, blackberries, mulberries and loganberries;01353;;;
 34653:Ammonium chloride, nitrites;34653;;;
 413:Basic precious metals and metals clad with precious metals;413;;;
@@ -775,18 +774,18 @@ classification;classification code;category 1;category 2;category 3
 97150:Dyeing and colouring services;97150;;;
 8612:Animal husbandry services;8612;;;
 41122:Alloy steel in ingots or other primary forms and semi-finished products of alloy steel;41122;;;
-41310:Silver (including silver plated with gold or platinum), unwrought or in semi-manufactured forms, or in powder […];41310;;;
+41310:Silver (including silver plated with gold or platinum), unwrought or in semi-manufactured forms, or in powder [ï¿½];41310;;;
 364:Packaging products of plastics;364;;;
 65229:Other inland water transport services of freight;65229;;;
 87142:Maintenance and repair services of motorcycles;87142;;;
 53261:Mining constructions;53261;;;
 49112:Public-transport type passenger motor vehicles;49112;;;
-38450:Fishing rods and other line fishing tackle, fish landing nets, butterfly nets and similar nets, decoy "birds" […];38450;;;
+38450:Fishing rods and other line fishing tackle, fish landing nets, butterfly nets and similar nets, decoy "birds" [ï¿½];38450;;;
 34614:Double salts and mixtures of calcium nitrate and ammonium nitrate;34614;;;
 464:Accumulators, primary cells and primary batteries, and parts thereof;464;;;
 3549:Other chemical products;3549;;;
 53269:Other constructions for manufacturing;53269;;;
-42190:Other structures (except prefabricated buildings) and parts of structures, of iron, steel or aluminium, plates[…];42190;;;
+42190:Other structures (except prefabricated buildings) and parts of structures, of iron, steel or aluminium, plates[ï¿½];42190;;;
 28190:Other knitted or crocheted fabrics;28190;;;
 01314:Dates;01314;;;
 4492:Parts n.e.c. for special-purpose machinery;4492;;;
@@ -794,9 +793,9 @@ classification;classification code;category 1;category 2;category 3
 39910:Municipal waste;39910;;;
 87149:Maintenance and repair services of other transport equipment;87149;;;
 3339:Other petroleum oils n.e.c.;3339;;;
-41116:Ferrous products obtained by direct reduction of iron ore and other spongy ferrous products, in lumps, pellets[…];41116;;;
+41116:Ferrous products obtained by direct reduction of iron ore and other spongy ferrous products, in lumps, pellets[ï¿½];41116;;;
 399:Other wastes and scraps;399;;;
-45220:Portable automatic data processing machines weighing not more than 10 kg, such as laptops, notebooks and sub-n[…];45220;;;
+45220:Portable automatic data processing machines weighing not more than 10 kg, such as laptops, notebooks and sub-n[ï¿½];45220;;;
 37930:Articles of asphalt or of similar material;37930;;;
 341:Basic organic chemicals;341;;;
 23319:Preparations used in animal feeding n.e.c.;23319;;;
@@ -807,7 +806,7 @@ classification;classification code;category 1;category 2;category 3
 4124:Bars and rods, hot-rolled, of iron or steel;4124;;;
 01152:Barley, other;01152;;;
 88768:Power-driven hand tool manufacturing services;88768;;;
-34150:Amine-function compounds, oxygen-function amino-compounds, except lysine and its esters and salts thereof and […];34150;;;
+34150:Amine-function compounds, oxygen-function amino-compounds, except lysine and its esters and salts thereof and [ï¿½];34150;;;
 87360:Installation services of electrical machinery and apparatus n.e.c.;87360;;;
 31441:Medium density fibreboard (MDF);31441;;;
 01322:Lemons and limes;01322;;;
@@ -827,7 +826,7 @@ classification;classification code;category 1;category 2;category 3
 37410:Plasters;37410;;;
 88744:Consumer electronics manufacturing services;88744;;;
 36320:Tubes, pipes and hoses, and fittings therefor, of plastics;36320;;;
-44816:Other small electric domestic appliances (including vacuum cleaners, kitchen waste disposers, food mixers, sha[…];44816;;;
+44816:Other small electric domestic appliances (including vacuum cleaners, kitchen waste disposers, food mixers, sha[ï¿½];44816;;;
 01654:Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw;01654;;;
 44821:Cooking appliances and plate warmers, non-electric, domestic, of iron or steel;44821;;;
 631:Accommodation services for visitors;631;;;
@@ -840,10 +839,10 @@ classification;classification code;category 1;category 2;category 3
 01913:Cereal straw, husks, unprepared, ground, pressed, or in the form of pellets;01913;;;
 431:Engines and turbines and parts thereof;431;;;
 02140:Swine / pigs;02140;;;
-43420:Industrial or laboratory furnaces and ovens, except non-electric bakery ovens, other industrial or laboratory […];43420;;;
+43420:Industrial or laboratory furnaces and ovens, except non-electric bakery ovens, other industrial or laboratory [ï¿½];43420;;;
 462:Electricity distribution and control apparatus, and parts thereof;462;;;
 37330:Refractory cements, mortars, concretes and similar compositions n.e.c.;37330;;;
-46910:Electrical ignition or starting equipment of a kind used for internal combustion engines, generators and cut-o[…];46910;;;
+46910:Electrical ignition or starting equipment of a kind used for internal combustion engines, generators and cut-o[ï¿½];46910;;;
 88732:General machining services;88732;;;
 46121:Electrical transformers;46121;;;
 53290:Other civil engineering works;53290;;;
@@ -851,14 +850,14 @@ classification;classification code;category 1;category 2;category 3
 33710:Fuel elements (cartridges), non-irradiated, for nuclear reactors;33710;;;
 37570:Articles of asbestos-cement, cellulose fibre-cement or the like;37570;;;
 64112:Urban and suburban scheduled road transport services of passengers;64112;;;
-47223:Other telephone sets and apparatus for transmission or reception of voice, images or other data, including app[…];47223;;;
+47223:Other telephone sets and apparatus for transmission or reception of voice, images or other data, including app[ï¿½];47223;;;
 21291:Flours, meals and pellets, inedible, of fish, crustaceans, molluscs or other aquatic invertebrates;21291;;;
 439:Other general-purpose machinery and parts thereof;439;;;
 34611:Urea;34611;;;
 34530:Roasted iron pyrites;34530;;;
-34180:Phosphoric esters and their salts or esters of other inorganic acids (excluding esters of hydrogen halides) an[…];34180;;;
+34180:Phosphoric esters and their salts or esters of other inorganic acids (excluding esters of hydrogen halides) an[ï¿½];34180;;;
 32113:Mechanical wood pulp, semi-chemical wood pulp, pulps of fibrous cellulosic material other than wood;32113;;;
-16320:Industrial diamonds, unworked or simply sawn, cleaved or bruted, pumice stone, emery, natural corundum, natura[…];16320;;;
+16320:Industrial diamonds, unworked or simply sawn, cleaved or bruted, pumice stone, emery, natural corundum, natura[ï¿½];16320;;;
 342:Basic inorganic chemicals n.e.c.;342;;;
 31450:Plywood, veneer panels and similar laminated wood of bamboo;31450;;;
 4128:Tubes, pipes and hollow profiles, of steel;4128;;;
@@ -869,8 +868,8 @@ classification;classification code;category 1;category 2;category 3
 01172:Oats, other;01172;;;
 42220:Containers for compressed or liquefied gas, of iron, steel or aluminium;42220;;;
 01445:Sunflower seed;01445;;;
-43941:Parts of producer gas or water gas generators, parts of acetylene gas generators and similar water process gas[…];43941;;;
-37117:Paving blocks, bricks, tiles and other articles of pressed or moulded glass, of a kind used for building or co[…];37117;;;
+43941:Parts of producer gas or water gas generators, parts of acetylene gas generators and similar water process gas[ï¿½];43941;;;
+37117:Paving blocks, bricks, tiles and other articles of pressed or moulded glass, of a kind used for building or co[ï¿½];37117;;;
 21652:Palm oil, refined;21652;;;
 86219:Support services to other mining;86219;;;
 89200:Moulding, pressing, stamping, extruding and similar plastic manufacturing services;89200;;;
@@ -889,7 +888,7 @@ classification;classification code;category 1;category 2;category 3
 65:Freight transport services;65;;;
 48354:Parts and accessories for the goods of subclass 48315;48354;;;
 355:Man-made fibres;355;;;
-39367:Waste and scrap of tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium […];39367;;;
+39367:Waste and scrap of tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium [ï¿½];39367;;;
 37114:Glass in sheets, bent, edge-worked, engraved, drilled, enamelled or otherwise worked, but not framed, etc.;37114;;;
 34615:Mixtures of ammonium nitrate with calcium carbonate or other inorganic non-fertilizing substances;34615;;;
 43913:Refrigerating and freezing equipment and heat pumps, except household type equipment;43913;;;

@@ -50,14 +50,14 @@ def load_simapro_categories():
         raise FileNotFoundError(
             "The dictionary of Simapro categories could not be found."
         )
-    with open(filepath) as f:
+    with open(filepath, encoding="latin1") as f:
         csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
     header, *data = csv_list
 
     dict_cat = {}
     for row in data:
         _, cat_code, category_1, category_2, category_3 = row
-        dict_cat[cat_code] = {
+        dict_cat[str(cat_code)] = {
             "category 1": category_1,
             "category 2": category_2,
             "category 3": category_3,
@@ -430,6 +430,7 @@ class Export:
         """
 
         dict_classifications = load_simapro_categories()
+
         dict_categories = {}
 
         for ds in self.db:
@@ -440,28 +441,43 @@ class Export:
                     if len(ds["classifications"]) > 0:
                         for x in ds["classifications"]:
                             if x[0] == "ISIC rev.4 ecoinvent":
-                                main_category = dict_classifications[
-                                    x[1].split(":")[0].strip()
-                                ]["category 1"]
+
+                                try:
+                                    key = str(int(x[1].split(":")[0].strip()))
+                                    main_category = dict_classifications[
+                                        key
+                                    ]["category 1"]
+
+                                except:
+                                    try:
+                                        key = x[1].split(":")[0].strip()
+                                        main_category = dict_classifications[
+                                            key
+                                        ]["category 1"]
+
+                                    except KeyError:
+                                        print("missing class", x[1].split(":")[0].strip())
+                                        continue
+
 
                                 if (
-                                    dict_classifications[x[1].split(":")[0].strip()][
+                                    dict_classifications[key][
                                         "category 3"
                                     ]
                                     != ""
                                 ):
                                     category = (
                                         dict_classifications[
-                                            x[1].split(":")[0].strip()
+                                            key
                                         ]["category 2"]
                                         + "\ ".strip()
                                         + dict_classifications[
-                                            x[1].split(":")[0].strip()
+                                            key
                                         ]["category 3"]
                                     )
                                 else:
                                     category = dict_classifications[
-                                        x[1].split(":")[0].strip()
+                                        key
                                     ]["category 2"]
 
                         if not main_category:

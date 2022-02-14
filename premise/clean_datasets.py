@@ -279,23 +279,34 @@ class DatabaseCleaner:
                 if exc["type"] == "biosphere":
 
                     if "categories" not in exc:
+
+                        # from the uuid, fetch the flow category
                         if "input" in exc:
-                            # from the uuid, fetch the flow category
                             if exc["input"][1] in dict_bio_cat:
-                                exc["categories"] = dict_bio_cat[exc["input"][1]]
+                                key = exc["input"][1]
+                                exc["categories"] = dict_bio_cat[key]
                             else:
-                                print(
-                                    f"Missing flow category for {exc['name']} with UUID {exc['input'][1]}. It will be deleted."
-                                )
+                                print(f"no flow code for {exc['name']}")
                                 exc["delete"] = True
+
+                        elif "flow" in exc:
+                            if exc["flow"] in dict_bio_cat:
+                                key = exc["flow"]
+                                exc["categories"] = dict_bio_cat[key]
+                            else:
+                                print(f"no flow code for {exc['name']}")
+                                exc["delete"] = True
+
                         else:
-                            print(
-                                f"Missing flow category for {exc['name']}. It will be deleted."
-                            )
+                            print(f"no input or categories for {exc['name']}")
                             exc["delete"] = True
 
+
                     if "input" not in exc:
-                        if "categories" in exc:
+                        if "flow" in exc:
+                            exc["input"] = ("biosphere3", exc["flow"])
+
+                        elif "categories" in exc:
                             # from the category, fetch the uuid of that biosphere flow
                             cat = (
                                 exc["categories"]
@@ -306,6 +317,13 @@ class DatabaseCleaner:
                                 exc["name"], cat[0], cat[1], exc["unit"]
                             ]
                             exc["input"] = ("biosphere3", uuid)
+
+                            if "delete" in exc:
+                                del exc["delete"]
+                        else:
+                            print(f"no input or categories for {exc['name']}")
+                            exc["delete"] = True
+
 
             ds["exchanges"] = [exc for exc in ds["exchanges"] if "delete" not in exc]
 
