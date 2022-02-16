@@ -18,12 +18,17 @@ from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, export_scenario_difference_file
 from .fuels import Fuels
-from .inventory_imports import (AdditionalInventory, DefaultInventory,
-                                VariousVehicles)
+from .inventory_imports import AdditionalInventory, DefaultInventory, VariousVehicles
 from .renewables import SolarPV
 from .steel import Steel
-from .utils import (c, convert_db_to_dataframe, convert_df_to_dict,
-                    create_scenario_label, eidb_label, s)
+from .utils import (
+    c,
+    convert_db_to_dataframe,
+    convert_df_to_dict,
+    create_scenario_label,
+    eidb_label,
+    s,
+)
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
