@@ -301,6 +301,9 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
                 "]"
             )
+        if "region_duplicate" in inventory:
+            if not isinstance(inventory["region_duplicate"], bool):
+                raise TypeError("`region_duplicate`must be a boolean (`True`` `False`.)")
 
         if not all(
             i for i in inventory.keys() if i in ["filepath", "ecoinvent version"]
@@ -697,6 +700,15 @@ class NewDatabase:
                 path=file["filepath"],
             )
             additional.prepare_inventory()
+
+            # if the inventories are to be duplicated
+            # to be made specific to each IAM region
+            # we flag them
+            if "region_duplicate" in file:
+                if file["region_duplicate"]:
+                    for ds in additional.import_db:
+                        ds["duplicate"] = True
+
             data.extend(additional.merge_inventory())
 
         print("Done!\n")
@@ -882,6 +894,52 @@ class NewDatabase:
         self.update_steel()
         self.update_fuels()
 
+
+    def prepare_db_for_export(self, scenario):
+
+        base = BaseTransformation(
+            database=scenario["database"],
+            iam_data=scenario["external data"],
+            model=scenario["model"],
+            pathway=scenario["pathway"],
+            year=scenario["year"],
+        )
+
+        # check if additional inventories
+        # need to be duplicated for each
+        # IAM region
+
+        list_add_ds = []
+        for ds in base.database:
+            if "duplicate" in ds:
+                list_add_ds.extend(base.fetch_proxies(
+                    ds["name"],
+                    ds["reference product"],
+                    relink=True
+                ).values())
+
+        if len(list_add_ds) > 0:
+            base.database.extend(list_add_ds)
+
+        # we ensure the absence of duplicate datasets
+        base.database = check_for_duplicates(base.database)
+        base.database = remove_uncertainty(base.database)
+
+        base.relink_datasets(
+            excludes_datasets=["cobalt industry", "market group for electricity"],
+            alt_names=[
+                "market group for electricity, high voltage",
+                "market group for electricity, medium voltage",
+                "market group for electricity, low voltage",
+                "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
+                "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
+                "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
+            ],
+        )
+
+        return base.database
+
+
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None
     ) -> None:
@@ -892,32 +950,8 @@ class NewDatabase:
 
         for scen, scenario in enumerate(self.scenarios):
 
-            print(f"Relink activities of database {scen + 1}.")
-
-            base = BaseTransformation(
-                database=scenario["database"],
-                iam_data=scenario["external data"],
-                model=scenario["model"],
-                pathway=scenario["pathway"],
-                year=scenario["year"],
-            )
-
-            base.relink_datasets(
-                excludes_datasets=["cobalt industry", "market group for electricity"],
-                alt_names=[
-                    "market group for electricity, high voltage",
-                    "market group for electricity, medium voltage",
-                    "market group for electricity, low voltage",
-                    "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
-                    "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-                ],
-            )
-            scenario["database"] = base.database
-
-            # we ensure first the absence of duplicate datasets
-            scenario["database"] = check_for_duplicates(scenario["database"])
-            scenario["database"] = remove_uncertainty(scenario["database"])
+            print(f"Prepare database {scen + 1}.")
+            scenario["database"] = self.prepare_db_for_export(scenario)
 
         self.database = build_superstructure_db(
             self.database, self.scenarios, db_name=name, fp=filepath
@@ -965,32 +999,8 @@ class NewDatabase:
         print("Write new database(s) to Brightway2.")
         for scen, scenario in enumerate(self.scenarios):
 
-            print("Relink activities.")
-
-            base = BaseTransformation(
-                database=scenario["database"],
-                iam_data=scenario["external data"],
-                model=scenario["model"],
-                pathway=scenario["pathway"],
-                year=scenario["year"],
-            )
-
-            base.relink_datasets(
-                excludes_datasets=["cobalt industry", "market group for electricity"],
-                alt_names=[
-                    "market group for electricity, high voltage",
-                    "market group for electricity, medium voltage",
-                    "market group for electricity, low voltage",
-                    "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
-                    "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-                ],
-            )
-            scenario["database"] = base.database
-
-            # we ensure first the absence of duplicate datasets
-            scenario["database"] = check_for_duplicates(scenario["database"])
-            scenario["database"] = remove_uncertainty(scenario["database"])
+            print(f"Prepare database {scen + 1}.")
+            scenario["database"] = self.prepare_db_for_export(scenario)
 
             wurst.write_brightway2_database(
                 scenario["database"],
@@ -1034,32 +1044,8 @@ class NewDatabase:
         print("Write new database(s) to matrix.")
         for scen, scenario in enumerate(self.scenarios):
 
-            print("Relink activities.")
-
-            base = BaseTransformation(
-                database=scenario["database"],
-                iam_data=scenario["external data"],
-                model=scenario["model"],
-                pathway=scenario["pathway"],
-                year=scenario["year"],
-            )
-
-            base.relink_datasets(
-                excludes_datasets=["cobalt industry", "market group for electricity"],
-                alt_names=[
-                    "market group for electricity, high voltage",
-                    "market group for electricity, medium voltage",
-                    "market group for electricity, low voltage",
-                    "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
-                    "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-                ],
-            )
-            scenario["database"] = base.database
-
-            # we ensure first the absence of duplicate datasets
-            scenario["database"] = check_for_duplicates(scenario["database"])
-            scenario["database"] = remove_uncertainty(scenario["database"])
+            print(f"Prepare database {scen + 1}.")
+            scenario["database"] = self.prepare_db_for_export(scenario)
 
             Export(
                 scenario["database"],
@@ -1084,34 +1070,10 @@ class NewDatabase:
             os.makedirs(filepath)
 
         print("Write Simapro import file(s).")
-        for scenario in self.scenarios:
+        for scen, scenario in enumerate(self.scenarios):
 
-            print("Relink activities.")
-
-            base = BaseTransformation(
-                database=scenario["database"],
-                iam_data=scenario["external data"],
-                model=scenario["model"],
-                pathway=scenario["pathway"],
-                year=scenario["year"],
-            )
-
-            base.relink_datasets(
-                excludes_datasets=["cobalt industry", "market group for electricity"],
-                alt_names=[
-                    "market group for electricity, high voltage",
-                    "market group for electricity, medium voltage",
-                    "market group for electricity, low voltage",
-                    "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
-                    "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                    "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-                ],
-            )
-            scenario["database"] = base.database
-
-            # we ensure first the absence of duplicate datasets
-            scenario["database"] = check_for_duplicates(scenario["database"])
-            scenario["database"] = remove_uncertainty(scenario["database"])
+            print(f"Prepare database {scen + 1}.")
+            scenario["database"] = self.prepare_db_for_export(scenario)
 
             Export(
                 scenario["database"],
@@ -1120,42 +1082,3 @@ class NewDatabase:
                 scenario["year"],
                 filepath,
             ).export_db_to_simapro()
-
-    def write_db_to_brightway25(self, name: str = None):
-        """
-        Register the new database into the current brightway2.5 project.
-        """
-
-        if name:
-            if isinstance(name, str):
-                name = [name]
-            elif isinstance(name, list):
-                if not all(isinstance(item, str) for item in name):
-                    raise TypeError(
-                        "`name` should be a string or a sequence of strings."
-                    )
-            else:
-                raise TypeError("`name` should be a string or a sequence of strings.")
-        else:
-            name = [
-                eidb_label(s["model"], s["pathway"], s["year"]) for s in self.scenarios
-            ]
-
-        if len(name) != len(self.scenarios):
-            raise ValueError(
-                "The number of databases does not match the number of `name` given."
-            )
-
-        print("Write new database to Brightway2.5")
-        # We first need to check for differences between the source database
-        # and the new ones
-        # We add a `modified` label to any new activity or any new or modified exchange
-        self.scenarios = add_modified_tags(self.database, self.scenarios)
-        for scen, scenario in enumerate(self.scenarios):
-
-            # we ensure first the absence of duplicate datasets
-            scenario["database"] = check_for_duplicates(scenario["database"])
-
-            wurst.write_brightway25_database(
-                scenario["database"], name[scen], self.source
-            )

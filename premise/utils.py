@@ -593,8 +593,6 @@ def relink_technosphere_exchanges(
         * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
     Modifies the dataset in place; returns the modified dataset."""
 
-    MESSAGE = "Relinked technosphere exchange of {}/{}/{} from {}/{} to {}/{}."
-    DROPPED = "Dropped technosphere exchange of {}/{}/{}; no valid providers."
     new_exchanges = []
     technosphere = lambda x: x["type"] == "technosphere"
 
@@ -692,7 +690,7 @@ def relink_technosphere_exchanges(
                                 if obj["location"] == "RoW"
                             ]
                         )
-                elif "RoW" in possible_locations:
+                if not kept and "RoW" in possible_locations:
                     kept = [
                         obj for obj in possible_datasets if obj["location"] == "RoW"
                     ]
@@ -713,39 +711,12 @@ def relink_technosphere_exchanges(
 
                 if not kept:
                     if drop_invalid:
-                        log(
-                            {
-                                "function": "relink_technosphere_exchanges",
-                                "message": DROPPED.format(
-                                    exc["name"], exc["product"], exc["unit"]
-                                ),
-                            },
-                            ds,
-                        )
                         continue
                     else:
                         new_exchanges.append(exc)
                         continue
 
                 allocated, share = allocate_inputs(exc, kept)
-
-                for obj in allocated:
-                    log(
-                        {
-                            "function": "relink_technosphere_exchanges",
-                            "message": MESSAGE.format(
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["amount"],
-                                ds["location"],
-                                obj["amount"],
-                                obj["location"],
-                            ),
-                        },
-                        ds,
-                    )
-
                 new_exchanges.extend(allocated)
 
                 if ds["location"] in cache:

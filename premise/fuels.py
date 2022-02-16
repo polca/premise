@@ -1383,7 +1383,7 @@ class Fuels(BaseTransformation):
                     ),
                     ws.doesnt_contain_any(
                         "reference product",
-                        ["petroleum coke", "petroleum gas", "wax", "low pressure"],
+                        ["petroleum coke", "petroleum gas", "wax", "low pressure", "vehicle grade"],
                     ),
                 )
             )
