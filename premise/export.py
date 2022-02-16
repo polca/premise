@@ -444,41 +444,31 @@ class Export:
 
                                 try:
                                     key = str(int(x[1].split(":")[0].strip()))
-                                    main_category = dict_classifications[
-                                        key
-                                    ]["category 1"]
+                                    main_category = dict_classifications[key][
+                                        "category 1"
+                                    ]
 
                                 except:
                                     try:
                                         key = x[1].split(":")[0].strip()
-                                        main_category = dict_classifications[
-                                            key
-                                        ]["category 1"]
+                                        main_category = dict_classifications[key][
+                                            "category 1"
+                                        ]
 
                                     except KeyError:
-                                        print("missing class", x[1].split(":")[0].strip())
+                                        print(
+                                            "missing class", x[1].split(":")[0].strip()
+                                        )
                                         continue
 
-
-                                if (
-                                    dict_classifications[key][
-                                        "category 3"
-                                    ]
-                                    != ""
-                                ):
+                                if dict_classifications[key]["category 3"] != "":
                                     category = (
-                                        dict_classifications[
-                                            key
-                                        ]["category 2"]
+                                        dict_classifications[key]["category 2"]
                                         + "\ ".strip()
-                                        + dict_classifications[
-                                            key
-                                        ]["category 3"]
+                                        + dict_classifications[key]["category 3"]
                                     )
                                 else:
-                                    category = dict_classifications[
-                                        key
-                                    ]["category 2"]
+                                    category = dict_classifications[key]["category 2"]
 
                         if not main_category:
                             for x in ds["classifications"]:

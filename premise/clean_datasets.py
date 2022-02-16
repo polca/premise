@@ -301,7 +301,6 @@ class DatabaseCleaner:
                             print(f"no input or categories for {exc['name']}")
                             exc["delete"] = True
 
-
                     if "input" not in exc:
                         if "flow" in exc:
                             exc["input"] = ("biosphere3", exc["flow"])
@@ -323,7 +322,6 @@ class DatabaseCleaner:
                         else:
                             print(f"no input or categories for {exc['name']}")
                             exc["delete"] = True
-
 
             ds["exchanges"] = [exc for exc in ds["exchanges"] if "delete" not in exc]
 
