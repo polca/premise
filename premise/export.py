@@ -14,11 +14,12 @@ FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_38.csv"
 
 def export_scenario_difference_file(database, db_name, filepath):
 
-    scenario_cols = [
-        t for t in database.columns if t[1] == c.amount and t[0] != s.ecoinvent
-    ]
+    scenario_cols = [t for t in database.columns if t[1] == c.amount and t[0] != s.ecoinvent]
 
-    database = database.loc[~database[scenario_cols].isnull().all(1)]
+    # FIXME: REVIEW I have a suggestion for reformulating this code line into a better readable one.
+    #        With the code below it is in my opinion more readable for understanding the filterstatement created.
+    invalid_data_rows = database[scenario_cols].isnull().all(1)
+    database = database.loc[~invalid_data_rows]
 
     df_exp = database[
         [
@@ -46,9 +47,7 @@ def export_scenario_difference_file(database, db_name, filepath):
         "flow type",
     ]
 
-    df_exp["from categories"] = df_exp.loc[
-        df_exp["flow type"] == "biosphere", "from location"
-    ]
+    df_exp["from categories"] = df_exp.loc[df_exp["flow type"] == "biosphere", "from location"]
     df_exp.loc[:, "to categories"] = ""
 
     df_exp.loc[df_exp["flow type"] == "biosphere", "from location"] = ""
@@ -60,18 +59,18 @@ def export_scenario_difference_file(database, db_name, filepath):
     df_exp["from code"] = df_exp["from code"].astype("string")
     df_exp["to code"] = df_exp["to code"].astype("string")
 
-    df_exp["from key"] = list(
-        df_exp[["from database", "from code"]].to_records(index=False)
-    )
+    df_exp["from key"] = list(df_exp[["from database", "from code"]].to_records(index=False))
     df_exp["to key"] = list(df_exp[["to database", "to code"]].to_records(index=False))
 
-    df_vals = database[[t for t in database.columns if t[1] == c.amount]].droplevel(
-        level=1, axis=1
-    )
+    df_vals = database[[t for t in database.columns if t[1] == c.amount]].droplevel(level=1, axis=1)
 
     # for t in cols:
     #    df_vals[t] = df_vals[t].fillna(df_vals[s.ecoinvent])
 
+    # FIXME: REVIEW I am concerned that we might have a sorting issue creeping up here.
+    #        Is it guaranteed that the order of df_vals rows is the same as the order of df_exp at the
+    #        time we concatenate? If the sort order changes we would match lines which don't belong together
+    #        We could either sort both datasets first or we could switch do an index based approach.
     pd.concat(
         [
             df_exp[
@@ -98,6 +97,10 @@ def export_scenario_difference_file(database, db_name, filepath):
 
     print(f"Scenario difference file exported to {filepath}!")
 
+    # FIXME: REVIEW Why do we not return the created dataset? It would be convenient to be able to access
+    #        the result of the function directly. For example if one wants to call the function with a copy like this:
+    #        export_scenario_difference_file(database.copy(), 'test', './path/2/data')
+
 
 def create_index_of_A_matrix(db):
     """
@@ -107,13 +110,7 @@ def create_index_of_A_matrix(db):
     :rtype: dict
     """
     return {
-        (
-            db[i]["name"],
-            db[i]["reference product"],
-            db[i]["unit"],
-            db[i]["location"],
-        ): i
-        for i in range(0, len(db))
+        (db[i]["name"], db[i]["reference product"], db[i]["unit"], db[i]["location"],): i for i in range(0, len(db))
     }
 
 
@@ -190,43 +187,15 @@ class Export:
             for exc in ds["exchanges"]:
                 if exc["type"] == "production":
                     row = [
-                        index_A[
-                            (
-                                ds["name"],
-                                ds["reference product"],
-                                ds["unit"],
-                                ds["location"],
-                            )
-                        ],
-                        index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
-                        ],
+                        index_A[(ds["name"], ds["reference product"], ds["unit"], ds["location"],)],
+                        index_A[(exc["name"], exc["product"], exc["unit"], exc["location"],)],
                         exc["amount"],
                     ]
                     list_rows.append(row)
                 if exc["type"] == "technosphere":
                     row = [
-                        index_A[
-                            (
-                                ds["name"],
-                                ds["reference product"],
-                                ds["unit"],
-                                ds["location"],
-                            )
-                        ],
-                        index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
-                        ],
+                        index_A[(ds["name"], ds["reference product"], ds["unit"], ds["location"],)],
+                        index_A[(exc["name"], exc["product"], exc["unit"], exc["location"],)],
                         exc["amount"] * -1,
                     ]
                     list_rows.append(row)
@@ -248,22 +217,13 @@ class Export:
                         ind_B = index_B[lookup]
 
                         row = [
-                            index_A[
-                                (
-                                    ds["name"],
-                                    ds["reference product"],
-                                    ds["unit"],
-                                    ds["location"],
-                                )
-                            ],
+                            index_A[(ds["name"], ds["reference product"], ds["unit"], ds["location"],)],
                             ind_B,
                             exc["amount"] * -1,
                         ]
                     except KeyError:
                         print(
-                            "Cannot find the biosphere flow",
-                            exc["name"],
-                            exc["categories"],
+                            "Cannot find the biosphere flow", exc["name"], exc["categories"],
                         )
                     list_rows.append(row)
         return list_rows
@@ -275,11 +235,7 @@ class Export:
 
         # Export A matrix
         with open(self.filepath / "A_matrix.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             writer.writerow(["index of activity", "index of product", "value"])
             rows = self.create_A_matrix_coordinates()
             for row in rows:
@@ -287,11 +243,7 @@ class Export:
 
         # Export A index
         with open(self.filepath / "A_matrix_index.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             index_A = create_index_of_A_matrix(self.db)
             for d in index_A:
                 data = list(d) + [index_A[d]]
@@ -301,11 +253,7 @@ class Export:
 
         # Export B matrix
         with open(self.filepath / "B_matrix.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             writer.writerow(["index of activity", "index of biosphere flow", "value"])
             rows = self.create_B_matrix_coordinates()
             for row in rows:
@@ -313,11 +261,7 @@ class Export:
 
         # Export B index
         with open(self.filepath / "B_matrix_index.csv", "w") as f:
-            writer = csv.writer(
-                f,
-                delimiter=";",
-                lineterminator="\n",
-            )
+            writer = csv.writer(f, delimiter=";", lineterminator="\n",)
             for d in index_B:
                 data = list(d) + [index_B[d]]
                 writer.writerow(data)
@@ -327,9 +271,7 @@ class Export:
     @staticmethod
     def create_rev_index_of_B_matrix():
         if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flows could not be found."
-            )
+            raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
         csv_dict = {}
 
@@ -365,9 +307,7 @@ class Export:
         filename = "simapro_classification.csv"
         filepath = DATA_DIR / filename
         if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of Simapro categories could not be found."
-            )
+            raise FileNotFoundError("The dictionary of Simapro categories could not be found.")
         with open(filepath) as f:
             csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
         header, *data = csv_list
@@ -392,9 +332,7 @@ class Export:
         filename = "simapro_categories.csv"
         filepath = DATA_DIR / filename
         if not filepath.is_file():
-            raise FileNotFoundError(
-                "The dictionary of Simapro categories could not be found."
-            )
+            raise FileNotFoundError("The dictionary of Simapro categories could not be found.")
         with open(filepath) as f:
             csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
         header, *data = csv_list
@@ -428,56 +366,30 @@ class Export:
                     if len(ds["classifications"]) > 0:
                         for x in ds["classifications"]:
                             if x[0] == "ISIC rev.4 ecoinvent":
-                                main_category = dict_classifications[
-                                    x[1].split(":")[0].strip()
-                                ]["category 1"]
+                                main_category = dict_classifications[x[1].split(":")[0].strip()]["category 1"]
 
-                                if (
-                                    dict_classifications[x[1].split(":")[0].strip()][
-                                        "category 3"
-                                    ]
-                                    != ""
-                                ):
+                                if dict_classifications[x[1].split(":")[0].strip()]["category 3"] != "":
                                     category = (
-                                        dict_classifications[
-                                            x[1].split(":")[0].strip()
-                                        ]["category 2"]
+                                        dict_classifications[x[1].split(":")[0].strip()]["category 2"]
                                         + "\ ".strip()
-                                        + dict_classifications[
-                                            x[1].split(":")[0].strip()
-                                        ]["category 3"]
+                                        + dict_classifications[x[1].split(":")[0].strip()]["category 3"]
                                     )
                                 else:
-                                    category = dict_classifications[
-                                        x[1].split(":")[0].strip()
-                                    ]["category 2"]
+                                    category = dict_classifications[x[1].split(":")[0].strip()]["category 2"]
 
                         if not main_category:
                             for x in ds["classifications"]:
                                 if x[0] == "CPC":
-                                    main_category = dict_classifications[
-                                        x[1].split(":")[0].strip()
-                                    ]["category 1"]
+                                    main_category = dict_classifications[x[1].split(":")[0].strip()]["category 1"]
 
-                                    if (
-                                        dict_classifications[
-                                            x[1].split(":")[0].strip()
-                                        ]["category 3"]
-                                        != ""
-                                    ):
+                                    if dict_classifications[x[1].split(":")[0].strip()]["category 3"] != "":
                                         category = (
-                                            dict_classifications[
-                                                x[1].split(":")[0].strip()
-                                            ]["category 2"]
+                                            dict_classifications[x[1].split(":")[0].strip()]["category 2"]
                                             + "\ ".strip()
-                                            + dict_classifications[
-                                                x[1].split(":")[0].strip()
-                                            ]["category 3"]
+                                            + dict_classifications[x[1].split(":")[0].strip()]["category 3"]
                                         )
                                     else:
-                                        category = dict_classifications[
-                                            x[1].split(":")[0].strip()
-                                        ]["category 2"]
+                                        category = dict_classifications[x[1].split(":")[0].strip()]["category 2"]
 
                 if not main_category:
                     main_category = "material"
@@ -520,9 +432,7 @@ class Export:
         headers = [
             "{SimaPro 9.1.1.1}",
             "{processes}",
-            "{Project: carculator import"
-            + f"{datetime.datetime.today():%d.%m.%Y}"
-            + "}",
+            "{Project: carculator import" + f"{datetime.datetime.today():%d.%m.%Y}" + "}",
             "{CSV Format version: 9.0.0}",
             "{CSV separator: Semicolon}",
             "{Decimal separator: .}",
@@ -603,23 +513,13 @@ class Export:
             "guest night": "guestnight",
         }
 
-        filename = (
-            "simapro_export_"
-            + self.model
-            + "_"
-            + self.scenario
-            + "_"
-            + str(self.year)
-            + ".csv"
-        )
+        filename = "simapro_export_" + self.model + "_" + self.scenario + "_" + str(self.year) + ".csv"
 
         dict_cat_simapro = self.get_simapro_category_of_exchange()
         dict_cat = self.get_category_of_exchange()
         dict_refs = self.load_references()
 
-        with open(
-            self.filepath / filename, "w", newline="", encoding="utf-8"
-        ) as csvFile:
+        with open(self.filepath / filename, "w", newline="", encoding="utf-8") as csvFile:
             writer = csv.writer(csvFile, delimiter=";")
             for item in headers:
                 writer.writerow([item])
@@ -638,36 +538,23 @@ class Export:
                 else:
 
                     if any(
-                        i in ds["name"]
-                        for i in (
-                            "transport, passenger car",
-                            "transport, heavy",
-                            "transport, medium",
-                        )
+                        i in ds["name"] for i in ("transport, passenger car", "transport, heavy", "transport, medium",)
                     ):
                         main_category, category = ("transport", r"Road\Transformation")
 
-                    if any(
-                        i in ds["name"]
-                        for i in ("Passenger car", "Heavy duty", "Medium duty")
-                    ):
+                    if any(i in ds["name"] for i in ("Passenger car", "Heavy duty", "Medium duty")):
                         main_category, category = ("transport", r"Road\Infrastructure")
 
                     if main_category == "":
 
                         main_category, category = (
-                            dict_cat[(ds["name"], ds["reference product"])][
-                                "main category"
-                            ],
+                            dict_cat[(ds["name"], ds["reference product"])]["main category"],
                             dict_cat[(ds["name"], ds["reference product"])]["category"],
                         )
 
                 for item in fields:
 
-                    if (
-                        main_category.lower() == "waste treatment"
-                        and item == "Products"
-                    ):
+                    if main_category.lower() == "waste treatment" and item == "Products":
                         continue
 
                     if main_category.lower() != "waste treatment" and item in (
@@ -710,16 +597,10 @@ class Export:
                     if item == "Comment":
 
                         if ds["name"] in dict_refs:
-                            string = re.sub(
-                                "[^a-zA-Z0-9 \.,]", "", dict_refs[ds["name"]]["source"]
-                            )
+                            string = re.sub("[^a-zA-Z0-9 \.,]", "", dict_refs[ds["name"]]["source"])
 
                             if dict_refs[ds["name"]]["description"] != "":
-                                string += " " + re.sub(
-                                    "[^a-zA-Z0-9 \.,]",
-                                    "",
-                                    dict_refs[ds["name"]]["description"],
-                                )
+                                string += " " + re.sub("[^a-zA-Z0-9 \.,]", "", dict_refs[ds["name"]]["description"],)
 
                             writer.writerow([string])
                         else:
@@ -748,11 +629,7 @@ class Export:
                     if item == "Infrastructure":
                         writer.writerow(["Yes"])
                     if item == "External documents":
-                        writer.writerow(
-                            [
-                                "https://premise.readthedocs.io/en/latest/introduction.html"
-                            ]
-                        )
+                        writer.writerow(["https://premise.readthedocs.io/en/latest/introduction.html"])
                     if item in ("Waste treatment", "Products"):
                         for e in ds["exchanges"]:
                             if e["type"] == "production":
@@ -769,38 +646,21 @@ class Export:
 
                                 if item == "Waste treatment":
                                     writer.writerow(
-                                        [
-                                            name,
-                                            simapro_units[e["unit"]],
-                                            1.0,
-                                            "not defined",
-                                            category,
-                                        ]
+                                        [name, simapro_units[e["unit"]], 1.0, "not defined", category,]
                                     )
 
                                 else:
                                     writer.writerow(
-                                        [
-                                            name,
-                                            simapro_units[e["unit"]],
-                                            1.0,
-                                            "100%",
-                                            "not defined",
-                                            category,
-                                        ]
+                                        [name, simapro_units[e["unit"]], 1.0, "100%", "not defined", category,]
                                     )
                     if item == "Materials/fuels":
                         for e in ds["exchanges"]:
                             if e["type"] == "technosphere":
 
                                 if e["name"] in dict_cat_simapro:
-                                    exc_cat = dict_cat_simapro[e["name"]][
-                                        "main category"
-                                    ].lower()
+                                    exc_cat = dict_cat_simapro[e["name"]]["main category"].lower()
                                 else:
-                                    exc_cat = dict_cat[e["name"], e["product"]][
-                                        "main category"
-                                    ].lower()
+                                    exc_cat = dict_cat[e["name"], e["product"]]["main category"].lower()
 
                                 if exc_cat != "waste treatment":
                                     name = (
@@ -827,10 +687,7 @@ class Export:
                                     )
                     if item == "Resources":
                         for e in ds["exchanges"]:
-                            if (
-                                e["type"] == "biosphere"
-                                and e["categories"][0] == "natural resource"
-                            ):
+                            if e["type"] == "biosphere" and e["categories"][0] == "natural resource":
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
@@ -865,10 +722,7 @@ class Export:
                                 )
                     if item == "Emissions to water":
                         for e in ds["exchanges"]:
-                            if (
-                                e["type"] == "biosphere"
-                                and e["categories"][0] == "water"
-                            ):
+                            if e["type"] == "biosphere" and e["categories"][0] == "water":
                                 if e["name"].lower() == "water":
                                     e["unit"] = "kilogram"
                                     e["amount"] /= 1000
@@ -887,10 +741,7 @@ class Export:
                                 )
                     if item == "Emissions to soil":
                         for e in ds["exchanges"]:
-                            if (
-                                e["type"] == "biosphere"
-                                and e["categories"][0] == "soil"
-                            ):
+                            if e["type"] == "biosphere" and e["categories"][0] == "soil":
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
@@ -908,13 +759,9 @@ class Export:
                             if e["type"] == "technosphere":
 
                                 if e["name"] in dict_cat_simapro:
-                                    exc_cat = dict_cat_simapro[e["name"]][
-                                        "main category"
-                                    ].lower()
+                                    exc_cat = dict_cat_simapro[e["name"]]["main category"].lower()
                                 else:
-                                    exc_cat = dict_cat[e["name"], e["product"]][
-                                        "main category"
-                                    ].lower()
+                                    exc_cat = dict_cat[e["name"], e["product"]]["main category"].lower()
 
                                 if exc_cat == "waste treatment":
 
@@ -979,9 +826,7 @@ class Export:
             writer.writerow(["https://www.ecoinvent.org"])
             writer.writerow([])
             writer.writerow(["Comment"])
-            writer.writerow(
-                ["Pre-print available at: https://www.psi.ch/en/media/57994/download"]
-            )
+            writer.writerow(["Pre-print available at: https://www.psi.ch/en/media/57994/download"])
             writer.writerow([])
             writer.writerow(["Category"])
             writer.writerow(["Ecoinvent 3"])
@@ -1004,21 +849,13 @@ class Export:
         :rtype: dict
         """
         return {
-            (
-                i["name"],
-                i["reference product"],
-                i["database"],
-                i["location"],
-                i["unit"],
-            ): x
+            (i["name"], i["reference product"], i["database"], i["location"], i["unit"],): x
             for x, i in enumerate(self.db)
         }
 
     def create_names_and_indices_of_B_matrix(self):
         if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flows could not be found."
-            )
+            raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
         csv_dict = dict()
 
