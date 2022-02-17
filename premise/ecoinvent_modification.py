@@ -303,7 +303,9 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
             )
         if "region_duplicate" in inventory:
             if not isinstance(inventory["region_duplicate"], bool):
-                raise TypeError("`region_duplicate`must be a boolean (`True`` `False`.)")
+                raise TypeError(
+                    "`region_duplicate`must be a boolean (`True`` `False`.)"
+                )
 
         if not all(
             i for i in inventory.keys() if i in ["filepath", "ecoinvent version"]
@@ -894,7 +896,6 @@ class NewDatabase:
         self.update_steel()
         self.update_fuels()
 
-
     def prepare_db_for_export(self, scenario):
 
         base = BaseTransformation(
@@ -912,11 +913,11 @@ class NewDatabase:
         list_add_ds = []
         for ds in base.database:
             if "duplicate" in ds:
-                list_add_ds.extend(base.fetch_proxies(
-                    ds["name"],
-                    ds["reference product"],
-                    relink=True
-                ).values())
+                list_add_ds.extend(
+                    base.fetch_proxies(
+                        ds["name"], ds["reference product"], relink=True
+                    ).values()
+                )
 
         if len(list_add_ds) > 0:
             base.database.extend(list_add_ds)
@@ -938,7 +939,6 @@ class NewDatabase:
         )
 
         return base.database
-
 
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None
