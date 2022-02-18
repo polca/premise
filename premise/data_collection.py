@@ -334,7 +334,7 @@ class IAMDataCollection:
         elif self.model == "image":
 
             dataframe = pd.read_csv(
-                data, index_col=[2, 3, 4], encoding="latin-1", sep=";"
+                data, index_col=[2, 3, 4], encoding="latin-1", sep=","
             ).drop(columns=["Model", "Scenario"])
 
             # Filter the dataframe
@@ -945,16 +945,17 @@ class IAMDataCollection:
         # or wrongly evaluated so we fix that here
 
         data.loc[dict(region="World", variables=list_technologies)] = data.loc[
-            dict(
-                region=[r for r in data.coords["region"].values if r != "World"],
-                variables=list_technologies,
-            )
-        ].sum(dim="region")
+                dict(
+                    region=[r for r in data.coords["region"].values if r != "World"],
+                    variables=list_technologies,
+                )
+            ].sum(dim="region")
+
 
         # Interpolation between two periods
         data_to_return = data.loc[:, list_technologies, :]
 
-        data_to_return.coords["variables"] = list(labels.keys())
+        data_to_return.coords["variables"] = list_technologies
 
         if self.system_model == "consequential":
 
@@ -1174,7 +1175,8 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
+
         data_to_return = data.loc[:, list_products, :]
-        data_to_return.coords["variables"] = list(dict_products.keys())
+        data_to_return.coords["variables"] = list_products
 
         return data_to_return
