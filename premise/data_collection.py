@@ -946,12 +946,11 @@ class IAMDataCollection:
         # or wrongly evaluated so we fix that here
 
         data.loc[dict(region="World", variables=list_technologies)] = data.loc[
-                dict(
-                    region=[r for r in data.coords["region"].values if r != "World"],
-                    variables=list_technologies,
-                )
-            ].sum(dim="region")
-
+            dict(
+                region=[r for r in data.coords["region"].values if r != "World"],
+                variables=list_technologies,
+            )
+        ].sum(dim="region")
 
         # Interpolation between two periods
         data_to_return = data.loc[:, list_technologies, :]
