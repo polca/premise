@@ -589,6 +589,7 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
+
         data_to_return = data.loc[:, list_technologies, :]
 
         data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
@@ -955,7 +956,7 @@ class IAMDataCollection:
         # Interpolation between two periods
         data_to_return = data.loc[:, list_technologies, :]
 
-        data_to_return.coords["variables"] = list_technologies
+        data_to_return.coords["variables"] = list(labels.keys())
 
         if self.system_model == "consequential":
 
@@ -1177,6 +1178,6 @@ class IAMDataCollection:
         # Interpolation between two periods
 
         data_to_return = data.loc[:, list_products, :]
-        data_to_return.coords["variables"] = list_products
+        data_to_return.coords["variables"] = list(dict_products.keys())
 
         return data_to_return

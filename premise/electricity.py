@@ -1119,6 +1119,7 @@ class Electricity(BaseTransformation):
             }
 
             for biomass_type, biomass_act in biomass_map.items():
+
                 total_prod_vol = np.clip(
                     (
                         self.iam_data.production_volumes.sel(
