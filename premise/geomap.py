@@ -6,9 +6,10 @@ the IAM locations and ecoinvent locations.
 from typing import Dict, List, Union
 
 import yaml
-from wurst import geomatcher
+from wurst import geomatcher, resolved_row
 
 from premise import DATA_DIR
+from .utils import s, c
 
 ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
@@ -34,6 +35,70 @@ def get_iam_to_iam_mapping() -> Dict[str, str]:
 
     return out
 
+def find_matching_regions(exc,
+                          possible_locations,
+                          contained,
+                          exclusive,
+                          biggest_first,
+                          possible_datasets,
+                          model,
+                          iam_regions):
+
+    with resolved_row(possible_locations, geomatcher) as g:
+        func = g.contained if contained else g.intersects
+
+        location = exc[(s.exchange, c.cons_loc)]
+
+        if location in iam_regions:
+            location = (model.upper(), location)
+
+        gis_match = func(
+            location,
+            include_self=True,
+            exclusive=exclusive,
+            biggest_first=biggest_first,
+            only=possible_locations,
+        )
+
+    kept = [
+        ds
+        for loc in gis_match
+        for ds in possible_datasets
+        if location == loc
+    ]
+
+    if kept:
+        missing_faces = geomatcher.geo[location].difference(
+            set.union(
+                *[
+                    geomatcher.geo[obj[(s.exchange, c.cons_loc)]]
+                    for obj in kept
+                ]
+            )
+        )
+        if missing_faces and "RoW" in possible_locations:
+            kept.extend(
+                [
+                    obj
+                    for _, obj in possible_datasets.iterrows()
+                    if obj[(s.exchange, c.cons_loc)] == "RoW"
+                ]
+            )
+    elif "RoW" in possible_locations:
+        kept = [
+            obj
+            for _, obj in possible_datasets.iterrows()
+            if obj[(s.exchange, c.cons_loc)] == "RoW"
+        ]
+
+    if not kept and "GLO" in possible_locations:
+        kept = [
+            obj
+            for _, obj in possible_datasets.iterrows()
+            if obj[(s.exchange, c.cons_loc)] == "GLO"
+        ]
+
+    return kept
 
 class Geomap:
     """
@@ -195,3 +260,6 @@ class Geomap:
         """
 
         return self.iam_to_iam_mappings[self.model][location][from_iam]
+
+
+

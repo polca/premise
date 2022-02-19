@@ -659,7 +659,7 @@ class NewDatabase:
 
         self.database = convert_db_to_dataframe(self.database)
 
-        print("\n//////////////////////// EXTRACTING IAM DATA ///////////////////////")
+        print("\n///////////////////////// EXTRACTING IAM DATA //////////////////////")
 
         list_data = []
         for scenario in self.scenarios:

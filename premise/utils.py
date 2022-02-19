@@ -11,7 +11,6 @@ import yaml
 from wurst import searching as ws
 
 from . import DATA_DIR
-from .geomap import Geomap
 
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
