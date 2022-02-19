@@ -1280,9 +1280,7 @@ class Electricity(BaseTransformation):
                 ds_to_add = [list(d.values()) for d in new_plants.values()]
                 ds_to_add = [e for v in ds_to_add for e in v]
 
-                self.database = pd.concat(
-                    [self.database] + ds_to_add
-                )
+                self.database = pd.concat([self.database] + ds_to_add)
 
     def update_electricity_markets(self):
         """

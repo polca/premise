@@ -253,7 +253,8 @@ class BaseTransformation:
             for region in set(self.regions[label]).difference(d_map[label].keys()):
 
                 possible_locs = [
-                    "RoW", "GLO",
+                    "RoW",
+                    "GLO",
                 ] + list(d_map[label].values())
 
                 original = []
@@ -261,10 +262,10 @@ class BaseTransformation:
 
                 while len(original) == 0:
                     _filter = (
-                            contains((s.exchange, c.cons_name), name)
-                            & contains((s.exchange, c.cons_prod), ref_prod)
-                            & equals((s.exchange, c.type), "production")
-                            & equals((s.exchange, c.cons_loc), possible_locs[count])
+                        contains((s.exchange, c.cons_name), name)
+                        & contains((s.exchange, c.cons_prod), ref_prod)
+                        & equals((s.exchange, c.type), "production")
+                        & equals((s.exchange, c.cons_loc), possible_locs[count])
                     )(self.database)
 
                     count += 1
@@ -370,7 +371,6 @@ class BaseTransformation:
         contained=True,
     ):
 
-
         __filters_tech = equals((s.exchange, c.type), "technosphere")(ds)
 
         new_exchanges = []
@@ -380,50 +380,50 @@ class BaseTransformation:
             if exc[(s.exchange, c.cons_loc)] in self.cache:
 
                 if (
-                        exc[(s.exchange, c.prod_name)],
-                        exc[(s.exchange, c.prod_prod)],
-                        exc[(s.exchange, c.prod_loc)],
-                        exc[(s.exchange, c.unit)],
-                    ) in self.cache[exc[(s.exchange, c.cons_loc)]]:
+                    exc[(s.exchange, c.prod_name)],
+                    exc[(s.exchange, c.prod_prod)],
+                    exc[(s.exchange, c.prod_loc)],
+                    exc[(s.exchange, c.unit)],
+                ) in self.cache[exc[(s.exchange, c.cons_loc)]]:
 
-                        e = self.cache[exc[(s.exchange, c.cons_loc)]][
-                            (
-                                exc[(s.exchange, c.prod_name)],
-                                exc[(s.exchange, c.prod_prod)],
-                                exc[(s.exchange, c.prod_loc)],
-                                exc[(s.exchange, c.unit)],
-                            )
-                        ]
-
-                        new_exchanges.extend(
-                            [
-                                pd.Series(
-                                    [
-                                        i[0],
-                                        i[1],
-                                        i[2],
-                                        exc[(s.exchange, c.cons_name)],
-                                        exc[(s.exchange, c.cons_prod)],
-                                        exc[(s.exchange, c.cons_loc)],
-                                        exc[(s.exchange, c.unit)],
-                                        "technosphere",
-                                        i[3],
-                                        exc[(s.exchange, c.cons_key)],
-                                        create_hash(i[3] + exc[(s.exchange, c.cons_key)]),
-                                    ]
-                                    + [
-                                        exc[(s.ecoinvent, c.amount)] * i[-1],
-                                        exc[(s.ecoinvent, c.efficiency)],
-                                        exc[(s.ecoinvent, c.comment)],
-                                        exc[(s.ecoinvent, c.cons_prod_vol)],
-                                    ]
-                                    * (len(self.scenario_labels) + 1)
-                                )
-                                for i in e
-                            ]
+                    e = self.cache[exc[(s.exchange, c.cons_loc)]][
+                        (
+                            exc[(s.exchange, c.prod_name)],
+                            exc[(s.exchange, c.prod_prod)],
+                            exc[(s.exchange, c.prod_loc)],
+                            exc[(s.exchange, c.unit)],
                         )
+                    ]
 
-                        continue
+                    new_exchanges.extend(
+                        [
+                            pd.Series(
+                                [
+                                    i[0],
+                                    i[1],
+                                    i[2],
+                                    exc[(s.exchange, c.cons_name)],
+                                    exc[(s.exchange, c.cons_prod)],
+                                    exc[(s.exchange, c.cons_loc)],
+                                    exc[(s.exchange, c.unit)],
+                                    "technosphere",
+                                    i[3],
+                                    exc[(s.exchange, c.cons_key)],
+                                    create_hash(i[3] + exc[(s.exchange, c.cons_key)]),
+                                ]
+                                + [
+                                    exc[(s.ecoinvent, c.amount)] * i[-1],
+                                    exc[(s.ecoinvent, c.efficiency)],
+                                    exc[(s.ecoinvent, c.comment)],
+                                    exc[(s.ecoinvent, c.cons_prod_vol)],
+                                ]
+                                * (len(self.scenario_labels) + 1)
+                            )
+                            for i in e
+                        ]
+                    )
+
+                    continue
 
             __filter = (
                 equals((s.exchange, c.type), "production")
@@ -451,7 +451,7 @@ class BaseTransformation:
                     biggest_first,
                     possible_datasets,
                     model=scenario.split("::")[0],
-                    iam_regions=self.regions[scenario]
+                    iam_regions=self.regions[scenario],
                 )
 
                 if not eligible_suppliers:
@@ -476,7 +476,6 @@ class BaseTransformation:
             ds = pd.concat([ds, pd.concat(new_exchanges, axis=1).T])
 
         return ds
-
 
     def write_cache(self, exc, allocated, share):
 
@@ -566,7 +565,6 @@ class BaseTransformation:
             )
 
             for exc in unique_excs_to_relink:
-
 
                 alternative_names = [exc[0], *alternative_names]
                 alternative_locations = (
