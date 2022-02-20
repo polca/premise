@@ -1388,7 +1388,7 @@ class Fuels(BaseTransformation):
                             "petroleum gas",
                             "wax",
                             "low pressure",
-                            "vehicle grade",
+                            "pressure, vehicle grade",
                         ],
                     ),
                 )
