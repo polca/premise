@@ -1492,7 +1492,6 @@ class Fuels(BaseTransformation):
         ]
 
         for dataset in datasets_to_create:
-            print(dataset)
             new_ds = self.fetch_proxies(
                 name=dataset[0],
                 ref_prod=dataset[1],
