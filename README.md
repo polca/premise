@@ -1,7 +1,7 @@
 # ``premise``
 
 <div style="text-align:center">
-<img src="https://github.com/romainsacchi/premise/raw/master/docs/large.png" height="300"/>
+<img src="https://github.com/polca/premise/raw/master/docs/large.png" height="300"/>
 </div>
 
 # **PR**ospective **E**nviron**M**ental **I**mpact As**SE**ssment
@@ -10,9 +10,9 @@
 
 <p align="center">
   <a href="https://badge.fury.io/py/premise" target="_blank"><img src="https://badge.fury.io/py/premise.svg"></a>
-  <a href="https://github.com/romainsacchi/premise" target="_blank"><img src="https://github.com/romainsacchi/premise/actions/workflows/main.yml/badge.svg?branch=master"></a>
-  <a href="https://ci.appveyor.com/project/romainsacchi/premise" target="_blank"><img src="https://ci.appveyor.com/api/projects/status/github/romainsacchi/premise?svg=true"></a>
-  <a href="https://coveralls.io/github/romainsacchi/premise" target="_blank"><img src="https://coveralls.io/repos/github/romainsacchi/premise/badge.svg"></a>
+  <a href="https://github.com/polca/premise" target="_blank"><img src="https://github.com/polca/premise/actions/workflows/main.yml/badge.svg?branch=master"></a>
+  <a href="https://ci.appveyor.com/project/polca/premise" target="_blank"><img src="https://ci.appveyor.com/api/projects/status/github/polca/premise?svg=true"></a>
+  <a href="https://coveralls.io/github/polca/premise" target="_blank"><img src="https://coveralls.io/repos/github/polca/premise/badge.svg"></a>
   <a href="https://premise.readthedocs.io/en/latest/" target="_blank"><img src="https://readthedocs.org/projects/premise/badge/?version=latest"></a>
 </p>
  
@@ -33,7 +33,7 @@ with the original ecoinvent database will link with a premise-generated database
 * uncertainty information is removed from the database.
 * *premise* reverts to using "Carbon dioxide, in air" and "Carbon dioxide, non-fossil" to model uptake
 and release of biogenic carbon dioxide. If you wish to account for those in the global warming indicator,
-you need to execute [premise_gwp](https://github.com/romainsacchi/premise_gwp), which installs the necessary 
+you need to execute [premise_gwp](https://github.com/polca/premise_gwp), which installs the necessary 
 GWP LCIA methods.
 * *premise* caches the extraction of the database and the import of the inventories the first time 
 a database is created, skipping those steps for the next time.
@@ -75,7 +75,7 @@ Two options:
 A development version with the latest advancements (but with the risks of unseen bugs),
 is available from Anaconda Cloud:
 
-    conda install -c romainsacchi premise
+    conda install -c polca premise
 
 For a more stable and proven version, from Pypi:
 
@@ -87,7 +87,7 @@ will install the package and the required dependencies.
 How to use it?
 --------------
 
-The best way is to follow [the examples from the Jupyter Notebook](https://github.com/romainsacchi/premise/blob/master/examples/examples.ipynb). 
+The best way is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb). 
 
 # Support
 
@@ -104,7 +104,7 @@ or [aloisdir@pik-potsdam.de](mailto:aloisdir@pik-potsdam.de).
 
 ## Contributing
 
-See [contributing](https://github.com/romainsacchi/premise/blob/master/CONTRIBUTING.md).
+See [contributing](https://github.com/polca/premise/blob/master/CONTRIBUTING.md).
 
 ## References
 
@@ -113,5 +113,5 @@ See [contributing](https://github.com/romainsacchi/premise/blob/master/CONTRIBUT
 
 ## License
 
-[BSD-3-Clause](https://github.com/romainsacchi/premise/blob/master/LICENSE).
+[BSD-3-Clause](https://github.com/polca/premise/blob/master/LICENSE).
 Copyright 2020 Potsdam Institute for Climate Impact Research, Paul Scherrer Institut.

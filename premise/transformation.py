@@ -603,6 +603,10 @@ class BaseTransformation:
                         exc
                     ]
 
+                except ValueError:
+                    print(f"Issue with {self.cache[act['location']][exc]}.")
+                    continue
+
                 except KeyError:
 
                     names_to_look_for = [exc[0], *alt_names]
@@ -652,9 +656,6 @@ class BaseTransformation:
                                 act["unit"],
                             )
                         else:
-                            # print(
-                            #    f"cannot find act for {exc} in {act['name'], act['location']}"
-                            # )
                             continue
 
                 # summing up the amounts provided by the unwanted exchanges
