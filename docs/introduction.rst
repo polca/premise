@@ -84,7 +84,7 @@ How to use it?
 Examples notebook
 *****************
 
-`This notebook <https://github.com/romainsacchi/premise/blob/master/examples/examples.ipynb>`_ will show
+`This notebook <https://github.com/polca/premise/blob/master/examples/examples.ipynb>`_ will show
 you everything you need to know to use *premise*.
 
 

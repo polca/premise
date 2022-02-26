@@ -48,7 +48,7 @@ setup(
         "pyYaml",
         "scipy==1.7.0",
     ],
-    url="https://github.com/romainsacchi/premise",
+    url="https://github.com/polca/premise",
     description="Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA",
     classifiers=[
         "Intended Audience :: End Users/Desktop",

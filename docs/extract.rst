@@ -112,7 +112,7 @@ which are from Briones-Hidrovo_ et al, 2020.
 
 .. _Volkart: https://doi.org/10.1016/j.ijggc.2013.03.003
 .. _Briones-Hidrovo: https://doi.org/10.1016/j.jclepro.2020.125680
-.. _LCI_Power_generation: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-Carma-CCS.xlsx
+.. _LCI_Power_generation: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-Carma-CCS.xlsx
 
 The table below lists the names of the new activities (only production datasets are shown).
 
@@ -157,7 +157,7 @@ are imported to substitute some of the original ecoinvent dataset.
 These datasets originate from ESU Services and come with a report_,
 and can be consulted here: LCI_Oil_NG_.
 
-.. _LCI_Oil_NG: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-ESU-oil-and-gas.xlsx
+.. _LCI_Oil_NG: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-ESU-oil-and-gas.xlsx
 
 They have been adapted to a brightway2-compatible format.
 These new inventories have, among other things, higher methane slip
@@ -214,7 +214,7 @@ Photovoltaic panel inventories originate the IEA's Task 12 project IEA_PV_. They
 into a brightway2-friendly format. They can be consulted here: LCI_PV_.
 
 .. _IEA_PV: https://iea-pvps.org/wp-content/uploads/2020/12/IEA-PVPS-LCI-report-2020.pdf
-.. _LCI_PV: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
+.. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
 
 They consist of the following PV installation types:
 
@@ -417,7 +417,7 @@ district heating pipes. Gross heat output of 1,483 TJ, with 80% efficiency.
 
 The inventories can be consulted here: LCIgeothermal_.
 
-.. _LCIgeothermal: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-geothermal.xlsx
+.. _LCIgeothermal: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-geothermal.xlsx
 
 They introduce the following datasets (only heat production datasets shown):
 
@@ -474,11 +474,11 @@ They can be consulted here: LCI_electrolysis_.
 .. _Antonini2: https://pubs.rsc.org/en/Content/ArticleLanding/2021/SE/D0SE01637C
 .. _Wokaun: https://www.cambridge.org/core/books/transition-to-hydrogen/43144AF26ED80E7106B675A6E83B1579
 .. _Bareiss: https://www.sciencedirect.com/science/article/pii/S0306261919300017
-.. _LCI_SMR: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
-.. _LCI_ATR: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
-.. _LCI_woody: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
-.. _LCI_coal: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-coal-gasification.xlsx
-.. _LCI_electrolysis: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-electrolysis.xlsx
+.. _LCI_SMR: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
+.. _LCI_ATR: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
+.. _LCI_woody: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
+.. _LCI_coal: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-coal-gasification.xlsx
+.. _LCI_electrolysis: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-electrolysis.xlsx
 
 The new datasets introduced are listed in the table below (only production datasets are shown).
 
@@ -544,7 +544,7 @@ The datasets introduced are listed in the table below.
 
 
 .. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X
-.. _LCI_H2_distr: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-distribution.xlsx
+.. _LCI_H2_distr: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-distribution.xlsx
 .. _Cerniauskas: https://doi.org/10.1016/j.ijhydene.2020.02.121
 
 Biofuels
@@ -559,7 +559,7 @@ These inventories originate from several different sources
 (Wu_ et al. 2006 (2020 update), Cozzolino_ 2018, Pereira_ et al. 2019 and Gonzalez-Garcia_ et al. 2012),
 indicated in the table below.
 
-.. _LCI_biofuels: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-biofuels.xlsx
+.. _LCI_biofuels: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-biofuels.xlsx
 .. _Cozzolino: https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf
 .. _Gonzalez-Garcia: https://doi.org/10.1016/j.scitotenv.2012.07.044
 .. _Wu: http://greet.es.anl.gov/publication-2lli584z
@@ -688,7 +688,7 @@ process are imported. They originate from the work of Terlouw_ et al. 2021.
 They can be consulted here: LCI_DAC_.
 
 .. _Terlouw: https://pubs.acs.org/doi/10.1021/acs.est.1c03263
-.. _LCI_DAC: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-direct-air-capture.xlsx
+.. _LCI_DAC: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-direct-air-capture.xlsx
 
 They introduce the following datasets:
 
@@ -728,7 +728,7 @@ These inventories can be found here: LCI_batteries_.
 .. _Crenna: https://doi.org/10.1016/j.resconrec.2021.105619
 .. _Schmidt: https://doi.org/10.1021/acs.est.8b05313
 .. _Engels: https://doi.org/10.1016/j.jclepro.2022.130474
-.. _LCI_batteries: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-batteries.xlsx
+.. _LCI_batteries: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-batteries.xlsx
 
 They introduce the following datasets:
 
@@ -769,7 +769,7 @@ here: LCItwowheelers_.
 
 
 .. _Sacchi: https://zenodo.org/deposit/5720779
-.. _LCItwowheelers: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-two_wheelers.xlsx
+.. _LCItwowheelers: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-two_wheelers.xlsx
 
  ================================================= ==================
   Two-wheeler datasets                              location
@@ -1097,7 +1097,7 @@ during the *Transport* transformation for each IAM region. The inventories can b
 here: LCIpasscars_.
 
 .. _Sacchi2: https://www.psi.ch/en/media/72391/download
-.. _LCIpasscars: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx
+.. _LCIpasscars: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx
 
 At the moment. these inventories do not supply inputs to other activities in the LCI database.
 As such, they are optional.
@@ -1206,7 +1206,7 @@ the scenario year considered. *premise* will create fleet average vehicles
 during the *Transport* transformation for each IAM region. The inventories can be consulted
 here: LCItrucks_.
 
-.. _LCItrucks: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx
+.. _LCItrucks: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx
 .. _Sacchi3: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
 
 
@@ -1312,7 +1312,7 @@ the scenario year considered. *premise* will create fleet average vehicles
 during the *Transport* transformation for each IAM region. The inventories can be consulted
 here: LCIbuses_.
 
-.. _LCIbuses: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/lci-buses.xlsx
+.. _LCIbuses: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-buses.xlsx
 
 At the moment. these inventories do not supply inputs to other activities in the LCI database.
 As such, they are optional.
@@ -1346,7 +1346,7 @@ certain exchanges to be compatible with a given ecoinvent version.
 
 This migration map is provided here: migrationmap_.
 
-.. _migrationmap: https://github.com/romainsacchi/premise/blob/master/premise/data/additional_inventories/migration_map.csv
+.. _migrationmap: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/migration_map.csv
 
 IAM data collection
 """""""""""""""""""
@@ -1374,7 +1374,7 @@ and LCI terminology, regarding electricity producing technologies. *premise*
 production volumes given for secondary energy carriers for electricity.
 The mapping file is available in the library root folder: mappingElec_.
 
-.. _mappingElec: https://github.com/romainsacchi/premise/blob/master/premise/data/electricity/electricity_tech_vars.yml
+.. _mappingElec: https://github.com/polca/premise/blob/master/premise/data/electricity/electricity_tech_vars.yml
 
 
  ========================== ===================================== ================================================= ===================================================================================================
@@ -1516,7 +1516,7 @@ The table below shows the correspondence between *premise*, REMIND, IMAGE,
 regarding efficiency variables for electricity producing technologies. The mapping file is
 available in the library root folder: mappingElec_.
 
-.. _mappingElec: https://github.com/romainsacchi/premise/blob/master/premise/data/electricity/electricity_tech_vars.yml
+.. _mappingElec: https://github.com/polca/premise/blob/master/premise/data/electricity/electricity_tech_vars.yml
 
  ================== ================================================== ===========================================
   name in premise    name in REMIND                                      name in IMAGE
@@ -1553,8 +1553,8 @@ derives efficiencies by dividing the the final energy demand by the production v
 and steel is not always given as such. The mapping files are
 available in the library root folder: mappingCement_ and mappingSteel_.
 
-.. _mappingCement: https://github.com/romainsacchi/premise/blob/master/premise/data/cement/cement_tech_vars.yml
-.. _mappingSteel: https://github.com/romainsacchi/premise/blob/master/premise/data/steel/steel_tech_vars.yml
+.. _mappingCement: https://github.com/polca/premise/blob/master/premise/data/cement/cement_tech_vars.yml
+.. _mappingSteel: https://github.com/polca/premise/blob/master/premise/data/steel/steel_tech_vars.yml
 
  ==================== ========================================== ==============================
   name in premise      name in REMIND                              name in IMAGE
@@ -1568,7 +1568,7 @@ The table below shows the correspondence between *premise*, REMIND, IMAGE,
 regarding efficiency variables for fuels producing technologies. The mapping file is
 available in the library root folder: mappingFuels_.
 
-.. _mappingFuels: https://github.com/romainsacchi/premise/blob/master/premise/data/fuels/fuel_tech_vars.yml
+.. _mappingFuels: https://github.com/polca/premise/blob/master/premise/data/fuels/fuel_tech_vars.yml
 
  ==================================== ======================================================================= ========================================================
   name in premise                      name in REMIND                                                           name in IMAGE
@@ -1626,7 +1626,7 @@ is used to adjust the inventories of crop farming datasets. The table below show
 used to that effect. The mapping file is
 available in the library root folder: mappingCrops_.
 
-.. _mappingCrops: https://github.com/romainsacchi/premise/blob/master/premise/data/fuels/crops_properties.yml
+.. _mappingCrops: https://github.com/polca/premise/blob/master/premise/data/fuels/crops_properties.yml
 
  ========================= ========================== ========================================== =============================================================
   Crop family in premise    Crop type in premise       Land use variable in IMAGE [Ha/GJ-Prim]    Land use change variable in IMAGE [kg CO2/GJ-Prim]
@@ -1774,7 +1774,7 @@ This data is available here: GNRdata_.
 
 The expected change in fuel efficiency is based on IAM scenario projections.
 
-.. _GNRdata: https://github.com/romainsacchi/premise/blob/master/premise/data/cement/additional_data_GNR.csv
+.. _GNRdata: https://github.com/polca/premise/blob/master/premise/data/cement/additional_data_GNR.csv
 
 Photovoltaic panels
 *******************
