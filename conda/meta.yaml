@@ -36,7 +36,7 @@ test:
     - premise
 
 about:
-  home: https://github.com/romainsacchi/premise
+  home: https://github.com/polca/premise
   license: BSD License
   summary: 'Coupling Integrated Assessment Models and Life Cycle Assessment.'
 license_family: BSD

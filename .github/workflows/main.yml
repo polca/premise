@@ -216,6 +216,7 @@ jobs:
 
         run: |
           conda install -c romainsacchi premise
+          conda update premise
           conda install pytest
           pytest -m "not ecoinvent"
         env:
@@ -227,6 +228,7 @@ jobs:
 
         run: |
           conda install -c romainsacchi premise-dev
+          conda update premise-dev
           conda install pytest
           pytest -m "not ecoinvent"
         env:
