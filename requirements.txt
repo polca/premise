@@ -3,6 +3,7 @@ numpy
 pandas
 bw2io>=0.8.6
 bw2data>=3.6.2
+bw2calc>=1.8.1
 wurst==0.3.0
 xarray<0.18.0
 prettytable
@@ -10,4 +11,3 @@ pycountry
 cryptography
 premise_gwp
 pyYaml
-scipy==1.7.0

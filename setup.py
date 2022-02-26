@@ -37,6 +37,7 @@ setup(
         "numpy",
         "wurst==0.3.0",
         "bw2io>=0.8",
+        "bw2calc==1.8.1",
         "pandas",
         "bw2data",
         "brightway2",
