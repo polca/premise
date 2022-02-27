@@ -46,7 +46,7 @@ jobs:
         uses: github/super-linter@v4
         env:
           VALIDATE_ALL_CODEBASE: true
-          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_PYTHON: true
           DEFAULT_BRANCH: master
           IGNORE_GITIGNORED_FILES: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
