@@ -108,4 +108,4 @@ def test_load_biofuel():
     bio = DefaultInventory(
         db, version_in="3.7", version_out="3.8", path=FILEPATH_BIOFUEL_INVENTORIES
     )
-    assert len(bio.import_db.data) == 130
+    assert len(bio.import_db.data) == 160
