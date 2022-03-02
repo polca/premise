@@ -372,6 +372,8 @@ class BaseTransformation:
         :return: dictionary with IAM regions as keys, proxy datasets as values.
         """
 
+        print(name, ref_prod)
+
         d_iam_to_eco = self.region_to_proxy_dataset_mapping(
             name=name, ref_prod=ref_prod, regions=regions
         )

@@ -430,7 +430,7 @@ biodiesel, oil, with CCS:
   ecoinvent_aliases:
     fltr:
       name:
-        - biodiesel production, via transesterification
+        - biodiesel production, via transesterification, from used cooking oil, with carbon capture and storage
     mask:
       name:
         - expansion
@@ -468,10 +468,9 @@ bioethanol, wood, with CCS:
     image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/ CCS
   ecoinvent_aliases:
     fltr:
-      - ethanol production, via fermentation, from forest
-      - ethanol production, via fermentation, from eucalyptus
-      - ethanol production, via fermentation, from poplar
-      - ethanol production, via fermentation, from willow
+      - ethanol production, via fermentation, from forest, with carbon capture and storage
+      - ethanol production, via fermentation, from eucalyptus, with carbon capture and storage
+      - ethanol production, via fermentation, from poplar, with carbon capture and storage
     mask:
       name:
         - expansion
@@ -507,9 +506,9 @@ bioethanol, grass, with CCS:
     image: Efficiency|Liquids|Biomass|Ethanol|Grassy|w/ CCS
   ecoinvent_aliases:
     fltr:
-      - ethanol production, via fermentation, from switchgrass
-      - ethanol production, via fermentation, from miscanthus
-      - ethanol production, via fermentation, from sorghum
+      - ethanol production, via fermentation, from switchgrass, with carbon capture and storage
+      - ethanol production, via fermentation, from miscanthus, with carbon capture and storage
+      - ethanol production, via fermentation, from sorghum, with carbon capture and storage
     mask:
       name:
         - expansion
@@ -543,7 +542,7 @@ bioethanol, grain, with CCS:
     image: Efficiency|Liquids|Biomass|Ethanol|Maize|w/ CCS
   ecoinvent_aliases:
     fltr:
-      - ethanol production, via fermentation, from corn, with carbon capture
+      - ethanol production, via fermentation, from corn, with carbon capture and storage
     mask:
       name:
         - expansion
@@ -576,8 +575,8 @@ bioethanol, sugar, with CCS:
     image: Efficiency|Liquids|Biomass|Ethanol|Sugar|w/ CCS
   ecoinvent_aliases:
     fltr:
-      - ethanol production, via fermentation, from sugarbeet
-      - ethanol production, via fermentation, from sugarcane
+      - ethanol production, via fermentation, from sugarbeet, with carbon capture and storage
+      - ethanol production, via fermentation, from sugarcane, with carbon capture and storage
     mask:
       name:
         - expansion

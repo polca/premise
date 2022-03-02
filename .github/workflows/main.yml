@@ -45,6 +45,7 @@ jobs:
       - name: Super-Linter
         uses: github/super-linter@v4
         env:
+          ERRORS: false
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_PYTHON: true
           DEFAULT_BRANCH: master
