@@ -9,7 +9,8 @@ import yaml
 from wurst import geomatcher, resolved_row
 
 from premise import DATA_DIR
-from .utils import s, c
+
+from .utils import c, s
 
 ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
@@ -35,14 +36,17 @@ def get_iam_to_iam_mapping() -> Dict[str, str]:
 
     return out
 
-def find_matching_regions(exc,
-                          possible_locations,
-                          contained,
-                          exclusive,
-                          biggest_first,
-                          possible_datasets,
-                          model,
-                          iam_regions):
+
+def find_matching_regions(
+    exc,
+    possible_locations,
+    contained,
+    exclusive,
+    biggest_first,
+    possible_datasets,
+    model,
+    iam_regions,
+):
 
     with resolved_row(possible_locations, geomatcher) as g:
         func = g.contained if contained else g.intersects
@@ -60,21 +64,11 @@ def find_matching_regions(exc,
             only=possible_locations,
         )
 
-    kept = [
-        ds
-        for loc in gis_match
-        for ds in possible_datasets
-        if location == loc
-    ]
+    kept = [ds for loc in gis_match for ds in possible_datasets if location == loc]
 
     if kept:
         missing_faces = geomatcher.geo[location].difference(
-            set.union(
-                *[
-                    geomatcher.geo[obj[(s.exchange, c.cons_loc)]]
-                    for obj in kept
-                ]
-            )
+            set.union(*[geomatcher.geo[obj[(s.exchange, c.cons_loc)]] for obj in kept])
         )
         if missing_faces and "RoW" in possible_locations:
             kept.extend(
@@ -99,6 +93,7 @@ def find_matching_regions(exc,
         ]
 
     return kept
+
 
 class Geomap:
     """
@@ -260,6 +255,3 @@ class Geomap:
         """
 
         return self.iam_to_iam_mappings[self.model][location][from_iam]
-
-
-
