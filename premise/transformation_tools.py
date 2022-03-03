@@ -85,6 +85,8 @@ def empty_and_redirect_datasets(
 
     new_exc = df.iloc[0].copy()
 
+    print(new_exc)
+
     new_exc[(s.ecoinvent, c.cons_prod_vol)] = np.nan
     new_exc[(scenario, c.cons_prod_vol)] = np.nan
 

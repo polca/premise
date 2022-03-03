@@ -1242,23 +1242,23 @@ class Electricity(BaseTransformation):
 
         techs = [
             "Wood chips, burned in power plant",
-            "Natural gas, in ATR ",
-            "100% SNG, burned",
-            "Hard coal, burned",
-            "Lignite, burned",
-            "CO2 storage/",
-            "CO2 capture/",
-            "Biomass CHP CCS",
-            "Biomass ST",
-            "Biomass IGCC CCS",
-            "Biomass IGCC",
-            "Coal IGCC",
-            "Coal PC CCS",
-            "Coal CHP CCS",
-            "Coal IGCC CCS",
-            "Gas CHP CCS",
-            "Gas CC CCS",
-            "Oil CC CCS",
+            #"Natural gas, in ATR ",
+            #"100% SNG, burned",
+            #"Hard coal, burned",
+            #"Lignite, burned",
+            #"CO2 storage/",
+            #"CO2 capture/",
+            #"Biomass CHP CCS",
+            #"Biomass ST",
+            #"Biomass IGCC CCS",
+            #"Biomass IGCC",
+            #"Coal IGCC",
+            #"Coal PC CCS",
+            #"Coal CHP CCS",
+            #"Coal IGCC CCS",
+            #"Gas CHP CCS",
+            #"Gas CC CCS",
+            #"Oil CC CCS",
         ]
 
         for tech in techs:
@@ -1281,7 +1281,7 @@ class Electricity(BaseTransformation):
                 ds_to_add = [e for v in ds_to_add for e in v]
 
                 self.database = pd.concat(
-                    [self.database] + ds_to_add
+                    [self.database] + ds_to_add, axis=0, ignore_index=True
                 )
 
     def update_electricity_markets(self):

@@ -316,7 +316,7 @@ class IAMDataCollection:
         elif self.model == "image":
 
             dataframe = pd.read_csv(
-                data, index_col=[2, 3, 4], encoding="latin-1", sep=";"
+                data, index_col=[2, 3, 4], encoding="latin-1", sep=","
             ).drop(columns=["Model", "Scenario"])
 
             # Filter the dataframe
@@ -1176,6 +1176,7 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
+
         data_to_return = data.loc[:, list_products, :]
         data_to_return.coords["variables"] = list(dict_products.keys())
 

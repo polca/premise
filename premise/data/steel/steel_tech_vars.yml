@@ -3,7 +3,7 @@
 steel - primary:
   iam_aliases:
     remind: Production|Industry|Steel|Primary
-    image: Production|Steel
+    image: Production|Steel|Primary
   energy_use_aliases:
     remind: FE|Industry|Steel|Primary
     image:
@@ -22,7 +22,7 @@ steel - primary:
 steel - secondary:
   iam_aliases:
     remind: Production|Industry|Steel|Secondary
-    image: Production|Steel
+    image: Production|Steel|Secondary
   energy_use_aliases:
     remind: FE|Industry|Steel|Secondary
     image:

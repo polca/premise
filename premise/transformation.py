@@ -229,7 +229,9 @@ class BaseTransformation:
         :return:
         """
 
-        d_map = {}
+        # dictionary that has IAM regions as keys, and ecoinvent location of
+        # datasets to copy from as values
+        locs_to_copy_from_to_iam = {}
 
         for label in self.scenario_labels:
             _filter = (
@@ -238,7 +240,7 @@ class BaseTransformation:
                 & equals((s.exchange, c.type), "production")
             )(self.database)
 
-            d_map[label] = {
+            locs_to_copy_from_to_iam[label] = {
                 self.ecoinvent_to_iam_loc[label][loc]: loc
                 for loc in self.database[_filter]
                 .loc[:, (s.exchange, c.cons_loc)]
@@ -250,11 +252,11 @@ class BaseTransformation:
         # when there are multiple candidates, the last one is picked
 
         for label in self.scenario_labels:
-            for region in set(self.regions[label]).difference(d_map[label].keys()):
+            for region in set(self.regions[label]).difference(locs_to_copy_from_to_iam[label].keys()):
 
                 possible_locs = [
                     "RoW", "GLO",
-                ] + list(d_map[label].values())
+                ] + list(locs_to_copy_from_to_iam[label].values())
 
                 original = []
                 count = 0
@@ -271,22 +273,23 @@ class BaseTransformation:
 
                     original = self.database[_filter]
 
-                d_map[label][region] = original[(s.exchange, c.cons_loc)].values.item(0)
+                locs_to_copy_from_to_iam[label][region] = original[(s.exchange, c.cons_loc)].values.item(0)
 
-        d_act = defaultdict(dict)
+        # dictionary that stores new region-specific datasets
+        new_regionalized_datasets = defaultdict(dict)
 
         for scenario in self.scenario_labels:
-            regions = (r for r in d_map[scenario] if r != "World")
+            regions = (r for r in locs_to_copy_from_to_iam[scenario] if r != "World")
             for region in regions:
                 _filter = (
                     contains((s.exchange, c.cons_name), name)
                     & contains((s.exchange, c.cons_prod), ref_prod)
-                    & equals((s.exchange, c.cons_loc), d_map[scenario][region])
+                    & equals((s.exchange, c.cons_loc), locs_to_copy_from_to_iam[scenario][region])
                 )(self.database)
 
                 dataset = self.database[_filter].copy()
 
-                d_act[scenario][region] = rename_location(
+                dataset = rename_location(
                     df=dataset, scenario=scenario, new_loc=region
                 )
 
@@ -305,8 +308,8 @@ class BaseTransformation:
                 else:
                     prod_vol = 0
 
-                d_act[scenario][region] = change_production_volume(
-                    d_act[scenario][region],
+                dataset = change_production_volume(
+                    dataset,
                     scenario,
                     prod_vol,
                 )
@@ -314,9 +317,11 @@ class BaseTransformation:
                 # relink technopshere exchanges
                 if relink:
                     print(scenario, region, name)
-                    d_act[scenario][region] = self.relink_technosphere_exchanges(
-                        d_act[scenario][region], scenario
+                    dataset = self.relink_technosphere_exchanges(
+                        dataset, scenario
                     )
+
+                new_regionalized_datasets[scenario][region] = dataset
 
                 # empty original dataset
                 sel = _filter * ~equals((s.exchange, c.type), "production")(
@@ -325,20 +330,20 @@ class BaseTransformation:
                 self.database.loc[sel, (scenario, c.amount)] = 0
 
                 # add a redirect exchange to the new dataset
-                new_exc = empty_and_redirect_datasets(
-                    dataset, scenario, region, original_loc=d_map[label][region]
-                )
+                #new_exc = empty_and_redirect_datasets(
+                #    dataset, scenario, region, original_loc=locs_to_copy_from_to_iam[label][region]
+                #)
                 # temporarily store the production volume in this new exchange
-                new_exc[(scenario, c.cons_prod_vol)] = prod_vol
+                #new_exc[(scenario, c.cons_prod_vol)] = prod_vol
 
-                self.exchange_stack.append(new_exc)
+                #self.exchange_stack.append(new_exc)
 
             # if a redirect exchange location links to more
             # than one IAM regional dataset
             # the amounts should be weighted based
             # on their respective production volume
 
-            counts = Counter(d_map[scenario].values())
+            counts = Counter(locs_to_copy_from_to_iam[scenario].values())
             repeated_locs = [loc for loc, count in counts.items() if count > 1]
 
             total_prod_vol = 0
@@ -359,7 +364,7 @@ class BaseTransformation:
                         # delete the production volume value
                         exc[(scenario, c.cons_prod_vol)] = np.nan
 
-        return d_act
+        return new_regionalized_datasets
 
     def relink_technosphere_exchanges(
         self,
@@ -369,7 +374,6 @@ class BaseTransformation:
         biggest_first=False,
         contained=True,
     ):
-
 
         __filters_tech = equals((s.exchange, c.type), "technosphere")(ds)
 
@@ -383,47 +387,52 @@ class BaseTransformation:
                         exc[(s.exchange, c.prod_name)],
                         exc[(s.exchange, c.prod_prod)],
                         exc[(s.exchange, c.prod_loc)],
-                        exc[(s.exchange, c.unit)],
+                        exc[(s.exchange, c.prod_key)],
                     ) in self.cache[exc[(s.exchange, c.cons_loc)]]:
 
-                        e = self.cache[exc[(s.exchange, c.cons_loc)]][
-                            (
-                                exc[(s.exchange, c.prod_name)],
-                                exc[(s.exchange, c.prod_prod)],
-                                exc[(s.exchange, c.prod_loc)],
-                                exc[(s.exchange, c.unit)],
-                            )
-                        ]
-
-                        new_exchanges.extend(
-                            [
-                                pd.Series(
-                                    [
-                                        i[0],
-                                        i[1],
-                                        i[2],
-                                        exc[(s.exchange, c.cons_name)],
-                                        exc[(s.exchange, c.cons_prod)],
-                                        exc[(s.exchange, c.cons_loc)],
-                                        exc[(s.exchange, c.unit)],
-                                        "technosphere",
-                                        i[3],
-                                        exc[(s.exchange, c.cons_key)],
-                                        create_hash(i[3] + exc[(s.exchange, c.cons_key)]),
-                                    ]
-                                    + [
-                                        exc[(s.ecoinvent, c.amount)] * i[-1],
-                                        exc[(s.ecoinvent, c.efficiency)],
-                                        exc[(s.ecoinvent, c.comment)],
-                                        exc[(s.ecoinvent, c.cons_prod_vol)],
-                                    ]
-                                    * (len(self.scenario_labels) + 1)
-                                )
-                                for i in e
-                            ]
+                    e = self.cache[exc[(s.exchange, c.cons_loc)]][
+                        (
+                            exc[(s.exchange, c.prod_name)],
+                            exc[(s.exchange, c.prod_prod)],
+                            exc[(s.exchange, c.prod_loc)],
+                            exc[(s.exchange, c.prod_key)],
                         )
+                    ]
 
-                        continue
+                    new_exchanges.extend(
+                        [
+                            pd.Series(
+                                [
+                                    i[0],
+                                    i[1],
+                                    i[2],
+                                    exc[(s.exchange, c.cons_name)],
+                                    exc[(s.exchange, c.cons_prod)],
+                                    exc[(s.exchange, c.cons_loc)],
+                                    exc[(s.exchange, c.unit)],
+                                    "technosphere",
+                                    i[3],
+                                    exc[(s.exchange, c.cons_key)],
+                                    create_hash(i[3] + exc[(s.exchange, c.cons_key)]),
+                                    exc[(s.ecoinvent, c.cons_prod_vol)],
+                                    exc[(s.ecoinvent, c.amount)] * i[-1],
+                                    exc[(s.ecoinvent, c.efficiency)],
+                                    exc[(s.ecoinvent, c.comment)],
+                                ]
+                                + ([
+                                    np.nan,
+                                    np.nan,
+                                    np.nan,
+                                    np.nan,
+                                ]
+                                * len(self.scenario_labels)),
+                                index=ds.columns
+                            )
+                            for i in e
+                        ]
+                    )
+
+                    continue
 
             __filter = (
                 equals((s.exchange, c.type), "production")
@@ -435,11 +444,19 @@ class BaseTransformation:
 
             possible_locations = get_dataframe_locs(possible_datasets)
 
+            print("loc", exc[(s.exchange, c.cons_loc)])
+            print("current loc", exc[(s.exchange, c.prod_loc)])
+            print("possible locs", possible_locations)
+
             if exc[(s.exchange, c.cons_loc)] in possible_locations:
 
                 exc[(s.exchange, c.prod_loc)] = exc[(s.exchange, c.cons_loc)]
                 new_exchanges.append(exc)
                 continue
+
+            eligible_suppliers = [possible_loc for possible_loc in possible_locations
+                                  if possible_loc
+                                  in self.iam_to_ecoinvent_loc[scenario][exc[(s.exchange, c.cons_loc)]]]
 
             if len(possible_datasets) > 0:
 
@@ -459,11 +476,15 @@ class BaseTransformation:
                     continue
 
                 allocated, share = self.allocate_inputs(exc, eligible_suppliers)
+
+                print("allocated", [i[(s.exchange, c.prod_loc)] for i in allocated])
+
                 new_exchanges.extend(allocated)
                 self.write_cache(exc, allocated, share)
 
             else:
 
+                print("nothing found -->", exc[s.exchange, c.prod_loc])
                 new_exchanges.append(exc)
 
                 # add to cache
@@ -473,10 +494,10 @@ class BaseTransformation:
         ds = ds[__filters_tech]
 
         if len(new_exchanges) > 0:
-            ds = pd.concat([ds, pd.concat(new_exchanges, axis=1).T])
+
+            ds = pd.concat([ds, pd.concat(new_exchanges, axis=1, ignore_index=True).T], axis=0, ignore_index=True)
 
         return ds
-
 
     def write_cache(self, exc, allocated, share):
 
@@ -492,10 +513,10 @@ class BaseTransformation:
             )
         ] = [
             (
-                e[(s.exchange, c.cons_name)],
-                e[(s.exchange, c.cons_prod)],
-                e[(s.exchange, c.cons_loc)],
-                e[(s.exchange, c.cons_key)],
+                e[(s.exchange, c.prod_name)],
+                e[(s.exchange, c.prod_prod)],
+                e[(s.exchange, c.prod_loc)],
+                e[(s.exchange, c.prod_key)],
                 _s,
             )
             for e, _s in zip(allocated, share)
@@ -517,7 +538,7 @@ class BaseTransformation:
 
         def new_exchange(exc, location, factor):
             cp = deepcopy(exc)
-            cp[(s.exchange, c.cons_loc)] = location
+            cp[(s.exchange, c.prod_loc)] = location
             cols = [col for col in cp.index if col[1] == c.amount]
             cp[cols] = factor * cp[(s.ecoinvent, c.amount)]
             return cp
