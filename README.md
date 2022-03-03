@@ -18,6 +18,8 @@
 Previously named *rmnd-lca*. *rmnd-lca* was designed to work with the IAM model REMIND only.
 As it now evolves towards a more IAM-neutral approach, a change of name was considered.
 
+Scientific publication available here: [Sacchi et al, 2022](https://doi.org/10.1016/j.rser.2022.112311).
+
 What's new in 1.0.0?
 ====================
 
