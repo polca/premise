@@ -1237,8 +1237,7 @@ class Electricity(BaseTransformation):
         """
 
         techs = [
-
-            'Biomass CHP',
+            "Biomass CHP",
             #'Biomass IGCC CCS',
             #'Biomass IGCC',
             #'Coal PC',
@@ -1257,7 +1256,9 @@ class Electricity(BaseTransformation):
             if tech in self.iam_data.production_volumes.variables:
 
                 __filter_prod = (
-                    contains_any_from_list((s.exchange, c.cons_name), self.powerplant_map[tech])
+                    contains_any_from_list(
+                        (s.exchange, c.cons_name), self.powerplant_map[tech]
+                    )
                     & equals((s.exchange, c.type), "production")
                 )(self.database)
 

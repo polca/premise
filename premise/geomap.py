@@ -36,6 +36,7 @@ def get_iam_to_iam_mapping() -> Dict[str, str]:
 
     return out
 
+
 class Geomap:
     """
     Map ecoinvent locations to IAM regions and vice-versa.
