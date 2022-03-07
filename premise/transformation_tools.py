@@ -75,7 +75,7 @@ def emptying_datasets(df: pd.DataFrame, scenario, filters: Callable):
     df.loc[filter_excluding_exchanges, (scenario, c.amount)] = 0
 
 
-def empty_and_redirect_datasets(
+def create_redirect_exchange(
     df: pd.DataFrame, scenario: str, new_loc: str, original_loc: str
 ):
     """
@@ -84,8 +84,6 @@ def empty_and_redirect_datasets(
     """
 
     new_exc = df.iloc[0].copy()
-
-    print(new_exc)
 
     new_exc[(s.ecoinvent, c.cons_prod_vol)] = np.nan
     new_exc[(scenario, c.cons_prod_vol)] = np.nan
@@ -122,6 +120,22 @@ def rename_location(df: pd.DataFrame, scenario: str, new_loc: str) -> pd.DataFra
     _filter = (equals((s.exchange, c.type), "production"))(df)
 
     df.loc[_filter, (s.exchange, c.prod_loc)] = new_loc
+
+    # update consumer key
+    df.loc[:, (s.exchange, c.cons_key)] = create_hash(
+        df.loc[_filter, (s.exchange, c.cons_name)],
+        df.loc[_filter, (s.exchange, c.cons_prod)],
+        df.loc[_filter, (s.exchange, c.cons_loc)],
+    )
+
+    df.loc[:, (s.exchange, c.exc_key)] = create_hash(
+        df.loc[_filter, (s.exchange, c.prod_name)],
+        df.loc[_filter, (s.exchange, c.prod_prod)],
+        df.loc[_filter, (s.exchange, c.prod_loc)],
+        df.loc[_filter, (s.exchange, c.cons_name)],
+        df.loc[_filter, (s.exchange, c.cons_prod)],
+        df.loc[_filter, (s.exchange, c.cons_loc)],
+    )
 
     return df
 

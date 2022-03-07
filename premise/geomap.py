@@ -36,65 +36,6 @@ def get_iam_to_iam_mapping() -> Dict[str, str]:
 
     return out
 
-
-def find_matching_regions(
-    exc,
-    possible_locations,
-    contained,
-    exclusive,
-    biggest_first,
-    possible_datasets,
-    model,
-    iam_regions,
-):
-
-    with resolved_row(possible_locations, geomatcher) as g:
-        func = g.contained if contained else g.intersects
-
-        location = exc[(s.exchange, c.cons_loc)]
-
-        if location in iam_regions:
-            location = (model.upper(), location)
-
-        gis_match = func(
-            location,
-            include_self=True,
-            exclusive=exclusive,
-            biggest_first=biggest_first,
-            only=possible_locations,
-        )
-
-    kept = [ds for loc in gis_match for ds in possible_datasets if location == loc]
-
-    if kept:
-        missing_faces = geomatcher.geo[location].difference(
-            set.union(*[geomatcher.geo[obj[(s.exchange, c.cons_loc)]] for obj in kept])
-        )
-        if missing_faces and "RoW" in possible_locations:
-            kept.extend(
-                [
-                    obj
-                    for _, obj in possible_datasets.iterrows()
-                    if obj[(s.exchange, c.cons_loc)] == "RoW"
-                ]
-            )
-    elif "RoW" in possible_locations:
-        kept = [
-            obj
-            for _, obj in possible_datasets.iterrows()
-            if obj[(s.exchange, c.cons_loc)] == "RoW"
-        ]
-
-    if not kept and "GLO" in possible_locations:
-        kept = [
-            obj
-            for _, obj in possible_datasets.iterrows()
-            if obj[(s.exchange, c.cons_loc)] == "GLO"
-        ]
-
-    return kept
-
-
 class Geomap:
     """
     Map ecoinvent locations to IAM regions and vice-versa.
@@ -106,6 +47,14 @@ class Geomap:
         self.model = model
         self.geo = geomatcher
         self.additional_mappings = get_additional_mapping()
+
+        self.rev_additional_mappings = {}
+        for k, v in self.additional_mappings.items():
+            if v[self.model] in self.rev_additional_mappings:
+                self.rev_additional_mappings[v[self.model]].append(k)
+            else:
+                self.rev_additional_mappings[v[self.model]] = [k]
+
         self.iam_to_iam_mappings = get_iam_to_iam_mapping()
 
         self.iam_regions = [
@@ -141,6 +90,11 @@ class Geomap:
             # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
             if location != (self.model.upper(), "World"):
                 ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
+
+            # Also check if contained in `additional_mappings`
+            if location[-1] in self.rev_additional_mappings:
+                ecoinvent_locations.extend(self.rev_additional_mappings[location[-1]])
+
             return ecoinvent_locations
 
         except KeyError:
@@ -170,7 +124,6 @@ class Geomap:
         # Second, it can be an ecoinvent region
         # with no native mapping
         if location in self.additional_mappings:
-
             if self.additional_mappings[location][self.model] in self.iam_regions:
                 return self.additional_mappings[location][self.model]
             # likely a case of missing "EUR" region

@@ -1040,8 +1040,6 @@ class Electricity(BaseTransformation):
             technologies=all_techs,
         )
 
-        list_subsets = []
-
         for technology in technologies_map:
             # scenarios
             dict_technology = technologies_map[technology]
@@ -1223,8 +1221,6 @@ class Electricity(BaseTransformation):
                         for row in eff_change_log:
                             writer.writerow(row)
 
-            # list_subsets.append(subset)
-
             self.database = pd.concat([self.database, subset])
 
         print("Done!")
@@ -1241,48 +1237,38 @@ class Electricity(BaseTransformation):
         """
 
         techs = [
-            "Wood chips, burned in power plant",
-            #"Natural gas, in ATR ",
-            #"100% SNG, burned",
-            #"Hard coal, burned",
-            #"Lignite, burned",
-            #"CO2 storage/",
-            #"CO2 capture/",
-            #"Biomass CHP CCS",
-            #"Biomass ST",
-            #"Biomass IGCC CCS",
-            #"Biomass IGCC",
-            #"Coal IGCC",
-            #"Coal PC CCS",
-            #"Coal CHP CCS",
-            #"Coal IGCC CCS",
-            #"Gas CHP CCS",
-            #"Gas CC CCS",
-            #"Oil CC CCS",
+
+            'Biomass CHP',
+            #'Biomass IGCC CCS',
+            #'Biomass IGCC',
+            #'Coal PC',
+            #'Coal IGCC',
+            #'Coal PC CCS',
+            #'Coal IGCC CCS',
+            #'Coal CHP',
+            #'Gas OC',
+            #'Gas CC',
+            #'Gas CHP',
+            #'Gas CC CCS',
         ]
 
         for tech in techs:
 
-            __filter_prod = (
-                contains((s.exchange, c.cons_name), tech)
-                & equals((s.exchange, c.type), "production")
-            )(self.database)
+            if tech in self.iam_data.production_volumes.variables:
 
-            for _, ds in self.database[__filter_prod].iterrows():
+                __filter_prod = (
+                    contains_any_from_list((s.exchange, c.cons_name), self.powerplant_map[tech])
+                    & equals((s.exchange, c.type), "production")
+                )(self.database)
 
-                new_plants = self.fetch_proxies(
-                    name=ds[(s.exchange, c.cons_name)],
-                    ref_prod=ds[(s.exchange, c.cons_prod)],
-                    production_variable=tech,
-                    relink=True,
-                )
+                for _, ds in self.database[__filter_prod].iterrows():
 
-                ds_to_add = [list(d.values()) for d in new_plants.values()]
-                ds_to_add = [e for v in ds_to_add for e in v]
-
-                self.database = pd.concat(
-                    [self.database] + ds_to_add, axis=0, ignore_index=True
-                )
+                    self.fetch_proxies(
+                        name=ds[(s.exchange, c.cons_name)],
+                        ref_prod=ds[(s.exchange, c.cons_prod)],
+                        production_variable=tech,
+                        relink=True,
+                    )
 
     def update_electricity_markets(self):
         """
