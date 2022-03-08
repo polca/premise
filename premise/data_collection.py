@@ -552,12 +552,20 @@ class IAMDataCollection:
         try:
             data_to_return = data.loc[:, list_technologies, :]
         except KeyError:
-            list_missing_vars = [var for var in list_technologies if var not in data.variables.values]
-            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            list_missing_vars = [
+                var for var in list_technologies if var not in data.variables.values
+            ]
+            print(
+                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
+            )
             if len(list_technologies) - len(list_missing_vars) > 0:
-                available_vars = [var for var in list_technologies if var in data.variables.values]
-                print(f"The process continues with the remaining variables, "
-                      f"but certain transformation functions may not work.")
+                available_vars = [
+                    var for var in list_technologies if var in data.variables.values
+                ]
+                print(
+                    f"The process continues with the remaining variables, "
+                    f"but certain transformation functions may not work."
+                )
                 list_technologies = available_vars
                 data_to_return = data.loc[:, list_technologies, :]
             else:
@@ -607,17 +615,24 @@ class IAMDataCollection:
         try:
             data_to_return = data.loc[:, list_technologies, :]
         except KeyError:
-            list_missing_vars = [var for var in list_technologies if var not in data.variables.values]
-            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            list_missing_vars = [
+                var for var in list_technologies if var not in data.variables.values
+            ]
+            print(
+                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
+            )
             if len(list_technologies) - len(list_missing_vars) > 0:
-                available_vars = [var for var in list_technologies if var in data.variables.values]
-                print(f"The process continues with the remaining variables, "
-                      f"but certain transformation functions may not work.")
+                available_vars = [
+                    var for var in list_technologies if var in data.variables.values
+                ]
+                print(
+                    f"The process continues with the remaining variables, "
+                    f"but certain transformation functions may not work."
+                )
                 list_technologies = available_vars
                 data_to_return = data.loc[:, list_technologies, :]
             else:
                 raise SystemExit
-
 
         data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
             year=2020
@@ -640,7 +655,9 @@ class IAMDataCollection:
         # convert NaNs to ones
         data_to_return = data_to_return.fillna(1)
 
-        data_to_return.coords["variables"] = [k for k, v in labels.items() if v in list_technologies]
+        data_to_return.coords["variables"] = [
+            k for k, v in labels.items() if v in list_technologies
+        ]
 
         return data_to_return
 
@@ -677,7 +694,10 @@ class IAMDataCollection:
                 IAM_CEMENT_VARS, key="energy_use_aliases"
             )
 
-            if energy["cement"] in data.variables.values and prod["cement"] in data.variables.values:
+            if (
+                energy["cement"] in data.variables.values
+                and prod["cement"] in data.variables.values
+            ):
 
                 data_to_return = 1 / (
                     data.loc[:, energy["cement"], :].sum(dim="variables")
@@ -778,7 +798,9 @@ class IAMDataCollection:
             if eff["steel - secondary"] in data.variables.values:
                 data_secondary = 1 / data.loc[:, [eff["steel - secondary"]], :]
             else:
-                print("No efficiency variables is given for the secondary steel sector.")
+                print(
+                    "No efficiency variables is given for the secondary steel sector."
+                )
                 data_secondary = xr.ones_like(data)
                 var = data_secondary.variables.values.tolist()
                 data_secondary = data_secondary.sel(variables=[var[0]])
@@ -800,11 +822,12 @@ class IAMDataCollection:
                     / data.loc[:, [prod["steel - secondary"]], :]
                 )
             else:
-                print("No efficiency variables is given for the secondary steel sector.")
+                print(
+                    "No efficiency variables is given for the secondary steel sector."
+                )
                 data_secondary = xr.ones_like(data)
                 var = data_secondary.variables.values.tolist()
                 data_secondary = data_secondary.sel(variables=[var[0]])
-
 
         # secondary steel efficiency changes relative to 2020
         data_secondary = data_secondary.interp(year=self.year) / data_secondary.sel(
@@ -1023,12 +1046,20 @@ class IAMDataCollection:
             ].sum(dim="region")
 
         except KeyError:
-            list_missing_vars = [var for var in list_technologies if var not in data.variables.values]
-            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            list_missing_vars = [
+                var for var in list_technologies if var not in data.variables.values
+            ]
+            print(
+                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
+            )
             if len(list_technologies) - len(list_missing_vars) > 0:
-                available_vars = [var for var in list_technologies if var in data.variables.values]
-                print(f"The process continues with the remaining variables, "
-                      f"but certain transformation functions may not work.")
+                available_vars = [
+                    var for var in list_technologies if var in data.variables.values
+                ]
+                print(
+                    f"The process continues with the remaining variables, "
+                    f"but certain transformation functions may not work."
+                )
                 list_technologies = available_vars
             else:
                 raise SystemExit
@@ -1036,7 +1067,9 @@ class IAMDataCollection:
         # Interpolation between two periods
         data_to_return = data.loc[:, list_technologies, :]
 
-        data_to_return.coords["variables"] = [k for k, v in labels.items() if v in list_technologies]
+        data_to_return.coords["variables"] = [
+            k for k, v in labels.items() if v in list_technologies
+        ]
 
         if self.system_model == "consequential":
 
@@ -1124,12 +1157,20 @@ class IAMDataCollection:
         try:
             data_to_return = data.loc[:, list_technologies, :]
         except KeyError:
-            list_missing_vars = [var for var in list_technologies if var not in data.variables.values]
-            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            list_missing_vars = [
+                var for var in list_technologies if var not in data.variables.values
+            ]
+            print(
+                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
+            )
             if len(list_technologies) - len(list_missing_vars) > 0:
-                available_vars = [var for var in list_technologies if var in data.variables.values]
-                print(f"The process continues with the remaining variables, "
-                      f"but certain transformation functions may not work.")
+                available_vars = [
+                    var for var in list_technologies if var in data.variables.values
+                ]
+                print(
+                    f"The process continues with the remaining variables, "
+                    f"but certain transformation functions may not work."
+                )
                 list_technologies = available_vars
                 data_to_return = data.loc[:, list_technologies, :]
             else:
@@ -1161,7 +1202,9 @@ class IAMDataCollection:
         # to be incorrect
         data_to_return.values = np.clip(data_to_return.values, 0.5, 2)
 
-        data_to_return.coords["variables"] = [k for k, v in labels.items() if v in list_technologies]
+        data_to_return.coords["variables"] = [
+            k for k, v in labels.items() if v in list_technologies
+        ]
 
         return data_to_return
 
@@ -1272,17 +1315,27 @@ class IAMDataCollection:
         try:
             data_to_return = data.loc[:, list_products, :]
         except KeyError:
-            list_missing_vars = [var for var in list_products if var not in data.variables.values]
-            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            list_missing_vars = [
+                var for var in list_products if var not in data.variables.values
+            ]
+            print(
+                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
+            )
             if len(list_products) - len(list_missing_vars) > 0:
-                available_vars = [var for var in list_products if var in data.variables.values]
-                print(f"The process continues with the remaining variables, "
-                      f"but certain transformation functions may not work.")
+                available_vars = [
+                    var for var in list_products if var in data.variables.values
+                ]
+                print(
+                    f"The process continues with the remaining variables, "
+                    f"but certain transformation functions may not work."
+                )
                 list_products = available_vars
                 data_to_return = data.loc[:, list_products, :]
             else:
                 raise SystemExit
 
-        data_to_return.coords["variables"] = [k for k, v in dict_products.items() if v in list_products]
+        data_to_return.coords["variables"] = [
+            k for k, v in dict_products.items() if v in list_products
+        ]
 
         return data_to_return
