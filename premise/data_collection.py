@@ -548,9 +548,23 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
-        data_to_return = data.loc[:, list_technologies, :]
-        # give the array common labels
-        list_vars = list(labels.keys())
+
+        try:
+            data_to_return = data.loc[:, list_technologies, :]
+        except KeyError:
+            list_missing_vars = [var for var in list_technologies if var not in data.variables.values]
+            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            if len(list_technologies) - len(list_missing_vars) > 0:
+                available_vars = [var for var in list_technologies if var in data.variables.values]
+                print(f"The process continues with the remaining variables, "
+                      f"but certain transformation functions may not work.")
+                list_technologies = available_vars
+                data_to_return = data.loc[:, list_technologies, :]
+            else:
+                raise SystemExit
+
+        # give the array premise labels
+        list_vars = [k for k, v in labels.items() if v in list_technologies]
 
         data_to_return.coords["variables"] = list_vars
 
@@ -590,7 +604,20 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
 
-        data_to_return = data.loc[:, list_technologies, :]
+        try:
+            data_to_return = data.loc[:, list_technologies, :]
+        except KeyError:
+            list_missing_vars = [var for var in list_technologies if var not in data.variables.values]
+            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            if len(list_technologies) - len(list_missing_vars) > 0:
+                available_vars = [var for var in list_technologies if var in data.variables.values]
+                print(f"The process continues with the remaining variables, "
+                      f"but certain transformation functions may not work.")
+                list_technologies = available_vars
+                data_to_return = data.loc[:, list_technologies, :]
+            else:
+                raise SystemExit
+
 
         data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
             year=2020
@@ -613,7 +640,7 @@ class IAMDataCollection:
         # convert NaNs to ones
         data_to_return = data_to_return.fillna(1)
 
-        data_to_return.coords["variables"] = list(labels.keys())
+        data_to_return.coords["variables"] = [k for k, v in labels.items() if v in list_technologies]
 
         return data_to_return
 
@@ -637,17 +664,30 @@ class IAMDataCollection:
         if len(self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="eff_aliases")) > 0:
             eff = self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="eff_aliases")
 
-            data_to_return = 1 / data.loc[:, [eff["cement"]], :]
+            if eff["cement"] in data.variables.values:
+                data_to_return = 1 / data.loc[:, [eff["cement"]], :]
+            else:
+                print("No efficiency variables is given for the cement sector.")
+                data_to_return = xr.ones_like(data)
+                var = data_to_return.variables.values.tolist()
+                data_to_return = data_to_return.sel(variables=[var[0]])
         else:
             prod = self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="iam_aliases")
             energy = self.__get_iam_variable_labels(
                 IAM_CEMENT_VARS, key="energy_use_aliases"
             )
 
-            data_to_return = 1 / (
-                data.loc[:, energy["cement"], :].sum(dim="variables")
-                / data.loc[:, [prod["cement"]], :]
-            )
+            if energy["cement"] in data.variables.values and prod["cement"] in data.variables.values:
+
+                data_to_return = 1 / (
+                    data.loc[:, energy["cement"], :].sum(dim="variables")
+                    / data.loc[:, [prod["cement"]], :]
+                )
+            else:
+                print("No efficiency variables is given for the cement sector.")
+                data_to_return = xr.ones_like(data)
+                var = data_to_return.variables.values.tolist()
+                data_to_return = data_to_return.sel(variables=[var[0]])
 
         data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
             year=2020
@@ -698,7 +738,15 @@ class IAMDataCollection:
 
         if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")) > 0:
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
-            data_primary = 1 / data.loc[:, [eff["steel - primary"]], :]
+
+            if eff["steel - primary"] in data.variables.values:
+                data_primary = 1 / data.loc[:, [eff["steel - primary"]], :]
+            else:
+                print("No efficiency variables is given for the primary steel sector.")
+                data_primary = xr.ones_like(data)
+                var = data_primary.variables.values.tolist()
+                data_primary = data_primary.sel(variables=[var[0]])
+
         else:
             prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="iam_aliases")
             energy = self.__get_iam_variable_labels(
@@ -710,17 +758,31 @@ class IAMDataCollection:
             else:
                 energy_in = energy["steel - primary"]
 
-            data_primary = 1 / (
-                data.loc[:, energy_in, :].sum(dim="variables")
-                / data.loc[:, [prod["steel - primary"]], :]
-            )
+            if prod["steel - primary"] in data.variables.values:
+                data_primary = 1 / (
+                    data.loc[:, energy_in, :].sum(dim="variables")
+                    / data.loc[:, [prod["steel - primary"]], :]
+                )
+            else:
+                print("No efficiency variables is given for the primary steel sector.")
+                data_primary = xr.ones_like(data)
+                var = data_primary.variables.values.tolist()
+                data_primary = data_primary.sel(variables=[var[0]])
 
         # primary steel efficiency changes relative to 2020
         data_primary = data_primary.interp(year=self.year) / data_primary.sel(year=2020)
 
         if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")) > 0:
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
-            data_secondary = 1 / data.loc[:, [eff["steel - secondary"]], :]
+
+            if eff["steel - secondary"] in data.variables.values:
+                data_secondary = 1 / data.loc[:, [eff["steel - secondary"]], :]
+            else:
+                print("No efficiency variables is given for the secondary steel sector.")
+                data_secondary = xr.ones_like(data)
+                var = data_secondary.variables.values.tolist()
+                data_secondary = data_secondary.sel(variables=[var[0]])
+
         else:
             prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="iam_aliases")
             energy = self.__get_iam_variable_labels(
@@ -732,10 +794,17 @@ class IAMDataCollection:
             else:
                 energy_in = energy["steel - secondary"]
 
-            data_secondary = 1 / (
-                data.loc[:, energy_in, :].sum(dim="variables")
-                / data.loc[:, [prod["steel - secondary"]], :]
-            )
+            if prod["steel - secondary"] in data.variables.values:
+                data_secondary = 1 / (
+                    data.loc[:, energy_in, :].sum(dim="variables")
+                    / data.loc[:, [prod["steel - secondary"]], :]
+                )
+            else:
+                print("No efficiency variables is given for the secondary steel sector.")
+                data_secondary = xr.ones_like(data)
+                var = data_secondary.variables.values.tolist()
+                data_secondary = data_secondary.sel(variables=[var[0]])
+
 
         # secondary steel efficiency changes relative to 2020
         data_secondary = data_secondary.interp(year=self.year) / data_secondary.sel(
@@ -943,19 +1012,31 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # sometimes, the World region is either neglected
-        # or wrongly evaluated so we fix that here
+        # or wrongly evaluated, so we fix that here
 
-        data.loc[dict(region="World", variables=list_technologies)] = data.loc[
-            dict(
-                region=[r for r in data.coords["region"].values if r != "World"],
-                variables=list_technologies,
-            )
-        ].sum(dim="region")
+        try:
+            data.loc[dict(region="World", variables=list_technologies)] = data.loc[
+                dict(
+                    region=[r for r in data.coords["region"].values if r != "World"],
+                    variables=list_technologies,
+                )
+            ].sum(dim="region")
+
+        except KeyError:
+            list_missing_vars = [var for var in list_technologies if var not in data.variables.values]
+            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            if len(list_technologies) - len(list_missing_vars) > 0:
+                available_vars = [var for var in list_technologies if var in data.variables.values]
+                print(f"The process continues with the remaining variables, "
+                      f"but certain transformation functions may not work.")
+                list_technologies = available_vars
+            else:
+                raise SystemExit
 
         # Interpolation between two periods
         data_to_return = data.loc[:, list_technologies, :]
 
-        data_to_return.coords["variables"] = list(labels.keys())
+        data_to_return.coords["variables"] = [k for k, v in labels.items() if v in list_technologies]
 
         if self.system_model == "consequential":
 
@@ -1040,7 +1121,19 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
-        data_to_return = data.loc[:, list_technologies, :]
+        try:
+            data_to_return = data.loc[:, list_technologies, :]
+        except KeyError:
+            list_missing_vars = [var for var in list_technologies if var not in data.variables.values]
+            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            if len(list_technologies) - len(list_missing_vars) > 0:
+                available_vars = [var for var in list_technologies if var in data.variables.values]
+                print(f"The process continues with the remaining variables, "
+                      f"but certain transformation functions may not work.")
+                list_technologies = available_vars
+                data_to_return = data.loc[:, list_technologies, :]
+            else:
+                raise SystemExit
 
         data_to_return = data_to_return.interp(year=self.year) / data_to_return.sel(
             year=2020
@@ -1068,7 +1161,7 @@ class IAMDataCollection:
         # to be incorrect
         data_to_return.values = np.clip(data_to_return.values, 0.5, 2)
 
-        data_to_return.coords["variables"] = list(labels.keys())
+        data_to_return.coords["variables"] = [k for k, v in labels.items() if v in list_technologies]
 
         return data_to_return
 
@@ -1176,7 +1269,20 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
 
-        data_to_return = data.loc[:, list_products, :]
-        data_to_return.coords["variables"] = list(dict_products.keys())
+        try:
+            data_to_return = data.loc[:, list_products, :]
+        except KeyError:
+            list_missing_vars = [var for var in list_products if var not in data.variables.values]
+            print(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            if len(list_products) - len(list_missing_vars) > 0:
+                available_vars = [var for var in list_products if var in data.variables.values]
+                print(f"The process continues with the remaining variables, "
+                      f"but certain transformation functions may not work.")
+                list_products = available_vars
+                data_to_return = data.loc[:, list_products, :]
+            else:
+                raise SystemExit
+
+        data_to_return.coords["variables"] = [k for k, v in dict_products.items() if v in list_products]
 
         return data_to_return
