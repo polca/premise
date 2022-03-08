@@ -1540,7 +1540,7 @@ class Fuels(BaseTransformation):
 
         for fuel, activity in fuel_markets.items():
 
-            if [i for e in self.fuel_labels for i in vars_map[fuel] if e in i]:
+            if [i for e in self.fuel_labels for i in vars_map[fuel] if i in e]:
 
                 print(f"--> {fuel}")
 
