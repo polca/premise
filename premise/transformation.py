@@ -76,7 +76,14 @@ def get_shares_from_production_volume(ds_list):
             # because if not, we risk dividing by zero!!!
             production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
-            dict_act[(act["name"], act["location"], act["reference product"], act["unit"],)] = production_volume
+            dict_act[
+                (
+                    act["name"],
+                    act["location"],
+                    act["reference product"],
+                    act["unit"],
+                )
+            ] = production_volume
             total_production_volume += production_volume
 
     for dataset in dict_act:
@@ -93,7 +100,10 @@ def get_tuples_from_database(database):
     :return: a list of tuples
     :rtype: list
     """
-    return [(dataset["name"], dataset["reference product"], dataset["location"]) for dataset in database]
+    return [
+        (dataset["name"], dataset["reference product"], dataset["location"])
+        for dataset in database
+    ]
 
 
 class BaseTransformation:
@@ -102,21 +112,29 @@ class BaseTransformation:
     """
 
     def __init__(
-        self, database: pd.DataFrame, iam_data: xr.DataArray, scenarios: dict,
+        self,
+        database: pd.DataFrame,
+        iam_data: xr.DataArray,
+        scenarios: dict,
     ):
         self.database = database
         self.iam_data = iam_data
         self.scenarios = scenarios
         self.scenario_labels = [
-            create_scenario_label(scenario["model"], scenario["pathway"], scenario["year"])
+            create_scenario_label(
+                scenario["model"], scenario["pathway"], scenario["year"]
+            )
             for scenario in self.scenarios
         ]
         self.regions = {}
         for label in self.scenario_labels:
             self.regions[label] = [
                 r
-                for r in self.iam_data.electricity_markets.sel(scenario=label).region.values
-                if self.iam_data.electricity_markets.sel(scenario=label, region=r).sum() > 0
+                for r in self.iam_data.electricity_markets.sel(
+                    scenario=label
+                ).region.values
+                if self.iam_data.electricity_markets.sel(scenario=label, region=r).sum()
+                > 0
             ]
 
         self.fuels_lhv = get_fuel_properties()
@@ -129,14 +147,16 @@ class BaseTransformation:
         for s, scenario in enumerate(scenarios):
             geo = Geomap(model=scenario["model"])
             self.ecoinvent_to_iam_loc[self.scenario_labels[s]] = {
-                loc: geo.ecoinvent_to_iam_location(loc) for loc in get_dataframe_locs(self.database)
+                loc: geo.ecoinvent_to_iam_location(loc)
+                for loc in get_dataframe_locs(self.database)
             }
 
         self.iam_to_gains = {}
         for s, scenario in enumerate(scenarios):
             geo = Geomap(model=scenario["model"])
             self.iam_to_gains[self.scenario_labels[s]] = {
-                loc: geo.iam_to_GAINS_region(loc) for loc in self.regions[self.scenario_labels[s]]
+                loc: geo.iam_to_GAINS_region(loc)
+                for loc in self.regions[self.scenario_labels[s]]
             }
 
         self.iam_to_ecoinvent_loc = {label: {} for label in self.scenario_labels}
@@ -144,7 +164,8 @@ class BaseTransformation:
         for s, scenario in enumerate(scenarios):
             geo = Geomap(model=scenario["model"])
             self.iam_to_ecoinvent_loc[self.scenario_labels[s]] = {
-                loc: geo.iam_to_ecoinvent_location(loc) for loc in self.regions[self.scenario_labels[s]]
+                loc: geo.iam_to_ecoinvent_location(loc)
+                for loc in self.regions[self.scenario_labels[s]]
             }
 
         self.exchange_stack = []
@@ -181,7 +202,10 @@ class BaseTransformation:
         """
 
         return {
-            tech: {"IAM_eff_func": self.find_iam_efficiency_change, "technology filters": activity_map[tech],}
+            tech: {
+                "IAM_eff_func": self.find_iam_efficiency_change,
+                "technology filters": activity_map[tech],
+            }
             for tech in technologies
         }
 
@@ -218,7 +242,9 @@ class BaseTransformation:
 
             locs_to_copy_from_to_iam[label] = {
                 self.ecoinvent_to_iam_loc[label][loc]: loc
-                for loc in self.database[_filter].loc[:, (s.exchange, c.cons_loc)].unique()
+                for loc in self.database[_filter]
+                .loc[:, (s.exchange, c.cons_loc)]
+                .unique()
             }
 
         # FIXME: doing so omits activity datasets that have a location
@@ -226,9 +252,14 @@ class BaseTransformation:
         # when there are multiple candidates, the last one is picked
 
         for label in self.scenario_labels:
-            for region in set(self.regions[label]).difference(locs_to_copy_from_to_iam[label].keys()):
+            for region in set(self.regions[label]).difference(
+                locs_to_copy_from_to_iam[label].keys()
+            ):
                 # TODO: REVIEW: do we really want to loop in this order? This would search RoW first and if it finds something, than it maps to it.
-                possible_locs = ["RoW", "GLO",] + list(locs_to_copy_from_to_iam[label].values())
+                possible_locs = [
+                    "RoW",
+                    "GLO",
+                ] + list(locs_to_copy_from_to_iam[label].values())
 
                 original = []
                 count = 0
@@ -256,7 +287,9 @@ class BaseTransformation:
 
                 # TODO: REVIEW: this is potentially a random location as it depends on the sort order of the database
                 # furthermore one can use the .iloc[0] accessor to improve performance a bit
-                locs_to_copy_from_to_iam[label][region] = original[(s.exchange, c.cons_loc)].values.item(0)
+                locs_to_copy_from_to_iam[label][region] = original[
+                    (s.exchange, c.cons_loc)
+                ].values.item(0)
 
         # dictionary that stores new region-specific datasets
         new_regionalized_datasets = defaultdict(dict)
@@ -276,19 +309,29 @@ class BaseTransformation:
                     _filter = (
                         contains((s.exchange, c.cons_name), name)
                         & contains((s.exchange, c.cons_prod), ref_prod)
-                        & equals((s.exchange, c.cons_loc), locs_to_copy_from_to_iam[scenario][region],)
+                        & equals(
+                            (s.exchange, c.cons_loc),
+                            locs_to_copy_from_to_iam[scenario][region],
+                        )
                     )(self.database)
 
                     dataset = self.database[_filter].copy()
 
-                    dataset = rename_location(df=dataset, scenario=scenario, new_loc=region)
+                    dataset = rename_location(
+                        df=dataset, scenario=scenario, new_loc=region
+                    )
 
                     # Add `production volume` field
-                    if production_variable in self.iam_data.production_volumes.variables:
+                    if (
+                        production_variable
+                        in self.iam_data.production_volumes.variables
+                    ):
                         # TODO: REVIEW: sel, interp, and values.item are very expensive operations. Maybe we can find an alternative experession to achieve the same result?
                         prod_vol = (
                             self.iam_data.production_volumes.sel(
-                                scenario=scenario, region=region, variables=production_variable,
+                                scenario=scenario,
+                                region=region,
+                                variables=production_variable,
                             )
                             .interp(year=int(scenario.split("::")[-1]))
                             .sum()
@@ -297,7 +340,11 @@ class BaseTransformation:
                     else:
                         prod_vol = 0
 
-                    dataset = change_production_volume(dataset, scenario, prod_vol,)
+                    dataset = change_production_volume(
+                        dataset,
+                        scenario,
+                        prod_vol,
+                    )
 
                     # move amounts to the scenario column
                     dataset[(scenario, c.amount)] = dataset[(s.ecoinvent, c.amount)]
@@ -312,9 +359,10 @@ class BaseTransformation:
                     self.exchange_stack.append(dataset)
 
             # empty original dataset(s)
-            _filter = (contains((s.exchange, c.cons_name), name) & contains((s.exchange, c.cons_prod), ref_prod))(
-                self.database
-            )
+            _filter = (
+                contains((s.exchange, c.cons_name), name)
+                & contains((s.exchange, c.cons_prod), ref_prod)
+            )(self.database)
 
             sel = _filter * ~equals((s.exchange, c.type), "production")(self.database)
             self.database.loc[sel, (scenario, c.amount)] = 0
@@ -330,16 +378,22 @@ class BaseTransformation:
 
                 for iam_loc in iam_locs:
 
-                    new_exc = create_redirect_exchange(self.database[sel], scenario, new_loc=iam_loc, original_loc=_loc)
+                    new_exc = create_redirect_exchange(
+                        self.database[sel], scenario, new_loc=iam_loc, original_loc=_loc
+                    )
 
                     try:
                         # FIXME: TODO: save in separate variables and test for 0 explicitly to avoid zerodiferror
                         prod_vol_share = self.iam_data.production_volumes.sel(
-                            scenario=scenario, region=iam_loc, variables=production_variable,
+                            scenario=scenario,
+                            region=iam_loc,
+                            variables=production_variable,
                         ).interp(year=int(scenario.split("::")[-1])).sum().values.item(
                             0
                         ) / self.iam_data.production_volumes.sel(
-                            scenario=scenario, region=iam_locs, variables=production_variable,
+                            scenario=scenario,
+                            region=iam_locs,
+                            variables=production_variable,
                         ).interp(
                             year=int(scenario.split("::")[-1])
                         ).sum().values.item(
@@ -348,14 +402,18 @@ class BaseTransformation:
                     except ZeroDivisionError:
                         prod_vol_share = 1
 
-                    new_exc[(scenario, c.amount)] = new_exc[(s.ecoinvent, c.amount)] * prod_vol_share
+                    new_exc[(scenario, c.amount)] = (
+                        new_exc[(s.ecoinvent, c.amount)] * prod_vol_share
+                    )
                     self.exchange_stack.append(new_exc)
 
         print(pd.concat(self.exchange_stack, axis=1, ignore_index=True).shape)
         print(self.database.shape)
         # FIXME: REVIEW: This is performance heavy with the three concats. Can we reformulate this logic?
         self.database = pd.concat(
-            [self.database, pd.concat(self.exchange_stack, axis=1, ignore_index=True)], axis=0, ignore_index=True,
+            [self.database, pd.concat(self.exchange_stack, axis=1, ignore_index=True)],
+            axis=0,
+            ignore_index=True,
         )
 
     def relink_technosphere_exchanges(self, ds, scenario):
@@ -402,13 +460,25 @@ class BaseTransformation:
                                 "technosphere",
                                 cached_exc[3],
                                 exc[(s.exchange, c.cons_key)],
-                                create_hash(cached_exc[3] + exc[(s.exchange, c.cons_key)]),
+                                create_hash(
+                                    cached_exc[3] + exc[(s.exchange, c.cons_key)]
+                                ),
                             ]
-                            + ([np.nan, np.nan, np.nan, np.nan,] * (len(self.scenario_labels) + 1)),
+                            + (
+                                [
+                                    np.nan,
+                                    np.nan,
+                                    np.nan,
+                                    np.nan,
+                                ]
+                                * (len(self.scenario_labels) + 1)
+                            ),
                             index=ds.columns,
                         )
 
-                        new_row[(scenario, c.amount)] = exc[(s.ecoinvent, c.amount)] * cached_exc[-1]
+                        new_row[(scenario, c.amount)] = (
+                            exc[(s.ecoinvent, c.amount)] * cached_exc[-1]
+                        )
 
                         new_exchanges.append(new_row)
                     continue
@@ -448,7 +518,11 @@ class BaseTransformation:
         ds = ds[__filters_tech]
 
         if len(new_exchanges) > 0:
-            ds = pd.concat([ds, pd.concat(new_exchanges, axis=1, ignore_index=True).T], axis=0, ignore_index=True,)
+            ds = pd.concat(
+                [ds, pd.concat(new_exchanges, axis=1, ignore_index=True).T],
+                axis=0,
+                ignore_index=True,
+            )
 
         return ds
 
@@ -499,7 +573,9 @@ class BaseTransformation:
 
         return (
             [
-                new_exchange(exc, obj[(s.exchange, c.cons_loc)], factor / total, scenario)
+                new_exchange(
+                    exc, obj[(s.exchange, c.cons_loc)], factor / total, scenario
+                )
                 for obj, factor in zip(lst, pvs)
             ],
             [p / total for p in pvs],
@@ -523,17 +599,25 @@ class BaseTransformation:
 
         # loop through the database
         # ignore datasets which name contains `name`
-        for act in ws.get_many(self.database, ws.doesnt_contain_any("name", excludes_datasets),):
+        for act in ws.get_many(
+            self.database,
+            ws.doesnt_contain_any("name", excludes_datasets),
+        ):
             # and find exchanges of datasets to relink
 
             excs_to_relink = (
                 exc
                 for exc in act["exchanges"]
                 if exc["type"] == "technosphere"
-                and (exc["name"], exc["product"], exc["location"]) not in self.list_datasets
+                and (exc["name"], exc["product"], exc["location"])
+                not in self.list_datasets
             )
 
-            unique_excs_to_relink = list(set((exc["name"], exc["product"], exc["unit"]) for exc in excs_to_relink))
+            unique_excs_to_relink = list(
+                set(
+                    (exc["name"], exc["product"], exc["unit"]) for exc in excs_to_relink
+                )
+            )
 
             for exc in unique_excs_to_relink:
 
@@ -544,7 +628,9 @@ class BaseTransformation:
                     else [self.ecoinvent_to_iam_loc[act["location"]]]
                 )
 
-                for alt_name, alt_loc in product(alternative_names, alternative_locations):
+                for alt_name, alt_loc in product(
+                    alternative_names, alternative_locations
+                ):
 
                     if (alt_name, exc[1], alt_loc) in self.list_datasets:
                         # print(f"found! {alt_name, alt_loc}")
@@ -552,8 +638,14 @@ class BaseTransformation:
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset
-                amount = sum(e["amount"] for e in excs_to_relink if (e["name"], e["product"]) == exc)
-                act["exchanges"] = [e for e in act["exchanges"] if (e["name"], e.get("product")) != exc]
+                amount = sum(
+                    e["amount"]
+                    for e in excs_to_relink
+                    if (e["name"], e["product"]) == exc
+                )
+                act["exchanges"] = [
+                    e for e in act["exchanges"] if (e["name"], e.get("product")) != exc
+                ]
 
                 # create a new exchange, with the new provider
                 try:
@@ -569,7 +661,9 @@ class BaseTransformation:
                     act["exchanges"].append(new_exc)
 
                 except:
-                    print(f"No alternative provider found for {exc[0], act['location']}.")
+                    print(
+                        f"No alternative provider found for {exc[0], act['location']}."
+                    )
 
     def get_carbon_capture_rate(self, loc, sector):
         """
@@ -585,7 +679,10 @@ class BaseTransformation:
         """
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
-            rate = self.iam_data.carbon_capture_rate.sel(variables=sector, region=loc,).values
+            rate = self.iam_data.carbon_capture_rate.sel(
+                variables=sector,
+                region=loc,
+            ).values
         else:
             rate = 0
 
@@ -602,7 +699,11 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(region=location, pollutant=pollutant, sector=sector,)
+            dict(
+                region=location,
+                pollutant=pollutant,
+                sector=sector,
+            )
         ].values.item(0)
 
         return scaling_factor
