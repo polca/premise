@@ -62,6 +62,7 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
+from .custom import check_custom_scenario
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
@@ -71,7 +72,6 @@ from .steel import Steel
 from .transformation import BaseTransformation
 from .transport import Transport
 from .utils import add_modified_tags, build_superstructure_db, eidb_label
-from .custom import check_custom_scenario
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -492,7 +492,7 @@ class NewDatabase:
         time_horizon: int = None,
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
-        custom_scenario: dict = None
+        custom_scenario: dict = None,
     ) -> None:
 
         self.source = source_db

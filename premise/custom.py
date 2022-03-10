@@ -1,8 +1,14 @@
 from pathlib import Path
-import yaml
-from schema import Schema, And, Use, Optional, SchemaError, Or
-from .ecoinvent_modification import SUPPORTED_EI_VERSIONS, LIST_REMIND_REGIONS, LIST_IMAGE_REGIONS
+
 import pandas as pd
+import yaml
+from schema import And, Optional, Or, Schema, SchemaError, Use
+
+from .ecoinvent_modification import (
+    LIST_IMAGE_REGIONS,
+    LIST_REMIND_REGIONS,
+    SUPPORTED_EI_VERSIONS,
+)
 
 
 def check_custom_scenario(scenario: dict) -> dict:
@@ -13,12 +19,22 @@ def check_custom_scenario(scenario: dict) -> dict:
     """
 
     # Validate `scenario`
-    dict_schema = Schema({
-        "inventories": And(str, Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"),
-        "scenario data": And(Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"),
-        "config": And(Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".yaml"),
-        Optional("ecoinvent version"): And(Use(str), lambda v: v in SUPPORTED_EI_VERSIONS)
-    })
+    dict_schema = Schema(
+        {
+            "inventories": And(
+                str, Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"
+            ),
+            "scenario data": And(
+                Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"
+            ),
+            "config": And(
+                Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".yaml"
+            ),
+            Optional("ecoinvent version"): And(
+                Use(str), lambda v: v in SUPPORTED_EI_VERSIONS
+            ),
+        }
+    )
 
     dict_schema.validate(scenario)
 
@@ -30,7 +46,9 @@ def check_custom_scenario(scenario: dict) -> dict:
         {
             "production pathways": {
                 str: {
-                    "production volume": {"variable": str,},
+                    "production volume": {
+                        "variable": str,
+                    },
                     "ecoinvent alias": {
                         "name": str,
                         "reference product": str,
@@ -38,17 +56,37 @@ def check_custom_scenario(scenario: dict) -> dict:
                     },
                     Optional("efficiency"): {"variable": str},
                     Optional("except regions"): Or(
-                        And(str, Use(str), lambda s: s in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS),
-                        And(list, Use(list), lambda s: all(i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s)),
-                    )
+                        And(
+                            str,
+                            Use(str),
+                            lambda s: s in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS,
+                        ),
+                        And(
+                            list,
+                            Use(list),
+                            lambda s: all(
+                                i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
+                            ),
+                        ),
+                    ),
                 },
             },
             Optional("markets"): {
                 "name": str,
                 "reference product": str,
                 Optional("except regions"): Or(
-                    And(str, Use(str), lambda s: s in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS),
-                    And(list, Use(list), lambda s: all(i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s)),
+                    And(
+                        str,
+                        Use(str),
+                        lambda s: s in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS,
+                    ),
+                    And(
+                        list,
+                        Use(list),
+                        lambda s: all(
+                            i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
+                        ),
+                    ),
                 ),
                 Optional("replaces"): {"name": str, "reference product": str},
             },
@@ -59,6 +97,5 @@ def check_custom_scenario(scenario: dict) -> dict:
 
     # Validate scenario data
     df = pd.read_excel(scenario["scenario data"])
-
 
     return scenario
