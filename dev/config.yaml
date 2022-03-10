@@ -1,0 +1,45 @@
+production pathways:
+  ADD:
+    production volume:
+      variable: Production|Baking|Bread|Activated Dough Development
+    efficiency:
+      variable: Efficiency|Baking|Bread|Activated Dough Development
+    ecoinvent alias:
+      exists in ecoinvent: False
+      name: bread production, activated dough development
+      reference product: bread
+    except regions: BRA
+  SDM:
+    production volume:
+      variable: Production|Baking|Bread|Straight Dough Method
+    efficiency:
+      variable: Efficiency|Baking|Bread|Straight Dough Method
+    ecoinvent alias:
+      exists in ecoinvent: False
+      name: bread production, straight dough method
+      reference product: bread
+    except regions: USA
+
+  DSM:
+    production volume:
+      variable: Production|Baking|Bread|Delayed Salt Method
+    efficiency:
+      variable: Efficiency|Baking|Bread|Delayed Salt Method
+    ecoinvent alias:
+      exists in ecoinvent: False
+      name: bread production, delayed salt method
+      reference product: bread
+    except regions:
+      - WEU
+      - USA
+
+markets:
+  name: market for bread
+  reference product: bread
+  replaces:
+    name: market for black carbon
+    reference product: black carbon
+  except regions: JAP
+
+
+

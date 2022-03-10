@@ -2,7 +2,52 @@
 ecoinvent_modification.py exposes methods to create a database, perform transformations on it,
 as well as export it back.
 """
+SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
+LIST_REMIND_REGIONS = [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World",
+]
 
+LIST_IMAGE_REGIONS = [
+    "BRA",
+    "CAN",
+    "CEU",
+    "CHN",
+    "EAF",
+    "INDIA",
+    "INDO",
+    "JAP",
+    "KOR",
+    "ME",
+    "MEX",
+    "NAF",
+    "OCE",
+    "RCAM",
+    "RSAF",
+    "RSAM",
+    "RSAS",
+    "RUS",
+    "SAF",
+    "SEAS",
+    "STAN",
+    "TUR",
+    "UKR",
+    "USA",
+    "WAF",
+    "WEU",
+    "World",
+]
 import copy
 import os
 import pickle
@@ -26,6 +71,7 @@ from .steel import Steel
 from .transformation import BaseTransformation
 from .transport import Transport
 from .utils import add_modified_tags, build_superstructure_db, eidb_label
+from .custom import check_custom_scenario
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -95,7 +141,7 @@ FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
 
-SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
+
 SUPPORTED_MODELS = ["remind", "image"]
 SUPPORTED_PATHWAYS = [
     "SSP2-Base",
@@ -112,51 +158,7 @@ SUPPORTED_PATHWAYS = [
     "static",
 ]
 
-LIST_REMIND_REGIONS = [
-    "CAZ",
-    "CHA",
-    "EUR",
-    "IND",
-    "JPN",
-    "LAM",
-    "MEA",
-    "NEU",
-    "OAS",
-    "REF",
-    "SSA",
-    "USA",
-    "World",
-]
 
-LIST_IMAGE_REGIONS = [
-    "BRA",
-    "CAN",
-    "CEU",
-    "CHN",
-    "EAF",
-    "INDIA",
-    "INDO",
-    "JAP",
-    "KOR",
-    "ME",
-    "MEX",
-    "NAF",
-    "OCE",
-    "RCAM",
-    "RSAF",
-    "RSAM",
-    "RSAS",
-    "RUS",
-    "SAF",
-    "SEAS",
-    "STAN",
-    "TUR",
-    "UKR",
-    "USA",
-    "WAF",
-    "WEU",
-    "World",
-]
 LIST_TRANSF_FUNC = [
     "update_electricity",
     "update_cement",
@@ -279,8 +281,8 @@ def check_exclude(list_exc: List[str]) -> List[str]:
 def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
     """
     Check that any additional inventories that need to be imported are properly listed.
-    :param inventories_list: list of dicitonnaries
-    :return:
+    :param inventories_list: list of dictionaries
+    :return: list of dictionaries
     """
 
     if not isinstance(inventories_list, list):
@@ -490,6 +492,7 @@ class NewDatabase:
         time_horizon: int = None,
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
+        custom_scenario: dict = None
     ) -> None:
 
         self.source = source_db
@@ -518,6 +521,8 @@ class NewDatabase:
             )
         else:
             self.additional_inventories = None
+
+        self.custom_scenario = check_custom_scenario(custom_scenario) or None
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
