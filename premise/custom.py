@@ -54,8 +54,8 @@ def check_custom_scenario(scenario: dict) -> dict:
                         "reference product": str,
                         "exists in ecoinvent": bool,
                     },
-            Optional("efficiency"): {"variable": str},
-            Optional("except regions"): Or(
+                    Optional("efficiency"): {"variable": str},
+                    Optional("except regions"): Or(
                         And(
                             str,
                             Use(str),
