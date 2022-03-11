@@ -520,6 +520,8 @@ class AdditionalInventory(BaseInventoryImport):
 
             print(t)
 
+            exit()
+
         self.add_biosphere_links(delete_missing=True)
         list_missing_ref = self.search_missing_field(field="name")
         list_missing_ref.extend(self.search_missing_field(field="reference product"))
