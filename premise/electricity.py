@@ -1139,9 +1139,7 @@ class Electricity(BaseTransformation):
                                 )
 
                                 # generate text for `comment` field
-                                new_text = row[
-                                    (s.ecoinvent, c.comment)
-                                ] + self.update_new_efficiency_in_comment(
+                                new_text = self.update_new_efficiency_in_comment(
                                     scenario, loc, ei_eff, new_eff
                                 )
 

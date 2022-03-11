@@ -843,7 +843,7 @@ class NewDatabase:
             database=self.database, iam_data=self.iam_data, scenarios=self.scenarios
         )
 
-        electricity.create_region_specific_power_plants()
+        #electricity.create_region_specific_power_plants()
         electricity.update_electricity_efficiency()
         self.database = electricity.database
 
@@ -1035,21 +1035,16 @@ class NewDatabase:
         else:
             filepath = DATA_DIR / "export" / "scenario diff files"
 
-        # FIXME: REVIEW Why do we use two libraries for path operations here? Can we switch to pathlib completely here
-        #        by refering to filepath.exists() and filepath.mkdir(parents=True, exists_ok=True) calls?
-        if not os.path.exists(filepath):
-            os.makedirs(filepath)
+        if not Path(filepath).exists():
+            Path(filepath).mkdir(parents=True, exist_ok=True)
 
         if name is None:
-            # FIXME: REVIEW I am unsure if we are running into a date localization problem here.
-            #        string casting date.today() can result into implicit date formatting that result on us computers in 1/2/2020 like strings.
-            #        This can mess with filenames, thus I recommend we think about explicitly formatting it in ISO form.
-            name = f"super_db_{self.version}_{date.today()}"
+            name = f"super_db_{self.version}_{date.today().isoformat()}"
 
         filepath = filepath / f"{name}.xlsx"
 
         export_scenario_difference_file(
-            database=self.database, db_name=name, filepath=filepath
+            database=self.database.copy(), db_name=name, filepath=filepath
         )
 
         # FIXME: REVIEW It might be a good idea to start thinking about refactoring all prints into a logging library based approach.

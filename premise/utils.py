@@ -438,15 +438,29 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
 
     scenarios = [col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent]]
 
-    for col in scenarios:
-        if col[1] == c.comment:
-            sel = df[col] == ""
-        else:
-            sel = df[col].isna()
 
-        df.loc[sel, col] = df.loc[sel, (s.ecoinvent, col[1])]
 
     cols = {col[0] for col in scenarios} if db_type == "single" else {s.ecoinvent}
+
+    # if we are building a superstructure database
+    # we want to append all non-empty comments to the comment column
+    # of ecoinvent
+
+    if db_type != "single":
+        col_tuples = [(col, c.comment) for col in df.columns.levels[0] if col != s.exchange]
+        df[(s.ecoinvent, c.comment)] = df[col_tuples].sum(axis=1)
+
+    # else, we fill NaNs in scenario columns
+    # with values from ecoinvent
+    else:
+        for col in scenarios:
+            if col[1] == c.comment:
+                sel = df[col]
+                df.loc[sel, col] += df.loc[sel, (s.ecoinvent, col[1])]
+
+            else:
+                sel = df[col].isna()
+                df.loc[sel, col] = df.loc[sel, (s.ecoinvent, col[1])]
 
     for col in cols:
         temp = df.loc[:, ((s.exchange, col), slice(None))].droplevel(level=0, axis=1)

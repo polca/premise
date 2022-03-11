@@ -407,14 +407,13 @@ class BaseTransformation:
                     )
                     self.exchange_stack.append(new_exc)
 
-        print(pd.concat(self.exchange_stack, axis=1, ignore_index=True).shape)
-        print(self.database.shape)
+
         # FIXME: REVIEW: This is performance heavy with the three concats. Can we reformulate this logic?
-        self.database = pd.concat(
-            [self.database, pd.concat(self.exchange_stack, axis=1, ignore_index=True)],
-            axis=0,
-            ignore_index=True,
-        )
+        #self.database = pd.concat(
+        #    [self.database, pd.concat(self.exchange_stack, axis=1, ignore_index=True)],
+        #    axis=0,
+        #    ignore_index=True,
+        #)
 
     def relink_technosphere_exchanges(self, ds, scenario):
         # TODO: REVIEW: general comment on this method: The applied cache validation pattern is unusual. The additional if ... else clauses with continue

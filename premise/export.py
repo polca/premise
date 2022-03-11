@@ -15,29 +15,29 @@ FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_38.csv"
 def export_scenario_difference_file(database, db_name, filepath):
 
     scenario_cols = [
-        t for t in database.columns if t[1] == c.amount and t[0] != s.ecoinvent
+        t for t in database.columns if t[1] == c.amount
     ]
 
-    # FIXME: REVIEW I have a suggestion for reformulating this code line into a better readable one.
-    #        With the code below it is in my opinion more readable for understanding the filterstatement created.
-    invalid_data_rows = database[scenario_cols].isnull().all(1)
-    database = database.loc[~invalid_data_rows]
+    unchanged_data_rows = database[scenario_cols].isnull().all(1)
+    scenario_diff_file = database.loc[~unchanged_data_rows]
 
-    df_exp = database[
-        [
-            (s.exchange, c.prod_name),
-            (s.exchange, c.prod_prod),
-            (s.exchange, c.prod_loc),
-            (s.exchange, c.prod_key),
-            (s.exchange, c.cons_name),
-            (s.exchange, c.cons_prod),
-            (s.exchange, c.cons_loc),
-            (s.exchange, c.cons_key),
-            (s.exchange, c.type),
-        ]
-    ][s.exchange]
+    keep_cols = [
+        (s.exchange, c.prod_name),
+        (s.exchange, c.prod_prod),
+        (s.exchange, c.prod_loc),
+        (s.exchange, c.prod_key),
+        (s.exchange, c.cons_name),
+        (s.exchange, c.cons_prod),
+        (s.exchange, c.cons_loc),
+        (s.exchange, c.cons_key),
+        (s.exchange, c.type),
+    ] + scenario_cols
 
-    df_exp.columns = [
+    scenario_diff_file = scenario_diff_file[keep_cols].droplevel(
+        level=1, axis=1
+    )
+
+    scenario_diff_file.columns = [
         "from activity name",
         "from reference product",
         "from location",
@@ -47,41 +47,28 @@ def export_scenario_difference_file(database, db_name, filepath):
         "to location",
         "to code",
         "flow type",
+    ] + [t[0] for t in scenario_cols]
+
+    scenario_diff_file["from categories"] = scenario_diff_file.loc[
+        scenario_diff_file["flow type"] == "biosphere", "from location"
     ]
+    scenario_diff_file.loc[:, "to categories"] = ""
 
-    df_exp["from categories"] = df_exp.loc[
-        df_exp["flow type"] == "biosphere", "from location"
-    ]
-    df_exp.loc[:, "to categories"] = ""
+    scenario_diff_file.loc[scenario_diff_file["flow type"] == "biosphere", "from location"] = ""
 
-    df_exp.loc[df_exp["flow type"] == "biosphere", "from location"] = ""
+    scenario_diff_file.loc[scenario_diff_file["flow type"] == "biosphere", "from database"] = "biosphere3"
+    scenario_diff_file.loc[scenario_diff_file["flow type"] != "biosphere", "from database"] = db_name
+    scenario_diff_file.loc[:, "to database"] = db_name
 
-    df_exp.loc[df_exp["flow type"] == "biosphere", "from database"] = "biosphere3"
-    df_exp.loc[df_exp["flow type"] != "biosphere", "from database"] = db_name
-    df_exp.loc[:, "to database"] = db_name
+    scenario_diff_file["from code"] = scenario_diff_file["from code"].astype("string")
+    scenario_diff_file["to code"] = scenario_diff_file["to code"].astype("string")
 
-    df_exp["from code"] = df_exp["from code"].astype("string")
-    df_exp["to code"] = df_exp["to code"].astype("string")
-
-    df_exp["from key"] = list(
-        df_exp[["from database", "from code"]].to_records(index=False)
+    scenario_diff_file["from key"] = list(
+        scenario_diff_file[["from database", "from code"]].to_records(index=False)
     )
-    df_exp["to key"] = list(df_exp[["to database", "to code"]].to_records(index=False))
+    scenario_diff_file["to key"] = list(scenario_diff_file[["to database", "to code"]].to_records(index=False))
 
-    df_vals = database[[t for t in database.columns if t[1] == c.amount]].droplevel(
-        level=1, axis=1
-    )
-
-    # for t in cols:
-    #    df_vals[t] = df_vals[t].fillna(df_vals[s.ecoinvent])
-
-    # FIXME: REVIEW I am concerned that we might have a sorting issue creeping up here.
-    #        Is it guaranteed that the order of df_vals rows is the same as the order of df_exp at the
-    #        time we concatenate? If the sort order changes we would match lines which don't belong together
-    #        We could either sort both datasets first or we could switch do an index based approach.
-    pd.concat(
-        [
-            df_exp[
+    scenario_diff_file[
                 [
                     "from activity name",
                     "from reference product",
@@ -96,19 +83,10 @@ def export_scenario_difference_file(database, db_name, filepath):
                     "to database",
                     "to key",
                     "flow type",
-                ]
-            ],
-            df_vals,
-        ],
-        axis=1,
-    ).to_excel(filepath, index=False)
+                ] + [t[0] for t in scenario_cols]
+            ].to_excel(filepath, index=False)
 
     print(f"Scenario difference file exported to {filepath}!")
-
-    # FIXME: REVIEW Why do we not return the created dataset? It would be convenient to be able to access
-    #        the result of the function directly. For example if one wants to call the function with a copy like this:
-    #        export_scenario_difference_file(database.copy(), 'test', './path/2/data')
-
 
 def create_index_of_A_matrix(db):
     """
