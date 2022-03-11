@@ -255,7 +255,7 @@ class BaseTransformation:
             for region in set(self.regions[label]).difference(
                 locs_to_copy_from_to_iam[label].keys()
             ):
-
+                # TODO: REVIEW: do we really want to loop in this order? This would search RoW first and if it finds something, than it maps to it.
                 possible_locs = [
                     "RoW",
                     "GLO",
@@ -263,6 +263,15 @@ class BaseTransformation:
 
                 original = []
                 count = 0
+
+                # FIXME: REVIEW: the while loop should be refactored into a for loop to prevent an endless loop and a disambiguity in debugging an IndexError
+                # raised if the  count exceeds the length of possible_locs
+                # for i_loc_cand in possible_locs:
+                #   ... original code
+                #       & equals((s.exchange, c.cons_loc), i_loc_candidate)
+                #   if len(original) > 0: break
+                # if len(original) == 0:
+                #     raise NoCandidateInDatabase('for location no candidate in database')
 
                 while len(original) == 0:
                     _filter = (
@@ -276,6 +285,8 @@ class BaseTransformation:
 
                     original = self.database[_filter]
 
+                # TODO: REVIEW: this is potentially a random location as it depends on the sort order of the database
+                # furthermore one can use the .iloc[0] accessor to improve performance a bit
                 locs_to_copy_from_to_iam[label][region] = original[
                     (s.exchange, c.cons_loc)
                 ].values.item(0)
@@ -315,6 +326,7 @@ class BaseTransformation:
                         production_variable
                         in self.iam_data.production_volumes.variables
                     ):
+                        # TODO: REVIEW: sel, interp, and values.item are very expensive operations. Maybe we can find an alternative experession to achieve the same result?
                         prod_vol = (
                             self.iam_data.production_volumes.sel(
                                 scenario=scenario,
@@ -371,6 +383,7 @@ class BaseTransformation:
                     )
 
                     try:
+                        # FIXME: TODO: save in separate variables and test for 0 explicitly to avoid zerodiferror
                         prod_vol_share = self.iam_data.production_volumes.sel(
                             scenario=scenario,
                             region=iam_loc,
@@ -396,7 +409,7 @@ class BaseTransformation:
 
         print(pd.concat(self.exchange_stack, axis=1, ignore_index=True).shape)
         print(self.database.shape)
-
+        # FIXME: REVIEW: This is performance heavy with the three concats. Can we reformulate this logic?
         self.database = pd.concat(
             [self.database, pd.concat(self.exchange_stack, axis=1, ignore_index=True)],
             axis=0,
@@ -404,6 +417,9 @@ class BaseTransformation:
         )
 
     def relink_technosphere_exchanges(self, ds, scenario):
+        # TODO: REVIEW: general comment on this method: The applied cache validation pattern is unusual. The additional if ... else clauses with continue
+        #  statements should usually each add to the cache.
+        #  as this is not the case I wonder if several separate calculations/operations are done at once and if they could be decoupled for better readability.
 
         __filters_tech = equals((s.exchange, c.type), "technosphere")(ds)
 
@@ -412,7 +428,7 @@ class BaseTransformation:
         for _, exc in ds[__filters_tech].iterrows():
 
             if exc[(s.exchange, c.cons_loc)] in self.cache:
-
+                # TODO: REVIEW: As we need the key (the 4 lines forming a tuple) multiple times in the code I would suggest that we move to a dedicated vairable here storing the key
                 if (
                     exc[(s.exchange, c.prod_name)],
                     exc[(s.exchange, c.prod_prod)],
@@ -429,6 +445,8 @@ class BaseTransformation:
                         )
                     ]
 
+                    # TODO: REVIEW: why is this code only running for cached results? should this code not be the same for non cached results?
+                    #               then I would expect it to be outside of the if clauses.
                     for cached_exc in cached_exchanges:
                         new_row = pd.Series(
                             [
@@ -545,6 +563,7 @@ class BaseTransformation:
             total = len(lst)
             pvs = [1 for _ in range(total)]
 
+        # TODO: REVIEW: can we reformulate? This is very expensive, having a inner function and a loop calling it together with a very expensive deepcopy operation
         def new_exchange(exc, location, factor, scenario):
             cp = deepcopy(exc)
             cp[(s.exchange, c.prod_loc)] = location
@@ -552,10 +571,15 @@ class BaseTransformation:
             cp[(s.ecoinvent, c.amount)] = np.nan
             return cp
 
-        return [
-            new_exchange(exc, obj[(s.exchange, c.cons_loc)], factor / total, scenario)
-            for obj, factor in zip(lst, pvs)
-        ], [p / total for p in pvs]
+        return (
+            [
+                new_exchange(
+                    exc, obj[(s.exchange, c.cons_loc)], factor / total, scenario
+                )
+                for obj, factor in zip(lst, pvs)
+            ],
+            [p / total for p in pvs],
+        )
 
     def relink_datasets(self, excludes_datasets, alternative_names=None):
         """
