@@ -438,8 +438,6 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
 
     scenarios = [col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent]]
 
-
-
     cols = {col[0] for col in scenarios} if db_type == "single" else {s.ecoinvent}
 
     # if we are building a superstructure database
@@ -447,7 +445,9 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
     # of ecoinvent
 
     if db_type != "single":
-        col_tuples = [(col, c.comment) for col in df.columns.levels[0] if col != s.exchange]
+        col_tuples = [
+            (col, c.comment) for col in df.columns.levels[0] if col != s.exchange
+        ]
         df[(s.ecoinvent, c.comment)] = df[col_tuples].sum(axis=1)
 
     # else, we fill NaNs in scenario columns

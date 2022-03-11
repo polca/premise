@@ -14,9 +14,7 @@ FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_38.csv"
 
 def export_scenario_difference_file(database, db_name, filepath):
 
-    scenario_cols = [
-        t for t in database.columns if t[1] == c.amount
-    ]
+    scenario_cols = [t for t in database.columns if t[1] == c.amount]
 
     unchanged_data_rows = database[scenario_cols].isnull().all(1)
     scenario_diff_file = database.loc[~unchanged_data_rows]
@@ -33,9 +31,7 @@ def export_scenario_difference_file(database, db_name, filepath):
         (s.exchange, c.type),
     ] + scenario_cols
 
-    scenario_diff_file = scenario_diff_file[keep_cols].droplevel(
-        level=1, axis=1
-    )
+    scenario_diff_file = scenario_diff_file[keep_cols].droplevel(level=1, axis=1)
 
     scenario_diff_file.columns = [
         "from activity name",
@@ -54,10 +50,16 @@ def export_scenario_difference_file(database, db_name, filepath):
     ]
     scenario_diff_file.loc[:, "to categories"] = ""
 
-    scenario_diff_file.loc[scenario_diff_file["flow type"] == "biosphere", "from location"] = ""
+    scenario_diff_file.loc[
+        scenario_diff_file["flow type"] == "biosphere", "from location"
+    ] = ""
 
-    scenario_diff_file.loc[scenario_diff_file["flow type"] == "biosphere", "from database"] = "biosphere3"
-    scenario_diff_file.loc[scenario_diff_file["flow type"] != "biosphere", "from database"] = db_name
+    scenario_diff_file.loc[
+        scenario_diff_file["flow type"] == "biosphere", "from database"
+    ] = "biosphere3"
+    scenario_diff_file.loc[
+        scenario_diff_file["flow type"] != "biosphere", "from database"
+    ] = db_name
     scenario_diff_file.loc[:, "to database"] = db_name
 
     scenario_diff_file["from code"] = scenario_diff_file["from code"].astype("string")
@@ -66,27 +68,31 @@ def export_scenario_difference_file(database, db_name, filepath):
     scenario_diff_file["from key"] = list(
         scenario_diff_file[["from database", "from code"]].to_records(index=False)
     )
-    scenario_diff_file["to key"] = list(scenario_diff_file[["to database", "to code"]].to_records(index=False))
+    scenario_diff_file["to key"] = list(
+        scenario_diff_file[["to database", "to code"]].to_records(index=False)
+    )
 
     scenario_diff_file[
-                [
-                    "from activity name",
-                    "from reference product",
-                    "from location",
-                    "from categories",
-                    "from database",
-                    "from key",
-                    "to activity name",
-                    "to reference product",
-                    "to location",
-                    "to categories",
-                    "to database",
-                    "to key",
-                    "flow type",
-                ] + [t[0] for t in scenario_cols]
-            ].to_excel(filepath, index=False)
+        [
+            "from activity name",
+            "from reference product",
+            "from location",
+            "from categories",
+            "from database",
+            "from key",
+            "to activity name",
+            "to reference product",
+            "to location",
+            "to categories",
+            "to database",
+            "to key",
+            "flow type",
+        ]
+        + [t[0] for t in scenario_cols]
+    ].to_excel(filepath, index=False)
 
     print(f"Scenario difference file exported to {filepath}!")
+
 
 def create_index_of_A_matrix(db):
     """
