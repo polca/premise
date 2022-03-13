@@ -313,9 +313,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     # and set the exchange value similar to that
     # of the original database
 
-    list_scenarios = ["original"] + [
-        s["model"] + " - " + s["pathway"] + " - " + str(s["year"]) for s in scenarios
-    ]
+    list_scenarios = ["original"] + [f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios]
 
     for m in modified:
         for s in list_scenarios:
@@ -352,6 +350,8 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     l_modified = [columns]
 
     for m in modified:
+
+
         if m[1][2] == "biosphere3":
             d = [
                 m[1][0],
@@ -359,13 +359,13 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 "",
                 m[1][1],
                 m[1][2],
-                "",
+                "", # biosphere flow code
                 m[0][0],
                 m[0][1],
                 m[0][3],
                 "",
                 db_name,
-                "",
+                "", # activity code
                 "biosphere",
             ]
         elif m[1] == m[0] and any(v < 0 for v in modified[m].values()):
@@ -375,13 +375,13 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 m[1][3],
                 "",
                 db_name,
-                "",
+                "", # activity code
                 m[0][0],
                 m[0][1],
                 m[0][3],
                 "",
                 db_name,
-                "",
+                "", # activity code
                 "production",
             ]
         else:
@@ -391,13 +391,13 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 m[1][3],
                 "",
                 db_name,
-                "",
+                "", # activity code
                 m[0][0],
                 m[0][1],
                 m[0][3],
                 "",
                 db_name,
-                "",
+                "", # activity code
                 "technosphere",
             ]
 
@@ -422,17 +422,36 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
     filepath = filepath / f"scenario_diff_{date.today()}.xlsx"
 
-    pd.DataFrame(l_modified, columns=[""] * len(columns)).to_excel(
+    df = pd.DataFrame(l_modified, columns=[""] * len(columns))
+    before = len(df)
+    df = df.drop_duplicates()
+    after = len(df)
+    print(f"Dropped {before - after} duplicates.")
+
+    df = df.drop(df.columns[13], axis=1)
+
+    df.to_excel(
         filepath, index=False
     )
 
     print(f"Scenario difference file exported to {filepath}!")
 
-    print("Adding extra exchanges to the original database...")
+    list_modified_acts = list(set([e[0] for e, v in modified.items() if v["original"] == 0]))
+
+    acts_to_extend = [act for act in origin_db
+                      if (
+                          act["name"],
+                          act["reference product"],
+                          act["database"],
+                          act["location"],
+                          act["unit"]) in list_modified_acts
+                      ]
+
+    print(f"Adding exchanges to {len(acts_to_extend)} activities.")
 
     dict_bio = exp.create_names_and_indices_of_B_matrix()
 
-    for ds in origin_db:
+    for ds in acts_to_extend:
         exc_to_add = []
         for exc in [
             e
@@ -443,10 +462,11 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 ds["reference product"],
                 ds["database"],
                 ds["location"],
-                ds["unit"],
+                ds["unit"]
             )
             and modified[e]["original"] == 0
         ]:
+            # a biosphere flow
             if isinstance(exc[1][1], tuple):
                 exc_to_add.append(
                     {
@@ -455,7 +475,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                             "biosphere3",
                             exp.get_bio_code(
                                 dict_bio[(exc[1][0], exc[1][1], exc[1][2], exc[1][3])]
-                            ),
+                            )
                         ),
                         "type": "biosphere",
                         "name": exc[1][0],
@@ -464,6 +484,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                     }
                 )
 
+            # a technosphere flow
             else:
                 exc_to_add.append(
                     {
@@ -479,16 +500,16 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         if len(exc_to_add) > 0:
             ds["exchanges"].extend(exc_to_add)
 
-    print("Adding extra activities to the original database...")
-
     list_act = [
         (a["name"], a["reference product"], a["database"], a["location"], a["unit"])
         for a in origin_db
     ]
     list_to_add = [
-        m[0] for m in modified if modified[m]["original"] == 0 and m[0] not in list_act
+        m[0] for m, v in modified.items() if v["original"] == 0 and m[0] not in list_act
     ]
     list_to_add = list(set(list_to_add))
+
+    print(f"Adding {len(list_to_add)} extra activities to the original database...")
 
     acts_to_add = []
     for add in list_to_add:
@@ -517,7 +538,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                             "biosphere3",
                             exp.get_bio_code(
                                 dict_bio[(act[1][0], act[1][1], act[1][2], act[1][3])]
-                            ),
+                            )
                         ),
                         "name": act[1][0],
                         "unit": act[1][3],
