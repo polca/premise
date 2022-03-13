@@ -6,18 +6,19 @@ from pathlib import Path
 from typing import Dict, List, Union
 
 import bw2io
+import yaml
 from bw2io import ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
 
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
-import yaml
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
 OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
+
 
 def get_outdated_flows():
 
@@ -25,6 +26,7 @@ def get_outdated_flows():
         flows = yaml.safe_load(stream)
 
     return flows
+
 
 def get_biosphere_code() -> dict:
     """
@@ -325,17 +327,15 @@ class BaseInventoryImport:
                     if len(y["categories"]) > 1:
                         try:
                             key = (
-                                        y["name"],
-                                        y["categories"][0],
-                                        y["categories"][1],
-                                        y["unit"],
-                                    )
+                                y["name"],
+                                y["categories"][0],
+                                y["categories"][1],
+                                y["unit"],
+                            )
                             if key in self.biosphere_dict:
                                 y["input"] = (
                                     "biosphere3",
-                                    self.biosphere_dict[
-                                        key
-                                    ],
+                                    self.biosphere_dict[key],
                                 )
                             else:
                                 if key[0] in self.outdated_flows:
@@ -343,9 +343,7 @@ class BaseInventoryImport:
                                     new_key[0] = self.outdated_flows[key[0]]
                                     y["input"] = (
                                         "biosphere3",
-                                        self.biosphere_dict[
-                                            tuple(new_key)
-                                        ],
+                                        self.biosphere_dict[tuple(new_key)],
                                     )
                                 else:
                                     if delete_missing:
