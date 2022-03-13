@@ -420,7 +420,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     if not os.path.exists(filepath):
         os.makedirs(filepath)
 
-    filepath = filepath / f"scenario_diff_{date.today()}.xlsx"
+    filepath = filepath / f"scenario_diff_{db_name}.xlsx"
 
     df = pd.DataFrame(l_modified, columns=[""] * len(columns))
     before = len(df)
@@ -428,7 +428,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     after = len(df)
     print(f"Dropped {before - after} duplicates.")
 
-    df = df.drop(df.columns[13], axis=1)
+    df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
 
     df.to_excel(
         filepath, index=False
