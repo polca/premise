@@ -522,7 +522,9 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        self.custom_scenario = check_custom_scenario(custom_scenario, self.scenarios) or None
+        self.custom_scenario = (
+            check_custom_scenario(custom_scenario, self.scenarios) or None
+        )
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
@@ -695,16 +697,16 @@ class NewDatabase:
 
     def __import_additional_inventories(self, list_inventories) -> List[dict]:
 
-        print(
-            "\n//////////////// IMPORTING USER-DEFINED INVENTORIES /////////////////"
-        )
+        print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES /////////////////")
 
         data = []
 
         for file in list_inventories:
             additional = AdditionalInventory(
                 database=self.database,
-                version_in=file["ecoinvent version"] if "ecoinvent version" in file else "3.8",
+                version_in=file["ecoinvent version"]
+                if "ecoinvent version" in file
+                else "3.8",
                 version_out=self.version,
                 path=file["inventories"],
             )

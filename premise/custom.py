@@ -1,7 +1,7 @@
 from pathlib import Path
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 import yaml
 from schema import And, Optional, Or, Schema, Use
 
@@ -11,28 +11,37 @@ from .ecoinvent_modification import (
     SUPPORTED_EI_VERSIONS,
 )
 
+
 def check_custom_scenario_dictionary(custom_scenario):
 
-    dict_schema = Schema([
-        {
-            "inventories": And(
-                str, Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"
-            ),
-            "scenario data": And(
-                Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"
-            ),
-            "config": And(
-                Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".yaml"
-            ),
-            Optional("ecoinvent version"): And(
-                Use(str), lambda v: v in SUPPORTED_EI_VERSIONS
-            ),
-        }
-    ])
+    dict_schema = Schema(
+        [
+            {
+                "inventories": And(
+                    str,
+                    Use(str),
+                    lambda f: Path(f).exists() and Path(f).suffix == ".xlsx",
+                ),
+                "scenario data": And(
+                    Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"
+                ),
+                "config": And(
+                    Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".yaml"
+                ),
+                Optional("ecoinvent version"): And(
+                    Use(str), lambda v: v in SUPPORTED_EI_VERSIONS
+                ),
+            }
+        ]
+    )
 
     dict_schema.validate(custom_scenario)
 
-    if sum(s == y for s in custom_scenario for y in custom_scenario) / len(custom_scenario) > 1:
+    if (
+        sum(s == y for s in custom_scenario for y in custom_scenario)
+        / len(custom_scenario)
+        > 1
+    ):
         raise ValueError("Two or more entries in `custom_scenario` are similar.")
 
 
@@ -55,8 +64,8 @@ def check_config_file(custom_scenario):
                             "reference product": str,
                             "exists in ecoinvent": bool,
                         },
-                Optional("efficiency"): {"variable": str},
-                Optional("except regions"): Or(
+                        Optional("efficiency"): {"variable": str},
+                        Optional("except regions"): Or(
                             And(
                                 str,
                                 Use(str),
@@ -66,7 +75,8 @@ def check_config_file(custom_scenario):
                                 list,
                                 Use(list),
                                 lambda s: all(
-                                    i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
+                                    i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS
+                                    for i in s
                                 ),
                             ),
                         ),
@@ -96,6 +106,7 @@ def check_config_file(custom_scenario):
 
         file_schema.validate(config_file)
 
+
 def check_scenario_data_file(custom_scenario, iam_scenarios):
 
     for i, scenario in enumerate(custom_scenario):
@@ -105,55 +116,71 @@ def check_scenario_data_file(custom_scenario, iam_scenarios):
 
         df = pd.read_excel(scenario["scenario data"])
 
-        mandatory_fields = [
-            "Model",
-            "Pathway",
-            "Region",
-            "Variable",
-            "Unit"
-        ]
+        mandatory_fields = ["Model", "Pathway", "Region", "Variable", "Unit"]
         if not all(v in df.columns for v in mandatory_fields):
-            raise ValueError(f"One or several mandatory column are missing "
-                             f"in the scenario data file no. {i + 1}. Mandatory columns: {mandatory_fields}.")
+            raise ValueError(
+                f"One or several mandatory column are missing "
+                f"in the scenario data file no. {i + 1}. Mandatory columns: {mandatory_fields}."
+            )
 
         years_cols = [c for c in df.columns if isinstance(c, int)]
         if any(y for y in years_cols if y < 2005 or y > 2100):
-            raise ValueError(f"One or several of the years provided in the scenario data file no. {i + 1} are "
-                             "out of boundaries (2005 - 2100).")
+            raise ValueError(
+                f"One or several of the years provided in the scenario data file no. {i + 1} are "
+                "out of boundaries (2005 - 2100)."
+            )
 
         if len(pd.isnull(df).sum()[pd.isnull(df).sum() > 0]) > 0:
-            raise ValueError(f"The following columns in the scenario data file no. {i + 1}"
-                             f"contains empty cells.\n{pd.isnull(df).sum()[pd.isnull(df).sum() > 0]}.")
+            raise ValueError(
+                f"The following columns in the scenario data file no. {i + 1}"
+                f"contains empty cells.\n{pd.isnull(df).sum()[pd.isnull(df).sum() > 0]}."
+            )
 
-        if any(m not in [s["model"] for s in iam_scenarios] for m in df["Model"].unique()):
-            raise ValueError(f"One or several model name(s) in the scenario data file no. {i + 1} "
-                             "is/are not found in the list of scenarios to create.")
+        if any(
+            m not in [s["model"] for s in iam_scenarios] for m in df["Model"].unique()
+        ):
+            raise ValueError(
+                f"One or several model name(s) in the scenario data file no. {i + 1} "
+                "is/are not found in the list of scenarios to create."
+            )
 
-        if any(m not in [s["pathway"] for s in iam_scenarios] for m in df["Pathway"].unique()):
-            raise ValueError(f"One or several pathway name(s) in the scenario data file no. {i + 1} "
-                             "is/are not found in the list of scenarios to create.")
+        if any(
+            m not in [s["pathway"] for s in iam_scenarios]
+            for m in df["Pathway"].unique()
+        ):
+            raise ValueError(
+                f"One or several pathway name(s) in the scenario data file no. {i + 1} "
+                "is/are not found in the list of scenarios to create."
+            )
 
-        d_regions = {
-            "remind": LIST_REMIND_REGIONS,
-            "image": LIST_IMAGE_REGIONS
-        }
+        d_regions = {"remind": LIST_REMIND_REGIONS, "image": LIST_IMAGE_REGIONS}
 
         for irow, r in df.iterrows():
             if r["Region"] not in d_regions[r["Model"]]:
-                raise ValueError(f"Region {r['Region']} indicated "
-                                 f"in row {irow} is not valid for model {r['Model'].upper()}.")
+                raise ValueError(
+                    f"Region {r['Region']} indicated "
+                    f"in row {irow} is not valid for model {r['Model'].upper()}."
+                )
 
-        if not all(v in get_recursively(config_file, "variable") for v in df["Variable"].unique()):
-            raise ValueError(f"One or several variable names in the scenario data file no. {i + 1} "
-                             "cannot be found in the configuration file.")
+        if not all(
+            v in get_recursively(config_file, "variable")
+            for v in df["Variable"].unique()
+        ):
+            raise ValueError(
+                f"One or several variable names in the scenario data file no. {i + 1} "
+                "cannot be found in the configuration file."
+            )
 
         try:
             np.array_equal(df.iloc[:, 5:], df.iloc[:, 5:].astype(float))
         except ValueError as e:
-            raise TypeError(f"All values provided in the time series must be numerical "
-                            f"in the scenario data file no. {i + 1}.") from e
+            raise TypeError(
+                f"All values provided in the time series must be numerical "
+                f"in the scenario data file no. {i + 1}."
+            ) from e
 
     return custom_scenario
+
 
 def get_recursively(search_dict, field):
     """Takes a dict with nested lists and dicts,
@@ -199,5 +226,3 @@ def check_custom_scenario(custom_scenario: dict, iam_scenarios: list) -> dict:
     check_scenario_data_file(custom_scenario, iam_scenarios)
 
     return custom_scenario
-
-
