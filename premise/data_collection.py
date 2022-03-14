@@ -261,8 +261,6 @@ class IAMDataCollection:
                         "region":,
                     ]
 
-
-
                     array = (
                         subset.melt(
                             id_vars=["region", "variables", "unit"],

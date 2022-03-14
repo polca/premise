@@ -62,7 +62,7 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
-from .custom import check_custom_scenario, check_inventories, Custom
+from .custom import Custom, check_custom_scenario, check_inventories
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
@@ -168,7 +168,7 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_buses",
     "update_fuels",
-    "update_custom_scenario"
+    "update_custom_scenario",
 ]
 
 # clear the cache folder
@@ -873,10 +873,19 @@ class NewDatabase:
 
         if self.custom_scenario:
             for i, scenario in enumerate(self.scenarios):
-                if "exclude" not in scenario or "update_custom_scenario" not in scenario["exclude"]:
+                if (
+                    "exclude" not in scenario
+                    or "update_custom_scenario" not in scenario["exclude"]
+                ):
 
                     data = self.__import_additional_inventories(self.custom_scenario)
-                    data = check_inventories(self.custom_scenario, data, scenario["model"], scenario["pathway"], scenario["custom data"])
+                    data = check_inventories(
+                        self.custom_scenario,
+                        data,
+                        scenario["model"],
+                        scenario["pathway"],
+                        scenario["custom data"],
+                    )
                     scenario["database"].extend(data)
 
                     custom = Custom(
@@ -887,7 +896,7 @@ class NewDatabase:
                         year=scenario["year"],
                         version=self.version,
                         custom_scenario=self.custom_scenario,
-                        custom_data=scenario["custom data"]
+                        custom_data=scenario["custom data"],
                     )
                     custom.regionalize_imported_inventories()
                     scenario["database"] = custom.database
@@ -930,7 +939,6 @@ class NewDatabase:
         self.update_steel()
         self.update_fuels()
         self.update_custom_scenario()
-
 
     def prepare_db_for_export(self, scenario):
 
