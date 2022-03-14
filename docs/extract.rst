@@ -1498,7 +1498,7 @@ The production volumes considered for a given scenario can be consulted, like so
 
 .. code-block:: python
 
-    ndb.scenarios[0]["external data"].production_volumes
+    ndb.scenarios[0]["iam data"].production_volumes
 
 
 Efficiencies
@@ -1609,7 +1609,7 @@ The *scaling factors* considered for a given scenario can be consulted, like so:
 
 .. code-block:: python
 
-    ndb.scenarios[0]["external data"].efficiency
+    ndb.scenarios[0]["iam data"].efficiency
 
 Land use and land use change
 ----------------------------
@@ -1639,8 +1639,8 @@ can be consulted, like so:
 
 .. code-block:: python
 
-    ndb.scenarios[0]["external data"].land_use
-    ndb.scenarios[0]["external data"].land_use_change
+    ndb.scenarios[0]["iam data"].land_use
+    ndb.scenarios[0]["iam data"].land_use_change
 
 Carbon Capture and Storage
 --------------------------
@@ -1669,7 +1669,7 @@ comprised between 0 and 1, can be consulted like so:
 
 .. code-block:: python
 
-    ndb.scenarios[0]["external data"].carbon_capture_rate
+    ndb.scenarios[0]["iam data"].carbon_capture_rate
 
 
 Data sources external to the IAM
@@ -1747,7 +1747,7 @@ can be consulted like so:
 
 .. code-block:: python
 
-    ndb.scenarios[0]["external data"].emissions
+    ndb.scenarios[0]["iam data"].emissions
 
 Cement production
 *****************

@@ -12,6 +12,22 @@ from .ecoinvent_modification import (
 )
 
 
+def check_inventories(custom_scenario, data):
+
+    for i, scenario in enumerate(custom_scenario):
+
+        with open(scenario["config"], "r") as stream:
+            config_file = yaml.safe_load(stream)
+
+        for k in config_file["production pathways"].values():
+
+            name = k["ecoinvent alias"]["name"]
+            ref = k["ecoinvent alias"]["reference product"]
+
+            if len([a for a in data if (name, ref) == (a["name"], a["reference product"])]) == 0:
+                raise ValueError(f"The inventories provided do not contain the activity: {name, ref}")
+
+
 def check_custom_scenario_dictionary(custom_scenario):
 
     dict_schema = Schema(
@@ -116,7 +132,7 @@ def check_scenario_data_file(custom_scenario, iam_scenarios):
 
         df = pd.read_excel(scenario["scenario data"])
 
-        mandatory_fields = ["Model", "Pathway", "Region", "Variable", "Unit"]
+        mandatory_fields = ["model", "pathway", "region", "variables", "unit"]
         if not all(v in df.columns for v in mandatory_fields):
             raise ValueError(
                 f"One or several mandatory column are missing "
@@ -137,7 +153,7 @@ def check_scenario_data_file(custom_scenario, iam_scenarios):
             )
 
         if any(
-            m not in [s["model"] for s in iam_scenarios] for m in df["Model"].unique()
+            m not in [s["model"] for s in iam_scenarios] for m in df["model"].unique()
         ):
             raise ValueError(
                 f"One or several model name(s) in the scenario data file no. {i + 1} "
@@ -145,26 +161,44 @@ def check_scenario_data_file(custom_scenario, iam_scenarios):
             )
 
         if any(
+            m not in df["model"].unique() for m in [s["model"] for s in iam_scenarios]
+        ):
+            raise ValueError(
+                f"One or several model name(s) in the list of scenarios to create "
+                f"is/are not found in the scenario data file no. {i + 1}. "
+            )
+
+
+        if any(
             m not in [s["pathway"] for s in iam_scenarios]
-            for m in df["Pathway"].unique()
+            for m in df["pathway"].unique()
         ):
             raise ValueError(
                 f"One or several pathway name(s) in the scenario data file no. {i + 1} "
                 "is/are not found in the list of scenarios to create."
             )
 
+        if any(
+            m not in df["pathway"].unique()
+            for m in [s["pathway"] for s in iam_scenarios]
+        ):
+            raise ValueError(
+                f"One or several pathway name(s) in the list of scenarios to create "
+                f"is/are not found in the scenario data file no. {i + 1}."
+            )
+
         d_regions = {"remind": LIST_REMIND_REGIONS, "image": LIST_IMAGE_REGIONS}
 
         for irow, r in df.iterrows():
-            if r["Region"] not in d_regions[r["Model"]]:
+            if r["region"] not in d_regions[r["model"]]:
                 raise ValueError(
-                    f"Region {r['Region']} indicated "
-                    f"in row {irow} is not valid for model {r['Model'].upper()}."
+                    f"Region {r['region']} indicated "
+                    f"in row {irow} is not valid for model {r['model'].upper()}."
                 )
 
         if not all(
             v in get_recursively(config_file, "variable")
-            for v in df["Variable"].unique()
+            for v in df["variables"].unique()
         ):
             raise ValueError(
                 f"One or several variable names in the scenario data file no. {i + 1} "
@@ -226,3 +260,5 @@ def check_custom_scenario(custom_scenario: dict, iam_scenarios: list) -> dict:
     check_scenario_data_file(custom_scenario, iam_scenarios)
 
     return custom_scenario
+
+

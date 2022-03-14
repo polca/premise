@@ -229,6 +229,81 @@ class IAMDataCollection:
             self.land_use = None
             self.land_use_change = None
 
+    def get_custom_data(self, custom_scenario):
+
+        data = {}
+
+        for i, scenario in enumerate(custom_scenario):
+
+            data[i] = {}
+
+            df = pd.read_excel(scenario["scenario data"])
+
+            with open(scenario["config"], "r") as stream:
+                config_file = yaml.safe_load(stream)
+
+            if "production pathways" in config_file:
+
+                for var in ["production volume", "efficiency"]:
+
+                    variables = {}
+
+                    for k, v in config_file["production pathways"].items():
+                        try:
+                            variables[k] = v[var]["variable"]
+                        except KeyError:
+                            continue
+
+                    subset = df.loc[
+                        (df["model"] == self.model)
+                        & (df["pathway"] == self.pathway)
+                        & (df["variables"].isin(variables.values())), "region":]
+
+                    array = (
+                        subset.melt(
+                            id_vars=["region", "variables", "unit"],
+                            var_name="year",
+                            value_name="value",
+                        )[["region", "variables", "year", "value"]]
+                            .groupby(["region", "variables", "year"])["value"]
+                            .mean()
+                            .to_xarray()
+                    )
+
+                    if var == "production volume":
+                        array /= (
+                            array.groupby("region").sum(dim="variables")
+                        )
+
+                    if var == "efficiency":
+                        array = array.interp(year=self.year) / array.sel(
+                            year=2020
+                        )
+
+                        # If we are looking at a year post 2020
+                        # and the ratio in efficiency change is inferior to 1
+                        # we correct it to 1, as we do not accept
+                        # that efficiency degrades over time
+                        if self.year > 2020:
+                            array.values[array.values < 1] = 1
+
+                        # Inversely, if we are looking at a year prior to 2020
+                        # and the ratio in efficiency change is superior to 1
+                        # we correct it to 1, as we do not accept
+                        # that efficiency in the past was higher than now
+                        if self.year < 2020:
+                            array.values[array.values > 1] = 1
+
+                        # convert NaNs to ones
+                        array = array.fillna(1)
+
+                    array.coords["variables"] = list(variables.keys())
+
+                    data[i][var] = array
+
+        return data
+
+
     def __get_iam_variable_labels(
         self, filepath: Path, key: str
     ) -> Dict[str, Union[str, List[str]]]:

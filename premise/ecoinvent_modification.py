@@ -62,7 +62,7 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
-from .custom import check_custom_scenario
+from .custom import check_custom_scenario, check_inventories
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
@@ -548,6 +548,7 @@ class NewDatabase:
 
         if self.custom_scenario:
             data = self.__import_additional_inventories(self.custom_scenario)
+            check_inventories(self.custom_scenario, data)
             self.database.extend(data)
 
         print("Done!\n")
@@ -555,7 +556,7 @@ class NewDatabase:
         print("\n/////////////////////// EXTRACTING IAM DATA ////////////////////////")
 
         for scenario in self.scenarios:
-            scenario["external data"] = IAMDataCollection(
+            data = IAMDataCollection(
                 model=scenario["model"],
                 pathway=scenario["pathway"],
                 year=scenario["year"],
@@ -564,6 +565,11 @@ class NewDatabase:
                 system_model=self.system_model,
                 time_horizon=self.time_horizon,
             )
+            scenario["iam data"] = data
+
+            if self.custom_scenario:
+                scenario["custom data"] = data.get_custom_data(self.custom_scenario)
+
             scenario["database"] = copy.deepcopy(self.database)
 
         print("Done!")
@@ -735,7 +741,7 @@ class NewDatabase:
             ):
                 electricity = Electricity(
                     database=scenario["database"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     year=scenario["year"],
@@ -758,7 +764,7 @@ class NewDatabase:
 
                 fuels = Fuels(
                     database=scenario["database"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     year=scenario["year"],
@@ -777,7 +783,7 @@ class NewDatabase:
                     database=scenario["database"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     year=scenario["year"],
                     version=self.version,
                 )
@@ -796,7 +802,7 @@ class NewDatabase:
                     database=scenario["database"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     year=scenario["year"],
                     version=self.version,
                 )
@@ -813,7 +819,7 @@ class NewDatabase:
                     year=scenario["year"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     version=self.version,
                     vehicle_type="car",
                     relink=False,
@@ -836,7 +842,7 @@ class NewDatabase:
                     year=scenario["year"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     version=self.version,
                     vehicle_type="two wheeler",
                     relink=False,
@@ -857,7 +863,7 @@ class NewDatabase:
                     year=scenario["year"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     version=self.version,
                     vehicle_type="truck",
                     relink=False,
@@ -879,7 +885,7 @@ class NewDatabase:
                     year=scenario["year"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     version=self.version,
                     vehicle_type="bus",
                     relink=False,
@@ -907,7 +913,7 @@ class NewDatabase:
 
         base = BaseTransformation(
             database=scenario["database"],
-            iam_data=scenario["external data"],
+            iam_data=scenario["iam data"],
             model=scenario["model"],
             pathway=scenario["pathway"],
             year=scenario["year"],
