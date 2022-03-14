@@ -24,8 +24,19 @@ def check_inventories(custom_scenario, data):
             name = k["ecoinvent alias"]["name"]
             ref = k["ecoinvent alias"]["reference product"]
 
-            if len([a for a in data if (name, ref) == (a["name"], a["reference product"])]) == 0:
-                raise ValueError(f"The inventories provided do not contain the activity: {name, ref}")
+            if (
+                len(
+                    [
+                        a
+                        for a in data
+                        if (name, ref) == (a["name"], a["reference product"])
+                    ]
+                )
+                == 0
+            ):
+                raise ValueError(
+                    f"The inventories provided do not contain the activity: {name, ref}"
+                )
 
 
 def check_custom_scenario_dictionary(custom_scenario):
@@ -168,7 +179,6 @@ def check_scenario_data_file(custom_scenario, iam_scenarios):
                 f"is/are not found in the scenario data file no. {i + 1}. "
             )
 
-
         if any(
             m not in [s["pathway"] for s in iam_scenarios]
             for m in df["pathway"].unique()
@@ -260,5 +270,3 @@ def check_custom_scenario(custom_scenario: dict, iam_scenarios: list) -> dict:
     check_scenario_data_file(custom_scenario, iam_scenarios)
 
     return custom_scenario
-
-

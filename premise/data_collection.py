@@ -257,7 +257,9 @@ class IAMDataCollection:
                     subset = df.loc[
                         (df["model"] == self.model)
                         & (df["pathway"] == self.pathway)
-                        & (df["variables"].isin(variables.values())), "region":]
+                        & (df["variables"].isin(variables.values())),
+                        "region":,
+                    ]
 
                     array = (
                         subset.melt(
@@ -265,20 +267,16 @@ class IAMDataCollection:
                             var_name="year",
                             value_name="value",
                         )[["region", "variables", "year", "value"]]
-                            .groupby(["region", "variables", "year"])["value"]
-                            .mean()
-                            .to_xarray()
+                        .groupby(["region", "variables", "year"])["value"]
+                        .mean()
+                        .to_xarray()
                     )
 
                     if var == "production volume":
-                        array /= (
-                            array.groupby("region").sum(dim="variables")
-                        )
+                        array /= array.groupby("region").sum(dim="variables")
 
                     if var == "efficiency":
-                        array = array.interp(year=self.year) / array.sel(
-                            year=2020
-                        )
+                        array = array.interp(year=self.year) / array.sel(year=2020)
 
                         # If we are looking at a year post 2020
                         # and the ratio in efficiency change is inferior to 1
@@ -302,7 +300,6 @@ class IAMDataCollection:
                     data[i][var] = array
 
         return data
-
 
     def __get_iam_variable_labels(
         self, filepath: Path, key: str
