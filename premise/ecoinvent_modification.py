@@ -62,7 +62,7 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
-from .custom import check_custom_scenario, check_inventories
+from .custom import check_custom_scenario, check_inventories, Custom
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
@@ -168,6 +168,7 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_buses",
     "update_fuels",
+    "update_custom_scenario"
 ]
 
 # clear the cache folder
@@ -538,7 +539,7 @@ class NewDatabase:
             data = self.__find_cached_inventories(source_db)
             if data is not None:
                 self.database.extend(data)
-                print("Done!")
+
         else:
             self.__import_inventories()
 
@@ -546,12 +547,7 @@ class NewDatabase:
             data = self.__import_additional_inventories(self.additional_inventories)
             self.database.extend(data)
 
-        if self.custom_scenario:
-            data = self.__import_additional_inventories(self.custom_scenario)
-            check_inventories(self.custom_scenario, data)
-            self.database.extend(data)
-
-        print("Done!\n")
+        print("Done!")
 
         print("\n/////////////////////// EXTRACTING IAM DATA ////////////////////////")
 
@@ -873,6 +869,31 @@ class NewDatabase:
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
 
+    def update_custom_scenario(self):
+
+        if self.custom_scenario:
+            for i, scenario in enumerate(self.scenarios):
+                if "exclude" not in scenario or "update_custom_scenario" not in scenario["exclude"]:
+
+                    data = self.__import_additional_inventories(self.custom_scenario)
+                    data = check_inventories(self.custom_scenario, data, scenario["model"], scenario["pathway"], scenario["custom data"])
+                    scenario["database"].extend(data)
+
+                    custom = Custom(
+                        database=scenario["database"],
+                        model=scenario["model"],
+                        pathway=scenario["pathway"],
+                        iam_data=scenario["iam data"],
+                        year=scenario["year"],
+                        version=self.version,
+                        custom_scenario=self.custom_scenario,
+                        custom_data=scenario["custom data"]
+                    )
+                    custom.regionalize_imported_inventories()
+                    scenario["database"] = custom.database
+                    custom.create_custom_markets()
+                    scenario["database"] = custom.database
+
     def update_buses(self) -> None:
 
         print("\n////////////////////////////// BUSES ///////////////////////////////")
@@ -908,6 +929,8 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
         self.update_fuels()
+        self.update_custom_scenario()
+
 
     def prepare_db_for_export(self, scenario):
 

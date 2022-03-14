@@ -8,7 +8,8 @@ production pathways:
       exists in ecoinvent: False
       name: bread production, activated dough development
       reference product: bread
-    except regions: BRA
+    except regions:
+      - BRA
   SDM:
     production volume:
       variable: Production|Baking|Bread|Straight Dough Method
@@ -18,7 +19,8 @@ production pathways:
       exists in ecoinvent: False
       name: bread production, straight dough method
       reference product: bread
-    except regions: USA
+    except regions:
+      - USA
 
   DSM:
     production volume:
@@ -36,10 +38,16 @@ production pathways:
 markets:
   name: market for bread
   reference product: bread
+  unit: kilogram
+  includes:
+    - bread production, activated dough development
+    - bread production, straight dough method
+    - bread production, delayed salt method
   replaces:
-    name: market for black carbon
-    reference product: black carbon
-  except regions: JAP
+    name: market for carbon black
+    reference product: carbon black
+  except regions:
+    - JAP
 
 
 

@@ -261,6 +261,8 @@ class IAMDataCollection:
                         "region":,
                     ]
 
+
+
                     array = (
                         subset.melt(
                             id_vars=["region", "variables", "unit"],
@@ -271,9 +273,6 @@ class IAMDataCollection:
                         .mean()
                         .to_xarray()
                     )
-
-                    if var == "production volume":
-                        array /= array.groupby("region").sum(dim="variables")
 
                     if var == "efficiency":
                         array = array.interp(year=self.year) / array.sel(year=2020)
@@ -298,6 +297,9 @@ class IAMDataCollection:
                     array.coords["variables"] = list(variables.keys())
 
                     data[i][var] = array
+
+                regions = subset["region"].unique().tolist()
+                data[i]["regions"] = regions
 
         return data
 
