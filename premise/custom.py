@@ -2,9 +2,9 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import wurst
 import yaml
 from schema import And, Optional, Or, Schema, Use
-import wurst
 
 from .ecoinvent_modification import (
     LIST_IMAGE_REGIONS,
@@ -16,7 +16,7 @@ from .utils import eidb_label
 
 
 def find_iam_efficiency_change(
-        variable: Union[str, list], location: str, custom_data
+    variable: Union[str, list], location: str, custom_data
 ) -> float:
     """
     Return the relative change in efficiency for `variable` in `location`
@@ -30,14 +30,17 @@ def find_iam_efficiency_change(
         if "efficiency" in c:
             if variable in c["efficiency"].variables.values:
 
-                scaling_factor = c["efficiency"].sel(
-                    region=location, variables=variable
-                ).values.item(0)
+                scaling_factor = (
+                    c["efficiency"]
+                    .sel(region=location, variables=variable)
+                    .values.item(0)
+                )
 
                 if scaling_factor in (np.nan, np.inf):
                     scaling_factor = 1
 
     return scaling_factor
+
 
 def check_inventories(custom_scenario, data, model, pathway, custom_data):
 
@@ -70,12 +73,22 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
             for a in data:
                 a["custom scenario dataset"] = True
                 if (name, ref) == (a["name"], a["reference product"]):
-                    regions = df.loc[(df["model"] == model) & (df["pathway"] == pathway), "region"].unique().tolist()
+                    regions = (
+                        df.loc[
+                            (df["model"] == model) & (df["pathway"] == pathway),
+                            "region",
+                        ]
+                        .unique()
+                        .tolist()
+                    )
                     if "except regions" in v:
                         regions = [r for r in regions if r not in v["except regions"]]
 
                     a["adjust efficiency"] = True
-                    a["new efficiency"] = {r: find_iam_efficiency_change(k, r, custom_data) for r in regions}
+                    a["new efficiency"] = {
+                        r: find_iam_efficiency_change(k, r, custom_data)
+                        for r in regions
+                    }
                     a["efficiency variable name"] = k
                     a["regions"] = regions
 
@@ -136,14 +149,12 @@ def check_config_file(custom_scenario):
                         },
                         Optional("efficiency"): {"variable": str},
                         Optional("except regions"): And(
-                                list,
-                                Use(list),
-                                lambda s: all(
-                                    i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS
-                                    for i in s
-                                ),
+                            list,
+                            Use(list),
+                            lambda s: all(
+                                i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
                             ),
-
+                        ),
                     },
                 },
                 Optional("markets"): {
@@ -152,13 +163,12 @@ def check_config_file(custom_scenario):
                     "unit": str,
                     "includes": list,
                     Optional("except regions"): And(
-                            list,
-                            Use(list),
-                            lambda s: all(
-                                i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
-                            ),
+                        list,
+                        Use(list),
+                        lambda s: all(
+                            i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
                         ),
-
+                    ),
                     Optional("replaces"): {"name": str, "reference product": str},
                 },
             }
@@ -306,22 +316,20 @@ def check_custom_scenario(custom_scenario: dict, iam_scenarios: list) -> dict:
 
 
 class Custom(BaseTransformation):
-
     def __init__(
-            self,
-            database: List[dict],
-            iam_data: IAMDataCollection,
-            custom_scenario: dict,
-            custom_data: dict,
-            model: str,
-            pathway: str,
-            year: int,
-            version: str,
+        self,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        custom_scenario: dict,
+        custom_data: dict,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
     ):
         super().__init__(database, iam_data, model, pathway, year)
         self.custom_scenario = custom_scenario
         self.custom_data = custom_data
-
 
     def adjust_efficiency(self, dataset):
 
@@ -329,9 +337,7 @@ class Custom(BaseTransformation):
 
             scaling_factor = 1 / dataset["new efficiency"][dataset["location"]]
 
-            wurst.change_exchanges_by_constant_factor(
-                dataset,
-                scaling_factor)
+            wurst.change_exchanges_by_constant_factor(dataset, scaling_factor)
 
             del dataset["new efficiency"]
 
@@ -339,7 +345,9 @@ class Custom(BaseTransformation):
 
     def regionalize_imported_inventories(self):
 
-        acts_to_regionalize = [ds for ds in self.database if "custom scenario dataset" in ds]
+        acts_to_regionalize = [
+            ds for ds in self.database if "custom scenario dataset" in ds
+        ]
 
         for ds in acts_to_regionalize:
 
@@ -347,7 +355,7 @@ class Custom(BaseTransformation):
                 name=ds["name"],
                 ref_prod=ds["reference product"],
                 relink=True,
-                regions=ds.get("regions", self.regions)
+                regions=ds.get("regions", self.regions),
             )
 
             # adjust efficiency
@@ -366,7 +374,8 @@ class Custom(BaseTransformation):
                 print("Create custom markets.")
                 if "except regions" in config_file["markets"]:
                     regions = [
-                        r for r in self.regions
+                        r
+                        for r in self.regions
                         if r not in config_file["markets"]["except regions"]
                     ]
                 else:
@@ -376,7 +385,9 @@ class Custom(BaseTransformation):
 
                     new_market = {
                         "name": config_file["markets"]["name"],
-                        "reference product": config_file["markets"]["reference product"],
+                        "reference product": config_file["markets"][
+                            "reference product"
+                        ],
                         "unit": config_file["markets"]["unit"],
                         "location": region,
                         "database": eidb_label(self.model, self.scenario, self.year),
@@ -388,9 +399,9 @@ class Custom(BaseTransformation):
                                 "unit": config_file["markets"]["unit"],
                                 "location": region,
                                 "type": "production",
-                                "amount": 1
+                                "amount": 1,
                             }
-                        ]
+                        ],
                     }
 
                     new_excs = []
@@ -401,17 +412,19 @@ class Custom(BaseTransformation):
                             act = ws.get_one(
                                 self.database,
                                 ws.equals("name", name),
-                                ws.equals("location", region)
+                                ws.equals("location", region),
                             )
 
                             var = act["efficiency variable name"]
 
-                            supply_share = (self.custom_data[i]["production volume"].sel(
-                                        region=region,
-                                        year=self.year,
-                                        variables=var)/self.custom_data[i]["production volume"].sel(
-                                        region=region,
-                                        year=self.year).sum(dim="variables")).values.item(0)
+                            supply_share = (
+                                self.custom_data[i]["production volume"].sel(
+                                    region=region, year=self.year, variables=var
+                                )
+                                / self.custom_data[i]["production volume"]
+                                .sel(region=region, year=self.year)
+                                .sum(dim="variables")
+                            ).values.item(0)
 
                             new_excs.append(
                                 {
@@ -420,7 +433,7 @@ class Custom(BaseTransformation):
                                     "unit": act["unit"],
                                     "location": act["location"],
                                     "type": "technosphere",
-                                    "amount": supply_share
+                                    "amount": supply_share,
                                 }
                             )
                         except ws.NoResults:
@@ -443,7 +456,9 @@ class Custom(BaseTransformation):
                     new_excs = []
                     new_market = {
                         "name": config_file["markets"]["name"],
-                        "reference product": config_file["markets"]["reference product"],
+                        "reference product": config_file["markets"][
+                            "reference product"
+                        ],
                         "unit": config_file["markets"]["unit"],
                         "location": "World",
                         "database": eidb_label(self.model, self.scenario, self.year),
@@ -455,17 +470,21 @@ class Custom(BaseTransformation):
                                 "unit": config_file["markets"]["unit"],
                                 "location": "World",
                                 "type": "production",
-                                "amount": 1
+                                "amount": 1,
                             }
-                        ]
+                        ],
                     }
 
                     for region in regions:
 
-                        supply_share = (self.custom_data[i]["production volume"].sel(
-                            region=region,
-                            year=self.year).sum(dim="variables") / self.custom_data[i]["production volume"].sel(
-                            year=self.year).sum(dim=["variables", "region"])).values.item(0)
+                        supply_share = (
+                            self.custom_data[i]["production volume"]
+                            .sel(region=region, year=self.year)
+                            .sum(dim="variables")
+                            / self.custom_data[i]["production volume"]
+                            .sel(year=self.year)
+                            .sum(dim=["variables", "region"])
+                        ).values.item(0)
 
                         new_excs.append(
                             {
@@ -474,7 +493,7 @@ class Custom(BaseTransformation):
                                 "unit": config_file["markets"]["unit"],
                                 "location": region,
                                 "type": "technosphere",
-                                "amount": supply_share
+                                "amount": supply_share,
                             }
                         )
 
@@ -484,13 +503,12 @@ class Custom(BaseTransformation):
                 if "replaces" in config_file["markets"]:
 
                     self.relink_to_new_markets(
-                        old_name = config_file["markets"]["replaces"]["name"],
-                        old_ref = config_file["markets"]["replaces"]["reference product"],
-                        new_name = config_file["markets"]["name"],
-                        new_ref = config_file["markets"]["reference product"],
-                        regions=regions
+                        old_name=config_file["markets"]["replaces"]["name"],
+                        old_ref=config_file["markets"]["replaces"]["reference product"],
+                        new_name=config_file["markets"]["name"],
+                        new_ref=config_file["markets"]["reference product"],
+                        regions=regions,
                     )
-
 
     def relink_to_new_markets(self, old_name, old_ref, new_name, new_ref, regions):
 
@@ -498,7 +516,9 @@ class Custom(BaseTransformation):
 
         for ds in self.database:
             for exc in ds["exchanges"]:
-                if (exc["name"], exc.get("product")) == (old_name, old_ref) and exc["type"] == "technosphere":
+                if (exc["name"], exc.get("product")) == (old_name, old_ref) and exc[
+                    "type"
+                ] == "technosphere":
 
                     new_loc = self.ecoinvent_to_iam_loc[ds["location"]]
                     if new_loc not in regions:
