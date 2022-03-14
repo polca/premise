@@ -365,10 +365,10 @@ class Custom(BaseTransformation):
             if "markets" in config_file:
                 print("Create custom markets.")
                 if "except regions" in config_file["markets"]:
-                    regions = (
-                        region for region in self.regions
-                        if region not in config_file["markets"]["except regions"]
-                    )
+                    regions = [
+                        r for r in self.regions
+                        if r not in config_file["markets"]["except regions"]
+                    ]
                 else:
                     regions = self.regions
 
@@ -436,6 +436,8 @@ class Custom(BaseTransformation):
                         new_market["exchanges"].extend(new_excs)
 
                         self.database.append(new_market)
+                    else:
+                        regions.remove(region)
 
                 if "World" not in regions:
                     new_excs = []
@@ -462,10 +464,8 @@ class Custom(BaseTransformation):
 
                         supply_share = (self.custom_data[i]["production volume"].sel(
                             region=region,
-                            year=self.year,
-                            variables=var) / self.custom_data[i]["production volume"].sel(
-                            region=region,
-                            year=self.year).sum(dim="variables")).values.item(0)
+                            year=self.year).sum(dim="variables") / self.custom_data[i]["production volume"].sel(
+                            year=self.year).sum(dim=["variables", "region"])).values.item(0)
 
                         new_excs.append(
                             {
@@ -496,6 +496,8 @@ class Custom(BaseTransformation):
 
         print("Relink to new markets.")
 
+        print(regions)
+
         for ds in self.database:
             for exc in ds["exchanges"]:
                 if (exc["name"], exc.get("product")) == (old_name, old_ref) and exc["type"] == "technosphere":
@@ -504,9 +506,12 @@ class Custom(BaseTransformation):
                     if new_loc not in regions:
                         new_loc = "World"
 
+                    print(ds["location"], "->", new_loc)
+
                     exc["name"] = new_name
                     exc["product"] = new_ref
                     exc["location"] = new_loc
+
                     if "input" in exc:
                         del exc["input"]
 
