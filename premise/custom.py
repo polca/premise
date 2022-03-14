@@ -496,8 +496,6 @@ class Custom(BaseTransformation):
 
         print("Relink to new markets.")
 
-        print(regions)
-
         for ds in self.database:
             for exc in ds["exchanges"]:
                 if (exc["name"], exc.get("product")) == (old_name, old_ref) and exc["type"] == "technosphere":
@@ -506,18 +504,9 @@ class Custom(BaseTransformation):
                     if new_loc not in regions:
                         new_loc = "World"
 
-                    print(ds["location"], "->", new_loc)
-
                     exc["name"] = new_name
                     exc["product"] = new_ref
                     exc["location"] = new_loc
 
                     if "input" in exc:
                         del exc["input"]
-
-
-
-
-
-
-
