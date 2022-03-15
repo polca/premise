@@ -92,6 +92,23 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                     a["efficiency variable name"] = k
                     a["regions"] = regions
 
+                    # add potential technosphere or biosphere filters
+                    if "efficiency" in v:
+                        if "includes" in v["efficiency"]:
+                            for flow_type in ["technosphere", "biosphere"]:
+                                if flow_type in v["efficiency"]["includes"]:
+                                    items_to_include = v["efficiency"]["includes"][
+                                        flow_type
+                                    ]
+                                    a[f"{flow_type} filters"] = [
+                                        e["name"]
+                                        for e in a["exchanges"]
+                                        if e["type"] == flow_type
+                                        and any(
+                                            i in e["name"] for i in items_to_include
+                                        )
+                                    ]
+
         return data
 
 
@@ -139,15 +156,19 @@ def check_config_file(custom_scenario):
             {
                 "production pathways": {
                     str: {
-                        "production volume": {
-                            "variable": str,
-                        },
+                        "production volume": {"variable": str,},
                         "ecoinvent alias": {
                             "name": str,
                             "reference product": str,
                             "exists in ecoinvent": bool,
                         },
-                        Optional("efficiency"): {"variable": str},
+                        Optional("efficiency"): {
+                            "variable": str,
+                            Optional("includes"): {
+                                Optional("technosphere"): list,
+                                Optional("biosphere"): list,
+                            },
+                        },
                         Optional("except regions"): And(
                             list,
                             Use(list),
@@ -331,19 +352,40 @@ class Custom(BaseTransformation):
         self.custom_scenario = custom_scenario
         self.custom_data = custom_data
 
-    def adjust_efficiency(self, dataset):
+    def adjust_efficiency(self, dataset: dict) -> dict:
+        """
+        Adjust the input-to-output efficiency of a dataset and return it back.
+        :param dataset: dataset to be adjusted
+        :return: adjusted dataset
+        """
 
         if "adjust efficiency" in dataset:
 
             scaling_factor = 1 / dataset["new efficiency"][dataset["location"]]
 
-            wurst.change_exchanges_by_constant_factor(dataset, scaling_factor)
+            tech_filters = dataset.get("technosphere filters", [])
+            bio_filters = dataset.get("biosphere filters", [])
+
+            wurst.change_exchanges_by_constant_factor(
+                dataset,
+                scaling_factor,
+                technosphere_filters=[
+                    ws.either(*[ws.contains("name", x) for x in tech_filters])
+                ],
+                biosphere_filters=[
+                    ws.either(*[ws.contains("name", x) for x in bio_filters])
+                ],
+            )
 
             del dataset["new efficiency"]
 
         return dataset
 
-    def regionalize_imported_inventories(self):
+    def regionalize_imported_inventories(self) -> None:
+        """
+        Produce IAM region-specific version fo the dataset.
+
+        """
 
         acts_to_regionalize = [
             ds for ds in self.database if "custom scenario dataset" in ds
@@ -363,15 +405,87 @@ class Custom(BaseTransformation):
 
             self.database.extend(new_acts.values())
 
-    def create_custom_markets(self):
+    def get_market_dictionary_structure(self, config_file: dict, region: str) -> dict:
+        """
+        Return a dictionary for market creation. To be further filled with exchanges.
+        :param config_file: YAML configuration file
+        :param region: region to create the dataset for.
+        :return: dictionary
+        """
 
+        return {
+            "name": config_file["markets"]["name"],
+            "reference product": config_file["markets"]["reference product"],
+            "unit": config_file["markets"]["unit"],
+            "location": region,
+            "database": eidb_label(self.model, self.scenario, self.year),
+            "code": str(uuid.uuid4().hex),
+            "exchanges": [
+                {
+                    "name": config_file["markets"]["name"],
+                    "product": config_file["markets"]["reference product"],
+                    "unit": config_file["markets"]["unit"],
+                    "location": region,
+                    "type": "production",
+                    "amount": 1,
+                }
+            ],
+        }
+
+    def fill_in_world_market(self, config_file: dict, regions: list, i: int) -> dict:
+
+        world_market = self.get_market_dictionary_structure(config_file, "World")
+        new_excs = []
+
+        for region in regions:
+            supply_share = np.clip(
+                (
+                    self.custom_data[i]["production volume"]
+                    .sel(region=region, year=self.year)
+                    .sum(dim="variables")
+                    / self.custom_data[i]["production volume"]
+                    .sel(year=self.year)
+                    .sum(dim=["variables", "region"])
+                ).values.item(0),
+                0,
+                1,
+            )
+
+            new_excs.append(
+                {
+                    "name": config_file["markets"]["name"],
+                    "product": config_file["markets"]["reference product"],
+                    "unit": config_file["markets"]["unit"],
+                    "location": region,
+                    "type": "technosphere",
+                    "amount": supply_share,
+                }
+            )
+
+        world_market["exchanges"].extend(new_excs)
+
+        return world_market
+
+    def create_custom_markets(self) -> None:
+        """
+        Create new custom markets, and create a `World` market
+        if no data is provided for it.
+
+        """
+
+        # Loop through custom scenarios
         for i, c in enumerate(self.custom_scenario):
 
+            # Open corresponding config file
             with open(c["config"], "r") as stream:
                 config_file = yaml.safe_load(stream)
 
+            # Check if information on market creation is provided
             if "markets" in config_file:
                 print("Create custom markets.")
+
+                # Check if there are regions we should not
+                # create a market for
                 if "except regions" in config_file["markets"]:
                     regions = [
                         r
@@ -381,33 +495,20 @@ class Custom(BaseTransformation):
                 else:
                     regions = self.regions
 
+                # Loop through regions
                 for region in regions:
 
-                    new_market = {
-                        "name": config_file["markets"]["name"],
-                        "reference product": config_file["markets"][
-                            "reference product"
-                        ],
-                        "unit": config_file["markets"]["unit"],
-                        "location": region,
-                        "database": eidb_label(self.model, self.scenario, self.year),
-                        "code": str(uuid.uuid4().hex),
-                        "exchanges": [
-                            {
-                                "name": config_file["markets"]["name"],
-                                "product": config_file["markets"]["reference product"],
-                                "unit": config_file["markets"]["unit"],
-                                "location": region,
-                                "type": "production",
-                                "amount": 1,
-                            }
-                        ],
-                    }
+                    # Create market dictionary
+                    new_market = self.get_market_dictionary_structure(
+                        config_file, region
+                    )
 
                     new_excs = []
 
+                    # Loop through the technologies that should compose the market
                     for name in config_file["markets"]["includes"]:
 
+                        # try to see if we find a provider with that region
                         try:
                             act = ws.get_one(
                                 self.database,
@@ -417,14 +518,20 @@ class Custom(BaseTransformation):
 
                             var = act["efficiency variable name"]
 
-                            supply_share = (
-                                self.custom_data[i]["production volume"].sel(
-                                    region=region, year=self.year, variables=var
-                                )
-                                / self.custom_data[i]["production volume"]
-                                .sel(region=region, year=self.year)
-                                .sum(dim="variables")
-                            ).values.item(0)
+                            # supply share = production volume of that technology in this region
+                            # over production volume of all technologies in this region
+                            supply_share = np.clip(
+                                (
+                                    self.custom_data[i]["production volume"].sel(
+                                        region=region, year=self.year, variables=var
+                                    )
+                                    / self.custom_data[i]["production volume"]
+                                    .sel(region=region, year=self.year)
+                                    .sum(dim="variables")
+                                ).values.item(0),
+                                0,
+                                1,
+                            )
 
                             new_excs.append(
                                 {
@@ -436,6 +543,8 @@ class Custom(BaseTransformation):
                                     "amount": supply_share,
                                 }
                             )
+                        # if we do not find a supplier, it can be correct if it was
+                        # listed in `except regions`. In any case, we jump to the next technology.
                         except ws.NoResults:
                             continue
 
@@ -452,56 +561,15 @@ class Custom(BaseTransformation):
                     else:
                         regions.remove(region)
 
+                # if so far, a market for `World` has not been created
+                # we need to create one then
                 if "World" not in regions:
-                    new_excs = []
-                    new_market = {
-                        "name": config_file["markets"]["name"],
-                        "reference product": config_file["markets"][
-                            "reference product"
-                        ],
-                        "unit": config_file["markets"]["unit"],
-                        "location": "World",
-                        "database": eidb_label(self.model, self.scenario, self.year),
-                        "code": str(uuid.uuid4().hex),
-                        "exchanges": [
-                            {
-                                "name": config_file["markets"]["name"],
-                                "product": config_file["markets"]["reference product"],
-                                "unit": config_file["markets"]["unit"],
-                                "location": "World",
-                                "type": "production",
-                                "amount": 1,
-                            }
-                        ],
-                    }
+                    world_market = self.fill_in_world_market(config_file, regions, i)
+                    self.database.append(world_market)
 
-                    for region in regions:
-
-                        supply_share = (
-                            self.custom_data[i]["production volume"]
-                            .sel(region=region, year=self.year)
-                            .sum(dim="variables")
-                            / self.custom_data[i]["production volume"]
-                            .sel(year=self.year)
-                            .sum(dim=["variables", "region"])
-                        ).values.item(0)
-
-                        new_excs.append(
-                            {
-                                "name": config_file["markets"]["name"],
-                                "product": config_file["markets"]["reference product"],
-                                "unit": config_file["markets"]["unit"],
-                                "location": region,
-                                "type": "technosphere",
-                                "amount": supply_share,
-                            }
-                        )
-
-                    new_market["exchanges"].extend(new_excs)
-                    self.database.append(new_market)
-
+                # if the new markets are meant to replace for other
+                # providers in the database
                 if "replaces" in config_file["markets"]:
-
                     self.relink_to_new_markets(
                         old_name=config_file["markets"]["replaces"]["name"],
                         old_ref=config_file["markets"]["replaces"]["reference product"],
@@ -510,7 +578,21 @@ class Custom(BaseTransformation):
                         regions=regions,
                     )
 
-    def relink_to_new_markets(self, old_name, old_ref, new_name, new_ref, regions):
+    def relink_to_new_markets(
+        self, old_name: str, old_ref: str, new_name: str, new_ref: str, regions: list
+    ) -> None:
+        """
+        Replaces exchanges that match `old_name` and `old_ref` with exchanges that
+        have `new_name` and `new_ref`. The new exchange is from an IAM region, and so, if the
+        region is not part of `regions`, we use `World` instead.
+
+        :param old_name: `name` of the exchange to replace
+        :param old_ref: `product` of the exchange to replace
+        :param new_name: `name`of the new provider
+        :param new_ref: `product` of the new provider
+        :param regions: list of IAM regigons the new provider can originate from
+
+        """
 
         print("Relink to new markets.")
 

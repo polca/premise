@@ -4,6 +4,11 @@ production pathways:
       variable: Production|Baking|Bread|Activated Dough Development
     efficiency:
       variable: Efficiency|Baking|Bread|Activated Dough Development
+      includes:
+        technosphere:
+          - electricity
+        biosphere:
+          - water
     ecoinvent alias:
       exists in ecoinvent: False
       name: bread production, activated dough development
