@@ -156,7 +156,9 @@ def check_config_file(custom_scenario):
             {
                 "production pathways": {
                     str: {
-                        "production volume": {"variable": str,},
+                        "production volume": {
+                            "variable": str,
+                        },
                         "ecoinvent alias": {
                             "name": str,
                             "reference product": str,
