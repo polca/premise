@@ -108,6 +108,10 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                                             i in e["name"] for i in items_to_include
                                         )
                                     ]
+                    if "replaces" in v:
+                        a["replaces"] = v["replaces"]
+                    if "replacement ratio" in v:
+                        a["replacement ratio"] = v["replacement ratio"]
 
         return data
 
@@ -178,6 +182,8 @@ def check_config_file(custom_scenario):
                                 i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
                             ),
                         ),
+                        Optional("replaces"): [{"name": str, "reference product": str}],
+                        Optional("replacement ratio"): float
                     },
                 },
                 Optional("markets"): {
@@ -192,7 +198,8 @@ def check_config_file(custom_scenario):
                             i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
                         ),
                     ),
-                    Optional("replaces"): {"name": str, "reference product": str},
+                    Optional("replaces"): [{"name": str, "reference product": str}],
+                    Optional("replacement ratio"): float
                 },
             }
         )
@@ -407,6 +414,15 @@ class Custom(BaseTransformation):
 
             self.database.extend(new_acts.values())
 
+            if "replaces" in ds:
+                self.relink_to_new_datasets(
+                    replaces=ds["replaces"],
+                    new_name=ds["name"],
+                    new_ref=ds["reference product"],
+                    ratio=ds.get("replacement ratio", 1),
+                    regions=ds.get("regions", self.regions),
+                )
+
     def get_market_dictionary_structure(self, config_file: dict, region: str) -> dict:
         """
         Return a dictionary for market creation. To be further filled with exchanges.
@@ -572,16 +588,16 @@ class Custom(BaseTransformation):
                 # if the new markets are meant to replace for other
                 # providers in the database
                 if "replaces" in config_file["markets"]:
-                    self.relink_to_new_markets(
-                        old_name=config_file["markets"]["replaces"]["name"],
-                        old_ref=config_file["markets"]["replaces"]["reference product"],
+                    self.relink_to_new_datasets(
+                        replaces=config_file["markets"]["replaces"],
                         new_name=config_file["markets"]["name"],
                         new_ref=config_file["markets"]["reference product"],
+                        ratio=config_file["markets"].get("replacement ratio", 1),
                         regions=regions,
                     )
 
-    def relink_to_new_markets(
-        self, old_name: str, old_ref: str, new_name: str, new_ref: str, regions: list
+    def relink_to_new_datasets(
+        self, replaces: list, new_name: str, new_ref: str, ratio, regions: list
     ) -> None:
         """
         Replaces exchanges that match `old_name` and `old_ref` with exchanges that
@@ -598,19 +614,26 @@ class Custom(BaseTransformation):
 
         print("Relink to new markets.")
 
+        providers_to_replace = [(x["name"], x["reference product"]) for x in replaces]
+
         for ds in self.database:
             for exc in ds["exchanges"]:
-                if (exc["name"], exc.get("product")) == (old_name, old_ref) and exc[
+                if (exc["name"], exc.get("product")) in providers_to_replace and exc[
                     "type"
                 ] == "technosphere":
 
-                    new_loc = self.ecoinvent_to_iam_loc[ds["location"]]
-                    if new_loc not in regions:
-                        new_loc = "World"
+                    if ds["location"] in self.regions:
+                        if ds["location"] not in regions:
+                            new_loc = "World"
+                        else:
+                            new_loc = ds["location"]
+                    else:
+                        new_loc = self.ecoinvent_to_iam_loc[ds["location"]]
 
                     exc["name"] = new_name
                     exc["product"] = new_ref
                     exc["location"] = new_loc
+                    exc["amount"] *= ratio
 
                     if "input" in exc:
                         del exc["input"]

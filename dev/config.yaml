@@ -39,6 +39,10 @@ production pathways:
     except regions:
       - WEU
       - USA
+    replaces:
+      - name: NMC111 hydroxide production, for Li-ion battery
+        reference product: NMC111 hydroxide
+    replacement ratio: 0.75
 
 markets:
   name: market for bread
@@ -49,10 +53,10 @@ markets:
     - bread production, straight dough method
     - bread production, delayed salt method
   replaces:
-    name: market for carbon black
-    reference product: carbon black
+    - name: market for carbon black
+      reference product: carbon black
+    - name: market for clay brick
+      reference product: clay brick
+  replacement ratio: 1.05
   except regions:
     - JAP
-
-
-
