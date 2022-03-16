@@ -183,7 +183,7 @@ def check_config_file(custom_scenario):
                             ),
                         ),
                         Optional("replaces"): [{"name": str, "reference product": str}],
-                        Optional("replacement ratio"): float
+                        Optional("replacement ratio"): float,
                     },
                 },
                 Optional("markets"): {
@@ -199,7 +199,7 @@ def check_config_file(custom_scenario):
                         ),
                     ),
                     Optional("replaces"): [{"name": str, "reference product": str}],
-                    Optional("replacement ratio"): float
+                    Optional("replacement ratio"): float,
                 },
             }
         )
