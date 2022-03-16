@@ -105,7 +105,7 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                                         for e in a["exchanges"]
                                         if e["type"] == flow_type
                                         and any(
-                                            i in e["name"] for i in items_to_include
+                                            i.lower() in e["name"].lower() for i in items_to_include
                                         )
                                     ]
                     if "replaces" in v:
