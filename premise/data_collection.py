@@ -9,6 +9,7 @@ production (GNR data), and for non-CO2 emissions (GAINS data).
 
 import csv
 from io import StringIO
+from itertools import chain
 from pathlib import Path
 from typing import Dict, List, Union
 
@@ -17,7 +18,6 @@ import pandas as pd
 import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
-from itertools import chain
 
 from . import DATA_DIR
 from .utils import get_crops_properties
@@ -215,7 +215,12 @@ class IAMDataCollection:
             dim="variables",
         )
         self.emissions = xr.concat(
-            [electricity_emissions, steel_emissions, cement_emissions,], dim="sector",
+            [
+                electricity_emissions,
+                steel_emissions,
+                cement_emissions,
+            ],
+            dim="sector",
         )
 
         if self.model == "image":

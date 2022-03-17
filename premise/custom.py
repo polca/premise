@@ -98,10 +98,8 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                             if "includes" in eff:
                                 for flow_type in ["technosphere", "biosphere"]:
                                     if flow_type in eff["includes"]:
-                                        items_to_include = eff["includes"][
-                                            flow_type
-                                        ]
-                                        #a[f"{flow_type} filters"] = {
+                                        items_to_include = eff["includes"][flow_type]
+                                        # a[f"{flow_type} filters"] = {
                                         #    e["name"]:
                                         #    for e in a["exchanges"]
                                         #    if e["type"] == flow_type
@@ -109,7 +107,7 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                                         #        i.lower() in e["name"].lower()
                                         #        for i in items_to_include
                                         #    )
-                                        #}
+                                        # }
                     if "replaces" in v:
                         a["replaces"] = v["replaces"]
                     if "replacement ratio" in v:
@@ -170,16 +168,18 @@ def check_config_file(custom_scenario):
                             "reference product": str,
                             "exists in ecoinvent": bool,
                         },
-                        Optional("efficiency"): [{
-                            "variable": str,
-                            Optional("reference year"): And(
-                                Use(int), lambda n : 2005 <= n <= 2100
-                            ),
-                            Optional("includes"): {
-                                Optional("technosphere"): list,
-                                Optional("biosphere"): list,
-                            },
-                        }],
+                        Optional("efficiency"): [
+                            {
+                                "variable": str,
+                                Optional("reference year"): And(
+                                    Use(int), lambda n: 2005 <= n <= 2100
+                                ),
+                                Optional("includes"): {
+                                    Optional("technosphere"): list,
+                                    Optional("biosphere"): list,
+                                },
+                            }
+                        ],
                         Optional("except regions"): And(
                             list,
                             Use(list),
