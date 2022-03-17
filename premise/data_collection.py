@@ -17,6 +17,7 @@ import pandas as pd
 import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
+from itertools import chain
 
 from . import DATA_DIR
 from .utils import get_crops_properties
@@ -214,12 +215,7 @@ class IAMDataCollection:
             dim="variables",
         )
         self.emissions = xr.concat(
-            [
-                electricity_emissions,
-                steel_emissions,
-                cement_emissions,
-            ],
-            dim="sector",
+            [electricity_emissions, steel_emissions, cement_emissions,], dim="sector",
         )
 
         if self.model == "image":
@@ -244,20 +240,48 @@ class IAMDataCollection:
 
             if "production pathways" in config_file:
 
-                for var in ["production volume", "efficiency"]:
+                variables = {}
+                for k, v in config_file["production pathways"].items():
+                    try:
+                        variables[k] = v["production volume"]["variable"]
+                    except KeyError:
+                        continue
 
-                    variables = {}
+                subset = df.loc[
+                    (df["model"] == self.model)
+                    & (df["pathway"] == self.pathway)
+                    & (df["variables"].isin(variables.values())),
+                    "region":,
+                ]
 
-                    for k, v in config_file["production pathways"].items():
-                        try:
-                            variables[k] = v[var]["variable"]
-                        except KeyError:
-                            continue
+                array = (
+                    subset.melt(
+                        id_vars=["region", "variables", "unit"],
+                        var_name="year",
+                        value_name="value",
+                    )[["region", "variables", "year", "value"]]
+                    .groupby(["region", "variables", "year"])["value"]
+                    .mean()
+                    .to_xarray()
+                )
+
+                data[i]["production volume"] = array
+                regions = subset["region"].unique().tolist()
+                data[i]["regions"] = regions
+
+                variables = {}
+                for k, v in config_file["production pathways"].items():
+                    try:
+                        variables[k] = [e["variable"] for e in v["efficiency"]]
+                    except KeyError:
+                        continue
+
+                if len(variables) > 0:
 
                     subset = df.loc[
                         (df["model"] == self.model)
                         & (df["pathway"] == self.pathway)
-                        & (df["variables"].isin(variables.values())),
+                        & (df["variables"].isin(list(chain(*variables.values())))),
                         "region":,
                     ]
 
@@ -272,32 +296,29 @@ class IAMDataCollection:
                         .to_xarray()
                     )
 
-                    if var == "efficiency":
-                        array = array.interp(year=self.year) / array.sel(year=2020)
+                    ref_years = {}
+                    for v in config_file["production pathways"].values():
+                        for e, f in v.items():
+                            if e == "efficiency":
+                                for x in f:
+                                    ref_years[x["variable"]] = x.get(
+                                        "reference year", 2020
+                                    )
 
-                        # If we are looking at a year post 2020
-                        # and the ratio in efficiency change is inferior to 1
-                        # we correct it to 1, as we do not accept
-                        # that efficiency degrades over time
-                        if self.year > 2020:
-                            array.values[array.values < 1] = 1
+                    for v, y in ref_years.items():
 
-                        # Inversely, if we are looking at a year prior to 2020
-                        # and the ratio in efficiency change is superior to 1
-                        # we correct it to 1, as we do not accept
-                        # that efficiency in the past was higher than now
-                        if self.year < 2020:
-                            array.values[array.values > 1] = 1
+                        array.loc[dict(variables=v, year=self.year)] = array.loc[
+                            dict(variables=v)
+                        ].interp(year=self.year) / array.loc[dict(variables=v)].sel(
+                            year=y
+                        )
 
-                        # convert NaNs to ones
-                        array = array.fillna(1)
+                    array = array.loc[dict(year=self.year)]
 
-                    array.coords["variables"] = list(variables.keys())
+                    # convert NaNs to ones
+                    array = array.fillna(1)
 
-                    data[i][var] = array
-
-                regions = subset["region"].unique().tolist()
-                data[i]["regions"] = regions
+                    data[i]["efficiency"] = array
 
         return data
 

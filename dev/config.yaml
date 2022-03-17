@@ -21,16 +21,25 @@ production pathways:
     # OPTIONAL: `efficiency` and underlying `variable` refers to the values to look for in the scenario data file
     # if the technology is believed to improve over time.
     efficiency:
-      variable: Efficiency|Baking|Bread|Activated Dough Development
-      # OPTIONAL: `includes` is optional, and indicates if the efficiency gains apply only on certain input or flows
-      # of the dataset
-      includes:
-        # efficiency gains will only apply to flows whose name contains `electricity`
-        technosphere:
-          - electricity
-        # efficiency gains will only apply to flows whose name contains `water`
-        biosphere:
-          - water
+      - variable: Efficiency|Baking|Bread|Activated Dough Development (Elec and steam)
+        # OPTIONAL: reference year to calculate efficiency delta from
+        reference year: 2025
+        # OPTIONAL: `includes` is optional, and indicates if the efficiency gains apply only on certain input or flows
+        # of the dataset
+        includes:
+          # efficiency gains will only apply to flows whose name contains `electricity`
+          technosphere:
+            - electricity
+          # efficiency gains will only apply to flows whose name contains `water`
+          biosphere:
+            - water
+      - variable: Efficiency|Baking|Bread|Activated Dough Development (Salt)
+        # OPTIONAL: `includes` is optional, and indicates if the efficiency gains apply only on certain input or flows
+        # of the dataset
+        includes:
+          # efficiency gains will only apply to flows whose name contains `electricity`
+          technosphere:
+            - salt
     # dataset in the imported inventories that represents the technology
     ecoinvent alias:
       exists in ecoinvent: False
@@ -46,7 +55,7 @@ production pathways:
     production volume:
       variable: Production|Baking|Bread|Straight Dough Method
     efficiency:
-      variable: Efficiency|Baking|Bread|Straight Dough Method
+      - variable: Efficiency|Baking|Bread|Straight Dough Method
     ecoinvent alias:
       exists in ecoinvent: False
       name: bread production, straight dough method
@@ -58,7 +67,7 @@ production pathways:
     production volume:
       variable: Production|Baking|Bread|Delayed Salt Method
     efficiency:
-      variable: Efficiency|Baking|Bread|Delayed Salt Method
+      - variable: Efficiency|Baking|Bread|Delayed Salt Method
     ecoinvent alias:
       exists in ecoinvent: False
       name: bread production, delayed salt method
