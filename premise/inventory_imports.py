@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, List, Union
 
 import bw2io
+import yaml
 from bw2io import ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
@@ -15,6 +16,16 @@ from .geomap import Geomap
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
+
+OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
+
+
+def get_outdated_flows():
+
+    with open(OUTDATED_FLOWS, "r") as stream:
+        flows = yaml.safe_load(stream)
+
+    return flows
 
 
 def get_biosphere_code() -> dict:
@@ -92,6 +103,7 @@ class BaseInventoryImport:
         self.version_in = version_in
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code()
+        self.outdated_flows = get_outdated_flows()
 
         if not isinstance(path, Path):
             path = Path(path)
@@ -314,17 +326,31 @@ class BaseInventoryImport:
                         y["categories"] = tuple(y["categories"].split("::"))
                     if len(y["categories"]) > 1:
                         try:
-                            y["input"] = (
-                                "biosphere3",
-                                self.biosphere_dict[
-                                    (
-                                        y["name"],
-                                        y["categories"][0],
-                                        y["categories"][1],
-                                        y["unit"],
-                                    )
-                                ],
+                            key = (
+                                y["name"],
+                                y["categories"][0],
+                                y["categories"][1],
+                                y["unit"],
                             )
+                            if key in self.biosphere_dict:
+                                y["input"] = (
+                                    "biosphere3",
+                                    self.biosphere_dict[key],
+                                )
+                            else:
+                                if key[0] in self.outdated_flows:
+                                    new_key = list(key)
+                                    new_key[0] = self.outdated_flows[key[0]]
+                                    y["input"] = (
+                                        "biosphere3",
+                                        self.biosphere_dict[tuple(new_key)],
+                                    )
+                                else:
+                                    if delete_missing:
+                                        y["flag_deletion"] = True
+                                    else:
+                                        raise
+
                         except KeyError:
                             if delete_missing:
                                 y["flag_deletion"] = True
