@@ -73,6 +73,7 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
             for a in data:
                 a["custom scenario dataset"] = True
                 if (name, ref) == (a["name"], a["reference product"]):
+
                     regions = (
                         df.loc[
                             (df["model"] == model) & (df["pathway"] == pathway),
@@ -91,7 +92,6 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                             r: find_iam_efficiency_change(k, r, custom_data)
                             for r in regions
                         }
-                        a["efficiency variable name"] = k
                         a["regions"] = regions
 
                         for eff in v["efficiency"]:
@@ -99,15 +99,15 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                                 for flow_type in ["technosphere", "biosphere"]:
                                     if flow_type in eff["includes"]:
                                         items_to_include = eff["includes"][flow_type]
-                                        # a[f"{flow_type} filters"] = {
-                                        #    e["name"]:
-                                        #    for e in a["exchanges"]
-                                        #    if e["type"] == flow_type
-                                        #    and any(
-                                        #        i.lower() in e["name"].lower()
-                                        #        for i in items_to_include
-                                        #    )
-                                        # }
+                                        if f"{flow_type} filters" in a:
+                                            a[f"{flow_type} filters"].append(
+                                                (items_to_include, {
+                            r: find_iam_efficiency_change(eff["variable"], r, custom_data)
+                            for r in regions
+                        })
+                                            )
+
+                    print(a)
                     if "replaces" in v:
                         a["replaces"] = v["replaces"]
                     if "replacement ratio" in v:
