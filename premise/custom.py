@@ -101,10 +101,17 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                                         items_to_include = eff["includes"][flow_type]
                                         if f"{flow_type} filters" in a:
                                             a[f"{flow_type} filters"].append(
-                                                (items_to_include, {
-                            r: find_iam_efficiency_change(eff["variable"], r, custom_data)
-                            for r in regions
-                        })
+                                                (
+                                                    items_to_include,
+                                                    {
+                                                        r: find_iam_efficiency_change(
+                                                            eff["variable"],
+                                                            r,
+                                                            custom_data,
+                                                        )
+                                                        for r in regions
+                                                    },
+                                                )
                                             )
 
                     print(a)

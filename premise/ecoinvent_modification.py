@@ -524,7 +524,9 @@ class NewDatabase:
             self.additional_inventories = None
 
         if custom_scenario:
-            self.custom_scenario = check_custom_scenario(custom_scenario, self.scenarios)
+            self.custom_scenario = check_custom_scenario(
+                custom_scenario, self.scenarios
+            )
         else:
             self.custom_scenario = None
 
