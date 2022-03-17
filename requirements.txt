@@ -11,3 +11,4 @@ pycountry
 cryptography
 premise_gwp
 pyYaml
+schema
