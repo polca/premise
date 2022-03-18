@@ -695,7 +695,7 @@ class IAMDataCollection:
             )
 
             if (
-                energy["cement"] in data.variables.values
+                all(v in data.variables.values for v in energy["cement"])
                 and prod["cement"] in data.variables.values
             ):
 
