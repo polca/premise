@@ -30,9 +30,10 @@ production pathways:
           # efficiency gains will only apply to flows whose name contains `electricity`
           technosphere:
             - electricity
-          # efficiency gains will only apply to flows whose name contains `water`
+          # efficiency gains will only apply to flows whose name contains `Water`
+          # case sensitive!!!
           biosphere:
-            - water
+            - Water
       - variable: Efficiency|Baking|Bread|Activated Dough Development (Salt)
         # OPTIONAL: `includes` is optional, and indicates if the efficiency gains apply only on certain input or flows
         # of the dataset
@@ -42,7 +43,6 @@ production pathways:
             - salt
     # dataset in the imported inventories that represents the technology
     ecoinvent alias:
-      exists in ecoinvent: False
       # name of the dataset
       name: bread production, activated dough development
       # reference product of the dataset
@@ -57,7 +57,6 @@ production pathways:
     efficiency:
       - variable: Efficiency|Baking|Bread|Straight Dough Method
     ecoinvent alias:
-      exists in ecoinvent: False
       name: bread production, straight dough method
       reference product: bread
     except regions:
@@ -69,7 +68,6 @@ production pathways:
     efficiency:
       - variable: Efficiency|Baking|Bread|Delayed Salt Method
     ecoinvent alias:
-      exists in ecoinvent: False
       name: bread production, delayed salt method
       reference product: bread
     except regions:
@@ -85,6 +83,14 @@ production pathways:
     # it can be specified here
     replacement ratio: 0.75
 
+  BC:
+    production volume:
+      variable: Production|Baking|Bread|Breadcrumbs
+    ecoinvent alias:
+      name: breadcrumbs production
+      reference product: breadcrumbs
+      exists in ecoinvent: True
+
 # OPTIONAL: if a market needs to be created
 markets:
   # name of teh market dataset
@@ -95,9 +101,14 @@ markets:
   unit: kilogram
   # names of datasets that should compose the market
   includes:
-    - bread production, activated dough development
-    - bread production, straight dough method
-    - bread production, delayed salt method
+    - name: bread production, activated dough development
+      reference product: bread
+    - name: bread production, straight dough method
+      reference product: bread
+    - name: bread production, delayed salt method
+      reference product: bread
+    - name: breadcrumbs production
+      reference product: breadcrumbs
   # OPTIONAL: if the new market is supposed to replace one or several other providers
   # in the database.
   # in this case, `market for bread` will replace providers of carbon back and clay bricks.
