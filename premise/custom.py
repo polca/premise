@@ -88,10 +88,7 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                     # add potential technosphere or biosphere filters
                     if "efficiency" in v:
                         a["adjust efficiency"] = True
-                        a["new efficiency"] = {
-                            r: find_iam_efficiency_change(k, r, custom_data)
-                            for r in regions
-                        }
+
                         a["regions"] = regions
 
                         for eff in v["efficiency"]:
@@ -101,7 +98,7 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                                         items_to_include = eff["includes"][flow_type]
                                         if f"{flow_type} filters" in a:
                                             a[f"{flow_type} filters"].append(
-                                                (
+                                                [
                                                     items_to_include,
                                                     {
                                                         r: find_iam_efficiency_change(
@@ -111,10 +108,39 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                                                         )
                                                         for r in regions
                                                     },
-                                                )
+                                                ]
                                             )
+                                        else:
+                                            a[f"{flow_type} filters"] = [
+                                                items_to_include,
+                                                {
+                                                    r: find_iam_efficiency_change(
+                                                        eff["variable"],
+                                                        r,
+                                                        custom_data,
+                                                    )
+                                                    for r in regions
+                                                },
+                                            ]
+                            else:
 
-                    print(a)
+                                a[f"technosphere filters"] = [
+                                    [
+                                        [],
+                                        {
+                                            r: find_iam_efficiency_change(
+                                                eff["variable"],
+                                                r,
+                                                custom_data,
+                                            )
+                                            for r in regions
+                                        },
+                                    ],
+                                ]
+
+                    print(a["name"])
+                    print(a.get("technosphere filters"))
+
                     if "replaces" in v:
                         a["replaces"] = v["replaces"]
                     if "replacement ratio" in v:
@@ -382,21 +408,30 @@ class Custom(BaseTransformation):
 
         if "adjust efficiency" in dataset:
 
-            scaling_factor = 1 / dataset["new efficiency"][dataset["location"]]
+            for eff_type in ["technosphere", "biosphere"]:
 
-            tech_filters = dataset.get("technosphere filters", [])
-            bio_filters = dataset.get("biosphere filters", [])
+                if f"{eff_type} filters" in dataset:
+                    for x in dataset[f"{eff_type} filters"]:
 
-            wurst.change_exchanges_by_constant_factor(
-                dataset,
-                scaling_factor,
-                technosphere_filters=[
-                    ws.either(*[ws.contains("name", x) for x in tech_filters])
-                ],
-                biosphere_filters=[
-                    ws.either(*[ws.contains("name", x) for x in bio_filters])
-                ],
-            )
+                        print(dataset["name"])
+                        print(x)
+
+                        scaling_factor = 1 / x[1][dataset["location"]]
+                        filters = x[0]
+                        wurst.change_exchanges_by_constant_factor(
+                            dataset,
+                            scaling_factor,
+                            technosphere_filters=[
+                                ws.either(*[ws.contains("name", x) for x in filters])
+                            ]
+                            if eff_type == "technosphere"
+                            else [],
+                            biosphere_filters=[
+                                ws.either(*[ws.contains("name", x) for x in filters])
+                            ]
+                            if eff_type == "biosphere"
+                            else [],
+                        )
 
             del dataset["new efficiency"]
 
