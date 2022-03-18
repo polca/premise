@@ -28,6 +28,7 @@ include premise/data/geomap/*.yml
 include premise/data/renewables/*.csv
 include premise/data/utils/*.csv
 include premise/data/utils/*.yml
+include premise/data/utils/*.yaml
 include premise/data/utils/*.json
 include premise/data/utils/export/*.csv
 include premise/data/utils/export/*.json
