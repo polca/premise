@@ -280,7 +280,9 @@ def check_config_file(custom_scenario):
                             ),
                         ),
                         Optional("replaces"): [{"name": str, "reference product": str}],
-                        Optional("replaces in"): [{"name": str, "reference product": str}],
+                        Optional("replaces in"): [
+                            {"name": str, "reference product": str}
+                        ],
                         Optional("replacement ratio"): float,
                     },
                 },
@@ -851,7 +853,8 @@ class Custom(BaseTransformation):
                 ds
                 for ds in self.database
                 if any(
-                    k["name"] in ds["name"] and k["reference product"] in ds["reference product"]
+                    k["name"] in ds["name"]
+                    and k["reference product"] in ds["reference product"]
                     for k in replaces_in
                 )
             ]
@@ -860,12 +863,14 @@ class Custom(BaseTransformation):
 
         for ds in datasets:
             for exc in ds["exchanges"]:
-                if any(
-                    k["name"] in exc["name"] and k["reference product"] in exc.get("reference product")
-                    for k in replaces
-                ) and exc[
-                    "type"
-                ] == "technosphere":
+                if (
+                    any(
+                        k["name"] in exc["name"]
+                        and k["reference product"] in exc.get("reference product")
+                        for k in replaces
+                    )
+                    and exc["type"] == "technosphere"
+                ):
 
                     if ds["location"] in self.regions:
                         if ds["location"] not in regions:
