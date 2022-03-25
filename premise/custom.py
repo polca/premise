@@ -70,96 +70,142 @@ def check_inventories(custom_scenario, data, model, pathway, custom_data):
                     f"The inventories provided do not contain the activity: {name, ref}"
                 )
 
-            for a in data:
+            for i, a in enumerate(data):
                 a["custom scenario dataset"] = True
+
                 if (name, ref) == (a["name"], a["reference product"]):
-
-                    regions = (
-                        df.loc[
-                            (df["model"] == model) & (df["pathway"] == pathway),
-                            "region",
-                        ]
-                        .unique()
-                        .tolist()
+                    data[i] = flag_activities_to_adjust(
+                        a, df, model, pathway, v, custom_data
                     )
-                    if "except regions" in v:
-                        regions = [r for r in regions if r not in v["except regions"]]
 
-                    # add potential technosphere or biosphere filters
+    return data
+
+
+def flag_activities_to_adjust(a, df, model, pathway, v, custom_data):
+
+    regions = (
+        df.loc[
+            (df["model"] == model) & (df["pathway"] == pathway),
+            "region",
+        ]
+        .unique()
+        .tolist()
+    )
+    if "except regions" in v:
+        regions = [r for r in regions if r not in v["except regions"]]
+
+    # add potential technosphere or biosphere filters
+    if "efficiency" in v:
+        a["adjust efficiency"] = True
+
+        a["regions"] = regions
+
+        for eff in v["efficiency"]:
+            if "includes" in eff:
+                for flow_type in ["technosphere", "biosphere"]:
+                    if flow_type in eff["includes"]:
+                        items_to_include = eff["includes"][flow_type]
+                        if f"{flow_type} filters" in a:
+                            a[f"{flow_type} filters"].append(
+                                [
+                                    items_to_include,
+                                    {
+                                        r: find_iam_efficiency_change(
+                                            eff["variable"],
+                                            r,
+                                            custom_data,
+                                        )
+                                        for r in regions
+                                    },
+                                ]
+                            )
+                        else:
+                            a[f"{flow_type} filters"] = [
+                                [
+                                    items_to_include,
+                                    {
+                                        r: find_iam_efficiency_change(
+                                            eff["variable"],
+                                            r,
+                                            custom_data,
+                                        )
+                                        for r in regions
+                                    },
+                                ]
+                            ]
+            else:
+
+                a[f"technosphere filters"] = [
+                    [
+                        None,
+                        {
+                            r: find_iam_efficiency_change(
+                                eff["variable"],
+                                r,
+                                custom_data,
+                            )
+                            for r in regions
+                        },
+                    ],
+                ]
+
+                a[f"biosphere filters"] = [
+                    [
+                        None,
+                        {
+                            r: find_iam_efficiency_change(
+                                eff["variable"],
+                                r,
+                                custom_data,
+                            )
+                            for r in regions
+                        },
+                    ],
+                ]
+
+    if "replaces" in v:
+        a["replaces"] = v["replaces"]
+
+    if "replaces in" in v:
+        a["replaces in"] = v["replaces in"]
+
+    if "replacement ratio" in v:
+        a["replacement ratio"] = v["replacement ratio"]
+
+    return a
+
+
+def detect_ei_activities_to_adjust(custom_scenario, data, model, pathway, custom_data):
+    """
+    Flag activities native to ecoinvent that will their efficiency to be adjusted.
+    """
+
+    for i, scenario in enumerate(custom_scenario):
+
+        with open(scenario["config"], "r") as stream:
+            config_file = yaml.safe_load(stream)
+
+        df = pd.read_excel(scenario["scenario data"])
+
+        for k, v in config_file["production pathways"].items():
+
+            if "exists in ecoinvent" in v["ecoinvent alias"]:
+                if v["ecoinvent alias"]["exists in ecoinvent"]:
+
                     if "efficiency" in v:
-                        a["adjust efficiency"] = True
 
-                        a["regions"] = regions
+                        name = v["ecoinvent alias"]["name"]
+                        ref = v["ecoinvent alias"]["reference product"]
 
-                        for eff in v["efficiency"]:
-                            if "includes" in eff:
-                                for flow_type in ["technosphere", "biosphere"]:
-                                    if flow_type in eff["includes"]:
-                                        items_to_include = eff["includes"][flow_type]
-                                        if f"{flow_type} filters" in a:
-                                            a[f"{flow_type} filters"].append(
-                                                [
-                                                    items_to_include,
-                                                    {
-                                                        r: find_iam_efficiency_change(
-                                                            eff["variable"],
-                                                            r,
-                                                            custom_data,
-                                                        )
-                                                        for r in regions
-                                                    },
-                                                ]
-                                            )
-                                        else:
-                                            a[f"{flow_type} filters"] = [
-                                                [
-                                                    items_to_include,
-                                                    {
-                                                        r: find_iam_efficiency_change(
-                                                            eff["variable"],
-                                                            r,
-                                                            custom_data,
-                                                        )
-                                                        for r in regions
-                                                    },
-                                                ]
-                                            ]
-                            else:
-
-                                a[f"technosphere filters"] = [
-                                    [
-                                        None,
-                                        {
-                                            r: find_iam_efficiency_change(
-                                                eff["variable"],
-                                                r,
-                                                custom_data,
-                                            )
-                                            for r in regions
-                                        },
-                                    ],
-                                ]
-
-                                a[f"biosphere filters"] = [
-                                    [
-                                        None,
-                                        {
-                                            r: find_iam_efficiency_change(
-                                                eff["variable"],
-                                                r,
-                                                custom_data,
-                                            )
-                                            for r in regions
-                                        },
-                                    ],
-                                ]
-
-                    if "replaces" in v:
-                        a["replaces"] = v["replaces"]
-                    if "replacement ratio" in v:
-                        a["replacement ratio"] = v["replacement ratio"]
-
-        return data
+                        for ds in ws.get_many(
+                            data,
+                            ws.equals("name", name),
+                            ws.equals("reference product", ref),
+                        ):
+                            ds = flag_activities_to_adjust(
+                                ds, df, model, pathway, v, custom_data
+                            )
+    return data
 
 
 def check_custom_scenario_dictionary(custom_scenario):
@@ -234,24 +280,30 @@ def check_config_file(custom_scenario):
                             ),
                         ),
                         Optional("replaces"): [{"name": str, "reference product": str}],
+                        Optional("replaces in"): [{"name": str, "reference product": str}],
                         Optional("replacement ratio"): float,
                     },
                 },
-                Optional("markets"): {
-                    "name": str,
-                    "reference product": str,
-                    "unit": str,
-                    "includes": [{"name": str, "reference product": str}],
-                    Optional("except regions"): And(
-                        list,
-                        Use(list),
-                        lambda s: all(
-                            i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
+                Optional("markets"): [
+                    {
+                        "name": str,
+                        "reference product": str,
+                        "unit": str,
+                        "includes": [{"name": str, "reference product": str}],
+                        Optional("except regions"): And(
+                            list,
+                            Use(list),
+                            lambda s: all(
+                                i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
+                            ),
                         ),
-                    ),
-                    Optional("replaces"): [{"name": str, "reference product": str}],
-                    Optional("replacement ratio"): float,
-                },
+                        Optional("replaces"): [{"name": str, "reference product": str}],
+                        Optional("replaces in"): [
+                            {"name": str, "reference product": str}
+                        ],
+                        Optional("replacement ratio"): float,
+                    }
+                ],
             }
         )
 
@@ -261,24 +313,25 @@ def check_config_file(custom_scenario):
             # check that providers composing the market
             # are listed
 
-            market_providers = [
-                (a["name"], a["reference product"])
-                for a in config_file["markets"]["includes"]
-            ]
+            for market in config_file["markets"]:
 
-            listed_providers = [
-                (
-                    a["ecoinvent alias"]["name"],
-                    a["ecoinvent alias"]["reference product"],
-                )
-                for a in config_file["production pathways"].values()
-            ]
+                market_providers = [
+                    (a["name"], a["reference product"]) for a in market["includes"]
+                ]
 
-            if any([i not in listed_providers for i in market_providers]):
-                raise ValueError(
-                    "One of more providers listed under `markets/includes` is/are not listed "
-                    "under `production pathways`."
-                )
+                listed_providers = [
+                    (
+                        a["ecoinvent alias"]["name"],
+                        a["ecoinvent alias"]["reference product"],
+                    )
+                    for a in config_file["production pathways"].values()
+                ]
+
+                if any([i not in listed_providers for i in market_providers]):
+                    raise ValueError(
+                        "One of more providers listed under `markets/includes` is/are not listed "
+                        "under `production pathways`."
+                    )
 
 
 def check_scenario_data_file(custom_scenario, iam_scenarios):
@@ -360,6 +413,15 @@ def check_scenario_data_file(custom_scenario, iam_scenarios):
             raise ValueError(
                 f"One or several variable names in the scenario data file no. {i + 1} "
                 "cannot be found in the configuration file."
+            )
+
+        if not all(
+            v in df["variables"].unique()
+            for v in get_recursively(config_file, "variable")
+        ):
+            raise ValueError(
+                f"One or several variable names in the configuration file {i + 1} "
+                "cannot be found in the scenario data file."
             )
 
         try:
@@ -503,32 +565,33 @@ class Custom(BaseTransformation):
             if "replaces" in ds:
                 self.relink_to_new_datasets(
                     replaces=ds["replaces"],
+                    replaces_in=ds.get("replaces in", None),
                     new_name=ds["name"],
                     new_ref=ds["reference product"],
                     ratio=ds.get("replacement ratio", 1),
                     regions=ds.get("regions", self.regions),
                 )
 
-    def get_market_dictionary_structure(self, config_file: dict, region: str) -> dict:
+    def get_market_dictionary_structure(self, market: dict, region: str) -> dict:
         """
         Return a dictionary for market creation. To be further filled with exchanges.
-        :param config_file: YAML configuration file
+        :param market: YAML configuration file
         :param region: region to create the dataset for.
         :return: dictionary
         """
 
         return {
-            "name": config_file["markets"]["name"],
-            "reference product": config_file["markets"]["reference product"],
-            "unit": config_file["markets"]["unit"],
+            "name": market["name"],
+            "reference product": market["reference product"],
+            "unit": market["unit"],
             "location": region,
             "database": eidb_label(self.model, self.scenario, self.year),
             "code": str(uuid.uuid4().hex),
             "exchanges": [
                 {
-                    "name": config_file["markets"]["name"],
-                    "product": config_file["markets"]["reference product"],
-                    "unit": config_file["markets"]["unit"],
+                    "name": market["name"],
+                    "product": market["reference product"],
+                    "unit": market["unit"],
                     "location": region,
                     "type": "production",
                     "amount": 1,
@@ -536,9 +599,9 @@ class Custom(BaseTransformation):
             ],
         }
 
-    def fill_in_world_market(self, config_file: dict, regions: list, i: int) -> dict:
+    def fill_in_world_market(self, market: dict, regions: list, i: int) -> dict:
 
-        world_market = self.get_market_dictionary_structure(config_file, "World")
+        world_market = self.get_market_dictionary_structure(market, "World")
         new_excs = []
 
         for region in regions:
@@ -557,9 +620,9 @@ class Custom(BaseTransformation):
 
             new_excs.append(
                 {
-                    "name": config_file["markets"]["name"],
-                    "product": config_file["markets"]["reference product"],
-                    "unit": config_file["markets"]["unit"],
+                    "name": market["name"],
+                    "product": market["reference product"],
+                    "unit": market["unit"],
                     "location": region,
                     "type": "technosphere",
                     "amount": supply_share,
@@ -582,29 +645,13 @@ class Custom(BaseTransformation):
             # Check if information on market creation is provided
             if "markets" in config_file:
 
-                # Loop through the technologies that should compose the market
-                for dataset_to_include in config_file["markets"]["includes"]:
+                for market in config_file["markets"]:
 
-                    # try to see if we find a provider with that region
-                    suppliers = list(
-                        ws.get_many(
-                            self.database,
-                            ws.equals("name", dataset_to_include["name"]),
-                            ws.equals(
-                                "reference product",
-                                dataset_to_include["reference product"],
-                            ),
-                            ws.either(
-                                *[ws.equals("location", loc) for loc in self.regions]
-                            ),
-                        )
-                    )
+                    # Loop through the technologies that should compose the market
+                    for dataset_to_include in market["includes"]:
 
-                    if len(suppliers) == 0:
-
-                        print(f"Regionalize dataset {dataset_to_include['name']}.")
-
-                        ds = list(
+                        # try to see if we find a provider with that region
+                        suppliers = list(
                             ws.get_many(
                                 self.database,
                                 ws.equals("name", dataset_to_include["name"]),
@@ -612,10 +659,31 @@ class Custom(BaseTransformation):
                                     "reference product",
                                     dataset_to_include["reference product"],
                                 ),
+                                ws.either(
+                                    *[
+                                        ws.equals("location", loc)
+                                        for loc in self.regions
+                                    ]
+                                ),
                             )
-                        )[0]
+                        )
 
-                        ds["custom scenario dataset"] = True
+                        if len(suppliers) == 0:
+
+                            print(f"Regionalize dataset {dataset_to_include['name']}.")
+
+                            ds = list(
+                                ws.get_many(
+                                    self.database,
+                                    ws.equals("name", dataset_to_include["name"]),
+                                    ws.equals(
+                                        "reference product",
+                                        dataset_to_include["reference product"],
+                                    ),
+                                )
+                            )[0]
+
+                            ds["custom scenario dataset"] = True
 
                 self.regionalize_imported_inventories()
 
@@ -639,118 +707,129 @@ class Custom(BaseTransformation):
             if "markets" in config_file:
                 print("Create custom markets.")
 
-                # Check if there are regions we should not
-                # create a market for
-                if "except regions" in config_file["markets"]:
-                    regions = [
-                        r
-                        for r in self.regions
-                        if r not in config_file["markets"]["except regions"]
-                    ]
-                else:
-                    regions = self.regions
+                for market in config_file["markets"]:
 
-                # Loop through regions
-                for region in regions:
+                    # Check if there are regions we should not
+                    # create a market for
+                    if "except regions" in market:
+                        regions = [
+                            r for r in self.regions if r not in market["except regions"]
+                        ]
+                    else:
+                        regions = self.regions
 
-                    # Create market dictionary
-                    new_market = self.get_market_dictionary_structure(
-                        config_file, region
-                    )
+                    # Loop through regions
+                    for region in regions:
 
-                    new_excs = []
+                        # Create market dictionary
+                        new_market = self.get_market_dictionary_structure(
+                            market, region
+                        )
 
-                    # Loop through the technologies that should compose the market
-                    for dataset_to_include in config_file["markets"]["includes"]:
+                        new_excs = []
 
-                        # try to see if we find a provider with that region
-                        try:
-                            act = ws.get_one(
-                                self.database,
-                                ws.equals("name", dataset_to_include["name"]),
-                                ws.equals(
-                                    "reference product",
-                                    dataset_to_include["reference product"],
-                                ),
-                                ws.equals("location", region),
-                            )
+                        # Loop through the technologies that should compose the market
+                        for dataset_to_include in market["includes"]:
 
-                            for a, b in config_file["production pathways"].items():
-                                if (
-                                    b["ecoinvent alias"]["name"] == act["name"]
-                                    and b["ecoinvent alias"]["reference product"]
-                                    == act["reference product"]
-                                ):
-                                    var = b["production volume"]["variable"]
-
-                            # supply share = production volume of that technology in this region
-                            # over production volume of all technologies in this region
-
+                            # try to see if we find a provider with that region
                             try:
-                                supply_share = np.clip(
-                                    (
-                                        self.custom_data[i]["production volume"].sel(
-                                            region=region, year=self.year, variables=var
-                                        )
-                                        / self.custom_data[i]["production volume"]
-                                        .sel(region=region, year=self.year)
-                                        .sum(dim="variables")
-                                    ).values.item(0),
-                                    0,
-                                    1,
+                                act = ws.get_one(
+                                    self.database,
+                                    ws.equals("name", dataset_to_include["name"]),
+                                    ws.equals(
+                                        "reference product",
+                                        dataset_to_include["reference product"],
+                                    ),
+                                    ws.equals("location", region),
                                 )
-                            except KeyError:
+
+                                for a, b in config_file["production pathways"].items():
+                                    if (
+                                        b["ecoinvent alias"]["name"] == act["name"]
+                                        and b["ecoinvent alias"]["reference product"]
+                                        == act["reference product"]
+                                    ):
+                                        var = b["production volume"]["variable"]
+
+                                # supply share = production volume of that technology in this region
+                                # over production volume of all technologies in this region
+
+                                try:
+                                    supply_share = np.clip(
+                                        (
+                                            self.custom_data[i][
+                                                "production volume"
+                                            ].sel(
+                                                region=region,
+                                                year=self.year,
+                                                variables=var,
+                                            )
+                                            / self.custom_data[i]["production volume"]
+                                            .sel(region=region, year=self.year)
+                                            .sum(dim="variables")
+                                        ).values.item(0),
+                                        0,
+                                        1,
+                                    )
+                                except KeyError:
+                                    continue
+
+                                if supply_share > 0:
+                                    new_excs.append(
+                                        {
+                                            "name": act["name"],
+                                            "product": act["reference product"],
+                                            "unit": act["unit"],
+                                            "location": act["location"],
+                                            "type": "technosphere",
+                                            "amount": supply_share,
+                                        }
+                                    )
+
+                            # if we do not find a supplier, it can be correct if it was
+                            # listed in `except regions`. In any case, we jump to the next technology.
+                            except ws.NoResults:
                                 continue
 
-                            if supply_share > 0:
-                                new_excs.append(
-                                    {
-                                        "name": act["name"],
-                                        "product": act["reference product"],
-                                        "unit": act["unit"],
-                                        "location": act["location"],
-                                        "type": "technosphere",
-                                        "amount": supply_share,
-                                    }
-                                )
+                        if len(new_excs) > 0:
+                            total = 0
+                            for exc in new_excs:
+                                total += exc["amount"]
+                            for exc in new_excs:
+                                exc["amount"] /= total
 
-                        # if we do not find a supplier, it can be correct if it was
-                        # listed in `except regions`. In any case, we jump to the next technology.
-                        except ws.NoResults:
-                            continue
+                            new_market["exchanges"].extend(new_excs)
 
-                    if len(new_excs) > 0:
-                        total = 0
-                        for exc in new_excs:
-                            total += exc["amount"]
-                        for exc in new_excs:
-                            exc["amount"] /= total
+                            self.database.append(new_market)
+                        else:
+                            regions.remove(region)
 
-                        new_market["exchanges"].extend(new_excs)
+                    # if so far, a market for `World` has not been created
+                    # we need to create one then
+                    if "World" not in regions:
+                        world_market = self.fill_in_world_market(market, regions, i)
+                        self.database.append(world_market)
 
-                        self.database.append(new_market)
-                    else:
-                        regions.remove(region)
-
-                # if so far, a market for `World` has not been created
-                # we need to create one then
-                if "World" not in regions:
-                    world_market = self.fill_in_world_market(config_file, regions, i)
-                    self.database.append(world_market)
-
-                # if the new markets are meant to replace for other
-                # providers in the database
-                if "replaces" in config_file["markets"]:
-                    self.relink_to_new_datasets(
-                        replaces=config_file["markets"]["replaces"],
-                        new_name=config_file["markets"]["name"],
-                        new_ref=config_file["markets"]["reference product"],
-                        ratio=config_file["markets"].get("replacement ratio", 1),
-                        regions=regions,
-                    )
+                    # if the new markets are meant to replace for other
+                    # providers in the database
+                    if "replaces" in market:
+                        self.relink_to_new_datasets(
+                            replaces=market["replaces"],
+                            replaces_in=market.get("replaces in", None),
+                            new_name=market["name"],
+                            new_ref=market["reference product"],
+                            ratio=market.get("replacement ratio", 1),
+                            regions=regions,
+                        )
 
     def relink_to_new_datasets(
-        self, replaces: list, new_name: str, new_ref: str, ratio, regions: list
+        self,
+        replaces: list,
+        replaces_in: list,
+        new_name: str,
+        new_ref: str,
+        ratio,
+        regions: list,
     ) -> None:
         """
         Replaces exchanges that match `old_name` and `old_ref` with exchanges that
@@ -761,17 +840,30 @@ class Custom(BaseTransformation):
         :param old_ref: `product` of the exchange to replace
         :param new_name: `name`of the new provider
         :param new_ref: `product` of the new provider
-        :param regions: list of IAM regigons the new provider can originate from
+        :param regions: list of IAM regions the new provider can originate from
 
         """
 
         print("Relink to new markets.")
 
-        providers_to_replace = [(x["name"], x["reference product"]) for x in replaces]
+        if replaces_in:
+            datasets = [
+                ds
+                for ds in self.database
+                if any(
+                    k["name"] in ds["name"] and k["reference product"] in ds["reference product"]
+                    for k in replaces_in
+                )
+            ]
+        else:
+            datasets = self.database
 
-        for ds in self.database:
+        for ds in datasets:
             for exc in ds["exchanges"]:
-                if (exc["name"], exc.get("product")) in providers_to_replace and exc[
+                if any(
+                    k["name"] in exc["name"] and k["reference product"] in exc.get("reference product")
+                    for k in replaces
+                ) and exc[
                     "type"
                 ] == "technosphere":
 

@@ -62,7 +62,12 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
-from .custom import Custom, check_custom_scenario, check_inventories
+from .custom import (
+    Custom,
+    check_custom_scenario,
+    check_inventories,
+    detect_ei_activities_to_adjust,
+)
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
@@ -702,7 +707,7 @@ class NewDatabase:
 
     def __import_additional_inventories(self, list_inventories) -> List[dict]:
 
-        print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES /////////////////")
+        print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
 
@@ -890,6 +895,14 @@ class NewDatabase:
                         scenario["custom data"],
                     )
                     scenario["database"].extend(data)
+
+                    scenario["database"] = detect_ei_activities_to_adjust(
+                        self.custom_scenario,
+                        scenario["database"],
+                        scenario["model"],
+                        scenario["pathway"],
+                        scenario["custom data"],
+                    )
 
                     custom = Custom(
                         database=scenario["database"],
