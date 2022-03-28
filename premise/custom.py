@@ -216,7 +216,9 @@ def check_custom_scenario_dictionary(custom_scenario, need_for_inventories):
                 "inventories": And(
                     str,
                     Use(str),
-                    lambda f: Path(f).exists() and Path(f).suffix == ".xlsx" if need_for_inventories else True,
+                    lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"
+                    if need_for_inventories
+                    else True,
                 ),
                 "scenario data": And(
                     Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"

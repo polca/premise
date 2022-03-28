@@ -887,7 +887,9 @@ class NewDatabase:
                 ):
 
                     if self.custom_scenario[i]["inventories"] != "":
-                        data = self.__import_additional_inventories(self.custom_scenario)
+                        data = self.__import_additional_inventories(
+                            self.custom_scenario
+                        )
                         data = check_inventories(
                             self.custom_scenario,
                             data,
