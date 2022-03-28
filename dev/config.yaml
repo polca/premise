@@ -10,6 +10,82 @@
 
 # `production pathways` lists the different technologies
 production pathways:
+  # name given to a technology: this name is internal to premise
+  ADD:
+    # variables to look for in the scenario data file to fetch production volumes
+    # values fetched from the scenario data file as production volumes are used to calculate
+    # the supply share if markets are to be built
+    production volume:
+      # `variable` in `production volume` refers to the variable name in the scenario data file
+      variable: Production|Baking|Bread|Activated Dough Development
+    # OPTIONAL: `efficiency` and underlying `variable` refers to the values to look for in the scenario data file
+    # if the technology is believed to improve over time.
+    efficiency:
+      - variable: Efficiency|Baking|Bread|Activated Dough Development (Elec and steam)
+        # OPTIONAL: reference year to calculate efficiency delta from
+        reference year: 2025
+        # OPTIONAL: `includes` is optional, and indicates if the efficiency gains apply only on certain input or flows
+        # of the dataset
+        includes:
+          # efficiency gains will only apply to flows whose name contains `electricity`
+          technosphere:
+            - electricity
+          # efficiency gains will only apply to flows whose name contains `Water`
+          # case sensitive!!!
+          biosphere:
+            - Water
+      - variable: Efficiency|Baking|Bread|Activated Dough Development (Salt)
+        # OPTIONAL: `includes` is optional, and indicates if the efficiency gains apply only on certain input or flows
+        # of the dataset
+        includes:
+          # efficiency gains will only apply to flows whose name contains `electricity`
+          technosphere:
+            - salt
+    # dataset in the imported inventories that represents the technology
+    ecoinvent alias:
+      # name of the dataset
+      name: bread production, activated dough development
+      # reference product of the dataset
+      reference product: bread
+    # OPTIONAL: if the dataset should not be duplicated for a specific list of regions
+    # in this case, the dataset will not be duplicated for the IAM region "BRA"
+
+    except regions:
+      - BRA
+  SDM:
+    production volume:
+      variable: Production|Baking|Bread|Straight Dough Method
+    efficiency:
+      - variable: Efficiency|Baking|Bread|Straight Dough Method
+    ecoinvent alias:
+      name: bread production, straight dough method
+      reference product: bread
+    except regions:
+      - USA
+
+  DSM:
+    production volume:
+      variable: Production|Baking|Bread|Delayed Salt Method
+    efficiency:
+      - variable: Efficiency|Baking|Bread|Delayed Salt Method
+    ecoinvent alias:
+      name: bread production, delayed salt method
+      reference product: bread
+    except regions:
+      - WEU
+      - USA
+    # OPTIONAL: if the dataset should replace one or several specific providers in the database
+    # in this case, `bread production, delayed salt method` will replace
+    # `NMC111 hydroxide production, for Li-ion battery` wherever it is used
+    replaces:
+      - name: NMC111 hydroxide production, for Li-ion battery
+        reference product: NMC111 hydroxide
+    replaces in:
+      - name: market for NMC111 hydroxide
+        reference product: NMC111 hydroxide
+    # OPTIONAL: if the new dataset replaces another, but the substitution ratio is not 1:1
+    # it can be specified here
+    replacement ratio: 0.75
 
   BC:
     production volume:
