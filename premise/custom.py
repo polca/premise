@@ -208,7 +208,7 @@ def detect_ei_activities_to_adjust(custom_scenario, data, model, pathway, custom
     return data
 
 
-def check_custom_scenario_dictionary(custom_scenario):
+def check_custom_scenario_dictionary(custom_scenario, need_for_inventories):
 
     dict_schema = Schema(
         [
@@ -216,7 +216,7 @@ def check_custom_scenario_dictionary(custom_scenario):
                 "inventories": And(
                     str,
                     Use(str),
-                    lambda f: Path(f).exists() and Path(f).suffix == ".xlsx",
+                    lambda f: Path(f).exists() and Path(f).suffix == ".xlsx" if need_for_inventories else True,
                 ),
                 "scenario data": And(
                     Use(str), lambda f: Path(f).exists() and Path(f).suffix == ".xlsx"
@@ -244,7 +244,6 @@ def check_custom_scenario_dictionary(custom_scenario):
 def check_config_file(custom_scenario):
 
     for i, scenario in enumerate(custom_scenario):
-
         with open(scenario["config"], "r") as stream:
             config_file = yaml.safe_load(stream)
 
@@ -334,6 +333,19 @@ def check_config_file(custom_scenario):
                         "One of more providers listed under `markets/includes` is/are not listed "
                         "under `production pathways`."
                     )
+
+    needs_imported_inventories = [False for _ in custom_scenario]
+
+    for i, scenario in enumerate(custom_scenario):
+        with open(scenario["config"], "r") as stream:
+            config_file = yaml.safe_load(stream)
+
+        if len(list(config_file["production pathways"].keys())) != sum(
+            get_recursively(config_file["production pathways"], "exists in ecoinvent")
+        ):
+            needs_imported_inventories[i] = True
+
+    return sum(needs_imported_inventories)
 
 
 def check_scenario_data_file(custom_scenario, iam_scenarios):
@@ -471,11 +483,11 @@ def check_custom_scenario(custom_scenario: dict, iam_scenarios: list) -> dict:
     :return: scenario dictionary
     """
 
-    # Validate `custom_scenario` dictionary
-    check_custom_scenario_dictionary(custom_scenario)
-
     # Validate yaml config file
-    check_config_file(custom_scenario)
+    need_for_ext_inventories = check_config_file(custom_scenario)
+
+    # Validate `custom_scenario` dictionary
+    check_custom_scenario_dictionary(custom_scenario, need_for_ext_inventories)
 
     # Validate scenario data
     check_scenario_data_file(custom_scenario, iam_scenarios)
@@ -853,8 +865,9 @@ class Custom(BaseTransformation):
                 ds
                 for ds in self.database
                 if any(
-                    k["name"] in ds["name"]
-                    and k["reference product"] in ds["reference product"]
+                    k["name"].lower() in ds["name"].lower()
+                    and k["reference product"].lower()
+                    in ds["reference product"].lower()
                     for k in replaces_in
                 )
             ]
@@ -865,8 +878,8 @@ class Custom(BaseTransformation):
             for exc in ds["exchanges"]:
                 if (
                     any(
-                        k["name"] in exc["name"]
-                        and k["reference product"] in exc.get("reference product")
+                        k["name"].lower() in exc["name"].lower()
+                        and k["reference product"].lower() in exc.get("product").lower()
                         for k in replaces
                     )
                     and exc["type"] == "technosphere"

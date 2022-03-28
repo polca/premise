@@ -886,15 +886,16 @@ class NewDatabase:
                     or "update_custom_scenario" not in scenario["exclude"]
                 ):
 
-                    data = self.__import_additional_inventories(self.custom_scenario)
-                    data = check_inventories(
-                        self.custom_scenario,
-                        data,
-                        scenario["model"],
-                        scenario["pathway"],
-                        scenario["custom data"],
-                    )
-                    scenario["database"].extend(data)
+                    if self.custom_scenario[i]["inventories"] != "":
+                        data = self.__import_additional_inventories(self.custom_scenario)
+                        data = check_inventories(
+                            self.custom_scenario,
+                            data,
+                            scenario["model"],
+                            scenario["pathway"],
+                            scenario["custom data"],
+                        )
+                        scenario["database"].extend(data)
 
                     scenario["database"] = detect_ei_activities_to_adjust(
                         self.custom_scenario,

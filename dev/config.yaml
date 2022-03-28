@@ -49,6 +49,7 @@ production pathways:
       reference product: bread
     # OPTIONAL: if the dataset should not be duplicated for a specific list of regions
     # in this case, the dataset will not be duplicated for the IAM region "BRA"
+
     except regions:
       - BRA
   SDM:
@@ -176,6 +177,7 @@ markets:
     # OPTIONAL: if the new market is supposed to replace one or several other providers
     # in the database.
     # in this case, `market for croissants` will replace providers of carbon back and clay bricks.
+    # case insensitive, must contain this string in `name`and `reference product`
     replaces:
       - name: market for tap water
         reference product: tap water
