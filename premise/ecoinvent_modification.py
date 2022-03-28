@@ -712,25 +712,27 @@ class NewDatabase:
         data = []
 
         for file in list_inventories:
-            additional = AdditionalInventory(
-                database=self.database,
-                version_in=file["ecoinvent version"]
-                if "ecoinvent version" in file
-                else "3.8",
-                version_out=self.version,
-                path=file["inventories"],
-            )
-            additional.prepare_inventory()
 
-            # if the inventories are to be duplicated
-            # to be made specific to each IAM region
-            # we flag them
-            if "region_duplicate" in file:
-                if file["region_duplicate"]:
-                    for ds in additional.import_db:
-                        ds["duplicate"] = True
+            if file["inventories"] != "":
+                additional = AdditionalInventory(
+                    database=self.database,
+                    version_in=file["ecoinvent version"]
+                    if "ecoinvent version" in file
+                    else "3.8",
+                    version_out=self.version,
+                    path=file["inventories"],
+                )
+                additional.prepare_inventory()
 
-            data.extend(additional.merge_inventory())
+                # if the inventories are to be duplicated
+                # to be made specific to each IAM region
+                # we flag them
+                if "region_duplicate" in file:
+                    if file["region_duplicate"]:
+                        for ds in additional.import_db:
+                            ds["duplicate"] = True
+
+                data.extend(additional.merge_inventory())
 
         return data
 
@@ -886,8 +888,9 @@ class NewDatabase:
                     or "update_custom_scenario" not in scenario["exclude"]
                 ):
 
-                    if self.custom_scenario[i]["inventories"] != "":
-                        data = self.__import_additional_inventories(self.custom_scenario)
+                    data = self.__import_additional_inventories(self.custom_scenario)
+
+                    if data:
                         data = check_inventories(
                             self.custom_scenario,
                             data,
