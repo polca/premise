@@ -436,9 +436,9 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     print(df.columns)
     print(list_scenarios)
 
-    print(df.iloc[:, (len(list_scenarios) - 1) * -1:].std(axis=0) > 0)
+    print(df.iloc[:, (len(list_scenarios) - 1) * -1 :].std(axis=0) > 0)
 
-    df = df.loc[df.iloc[:, (len(list_scenarios) - 1) * -1:].std(axis=0) > 0, :]
+    df = df.loc[df.iloc[:, (len(list_scenarios) - 1) * -1 :].std(axis=0) > 0, :]
 
     after = len(df)
     print(f"Dropped {before - after} duplicates.")

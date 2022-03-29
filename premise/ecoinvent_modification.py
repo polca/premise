@@ -953,8 +953,6 @@ class NewDatabase:
             self.database, self.scenarios, db_name=name, fp=filepath
         )
 
-
-
         print("Done!")
 
         self.database = check_for_duplicates(self.database)
