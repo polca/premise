@@ -949,9 +949,11 @@ class NewDatabase:
             print(f"Prepare database {scen + 1}.")
             scenario["database"] = self.prepare_db_for_export(scenario)
 
-        self.database = build_superstructure_db(
+        return build_superstructure_db(
             self.database, self.scenarios, db_name=name, fp=filepath
         )
+
+
 
         print("Done!")
 
