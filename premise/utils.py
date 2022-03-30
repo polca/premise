@@ -432,7 +432,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     # Remove `original` column
     df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
     # Remove rows whose values across scenarios do not change
-    df = df.loc[df.loc[:, list_scenarios[1] :].std(axis=1) > 0, :]
+    df = df.loc[df.loc[:, list_scenarios[1]:].std(axis=1) > 0, :]
 
     after = len(df)
     print(f"Dropped {before - after} duplicates.")
