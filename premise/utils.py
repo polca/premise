@@ -423,13 +423,19 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
     filepath = filepath / f"scenario_diff_{db_name}.xlsx"
 
-    df = pd.DataFrame(l_modified, columns=[""] * len(columns))
+    df = pd.DataFrame(l_modified[1:], columns=l_modified[0])
+
     before = len(df)
+
+    # Drop duplicate rows
     df = df.drop_duplicates()
+    # Remove `original` column
+    df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
+    # Remove rows whose values across scenarios do not change
+    df = df.loc[df.loc[:, list_scenarios[1] :].std(axis=1) > 0, :]
+
     after = len(df)
     print(f"Dropped {before - after} duplicates.")
-
-    df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
 
     df.to_excel(filepath, index=False)
 
