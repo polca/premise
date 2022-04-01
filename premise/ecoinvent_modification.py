@@ -843,7 +843,7 @@ class NewDatabase:
             database=self.database, iam_data=self.iam_data, scenarios=self.scenarios
         )
 
-        #electricity.create_region_specific_power_plants()
+        # electricity.create_region_specific_power_plants()
         electricity.update_electricity_efficiency()
         self.database = electricity.database
 
