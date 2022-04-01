@@ -15,6 +15,7 @@ from collections import defaultdict
 import wurst
 import csv
 from datetime import date
+import sys
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import *
@@ -1029,25 +1030,117 @@ class Electricity(BaseTransformation):
                 f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs"
             )
 
-
-
         all_techs = [
             tech
             for tech in self.iam_data.efficiency.variables.values
             if tech in self.iam_data.electricity_markets.variables.values
         ]
 
+        scaling_list = tuple(
+            (
+                tech,
+                self.iam_to_ecoinvent_loc[scenario][loc],
+                scenario,
+                1
+                / self.find_iam_efficiency_change(
+                    variable=tech,
+                    location=loc,
+                    year=int(scenario.split("::")[-1]),
+                    scenario=scenario,
+                ),
+            )
+            for scenario in self.scenario_labels
+            for loc in self.regions[scenario]
+            for tech in all_techs
+        )
 
+        scaling_dict = {
+            tech: {
+                scenario: {
+                    loc: 1
+                    / self.find_iam_efficiency_change(
+                        variable=tech,
+                        location=loc,
+                        year=int(scenario.split("::")[-1]),
+                        scenario=scenario,
+                    )
+                    for loc in self.regions[scenario]
+                }
+                for scenario in self.scenario_labels
+            }
+            for tech in all_techs
+        }
 
+        for _, row in self.database.iterrows():
+
+            if row[s.exchange, c.type] == "production":
+                continue
+
+            for scenario in self.scenario_labels:
+                tech = None
+                for tech in all_techs:
+                    if row[s.tag, tech]:
+                        break
+
+                if tech:
+                    scaling_factor = scaling_dict[tech][scenario][
+                        self.ecoinvent_to_iam_loc[scenario][row[s.exchange, c.cons_loc]]
+                    ]
+
+                    row[scenario, c.amount] = (
+                        row[s.ecoinvent, c.amount] * scaling_factor
+                    )
+
+        print("Done!")
+
+        for tech in all_techs:
+            _tag_filter = self.database[(s.tag, tech)]
+            for scenario in self.scenario_labels:
+                for loc in self.regions[scenario]:
+                    _sub_tag_filter = _tag_filter.where(
+                        self.database[_tag_filter][(s.exchange, c.cons_loc)].isin(
+                            self.iam_to_ecoinvent_loc[scenario][loc]
+                        ),
+                        False,
+                    )
+                    _sub_tag_filter = _sub_tag_filter.where(
+                        self.database[_tag_filter][(s.exchange, c.type)]
+                        != "production",
+                        False,
+                    )
+
+                    # Scaling down input exchanges
+                    self.database.loc[_sub_tag_filter, (scenario, c.amount)] = (
+                        self.database.loc[_sub_tag_filter, (s.ecoinvent, c.amount)] * -1
+                    )
+
+        print("Done!")
+
+        for i in scaling_list:
+
+            if i[-1]:
+                _tag_filter = self.database[(s.tag, i[0])]
+                _tag_filter = _tag_filter.where(
+                    self.database[_tag_filter][(s.exchange, c.cons_loc)].isin(i[1]),
+                    False,
+                )
+
+                if _tag_filter.any():
+                    # print(i)
+                    # Filter out production exchanges
+                    _tag_filter = _tag_filter.where(
+                        self.database[_tag_filter][(s.exchange, c.type)]
+                        != "production",
+                        False,
+                    )
+
+        print("Done!")
+
+        return self.database
 
         for technology in all_techs:
 
             print("Rescale inventories and emissions for", technology)
-
-
-
-
-            _tag_filter = self.database[(s.tag, technology)]
 
             subset = self.database[_filter]
 
@@ -1093,14 +1186,6 @@ class Electricity(BaseTransformation):
                         ), f"No dataset found for {technology}"
 
                         for loc in locs_map:
-
-                            # Find relative efficiency change indicated by the IAM
-                            scaling_factor = 1 / self.find_iam_efficiency_change(
-                                variable=technology,
-                                location=loc,
-                                year=year,
-                                scenario=scenario,
-                            )
 
                             assert not np.isnan(scaling_factor), (
                                 f"Scaling factor in {loc} for {technology} "
@@ -1220,10 +1305,6 @@ class Electricity(BaseTransformation):
                             writer.writerow(row)
 
             self.database = pd.concat([self.database, subset])
-
-        print("Done!")
-
-        return self.database
 
     def create_region_specific_power_plants(self):
         """
