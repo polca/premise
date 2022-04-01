@@ -8,14 +8,13 @@ import numpy as np
 import pandas as pd
 from constructive_geometries import resolved_row
 
+from premise import geomap
 from premise.framework.logics import (
     contains,
     contains_any_from_list,
     does_not_contain,
     equals,
 )
-
-from premise import geomap
 from premise.utils import c, create_hash, recalculate_hash, s
 
 

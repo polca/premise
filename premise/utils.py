@@ -10,9 +10,8 @@ import pandas as pd
 import yaml
 from wurst import searching as ws
 
-from .framework.tags import TagLibrary
-
 from . import DATA_DIR
+from .framework.tags import TagLibrary
 
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
@@ -376,6 +375,7 @@ def add_flag(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
+
 def add_tags(tag_lib: TagLibrary, df: pd.DataFrame) -> pd.DataFrame:
 
     for tag in tag_lib.tags():
@@ -388,8 +388,6 @@ def add_tags(tag_lib: TagLibrary, df: pd.DataFrame) -> pd.DataFrame:
 
             for tag in tag_lib.get_tag[activity]:
                 df.loc[idx, (s.tag, tag)] = True
-
-
 
     return df
 

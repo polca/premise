@@ -2,8 +2,9 @@ import csv
 
 import yaml
 
-from . import DATA_DIR
 from premise.framework.transformation_tools import *
+
+from . import DATA_DIR
 from .utils import c
 
 GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
