@@ -1036,23 +1036,23 @@ class Electricity(BaseTransformation):
             if tech in self.iam_data.electricity_markets.variables.values
         ]
 
-        scaling_list = tuple(
-            (
-                tech,
-                self.iam_to_ecoinvent_loc[scenario][loc],
-                scenario,
-                1
-                / self.find_iam_efficiency_change(
-                    variable=tech,
-                    location=loc,
-                    year=int(scenario.split("::")[-1]),
-                    scenario=scenario,
-                ),
-            )
-            for scenario in self.scenario_labels
-            for loc in self.regions[scenario]
-            for tech in all_techs
-        )
+        # scaling_list = tuple(
+        #     (
+        #         tech,
+        #         self.iam_to_ecoinvent_loc[scenario][loc],
+        #         scenario,
+        #         1
+        #         / self.find_iam_efficiency_change(
+        #             variable=tech,
+        #             location=loc,
+        #             year=int(scenario.split("::")[-1]),
+        #             scenario=scenario,
+        #         ),
+        #     )
+        #     for scenario in self.scenario_labels
+        #     for loc in self.regions[scenario]
+        #     for tech in all_techs
+        # )
 
         scaling_dict = {
             tech: {
@@ -1071,78 +1071,59 @@ class Electricity(BaseTransformation):
             for tech in all_techs
         }
 
-        for _, row in self.database.iterrows():
+        scaling_dict_gains = {
+            tech: {
+                scenario: {
+                    loc: {
+                        substance: 1
+                            / self.find_gains_emissions_change(
+                                pollutant=substance,
+                                location=self.iam_to_gains[scenario][loc],
+                                sector=tech,
+                            ) for substance in self.iam_data.emissions.pollutant.values
+                    }
+                    for loc in self.regions[scenario]
+                }
+                for scenario in self.scenario_labels
+            }
+            for tech in self.iam_data.emissions.sector.values
+        }
 
-            if row[s.exchange, c.type] == "production":
-                continue
-
-            for scenario in self.scenario_labels:
-                tech = None
-                for tech in all_techs:
-                    if row[s.tag, tech]:
-                        break
-
-                if tech:
-                    scaling_factor = scaling_dict[tech][scenario][
-                        self.ecoinvent_to_iam_loc[scenario][row[s.exchange, c.cons_loc]]
-                    ]
-
-                    row[scenario, c.amount] = (
-                        row[s.ecoinvent, c.amount] * scaling_factor
-                    )
-
-        print("Done!")
-
-        for tech in all_techs:
-            _tag_filter = self.database[(s.tag, tech)]
-            for scenario in self.scenario_labels:
-                for loc in self.regions[scenario]:
-                    _sub_tag_filter = _tag_filter.where(
-                        self.database[_tag_filter][(s.exchange, c.cons_loc)].isin(
-                            self.iam_to_ecoinvent_loc[scenario][loc]
-                        ),
-                        False,
-                    )
-                    _sub_tag_filter = _sub_tag_filter.where(
-                        self.database[_tag_filter][(s.exchange, c.type)]
-                        != "production",
-                        False,
-                    )
-
-                    # Scaling down input exchanges
-                    self.database.loc[_sub_tag_filter, (scenario, c.amount)] = (
-                        self.database.loc[_sub_tag_filter, (s.ecoinvent, c.amount)] * -1
-                    )
-
-        print("Done!")
-
-        for i in scaling_list:
-
-            if i[-1]:
-                _tag_filter = self.database[(s.tag, i[0])]
-                _tag_filter = _tag_filter.where(
-                    self.database[_tag_filter][(s.exchange, c.cons_loc)].isin(i[1]),
-                    False,
-                )
-
-                if _tag_filter.any():
-                    # print(i)
-                    # Filter out production exchanges
-                    _tag_filter = _tag_filter.where(
-                        self.database[_tag_filter][(s.exchange, c.type)]
-                        != "production",
-                        False,
-                    )
-
-        print("Done!")
-
-        return self.database
+        # for tech in all_techs:
+        #     print(tech)
+        #     _tag_filter = self.database[(s.tag, tech)]
+        #     for scenario in self.scenario_labels:
+        #         print(scenario)
+        #         for loc in self.regions[scenario]:
+        #
+        #             _sub_tag_filter = _tag_filter.where(
+        #                 self.database[_tag_filter][(s.exchange, c.cons_loc)].isin(
+        #                     self.iam_to_ecoinvent_loc[scenario][loc]
+        #                 ),
+        #                 False,
+        #             )
+        #             _sub_tag_filter = _sub_tag_filter.where(
+        #                 self.database[_tag_filter][(s.exchange, c.type)]
+        #                 != "production",
+        #                 False,
+        #             )
+        #
+        #             # Scaling down input exchanges
+        #             self.database.loc[_sub_tag_filter, (scenario, c.amount)] = (
+        #                 self.database.loc[_sub_tag_filter, (s.ecoinvent, c.amount)] * -1
+        #             )
+        #
+        # print("Done!")
+        #
+        #
+        # return self.database
 
         for technology in all_techs:
 
             print("Rescale inventories and emissions for", technology)
 
-            subset = self.database[_filter]
+            _filter = self.database[(s.tag, technology)]
+            subset = self.database.loc[_filter]
 
             self.database = self.database[~_filter]
 
@@ -1187,10 +1168,15 @@ class Electricity(BaseTransformation):
 
                         for loc in locs_map:
 
-                            assert not np.isnan(scaling_factor), (
-                                f"Scaling factor in {loc} for {technology} "
-                                f"in scenario {scenario} in {year} is NaN."
-                            )
+                            scaling_factor = scaling_dict[technology][scenario][loc]
+
+                            #assert not np.isnan(scaling_factor), (
+                            #    f"Scaling factor in {loc} for {technology} "
+                            #    f"in scenario {scenario} in {year} is NaN."
+                            #)
+
+                            if np.isnan(scaling_factor) or scaling_factor == 1:
+                                continue
 
                             __filters = contains_any_from_list(
                                 (s.exchange, c.cons_loc), locs_map[loc]
@@ -1268,29 +1254,23 @@ class Electricity(BaseTransformation):
                             if technology in self.iam_data.emissions.sector:
                                 for ei_sub, gains_sub in self.gains_substances.items():
 
-                                    scaling_factor = (
-                                        1
-                                        / self.find_gains_emissions_change(
-                                            pollutant=gains_sub,
-                                            sector=technology,
-                                            location=self.iam_to_gains[scenario][loc],
+                                    scaling_factor_gains = scaling_dict_gains[technology][scenario][loc][gains_sub]
+
+                                    if scaling_factor_gains != 1:
+                                        __filters_bio = __filters & equals(
+                                            (s.exchange, c.prod_name), ei_sub
                                         )
-                                    )
 
-                                    __filters_bio = __filters & equals(
-                                        (s.exchange, c.prod_name), ei_sub
-                                    )
-
-                                    # update location in the (scenario, c.cons_loc) column
-                                    subset.loc[
-                                        __filters_bio(subset), (scenario, c.amount)
-                                    ] = (
+                                        # update location in the (scenario, c.cons_loc) column
                                         subset.loc[
-                                            __filters_bio(subset),
-                                            (s.ecoinvent, c.amount),
-                                        ]
-                                        * scaling_factor
-                                    )
+                                            __filters_bio(subset), (scenario, c.amount)
+                                        ] = (
+                                            subset.loc[
+                                                __filters_bio(subset),
+                                                (s.ecoinvent, c.amount),
+                                            ]
+                                            * scaling_factor
+                                        )
 
                     with open(
                         DATA_DIR
