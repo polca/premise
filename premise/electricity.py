@@ -9,18 +9,19 @@ the newly created electricity markets.
 
 """
 
+import csv
 import os
+import sys
 from collections import defaultdict
+from datetime import date
 
 import wurst
-import csv
-from datetime import date
-import sys
+
+from premise import DATA_DIR
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import *
 from .utils import c
-from premise import DATA_DIR
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
