@@ -2,10 +2,8 @@ import csv
 
 import yaml
 
-from premise.framework.logics import contains, does_not_contain
-
 from . import DATA_DIR
-from .transformation_tools import *
+from premise.framework.transformation_tools import *
 from .utils import c
 
 GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (

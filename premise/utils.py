@@ -10,6 +10,8 @@ import pandas as pd
 import yaml
 from wurst import searching as ws
 
+from .framework.tags import TagLibrary
+
 from . import DATA_DIR
 
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
@@ -49,6 +51,7 @@ class c(enum.Enum):
 class s(enum.Enum):
     exchange = "exchange"
     ecoinvent = "ecoinvent"
+    tag = "tag"
 
 
 def match(reference: str, candidates: List[str]) -> [str, None]:
@@ -355,10 +358,40 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
         else:
             tuples.append((s.ecoinvent, col))
 
-    return pd.DataFrame(
+    df = pd.DataFrame(
         data_to_ret,
         columns=pd.MultiIndex.from_tuples(tuples),
     )
+
+    # create tag columns
+    df = add_tags(TagLibrary().load(), df)
+
+    # create flag column
+    df = add_flag(df)
+
+    return df
+
+
+def add_flag(df: pd.DataFrame) -> pd.DataFrame:
+
+    return df
+
+def add_tags(tag_lib: TagLibrary, df: pd.DataFrame) -> pd.DataFrame:
+
+    for tag in tag_lib.tags():
+        df[(s.tag, tag)] = False
+
+    for idx, row in df.iterrows():
+        activity = row[(s.exchange, c.cons_name)]
+
+        if activity in tag_lib:
+
+            for tag in tag_lib.get_tag[activity]:
+                df.loc[idx, (s.tag, tag)] = True
+
+
+
+    return df
 
 
 def extract_exc(row: pd.Series) -> dict:
@@ -438,8 +471,6 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
 
     scenarios = [col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent]]
 
-
-
     cols = {col[0] for col in scenarios} if db_type == "single" else {s.ecoinvent}
 
     # if we are building a superstructure database
@@ -447,7 +478,9 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
     # of ecoinvent
 
     if db_type != "single":
-        col_tuples = [(col, c.comment) for col in df.columns.levels[0] if col != s.exchange]
+        col_tuples = [
+            (col, c.comment) for col in df.columns.levels[0] if col != s.exchange
+        ]
         df[(s.ecoinvent, c.comment)] = df[col_tuples].sum(axis=1)
 
     # else, we fill NaNs in scenario columns

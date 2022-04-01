@@ -13,10 +13,13 @@ import os
 from collections import defaultdict
 
 import wurst
+import csv
+from datetime import date
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import *
 from .utils import c
+from premise import DATA_DIR
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -88,9 +91,6 @@ class Electricity(BaseTransformation):
 
     def __init__(self, database, iam_data, scenarios):
         super().__init__(database, iam_data, scenarios)
-        mapping = InventorySet(self.database)
-        self.powerplant_map = mapping.generate_powerplant_map()
-        self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
         self.losses = get_losses_per_country_dict()
         self.production_per_tech = get_production_per_tech_dict()
         self.gains_substances = get_gains_to_ecoinvent_emissions()
@@ -1029,29 +1029,29 @@ class Electricity(BaseTransformation):
                 f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs"
             )
 
+
+
         all_techs = [
             tech
             for tech in self.iam_data.efficiency.variables.values
             if tech in self.iam_data.electricity_markets.variables.values
         ]
 
-        technologies_map = self.get_iam_mapping(
-            activity_map=self.powerplant_map,
-            technologies=all_techs,
-        )
 
-        for technology in technologies_map:
-            # scenarios
-            dict_technology = technologies_map[technology]
+
+
+        for technology in all_techs:
+
             print("Rescale inventories and emissions for", technology)
 
-            _filters = contains_any_from_list(
-                (s.exchange, c.cons_name),
-                list(dict_technology["technology filters"]),
-            )
 
-            subset = self.database[_filters(self.database)]
-            self.database = self.database[~_filters(self.database)]
+
+
+            _tag_filter = self.database[(s.tag, technology)]
+
+            subset = self.database[_filter]
+
+            self.database = self.database[~_filter]
 
             for s_, scenario in enumerate(self.scenario_labels):
                 model, pathway, year = scenario.split("::")
@@ -1095,7 +1095,7 @@ class Electricity(BaseTransformation):
                         for loc in locs_map:
 
                             # Find relative efficiency change indicated by the IAM
-                            scaling_factor = 1 / dict_technology["IAM_eff_func"](
+                            scaling_factor = 1 / self.find_iam_efficiency_change(
                                 variable=technology,
                                 location=loc,
                                 year=year,

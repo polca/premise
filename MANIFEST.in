@@ -18,3 +18,4 @@ include premise/data/fuels/*.txt
 include premise/data/fuels/*.csv
 include premise/data/GAINS_emission_factors/*.csv
 include premise/data/renewables/*.csv
+include premise/data/activities_mapping/*.yaml
