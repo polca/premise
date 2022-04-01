@@ -27,7 +27,7 @@ def package_files(directory):
 
 setup(
     name="premise",
-    version="1.0.7",
+    version="1.0.8",
     packages=packages,
     author="Romain Sacchi <romain.sacchi@psi.ch>, Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>",
     license=open("LICENSE").read(),
