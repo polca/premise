@@ -1,7 +1,9 @@
-import yaml
-from premise import DATA_DIR
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
+
+import yaml
+
+from premise import DATA_DIR
 
 DIR_MAPS = DATA_DIR / "activities_mapping"
 
@@ -13,7 +15,6 @@ class TagLibrary:
 
         def __getitem__(self, item):
             return self.collectdictref[item]
-
 
     def __init__(self):
         self.__forward = {}
