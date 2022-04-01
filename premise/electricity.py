@@ -1077,11 +1077,12 @@ class Electricity(BaseTransformation):
                 scenario: {
                     loc: {
                         substance: 1
-                            / self.find_gains_emissions_change(
-                                pollutant=substance,
-                                location=self.iam_to_gains[scenario][loc],
-                                sector=tech,
-                            ) for substance in self.iam_data.emissions.pollutant.values
+                        / self.find_gains_emissions_change(
+                            pollutant=substance,
+                            location=self.iam_to_gains[scenario][loc],
+                            sector=tech,
+                        )
+                        for substance in self.iam_data.emissions.pollutant.values
                     }
                     for loc in self.regions[scenario]
                 }
@@ -1171,10 +1172,10 @@ class Electricity(BaseTransformation):
 
                             scaling_factor = scaling_dict[technology][scenario][loc]
 
-                            #assert not np.isnan(scaling_factor), (
+                            # assert not np.isnan(scaling_factor), (
                             #    f"Scaling factor in {loc} for {technology} "
                             #    f"in scenario {scenario} in {year} is NaN."
-                            #)
+                            # )
 
                             if np.isnan(scaling_factor) or scaling_factor == 1:
                                 continue
@@ -1255,7 +1256,9 @@ class Electricity(BaseTransformation):
                             if technology in self.iam_data.emissions.sector:
                                 for ei_sub, gains_sub in self.gains_substances.items():
 
-                                    scaling_factor_gains = scaling_dict_gains[technology][scenario][loc][gains_sub]
+                                    scaling_factor_gains = scaling_dict_gains[
+                                        technology
+                                    ][scenario][loc][gains_sub]
 
                                     if scaling_factor_gains != 1:
                                         __filters_bio = __filters & equals(
