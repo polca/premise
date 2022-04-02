@@ -163,7 +163,7 @@ class BaseTransformation:
 
         self.cache = {}
 
-    def update_new_efficiency_in_comment(self, scenario, iam_loc, old_ei_eff, new_eff):
+    def update_new_efficiency_in_comment(self, scenarios, iam_loc, old_ei_eff, new_eff):
         """
         Update the old efficiency value in the ecoinvent dataset by the newly calculated one.
         :param dataset: dataset
@@ -172,13 +172,12 @@ class BaseTransformation:
         :type scaling_factor: float
         """
 
-        model, pathway, year = scenario.split("::")
 
-        new_txt = (
+        new_txt = [(
             f" 'premise' has modified the efficiency of this dataset, from an original "
-            f"{int(old_ei_eff * 100)}% to {int(new_eff * 100)}%, according to IAM model {model.upper()}, "
-            f"scenario {pathway} for the region {iam_loc} in {year}."
-        )
+            f"{int(old_ei_eff * 100)}% to {int(new_eff[i] * 100)}%, according to IAM model {scenario.split('::')[0].upper()}, "
+            f"scenario {scenario.split('::')[1]} for the region {iam_loc} in {scenario.split('::')[-1]}."
+        ) for i, scenario in enumerate(scenarios)]
 
         return new_txt
 
@@ -677,7 +676,7 @@ class BaseTransformation:
 
         return rate
 
-    def find_gains_emissions_change(self, pollutant, location, sector):
+    def find_gains_emissions_change(self, pollutant, location, sector, scenarios):
         """
         Return the relative change in emissions for a given pollutant, location and sector.
         :param pollutant: name of pollutant
@@ -687,13 +686,21 @@ class BaseTransformation:
         :rtype: float
         """
 
+        location = [self.iam_to_gains[s][location]
+                    if location not in self.iam_data.emissions.region else location
+                    for s in scenarios
+                    ]
+
+
         scaling_factor = self.iam_data.emissions.loc[
             dict(
                 region=location,
                 pollutant=pollutant,
                 sector=sector,
+                scenario=scenarios
             )
-        ].values.item(0)
+        ]
+        scaling_factor = scaling_factor.mean(dim=["year", "region"]).values
 
         return scaling_factor
 
@@ -708,10 +715,9 @@ class BaseTransformation:
         """
 
         scaling_factor = self.iam_data.efficiency.sel(
-            region=location, variables=variable, year=int(year), scenario=scenario
-        ).values.item(0)
+            region=location, variables=variable, year=year, scenario=scenario
+        )
 
-        if scaling_factor in (np.nan, np.inf):
-            scaling_factor = 1
+        scaling_factor = scaling_factor.mean(dim="year").values
 
         return scaling_factor
