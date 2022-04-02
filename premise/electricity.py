@@ -1130,24 +1130,28 @@ class Electricity(BaseTransformation):
 
             locs = [self.regions[scenario] for scenario in self.scenario_labels]
             locs = list(set([item for sublist in locs for item in sublist]))
-            iam_years = [int(scenario.split("::")[-1]) for scenario in self.scenario_labels]
+            iam_years = [
+                int(scenario.split("::")[-1]) for scenario in self.scenario_labels
+            ]
 
             for iam_loc in locs:
 
-                scenarios = [scen for scen in self.scenario_labels if iam_loc in self.regions[scen]]
+                scenarios = [
+                    scen
+                    for scen in self.scenario_labels
+                    if iam_loc in self.regions[scen]
+                ]
                 ei_locs = [self.iam_to_ecoinvent_loc[l].get(iam_loc) for l in scenarios]
                 ei_locs = list(set([item for sublist in ei_locs for item in sublist]))
 
-                __filters = contains_any_from_list(
-                    (s.exchange, c.cons_loc), ei_locs
-                )
+                __filters = contains_any_from_list((s.exchange, c.cons_loc), ei_locs)
 
-                scaling_factors = (1 / self.find_iam_efficiency_change(
+                scaling_factors = 1 / self.find_iam_efficiency_change(
                     variable=technology,
                     location=iam_loc,
                     year=iam_years,
                     scenario=scenarios,
-                ))
+                )
 
                 scaling_factors = np.nan_to_num(scaling_factors, nan=1)
 
@@ -1155,9 +1159,7 @@ class Electricity(BaseTransformation):
                     continue
 
                 # we log changes in efficiency
-                __filters_prod = __filters & equals(
-                    (s.exchange, c.type), "production"
-                )
+                __filters_prod = __filters & equals((s.exchange, c.type), "production")
 
                 new_eff_list = []
                 new_comment_list = []
@@ -1182,11 +1184,11 @@ class Electricity(BaseTransformation):
                 if len(new_eff_list) > 0:
                     subset.loc[
                         __filters_prod(subset),
-                        [(scenario, c.efficiency) for scenario in scenarios]
+                        [(scenario, c.efficiency) for scenario in scenarios],
                     ] = new_eff_list
                     subset.loc[
                         __filters_prod(subset),
-                        [(scenario, c.comment) for scenario in scenarios]
+                        [(scenario, c.comment) for scenario in scenarios],
                     ] = new_comment_list
 
                 # Rescale all the technosphere exchanges
@@ -1200,46 +1202,47 @@ class Electricity(BaseTransformation):
                 # covered by GAINS
 
                 __filters_tech = (
-                        __filters
-                        & does_not_contain((s.exchange, c.type), "production")
-                        & ~contains_any_from_list(
-                    (s.exchange, c.prod_name),
-                    list(self.gains_substances.keys()),
-                )
+                    __filters
+                    & does_not_contain((s.exchange, c.type), "production")
+                    & ~contains_any_from_list(
+                        (s.exchange, c.prod_name),
+                        list(self.gains_substances.keys()),
+                    )
                 )
 
-                subset.loc[__filters_tech(subset),
-                           [(scenario, c.amount) for scenario in scenarios]] = (
-                        subset.loc[
-                            __filters_tech(subset),
-                            (s.ecoinvent, c.amount)
-                        ].values[..., None]
-                        * scaling_factors
+                subset.loc[
+                    __filters_tech(subset),
+                    [(scenario, c.amount) for scenario in scenarios],
+                ] = (
+                    subset.loc[__filters_tech(subset), (s.ecoinvent, c.amount)].values[
+                        ..., None
+                    ]
+                    * scaling_factors
                 )
 
                 if technology in self.iam_data.emissions.sector:
                     for ei_sub, gains_sub in self.gains_substances.items():
 
-                        scaling_factor_gains = (1 / self.find_gains_emissions_change(
-                            pollutant=gains_sub, location=iam_loc, sector=technology,
-                            scenarios=scenarios
-                        ))
+                        scaling_factor_gains = 1 / self.find_gains_emissions_change(
+                            pollutant=gains_sub,
+                            location=iam_loc,
+                            sector=technology,
+                            scenarios=scenarios,
+                        )
 
                         __filters_bio = __filters & equals(
                             (s.exchange, c.prod_name), ei_sub
                         )
 
-
                         # update location in the (scenario, c.cons_loc) column
                         subset.loc[
                             __filters_bio(subset),
-                            [(scenario, c.amount) for scenario in scenarios]
+                            [(scenario, c.amount) for scenario in scenarios],
                         ] = (
-                                subset.loc[
-                                    __filters_bio(subset),
-                                    (s.ecoinvent, c.amount)
-                                ].values[..., None]
-                                * scaling_factor_gains
+                            subset.loc[
+                                __filters_bio(subset), (s.ecoinvent, c.amount)
+                            ].values[..., None]
+                            * scaling_factor_gains
                         )
 
                     # with open(

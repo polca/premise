@@ -172,12 +172,14 @@ class BaseTransformation:
         :type scaling_factor: float
         """
 
-
-        new_txt = [(
-            f" 'premise' has modified the efficiency of this dataset, from an original "
-            f"{int(old_ei_eff * 100)}% to {int(new_eff[i] * 100)}%, according to IAM model {scenario.split('::')[0].upper()}, "
-            f"scenario {scenario.split('::')[1]} for the region {iam_loc} in {scenario.split('::')[-1]}."
-        ) for i, scenario in enumerate(scenarios)]
+        new_txt = [
+            (
+                f" 'premise' has modified the efficiency of this dataset, from an original "
+                f"{int(old_ei_eff * 100)}% to {int(new_eff[i] * 100)}%, according to IAM model {scenario.split('::')[0].upper()}, "
+                f"scenario {scenario.split('::')[1]} for the region {iam_loc} in {scenario.split('::')[-1]}."
+            )
+            for i, scenario in enumerate(scenarios)
+        ]
 
         return new_txt
 
@@ -686,18 +688,16 @@ class BaseTransformation:
         :rtype: float
         """
 
-        location = [self.iam_to_gains[s][location]
-                    if location not in self.iam_data.emissions.region else location
-                    for s in scenarios
-                    ]
-
+        location = [
+            self.iam_to_gains[s][location]
+            if location not in self.iam_data.emissions.region
+            else location
+            for s in scenarios
+        ]
 
         scaling_factor = self.iam_data.emissions.loc[
             dict(
-                region=location,
-                pollutant=pollutant,
-                sector=sector,
-                scenario=scenarios
+                region=location, pollutant=pollutant, sector=sector, scenario=scenarios
             )
         ]
         scaling_factor = scaling_factor.mean(dim=["year", "region"]).values
