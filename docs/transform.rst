@@ -7,6 +7,26 @@ and technology market shares with outputs from the IAM scenario.
 Power generation
 """"""""""""""""
 
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
+        source_version="3.7.1", # <-- this is NEW
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update_electricity()
+
+
 Efficiency adjustment
 +++++++++++++++++++++
 
@@ -544,6 +564,27 @@ of heat recovered from the kiln, as indicated by the GNR/IEA roadmap data.
 Cement markets
 ++++++++++++++
 
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
+        source_version="3.7.1", # <-- this is NEW
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update_cement()
+
+
+
 When clinker production datasets are created for each IAM region,
 *premise* duplicates cement production datasets for each IAM region
 as well. These cement production datasets link the newly created
@@ -620,6 +661,27 @@ of the consumer.
 
 Steel production
 """"""""""""""""
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
+        source_version="3.7.1", # <-- this is NEW
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update_steel()
+
+
 
 The modelling of future improvements in the steel sector is relatively
 simple at the moment, and does not involve the emergence of new
@@ -735,6 +797,29 @@ of the consumer.
 
 Transport
 """""""""
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
+        source_version="3.7.1", # <-- this is NEW
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update_two_wheelers()
+    ndb.update_cars()
+    ndb.update_trucks()
+    ndb.update_buses()
+
 
 *premise* imports inventories for transport activity operated by:
 
@@ -935,6 +1020,27 @@ of India.
 
 Fuels
 """""
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
+        source_version="3.7.1", # <-- this is NEW
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update_fuels()
+
+
 
 *premise* create different region-specific fuel supply chains
 and fuel markets, based on data from the IAM scenario.
