@@ -20,8 +20,8 @@ Run
         scenarios=[
                 {"model":"remind", "pathway":"SSP2-Base", "year":2028}
             ],
-        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
-        source_version="3.7.1", # <-- this is NEW
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
     ndb.update_electricity()
@@ -577,8 +577,8 @@ Run
         scenarios=[
                 {"model":"remind", "pathway":"SSP2-Base", "year":2028}
             ],
-        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
-        source_version="3.7.1", # <-- this is NEW
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
     ndb.update_cement()
@@ -675,8 +675,8 @@ Run
         scenarios=[
                 {"model":"remind", "pathway":"SSP2-Base", "year":2028}
             ],
-        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
-        source_version="3.7.1", # <-- this is NEW
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
     ndb.update_steel()
@@ -811,8 +811,8 @@ Run
         scenarios=[
                 {"model":"remind", "pathway":"SSP2-Base", "year":2028}
             ],
-        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
-        source_version="3.7.1", # <-- this is NEW
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
     ndb.update_two_wheelers()
@@ -1034,8 +1034,8 @@ Run
         scenarios=[
                 {"model":"remind", "pathway":"SSP2-Base", "year":2028}
             ],
-        source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
-        source_version="3.7.1", # <-- this is NEW
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
     ndb.update_fuels()
