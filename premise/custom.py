@@ -877,7 +877,9 @@ class Custom(BaseTransformation):
             datasets = self.database
 
         for ds in datasets:
+
             for exc in ds["exchanges"]:
+
                 if (
                     any(
                         k["name"].lower() in exc["name"].lower()
