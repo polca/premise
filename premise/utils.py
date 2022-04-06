@@ -1,3 +1,4 @@
+import sys
 import uuid
 from copy import deepcopy
 from datetime import date
@@ -5,7 +6,6 @@ from functools import lru_cache
 from itertools import chain
 from pathlib import Path
 from typing import Dict, List, Tuple
-import sys
 
 import pandas as pd
 import xarray as xr
@@ -294,8 +294,9 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             if i not in modified:
                 modified[i] = {"original": original.get(i, 0)}
 
-            modified[i][f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"] = new.get(i, 0)
-
+            modified[i][
+                f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
+            ] = new.get(i, 0)
 
     # some scenarios may have not been modified
     # and that means that exchanges might be absent
