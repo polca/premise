@@ -5,6 +5,7 @@ from functools import lru_cache
 from itertools import chain
 from pathlib import Path
 from typing import Dict, List, Tuple
+import sys
 
 import pandas as pd
 import xarray as xr
@@ -278,8 +279,10 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         new.update(
             {(new_rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] * -1 for x in new_coords_B}
         )
-        # List activities that are in the new database but not in the original one
-        # As well as exchanges that are present in both databases but with a different value
+        # List activities that are in the new database
+        # but not in the original one
+        # As well as exchanges that are present
+        # in both databases but with a different value
         list_modified = (i for i in new if i not in original or new[i] != original[i])
         # Also add activities from the original database that are not present in
         # the new one
@@ -305,6 +308,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                     + " - "
                     + str(scenario["year"])
                 ] = new.get(i, 0)
+
 
     # some scenarios may have not been modified
     # and that means that exchanges might be absent
@@ -341,11 +345,8 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         "to database",
         "to key",
         "flow type",
-        "original",
     ]
-    columns.extend(
-        [a["model"] + " - " + a["pathway"] + " - " + str(a["year"]) for a in scenarios]
-    )
+    columns.extend(list_scenarios)
 
     print("Export a scenario difference file.")
 
@@ -432,7 +433,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     # Remove `original` column
     df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
     # Remove rows whose values across scenarios do not change
-    df = df.loc[df.loc[:, list_scenarios[1] :].std(axis=1) > 0, :]
+    #df = df.loc[df.loc[:, list_scenarios[1]:].std(axis=1) > 0, :]
 
     after = len(df)
     print(f"Dropped {before - after} duplicates.")

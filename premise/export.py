@@ -986,7 +986,7 @@ class Export:
             (
                 i["name"],
                 i["reference product"],
-                i["database"],
+                "ecoinvent",
                 i["location"],
                 i["unit"],
             ): x
