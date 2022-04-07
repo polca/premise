@@ -9,6 +9,7 @@ production (GNR data), and for non-CO2 emissions (GAINS data).
 
 import csv
 from io import StringIO
+from itertools import chain
 from pathlib import Path
 from typing import Dict, List, Union
 
@@ -228,6 +229,103 @@ class IAMDataCollection:
         else:
             self.land_use = None
             self.land_use_change = None
+
+    def get_custom_data(self, custom_scenario):
+
+        data = {}
+
+        for i, scenario in enumerate(custom_scenario):
+
+            data[i] = {}
+
+            df = pd.read_excel(scenario["scenario data"])
+
+            with open(scenario["config"], "r") as stream:
+                config_file = yaml.safe_load(stream)
+
+            if "production pathways" in config_file:
+
+                variables = {}
+                for k, v in config_file["production pathways"].items():
+                    try:
+                        variables[k] = v["production volume"]["variable"]
+                    except KeyError:
+                        continue
+
+                subset = df.loc[
+                    (df["model"] == self.model)
+                    & (df["pathway"] == self.pathway)
+                    & (df["variables"].isin(variables.values())),
+                    "region":,
+                ]
+
+                array = (
+                    subset.melt(
+                        id_vars=["region", "variables", "unit"],
+                        var_name="year",
+                        value_name="value",
+                    )[["region", "variables", "year", "value"]]
+                    .groupby(["region", "variables", "year"])["value"]
+                    .mean()
+                    .to_xarray()
+                )
+
+                data[i]["production volume"] = array
+                regions = subset["region"].unique().tolist()
+                data[i]["regions"] = regions
+
+                variables = {}
+                for k, v in config_file["production pathways"].items():
+                    try:
+                        variables[k] = [e["variable"] for e in v["efficiency"]]
+                    except KeyError:
+                        continue
+
+                if len(variables) > 0:
+
+                    subset = df.loc[
+                        (df["model"] == self.model)
+                        & (df["pathway"] == self.pathway)
+                        & (df["variables"].isin(list(chain(*variables.values())))),
+                        "region":,
+                    ]
+
+                    array = (
+                        subset.melt(
+                            id_vars=["region", "variables", "unit"],
+                            var_name="year",
+                            value_name="value",
+                        )[["region", "variables", "year", "value"]]
+                        .groupby(["region", "variables", "year"])["value"]
+                        .mean()
+                        .to_xarray()
+                    )
+
+                    ref_years = {}
+                    for v in config_file["production pathways"].values():
+                        for e, f in v.items():
+                            if e == "efficiency":
+                                for x in f:
+                                    ref_years[x["variable"]] = x.get(
+                                        "reference year", 2020
+                                    )
+
+                    for v, y in ref_years.items():
+
+                        array.loc[dict(variables=v, year=self.year)] = array.loc[
+                            dict(variables=v)
+                        ].interp(year=self.year) / array.loc[dict(variables=v)].sel(
+                            year=y
+                        )
+
+                    array = array.loc[dict(year=self.year)]
+
+                    # convert NaNs to ones
+                    array = array.fillna(1)
+
+                    data[i]["efficiency"] = array
+
+        return data
 
     def __get_iam_variable_labels(
         self, filepath: Path, key: str

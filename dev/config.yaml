@@ -1,0 +1,197 @@
+# Configuration file for custom scenarios for `premise`
+
+# in this example, we have three technologies: ADD, SDM, DSM
+# to represent bread baking
+# these technologies will be made specific to each IAM region, unless
+# exception are specified
+# then, market for bread will be created for each IAM region
+
+---
+
+# `production pathways` lists the different technologies
+production pathways:
+  # name given to a technology: this name is internal to premise
+  ADD:
+    # variables to look for in the scenario data file to fetch production volumes
+    # values fetched from the scenario data file as production volumes are used to calculate
+    # the supply share if markets are to be built
+    production volume:
+      # `variable` in `production volume` refers to the variable name in the scenario data file
+      variable: Production|Baking|Bread|Activated Dough Development
+    # OPTIONAL: `efficiency` and underlying `variable` refers to the values to look for in the scenario data file
+    # if the technology is believed to improve over time.
+    efficiency:
+      - variable: Efficiency|Baking|Bread|Activated Dough Development (Elec and steam)
+        # OPTIONAL: reference year to calculate efficiency delta from
+        reference year: 2025
+        # OPTIONAL: `includes` is optional, and indicates if the efficiency gains apply only on certain input or flows
+        # of the dataset
+        includes:
+          # efficiency gains will only apply to flows whose name contains `electricity`
+          technosphere:
+            - electricity
+          # efficiency gains will only apply to flows whose name contains `Water`
+          # case sensitive!!!
+          biosphere:
+            - Water
+      - variable: Efficiency|Baking|Bread|Activated Dough Development (Salt)
+        # OPTIONAL: `includes` is optional, and indicates if the efficiency gains apply only on certain input or flows
+        # of the dataset
+        includes:
+          # efficiency gains will only apply to flows whose name contains `electricity`
+          technosphere:
+            - salt
+    # dataset in the imported inventories that represents the technology
+    ecoinvent alias:
+      # name of the dataset
+      name: bread production, activated dough development
+      # reference product of the dataset
+      reference product: bread
+    # OPTIONAL: if the dataset should not be duplicated for a specific list of regions
+    # in this case, the dataset will not be duplicated for the IAM region "BRA"
+
+    except regions:
+      - BRA
+  SDM:
+    production volume:
+      variable: Production|Baking|Bread|Straight Dough Method
+    efficiency:
+      - variable: Efficiency|Baking|Bread|Straight Dough Method
+    ecoinvent alias:
+      name: bread production, straight dough method
+      reference product: bread
+    except regions:
+      - USA
+
+  DSM:
+    production volume:
+      variable: Production|Baking|Bread|Delayed Salt Method
+    efficiency:
+      - variable: Efficiency|Baking|Bread|Delayed Salt Method
+    ecoinvent alias:
+      name: bread production, delayed salt method
+      reference product: bread
+    except regions:
+      - WEU
+      - USA
+    # OPTIONAL: if the dataset should replace one or several specific providers in the database
+    # in this case, `bread production, delayed salt method` will replace
+    # `NMC111 hydroxide production, for Li-ion battery` wherever it is used
+    replaces:
+      - name: NMC111 hydroxide production, for Li-ion battery
+        reference product: NMC111 hydroxide
+    replaces in:
+      - name: market for NMC111 hydroxide
+        reference product: NMC111 hydroxide
+    # OPTIONAL: if the new dataset replaces another, but the substitution ratio is not 1:1
+    # it can be specified here
+    replacement ratio: 0.75
+
+  BC:
+    production volume:
+      variable: Production|Baking|Bread|Breadcrumbs
+    ecoinvent alias:
+      name: breadcrumbs production
+      reference product: breadcrumbs
+      exists in ecoinvent: True
+
+  CP:
+    production volume:
+      variable: Production|Copper|Cake
+    ecoinvent alias:
+      name: cobalt production
+      reference product: copper cake
+      exists in ecoinvent: True
+
+  ALM:
+    production volume:
+      variable: Production|Almond
+    ecoinvent alias:
+      name: almond production
+      reference product: almond
+      exists in ecoinvent: True
+
+  BAN:
+    production volume:
+      variable: Production|Banana
+    ecoinvent alias:
+      name: banana production
+      reference product: banana
+      exists in ecoinvent: True
+    efficiency:
+      - variable: Efficiency|Banana|Urea
+        reference year: 2030
+        includes:
+          technosphere:
+            - market for urea
+          biosphere:
+            - Dinitrogen monoxide
+
+# OPTIONAL: if a market needs to be created
+markets:
+    # name of the market dataset
+  - name: market for bread
+    # reference product of the market dataset
+    reference product: bread
+    # unit of the market dataset
+    unit: kilogram
+    # names of datasets that should compose the market
+    includes:
+      - name: bread production, activated dough development
+        reference product: bread
+      - name: bread production, straight dough method
+        reference product: bread
+      - name: bread production, delayed salt method
+        reference product: bread
+      - name: breadcrumbs production
+        reference product: breadcrumbs
+    # OPTIONAL: if the new market is supposed to replace one or several other providers
+    # in the database.
+    # in this case, `market for bread` will replace providers of carbon back and clay bricks.
+    replaces:
+      - name: market for carbon black
+        reference product: carbon black
+      - name: market for clay brick
+        reference product: clay brick
+    # OPTIONAL: if the substitution ratio between `market for bread` and the providers to be replaced
+    # is not 1:1, then a replacement ratio can be specified
+    replacement ratio: 1.05
+    # OPTIONAL: if the new market should not be created for all IAM region, this can be specified here
+    except regions:
+      - JAP
+  - name: market for croissants
+    # reference product of the market dataset
+    reference product: croissants
+    # unit of the market dataset
+    unit: kilogram
+    # names of datasets that should compose the market
+    includes:
+      - name: cobalt production
+        reference product: copper cake
+      - name: almond production
+        reference product: almond
+      - name: banana production
+        reference product: banana
+      - name: breadcrumbs production
+        reference product: breadcrumbs
+    # OPTIONAL: if the new market is supposed to replace one or several other providers
+    # in the database.
+    # in this case, `market for croissants` will replace providers of carbon back and clay bricks.
+    # case insensitive, must contain this string in `name`and `reference product`
+    replaces:
+      - name: market for tap water
+        reference product: tap water
+      - name: market for cement, Portland
+        reference product: cement, Portland
+    replaces in:
+      - name: concrete production
+        reference product: concrete
+      - name: electricity production
+        reference product: electricity
+
+    # OPTIONAL: if the substitution ratio between `market for bread` and the providers to be replaced
+    # is not 1:1, then a replacement ratio can be specified
+    replacement ratio: 1.15
+    # OPTIONAL: if the new market should not be created for all IAM region, this can be specified here
+    except regions:
+      - JAP

@@ -2,7 +2,52 @@
 ecoinvent_modification.py exposes methods to create a database, perform transformations on it,
 as well as export it back.
 """
+SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
+LIST_REMIND_REGIONS = [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World",
+]
 
+LIST_IMAGE_REGIONS = [
+    "BRA",
+    "CAN",
+    "CEU",
+    "CHN",
+    "EAF",
+    "INDIA",
+    "INDO",
+    "JAP",
+    "KOR",
+    "ME",
+    "MEX",
+    "NAF",
+    "OCE",
+    "RCAM",
+    "RSAF",
+    "RSAM",
+    "RSAS",
+    "RUS",
+    "SAF",
+    "SEAS",
+    "STAN",
+    "TUR",
+    "UKR",
+    "USA",
+    "WAF",
+    "WEU",
+    "World",
+]
 import copy
 import os
 import pickle
@@ -17,6 +62,12 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
+from .custom import (
+    Custom,
+    check_custom_scenario,
+    check_inventories,
+    detect_ei_activities_to_adjust,
+)
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
@@ -95,7 +146,7 @@ FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
 
-SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
+
 SUPPORTED_MODELS = ["remind", "image"]
 SUPPORTED_PATHWAYS = [
     "SSP2-Base",
@@ -112,51 +163,7 @@ SUPPORTED_PATHWAYS = [
     "static",
 ]
 
-LIST_REMIND_REGIONS = [
-    "CAZ",
-    "CHA",
-    "EUR",
-    "IND",
-    "JPN",
-    "LAM",
-    "MEA",
-    "NEU",
-    "OAS",
-    "REF",
-    "SSA",
-    "USA",
-    "World",
-]
 
-LIST_IMAGE_REGIONS = [
-    "BRA",
-    "CAN",
-    "CEU",
-    "CHN",
-    "EAF",
-    "INDIA",
-    "INDO",
-    "JAP",
-    "KOR",
-    "ME",
-    "MEX",
-    "NAF",
-    "OCE",
-    "RCAM",
-    "RSAF",
-    "RSAM",
-    "RSAS",
-    "RUS",
-    "SAF",
-    "SEAS",
-    "STAN",
-    "TUR",
-    "UKR",
-    "USA",
-    "WAF",
-    "WEU",
-    "World",
-]
 LIST_TRANSF_FUNC = [
     "update_electricity",
     "update_cement",
@@ -166,6 +173,7 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_buses",
     "update_fuels",
+    "update_custom_scenario",
 ]
 
 # clear the cache folder
@@ -279,16 +287,16 @@ def check_exclude(list_exc: List[str]) -> List[str]:
 def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
     """
     Check that any additional inventories that need to be imported are properly listed.
-    :param inventories_list: list of dicitonnaries
-    :return:
+    :param inventories_list: list of dictionaries
+    :return: list of dictionaries
     """
 
     if not isinstance(inventories_list, list):
         raise TypeError(
             "Inventories to import need to be in a sequence of dictionaries like so:"
             "["
-            "{'filepath': 'a file path', 'ecoinvent version: '3.6'},"
-            " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
+            "{'inventories': 'a file path', 'ecoinvent version: '3.6'},"
+            " {'inventories': 'a file path', 'ecoinvent version: '3.6'}"
             "]"
         )
 
@@ -297,8 +305,8 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
             raise TypeError(
                 "Inventories to import need to be in a sequence of dictionaries like so:"
                 "["
-                "{'filepath': 'a file path', 'ecoinvent version: '3.6'},"
-                " {'filepath': 'a file path', 'ecoinvent version: '3.6'}"
+                "{'inventories': 'a file path', 'ecoinvent version: '3.6'},"
+                " {'inventories': 'a file path', 'ecoinvent version: '3.6'}"
                 "]"
             )
         if "region_duplicate" in inventory:
@@ -308,17 +316,17 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 )
 
         if not all(
-            i for i in inventory.keys() if i in ["filepath", "ecoinvent version"]
+            i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
         ):
             raise TypeError(
-                "Both `filepath` and `ecoinvent version` must be present in the list of inventories to import."
+                "Both `inventories` and `ecoinvent version` must be present in the list of inventories to import."
             )
 
-        if not Path(inventory["filepath"]).is_file():
+        if not Path(inventory["inventories"]).is_file():
             raise FileNotFoundError(
-                f"Cannot find the inventory file: {inventory['filepath']}."
+                f"Cannot find the inventory file: {inventory['inventories']}."
             )
-        inventory["filepath"] = Path(inventory["filepath"])
+        inventory["inventories"] = Path(inventory["inventories"])
 
         if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8"]:
             raise ValueError(
@@ -490,6 +498,7 @@ class NewDatabase:
         time_horizon: int = None,
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
+        custom_scenario: dict = None,
     ) -> None:
 
         self.source = source_db
@@ -519,6 +528,13 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
+        if custom_scenario:
+            self.custom_scenario = check_custom_scenario(
+                custom_scenario, self.scenarios
+            )
+        else:
+            self.custom_scenario = None
+
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
             self.database = self.__find_cached_db(source_db)
@@ -531,18 +547,20 @@ class NewDatabase:
             data = self.__find_cached_inventories(source_db)
             if data is not None:
                 self.database.extend(data)
-                print("Done!")
+
         else:
             self.__import_inventories()
 
         if self.additional_inventories:
-            data = self.__import_additional_inventories()
+            data = self.__import_additional_inventories(self.additional_inventories)
             self.database.extend(data)
+
+        print("Done!")
 
         print("\n/////////////////////// EXTRACTING IAM DATA ////////////////////////")
 
         for scenario in self.scenarios:
-            scenario["external data"] = IAMDataCollection(
+            data = IAMDataCollection(
                 model=scenario["model"],
                 pathway=scenario["pathway"],
                 year=scenario["year"],
@@ -551,6 +569,11 @@ class NewDatabase:
                 system_model=self.system_model,
                 time_horizon=self.time_horizon,
             )
+            scenario["iam data"] = data
+
+            if self.custom_scenario:
+                scenario["custom data"] = data.get_custom_data(self.custom_scenario)
+
             scenario["database"] = copy.deepcopy(self.database)
 
         print("Done!")
@@ -682,34 +705,34 @@ class NewDatabase:
         print("Done!\n")
         return data
 
-    def __import_additional_inventories(self) -> List[dict]:
+    def __import_additional_inventories(self, list_inventories) -> List[dict]:
 
-        print(
-            "\n/////////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////////"
-        )
+        print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
 
-        for file in self.additional_inventories:
-            additional = AdditionalInventory(
-                database=self.database,
-                version_in=file["ecoinvent version"],
-                version_out=self.version,
-                path=file["filepath"],
-            )
-            additional.prepare_inventory()
+        for file in list_inventories:
 
-            # if the inventories are to be duplicated
-            # to be made specific to each IAM region
-            # we flag them
-            if "region_duplicate" in file:
-                if file["region_duplicate"]:
-                    for ds in additional.import_db:
-                        ds["duplicate"] = True
+            if file["inventories"] != "":
+                additional = AdditionalInventory(
+                    database=self.database,
+                    version_in=file["ecoinvent version"]
+                    if "ecoinvent version" in file
+                    else "3.8",
+                    version_out=self.version,
+                    path=file["inventories"],
+                )
+                additional.prepare_inventory()
 
-            data.extend(additional.merge_inventory())
+                # if the inventories are to be duplicated
+                # to be made specific to each IAM region
+                # we flag them
+                if "region_duplicate" in file:
+                    if file["region_duplicate"]:
+                        for ds in additional.import_db:
+                            ds["duplicate"] = True
 
-        print("Done!\n")
+                data.extend(additional.merge_inventory())
 
         return data
 
@@ -724,7 +747,7 @@ class NewDatabase:
             ):
                 electricity = Electricity(
                     database=scenario["database"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     year=scenario["year"],
@@ -747,7 +770,7 @@ class NewDatabase:
 
                 fuels = Fuels(
                     database=scenario["database"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     year=scenario["year"],
@@ -766,7 +789,7 @@ class NewDatabase:
                     database=scenario["database"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     year=scenario["year"],
                     version=self.version,
                 )
@@ -785,7 +808,7 @@ class NewDatabase:
                     database=scenario["database"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     year=scenario["year"],
                     version=self.version,
                 )
@@ -802,7 +825,7 @@ class NewDatabase:
                     year=scenario["year"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     version=self.version,
                     vehicle_type="car",
                     relink=False,
@@ -825,7 +848,7 @@ class NewDatabase:
                     year=scenario["year"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     version=self.version,
                     vehicle_type="two wheeler",
                     relink=False,
@@ -846,7 +869,7 @@ class NewDatabase:
                     year=scenario["year"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     version=self.version,
                     vehicle_type="truck",
                     relink=False,
@@ -855,6 +878,50 @@ class NewDatabase:
 
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
+
+    def update_custom_scenario(self):
+
+        if self.custom_scenario:
+            for i, scenario in enumerate(self.scenarios):
+                if (
+                    "exclude" not in scenario
+                    or "update_custom_scenario" not in scenario["exclude"]
+                ):
+
+                    data = self.__import_additional_inventories(self.custom_scenario)
+
+                    if data:
+                        data = check_inventories(
+                            self.custom_scenario,
+                            data,
+                            scenario["model"],
+                            scenario["pathway"],
+                            scenario["custom data"],
+                        )
+                        scenario["database"].extend(data)
+
+                    scenario["database"] = detect_ei_activities_to_adjust(
+                        self.custom_scenario,
+                        scenario["database"],
+                        scenario["model"],
+                        scenario["pathway"],
+                        scenario["custom data"],
+                    )
+
+                    custom = Custom(
+                        database=scenario["database"],
+                        model=scenario["model"],
+                        pathway=scenario["pathway"],
+                        iam_data=scenario["iam data"],
+                        year=scenario["year"],
+                        version=self.version,
+                        custom_scenario=self.custom_scenario,
+                        custom_data=scenario["custom data"],
+                    )
+                    custom.regionalize_imported_inventories()
+                    scenario["database"] = custom.database
+                    custom.create_custom_markets()
+                    scenario["database"] = custom.database
 
     def update_buses(self) -> None:
 
@@ -868,7 +935,7 @@ class NewDatabase:
                     year=scenario["year"],
                     model=scenario["model"],
                     pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
+                    iam_data=scenario["iam data"],
                     version=self.version,
                     vehicle_type="bus",
                     relink=False,
@@ -891,12 +958,13 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
         self.update_fuels()
+        self.update_custom_scenario()
 
     def prepare_db_for_export(self, scenario):
 
         base = BaseTransformation(
             database=scenario["database"],
-            iam_data=scenario["external data"],
+            iam_data=scenario["iam data"],
             model=scenario["model"],
             pathway=scenario["pathway"],
             year=scenario["year"],
