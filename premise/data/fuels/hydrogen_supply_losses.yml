@@ -1,4 +1,25 @@
-truck: 
+production:
+  electrolysis:
+    casing leak: 0
+    venting startup:
+      best guess: 0.00055
+      min: 0.0005
+      max: 0.0006
+    venting oxygen:
+      best guess: 0.001
+      min: 0.0005
+      max: 0.0015
+    purging:
+      best guess: 0.035
+      min: 0.0052
+      max: 0.1
+  smr:
+    purging:
+      best guess: 0.1
+      min: 0.08
+      max: 0.2
+
+truck:
   gaseous: 
     compression: 0.005
   liquid:
