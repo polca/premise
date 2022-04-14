@@ -47,6 +47,13 @@ difference file:
 
     ndb.write_superstructure_db_to_brightway(filepath="some_file_path")
 
+Finally, you can also give a name to the superstructure database:
+
+.. code-block:: python
+
+    ndb.write_superstructure_db_to_brightway(filepath="some_file_path", name="my_db")
+
+
 .. note::
 
     Superstructure databases can only be used by Activity-Browser at the moment.
