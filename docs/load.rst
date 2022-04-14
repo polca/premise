@@ -25,7 +25,7 @@ If several databases have been built, the user can give them specific names, lik
 Superstructure database
 ***********************
 
-If several databases re built, *premise* can generate a superstructure database,
+If several scenario databases are built, *premise* can generate a superstructure database,
 as explained in Steubing_ et al, 2021. This allows to explore several scenarios
 while writing only one database in a brightway2 project. Besides writing the
 database to disk, this also creates a *scenario difference file* that will be read
