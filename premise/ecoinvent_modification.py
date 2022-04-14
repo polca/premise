@@ -1,6 +1,7 @@
 """
 ecoinvent_modification.py exposes methods to create a database, perform transformations on it,
 as well as export it back.
+
 """
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
 LIST_REMIND_REGIONS = [
