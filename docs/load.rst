@@ -21,6 +21,7 @@ If several databases have been built, the user can give them specific names, lik
 
     ndb.write_db_to_brightway(name=["db_1", "db_2"])
 
+
 Superstructure database
 ***********************
 
@@ -38,6 +39,13 @@ This is done as follows:
 .. code-block:: python
 
     ndb.write_superstructure_db_to_brightway()
+
+You can also specify a file path for the export of the scenario
+difference file:
+
+.. code-block:: python
+
+    ndb.write_superstructure_db_to_brightway(filepath="some_file_path")
 
 .. note::
 
