@@ -791,40 +791,50 @@ class Electricity(BaseTransformation):
                     # Fetch ecoinvent regions contained in the IAM region
                     ecoinvent_locations = self.iam_to_ecoinvent_loc[scenario][region]
 
-                    new_exc = []
+                    new_exc = pd.Series(index=self.database.columns)
+
                     # TODO make a copy of row here
                     # Create an empty dataset
                     # this dataset is for one year
-                    producer = [
-                        "market group for electricity, high voltage",
-                        "electricity, high voltage",
-                        region,
-                    ]
-                    consumer = [
-                        "market group for electricity, high voltage",
-                        "electricity, high voltage",
-                        region,
-                    ]
+                    name = "market group for electricity, high voltage"
+                    product = "electricity, high voltage"
                     comment = (
                         f"New regional electricity market created by `premise`, for the region"
                         f" {region} in {year}, according to the scenario {scenario}."
                     )
-
                     if period != 0:
-                        producer[0] += f", {period}-year period"
+                        name += f", {period}-year period"
                         comment += f"Average electricity mix over a {period}-year period {self.year}-{self.year + period}."
 
-                    prod_key = create_hash(producer)
-                    cons_key = create_hash(consumer)
-                    exc_key = create_hash(producer + consumer)
+                    ident = create_hash((name, product, region))
+                    new_exc[[(s.exchange, c.prod_name),
+                            (s.exchange, c.prod_prod),
+                            (s.exchange, c.prod_loc),
+                            (s.exchange, c.cons_name),
+                            (s.exchange, c.cons_prod),
+                            (s.exchange, c.cons_loc),
+                            (s.exchange, c.prod_key),
+                            (s.exchange, c.cons_key),
+                            (s.exchange, c.exc_key),
+
+                             ] = [name, # producer name
+                                  product, # producer product
+                                  region,
+                                  name, # consumer name
+                                  product, # consumer product
+                                  region,
+                                  ident, # prod_key
+                                  ident, # cons_key
+                                  create_hash((name, product, region, name, product, region)), # exc_key
+                             ]
 
                     prod_vol = (
                         self.iam_data.production_volumes.sel(
                             scenario=scenario,
                             region=region,
+                            year=int(year),
                             variables=self.iam_data.electricity_markets.variables.values,
                         )
-                        .interp(year=int(scenario.split("::")[-1]))
                         .sum()
                         .values.item(0)
                     )
