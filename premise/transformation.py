@@ -10,11 +10,13 @@ from itertools import product
 
 import xarray as xr
 from wurst import searching as ws
+import numpy as np
 
 from premise.framework.transformation_tools import *
 
 from .geomap import Geomap
 from .utils import c, create_scenario_label, get_fuel_properties, s
+from .exceptions import NoCandidateInDatabase
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -201,7 +203,9 @@ class BaseTransformation:
             for tech in technologies
         }
 
-    def fetch_proxies(self, name, ref_prod, production_variable, relink=False):
+    def fetch_proxies(
+        self, name, ref_prod, production_variable, regions_to_copy_to=None, relink=False
+    ):
         """
         Fetch dataset proxies, given a dataset `name` and `reference product`.
         Store a copy for each IAM region.
@@ -221,190 +225,104 @@ class BaseTransformation:
         :return:
         """
 
-        # dictionary that has IAM regions as keys, and ecoinvent location of
-        # datasets to copy from as values
-        locs_to_copy_from_to_iam = {}
-
+        iam_to_eco_loc = {}
         for label in self.scenario_labels:
+            iam_to_eco_loc = iam_to_eco_loc | self.iam_to_ecoinvent_loc[label]
+            if regions_to_copy_to:
+                iam_to_eco_loc = {
+                    k: v for k, v in iam_to_eco_loc.items() if k in regions_to_copy_to
+                }
+
+        _filter = (
+            contains((s.exchange, c.cons_name), name)
+            & contains((s.exchange, c.cons_prod), ref_prod)
+            & equals((s.exchange, c.type), "production")
+        )(self.database)
+
+        iam_years = [int(scenario.split("::")[-1]) for scenario in self.scenario_labels]
+
+        for iam_loc, ei_locs in iam_to_eco_loc.items():
+
+            possible_locs = ei_locs + ["RoW", "GLO", "CH", "RER"]
+
             _filter = (
                 contains((s.exchange, c.cons_name), name)
                 & contains((s.exchange, c.cons_prod), ref_prod)
-                & equals((s.exchange, c.type), "production")
+                & contains_any_from_list((s.exchange, c.cons_loc), possible_locs)
             )(self.database)
+            original = self.database[_filter]
 
-            locs_to_copy_from_to_iam[label] = {
-                self.ecoinvent_to_iam_loc[label][loc]: loc
-                for loc in self.database[_filter]
-                .loc[:, (s.exchange, c.cons_loc)]
-                .unique()
-            }
+            if len(original.loc[:, (s.exchange, c.cons_loc)].unique()) == 0:
+                raise NoCandidateInDatabase(
+                    f"for locations {possible_locs} no candidate in database"
+                )
 
-        # FIXME: doing so omits activity datasets that have a location
-        # that can also be part of an IAM region
-        # when there are multiple candidates, the last one is picked
-
-        for label in self.scenario_labels:
-            for region in set(self.regions[label]).difference(
-                locs_to_copy_from_to_iam[label].keys()
-            ):
-                # TODO: REVIEW: do we really want to loop in this order? This would search RoW first and if it finds something, than it maps to it.
-                possible_locs = [
-                    "RoW",
-                    "GLO",
-                ] + list(locs_to_copy_from_to_iam[label].values())
-
-                original = []
-                count = 0
-
-                # FIXME: REVIEW: the while loop should be refactored into a for loop to prevent an endless loop and a disambiguity in debugging an IndexError
-                # raised if the  count exceeds the length of possible_locs
-                # for i_loc_cand in possible_locs:
-                #   ... original code
-                #       & equals((s.exchange, c.cons_loc), i_loc_candidate)
-                #   if len(original) > 0: break
-                # if len(original) == 0:
-                #     raise NoCandidateInDatabase('for location no candidate in database')
-
-                while len(original) == 0:
-                    _filter = (
-                        contains((s.exchange, c.cons_name), name)
-                        & contains((s.exchange, c.cons_prod), ref_prod)
-                        & equals((s.exchange, c.type), "production")
-                        & equals((s.exchange, c.cons_loc), possible_locs[count])
-                    )(self.database)
-
-                    count += 1
-
-                    original = self.database[_filter]
-
-                # TODO: REVIEW: this is potentially a random location as it depends on the sort order of the database
-                # furthermore one can use the .iloc[0] accessor to improve performance a bit
-                locs_to_copy_from_to_iam[label][region] = original[
-                    (s.exchange, c.cons_loc)
-                ].values.item(0)
-
-        # dictionary that stores new region-specific datasets
-        new_regionalized_datasets = defaultdict(dict)
-
-        for scenario in self.scenario_labels:
-            regions = (r for r in locs_to_copy_from_to_iam[scenario] if r != "World")
-            for region in regions:
-
-                _filter_check_exists = (
-                    contains((s.exchange, c.cons_name), name)
-                    & contains((s.exchange, c.cons_prod), ref_prod)
-                    & equals((s.exchange, c.cons_loc), region)
-                )(self.database)
-
-                if len(self.database[_filter_check_exists]) == 0:
-
-                    _filter = (
-                        contains((s.exchange, c.cons_name), name)
-                        & contains((s.exchange, c.cons_prod), ref_prod)
-                        & equals(
-                            (s.exchange, c.cons_loc),
-                            locs_to_copy_from_to_iam[scenario][region],
-                        )
-                    )(self.database)
-
-                    dataset = self.database[_filter].copy()
-
-                    dataset = rename_location(
-                        df=dataset, scenario=scenario, new_loc=region
+            if len(original.loc[:, (s.exchange, c.cons_loc)].unique()) > 1:
+                if any(
+                    i not in ["RoW", "GLO"]
+                    for i in original.loc[:, (s.exchange, c.cons_loc)].unique()
+                ):
+                    _filter_loc = ~contains_any_from_list(
+                        (s.exchange, c.cons_loc), ["RoW", "GLO"]
                     )
+                    original = original.loc[_filter_loc(original)]
 
-                    # Add `production volume` field
-                    if (
-                        production_variable
-                        in self.iam_data.production_volumes.variables
-                    ):
-                        # TODO: REVIEW: sel, interp, and values.item are very expensive operations. Maybe we can find an alternative experession to achieve the same result?
-                        prod_vol = (
-                            self.iam_data.production_volumes.sel(
-                                scenario=scenario,
-                                region=region,
-                                variables=production_variable,
-                            )
-                            .interp(year=int(scenario.split("::")[-1]))
-                            .sum()
-                            .values.item(0)
-                        )
-                    else:
-                        prod_vol = 0
+            dataset = original.copy()
 
-                    dataset = change_production_volume(
-                        dataset,
-                        scenario,
-                        prod_vol,
-                    )
+            dataset = rename_location(df=dataset, new_loc=iam_loc)
 
-                    # move amounts to the scenario column
-                    dataset[(scenario, c.amount)] = dataset[(s.ecoinvent, c.amount)]
+            # Add `production volume` field
+            prod_vol = (
+                self.iam_data.production_volumes.sel(
+                    scenario=self.scenario_labels,
+                    region=iam_loc,
+                    year=iam_years,
+                    variables=production_variable,
+                )
+            ).values
 
-                    # relink technopshere exchanges
-                    if relink:
-                        print(scenario, region, name)
-                        dataset = self.relink_technosphere_exchanges(dataset, scenario)
+            prod_vol *= np.identity(len(iam_years))
+            prod_vol = prod_vol.sum(axis=1)
 
-                    dataset[(s.ecoinvent, c.amount)] = np.nan
+            scenario_cols = list(
+                set(
+                    [
+                        col[0]
+                        for col in original.columns
+                        if col[0] not in [s.exchange, s.tag, s.ecoinvent]
+                    ]
+                )
+            )
 
-                    self.exchange_stack.append(dataset)
+            dataset = change_production_volume(
+                dataset,
+                scenario_cols,
+                prod_vol,
+            )
 
-            # empty original dataset(s)
-            _filter = (
-                contains((s.exchange, c.cons_name), name)
-                & contains((s.exchange, c.cons_prod), ref_prod)
-            )(self.database)
+            # move amounts to the scenario column
+            dataset.loc[:, [(col, c.amount) for col in scenario_cols]] = np.repeat(
+                dataset.loc[:, (s.ecoinvent, c.amount)].values[:, None],
+                len(scenario_cols),
+                1,
+            )
 
-            sel = _filter * ~equals((s.exchange, c.type), "production")(self.database)
-            self.database.loc[sel, (scenario, c.amount)] = 0
+            # relink technopshere exchanges
+            if relink:
+                print(iam_loc)
+                # dataset = self.relink_technosphere_exchanges(dataset, scenario)
 
-            for _loc in self.database.loc[sel, (s.exchange, c.cons_loc)]:
+            dataset[(s.ecoinvent, c.amount)] = np.nan
 
-                iam_locs = self.ecoinvent_to_iam_loc[scenario][_loc]
+            self.exchange_stack.append(dataset)
 
-                if iam_locs == "World":
-                    iam_locs = self.regions[scenario]
-                else:
-                    iam_locs = [iam_locs]
-
-                for iam_loc in iam_locs:
-
-                    new_exc = create_redirect_exchange(
-                        self.database[sel], scenario, new_loc=iam_loc, original_loc=_loc
-                    )
-
-                    try:
-                        # FIXME: TODO: save in separate variables and test for 0 explicitly to avoid zerodiferror
-                        prod_vol_share = self.iam_data.production_volumes.sel(
-                            scenario=scenario,
-                            region=iam_loc,
-                            variables=production_variable,
-                        ).interp(year=int(scenario.split("::")[-1])).sum().values.item(
-                            0
-                        ) / self.iam_data.production_volumes.sel(
-                            scenario=scenario,
-                            region=iam_locs,
-                            variables=production_variable,
-                        ).interp(
-                            year=int(scenario.split("::")[-1])
-                        ).sum().values.item(
-                            0
-                        )
-                    except ZeroDivisionError:
-                        prod_vol_share = 1
-
-                    new_exc[(scenario, c.amount)] = (
-                        new_exc[(s.ecoinvent, c.amount)] * prod_vol_share
-                    )
-                    self.exchange_stack.append(new_exc)
-
-        # FIXME: REVIEW: This is performance heavy with the three concats. Can we reformulate this logic?
-        # self.database = pd.concat(
-        #    [self.database, pd.concat(self.exchange_stack, axis=1, ignore_index=True)],
-        #    axis=0,
-        #    ignore_index=True,
-        # )
+        # FIXME: REVIEW: This is performance heavy with the three concats.
+        # Can we reformulate this logic?
+        self.database = pd.concat(
+            [self.database, pd.concat(self.exchange_stack, axis=0, ignore_index=True)],
+            axis=0,
+            ignore_index=True,
+        )
 
     def relink_technosphere_exchanges(self, ds, scenario):
         # TODO: REVIEW: general comment on this method: The applied cache validation pattern is unusual. The additional if ... else clauses with continue

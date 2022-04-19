@@ -75,7 +75,7 @@ def emptying_datasets(df: pd.DataFrame, scenario, filters: Callable):
 
 
 def create_redirect_exchange(
-    df: pd.DataFrame, scenario: str, new_loc: str, original_loc: str
+    df: pd.DataFrame, new_loc: str, cols: List[str]
 ):
     """
     Empty a dataset, and make it point to another one
@@ -85,26 +85,26 @@ def create_redirect_exchange(
     new_exc = df.iloc[0].copy()
 
     new_exc[(s.ecoinvent, c.cons_prod_vol)] = np.nan
-    new_exc[(scenario, c.cons_prod_vol)] = np.nan
+    new_exc[[(col, c.cons_prod_vol) for col in cols]] = np.nan
 
     new_exc[(s.ecoinvent, c.comment)] = ""
-    new_exc[(scenario, c.comment)] = "redirect to new IAM-specific regional dataset"
+    new_exc[[(col, c.comment) for col in cols]] = "redirect to new IAM-specific regional dataset"
 
     new_exc[(s.exchange, c.prod_name)] = new_exc[(s.exchange, c.cons_name)]
     new_exc[(s.exchange, c.prod_prod)] = new_exc[(s.exchange, c.cons_prod)]
 
+    new_exc[(s.exchange, c.cons_loc)] = new_exc[(s.exchange, c.prod_loc)]
     new_exc[(s.exchange, c.prod_loc)] = new_loc
-    new_exc[(s.exchange, c.cons_loc)] = original_loc
 
     new_exc[(s.exchange, c.type)] = "technosphere"
 
     new_exc[(s.ecoinvent, c.amount)] = 0
-    new_exc[(scenario, c.amount)] = 1
+    new_exc[[(col, c.comment) for col in cols]] = 1
 
     return new_exc
 
 
-def rename_location(df: pd.DataFrame, scenario: str, new_loc: str) -> pd.DataFrame:
+def rename_location(df: pd.DataFrame, new_loc: str) -> pd.DataFrame:
     """
     Change the location of datasets in `scenario`,
     based on the list of filters specified.
@@ -140,7 +140,7 @@ def rename_location(df: pd.DataFrame, scenario: str, new_loc: str) -> pd.DataFra
 
 
 def change_production_volume(
-    df: pd.DataFrame, scenario: str, new_prod_vol: float
+    df: pd.DataFrame, cols: List[str], new_prod_vol: float
 ) -> pd.DataFrame:
     """
     Change the production volume of a dataset in `scenario`,
@@ -153,7 +153,7 @@ def change_production_volume(
 
     _filter = (equals((s.exchange, c.type), "production"))(df)
 
-    df.loc[_filter, (scenario, c.cons_prod_vol)] = new_prod_vol
+    df.loc[_filter, [(col, c.cons_prod_vol) for col in cols]] = new_prod_vol
 
     return df
 

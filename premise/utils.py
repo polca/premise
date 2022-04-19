@@ -385,7 +385,6 @@ def add_tags(tag_lib: TagLibrary, df: pd.DataFrame) -> pd.DataFrame:
         activity = row[(s.exchange, c.cons_name)]
 
         if activity in tag_lib:
-
             for tag in tag_lib.get_tag[activity]:
                 df.loc[idx, (s.tag, tag)] = True
 

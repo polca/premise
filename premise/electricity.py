@@ -131,7 +131,6 @@ class Electricity(BaseTransformation):
             return transf_loss
 
         if voltage == "medium":
-
             cumul_prod, transf_loss, distr_loss = 0, 0, 0
             for loc in locations:
                 dict_loss = self.losses.get(
@@ -1037,88 +1036,6 @@ class Electricity(BaseTransformation):
             if tech in self.iam_data.electricity_markets.variables.values
         ]
 
-        # scaling_list = tuple(
-        #     (
-        #         tech,
-        #         self.iam_to_ecoinvent_loc[scenario][loc],
-        #         scenario,
-        #         1
-        #         / self.find_iam_efficiency_change(
-        #             variable=tech,
-        #             location=loc,
-        #             year=int(scenario.split("::")[-1]),
-        #             scenario=scenario,
-        #         ),
-        #     )
-        #     for scenario in self.scenario_labels
-        #     for loc in self.regions[scenario]
-        #     for tech in all_techs
-        # )
-
-        # scaling_dict = {
-        #     tech: {
-        #         scenario: {
-        #             loc: 1
-        #             / self.find_iam_efficiency_change(
-        #                 variable=tech,
-        #                 location=loc,
-        #                 year=int(scenario.split("::")[-1]),
-        #                 scenario=scenario,
-        #             )
-        #             for loc in self.regions[scenario]
-        #         }
-        #         for scenario in self.scenario_labels
-        #     }
-        #     for tech in all_techs
-        # }
-        #
-        # scaling_dict_gains = {
-        #     tech: {
-        #         scenario: {
-        #             loc: {
-        #                 substance: 1
-        #                     / self.find_gains_emissions_change(
-        #                         pollutant=substance,
-        #                         location=self.iam_to_gains[scenario][loc],
-        #                         sector=tech,
-        #                     ) for substance in self.iam_data.emissions.pollutant.values
-        #             }
-        #             for loc in self.regions[scenario]
-        #         }
-        #         for scenario in self.scenario_labels
-        #     }
-        #     for tech in self.iam_data.emissions.sector.values
-        # }
-
-        # for tech in all_techs:
-        #     print(tech)
-        #     _tag_filter = self.database[(s.tag, tech)]
-        #     for scenario in self.scenario_labels:
-        #         print(scenario)
-        #         for loc in self.regions[scenario]:
-        #
-        #             _sub_tag_filter = _tag_filter.where(
-        #                 self.database[_tag_filter][(s.exchange, c.cons_loc)].isin(
-        #                     self.iam_to_ecoinvent_loc[scenario][loc]
-        #                 ),
-        #                 False,
-        #             )
-        #             _sub_tag_filter = _sub_tag_filter.where(
-        #                 self.database[_tag_filter][(s.exchange, c.type)]
-        #                 != "production",
-        #                 False,
-        #             )
-        #
-        #             # Scaling down input exchanges
-        #             self.database.loc[_sub_tag_filter, (scenario, c.amount)] = (
-        #                 self.database.loc[_sub_tag_filter, (s.ecoinvent, c.amount)] * -1
-        #             )
-        #
-        # print("Done!")
-        #
-        #
-        # return self.database
-
         for technology in all_techs:
 
             print("Rescale inventories and emissions for", technology)
@@ -1270,38 +1187,94 @@ class Electricity(BaseTransformation):
 
         techs = [
             "Biomass CHP",
-            #'Biomass IGCC CCS',
-            #'Biomass IGCC',
-            #'Coal PC',
-            #'Coal IGCC',
-            #'Coal PC CCS',
-            #'Coal IGCC CCS',
-            #'Coal CHP',
-            #'Gas OC',
-            #'Gas CC',
-            #'Gas CHP',
-            #'Gas CC CCS',
+            'Biomass IGCC CCS',
+            'Biomass IGCC',
+            'Coal PC',
+            'Coal IGCC',
+            'Coal PC CCS',
+            'Coal IGCC CCS',
+            'Coal CHP',
+            'Gas OC',
+            'Gas CC',
+            'Gas CHP',
+            'Gas CC CCS',
         ]
 
+        iam_to_eco_loc = {}
+        for label in self.scenario_labels:
+            iam_to_eco_loc = iam_to_eco_loc | self.iam_to_ecoinvent_loc[label]
+
         for tech in techs:
+            print(tech)
 
             if tech in self.iam_data.production_volumes.variables:
 
-                __filter_prod = (
-                    contains_any_from_list(
-                        (s.exchange, c.cons_name), self.powerplant_map[tech]
-                    )
-                    & equals((s.exchange, c.type), "production")
-                )(self.database)
+                _filter = self.database[(s.tag, tech)] & equals((s.exchange, c.unit), "kilowatt hour")(self.database)
+                subset = self.database.loc[_filter]
+                __filter_prod = equals((s.exchange, c.type), "production")
 
-                for _, ds in self.database[__filter_prod].iterrows():
+                for group, ds in subset[__filter_prod(subset)].groupby([(s.exchange, c.cons_name), (s.exchange, c.cons_prod)]):
+                    existing_locs = ds[(s.exchange, c.cons_loc)].unique()
+                    locs_to_copy = [k for k, v in iam_to_eco_loc.items()
+                                   if not any(i in v for i in existing_locs)]
 
                     self.fetch_proxies(
-                        name=ds[(s.exchange, c.cons_name)],
-                        ref_prod=ds[(s.exchange, c.cons_prod)],
+                        name=group[0],
+                        ref_prod=group[1],
                         production_variable=tech,
+                        regions_to_copy_to=locs_to_copy,
                         relink=True,
                     )
+
+            # scenario_cols = list(
+            #     set(
+            #         [
+            #             col[0]
+            #             for col in subset.columns
+            #             if col[0] not in [s.exchange, s.tag, s.ecoinvent]
+            #         ]
+            #     )
+            # )
+            #
+            # sel = equals((s.exchange, c.type), "production")
+            # subset.loc[~sel(subset), [(col, c.amount) for col in scenario_cols]] = 0
+
+            # if iam_loc != "World":
+            #     new_exc = create_redirect_exchange(
+            #         original, new_loc=iam_loc, cols=scenario_cols
+            #     )
+            #     self.exchange_stack.append(new_exc)
+            # else:
+            #     model = [m for m, v in self.regions.items() if iam_loc in v][0]
+            #     for loc in self.regions[model]:
+            #         prod_vol = (
+            #             self.iam_data.production_volumes.sel(
+            #                 scenario=self.scenario_labels,
+            #                 region=loc,
+            #                 variables=tech,
+            #             )
+            #                 .interp(year=iam_years)
+            #                 .sum(dim="scenario")
+            #                 .values
+            #         )
+            #
+            #         prod_vol[prod_vol == 0] = 1
+            #
+            #         total_prod = (
+            #             self.iam_data.production_volumes.sel(
+            #                 scenario=self.scenario_labels,
+            #                 region=self.regions[model],
+            #                 variables=tech,
+            #             )
+            #                 .interp(year=iam_years)
+            #                 .sum()
+            #                 .values.item(0)
+            #         )
+            #
+            #         new_exc[[(col, c.amount) for col in scenario_cols]] = new_exc[
+            #                                                                   (s.ecoinvent, c.amount)
+            #                                                               ] * (prod_vol / total_prod)
+            #         self.exchange_stack.append(new_exc)
 
     def update_electricity_markets(self):
         """
