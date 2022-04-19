@@ -467,7 +467,7 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
     :return: List of dictionaries that can be consumed by `wurst`
     """
 
-    scenarios = [col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent]]
+    scenarios = [col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent, s.tag]]
 
     cols = {col[0] for col in scenarios} if db_type == "single" else {s.ecoinvent}
 
@@ -477,7 +477,7 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
 
     if db_type != "single":
         col_tuples = [
-            (col, c.comment) for col in df.columns.levels[0] if col != s.exchange
+            (col, c.comment) for col in df.columns.levels[0] if col not in [s.exchange, s.tag]
         ]
         df[(s.ecoinvent, c.comment)] = df[col_tuples].sum(axis=1)
 

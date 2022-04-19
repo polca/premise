@@ -800,7 +800,6 @@ class NewDatabase:
                 (FILEPATH_BIGCC, "3.8"),
             ]
             for filepath in filepaths:
-                print(filepath)
                 inventory = DefaultInventory(
                     database=self.database,
                     version_in=filepath[1],
