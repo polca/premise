@@ -20,12 +20,12 @@ import wurst
 from premise import DATA_DIR
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
-from .transformation import *
-from .utils import c
+from .transformation import BaseTransformation
+from .utils import c, s
+import numpy as np
 
-PRODUCTION_PER_TECH = (
-    DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
-)
+
+PRODUCTION_PER_TECH = DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 
 
@@ -37,9 +37,7 @@ def get_losses_per_country_dict():
     """
 
     if not LOSS_PER_COUNTRY.is_file():
-        raise FileNotFoundError(
-            "The production per country dictionary file could not be found."
-        )
+        raise FileNotFoundError("The production per country dictionary file could not be found.")
 
     with open(LOSS_PER_COUNTRY, encoding="utf-8") as file:
         csv_list = [[val.strip() for val in r.split(";")] for r in file.readlines()]
@@ -61,9 +59,7 @@ def get_production_per_tech_dict():
     """
 
     if not PRODUCTION_PER_TECH.is_file():
-        raise FileNotFoundError(
-            "The production per technology dictionary file could not be found."
-        )
+        raise FileNotFoundError("The production per technology dictionary file could not be found.")
     csv_dict = {}
     with open(PRODUCTION_PER_TECH, encoding="utf-8") as file:
         input_dict = csv.reader(file, delimiter=";")
@@ -122,10 +118,7 @@ class Electricity(BaseTransformation):
                     {"Transformation loss, high voltage": 0, "Production volume": 0},
                 )
 
-                transf_loss += (
-                    dict_loss["Transformation loss, high voltage"]
-                    * dict_loss["Production volume"]
-                )
+                transf_loss += dict_loss["Transformation loss, high voltage"] * dict_loss["Production volume"]
                 cumul_prod += dict_loss["Production volume"]
             transf_loss /= cumul_prod
             return transf_loss
@@ -142,14 +135,8 @@ class Electricity(BaseTransformation):
                         "Production volume": 0,
                     },
                 )
-                transf_loss += (
-                    dict_loss["Transformation loss, medium voltage"]
-                    * dict_loss["Production volume"]
-                )
-                distr_loss += (
-                    dict_loss["Transmission loss to medium voltage"]
-                    * dict_loss["Production volume"]
-                )
+                transf_loss += dict_loss["Transformation loss, medium voltage"] * dict_loss["Production volume"]
+                distr_loss += dict_loss["Transmission loss to medium voltage"] * dict_loss["Production volume"]
                 cumul_prod += dict_loss["Production volume"]
             transf_loss /= cumul_prod
             distr_loss /= cumul_prod
@@ -168,14 +155,8 @@ class Electricity(BaseTransformation):
                         "Production volume": 0,
                     },
                 )
-                transf_loss += (
-                    dict_loss["Transformation loss, low voltage"]
-                    * dict_loss["Production volume"]
-                )
-                distr_loss += (
-                    dict_loss["Transmission loss to low voltage"]
-                    * dict_loss["Production volume"]
-                )
+                transf_loss += dict_loss["Transformation loss, low voltage"] * dict_loss["Production volume"]
+                distr_loss += dict_loss["Transmission loss to low voltage"] * dict_loss["Production volume"]
                 cumul_prod += dict_loss["Production volume"]
             transf_loss /= cumul_prod
             distr_loss /= cumul_prod
@@ -399,9 +380,7 @@ class Electricity(BaseTransformation):
                 # * an input from the medium voltage market minus solar contribution, including distribution loss
                 # * an self-consuming input for transformation loss
 
-                transf_loss, distr_loss = self.get_production_weighted_losses(
-                    "low", region
-                )
+                transf_loss, distr_loss = self.get_production_weighted_losses("low", region)
 
                 if period == 0:
                     new_exchanges.append(
@@ -505,8 +484,7 @@ class Electricity(BaseTransformation):
         )
 
         with open(
-            DATA_DIR
-            / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
+            DATA_DIR / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
@@ -596,9 +574,7 @@ class Electricity(BaseTransformation):
                 # * an input from the high voltage market, including transmission loss
                 # * an self-consuming input for transformation loss
 
-                transf_loss, distr_loss = self.get_production_weighted_losses(
-                    "medium", region
-                )
+                transf_loss, distr_loss = self.get_production_weighted_losses("medium", region)
 
                 if period == 0:
                     new_exchanges.append(
@@ -751,8 +727,7 @@ class Electricity(BaseTransformation):
         )
 
         with open(
-            DATA_DIR
-            / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
+            DATA_DIR / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
             "a",
             encoding="utf-8",
         ) as csv_file:
@@ -776,9 +751,7 @@ class Electricity(BaseTransformation):
                     electriciy_mix = dict(
                         zip(
                             self.iam_data.electricity_markets.variables.values,
-                            self.iam_data.electricity_markets.sel(
-                                region=region, scenario=scenario
-                            )
+                            self.iam_data.electricity_markets.sel(region=region, scenario=scenario)
                             .interp(
                                 year=np.arange(self.year, self.year + period + 1),
                                 kwargs={"fill_value": "extrapolate"},
@@ -812,7 +785,9 @@ class Electricity(BaseTransformation):
 
                     if period != 0:
                         producer[0] += f", {period}-year period"
-                        comment += f"Average electricity mix over a {period}-year period {self.year}-{self.year + period}."
+                        comment += (
+                            f"Average electricity mix over a {period}-year period {self.year}-{self.year + period}."
+                        )
 
                     prod_key = create_hash(producer)
                     cons_key = create_hash(consumer)
@@ -832,38 +807,24 @@ class Electricity(BaseTransformation):
                     exchanges = [np.nan, np.nan, np.nan, ""] * len(self.scenario_labels)
                     pos = [c[0] for c in self.database.columns].index(scenario)
 
-                    (
-                        exchanges[pos],
-                        exchanges[pos + 1],
-                        exchanges[pos + 2],
-                        exchanges[pos + 3],
-                    ) = (
+                    (exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3],) = (
                         prod_vol,
                         1,
                         np.nan,
                         comment,
                     )
 
-                    new_exc.append(
-                        producer + consumer + [prod_key, cons_key, exc_key] + exchanges
-                    )
+                    new_exc.append(producer + consumer + [prod_key, cons_key, exc_key] + exchanges)
 
                     # Second, add transformation loss
                     transf_loss = self.get_production_weighted_losses("high", region)
-                    (
-                        exchanges[pos],
-                        exchanges[pos + 1],
-                        exchanges[pos + 2],
-                        exchanges[pos + 3],
-                    ) = (
+                    (exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3],) = (
                         np.nan,
                         transf_loss,
                         np.nan,
                         "",
                     )
-                    new_exc.append(
-                        producer + consumer + [prod_key, cons_key, exc_key] + exchanges
-                    )
+                    new_exc.append(producer + consumer + [prod_key, cons_key, exc_key] + exchanges)
 
                     # Fetch solar contribution in the mix, to subtract it
                     # as solar energy is an input of low-voltage markets
@@ -874,11 +835,7 @@ class Electricity(BaseTransformation):
                             solar_amount += electriciy_mix[tech]
 
                     # Loop through the technologies
-                    technologies = (
-                        tech
-                        for tech in electriciy_mix
-                        if "residential" not in tech.lower()
-                    )
+                    technologies = (tech for tech in electriciy_mix if "residential" not in tech.lower())
                     for technology in technologies:
 
                         # If the given technology contributes to the mix
@@ -918,9 +875,7 @@ class Electricity(BaseTransformation):
                                 suppliers = self.database(_filters(self.database))
                                 counter += 1
 
-                            total_production_vol = suppliers[
-                                (s.ecoinvent, c.cons_prod_vol)
-                            ].sum(axis=0)
+                            total_production_vol = suppliers[(s.ecoinvent, c.cons_prod_vol)].sum(axis=0)
 
                             for _, row in suppliers.iterrows():
                                 producer = [
@@ -933,24 +888,14 @@ class Electricity(BaseTransformation):
                                 prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]
                                 share = prod_vol / total_production_vol
                                 exc_amount = (amount * share) / (1 - solar_amount)
-                                (
-                                    exchanges[pos],
-                                    exchanges[pos + 1],
-                                    exchanges[pos + 2],
-                                    exchanges[pos + 3],
-                                ) = (
+                                (exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3],) = (
                                     np.nan,
                                     exc_amount,
                                     np.nan,
                                     "",
                                 )
 
-                                new_exc.append(
-                                    producer
-                                    + consumer
-                                    + [prod_key, cons_key, exc_key]
-                                    + exchanges
-                                )
+                                new_exc.append(producer + consumer + [prod_key, cons_key, exc_key] + exchanges)
 
                                 log_created_markets.append(
                                     [
@@ -970,8 +915,7 @@ class Electricity(BaseTransformation):
 
             # Writing log of created markets
             with open(
-                DATA_DIR
-                / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
+                DATA_DIR / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
                 "w",
                 encoding="utf-8",
             ) as csv_file:
@@ -1012,8 +956,7 @@ class Electricity(BaseTransformation):
             year = int(year)
 
             with open(
-                DATA_DIR
-                / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
+                DATA_DIR / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
                 "w",
                 encoding="utf-8",
             ) as csv_file:
@@ -1027,9 +970,7 @@ class Electricity(BaseTransformation):
                     ]
                 )
 
-            print(
-                f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs"
-            )
+            print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")
 
         all_techs = [
             tech
@@ -1130,17 +1071,11 @@ class Electricity(BaseTransformation):
 
             locs = [self.regions[scenario] for scenario in self.scenario_labels]
             locs = list(set([item for sublist in locs for item in sublist]))
-            iam_years = [
-                int(scenario.split("::")[-1]) for scenario in self.scenario_labels
-            ]
+            iam_years = [int(scenario.split("::")[-1]) for scenario in self.scenario_labels]
 
             for iam_loc in locs:
 
-                scenarios = [
-                    scen
-                    for scen in self.scenario_labels
-                    if iam_loc in self.regions[scen]
-                ]
+                scenarios = [scen for scen in self.scenario_labels if iam_loc in self.regions[scen]]
                 ei_locs = [self.iam_to_ecoinvent_loc[l].get(iam_loc) for l in scenarios]
                 ei_locs = list(set([item for sublist in ei_locs for item in sublist]))
 
@@ -1174,9 +1109,7 @@ class Electricity(BaseTransformation):
                     new_eff = ei_eff * 1 / scaling_factors
 
                     # generate text for `comment` field
-                    new_text = self.update_new_efficiency_in_comment(
-                        scenarios, iam_loc, ei_eff, new_eff
-                    )
+                    new_text = self.update_new_efficiency_in_comment(scenarios, iam_loc, ei_eff, new_eff)
 
                     new_eff_list.append(new_eff)
                     new_comment_list.append(new_text)
@@ -1210,14 +1143,8 @@ class Electricity(BaseTransformation):
                     )
                 )
 
-                subset.loc[
-                    __filters_tech(subset),
-                    [(scenario, c.amount) for scenario in scenarios],
-                ] = (
-                    subset.loc[__filters_tech(subset), (s.ecoinvent, c.amount)].values[
-                        ..., None
-                    ]
-                    * scaling_factors
+                subset.loc[__filters_tech(subset), [(scenario, c.amount) for scenario in scenarios],] = (
+                    subset.loc[__filters_tech(subset), (s.ecoinvent, c.amount)].values[..., None] * scaling_factors
                 )
 
                 if technology in self.iam_data.emissions.sector:
@@ -1230,18 +1157,11 @@ class Electricity(BaseTransformation):
                             scenarios=scenarios,
                         )
 
-                        __filters_bio = __filters & equals(
-                            (s.exchange, c.prod_name), ei_sub
-                        )
+                        __filters_bio = __filters & equals((s.exchange, c.prod_name), ei_sub)
 
                         # update location in the (scenario, c.cons_loc) column
-                        subset.loc[
-                            __filters_bio(subset),
-                            [(scenario, c.amount) for scenario in scenarios],
-                        ] = (
-                            subset.loc[
-                                __filters_bio(subset), (s.ecoinvent, c.amount)
-                            ].values[..., None]
+                        subset.loc[__filters_bio(subset), [(scenario, c.amount) for scenario in scenarios],] = (
+                            subset.loc[__filters_bio(subset), (s.ecoinvent, c.amount)].values[..., None]
                             * scaling_factor_gains
                         )
 
@@ -1288,9 +1208,7 @@ class Electricity(BaseTransformation):
             if tech in self.iam_data.production_volumes.variables:
 
                 __filter_prod = (
-                    contains_any_from_list(
-                        (s.exchange, c.cons_name), self.powerplant_map[tech]
-                    )
+                    contains_any_from_list((s.exchange, c.cons_name), self.powerplant_map[tech])
                     & equals((s.exchange, c.type), "production")
                 )(self.database)
 
