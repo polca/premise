@@ -1187,17 +1187,17 @@ class Electricity(BaseTransformation):
 
         techs = [
             "Biomass CHP",
-            'Biomass IGCC CCS',
-            'Biomass IGCC',
-            'Coal PC',
-            'Coal IGCC',
-            'Coal PC CCS',
-            'Coal IGCC CCS',
-            'Coal CHP',
-            'Gas OC',
-            'Gas CC',
-            'Gas CHP',
-            'Gas CC CCS',
+            "Biomass IGCC CCS",
+            "Biomass IGCC",
+            "Coal PC",
+            "Coal IGCC",
+            "Coal PC CCS",
+            "Coal IGCC CCS",
+            "Coal CHP",
+            "Gas OC",
+            "Gas CC",
+            "Gas CHP",
+            "Gas CC CCS",
         ]
 
         iam_to_eco_loc = {}
@@ -1209,14 +1209,21 @@ class Electricity(BaseTransformation):
 
             if tech in self.iam_data.production_volumes.variables:
 
-                _filter = self.database[(s.tag, tech)] & equals((s.exchange, c.unit), "kilowatt hour")(self.database)
+                _filter = self.database[(s.tag, tech)] & equals(
+                    (s.exchange, c.unit), "kilowatt hour"
+                )(self.database)
                 subset = self.database.loc[_filter]
                 __filter_prod = equals((s.exchange, c.type), "production")
 
-                for group, ds in subset[__filter_prod(subset)].groupby([(s.exchange, c.cons_name), (s.exchange, c.cons_prod)]):
+                for group, ds in subset[__filter_prod(subset)].groupby(
+                    [(s.exchange, c.cons_name), (s.exchange, c.cons_prod)]
+                ):
                     existing_locs = ds[(s.exchange, c.cons_loc)].unique()
-                    locs_to_copy = [k for k, v in iam_to_eco_loc.items()
-                                   if not any(i in v for i in existing_locs)]
+                    locs_to_copy = [
+                        k
+                        for k, v in iam_to_eco_loc.items()
+                        if not any(i in v for i in existing_locs)
+                    ]
 
                     self.fetch_proxies(
                         name=group[0],

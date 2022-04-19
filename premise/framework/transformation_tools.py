@@ -74,9 +74,7 @@ def emptying_datasets(df: pd.DataFrame, scenario, filters: Callable):
     df.loc[filter_excluding_exchanges, (scenario, c.amount)] = 0
 
 
-def create_redirect_exchange(
-    df: pd.DataFrame, new_loc: str, cols: List[str]
-):
+def create_redirect_exchange(df: pd.DataFrame, new_loc: str, cols: List[str]):
     """
     Empty a dataset, and make it point to another one
     :return:
@@ -88,7 +86,9 @@ def create_redirect_exchange(
     new_exc[[(col, c.cons_prod_vol) for col in cols]] = np.nan
 
     new_exc[(s.ecoinvent, c.comment)] = ""
-    new_exc[[(col, c.comment) for col in cols]] = "redirect to new IAM-specific regional dataset"
+    new_exc[
+        [(col, c.comment) for col in cols]
+    ] = "redirect to new IAM-specific regional dataset"
 
     new_exc[(s.exchange, c.prod_name)] = new_exc[(s.exchange, c.cons_name)]
     new_exc[(s.exchange, c.prod_prod)] = new_exc[(s.exchange, c.cons_prod)]
