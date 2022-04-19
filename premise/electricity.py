@@ -14,6 +14,7 @@ import os
 import sys
 from collections import defaultdict
 from datetime import date
+import numpy as np
 
 import numpy as np
 import pandas as pd
@@ -228,7 +229,7 @@ class Electricity(BaseTransformation):
                     )
                 )
 
-                # Create an empty dataset
+                # Create an empty dataset  # TODO new row/Series: make a copy of a row and change values via self.database[1]
                 if period == 0:
                     new_dataset = {
                         "location": region,
@@ -792,7 +793,7 @@ class Electricity(BaseTransformation):
 
                 # 1. create production dataset as 1 series
                 new_exc = pd.Series(index=self.database.columns)
-
+                    # TODO make a copy of row here
                 # Create an empty production exchange  
                 name = "market group for electricity, high voltage"
                 product = "electricity, high voltage"  # TODO add type production?
