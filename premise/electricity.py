@@ -14,8 +14,8 @@ import os
 import sys
 from collections import defaultdict
 from datetime import date
-import numpy as np
 
+import numpy as np
 import wurst
 
 from premise import DATA_DIR
