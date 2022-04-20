@@ -23,6 +23,12 @@ from premise import DATA_DIR
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import BaseTransformation
+from premise.framework.logics import (
+    contains,
+    contains_any_from_list,
+    does_not_contain,
+    equals,
+)
 from .utils import c, s, create_hash
 
 PRODUCTION_PER_TECH = (
@@ -112,8 +118,8 @@ class Electricity(BaseTransformation):
         :rtype: tuple
         """
 
-        # TODO: this could be improved: make a dict with all values only once instead of several times 
-        
+        # TODO: this could be improved: make a dict with all values only once instead of several times
+
         # Fetch locations contained in IAM region
         locations = self.geo.iam_to_ecoinvent_location(region)
 
@@ -221,7 +227,7 @@ class Electricity(BaseTransformation):
                     )
                 )
 
-                # Create an empty dataset  
+                # Create an empty dataset
                 if period == 0:
                     new_dataset = {
                         "location": region,
@@ -773,25 +779,29 @@ class Electricity(BaseTransformation):
         log_created_markets = []
         scenario_models = [scen.split("::")[0] for scen in self.scenario_labels]
         scenario_pathways = [scen.split("::")[1] for scen in self.scenario_labels]
-        scenario_years = [scen.split("::")[2] for scen in self.scenario_labels]
+        scenario_years = [int(scen.split("::")[2]) for scen in self.scenario_labels]
 
+        print(self.scenario_labels)
         print(scenario_models)
         print(scenario_pathways)
         print(scenario_years)
 
-        for region in self.regions:
-            for period in range(0, 60, 10):
-                electricity_mix = dict( # TODO fetch technology-mix all at once for all scenarios: transform to dataarray, and add dimensions
+        regions_set = []
+        for _regs in self.regions.values():
+            regions_set.extend(_regs)
+        regions_set = set(regions_set)  # set of all regions from all IAM models
+        
+        for region in regions_set: 
+            for period in range(0, 60, 10):    
+                electricity_mix = dict(  # TODO fetch technology-mix all at once for all scenarios: transform to dataarray, and add dimensions
                     zip(
                         self.iam_data.electricity_markets.variables.values,
                         self.iam_data.electricity_markets.sel(
                             region=region,
-                            scenario=self.scenario_labels,   
+                            scenario=self.scenario_labels,
                         )
                         .interp(
-                            year=np.arange(
-                                self.year, self.year + period + 1
-                            ),  
+                            year=np.arange(self.year, self.year + period + 1),
                             kwargs={"fill_value": "extrapolate"},
                         )
                         .mean(dim="year")
@@ -840,17 +850,30 @@ class Electricity(BaseTransformation):
                     ),  # exc_key
                 ]
 
-                # select market shares for each technology
+                # select market shares for each technology for electricity generation
                 market_shares = self.iam_data.electricity_markets.sel(
-                            region=region,
-                            scenario = self.scenario_labels,
-                            year=scenario_years,
-                        )
-                
-                # we select only the market shares of technologies within a specific year for the respective scenario year by multiplication of an identity matrix
-                market_shares = np.broadcast_to(np.identity(len(self.scenario_labels))[...,None], (len(self.scenario_labels),len(self.scenario_labels), len(self.iam_data.electricity_markets.variables.values))).transpose(0, 2, 1) * market_shares
-                print("Test - sum of market shares over techs:", test.sum(dim="scenario").sum(dim="variables")
-                
+                    region=region,
+                    year=scenario_years,
+                    scenario=self.scenario_labels,
+                )
+
+                # we select only the market shares of technologies for the respective scenario year, and drop the data of the years other than the scenario year
+                # via multiplication with an identity matrix
+                market_shares = (
+                    np.broadcast_to(
+                        np.identity(len(self.scenario_labels))[..., None],
+                        (
+                            len(self.scenario_labels),
+                            len(self.scenario_labels),
+                            len(self.iam_data.electricity_markets.variables.values),
+                        ),
+                    ).transpose(0, 2, 1)
+                    * market_shares
+                )
+                # print(
+                #     "Test - sum of market shares over techs:",
+                #     market_shares.sum(dim="scenario").sum(dim="variables"),
+                # )
                 
                 exchanges = [np.nan, np.nan, np.nan, ""] * len(self.scenario_labels)
                 pos = [c[0] for c in self.database.columns].index(
@@ -863,7 +886,7 @@ class Electricity(BaseTransformation):
                     exchanges[pos + 2],
                     exchanges[pos + 3],
                 ) = (
-                    market_shares, # TODO fix
+                    market_shares,  # TODO fix
                     1,
                     np.nan,
                     comment,
@@ -960,9 +983,9 @@ class Electricity(BaseTransformation):
                             ]
                             prod_key = create_hash(producer)
                             exc_key = create_hash(producer + consumer)
-                            
+
                             # for weighting, we use current production volumes of producers from different regions currently in ecoinvent
-                            prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]  
+                            prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]
                             share = prod_vol / total_production_vol
                             exc_amount = (amount * share) / (1 - solar_amount)
                             (
