@@ -14,22 +14,22 @@ import os
 import sys
 from collections import defaultdict
 from datetime import date
+
 import numpy as np
 import pandas as pd
-
 import wurst
 
 from premise import DATA_DIR
-
-from .activity_maps import get_gains_to_ecoinvent_emissions
-from .transformation import BaseTransformation
 from premise.framework.logics import (
     contains,
     contains_any_from_list,
     does_not_contain,
     equals,
 )
-from .utils import c, s, create_hash
+
+from .activity_maps import get_gains_to_ecoinvent_emissions
+from .transformation import BaseTransformation
+from .utils import c, create_hash, s
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -791,9 +791,9 @@ class Electricity(BaseTransformation):
         for _regs in self.regions.values():
             regions_set.extend(_regs)
         regions_set = set(regions_set)  # set of all regions from all IAM models
-        
-        for region in regions_set: 
-            for period in range(0, 60, 10):    
+
+        for region in regions_set:
+            for period in range(0, 60, 10):
                 electricity_mix = dict(  # TODO fetch technology-mix all at once for all scenarios: transform to dataarray, and add dimensions
                     zip(
                         self.iam_data.electricity_markets.variables.values,
@@ -875,7 +875,7 @@ class Electricity(BaseTransformation):
                 #     "Test - sum of market shares over techs:",
                 #     market_shares.sum(dim="scenario").sum(dim="variables"),
                 # )
-                
+
                 exchanges = [np.nan, np.nan, np.nan, ""] * len(self.scenario_labels)
                 pos = [c[0] for c in self.database.columns].index(
                     scenario
