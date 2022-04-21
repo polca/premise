@@ -139,7 +139,7 @@ class BaseTransformation:
         self.fuels_co2 = get_fuel_properties()
 
         self.ecoinvent_to_iam_loc = {label: {} for label in self.scenario_labels}
-        for _s, scenario in enumerate(scenarios):
+        for s, scenario in enumerate(self.scenarios):
             geo = Geomap(model=scenario["model"])
             self.ecoinvent_to_iam_loc[self.scenario_labels[_s]] = {
                 loc: geo.ecoinvent_to_iam_location(loc)
@@ -147,7 +147,7 @@ class BaseTransformation:
             }
 
         self.iam_to_gains = {}
-        for _s, scenario in enumerate(scenarios):
+        for s, scenario in enumerate(self.scenarios):
             geo = Geomap(model=scenario["model"])
             self.iam_to_gains[self.scenario_labels[_s]] = {
                 loc: geo.iam_to_GAINS_region(loc)
@@ -156,7 +156,7 @@ class BaseTransformation:
 
         self.iam_to_ecoinvent_loc = {label: {} for label in self.scenario_labels}
 
-        for _s, scenario in enumerate(scenarios):
+        for s, scenario in enumerate(self.scenarios):
             geo = Geomap(model=scenario["model"])
             self.iam_to_ecoinvent_loc[self.scenario_labels[_s]] = {
                 loc: geo.iam_to_ecoinvent_location(loc)
@@ -198,7 +198,7 @@ class BaseTransformation:
         :param scaling_factor: scaling factor (new efficiency / old efficiency)
         :type scaling_factor: float
         """
-
+        # TODO REVIEW: is the argument scenarios here the same as self.scenarios? If so, self.scenarios could be used and the argument deleted.
         new_txt = [
             (
                 f" 'premise' has modified the efficiency of this dataset, from an original "
