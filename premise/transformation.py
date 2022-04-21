@@ -8,15 +8,15 @@ from collections import defaultdict
 from copy import deepcopy
 from itertools import product
 
+import numpy as np
 import xarray as xr
 from wurst import searching as ws
-import numpy as np
 
 from premise.framework.transformation_tools import *
 
+from .exceptions import NoCandidateInDatabase
 from .geomap import Geomap
 from .utils import c, create_scenario_label, get_fuel_properties, s
-from .exceptions import NoCandidateInDatabase
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
