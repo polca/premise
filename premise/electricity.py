@@ -16,6 +16,8 @@ from collections import defaultdict
 from datetime import date
 import numpy as np
 import pandas as pd
+import xarray as xr
+
 
 import wurst
 
@@ -778,14 +780,10 @@ class Electricity(BaseTransformation):
         """
 
         log_created_markets = []
-        scenario_models = [scen.split("::")[0] for scen in self.scenario_labels]
-        scenario_pathways = [scen.split("::")[1] for scen in self.scenario_labels]
-        scenario_years = [int(scen.split("::")[2]) for scen in self.scenario_labels]
+        # scenario_models = [scen.split("::")[0] for scen in self.scenario_labels]
+        # scenario_pathways = [scen.split("::")[1] for scen in self.scenario_labels]
+        # scenario_years = [int(scen.split("::")[2]) for scen in self.scenario_labels]
 
-        print(self.scenario_labels)
-        print(scenario_models)
-        print(scenario_pathways)
-        print(scenario_years)
 
         regions_set = []
         for _regs in self.regions.values():
@@ -794,22 +792,8 @@ class Electricity(BaseTransformation):
         
         for region in regions_set: 
             for period in range(0, 60, 10):    
-                electricity_mix = dict(  # TODO fetch technology-mix all at once for all scenarios: transform to dataarray, and add dimensions
-                    zip(
-                        self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(
-                            region=region,
-                            scenario=self.scenario_labels,
-                        )
-                        .interp(
-                            year=np.arange(self.year, self.year + period + 1),
-                            kwargs={"fill_value": "extrapolate"},
-                        )
-                        .mean(dim="year")
-                        .values,
-                    )
-                )
-
+                
+                # 1. create production dataset as 1 series
                 new_exc = pd.Series(index=self.database.columns)
 
                 # Create an empty dataset
@@ -818,11 +802,11 @@ class Electricity(BaseTransformation):
                 product = "electricity, high voltage"
                 comment = (
                     f"New regional electricity market created by `premise`, for the region"
-                    f" {region} in {year}, according to the scenario {scenario}."
+                    #f" {region} in {year}, according to the scenario {scenario}." # TODO fix this line
                 )
                 if period != 0:
                     name += f", {period}-year period"
-                    comment += f"Average electricity mix over a {period}-year period {year}-{year + period}."
+                    # comment += f"Average electricity mix over a {period}-year period {year}-{year + period}." # TODO fix this line
 
                 ident = create_hash((name, product, region))
                 new_exc[
@@ -850,89 +834,75 @@ class Electricity(BaseTransformation):
                         (name, product, region, name, product, region)
                     ),  # exc_key
                 ]
+                
+                # 4. add transformation losses (apply to low, medium and high voltage)
+                # transformation losses are ratios  
+                transf_loss = self.get_production_weighted_losses("high", region)  # TODO refactor transfloss
+                # (
+                #     exchanges[pos],
+                #     exchanges[pos + 1],
+                #     exchanges[pos + 2],
+                #     exchanges[pos + 3],
+                # ) = (
+                #     np.nan,
+                #     transf_loss,
+                #     np.nan,
+                #     "",
+                # )
+                # new_exc.append(
+                #     producer + consumer + [prod_key, cons_key, exc_key] + exchanges
+                # )
 
-                # select market shares for each technology for electricity generation
-                market_shares = self.iam_data.electricity_markets.sel(
-                    region=region,
-                    year=scenario_years,
-                    scenario=self.scenario_labels,
-                )
+                # 5. get technology mix of electricity market 
+                # considers also average mixes for longer time periods
+                # TODO fetch technology-mix all at once for all scenarios: transform to dataarray, and add dimensions
+                                        
+                electricity_mix = self.iam_data.electricity_markets.sel(
+                            region=region,
+                            scenario=self.scenario_labels,
+                        ).interp(
+                            year=range(2010, 2100),
+                            kwargs={"fill_value": "extrapolate"},)
+                
+                for iscen in self.scenario_labels:
+                    year = int(iscen.split("::")[-1])
+                    _filter = (electricity_mix.year > (year + period)) + (electricity_mix.year < year)
+                    electricity_mix[{"year": _filter}] = np.nan
+                    
+                electricity_mix = electricity_mix.mean(dim="year")
+                
+                print("Test - sum of market shares over techs:", electricity_mix.sum(dim="variables"))
 
-                # we select only the market shares of technologies for the respective scenario year, and drop the data of the years other than the scenario year
-                # via multiplication with an identity matrix
-                market_shares = (
-                    np.broadcast_to(
-                        np.identity(len(self.scenario_labels))[..., None],
-                        (
-                            len(self.scenario_labels),
-                            len(self.scenario_labels),
-                            len(self.iam_data.electricity_markets.variables.values),
-                        ),
-                    ).transpose(0, 2, 1)
-                    * market_shares
-                )
-                # print(
-                #     "Test - sum of market shares over techs:",
-                #     market_shares.sum(dim="scenario").sum(dim="variables"),
+                # 6. Correct contribution of solar power 
+                # for high voltage: only commercial solar power, but no residential solar power
+                # Fetch residential solar contribution in the mix, to subtract it
+                # as residential solar energy is an input of low-voltage markets
+            
+                _solarfilter = [tech for tech in electricity_mix.coords["variables"].values if "residential" in tech.lower()]
+                solar_amount = electricity_mix.sel(variables=_solarfilter).sum(dim="variables")
+                print("solar_amount:", solar_amount)
+                # TODO double-check scientific correctness
+
+                # 7. Add exchanges for each technology to the market
+                # Loop through the technologies
+                # technologies = (
+                #     tech
+                #     for tech in electricity_mix
+                #     if "residential" not in tech.lower()
                 # )
                 
-                exchanges = [np.nan, np.nan, np.nan, ""] * len(self.scenario_labels)
-                pos = [c[0] for c in self.database.columns].index(
-                    scenario
-                )  # TODO drop this approach and use column names instead
+                _nonsolarfilter = [tech for tech in electricity_mix.coords["variables"].values if "residential" not in tech.lower()]
 
-                (
-                    exchanges[pos],
-                    exchanges[pos + 1],
-                    exchanges[pos + 2],
-                    exchanges[pos + 3],
-                ) = (
-                    market_shares,  # TODO fix
-                    1,
-                    np.nan,
-                    comment,
-                )
+                electricity_mix_no_res_solar = electricity_mix.sel(variables=_solarfilter)
 
-                new_exc.append(
-                    producer + consumer + [prod_key, cons_key, exc_key] + exchanges
-                )
 
-                # Second, add transformation loss
-                transf_loss = self.get_production_weighted_losses("high", region)
-                (
-                    exchanges[pos],
-                    exchanges[pos + 1],
-                    exchanges[pos + 2],
-                    exchanges[pos + 3],
-                ) = (
-                    np.nan,
-                    transf_loss,
-                    np.nan,
-                    "",
-                )
-                new_exc.append(
-                    producer + consumer + [prod_key, cons_key, exc_key] + exchanges
-                )
-
-                # Fetch solar contribution in the mix, to subtract it
-                # as solar energy is an input of low-voltage markets
-
-                solar_amount = 0
-                for tech in electricity_mix:
-                    if "residential" in tech.lower():
-                        solar_amount += electricity_mix[tech]
-
-                # Loop through the technologies
-                technologies = (
-                    tech
-                    for tech in electricity_mix
-                    if "residential" not in tech.lower()
-                )
-
+                continue
                     # Loop through the technologies
                     technologies = (tech for tech in electriciy_mix if "residential" not in tech.lower())
                     for technology in technologies:
 
+                
+                
                 for technology in technologies:
 
                     # If the given technology contributes to the mix
@@ -946,7 +916,7 @@ class Electricity(BaseTransformation):
 
                         # Fetch electricity-producing technologies contained in the IAM region
                         # if they cannot be found for the ecoinvent locations concerned
-                        # we widen the scope to EU-based datasets, and RoW
+                        # we widen the scope first to EU-based datasets, then RoW and lastly GLO
                         possible_locations = [
                             ecoinvent_locations,
                             ["RER"],
