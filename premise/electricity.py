@@ -14,6 +14,7 @@ import os
 import sys
 from collections import defaultdict
 from datetime import date
+import numpy as np
 
 import wurst
 
@@ -199,7 +200,7 @@ class Electricity(BaseTransformation):
                     )
                 )
 
-                # Create an empty dataset
+                # Create an empty dataset  # TODO new row/Series: make a copy of a row and change values via self.database[1]
                 if period == 0:
                     new_dataset = {
                         "location": region,
@@ -748,7 +749,7 @@ class Electricity(BaseTransformation):
             for region in self.regions:
                 model, pathway, year = scenario.split("::")
                 for period in range(0, 60, 10):
-                    electriciy_mix = dict(
+                    electricity_mix = dict(
                         zip(
                             self.iam_data.electricity_markets.variables.values,
                             self.iam_data.electricity_markets.sel(region=region, scenario=scenario)
@@ -765,7 +766,7 @@ class Electricity(BaseTransformation):
                     ecoinvent_locations = self.iam_to_ecoinvent_loc[scenario][region]
 
                     new_exc = []
-
+                    # TODO make a copy of row here
                     # Create an empty dataset
                     # this dataset is for one year
                     producer = [
@@ -805,7 +806,9 @@ class Electricity(BaseTransformation):
                     )
 
                     exchanges = [np.nan, np.nan, np.nan, ""] * len(self.scenario_labels)
-                    pos = [c[0] for c in self.database.columns].index(scenario)
+                    pos = [c[0] for c in self.database.columns].index(
+                        scenario
+                    )  # TODO drop this approach and use column names instead
 
                     (exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3],) = (
                         prod_vol,
@@ -830,19 +833,19 @@ class Electricity(BaseTransformation):
                     # as solar energy is an input of low-voltage markets
 
                     solar_amount = 0
-                    for tech in electriciy_mix:
+                    for tech in electricity_mix:
                         if "residential" in tech.lower():
-                            solar_amount += electriciy_mix[tech]
+                            solar_amount += electricity_mix[tech]
 
                     # Loop through the technologies
                     technologies = (tech for tech in electriciy_mix if "residential" not in tech.lower())
                     for technology in technologies:
 
                         # If the given technology contributes to the mix
-                        if electriciy_mix[technology] > 0:
+                        if electricity_mix[technology] > 0:
 
                             # Contribution in supply
-                            amount = electriciy_mix[technology]
+                            amount = electricity_mix[technology]
 
                             # Get the possible names of ecoinvent datasets
                             ecoinvent_technologies = self.powerplant_map[technology]
