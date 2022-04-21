@@ -17,10 +17,8 @@ from datetime import date
 
 import numpy as np
 import pandas as pd
-import xarray as xr
-
-
 import wurst
+import xarray as xr
 
 from premise import DATA_DIR
 from premise.framework.logics import (
@@ -785,7 +783,6 @@ class Electricity(BaseTransformation):
         # scenario_pathways = [scen.split("::")[1] for scen in self.scenario_labels]
         # scenario_years = [int(scen.split("::")[2]) for scen in self.scenario_labels]
 
-
         regions_set = []
         for _regs in self.regions.values():
             regions_set.extend(_regs)
@@ -793,7 +790,7 @@ class Electricity(BaseTransformation):
 
         for region in regions_set:
             for period in range(0, 60, 10):
-                
+
                 # 1. create production dataset as 1 series
                 new_exc = pd.Series(index=self.database.columns)
 
@@ -803,7 +800,7 @@ class Electricity(BaseTransformation):
                 product = "electricity, high voltage"
                 comment = (
                     f"New regional electricity market created by `premise`, for the region"
-                    #f" {region} in {year}, according to the scenario {scenario}." # TODO fix this line
+                    # f" {region} in {year}, according to the scenario {scenario}." # TODO fix this line
                 )
                 if period != 0:
                     name += f", {period}-year period"
@@ -835,9 +832,9 @@ class Electricity(BaseTransformation):
                         (name, product, region, name, product, region)
                     ),  # exc_key
                 ]
-                
+
                 # 4. add transformation losses (apply to low, medium and high voltage)
-                # transformation losses are ratios  
+                # transformation losses are ratios
                 # transf_loss = self.get_production_weighted_losses("high", region)  # TODO refactor transfloss
                 # (
                 #     exchanges[pos],
@@ -854,33 +851,45 @@ class Electricity(BaseTransformation):
                 #     producer + consumer + [prod_key, cons_key, exc_key] + exchanges
                 # )
 
-                # 5. get technology mix of electricity market 
+                # 5. get technology mix of electricity market
                 # considers also average mixes for longer time periods
                 # TODO fetch technology-mix all at once for all scenarios: transform to dataarray, and add dimensions
-                                        
+
                 electricity_mix = self.iam_data.electricity_markets.sel(
-                            region=region,
-                            scenario=self.scenario_labels,
-                        ).interp(
-                            year=range(2010, 2100),
-                            kwargs={"fill_value": "extrapolate"},)
-                
+                    region=region,
+                    scenario=self.scenario_labels,
+                ).interp(
+                    year=range(2010, 2100),
+                    kwargs={"fill_value": "extrapolate"},
+                )
+
                 for iscen in self.scenario_labels:
                     year = int(iscen.split("::")[-1])
-                    _filter = (electricity_mix.year > (year + period)) + (electricity_mix.year < year)
+                    _filter = (electricity_mix.year > (year + period)) + (
+                        electricity_mix.year < year
+                    )
                     electricity_mix[{"year": _filter}] = np.nan
-                    
-                electricity_mix = electricity_mix.mean(dim="year")
-                
-                print("Test - sum of market shares over techs:", electricity_mix.sum(dim="variables"))
 
-                # 6. Correct contribution of solar power 
+                electricity_mix = electricity_mix.mean(dim="year")
+
+                print(
+                    "Test - sum of market shares over techs:",
+                    electricity_mix.sum(dim="variables"),
+                )
+
+                # 6. Correct contribution of solar power
                 # for high voltage: only commercial solar power, but no residential solar power
                 # Fetch residential solar contribution in the mix, to subtract it
                 # as residential solar energy is an input of low-voltage markets
-            
-                _solarfilter = [tech for tech in electricity_mix.coords["variables"].values if "residential" in tech.lower()]
-                solar_amount = electricity_mix.sel(variables=_solarfilter).sum(dim="variables")
+
+                _solarfilter = [
+                    tech
+                    for tech in electricity_mix.coords["variables"].values
+                    if "residential" in tech.lower()
+                ]
+                solar_amount = electricity_mix.sel(variables=_solarfilter).sum(
+                    dim="variables"
+                )
                 print("solar_amount:", solar_amount)
                 # TODO double-check scientific correctness - solar_amount seems to be always zero in all scenarios
 
@@ -892,18 +901,21 @@ class Electricity(BaseTransformation):
                 #     if "residential" not in tech.lower()
                 # )
 
-                _nonsolarfilter = [tech for tech in electricity_mix.coords["variables"].values if "residential" not in tech.lower()]
+                _nonsolarfilter = [
+                    tech
+                    for tech in electricity_mix.coords["variables"].values
+                    if "residential" not in tech.lower()
+                ]
 
-                electricity_mix_no_res_solar = electricity_mix.sel(variables=_solarfilter)
-
+                electricity_mix_no_res_solar = electricity_mix.sel(
+                    variables=_solarfilter
+                )
 
                 continue
                     # Loop through the technologies
                     technologies = (tech for tech in electriciy_mix if "residential" not in tech.lower())
                     for technology in technologies:
 
-                
-                
                 for technology in technologies:
 
                     # If the given technology contributes to the mix
