@@ -794,10 +794,9 @@ class Electricity(BaseTransformation):
                 # 1. create production dataset as 1 series
                 new_exc = pd.Series(index=self.database.columns)
 
-                # Create an empty dataset
-                # this dataset is for one year
+                # Create an empty production exchange  
                 name = "market group for electricity, high voltage"
-                product = "electricity, high voltage"
+                product = "electricity, high voltage"  # TODO add type production?
                 comment = (
                     f"New regional electricity market created by `premise`, for the region"
                     # f" {region} in {year}, according to the scenario {scenario}." # TODO fix this line
@@ -805,7 +804,7 @@ class Electricity(BaseTransformation):
                 if period != 0:
                     name += f", {period}-year period"
                     # comment += f"Average electricity mix over a {period}-year period {year}-{year + period}." # TODO fix this line
-
+ 
                 ident = create_hash((name, product, region))
                 new_exc[
                     [
@@ -853,7 +852,6 @@ class Electricity(BaseTransformation):
 
                 # 5. get technology mix of electricity market
                 # considers also average mixes for longer time periods
-                # TODO fetch technology-mix all at once for all scenarios: transform to dataarray, and add dimensions
 
                 electricity_mix = self.iam_data.electricity_markets.sel(
                     region=region,
@@ -893,14 +891,7 @@ class Electricity(BaseTransformation):
                 print("solar_amount:", solar_amount)
                 # TODO double-check scientific correctness - solar_amount seems to be always zero in all scenarios
 
-                # 7. Add exchanges for each technology to the market
-                # Loop through the technologies
-                # technologies = (
-                #     tech
-                #     for tech in electricity_mix
-                #     if "residential" not in tech.lower()
-                # )
-
+                # exclude the technologies which contain residential solar power (for high voltage markets)
                 _nonsolarfilter = [
                     tech
                     for tech in electricity_mix.coords["variables"].values
@@ -911,24 +902,42 @@ class Electricity(BaseTransformation):
                     variables=_solarfilter
                 )
 
-                continue
+                # 7. Add exchanges for each technology to the market
+                # Loop through the technologies
+                # technologies = (
+                #     tech
+                #     for tech in electricity_mix
+                #     if "residential" not in tech.lower()
+                # )
+
+                
                     # Loop through the technologies
                     technologies = (tech for tech in electriciy_mix if "residential" not in tech.lower())
                     for technology in technologies:
 
-                for technology in technologies:
+                for technology in technologies:  # electricity_mix_no_res_solar
 
                     # If the given technology contributes to the mix
-                    if electricity_mix[technology] > 0:
+                    if (
+                        electricity_mix[technology] > 0
+                    ):  # only technologies which have a share greater than zero
 
                         # Contribution in supply
                         amount = electricity_mix[technology]
 
                         # Get the possible names of ecoinvent datasets
-                        ecoinvent_technologies = self.powerplant_map[technology]
+                        
+                        ecoinvent_technologies = self.powerplant_map[
+                            technology
+                        ]  # TODO powerplant_map does not exist anymore {tech: [(ecoinvent name, ei-product)]} if more than 1 item: look at prod_vol and derive weighting
+                        # incorporated as tags now (filter only for production exchanges) = suppliers;
+                        # filter by location only loc which is in IAM region;
+                        # select prod_vol from column - calculate weighting 
+                        # 
+                        # TODO use tags here and new dictionary by Romain
 
                         # Fetch electricity-producing technologies contained in the IAM region
-                        # if they cannot be found for the ecoinvent locations concerned
+                        # if they cannot be found for the ecoinvent locations within the IAM region
                         # we widen the scope first to EU-based datasets, then RoW and lastly GLO
                         possible_locations = [
                             ecoinvent_locations,
@@ -959,7 +968,7 @@ class Electricity(BaseTransformation):
                             (s.ecoinvent, c.cons_prod_vol)
                         ].sum(axis=0)
 
-                        for _, row in suppliers.iterrows():  # TODO use tags here
+                        for _, row in suppliers.iterrows():
                             producer = [
                                 row[(s.exchange, c.cons_name)],
                                 row[(s.exchange, c.cons_prod)],
@@ -968,7 +977,7 @@ class Electricity(BaseTransformation):
                             prod_key = create_hash(producer)
                             exc_key = create_hash(producer + consumer)
 
-                            # for weighting, we use current production volumes of producers from different regions currently in ecoinvent
+                            # for weighting, we use current production volumes from ecoinvent of producers from different regions 
                             prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]
                             share = prod_vol / total_production_vol
                             exc_amount = (amount * share) / (1 - solar_amount)
