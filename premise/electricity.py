@@ -837,7 +837,7 @@ class Electricity(BaseTransformation):
                 
                 # 4. add transformation losses (apply to low, medium and high voltage)
                 # transformation losses are ratios  
-                transf_loss = self.get_production_weighted_losses("high", region)  # TODO refactor transfloss
+                # transf_loss = self.get_production_weighted_losses("high", region)  # TODO refactor transfloss
                 # (
                 #     exchanges[pos],
                 #     exchanges[pos + 1],
@@ -881,7 +881,7 @@ class Electricity(BaseTransformation):
                 _solarfilter = [tech for tech in electricity_mix.coords["variables"].values if "residential" in tech.lower()]
                 solar_amount = electricity_mix.sel(variables=_solarfilter).sum(dim="variables")
                 print("solar_amount:", solar_amount)
-                # TODO double-check scientific correctness
+                # TODO double-check scientific correctness - solar_amount seems to be always zero in all scenarios
 
                 # 7. Add exchanges for each technology to the market
                 # Loop through the technologies
