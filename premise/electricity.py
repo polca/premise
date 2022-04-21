@@ -1001,34 +1001,13 @@ class Electricity(BaseTransformation):
         :rtype: list
         """
 
-        print("Adjust efficiency of power plants...")
+        print("Adjusting efficiency of power plants...")
 
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
 
         for scenario in self.scenario_labels:
             model, pathway, year = scenario.split("::")
-            year = int(year)
-
-            with open(
-                DATA_DIR
-                / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
-                "w",
-                encoding="utf-8",
-            ) as csv_file:
-                writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-                writer.writerow(
-                    [
-                        "dataset name",
-                        "location",
-                        "original efficiency",
-                        "new efficiency",
-                    ]
-                )
-
-            print(
-                f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs"
-            )
 
         all_techs = [
             tech
@@ -1037,8 +1016,6 @@ class Electricity(BaseTransformation):
         ]
 
         for technology in all_techs:
-
-            print("Rescale inventories and emissions for", technology)
 
             _filter = self.database[(s.tag, technology)]
             subset = self.database.loc[_filter]
@@ -1162,18 +1139,6 @@ class Electricity(BaseTransformation):
                             * scaling_factor_gains
                         )
 
-                    # with open(
-                    #     DATA_DIR
-                    #     / f"logs/log power plant efficiencies change {model.upper()} {pathway} {year}-{date.today()}.csv",
-                    #     "a",
-                    #     encoding="utf-8",
-                    # ) as csv_file:
-                    #     writer = csv.writer(
-                    #         csv_file, delimiter=";", lineterminator="\n"
-                    #     )
-                    #     for row in eff_change_log:
-                    #         writer.writerow(row)
-
             self.database = pd.concat([self.database, subset])
 
     def create_region_specific_power_plants(self):
@@ -1184,6 +1149,7 @@ class Electricity(BaseTransformation):
         (non-European). Hence, we create region-specific versions of these datasets,
         to align inputs providers with the geographical scope of the region.
         """
+        print("Creating region-specific datasets...")
 
         techs = [
             "Biomass CHP",
@@ -1192,7 +1158,6 @@ class Electricity(BaseTransformation):
             'Coal PC',
             'Coal IGCC',
             'Coal PC CCS',
-            'Coal IGCC CCS',
             'Coal CHP',
             'Gas OC',
             'Gas CC',
@@ -1200,23 +1165,28 @@ class Electricity(BaseTransformation):
             'Gas CC CCS',
         ]
 
-        iam_to_eco_loc = {}
-        for label in self.scenario_labels:
-            iam_to_eco_loc = iam_to_eco_loc | self.iam_to_ecoinvent_loc[label]
-
         for tech in techs:
-            print(tech)
 
             if tech in self.iam_data.production_volumes.variables:
 
-                _filter = self.database[(s.tag, tech)] & equals((s.exchange, c.unit), "kilowatt hour")(self.database)
+                _filter = self.database[(s.tag, tech)] & equals(
+                    (s.exchange, c.unit), "kilowatt hour"
+                )(self.database)
                 subset = self.database.loc[_filter]
                 __filter_prod = equals((s.exchange, c.type), "production")
 
-                for group, ds in subset[__filter_prod(subset)].groupby([(s.exchange, c.cons_name), (s.exchange, c.cons_prod)]):
-                    existing_locs = ds[(s.exchange, c.cons_loc)].unique()
-                    locs_to_copy = [k for k, v in iam_to_eco_loc.items()
-                                   if not any(i in v for i in existing_locs)]
+                for group, ds in subset[__filter_prod(subset)].groupby(
+                    [(s.exchange, c.cons_name), (s.exchange, c.cons_prod)]
+                ):
+                    existing_locs = self.producer_locs[
+                        (group[0], group[1], "kilowatt hour")
+                    ].keys()
+
+                    locs_to_copy = [
+                        k
+                        for k, v in self.iam_to_eco_loc.items()
+                        if not any(i in v for i in existing_locs)
+                    ]
 
                     self.fetch_proxies(
                         name=group[0],

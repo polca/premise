@@ -489,8 +489,7 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
     else:
         for col in scenarios:
             if col[1] == c.comment:
-                sel = df[col]
-                df.loc[sel, col] += df.loc[sel, (s.ecoinvent, col[1])]
+                df.loc[:, col] += df.loc[:, (s.ecoinvent, col[1])]
 
             else:
                 sel = df[col].isna()

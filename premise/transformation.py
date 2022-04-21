@@ -99,6 +99,11 @@ def get_tuples_from_database(database):
     ]
 
 
+def format_dict(data):
+    _data = [dict(zip(["loc", "pv", "key"], d)) for d in data]
+    return {i["loc"]: {"pv": i["pv"], "key": i["key"]} for i in _data}
+
+
 class BaseTransformation:
     """
     Base transformation class.
@@ -131,35 +136,55 @@ class BaseTransformation:
             ]
 
         self.fuels_lhv = get_fuel_properties()
-        # mapping = InventorySet(self.database)
-        # self.emissions_map = mapping.get_remind_to_ecoinvent_emissions()
-        # self.fuel_map = mapping.generate_fuel_map()
         self.fuels_co2 = get_fuel_properties()
 
         self.ecoinvent_to_iam_loc = {label: {} for label in self.scenario_labels}
-        for s, scenario in enumerate(scenarios):
+        for _s, scenario in enumerate(scenarios):
             geo = Geomap(model=scenario["model"])
-            self.ecoinvent_to_iam_loc[self.scenario_labels[s]] = {
+            self.ecoinvent_to_iam_loc[self.scenario_labels[_s]] = {
                 loc: geo.ecoinvent_to_iam_location(loc)
                 for loc in get_dataframe_locs(self.database)
             }
 
         self.iam_to_gains = {}
-        for s, scenario in enumerate(scenarios):
+        for _s, scenario in enumerate(scenarios):
             geo = Geomap(model=scenario["model"])
-            self.iam_to_gains[self.scenario_labels[s]] = {
+            self.iam_to_gains[self.scenario_labels[_s]] = {
                 loc: geo.iam_to_GAINS_region(loc)
-                for loc in self.regions[self.scenario_labels[s]]
+                for loc in self.regions[self.scenario_labels[_s]]
             }
 
         self.iam_to_ecoinvent_loc = {label: {} for label in self.scenario_labels}
 
-        for s, scenario in enumerate(scenarios):
+        for _s, scenario in enumerate(scenarios):
             geo = Geomap(model=scenario["model"])
-            self.iam_to_ecoinvent_loc[self.scenario_labels[s]] = {
+            self.iam_to_ecoinvent_loc[self.scenario_labels[_s]] = {
                 loc: geo.iam_to_ecoinvent_location(loc)
-                for loc in self.regions[self.scenario_labels[s]]
+                for loc in self.regions[self.scenario_labels[_s]]
             }
+
+        self.producer_locs = (
+            self.database.loc[self.database[(s.exchange, c.type)] == "production"]
+            .groupby(
+                [
+                    (s.exchange, c.cons_name),
+                    (s.exchange, c.cons_prod),
+                    (s.exchange, c.unit),
+                ]
+            )[
+                [
+                    (s.exchange, c.cons_loc),
+                    (s.ecoinvent, c.cons_prod_vol),
+                    (s.exchange, c.cons_key),
+                ]
+            ]
+            .apply(lambda g: format_dict(g.values.tolist()))
+            .to_dict()
+        )
+
+        self.iam_to_eco_loc = {}
+        for label in self.scenario_labels:
+            self.iam_to_eco_loc = self.iam_to_eco_loc | self.iam_to_ecoinvent_loc[label]
 
         self.exchange_stack = []
 
@@ -225,6 +250,7 @@ class BaseTransformation:
         :return:
         """
 
+        exchange_stack = []
         iam_to_eco_loc = {}
         for label in self.scenario_labels:
             iam_to_eco_loc = iam_to_eco_loc | self.iam_to_ecoinvent_loc[label]
@@ -233,12 +259,6 @@ class BaseTransformation:
                     k: v for k, v in iam_to_eco_loc.items() if k in regions_to_copy_to
                 }
 
-        _filter = (
-            contains((s.exchange, c.cons_name), name)
-            & contains((s.exchange, c.cons_prod), ref_prod)
-            & equals((s.exchange, c.type), "production")
-        )(self.database)
-
         iam_years = [int(scenario.split("::")[-1]) for scenario in self.scenario_labels]
 
         for iam_loc, ei_locs in iam_to_eco_loc.items():
@@ -246,8 +266,8 @@ class BaseTransformation:
             possible_locs = ei_locs + ["RoW", "GLO", "CH", "RER"]
 
             _filter = (
-                contains((s.exchange, c.cons_name), name)
-                & contains((s.exchange, c.cons_prod), ref_prod)
+                equals((s.exchange, c.cons_name), name)
+                & equals((s.exchange, c.cons_prod), ref_prod)
                 & contains_any_from_list((s.exchange, c.cons_loc), possible_locs)
             )(self.database)
             original = self.database[_filter]
@@ -309,22 +329,20 @@ class BaseTransformation:
 
             # relink technopshere exchanges
             if relink:
-                print(iam_loc)
-                # dataset = self.relink_technosphere_exchanges(dataset, scenario)
+                dataset = self.relink_technosphere_exchanges(
+                    dataset, scenario_cols, iam_to_eco_loc
+                )
 
-            dataset[(s.ecoinvent, c.amount)] = np.nan
+            #dataset[(s.ecoinvent, c.amount)] = np.nan
+            exchange_stack.append(dataset)
 
-            self.exchange_stack.append(dataset)
-
-        # FIXME: REVIEW: This is performance heavy with the three concats.
-        # Can we reformulate this logic?
         self.database = pd.concat(
-            [self.database, pd.concat(self.exchange_stack, axis=0, ignore_index=True)],
+            [self.database] + exchange_stack,
             axis=0,
             ignore_index=True,
         )
 
-    def relink_technosphere_exchanges(self, ds, scenario):
+    def relink_technosphere_exchanges(self, ds, scenario_cols, iam_to_eco_loc):
         # TODO: REVIEW: general comment on this method: The applied cache validation pattern is unusual. The additional if ... else clauses with continue
         #  statements should usually each add to the cache.
         #  as this is not the case I wonder if several separate calculations/operations are done at once and if they could be decoupled for better readability.
@@ -335,104 +353,101 @@ class BaseTransformation:
 
         for _, exc in ds[__filters_tech].iterrows():
 
-            if exc[(s.exchange, c.cons_loc)] in self.cache:
-                # TODO: REVIEW: As we need the key (the 4 lines forming a tuple) multiple times in the code I would suggest that we move to a dedicated vairable here storing the key
-                if (
+            lookup_key = (
+                exc[(s.exchange, c.prod_name)],
+                exc[(s.exchange, c.prod_prod)],
+                exc[(s.exchange, c.prod_loc)],
+                exc[(s.exchange, c.prod_key)],
+            )
+
+            if self.cache.get(exc[(s.exchange, c.cons_loc)], dict()).get(lookup_key):
+                cached_exchanges = self.cache[exc[(s.exchange, c.cons_loc)]][lookup_key]
+                allocated = self.write_cache_to_exchange(
+                    exc, scenario_cols, cached_exchanges
+                )
+
+            else:
+
+                prod_loc = self.producer_locs[
                     exc[(s.exchange, c.prod_name)],
                     exc[(s.exchange, c.prod_prod)],
-                    exc[(s.exchange, c.prod_loc)],
-                    exc[(s.exchange, c.prod_key)],
-                ) in self.cache[exc[(s.exchange, c.cons_loc)]]:
+                    exc[(s.exchange, c.unit)],
+                ]
 
-                    cached_exchanges = self.cache[exc[(s.exchange, c.cons_loc)]][
-                        (
-                            exc[(s.exchange, c.prod_name)],
-                            exc[(s.exchange, c.prod_prod)],
-                            exc[(s.exchange, c.prod_loc)],
-                            exc[(s.exchange, c.prod_key)],
-                        )
+                included_locs = iam_to_eco_loc[exc[(s.exchange, c.cons_loc)]]
+
+                if exc[(s.exchange, c.cons_loc)] in prod_loc.keys():
+                    new_exc = exc.copy()
+
+                    new_exc[(s.exchange, c.prod_loc)] = new_exc[
+                        (s.exchange, c.cons_loc)
                     ]
 
-                    # TODO: REVIEW: why is this code only running for cached results? should this code not be the same for non cached results?
-                    #               then I would expect it to be outside of the if clauses.
-                    for cached_exc in cached_exchanges:
-                        new_row = pd.Series(
-                            [
-                                cached_exc[0],
-                                cached_exc[1],
-                                cached_exc[2],
-                                exc[(s.exchange, c.cons_name)],
-                                exc[(s.exchange, c.cons_prod)],
-                                exc[(s.exchange, c.cons_loc)],
-                                exc[(s.exchange, c.unit)],
-                                "technosphere",
-                                cached_exc[3],
-                                exc[(s.exchange, c.cons_key)],
-                                create_hash(
-                                    cached_exc[3] + exc[(s.exchange, c.cons_key)]
-                                ),
-                            ]
-                            + (
-                                [
-                                    np.nan,
-                                    np.nan,
-                                    np.nan,
-                                    np.nan,
-                                ]
-                                * (len(self.scenario_labels) + 1)
-                            ),
-                            index=ds.columns,
-                        )
+                    # update producer key
+                    new_exc[(s.exchange, c.prod_key)] = prod_loc[
+                        new_exc[(s.exchange, c.prod_loc)]
+                    ]["key"]
 
-                        new_row[(scenario, c.amount)] = (
-                            exc[(s.ecoinvent, c.amount)] * cached_exc[-1]
-                        )
+                    # update exchange key
+                    new_exc[(s.exchange, c.exc_key)] = create_hash(
+                        prod_loc[new_exc[(s.exchange, c.prod_loc)]]["key"],
+                        new_exc[(s.exchange, c.cons_key)],
+                    )
 
-                        new_exchanges.append(new_row)
-                    continue
+                    allocated, share = [new_exc], [1.0]
+                else:
+                    eligible_suppliers = list(
+                        set(prod_loc.keys()).intersection(included_locs)
+                    )
 
-            __filter = (
-                equals((s.exchange, c.type), "production")
-                & equals((s.exchange, c.cons_name), exc[(s.exchange, c.prod_name)])
-                & equals((s.exchange, c.cons_prod), exc[(s.exchange, c.prod_prod)])
-            )(self.database)
+                    if not eligible_suppliers:
+                        eligible_suppliers = [
+                            i for i in prod_loc.keys() if i in ["RoW", "GLO"]
+                        ]
 
-            possible_datasets = self.database[__filter]
-            possible_locations = get_dataframe_locs(possible_datasets)
+                    if not eligible_suppliers:
+                        new_exchanges.append(exc)
+                        allocated, share = [exc], [1.0]
+                        self.write_cache(exc, allocated, share)
+                        continue
 
-            if exc[(s.exchange, c.cons_loc)] in possible_locations:
-
-                exc[(s.exchange, c.prod_loc)] = exc[(s.exchange, c.cons_loc)]
-                new_exchanges.append(exc)
-                continue
-
-            eligible_suppliers = [
-                possible_ds
-                for _, possible_ds in possible_datasets.iterrows()
-                if possible_ds[(s.exchange, c.cons_loc)]
-                in self.iam_to_ecoinvent_loc[scenario][exc[(s.exchange, c.cons_loc)]]
-            ]
-
-            if not eligible_suppliers:
-                new_exchanges.append(exc)
-                continue
-
-            allocated, share = self.allocate_inputs(exc, eligible_suppliers, scenario)
-
+                    allocated, share = self.allocate_inputs(
+                        exc,
+                        eligible_suppliers,
+                        prod_loc,
+                        scenario_cols,
+                    )
+                self.write_cache(exc, allocated, share)
             new_exchanges.extend(allocated)
-            self.write_cache(exc, allocated, share)
 
         __filters_tech = does_not_contain((s.exchange, c.type), "technosphere")(ds)
         ds = ds[__filters_tech]
 
         if len(new_exchanges) > 0:
             ds = pd.concat(
-                [ds, pd.concat(new_exchanges, axis=1, ignore_index=True).T],
+                [ds, pd.DataFrame(new_exchanges)],
                 axis=0,
                 ignore_index=True,
             )
-
         return ds
+
+    def write_cache_to_exchange(self, exc, scenario_cols, cached_exchanges):
+        exchanges = []
+        for cached_exc in cached_exchanges:
+            new_row = exc.copy()
+            new_row[(s.exchange, c.prod_name)] = cached_exc[0]
+            new_row[(s.exchange, c.prod_prod)] = cached_exc[1]
+            new_row[(s.exchange, c.prod_loc)] = cached_exc[2]
+            new_row[(s.exchange, c.prod_key)] = cached_exc[3]
+            new_row[(s.exchange, c.exc_key)] = create_hash(
+                cached_exc[3] + new_row[(s.exchange, c.cons_key)]
+            )
+            new_row[[(col, c.amount) for col in scenario_cols]] = (
+                exc[(s.ecoinvent, c.amount)] * cached_exc[-1]
+            )
+            exchanges.append(new_row)
+
+        return exchanges
 
     def write_cache(self, exc, allocated, share):
 
@@ -457,12 +472,12 @@ class BaseTransformation:
             for e, _s in zip(allocated, share)
         ]
 
-    def allocate_inputs(self, exc, lst, scenario):
+    def allocate_inputs(self, exc, lst, prods, scenario_cols):
         """Allocate the input exchanges in ``lst`` to ``exc``,
         using production volumes where possible, and equal splitting otherwise.
         Always uses equal splitting if ``RoW`` is present."""
-        has_row = any((x[(s.exchange, c.cons_loc)] in ("RoW", "GLO") for x in lst))
-        pvs = [i[(s.ecoinvent, c.cons_prod_vol)] or 0 for i in lst]
+        has_row = any((x in ("RoW", "GLO") for x in lst))
+        pvs = [prods[i]["pv"] or 0 for i in lst]
         if all((x > 0 for x in pvs)) and not has_row:
             # Allocate using production volume
             total = sum(pvs)
@@ -471,19 +486,27 @@ class BaseTransformation:
             total = len(lst)
             pvs = [1 for _ in range(total)]
 
-        # TODO: REVIEW: can we reformulate? This is very expensive, having a inner function and a loop calling it together with a very expensive deepcopy operation
-        def new_exchange(exc, location, factor, scenario):
-            cp = deepcopy(exc)
+        # TODO: REVIEW: can we reformulate?
+        #  This is very expensive, having a inner function
+        #  and a loop calling it together
+        #  with a very expensive copy operation
+        def new_exchange(exc, location, factor, scenario_cols):
+            cp = exc.copy()
             cp[(s.exchange, c.prod_loc)] = location
-            cp[(scenario, c.amount)] = factor * cp[(s.ecoinvent, c.amount)]
-            cp[(s.ecoinvent, c.amount)] = np.nan
+            cp[[(col, c.amount) for col in scenario_cols]] = (
+                factor * cp[(s.ecoinvent, c.amount)]
+            )
+            #cp[(s.ecoinvent, c.amount)] = np.nan
+            cp[(s.exchange, c.prod_key)] = prods[location]["key"]
+            cp[(s.exchange, c.exc_key)] = create_hash(
+                prods[location]["key"] + cp[(s.exchange, c.cons_key)]
+            )
+
             return cp
 
         return (
             [
-                new_exchange(
-                    exc, obj[(s.exchange, c.cons_loc)], factor / total, scenario
-                )
+                new_exchange(exc, obj, factor / total, scenario_cols)
                 for obj, factor in zip(lst, pvs)
             ],
             [p / total for p in pvs],
