@@ -14,15 +14,16 @@ import os
 import sys
 from collections import defaultdict
 from datetime import date
-
 import numpy as np
+import pandas as pd
+
 import wurst
 
 from premise import DATA_DIR
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import BaseTransformation
-from .utils import c, s
+from .utils import c, s, create_hash
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -111,6 +112,8 @@ class Electricity(BaseTransformation):
         :rtype: tuple
         """
 
+        # TODO: this could be improved: make a dict with all values only once instead of several times 
+        
         # Fetch locations contained in IAM region
         locations = self.geo.iam_to_ecoinvent_location(region)
 
@@ -219,7 +222,7 @@ class Electricity(BaseTransformation):
                     )
                 )
 
-                # Create an empty dataset  # TODO new row/Series: make a copy of a row and change values via self.database[1]
+                # Create an empty dataset  
                 if period == 0:
                     new_dataset = {
                         "location": region,
@@ -769,237 +772,258 @@ class Electricity(BaseTransformation):
         """
 
         log_created_markets = []
+        scenario_models = [scen.split("::")[0] for scen in self.scenario_labels]
+        scenario_pathways = [scen.split("::")[1] for scen in self.scenario_labels]
+        scenario_years = [scen.split("::")[2] for scen in self.scenario_labels]
 
-        for s_pos, scenario in enumerate(self.scenario_labels):
-            for region in self.regions:
-                model, pathway, year = scenario.split("::")
-                for period in range(0, 60, 10):
-                    electricity_mix = dict(
-                        zip(
-                            self.iam_data.electricity_markets.variables.values,
-                            self.iam_data.electricity_markets.sel(
-                                region=region, scenario=scenario
-                            )
-                            .interp(
-                                year=np.arange(self.year, self.year + period + 1),
-                                kwargs={"fill_value": "extrapolate"},
-                            )
-                            .mean(dim="year")
-                            .values,
-                        )
-                    )
+        print(scenario_models)
+        print(scenario_pathways)
+        print(scenario_years)
 
-                    # Fetch ecoinvent regions contained in the IAM region
-                    ecoinvent_locations = self.iam_to_ecoinvent_loc[scenario][region]
-
-                    new_exc = pd.Series(index=self.database.columns)
-
-                    # TODO make a copy of row here
-                    # Create an empty dataset
-                    # this dataset is for one year
-                    name = "market group for electricity, high voltage"
-                    product = "electricity, high voltage"
-                    comment = (
-                        f"New regional electricity market created by `premise`, for the region"
-                        f" {region} in {year}, according to the scenario {scenario}."
-                    )
-                    if period != 0:
-                        name += f", {period}-year period"
-                        comment += f"Average electricity mix over a {period}-year period {self.year}-{self.year + period}."
-
-                    ident = create_hash((name, product, region))
-                    new_exc[[(s.exchange, c.prod_name),
-                            (s.exchange, c.prod_prod),
-                            (s.exchange, c.prod_loc),
-                            (s.exchange, c.cons_name),
-                            (s.exchange, c.cons_prod),
-                            (s.exchange, c.cons_loc),
-                            (s.exchange, c.prod_key),
-                            (s.exchange, c.cons_key),
-                            (s.exchange, c.exc_key),
-
-                             ] = [name, # producer name
-                                  product, # producer product
-                                  region,
-                                  name, # consumer name
-                                  product, # consumer product
-                                  region,
-                                  ident, # prod_key
-                                  ident, # cons_key
-                                  create_hash((name, product, region, name, product, region)), # exc_key
-                             ]
-
-                    prod_vol = (
-                        self.iam_data.production_volumes.sel(
-                            scenario=scenario,
+        for region in self.regions:
+            for period in range(0, 60, 10):
+                electricity_mix = dict( # TODO fetch technology-mix all at once for all scenarios: transform to dataarray, and add dimensions
+                    zip(
+                        self.iam_data.electricity_markets.variables.values,
+                        self.iam_data.electricity_markets.sel(
                             region=region,
-                            year=int(year),
-                            variables=self.iam_data.electricity_markets.variables.values,
+                            scenario=self.scenario_labels,   
                         )
-                        .sum()
-                        .values.item(0)
+                        .interp(
+                            year=np.arange(
+                                self.year, self.year + period + 1
+                            ),  
+                            kwargs={"fill_value": "extrapolate"},
+                        )
+                        .mean(dim="year")
+                        .values,
                     )
+                )
 
-                    exchanges = [np.nan, np.nan, np.nan, ""] * len(self.scenario_labels)
-                    pos = [c[0] for c in self.database.columns].index(
-                        scenario
-                    )  # TODO drop this approach and use column names instead
+                new_exc = pd.Series(index=self.database.columns)
 
-                    (
-                        exchanges[pos],
-                        exchanges[pos + 1],
-                        exchanges[pos + 2],
-                        exchanges[pos + 3],
-                    ) = (
-                        prod_vol,
-                        1,
-                        np.nan,
-                        comment,
-                    )
+                # Create an empty dataset
+                # this dataset is for one year
+                name = "market group for electricity, high voltage"
+                product = "electricity, high voltage"
+                comment = (
+                    f"New regional electricity market created by `premise`, for the region"
+                    f" {region} in {year}, according to the scenario {scenario}."
+                )
+                if period != 0:
+                    name += f", {period}-year period"
+                    comment += f"Average electricity mix over a {period}-year period {year}-{year + period}."
 
-                    new_exc.append(
-                        producer + consumer + [prod_key, cons_key, exc_key] + exchanges
-                    )
+                ident = create_hash((name, product, region))
+                new_exc[
+                    [
+                        (s.exchange, c.prod_name),
+                        (s.exchange, c.prod_prod),
+                        (s.exchange, c.prod_loc),
+                        (s.exchange, c.cons_name),
+                        (s.exchange, c.cons_prod),
+                        (s.exchange, c.cons_loc),
+                        (s.exchange, c.prod_key),
+                        (s.exchange, c.cons_key),
+                        (s.exchange, c.exc_key),
+                    ]
+                ] = [
+                    name,  # producer name
+                    product,  # producer product
+                    region,
+                    name,  # consumer name
+                    product,  # consumer product
+                    region,
+                    ident,  # prod_key
+                    ident,  # cons_key
+                    create_hash(
+                        (name, product, region, name, product, region)
+                    ),  # exc_key
+                ]
 
-                    # Second, add transformation loss
-                    transf_loss = self.get_production_weighted_losses("high", region)
-                    (
-                        exchanges[pos],
-                        exchanges[pos + 1],
-                        exchanges[pos + 2],
-                        exchanges[pos + 3],
-                    ) = (
-                        np.nan,
-                        transf_loss,
-                        np.nan,
-                        "",
-                    )
-                    new_exc.append(
-                        producer + consumer + [prod_key, cons_key, exc_key] + exchanges
-                    )
+                # select market shares for each technology
+                market_shares = self.iam_data.electricity_markets.sel(
+                            region=region,
+                            scenario = self.scenario_labels,
+                            year=scenario_years,
+                        )
+                
+                # we select only the market shares of technologies within a specific year for the respective scenario year by multiplication of an identity matrix
+                market_shares = np.broadcast_to(np.identity(len(self.scenario_labels))[...,None], (len(self.scenario_labels),len(self.scenario_labels), len(self.iam_data.electricity_markets.variables.values))).transpose(0, 2, 1) * market_shares
+                print("Test - sum of market shares over techs:", test.sum(dim="scenario").sum(dim="variables")
+                
+                
+                exchanges = [np.nan, np.nan, np.nan, ""] * len(self.scenario_labels)
+                pos = [c[0] for c in self.database.columns].index(
+                    scenario
+                )  # TODO drop this approach and use column names instead
 
-                    # Fetch solar contribution in the mix, to subtract it
-                    # as solar energy is an input of low-voltage markets
+                (
+                    exchanges[pos],
+                    exchanges[pos + 1],
+                    exchanges[pos + 2],
+                    exchanges[pos + 3],
+                ) = (
+                    market_shares, # TODO fix
+                    1,
+                    np.nan,
+                    comment,
+                )
 
-                    solar_amount = 0
-                    for tech in electricity_mix:
-                        if "residential" in tech.lower():
-                            solar_amount += electricity_mix[tech]
+                new_exc.append(
+                    producer + consumer + [prod_key, cons_key, exc_key] + exchanges
+                )
+
+                # Second, add transformation loss
+                transf_loss = self.get_production_weighted_losses("high", region)
+                (
+                    exchanges[pos],
+                    exchanges[pos + 1],
+                    exchanges[pos + 2],
+                    exchanges[pos + 3],
+                ) = (
+                    np.nan,
+                    transf_loss,
+                    np.nan,
+                    "",
+                )
+                new_exc.append(
+                    producer + consumer + [prod_key, cons_key, exc_key] + exchanges
+                )
+
+                # Fetch solar contribution in the mix, to subtract it
+                # as solar energy is an input of low-voltage markets
+
+                solar_amount = 0
+                for tech in electricity_mix:
+                    if "residential" in tech.lower():
+                        solar_amount += electricity_mix[tech]
+
+                # Loop through the technologies
+                technologies = (
+                    tech
+                    for tech in electricity_mix
+                    if "residential" not in tech.lower()
+                )
 
                     # Loop through the technologies
                     technologies = (tech for tech in electriciy_mix if "residential" not in tech.lower())
                     for technology in technologies:
 
-                        # If the given technology contributes to the mix
-                        if electricity_mix[technology] > 0:
+                for technology in technologies:
 
-                            # Contribution in supply
-                            amount = electricity_mix[technology]
+                    # If the given technology contributes to the mix
+                    if electricity_mix[technology] > 0:
 
-                            # Get the possible names of ecoinvent datasets
-                            ecoinvent_technologies = self.powerplant_map[technology]
+                        # Contribution in supply
+                        amount = electricity_mix[technology]
 
-                            # Fetch electricity-producing technologies contained in the IAM region
-                            # if they cannot be found for the ecoinvent locations concerned
-                            # we widen the scope to EU-based datasets, and RoW
-                            possible_locations = [
-                                ecoinvent_locations,
-                                ["RER"],
-                                ["RoW"],
-                                ["GLO"],
+                        # Get the possible names of ecoinvent datasets
+                        ecoinvent_technologies = self.powerplant_map[technology]
+
+                        # Fetch electricity-producing technologies contained in the IAM region
+                        # if they cannot be found for the ecoinvent locations concerned
+                        # we widen the scope to EU-based datasets, and RoW
+                        possible_locations = [
+                            ecoinvent_locations,
+                            ["RER"],
+                            ["RoW"],
+                            ["GLO"],
+                        ]
+                        suppliers, counter = [], 0
+
+                        while len(suppliers) == 0:
+                            _filters = (
+                                contains_any_from_list(
+                                    (s.exchange, c.cons_loc),
+                                    possible_locations[counter],
+                                )
+                                & contains_any_from_list(
+                                    (s.exchange, c.cons_name),
+                                    ecoinvent_technologies,
+                                )
+                                & contains((s.exchange, c.cons_prod), "electricity")
+                                & equals((s.exchange, c.unit), "kilowatt hour")
+                                & equals((s.exchange, c.type), "production")
+                            )
+                            suppliers = self.database(_filters(self.database))
+                            counter += 1
+
+                        total_production_vol = suppliers[
+                            (s.ecoinvent, c.cons_prod_vol)
+                        ].sum(axis=0)
+
+                        for _, row in suppliers.iterrows():  # TODO use tags here
+                            producer = [
+                                row[(s.exchange, c.cons_name)],
+                                row[(s.exchange, c.cons_prod)],
+                                row[(s.exchange, c.cons_loc)],
                             ]
-                            suppliers, counter = [], 0
+                            prod_key = create_hash(producer)
+                            exc_key = create_hash(producer + consumer)
+                            
+                            # for weighting, we use current production volumes of producers from different regions currently in ecoinvent
+                            prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]  
+                            share = prod_vol / total_production_vol
+                            exc_amount = (amount * share) / (1 - solar_amount)
+                            (
+                                exchanges[pos],
+                                exchanges[pos + 1],
+                                exchanges[pos + 2],
+                                exchanges[pos + 3],
+                            ) = (
+                                np.nan,
+                                exc_amount,
+                                np.nan,
+                                "",
+                            )
 
-                            while len(suppliers) == 0:
-                                _filters = (
-                                    contains_any_from_list(
-                                        (s.exchange, c.cons_loc),
-                                        possible_locations[counter],
-                                    )
-                                    & contains_any_from_list(
-                                        (s.exchange, c.cons_name),
-                                        ecoinvent_technologies,
-                                    )
-                                    & contains((s.exchange, c.cons_prod), "electricity")
-                                    & equals((s.exchange, c.unit), "kilowatt hour")
-                                    & equals((s.exchange, c.type), "production")
-                                )
-                                suppliers = self.database(_filters(self.database))
-                                counter += 1
+                            new_exc.append(
+                                producer
+                                + consumer
+                                + [prod_key, cons_key, exc_key]
+                                + exchanges
+                            )
 
-                            total_production_vol = suppliers[
-                                (s.ecoinvent, c.cons_prod_vol)
-                            ].sum(axis=0)
-
-                            for _, row in suppliers.iterrows():
-                                producer = [
-                                    row[(s.exchange, c.cons_name)],
-                                    row[(s.exchange, c.cons_prod)],
-                                    row[(s.exchange, c.cons_loc)],
+                            log_created_markets.append(
+                                [
+                                    consumer[0],
+                                    technology,
+                                    region,
+                                    transf_loss,
+                                    0.0,
+                                    producer[0],
+                                    producer[1],
+                                    share,
+                                    (amount * share) / (1 - solar_amount),
                                 ]
-                                prod_key = create_hash(producer)
-                                exc_key = create_hash(producer + consumer)
-                                prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]
-                                share = prod_vol / total_production_vol
-                                exc_amount = (amount * share) / (1 - solar_amount)
-                                (
-                                    exchanges[pos],
-                                    exchanges[pos + 1],
-                                    exchanges[pos + 2],
-                                    exchanges[pos + 3],
-                                ) = (
-                                    np.nan,
-                                    exc_amount,
-                                    np.nan,
-                                    "",
-                                )
+                            )
 
-                                new_exc.append(
-                                    producer
-                                    + consumer
-                                    + [prod_key, cons_key, exc_key]
-                                    + exchanges
-                                )
+                self.exchange_stack.append(new_exc)
 
-                                log_created_markets.append(
-                                    [
-                                        consumer[0],
-                                        technology,
-                                        region,
-                                        transf_loss,
-                                        0.0,
-                                        producer[0],
-                                        producer[1],
-                                        share,
-                                        (amount * share) / (1 - solar_amount),
-                                    ]
-                                )
-
-                    self.exchange_stack.append(new_exc)
-
-            # Writing log of created markets
-            with open(
-                DATA_DIR
-                / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
-                "w",
-                encoding="utf-8",
-            ) as csv_file:
-                writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-                writer.writerow(
-                    [
-                        "dataset name",
-                        "energy type",
-                        "IAM location",
-                        "Transformation loss",
-                        "Distr./Transmission loss",
-                        "Supplier name",
-                        "Supplier location",
-                        "Contribution within energy type",
-                        "Final contribution",
-                    ]
-                )
-                for line in log_created_markets:
-                    writer.writerow(line)
+        # Writing log of created markets
+        with open(
+            DATA_DIR
+            / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
+            "w",
+            encoding="utf-8",
+        ) as csv_file:
+            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+            writer.writerow(
+                [
+                    "dataset name",
+                    "energy type",
+                    "IAM location",
+                    "Transformation loss",
+                    "Distr./Transmission loss",
+                    "Supplier name",
+                    "Supplier location",
+                    "Contribution within energy type",
+                    "Final contribution",
+                ]
+            )
+            for line in log_created_markets:
+                writer.writerow(line)
 
     def update_electricity_efficiency(self):
         """
