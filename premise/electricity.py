@@ -794,7 +794,7 @@ class Electricity(BaseTransformation):
                 # 1. create production dataset as 1 series
                 new_exc = pd.Series(index=self.database.columns)
                     # TODO make a copy of row here
-                # Create an empty production exchange  
+                # Create an empty production exchange
                 name = "market group for electricity, high voltage"
                 product = "electricity, high voltage"  # TODO add type production?
                 comment = (
@@ -804,7 +804,7 @@ class Electricity(BaseTransformation):
                 if period != 0:
                     name += f", {period}-year period"
                     # comment += f"Average electricity mix over a {period}-year period {year}-{year + period}." # TODO fix this line
- 
+
                 ident = create_hash((name, product, region))
                 new_exc[
                     [
@@ -910,7 +910,6 @@ class Electricity(BaseTransformation):
                 #     if "residential" not in tech.lower()
                 # )
 
-                
                     # Loop through the technologies
                     technologies = (tech for tech in electriciy_mix if "residential" not in tech.lower())
                     for technology in technologies:
@@ -926,14 +925,14 @@ class Electricity(BaseTransformation):
                         amount = electricity_mix[technology]
 
                         # Get the possible names of ecoinvent datasets
-                        
+
                         ecoinvent_technologies = self.powerplant_map[
                             technology
                         ]  # TODO powerplant_map does not exist anymore {tech: [(ecoinvent name, ei-product)]} if more than 1 item: look at prod_vol and derive weighting
                         # incorporated as tags now (filter only for production exchanges) = suppliers;
                         # filter by location only loc which is in IAM region;
-                        # select prod_vol from column - calculate weighting 
-                        # 
+                        # select prod_vol from column - calculate weighting
+                        #
                         # TODO use tags here and new dictionary by Romain
 
                         # Fetch electricity-producing technologies contained in the IAM region
@@ -977,7 +976,7 @@ class Electricity(BaseTransformation):
                             prod_key = create_hash(producer)
                             exc_key = create_hash(producer + consumer)
 
-                            # for weighting, we use current production volumes from ecoinvent of producers from different regions 
+                            # for weighting, we use current production volumes from ecoinvent of producers from different regions
                             prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]
                             share = prod_vol / total_production_vol
                             exc_amount = (amount * share) / (1 - solar_amount)
