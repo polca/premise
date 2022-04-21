@@ -14,6 +14,7 @@ import os
 import sys
 from collections import defaultdict
 from datetime import date
+
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -22,16 +23,16 @@ import xarray as xr
 import wurst
 
 from premise import DATA_DIR
-
-from .activity_maps import get_gains_to_ecoinvent_emissions
-from .transformation import BaseTransformation
 from premise.framework.logics import (
     contains,
     contains_any_from_list,
     does_not_contain,
     equals,
 )
-from .utils import c, s, create_hash
+
+from .activity_maps import get_gains_to_ecoinvent_emissions
+from .transformation import BaseTransformation
+from .utils import c, create_hash, s
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -788,9 +789,9 @@ class Electricity(BaseTransformation):
         for _regs in self.regions.values():
             regions_set.extend(_regs)
         regions_set = set(regions_set)  # set of all regions from all IAM models
-        
-        for region in regions_set: 
-            for period in range(0, 60, 10):    
+
+        for region in regions_set:
+            for period in range(0, 60, 10):
                 
                 # 1. create production dataset as 1 series
                 new_exc = pd.Series(index=self.database.columns)
@@ -889,7 +890,7 @@ class Electricity(BaseTransformation):
                 #     for tech in electricity_mix
                 #     if "residential" not in tech.lower()
                 # )
-                
+
                 _nonsolarfilter = [tech for tech in electricity_mix.coords["variables"].values if "residential" not in tech.lower()]
 
                 electricity_mix_no_res_solar = electricity_mix.sel(variables=_solarfilter)
