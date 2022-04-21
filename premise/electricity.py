@@ -1153,16 +1153,16 @@ class Electricity(BaseTransformation):
 
         techs = [
             "Biomass CHP",
-            'Biomass IGCC CCS',
-            'Biomass IGCC',
-            'Coal PC',
-            'Coal IGCC',
-            'Coal PC CCS',
-            'Coal CHP',
-            'Gas OC',
-            'Gas CC',
-            'Gas CHP',
-            'Gas CC CCS',
+            "Biomass IGCC CCS",
+            "Biomass IGCC",
+            "Coal PC",
+            "Coal IGCC",
+            "Coal PC CCS",
+            "Coal CHP",
+            "Gas OC",
+            "Gas CC",
+            "Gas CHP",
+            "Gas CC CCS",
         ]
 
         for tech in techs:
