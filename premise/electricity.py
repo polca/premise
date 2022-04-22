@@ -806,21 +806,22 @@ class Electricity(BaseTransformation):
 
                 # 4. add transformation losses (apply to low, medium and high voltage)
                 # transformation losses are ratios
-                # transf_loss = self.get_production_weighted_losses("high", region)  # TODO refactor transfloss
-                # (
-                #     exchanges[pos],
-                #     exchanges[pos + 1],
-                #     exchanges[pos + 2],
-                #     exchanges[pos + 3],
-                # ) = (
-                #     np.nan,
-                #     transf_loss,
-                #     np.nan,
-                #     "",
-                # )
-                # new_exc.append(
-                #     producer + consumer + [prod_key, cons_key, exc_key] + exchanges
-                # )
+
+                tloss_exc = new_exc.copy()
+                tloss[(s.exchange, c.type)] = 'technosphere'
+                transf_loss = self.get_production_weighted_losses("high", region)
+
+                cols = []
+                vals = []
+                for i in tloss_exc.index.get_level_values(0):
+                    if '::' in str(i) of s.ecoinvent == i:
+                        cols.append((i, c.cons_prod_vol))
+                        cols.append((i, c.amount))
+                        cols.append((i, c.efficiency))
+                        cols.append((i, c.comment))
+                        vals.extend([np.nan, transf_loss, np.nan, ""])
+
+                tloss_exc[cols] = vals
 
                 # 5. get technology mix of electricity market
                 # considers also average mixes for longer time periods
@@ -854,6 +855,7 @@ class Electricity(BaseTransformation):
                     tech for tech in electricity_mix.coords["variables"].values if "residential" in tech.lower()
                 ]
                 solar_amount = electricity_mix.sel(variables=_solarfilter).sum(dim="variables")
+
                 solar_amount = solar_amount.to_dataframe().drop('region', axis=1)['value']
                 idx = pd.MultiIndex.from_product((tuple(solar_amount.coords['scenario'].values), [c.amount]))
                 solar_amount.columns = idx
@@ -884,15 +886,15 @@ class Electricity(BaseTransformation):
                 for iszen in electricity_mix_no_res_solar.coords["scenario"]:
                     if iszen.item(0) in self.iam_to_ecoinvent_loc:
                         eco_locs = self.iam_to_ecoinvent_loc[iszen.item(0)][region]
-                        reduced_dataset[(s.exchange, c.prod_loc)].isin(eco_locs)
+                        sel = reduced_dataset[(s.exchange, c.prod_loc)].isin(eco_locs) # FIXME apply selector use other dict without scen necessity
                     else:
-                        warning.warn(f"no matching ecoinvent lovation for szenario {iszen.item(0)} in region {region}")
+                        warning.warn(f"no matching ecoinvent location for szenario {iszen.item(0)} in region {region}")
 
                 extensions = pd.DataFrame(columns=reduced_dataset.columns, index=range(len(reduced_dataset)))
 
-                columns_to_transfer = [(s.exchange, c.cons_name),
-                                       (s.exchange, c.cons_prod),
-                                       (s.exchange, c.cons_loc),
+                columns_to_transfer = [(s.exchange, c.prod_name),
+                                       (s.exchange, c.prod_prod),
+                                       (s.exchange, c.prod_loc),
                                        (s.exchange, c.unit),
                                        (s.exchange, c.type),
                                        (s.ecoinvent, c.amount),
@@ -906,17 +908,17 @@ class Electricity(BaseTransformation):
                     columns_to_transfer
                 ].values
 
-                extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc)]] = (
+                extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]] = (
                     name,
                     product,
                     region,
                 )
 
-                create_hash_for_database(extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc)]])
-                create_hash_for_database(extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]])
-                create_hash_for_database(extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc), (s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]])
+                extensions[[(s.exchange, c.prod_key)]] = create_hash_for_database(extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc)]])
+                extensions[[(s.exchange, c.cons_key)]] = create_hash_for_database(extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]])
+                extensions[[(s.exchange, c.exc_key)]] = create_hash_for_database(extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc), (s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]])
 
-                weighting = lambda x: x / x.sum() / (1 - solar_amount # needs to be utilized here as it is refering to the solar_amount
+                weighting = lambda x: x / x.sum() / (1 - solar_amount) # needs to be utilized here as it is refering to the solar_amount
                 normalized_prod_vol = reduced_dataset.groupby([(s.exchange, c.cons_loc)])[
                     [(s.ecoinvent, c.cons_prod_vol)]
                 ].apply(weighting).drop((s.ecoinvent, c.cons_prod_vol), axis=1)
@@ -934,7 +936,7 @@ class Electricity(BaseTransformation):
                         vals.extend([np.nan, np.nan, ""])
 
                 extensions[cols] = vals
-                extensions = pd.concat([extensions, pd.DataFrame(new_exc).T])
+                extensions = pd.concat([extensions, pd.DataFrame([new_exc, tloss_exc]).T])
 
                 additional_exchanges.append(extensions)
 
