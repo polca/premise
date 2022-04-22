@@ -227,6 +227,11 @@ class DatabaseCleaner:
         """
         for ds in self.db:
 
+            # check for the presence of a production exchange
+            assert (
+                0 < len([e for e in ds["exchanges"] if e["type"] == "production"]) < 2
+            ), f"missing production exchange for {ds['name']}."
+
             # collect production exchanges that simply do not have a location key and set it to
             # the location of the dataset
             for exc in wurst.production(ds):

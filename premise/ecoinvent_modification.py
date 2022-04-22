@@ -734,7 +734,8 @@ class NewDatabase:
         else:
             # extract the database, pickle it for next time and return it
             print(
-                "Cannot find cached inventories. Will create them now for next time..."
+                "Cannot find cached inventories."
+                "Will create them now for next time..."
             )
             data = self.__import_inventories()
             pickle.dump(data, open(file_name, "wb"))
@@ -808,9 +809,10 @@ class NewDatabase:
                 )
                 datasets = inventory.merge_inventory()
                 data.extend(datasets)
-                self.database.extend(datasets)
+            self.database.extend(data)
 
         print("Done!\n")
+
         return data
 
     def __import_additional_inventories(self):
@@ -831,13 +833,15 @@ class NewDatabase:
             additional.prepare_inventory()
             data.extend(additional.merge_inventory())
 
+        self.database.extend(data)
+
         print("Done!\n")
 
         return data
 
     def update_electricity(self):
 
-        print("\n/////////////////////////// ELECTRICITY ////////////////////////////")
+        print("\n///////////////////////////// ELECTRICITY //////////////////////////")
 
         electricity = Electricity(
             database=self.database, iam_data=self.iam_data, scenarios=self.scenarios

@@ -9,9 +9,7 @@ blacklist:
   - drying
   - milling
   - treatment of
-  - pipeline
   - process-specific
-  - H2 power plant
   - briquettes
   - hydrogenation
   - hydrogen embrittlement
@@ -20,7 +18,6 @@ blacklist:
   - hydrogen sulfite
   - hydrogen peroxide
   - trichloropropane
-  - storage
   - market for
   - market group for
   - wheat production

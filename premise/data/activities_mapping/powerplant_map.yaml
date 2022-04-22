@@ -1,8 +1,7 @@
 Biomass CHP:
 - heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014
 Biomass CHP CCS:
-- electricity production, at co-generation power plant/wood, post, pipeline 200km,
-  storage 1000m
+- electricity production, at co-generation power plant/wood, post, pipeline 200km, storage 1000m
 Biomass ST:
 - electricity production, at wood burning power plant 20 MW, truck 25km, no CCS
 Biomass IGCC CCS:
@@ -14,16 +13,14 @@ Coal PC:
 Coal IGCC:
 - electricity production, at power plant/hard coal, IGCC, no CCS
 Coal PC CCS:
-- electricity production, at power plant/hard coal, post, pipeline 200km, storage
-  1000m
+- electricity production, at power plant/hard coal, post, pipeline 200km, storage 1000m
 Coal IGCC CCS:
 - electricity production, at power plant/lignite, post, pipeline 200km, storage 1000m
 - electricity production, at power plant/hard coal, post, pipeline 200km, storage 1000m
 Coal CHP:
 - heat and power co-generation, hard coal
 Coal CHP CCS:
-- electricity production, at co-generation power plant/hard coal, post, pipeline 200km,
-  storage 1000m
+- electricity production, at co-generation power plant/hard coal, post, pipeline 200km, storage 1000m
 Gas OC:
 - electricity production, natural gas, conventional power plant
 Gas CC:
@@ -31,11 +28,9 @@ Gas CC:
 Gas CHP:
 - heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical
 Gas CHP CCS:
-- electricity production, at co-generation power plant/natural gas, post, pipeline
-  200km, storage 1000m
+- electricity production, at co-generation power plant/natural gas, post, pipeline 200km, storage 1000m
 Gas CC CCS:
-- electricity production, at power plant/natural gas, post, pipeline 200km, storage
-  1000m
+- electricity production, at power plant/natural gas, post, pipeline 200km, storage 1000m
 Geothermal:
 - electricity production, deep geothermal
 Hydro:
@@ -52,13 +47,11 @@ Oil ST:
 Oil CC:
 - electricity production, oil
 Oil CC CCS:
-- electricity production, at co-generation power plant/oil, post, pipeline 200km,
-  storage 1000m
+- electricity production, at co-generation power plant/oil, post, pipeline 200km, storage 1000m
 Oil CHP:
 - heat and power co-generation, oil
 Oil CHP CCS:
-- electricity production, at co-generation power plant/oil, post, pipeline 200km,
-  storage 1000m
+- electricity production, at co-generation power plant/oil, post, pipeline 200km, storage 1000m
 Solar CSP:
 - electricity production, solar tower power plant, 20 MW
 - electricity production, solar thermal parabolic trough, 50 MW

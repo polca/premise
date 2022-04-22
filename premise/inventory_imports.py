@@ -36,6 +36,14 @@ def get_biosphere_code() -> dict:
     return csv_dict
 
 
+def check_presence_of_production_exchange(db):
+    for ds in db:
+        # check for the presence of a production exchange
+        assert (
+            0 < len([e for e in ds["exchanges"] if e["type"] == "production"]) < 2
+        ), f"missing production exchange for {ds['name']}."
+
+
 def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
     """
     Generate mapping for ecoinvent datasets across different database versions.
@@ -127,6 +135,20 @@ class BaseInventoryImport:
         Modifies :attr:`import_db` in-place.
         :returns: Nothing
         """
+
+        if self.version_in != self.version_out:
+            self.import_db.migrate(
+                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
+
+        self.add_biosphere_links()
+        self.add_product_field_to_exchanges()
+
+        # Check for duplicates
+        self.check_for_duplicates()
+
+        # Check for presence of production flow
+        check_presence_of_production_exchange(self.import_db)
 
     def check_for_duplicates(self) -> None:
         """
@@ -244,16 +266,15 @@ class BaseInventoryImport:
             for y in x["exchanges"]:
                 if y["type"] == "technosphere":
                     # Check if the field 'product' is present
-                    if not "product" in y:
-                        y["product"] = self.correct_product_field(y)
+                    if "product" not in y:
+                        if "reference product" in y:
+                            y["product"] = y["reference product"]
+                        else:
+                            y["product"] = self.correct_product_field(y)
 
-                    # If a 'reference product' field is present, we make sure
-                    # it matches with the new 'product' field
-                    # if "reference product" in y:
-                    #    try:
-                    #        assert y["product"] == y["reference product"]
-                    #    except AssertionError:
-                    #        y["product"] = self.correct_product_field(y)
+                    if y["product"] is None:
+                        print(f"not product found for {y} in {x['name']}.")
+
 
         # Add a `code` field if missing
         for x in self.import_db.data:
@@ -289,7 +310,7 @@ class BaseInventoryImport:
                 None,
             )
 
-        if candidate is not None:
+        if candidate:
             return candidate["reference product"]
 
         print(
@@ -387,6 +408,10 @@ class DefaultInventory(BaseInventoryImport):
         return ExcelImporter(path)
 
     def prepare_inventory(self) -> None:
+        """Prepare the inventory for the merger with Ecoinvent.
+        Modifies :attr:`import_db` in-place.
+        :returns: Nothing
+        """
 
         if self.version_in != self.version_out:
             self.import_db.migrate(
@@ -398,6 +423,9 @@ class DefaultInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
+
+        # Check for presence of production flow
+        check_presence_of_production_exchange(self.import_db)
 
 
 class VariousVehicles(BaseInventoryImport):

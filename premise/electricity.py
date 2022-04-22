@@ -1003,12 +1003,6 @@ class Electricity(BaseTransformation):
 
         print("Adjusting efficiency of power plants...")
 
-        if not os.path.exists(DATA_DIR / "logs"):
-            os.makedirs(DATA_DIR / "logs")
-
-        for scenario in self.scenario_labels:
-            model, pathway, year = scenario.split("::")
-
         all_techs = [
             tech
             for tech in self.iam_data.efficiency.variables.values
@@ -1022,8 +1016,7 @@ class Electricity(BaseTransformation):
 
             self.database = self.database[~_filter]
 
-            locs = [self.regions[scenario] for scenario in self.scenario_labels]
-            locs = list(set([item for sublist in locs for item in sublist]))
+            locs = self.iam_to_eco_loc.keys()
             iam_years = [
                 int(scenario.split("::")[-1]) for scenario in self.scenario_labels
             ]
@@ -1035,10 +1028,12 @@ class Electricity(BaseTransformation):
                     for scen in self.scenario_labels
                     if iam_loc in self.regions[scen]
                 ]
-                ei_locs = [self.iam_to_ecoinvent_loc[l].get(iam_loc) for l in scenarios]
-                ei_locs = list(set([item for sublist in ei_locs for item in sublist]))
+                ei_locs = self.iam_to_eco_loc[iam_loc]
 
-                __filters = contains_any_from_list((s.exchange, c.cons_loc), ei_locs)
+                __filters = (
+                    contains_any_from_list((s.exchange, c.cons_loc), ei_locs)
+                    | equals((s.exchange, c.cons_loc), iam_loc)
+                )
 
                 scaling_factors = 1 / self.find_iam_efficiency_change(
                     variable=technology,
@@ -1178,6 +1173,7 @@ class Electricity(BaseTransformation):
                 for group, ds in subset[__filter_prod(subset)].groupby(
                     [(s.exchange, c.cons_name), (s.exchange, c.cons_prod)]
                 ):
+
                     existing_locs = self.producer_locs[
                         (group[0], group[1], "kilowatt hour")
                     ].keys()
@@ -1195,56 +1191,6 @@ class Electricity(BaseTransformation):
                         regions_to_copy_to=locs_to_copy,
                         relink=True,
                     )
-
-            # scenario_cols = list(
-            #     set(
-            #         [
-            #             col[0]
-            #             for col in subset.columns
-            #             if col[0] not in [s.exchange, s.tag, s.ecoinvent]
-            #         ]
-            #     )
-            # )
-            #
-            # sel = equals((s.exchange, c.type), "production")
-            # subset.loc[~sel(subset), [(col, c.amount) for col in scenario_cols]] = 0
-
-            # if iam_loc != "World":
-            #     new_exc = create_redirect_exchange(
-            #         original, new_loc=iam_loc, cols=scenario_cols
-            #     )
-            #     self.exchange_stack.append(new_exc)
-            # else:
-            #     model = [m for m, v in self.regions.items() if iam_loc in v][0]
-            #     for loc in self.regions[model]:
-            #         prod_vol = (
-            #             self.iam_data.production_volumes.sel(
-            #                 scenario=self.scenario_labels,
-            #                 region=loc,
-            #                 variables=tech,
-            #             )
-            #                 .interp(year=iam_years)
-            #                 .sum(dim="scenario")
-            #                 .values
-            #         )
-            #
-            #         prod_vol[prod_vol == 0] = 1
-            #
-            #         total_prod = (
-            #             self.iam_data.production_volumes.sel(
-            #                 scenario=self.scenario_labels,
-            #                 region=self.regions[model],
-            #                 variables=tech,
-            #             )
-            #                 .interp(year=iam_years)
-            #                 .sum()
-            #                 .values.item(0)
-            #         )
-            #
-            #         new_exc[[(col, c.amount) for col in scenario_cols]] = new_exc[
-            #                                                                   (s.ecoinvent, c.amount)
-            #                                                               ] * (prod_vol / total_prod)
-            #         self.exchange_stack.append(new_exc)
 
     def update_electricity_markets(self):
         """

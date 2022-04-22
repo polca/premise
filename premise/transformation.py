@@ -251,17 +251,17 @@ class BaseTransformation:
         """
 
         exchange_stack = []
-        iam_to_eco_loc = {}
-        for label in self.scenario_labels:
-            iam_to_eco_loc = iam_to_eco_loc | self.iam_to_ecoinvent_loc[label]
-            if regions_to_copy_to:
-                iam_to_eco_loc = {
-                    k: v for k, v in iam_to_eco_loc.items() if k in regions_to_copy_to
-                }
+
+        if regions_to_copy_to:
+            iam_ei_proxy_locs = {
+                k: v for k, v in self.iam_to_eco_loc.items() if k in regions_to_copy_to
+            }
+        else:
+            iam_ei_proxy_locs = self.iam_to_eco_loc
 
         iam_years = [int(scenario.split("::")[-1]) for scenario in self.scenario_labels]
 
-        for iam_loc, ei_locs in iam_to_eco_loc.items():
+        for iam_loc, ei_locs in iam_ei_proxy_locs.items():
 
             possible_locs = ei_locs + ["RoW", "GLO", "CH", "RER"]
 
@@ -290,6 +290,9 @@ class BaseTransformation:
             dataset = original.copy()
 
             dataset = rename_location(df=dataset, new_loc=iam_loc)
+
+            # add new location in self.producer_locs
+            self.add_activity_to_producer_locs(dataset)
 
             # Add `production volume` field
             prod_vol = (
@@ -330,10 +333,9 @@ class BaseTransformation:
             # relink technopshere exchanges
             if relink:
                 dataset = self.relink_technosphere_exchanges(
-                    dataset, scenario_cols, iam_to_eco_loc
+                    dataset, scenario_cols, iam_ei_proxy_locs
                 )
 
-            #dataset[(s.ecoinvent, c.amount)] = np.nan
             exchange_stack.append(dataset)
 
         self.database = pd.concat(
@@ -342,10 +344,22 @@ class BaseTransformation:
             ignore_index=True,
         )
 
+    def add_activity_to_producer_locs(self, ds, production_volume=None):
+
+        exc = ds[equals((s.exchange, c.type), "production")(ds)].iloc[0]
+
+        self.producer_locs[
+            exc[(s.exchange, c.prod_name)],
+            exc[(s.exchange, c.prod_prod)],
+            exc[(s.exchange, c.unit)],
+        ][
+            exc[(s.exchange, c.cons_loc)]
+        ] = {
+            "pv": production_volume or 0,
+            "key": exc[(s.exchange, c.cons_key)]
+        }
+
     def relink_technosphere_exchanges(self, ds, scenario_cols, iam_to_eco_loc):
-        # TODO: REVIEW: general comment on this method: The applied cache validation pattern is unusual. The additional if ... else clauses with continue
-        #  statements should usually each add to the cache.
-        #  as this is not the case I wonder if several separate calculations/operations are done at once and if they could be decoupled for better readability.
 
         __filters_tech = equals((s.exchange, c.type), "technosphere")(ds)
 

@@ -69,7 +69,6 @@ def match(reference: str, candidates: List[str]) -> [str, None]:
         if i in reference:
             return i
 
-
 def calculate_dataset_efficiency(
     exchanges: List[dict], ds_name: str, white_list: list
 ) -> float:
@@ -92,6 +91,7 @@ def calculate_dataset_efficiency(
     # energy exchanges can either be
     # an outgoing flow, with type `production`
     # or an incoming flow, with type `technosphere` or `biosphere`
+
     for iexc in exchanges:
         if iexc["type"] == "production":
             output_energy += extract_energy(iexc)
@@ -133,21 +133,26 @@ def extract_energy(iexc: dict) -> float:
     fuel_names = list(fuels_lhv.keys())
     amount = max((iexc["amount"], 0))
 
-    if iexc["unit"].strip().lower() == "megajoule":
+    if iexc["unit"] == "megajoule":
         input_energy = amount
-    elif iexc["unit"].strip().lower() == "kilowatt hour":
+    elif iexc["unit"] == "kilowatt hour":
         input_energy = amount * 3.6
     elif iexc["unit"] in ("kilogram", "cubic meter"):
         # if the calorific value of the exchange needs to be found
         # we look up the `product` of the exchange if it is of `type`
         # technosphere or production
         # otherwise, we look up the `name` if it is of type biosphere
-        best_match = match(
-            iexc["product"]
-            if iexc["type"] in ("production", "technosphere") and iexc["unit"] != "unit"
-            else iexc["name"],
-            fuel_names,
-        )
+
+        try:
+            best_match = match(
+                iexc["product"]
+                if iexc["type"] in ("production", "technosphere") and iexc["unit"] != "unit"
+                else iexc["name"],
+                fuel_names,
+            )
+        except:
+            best_match = None
+
         # if we do not find its calorific value, 0 is returned
         if not best_match:
             input_energy = 0.0
@@ -288,7 +293,9 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
                 if len(key) > 0:
                     energy_efficiency = ids["parameters"][key[0]]
                 else:
+
                     energy_efficiency = find_efficiency(ids)
+
             else:
                 energy_efficiency = ids["efficiency"]
 
