@@ -352,11 +352,9 @@ class BaseTransformation:
             exc[(s.exchange, c.prod_name)],
             exc[(s.exchange, c.prod_prod)],
             exc[(s.exchange, c.unit)],
-        ][
-            exc[(s.exchange, c.cons_loc)]
-        ] = {
+        ][exc[(s.exchange, c.cons_loc)]] = {
             "pv": production_volume or 0,
-            "key": exc[(s.exchange, c.cons_key)]
+            "key": exc[(s.exchange, c.cons_key)],
         }
 
     def relink_technosphere_exchanges(self, ds, scenario_cols, iam_to_eco_loc):

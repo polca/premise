@@ -275,7 +275,6 @@ class BaseInventoryImport:
                     if y["product"] is None:
                         print(f"not product found for {y} in {x['name']}.")
 
-
         # Add a `code` field if missing
         for x in self.import_db.data:
             if "code" not in x:

@@ -1030,10 +1030,9 @@ class Electricity(BaseTransformation):
                 ]
                 ei_locs = self.iam_to_eco_loc[iam_loc]
 
-                __filters = (
-                    contains_any_from_list((s.exchange, c.cons_loc), ei_locs)
-                    | equals((s.exchange, c.cons_loc), iam_loc)
-                )
+                __filters = contains_any_from_list(
+                    (s.exchange, c.cons_loc), ei_locs
+                ) | equals((s.exchange, c.cons_loc), iam_loc)
 
                 scaling_factors = 1 / self.find_iam_efficiency_change(
                     variable=technology,

@@ -69,6 +69,7 @@ def match(reference: str, candidates: List[str]) -> [str, None]:
         if i in reference:
             return i
 
+
 def calculate_dataset_efficiency(
     exchanges: List[dict], ds_name: str, white_list: list
 ) -> float:
@@ -146,7 +147,8 @@ def extract_energy(iexc: dict) -> float:
         try:
             best_match = match(
                 iexc["product"]
-                if iexc["type"] in ("production", "technosphere") and iexc["unit"] != "unit"
+                if iexc["type"] in ("production", "technosphere")
+                and iexc["unit"] != "unit"
                 else iexc["name"],
                 fuel_names,
             )
