@@ -33,6 +33,14 @@ from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import BaseTransformation
 from .utils import c, create_hash, s
 
+from premise.electricity_tools import (
+    create_new_market,
+    apply_transformation_losses,
+    calculate_energy_mix,
+    reduce_database,
+    create_new_energy_exchanges,
+)
+
 PRODUCTION_PER_TECH = DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 
@@ -751,12 +759,7 @@ class Electricity(BaseTransformation):
         Does not return anything. Modifies the database in place.
         """
 
-        return
-
-        log_created_markets = []
-        # scenario_models = [scen.split("::")[0] for scen in self.scenario_labels]
-        # scenario_pathways = [scen.split("::")[1] for scen in self.scenario_labels]
-        # scenario_years = [int(scen.split("::")[2]) for scen in self.scenario_labels]
+        # log_created_markets = []
 
         regions_set = []
         for _regs in self.regions.values():
@@ -768,193 +771,28 @@ class Electricity(BaseTransformation):
         for region in regions_set:
             for period in range(0, 60, 10):
 
-                # 1. create production dataset as 1 series
-                new_exc = pd.Series(index=self.database.columns)
-                # TODO make a copy of row here
-                # Create an empty production exchange
-                name = "market group for electricity, high voltage"
-                product = "electricity, high voltage"  # TODO add type production?
-                comment = f"New regional electricity market created by `premise`, for the region" f" {region}."
-                if period != 0:
-                    name += f", {period}-year period"
-                    # comment += f"Average electricity mix over a {period}-year period {year}-{year + period}." # TODO fix this line
-
-                ident = create_hash((name, product, region))
-                new_exc[
-                    [
-                        (s.exchange, c.prod_name),
-                        (s.exchange, c.prod_prod),
-                        (s.exchange, c.prod_loc),
-                        (s.exchange, c.cons_name),
-                        (s.exchange, c.cons_prod),
-                        (s.exchange, c.cons_loc),
-                        (s.exchange, c.prod_key),
-                        (s.exchange, c.cons_key),
-                        (s.exchange, c.exc_key),
-                        (s.ecoinvent, c.comment),
-                    ]
-                ] = [
-                    name,  # producer name
-                    product,  # producer product
+                new_market = create_new_market(
                     region,
-                    name,  # consumer name
-                    product,  # consumer product
-                    region,
-                    ident,  # prod_key
-                    ident,  # cons_key
-                    create_hash((name, product, region, name, product, region)),  # exc_key
-                    comment,  # ecoinvent comment column
-                ]
-
-                # 4. add transformation losses (apply to low, medium and high voltage)
-                # transformation losses are ratios
-
-                tloss_exc = new_exc.copy()
-                tloss[(s.exchange, c.type)] = "technosphere"
-                transf_loss = self.get_production_weighted_losses("high", region)
-
-                cols = []
-                vals = []
-                for i in tloss_exc.index.get_level_values(0):
-                    if "::" in str(i) or s.ecoinvent == i:
-                        cols.append((i, c.cons_prod_vol))
-                        cols.append((i, c.amount))
-                        cols.append((i, c.efficiency))
-                        cols.append((i, c.comment))
-                        vals.extend([np.nan, transf_loss, np.nan, ""])
-
-                tloss_exc[cols] = vals
-
-                # 5. get technology mix of electricity market
-                # considers also average mixes for longer time periods
-
-                electricity_mix = self.iam_data.electricity_markets.sel(
-                    region=region,
-                    scenario=self.scenario_labels,
-                ).interp(
-                    year=range(2010, 2100),
-                    kwargs={"fill_value": "extrapolate"},
+                    period,
+                    self.database.columns,
+                    "market group for electricity, high voltage",
+                    "electricity, high voltage",
                 )
 
-                for iscen in self.scenario_labels:
-                    year = int(iscen.split("::")[-1])
-                    _filter = (electricity_mix.year > (year + period)) + (electricity_mix.year < year)
-                    electricity_mix[{"year": _filter}] = np.nan
-
-                electricity_mix = electricity_mix.mean(dim="year")
-
-                print(
-                    "Test - sum of market shares over techs:",
-                    electricity_mix.sum(dim="variables"),
+                trans_loss_exc = apply_transformation_losses(
+                    new_market, self.get_production_weighted_losses("high", region)
                 )
 
-                # 6. Correct contribution of solar power
-                # for high voltage: only commercial solar power, but no residential solar power
-                # Fetch residential solar contribution in the mix, to subtract it
-                # as residential solar energy is an input of low-voltage markets
-
-                _solarfilter = [
-                    tech for tech in electricity_mix.coords["variables"].values if "residential" in tech.lower()
-                ]
-                solar_amount = electricity_mix.sel(variables=_solarfilter).sum(dim="variables")
-
-                solar_amount = solar_amount.to_dataframe().drop("region", axis=1)["value"]
-                idx = pd.MultiIndex.from_product((tuple(solar_amount.coords["scenario"].values), [c.amount]))
-                solar_amount.columns = idx
-
-                print("solar_amount:", solar_amount)
-                # TODO double-check scientific correctness - solar_amount seems to be always zero in all scenarios
-
-                # exclude the technologies which contain residential solar power (for high voltage markets)
-                _nonsolarfilter = [
-                    tech for tech in electricity_mix.coords["variables"].values if "residential" not in tech.lower()
-                ]
-
-                electricity_mix_no_res_solar = electricity_mix.sel(variables=_nonsolarfilter)
-
-                # 7. Add exchanges for each technology to the market
-                # Loop through the technologies
-                # technologies = (
-                #     tech
-                #     for tech in electricity_mix
-                #     if "residential" not in tech.lower()
-                # )
-
-                # create dataframe for additional exchange
-                techs = [(s.tag, i.item(0)) for i in electricity_mix_no_res_solar.coords["variables"]]
-                sel = self.database[techs].sum(axis=1).astype(bool)
-                reduced_dataset = self.database[sel]
-
-                if region in self.iam_to_eco_loc:
-                    eco_locs = self.iam_to_eco_loc[region]
-                    sel = reduced_dataset[(s.exchange, c.prod_loc)].isin(eco_locs)
-                    reduced_dataset = reduced_dataset[sel]
-                else:
-                    warning.warn(f"no matching ecoinvent location for region {region}")
-
-                extensions = pd.DataFrame(columns=reduced_dataset.columns, index=range(len(reduced_dataset)))
-
-                columns_to_transfer = [
-                    (s.exchange, c.prod_name),
-                    (s.exchange, c.prod_prod),
-                    (s.exchange, c.prod_loc),
-                    (s.exchange, c.unit),
-                    (s.exchange, c.type),
-                    (s.ecoinvent, c.amount),
-                    (s.ecoinvent, c.efficiency),
-                    (s.ecoinvent, c.cons_prod_vol),
-                ]
-
-                extensions[columns_to_transfer] = reduced_dataset[columns_to_transfer].values
-
-                extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]] = (
-                    name,
-                    product,
-                    region,
+                electricity_mix, solar_share = calculate_energy_mix(
+                    self.iam_data,
+                    [int(i.split("::")[-1]) for i in self.scenario_labels],
                 )
 
-                extensions[[(s.exchange, c.prod_key)]] = create_hash_for_database(
-                    extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc)]]
-                )
-                extensions[[(s.exchange, c.cons_key)]] = create_hash_for_database(
-                    extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]]
-                )
-                extensions[[(s.exchange, c.exc_key)]] = create_hash_for_database(
-                    extensions[
-                        [
-                            (s.exchange, c.prod_name),
-                            (s.exchange, c.prod_prod),
-                            (s.exchange, c.prod_loc),
-                            (s.exchange, c.cons_name),
-                            (s.exchange, c.cons_prod),
-                            (s.exchange, c.cons_loc),
-                        ]
-                    ]
-                )
+                reduced = reduce_database(region, electricity_mix, self.database, self.iam_to_eco_loc)
 
-                weighting = (
-                    lambda x: x / x.sum() / (1 - solar_amount)
-                )  # needs to be utilized here as it is refering to the solar_amount
-                normalized_prod_vol = (
-                    reduced_dataset.groupby([(s.exchange, c.cons_loc)])[[(s.ecoinvent, c.cons_prod_vol)]]
-                    .apply(weighting)
-                    .drop((s.ecoinvent, c.cons_prod_vol), axis=1)
-                )
+                new_exchanges = create_new_energy_exchanges(electricity_mix, reduced, solar_share)
 
-                cols = [i for i in extensions.columns if "::" in str(i[0]) and i[1] == c.amount]
-                extensions[cols] = normalized_prod_vol
-
-                cols = []
-                vals = []
-                for i in extensions.columns.get_level_values(0):
-                    if "::" in str(i):
-                        cols.append((i, c.cons_prod_vol))
-                        cols.append((i, c.efficiency))
-                        cols.append((i, c.comment))
-                        vals.extend([np.nan, np.nan, ""])
-
-                extensions[cols] = vals
-                extensions = pd.concat([extensions, pd.DataFrame([new_exc, tloss_exc]).T])
+                extensions = pd.concat([new_exchanges, pd.DataFrame([new_market, trans_loss_exc]).T])
 
                 additional_exchanges.append(extensions)
 
