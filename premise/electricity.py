@@ -21,6 +21,13 @@ import wurst
 import xarray as xr
 
 from premise import DATA_DIR
+from premise.electricity_tools import (
+    apply_transformation_losses,
+    calculate_energy_mix,
+    create_new_energy_exchanges,
+    create_new_market,
+    reduce_database,
+)
 from premise.framework.logics import (
     contains,
     contains_any_from_list,
@@ -32,15 +39,9 @@ from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import BaseTransformation
 from .utils import c, create_hash, s
 
-from premise.electricity_tools import (
-    create_new_market,
-    apply_transformation_losses,
-    calculate_energy_mix,
-    reduce_database,
-    create_new_energy_exchanges,
+PRODUCTION_PER_TECH = (
+    DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
 )
-
-PRODUCTION_PER_TECH = DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 
 
@@ -812,11 +813,17 @@ class Electricity(BaseTransformation):
                     [int(i.split("::")[-1]) for i in self.scenario_labels],
                 )
 
-                reduced = reduce_database(region, electricity_mix, self.database, self.iam_to_eco_loc)
+                reduced = reduce_database(
+                    region, electricity_mix, self.database, self.iam_to_eco_loc
+                )
 
-                new_exchanges = create_new_energy_exchanges(electricity_mix, reduced, solar_share)
+                new_exchanges = create_new_energy_exchanges(
+                    electricity_mix, reduced, solar_share
+                )
 
-                extensions = pd.concat([new_exchanges, pd.DataFrame([new_market, trans_loss_exc]).T])
+                extensions = pd.concat(
+                    [new_exchanges, pd.DataFrame([new_market, trans_loss_exc]).T]
+                )
 
                 additional_exchanges.append(extensions)
 

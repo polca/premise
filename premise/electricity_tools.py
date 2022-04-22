@@ -1,6 +1,7 @@
-﻿import pandas as pd
-import numpy as np
-from premise.utils import s, c, create_hash_for_database, create_hash
+﻿import numpy as np
+import pandas as pd
+
+from premise.utils import c, create_hash, create_hash_for_database, s
 
 
 def create_new_market(region, period, column_index, name, product, overrides=None):
@@ -13,7 +14,9 @@ def create_new_market(region, period, column_index, name, product, overrides=Non
         has_overrides = len(overrides) > 0
 
     comment = overrides.pop(
-        "comment", f"New regional electricity market created by `premise`," f"for the region {region}."
+        "comment",
+        f"New regional electricity market created by `premise`,"
+        f"for the region {region}.",
     )
 
     market_exc = pd.Series(index=column_index)
@@ -78,15 +81,21 @@ def apply_transformation_losses(market_exc, transfer_loss):
     return tloss_exc
 
 
-def calculate_energy_mix(iam_data, years, calculate_solar_share=True, year_interpolation_range=(2010, 2100)):
+def calculate_energy_mix(
+    iam_data, years, calculate_solar_share=True, year_interpolation_range=(2010, 2100)
+):
 
-    electricity_mix = iam_data.electricity_markets.sel(region=region, scenario=scenarios).interp(
+    electricity_mix = iam_data.electricity_markets.sel(
+        region=region, scenario=scenarios
+    ).interp(
         year=range(*year_interpolation_range),
         kwargs={"fill_value": "extrapolate"},
     )
 
     for iyear in years:
-        _filter = (electricity_mix.year > (iyear + period)) + (electricity_mix.year < iyear)
+        _filter = (electricity_mix.year > (iyear + period)) + (
+            electricity_mix.year < iyear
+        )
         electricity_mix[{"year": _filter}] = np.nan
 
     electricity_mix = electricity_mix.mean(dim="year")
@@ -100,19 +109,29 @@ def calculate_energy_mix(iam_data, years, calculate_solar_share=True, year_inter
         # returns an empty pd.DataFrame to provide a stable interface as in the else case it would return the solar_share in this place
         return electricity_mix, pd.DataFrame()
 
-    _solarfilter = [tech for tech in electricity_mix.coords["variables"].values if "residential" in tech.lower()]
+    _solarfilter = [
+        tech
+        for tech in electricity_mix.coords["variables"].values
+        if "residential" in tech.lower()
+    ]
     solar_amount = electricity_mix.sel(variables=_solarfilter).sum(dim="variables")
 
     # reshape and convert solar_amount xarray to pd.DataFrame with correct column structure for broadcasting to scenarios
     solar_amount = solar_amount.to_dataframe().drop("region", axis=1)["value"]
-    idx = pd.MultiIndex.from_product((tuple(solar_amount.coords["scenario"].values), [c.amount]))
+    idx = pd.MultiIndex.from_product(
+        (tuple(solar_amount.coords["scenario"].values), [c.amount])
+    )
     solar_amount.columns = idx
 
     print("solar_amount:", solar_amount)
     # TODO double-check scientific correctness - solar_amount seems to be always zero in all scenarios
 
     # exclude the technologies which contain residential solar power (for high voltage markets)
-    _nonsolarfilter = [tech for tech in electricity_mix.coords["variables"].values if "residential" not in tech.lower()]
+    _nonsolarfilter = [
+        tech
+        for tech in electricity_mix.coords["variables"].values
+        if "residential" not in tech.lower()
+    ]
 
     return electricity_mix.sel(variables=_nonsolarfilter), solar_amount
 
@@ -140,7 +159,9 @@ def create_new_energy_exchanges(
     reduced_dataset,
     solar_share,
 ):
-    extensions = pd.DataFrame(columns=reduced_dataset.columns, index=range(len(reduced_dataset)))
+    extensions = pd.DataFrame(
+        columns=reduced_dataset.columns, index=range(len(reduced_dataset))
+    )
 
     columns_to_transfer = [
         (s.exchange, c.prod_name),
@@ -155,17 +176,31 @@ def create_new_energy_exchanges(
 
     extensions[columns_to_transfer] = reduced_dataset[columns_to_transfer].values
 
-    extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]] = (
+    extensions[
+        [(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]
+    ] = (
         name,
         product,
         region,
     )
 
     extensions[[(s.exchange, c.prod_key)]] = create_hash_for_database(
-        extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc)]]
+        extensions[
+            [
+                (s.exchange, c.prod_name),
+                (s.exchange, c.prod_prod),
+                (s.exchange, c.prod_loc),
+            ]
+        ]
     )
     extensions[[(s.exchange, c.cons_key)]] = create_hash_for_database(
-        extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]]
+        extensions[
+            [
+                (s.exchange, c.cons_name),
+                (s.exchange, c.cons_prod),
+                (s.exchange, c.cons_loc),
+            ]
+        ]
     )
     extensions[[(s.exchange, c.exc_key)]] = create_hash_for_database(
         extensions[
@@ -185,7 +220,9 @@ def create_new_energy_exchanges(
     )  # needs to be declared here as it is refering to the solar_amount, which changes every call of the function
 
     normalized_prod_vol = (
-        reduced_dataset.groupby([(s.exchange, c.cons_loc)])[[(s.ecoinvent, c.cons_prod_vol)]]
+        reduced_dataset.groupby([(s.exchange, c.cons_loc)])[
+            [(s.ecoinvent, c.cons_prod_vol)]
+        ]
         .apply(weighting)
         .drop((s.ecoinvent, c.cons_prod_vol), axis=1)
     )
