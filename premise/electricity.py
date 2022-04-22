@@ -750,9 +750,6 @@ class Electricity(BaseTransformation):
         Contribution from solar power is added in low voltage market groups.
         Does not return anything. Modifies the database in place.
         """
-
-        return
-
         log_created_markets = []
         # scenario_models = [scen.split("::")[0] for scen in self.scenario_labels]
         # scenario_pathways = [scen.split("::")[1] for scen in self.scenario_labels]
@@ -762,6 +759,8 @@ class Electricity(BaseTransformation):
         for _regs in self.regions.values():
             regions_set.extend(_regs)
         regions_set = set(regions_set)  # set of all regions from all IAM models
+
+        additional_exchanges = []
 
         for region in regions_set:
             for period in range(0, 60, 10):
@@ -774,7 +773,7 @@ class Electricity(BaseTransformation):
                 product = "electricity, high voltage"  # TODO add type production?
                 comment = (
                     f"New regional electricity market created by `premise`, for the region"
-                    # f" {region} in {year}, according to the scenario {scenario}." # TODO fix this line
+                    f" {region}."
                 )
                 if period != 0:
                     name += f", {period}-year period"
@@ -855,6 +854,10 @@ class Electricity(BaseTransformation):
                     tech for tech in electricity_mix.coords["variables"].values if "residential" in tech.lower()
                 ]
                 solar_amount = electricity_mix.sel(variables=_solarfilter).sum(dim="variables")
+                solar_amount = solar_amount.to_dataframe().drop('region', axis=1)['value']
+                idx = pd.MultiIndex.from_product((tuple(solar_amount.coords['scenario'].values), [c.amount]))
+                solar_amount.columns = idx
+
                 print("solar_amount:", solar_amount)
                 # TODO double-check scientific correctness - solar_amount seems to be always zero in all scenarios
 
@@ -874,129 +877,184 @@ class Electricity(BaseTransformation):
                 # )
 
                 # create dataframe for additional exchange
-                techs = [(s.tag, i) for i in electricity_mix_no_res_solar.coords["variables"]]
+                techs = [(s.tag, i.item(0)) for i in electricity_mix_no_res_solar.coords["variables"]]
                 sel = self.database[techs].sum(axis=1).astype(bool)
                 reduced_dataset = self.database[sel]
 
-                extensions = pd.DataFrame(columns=reduced_dataset.columns, index=range(len(reduced_dataset.columns)))
+                for iszen in electricity_mix_no_res_solar.coords["scenario"]:
+                    if iszen.item(0) in self.iam_to_ecoinvent_loc:
+                        eco_locs = self.iam_to_ecoinvent_loc[iszen.item(0)][region]
+                        reduced_dataset[(s.exchange, c.prod_loc)].isin(eco_locs)
+                    else:
+                        warning.warn(f"no matching ecoinvent lovation for szenario {iszen.item(0)} in region {region}")
 
-                eco_locs = self.iam_to_ecoinvent_loc[region]
+                extensions = pd.DataFrame(columns=reduced_dataset.columns, index=range(len(reduced_dataset)))
 
-                # filter on eco_locs
-                # contains techs and locs interested in for the marked
-                # update consumers only for production rows in type production
-                # recalculate hashes with a new vectorized create_hash method
-                # do share calculation on ecoinvent column
-                # broadcast scenarios for share calculation
+                columns_to_transfer = [(s.exchange, c.cons_name),
+                                       (s.exchange, c.cons_prod),
+                                       (s.exchange, c.cons_loc),
+                                       (s.exchange, c.unit),
+                                       (s.exchange, c.type),
+                                       (s.ecoinvent, c.amount),
+                                       (s.ecoinvent, c.efficiency),
+                                       (s.ecoinvent, c.cons_prod_vol),
+                                    ]
 
-                for itech in electricity_mix_no_res_solar.coords["variables"]:
-                    # If the given technology contributes to the mix
-                    if electricity_mix[technology] > 0:  # only technologies which have a share greater than zero
+                extensions[
+                    columns_to_transfer
+                ] = reduced_dataset[
+                    columns_to_transfer
+                ].values
 
-                        # Contribution in supply
-                        amount = electricity_mix[technology]
+                extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc)]] = (
+                    name,
+                    product,
+                    region,
+                )
 
-                        # Get the possible names of ecoinvent datasets
+                create_hash_for_database(extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc)]])
+                create_hash_for_database(extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]])
+                create_hash_for_database(extensions[[(s.exchange, c.prod_name), (s.exchange, c.prod_prod), (s.exchange, c.prod_loc), (s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]])
 
-                        ecoinvent_technologies = self.powerplant_map[
-                            technology
-                        ]  # TODO powerplant_map does not exist anymore {tech: [(ecoinvent name, ei-product)]} if more than 1 item: look at prod_vol and derive weighting
-                        # incorporated as tags now (filter only for production exchanges) = suppliers;
-                        # filter by location only loc which is in IAM region;
-                        # select prod_vol from column - calculate weighting
-                        #
-                        # TODO use tags here and new dictionary by Romain
+                weighting = lambda x: x / x.sum() / (1 - solar_amount # needs to be utilized here as it is refering to the solar_amount
+                normalized_prod_vol = reduced_dataset.groupby([(s.exchange, c.cons_loc)])[
+                    [(s.ecoinvent, c.cons_prod_vol)]
+                ].apply(weighting).drop((s.ecoinvent, c.cons_prod_vol), axis=1)
 
-                        # Fetch electricity-producing technologies contained in the IAM region
-                        # if they cannot be found for the ecoinvent locations within the IAM region
-                        # we widen the scope first to EU-based datasets, then RoW and lastly GLO
-                        possible_locations = [
-                            ecoinvent_locations,
-                            ["RER"],
-                            ["RoW"],
-                            ["GLO"],
-                        ]
-                        suppliers, counter = [], 0
+                cols = [i for i in extensions.columns if '::' in str(i[0]) and i[1] == c.amount]
+                extensions[cols] = normalized_prod_vol
 
-                        while len(suppliers) == 0:
-                            _filters = (
-                                contains_any_from_list(
-                                    (s.exchange, c.cons_loc),
-                                    possible_locations[counter],
-                                )
-                                & contains_any_from_list(
-                                    (s.exchange, c.cons_name),
-                                    ecoinvent_technologies,
-                                )
-                                & contains((s.exchange, c.cons_prod), "electricity")
-                                & equals((s.exchange, c.unit), "kilowatt hour")
-                                & equals((s.exchange, c.type), "production")
-                            )
-                            suppliers = self.database(_filters(self.database))
-                            counter += 1
+                cols = []
+                vals = []
+                for i in extensions.columns.get_level_values(0):
+                    if '::' in str(i):
+                        cols.append((i, c.cons_prod_vol))
+                        cols.append((i, c.efficiency))
+                        cols.append((i, c.comment))
+                        vals.extend([np.nan, np.nan, ""])
 
-                        total_production_vol = suppliers[(s.ecoinvent, c.cons_prod_vol)].sum(axis=0)
+                extensions[cols] = vals
+                extensions = pd.concat([extensions, pd.DataFrame(new_exc).T])
 
-                        for _, row in suppliers.iterrows():
-                            producer = [
-                                row[(s.exchange, c.cons_name)],
-                                row[(s.exchange, c.cons_prod)],
-                                row[(s.exchange, c.cons_loc)],
-                            ]
-                            prod_key = create_hash(producer)
-                            exc_key = create_hash(producer + consumer)
+                additional_exchanges.append(extensions)
 
-                            # for weighting, we use current production volumes from ecoinvent of producers from different regions
-                            prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]
-                            share = prod_vol / total_production_vol
-                            exc_amount = (amount * share) / (1 - solar_amount)
-                            (exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3],) = (
-                                np.nan,
-                                exc_amount,
-                                np.nan,
-                                "",
-                            )
+                # # filter on eco_locs done
+                # # contains techs and locs interested in for the marked :: done
+                # # update consumers only for production rows in type production :: done
+                # # recalculate hashes with a new vectorized create_hash method :: done
+                # # do share calculation on ecoinvent column :: done
+                # # broadcast scenarios for share calculation :: done
 
-                            new_exc.append(producer + consumer + [prod_key, cons_key, exc_key] + exchanges)
+                # for itech in electricity_mix_no_res_solar.coords["variables"]:
+                #     # If the given technology contributes to the mix
+                #     if electricity_mix[technology] > 0:  # only technologies which have a share greater than zero
 
-                            log_created_markets.append(
-                                [
-                                    consumer[0],
-                                    technology,
-                                    region,
-                                    transf_loss,
-                                    0.0,
-                                    producer[0],
-                                    producer[1],
-                                    share,
-                                    (amount * share) / (1 - solar_amount),
-                                ]
-                            )
+                #         # Contribution in supply
+                #         amount = electricity_mix[technology]
 
-                self.exchange_stack.append(new_exc)
+                #         # Get the possible names of ecoinvent datasets
 
-        # Writing log of created markets
-        with open(
-            DATA_DIR / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
-            "w",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            writer.writerow(
-                [
-                    "dataset name",
-                    "energy type",
-                    "IAM location",
-                    "Transformation loss",
-                    "Distr./Transmission loss",
-                    "Supplier name",
-                    "Supplier location",
-                    "Contribution within energy type",
-                    "Final contribution",
-                ]
-            )
-            for line in log_created_markets:
-                writer.writerow(line)
+                #         ecoinvent_technologies = self.powerplant_map[
+                #             technology
+                #         ]  # TODO powerplant_map does not exist anymore {tech: [(ecoinvent name, ei-product)]} if more than 1 item: look at prod_vol and derive weighting
+                #         # incorporated as tags now (filter only for production exchanges) = suppliers;
+                #         # filter by location only loc which is in IAM region;
+                #         # select prod_vol from column - calculate weighting
+                #         #
+                #         # TODO use tags here and new dictionary by Romain
+
+                #         # Fetch electricity-producing technologies contained in the IAM region
+                #         # if they cannot be found for the ecoinvent locations within the IAM region
+                #         # we widen the scope first to EU-based datasets, then RoW and lastly GLO
+                #         possible_locations = [
+                #             ecoinvent_locations,
+                #             ["RER"],
+                #             ["RoW"],
+                #             ["GLO"],
+                #         ]
+                #         suppliers, counter = [], 0
+
+                #         while len(suppliers) == 0:
+                #             _filters = (
+                #                 contains_any_from_list(
+                #                     (s.exchange, c.cons_loc),
+                #                     possible_locations[counter],
+                #                 )
+                #                 & contains_any_from_list(
+                #                     (s.exchange, c.cons_name),
+                #                     ecoinvent_technologies,
+                #                 )
+                #                 & contains((s.exchange, c.cons_prod), "electricity")
+                #                 & equals((s.exchange, c.unit), "kilowatt hour")
+                #                 & equals((s.exchange, c.type), "production")
+                #             )
+                #             suppliers = self.database(_filters(self.database))
+                #             counter += 1
+
+                #         total_production_vol = suppliers[(s.ecoinvent, c.cons_prod_vol)].sum(axis=0)
+
+                #         for _, row in suppliers.iterrows():
+                #             producer = [
+                #                 row[(s.exchange, c.cons_name)],
+                #                 row[(s.exchange, c.cons_prod)],
+                #                 row[(s.exchange, c.cons_loc)],
+                #             ]
+                #             prod_key = create_hash(producer)
+                #             exc_key = create_hash(producer + consumer)
+
+                #             # for weighting, we use current production volumes from ecoinvent of producers from different regions
+                #             prod_vol = row[(s.ecoinvent, c.cons_prod_vol)]
+                #             share = prod_vol / total_production_vol
+                #             exc_amount = (amount * share) / (1 - solar_amount)
+                #             (exchanges[pos], exchanges[pos + 1], exchanges[pos + 2], exchanges[pos + 3],) = (
+                #                 np.nan,
+                #                 exc_amount,
+                #                 np.nan,
+                #                 "",
+                #             )
+
+                #             new_exc.append(producer + consumer + [prod_key, cons_key, exc_key] + exchanges)
+
+                #             log_created_markets.append(
+                #                 [
+                #                     consumer[0],
+                #                     technology,
+                #                     region,
+                #                     transf_loss,
+                #                     0.0,
+                #                     producer[0],
+                #                     producer[1],
+                #                     share,
+                #                     (amount * share) / (1 - solar_amount),
+                #                 ]
+                #             )
+
+                # self.exchange_stack.append(new_exc)
+
+        self.database = pd.concat([self.database, *additional_exchanges], ignore_index=True)
+
+        # # Writing log of created markets
+        # with open(
+        #     DATA_DIR / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
+        #     "w",
+        #     encoding="utf-8",
+        # ) as csv_file:
+        #     writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+        #     writer.writerow(
+        #         [
+        #             "dataset name",
+        #             "energy type",
+        #             "IAM location",
+        #             "Transformation loss",
+        #             "Distr./Transmission loss",
+        #             "Supplier name",
+        #             "Supplier location",
+        #             "Contribution within energy type",
+        #             "Final contribution",
+        #         ]
+        #     )
+        #     for line in log_created_markets:
+        #         writer.writerow(line)
 
     def update_electricity_efficiency(self):
         """
