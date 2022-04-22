@@ -52,6 +52,18 @@ class s(enum.Enum):
     ecoinvent = "ecoinvent"
     tag = "tag"
 
+class e:
+    prod_name = (s.exchange, c.prod_name)
+    prod_prod = (s.exchange, c.prod_prod)
+    prod_loc = (s.exchange, c.prod_loc)
+    cons_name = (s.exchange, c.cons_name)
+    cons_prod = (s.exchange, c.cons_prod)
+    cons_loc = (s.exchange, c.cons_loc)
+    unit = (s.exchange, c.unit)
+    ext_type = (s.exchange, c.type)
+    prod_key = (s.exchange, c.prod_key)
+    cons_key = (s.exchange, c.cons_key)
+    exc_key = (s.exchange, c.exc_key)
 
 def match(reference: str, candidates: List[str]) -> [str, None]:
     """
