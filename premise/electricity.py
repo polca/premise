@@ -750,6 +750,9 @@ class Electricity(BaseTransformation):
         Contribution from solar power is added in low voltage market groups.
         Does not return anything. Modifies the database in place.
         """
+
+        return
+
         log_created_markets = []
         # scenario_models = [scen.split("::")[0] for scen in self.scenario_labels]
         # scenario_pathways = [scen.split("::")[1] for scen in self.scenario_labels]
@@ -882,8 +885,8 @@ class Electricity(BaseTransformation):
                 sel = self.database[techs].sum(axis=1).astype(bool)
                 reduced_dataset = self.database[sel]
 
-                if region in electricity.iam_to_eco_loc:
-                    eco_locs = electricity.iam_to_eco_loc[region]
+                if region in self.iam_to_eco_loc:
+                    eco_locs = self.iam_to_eco_loc[region]
                     sel = reduced_dataset[(s.exchange, c.prod_loc)].isin(eco_locs)
                     reduced_dataset = reduced_dataset[sel]
                 else:
