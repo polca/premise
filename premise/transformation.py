@@ -510,7 +510,7 @@ class BaseTransformation:
             cp[[(col, c.amount) for col in scenario_cols]] = (
                 factor * cp[(s.ecoinvent, c.amount)]
             )
-            #cp[(s.ecoinvent, c.amount)] = np.nan
+            # cp[(s.ecoinvent, c.amount)] = np.nan
             cp[(s.exchange, c.prod_key)] = prods[location]["key"]
             cp[(s.exchange, c.exc_key)] = create_hash(
                 prods[location]["key"] + cp[(s.exchange, c.cons_key)]
