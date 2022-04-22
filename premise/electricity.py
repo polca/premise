@@ -220,7 +220,6 @@ class Electricity(BaseTransformation):
                 if period > 0:
                     new_market[(s.ecoinvent, c.comment)] += f", {period}-year period"
 
-
                 exc = create_exchange_from_ref(
                     index=self.database.columns,
                     prod_equals_con=True,
@@ -298,14 +297,16 @@ class Electricity(BaseTransformation):
 
                 reduced = reduce_database(region, electricity_mix, self.database, self.iam_to_eco_loc)
 
-                new_exchanges.append(create_new_energy_exchanges(electricity_mix,
-                                                            reduced,
-                                                            solar_share,
-                                                            cons_name="market group for electricity, low voltage",
-                                                            cons_prod="electricity, low voltage",
-                                                            cons_loc= region,
-                                                            ))
-
+                new_exchanges.append(
+                    create_new_energy_exchanges(
+                        electricity_mix,
+                        reduced,
+                        solar_share,
+                        cons_name="market group for electricity, low voltage",
+                        cons_prod="electricity, low voltage",
+                        cons_loc=region,
+                    )
+                )
 
                 # TODO: double check, this looks as if the share is differently calculated then in the high voltage case.
                 # TODO: the current implementation does it as in the high voltage case.
@@ -406,7 +407,7 @@ class Electricity(BaseTransformation):
                         e.con_name: "market group for electricity, low voltage",
                         e.con_prod: "electricity, low voltage",
                         e.con_loc: region,
-                        e.prod_name: "market group for electricity, medium voltage"+name_suffix,
+                        e.prod_name: "market group for electricity, medium voltage" + name_suffix,
                         e.prod_prod: "electricity, medium voltage",
                         e.prod_loc: region,
                         e.type: "technosphere",
@@ -424,7 +425,7 @@ class Electricity(BaseTransformation):
                         e.con_name: "market group for electricity, low voltage",
                         e.con_prod: "electricity, low voltage",
                         e.con_loc: region,
-                        e.prod_name: "market group for electricity, low voltage"+name_suffix,
+                        e.prod_name: "market group for electricity, low voltage" + name_suffix,
                         e.prod_prod: "electricity, low voltage",
                         e.prod_loc: region,
                         e.type: "technosphere",
@@ -729,6 +730,7 @@ class Electricity(BaseTransformation):
                     overrides={
                         e.prod_name: "market group for electricity, high voltage",
                         e.prod_prod: "electricity, high voltage",
+                        e.prod_loc: region,
                         (s.ecoinvent, c.comment): "PREMISE created high energy voltage market",
                     },
                     prod_equals_con=True,
@@ -748,13 +750,14 @@ class Electricity(BaseTransformation):
 
                 reduced = reduce_database(region, electricity_mix, self.database, self.iam_to_eco_loc)
 
-                new_exchanges = create_new_energy_exchanges(electricity_mix,
-                                                            reduced,
-                                                            solar_share,
-                                                            cons_name="market group for electricity, high voltage",
-                                                            cons_prod="electricity, high voltage",
-                                                            cons_loc=region,
-                                                            )
+                new_exchanges = create_new_energy_exchanges(
+                    electricity_mix,
+                    reduced,
+                    solar_share,
+                    cons_name="market group for electricity, high voltage",
+                    cons_prod="electricity, high voltage",
+                    cons_loc=region,
+                )
 
                 extensions = pd.concat([new_exchanges, pd.DataFrame([new_market, trans_loss_exc]).T])
 

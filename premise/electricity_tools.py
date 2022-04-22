@@ -28,7 +28,7 @@ def create_exchange_from_ref(index, overrides=None, prod_equals_con=False):
 
     if prod_equals_con and not (_provides_cons_info or _provides_prod_info):
         raise KeyError("exchanges need to provide consumer and producer information!")
-    elif not (_provides_cons_info and _provides_prod_info):
+    elif not (_provides_cons_info or _provides_prod_info):
         raise KeyError("exchanges need to provide consumer and producer information!")
 
     if prod_equals_con and _provides_prod_info:
@@ -42,20 +42,20 @@ def create_exchange_from_ref(index, overrides=None, prod_equals_con=False):
         overrides[e.prod_loc] = overrides[e.cons_loc]
 
     if prod_equals_con:
-        overrides[e.prod_key] = overrides[e.con_key] = create_hash(
+        overrides[e.prod_key] = overrides[e.cons_key] = create_hash(
             overrides[e.prod_name], overrides[e.prod_prod], overrides[e.prod_loc]
         )
     else:
         overrides[e.prod_key] = create_hash(overrides[e.prod_name], overrides[e.prod_prod], overrides[e.prod_loc])
-        overrides[e.con_key] = create_hash(overrides[e.con_name], overrides[e.con_prod], overrides[e.con_loc])
+        overrides[e.cons_key] = create_hash(overrides[e.con_name], overrides[e.con_prod], overrides[e.con_loc])
 
     overrides[e.exc_key] = create_hash(
         overrides[e.prod_name],
         overrides[e.prod_prod],
         overrides[e.prod_loc],
-        overrides[e.con_name],
-        overrides[e.con_prod],
-        overrides[e.con_loc],
+        overrides[e.cons_name],
+        overrides[e.cons_prod],
+        overrides[e.cons_loc],
     )
 
     assert _mandatory_fields.issubset(set(overrides.keys())), f"Mandatory fields are missing: {_mandatory_fields}"
