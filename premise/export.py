@@ -14,7 +14,8 @@ FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "flows_biosphere_38.csv"
 
 def export_scenario_difference_file(database, db_name, filepath):
 
-    scenario_cols = [t for t in database.columns if t[1] == c.amount]
+    scenario_cols = [t for t in database.columns if t[1] == c.amount
+                     and t[0] != s.ecoinvent]
 
     unchanged_data_rows = database[scenario_cols].isnull().all(1)
     scenario_diff_file = database.loc[~unchanged_data_rows]

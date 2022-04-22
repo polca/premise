@@ -46,7 +46,7 @@ Biomass ST:
       - electricity production, at wood burning power plant 20 MW, truck 25km, no CCS
   ecoinvent_fuel_aliases:
     fltr:
-      - Wood chips, burned in power plant 20 MW, truck 25km, no CCS
+      - market for wood chips, wet, measured as dry mass
 Biomass IGCC CCS:
   iam_aliases:
     remind: SE|Electricity|Biomass|IGCCC|w/ CCS
@@ -118,8 +118,8 @@ Coal IGCC:
       - electricity production, at power plant/lignite, IGCC, no CCS
   ecoinvent_fuel_aliases:
     fltr:
-      - Hard coal, burned in power plant/IGCC, no CCS
-      - Lignite, burned in power plant/IGCC, no CCS
+      - market for hard coal
+      - lignite mine operation
 Coal PC CCS:
   iam_aliases:
     remind: SE|Electricity|Coal|PCC|w/ CCS
@@ -132,8 +132,8 @@ Coal PC CCS:
       - electricity production, at power plant/lignite, post, pipeline 200km, storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
-      - Hard coal, burned in power plant/post, pipeline 200km, storage 1000m
-      - Lignite, burned in power plant/post, pipeline 200km, storage 1000m
+      - market for hard coal
+      - lignite mine operation
 Coal IGCC CCS:
   iam_aliases:
     remind: SE|Electricity|Coal|IGCCC|w/ CCS
@@ -148,8 +148,8 @@ Coal IGCC CCS:
       - electricity production, at power plant/lignite, pre, pipeline 200km, storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
-      - Hard coal, burned in power plant/pre, pipeline 200km, storage 1000m
-      - Lignite, burned in power plant/pre, pipeline 200km, storage 1000m
+      - market for hard coal
+      - lignite mine operation
 Coal CHP:
   iam_aliases:
     remind: SE|Electricity|Coal|CHP|w/o CCS
@@ -288,7 +288,7 @@ Gas CC CCS:
   ecoinvent_fuel_aliases:
     fltr:
       - Natural gas, in ATR H2-CC/pre, pipeline 200km, storage 1000m
-      - Natural gas, burned in power plant/post, pipeline 200km, storage 1000m/RER
+      - market group for natural gas, high pressure
 Geothermal:
   iam_aliases:
     remind: SE|Electricity|Geothermal

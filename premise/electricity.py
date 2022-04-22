@@ -21,7 +21,7 @@ from premise import DATA_DIR
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import *
-from .utils import c
+from .utils import c, get_efficiency_ratio_solar_PV
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -1030,10 +1030,9 @@ class Electricity(BaseTransformation):
                 ]
                 ei_locs = self.iam_to_eco_loc[iam_loc]
 
-                __filters = (
-                    contains_any_from_list((s.exchange, c.cons_loc), ei_locs)
-                    | equals((s.exchange, c.cons_loc), iam_loc)
-                )
+                __filters = contains_any_from_list(
+                    (s.exchange, c.cons_loc), ei_locs
+                ) | equals((s.exchange, c.cons_loc), iam_loc)
 
                 scaling_factors = 1 / self.find_iam_efficiency_change(
                     variable=technology,
@@ -1191,6 +1190,125 @@ class Electricity(BaseTransformation):
                         regions_to_copy_to=locs_to_copy,
                         relink=True,
                     )
+
+    def update_efficiency_of_solar_pv(self) -> None:
+        """
+        Update the efficiency of solar PV modules.
+        We look at how many square meters are needed per kilowatt of installed capacity
+        to obtain the current efficiency.
+        Then we update the surface needed according to the projected efficiency.
+        :return:
+        """
+
+        print("Updating efficiency of solar PV...")
+
+        iam_years = [int(scenario.split("::")[-1]) for scenario in self.scenario_labels]
+
+        # efficiency of modules in the future
+        module_eff = get_efficiency_ratio_solar_PV()
+
+        possible_techs = [
+            "micro-Si",
+            "single-Si",
+            "multi-Si",
+            "CIGS",
+            "CIS",
+            "CdTe",
+        ]
+
+        _filter = (
+            contains((s.exchange, c.cons_name), "photovoltaic")
+            & (
+                contains((s.exchange, c.cons_name), "installation")
+                | contains((s.exchange, c.cons_name), "construction")
+            )
+            & ~contains_any_from_list(
+                (s.exchange, c.cons_name), ["market", "factory", "module"]
+            )
+            & contains((s.exchange, c.prod_name), "photovoltaic")
+            & contains((s.exchange, c.type), "technosphere")
+            & equals((s.exchange, c.unit), "square meter")
+        )(self.database)
+
+        _num_filter = (
+            _filter
+            & self.database[(s.exchange, c.cons_name)].str.contains(r"\d*\.\d+|\d+")
+            & self.database[(s.exchange, c.cons_name)].str.contains(
+                "|".join(possible_techs)
+            )
+        )
+
+        power = (
+            self.database.loc[_num_filter, (s.exchange, c.cons_name)]
+            .str.findall(r"\d*\.\d+|\d+")
+            .apply(lambda a: a[0])
+            .astype(float)
+            .values
+        )
+
+        mwp = (
+            self.database.loc[_num_filter, (s.exchange, c.cons_name)]
+            .str.contains("mwp", case=False, regex=False)
+            .values
+        )
+        mwp = mwp * 1
+
+        mwp[mwp == 1] = 1000
+        mwp[mwp == 0] = 1
+
+        power *= mwp
+
+        # surface is also max_power in kW,
+        # since we assume a constant 1,000W/m^2
+        surface = self.database.loc[_num_filter, (s.ecoinvent, c.amount)].values
+        current_eff = power / surface
+
+        def like_function(x):
+            for i in possible_techs:
+                if i.lower() in x.lower():
+                    return i
+            return None
+
+        techs = (
+            self.database.loc[_num_filter, (s.exchange, c.cons_name)]
+            .apply(like_function)
+            .values
+        )
+
+        new_eff = np.clip(
+            module_eff.sel(technology=techs).interp(year=iam_years).values, 0.1, 0.27
+        )
+
+        scaling = np.clip(current_eff[:, None] / new_eff, 0, 1)
+
+        self.database.loc[
+            _num_filter, [(scenario, c.amount) for scenario in self.scenario_labels]
+        ] = (
+            self.database.loc[_num_filter, (s.ecoinvent, c.amount)].values[:, None]
+            * scaling
+        )
+
+        keys = self.database.loc[
+            _num_filter, (s.exchange, c.cons_key)
+        ].values
+
+        _filter_prod = (
+            contains_any_from_list((s.exchange, c.cons_key), keys)
+            & equals((s.exchange, c.type), "production")
+        )(self.database)
+
+        d_keys = dict(zip(keys, current_eff))
+        d_new_keys = dict(zip(keys, new_eff))
+
+        self.database.loc[
+            _filter_prod, (s.ecoinvent, c.efficiency)
+        ] = d_keys.values()
+
+        l_keys = list(d_new_keys.values())
+        self.database.loc[
+            _filter_prod, [(scenario, c.efficiency) for scenario in self.scenario_labels]
+        ] = l_keys
+
 
     def update_electricity_markets(self):
         """

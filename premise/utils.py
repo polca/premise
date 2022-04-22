@@ -8,6 +8,7 @@ from typing import List
 import numpy as np
 import pandas as pd
 import yaml
+import xarray as xr
 from wurst import searching as ws
 
 from . import DATA_DIR
@@ -547,20 +548,15 @@ def get_fuel_properties():
     return fuel_props
 
 
-def get_efficiency_ratio_solar_PV(year, power):
+def get_efficiency_ratio_solar_PV() -> xr.DataArray:
     """
-    Return a dictionary with years as keys and efficiency ratios as values
-    :return: dict
+    Return an array with PV module efficiencies in function of year and technology.
+    :return: xr.DataArray with PV module efficiencies
     """
 
-    df = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=",")
+    df = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
 
-    return (
-        df.groupby(["power", "year"])
-        .mean()["value"]
-        .to_xarray()
-        .interp(year=year, power=power, kwargs={"fill_value": "extrapolate"})
-    )
+    return df.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
 
 
 def get_clinker_ratio_ecoinvent(version):
