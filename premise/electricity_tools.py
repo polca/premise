@@ -1,55 +1,68 @@
 ﻿import pandas as pd
 import numpy as np
-from premise.utils import s, c, create_hash_for_database, create_hash
+from premise.utils import s, c, e, create_hash_for_database, create_hash
+import warnings
 
 
-def create_new_market(region, period, column_index, name, product, overrides=None):
+def create_exchange_from_ref(index, overrides=None, prod_equals_con=False):
     # create production dataset
 
     if overrides is None:
-        overrides = {}
-        has_overrides = False
-    else:
-        has_overrides = len(overrides) > 0
+        raise KeyError("exchanges have to define producer and consumer information!")
 
-    comment = overrides.pop(
-        "comment", f"New regional electricity market created by `premise`," f"for the region {region}."
+    new_exc = pd.Series(index=index)
+
+    _mandatory_fields = set(
+        [
+            e.prod_name,
+            e.prod_prod,
+            e.prod_loc,
+            e.cons_name,
+            e.cons_prod,
+            e.cons_loc,
+        ]
     )
 
-    market_exc = pd.Series(index=column_index)
+    _provides_prod_info = e.prod_name in overrides and e.prod_loc in overrides and e.prod_prod in overrides
+    _provides_cons_info = e.cons_name in overrides and e.cons_loc in overrides and e.cons_prod in overrides
 
-    if period != 0:
-        name += f", {period}-year period"
-        # comment += f"Average electricity mix over a {period}-year period {year}-{year + period}." # TODO fix this line
+    if prod_equals_con and not (_provides_cons_info or _provides_prod_info):
+        raise KeyError("exchanges need to provide consumer and producer information!")
+    elif not (_provides_cons_info and _provides_prod_info):
+        raise KeyError("exchanges need to provide consumer and producer information!")
 
-    hash_ident = create_hash((name, product, region))
-    market_exc[
-        [
-            (s.exchange, c.prod_name),
-            (s.exchange, c.prod_prod),
-            (s.exchange, c.prod_loc),
-            (s.exchange, c.cons_name),
-            (s.exchange, c.cons_prod),
-            (s.exchange, c.cons_loc),
-            (s.exchange, c.prod_key),
-            (s.exchange, c.cons_key),
-            (s.exchange, c.exc_key),
-            (s.ecoinvent, c.comment),
-        ]
-    ] = [
-        name,  # producer name
-        product,  # producer product
-        region,
-        name,  # consumer name
-        product,  # consumer product
-        region,
-        hash_ident,  # prod_key
-        hash_ident,  # cons_key
-        create_hash((name, product, region, name, product, region)),  # exc_key
-        comment,  # ecoinvent comment column
-    ]
+    if prod_equals_con and _provides_prod_info:
+        overrides[e.cons_name] = overrides[e.prod_name]
+        overrides[e.cons_prod] = overrides[e.prod_prod]
+        overrides[e.cons_loc] = overrides[e.prod_loc]
 
-    return market_exc
+    if prod_equals_con and _provides_prod_info:
+        overrides[e.prod_name] = overrides[e.cons_name]
+        overrides[e.prod_prod] = overrides[e.cons_prod]
+        overrides[e.prod_loc] = overrides[e.cons_loc]
+
+    if prod_equals_con:
+        overrides[e.prod_key] = overrides[e.con_key] = create_hash(
+            overrides[e.prod_name], overrides[e.prod_prod], overrides[e.prod_loc]
+        )
+    else:
+        overrides[e.prod_key] = create_hash(overrides[e.prod_name], overrides[e.prod_prod], overrides[e.prod_loc])
+        overrides[e.con_key] = create_hash(overrides[e.con_name], overrides[e.con_prod], overrides[e.con_loc])
+
+    overrides[e.exc_key] = create_hash(
+        overrides[e.prod_name],
+        overrides[e.prod_prod],
+        overrides[e.prod_loc],
+        overrides[e.con_name],
+        overrides[e.con_prod],
+        overrides[e.con_loc],
+    )
+
+    assert _mandatory_fields.issubset(set(overrides.keys())), f"Mandatory fields are missing: {_mandatory_fields}"
+
+    new_exc.update(overrides)
+
+    return new_exc
 
 
 def apply_transformation_losses(market_exc, transfer_loss):
@@ -78,7 +91,9 @@ def apply_transformation_losses(market_exc, transfer_loss):
     return tloss_exc
 
 
-def calculate_energy_mix(iam_data, years, calculate_solar_share=True, year_interpolation_range=(2010, 2100)):
+def calculate_energy_mix(
+    iam_data, region, scenarios, period, years, calculate_solar_share=True, year_interpolation_range=(2010, 2100)
+):
 
     electricity_mix = iam_data.electricity_markets.sel(region=region, scenario=scenarios).interp(
         year=range(*year_interpolation_range),
@@ -96,7 +111,7 @@ def calculate_energy_mix(iam_data, years, calculate_solar_share=True, year_inter
         electricity_mix.sum(dim="variables"),
     )
 
-    if not calculcate_solar_share:
+    if not calculate_solar_share:
         # returns an empty pd.DataFrame to provide a stable interface as in the else case it would return the solar_share in this place
         return electricity_mix, pd.DataFrame()
 
@@ -130,7 +145,7 @@ def reduce_database(region, electricity_mix, database, location_translator=None)
         sel = reduced_dataset[(s.exchange, c.prod_loc)].isin(eco_locs)
         reduced_dataset = reduced_dataset[sel]
     else:
-        warning.warn(f"no matching ecoinvent location for region {region}")
+        warnings.warn(f"no matching ecoinvent location for region {region}")
 
     return reduced_dataset
 
@@ -139,6 +154,9 @@ def create_new_energy_exchanges(
     electricity_mix,
     reduced_dataset,
     solar_share,
+    cons_name,
+    cons_prod,
+    cons_loc,
 ):
     extensions = pd.DataFrame(columns=reduced_dataset.columns, index=range(len(reduced_dataset)))
 
@@ -156,9 +174,9 @@ def create_new_energy_exchanges(
     extensions[columns_to_transfer] = reduced_dataset[columns_to_transfer].values
 
     extensions[[(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]] = (
-        name,
-        product,
-        region,
+        cons_name,
+        cons_prod,
+        cons_loc,
     )
 
     extensions[[(s.exchange, c.prod_key)]] = create_hash_for_database(
