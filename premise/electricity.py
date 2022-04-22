@@ -1288,9 +1288,7 @@ class Electricity(BaseTransformation):
             * scaling
         )
 
-        keys = self.database.loc[
-            _num_filter, (s.exchange, c.cons_key)
-        ].values
+        keys = self.database.loc[_num_filter, (s.exchange, c.cons_key)].values
 
         _filter_prod = (
             contains_any_from_list((s.exchange, c.cons_key), keys)
@@ -1300,15 +1298,13 @@ class Electricity(BaseTransformation):
         d_keys = dict(zip(keys, current_eff))
         d_new_keys = dict(zip(keys, new_eff))
 
-        self.database.loc[
-            _filter_prod, (s.ecoinvent, c.efficiency)
-        ] = d_keys.values()
+        self.database.loc[_filter_prod, (s.ecoinvent, c.efficiency)] = d_keys.values()
 
         l_keys = list(d_new_keys.values())
         self.database.loc[
-            _filter_prod, [(scenario, c.efficiency) for scenario in self.scenario_labels]
+            _filter_prod,
+            [(scenario, c.efficiency) for scenario in self.scenario_labels],
         ] = l_keys
-
 
     def update_electricity_markets(self):
         """
