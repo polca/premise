@@ -303,7 +303,7 @@ class Electricity(BaseTransformation):
                                                             solar_share,
                                                             cons_name="market group for electricity, low voltage",
                                                             cons_prod="electricity, low voltage",
-                                                            cons_loc: region,
+                                                            cons_loc= region,
                                                             ))
 
 
@@ -753,7 +753,7 @@ class Electricity(BaseTransformation):
                                                             solar_share,
                                                             cons_name="market group for electricity, high voltage",
                                                             cons_prod="electricity, high voltage",
-                                                            cons_loc: region,
+                                                            cons_loc=region,
                                                             )
 
                 extensions = pd.concat([new_exchanges, pd.DataFrame([new_market, trans_loss_exc]).T])
