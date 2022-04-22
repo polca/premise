@@ -70,7 +70,9 @@ def match(reference: str, candidates: List[str]) -> [str, None]:
             return i
 
 
-def calculate_dataset_efficiency(exchanges: List[dict], ds_name: str, white_list: list) -> float:
+def calculate_dataset_efficiency(
+    exchanges: List[dict], ds_name: str, white_list: list
+) -> float:
     """
     Returns the efficiency rate of the dataset by looking up the fuel inputs
     and calculating the fuel input-to-output ratio.
@@ -284,7 +286,8 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
                 key = list(
                     key
                     for key in ids["parameters"]
-                    if "efficiency" in key and not any(item in key for item in ["thermal"])
+                    if "efficiency" in key
+                    and not any(item in key for item in ["thermal"])
                 )
 
                 if len(key) > 0:
@@ -308,7 +311,9 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
             else:
                 producer_product = iexc["product"]
                 producer_location = iexc["location"]
-                producer_key = create_hash(producer_name, producer_product, producer_location)
+                producer_key = create_hash(
+                    producer_name, producer_product, producer_location
+                )
 
             comment = ""
             consumer_prod_vol = 0
@@ -466,7 +471,9 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
     :return: List of dictionaries that can be consumed by `wurst`
     """
 
-    scenarios = [col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent, s.tag]]
+    scenarios = [
+        col for col in df.columns if col[0] not in [s.exchange, s.ecoinvent, s.tag]
+    ]
 
     cols = {col[0] for col in scenarios} if db_type == "single" else {s.ecoinvent}
 
@@ -475,7 +482,11 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
     # of ecoinvent
 
     if db_type != "single":
-        col_tuples = [(col, c.comment) for col in df.columns.levels[0] if col not in [s.exchange, s.tag]]
+        col_tuples = [
+            (col, c.comment)
+            for col in df.columns.levels[0]
+            if col not in [s.exchange, s.tag]
+        ]
         df[(s.ecoinvent, c.comment)] = df[col_tuples].sum(axis=1)
 
     # else, we fill NaNs in scenario columns
@@ -528,7 +539,9 @@ def get_fuel_properties():
     with open(FUELS_PROPERTIES, "r") as stream:
         fuel_props = yaml.safe_load(stream)
 
-    fuel_props = dict((k.replace(" ", "").strip().lower(), v) for k, v in fuel_props.items())
+    fuel_props = dict(
+        (k.replace(" ", "").strip().lower(), v) for k, v in fuel_props.items()
+    )
     return fuel_props
 
 
@@ -587,7 +600,12 @@ def get_steel_recycling_rates(year):
     """
     df = pd.read_csv(STEEL_RECYCLING_SHARES, sep=";")
 
-    return df.groupby(["region", "year", "type"]).mean()[["share", "world_share"]].to_xarray().interp(year=year)
+    return (
+        df.groupby(["region", "year", "type"])
+        .mean()[["share", "world_share"]]
+        .to_xarray()
+        .interp(year=year)
+    )
 
 
 def rev_index(inds):
