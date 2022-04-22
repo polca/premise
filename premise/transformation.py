@@ -9,6 +9,7 @@ from copy import deepcopy
 from itertools import product
 
 import numpy as np
+import pandas as pd
 import xarray as xr
 from wurst import searching as ws
 
@@ -17,7 +18,6 @@ from premise.framework.transformation_tools import *
 from .exceptions import NoCandidateInDatabase
 from .geomap import Geomap
 from .utils import c, create_scenario_label, get_fuel_properties, s
-import pandas as pd
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -94,7 +94,10 @@ def get_tuples_from_database(database):
     :return: a list of tuples
     :rtype: list
     """
-    return [(dataset["name"], dataset["reference product"], dataset["location"]) for dataset in database]
+    return [
+        (dataset["name"], dataset["reference product"], dataset["location"])
+        for dataset in database
+    ]
 
 
 def format_dict(data):
@@ -117,15 +120,20 @@ class BaseTransformation:
         self.iam_data = iam_data
         self.scenarios = scenarios
         self.scenario_labels = [
-            create_scenario_label(scenario["model"], scenario["pathway"], scenario["year"])
+            create_scenario_label(
+                scenario["model"], scenario["pathway"], scenario["year"]
+            )
             for scenario in self.scenarios
         ]
         self.regions = {}
         for label in self.scenario_labels:
             self.regions[label] = [
                 r
-                for r in self.iam_data.electricity_markets.sel(scenario=label).region.values
-                if self.iam_data.electricity_markets.sel(scenario=label, region=r).sum() > 0
+                for r in self.iam_data.electricity_markets.sel(
+                    scenario=label
+                ).region.values
+                if self.iam_data.electricity_markets.sel(scenario=label, region=r).sum()
+                > 0
             ]
 
         self.fuels_lhv = get_fuel_properties()
@@ -135,14 +143,16 @@ class BaseTransformation:
         for _s, scenario in enumerate(self.scenarios):
             geo = Geomap(model=scenario["model"])
             self.ecoinvent_to_iam_loc[self.scenario_labels[_s]] = {
-                loc: geo.ecoinvent_to_iam_location(loc) for loc in get_dataframe_locs(self.database)
+                loc: geo.ecoinvent_to_iam_location(loc)
+                for loc in get_dataframe_locs(self.database)
             }
 
         self.iam_to_gains = {}
         for _s, scenario in enumerate(self.scenarios):
             geo = Geomap(model=scenario["model"])
             self.iam_to_gains[self.scenario_labels[_s]] = {
-                loc: geo.iam_to_GAINS_region(loc) for loc in self.regions[self.scenario_labels[_s]]
+                loc: geo.iam_to_GAINS_region(loc)
+                for loc in self.regions[self.scenario_labels[_s]]
             }
 
         self.iam_to_ecoinvent_loc = {label: {} for label in self.scenario_labels}
@@ -150,12 +160,19 @@ class BaseTransformation:
         for _s, scenario in enumerate(self.scenarios):
             geo = Geomap(model=scenario["model"])
             self.iam_to_ecoinvent_loc[self.scenario_labels[_s]] = {
-                loc: geo.iam_to_ecoinvent_location(loc) for loc in self.regions[self.scenario_labels[_s]]
+                loc: geo.iam_to_ecoinvent_location(loc)
+                for loc in self.regions[self.scenario_labels[_s]]
             }
 
         self.producer_locs = (
             self.database.loc[self.database[(s.exchange, c.type)] == "production"]
-            .groupby([(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.unit),])[
+            .groupby(
+                [
+                    (s.exchange, c.cons_name),
+                    (s.exchange, c.cons_prod),
+                    (s.exchange, c.unit),
+                ]
+            )[
                 [
                     (s.exchange, c.cons_loc),
                     (s.ecoinvent, c.cons_prod_vol),
@@ -212,7 +229,9 @@ class BaseTransformation:
             for tech in technologies
         }
 
-    def fetch_proxies(self, name, ref_prod, production_variable, regions_to_copy_to=None, relink=False):
+    def fetch_proxies(
+        self, name, ref_prod, production_variable, regions_to_copy_to=None, relink=False
+    ):
         """
         Fetch dataset proxies, given a dataset `name` and `reference product`.
         Store a copy for each IAM region.
@@ -237,7 +256,9 @@ class BaseTransformation:
         for label in self.scenario_labels:
             iam_to_eco_loc = iam_to_eco_loc | self.iam_to_ecoinvent_loc[label]
             if regions_to_copy_to:
-                iam_to_eco_loc = {k: v for k, v in iam_to_eco_loc.items() if k in regions_to_copy_to}
+                iam_to_eco_loc = {
+                    k: v for k, v in iam_to_eco_loc.items() if k in regions_to_copy_to
+                }
 
         iam_years = [int(scenario.split("::")[-1]) for scenario in self.scenario_labels]
 
@@ -253,11 +274,18 @@ class BaseTransformation:
             original = self.database[_filter]
 
             if len(original.loc[:, (s.exchange, c.cons_loc)].unique()) == 0:
-                raise NoCandidateInDatabase(f"for locations {possible_locs} no candidate in database")
+                raise NoCandidateInDatabase(
+                    f"for locations {possible_locs} no candidate in database"
+                )
 
             if len(original.loc[:, (s.exchange, c.cons_loc)].unique()) > 1:
-                if any(i not in ["RoW", "GLO"] for i in original.loc[:, (s.exchange, c.cons_loc)].unique()):
-                    _filter_loc = ~contains_any_from_list((s.exchange, c.cons_loc), ["RoW", "GLO"])
+                if any(
+                    i not in ["RoW", "GLO"]
+                    for i in original.loc[:, (s.exchange, c.cons_loc)].unique()
+                ):
+                    _filter_loc = ~contains_any_from_list(
+                        (s.exchange, c.cons_loc), ["RoW", "GLO"]
+                    )
                     original = original.loc[_filter_loc(original)]
 
             dataset = original.copy()
@@ -278,7 +306,13 @@ class BaseTransformation:
             prod_vol = prod_vol.sum(axis=1)
 
             scenario_cols = list(
-                set([col[0] for col in original.columns if col[0] not in [s.exchange, s.tag, s.ecoinvent]])
+                set(
+                    [
+                        col[0]
+                        for col in original.columns
+                        if col[0] not in [s.exchange, s.tag, s.ecoinvent]
+                    ]
+                )
             )
 
             dataset = change_production_volume(
@@ -296,7 +330,9 @@ class BaseTransformation:
 
             # relink technopshere exchanges
             if relink:
-                dataset = self.relink_technosphere_exchanges(dataset, scenario_cols, iam_to_eco_loc)
+                dataset = self.relink_technosphere_exchanges(
+                    dataset, scenario_cols, iam_to_eco_loc
+                )
 
             # dataset[(s.ecoinvent, c.amount)] = np.nan
             exchange_stack.append(dataset)
@@ -327,7 +363,9 @@ class BaseTransformation:
 
             if self.cache.get(exc[(s.exchange, c.cons_loc)], dict()).get(lookup_key):
                 cached_exchanges = self.cache[exc[(s.exchange, c.cons_loc)]][lookup_key]
-                allocated = self.write_cache_to_exchange(exc, scenario_cols, cached_exchanges)
+                allocated = self.write_cache_to_exchange(
+                    exc, scenario_cols, cached_exchanges
+                )
 
             else:
 
@@ -342,10 +380,14 @@ class BaseTransformation:
                 if exc[(s.exchange, c.cons_loc)] in prod_loc.keys():
                     new_exc = exc.copy()
 
-                    new_exc[(s.exchange, c.prod_loc)] = new_exc[(s.exchange, c.cons_loc)]
+                    new_exc[(s.exchange, c.prod_loc)] = new_exc[
+                        (s.exchange, c.cons_loc)
+                    ]
 
                     # update producer key
-                    new_exc[(s.exchange, c.prod_key)] = prod_loc[new_exc[(s.exchange, c.prod_loc)]]["key"]
+                    new_exc[(s.exchange, c.prod_key)] = prod_loc[
+                        new_exc[(s.exchange, c.prod_loc)]
+                    ]["key"]
 
                     # update exchange key
                     new_exc[(s.exchange, c.exc_key)] = create_hash(
@@ -355,10 +397,14 @@ class BaseTransformation:
 
                     allocated, share = [new_exc], [1.0]
                 else:
-                    eligible_suppliers = list(set(prod_loc.keys()).intersection(included_locs))
+                    eligible_suppliers = list(
+                        set(prod_loc.keys()).intersection(included_locs)
+                    )
 
                     if not eligible_suppliers:
-                        eligible_suppliers = [i for i in prod_loc.keys() if i in ["RoW", "GLO"]]
+                        eligible_suppliers = [
+                            i for i in prod_loc.keys() if i in ["RoW", "GLO"]
+                        ]
 
                     if not eligible_suppliers:
                         new_exchanges.append(exc)
@@ -394,8 +440,12 @@ class BaseTransformation:
             new_row[(s.exchange, c.prod_prod)] = cached_exc[1]
             new_row[(s.exchange, c.prod_loc)] = cached_exc[2]
             new_row[(s.exchange, c.prod_key)] = cached_exc[3]
-            new_row[(s.exchange, c.exc_key)] = create_hash(cached_exc[3] + new_row[(s.exchange, c.cons_key)])
-            new_row[[(col, c.amount) for col in scenario_cols]] = exc[(s.ecoinvent, c.amount)] * cached_exc[-1]
+            new_row[(s.exchange, c.exc_key)] = create_hash(
+                cached_exc[3] + new_row[(s.exchange, c.cons_key)]
+            )
+            new_row[[(col, c.amount) for col in scenario_cols]] = (
+                exc[(s.ecoinvent, c.amount)] * cached_exc[-1]
+            )
             exchanges.append(new_row)
 
         return exchanges
@@ -444,15 +494,22 @@ class BaseTransformation:
         def new_exchange(exc, location, factor, scenario_cols):
             cp = exc.copy()
             cp[(s.exchange, c.prod_loc)] = location
-            cp[[(col, c.amount) for col in scenario_cols]] = factor * cp[(s.ecoinvent, c.amount)]
+            cp[[(col, c.amount) for col in scenario_cols]] = (
+                factor * cp[(s.ecoinvent, c.amount)]
+            )
             # cp[(s.ecoinvent, c.amount)] = np.nan
             cp[(s.exchange, c.prod_key)] = prods[location]["key"]
-            cp[(s.exchange, c.exc_key)] = create_hash(prods[location]["key"] + cp[(s.exchange, c.cons_key)])
+            cp[(s.exchange, c.exc_key)] = create_hash(
+                prods[location]["key"] + cp[(s.exchange, c.cons_key)]
+            )
 
             return cp
 
         return (
-            [new_exchange(exc, obj, factor / total, scenario_cols) for obj, factor in zip(lst, pvs)],
+            [
+                new_exchange(exc, obj, factor / total, scenario_cols)
+                for obj, factor in zip(lst, pvs)
+            ],
             [p / total for p in pvs],
         )
 
@@ -484,10 +541,15 @@ class BaseTransformation:
                 exc
                 for exc in act["exchanges"]
                 if exc["type"] == "technosphere"
-                and (exc["name"], exc["product"], exc["location"]) not in self.list_datasets
+                and (exc["name"], exc["product"], exc["location"])
+                not in self.list_datasets
             )
 
-            unique_excs_to_relink = list(set((exc["name"], exc["product"], exc["unit"]) for exc in excs_to_relink))
+            unique_excs_to_relink = list(
+                set(
+                    (exc["name"], exc["product"], exc["unit"]) for exc in excs_to_relink
+                )
+            )
 
             for exc in unique_excs_to_relink:
 
@@ -498,7 +560,9 @@ class BaseTransformation:
                     else [self.ecoinvent_to_iam_loc[act["location"]]]
                 )
 
-                for alt_name, alt_loc in product(alternative_names, alternative_locations):
+                for alt_name, alt_loc in product(
+                    alternative_names, alternative_locations
+                ):
 
                     if (alt_name, exc[1], alt_loc) in self.list_datasets:
                         # print(f"found! {alt_name, alt_loc}")
@@ -506,8 +570,14 @@ class BaseTransformation:
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset
-                amount = sum(e["amount"] for e in excs_to_relink if (e["name"], e["product"]) == exc)
-                act["exchanges"] = [e for e in act["exchanges"] if (e["name"], e.get("product")) != exc]
+                amount = sum(
+                    e["amount"]
+                    for e in excs_to_relink
+                    if (e["name"], e["product"]) == exc
+                )
+                act["exchanges"] = [
+                    e for e in act["exchanges"] if (e["name"], e.get("product")) != exc
+                ]
 
                 # create a new exchange, with the new provider
                 try:
@@ -523,7 +593,9 @@ class BaseTransformation:
                     act["exchanges"].append(new_exc)
 
                 except:
-                    print(f"No alternative provider found for {exc[0], act['location']}.")
+                    print(
+                        f"No alternative provider found for {exc[0], act['location']}."
+                    )
 
     def get_carbon_capture_rate(self, loc, sector):
         """
@@ -559,12 +631,16 @@ class BaseTransformation:
         """
 
         location = [
-            self.iam_to_gains[s][location] if location not in self.iam_data.emissions.region else location
+            self.iam_to_gains[s][location]
+            if location not in self.iam_data.emissions.region
+            else location
             for s in scenarios
         ]
 
         scaling_factor = self.iam_data.emissions.loc[
-            dict(region=location, pollutant=pollutant, sector=sector, scenario=scenarios)
+            dict(
+                region=location, pollutant=pollutant, sector=sector, scenario=scenarios
+            )
         ]
         scaling_factor = scaling_factor.mean(dim=["year", "region"]).values
 
@@ -580,7 +656,9 @@ class BaseTransformation:
         :rtype: float
         """
 
-        scaling_factor = self.iam_data.efficiency.sel(region=location, variables=variable, year=year, scenario=scenario)
+        scaling_factor = self.iam_data.efficiency.sel(
+            region=location, variables=variable, year=year, scenario=scenario
+        )
 
         scaling_factor = scaling_factor.mean(dim="year").values
 
