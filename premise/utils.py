@@ -54,6 +54,20 @@ class s(enum.Enum):
     tag = "tag"
 
 
+class e:
+    prod_name = (s.exchange, c.prod_name)
+    prod_prod = (s.exchange, c.prod_prod)
+    prod_loc = (s.exchange, c.prod_loc)
+    cons_name = (s.exchange, c.cons_name)
+    cons_prod = (s.exchange, c.cons_prod)
+    cons_loc = (s.exchange, c.cons_loc)
+    unit = (s.exchange, c.unit)
+    ext_type = (s.exchange, c.type)
+    prod_key = (s.exchange, c.prod_key)
+    cons_key = (s.exchange, c.cons_key)
+    exc_key = (s.exchange, c.exc_key)
+
+
 def match(reference: str, candidates: List[str]) -> [str, None]:
     """
     Matches a string with a list of fuel candidates and returns the candidate whose label
@@ -229,6 +243,11 @@ def create_hash(*items):
         hasher.update(str(item).encode())
 
     return int(hasher.hexdigest(), 16)
+
+
+def create_hash_for_database(db):
+    hash_func = lambda x: create_hash(*x)
+    return db.apply(hash_func, axis=1)
 
 
 def recalculate_hash(df):
