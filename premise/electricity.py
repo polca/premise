@@ -131,7 +131,7 @@ class Electricity(BaseTransformation):
         # TODO: this could be improved: make a dict with all values only once instead of several times
 
         # Fetch locations contained in IAM region
-        locations = self.geo.iam_to_ecoinvent_location(region)
+        locations = self.iam_to_eco_loc[region]
 
         if voltage == "high":
 
@@ -752,34 +752,43 @@ class Electricity(BaseTransformation):
         Does not return anything. Modifies the database in place.
         """
 
-        # log_created_markets = []
-
-        regions_set = []
-        for _regs in self.regions.values():
-            regions_set.extend(_regs)
-        regions_set = set(regions_set)  # set of all regions from all IAM models
-
         additional_exchanges = []
 
-        for region in regions_set:
-            for period in range(0, 60, 10):
+        for region in self.iam_to_eco_loc.keys():
+            print(region)
+            for period in range(0, 60, 20):
+
+                market_name = "market group for electricity, high voltage"
+
+                if period > 0:
+                    market_name += f", {period}-year period"
 
                 new_market = create_exchange_from_ref(
                     index=self.database.columns,
                     overrides={
-                        e.prod_name: "market group for electricity, high voltage",
+                        e.prod_name: market_name,
                         e.prod_prod: "electricity, high voltage",
                         e.prod_loc: region,
                         (
                             s.ecoinvent,
                             c.comment,
-                        ): "PREMISE created high energy voltage market",
+                        ): "PREMISE created high voltage electricity market",
                     },
                     prod_equals_con=True,
                 )
 
+                new_market[(s.exchange, c.unit)] = "kilowatt hour"
+                scenario_cols = [s.ecoinvent] + [
+                    scenario
+                    for scenario in self.scenario_labels
+                    if region in self.regions[scenario]
+                ]
+                new_market[[(scenario, c.amount) for scenario in scenario_cols]] = 1
+
                 trans_loss_exc = apply_transformation_losses(
-                    new_market, self.get_production_weighted_losses("high", region)
+                    new_market,
+                    self.get_production_weighted_losses("high", region),
+                    scenario_cols,
                 )
 
                 electricity_mix, solar_share = calculate_energy_mix(
@@ -798,43 +807,38 @@ class Electricity(BaseTransformation):
                     electricity_mix,
                     reduced,
                     solar_share,
-                    cons_name="market group for electricity, high voltage",
+                    cons_name=market_name,
                     cons_prod="electricity, high voltage",
                     cons_loc=region,
                 )
 
                 extensions = pd.concat(
-                    [new_exchanges, pd.DataFrame([new_market, trans_loss_exc]).T]
+                    [
+                        new_exchanges,
+                        pd.DataFrame(
+                            [new_market, trans_loss_exc], columns=new_exchanges.columns
+                        ),
+                    ],
+                    axis=0,
                 )
+
+                cols = [
+                         col
+                         for col in extensions.columns
+                         if col[1] == c.amount
+                            and col[0] not in [s.exchange, s.tag]
+                ]
+                extensions.loc[:,
+                    cols
+                ] = extensions.loc[:,
+                    cols
+                ].fillna(0)
 
                 additional_exchanges.append(extensions)
 
         self.database = pd.concat(
             [self.database, *additional_exchanges], ignore_index=True
         )
-
-        # Writing log of created markets
-        # with open(
-        #     DATA_DIR / f"logs/log created electricity markets {self.pathway} {self.year}-{date.today()}.csv",
-        #     "w",
-        #     encoding="utf-8",
-        # ) as csv_file:
-        #     writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-        #     writer.writerow(
-        #         [
-        #             "dataset name",
-        #             "energy type",
-        #             "IAM location",
-        #             "Transformation loss",
-        #             "Distr./Transmission loss",
-        #             "Supplier name",
-        #             "Supplier location",
-        #             "Contribution within energy type",
-        #             "Final contribution",
-        #         ]
-        #     )
-        #     for line in log_created_markets:
-        #         writer.writerow(line)
 
     def update_electricity_efficiency(self):
         """
@@ -1159,9 +1163,7 @@ class Electricity(BaseTransformation):
             * scaling
         )
 
-        keys = self.database.loc[
-            _num_filter, (s.exchange, c.cons_key)
-        ].values
+        keys = self.database.loc[_num_filter, (s.exchange, c.cons_key)].values
 
         _filter_prod = (
             contains_any_from_list((s.exchange, c.cons_key), keys)
@@ -1171,15 +1173,13 @@ class Electricity(BaseTransformation):
         d_keys = dict(zip(keys, current_eff))
         d_new_keys = dict(zip(keys, new_eff))
 
-        self.database.loc[
-            _filter_prod, (s.ecoinvent, c.efficiency)
-        ] = d_keys.values()
+        self.database.loc[_filter_prod, (s.ecoinvent, c.efficiency)] = d_keys.values()
 
         l_keys = list(d_new_keys.values())
         self.database.loc[
-            _filter_prod, [(scenario, c.efficiency) for scenario in self.scenario_labels]
+            _filter_prod,
+            [(scenario, c.efficiency) for scenario in self.scenario_labels],
         ] = l_keys
-
 
     def update_electricity_markets(self):
         """

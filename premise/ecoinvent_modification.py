@@ -847,9 +847,10 @@ class NewDatabase:
             database=self.database, iam_data=self.iam_data, scenarios=self.scenarios
         )
 
-        electricity.create_region_specific_power_plants()
-        electricity.update_electricity_efficiency()
-        electricity.update_efficiency_of_solar_pv()
+        #electricity.create_region_specific_power_plants()
+        #electricity.update_electricity_efficiency()
+        #electricity.update_efficiency_of_solar_pv()
+        electricity.create_new_markets_high_voltage()
         self.database = electricity.database
 
     def update_fuels(self):

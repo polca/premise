@@ -479,7 +479,7 @@ def transf(df: pd.DataFrame, col: str) -> dict:
         "reference product": prod_exc[c.cons_prod],
         "location": prod_exc[c.cons_loc],
         "unit": prod_exc[c.unit],
-        "comment": prod_exc[c.comment],
+        "comment": str(prod_exc[c.comment]),
         "database": col,
         "code": str(prod_exc[c.cons_key]),
         "exchanges": list(df.apply(extract_exc, axis=1)),
@@ -511,7 +511,7 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
             for col in df.columns.levels[0]
             if col not in [s.exchange, s.tag]
         ]
-        df[(s.ecoinvent, c.comment)] = df[col_tuples].sum(axis=1)
+        df.loc[:, (s.ecoinvent, c.comment)] = df.loc[:, col_tuples].sum(axis=1)
 
     # else, we fill NaNs in scenario columns
     # with values from ecoinvent
