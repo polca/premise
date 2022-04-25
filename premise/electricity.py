@@ -37,9 +37,8 @@ from premise.framework.logics import (
 
 from .activity_maps import get_gains_to_ecoinvent_emissions
 from .transformation import *
-from .utils import c, get_efficiency_ratio_solar_PV
 from .transformation import BaseTransformation
-from .utils import c, create_hash, e, s
+from .utils import c, create_hash, e, get_efficiency_ratio_solar_PV, s
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -823,16 +822,11 @@ class Electricity(BaseTransformation):
                 )
 
                 cols = [
-                         col
-                         for col in extensions.columns
-                         if col[1] == c.amount
-                            and col[0] not in [s.exchange, s.tag]
+                    col
+                    for col in extensions.columns
+                    if col[1] == c.amount and col[0] not in [s.exchange, s.tag]
                 ]
-                extensions.loc[:,
-                    cols
-                ] = extensions.loc[:,
-                    cols
-                ].fillna(0)
+                extensions.loc[:, cols] = extensions.loc[:, cols].fillna(0)
 
                 additional_exchanges.append(extensions)
 

@@ -3,11 +3,13 @@
 import numpy as np
 import pandas as pd
 
+from premise.framework.logics import contains_any_from_list, equals
 from premise.utils import c, create_hash, create_hash_for_database, e, s
-from premise.framework.logics import equals, contains_any_from_list
+
 from .framework.tags import TagLibrary
 
 tags = TagLibrary().load()
+
 
 def create_exchange_from_ref(index, overrides=None, prod_equals_con=False):
     # create production dataset
@@ -175,42 +177,37 @@ def reduce_database(region, electricity_mix, database, location_translator=None)
     techs = [(s.tag, i.item(0)) for i in electricity_mix.coords["variables"]]
 
     sel = (
-            database[techs].sum(axis=1).astype(bool)
-            & equals((s.exchange, c.type), "production")(database)
-            & equals((s.exchange, c.unit), "kilowatt hour")(database)
+        database[techs].sum(axis=1).astype(bool)
+        & equals((s.exchange, c.type), "production")(database)
+        & equals((s.exchange, c.unit), "kilowatt hour")(database)
     )
 
     reduced_dataset = database[sel]
     eco_locs = location_translator[region]
 
-    all_locs = [
-        eco_locs,
-        [region],
-        ["RoW"],
-        ["GLO"],
-        ["RER"],
-        ["CH"]
-    ]
+    all_locs = [eco_locs, [region], ["RoW"], ["GLO"], ["RER"], ["CH"]]
     locs = eco_locs
-    _filter_loc = contains_any_from_list((s.exchange, c.prod_loc), locs)(reduced_dataset)
+    _filter_loc = contains_any_from_list((s.exchange, c.prod_loc), locs)(
+        reduced_dataset
+    )
     counter = 1
 
     while not reduced_dataset.loc[_filter_loc, techs].sum().all():
         sums = reduced_dataset.loc[_filter_loc, techs].sum()
         techs_not_found = (sums[sums == 0]).index
 
-        _filter_loc = (
-                _filter_loc
-                | (
-                    contains_any_from_list((s.exchange, c.prod_loc), all_locs[counter])(reduced_dataset)
-                    & database[techs_not_found].sum(axis=1).astype(bool)
-                )
+        _filter_loc = _filter_loc | (
+            contains_any_from_list((s.exchange, c.prod_loc), all_locs[counter])(
+                reduced_dataset
+            )
+            & database[techs_not_found].sum(axis=1).astype(bool)
         )
         counter += 1
 
     reduced_dataset = reduced_dataset.loc[_filter_loc]
 
     return reduced_dataset
+
 
 def create_new_energy_exchanges(
     electricity_mix,
@@ -221,8 +218,7 @@ def create_new_energy_exchanges(
     cons_loc,
 ):
     extensions = pd.DataFrame(
-        columns=reduced_dataset.columns,
-        index=range(len(reduced_dataset))
+        columns=reduced_dataset.columns, index=range(len(reduced_dataset))
     )
 
     techs = [(s.tag, i.item(0)) for i in electricity_mix.coords["variables"]]
@@ -289,27 +285,20 @@ def create_new_energy_exchanges(
     techs = pd.DataFrame(techs, columns=[("tech", "tech")])
     techs.index = reduced_dataset.index
 
-    weighting = (
-        lambda x: x / x.sum()
-    )  # needs to be declared here as it is referring
+    weighting = lambda x: x / x.sum()  # needs to be declared here as it is referring
     # to the solar_amount, which changes every call of the function
 
-
     normalized_prod_vol = (
-        pd.concat([reduced_dataset, techs], axis=1).groupby(("tech", "tech"))[
-            [(s.ecoinvent, c.cons_prod_vol)]
-        ]
+        pd.concat([reduced_dataset, techs], axis=1)
+        .groupby(("tech", "tech"))[[(s.ecoinvent, c.cons_prod_vol)]]
         .apply(weighting)
     )
 
-    cols = [i for i in extensions.columns
-            if i[1] == c.amount
-            and i[0] != s.ecoinvent
-            ]
+    cols = [i for i in extensions.columns if i[1] == c.amount and i[0] != s.ecoinvent]
 
     extensions[cols] = (
-            normalized_prod_vol.values.T
-            * electricity_mix.sel(variables=techs[("tech", "tech")].values)
+        normalized_prod_vol.values.T
+        * electricity_mix.sel(variables=techs[("tech", "tech")].values)
     ).values.T
 
     extensions[cols] /= extensions[cols].sum(axis=0)
