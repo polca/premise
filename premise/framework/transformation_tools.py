@@ -67,10 +67,9 @@ def emptying_datasets(df: pd.DataFrame, scenarios, filters: pd.Series = None):
 
     # filter for production exchanges
     if filters.any():
-        filter_excluding_exchanges = (
-            filters
-            & does_not_contain((s.exchange, c.type), "production")(df)
-        )
+        filter_excluding_exchanges = filters & does_not_contain(
+            (s.exchange, c.type), "production"
+        )(df)
     else:
         filter_excluding_exchanges = (
             does_not_contain((s.exchange, c.type), "production")
