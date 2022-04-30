@@ -777,12 +777,29 @@ class Electricity(BaseTransformation):
                 )
 
                 new_market[(s.exchange, c.unit)] = "kilowatt hour"
-                scenario_cols = [s.ecoinvent] + [
+                scenario_cols = [
                     scenario
                     for scenario in self.scenario_labels
                     if region in self.regions[scenario]
                 ]
-                new_market[[(scenario, c.amount) for scenario in scenario_cols]] = 1
+                new_market[
+                    [
+                        (scenario, c.amount)
+                        for scenario in [s.ecoinvent] + self.scenario_labels
+                    ]
+                ] = 1
+
+                tuple_key = (market_name, "electricity, high voltage", "kilowatt hour")
+
+                if tuple_key in self.producer_locs:
+                    self.producer_locs[tuple_key][region] = {
+                        "key": new_market[(s.exchange, c.cons_key)],
+                        "pv": 0,
+                    }
+                else:
+                    self.producer_locs[tuple_key] = {
+                        region: {"key": new_market[(s.exchange, c.cons_key)], "pv": 0}
+                    }
 
                 trans_loss_exc = apply_transformation_losses(
                     new_market,
@@ -824,7 +841,7 @@ class Electricity(BaseTransformation):
                 cols = [
                     col
                     for col in extensions.columns
-                    if col[1] == c.amount and col[0] not in [s.exchange, s.tag]
+                    if col[1] == c.amount
                 ]
                 extensions.loc[:, cols] = extensions.loc[:, cols].fillna(0)
 
@@ -832,6 +849,54 @@ class Electricity(BaseTransformation):
 
         self.database = pd.concat(
             [self.database, *additional_exchanges], ignore_index=True
+        )
+
+    def relink_old_electricity_markets(self):
+        """
+        Old electricity markets need to be emptied
+        and relink to the new regional markets
+        """
+
+        sel = self.database[(s.tag, "high voltage electricity")]
+        # ignore mew markets in selector
+        sel[sel.isna()] = False
+
+        self.database[sel] = emptying_datasets(
+            df=self.database[sel], scenarios=self.scenario_labels
+        )
+
+        _filter_prod = sel & equals((s.exchange, c.type), "production")(self.database)
+
+        new_exchanges = []
+        for _, ds in self.database[_filter_prod].iterrows():
+
+            iam_locs = [
+                loc
+                for loc, x in self.iam_to_eco_loc.items()
+                if ds[(s.exchange, c.cons_loc)] in x and loc != "World"
+            ]
+            for iam_loc in iam_locs:
+                scenario_cols = [
+                    col for col in self.scenario_labels if iam_loc in self.regions[col]
+                ]
+                supplier_name = "market group for electricity, high voltage"
+                supplier_prod = "electricity, high voltage"
+                supplier_key = self.producer_locs[
+                    (supplier_name, supplier_prod, ds[(s.exchange, c.unit)])
+                ][iam_loc]["key"]
+                new_exchanges.append(
+                    create_redirect_exchange(
+                        exc=ds,
+                        new_loc=iam_loc,
+                        new_name=supplier_name,
+                        new_prod=supplier_prod,
+                        new_key=supplier_key,
+                        cols=scenario_cols,
+                    )
+                )
+
+        self.database = pd.concat(
+            [self.database, pd.DataFrame(new_exchanges)], ignore_index=True
         )
 
     def update_electricity_efficiency(self):

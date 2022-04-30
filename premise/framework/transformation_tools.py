@@ -55,7 +55,7 @@ def get_many(
     return df[selector]
 
 
-def emptying_datasets(df: pd.DataFrame, scenario, filters: Callable):
+def emptying_datasets(df: pd.DataFrame, scenarios, filters: Callable = None):
     """
     Zero out technosphere and biosphere exchanges of datasets in `scenario`,
     based on the list of filters specified, but preserves production exchanges,
@@ -66,21 +66,34 @@ def emptying_datasets(df: pd.DataFrame, scenario, filters: Callable):
     """
 
     # filter for production exchanges
-    filter_excluding_exchanges = (
-        filters & does_not_contain((s.exchange, c.type), "production")
-    )(df)
+    if filters:
+        filter_excluding_exchanges = (
+            filters & does_not_contain((s.exchange, c.type), "production")
+        )(df)
+    else:
+        filter_excluding_exchanges = (
+                does_not_contain((s.exchange, c.type), "production")
+        )(df)
 
     # zero out all exchanges contained in the filter
-    df.loc[filter_excluding_exchanges, (scenario, c.amount)] = 0
+    df.loc[filter_excluding_exchanges, [(scenario, c.amount) for
+                                        scenario in scenarios]] = 0
+
+    return df
 
 
-def create_redirect_exchange(df: pd.DataFrame, new_loc: str, cols: List[str]):
+def create_redirect_exchange(exc: pd.DataFrame,
+                             new_loc: str,
+                             new_name: str,
+                             new_prod: str,
+                             new_key: int,
+                             cols: List[str]):
     """
-    Empty a dataset, and make it point to another one
+    Make a dataset point to another one
     :return:
     """
 
-    new_exc = df.iloc[0].copy()
+    new_exc = exc.copy()
 
     new_exc[(s.ecoinvent, c.cons_prod_vol)] = np.nan
     new_exc[[(col, c.cons_prod_vol) for col in cols]] = np.nan
@@ -90,16 +103,20 @@ def create_redirect_exchange(df: pd.DataFrame, new_loc: str, cols: List[str]):
         [(col, c.comment) for col in cols]
     ] = "redirect to new IAM-specific regional dataset"
 
-    new_exc[(s.exchange, c.prod_name)] = new_exc[(s.exchange, c.cons_name)]
-    new_exc[(s.exchange, c.prod_prod)] = new_exc[(s.exchange, c.cons_prod)]
-
-    new_exc[(s.exchange, c.cons_loc)] = new_exc[(s.exchange, c.prod_loc)]
+    new_exc[(s.exchange, c.prod_name)] = new_name
+    new_exc[(s.exchange, c.prod_prod)] = new_prod
     new_exc[(s.exchange, c.prod_loc)] = new_loc
-
     new_exc[(s.exchange, c.type)] = "technosphere"
+    new_exc[(s.exchange, c.prod_key)] = new_key
+    new_exc[(s.exchange, c.exc_key)] = create_hash(
+        new_exc[(s.exchange, c.cons_key)],
+        new_exc[(s.exchange, c.prod_key)],
+    )
 
-    new_exc[(s.ecoinvent, c.amount)] = 0
-    new_exc[[(col, c.comment) for col in cols]] = 1
+    new_exc[[(col[0], c.amount) for col in new_exc.index if col[0] not in cols
+    and col[1] == c.amount]] = 0
+    new_exc[[(col, c.amount) for col in cols]] = 1
+
 
     return new_exc
 
