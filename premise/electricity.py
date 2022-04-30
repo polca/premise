@@ -838,11 +838,7 @@ class Electricity(BaseTransformation):
                     axis=0,
                 )
 
-                cols = [
-                    col
-                    for col in extensions.columns
-                    if col[1] == c.amount
-                ]
+                cols = [col for col in extensions.columns if col[1] == c.amount]
                 extensions.loc[:, cols] = extensions.loc[:, cols].fillna(0)
 
                 additional_exchanges.append(extensions)
@@ -862,7 +858,12 @@ class Electricity(BaseTransformation):
         sel[sel.isna()] = False
 
         self.database[sel] = emptying_datasets(
-            df=self.database[sel], scenarios=self.scenario_labels
+            df=self.database[sel],
+            scenarios=self.scenario_labels,
+            filters=~equals(
+                (s.exchange, c.prod_name),
+                self.database.loc[sel, (s.exchange, c.cons_name)],
+            )(self.database[sel]),
         )
 
         _filter_prod = sel & equals((s.exchange, c.type), "production")(self.database)

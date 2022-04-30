@@ -17,8 +17,13 @@ class does_not_contain(BasicOperation):
 
 class equals(BasicOperation):
     def __init__(self, key, val):
+        self.key = key
+        self.val = val
         self._selector = lambda df: df[key] == val
         self._repr = f"<filter df[{key}] == {val}>"
+
+    def __invert__(self):
+        return lambda df: df[self.key] != self.val
 
 
 class contains_any_from_list(BasicOperation):

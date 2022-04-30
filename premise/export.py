@@ -91,7 +91,7 @@ def export_scenario_difference_file(database, db_name, filepath):
             "flow type",
         ]
         + [t[0] for t in scenario_cols]
-    ].to_excel(filepath, index=False)
+    ].sort_values(by="flow type", ascending=False).to_excel(filepath, index=False)
 
     print(f"Scenario difference file exported to {filepath}!")
 

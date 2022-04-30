@@ -851,7 +851,7 @@ class NewDatabase:
         # electricity.update_electricity_efficiency()
         # electricity.update_efficiency_of_solar_pv()
         electricity.create_new_markets_high_voltage()
-        #electricity.relink_old_electricity_markets()
+        electricity.relink_old_electricity_markets()
         self.database = electricity.database
 
     def update_fuels(self):

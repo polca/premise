@@ -55,7 +55,7 @@ def get_many(
     return df[selector]
 
 
-def emptying_datasets(df: pd.DataFrame, scenarios, filters: Callable = None):
+def emptying_datasets(df: pd.DataFrame, scenarios, filters: pd.Series = None):
     """
     Zero out technosphere and biosphere exchanges of datasets in `scenario`,
     based on the list of filters specified, but preserves production exchanges,
@@ -66,10 +66,11 @@ def emptying_datasets(df: pd.DataFrame, scenarios, filters: Callable = None):
     """
 
     # filter for production exchanges
-    if filters:
+    if filters.any():
         filter_excluding_exchanges = (
-            filters & does_not_contain((s.exchange, c.type), "production")
-        )(df)
+            filters
+            & does_not_contain((s.exchange, c.type), "production")(df)
+        )
     else:
         filter_excluding_exchanges = (
                 does_not_contain((s.exchange, c.type), "production")

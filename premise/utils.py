@@ -420,7 +420,7 @@ def add_tags(tag_lib: TagLibrary, df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def extract_exc(row: pd.Series) -> dict:
+def extract_exc(row: pd.Series, col: str) -> dict:
     """
     Returns a dictionary that represents an exchange.
     :param row: pd.Series, containing an exchange.
@@ -437,6 +437,7 @@ def extract_exc(row: pd.Series) -> dict:
             "unit": row[c.unit],
             "production volume": row[c.cons_prod_vol],
             "amount": row[c.amount],
+            "input": (col, str(row[c.prod_key]))
         }
 
     elif row[c.type] == "technosphere":
@@ -448,6 +449,7 @@ def extract_exc(row: pd.Series) -> dict:
             "uncertainty type": 0,
             "unit": row[c.unit],
             "amount": row[c.amount],
+            "input": (col, str(row[c.prod_key]))
         }
 
     else:
@@ -458,7 +460,7 @@ def extract_exc(row: pd.Series) -> dict:
             "uncertainty type": 0,
             "unit": row[c.unit],
             "amount": row[c.amount],
-            "input": ("biosphere3", row[c.prod_key]),
+            "input": ("biosphere3", str(row[c.prod_key])),
         }
 
     return exc
@@ -482,7 +484,7 @@ def transf(df: pd.DataFrame, col: str) -> dict:
         "comment": str(prod_exc[c.comment]),
         "database": col,
         "code": str(prod_exc[c.cons_key]),
-        "exchanges": list(df.apply(extract_exc, axis=1)),
+        "exchanges": list(df.apply(extract_exc, col=col, axis=1)),
     }
 
     return outer
