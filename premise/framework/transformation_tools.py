@@ -72,22 +72,25 @@ def emptying_datasets(df: pd.DataFrame, scenarios, filters: Callable = None):
         )(df)
     else:
         filter_excluding_exchanges = (
-                does_not_contain((s.exchange, c.type), "production")
+            does_not_contain((s.exchange, c.type), "production")
         )(df)
 
     # zero out all exchanges contained in the filter
-    df.loc[filter_excluding_exchanges, [(scenario, c.amount) for
-                                        scenario in scenarios]] = 0
+    df.loc[
+        filter_excluding_exchanges, [(scenario, c.amount) for scenario in scenarios]
+    ] = 0
 
     return df
 
 
-def create_redirect_exchange(exc: pd.DataFrame,
-                             new_loc: str,
-                             new_name: str,
-                             new_prod: str,
-                             new_key: int,
-                             cols: List[str]):
+def create_redirect_exchange(
+    exc: pd.DataFrame,
+    new_loc: str,
+    new_name: str,
+    new_prod: str,
+    new_key: int,
+    cols: List[str],
+):
     """
     Make a dataset point to another one
     :return:
@@ -113,10 +116,14 @@ def create_redirect_exchange(exc: pd.DataFrame,
         new_exc[(s.exchange, c.prod_key)],
     )
 
-    new_exc[[(col[0], c.amount) for col in new_exc.index if col[0] not in cols
-    and col[1] == c.amount]] = 0
+    new_exc[
+        [
+            (col[0], c.amount)
+            for col in new_exc.index
+            if col[0] not in cols and col[1] == c.amount
+        ]
+    ] = 0
     new_exc[[(col, c.amount) for col in cols]] = 1
-
 
     return new_exc
 

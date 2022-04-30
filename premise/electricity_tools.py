@@ -94,9 +94,7 @@ def apply_transformation_losses(market_exc, transfer_loss, scenario_cols):
     tloss_exc = market_exc.copy()
     tloss_exc[(s.exchange, c.type)] = "technosphere"
 
-    tloss_exc[[(col[0], c.amount)
-               for col in tloss_exc.index if col[1] == c.amount]
-    ] = 0
+    tloss_exc[[(col[0], c.amount) for col in tloss_exc.index if col[1] == c.amount]] = 0
 
     cols = []
     vals = []

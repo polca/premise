@@ -838,11 +838,7 @@ class Electricity(BaseTransformation):
                     axis=0,
                 )
 
-                cols = [
-                    col
-                    for col in extensions.columns
-                    if col[1] == c.amount
-                ]
+                cols = [col for col in extensions.columns if col[1] == c.amount]
                 extensions.loc[:, cols] = extensions.loc[:, cols].fillna(0)
 
                 additional_exchanges.append(extensions)
