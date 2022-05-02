@@ -69,7 +69,7 @@ def emptying_datasets(df: pd.DataFrame, scenarios, filters: pd.Series = None):
     # zero out all exchanges contained in the filter
     df.loc[
         df[(s.exchange, c.prod_key)] != df[(s.exchange, c.cons_key)],
-        [(scenario, c.amount) for scenario in scenarios]
+        [(scenario, c.amount) for scenario in scenarios],
     ] = 0
 
     return df
@@ -119,6 +119,7 @@ def create_redirect_exchange(
 
     return new_exc
 
+
 def rename_location(df: pd.DataFrame, new_loc: str) -> pd.DataFrame:
     """
     Change the location of datasets in `scenario`,
@@ -141,7 +142,9 @@ def rename_location(df: pd.DataFrame, new_loc: str) -> pd.DataFrame:
     )
 
     # update producer key
-    df.loc[_filter, (s.exchange, c.prod_key)] = df.loc[_filter, (s.exchange, c.cons_key)]
+    df.loc[_filter, (s.exchange, c.prod_key)] = df.loc[
+        _filter, (s.exchange, c.cons_key)
+    ]
 
     # update exchange key
     df.loc[:, (s.exchange, c.exc_key)] = create_hash(

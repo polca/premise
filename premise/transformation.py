@@ -255,8 +255,7 @@ class BaseTransformation:
 
         if regions_to_copy_to:
             iam_ei_proxy_locs = {
-                k: v for k, v in self.iam_to_eco_loc.items()
-                if k in regions_to_copy_to
+                k: v for k, v in self.iam_to_eco_loc.items() if k in regions_to_copy_to
             }
         else:
             iam_ei_proxy_locs = self.iam_to_eco_loc
@@ -704,8 +703,7 @@ class BaseTransformation:
             ]
             for iam_loc in iam_locs:
                 scenario_cols = [
-                    col for col in self.scenario_labels
-                    if iam_loc in self.regions[col]
+                    col for col in self.scenario_labels if iam_loc in self.regions[col]
                 ]
 
                 supplier_key = self.producer_locs[

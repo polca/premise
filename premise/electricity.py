@@ -1190,9 +1190,9 @@ class Electricity(BaseTransformation):
             },
         )
         # print("Create medium voltage markets.") # FIXME out commented for debugging
-        #self.create_new_markets_medium_voltage()
+        # self.create_new_markets_medium_voltage()
         # print("Create low voltage markets.") # FIXME out commented for debugging
-        #self.create_new_markets_low_voltage()
+        # self.create_new_markets_low_voltage()
 
         print("Done!")
 
