@@ -15,10 +15,12 @@ import sys
 from collections import defaultdict
 from datetime import date
 
+
 import numpy as np
 import pandas as pd
 import wurst
 import xarray as xr
+import yaml
 
 from premise import DATA_DIR
 from premise.electricity_tools import (
@@ -44,6 +46,21 @@ PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
 )
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
+INFRASTRUCTURE = DATA_DIR / "electricity" / "infrastructure.yaml"
+
+
+def get_network_infrastructure():
+
+    with open(INFRASTRUCTURE, "r") as stream:
+        infras = yaml.safe_load(stream)
+
+    for i, j in infras.items():
+        for _k, k in enumerate(j):
+            for l, m in k.items():
+                if l == "categories":
+                    infras[i][_k][l] = m.replace(", ", "::")
+
+    return infras
 
 
 def get_losses_per_country_dict():
@@ -113,7 +130,9 @@ class Electricity(BaseTransformation):
         self.losses = get_losses_per_country_dict()
         self.production_per_tech = get_production_per_tech_dict()
         self.gains_substances = get_gains_to_ecoinvent_emissions()
+        self.infras = get_network_infrastructure()
 
+    @lru_cache()
     def get_production_weighted_losses(self, voltage, region):
         """
         Return the transformation, transmission and distribution losses at a given voltage level for a given location.
@@ -147,7 +166,7 @@ class Electricity(BaseTransformation):
                 )
                 cumul_prod += dict_loss["Production volume"]
             transf_loss /= cumul_prod
-            return transf_loss
+            return transf_loss, None
 
         if voltage == "medium":
             cumul_prod, transf_loss, distr_loss = 0, 0, 0
@@ -744,13 +763,13 @@ class Electricity(BaseTransformation):
             for line in log_created_markets:
                 writer.writerow(line)
 
-    def create_new_markets_high_voltage(self):
+    def create_new_electricity_markets(self, name, ref_prod, unit, voltage):
         """
         Create high voltage market groups for electricity, based on electricity mixes given by the IAM pathway.
         Contribution from solar power is added in low voltage market groups.
         Does not return anything. Modifies the database in place.
         """
-        print("Creating high voltage markets...")
+        print(f"Creating {voltage} voltage markets...")
 
         additional_exchanges = []
 
@@ -758,8 +777,7 @@ class Electricity(BaseTransformation):
 
             for period in range(0, 60, 20):
 
-                market_name = "market group for electricity, high voltage"
-
+                market_name = name
                 if period > 0:
                     market_name += f", {period}-year period"
 
@@ -767,7 +785,7 @@ class Electricity(BaseTransformation):
                     index=self.database.columns,
                     overrides={
                         e.prod_name: market_name,
-                        e.prod_prod: "electricity, high voltage",
+                        e.prod_prod: ref_prod,
                         e.prod_loc: region,
                         (
                             s.ecoinvent,
@@ -777,12 +795,8 @@ class Electricity(BaseTransformation):
                     prod_equals_con=True,
                 )
 
-                new_market[(s.exchange, c.unit)] = "kilowatt hour"
-                scenario_cols = [
-                    scenario
-                    for scenario in self.scenario_labels
-                    if region in self.regions[scenario]
-                ]
+                new_market[(s.exchange, c.unit)] = unit
+
                 new_market[
                     [
                         (scenario, c.amount)
@@ -790,7 +804,7 @@ class Electricity(BaseTransformation):
                     ]
                 ] = 1
 
-                tuple_key = (market_name, "electricity, high voltage", "kilowatt hour")
+                tuple_key = (market_name, ref_prod, unit)
 
                 if tuple_key in self.producer_locs:
                     self.producer_locs[tuple_key][region] = {
@@ -802,40 +816,153 @@ class Electricity(BaseTransformation):
                         region: {"key": new_market[(s.exchange, c.cons_key)], "pv": 0}
                     }
 
-                trans_loss_exc = apply_transformation_losses(
-                    new_market,
-                    self.get_production_weighted_losses("high", region),
-                    scenario_cols,
+                transf_loss, distr_loss = self.get_production_weighted_losses(
+                    voltage, region
                 )
 
-                electricity_mix, solar_share = calculate_energy_mix(
-                    iam_data=self.iam_data,
-                    region=region,
-                    scenarios=self.scenario_labels,
-                    period=period,
-                    years=[int(i.split("::")[-1]) for i in self.scenario_labels],
-                )
+                loss_excs = [
+                    pd.Series(apply_transformation_losses(new_market, transf_loss))
+                ]
 
-                reduced = reduce_database(
-                    region, electricity_mix, self.database, self.iam_to_eco_loc
-                )
+                if distr_loss:
+                    distr_loss_exc = apply_transformation_losses(new_market, distr_loss)
+                    distr_loss_exc[
+                        [
+                            (col[0], c.amount)
+                            for col in distr_loss_exc.index
+                            if col[1] == c.amount
+                        ]
+                    ] += 1
 
-                new_exchanges = create_new_energy_exchanges(
-                    electricity_mix,
-                    reduced,
-                    solar_share,
-                    cons_name=market_name,
-                    cons_prod="electricity, high voltage",
-                    cons_loc=region,
-                )
+                    txt = None
+                    if voltage == "medium":
+                        txt = "high"
+                    if voltage == "low":
+                        txt = "medium"
+
+                    distr_loss_exc[
+                        [(s.exchange, c.prod_name), (s.exchange, c.prod_prod)]
+                    ] = [
+                        market_name.replace(voltage, txt),
+                        ref_prod.replace(voltage, txt),
+                    ]
+
+                    distr_loss_exc[(s.exchange, c.prod_key)] = create_hash(
+                        distr_loss_exc[(s.exchange, c.prod_name)],
+                        distr_loss_exc[(s.exchange, c.prod_prod)],
+                        distr_loss_exc[(s.exchange, c.prod_loc)],
+                    )
+
+                    distr_loss_exc[(s.exchange, c.exc_key)] = create_hash(
+                        distr_loss_exc[(s.exchange, c.prod_name)],
+                        distr_loss_exc[(s.exchange, c.prod_prod)],
+                        distr_loss_exc[(s.exchange, c.prod_loc)],
+                        distr_loss_exc[(s.exchange, c.cons_name)],
+                        distr_loss_exc[(s.exchange, c.cons_prod)],
+                        distr_loss_exc[(s.exchange, c.cons_loc)],
+                    )
+
+                    loss_excs.append(distr_loss_exc)
+
+                for infra_exc in self.infras[voltage]:
+
+                    if infra_exc["type"] == "technosphere":
+
+                        key = self.producer_locs[
+                            (
+                                infra_exc["name"],
+                                infra_exc["reference product"],
+                                infra_exc["unit"],
+                            )
+                        ][infra_exc["location"]]["key"]
+
+                        extra_exc = create_exchange_from_ref(
+                            index=self.database.columns,
+                            overrides={
+                                e.cons_name: market_name,
+                                e.cons_prod: ref_prod,
+                                e.cons_loc: region,
+                                e.prod_name: infra_exc["name"],
+                                e.prod_prod: infra_exc["reference product"],
+                                e.prod_loc: infra_exc["location"],
+                                e.prod_key: key,
+                                e.ext_type: infra_exc["type"],
+                            },
+                            prod_equals_con=False,
+                        )
+
+                    else:
+
+                        key = self.biosphere_dict[
+                            (
+                                infra_exc["name"],
+                                infra_exc["categories"].split("::")[0],
+                                infra_exc["categories"].split("::")[1]
+                                if len(infra_exc["categories"].split("::")) > 1
+                                else "unspecified",
+                                infra_exc["unit"],
+                            )
+                        ]
+
+                        extra_exc = create_exchange_from_ref(
+                            index=self.database.columns,
+                            overrides={
+                                e.cons_name: market_name,
+                                e.cons_prod: ref_prod,
+                                e.cons_loc: region,
+                                e.prod_name: infra_exc["name"],
+                                e.prod_prod: "",
+                                e.prod_loc: infra_exc["categories"],
+                                e.prod_key: key,
+                                e.ext_type: infra_exc["type"],
+                            },
+                            prod_equals_con=False,
+                        )
+
+                    extra_exc[(s.exchange, c.unit)] = infra_exc["unit"]
+                    extra_exc[
+                        [
+                            (col[0], c.amount)
+                            for col in extra_exc.index
+                            if col[1] == c.amount and col[0] != s.ecoinvent
+                        ]
+                    ] = infra_exc["amount"]
+
+                    loss_excs.append(extra_exc)
+
+                concat_list = [
+                    pd.DataFrame([new_market] + loss_excs, columns=new_market.index),
+                ]
+
+                if voltage in ["low", "high"]:
+
+                    electricity_mix = calculate_energy_mix(
+                        iam_data=self.iam_data,
+                        region=region,
+                        scenarios=self.scenario_labels,
+                        period=period,
+                        years=[int(i.split("::")[-1]) for i in self.scenario_labels],
+                        voltage=voltage,
+                    )
+
+                    if not np.isnan(electricity_mix.values).all():
+
+                        reduced = reduce_database(
+                            region, electricity_mix, self.database, self.iam_to_eco_loc
+                        )
+
+                        new_exchanges = create_new_energy_exchanges(
+                            electricity_mix,
+                            reduced,
+                            cons_name=market_name,
+                            cons_prod=ref_prod,
+                            cons_loc=region,
+                        )
+
+                        concat_list.append(new_exchanges)
 
                 extensions = pd.concat(
-                    [
-                        new_exchanges,
-                        pd.DataFrame(
-                            [new_market, trans_loss_exc], columns=new_exchanges.columns
-                        ),
-                    ],
+                    concat_list,
                     axis=0,
                 )
 
@@ -1176,23 +1303,29 @@ class Electricity(BaseTransformation):
         :rtype: list
         """
 
-        self.create_region_specific_power_plants()
-        self.update_electricity_efficiency()
-        self.update_efficiency_of_solar_pv()
+        # self.create_region_specific_power_plants()
+        # self.update_electricity_efficiency()
+        # self.update_efficiency_of_solar_pv()
 
         # We then need to create high voltage IAM electricity markets
-        self.create_new_markets_high_voltage()
-        self.relink_old_markets(
-            tag=(s.tag, "high voltage electricity"),
-            new_supplier={
-                "name": "market group for electricity, high voltage",
-                "reference product": "electricity, high voltage",
-            },
-        )
-        # print("Create medium voltage markets.") # FIXME out commented for debugging
-        #self.create_new_markets_medium_voltage()
-        # print("Create low voltage markets.") # FIXME out commented for debugging
-        #self.create_new_markets_low_voltage()
+        markets = [
+            (
+                f"market group for electricity, {voltage} voltage",
+                f"electricity, {voltage} voltage",
+                "kilowatt hour",
+                voltage,
+            )
+            for voltage in ["high", "medium", "low"]
+        ]
+
+        tags = [
+            (s.tag, f"{voltage} voltage electricity")
+            for voltage in ["high", "medium", "low"]
+        ]
+
+        for m, market in enumerate(markets):
+            self.create_new_electricity_markets(*market)
+            self.relink_old_markets(tags[m], *market[:-1])
 
         print("Done!")
 

@@ -1,0 +1,61 @@
+high:
+  - name: market for transmission network, long-distance
+    reference product: transmission network, long-distance
+    location: GLO
+    type: technosphere
+    unit: kilometer
+    amount: 0.000000000317
+  - name: market for transmission network, electricity, high voltage
+    reference product: transmission network, electricity, high voltage
+    location: GLO
+    type: technosphere
+    unit: kilometer
+    amount: 0.00000000658
+  - name: Dinitrogen monoxide
+    categories: air
+    unit: kilogram
+    amount: 0.000005
+    type: biosphere
+  - name: Ozone
+    categories: air
+    unit: kilogram
+    amount: 0.00000416
+    type: biosphere
+
+medium:
+  - name: market for sulfur hexafluoride, liquid
+    reference product: sulfur hexafluoride, liquid
+    unit: kilogram
+    location: RoW
+    type: technosphere
+    amount: 0.000000054
+  - name: Sulfur hexafluoride
+    categories: air, non-urban air or from high stacks
+    unit: kilogram
+    type: biosphere
+    amount: 0.000000054
+  - name: market for transmission network, electricity, medium voltage
+    reference product: transmission network, electricity, medium voltage
+    unit: kilometer
+    location: GLO
+    type: technosphere
+    amount: 0.000000018628
+
+low:
+  - name: market for sulfur hexafluoride, liquid
+    reference product: sulfur hexafluoride, liquid
+    unit: kilogram
+    location: RoW
+    type: technosphere
+    amount: 0.00000000627
+  - name: Sulfur hexafluoride
+    categories: air, non-urban air or from high stacks
+    unit: kilogram
+    type: biosphere
+    amount: 0.00000000627
+  - name: market for distribution network, electricity, low voltage
+    reference product: distribution network, electricity, low voltage
+    unit: kilometer
+    location: GLO
+    type: technosphere
+    amount: 0.00000005

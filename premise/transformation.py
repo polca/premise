@@ -12,12 +12,14 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 from wurst import searching as ws
+from functools import lru_cache
 
 from premise.framework.transformation_tools import *
 
 from .exceptions import NoCandidateInDatabase
 from .geomap import Geomap
 from .utils import c, create_scenario_label, get_fuel_properties, s
+from .inventory_imports import get_biosphere_code
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -187,9 +189,22 @@ class BaseTransformation:
         for label in self.scenario_labels:
             self.iam_to_eco_loc = self.iam_to_eco_loc | self.iam_to_ecoinvent_loc[label]
 
+        self.eco_to_iam_loc = {}
+        for label in self.scenario_labels:
+            for k, v in self.iam_to_ecoinvent_loc[label].items():
+                for loc in v:
+                    if loc not in self.eco_to_iam_loc:
+                        self.eco_to_iam_loc[loc] = [k]
+                    else:
+                        if k not in self.eco_to_iam_loc[loc]:
+                            self.eco_to_iam_loc[loc].append(k)
+
         self.exchange_stack = []
 
         self.cache = {}
+        self.iam_eff_cache = {}
+        self.gains_eff_cache = {}
+        self.biosphere_dict = get_biosphere_code()
 
     def update_new_efficiency_in_comment(self, scenarios, iam_loc, old_ei_eff, new_eff):
         """
@@ -211,23 +226,6 @@ class BaseTransformation:
 
         return new_txt
 
-    def get_iam_mapping(self, activity_map, technologies):
-        """
-        Define filter functions that decide which wurst datasets to modify.
-        :param activity_map: a dictionary that contains 'technologies' as keys and activity names as values.
-        :param fuels_map: a dictionary that contains 'technologies' as keys and fuel names as values.
-        :param technologies: a list of IAM technologies.
-        :return: dictionary that contains filters and functions
-        :rtype: dict
-        """
-
-        return {
-            tech: {
-                "IAM_eff_func": self.find_iam_efficiency_change,
-                "technology filters": activity_map[tech],
-            }
-            for tech in technologies
-        }
 
     def fetch_proxies(
         self, name, ref_prod, production_variable, regions_to_copy_to=None, relink=False
@@ -526,89 +524,6 @@ class BaseTransformation:
             [p / total for p in pvs],
         )
 
-    def relink_datasets(self, excludes_datasets, alternative_names=None):
-        """
-        For a given exchange name, product and unit, change its location to an IAM location,
-        to effectively link to the newly buil_t market(s)/activity(ies).
-
-        :param name: dataset name
-        :type name: str
-        :param ref_product: reference product of the dataset
-        :type ref_product: str
-        :param unit: unit of the dataset
-        :type unit: str
-        :param does_not_contain: list of terms that, if contained in the name of an exchange, should be ignored
-        :type does_not_contain: list
-        :returns: does not return anything. Modifies in place.
-        """
-
-        # loop through the database
-        # ignore datasets which name contains `name`
-        for act in ws.get_many(
-            self.database,
-            ws.doesnt_contain_any("name", excludes_datasets),
-        ):
-            # and find exchanges of datasets to relink
-
-            excs_to_relink = (
-                exc
-                for exc in act["exchanges"]
-                if exc["type"] == "technosphere"
-                and (exc["name"], exc["product"], exc["location"])
-                not in self.list_datasets
-            )
-
-            unique_excs_to_relink = list(
-                set(
-                    (exc["name"], exc["product"], exc["unit"]) for exc in excs_to_relink
-                )
-            )
-
-            for exc in unique_excs_to_relink:
-
-                alternative_names = [exc[0], *alternative_names]
-                alternative_locations = (
-                    [act["location"]]
-                    if act["location"] in self.regions
-                    else [self.ecoinvent_to_iam_loc[act["location"]]]
-                )
-
-                for alt_name, alt_loc in product(
-                    alternative_names, alternative_locations
-                ):
-
-                    if (alt_name, exc[1], alt_loc) in self.list_datasets:
-                        # print(f"found! {alt_name, alt_loc}")
-                        break
-
-                # summing up the amounts provided by the unwanted exchanges
-                # and remove these unwanted exchanges from the dataset
-                amount = sum(
-                    e["amount"]
-                    for e in excs_to_relink
-                    if (e["name"], e["product"]) == exc
-                )
-                act["exchanges"] = [
-                    e for e in act["exchanges"] if (e["name"], e.get("product")) != exc
-                ]
-
-                # create a new exchange, with the new provider
-                try:
-                    new_exc = {
-                        "name": alt_name,
-                        "product": exc[1],
-                        "amount": amount,
-                        "type": "technosphere",
-                        "unit": exc[2],
-                        "location": alt_loc,
-                    }
-
-                    act["exchanges"].append(new_exc)
-
-                except:
-                    print(
-                        f"No alternative provider found for {exc[0], act['location']}."
-                    )
 
     def get_carbon_capture_rate(self, loc, sector):
         """
@@ -643,21 +558,31 @@ class BaseTransformation:
         :rtype: float
         """
 
-        location = [
-            self.iam_to_gains[s][location]
-            if location not in self.iam_data.emissions.region
-            else location
-            for s in scenarios
-        ]
+        key = (pollutant, location, sector, tuple(scenarios))
 
-        scaling_factor = self.iam_data.emissions.loc[
-            dict(
-                region=location, pollutant=pollutant, sector=sector, scenario=scenarios
-            )
-        ]
-        scaling_factor = scaling_factor.mean(dim=["year", "region"]).values
+        if key in self.gains_eff_cache:
+            return self.gains_eff_cache[key]
 
-        return scaling_factor
+        else:
+
+            location = [
+                self.iam_to_gains[s][location]
+                if location not in self.iam_data.emissions.region
+                else location
+                for s in scenarios
+            ]
+
+            scaling_factor = self.iam_data.emissions.loc[
+                dict(
+                    region=location, pollutant=pollutant, sector=sector, scenario=scenarios
+                )
+            ]
+            scaling_factor = scaling_factor.mean(dim=["year", "region"]).values
+
+            self.gains_eff_cache[key] = scaling_factor
+
+            return scaling_factor
+
 
     def find_iam_efficiency_change(self, variable, location, year, scenario):
         """
@@ -669,23 +594,33 @@ class BaseTransformation:
         :rtype: float
         """
 
-        scaling_factor = self.iam_data.efficiency.sel(
-            region=location, variables=variable, year=year, scenario=scenario
-        )
+        key = (variable, location, tuple(year), tuple(scenario))
 
-        scaling_factor = scaling_factor.mean(dim="year").values
+        if key in self.iam_eff_cache:
+            return self.iam_eff_cache[key]
+        else:
 
-        return scaling_factor
+            scaling_factor = self.iam_data.efficiency.sel(
+                region=location, variables=variable, year=year, scenario=scenario
+            )
 
-    def relink_old_markets(self, tag: Tuple, new_supplier: dict):
+            scaling_factor = scaling_factor.mean(dim="year").values
+
+            self.iam_eff_cache[key] = scaling_factor
+
+            return scaling_factor
+
+    def relink_old_markets(self, tag: Tuple, name, ref_prod, unit):
         """
         Old electricity markets need to be emptied
         and relink to the new regional markets
         """
 
-        sel = self.database[tag]
+        sel = self.database[tag].copy(deep=False)
         # ignore mew markets in selector
-        sel[sel.isna()] = False
+        sel.loc[sel.isna()] = False
+        sel.loc[sel == 0] = False
+        sel.loc[sel > 0] = True
 
         self.database[sel] = emptying_datasets(
             df=self.database[sel],
@@ -697,11 +632,8 @@ class BaseTransformation:
         new_exchanges = []
         for _, ds in self.database[_filter_prod].iterrows():
 
-            iam_locs = [
-                loc
-                for loc, x in self.iam_to_eco_loc.items()
-                if ds[(s.exchange, c.cons_loc)] in x and loc != "World"
-            ]
+            iam_locs = self.eco_to_iam_loc[ds[(s.exchange, c.cons_loc)]]
+
             for iam_loc in iam_locs:
                 scenario_cols = [
                     col for col in self.scenario_labels
@@ -710,17 +642,17 @@ class BaseTransformation:
 
                 supplier_key = self.producer_locs[
                     (
-                        new_supplier["name"],
-                        new_supplier["reference product"],
-                        ds[(s.exchange, c.unit)],
+                        name,
+                        ref_prod,
+                        unit,
                     )
                 ][iam_loc]["key"]
                 new_exchanges.append(
                     create_redirect_exchange(
                         exc=ds,
                         new_loc=iam_loc,
-                        new_name=new_supplier["name"],
-                        new_prod=new_supplier["reference product"],
+                        new_name=name,
+                        new_prod=ref_prod,
                         new_key=supplier_key,
                         cols=scenario_cols,
                     )

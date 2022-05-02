@@ -6,9 +6,11 @@ from pathlib import Path
 from typing import Dict, List, Union
 
 import bw2io
+import yaml
 from bw2io import ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
+from functools import lru_cache
 
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
@@ -16,6 +18,15 @@ from .geomap import Geomap
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 
+OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
+
+
+def get_outdated_flows():
+
+    with open(OUTDATED_FLOWS, "r") as stream:
+        flows = yaml.safe_load(stream)
+
+    return flows
 
 def get_biosphere_code() -> dict:
     """
@@ -43,7 +54,7 @@ def check_presence_of_production_exchange(db):
             0 < len([e for e in ds["exchanges"] if e["type"] == "production"]) < 2
         ), f"missing production exchange for {ds['name']}."
 
-
+@lru_cache
 def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
     """
     Generate mapping for ecoinvent datasets across different database versions.
@@ -97,6 +108,7 @@ class BaseInventoryImport:
         self.version_in = version_in
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code()
+        self.outdated_flows = get_outdated_flows()
 
         if not isinstance(path, Path):
             path = Path(path)
@@ -201,6 +213,7 @@ class BaseInventoryImport:
 
         self.prepare_inventory()
         return self.import_db
+
 
     def search_missing_exchanges(self, label: str, value: str) -> List[dict]:
         """
@@ -322,50 +335,56 @@ class BaseInventoryImport:
         Modifies the :attr:`import_db` attribute in place.
         :param delete_missing: whether unlinked exchanges should be deleted or not.
         """
+
         for x in self.import_db.data:
             for y in x["exchanges"]:
                 if y["type"] == "biosphere":
                     if isinstance(y["categories"], str):
                         y["categories"] = tuple(y["categories"].split("::"))
                     if len(y["categories"]) > 1:
-                        try:
-                            y["input"] = (
-                                "biosphere3",
-                                self.biosphere_dict[
-                                    (
-                                        y["name"],
-                                        y["categories"][0],
-                                        y["categories"][1],
-                                        y["unit"],
-                                    )
-                                ],
-                            )
-                        except KeyError:
-                            if delete_missing:
-                                y["flag_deletion"] = True
-                            else:
-                                raise
+                        key = (
+                            y["name"],
+                            y["categories"][0],
+                            y["categories"][1],
+                            y["unit"],
+                        )
                     else:
-                        try:
+                        key = (
+                            y["name"],
+                            y["categories"][0],
+                            "unspecified",
+                            y["unit"],
+                        )
+                    try:
+                        if key in self.biosphere_dict:
                             y["input"] = (
                                 "biosphere3",
-                                self.biosphere_dict[
-                                    (
-                                        y["name"],
-                                        y["categories"][0],
-                                        "unspecified",
-                                        y["unit"],
-                                    )
-                                ],
+                                self.biosphere_dict[key],
                             )
-                        except KeyError:
-                            if delete_missing:
-                                print(
-                                    f"The following biosphere exchange cannot be found and will be deleted: {y['name']}"
+                        else:
+
+                            if key[0] in self.outdated_flows:
+                                new_key = list(key)
+                                new_key[0] = self.outdated_flows[key[0]]
+                                y["input"] = (
+                                    "biosphere3",
+                                    self.biosphere_dict[tuple(new_key)],
                                 )
-                                y["flag_deletion"] = True
+                                y["name"] = self.outdated_flows[key[0]]
+                                print(y["name"])
                             else:
-                                raise
+                                print("yes 3")
+                                if delete_missing:
+                                    y["flag_deletion"] = True
+                                else:
+                                    raise
+
+                    except KeyError:
+                        if delete_missing:
+                            y["flag_deletion"] = True
+                        else:
+                            raise
+
             x["exchanges"] = [ex for ex in x["exchanges"] if "flag_deletion" not in ex]
 
     def remove_ds_and_modifiy_exchanges(self, name: str, ex_data: dict) -> None:
@@ -406,25 +425,6 @@ class DefaultInventory(BaseInventoryImport):
     def load_inventory(self, path: Union[str, Path]) -> bw2io.ExcelImporter:
         return ExcelImporter(path)
 
-    def prepare_inventory(self) -> None:
-        """Prepare the inventory for the merger with Ecoinvent.
-        Modifies :attr:`import_db` in-place.
-        :returns: Nothing
-        """
-
-        if self.version_in != self.version_out:
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
-
-        self.add_biosphere_links()
-        self.add_product_field_to_exchanges()
-
-        # Check for duplicates
-        self.check_for_duplicates()
-
-        # Check for presence of production flow
-        check_presence_of_production_exchange(self.import_db)
 
 
 class VariousVehicles(BaseInventoryImport):

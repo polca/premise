@@ -26,6 +26,7 @@ BLACK_WHITE_LISTS = DATA_DIR / "utils" / "black_white_list_efficiency.yml"
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 
+cache_match = {}
 
 class c(enum.Enum):
     prod_name = "from activity"
@@ -67,7 +68,6 @@ class e:
     cons_key = (s.exchange, c.cons_key)
     exc_key = (s.exchange, c.exc_key)
 
-
 def match(reference: str, candidates: List[str]) -> [str, None]:
     """
     Matches a string with a list of fuel candidates and returns the candidate whose label
@@ -80,9 +80,14 @@ def match(reference: str, candidates: List[str]) -> [str, None]:
 
     reference = reference.replace(" ", "").strip().lower()
 
-    for i in candidates:
-        if i in reference:
-            return i
+    if reference in cache_match:
+        return cache_match[reference]
+
+    else:
+        for i in candidates:
+            if i in reference:
+                cache_match[reference] = i
+                return i
 
 
 def calculate_dataset_efficiency(
@@ -223,7 +228,7 @@ def find_efficiency(ids: dict) -> float:
             energy_efficiency = calculate_dataset_efficiency(
                 exchanges=ids["exchanges"], ds_name=ids["name"], white_list=white_list
             )
-        except ZeroDivisionError as e:
+        except ZeroDivisionError:
             if not any(i.lower() in ids["name"].lower() for i in white_list):
                 print(f"issue with {ids['name']}")
                 energy_efficiency = np.nan
@@ -252,33 +257,29 @@ def create_hash_for_database(db):
 
 def recalculate_hash(df):
 
-    df[(s.exchange, c.prod_key)] = df.apply(
-        lambda row: create_hash(
-            row[(s.exchange, c.prod_name)],
-            row[(s.exchange, c.prod_prod)],
-            row[(s.exchange, c.prod_loc)],
+    df[(s.exchange, c.prod_key)] = create_hash(
+            df[(s.exchange, c.prod_name)],
+            df[(s.exchange, c.prod_prod)],
+            df[(s.exchange, c.prod_loc)],
         ),
-        axis=1,
-    )
-    df[(s.exchange, c.cons_key)] = df.apply(
-        lambda row: create_hash(
-            row[(s.exchange, c.cons_name)],
-            row[(s.exchange, c.cons_prod)],
-            row[(s.exchange, c.cons_loc)],
+
+    df[(s.exchange, c.cons_key)] = create_hash(
+            df[(s.exchange, c.cons_name)],
+            df[(s.exchange, c.cons_prod)],
+            df[(s.exchange, c.cons_loc)],
         ),
-        axis=1,
-    )
-    df[(s.exchange, c.exc_key)] = df.apply(
-        lambda row: create_hash(
-            row[(s.exchange, c.prod_name)],
-            row[(s.exchange, c.prod_prod)],
-            row[(s.exchange, c.prod_loc)],
-            row[(s.exchange, c.cons_name)],
-            row[(s.exchange, c.cons_prod)],
-            row[(s.exchange, c.cons_loc)],
+
+    df[(s.exchange, c.exc_key)] = create_hash(
+            df[(s.exchange, c.prod_name)],
+            df[(s.exchange, c.prod_prod)],
+            df[(s.exchange, c.prod_loc)],
+            df[(s.exchange, c.cons_name)],
+            df[(s.exchange, c.cons_prod)],
+            df[(s.exchange, c.cons_loc)],
         ),
-        axis=1,
-    )
+
+    return df
+
 
 
 def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
@@ -401,7 +402,6 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
 
 
 def add_flag(df: pd.DataFrame) -> pd.DataFrame:
-
     return df
 
 

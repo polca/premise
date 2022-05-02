@@ -62,12 +62,15 @@ def create_exchange_from_ref(index, overrides=None, prod_equals_con=False):
         )
         overrides[(s.exchange, c.type)] = "production"
     else:
-        overrides[e.prod_key] = create_hash(
-            overrides[e.prod_name], overrides[e.prod_prod], overrides[e.prod_loc]
-        )
-        overrides[e.cons_key] = create_hash(
-            overrides[e.cons_name], overrides[e.cons_prod], overrides[e.cons_loc]
-        )
+        if e.prod_key not in overrides:
+            overrides[e.prod_key] = create_hash(
+                overrides[e.prod_name], overrides[e.prod_prod], overrides[e.prod_loc]
+            )
+        if e.cons_key not in overrides:
+            overrides[e.cons_key] = create_hash(
+                overrides[e.cons_name], overrides[e.cons_prod], overrides[e.cons_loc]
+            )
+
 
     overrides[e.exc_key] = create_hash(
         overrides[e.prod_name],
@@ -87,14 +90,12 @@ def create_exchange_from_ref(index, overrides=None, prod_equals_con=False):
     return new_exc
 
 
-def apply_transformation_losses(market_exc, transfer_loss, scenario_cols):
+def apply_transformation_losses(market_exc, transfer_loss):
     # add transformation losses (apply to low, medium and high voltage)
     # transformation losses are ratios
 
     tloss_exc = market_exc.copy()
     tloss_exc[(s.exchange, c.type)] = "technosphere"
-
-    #tloss_exc[[(col[0], c.amount) for col in tloss_exc.index if col[1] == c.amount]] = 0
 
     cols = []
     vals = []
@@ -125,6 +126,7 @@ def calculate_energy_mix(
     years,
     calculate_solar_share=True,
     year_interpolation_range=(2010, 2101),
+    voltage="high"
 ):
 
     electricity_mix = iam_data.electricity_markets.sel(
@@ -143,41 +145,29 @@ def calculate_energy_mix(
 
     electricity_mix = electricity_mix.mean(dim="year")
 
-    if not calculate_solar_share:
-        # returns an empty pd.DataFrame to provide
-        # a stable interface as in the else case
-        # it would return the solar_share in this place
-        return electricity_mix, pd.DataFrame()
+    if voltage== "high":
+        # exclude the technologies which contain residential solar power (for high voltage markets)
+        _nonsolarfilter = [
+            tech
+            for tech in electricity_mix.coords["variables"].values
+            if "residential" not in tech.lower()
+        ]
 
-    _solarfilter = [
-        tech
-        for tech in electricity_mix.coords["variables"].values
-        if "residential" in tech.lower()
-    ]
-    solar_amount = electricity_mix.sel(variables=_solarfilter).sum(dim="variables")
+        return electricity_mix.sel(variables=_nonsolarfilter)
 
-    # reshape and convert solar_amount xarray
-    # to pd.DataFrame with correct column structure
-    # for broadcasting to scenarios
-    solar_amount = solar_amount.to_dataframe().drop("region", axis=1)["value"]
-    idx = pd.MultiIndex.from_product((tuple(scenarios), [c.amount]))
-    solar_amount.columns = idx
-
-    # TODO double-check scientific correctness - solar_amount seems to be always zero in all scenarios
-
-    # exclude the technologies which contain residential solar power (for high voltage markets)
-    _nonsolarfilter = [
-        tech
-        for tech in electricity_mix.coords["variables"].values
-        if "residential" not in tech.lower()
-    ]
-
-    return electricity_mix.sel(variables=_nonsolarfilter), solar_amount
+    else:
+        _solarfilter = [
+            tech
+            for tech in electricity_mix.coords["variables"].values
+            if "residential" in tech.lower()
+        ]
+        return electricity_mix.sel(variables=_solarfilter)
 
 
 def reduce_database(region, electricity_mix, database, location_translator=None):
     if location_translator is None:
         location_translator = {}
+
 
     techs = [(s.tag, i.item(0)) for i in electricity_mix.coords["variables"]]
 
@@ -217,7 +207,6 @@ def reduce_database(region, electricity_mix, database, location_translator=None)
 def create_new_energy_exchanges(
     electricity_mix,
     reduced_dataset,
-    solar_share,
     cons_name,
     cons_prod,
     cons_loc,
@@ -301,7 +290,10 @@ def create_new_energy_exchanges(
         * electricity_mix.sel(variables=techs[("tech", "tech")].values)
     ).values.T
 
-    extensions[cols] /= extensions[cols].sum(axis=0)
+    share_sum = extensions[cols].sum(axis=0)
+    share_sum[share_sum == 0] = 1
+
+    extensions[cols] /= share_sum
 
     cols = []
     vals = []

@@ -30,6 +30,8 @@ from .utils import (
     s,
 )
 
+import gc
+
 DIR_CACHED_DB = DATA_DIR / "cache"
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
