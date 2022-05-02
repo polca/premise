@@ -750,11 +750,12 @@ class Electricity(BaseTransformation):
         Contribution from solar power is added in low voltage market groups.
         Does not return anything. Modifies the database in place.
         """
+        print("Creating high voltage markets...")
 
         additional_exchanges = []
 
         for region in self.iam_to_eco_loc.keys():
-            print(region)
+
             for period in range(0, 60, 20):
 
                 market_name = "market group for electricity, high voltage"
@@ -847,59 +848,6 @@ class Electricity(BaseTransformation):
             [self.database, *additional_exchanges], ignore_index=True
         )
 
-    def relink_old_electricity_markets(self):
-        """
-        Old electricity markets need to be emptied
-        and relink to the new regional markets
-        """
-
-        sel = self.database[(s.tag, "high voltage electricity")]
-        # ignore mew markets in selector
-        sel[sel.isna()] = False
-
-        self.database[sel] = emptying_datasets(
-            df=self.database[sel],
-            scenarios=self.scenario_labels,
-            filters=~equals(
-                (s.exchange, c.prod_name),
-                self.database.loc[sel, (s.exchange, c.cons_name)],
-            )(self.database[sel]),
-        )
-
-        _filter_prod = sel & equals((s.exchange, c.type), "production")(self.database)
-
-        new_exchanges = []
-        for _, ds in self.database[_filter_prod].iterrows():
-
-            iam_locs = [
-                loc
-                for loc, x in self.iam_to_eco_loc.items()
-                if ds[(s.exchange, c.cons_loc)] in x and loc != "World"
-            ]
-            for iam_loc in iam_locs:
-                scenario_cols = [
-                    col for col in self.scenario_labels if iam_loc in self.regions[col]
-                ]
-                supplier_name = "market group for electricity, high voltage"
-                supplier_prod = "electricity, high voltage"
-                supplier_key = self.producer_locs[
-                    (supplier_name, supplier_prod, ds[(s.exchange, c.unit)])
-                ][iam_loc]["key"]
-                new_exchanges.append(
-                    create_redirect_exchange(
-                        exc=ds,
-                        new_loc=iam_loc,
-                        new_name=supplier_name,
-                        new_prod=supplier_prod,
-                        new_key=supplier_key,
-                        cols=scenario_cols,
-                    )
-                )
-
-        self.database = pd.concat(
-            [self.database, pd.DataFrame(new_exchanges)], ignore_index=True
-        )
-
     def update_electricity_efficiency(self):
         """
         This method modifies each ecoinvent coal, gas,
@@ -914,29 +862,6 @@ class Electricity(BaseTransformation):
 
         if not os.path.exists(DATA_DIR / "logs"):
             os.makedirs(DATA_DIR / "logs")
-
-        for scenario in self.scenario_labels:
-            model, pathway, year = scenario.split("::")
-
-            with open(
-                DATA_DIR
-                / f"logs/log power plant efficiencies change {model} {pathway} {year}-{date.today()}.csv",
-                "w",
-                encoding="utf-8",
-            ) as csv_file:
-                writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-                writer.writerow(
-                    [
-                        "dataset name",
-                        "location",
-                        "original efficiency",
-                        "new efficiency",
-                    ]
-                )
-
-            print(
-                f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs"
-            )
 
         all_techs = [
             tech
@@ -1251,28 +1176,23 @@ class Electricity(BaseTransformation):
         :rtype: list
         """
 
+        self.create_region_specific_power_plants()
+        self.update_electricity_efficiency()
+        self.update_efficiency_of_solar_pv()
+
         # We then need to create high voltage IAM electricity markets
-        print("Create high voltage markets.")
         self.create_new_markets_high_voltage()
-        # print("Create medium voltage markets.") # FIXME out commented for debugging
-        self.create_new_markets_medium_voltage()
-        # print("Create low voltage markets.") # FIXME out commented for debugging
-        self.create_new_markets_low_voltage()
-
-        # Finally, we need to relink all electricity-consuming activities to the new electricity markets
-        print("Link activities to new electricity markets.")
-
-        self.relink_datasets(
-            excludes_datasets=["cobalt industry", "market group for electricity"],
-            alternative_names=[
-                "market group for electricity, high voltage",
-                "market group for electricity, medium voltage",
-                "market group for electricity, low voltage",
-            ],
+        self.relink_old_markets(
+            tag=(s.tag, "high voltage electricity"),
+            new_supplier={
+                "name": "market group for electricity, high voltage",
+                "reference product": "electricity, high voltage",
+            },
         )
-
-        print(f"Log of deleted electricity markets saved in {DATA_DIR}/logs")
-        print(f"Log of created electricity markets saved in {DATA_DIR}/logs")
+        # print("Create medium voltage markets.") # FIXME out commented for debugging
+        #self.create_new_markets_medium_voltage()
+        # print("Create low voltage markets.") # FIXME out commented for debugging
+        #self.create_new_markets_low_voltage()
 
         print("Done!")
 

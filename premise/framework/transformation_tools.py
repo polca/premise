@@ -66,19 +66,10 @@ def emptying_datasets(df: pd.DataFrame, scenarios, filters: pd.Series = None):
     """
 
     # filter for production exchanges
-    if filters.any():
-        filter_excluding_exchanges = (
-            filters
-            & does_not_contain((s.exchange, c.type), "production")(df)
-        )
-    else:
-        filter_excluding_exchanges = (
-            does_not_contain((s.exchange, c.type), "production")
-        )(df)
-
     # zero out all exchanges contained in the filter
     df.loc[
-        filter_excluding_exchanges, [(scenario, c.amount) for scenario in scenarios]
+        df[(s.exchange, c.prod_key)] != df[(s.exchange, c.cons_key)],
+        [(scenario, c.amount) for scenario in scenarios]
     ] = 0
 
     return df
@@ -128,7 +119,6 @@ def create_redirect_exchange(
 
     return new_exc
 
-
 def rename_location(df: pd.DataFrame, new_loc: str) -> pd.DataFrame:
     """
     Change the location of datasets in `scenario`,
@@ -139,10 +129,8 @@ def rename_location(df: pd.DataFrame, new_loc: str) -> pd.DataFrame:
     :return: pd.DataFrame with datasets with new locations
     """
 
-    df.loc[:, (s.exchange, c.cons_loc)] = new_loc
-
     _filter = (equals((s.exchange, c.type), "production"))(df)
-
+    df.loc[:, (s.exchange, c.cons_loc)] = new_loc
     df.loc[_filter, (s.exchange, c.prod_loc)] = new_loc
 
     # update consumer key
@@ -152,14 +140,17 @@ def rename_location(df: pd.DataFrame, new_loc: str) -> pd.DataFrame:
         df.loc[_filter, (s.exchange, c.cons_loc)],
     )
 
+    # update producer key
+    df.loc[_filter, (s.exchange, c.prod_key)] = df.loc[_filter, (s.exchange, c.cons_key)]
+
     # update exchange key
     df.loc[:, (s.exchange, c.exc_key)] = create_hash(
-        df.loc[_filter, (s.exchange, c.prod_name)],
-        df.loc[_filter, (s.exchange, c.prod_prod)],
-        df.loc[_filter, (s.exchange, c.prod_loc)],
-        df.loc[_filter, (s.exchange, c.cons_name)],
-        df.loc[_filter, (s.exchange, c.cons_prod)],
-        df.loc[_filter, (s.exchange, c.cons_loc)],
+        df.loc[:, (s.exchange, c.prod_name)],
+        df.loc[:, (s.exchange, c.prod_prod)],
+        df.loc[:, (s.exchange, c.prod_loc)],
+        df.loc[:, (s.exchange, c.cons_name)],
+        df.loc[:, (s.exchange, c.cons_prod)],
+        df.loc[:, (s.exchange, c.cons_loc)],
     )
 
     return df

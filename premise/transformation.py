@@ -3,7 +3,7 @@ transformation.py contains the base class TransformationBase, used by other modu
 It provides basic methods usually used for electricity, cement, steel sectors transformation
 on the wurst database.
 """
-
+import enum
 from collections import defaultdict
 from copy import deepcopy
 from itertools import product
@@ -255,7 +255,8 @@ class BaseTransformation:
 
         if regions_to_copy_to:
             iam_ei_proxy_locs = {
-                k: v for k, v in self.iam_to_eco_loc.items() if k in regions_to_copy_to
+                k: v for k, v in self.iam_to_eco_loc.items()
+                if k in regions_to_copy_to
             }
         else:
             iam_ei_proxy_locs = self.iam_to_eco_loc
@@ -350,8 +351,8 @@ class BaseTransformation:
         exc = ds[equals((s.exchange, c.type), "production")(ds)].iloc[0]
 
         self.producer_locs[
-            exc[(s.exchange, c.prod_name)],
-            exc[(s.exchange, c.prod_prod)],
+            exc[(s.exchange, c.cons_name)],
+            exc[(s.exchange, c.cons_prod)],
             exc[(s.exchange, c.unit)],
         ][exc[(s.exchange, c.cons_loc)]] = {
             "pv": production_volume or 0,
@@ -675,3 +676,56 @@ class BaseTransformation:
         scaling_factor = scaling_factor.mean(dim="year").values
 
         return scaling_factor
+
+    def relink_old_markets(self, tag: Tuple, new_supplier: dict):
+        """
+        Old electricity markets need to be emptied
+        and relink to the new regional markets
+        """
+
+        sel = self.database[tag]
+        # ignore mew markets in selector
+        sel[sel.isna()] = False
+
+        self.database[sel] = emptying_datasets(
+            df=self.database[sel],
+            scenarios=self.scenario_labels,
+        )
+
+        _filter_prod = sel & equals((s.exchange, c.type), "production")(self.database)
+
+        new_exchanges = []
+        for _, ds in self.database[_filter_prod].iterrows():
+
+            iam_locs = [
+                loc
+                for loc, x in self.iam_to_eco_loc.items()
+                if ds[(s.exchange, c.cons_loc)] in x and loc != "World"
+            ]
+            for iam_loc in iam_locs:
+                scenario_cols = [
+                    col for col in self.scenario_labels
+                    if iam_loc in self.regions[col]
+                ]
+
+                supplier_key = self.producer_locs[
+                    (
+                        new_supplier["name"],
+                        new_supplier["reference product"],
+                        ds[(s.exchange, c.unit)],
+                    )
+                ][iam_loc]["key"]
+                new_exchanges.append(
+                    create_redirect_exchange(
+                        exc=ds,
+                        new_loc=iam_loc,
+                        new_name=new_supplier["name"],
+                        new_prod=new_supplier["reference product"],
+                        new_key=supplier_key,
+                        cols=scenario_cols,
+                    )
+                )
+
+        self.database = pd.concat(
+            [self.database, pd.DataFrame(new_exchanges)], ignore_index=True
+        )

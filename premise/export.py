@@ -50,6 +50,17 @@ def export_scenario_difference_file(database, db_name, filepath):
     scenario_diff_file["from categories"] = scenario_diff_file.loc[
         scenario_diff_file["flow type"] == "biosphere", "from location"
     ]
+
+    scenario_diff_file.loc[
+        scenario_diff_file["flow type"] == "biosphere", "from categories"
+    ] = (
+        scenario_diff_file.loc[
+            scenario_diff_file["flow type"] == "biosphere", "from categories"
+        ]
+        .str.split("::")
+        .apply(lambda x: tuple(x))
+    )
+
     scenario_diff_file.loc[:, "to categories"] = ""
 
     scenario_diff_file.loc[
@@ -74,7 +85,7 @@ def export_scenario_difference_file(database, db_name, filepath):
         scenario_diff_file[["to database", "to code"]].to_records(index=False)
     )
 
-    scenario_diff_file[
+    scenario_diff_file = scenario_diff_file[
         [
             "from activity name",
             "from reference product",
@@ -91,7 +102,11 @@ def export_scenario_difference_file(database, db_name, filepath):
             "flow type",
         ]
         + [t[0] for t in scenario_cols]
-    ].sort_values(by="flow type", ascending=False).to_excel(filepath, index=False)
+    ].sort_values(by="flow type", ascending=False)
+    scenario_diff_file[[t[0] for t in scenario_cols]] = scenario_diff_file[
+        [t[0] for t in scenario_cols]
+    ].fillna(0)
+    scenario_diff_file.to_excel(filepath, index=False)
 
     print(f"Scenario difference file exported to {filepath}!")
 
