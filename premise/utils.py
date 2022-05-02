@@ -437,7 +437,7 @@ def extract_exc(row: pd.Series, col: str) -> dict:
             "unit": row[c.unit],
             "production volume": row[c.cons_prod_vol],
             "amount": row[c.amount],
-            "input": (col, str(row[c.prod_key]))
+            "input": (col, str(row[c.prod_key])),
         }
 
     elif row[c.type] == "technosphere":
@@ -449,7 +449,7 @@ def extract_exc(row: pd.Series, col: str) -> dict:
             "uncertainty type": 0,
             "unit": row[c.unit],
             "amount": row[c.amount],
-            "input": (col, str(row[c.prod_key]))
+            "input": (col, str(row[c.prod_key])),
         }
 
     else:
