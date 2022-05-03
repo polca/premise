@@ -6,20 +6,20 @@ on the wurst database.
 import enum
 from collections import defaultdict
 from copy import deepcopy
+from functools import lru_cache
 from itertools import product
 
 import numpy as np
 import pandas as pd
 import xarray as xr
 from wurst import searching as ws
-from functools import lru_cache
 
 from premise.framework.transformation_tools import *
 
 from .exceptions import NoCandidateInDatabase
 from .geomap import Geomap
-from .utils import c, create_scenario_label, get_fuel_properties, s
 from .inventory_imports import get_biosphere_code
+from .utils import c, create_scenario_label, get_fuel_properties, s
 
 
 def get_suppliers_of_a_region(database, locations, names, reference_product, unit):
@@ -225,7 +225,6 @@ class BaseTransformation:
         ]
 
         return new_txt
-
 
     def fetch_proxies(
         self, name, ref_prod, production_variable, regions_to_copy_to=None, relink=False
@@ -523,7 +522,6 @@ class BaseTransformation:
             [p / total for p in pvs],
         )
 
-
     def get_carbon_capture_rate(self, loc, sector):
         """
         Returns the carbon capture rate as indicated by the IAM
@@ -573,7 +571,10 @@ class BaseTransformation:
 
             scaling_factor = self.iam_data.emissions.loc[
                 dict(
-                    region=location, pollutant=pollutant, sector=sector, scenario=scenarios
+                    region=location,
+                    pollutant=pollutant,
+                    sector=sector,
+                    scenario=scenarios,
                 )
             ]
             scaling_factor = scaling_factor.mean(dim=["year", "region"]).values
@@ -581,7 +582,6 @@ class BaseTransformation:
             self.gains_eff_cache[key] = scaling_factor
 
             return scaling_factor
-
 
     def find_iam_efficiency_change(self, variable, location, year, scenario):
         """
@@ -638,13 +638,9 @@ class BaseTransformation:
                     col for col in self.scenario_labels if iam_loc in self.regions[col]
                 ]
 
-                supplier_key = self.producer_locs[
-                    (
-                        name,
-                        ref_prod,
-                        unit,
-                    )
-                ][iam_loc]["key"]
+                supplier_key = self.producer_locs[(name, ref_prod, unit,)][
+                    iam_loc
+                ]["key"]
                 new_exchanges.append(
                     create_redirect_exchange(
                         exc=ds,

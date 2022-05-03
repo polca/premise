@@ -1,4 +1,5 @@
 import collections
+import gc
 import os
 import pickle
 import sys
@@ -29,8 +30,6 @@ from .utils import (
     eidb_label,
     s,
 )
-
-import gc
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
