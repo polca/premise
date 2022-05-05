@@ -114,15 +114,17 @@ def apply_transformation_losses(market_exc, transfer_loss, scenarios):
         )
         vals.extend([np.nan, np.nan, np.nan, ""])
 
-
     tloss_exc[cols] = vals
 
-    tloss_exc[[(col[0], c.amount)
-               for col in tloss_exc.index
-               if col[1] == c.amount]] = transfer_loss * np.array([
-        1 if col[0] in scenarios else 0 for col in tloss_exc.index
-        if col[1] == c.amount
-    ])
+    tloss_exc[
+        [(col[0], c.amount) for col in tloss_exc.index if col[1] == c.amount]
+    ] = transfer_loss * np.array(
+        [
+            1 if col[0] in scenarios else 0
+            for col in tloss_exc.index
+            if col[1] == c.amount
+        ]
+    )
 
     return tloss_exc
 
@@ -213,12 +215,7 @@ def reduce_database(region, electricity_mix, database, location_translator=None)
 
 
 def create_new_energy_exchanges(
-    electricity_mix,
-    reduced_dataset,
-    cons_name,
-    cons_prod,
-    cons_loc,
-    voltage
+    electricity_mix, reduced_dataset, cons_name, cons_prod, cons_loc, voltage
 ):
     extensions = pd.DataFrame(
         columns=reduced_dataset.columns, index=range(len(reduced_dataset))
