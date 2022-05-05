@@ -71,7 +71,6 @@ def create_exchange_from_ref(index, overrides=None, prod_equals_con=False):
                 overrides[e.cons_name], overrides[e.cons_prod], overrides[e.cons_loc]
             )
 
-
     overrides[e.exc_key] = create_hash(
         overrides[e.prod_name],
         overrides[e.prod_prod],
@@ -101,9 +100,9 @@ def apply_transformation_losses(market_exc, transfer_loss, scenarios):
 
     cols = []
     vals = []
-    scenario_cols = [col[0] for col in tloss_exc.index
-                     if col[0] not in [s.exchange, s.tag]
-                     ]
+    scenario_cols = [
+        col[0] for col in tloss_exc.index if col[0] not in [s.exchange, s.tag]
+    ]
     for i in scenario_cols:
         cols.extend(
             [
@@ -136,7 +135,7 @@ def calculate_energy_mix(
     years,
     calculate_solar_share=True,
     year_interpolation_range=(2010, 2101),
-    voltage="high"
+    voltage="high",
 ):
 
     electricity_mix = iam_data.electricity_markets.sel(
@@ -155,7 +154,7 @@ def calculate_energy_mix(
 
     electricity_mix = electricity_mix.mean(dim="year")
 
-    if voltage== "high":
+    if voltage == "high":
         # exclude the technologies which contain residential solar power (for high voltage markets)
         _nonsolarfilter = [
             tech
@@ -177,7 +176,6 @@ def calculate_energy_mix(
 def reduce_database(region, electricity_mix, database, location_translator=None):
     if location_translator is None:
         location_translator = {}
-
 
     techs = [(s.tag, i.item(0)) for i in electricity_mix.coords["variables"]]
 
@@ -242,10 +240,7 @@ def create_new_energy_exchanges(
     extensions[columns_to_transfer] = reduced_dataset[columns_to_transfer].values
 
     extensions[
-        [
-            (s.exchange, c.cons_name),
-            (s.exchange, c.cons_prod),
-            (s.exchange, c.cons_loc)]
+        [(s.exchange, c.cons_name), (s.exchange, c.cons_prod), (s.exchange, c.cons_loc)]
     ] = (
         cons_name,
         cons_prod,

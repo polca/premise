@@ -2,6 +2,7 @@ import csv
 import itertools
 import sys
 import uuid
+from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
 
@@ -10,7 +11,6 @@ import yaml
 from bw2io import ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
-from functools import lru_cache
 
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
@@ -27,6 +27,7 @@ def get_outdated_flows():
         flows = yaml.safe_load(stream)
 
     return flows
+
 
 def get_biosphere_code() -> dict:
     """
@@ -53,6 +54,7 @@ def check_presence_of_production_exchange(db):
         assert (
             0 < len([e for e in ds["exchanges"] if e["type"] == "production"]) < 2
         ), f"missing production exchange for {ds['name']}."
+
 
 @lru_cache
 def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
@@ -213,7 +215,6 @@ class BaseInventoryImport:
 
         self.prepare_inventory()
         return self.import_db
-
 
     def search_missing_exchanges(self, label: str, value: str) -> List[dict]:
         """
@@ -424,7 +425,6 @@ class DefaultInventory(BaseInventoryImport):
 
     def load_inventory(self, path: Union[str, Path]) -> bw2io.ExcelImporter:
         return ExcelImporter(path)
-
 
 
 class VariousVehicles(BaseInventoryImport):

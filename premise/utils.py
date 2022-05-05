@@ -28,6 +28,7 @@ CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 
 cache_match = {}
 
+
 class c(enum.Enum):
     prod_name = "from activity"
     prod_prod = "from product"
@@ -67,6 +68,7 @@ class e:
     prod_key = (s.exchange, c.prod_key)
     cons_key = (s.exchange, c.cons_key)
     exc_key = (s.exchange, c.exc_key)
+
 
 def match(reference: str, candidates: List[str]) -> [str, None]:
     """
@@ -257,19 +259,24 @@ def create_hash_for_database(db):
 
 def recalculate_hash(df):
 
-    df[(s.exchange, c.prod_key)] = create_hash(
+    df[(s.exchange, c.prod_key)] = (
+        create_hash(
             df[(s.exchange, c.prod_name)],
             df[(s.exchange, c.prod_prod)],
             df[(s.exchange, c.prod_loc)],
         ),
+    )
 
-    df[(s.exchange, c.cons_key)] = create_hash(
+    df[(s.exchange, c.cons_key)] = (
+        create_hash(
             df[(s.exchange, c.cons_name)],
             df[(s.exchange, c.cons_prod)],
             df[(s.exchange, c.cons_loc)],
         ),
+    )
 
-    df[(s.exchange, c.exc_key)] = create_hash(
+    df[(s.exchange, c.exc_key)] = (
+        create_hash(
             df[(s.exchange, c.prod_name)],
             df[(s.exchange, c.prod_prod)],
             df[(s.exchange, c.prod_loc)],
@@ -277,9 +284,9 @@ def recalculate_hash(df):
             df[(s.exchange, c.cons_prod)],
             df[(s.exchange, c.cons_loc)],
         ),
+    )
 
     return df
-
 
 
 def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
