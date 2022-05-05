@@ -631,7 +631,9 @@ class BaseTransformation:
         new_exchanges = []
         for _, ds in self.database[_filter_prod].iterrows():
 
-            iam_locs = self.eco_to_iam_loc[ds[(s.exchange, c.cons_loc)]]
+            iam_locs = [loc for loc in
+                        self.eco_to_iam_loc[ds[(s.exchange, c.cons_loc)]]
+                        if loc != "World"]
 
             for iam_loc in iam_locs:
                 scenario_cols = [

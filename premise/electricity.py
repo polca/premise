@@ -820,12 +820,16 @@ class Electricity(BaseTransformation):
                     voltage, region
                 )
 
+                scenario_cols = [label for label in self.scenario_labels
+                                 if region in self.regions[label]]
                 loss_excs = [
-                    pd.Series(apply_transformation_losses(new_market, transf_loss))
+                    pd.Series(apply_transformation_losses(new_market, transf_loss, scenario_cols)),
                 ]
 
+                distr_loss_exc = None
+
                 if distr_loss:
-                    distr_loss_exc = apply_transformation_losses(new_market, distr_loss)
+                    distr_loss_exc = apply_transformation_losses(new_market, distr_loss, scenario_cols)
                     distr_loss_exc[
                         [
                             (col[0], c.amount)
@@ -861,8 +865,6 @@ class Electricity(BaseTransformation):
                         distr_loss_exc[(s.exchange, c.cons_prod)],
                         distr_loss_exc[(s.exchange, c.cons_loc)],
                     )
-
-                    loss_excs.append(distr_loss_exc)
 
                 for infra_exc in self.infras[voltage]:
 
@@ -926,14 +928,13 @@ class Electricity(BaseTransformation):
                             for col in extra_exc.index
                             if col[1] == c.amount and col[0] != s.ecoinvent
                         ]
-                    ] = infra_exc["amount"]
+                    ] = infra_exc["amount"] * np.array([1 if extra_exc[(s.exchange, c.cons_loc)]
+                                               in self.regions[col] else 0
+                                               for col in self.scenario_labels])
 
                     loss_excs.append(extra_exc)
 
-                concat_list = [
-                    pd.DataFrame([new_market] + loss_excs, columns=new_market.index),
-                ]
-
+                new_exchanges = None
                 if voltage in ["low", "high"]:
 
                     electricity_mix = calculate_energy_mix(
@@ -944,6 +945,7 @@ class Electricity(BaseTransformation):
                         years=[int(i.split("::")[-1]) for i in self.scenario_labels],
                         voltage=voltage,
                     )
+
 
                     if not np.isnan(electricity_mix.values).all():
 
@@ -957,9 +959,35 @@ class Electricity(BaseTransformation):
                             cons_name=market_name,
                             cons_prod=ref_prod,
                             cons_loc=region,
+                            voltage=voltage,
                         )
 
-                        concat_list.append(new_exchanges)
+
+
+                        # subtract sum of solar PV from medium electricity input
+                        if voltage == "low":
+
+                            distr_loss_exc[
+                                [
+                                    (col[0], c.amount)
+                                    for col in distr_loss_exc.index
+                                    if col[1] == c.amount
+                                ]
+                            ] -= new_exchanges[[
+                                    (col[0], c.amount)
+                                    for col in new_exchanges.columns
+                                    if col[1] == c.amount
+                                ]].sum(axis=0)
+
+                if isinstance(distr_loss_exc, pd.Series):
+                    loss_excs.append(distr_loss_exc)
+
+                concat_list = [
+                    pd.DataFrame([new_market] + loss_excs, columns=new_market.index),
+                ]
+
+                if isinstance(new_exchanges, pd.DataFrame):
+                    concat_list.append(new_exchanges)
 
                 extensions = pd.concat(
                     concat_list,
@@ -1315,12 +1343,20 @@ class Electricity(BaseTransformation):
                 "kilowatt hour",
                 voltage,
             )
-            for voltage in ["high", "medium", "low"]
+            for voltage in [
+                "high",
+                "medium",
+                "low"
+            ]
         ]
 
         tags = [
             (s.tag, f"{voltage} voltage electricity")
-            for voltage in ["high", "medium", "low"]
+            for voltage in [
+                "high",
+                "medium",
+                "low"
+            ]
         ]
 
         for m, market in enumerate(markets):

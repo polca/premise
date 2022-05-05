@@ -90,7 +90,7 @@ def create_exchange_from_ref(index, overrides=None, prod_equals_con=False):
     return new_exc
 
 
-def apply_transformation_losses(market_exc, transfer_loss):
+def apply_transformation_losses(market_exc, transfer_loss, scenarios):
     # add transformation losses (apply to low, medium and high voltage)
     # transformation losses are ratios
 
@@ -113,9 +113,17 @@ def apply_transformation_losses(market_exc, transfer_loss):
                 (i, c.comment),
             ]
         )
-        vals.extend([np.nan, transfer_loss, np.nan, ""])
+        vals.extend([np.nan, np.nan, np.nan, ""])
+
 
     tloss_exc[cols] = vals
+
+    tloss_exc[[(col[0], c.amount)
+               for col in tloss_exc.index
+               if col[1] == c.amount]] = transfer_loss * np.array([
+        1 if col[0] in scenarios else 0 for col in tloss_exc.index
+        if col[1] == c.amount
+    ])
 
     return tloss_exc
 
@@ -212,6 +220,7 @@ def create_new_energy_exchanges(
     cons_name,
     cons_prod,
     cons_loc,
+    voltage
 ):
     extensions = pd.DataFrame(
         columns=reduced_dataset.columns, index=range(len(reduced_dataset))
@@ -295,7 +304,8 @@ def create_new_energy_exchanges(
     share_sum = extensions[cols].sum(axis=0)
     share_sum[share_sum == 0] = 1
 
-    extensions[cols] /= share_sum
+    if voltage == "high":
+        extensions[cols] /= share_sum
 
     cols = []
     vals = []
