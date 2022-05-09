@@ -65,7 +65,7 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 35;38;smelting of copper concentrate, sulfide ore;copper, anode;RoW;smelting and refining of nickel ore;copper concentrate, sulfide ore;GLO
 35;38;market for steam, in chemical industry;steam, in chemical industry;GLO;;;RoW
 35;38;zinc-lead mine operation;zinc concentrate;GLO;market for zinc concentrate;;
-35;38;platinum group metal mine operation, ore with high rhodium content;nickel, 99.5%;ZA;platinum group metal, extraction and refinery operations;nickel, class 1;
+35;38;platinum group metal mine operation, ore with high rhodium content;nickel, 99.5%;ZA;platinum group metal, extraction and refinery operations;nickel, 99.5%;
 35;38;market for aluminium oxide;aluminium oxide;GLO;market for aluminium oxide, metallurgical;aluminium oxide, metallurgical;IAI Area, EU27 & EFTA
 35;38;market for copper;copper;GLO;market for copper, anode;copper, anode;
 35;38;nickel mine operation, sulfidic ore;nickel, 99.5%;GLO;market for nickel, class 1;nickel, class 1;
@@ -245,22 +245,3 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 37;38;market for electricity, low voltage, label-certified;electricity, low voltage, label-certified;CH;market for electricity, low voltage, renewable energy products;electricity, low voltage, renewable energy products;
 37;38;treatment of used internal combustion engine, shredding;used internal combustion engine, from passenger car;GLO;treatment of used internal combustion engine, passenger car, shredding;used internal combustion engine, passenger car;
 37;38;phosphoryl chloride production;phosphoryl chloride;RER;phosphorus oxychloride production, from phosphorus trichloride;phosphorus oxychloride;RER
-35;38;treatment of aluminium scrap, new, at refiner;aluminium oxide;RER;treatment of aluminium scrap, new, at refiner;aluminium, cast alloy;RER
-35;38;treatment of aluminium scrap, new, at refiner;aluminium oxide;RoW;treatment of aluminium scrap, new, at refiner;aluminium, cast alloy;RoW
-35;37;treatment of aluminium scrap, new, at refiner;aluminium oxide;RER;treatment of aluminium scrap, new, at refiner;aluminium, cast alloy;RER
-35;37;treatment of aluminium scrap, new, at refiner;aluminium oxide;RoW;treatment of aluminium scrap, new, at refiner;aluminium, cast alloy;RoW
-35;38;ethylene production, average;ethylene, average;RER;ethylene production, average;ethylene;RER
-35;38;ethylene production, average;ethylene, average;RoW;ethylene production, average;ethylene;RoW
-36;38;ethylene production, average;ethylene, average;RER;ethylene production, average;ethylene;RER
-36;38;ethylene production, average;ethylene, average;RoW;ethylene production, average;ethylene;RoW
-37;38;ethylene production, average;ethylene, average;RER;ethylene production, average;ethylene;RER
-37;38;ethylene production, average;ethylene, average;RoW;ethylene production, average;ethylene;RoW
-35;38;esterification of rape oil;vegetable oil methyl ester;CH;esterification of rape oil;fatty acid methyl ester;CH
-35;38;esterification of rape oil;vegetable oil methyl ester;Europe without Switzerland;esterification of rape oil;fatty acid methyl ester;Europe without Switzerland
-35;38;esterification of rape oil;vegetable oil methyl ester;RoW;esterification of rape oil;fatty acid methyl ester;RoW
-36;38;esterification of rape oil;vegetable oil methyl ester;CH;esterification of rape oil;fatty acid methyl ester;CH
-36;38;esterification of rape oil;vegetable oil methyl ester;Europe without Switzerland;esterification of rape oil;fatty acid methyl ester;Europe without Switzerland
-36;38;esterification of rape oil;vegetable oil methyl ester;RoW;esterification of rape oil;fatty acid methyl ester;RoW
-37;38;esterification of rape oil;vegetable oil methyl ester;CH;esterification of rape oil;fatty acid methyl ester;CH
-37;38;esterification of rape oil;vegetable oil methyl ester;Europe without Switzerland;esterification of rape oil;fatty acid methyl ester;Europe without Switzerland
-37;38;esterification of rape oil;vegetable oil methyl ester;RoW;esterification of rape oil;fatty acid methyl ester;RoW
