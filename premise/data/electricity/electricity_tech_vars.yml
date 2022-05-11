@@ -6,6 +6,7 @@
 # ecoinvent_aliases --> list of names to be found in the ecoinvent database
 # ecoinvent_fuel_aliases --> list of names of fuels consumed by a given technology to be found in the ecoinvent database
 ---
+
 Biomass CHP:
   iam_aliases:
     remind: SE|Electricity|Biomass|CHP|w/o CCS
