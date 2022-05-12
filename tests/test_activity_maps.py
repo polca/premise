@@ -57,4 +57,3 @@ def test_length_dict():
     assert len(maps.powerplant_filters) > 0
     assert len(maps.powerplant_fuels_filters) > 0
     assert len(maps.fuels_filters) > 0
-
