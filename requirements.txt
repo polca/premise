@@ -4,7 +4,7 @@ pandas
 bw2io>=0.8.6
 bw2data>=3.6.2
 bw2calc>=1.8.1
-wurst==0.3.0
+wurst
 xarray
 prettytable
 pycountry
