@@ -23,4 +23,3 @@ def test_REMIND_to_ecoinvent():
 def test_REMIND_to_ecoinvent_contained():
     # RU is not contained in EUR
     assert "RU" not in geomap.iam_to_ecoinvent_location("EUR", contained=True)
-
