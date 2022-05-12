@@ -58,12 +58,3 @@ def test_length_dict():
     assert len(maps.powerplant_fuels_filters) > 0
     assert len(maps.fuels_filters) > 0
 
-
-def test_content_dict():
-    maps = InventorySet(dummy_minimal_db)
-    materials = maps.materials_filters
-    assert materials["aluminium"] == {"market for aluminium, primary"}
-    plants = maps.powerplant_filters
-    assert plants["Coal IGCC"] == {
-        "electricity production, at power plant/lignite, IGCC, no CCS"
-    }
