@@ -842,7 +842,10 @@ class NewDatabase:
         print("\n///////////////////////////// ELECTRICITY //////////////////////////")
 
         electricity = Electricity(
-            database=self.database, iam_data=self.iam_data, scenarios=self.scenarios
+            database=self.database,
+            iam_data=self.iam_data,
+            scenarios=self.scenarios,
+            system_model=self.system_model,
         )
 
         electricity.create_region_specific_power_plants()

@@ -124,12 +124,13 @@ class Electricity(BaseTransformation):
 
     """
 
-    def __init__(self, database, iam_data, scenarios):
+    def __init__(self, database, iam_data, scenarios, system_model):
         super().__init__(database, iam_data, scenarios)
         self.losses = get_losses_per_country_dict()
         self.production_per_tech = get_production_per_tech_dict()
         self.gains_substances = get_gains_to_ecoinvent_emissions()
         self.infras = get_network_infrastructure()
+        self.system_model = system_model
 
     @lru_cache()
     def get_production_weighted_losses(self, voltage, region):
@@ -227,9 +228,11 @@ class Electricity(BaseTransformation):
 
         additional_exchanges = []
 
+        periods = range(0, 60, 20) if self.system_model == "attributional" else [0]
+
         for region in self.iam_to_eco_loc.keys():
 
-            for period in range(0, 60, 20):
+            for period in periods:
 
                 market_name = name
                 if period > 0:
@@ -412,7 +415,9 @@ class Electricity(BaseTransformation):
                         period=period,
                         years=[int(i.split("::")[-1]) for i in self.scenario_labels],
                         voltage=voltage,
+                        system_model=self.system_model,
                     )
+
 
                     if not np.isnan(electricity_mix.values).all():
 

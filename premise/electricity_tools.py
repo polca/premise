@@ -135,17 +135,22 @@ def calculate_energy_mix(
     scenarios,
     period,
     years,
-    calculate_solar_share=True,
+    system_model,
     year_interpolation_range=(2010, 2101),
     voltage="high",
 ):
 
-    electricity_mix = iam_data.electricity_markets.sel(
-        region=region, scenario=scenarios
-    ).interp(
-        year=range(*year_interpolation_range),
-        kwargs={"fill_value": "extrapolate"},
-    )
+    if system_model == "attributional":
+        electricity_mix = iam_data.electricity_markets.sel(
+            region=region, scenario=scenarios
+        ).interp(
+            year=range(*year_interpolation_range),
+            kwargs={"fill_value": "extrapolate"},
+        )
+    else:
+        electricity_mix = iam_data.electricity_markets.sel(
+            region=region, scenario=scenarios
+        )
 
     for i, iyear in enumerate(years):
 
@@ -155,6 +160,7 @@ def calculate_energy_mix(
         electricity_mix.loc[{"year": _filter, "scenario": scenarios[i]}] = np.nan
 
     electricity_mix = electricity_mix.mean(dim="year")
+
 
     if voltage == "high":
         # exclude the technologies which contain residential solar power (for high voltage markets)
@@ -179,7 +185,9 @@ def reduce_database(region, electricity_mix, database, location_translator=None)
     if location_translator is None:
         location_translator = {}
 
-    techs = [(s.tag, i.item(0)) for i in electricity_mix.coords["variables"]]
+    techs = [(s.tag, i.item(0)) for i in electricity_mix.coords["variables"]
+             if electricity_mix.sel(variables=i.item(0)).sum() > 0]
+
 
     sel = (
         database[techs].sum(axis=1).astype(bool)
