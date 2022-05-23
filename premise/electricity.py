@@ -418,7 +418,6 @@ class Electricity(BaseTransformation):
                         system_model=self.system_model,
                     )
 
-
                     if not np.isnan(electricity_mix.values).all():
 
                         reduced = reduce_database(

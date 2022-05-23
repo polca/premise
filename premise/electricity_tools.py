@@ -161,7 +161,6 @@ def calculate_energy_mix(
 
     electricity_mix = electricity_mix.mean(dim="year")
 
-
     if voltage == "high":
         # exclude the technologies which contain residential solar power (for high voltage markets)
         _nonsolarfilter = [
@@ -185,9 +184,11 @@ def reduce_database(region, electricity_mix, database, location_translator=None)
     if location_translator is None:
         location_translator = {}
 
-    techs = [(s.tag, i.item(0)) for i in electricity_mix.coords["variables"]
-             if electricity_mix.sel(variables=i.item(0)).sum() > 0]
-
+    techs = [
+        (s.tag, i.item(0))
+        for i in electricity_mix.coords["variables"]
+        if electricity_mix.sel(variables=i.item(0)).sum() > 0
+    ]
 
     sel = (
         database[techs].sum(axis=1).astype(bool)
