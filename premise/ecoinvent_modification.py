@@ -611,7 +611,6 @@ class NewDatabase:
             else None
         )
 
-
         if self.source_type == "ecospold":
             self.source_file_path = check_ei_filepath(source_file_path)
         else:

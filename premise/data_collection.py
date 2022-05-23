@@ -17,8 +17,8 @@ import yaml
 from cryptography.fernet import Fernet
 
 from . import DATA_DIR
-from .utils import create_scenario_label
 from .marginal_mixes import baseline_method
+from .utils import create_scenario_label
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
