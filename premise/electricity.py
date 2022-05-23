@@ -661,7 +661,6 @@ class Electricity(BaseTransformation):
                         (group[0], group[1], "kilowatt hour")
                     ].keys()
 
-
                     locs_to_copy = [
                         k
                         for k, v in self.iam_to_eco_loc.items()

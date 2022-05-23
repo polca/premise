@@ -2,10 +2,10 @@ import csv
 import itertools
 import sys
 import uuid
+import warnings
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
-import warnings
 
 import bw2io
 import yaml
@@ -76,8 +76,9 @@ def check_links(data, db):
                     exc.get("location"),
                 )
                 if key not in db_acts and key not in data_acts:
-                    warnings.warn(f"LINKING ISSUE --> {key} in {ds['name']} cannot link.")
-
+                    warnings.warn(
+                        f"LINKING ISSUE --> {key} in {ds['name']} cannot link."
+                    )
 
 
 @lru_cache

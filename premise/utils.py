@@ -2,6 +2,7 @@ import csv
 import enum
 import hashlib
 import pprint
+import warnings
 from functools import lru_cache
 from typing import List
 
@@ -13,8 +14,6 @@ from wurst import searching as ws
 
 from . import DATA_DIR
 from .framework.tags import TagLibrary
-
-import warnings
 
 warnings.filterwarnings("ignore")
 
