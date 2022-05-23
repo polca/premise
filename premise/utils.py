@@ -14,6 +14,10 @@ from wurst import searching as ws
 from . import DATA_DIR
 from .framework.tags import TagLibrary
 
+import warnings
+
+warnings.filterwarnings("ignore")
+
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
@@ -129,7 +133,7 @@ def calculate_dataset_efficiency(
 
             if not any(i in ds_name for i in white_list):
                 print(
-                    f"{pprint.pformat([(i['name'], i['type'], i['amount'], i['unit']) for i in exchanges])} {output_energy} {input_energy}\n"
+                    f"{pprint.pformat([(i['name'], i['type'], i['amount'], i['unit']) for i in exchanges])} {output_energy} {input_energy} in {ds_name}\n"
                 )
                 print(input_energy, output_energy)
         else:
@@ -154,7 +158,11 @@ def extract_energy(iexc: dict) -> float:
     """
     fuels_lhv = get_fuel_properties()
     fuel_names = list(fuels_lhv.keys())
-    amount = max((iexc["amount"], 0))
+
+    try:
+        amount = max((iexc["amount"], 0))
+    except KeyError:
+        print(iexc)
 
     if iexc["unit"] == "megajoule":
         input_energy = amount
@@ -520,7 +528,10 @@ def convert_df_to_dict(df: pd.DataFrame, db_type: str = "single") -> List[dict]:
             for col in df.columns.levels[0]
             if col not in [s.exchange, s.tag]
         ]
-        df.loc[:, (s.ecoinvent, c.comment)] = df.loc[:, col_tuples].sum(axis=1)
+
+        df.loc[:, (s.ecoinvent, c.comment)] = df[col_tuples].apply(
+            lambda row: " ".join(row.values.astype(str)), axis=1
+        )
 
     # else, we fill NaNs in scenario columns
     # with values from ecoinvent

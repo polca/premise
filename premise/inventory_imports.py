@@ -5,6 +5,7 @@ import uuid
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
+import warnings
 
 import bw2io
 import yaml
@@ -54,6 +55,29 @@ def check_presence_of_production_exchange(db):
         assert (
             0 < len([e for e in ds["exchanges"] if e["type"] == "production"]) < 2
         ), f"missing production exchange for {ds['name']}."
+
+
+def check_links(data, db):
+
+    db_acts = [
+        (a["name"], a["reference product"], a["unit"], a["location"]) for a in db
+    ]
+    data_acts = [
+        (a["name"], a["reference product"], a["unit"], a["location"]) for a in data
+    ]
+
+    for ds in data:
+        for exc in ds["exchanges"]:
+            if exc["type"] in ["production", "technosphere"]:
+                key = (
+                    exc["name"],
+                    exc.get("product"),
+                    exc["unit"],
+                    exc.get("location"),
+                )
+                if key not in db_acts and key not in data_acts:
+                    warnings.warn(f"LINKING ISSUE --> {key} in {ds['name']} cannot link.")
+
 
 
 @lru_cache
@@ -123,6 +147,7 @@ class BaseInventoryImport:
                 )
 
         self.import_db = self.load_inventory(path)
+        self.import_db.apply_strategies()
 
         # register migration maps
         # as imported inventories link to different ecoinvent versions
@@ -163,6 +188,9 @@ class BaseInventoryImport:
 
         # Check for presence of production flow
         check_presence_of_production_exchange(self.import_db)
+
+        # Check for linking
+        check_links(self.import_db.data, self.database)
 
     def check_for_duplicates(self) -> None:
         """

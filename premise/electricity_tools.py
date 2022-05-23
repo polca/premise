@@ -197,6 +197,7 @@ def reduce_database(region, electricity_mix, database, location_translator=None)
     )
     counter = 1
 
+
     while not reduced_dataset.loc[_filter_loc, techs].sum().all():
         sums = reduced_dataset.loc[_filter_loc, techs].sum()
         techs_not_found = (sums[sums == 0]).index

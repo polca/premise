@@ -1,5 +1,4 @@
 import collections
-import gc
 import os
 import pickle
 import sys
@@ -13,15 +12,11 @@ import xarray as xr
 from prettytable import PrettyTable
 
 from . import DATA_DIR, INVENTORY_DIR
-from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, export_scenario_difference_file
-from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory, VariousVehicles
-from .renewables import SolarPV
-from .steel import Steel
 from .utils import (
     c,
     convert_db_to_dataframe,
@@ -810,7 +805,7 @@ class NewDatabase:
                 )
                 datasets = inventory.merge_inventory()
                 data.extend(datasets)
-            self.database.extend(data)
+                self.database.extend(datasets)
 
         print("Done!\n")
 
@@ -848,189 +843,18 @@ class NewDatabase:
             database=self.database, iam_data=self.iam_data, scenarios=self.scenarios
         )
 
-        # electricity.create_region_specific_power_plants()
-        # electricity.update_electricity_efficiency()
-        # electricity.update_efficiency_of_solar_pv()
-        # electricity.create_new_markets_high_voltage()
-        # electricity.relink_old_markets()
+        electricity.create_region_specific_power_plants()
+        electricity.update_electricity_efficiency()
+        electricity.update_efficiency_of_solar_pv()
         electricity.update_electricity_markets()
         self.database = electricity.database
-
-    def update_fuels(self):
-        print("\n/////////////////////////// FUELS ////////////////////////////")
-
-        for scenario in self.scenarios:
-
-            if "exclude" not in scenario or "update_fuels" not in scenario["exclude"]:
-
-                fuels = Fuels(
-                    db=scenario["database"],
-                    original_db=self.database,
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
-                    year=scenario["year"],
-                    regions=scenario["fuels"]["regions"]
-                    if "fuels" in scenario
-                    else None,
-                )
-
-                scenario["database"] = fuels.generate_fuel_markets()
-
-    def update_cement(self):
-        print("\n/////////////////// CEMENT ////////////////////")
-
-        for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
-
-                cement = Cement(
-                    database=scenario["database"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    iam_data=scenario["external data"],
-                    year=scenario["year"],
-                    version=self.version,
-                )
-
-                scenario["database"] = cement.add_datasets_to_database()
-
-    def update_steel(self):
-        print("\n/////////////////// STEEL ////////////////////")
-
-        for scenario in self.scenarios:
-
-            if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
-
-                steel = Steel(
-                    db=scenario["database"],
-                    model=scenario["model"],
-                    iam_data=scenario["external data"],
-                    year=scenario["year"],
-                )
-                scenario["database"] = steel.generate_activities()
-
-    def update_cars(self):
-        print("\n/////////////////// PASSENGER CARS ////////////////////")
-
-        for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_cars" not in scenario["exclude"]:
-
-                if scenario["passenger_cars"]:
-                    # Load fleet-specific inventories
-                    # Import `carculator` inventories if wanted
-                    cars = CarculatorInventory(
-                        database=scenario["database"],
-                        version=self.version,
-                        fleet_file=scenario["passenger_cars"]["fleet file"],
-                        model=scenario["model"],
-                        year=scenario["year"],
-                        regions=scenario["passenger_cars"]["regions"],
-                        filters=scenario["passenger_cars"]["filters"],
-                        iam_data=scenario["external data"].data,
-                    )
-
-                else:
-                    # Load fleet default inventories
-                    cars = PassengerCars(
-                        database=scenario["database"],
-                        version_in="3.7",
-                        version_out=self.version,
-                        model=scenario["model"],
-                        year=scenario["year"],
-                        regions=scenario["external data"]
-                        .data.coords["region"]
-                        .values.tolist(),
-                        iam_data=scenario["external data"].data,
-                    )
-
-                scenario["database"] = cars.merge_inventory()
-
-    def update_two_wheelers(self):
-        print("\n/////////////////// TWO-WHEELERS ////////////////////")
-
-        for scenario in self.scenarios:
-            if (
-                "exclude" not in scenario
-                or "update_two_wheelers" not in scenario["exclude"]
-            ):
-
-                various_veh = VariousVehicles(
-                    database=scenario["database"],
-                    version_in="3.7",
-                    version_out=self.version,
-                    path=FILEPATH_TWO_WHEELERS,
-                    year=scenario["year"],
-                    regions=scenario["external data"]
-                    .data.coords["region"]
-                    .values.tolist(),
-                    model=scenario["model"],
-                )
-                scenario["database"] = various_veh.merge_inventory()
-
-    def update_trucks(self):
-
-        print("\n/////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
-
-        for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_trucks" not in scenario["exclude"]:
-                if scenario["trucks"]:
-
-                    # Load fleet-specific inventories
-                    # Import `carculator_truck` inventories if wanted
-
-                    trucks = TruckInventory(
-                        database=scenario["database"],
-                        version_in="3.7",
-                        version_out=self.version,
-                        fleet_file=scenario["trucks"]["fleet file"],
-                        model=scenario["model"],
-                        year=scenario["year"],
-                        regions=scenario["trucks"]["regions"],
-                        filters=scenario["trucks"]["filters"],
-                        iam_data=scenario["external data"].data,
-                    )
-
-                else:
-                    # Load default trucks inventories
-                    trucks = Trucks(
-                        database=scenario["database"],
-                        version_in="3.7",
-                        version_out=self.version,
-                        model=scenario["model"],
-                        year=scenario["year"],
-                        regions=scenario["external data"]
-                        .data.coords["region"]
-                        .values.tolist(),
-                        iam_data=scenario["external data"].data,
-                    )
-
-                scenario["database"] = trucks.merge_inventory()
-
-    def update_solar_pv(self):
-        print("\n/////////////////// SOLAR PV ////////////////////")
-
-        for scenario in self.scenarios:
-            if (
-                "exclude" not in scenario
-                or "update_solar_pv" not in scenario["exclude"]
-            ):
-                solar_pv = SolarPV(db=scenario["database"], year=scenario["year"])
-                print("Update efficiency of solar PVs.\n")
-                scenario["database"] = solar_pv.update_efficiency_of_solar_pv()
 
     def update_all(self):
         """
         Shortcut method to execute all transformation functions.
         """
 
-        self.update_two_wheelers()
-        self.update_cars()
-        self.update_trucks()
         self.update_electricity()
-        self.update_solar_pv()
-        self.update_cement()
-        self.update_steel()
-        self.update_fuels()
 
     def write_superstructure_db_to_brightway(self, name=None, filepath=None):
 
