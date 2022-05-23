@@ -16,7 +16,7 @@ from .framework.tags import TagLibrary
 
 import warnings
 
-warnings.filterwarnings("ignore")
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"

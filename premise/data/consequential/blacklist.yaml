@@ -1,0 +1,42 @@
+# list of activities that cannot be imported
+# when the system model is consequential
+---
+- name: electricity production, at co-generation power plant/hard coal, oxy, pipeline 200km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/hard coal, oxy, pipeline 400km, storage 3000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/hard coal, post, pipeline 200km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/hard coal, post, pipeline 400km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/hard coal, post, pipeline 400km, storage 3000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/hard coal, pre, pipeline 200km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/hard coal, pre, pipeline 400km, storage 3000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/wood, post, pipeline 200km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/wood, post, pipeline 400km, storage 3000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/natural gas, post, pipeline 200km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/natural gas, pre, pipeline 200km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/oil, post, pipeline 200km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour
+- name: electricity production, at co-generation power plant/oil, pre, pipeline 200km, storage 1000m
+  reference product: electricity, high voltage
+  unit: kilowatt hour

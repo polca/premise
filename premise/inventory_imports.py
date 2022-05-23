@@ -18,7 +18,7 @@ from .geomap import Geomap
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
-
+FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
 OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
 
 
@@ -49,6 +49,13 @@ def get_biosphere_code() -> dict:
     return csv_dict
 
 
+def get_consequential_blacklist():
+    with open(FILEPATH_CONSEQUENTIAL_BLACKLIST, "r") as stream:
+        flows = yaml.safe_load(stream)
+
+    return flows
+
+
 def check_presence_of_production_exchange(db):
     for ds in db:
         # check for the presence of a production exchange
@@ -75,9 +82,11 @@ def check_links(data, db):
                     exc["unit"],
                     exc.get("location"),
                 )
-                if key not in db_acts and key not in data_acts:
-                    warnings.warn(f"LINKING ISSUE --> {key} in {ds['name']} cannot link.")
 
+                if key not in db_acts and key not in data_acts:
+                    warnings.warn(
+                        f"LINKING ISSUE --> {key} in {ds['name']} cannot link."
+                    )
 
 
 @lru_cache
@@ -124,6 +133,7 @@ class BaseInventoryImport:
         version_in: str,
         version_out: str,
         path: Union[str, Path],
+        system_model: str,
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
@@ -135,6 +145,7 @@ class BaseInventoryImport:
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code()
         self.outdated_flows = get_outdated_flows()
+        self.consequential_blacklist = get_consequential_blacklist()
 
         if not isinstance(path, Path):
             path = Path(path)
@@ -147,6 +158,18 @@ class BaseInventoryImport:
                 )
 
         self.import_db = self.load_inventory(path)
+
+        # if system model is `consequential`` there is a
+        # number of datasets we do not want to import
+        if system_model != "attributional":
+
+            self.import_db.data = [
+                d
+                for d in self.import_db.data
+                if (d["name"], d["reference product"], d["unit"])
+                not in [tuple(i.values()) for i in self.consequential_blacklist]
+            ]
+
         self.import_db.apply_strategies()
 
         # register migration maps
@@ -448,8 +471,8 @@ class DefaultInventory(BaseInventoryImport):
     Importing class. Inherits from :class:`BaseInventoryImport`.
     """
 
-    def __init__(self, database, version_in, version_out, path):
-        super().__init__(database, version_in, version_out, path)
+    def __init__(self, database, version_in, version_out, path, system_model):
+        super().__init__(database, version_in, version_out, path, system_model)
 
     def load_inventory(self, path: Union[str, Path]) -> bw2io.ExcelImporter:
         return ExcelImporter(path)

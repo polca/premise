@@ -467,13 +467,13 @@ def check_system_model(system_model):
     if not isinstance(system_model, str):
         raise TypeError(
             "The argument `system_model` must be a string"
-            "('attributional', 'consequential')."
+            "('attributional', 'consequential baseline')."
         )
 
-    if system_model not in ("attributional", "consequential"):
+    if system_model not in ("attributional", "consequential baseline"):
         raise ValueError(
             "The argument `system_model` must be one of the two values:"
-            "'attributional', 'consequential'."
+            "'attributional', 'consequential baseline'."
         )
 
     return system_model
@@ -598,7 +598,7 @@ class NewDatabase:
         use_cached_inventories=True,
         use_cached_database=True,
         system_model="attributional",
-        time_horison=None,
+        time_horizon=None,
     ):
 
         self.source = source_db
@@ -606,10 +606,11 @@ class NewDatabase:
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
         self.time_horizon = (
-            check_time_horizon(time_horison)
-            if system_model == "consequential"
+            check_time_horizon(time_horizon)
+            if system_model != "attributional"
             else None
         )
+
 
         if self.source_type == "ecospold":
             self.source_file_path = check_ei_filepath(source_file_path)
@@ -802,6 +803,7 @@ class NewDatabase:
                     version_in=filepath[1],
                     version_out=self.version,
                     path=filepath[0],
+                    system_model=self.system_model,
                 )
                 datasets = inventory.merge_inventory()
                 data.extend(datasets)

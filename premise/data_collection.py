@@ -18,38 +18,21 @@ from cryptography.fernet import Fernet
 
 from . import DATA_DIR
 from .utils import create_scenario_label
+from .marginal_mixes import baseline_method
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
 IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
-IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
+
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 
 
-def get_lifetime(list_tech):
-    """
-    Fetch lifetime values for different technologies from a .csv file.
-    :param list_tech: technology labels to find lifetime values for.
-    :type list_tech: list
-    :return: a numpy array with technology lifetime values
-    :rtype: np.array
-    """
-    dict_ = {}
-    with open(IAM_LIFETIMES, encoding="utf-8") as file:
-        reader = csv.reader(file, delimiter=";")
-        for row in reader:
-            dict_[row[0]] = row[1]
-
-    arr = np.zeros_like(list_tech)
-
-    for i, tech in enumerate(list_tech):
-        lifetime = dict_[tech]
-        arr[i] = lifetime
-
-    return arr.astype(float)
+marginal_mix_methods = {
+    "consequential baseline": baseline_method,
+}
 
 
 def get_gnr_data():
@@ -152,7 +135,7 @@ class IAMDataCollection:
         year,
         filepath_iam_files,
         key,
-        system_model="attributionl",
+        system_model="attributional",
         time_horizon=30,
     ):
         self.model = model
@@ -359,139 +342,6 @@ class IAMDataCollection:
 
         return array
 
-    def __transform_to_marginal_markets(self, data):
-        """
-        Used for consequential modeling only. Returns marginal market mixes.
-        :param data: IAM data
-        :return: marginal market mixes
-        """
-
-        shape = list(data.shape)
-        shape[-1] = 1
-
-        market_shares = xr.DataArray(
-            np.zeros(tuple(shape)),
-            dims=["region", "variables", "year"],
-            coords={
-                "region": data.coords["region"],
-                "variables": data.variables,
-                "year": [self.year],
-            },
-        )
-
-        for region in data.coords["region"].values:
-
-            current_shares = data.sel(region=region, year=self.year) / data.sel(
-                region=region, year=self.year
-            ).sum(dim="variables")
-
-            # we first need to calculate the average capital replacement rate of the market
-            # which is here defined as the inverse of the production-weighted average lifetime
-            lifetime = get_lifetime(current_shares.variables.values)
-
-            avg_lifetime = np.sum(current_shares.values * lifetime)
-
-            avg_cap_repl_rate = -1 / avg_lifetime
-
-            volume_change = (
-                data.sel(region=region)
-                .sum(dim="variables")
-                .interp(year=self.year + self.time_horizon)
-                / data.sel(region=region).sum(dim="variables").interp(year=self.year)
-            ) - 1
-
-            # first, we set CHP suppliers to zero
-            # as electricity production is not a determining product for CHPs
-            tech_to_ignore = ["CHP", "biomethane"]
-            data.loc[
-                dict(
-                    variables=[
-                        v
-                        for v in data.variables.values
-                        if any(x in v for x in tech_to_ignore)
-                    ],
-                    region=region,
-                )
-            ] = 0
-
-            # second, we fetch the ratio between production in `self.year` and `self.year` + `time_horizon`
-            # for each technology
-            market_shares.loc[dict(region=region)] = (
-                data.sel(region=region)
-                .interp(year=self.year + self.time_horizon)
-                .values
-                / data.sel(region=region).interp(year=self.year).values
-            )[:, None] - 1
-
-            market_shares.loc[dict(region=region)] = market_shares.loc[
-                dict(region=region)
-            ].round(3)
-
-            # we remove NaNs and np.inf
-            market_shares.loc[dict(region=region)].values[
-                market_shares.loc[dict(region=region)].values == np.inf
-            ] = 0
-            market_shares.loc[dict(region=region)] = market_shares.loc[
-                dict(region=region)
-            ].fillna(0)
-
-            # we fetch the technologies' lifetimes
-            lifetime = get_lifetime(market_shares.variables.values)
-            # get the capital replacement rate
-            # which is here defined as -1 / lifetime
-            cap_repl_rate = -1 / lifetime
-
-            # subtract the capital replacement (which is negative) rate
-            # to the changes market share
-            market_shares.loc[dict(region=region, year=self.year)] += cap_repl_rate
-
-            # market decreasing faster than the average capital renewal rate
-            # in this case, the idea is that oldest/non-competitive technologies
-            # are likely to supply by increasing their lifetime
-            # as the market does not justify additional capacity installation
-            if volume_change < avg_cap_repl_rate:
-
-                # we remove suppliers with a positive growth
-                market_shares.loc[dict(region=region)].values[
-                    market_shares.loc[dict(region=region)].values > 0
-                ] = 0
-                # we reverse the sign of negative growth suppliers
-                market_shares.loc[dict(region=region)] *= -1
-                market_shares.loc[dict(region=region)] /= market_shares.loc[
-                    dict(region=region)
-                ].sum(dim="variables")
-
-                # multiply by volumes at T0
-                market_shares.loc[dict(region=region)] *= data.sel(
-                    region=region, year=self.year
-                )
-                market_shares.loc[dict(region=region)] /= market_shares.loc[
-                    dict(region=region)
-                ].sum(dim="variables")
-
-            # increasing market or
-            # market decreasing slowlier than the
-            # capital renewal rate
-            else:
-
-                # we remove suppliers with a negative growth
-                market_shares.loc[dict(region=region)].values[
-                    market_shares.loc[dict(region=region)].values < 0
-                ] = 0
-                market_shares.loc[dict(region=region)] /= market_shares.loc[
-                    dict(region=region)
-                ].sum(dim="variables")
-
-                # multiply by volumes at T0
-                market_shares.loc[dict(region=region)] *= data.sel(
-                    region=region, year=self.year
-                )
-                market_shares.loc[dict(region=region)] /= market_shares.loc[
-                    dict(region=region)
-                ].sum(dim="variables")
-
-        return market_shares
-
     def __get_iam_electricity_markets(self, data, drop_hydrogen=True):
         """
         This method retrieves the market share for each electricity-producing technology, for a specified year,
@@ -534,9 +384,11 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list_vars
 
-        if self.system_model == "consequential":
+        if self.system_model != "attributional":
 
-            data_to_return = self.__transform_to_marginal_markets(data_to_return)
+            data_to_return = marginal_mix_methods[self.system_model](
+                data_to_return, self.year, self.time_horizon
+            )
 
         else:
             data_to_return /= (
@@ -991,18 +843,13 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list(labels.keys())
 
-        if self.system_model == "consequential":
-
-            data_to_return = self.__transform_to_marginal_markets(data_to_return)
-
-        else:
-            data_to_return = data_to_return.interp(year=self.year)
-            data_to_return /= (
-                data.loc[:, list_technologies, :]
-                .interp(year=self.year)
-                .groupby("region")
-                .sum(dim="variables")
-            )
+        data_to_return = data_to_return.interp(year=self.year)
+        data_to_return /= (
+            data.loc[:, list_technologies, :]
+            .interp(year=self.year)
+            .groupby("region")
+            .sum(dim="variables")
+        )
 
         data_new = data_to_return.assign_coords(
             scenario=create_scenario_label(self.model, self.pathway, self.year)
