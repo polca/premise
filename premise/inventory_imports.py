@@ -7,7 +7,6 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
 
-
 import bw2io
 import yaml
 from bw2io import ExcelImporter, Migration

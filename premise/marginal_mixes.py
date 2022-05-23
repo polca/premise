@@ -1,11 +1,14 @@
-import xarray as xr
+import csv
+
 import numpy as np
 import pandas as pd
-import csv
+import xarray as xr
 import yaml
+
 from . import DATA_DIR
 
 IAM_LIFETIMES = DATA_DIR / "consequential" / "lifetimes.yaml"
+
 
 def get_lifetime(list_tech):
     """
@@ -25,6 +28,7 @@ def get_lifetime(list_tech):
         arr[i] = lifetime
 
     return arr.astype(float)
+
 
 def baseline_method(data, year, time_horizon):
     """
@@ -63,10 +67,10 @@ def baseline_method(data, year, time_horizon):
         avg_cap_repl_rate = -1 / avg_lifetime
 
         volume_change = (
-                data.sel(region=region)
-                .sum(dim="variables")
-                .interp(year=year + time_horizon)
-                / data.sel(region=region).sum(dim="variables").interp(year=year)
+            data.sel(region=region)
+            .sum(dim="variables")
+            .interp(year=year + time_horizon)
+            / data.sel(region=region).sum(dim="variables").interp(year=year)
         ) - 1
 
         # first, we set CHP suppliers to zero
@@ -87,11 +91,9 @@ def baseline_method(data, year, time_horizon):
         # in `self.year` and `self.year` + `time_horizon`
         # for each technology
         market_shares.loc[dict(region=region)] = (
-                 data.sel(region=region)
-                 .interp(year=year + time_horizon)
-                 .values
-                 / data.sel(region=region).interp(year=year).values
-         )[:, None] - 1
+            data.sel(region=region).interp(year=year + time_horizon).values
+            / data.sel(region=region).interp(year=year).values
+        )[:, None] - 1
 
         market_shares.loc[dict(region=region)] = market_shares.loc[
             dict(region=region)
@@ -100,7 +102,7 @@ def baseline_method(data, year, time_horizon):
         # we remove NaNs and np.inf
         market_shares.loc[dict(region=region)].values[
             market_shares.loc[dict(region=region)].values == np.inf
-            ] = 0
+        ] = 0
         market_shares.loc[dict(region=region)] = market_shares.loc[
             dict(region=region)
         ].fillna(0)
@@ -124,7 +126,7 @@ def baseline_method(data, year, time_horizon):
             # we remove suppliers with a positive growth
             market_shares.loc[dict(region=region)].values[
                 market_shares.loc[dict(region=region)].values > 0
-                ] = 0
+            ] = 0
             # we reverse the sign of negative growth suppliers
             market_shares.loc[dict(region=region)] *= -1
             market_shares.loc[dict(region=region)] /= market_shares.loc[
@@ -132,9 +134,7 @@ def baseline_method(data, year, time_horizon):
             ].sum(dim="variables")
 
             # multiply by volumes at T0
-            market_shares.loc[dict(region=region)] *= data.sel(
-                region=region, year=year
-            )
+            market_shares.loc[dict(region=region)] *= data.sel(region=region, year=year)
             market_shares.loc[dict(region=region)] /= market_shares.loc[
                 dict(region=region)
             ].sum(dim="variables")
@@ -147,15 +147,13 @@ def baseline_method(data, year, time_horizon):
             # we remove suppliers with a negative growth
             market_shares.loc[dict(region=region)].values[
                 market_shares.loc[dict(region=region)].values < 0
-                ] = 0
+            ] = 0
             market_shares.loc[dict(region=region)] /= market_shares.loc[
                 dict(region=region)
             ].sum(dim="variables")
 
             # multiply by volumes at T0
-            market_shares.loc[dict(region=region)] *= data.sel(
-                region=region, year=year
-            )
+            market_shares.loc[dict(region=region)] *= data.sel(region=region, year=year)
             market_shares.loc[dict(region=region)] /= market_shares.loc[
                 dict(region=region)
             ].sum(dim="variables")
