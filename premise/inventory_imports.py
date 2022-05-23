@@ -2,10 +2,11 @@ import csv
 import itertools
 import sys
 import uuid
+import warnings
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
-import warnings
+
 
 import bw2io
 import yaml
