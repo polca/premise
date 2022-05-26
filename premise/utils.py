@@ -601,8 +601,6 @@ def get_efficiency_ratio_solar_PV() -> xr.DataArray:
     return df.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
 
 
-
-
 def create_scenario_label(model: str, pathway: str, year: int) -> str:
 
     return f"{model}::{pathway}::{year}"

@@ -15,7 +15,12 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import Export, generate_scenario_difference_file, export_scenario_difference_file, export_scenario_factor_file
+from .export import (
+    Export,
+    export_scenario_difference_file,
+    export_scenario_factor_file,
+    generate_scenario_difference_file,
+)
 from .inventory_imports import AdditionalInventory, DefaultInventory, VariousVehicles
 from .utils import (
     c,

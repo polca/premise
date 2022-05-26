@@ -3,8 +3,8 @@ import datetime
 import json
 import os
 import re
-import numpy as np
 
+import numpy as np
 import pandas as pd
 
 from . import DATA_DIR, __version__
@@ -179,23 +179,24 @@ def export_scenario_factor_file(database, db_name, scenarios, filepath):
 
     scenario_diff_file.loc[
         scenario_diff_file["new"] == True, scenario_cols
-    ] = scenario_diff_file.loc[
-        scenario_diff_file["new"] == True, s.ecoinvent
-    ]
+    ] = scenario_diff_file.loc[scenario_diff_file["new"] == True, s.ecoinvent]
 
     scenario_diff_file.loc[
-        (scenario_diff_file["new"] == False)
-        &(scenario_diff_file[s.ecoinvent] != 0), scenario_cols
+        (scenario_diff_file["new"] == False) & (scenario_diff_file[s.ecoinvent] != 0),
+        scenario_cols,
     ] = scenario_diff_file.loc[
-        (scenario_diff_file["new"] == False)
-        &(scenario_diff_file[s.ecoinvent] != 0), scenario_cols].div(
+        (scenario_diff_file["new"] == False) & (scenario_diff_file[s.ecoinvent] != 0),
+        scenario_cols,
+    ].div(
         scenario_diff_file.loc[
             (scenario_diff_file["new"] == False)
-            &(scenario_diff_file[s.ecoinvent] != 0), s.ecoinvent],
+            & (scenario_diff_file[s.ecoinvent] != 0),
+            s.ecoinvent,
+        ],
         axis=0,
     )
 
-    order_dict = {'production': 0, 'technosphere': 1, 'biosphere': 3}
+    order_dict = {"production": 0, "technosphere": 1, "biosphere": 3}
 
     scenario_diff_file = scenario_diff_file[
         [
@@ -215,7 +216,7 @@ def export_scenario_factor_file(database, db_name, scenarios, filepath):
             "unit",
         ]
         + scenario_cols
-    ].sort_values(by=['flow type'], key=lambda x: x.map(order_dict))
+    ].sort_values(by=["flow type"], key=lambda x: x.map(order_dict))
 
     scenario_diff_file[scenario_cols] = scenario_diff_file[scenario_cols].fillna(0)
     scenario_diff_file[scenario_cols] = scenario_diff_file[scenario_cols].replace(
