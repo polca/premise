@@ -49,4 +49,3 @@ class TagLibrary:
 
 if __name__ == "__main__":
     t = TagLibrary()
-    t.get_activity["Biomass CHP"]

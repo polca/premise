@@ -134,6 +134,9 @@ def rename_location(df: pd.DataFrame, new_loc: str) -> pd.DataFrame:
     df.loc[:, (s.exchange, c.cons_loc)] = new_loc
     df.loc[_filter, (s.exchange, c.prod_loc)] = new_loc
 
+    # declare the dataset as new
+    df.loc[:, (s.exchange, c.new)] = True
+
     # update consumer key
     df.loc[:, (s.exchange, c.cons_key)] = create_hash(
         df.loc[_filter, (s.exchange, c.cons_name)],

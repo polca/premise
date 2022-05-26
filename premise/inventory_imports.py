@@ -159,6 +159,10 @@ class BaseInventoryImport:
 
         self.import_db = self.load_inventory(path)
 
+        # tag new datasets
+        for ds in self.import_db.data:
+            ds["new"] = True
+
         # if system model is `consequential`` there is a
         # number of datasets we do not want to import
         if system_model != "attributional":

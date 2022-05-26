@@ -15,7 +15,7 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import Export, export_scenario_difference_file
+from .export import Export, generate_scenario_difference_file, export_scenario_difference_file, export_scenario_factor_file
 from .inventory_imports import AdditionalInventory, DefaultInventory, VariousVehicles
 from .utils import (
     c,
@@ -860,6 +860,23 @@ class NewDatabase:
 
         self.update_electricity()
 
+    def generate_scenario_factor_file(self, name=None, filepath=None):
+
+        if name is None:
+            name = f"super_db_{self.version}_{date.today().isoformat()}"
+
+        if filepath is not None:
+            filepath = Path(filepath)
+        else:
+            filepath = DATA_DIR / "export" / "scenario factor files"
+
+        if not Path(filepath).exists():
+            Path(filepath).mkdir(parents=True, exist_ok=True)
+
+        filepath = filepath / f"{name}.xlsx"
+
+        export_scenario_factor_file(self.database, name, self.scenarios, filepath)
+
     def write_superstructure_db_to_brightway(self, name=None, filepath=None):
 
         """
@@ -880,9 +897,11 @@ class NewDatabase:
 
         filepath = filepath / f"{name}.xlsx"
 
-        export_scenario_difference_file(
-            database=self.database.copy(), db_name=name, filepath=filepath
+        file = generate_scenario_difference_file(
+            database=self.database.copy(), db_name=name
         )
+
+        export_scenario_difference_file(file, self.scenarios, filepath)
 
         # FIXME: REVIEW It might be a good idea to start thinking about refactoring all prints into a logging library based approach.
         #        That way we can control the amount of output that is generated via log levels.

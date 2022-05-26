@@ -44,6 +44,7 @@ class c(enum.Enum):
     prod_key = "from key"
     cons_key = "to key"
     exc_key = "from/to key"
+    new = "new"
     # the above are exchange identifiers
 
     # fields below are ecoinvent data
@@ -386,6 +387,7 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
                     producer_key,
                     consumer_key,
                     exchange_key,
+                    True if "new" in ids else False,
                     consumer_prod_vol,
                     iexc["amount"],
                     energy_efficiency if producer_type == "production" else np.nan,
@@ -396,7 +398,7 @@ def convert_db_to_dataframe(database: List[dict]) -> pd.DataFrame:
     tuples = []
 
     for idx, col in enumerate(list(c)):
-        if idx < 11:
+        if idx < 12:
             tuples.append((s.exchange, col))
         else:
             tuples.append((s.ecoinvent, col))
@@ -599,73 +601,6 @@ def get_efficiency_ratio_solar_PV() -> xr.DataArray:
     return df.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
 
 
-def get_clinker_ratio_ecoinvent(version):
-    """
-    Return a dictionary with (cement names, location) as keys and clinker-to-cement ratios as values,
-    as found in ecoinvent.
-    :return: dict
-    """
-    if version == 3.5:
-        fp = CLINKER_RATIO_ECOINVENT_35
-    else:
-        fp = CLINKER_RATIO_ECOINVENT_36
-
-    with open(fp) as f:
-        d = {}
-        for val in csv.reader(f, delimiter=","):
-            d[(val[0], val[1])] = float(val[2])
-    return d
-
-
-def get_clinker_ratio_remind(year):
-    """
-    Return an array with the average clinker-to-cement ratio per year and per region, as given by REMIND.
-    :return: xarray
-    :return:
-    """
-    df = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
-
-    return df.groupby(["region", "year"]).mean()["value"].to_xarray().interp(year=year)
-
-
-def get_steel_recycling_rates(year):
-    """
-    Return an array with the average shares for primary (Basic oxygen furnace) and secondary (Electric furnace)
-    steel production per year and per region, as given by: https://www.bir.org/publications/facts-figures/download/643/175/36?method=view
-    for 2015-2019, further linearly extrapolated to 2020, 2030, 2040 and 2050.
-    :return: xarray
-    :return:
-    """
-    df = pd.read_csv(STEEL_RECYCLING_SHARES, sep=";")
-
-    return (
-        df.groupby(["region", "year", "type"])
-        .mean()[["share", "world_share"]]
-        .to_xarray()
-        .interp(year=year)
-    )
-
-
-def rev_index(inds):
-    return {v: k for k, v in inds.items()}
-
-
-def create_codes_and_names_of_A_matrix(db):
-    """
-    Create a dictionary a tuple (activity name, reference product,
-    unit, location) as key, and its code as value.
-    :return: a dictionary to map indices to activities
-    :rtype: dict
-    """
-    return {
-        (
-            i["name"],
-            i["reference product"],
-            i["unit"],
-            i["location"],
-        ): i["code"]
-        for i in db
-    }
 
 
 def create_scenario_label(model: str, pathway: str, year: int) -> str:
