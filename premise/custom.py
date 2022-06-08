@@ -657,7 +657,6 @@ class Custom(BaseTransformation):
 
         world_market["exchanges"].extend(new_excs)
 
-        print(new_excs)
 
         return world_market
 
@@ -734,10 +733,6 @@ class Custom(BaseTransformation):
             # Check if information on market creation is provided
             if "markets" in config_file:
                 print("Create custom markets.")
-
-
-
-
 
                 for market in config_file["markets"]:
 
