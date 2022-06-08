@@ -436,7 +436,8 @@ def check_scenario_data_file(custom_scenario, iam_scenarios):
             for v in get_recursively(config_file, "variable")
         ):
             missing_variables = [
-                v for v in get_recursively(config_file, "variable")
+                v
+                for v in get_recursively(config_file, "variable")
                 if v not in df["variables"].unique()
             ]
             raise ValueError(
@@ -619,11 +620,12 @@ class Custom(BaseTransformation):
             ],
         }
 
-    def fill_in_world_market(self, market: dict, regions: list, i: int, vars: str) -> dict:
+    def fill_in_world_market(
+        self, market: dict, regions: list, i: int, vars: str
+    ) -> dict:
 
         world_market = self.get_market_dictionary_structure(market, "World")
         new_excs = []
-
 
         for region in regions:
             supply_share = np.clip(
@@ -639,9 +641,6 @@ class Custom(BaseTransformation):
                 1,
             )
 
-
-
-
             new_excs.append(
                 {
                     "name": market["name"],
@@ -652,8 +651,6 @@ class Custom(BaseTransformation):
                     "amount": supply_share,
                 }
             )
-
-
 
         world_market["exchanges"].extend(new_excs)
 
@@ -735,10 +732,6 @@ class Custom(BaseTransformation):
             if "markets" in config_file:
                 print("Create custom markets.")
 
-
-
-
-
                 for market in config_file["markets"]:
 
                     # fetch all scenario file vars that
@@ -751,7 +744,9 @@ class Custom(BaseTransformation):
                         if "ecoinvent alias" in pathway:
                             if "name" in pathway["ecoinvent alias"]:
                                 if pathway["ecoinvent alias"]["name"] in names:
-                                    vars.append(pathway["production volume"]["variable"])
+                                    vars.append(
+                                        pathway["production volume"]["variable"]
+                                    )
 
                     # Check if there are regions we should not
                     # create a market for
@@ -809,7 +804,11 @@ class Custom(BaseTransformation):
                                                 variables=var,
                                             )
                                             / self.custom_data[i]["production volume"]
-                                            .sel(region=region, year=self.year, variables=vars)
+                                            .sel(
+                                                region=region,
+                                                year=self.year,
+                                                variables=vars,
+                                            )
                                             .sum(dim="variables")
                                         ).values.item(0),
                                         0,
@@ -851,7 +850,9 @@ class Custom(BaseTransformation):
                     # if so far, a market for `World` has not been created
                     # we need to create one then
                     if "World" not in regions:
-                        world_market = self.fill_in_world_market(market, regions, i, vars)
+                        world_market = self.fill_in_world_market(
+                            market, regions, i, vars
+                        )
                         self.database.append(world_market)
 
                     # if the new markets are meant to replace for other
