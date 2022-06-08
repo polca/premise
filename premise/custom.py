@@ -435,9 +435,13 @@ def check_scenario_data_file(custom_scenario, iam_scenarios):
             v in df["variables"].unique()
             for v in get_recursively(config_file, "variable")
         ):
+            missing_variables = [
+                v for v in get_recursively(config_file, "variable")
+                if v not in df["variables"].unique()
+            ]
             raise ValueError(
                 f"One or several variable names in the configuration file {i + 1} "
-                "cannot be found in the scenario data file."
+                f"cannot be found in the scenario data file: {missing_variables}."
             )
 
         try:
@@ -615,24 +619,28 @@ class Custom(BaseTransformation):
             ],
         }
 
-    def fill_in_world_market(self, market: dict, regions: list, i: int) -> dict:
+    def fill_in_world_market(self, market: dict, regions: list, i: int, vars: str) -> dict:
 
         world_market = self.get_market_dictionary_structure(market, "World")
         new_excs = []
+
 
         for region in regions:
             supply_share = np.clip(
                 (
                     self.custom_data[i]["production volume"]
-                    .sel(region=region, year=self.year)
+                    .sel(region=region, year=self.year, variables=vars)
                     .sum(dim="variables")
                     / self.custom_data[i]["production volume"]
-                    .sel(year=self.year)
+                    .sel(year=self.year, variables=vars)
                     .sum(dim=["variables", "region"])
                 ).values.item(0),
                 0,
                 1,
             )
+
+
+
 
             new_excs.append(
                 {
@@ -645,7 +653,11 @@ class Custom(BaseTransformation):
                 }
             )
 
+
+
         world_market["exchanges"].extend(new_excs)
+
+        print(new_excs)
 
         return world_market
 
@@ -723,7 +735,23 @@ class Custom(BaseTransformation):
             if "markets" in config_file:
                 print("Create custom markets.")
 
+
+
+
+
                 for market in config_file["markets"]:
+
+                    # fetch all scenario file vars that
+                    # relate to this market
+
+                    names = [v["name"] for v in market["includes"]]
+                    vars = []
+
+                    for _, pathway in config_file["production pathways"].items():
+                        if "ecoinvent alias" in pathway:
+                            if "name" in pathway["ecoinvent alias"]:
+                                if pathway["ecoinvent alias"]["name"] in names:
+                                    vars.append(pathway["production volume"]["variable"])
 
                     # Check if there are regions we should not
                     # create a market for
@@ -781,7 +809,7 @@ class Custom(BaseTransformation):
                                                 variables=var,
                                             )
                                             / self.custom_data[i]["production volume"]
-                                            .sel(region=region, year=self.year)
+                                            .sel(region=region, year=self.year, variables=vars)
                                             .sum(dim="variables")
                                         ).values.item(0),
                                         0,
@@ -823,7 +851,7 @@ class Custom(BaseTransformation):
                     # if so far, a market for `World` has not been created
                     # we need to create one then
                     if "World" not in regions:
-                        world_market = self.fill_in_world_market(market, regions, i)
+                        world_market = self.fill_in_world_market(market, regions, i, vars)
                         self.database.append(world_market)
 
                     # if the new markets are meant to replace for other
@@ -877,9 +905,7 @@ class Custom(BaseTransformation):
             datasets = self.database
 
         for ds in datasets:
-
             for exc in ds["exchanges"]:
-
                 if (
                     any(
                         k["name"].lower() in exc["name"].lower()
