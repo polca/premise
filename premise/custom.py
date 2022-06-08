@@ -889,7 +889,7 @@ class Custom(BaseTransformation):
                     and exc["type"] == "technosphere"
                 ):
 
-                    if ds["location"] in self.regions:
+                    if ds["location"] in self.regions or ds["location"] == "World":
                         if ds["location"] not in regions:
                             new_loc = "World"
                         else:
