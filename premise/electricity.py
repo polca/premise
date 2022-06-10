@@ -1045,13 +1045,16 @@ class Electricity(BaseTransformation):
                         amount[exc["location"]] += exc["amount"]
                     else:
                         amount[exc["location"]] = exc["amount"]
-                    to_remove.append((exc["name"], exc["product"], exc["location"], exc["type"]))
+                    to_remove.append(
+                        (exc["name"], exc["product"], exc["location"], exc["type"])
+                    )
 
             if amount:
                 ds["exchanges"] = [
                     e
                     for e in ds["exchanges"]
-                    if (e["name"], e.get("product"), e.get("location"), e["type"]) not in to_remove
+                    if (e["name"], e.get("product"), e.get("location"), e["type"])
+                    not in to_remove
                 ]
 
                 for loc in amount:
@@ -1065,7 +1068,6 @@ class Electricity(BaseTransformation):
                             "type": "technosphere",
                         }
                     )
-
 
         countries = ["DE", "DZ", "GB", "NG", "NL", "NO", "RU", "US"]
 
@@ -1085,19 +1087,22 @@ class Electricity(BaseTransformation):
                         amount[exc["location"]] += exc["amount"]
                     else:
                         amount[exc["location"]] = exc["amount"]
-                    to_remove.append((exc["name"], exc["product"], exc["location"], exc["type"]))
+                    to_remove.append(
+                        (exc["name"], exc["product"], exc["location"], exc["type"])
+                    )
 
             if amount:
                 ds["exchanges"] = [
                     e
                     for e in ds["exchanges"]
-                    if (e["name"], e.get("product"), e.get("location"), e["type"]) not in to_remove
+                    if (e["name"], e.get("product"), e.get("location"), e["type"])
+                    not in to_remove
                 ]
 
                 for loc in amount:
                     ds["exchanges"].append(
                         {
-                                "name": "natural gas, at production",
+                            "name": "natural gas, at production",
                             "product": "natural gas, high pressure",
                             "location": loc,
                             "unit": "cubic meter",
