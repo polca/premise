@@ -273,6 +273,12 @@ class BaseTransformation:
             )
 
         if len(key) > 0:
+
+            if "parameters" in dataset:
+                dataset["parameters"]["efficiency"] = dataset["parameters"][key[0]]
+            else:
+                dataset["parameters"] = {"efficiency": dataset["parameters"][key[0]]}
+
             return dataset["parameters"][key[0]]
 
         energy_input = np.sum(
