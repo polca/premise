@@ -57,12 +57,10 @@ Biomass IGCC CCS:
   gains_aliases: Power_Gen_Bio_Trad
   ecoinvent_aliases:
     fltr:
-      - electricity production, from CC plant, 100% SNG, truck 25km, post, pipeline 200km, storage 1000m
       - electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
       - electricity production, at BIGCC power plant, pre, pipeline 200km, storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
-      - 100% SNG, burned in CC plant, truck 25km, post, pipeline 200km, storage 1000m
       - Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
       - Hydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass with CCS, at gasification plant
       - market for wood chips

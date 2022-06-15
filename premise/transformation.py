@@ -273,6 +273,11 @@ class BaseTransformation:
             )
 
         if len(key) > 0:
+            if "parameters" in dataset:
+                dataset["parameters"]["efficiency"] = dataset["parameters"][key[0]]
+            else:
+                dataset["parameters"] = {"efficiency": dataset["parameters"][key[0]]}
+
             return dataset["parameters"][key[0]]
 
         energy_input = np.sum(
@@ -301,6 +306,11 @@ class BaseTransformation:
             dataset["parameters"]["efficiency"] = current_efficiency
         else:
             dataset["parameters"] = {"efficiency": current_efficiency}
+
+        if ("heat and power co-generation, hard coal" in dataset["name"] and dataset[
+            "unit"] == "kilowatt hour" and "treatment" not in dataset["name"]
+                and dataset["location"] == "DE"):
+            print("NEW EFF", dataset["name"], dataset["location"], energy_input, energy_out, current_efficiency)
 
         return current_efficiency
 
