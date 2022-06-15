@@ -1030,6 +1030,45 @@ class Electricity(BaseTransformation):
 
         print("Update natural gas extraction datasets.")
 
+        countries = ["NL", "DE", "FR", "RER", "IT", "CH"]
+
+        for ds in self.database:
+            amount = {}
+            to_remove = []
+            for exc in ds["exchanges"]:
+                if (
+                        exc["name"] == "market for natural gas, high pressure"
+                        and exc["location"] in countries
+                        and exc["type"] == "technosphere"
+                ):
+                    if exc["location"] in amount:
+                        amount[exc["location"]] += exc["amount"]
+                    else:
+                        amount[exc["location"]] = exc["amount"]
+                    to_remove.append(
+                        (exc["name"], exc["product"], exc["location"], exc["type"])
+                    )
+
+            if amount:
+                ds["exchanges"] = [
+                    e
+                    for e in ds["exchanges"]
+                    if (e["name"], e.get("product"), e.get("location"), e["type"])
+                       not in to_remove
+                ]
+
+                for loc in amount:
+                    ds["exchanges"].append(
+                        {
+                            "name": "natural gas, high pressure, at consumer",
+                            "product": "natural gas, high pressure, at consumer",
+                            "location": loc,
+                            "unit": "cubic meter",
+                            "amount": amount[loc],
+                            "type": "technosphere",
+                        }
+                    )
+
         countries = ["DE", "DZ", "GB", "NG", "NL", "NO", "RU", "US"]
 
         names = ["natural gas production", "petroleum and gas production"]
@@ -1039,22 +1078,25 @@ class Electricity(BaseTransformation):
             to_remove = []
             for exc in ds["exchanges"]:
                 if (
-                    any(i in exc["name"] for i in names)
-                    and "natural gas, high pressure"
-                    and exc["location"] in countries
-                    and exc["type"] == "technosphere"
+                        any(i in exc["name"] for i in names)
+                        and "natural gas, high pressure"
+                        and exc["location"] in countries
+                        and exc["type"] == "technosphere"
                 ):
                     if exc["location"] in amount:
                         amount[exc["location"]] += exc["amount"]
                     else:
                         amount[exc["location"]] = exc["amount"]
-                    to_remove.append((exc["name"], exc["product"], exc["location"]))
+                    to_remove.append(
+                        (exc["name"], exc["product"], exc["location"], exc["type"])
+                    )
 
             if amount:
                 ds["exchanges"] = [
                     e
                     for e in ds["exchanges"]
-                    if (e["name"], e.get("product"), e.get("location")) not in to_remove
+                    if (e["name"], e.get("product"), e.get("location"), e["type"])
+                       not in to_remove
                 ]
 
                 for loc in amount:
