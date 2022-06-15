@@ -1371,7 +1371,6 @@ class Electricity(BaseTransformation):
                                 and exc["name"].startswith("Carbon dioxide")):
                                 exc["amount"] = co2_amount * 0.9
 
-
                 all_plants.extend(new_plants.values())
 
         self.database.extend(all_plants)
