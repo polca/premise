@@ -1340,10 +1340,12 @@ class Electricity(BaseTransformation):
                     for p, plant in new_plants.items():
                         co2_amount = 0
 
-                        providers = [e for e in plant["exchanges"]
-                                     if e["type"] == "technosphere"
-                                     and e["unit"] == "kilowatt hour"
-                                     ]
+                        providers = [
+                            e
+                            for e in plant["exchanges"]
+                            if e["type"] == "technosphere"
+                            and e["unit"] == "kilowatt hour"
+                        ]
 
                         for provider in providers:
                             provider_ds = ws.get_one(
@@ -1354,20 +1356,26 @@ class Electricity(BaseTransformation):
                                 ws.equals("unit", provider["unit"]),
                             )
                             co2_amount += sum(
-                                f["amount"] * provider["amount"] for f in
-                                ws.biosphere(
+                                f["amount"] * provider["amount"]
+                                for f in ws.biosphere(
                                     provider_ds,
                                     ws.contains("name", "Carbon dioxide"),
                                 )
                             )
 
                         for exc in plant["exchanges"]:
-                            if (exc["type"] == "technosphere" and exc["unit"] == "kilogram"
-                                    and exc["name"].startswith("CO2 capture")):
+                            if (
+                                exc["type"] == "technosphere"
+                                and exc["unit"] == "kilogram"
+                                and exc["name"].startswith("CO2 capture")
+                            ):
                                 exc["amount"] = co2_amount * 0.9
 
-                            if (exc["type"] == "biosphere" and exc["unit"] == "kilogram"
-                                    and exc["name"].startswith("Carbon dioxide")):
+                            if (
+                                exc["type"] == "biosphere"
+                                and exc["unit"] == "kilogram"
+                                and exc["name"].startswith("Carbon dioxide")
+                            ):
                                 exc["amount"] = co2_amount * 0.9
 
                 all_plants.extend(new_plants.values())
