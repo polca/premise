@@ -307,10 +307,20 @@ class BaseTransformation:
         else:
             dataset["parameters"] = {"efficiency": current_efficiency}
 
-        if ("heat and power co-generation, hard coal" in dataset["name"] and dataset[
-            "unit"] == "kilowatt hour" and "treatment" not in dataset["name"]
-                and dataset["location"] == "DE"):
-            print("NEW EFF", dataset["name"], dataset["location"], energy_input, energy_out, current_efficiency)
+        if (
+            "heat and power co-generation, hard coal" in dataset["name"]
+            and dataset["unit"] == "kilowatt hour"
+            and "treatment" not in dataset["name"]
+            and dataset["location"] == "DE"
+        ):
+            print(
+                "NEW EFF",
+                dataset["name"],
+                dataset["location"],
+                energy_input,
+                energy_out,
+                current_efficiency,
+            )
 
         return current_efficiency
 
