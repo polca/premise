@@ -654,7 +654,6 @@ class Custom(BaseTransformation):
 
         world_market["exchanges"].extend(new_excs)
 
-
         return world_market
 
     def check_existence_of_market_suppliers(self):
