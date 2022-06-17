@@ -62,12 +62,11 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
-from .custom import (
-    Custom,
-    check_custom_scenario,
-    check_inventories,
+from .external import (
+    ExternalScenario,
     detect_ei_activities_to_adjust,
 )
+from .external_data_validation import check_external_scenarios, check_inventories
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
@@ -173,7 +172,7 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_buses",
     "update_fuels",
-    "update_custom_scenario",
+    "update_external_scenario",
 ]
 
 # clear the cache folder
@@ -498,7 +497,7 @@ class NewDatabase:
         time_horizon: int = None,
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
-        custom_scenario: dict = None,
+        external_scenarios: list = None,
     ) -> None:
 
         self.source = source_db
@@ -528,12 +527,12 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        if custom_scenario:
-            self.custom_scenario = check_custom_scenario(
-                custom_scenario, self.scenarios
+        if external_scenarios:
+            self.datapackages = check_external_scenarios(
+                external_scenarios, self.scenarios
             )
         else:
-            self.custom_scenario = None
+            self.datapackages = None
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
@@ -571,8 +570,8 @@ class NewDatabase:
             )
             scenario["iam data"] = data
 
-            if self.custom_scenario:
-                scenario["custom data"] = data.get_custom_data(self.custom_scenario)
+            if self.datapackages:
+                scenario["external data"] = data.get_external_data(self.datapackages)
 
             scenario["database"] = copy.deepcopy(self.database)
 
@@ -705,33 +704,21 @@ class NewDatabase:
         print("Done!\n")
         return data
 
-    def __import_additional_inventories(self, list_inventories) -> List[dict]:
+    def __import_additional_inventories(self, datapackages: list) -> List[dict]:
 
         print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
 
-        for file in list_inventories:
-
-            if file["inventories"] != "":
+        for datapackage in datapackages:
+            if datapackage.get_resource("inventories"):
                 additional = AdditionalInventory(
                     database=self.database,
-                    version_in=file["ecoinvent version"]
-                    if "ecoinvent version" in file
-                    else "3.8",
+                    version_in=datapackage.descriptor["ecoinvent"]["version"],
                     version_out=self.version,
-                    path=file["inventories"],
+                    path=datapackage.get_resource("inventories").source,
                 )
                 additional.prepare_inventory()
-
-                # if the inventories are to be duplicated
-                # to be made specific to each IAM region
-                # we flag them
-                if "region_duplicate" in file:
-                    if file["region_duplicate"]:
-                        for ds in additional.import_db:
-                            ds["duplicate"] = True
-
                 data.extend(additional.merge_inventory())
 
         return data
@@ -879,49 +866,50 @@ class NewDatabase:
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
 
-    def update_custom_scenario(self):
+    def update_external_scenario(self):
 
-        if self.custom_scenario:
+        if self.datapackages:
             for i, scenario in enumerate(self.scenarios):
                 if (
                     "exclude" not in scenario
-                    or "update_custom_scenario" not in scenario["exclude"]
+                    or "update_external_scenario" not in scenario["exclude"]
                 ):
 
-                    data = self.__import_additional_inventories(self.custom_scenario)
+                    for datapackage in self.datapackages:
+                        if "inventories" in [r.name for r in datapackage.resources]:
+                            data = self.__import_additional_inventories(
+                                datapackage.get_resource("inventories")
+                            )
 
-                    if data:
-                        data = check_inventories(
-                            self.custom_scenario,
-                            data,
-                            scenario["model"],
-                            scenario["pathway"],
-                            scenario["custom data"],
-                        )
-                        scenario["database"].extend(data)
+                            if data:
+                                data = check_inventories(
+                                    self.datapackages,
+                                    data,
+                                    scenario["model"],
+                                    scenario["pathway"],
+                                    scenario["external data"],
+                                )
+                                scenario["database"].extend(data)
 
                     scenario["database"] = detect_ei_activities_to_adjust(
-                        self.custom_scenario,
+                        self.datapackages,
                         scenario["database"],
                         scenario["model"],
                         scenario["pathway"],
-                        scenario["custom data"],
+                        scenario["external data"],
                     )
 
-                    custom = Custom(
+                    external_scenario = ExternalScenario(
                         database=scenario["database"],
                         model=scenario["model"],
                         pathway=scenario["pathway"],
                         iam_data=scenario["iam data"],
                         year=scenario["year"],
-                        version=self.version,
-                        custom_scenario=self.custom_scenario,
-                        custom_data=scenario["custom data"],
+                        external_scenarios=self.datapackages,
+                        external_scenarios_data=scenario["external data"],
                     )
-                    custom.regionalize_imported_inventories()
-                    scenario["database"] = custom.database
-                    custom.create_custom_markets()
-                    scenario["database"] = custom.database
+                    external_scenario.create_custom_markets()
+                    scenario["database"] = external_scenario.database
 
     def update_buses(self) -> None:
 
@@ -958,7 +946,7 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
         self.update_fuels()
-        self.update_custom_scenario()
+        self.update_external_scenario()
 
     def prepare_db_for_export(self, scenario):
 

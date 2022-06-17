@@ -230,18 +230,21 @@ class IAMDataCollection:
             self.land_use = None
             self.land_use_change = None
 
-    def get_custom_data(self, custom_scenario):
+    def get_external_data(self, datapackages):
 
         data = {}
 
-        for i, scenario in enumerate(custom_scenario):
+        for i, dp in enumerate(datapackages):
 
             data[i] = {}
 
-            df = pd.read_excel(scenario["scenario data"])
+            resource = dp.get_resource("scenario_data")
+            scenario_data = resource.read()
+            scenario_headers = resource.headers
+            df = pd.DataFrame(scenario_data, columns=scenario_headers)
 
-            with open(scenario["config"], "r") as stream:
-                config_file = yaml.safe_load(stream)
+            resource = dp.get_resource("config")
+            config_file = yaml.safe_load(resource.raw_read())
 
             if "production pathways" in config_file:
 
@@ -270,6 +273,8 @@ class IAMDataCollection:
                     .to_xarray()
                 )
 
+                array.coords["year"] = [int(y) for y in array.coords["year"]]
+
                 data[i]["production volume"] = array
                 regions = subset["region"].unique().tolist()
                 data[i]["regions"] = regions
@@ -278,6 +283,12 @@ class IAMDataCollection:
                 for k, v in config_file["production pathways"].items():
                     try:
                         variables[k] = [e["variable"] for e in v["efficiency"]]
+                    except KeyError:
+                        continue
+
+                for m, market in enumerate(config_file["markets"]):
+                    try:
+                        variables[f"market {m}"] = [e["variable"] for e in market["efficiency"]]
                     except KeyError:
                         continue
 
@@ -300,6 +311,7 @@ class IAMDataCollection:
                         .mean()
                         .to_xarray()
                     )
+                    array.coords["year"] = [int(y) for y in array.coords["year"]]
 
                     ref_years = {}
                     for v in config_file["production pathways"].values():
@@ -309,13 +321,20 @@ class IAMDataCollection:
                                     ref_years[x["variable"]] = x.get(
                                         "reference year", 2020
                                     )
+                    for market in config_file["markets"]:
+                        for e, f in market.items():
+                            if "efficiency" in f:
+                                for x in f["efficiency"]:
+                                    ref_years[x["variable"]] = x.get(
+                                        "reference year", 2020
+                                    )
 
                     for v, y in ref_years.items():
 
                         array.loc[dict(variables=v, year=self.year)] = array.loc[
                             dict(variables=v)
                         ].interp(year=self.year) / array.loc[dict(variables=v)].sel(
-                            year=y
+                            year=int(y)
                         )
 
                     array = array.loc[dict(year=self.year)]

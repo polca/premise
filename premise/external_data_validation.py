@@ -1,0 +1,444 @@
+"""
+Validates datapackages that contain external scenario data.
+"""
+
+
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import wurst
+import yaml
+from schema import And, Optional, Or, Schema, Use
+
+from .ecoinvent_modification import (
+    LIST_IMAGE_REGIONS,
+    LIST_REMIND_REGIONS,
+    SUPPORTED_EI_VERSIONS,
+)
+from .transformation import *
+from .utils import eidb_label
+from datapackage import validate, exceptions
+
+
+def check_inventories(datapackages, data, model, pathway, custom_data):
+    for i, dp in enumerate(datapackages):
+
+        resource = dp.get_resource("config")
+        config_file = yaml.safe_load(resource.raw_read())
+
+        resource = dp.get_resource("scenario_data")
+        scenario_data = resource.read()
+        scenario_headers = resource.headers
+
+        df = pd.DataFrame(scenario_data, columns=scenario_headers)
+
+        for k, v in config_file["production pathways"].items():
+
+            name = v["ecoinvent alias"]["name"]
+            ref = v["ecoinvent alias"]["reference product"]
+
+            if (
+                (
+                    len(
+                        [
+                            a
+                            for a in data
+                            if (name, ref) == (a["name"], a["reference product"])
+                        ]
+                    )
+                    == 0
+                )
+                and not v["ecoinvent alias"].get("exists in original database")
+                and not v["ecoinvent alias"].get("new dataset")
+            ):
+                raise ValueError(
+                    f"The inventories provided do not contain the activity: {name, ref}"
+                )
+
+            for i, a in enumerate(data):
+                a["custom scenario dataset"] = True
+
+                if (name, ref) == (a["name"], a["reference product"]):
+                    data[i] = flag_activities_to_adjust(
+                        a, df, model, pathway, v, custom_data
+                    )
+
+    return data
+
+
+def check_datapackage(datapackages: list):
+    # validate package descriptor
+    for datapackage in datapackages:
+        try:
+            validate(datapackage.descriptor)
+        except exceptions.ValidationError as exception:
+            raise exception
+
+    for d, datapackage in enumerate(datapackages):
+
+        if "config" in [
+            i.name for i in datapackage.resources
+        ] and "scenario_data" not in [i.name for i in datapackage.resources]:
+            raise ValueError(
+                f"If the resource 'config' is present in the datapackage,"
+                f"so must the resource 'scenario_data'."
+            )
+
+        if "scenario_data" in [
+            i.name for i in datapackage.resources
+        ] and "config" not in [i.name for i in datapackage.resources]:
+            raise ValueError(
+                f"If the resource 'scenario_data' is present in the datapackage,"
+                f" so must the resource 'config'."
+            )
+
+        assert (
+            datapackage.descriptor["ecoinvent"]["version"] in SUPPORTED_EI_VERSIONS
+        ), f"The ecoinvent version in datapackage  {d + 1} is not supported. Must be one of {SUPPORTED_EI_VERSIONS}."
+
+        if (
+            sum(
+                s.name == y.name
+                for s in datapackage.resources
+                for y in datapackage.resources
+            )
+            / len(datapackage.resources)
+            > 1
+        ):
+            raise ValueError(
+                f"Two or more resources in datapackage {d + 1} are similar."
+            )
+
+
+def check_config_file(datapackages):
+    for i, dp in enumerate(datapackages):
+
+        resource = dp.get_resource("config")
+        config_file = yaml.safe_load(resource.raw_read())
+
+        file_schema = Schema(
+            {
+                "production pathways": {
+                    str: {
+                        "production volume": {
+                            "variable": str,
+                        },
+                        "ecoinvent alias": {
+                            "name": str,
+                            "reference product": str,
+                            Optional("exists in original database"): bool,
+                            Optional("new dataset"): bool,
+                        },
+                        Optional("efficiency"): [
+                            {
+                                "variable": str,
+                                Optional("reference year"): And(
+                                    Use(int), lambda n: 2005 <= n <= 2100
+                                ),
+                                Optional("includes"): {
+                                    Optional("technosphere"): list,
+                                    Optional("biosphere"): list,
+                                },
+                            }
+                        ],
+                        Optional("except regions"): And(
+                            list,
+                            Use(list),
+                            lambda s: all(
+                                i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
+                            ),
+                        ),
+                        Optional("replaces"): [{"name": str, "reference product": str}],
+                        Optional("replaces in"): [
+                            {
+                                Optional("name"): str,
+                                Optional("reference product"): str,
+                                Optional("location"): str,
+                            }
+                        ],
+                        Optional("replacement ratio"): float,
+                    },
+                },
+                Optional("markets"): [
+                    {
+                        "name": str,
+                        "reference product": str,
+                        "unit": str,
+                        "includes": And(
+                            list,
+                            Use(list),
+                            lambda s: all(
+                                i in config_file["production pathways"] for i in s
+                            ),
+                        ),
+                        Optional("add"): [
+                            {
+                                Optional("name"): str,
+                                Optional("reference product"): str,
+                                Optional("categories"): str,
+                                Optional("amount"): float,
+                            }
+                        ],
+                        Optional("except regions"): And(
+                            list,
+                            Use(list),
+                            lambda s: all(
+                                i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
+                            ),
+                        ),
+                        Optional("replaces"): [{"name": str, "reference product": str}],
+                        Optional("replaces in"): [
+                            {
+                                Optional("name"): str,
+                                Optional("reference product"): str,
+                                Optional("location"): str,
+                            }
+                        ],
+                        Optional("replacement ratio"): float,
+                        Optional("efficiency"): [
+                            {
+                                "variable": str,
+                                Optional("reference year"): And(
+                                    Use(int), lambda n: 2005 <= n <= 2100
+                                ),
+                                Optional("includes"): {
+                                    Optional("technosphere"): list,
+                                    Optional("biosphere"): list,
+                                },
+                            }
+                        ],
+                    }
+                ],
+            }
+        )
+
+        file_schema.validate(config_file)
+
+        if "markets" in config_file:
+            # check that providers composing the market
+            # are listed
+
+            for market in config_file["markets"]:
+
+                try:
+                    market_providers = [
+                        (
+                            config_file["production pathways"][a]["ecoinvent alias"][
+                                "name"
+                            ],
+                            config_file["production pathways"][a]["ecoinvent alias"][
+                                "reference product"
+                            ],
+                        )
+                        for a in market["includes"]
+                    ]
+                except KeyError:
+                    raise ValueError(
+                        "One of more providers listed under `markets/includes` is/are not listed "
+                        "under `production pathways`."
+                    )
+
+    needs_imported_inventories = [False for _ in datapackages]
+
+    for i, dp in enumerate(datapackages):
+
+        resource = dp.get_resource("config")
+        config_file = yaml.safe_load(resource.raw_read())
+
+        if len(list(config_file["production pathways"].keys())) != sum(
+            get_recursively(
+                config_file["production pathways"], "exists in original database"
+            )
+        ):
+            needs_imported_inventories[i] = True
+
+    return sum(needs_imported_inventories)
+
+
+def check_scenario_data_file(datapackages, iam_scenarios):
+    for i, dp in enumerate(datapackages):
+
+        resource = dp.get_resource("scenario_data")
+        scenario_data = resource.read()
+        scenario_headers = resource.headers
+
+        df = pd.DataFrame(scenario_data, columns=scenario_headers)
+
+        resource = dp.get_resource("config")
+        config_file = yaml.safe_load(resource.raw_read())
+
+        mandatory_fields = ["model", "pathway", "region", "variables", "unit"]
+        if not all(v in df.columns for v in mandatory_fields):
+            raise ValueError(
+                f"One or several mandatory column are missing "
+                f"in the scenario data file no. {i + 1}. Mandatory columns: {mandatory_fields}."
+            )
+
+        years_cols = []
+        for h, header in enumerate(scenario_headers):
+            try:
+                years_cols.append(int(header))
+            except ValueError:
+                continue
+
+        if not all(2005 <= y <= 2100 for y in years_cols):
+            raise ValueError(
+                f"One or several of the years provided in the scenario data file no. {i + 1} are "
+                "out of boundaries (2005 - 2100)."
+            )
+
+        if not all(
+            min(years_cols) <= y <= max(years_cols)
+            for y in [s["year"] for s in iam_scenarios]
+        ):
+            raise ValueError(
+                f"The list of years you wish to create a database for are not entirely covered"
+                f" by the scenario data file no. {i + 1}."
+            )
+
+        if len(pd.isnull(df).sum()[pd.isnull(df).sum() > 0]) > 0:
+            raise ValueError(
+                f"The following columns in the scenario data file no. {i + 1}"
+                f"contains empty cells.\n{pd.isnull(df).sum()[pd.isnull(df).sum() > 0]}."
+            )
+
+        if any(
+            m not in df["model"].unique() for m in [s["model"] for s in iam_scenarios]
+        ):
+            raise ValueError(
+                f"One or several model name(s) in the list of scenarios to create "
+                f"is/are not found in the scenario data file no. {i + 1}. "
+            )
+
+        if any(
+            s not in df["pathway"].unique()
+            for s in [p["pathway"] for p in iam_scenarios]
+        ):
+            raise ValueError(
+                f"One or several pathway name(s) in the scenario data file no. {i + 1} "
+                "is/are not found in the list of scenarios to create."
+            )
+
+        if any(
+            m not in df["pathway"].unique()
+            for m in [s["pathway"] for s in iam_scenarios]
+        ):
+            raise ValueError(
+                f"One or several pathway name(s) in the list of scenarios to create "
+                f"is/are not found in the scenario data file no. {i + 1}."
+            )
+
+        d_regions = {"remind": LIST_REMIND_REGIONS, "image": LIST_IMAGE_REGIONS}
+
+        list_ei_locs = [
+            i if isinstance(i, str) else i[-1]
+            for i in list(Geomap(model="remind").geo.keys())
+        ]
+
+        for irow, r in df.iterrows():
+            if (
+                r["region"] not in d_regions[r["model"]]
+                and r["region"] not in list_ei_locs
+            ):
+                raise ValueError(
+                    f"Region {r['region']} indicated "
+                    f"in row {irow} is not a valid region for model {r['model'].upper()}"
+                    f"and is not found within ecoinvent locations."
+                )
+
+        if not all(
+            v in get_recursively(config_file, "variable")
+            for v in df["variables"].unique()
+        ):
+            raise ValueError(
+                f"One or several variable names in the scenario data file no. {i + 1} "
+                "cannot be found in the configuration file."
+            )
+
+        if not all(
+            v in df["variables"].unique()
+            for v in get_recursively(config_file, "variable")
+        ):
+            missing_variables = [
+                v
+                for v in get_recursively(config_file, "variable")
+                if v not in df["variables"].unique()
+            ]
+            raise ValueError(
+                f"One or several variable names in the configuration file {i + 1} "
+                f"cannot be found in the scenario data file: {missing_variables}."
+            )
+
+        try:
+            np.array_equal(df.iloc[:, 5:], df.iloc[:, 5:].astype(float))
+        except ValueError as e:
+            raise TypeError(
+                f"All values provided in the time series must be numerical "
+                f"in the scenario data file no. {i + 1}."
+            ) from e
+
+    return datapackages
+
+
+def get_recursively(search_dict, field):
+    """Takes a dict with nested lists and dicts,
+    and searches all dicts for a key of the field
+    provided.
+    """
+    fields_found = []
+
+    for key, value in search_dict.items():
+
+        if key == field:
+            fields_found.append(value)
+
+        elif isinstance(value, dict):
+            results = get_recursively(value, field)
+            for result in results:
+                fields_found.append(result)
+
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict):
+                    more_results = get_recursively(item, field)
+                    for another_result in more_results:
+                        fields_found.append(another_result)
+
+    return fields_found
+
+
+def check_external_scenarios(datapackage: list, iam_scenarios: list) -> list:
+    """
+    Check that all required keys and values are found to add a custom scenario.
+    :param datapackage: scenario dictionary
+    :return: scenario dictionary
+    """
+
+    # Validate datapackage
+    check_datapackage(datapackage)
+
+    # Validate yaml config file
+    need_for_ext_inventories = check_config_file(datapackage)
+
+    # Validate scenario data
+    check_scenario_data_file(datapackage, iam_scenarios)
+
+    return datapackage
+
+
+def fetch_dataset_description_from_production_pathways(config, item):
+    for p, v in config["production pathways"].items():
+        if p == item:
+            if "exists in original database" not in v["ecoinvent alias"]:
+                v["ecoinvent alias"].update({"exists in original database": True})
+
+            if "new dataset" not in v["ecoinvent alias"]:
+                v["ecoinvent alias"].update({"new dataset": False})
+
+            return (
+                v["ecoinvent alias"]["name"],
+                v["ecoinvent alias"]["reference product"],
+                v["ecoinvent alias"]["exists in original database"],
+                v["ecoinvent alias"]["new dataset"],
+            )
