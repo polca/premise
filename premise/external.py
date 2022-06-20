@@ -2,51 +2,12 @@
 Implements external scenario data.
 """
 
-from pathlib import Path
-
-import numpy as np
 import pandas as pd
-import wurst
 import yaml
-from schema import And, Optional, Or, Schema, Use
 
-from .ecoinvent_modification import (
-    LIST_IMAGE_REGIONS,
-    LIST_REMIND_REGIONS,
-    SUPPORTED_EI_VERSIONS,
-)
 from .transformation import *
 from .utils import eidb_label
-from datapackage import validate, exceptions
-
-
-def find_iam_efficiency_change(
-    variable: Union[str, list], location: str, custom_data
-) -> float:
-    """
-    Return the relative change in efficiency for `variable` in `location`
-    relative to 2020.
-    :param variable: IAM variable name
-    :param location: IAM region
-    :return: relative efficiency change (e.g., 1.05)
-    """
-
-    scaling_factor = 1
-    for c in custom_data.values():
-        if "efficiency" in c:
-            if variable in c["efficiency"].variables.values:
-
-                scaling_factor = (
-                    c["efficiency"]
-                    .sel(region=location, variables=variable)
-                    .values.item(0)
-                )
-
-                if scaling_factor in (np.nan, np.inf):
-                    scaling_factor = 1
-
-    return scaling_factor
-
+from .clean_datasets import get_biosphere_flow_uuid
 
 def flag_activities_to_adjust(a, df, model, pathway, v, custom_data):
     regions = (
@@ -139,6 +100,36 @@ def flag_activities_to_adjust(a, df, model, pathway, v, custom_data):
         a["replacement ratio"] = v["replacement ratio"]
 
     return a
+
+
+def find_iam_efficiency_change(
+    variable: Union[str, list], location: str, custom_data
+) -> float:
+    """
+    Return the relative change in efficiency for `variable` in `location`
+    relative to 2020.
+    :param variable: IAM variable name
+    :param location: IAM region
+    :return: relative efficiency change (e.g., 1.05)
+    """
+
+    scaling_factor = 1
+    for c in custom_data.values():
+        if "efficiency" in c:
+            if variable in c["efficiency"].variables.values:
+
+                scaling_factor = (
+                    c["efficiency"]
+                    .sel(region=location, variables=variable)
+                    .values.item(0)
+                )
+
+                if scaling_factor in (np.nan, np.inf):
+                    scaling_factor = 1
+
+    return scaling_factor
+
+
 
 
 def detect_ei_activities_to_adjust(datapackages, data, model, pathway, custom_data):
@@ -288,6 +279,7 @@ class ExternalScenario(BaseTransformation):
         for i, datapackage in enumerate(self.datapackages):
             regions = self.external_scenarios_data[i]["regions"]
             self.regionalize_imported_inventories(regions)
+        self.dict_bio_flows = get_biosphere_flow_uuid()
 
     def regionalize_imported_inventories(self, regions) -> None:
         """
@@ -500,23 +492,27 @@ class ExternalScenario(BaseTransformation):
 
     def fetch_potential_suppliers(self, possible_locations, name, ref_prod):
 
-        act, counter = [], 0
-        while not act:
-            act = list(
-                ws.get_many(
-                    self.database,
-                    ws.equals("name", name),
-                    ws.equals(
-                        "reference product",
-                        ref_prod,
-                    ),
-                    ws.equals(
-                        "location", possible_locations[counter]
-                    ),
+        try:
+            act, counter = [], 0
+            while not act:
+                act = list(
+                    ws.get_many(
+                        self.database,
+                        ws.equals("name", name),
+                        ws.equals(
+                            "reference product",
+                            ref_prod,
+                        ),
+                        ws.equals(
+                            "location", possible_locations[counter]
+                        ),
+                    )
                 )
-            )
 
-            counter += 1
+                counter += 1
+        except IndexError:
+            print("Cannot find -> ", name, ref_prod, possible_locations)
+
         return act
 
     def write_suppliers_exchanges(self, suppliers, supply_share):
@@ -669,10 +665,13 @@ class ExternalScenario(BaseTransformation):
 
                             # check if we should add some additional exchanges
                             if "add" in market:
+
                                 for additional_exc in market["add"]:
+
                                     name = additional_exc["name"]
                                     ref_prod = additional_exc.get("reference product")
                                     categories = additional_exc.get("categories")
+                                    unit = additional_exc.get("unit")
                                     amount = additional_exc["amount"]
 
                                     if ref_prod:
@@ -695,22 +694,28 @@ class ExternalScenario(BaseTransformation):
                                         potential_suppliers = self.fetch_potential_suppliers(possible_locations, name, ref_prod)
                                         suppliers = get_shares_from_production_volume(potential_suppliers)
 
-                                        new_excs.extend(self.write_suppliers_exchanges(suppliers, amount))
+                                        new_market["exchanges"].extend(self.write_suppliers_exchanges(suppliers, amount))
 
-                                    #TODO: deal with the biosphere exchange case
-                                    #else:
+                                    else:
                                         # this is a biosphere exchange
-                                    #    new_excs.append(
-                                    #        {
-                                    #            "name": name,
-                                    #            "unit": ,
-                                    #            "categories": tuple(categories.split("::")),
-                                    #            "type": "biosphere",
-                                    #            "amount": amount,
-                                    #            "uncertainty type": 0,
-                                    #            "input": ("biosphere3", )
-                                    #        }
-                                    #    )
+
+                                        categories = tuple(categories.split("::"))
+                                        if len(categories) == 1:
+                                            categories += ("unspecified",)
+
+                                        key = (name, categories[0], categories[1], unit)
+
+                                        new_market["exchanges"].append(
+                                            {
+                                                "name": name,
+                                                "unit": unit,
+                                                "categories": categories,
+                                                "type": "biosphere",
+                                                "amount": amount,
+                                                "uncertainty type": 0,
+                                                "input": ("biosphere3", self.dict_bio_flows[key]),
+                                            }
+                                        )
 
                             self.database.append(new_market)
                         else:

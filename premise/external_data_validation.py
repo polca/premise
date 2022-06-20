@@ -18,7 +18,9 @@ from .ecoinvent_modification import (
 )
 from .transformation import *
 from .utils import eidb_label
+from .external import flag_activities_to_adjust
 from datapackage import validate, exceptions
+
 
 
 def check_inventories(datapackages, data, model, pathway, custom_data):
@@ -177,6 +179,7 @@ def check_config_file(datapackages):
                                 Optional("name"): str,
                                 Optional("reference product"): str,
                                 Optional("categories"): str,
+                                Optional("unit"): str,
                                 Optional("amount"): float,
                             }
                         ],
