@@ -624,6 +624,7 @@ def relink_technosphere_exchanges(
     for exc in filter(technosphere, ds["exchanges"]):
 
         try:
+
             e = cache[ds["location"]][
                 (exc["name"], exc["product"], exc["location"], exc["unit"])
             ]

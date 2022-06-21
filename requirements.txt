@@ -1,7 +1,7 @@
 brightway2
 numpy
 pandas
-bw2io>=0.8.6
+git+https://github.com/brightway-lca/brightway2-io.git
 bw2data>=3.6.2
 bw2calc>=1.8.1
 wurst==0.3.0

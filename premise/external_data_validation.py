@@ -2,12 +2,7 @@
 Validates datapackages that contain external scenario data.
 """
 
-
-from pathlib import Path
-
-import numpy as np
 import pandas as pd
-import wurst
 import yaml
 from schema import And, Optional, Or, Schema, Use
 
@@ -17,13 +12,10 @@ from .ecoinvent_modification import (
     SUPPORTED_EI_VERSIONS,
 )
 from .transformation import *
-from .utils import eidb_label
 from .external import flag_activities_to_adjust
 from datapackage import validate, exceptions
 
-
-
-def check_inventories(datapackages, data, model, pathway, custom_data):
+def check_inventories(datapackages, inventory_data, model, pathway, custom_data):
     for i, dp in enumerate(datapackages):
 
         resource = dp.get_resource("config")
@@ -45,7 +37,7 @@ def check_inventories(datapackages, data, model, pathway, custom_data):
                     len(
                         [
                             a
-                            for a in data
+                            for a in inventory_data
                             if (name, ref) == (a["name"], a["reference product"])
                         ]
                     )
@@ -58,15 +50,15 @@ def check_inventories(datapackages, data, model, pathway, custom_data):
                     f"The inventories provided do not contain the activity: {name, ref}"
                 )
 
-            for i, a in enumerate(data):
+            for i, a in enumerate(inventory_data):
                 a["custom scenario dataset"] = True
 
                 if (name, ref) == (a["name"], a["reference product"]):
-                    data[i] = flag_activities_to_adjust(
+                    inventory_data[i] = flag_activities_to_adjust(
                         a, df, model, pathway, v, custom_data
                     )
 
-    return data
+    return inventory_data
 
 
 def check_datapackage(datapackages: list):
@@ -131,6 +123,7 @@ def check_config_file(datapackages):
                             "reference product": str,
                             Optional("exists in original database"): bool,
                             Optional("new dataset"): bool,
+                            Optional("regionalize"): bool,
                         },
                         Optional("efficiency"): [
                             {

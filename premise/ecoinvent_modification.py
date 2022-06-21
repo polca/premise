@@ -64,7 +64,6 @@ from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .external import (
     ExternalScenario,
-    detect_ei_activities_to_adjust,
 )
 from .external_data_validation import check_external_scenarios, check_inventories
 from .data_collection import IAMDataCollection
@@ -704,22 +703,22 @@ class NewDatabase:
         print("Done!\n")
         return data
 
-    def __import_additional_inventories(self, datapackages: list) -> List[dict]:
+    def __import_additional_inventories(self, datapackage: list) -> List[dict]:
 
         print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
 
-        for datapackage in datapackages:
-            if datapackage.get_resource("inventories"):
-                additional = AdditionalInventory(
-                    database=self.database,
-                    version_in=datapackage.descriptor["ecoinvent"]["version"],
-                    version_out=self.version,
-                    path=datapackage.get_resource("inventories").source,
-                )
-                additional.prepare_inventory()
-                data.extend(additional.merge_inventory())
+
+        if datapackage.get_resource("inventories"):
+            additional = AdditionalInventory(
+                database=self.database,
+                version_in=datapackage.descriptor["ecoinvent"]["version"],
+                version_out=self.version,
+                path=datapackage.get_resource("inventories").source,
+            )
+            additional.prepare_inventory()
+            data.extend(additional.merge_inventory())
 
         return data
 
@@ -878,7 +877,7 @@ class NewDatabase:
                     for datapackage in self.datapackages:
                         if "inventories" in [r.name for r in datapackage.resources]:
                             data = self.__import_additional_inventories(
-                                datapackage.get_resource("inventories")
+                                datapackage
                             )
 
                             if data:
@@ -890,14 +889,6 @@ class NewDatabase:
                                     scenario["external data"],
                                 )
                                 scenario["database"].extend(data)
-
-                    scenario["database"] = detect_ei_activities_to_adjust(
-                        self.datapackages,
-                        scenario["database"],
-                        scenario["model"],
-                        scenario["pathway"],
-                        scenario["external data"],
-                    )
 
                     external_scenario = ExternalScenario(
                         database=scenario["database"],
@@ -958,21 +949,6 @@ class NewDatabase:
             year=scenario["year"],
         )
 
-        # check if additional inventories
-        # need to be duplicated for each
-        # IAM region
-
-        list_add_ds = []
-        for ds in base.database:
-            if "duplicate" in ds:
-                list_add_ds.extend(
-                    base.fetch_proxies(
-                        ds["name"], ds["reference product"], relink=True
-                    ).values()
-                )
-
-        if len(list_add_ds) > 0:
-            base.database.extend(list_add_ds)
 
         # we ensure the absence of duplicate datasets
         base.database = check_for_duplicates(base.database)
