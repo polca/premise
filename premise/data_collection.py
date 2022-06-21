@@ -288,7 +288,9 @@ class IAMDataCollection:
 
                 for m, market in enumerate(config_file["markets"]):
                     try:
-                        variables[f"market {m}"] = [e["variable"] for e in market["efficiency"]]
+                        variables[f"market {m}"] = [
+                            e["variable"] for e in market["efficiency"]
+                        ]
                     except KeyError:
                         continue
 

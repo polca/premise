@@ -62,13 +62,11 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
-from .external import (
-    ExternalScenario,
-)
-from .external_data_validation import check_external_scenarios, check_inventories
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
+from .external import ExternalScenario
+from .external_data_validation import check_external_scenarios, check_inventories
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .steel import Steel
@@ -709,7 +707,6 @@ class NewDatabase:
 
         data = []
 
-
         if datapackage.get_resource("inventories"):
             additional = AdditionalInventory(
                 database=self.database,
@@ -876,9 +873,7 @@ class NewDatabase:
 
                     for datapackage in self.datapackages:
                         if "inventories" in [r.name for r in datapackage.resources]:
-                            data = self.__import_additional_inventories(
-                                datapackage
-                            )
+                            data = self.__import_additional_inventories(datapackage)
 
                             if data:
                                 data = check_inventories(
@@ -948,7 +943,6 @@ class NewDatabase:
             pathway=scenario["pathway"],
             year=scenario["year"],
         )
-
 
         # we ensure the absence of duplicate datasets
         base.database = check_for_duplicates(base.database)

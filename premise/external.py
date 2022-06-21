@@ -5,9 +5,9 @@ Implements external scenario data.
 import pandas as pd
 import yaml
 
+from .clean_datasets import get_biosphere_flow_uuid
 from .transformation import *
 from .utils import eidb_label
-from .clean_datasets import get_biosphere_flow_uuid
 
 
 def flag_activities_to_adjust(a, df, model, pathway, v, custom_data):
@@ -292,8 +292,6 @@ class ExternalScenario(BaseTransformation):
         Produce IAM region-specific version of the dataset.
 
         """
-
-
 
         acts_to_regionalize = [
             {

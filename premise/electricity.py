@@ -1037,9 +1037,9 @@ class Electricity(BaseTransformation):
             to_remove = []
             for exc in ds["exchanges"]:
                 if (
-                        exc["name"] == "market for natural gas, high pressure"
-                        and exc["location"] in countries
-                        and exc["type"] == "technosphere"
+                    exc["name"] == "market for natural gas, high pressure"
+                    and exc["location"] in countries
+                    and exc["type"] == "technosphere"
                 ):
                     if exc["location"] in amount:
                         amount[exc["location"]] += exc["amount"]
@@ -1054,7 +1054,7 @@ class Electricity(BaseTransformation):
                     e
                     for e in ds["exchanges"]
                     if (e["name"], e.get("product"), e.get("location"), e["type"])
-                       not in to_remove
+                    not in to_remove
                 ]
 
                 for loc in amount:
@@ -1078,10 +1078,10 @@ class Electricity(BaseTransformation):
             to_remove = []
             for exc in ds["exchanges"]:
                 if (
-                        any(i in exc["name"] for i in names)
-                        and "natural gas, high pressure"
-                        and exc["location"] in countries
-                        and exc["type"] == "technosphere"
+                    any(i in exc["name"] for i in names)
+                    and "natural gas, high pressure"
+                    and exc["location"] in countries
+                    and exc["type"] == "technosphere"
                 ):
                     if exc["location"] in amount:
                         amount[exc["location"]] += exc["amount"]
@@ -1096,7 +1096,7 @@ class Electricity(BaseTransformation):
                     e
                     for e in ds["exchanges"]
                     if (e["name"], e.get("product"), e.get("location"), e["type"])
-                       not in to_remove
+                    not in to_remove
                 ]
 
                 for loc in amount:

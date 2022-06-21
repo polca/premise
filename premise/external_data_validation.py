@@ -4,6 +4,7 @@ Validates datapackages that contain external scenario data.
 
 import pandas as pd
 import yaml
+from datapackage import exceptions, validate
 from schema import And, Optional, Or, Schema, Use
 
 from .ecoinvent_modification import (
@@ -11,9 +12,9 @@ from .ecoinvent_modification import (
     LIST_REMIND_REGIONS,
     SUPPORTED_EI_VERSIONS,
 )
-from .transformation import *
 from .external import flag_activities_to_adjust
-from datapackage import validate, exceptions
+from .transformation import *
+
 
 def check_inventories(datapackages, inventory_data, model, pathway, custom_data):
     for i, dp in enumerate(datapackages):

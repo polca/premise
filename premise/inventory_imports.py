@@ -7,7 +7,7 @@ from typing import Dict, List, Union
 
 import bw2io
 import yaml
-from bw2io import ExcelImporter, Migration, CSVImporter
+from bw2io import CSVImporter, ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
 
@@ -441,8 +441,6 @@ class DefaultInventory(BaseInventoryImport):
         self.check_numbers_format()
 
 
-
-
 class VariousVehicles(BaseInventoryImport):
     """
     Imports various future vehicles' inventories (two-wheelers, buses, trams, etc.).
@@ -522,8 +520,9 @@ class AdditionalInventory(BaseInventoryImport):
         elif Path(path).suffix == ".csv":
             return CSVImporter(path)
         else:
-            raise ValueError("Incorrect filetype for inventories."
-                             "Should be either .xlsx or .csv")
+            raise ValueError(
+                "Incorrect filetype for inventories." "Should be either .xlsx or .csv"
+            )
 
     def remove_missing_fields(self):
 
