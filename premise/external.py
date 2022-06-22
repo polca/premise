@@ -681,8 +681,6 @@ class ExternalScenario(BaseTransformation):
 
                             new_market["exchanges"].extend(new_excs)
 
-
-
                             # check if we should add some additional exchanges
                             if "add" in market:
 
@@ -776,10 +774,12 @@ class ExternalScenario(BaseTransformation):
                                                     print(k, v, scaling_factor)
                                                     fltr.append(wurst.contains(k, v))
 
-                                            for exc in ws.technosphere(new_market, *(fltr or [])):
-                                                wurst.rescale_exchange(exc, scaling_factor)
-
-
+                                            for exc in ws.technosphere(
+                                                new_market, *(fltr or [])
+                                            ):
+                                                wurst.rescale_exchange(
+                                                    exc, scaling_factor
+                                                )
 
                                         if "biosphere" in ineff["includes"]:
                                             fltr = []
@@ -788,8 +788,12 @@ class ExternalScenario(BaseTransformation):
                                                     print(k, v, scaling_factor)
                                                     fltr.append(wurst.contains(k, v))
 
-                                            for exc in ws.biosphere(new_market, *(fltr or [])):
-                                                wurst.rescale_exchange(exc, scaling_factor)
+                                            for exc in ws.biosphere(
+                                                new_market, *(fltr or [])
+                                            ):
+                                                wurst.rescale_exchange(
+                                                    exc, scaling_factor
+                                                )
 
                             self.database.append(new_market)
                         else:
