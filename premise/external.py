@@ -374,6 +374,8 @@ class ExternalScenario(BaseTransformation):
         new_excs = []
 
         for region in regions:
+            print(market, regions, pathways)
+            print(self.external_scenarios_data[i]["production volume"].variables)
             supply_share = np.clip(
                 (
                     self.external_scenarios_data[i]["production volume"]
@@ -679,20 +681,7 @@ class ExternalScenario(BaseTransformation):
 
                             new_market["exchanges"].extend(new_excs)
 
-                            # check if there are variables that
-                            # relate to inefficiencies or losses
 
-                            if "efficiency" in market:
-                                for ineff in market["efficiency"]:
-                                    scaling_factor = 1 / find_iam_efficiency_change(
-                                        ineff["variable"],
-                                        region,
-                                        self.external_scenarios_data,
-                                    )
-
-                                    wurst.change_exchanges_by_constant_factor(
-                                        new_market, scaling_factor
-                                    )
 
                             # check if we should add some additional exchanges
                             if "add" in market:
@@ -761,11 +750,53 @@ class ExternalScenario(BaseTransformation):
                                             }
                                         )
 
+                            # check if there are variables that
+                            # relate to inefficiencies or losses
+
+                            if "efficiency" in market:
+                                for ineff in market["efficiency"]:
+                                    scaling_factor = 1 / find_iam_efficiency_change(
+                                        ineff["variable"],
+                                        region,
+                                        self.external_scenarios_data,
+                                    )
+
+                                    if not "includes" in ineff:
+
+                                        wurst.change_exchanges_by_constant_factor(
+                                            new_market, scaling_factor
+                                        )
+
+                                    else:
+
+                                        if "technosphere" in ineff["includes"]:
+                                            fltr = []
+                                            for y in ineff["includes"]["technosphere"]:
+                                                for k, v in y.items():
+                                                    print(k, v, scaling_factor)
+                                                    fltr.append(wurst.contains(k, v))
+
+                                            for exc in ws.technosphere(new_market, *(fltr or [])):
+                                                wurst.rescale_exchange(exc, scaling_factor)
+
+
+
+                                        if "biosphere" in ineff["includes"]:
+                                            fltr = []
+                                            for y in ineff["includes"]["biosphere"]:
+                                                for k, v in y.items():
+                                                    print(k, v, scaling_factor)
+                                                    fltr.append(wurst.contains(k, v))
+
+                                            for exc in ws.biosphere(new_market, *(fltr or [])):
+                                                wurst.rescale_exchange(exc, scaling_factor)
+
                             self.database.append(new_market)
                         else:
                             regions.remove(region)
 
-                        # Loop through the technologies that should compose the market
+                        # Loop through the technologies that should
+                        # compose the market
 
                     # if so far, a market for `World` has not been created
                     # we need to create one then
@@ -782,7 +813,7 @@ class ExternalScenario(BaseTransformation):
                     if create_world_region:
 
                         world_market = self.fill_in_world_market(
-                            market, regions, i, pathways
+                            market, regions, i, vars
                         )
                         self.database.append(world_market)
 
@@ -844,7 +875,7 @@ class ExternalScenario(BaseTransformation):
                     list_fltr.append(ws.equals(f, k[f]))
 
         for ds in datasets:
-            for exc in ws.technosphere(ds, *list_fltr):
+            for exc in ws.technosphere(ds, ws.either(*list_fltr)):
 
                 if ds["location"] in regions or ds["location"] == "World":
                     if ds["location"] not in regions:
