@@ -374,8 +374,6 @@ class ExternalScenario(BaseTransformation):
         new_excs = []
 
         for region in regions:
-            print(market, regions, pathways)
-            print(self.external_scenarios_data[i]["production volume"].variables)
             supply_share = np.clip(
                 (
                     self.external_scenarios_data[i]["production volume"]
@@ -489,7 +487,6 @@ class ExternalScenario(BaseTransformation):
                             if not exists_in_database or regionalize_dataset:
                                 for ds in suppliers:
                                     ds["custom scenario dataset"] = True
-                                    print(ds["name"])
 
     def fetch_supply_share(self, i, region, var, vars):
         return np.clip(
@@ -771,7 +768,6 @@ class ExternalScenario(BaseTransformation):
                                             fltr = []
                                             for y in ineff["includes"]["technosphere"]:
                                                 for k, v in y.items():
-                                                    print(k, v, scaling_factor)
                                                     fltr.append(wurst.contains(k, v))
 
                                             for exc in ws.technosphere(
@@ -785,7 +781,6 @@ class ExternalScenario(BaseTransformation):
                                             fltr = []
                                             for y in ineff["includes"]["biosphere"]:
                                                 for k, v in y.items():
-                                                    print(k, v, scaling_factor)
                                                     fltr.append(wurst.contains(k, v))
 
                                             for exc in ws.biosphere(
