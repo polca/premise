@@ -162,7 +162,55 @@ class IAMDataCollection:
         self.pathway = pathway
         self.year = year
         key = key or None
-        data = self.__get_iam_data(key=key, filepath=filepath_iam_files)
+
+        prod_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="iam_aliases")
+        eff_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="eff_aliases")
+
+        prod_vars.update(
+            self.__get_iam_variable_labels(IAM_FUELS_VARS, key="iam_aliases")
+        )
+        eff_vars.update(
+            self.__get_iam_variable_labels(IAM_FUELS_VARS, key="eff_aliases")
+        )
+        prod_vars.update(
+            self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="iam_aliases")
+        )
+        eff_vars.update(
+            self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="eff_aliases")
+        )
+        energy_use_vars = self.__get_iam_variable_labels(
+            IAM_CEMENT_VARS, key="energy_use_aliases"
+        )
+        prod_vars.update(
+            self.__get_iam_variable_labels(IAM_STEEL_VARS, key="iam_aliases")
+        )
+        eff_vars.update(
+            self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
+        )
+        energy_use_vars.update(
+            self.__get_iam_variable_labels(IAM_STEEL_VARS, key="energy_use_aliases")
+        )
+        prod_vars.update(
+            self.__get_iam_variable_labels(IAM_BIOMASS_VARS, key="iam_aliases")
+        )
+        eff_vars.update(
+            self.__get_iam_variable_labels(IAM_BIOMASS_VARS, key="eff_aliases")
+        )
+
+        prod_vars.update(
+            self.__get_iam_variable_labels(IAM_CARBON_CAPTURE_VARS, key="iam_aliases")
+        )
+
+        data = self.__get_iam_data(
+            key=key,
+            filepath=filepath_iam_files,
+            vars=(
+                list(prod_vars.values())
+                + list(eff_vars.values())
+                + list(energy_use_vars.values())
+            ),
+        )
+
         self.regions = data.region.values.tolist()
         self.system_model = system_model
         self.time_horizon = time_horizon
@@ -172,20 +220,6 @@ class IAMDataCollection:
 
         self.electricity_markets = self.__get_iam_electricity_markets(data=data)
         self.fuel_markets = self.__get_iam_fuel_markets(data=data)
-
-        prod_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, key="iam_aliases")
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_FUELS_VARS, key="iam_aliases")
-        )
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="iam_aliases")
-        )
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_STEEL_VARS, key="iam_aliases")
-        )
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_BIOMASS_VARS, key="iam_aliases")
-        )
 
         self.production_volumes = self.__get_iam_production_volumes(
             prod_vars, data=data
@@ -353,7 +387,7 @@ class IAMDataCollection:
 
         return dict_vars
 
-    def __get_iam_data(self, key: bytes, filepath: Path) -> xr.DataArray:
+    def __get_iam_data(self, key: bytes, filepath: Path, vars: List) -> xr.DataArray:
         """
         Read the IAM result file and return an `xarray` with dimensions:
 
@@ -406,18 +440,7 @@ class IAMDataCollection:
                 encoding="latin-1",
             ).drop(columns=["Model", "Scenario"])
 
-            # Filter the dataframe
-            list_var = (
-                "SE",
-                "Tech",
-                "FE",
-                "Production",
-                "Emi|CCO2",
-                "Emi|CO2",
-                "Specific Energy",
-            )
-
-            # if new sub-European regions a represent, we remove EUR and NEU
+            # if new sub-European regions are present, we remove EUR and NEU
             if any(
                 x in dataframe.index.get_level_values("Region").unique()
                 for x in ["ESC", "DEU", "NEN"]
@@ -435,17 +458,6 @@ class IAMDataCollection:
                 data, index_col=[2, 3, 4], encoding="latin-1", sep=","
             ).drop(columns=["Model", "Scenario"])
 
-            # Filter the dataframe
-            list_var = (
-                "Secondary Energy",
-                "Primary Energy|Biomass",
-                "Efficiency",
-                "Final Energy",
-                "Production",
-                "Emissions",
-                "Land Use",
-                "Emission Factor",
-            )
         else:
             raise ValueError(
                 f"The IAM model name {self.model.upper()} is not valid. Currently supported: 'REMIND' or 'IMAGE'"
@@ -454,7 +466,7 @@ class IAMDataCollection:
         dataframe.columns = dataframe.columns.astype(int)
         dataframe = dataframe.reset_index()
 
-        dataframe = dataframe.loc[dataframe["Variable"].str.startswith(list_var)]
+        dataframe = dataframe.loc[dataframe["Variable"].isin(vars)]
 
         dataframe = dataframe.rename(
             columns={"Region": "region", "Variable": "variables", "Unit": "unit"}
@@ -542,9 +554,6 @@ class IAMDataCollection:
                 dict(region=region)
             ].round(3)
 
-            if region == "WEU":
-                print(market_shares.loc[dict(region=region)])
-
             # we remove NaNs and np.inf
             market_shares.loc[dict(region=region)].values[
                 market_shares.loc[dict(region=region)].values == np.inf
@@ -553,32 +562,21 @@ class IAMDataCollection:
                 dict(region=region)
             ].fillna(0)
 
-            if region == "WEU":
-                print(market_shares.loc[dict(region=region)])
-
             # we fetch the technologies' lifetimes
             lifetime = get_lifetime(market_shares.variables.values)
             # get the capital replacement rate
             # which is here defined as -1 / lifetime
             cap_repl_rate = -1 / lifetime
 
-            if region == "WEU":
-                print(cap_repl_rate)
-
             # subtract the capital replacement (which is negative) rate
             # to the changes market share
             market_shares.loc[dict(region=region, year=self.year)] += cap_repl_rate
-
-            if region == "WEU":
-                print(market_shares.loc[dict(region=region)])
 
             # market decreasing faster than the average capital renewal rate
             # in this case, the idea is that oldest/non-competitive technologies
             # are likely to supply by increasing their lifetime
             # as the market does not justify additional capacity installation
             if volume_change < avg_cap_repl_rate:
-
-                print("decrease")
 
                 # we remove suppliers with a positive growth
                 market_shares.loc[dict(region=region)].values[
@@ -602,8 +600,6 @@ class IAMDataCollection:
             # market decreasing slowlier than the
             # capital renewal rate
             else:
-
-                print("increase")
 
                 # we remove suppliers with a negative growth
                 market_shares.loc[dict(region=region)].values[
@@ -1326,6 +1322,7 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
+
         cement_rate = data.loc[:, [dict_vars["cement - cco2"]], :] / data.loc[
             :, [dict_vars["cement - co2"], dict_vars["cement - cco2"]], :
         ].sum(dim="variables")

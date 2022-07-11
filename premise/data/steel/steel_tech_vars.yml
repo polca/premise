@@ -5,7 +5,7 @@ steel - primary:
     remind: Production|Industry|Steel|Primary
     image: Production|Steel|Primary
   energy_use_aliases:
-    remind: FE|Industry|Steel|Primary
+    remind: FE|Industry|Steel|++|Primary
     image:
       - Final Energy|Industry|Steel|Gases
       - Final Energy|Industry|Steel|Heat
@@ -23,7 +23,7 @@ steel - secondary:
     remind: Production|Industry|Steel|Secondary
     image: Production|Steel|Secondary
   energy_use_aliases:
-    remind: FE|Industry|Steel|Secondary
+    remind: FE|Industry|Steel|++|Secondary
     image: Final Energy|Industry|Steel|Electricity
   ecoinvent_aliases:
     fltr:

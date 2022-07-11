@@ -2,17 +2,17 @@
 ---
 cement - co2:
   iam_aliases:
-    remind: Emi|CO2|FFaI|Industry|Cement
+    remind: Emi|CO2|Industrial Processes|+|Cement
     image: Emissions|CO2|Industry|Cement|Gross
 cement - cco2:
   iam_aliases:
-    remind: Emi|CCO2|FFaI|Industry|Cement
+    remind: Carbon Management|Carbon Capture|Industry Energy|Cement
     image: Emissions|CO2|Industry|Cement|Sequestered
 steel - co2:
   iam_aliases:
-    remind: Emi|CO2|FFaI|Industry|Steel
+    remind: Emi|CO2|Energy|Demand|Industry|++|Steel
     image: Emissions|CO2|Industry|Steel|Gross
 steel - cco2:
   iam_aliases:
-    remind: Emi|CCO2|FFaI|Industry|Steel
+    remind: Carbon Management|Carbon Capture|Industry Energy|Steel
     image: Emissions|CO2|Industry|Steel|Sequestered
