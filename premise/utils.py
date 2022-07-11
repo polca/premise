@@ -1,5 +1,6 @@
 import sys
 import uuid
+import warnings
 from copy import deepcopy
 from datetime import date
 from functools import lru_cache
@@ -11,17 +12,16 @@ import pandas as pd
 import xarray as xr
 import yaml
 from constructive_geometries import resolved_row
+from country_converter import CountryConverter
+from prettytable import ALL, PrettyTable
 from wurst import log
 from wurst import searching as ws
 from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
-from prettytable import PrettyTable, ALL
-from .geomap import Geomap
-from country_converter import CountryConverter
-import warnings
 
-from . import geomap, __version__
+from . import __version__, geomap
 from .export import *
+from .geomap import Geomap
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
@@ -947,6 +947,7 @@ def warning_about_biogenic_co2() -> None:
     # align text to the left
     t.align = "l"
     print(t)
+
 
 def hide_messages():
 
