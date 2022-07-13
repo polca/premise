@@ -5,10 +5,12 @@ This module export a summary of scenario to an Excel file.
 import openpyxl
 from openpyxl.styles import Font
 from openpyxl.utils.dataframe import dataframe_to_rows
-from openpyxl.chart import AreaChart, Reference
+from openpyxl.chart import AreaChart, LineChart, Reference
+from openpyxl.utils import get_column_letter
 from pathlib import Path
 from . import DATA_DIR
 import yaml
+import string
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
@@ -19,15 +21,24 @@ GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtech
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 SECTORS = {
-    "Electricity": IAM_ELEC_VARS,
-    "Fuel": IAM_FUELS_VARS,
-    "Cement": IAM_CEMENT_VARS,
-    "Steel": IAM_CEMENT_VARS
+    "Electricity - generation": IAM_ELEC_VARS,
+    "Electricity (biom) - generation": IAM_BIOMASS_VARS,
+    "Electricity - efficiency": IAM_ELEC_VARS,
+    "Fuel - generation": IAM_FUELS_VARS,
+    "Fuel - efficiency": IAM_FUELS_VARS,
+    "Cement - generation": IAM_CEMENT_VARS,
+    "Cement - efficiency": IAM_CEMENT_VARS,
+    "Cement - CCS": (IAM_CARBON_CAPTURE_VARS, ["cement"]),
+    "Steel - generation": IAM_STEEL_VARS,
+    "Steel - efficiency": IAM_STEEL_VARS,
+    "Steel - CCS": (IAM_CARBON_CAPTURE_VARS, ["steel"]),
 }
 
-def get_variables(fp):
+
+def get_variables(fp,):
     with open(fp, "r") as stream:
         out = yaml.safe_load(stream)
+
     return list(out.keys())
 
 
@@ -35,60 +46,131 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     """
     Generate a summary report of the scenarios.
     """
+
+    ylabels = {
+        "Electricity - generation": "Exajoules (EJ)",
+        "Electricity (biom) - generation": "Exajoules (EJ)",
+        "Electricity - efficiency": "Efficiency gains (2020 = 1)",
+        "Fuel - generation": "Exajoules (EJ)",
+        "Fuel - efficiency": "Efficiency gains (2020 = 1)",
+        "Cement - generation": "Millions of tons (MT)",
+        "Cement - efficiency": "Efficiency gains (2020 = 1)",
+        "Cement - CCS": "Share of emissions captured [%]",
+        "Steel - generation": "Millions of tons (MT)",
+        "Steel - efficiency": "Efficiency gains (2020 = 1)",
+        "Steel - CCS": "Share of emissions captured [%]",
+    }
+
     wb = openpyxl.Workbook()
     wb.remove(wb.active)
 
-
     for sector, fp in SECTORS.items():
 
-        vars = get_variables(fp)
+        if isinstance(fp, tuple):
+            fp, vars = fp
+        else:
+            vars = get_variables(fp)
 
         ws = wb.create_sheet(sector)
 
-        for scenario in scenarios:
+        col = 1
 
-            row = 1
+        scenario_list = []
 
-            ws[f"A{row}"] = f"{scenario['model'].upper()} - {scenario['pathway'].upper()}"
-            ws[f"A{row}"].font = Font(bold=True, size=14, underline="single")
-            row += 2
+        for s, scenario in enumerate(scenarios):
 
-            for region in scenario["iam data"].regions:
-                ws[f"A{row}"] = region
+            if (scenario["model"], scenario["pathway"]) not in scenario_list:
 
-                row += 1
+                if "generation" in sector:
+                    iam_data = scenario["iam data"].production_volumes
+                elif "efficiency" in sector:
+                    iam_data = scenario["iam data"].efficiency
+                elif "CCS" in sector:
+                    iam_data = scenario["iam data"].carbon_capture_rate * 100
+                else:
+                    iam_data = scenario["iam data"].gains
 
-                df = scenario["iam data"].production_volumes.sel(
-                    variables=[v for v in vars if v in scenario["iam data"].production_volumes.variables.values],
-                    region=region,
-                    year=[y for y in scenario["iam data"].production_volumes.year.values if y <= 2100]
-                ).to_dataframe("val").unstack()["val"].reset_index()
+                col += s
 
-                df.index = range(2005, 2105, 5)
+                if s == 0:
+                    offset = 0
+                else:
+                    offset = len(iam_data.sel(
+                        variables=[v for v in vars
+                                   if v in iam_data.variables.values]
+                    ).variables)
 
-                df = df.T
+                    if offset <= 10:
+                        offset += 10
+                    else:
+                        offset += 5
 
-                print(df)
+                col += offset
 
+                row = 1
 
-                data = dataframe_to_rows(df)
+                ws.cell(
+                    column=col,
+                    row=row,
+                    value=f"{scenario['model'].upper()} - {scenario['pathway'].upper()}",
+                )
+                ws.cell(column=col, row=row).font = Font(
+                    bold=True, size=14, underline="single"
+                )
 
-                for r_idx, r in enumerate(data, 1):
-                    for c_idx, value in enumerate(r, 1):
-                        ws.cell(row=row + r_idx, column=c_idx, value=value)
+                row += 2
 
-                values = Reference(ws, min_col=2, min_row=row + 3, max_col=c_idx, max_row=row + r_idx)
-                cats = Reference(ws, min_col=1, min_row=row + 3, max_row=row + r_idx)
+                for region in scenario["iam data"].regions:
+                    ws.cell(column=col, row=row, value=region)
 
-                chart = AreaChart(grouping="stacked")
-                chart.add_data(values)
-                chart.set_categories(cats)
-                chart.title = f"{region} - {sector}"
-                ws.add_chart(chart, f"S{row}")
+                    row += 1
 
-                row += r_idx + 2
+                    df = iam_data.sel(
+                            variables=[v for v in vars if v in iam_data.variables.values],
+                            region=region,
+                            year=[y for y in iam_data.coords["year"].values if y <= 2100],
+                        )
+
+                    if len(df) > 0:
+                        df = df.to_dataframe("val")
+                        df = df.unstack()["val"]
+                        df = df.T
+                        df = df.rename_axis(index=None)
+
+                        data = dataframe_to_rows(df)
+
+                        counter = 0
+                        for r_idx, r in enumerate(data, 1):
+                            if r != [None]:
+                                for c_idx, value in enumerate(r, 1):
+                                    ws.cell(row=row + counter, column=col + c_idx, value=value)
+                                counter += 1
+
+                        values = Reference(
+                            ws, min_col=col + 2, min_row=row, max_col=col + c_idx, max_row=row + counter - 1
+                        )
+                        cats = Reference(ws, min_col=col + 1, min_row=row + 1, max_row=row + counter - 1)
+
+                        if "generation" in sector:
+                            chart = AreaChart(grouping="stacked")
+                        elif "efficiency" in sector:
+                            chart = LineChart()
+                        elif "CCS" in sector:
+                            chart = AreaChart()
+                        else:
+                            chart = LineChart()
+
+                        chart.add_data(values, titles_from_data=True)
+                        chart.set_categories(cats)
+                        chart.title = f"{region} - {sector}"
+                        chart.y_axis.title = ylabels[sector]
+                        chart.height = 8
+                        chart.width = 16
+                        chart.anchor = f"{get_column_letter(col + 2)}{row + 1}"
+                        ws.add_chart(chart)
+
+                        row += counter + 2
+
+                scenario_list.append((scenario["model"], scenario["pathway"]))
 
     wb.save(filename)
-
-
-
