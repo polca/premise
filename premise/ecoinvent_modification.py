@@ -74,19 +74,19 @@ from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
+from .scenario_report import generate_summary_report
 from .steel import Steel
 from .transformation import BaseTransformation
 from .transport import Transport
 from .utils import (
+    HiddenPrints,
     build_superstructure_db,
     eidb_label,
-    HiddenPrints,
-    warning_about_biogenic_co2,
+    hide_messages,
     info_on_utils_functions,
     print_version,
-    hide_messages
+    warning_about_biogenic_co2,
 )
-from .scenario_report import generate_summary_report
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -431,9 +431,6 @@ def check_time_horizon(th: int) -> int:
     return int(th)
 
 
-
-
-
 class NewDatabase:
     """
     Class that represents a new wurst inventory database, modified according to IAM data.
@@ -464,7 +461,7 @@ class NewDatabase:
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
         custom_scenario: dict = None,
-        quiet=False
+        quiet=False,
     ) -> None:
 
         self.source = source_db
@@ -1117,7 +1114,11 @@ class NewDatabase:
                 filepath,
             ).export_db_to_simapro()
 
-    def generate_scenario_report(self, filepath: [str, Path] = None, name: str = f"scenario_report_{date.today()}.xlsx"):
+    def generate_scenario_report(
+        self,
+        filepath: [str, Path] = None,
+        name: str = f"scenario_report_{date.today()}.xlsx",
+    ):
         """
         Generate a report of the scenarios.
         """
@@ -1140,5 +1141,3 @@ class NewDatabase:
         generate_summary_report(self.scenarios, filepath / name)
 
         print(f"Report saved under {filepath}.")
-
-
