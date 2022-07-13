@@ -17,10 +17,15 @@ IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
 IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
 IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
+IAM_OTHER_VARS = DATA_DIR / "utils" / "report" / "other_vars.yaml"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
+REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
 SECTORS = {
+    "Population": (IAM_OTHER_VARS, ["Population"]),
+    "GDP": (IAM_OTHER_VARS, ["GDP|PPP"]),
+    "CO2": (IAM_OTHER_VARS, ["Emi|CO2"]),
     "Electricity - generation": IAM_ELEC_VARS,
     "Electricity (biom) - generation": IAM_BIOMASS_VARS,
     "Electricity - efficiency": IAM_ELEC_VARS,
@@ -35,7 +40,9 @@ SECTORS = {
 }
 
 
-def get_variables(fp,):
+def get_variables(
+    fp,
+):
     with open(fp, "r") as stream:
         out = yaml.safe_load(stream)
 
@@ -47,19 +54,8 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     Generate a summary report of the scenarios.
     """
 
-    ylabels = {
-        "Electricity - generation": "Exajoules (EJ)",
-        "Electricity (biom) - generation": "Exajoules (EJ)",
-        "Electricity - efficiency": "Efficiency gains (2020 = 1)",
-        "Fuel - generation": "Exajoules (EJ)",
-        "Fuel - efficiency": "Efficiency gains (2020 = 1)",
-        "Cement - generation": "Millions of tons (MT)",
-        "Cement - efficiency": "Efficiency gains (2020 = 1)",
-        "Cement - CCS": "Share of emissions captured [%]",
-        "Steel - generation": "Millions of tons (MT)",
-        "Steel - efficiency": "Efficiency gains (2020 = 1)",
-        "Steel - CCS": "Share of emissions captured [%]",
-    }
+    with open(REPORT_METADATA_FILEPATH, "r") as stream:
+        metadata = yaml.safe_load(stream)
 
     wb = openpyxl.Workbook()
     wb.remove(wb.active)
@@ -73,7 +69,13 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
         ws = wb.create_sheet(sector)
 
-        col = 1
+        col, row = (1, 1)
+
+        ws.cell(
+            column=col,
+            row=row,
+            value=metadata[sector]["expl_text"],
+        )
 
         scenario_list = []
 
@@ -88,17 +90,21 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 elif "CCS" in sector:
                     iam_data = scenario["iam data"].carbon_capture_rate * 100
                 else:
-                    iam_data = scenario["iam data"].gains
+                    iam_data = scenario["iam data"].other_vars
 
                 col += s
 
                 if s == 0:
                     offset = 0
                 else:
-                    offset = len(iam_data.sel(
-                        variables=[v for v in vars
-                                   if v in iam_data.variables.values]
-                    ).variables)
+                    offset = len(
+                        iam_data.sel(
+                            variables=[
+                                v for v in vars
+                                if v in iam_data.variables.values
+                            ]
+                        ).variables
+                    )
 
                     if offset <= 10:
                         offset += 10
@@ -107,7 +113,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                 col += offset
 
-                row = 1
+                row = 3
 
                 ws.cell(
                     column=col,
@@ -126,10 +132,10 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                     row += 1
 
                     df = iam_data.sel(
-                            variables=[v for v in vars if v in iam_data.variables.values],
-                            region=region,
-                            year=[y for y in iam_data.coords["year"].values if y <= 2100],
-                        )
+                        variables=[v for v in vars if v in iam_data.variables.values],
+                        region=region,
+                        year=[y for y in iam_data.coords["year"].values if y <= 2100],
+                    )
 
                     if len(df) > 0:
                         df = df.to_dataframe("val")
@@ -143,13 +149,26 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                         for r_idx, r in enumerate(data, 1):
                             if r != [None]:
                                 for c_idx, value in enumerate(r, 1):
-                                    ws.cell(row=row + counter, column=col + c_idx, value=value)
+                                    ws.cell(
+                                        row=row + counter,
+                                        column=col + c_idx,
+                                        value=value,
+                                    )
                                 counter += 1
 
                         values = Reference(
-                            ws, min_col=col + 2, min_row=row, max_col=col + c_idx, max_row=row + counter - 1
+                            ws,
+                            min_col=col + 2,
+                            min_row=row,
+                            max_col=col + c_idx,
+                            max_row=row + counter - 1,
                         )
-                        cats = Reference(ws, min_col=col + 1, min_row=row + 1, max_row=row + counter - 1)
+                        cats = Reference(
+                            ws,
+                            min_col=col + 1,
+                            min_row=row + 1,
+                            max_row=row + counter - 1,
+                        )
 
                         if "generation" in sector:
                             chart = AreaChart(grouping="stacked")
@@ -163,7 +182,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                         chart.add_data(values, titles_from_data=True)
                         chart.set_categories(cats)
                         chart.title = f"{region} - {sector}"
-                        chart.y_axis.title = ylabels[sector]
+                        chart.y_axis.title = metadata[sector]["label"]
                         chart.height = 8
                         chart.width = 16
                         chart.anchor = f"{get_column_letter(col + 2)}{row + 1}"

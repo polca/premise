@@ -28,6 +28,7 @@ IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
 IAM_CROPS_VARS = DATA_DIR / "fuels" / "crops_properties.yml"
 IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
 IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
+IAM_OTHER_VARS = DATA_DIR / "utils" / "report" / "other_vars.yaml"
 IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
@@ -207,6 +208,7 @@ class IAMDataCollection:
 
         CCS_vars = self.__get_iam_variable_labels(IAM_CARBON_CAPTURE_VARS, key="iam_aliases")
 
+        other_vars = self.__get_iam_variable_labels(IAM_OTHER_VARS, key="iam_aliases")
 
         vars = list(prod_vars.values())
         vars.extend(eff_vars.values())
@@ -214,6 +216,7 @@ class IAMDataCollection:
         vars.extend(land_use_vars.values())
         vars.extend(land_use_change_vars.values())
         vars.extend(CCS_vars.values())
+        vars.extend(other_vars.values())
         new_vars = []
         for v in vars:
             if isinstance(v, list):
@@ -247,6 +250,8 @@ class IAMDataCollection:
             ),
             data=data,
         )
+
+        self.other_vars = self.__get_other_iam_vars(data=data)
 
         electricity_efficiencies = self.__get_iam_electricity_efficiencies(data=data)
         electricity_emissions = self.__get_gains_electricity_emissions(data=gains_data)
@@ -635,6 +640,22 @@ class IAMDataCollection:
                 ].sum(dim="variables")
 
         return market_shares
+
+    def __get_other_iam_vars(self, data: xr.DataArray) -> xr.DataArray:
+        """
+        Returns various IAM variables.
+
+        :return: array containing various IAM variables
+        """
+
+        labels = self.__get_iam_variable_labels(IAM_OTHER_VARS, key="iam_aliases")
+
+        list_vars = list(labels.values())
+        list_vars = [l for p in list_vars for l in p ]
+
+        data_to_return = data.loc[:, list_vars, :]
+
+        return data_to_return
 
     def __get_iam_electricity_markets(self, data: xr.DataArray) -> xr.DataArray:
         """

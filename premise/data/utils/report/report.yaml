@@ -1,0 +1,42 @@
+Population:
+  label: million persons
+  expl_text: Not used by premise. For informative purpose only.
+GDP:
+  label: billion dollars
+  expl_text: Not used by premise. Annual gross domestic product. For informative purpose only.
+CO2:
+  label: million tons
+  expl_text: Not used by premise. Annual CO2 emissions (not CO2-eq.). For informative purpose only.
+Electricity - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of electricity, per technology. Used to calculate the electricty supply mix. All technologies supply at high voltage except Residential PV.
+Electricity (biom) - generation:
+  label: Exajoules (EJ)
+  expl_text: Volumes of biomass used to generate electrical power (biomass-based CHP, biomass-based IGCC, etc.). Used to calculate supply mix of biomass used as fuel.
+Electricity - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per (combustion-based) technology relative to 2020. Used to calibrate the efficiency of the electricity-producing datasets. The efficiency of renewables is calibrated separately.
+Fuel - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of fuel, per technology. Used to calculate fuel supply mixes.
+Fuel - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+Cement - generation:
+  label: Millions of tons (MT)
+  expl_text: Generated volumes of cement.
+Cement - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains relative to 2020. Used to calibrate the efficiency of the clinker-producing datasets.
+Cement - CCS:
+  label: Share of emissions captured [%]
+  expl_text: Share of cement emissions captured by CCS. Used to adjust the use of CCS in clinker-producing datasets.
+Steel - generation:
+  label: Millions of tons (MT)
+  expl_text: Generated volumes of steel by type (i.e., primary vs. secondary). Used to calculate steel supply mixes.
+Steel - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the steel-producing datasets.
+Steel - CCS:
+  label: Share of emissions captured [%]
+  expl_text: Share of steel emissions captured by CCS. Used to adjust the use of CCS in steel-producing datasets.
