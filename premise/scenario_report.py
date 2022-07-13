@@ -2,15 +2,17 @@
 This module export a summary of scenario to an Excel file.
 """
 
-import openpyxl
-from openpyxl.styles import Font
-from openpyxl.utils.dataframe import dataframe_to_rows
-from openpyxl.chart import AreaChart, LineChart, Reference
-from openpyxl.utils import get_column_letter
-from pathlib import Path
-from . import DATA_DIR
-import yaml
 import string
+from pathlib import Path
+
+import openpyxl
+import yaml
+from openpyxl.chart import AreaChart, LineChart, Reference
+from openpyxl.styles import Font
+from openpyxl.utils import get_column_letter
+from openpyxl.utils.dataframe import dataframe_to_rows
+
+from . import DATA_DIR
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
@@ -100,8 +102,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                     offset = len(
                         iam_data.sel(
                             variables=[
-                                v for v in vars
-                                if v in iam_data.variables.values
+                                v for v in vars if v in iam_data.variables.values
                             ]
                         ).variables
                     )

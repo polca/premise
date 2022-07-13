@@ -201,12 +201,14 @@ class IAMDataCollection:
         eff_vars.update(
             self.__get_iam_variable_labels(IAM_BIOMASS_VARS, key="eff_aliases")
         )
-        land_use_vars = self.__get_iam_variable_labels(
-            IAM_CROPS_VARS, key="land_use"
+        land_use_vars = self.__get_iam_variable_labels(IAM_CROPS_VARS, key="land_use")
+        land_use_change_vars = self.__get_iam_variable_labels(
+            IAM_CROPS_VARS, key="land_use_change"
         )
-        land_use_change_vars= self.__get_iam_variable_labels(IAM_CROPS_VARS, key="land_use_change")
 
-        CCS_vars = self.__get_iam_variable_labels(IAM_CARBON_CAPTURE_VARS, key="iam_aliases")
+        CCS_vars = self.__get_iam_variable_labels(
+            IAM_CARBON_CAPTURE_VARS, key="iam_aliases"
+        )
 
         other_vars = self.__get_iam_variable_labels(IAM_OTHER_VARS, key="iam_aliases")
 
@@ -651,7 +653,7 @@ class IAMDataCollection:
         labels = self.__get_iam_variable_labels(IAM_OTHER_VARS, key="iam_aliases")
 
         list_vars = list(labels.values())
-        list_vars = [l for p in list_vars for l in p ]
+        list_vars = [l for p in list_vars for l in p]
 
         data_to_return = data.loc[:, list_vars, :]
 
@@ -766,32 +768,34 @@ class IAMDataCollection:
             else:
                 raise SystemExit
 
-        data_to_return = data_to_return / data_to_return.sel(
-            year=2020
-        )
+        data_to_return = data_to_return / data_to_return.sel(year=2020)
 
         # If we are looking at a year post 2020
         # and the ratio in efficiency change is inferior to 1
         # we correct it to 1, as we do not accept
         # that efficiency degrades over time
-        data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y > 2020])] = (
-            np.clip(
-                data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y > 2020])],
-                1,
-                None
-            )
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y > 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y > 2020])
+            ],
+            1,
+            None,
         )
 
         # Inversely, if we are looking at a year prior to 2020
         # and the ratio in efficiency change is superior to 1
         # we correct it to 1, as we do not accept
         # that efficiency in the past was higher than now
-        data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y < 2020])] = (
-            np.clip(
-                data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y < 2020])],
-                None,
-                1
-            )
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y < 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y < 2020])
+            ],
+            None,
+            1,
         )
 
         # ensure that efficiency does not decrease over time
@@ -829,7 +833,6 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-
         if len(self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="eff_aliases")) > 0:
             eff = self.__get_iam_variable_labels(IAM_CEMENT_VARS, key="eff_aliases")
 
@@ -861,32 +864,34 @@ class IAMDataCollection:
                 var = data_to_return.variables.values.tolist()
                 data_to_return = data_to_return.sel(variables=[var[0]])
 
-        data_to_return = data_to_return / data_to_return.sel(
-            year=2020
-        )
+        data_to_return = data_to_return / data_to_return.sel(year=2020)
 
         # If we are looking at a year post 2020
         # and the ratio in specific energy use change is superior to 1
         # we correct it to 1, as we do not accept
         # that efficiency degrades over time
-        data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y > 2020])] = (
-            np.clip(
-                data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y > 2020])],
-                1,
-                None
-            )
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y > 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y > 2020])
+            ],
+            1,
+            None,
         )
 
         # Inversely, if we are looking at a year prior to 2020
         # and the ratio in specific energy use change is inferior to 1
         # we correct it to 1, as we do not accept
         # that efficiency in the past was higher than now
-        data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y < 2020])] = (
-            np.clip(
-                data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y < 2020])],
-                None,
-                1
-            )
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y < 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y < 2020])
+            ],
+            None,
+            1,
         )
 
         # ensure that efficiency does not decrease over time
@@ -963,7 +968,6 @@ class IAMDataCollection:
         # primary steel efficiency changes relative to 2020
         data_primary = data_primary / data_primary.sel(year=2020)
 
-
         if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")) > 0:
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, key="eff_aliases")
 
@@ -1002,9 +1006,7 @@ class IAMDataCollection:
                 data_secondary = data_secondary.sel(variables=[var[0]])
 
         # secondary steel efficiency changes relative to 2020
-        data_secondary = data_secondary / data_secondary.sel(
-            year=2020
-        )
+        data_secondary = data_secondary / data_secondary.sel(year=2020)
 
         data_to_return = xr.concat([data_primary, data_secondary], dim="variables")
 
@@ -1012,24 +1014,28 @@ class IAMDataCollection:
         # and the ratio in specific energy use change is superior to 1
         # we correct it to 1, as we do not accept
         # that efficiency degrades over time
-        data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y > 2020])] = (
-            np.clip(
-                data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y > 2020])],
-                1,
-                None
-            )
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y > 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y > 2020])
+            ],
+            1,
+            None,
         )
 
         # Inversely, if we are looking at a year prior to 2020
         # and the ratio in specific energy use change is inferior to 1
         # we correct it to 1, as we do not accept
         # that efficiency in the past was higher than now
-        data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y < 2020])] = (
-            np.clip(
-                data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y < 2020])],
-                None,
-                1
-            )
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y < 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y < 2020])
+            ],
+            None,
+            1,
         )
 
         # ensure that efficiency can not decrease over time
@@ -1366,32 +1372,34 @@ class IAMDataCollection:
             else:
                 raise SystemExit
 
-        data_to_return = data_to_return / data_to_return.sel(
-            year=2020
-        )
+        data_to_return = data_to_return / data_to_return.sel(year=2020)
 
         # If we are looking at a year post 2020
         # and the ratio in specific energy use change is superior to 1
         # we correct it to 1, as we do not accept
         # that efficiency degrades over time
-        data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y > 2020])] = (
-            np.clip(
-                data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y > 2020])],
-                1,
-                None
-            )
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y > 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y > 2020])
+            ],
+            1,
+            None,
         )
 
         # Inversely, if we are looking at a year prior to 2020
         # and the ratio in specific energy use change is inferior to 1
         # we correct it to 1, as we do not accept
         # that efficiency in the past was higher than now
-        data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y < 2020])] = (
-            np.clip(
-                data_to_return.loc[dict(year=[y for y in data_to_return.year.values if y < 2020])],
-                None,
-                1
-            )
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y < 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y < 2020])
+            ],
+            None,
+            1,
         )
 
         # ensure that efficiency does not decrease over time
@@ -1438,17 +1446,18 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
 
-        cement_rate = (
-                data.loc[:, dict_vars["cement - cco2"], :].sum(dim=["variables"])
-                /
-                data.loc[:, dict_vars["cement - co2"] + dict_vars["cement - cco2"], :].sum(dim=["variables"])
+        cement_rate = data.loc[:, dict_vars["cement - cco2"], :].sum(
+            dim=["variables"]
+        ) / data.loc[:, dict_vars["cement - co2"] + dict_vars["cement - cco2"], :].sum(
+            dim=["variables"]
         )
 
         cement_rate.coords["variables"] = "cement"
 
-        steel_rate = (
-                data.loc[:, dict_vars["steel - cco2"], :].sum(dim="variables")
-                / data.loc[:, dict_vars["steel - co2"] + dict_vars["steel - cco2"], :].sum(dim="variables")
+        steel_rate = data.loc[:, dict_vars["steel - cco2"], :].sum(
+            dim="variables"
+        ) / data.loc[:, dict_vars["steel - co2"] + dict_vars["steel - cco2"], :].sum(
+            dim="variables"
         )
         steel_rate.coords["variables"] = "steel"
 
