@@ -119,16 +119,21 @@ class Cement(BaseTransformation):
         # we adjust the heat needs by subtraction 3.66 MJ with what
         # the cement plant is expected to produce as excess heat
 
-        # Heat, as steam: 3.66 MJ/kg CO2 captured, minus excess heat generated on site
-        excess_heat_generation = self.iam_data.gnr_data.sel(
-            variables="Share of recovered energy, per ton clinker",
-            region=self.geo.iam_to_iam_region(loc, from_iam="remind")
-            if self.model == "image"
-            else loc,
-        ).values * (energy_input.sum() / 1000)
+        # Heat, as steam: 3.66 MJ/kg CO2 captured in 2020,
+        # decreasing to 2.6 GJ/t by 2050, by looking at
+        # the best-performing state-of-the-art technologies today
+        # https://www.globalccsinstitute.com/wp-content/uploads/2022/05/State-of-the-Art-CCS-Technologies-2022.pdf
+        # minus excess heat generated on site
+        # the contribution of excess heat is assumed to be
+        # 15% of the overall heat input with today's heat requirement
+        # (see IEA 2018 cement roadmap report)
+
+        heat_input = np.clip(np.interp(self.year, [2020, 2050], [3.66, 2.6]), 2.6, 3.66)
+        excess_heat_generation = 3.66 * 0.15
+        fossil_heat_input = heat_input - excess_heat_generation
 
         for exc in ws.technosphere(ccs, ws.contains("name", "steam production")):
-            exc["amount"] = np.clip(3.66 - excess_heat_generation, 0, 3.66)
+            exc["amount"] = fossil_heat_input
 
         # then, we need to find local suppliers of electricity, water, steam, etc.
         self.cache, ccs = relink_technosphere_exchanges(
@@ -218,10 +223,16 @@ class Cement(BaseTransformation):
             # divided by the ratio fuel/output in 2020
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable="cement",
-                location=dataset["location"]
+                variable="cement", location=dataset["location"]
             )
             energy_input_per_ton_clinker *= scaling_factor
+
+            # Limit the energy input to the upper bound value
+            # of the theoretical minimum considered by the IEA of
+            # 2.8 GJ/t clinker.
+            energy_input_per_ton_clinker = np.clip(
+                energy_input_per_ton_clinker, 2.8, None
+            )
 
             # Fuel mix (waste, biomass, fossil)
             fuel_mix = self.iam_data.gnr_data.sel(
@@ -355,7 +366,8 @@ class Cement(BaseTransformation):
                 loc=dataset["location"], sector="cement"
             )
 
-            # Update fossil CO2 exchange, add 525 kg of fossil CO_2 from calcination
+            # Update fossil CO2 exchange,
+            # add 525 kg of fossil CO_2 from calcination
             co2_exc = [
                 e for e in dataset["exchanges"] if e["name"] == "Carbon dioxide, fossil"
             ]
