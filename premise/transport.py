@@ -11,8 +11,8 @@ from typing import Any, Dict, List, Union
 
 import numpy as np
 import pandas as pd
-import yaml
 import xarray as xr
+import yaml
 
 from .ecoinvent_modification import INVENTORY_DIR
 from .inventory_imports import VariousVehicles
@@ -524,7 +524,7 @@ class Transport(BaseTransformation):
                     model=self.model,
                     scenario=self.scenario,
                     regions=self.regions,
-                    arr=arr
+                    arr=arr,
                 )
 
                 # cleaning up
