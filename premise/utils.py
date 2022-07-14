@@ -918,6 +918,12 @@ def info_on_utils_functions():
             ("Retrieves the list " "of countries for each " "region of the model."),
         ]
     )
+    t.add_row(
+        [
+            "ndb.NewDatabase(...)\nndb.generate_scenario_report()",
+            ("Generates a summary of the most important scenarios' variables."),
+        ]
+    )
     # align text to the left
     t.align = "l"
     t.hrules = ALL
@@ -951,5 +957,5 @@ def warning_about_biogenic_co2() -> None:
 
 def hide_messages():
 
-    print("Hides these messages?")
+    print("Hide these messages?")
     print("NewDatabase(..., quiet=True)")

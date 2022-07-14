@@ -30,6 +30,13 @@ IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
 IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
 IAM_OTHER_VARS = DATA_DIR / "utils" / "report" / "other_vars.yaml"
 IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
+FILEPATH_FLEET_COMP = (
+    DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
+)
+FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
+    DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
+)
+VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
@@ -137,6 +144,40 @@ def get_gains_data() -> xr.DataArray:
 
     return array / 8760  # per TWha --> per TWh
 
+def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, None]:
+
+    if not FILEPATH_FLEET_COMP.is_file():
+        raise FileNotFoundError("The fleet composition file could not be found.")
+
+    if model == "remind":
+        dataframe = pd.read_csv(FILEPATH_FLEET_COMP, sep=";")
+    else:
+        dataframe = pd.read_csv(FILEPATH_IMAGE_TRUCKS_FLEET_COMP, sep=";")
+
+    dataframe = dataframe.loc[~dataframe["region"].isnull()]
+
+    with open(VEHICLES_MAP, "r") as stream:
+        size_ftr = yaml.safe_load(stream)[vehicle_type]["sizes"]
+
+    dataframe = dataframe.loc[dataframe["size"].isin(size_ftr)]
+
+    if len(dataframe) > 0:
+
+        #dataframe["variables"] = dataframe["powertrain"] + " - " + dataframe["construction_year"].astype(str) + " - " + dataframe["size"]
+        #dataframe = dataframe.drop(["powertrain", "construction_year", "size"], axis=1)
+
+        arr = (
+            dataframe.groupby(["region", "year", "powertrain", "construction_year", "size"])
+            .sum()["vintage_demand_vkm"]
+            .to_xarray()
+        )
+        arr = arr.fillna(0)
+
+        return arr
+
+    else:
+
+        return None
 
 class IAMDataCollection:
 
@@ -285,6 +326,10 @@ class IAMDataCollection:
         else:
             self.land_use = None
             self.land_use_change = None
+
+        self.trsp_cars = get_vehicle_fleet_composition(self.model, vehicle_type="car")
+        self.trsp_trucks = get_vehicle_fleet_composition(self.model, vehicle_type="truck")
+        self.trsp_buses = get_vehicle_fleet_composition(self.model, vehicle_type="bus")
 
     def get_custom_data(self, custom_scenario):
 

@@ -1,6 +1,6 @@
 """
 transport.py contains the class Transport, which takes care of importing inventories
-for a number of different vehicle types, and create fleet average vehicles base don
+for a number of different vehicle types, and create fleet average vehicles based on
 IAM data, and integrate them into the database.
 """
 
@@ -12,6 +12,7 @@ from typing import Any, Dict, List, Union
 import numpy as np
 import pandas as pd
 import yaml
+import xarray as xr
 
 from .ecoinvent_modification import INVENTORY_DIR
 from .inventory_imports import VariousVehicles
@@ -92,6 +93,7 @@ def create_fleet_vehicles(
     model: str,
     scenario: str,
     regions: List[str],
+    arr: xr.DataArray,
 ) -> List[dict[str, Union[Union[str, float], Any]]]:
     """
     Create datasets for fleet average vehicles based on IAM fleet data.
@@ -109,21 +111,6 @@ def create_fleet_vehicles(
 
     if not FILEPATH_FLEET_COMP.is_file():
         raise FileNotFoundError("The fleet composition file could not be found.")
-
-    if model == "remind" or vehicle_type != "truck":
-        dataframe = pd.read_csv(FILEPATH_FLEET_COMP, sep=";")
-        dataframe["region"] = dataframe["region"].map(regions_mapping)
-    else:
-        dataframe = pd.read_csv(FILEPATH_IMAGE_TRUCKS_FLEET_COMP, sep=";")
-
-    dataframe = dataframe.loc[~dataframe["region"].isnull()]
-
-    arr = (
-        dataframe.groupby(["year", "region", "powertrain", "construction_year", "size"])
-        .sum()["vintage_demand_vkm"]
-        .to_xarray()
-    )
-    arr = arr.fillna(0)
 
     vehicles_map = get_vehicles_mapping()
 
@@ -518,34 +505,46 @@ class Transport(BaseTransformation):
                 )
             ]
 
-            fleet_act = create_fleet_vehicles(
-                datasets.import_db.data,
-                regions_mapping=region_map,
-                vehicle_type=self.vehicle_type,
-                year=self.year,
-                model=self.model,
-                scenario=self.scenario,
-                regions=self.regions,
-            )
+            if self.vehicle_type == "car":
+                arr = self.iam_data.trsp_cars
+            elif self.vehicle_type == "truck":
+                arr = self.iam_data.trsp_trucks
+            elif self.vehicle_type == "bus":
+                arr = self.iam_data.trsp_buses
+            else:
+                arr = None
 
-            # cleaning up
-            # we remove vehicles that
-            # are not used by fleet vehicles
-            fleet_vehicles = []
+            if arr is not None:
 
-            for a in fleet_act:
-                for e in a["exchanges"]:
-                    if e["type"] == "technosphere":
-                        fleet_vehicles.append(e["name"])
+                fleet_act = create_fleet_vehicles(
+                    datasets.import_db.data,
+                    regions_mapping=region_map,
+                    vehicle_type=self.vehicle_type,
+                    year=self.year,
+                    model=self.model,
+                    scenario=self.scenario,
+                    regions=self.regions,
+                    arr=arr
+                )
 
-            datasets.import_db.data = [
-                a
-                for a in datasets.import_db.data
-                if not a["name"].startswith("transport, ")
-                or a["name"] in fleet_vehicles
-            ]
+                # cleaning up
+                # we remove vehicles that
+                # are not used by fleet vehicles
+                fleet_vehicles = []
 
-            datasets.import_db.data.extend(fleet_act)
+                for a in fleet_act:
+                    for e in a["exchanges"]:
+                        if e["type"] == "technosphere":
+                            fleet_vehicles.append(e["name"])
+
+                datasets.import_db.data = [
+                    a
+                    for a in datasets.import_db.data
+                    if not a["name"].startswith("transport, ")
+                    or a["name"] in fleet_vehicles
+                ]
+
+                datasets.import_db.data.extend(fleet_act)
 
         else:
 

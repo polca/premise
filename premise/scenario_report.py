@@ -22,6 +22,7 @@ GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtech
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
+VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 SECTORS = {
     "Population": (IAM_OTHER_VARS, ["Population"]),
     "GDP": (IAM_OTHER_VARS, ["GDP|PPP"]),
@@ -37,6 +38,9 @@ SECTORS = {
     "Steel - generation": IAM_STEEL_VARS,
     "Steel - efficiency": IAM_STEEL_VARS,
     "Steel - CCS": (IAM_CARBON_CAPTURE_VARS, ["steel"]),
+    "Transport (cars)": (VEHICLES_MAP, ['BEV', 'FCEV', 'ICEV-d', 'ICEV-g', 'ICEV-p', 'PHEV-d', 'PHEV-p']),
+    "Transport (buses)": (VEHICLES_MAP, ['BEV', 'FCEV', 'ICEV-d', 'ICEV-g', 'ICEV-p', 'PHEV-d', 'PHEV-p']),
+    "Transport (trucks)": (VEHICLES_MAP, ['BEV', 'FCEV', 'ICEV-d', 'ICEV-g', 'ICEV-p', 'PHEV-d', 'PHEV-p']),
 }
 
 
@@ -79,6 +83,8 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
         scenario_list = []
 
+        last_col_used = 0
+
         for s, scenario in enumerate(scenarios):
 
             if (scenario["model"], scenario["pathway"]) not in scenario_list:
@@ -89,29 +95,29 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                     iam_data = scenario["iam data"].efficiency
                 elif "CCS" in sector:
                     iam_data = scenario["iam data"].carbon_capture_rate * 100
+                elif "car" in sector:
+                    if scenario["iam data"].trsp_cars is not None:
+                        iam_data = scenario["iam data"].trsp_cars.sum(dim=["size", "construction_year"])
+                        iam_data = iam_data.rename({"powertrain": "variables"}).T
+                    else:
+                        continue
+                elif "bus" in sector:
+                    if scenario["iam data"].trsp_buses is not None:
+                        iam_data = scenario["iam data"].trsp_buses.sum(dim=["size", "construction_year"])
+                        iam_data = iam_data.rename({"powertrain": "variables"}).T
+                    else:
+                        continue
+                elif "truck" in sector:
+                    if scenario["iam data"].trsp_trucks is not None:
+                        iam_data = scenario["iam data"].trsp_trucks.sum(dim=["size", "construction_year"])
+                        iam_data = iam_data.rename({"powertrain": "variables"}).T
+                    else:
+                        continue
                 else:
                     iam_data = scenario["iam data"].other_vars
 
-                col += s
-
-                if s == 0:
-                    offset = 0
-                else:
-                    offset = len(
-                        iam_data.sel(
-                            variables=[
-                                v for v in vars
-                                if v in iam_data.variables.values
-                            ]
-                        ).variables
-                    )
-
-                    if offset <= 10:
-                        offset += 10
-                    else:
-                        offset += 5
-
-                col += offset
+                if s > 0:
+                    col = last_col_used + metadata[sector]["offset"]
 
                 row = 3
 
@@ -129,7 +135,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 for region in scenario["iam data"].regions:
                     ws.cell(column=col, row=row, value=region)
 
-                    row += 1
+                    row += 3
 
                     df = iam_data.sel(
                         variables=[v for v in vars if v in iam_data.variables.values],
@@ -154,6 +160,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                                         column=col + c_idx,
                                         value=value,
                                     )
+                                    last_col_used = col + c_idx
                                 counter += 1
 
                         values = Reference(
@@ -176,6 +183,8 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                             chart = LineChart()
                         elif "CCS" in sector:
                             chart = AreaChart()
+                        elif "Transport" in sector:
+                            chart = AreaChart(grouping="stacked")
                         else:
                             chart = LineChart()
 
