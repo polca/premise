@@ -339,8 +339,7 @@ class Steel(BaseTransformation):
                     else "steel - secondary"
                 )
                 scaling_factor = 1 / self.find_iam_efficiency_change(
-                    variable=sector,
-                    location=activity["location"]
+                    variable=sector, location=activity["location"]
                 )
 
                 # update comments

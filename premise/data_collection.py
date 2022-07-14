@@ -144,6 +144,7 @@ def get_gains_data() -> xr.DataArray:
 
     return array / 8760  # per TWha --> per TWh
 
+
 def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, None]:
 
     if not FILEPATH_FLEET_COMP.is_file():
@@ -163,11 +164,13 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
 
     if len(dataframe) > 0:
 
-        #dataframe["variables"] = dataframe["powertrain"] + " - " + dataframe["construction_year"].astype(str) + " - " + dataframe["size"]
-        #dataframe = dataframe.drop(["powertrain", "construction_year", "size"], axis=1)
+        # dataframe["variables"] = dataframe["powertrain"] + " - " + dataframe["construction_year"].astype(str) + " - " + dataframe["size"]
+        # dataframe = dataframe.drop(["powertrain", "construction_year", "size"], axis=1)
 
         arr = (
-            dataframe.groupby(["region", "year", "powertrain", "construction_year", "size"])
+            dataframe.groupby(
+                ["region", "year", "powertrain", "construction_year", "size"]
+            )
             .sum()["vintage_demand_vkm"]
             .to_xarray()
         )
@@ -178,6 +181,7 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
     else:
 
         return None
+
 
 class IAMDataCollection:
 
@@ -330,7 +334,9 @@ class IAMDataCollection:
             self.land_use_change = None
 
         self.trsp_cars = get_vehicle_fleet_composition(self.model, vehicle_type="car")
-        self.trsp_trucks = get_vehicle_fleet_composition(self.model, vehicle_type="truck")
+        self.trsp_trucks = get_vehicle_fleet_composition(
+            self.model, vehicle_type="truck"
+        )
         self.trsp_buses = get_vehicle_fleet_composition(self.model, vehicle_type="bus")
 
     def get_custom_data(self, custom_scenario):

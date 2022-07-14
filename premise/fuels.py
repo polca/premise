@@ -1032,8 +1032,7 @@ class Fuels(BaseTransformation):
         if vars:
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable=vars,
-                location=region
+                variable=vars, location=region
             )
 
             # Rescale all the technosphere exchanges according to the IAM efficiency values

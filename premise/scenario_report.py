@@ -2,15 +2,17 @@
 This module export a summary of scenario to an Excel file.
 """
 
-import openpyxl
-from openpyxl.styles import Font
-from openpyxl.utils.dataframe import dataframe_to_rows
-from openpyxl.chart import AreaChart, LineChart, Reference
-from openpyxl.utils import get_column_letter
-from pathlib import Path
-from . import DATA_DIR
-import yaml
 import string
+from pathlib import Path
+
+import openpyxl
+import yaml
+from openpyxl.chart import AreaChart, LineChart, Reference
+from openpyxl.styles import Font
+from openpyxl.utils import get_column_letter
+from openpyxl.utils.dataframe import dataframe_to_rows
+
+from . import DATA_DIR
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
@@ -38,9 +40,18 @@ SECTORS = {
     "Steel - generation": IAM_STEEL_VARS,
     "Steel - efficiency": IAM_STEEL_VARS,
     "Steel - CCS": (IAM_CARBON_CAPTURE_VARS, ["steel"]),
-    "Transport (cars)": (VEHICLES_MAP, ['BEV', 'FCEV', 'ICEV-d', 'ICEV-g', 'ICEV-p', 'PHEV-d', 'PHEV-p']),
-    "Transport (buses)": (VEHICLES_MAP, ['BEV', 'FCEV', 'ICEV-d', 'ICEV-g', 'ICEV-p', 'PHEV-d', 'PHEV-p']),
-    "Transport (trucks)": (VEHICLES_MAP, ['BEV', 'FCEV', 'ICEV-d', 'ICEV-g', 'ICEV-p', 'PHEV-d', 'PHEV-p']),
+    "Transport (cars)": (
+        VEHICLES_MAP,
+        ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+    ),
+    "Transport (buses)": (
+        VEHICLES_MAP,
+        ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+    ),
+    "Transport (trucks)": (
+        VEHICLES_MAP,
+        ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+    ),
 }
 
 
@@ -97,19 +108,25 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                     iam_data = scenario["iam data"].carbon_capture_rate * 100
                 elif "car" in sector:
                     if scenario["iam data"].trsp_cars is not None:
-                        iam_data = scenario["iam data"].trsp_cars.sum(dim=["size", "construction_year"])
+                        iam_data = scenario["iam data"].trsp_cars.sum(
+                            dim=["size", "construction_year"]
+                        )
                         iam_data = iam_data.rename({"powertrain": "variables"}).T
                     else:
                         continue
                 elif "bus" in sector:
                     if scenario["iam data"].trsp_buses is not None:
-                        iam_data = scenario["iam data"].trsp_buses.sum(dim=["size", "construction_year"])
+                        iam_data = scenario["iam data"].trsp_buses.sum(
+                            dim=["size", "construction_year"]
+                        )
                         iam_data = iam_data.rename({"powertrain": "variables"}).T
                     else:
                         continue
                 elif "truck" in sector:
                     if scenario["iam data"].trsp_trucks is not None:
-                        iam_data = scenario["iam data"].trsp_trucks.sum(dim=["size", "construction_year"])
+                        iam_data = scenario["iam data"].trsp_trucks.sum(
+                            dim=["size", "construction_year"]
+                        )
                         iam_data = iam_data.rename({"powertrain": "variables"}).T
                     else:
                         continue

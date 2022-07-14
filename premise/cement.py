@@ -218,8 +218,7 @@ class Cement(BaseTransformation):
             # divided by the ratio fuel/output in 2020
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable="cement",
-                location=dataset["location"]
+                variable="cement", location=dataset["location"]
             )
             energy_input_per_ton_clinker *= scaling_factor
 
