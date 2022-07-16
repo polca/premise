@@ -16,7 +16,6 @@ This user guide will help you navigate the inner workings of *premise*.
    extract
    transform
    load
-   
 
 Technical Reference
 ===================
@@ -26,8 +25,8 @@ Technical Reference
    :template: custom-module-template.rst
    :recursive:
 
-   premise.ecoinvent_modification
    premise.clean_datasets
+   premise.ecoinvent_modification
    premise.data_collection
    premise.geomap
    premise.activity_maps

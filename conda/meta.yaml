@@ -24,7 +24,7 @@ requirements:
     - bw2io
     - bw2calc
     - bw2data
-    - wurst ==0.3.0
+    - wurst
     - xarray
     - prettytable
     - pycountry

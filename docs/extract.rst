@@ -626,7 +626,7 @@ Synthetic fuels
 following two pathways:
 
 * *Fischer-Tropsch*: it uses hydrogen and CO (from CO2 via a reverse water gas
-  shit process) to produce syncrude, which is cracked into diesel, kerosene,
+  shift process) to produce syncrude, which is cracked into diesel, kerosene,
   naphtha and lubricating oil. Inventories are from van der Giesen_ et al. 2014.
 * *Methanol-to-liquids*: methanol is synthesized from hydrogen and CO2, and further
   distilled into gasoline, diesel, LGP and kerosene. Synthetic methanol inventories

@@ -21,10 +21,11 @@ If several databases have been built, the user can give them specific names, lik
 
     ndb.write_db_to_brightway(name=["db_1", "db_2"])
 
+
 Superstructure database
 ***********************
 
-If several databases re built, *premise* can generate a superstructure database,
+If several scenario databases are built, *premise* can generate a superstructure database,
 as explained in Steubing_ et al, 2021. This allows to explore several scenarios
 while writing only one database in a brightway2 project. Besides writing the
 database to disk, this also creates a *scenario difference file* that will be read
@@ -38,6 +39,20 @@ This is done as follows:
 .. code-block:: python
 
     ndb.write_superstructure_db_to_brightway()
+
+You can also specify a file path for the export of the scenario
+difference file:
+
+.. code-block:: python
+
+    ndb.write_superstructure_db_to_brightway(filepath="some_file_path")
+
+Finally, you can also give a name to the superstructure database:
+
+.. code-block:: python
+
+    ndb.write_superstructure_db_to_brightway(filepath="some_file_path", name="my_db")
+
 
 .. note::
 
