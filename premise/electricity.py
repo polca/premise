@@ -1348,6 +1348,7 @@ class Electricity(BaseTransformation):
                         ]
 
                         for provider in providers:
+
                             provider_ds = ws.get_one(
                                 self.database,
                                 ws.equals("name", provider["name"]),

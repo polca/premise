@@ -273,7 +273,6 @@ class BaseTransformation:
             )
 
         if len(key) > 0:
-
             if "parameters" in dataset:
                 dataset["parameters"]["efficiency"] = dataset["parameters"][key[0]]
             else:
@@ -717,14 +716,117 @@ class BaseTransformation:
         """
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
-            rate = self.iam_data.carbon_capture_rate.sel(
-                variables=sector,
-                region=loc,
-            ).values
+            rate = (
+                self.iam_data.carbon_capture_rate.sel(
+                    variables=sector,
+                    region=loc,
+                )
+                .interp(year=self.year)
+                .values
+            )
         else:
             rate = 0
 
         return rate
+
+    def create_ccs_dataset(
+        self,
+        loc: str,
+        bio_co2_stored: float,
+        bio_co2_leaked: float,
+    ) -> None:
+        """
+        Create a CCS dataset, reflecting the share of fossil vs. biogenic CO2.
+
+        Source for CO2 capture and compression:
+        https://www.sciencedirect.com/science/article/pii/S1750583613001230?via%3Dihub#fn0040
+
+        :param loc: location of the dataset to create
+        :param bio_co2_stored: share of biogenic CO2 over biogenic + fossil CO2
+        :param bio_co2_leaked: share of biogenic CO2 leaked back into the atmosphere
+        :return: Does not return anything, but adds the dataset to the database.
+        """
+
+        # select the dataset
+        # it is initially made for a cement plant, but it should be possible to
+        # use it for any plant with a similar flue gas composition (CO2 concentration
+        # and composition of the flue gas).
+        dataset = ws.get_one(
+            self.database,
+            ws.equals(
+                "name",
+                "CO2 capture, at cement production plant, "
+                "with underground storage, post, 200 km",
+            ),
+            ws.equals("location", "RER"),
+        )
+
+        # duplicate the dataset
+        ccs = wt.copy_to_new_location(dataset, loc)
+        ccs["code"] = str(uuid.uuid4().hex)
+
+        # relink the providers inside the dataset given the new location
+        self.cache, ccs = relink_technosphere_exchanges(
+            ccs, self.database, self.model, cache=self.cache
+        )
+
+        if "input" in ccs:
+            ccs.pop("input")
+
+        # we first fix the biogenic CO2 permanent storage
+        # this corresponds to the share of biogenic CO2
+        # in the fossil + biogenic CO2 emissions of the plant
+        if bio_co2_stored > 0:
+            for exc in ws.biosphere(
+                ccs,
+                ws.equals("name", "Carbon dioxide, in air"),
+            ):
+                exc["amount"] = bio_co2_stored
+
+        if bio_co2_leaked > 0:
+
+            # then the biogenic CO2 leaked during the capture process
+            for exc in ws.biosphere(
+                ccs,
+                ws.equals("name", "Carbon dioxide, non-fossil"),
+            ):
+                exc["amount"] = bio_co2_leaked
+
+        # the rest of CO2 leaked is fossil
+        for exc in ws.biosphere(ccs, ws.equals("name", "Carbon dioxide, fossil")):
+            exc["amount"] = 0.11 - bio_co2_leaked
+
+        # we adjust the heat needs by subtraction 3.66 MJ with what
+        # the plant is expected to produce as excess heat
+
+        # Heat, as steam: 3.66 MJ/kg CO2 captured in 2020,
+        # decreasing to 2.6 GJ/t by 2050, by looking at
+        # the best-performing state-of-the-art technologies today
+        # https://www.globalccsinstitute.com/wp-content/uploads/2022/05/State-of-the-Art-CCS-Technologies-2022.pdf
+        # minus excess heat generated on site
+        # the contribution of excess heat is assumed to be
+        # 15% of the overall heat input with today's heat requirement
+        # (see IEA 2018 cement roadmap report)
+
+        heat_input = np.clip(np.interp(self.year, [2020, 2050], [3.66, 2.6]), 2.6, 3.66)
+        excess_heat_generation = 3.66 * 0.15
+        fossil_heat_input = heat_input - excess_heat_generation
+
+        for exc in ws.technosphere(ccs, ws.contains("name", "steam production")):
+            exc["amount"] = fossil_heat_input
+
+        # then, we need to find local suppliers of electricity, water, steam, etc.
+        self.cache, ccs = relink_technosphere_exchanges(
+            ccs, self.database, self.model, cache=self.cache
+        )
+
+        # Add created dataset to `self.list_datasets`
+        self.list_datasets.append(
+            (ccs["name"], ccs["reference product"], ccs["location"])
+        )
+
+        # finally, we add this new dataset to the database
+        self.database.append(ccs)
 
     def find_gains_emissions_change(
         self, pollutant: str, location: str, sector: str
@@ -749,7 +851,9 @@ class BaseTransformation:
         return scaling_factor
 
     def find_iam_efficiency_change(
-        self, variable: Union[str, list], location: str
+        self,
+        variable: Union[str, list],
+        location: str,
     ) -> float:
         """
         Return the relative change in efficiency for `variable` in `location`
@@ -759,9 +863,11 @@ class BaseTransformation:
         :return: relative efficiency change (e.g., 1.05)
         """
 
-        scaling_factor = self.iam_data.efficiency.sel(
-            region=location, variables=variable
-        ).values.item(0)
+        scaling_factor = (
+            self.iam_data.efficiency.sel(region=location, variables=variable)
+            .interp(year=self.year)
+            .values.item(0)
+        )
 
         if scaling_factor in (np.nan, np.inf):
             scaling_factor = 1

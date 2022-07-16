@@ -54,18 +54,6 @@ def test_presence_of_dict():
 
 def test_length_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert len(get_gains_to_ecoinvent_emissions()) > 0
-    assert len(maps.generate_material_map()) > 0
-    assert len(maps.generate_powerplant_map()) > 0
-
-
-def test_content_dict():
-    maps = InventorySet(dummy_minimal_db)
-    materials = maps.generate_material_map()
-    assert materials["aluminium"] == {"market for aluminium, primary"}
-    plants = maps.generate_powerplant_map()
-    assert plants["Coal IGCC"] == {
-        "electricity production, at power plant/lignite, IGCC, no CCS"
-    }
-    emissions = get_gains_to_ecoinvent_emissions()
-    assert emissions["Sulfur dioxide"] == "SO2"
+    assert len(maps.powerplant_filters) > 0
+    assert len(maps.powerplant_fuels_filters) > 0
+    assert len(maps.fuels_filters) > 0

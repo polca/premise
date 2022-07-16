@@ -7,7 +7,7 @@ from typing import Dict, List, Union
 
 import bw2io
 import yaml
-from bw2io import CSVImporter, ExcelImporter, Migration
+from bw2io import ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
 

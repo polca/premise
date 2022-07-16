@@ -1,11 +1,11 @@
 brightway2
 numpy
 pandas
-git+https://github.com/brightway-lca/brightway2-io.git
+bw2io>=0.8.6
 bw2data>=3.6.2
 bw2calc>=1.8.1
-wurst==0.3.0
-xarray<0.18.0
+wurst
+xarray
 prettytable
 pycountry
 cryptography

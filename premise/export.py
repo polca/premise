@@ -266,50 +266,54 @@ class Export:
         index_A = create_index_of_A_matrix(self.db)
         list_rows = []
 
-        for ds in self.db:
-            for exc in ds["exchanges"]:
-                if exc["type"] == "production":
-                    row = [
-                        index_A[
-                            (
-                                ds["name"],
-                                ds["reference product"],
-                                ds["unit"],
-                                ds["location"],
-                            )
-                        ],
-                        index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
-                        ],
-                        exc["amount"],
-                    ]
-                    list_rows.append(row)
-                if exc["type"] == "technosphere":
-                    row = [
-                        index_A[
-                            (
-                                ds["name"],
-                                ds["reference product"],
-                                ds["unit"],
-                                ds["location"],
-                            )
-                        ],
-                        index_A[
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["unit"],
-                                exc["location"],
-                            )
-                        ],
-                        exc["amount"] * -1,
-                    ]
-                    list_rows.append(row)
+        try:
+            for ds in self.db:
+                for exc in ds["exchanges"]:
+                    if exc["type"] == "production":
+                        row = [
+                            index_A[
+                                (
+                                    ds["name"],
+                                    ds["reference product"],
+                                    ds["unit"],
+                                    ds["location"],
+                                )
+                            ],
+                            index_A[
+                                (
+                                    exc["name"],
+                                    exc["product"],
+                                    exc["unit"],
+                                    exc["location"],
+                                )
+                            ],
+                            exc["amount"],
+                        ]
+                        list_rows.append(row)
+                    if exc["type"] == "technosphere":
+                        row = [
+                            index_A[
+                                (
+                                    ds["name"],
+                                    ds["reference product"],
+                                    ds["unit"],
+                                    ds["location"],
+                                )
+                            ],
+                            index_A[
+                                (
+                                    exc["name"],
+                                    exc["product"],
+                                    exc["unit"],
+                                    exc["location"],
+                                )
+                            ],
+                            exc["amount"] * -1,
+                        ]
+                        list_rows.append(row)
+        except KeyError:
+            print(f"KeyError for {exc} in {ds['name']}")
+
         return list_rows
 
     def create_B_matrix_coordinates(self):

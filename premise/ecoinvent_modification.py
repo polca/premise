@@ -1,6 +1,7 @@
 """
 ecoinvent_modification.py exposes methods to create a database, perform transformations on it,
 as well as export it back.
+
 """
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
 LIST_REMIND_REGIONS = [
@@ -62,17 +63,30 @@ from prettytable import PrettyTable
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
+from .custom import (
+    Custom,
+    check_custom_scenario,
+    check_inventories,
+    detect_ei_activities_to_adjust,
+)
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
-from .external import ExternalScenario
-from .external_data_validation import check_external_scenarios, check_inventories
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
+from .scenario_report import generate_summary_report
 from .steel import Steel
 from .transformation import BaseTransformation
 from .transport import Transport
-from .utils import add_modified_tags, build_superstructure_db, eidb_label
+from .utils import (
+    HiddenPrints,
+    build_superstructure_db,
+    eidb_label,
+    hide_messages,
+    info_on_utils_functions,
+    print_version,
+    warning_about_biogenic_co2,
+)
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -148,12 +162,8 @@ SUPPORTED_PATHWAYS = [
     "SSP2-Base",
     "SSP2-NDC",
     "SSP2-NPi",
-    "SSP2-PkBudg900",
-    "SSP2-PkBudg1100",
-    "SSP2-PkBudg1300",
-    "SSP2-PkBudg900_Elec",
-    "SSP2-PkBudg1100_Elec",
-    "SSP2-PkBudg1300_Elec",
+    "SSP2-PkBudg1150",
+    "SSP2-PkBudg500",
     "SSP2-RCP26",
     "SSP2-RCP19",
     "static",
@@ -169,14 +179,8 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_buses",
     "update_fuels",
-    "update_external_scenario",
+    "update_custom_scenario",
 ]
-
-# clear the cache folder
-def clear_cache():
-    [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file()]
-    print("Cache folder cleared!")
-
 
 # Disable printing
 def blockPrint():
@@ -427,44 +431,6 @@ def check_time_horizon(th: int) -> int:
     return int(th)
 
 
-def warning_about_biogenic_co2() -> None:
-    """
-    Prints a simple warning about characterizing biogenic CO2 flows.
-    :return: Does not return anything.
-    """
-    t = PrettyTable(["Warning"])
-    t.add_row(
-        [
-            "Because some of the scenarios can yield LCI databases\n"
-            "containing net negative emission technologies (NET),\n"
-            "it is advised to account for biogenic CO2 flows when calculating\n"
-            "Global Warming potential indicators.\n"
-            "`premise_gwp` provides characterization factors for such flows.\n"
-            "It also provides factors for hydrogen emissions to air.\n\n"
-            "Within your bw2 project:\n"
-            "from premise_gwp import add_premise_gwp\n"
-            "add_premise_gwp()"
-        ]
-    )
-    # align text to the left
-    t.align = "l"
-    print(t)
-
-
-class HiddenPrints:
-    """
-    From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
-    """
-
-    def __enter__(self):
-        self._original_stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        sys.stdout.close()
-        sys.stdout = self._original_stdout
-
-
 class NewDatabase:
     """
     Class that represents a new wurst inventory database, modified according to IAM data.
@@ -494,7 +460,8 @@ class NewDatabase:
         time_horizon: int = None,
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
-        external_scenarios: list = None,
+        custom_scenario: dict = None,
+        quiet=False,
     ) -> None:
 
         self.source = source_db
@@ -514,8 +481,12 @@ class NewDatabase:
 
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
 
-        # warning about biogenic CO2
-        warning_about_biogenic_co2()
+        # print some info
+        if not quiet:
+            print_version()
+            warning_about_biogenic_co2()
+            info_on_utils_functions()
+            hide_messages()
 
         if additional_inventories:
             self.additional_inventories = check_additional_inventories(
@@ -524,12 +495,12 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        if external_scenarios:
-            self.datapackages = check_external_scenarios(
-                external_scenarios, self.scenarios
+        if custom_scenario:
+            self.custom_scenario = check_custom_scenario(
+                custom_scenario, self.scenarios
             )
         else:
-            self.datapackages = None
+            self.custom_scenario = None
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
@@ -567,8 +538,8 @@ class NewDatabase:
             )
             scenario["iam data"] = data
 
-            if self.datapackages:
-                scenario["external data"] = data.get_external_data(self.datapackages)
+            if self.custom_scenario:
+                scenario["custom data"] = data.get_custom_data(self.custom_scenario)
 
             scenario["database"] = copy.deepcopy(self.database)
 
@@ -701,21 +672,34 @@ class NewDatabase:
         print("Done!\n")
         return data
 
-    def __import_additional_inventories(self, datapackage: list) -> List[dict]:
+    def __import_additional_inventories(self, list_inventories) -> List[dict]:
 
         print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
 
-        if datapackage.get_resource("inventories"):
-            additional = AdditionalInventory(
-                database=self.database,
-                version_in=datapackage.descriptor["ecoinvent"]["version"],
-                version_out=self.version,
-                path=datapackage.get_resource("inventories").source,
-            )
-            additional.prepare_inventory()
-            data.extend(additional.merge_inventory())
+        for file in list_inventories:
+
+            if file["inventories"] != "":
+                additional = AdditionalInventory(
+                    database=self.database,
+                    version_in=file["ecoinvent version"]
+                    if "ecoinvent version" in file
+                    else "3.8",
+                    version_out=self.version,
+                    path=file["inventories"],
+                )
+                additional.prepare_inventory()
+
+                # if the inventories are to be duplicated
+                # to be made specific to each IAM region
+                # we flag them
+                if "region_duplicate" in file:
+                    if file["region_duplicate"]:
+                        for ds in additional.import_db:
+                            ds["duplicate"] = True
+
+                data.extend(additional.merge_inventory())
 
         return data
 
@@ -862,40 +846,49 @@ class NewDatabase:
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
 
-    def update_external_scenario(self):
+    def update_custom_scenario(self):
 
-        if self.datapackages:
+        if self.custom_scenario:
             for i, scenario in enumerate(self.scenarios):
                 if (
                     "exclude" not in scenario
-                    or "update_external_scenario" not in scenario["exclude"]
+                    or "update_custom_scenario" not in scenario["exclude"]
                 ):
 
-                    for datapackage in self.datapackages:
-                        if "inventories" in [r.name for r in datapackage.resources]:
-                            data = self.__import_additional_inventories(datapackage)
+                    data = self.__import_additional_inventories(self.custom_scenario)
 
-                            if data:
-                                data = check_inventories(
-                                    self.datapackages,
-                                    data,
-                                    scenario["model"],
-                                    scenario["pathway"],
-                                    scenario["external data"],
-                                )
-                                scenario["database"].extend(data)
+                    if data:
+                        data = check_inventories(
+                            self.custom_scenario,
+                            data,
+                            scenario["model"],
+                            scenario["pathway"],
+                            scenario["custom data"],
+                        )
+                        scenario["database"].extend(data)
 
-                    external_scenario = ExternalScenario(
+                    scenario["database"] = detect_ei_activities_to_adjust(
+                        self.custom_scenario,
+                        scenario["database"],
+                        scenario["model"],
+                        scenario["pathway"],
+                        scenario["custom data"],
+                    )
+
+                    custom = Custom(
                         database=scenario["database"],
                         model=scenario["model"],
                         pathway=scenario["pathway"],
                         iam_data=scenario["iam data"],
                         year=scenario["year"],
-                        external_scenarios=self.datapackages,
-                        external_scenarios_data=scenario["external data"],
+                        version=self.version,
+                        custom_scenario=self.custom_scenario,
+                        custom_data=scenario["custom data"],
                     )
-                    external_scenario.create_custom_markets()
-                    scenario["database"] = external_scenario.database
+                    custom.regionalize_imported_inventories()
+                    scenario["database"] = custom.database
+                    custom.create_custom_markets()
+                    scenario["database"] = custom.database
 
     def update_buses(self) -> None:
 
@@ -932,7 +925,7 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
         self.update_fuels()
-        self.update_external_scenario()
+        self.update_custom_scenario()
 
     def prepare_db_for_export(self, scenario):
 
@@ -943,6 +936,22 @@ class NewDatabase:
             pathway=scenario["pathway"],
             year=scenario["year"],
         )
+
+        # check if additional inventories
+        # need to be duplicated for each
+        # IAM region
+
+        list_add_ds = []
+        for ds in base.database:
+            if "duplicate" in ds:
+                list_add_ds.extend(
+                    base.fetch_proxies(
+                        ds["name"], ds["reference product"], relink=True
+                    ).values()
+                )
+
+        if len(list_add_ds) > 0:
+            base.database.extend(list_add_ds)
 
         # we ensure the absence of duplicate datasets
         base.database = check_for_duplicates(base.database)
@@ -1104,3 +1113,31 @@ class NewDatabase:
                 scenario["year"],
                 filepath,
             ).export_db_to_simapro()
+
+    def generate_scenario_report(
+        self,
+        filepath: [str, Path] = None,
+        name: str = f"scenario_report_{date.today()}.xlsx",
+    ):
+        """
+        Generate a report of the scenarios.
+        """
+
+        print("Generate scenario report.")
+
+        if filepath is not None:
+            if isinstance(filepath, str):
+                filepath = Path(filepath)
+        else:
+            filepath = Path(DATA_DIR / "export" / "scenario_report")
+
+        if not os.path.exists(filepath):
+            os.makedirs(filepath)
+
+        name = Path(name)
+        if name.suffix != ".xlsx":
+            name = name.with_suffix(".xlsx")
+
+        generate_summary_report(self.scenarios, filepath / name)
+
+        print(f"Report saved under {filepath}.")
