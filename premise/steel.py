@@ -10,6 +10,7 @@ from .transformation import (
     wurst,
 )
 from .utils import DATA_DIR
+import numpy as np
 
 
 class Steel(BaseTransformation):
@@ -34,96 +35,6 @@ class Steel(BaseTransformation):
     ) -> None:
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
-
-    def get_carbon_capture_energy_inputs(
-        self, amount_co2: float, loc: str, sector: str
-    ) -> Tuple[float, List[dict]]:
-        """
-        Returns the additional electricity and heat exchanges to add to the dataset
-        associated with the carbon capture
-
-        :param amount_co2: initial amount of CO2 emitted
-        :param loc: location of the steel production dataset
-        :param sector: IAM sector to look up CC rate for
-        :return: carbon capture rate, list of exchanges
-        :rtype: float, list
-        """
-
-        rate = self.get_carbon_capture_rate(loc=loc, sector=sector)
-
-        new_exchanges = []
-
-        if rate > 0:
-            # Electricity: 0.024 kWh/kg CO2 for capture, 0.146 kWh/kg CO2 for compression
-            carbon_capture_electricity = (amount_co2 * rate) * (0.146 + 0.024)
-
-            ecoinvent_regions = self.geo.iam_to_ecoinvent_location(loc)
-            possible_locations = [[loc], ecoinvent_regions, ["RER"], ["RoW"]]
-            suppliers, counter = [], 0
-
-            while len(suppliers) == 0:
-                suppliers = list(
-                    get_suppliers_of_a_region(
-                        database=self.database,
-                        locations=possible_locations[counter],
-                        names=["electricity, medium voltage"],
-                        reference_product="electricity",
-                        unit="kilowatt hour",
-                    )
-                )
-                counter += 1
-
-            suppliers = get_shares_from_production_volume(suppliers)
-
-            for supplier, share in suppliers.items():
-                new_exchanges.append(
-                    {
-                        "uncertainty type": 0,
-                        "loc": 1,
-                        "amount": carbon_capture_electricity * share,
-                        "type": "technosphere",
-                        "production volume": 0,
-                        "product": supplier[2],
-                        "name": supplier[0],
-                        "unit": supplier[3],
-                        "location": supplier[1],
-                    }
-                )
-
-            carbon_capture_heat = (amount_co2 * rate) * 3.48
-
-            while len(suppliers) == 0:
-                suppliers = list(
-                    get_suppliers_of_a_region(
-                        database=self.database,
-                        locations=possible_locations[counter],
-                        names=[
-                            "steam production, as energy carrier, in chemical industry"
-                        ],
-                        reference_product="heat, from steam, in chemical industry",
-                        unit="megajoule",
-                    )
-                )
-                counter += 1
-
-            suppliers = get_shares_from_production_volume(suppliers)
-
-            for supplier, share in suppliers.items():
-                new_exchanges.append(
-                    {
-                        "uncertainty type": 0,
-                        "loc": 1,
-                        "amount": carbon_capture_heat * share,
-                        "type": "technosphere",
-                        "production volume": 0,
-                        "product": supplier[2],
-                        "name": supplier[0],
-                        "unit": supplier[3],
-                        "location": supplier[1],
-                    }
-                )
-
-        return rate, new_exchanges
 
     def generate_activities(self):
         """
@@ -281,6 +192,10 @@ class Steel(BaseTransformation):
                 ]
             )
 
+
+
+
+
         # Determine all steel activities in the database. Empty old datasets.
         print("Create new steel production datasets and empty old datasets")
         d_act_primary_steel = {
@@ -307,7 +222,40 @@ class Steel(BaseTransformation):
                 ["steel"] * len(self.material_map["steel - secondary"]),
             )
         }
-        d_act_steel = {**d_act_primary_steel, **d_act_secondary_steel}
+
+        # Create region-specific pig iron production datasets
+
+        print("Create pig iron production datasets")
+
+        pig_iron_production = {
+            mat: self.fetch_proxies(
+                name=mat[0],
+                ref_prod=mat[1],
+                production_variable=["steel - primary"]
+            )
+            for mat in zip(
+                self.material_map["pig iron"],
+                ["pig iron"] * len(self.material_map["pig iron"]),
+            )
+        }
+
+        for _, dataset in pig_iron_production.items():
+            self.database.extend(list(dataset.values()))
+
+        pig_iron_markets = self.fetch_proxies(
+            name="market for pig iron",
+            ref_prod="pig iron",
+            production_variable=["steel - primary"]
+        )
+        self.database.extend(list(pig_iron_markets.values()))
+
+
+
+        d_act_steel = {
+            **pig_iron_production,
+            **d_act_primary_steel,
+            **d_act_secondary_steel,
+        }
 
         # Scale down fuel exchanges, according to efficiency improvement as
         # forecast by the IAM:
@@ -326,7 +274,6 @@ class Steel(BaseTransformation):
         ]
 
         for steel in d_act_steel:
-
             for region, activity in d_act_steel[steel].items():
 
                 # the correction factor applied to all fuel/electricity input is
@@ -335,7 +282,7 @@ class Steel(BaseTransformation):
 
                 sector = (
                     "steel - primary"
-                    if "converter" in activity["name"]
+                    if any(i in activity["name"] for i in ["converter", "pig iron"])
                     else "steel - secondary"
                 )
                 scaling_factor = 1 / self.find_iam_efficiency_change(
@@ -366,26 +313,49 @@ class Steel(BaseTransformation):
                 # Carbon capture rate: share of capture of total CO2 emitted
                 # Note: only if variables exist in IAM data
 
-                for bio in ws.biosphere(
-                    activity, ws.contains("name", "Carbon dioxide, fossil")
-                ):
-
-                    (
-                        carbon_capture_rate,
-                        new_exchanges,
-                    ) = self.get_carbon_capture_energy_inputs(
-                        bio["amount"], region, sector=sector
-                    )
-
-                    if carbon_capture_rate > 0:
-                        bio["amount"] *= 1 - carbon_capture_rate
-                        activity["exchanges"].extend(new_exchanges)
-
-                # Update hot pollutant emission according to GAINS
-                dataset = self.update_pollutant_emissions(
-                    dataset=activity, sector="steel"
+                # Carbon capture rate: share of capture of total CO2 emitted
+                carbon_capture_rate = self.get_carbon_capture_rate(
+                    loc=activity["location"], sector="steel"
                 )
 
-            self.database.extend(list(d_act_steel[steel].values()))
+                if carbon_capture_rate > 0:
+
+                    for co2_flow in ws.biosphere(
+                        activity, ws.contains("name", "Carbon dioxide, fossil")
+                    ):
+
+                        co2_amount = co2_flow["amount"]
+                        co2_emitted = co2_amount * (1 - carbon_capture_rate)
+                        co2_flow["amount"] = co2_emitted
+
+                        # create the CCS dataset to fit this clinker production dataset
+                        # and add it to the database
+                        self.create_ccs_dataset(
+                            region,
+                            bio_co2_stored=0,
+                            bio_co2_leaked=0,
+                        )
+
+                        # add an input from this CCS dataset in the clinker dataset
+                        ccs_exc = {
+                            "uncertainty type": 0,
+                            "loc": 0,
+                            "amount": co2_amount - co2_emitted,
+                            "type": "technosphere",
+                            "production volume": 0,
+                            "name": "CO2 capture, at cement production plant, with underground storage, post, 200 km",
+                            "unit": "kilogram",
+                            "location": activity["location"],
+                            "product": "CO2, captured and stored",
+                        }
+                        activity["exchanges"].append(ccs_exc)
+
+                # Update hot pollutant emission according to GAINS
+                self.update_pollutant_emissions(dataset=activity, sector="steel")
+
+            if steel != "pig iron":
+                self.database.extend(list(d_act_steel[steel].values()))
+
+
 
         print("Done!")

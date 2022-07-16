@@ -53,100 +53,7 @@ class Cement(BaseTransformation):
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio_remind = get_clinker_ratio_remind(self.year)
 
-    def create_ccs_dataset(
-        self,
-        loc: str,
-        bio_co2_stored: float,
-        bio_co2_leaked: float,
-        energy_input: xr.DataArray,
-    ) -> None:
-        """
-        Create a CCS dataset, reflecting the share of fossil vs. biogenic CO2.
 
-        Source for CO2 capture and compression:
-        https://www.sciencedirect.com/science/article/pii/S1750583613001230?via%3Dihub#fn0040
-
-        :param loc: location of the dataset to create
-        :param bio_co2_stored: share of biogenic CO2 over biogenic + fossil CO2
-        :param bio_co2_leaked: share of biogenic CO2 leaked back into the atmopshere
-        :param energy_input: amount of heat energy recovered from kiln, that cna be used for the capture process
-        :return: Does not return anything, but adds the dataset to the database.
-        """
-
-        # select the dataset
-        dataset = ws.get_one(
-            self.database,
-            ws.equals(
-                "name",
-                "CO2 capture, at cement production plant, "
-                "with underground storage, post, 200 km",
-            ),
-            ws.equals("location", "RER"),
-        )
-
-        # duplicate the dataset
-        ccs = wt.copy_to_new_location(dataset, loc)
-        ccs["code"] = str(uuid.uuid4().hex)
-
-        # relink the providers inside the dataset given the new location
-        self.cache, ccs = relink_technosphere_exchanges(
-            ccs, self.database, self.model, cache=self.cache
-        )
-
-        if "input" in ccs:
-            ccs.pop("input")
-
-        # we first fix the biogenic CO2 permanent storage
-        # this corresponds to the share of biogenic CO2
-        # in the fossil + biogenic CO2 emissions of the cement plant
-        for exc in ws.biosphere(
-            ccs,
-            ws.equals("name", "Carbon dioxide, in air"),
-        ):
-            exc["amount"] = bio_co2_stored
-
-        # then the biogenic CO2 leaked during the capture process
-        for exc in ws.biosphere(
-            ccs,
-            ws.equals("name", "Carbon dioxide, non-fossil"),
-        ):
-            exc["amount"] = bio_co2_leaked
-
-        # the rest of CO2 leaked is fossil
-        for exc in ws.biosphere(ccs, ws.equals("name", "Carbon dioxide, fossil")):
-            exc["amount"] = 0.11 - bio_co2_leaked
-
-        # we adjust the heat needs by subtraction 3.66 MJ with what
-        # the cement plant is expected to produce as excess heat
-
-        # Heat, as steam: 3.66 MJ/kg CO2 captured in 2020,
-        # decreasing to 2.6 GJ/t by 2050, by looking at
-        # the best-performing state-of-the-art technologies today
-        # https://www.globalccsinstitute.com/wp-content/uploads/2022/05/State-of-the-Art-CCS-Technologies-2022.pdf
-        # minus excess heat generated on site
-        # the contribution of excess heat is assumed to be
-        # 15% of the overall heat input with today's heat requirement
-        # (see IEA 2018 cement roadmap report)
-
-        heat_input = np.clip(np.interp(self.year, [2020, 2050], [3.66, 2.6]), 2.6, 3.66)
-        excess_heat_generation = 3.66 * 0.15
-        fossil_heat_input = heat_input - excess_heat_generation
-
-        for exc in ws.technosphere(ccs, ws.contains("name", "steam production")):
-            exc["amount"] = fossil_heat_input
-
-        # then, we need to find local suppliers of electricity, water, steam, etc.
-        self.cache, ccs = relink_technosphere_exchanges(
-            ccs, self.database, self.model, cache=self.cache
-        )
-
-        # Add created dataset to `self.list_datasets`
-        self.list_datasets.append(
-            (ccs["name"], ccs["reference product"], ccs["location"])
-        )
-
-        # finally, we add this new dataset to the database
-        self.database.append(ccs)
 
     def build_clinker_production_datasets(self) -> Dict[str, dict]:
         """
@@ -225,13 +132,14 @@ class Cement(BaseTransformation):
             scaling_factor = 1 / self.find_iam_efficiency_change(
                 variable="cement", location=dataset["location"]
             )
+            energy_input_per_ton_clinker = energy_input_per_ton_clinker.sum()
             energy_input_per_ton_clinker *= scaling_factor
 
             # Limit the energy input to the upper bound value
             # of the theoretical minimum considered by the IEA of
             # 2.8 GJ/t clinker.
             energy_input_per_ton_clinker = np.clip(
-                energy_input_per_ton_clinker, 2.8, None
+                energy_input_per_ton_clinker, 2800, None
             )
 
             # Fuel mix (waste, biomass, fossil)
@@ -264,7 +172,7 @@ class Cement(BaseTransformation):
             )
 
             fuel_fossil_co2_per_type = (
-                energy_input_per_ton_clinker.sum()
+                energy_input_per_ton_clinker
                 * fuel_mix
                 * np.array(
                     [
@@ -453,7 +361,6 @@ class Cement(BaseTransformation):
                     region,
                     bio_co2_stored,
                     bio_co2_leaked,
-                    energy_input_per_ton_clinker.sum(),
                 )
 
                 # add an input from this CCS dataset in the clinker dataset

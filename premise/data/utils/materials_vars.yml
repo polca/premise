@@ -1,3 +1,7 @@
+pig iron:
+  ecoinvent_aliases:
+    fltr: pig iron production
+
 steel - primary:
   ecoinvent_aliases:
     fltr: steel production, converter
