@@ -1,6 +1,8 @@
 import os
 from typing import List, Tuple
 
+import numpy as np
+
 from .data_collection import IAMDataCollection
 from .transformation import (
     BaseTransformation,
@@ -10,7 +12,6 @@ from .transformation import (
     wurst,
 )
 from .utils import DATA_DIR
-import numpy as np
 
 
 class Steel(BaseTransformation):
@@ -192,10 +193,6 @@ class Steel(BaseTransformation):
                 ]
             )
 
-
-
-
-
         # Determine all steel activities in the database. Empty old datasets.
         print("Create new steel production datasets and empty old datasets")
         d_act_primary_steel = {
@@ -229,9 +226,7 @@ class Steel(BaseTransformation):
 
         pig_iron_production = {
             mat: self.fetch_proxies(
-                name=mat[0],
-                ref_prod=mat[1],
-                production_variable=["steel - primary"]
+                name=mat[0], ref_prod=mat[1], production_variable=["steel - primary"]
             )
             for mat in zip(
                 self.material_map["pig iron"],
@@ -245,11 +240,9 @@ class Steel(BaseTransformation):
         pig_iron_markets = self.fetch_proxies(
             name="market for pig iron",
             ref_prod="pig iron",
-            production_variable=["steel - primary"]
+            production_variable=["steel - primary"],
         )
         self.database.extend(list(pig_iron_markets.values()))
-
-
 
         d_act_steel = {
             **pig_iron_production,
@@ -355,7 +348,5 @@ class Steel(BaseTransformation):
 
             if steel != "pig iron":
                 self.database.extend(list(d_act_steel[steel].values()))
-
-
 
         print("Done!")

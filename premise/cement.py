@@ -53,8 +53,6 @@ class Cement(BaseTransformation):
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio_remind = get_clinker_ratio_remind(self.year)
 
-
-
     def build_clinker_production_datasets(self) -> Dict[str, dict]:
         """
         Builds clinker production datasets for each IAM region.
