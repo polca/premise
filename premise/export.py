@@ -4,6 +4,7 @@ import json
 import os
 import re
 from typing import Dict
+from pathlib import Path
 
 import yaml
 
@@ -588,7 +589,7 @@ class Export:
         dict_refs = load_references()
 
         with open(
-            self.filepath / filename, "w", newline="", encoding="latin1"
+            Path(self.filepath / filename), "w", newline="", encoding="latin1"
         ) as csvFile:
             writer = csv.writer(csvFile, delimiter=";")
             for item in headers:
