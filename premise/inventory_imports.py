@@ -1,18 +1,17 @@
 import csv
 import itertools
 import sys
+import urllib
 import uuid
 from pathlib import Path
-import requests
 from typing import Dict, List, Union
-import urllib
 
 import bw2io
+import requests
 import yaml
-from bw2io import ExcelImporter, Migration
+from bw2io import CSVImporter, ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
-from bw2io import CSVImporter
 
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
@@ -111,9 +110,7 @@ class BaseInventoryImport:
         if "http" in str(path):
             r = requests.head(path)
             if r.status_code != 200:
-                raise ValueError(
-                    "The file at {} could not be found.".format(path)
-                )
+                raise ValueError("The file at {} could not be found.".format(path))
         else:
             if not Path(path).exists():
                 raise FileNotFoundError(
@@ -527,11 +524,13 @@ class AdditionalInventory(BaseInventoryImport):
             # online file
             # we need to save it locally first
             response = requests.get(path)
-            path = str(Path(DATA_DIR / "cache" / 'temp.csv'))
-            with open(path, 'w', encoding="utf-8-sig") as f:
-                writer = csv.writer(f, quoting=csv.QUOTE_NONE, delimiter=",", quotechar="'")
+            path = str(Path(DATA_DIR / "cache" / "temp.csv"))
+            with open(path, "w", encoding="utf-8-sig") as f:
+                writer = csv.writer(
+                    f, quoting=csv.QUOTE_NONE, delimiter=",", quotechar="'"
+                )
                 for line in response.iter_lines():
-                    writer.writerow(line.decode('utf-8-sig').split(','))
+                    writer.writerow(line.decode("utf-8-sig").split(","))
 
         if Path(path).suffix == ".xlsx":
             return ExcelImporter(path)

@@ -56,19 +56,19 @@ import sys
 from datetime import date
 from pathlib import Path
 from typing import List, Union
-import yaml
 
 import wurst
+import yaml
 from prettytable import PrettyTable
 
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
-from .external import ExternalScenario
-from .external_data_validation import check_external_scenarios, check_inventories
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
+from .external import ExternalScenario
+from .external_data_validation import check_external_scenarios, check_inventories
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .scenario_report import generate_summary_report
@@ -841,7 +841,9 @@ class NewDatabase:
 
                     for d, datapackage in enumerate(self.datapackages):
                         if "inventories" in [r.name for r in datapackage.resources]:
-                            inventories = self.__import_additional_inventories(datapackage)
+                            inventories = self.__import_additional_inventories(
+                                datapackage
+                            )
                             resource = datapackage.get_resource("config")
                             config_file = yaml.safe_load(resource.raw_read())
 

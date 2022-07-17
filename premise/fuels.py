@@ -1583,7 +1583,6 @@ class Fuels(BaseTransformation):
                                 var, vars_map[fuel], region
                             )
 
-
                             if share > 0:
                                 possible_suppliers = self.select_multiple_suppliers(
                                     var, d_fuels, dataset, vars_map[fuel]
