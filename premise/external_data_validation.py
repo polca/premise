@@ -3,6 +3,7 @@ Validates datapackages that contain external scenario data.
 """
 
 import pandas as pd
+import xarray as xr
 import yaml
 from datapackage import exceptions, validate
 from schema import And, Optional, Or, Schema, Use
@@ -16,48 +17,51 @@ from .external import flag_activities_to_adjust
 from .transformation import *
 
 
-def check_inventories(datapackages, inventory_data, model, pathway, custom_data):
-    for i, dp in enumerate(datapackages):
+def check_inventories(
+    config: dict,
+    inventory_data: list,
+    scenario_data: dict,
+    year: int,
+):
+    """
+    Check that the inventory data is valid.
+    :param config: config file
+    :param inventory_data: inventory data to check
+    :param scenario_data: external scenario data
+    :param model: IAM model name
+    :param pathway: IAM pathway name
+    :param year: scenario year
+    """
+    for k, v in config["production pathways"].items():
 
-        resource = dp.get_resource("config")
-        config_file = yaml.safe_load(resource.raw_read())
+        name = v["ecoinvent alias"]["name"]
+        ref = v["ecoinvent alias"]["reference product"]
 
-        resource = dp.get_resource("scenario_data")
-        scenario_data = resource.read()
-        scenario_headers = resource.headers
-
-        df = pd.DataFrame(scenario_data, columns=scenario_headers)
-
-        for k, v in config_file["production pathways"].items():
-
-            name = v["ecoinvent alias"]["name"]
-            ref = v["ecoinvent alias"]["reference product"]
-
-            if (
-                (
-                    len(
-                        [
-                            a
-                            for a in inventory_data
-                            if (name, ref) == (a["name"], a["reference product"])
-                        ]
-                    )
-                    == 0
+        if (
+            (
+                len(
+                    [
+                        a
+                        for a in inventory_data
+                        if (name, ref) == (a["name"], a["reference product"])
+                    ]
                 )
-                and not v["ecoinvent alias"].get("exists in original database")
-                and not v["ecoinvent alias"].get("new dataset")
-            ):
-                raise ValueError(
-                    f"The inventories provided do not contain the activity: {name, ref}"
+                == 0
+            )
+            and not v["ecoinvent alias"].get("exists in original database")
+            and not v["ecoinvent alias"].get("new dataset")
+        ):
+            raise ValueError(
+                f"The inventories provided do not contain the activity: {name, ref}"
+            )
+
+        for i, dataset in enumerate(inventory_data):
+            dataset["custom scenario dataset"] = True
+
+            if (name, ref) == (dataset["name"], dataset["reference product"]):
+                inventory_data[i] = flag_activities_to_adjust(
+                    dataset, scenario_data, year, v
                 )
-
-            for i, a in enumerate(inventory_data):
-                a["custom scenario dataset"] = True
-
-                if (name, ref) == (a["name"], a["reference product"]):
-                    inventory_data[i] = flag_activities_to_adjust(
-                        a, df, model, pathway, v, custom_data
-                    )
 
     return inventory_data
 
