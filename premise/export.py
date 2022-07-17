@@ -3,8 +3,8 @@ import datetime
 import json
 import os
 import re
-from typing import Dict
 from pathlib import Path
+from typing import Dict
 
 import yaml
 
