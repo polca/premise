@@ -74,10 +74,19 @@ from .electricity import Electricity
 from .export import Export, check_for_duplicates, remove_uncertainty
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
+from .scenario_report import generate_summary_report
 from .steel import Steel
 from .transformation import BaseTransformation
 from .transport import Transport
-from .utils import add_modified_tags, build_superstructure_db, eidb_label
+from .utils import (
+    HiddenPrints,
+    build_superstructure_db,
+    eidb_label,
+    hide_messages,
+    info_on_utils_functions,
+    print_version,
+    warning_about_biogenic_co2,
+)
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -153,12 +162,8 @@ SUPPORTED_PATHWAYS = [
     "SSP2-Base",
     "SSP2-NDC",
     "SSP2-NPi",
-    "SSP2-PkBudg900",
-    "SSP2-PkBudg1100",
-    "SSP2-PkBudg1300",
-    "SSP2-PkBudg900_Elec",
-    "SSP2-PkBudg1100_Elec",
-    "SSP2-PkBudg1300_Elec",
+    "SSP2-PkBudg1150",
+    "SSP2-PkBudg500",
     "SSP2-RCP26",
     "SSP2-RCP19",
     "static",
@@ -176,12 +181,6 @@ LIST_TRANSF_FUNC = [
     "update_fuels",
     "update_custom_scenario",
 ]
-
-# clear the cache folder
-def clear_cache():
-    [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file()]
-    print("Cache folder cleared!")
-
 
 # Disable printing
 def blockPrint():
@@ -432,44 +431,6 @@ def check_time_horizon(th: int) -> int:
     return int(th)
 
 
-def warning_about_biogenic_co2() -> None:
-    """
-    Prints a simple warning about characterizing biogenic CO2 flows.
-    :return: Does not return anything.
-    """
-    t = PrettyTable(["Warning"])
-    t.add_row(
-        [
-            "Because some of the scenarios can yield LCI databases\n"
-            "containing net negative emission technologies (NET),\n"
-            "it is advised to account for biogenic CO2 flows when calculating\n"
-            "Global Warming potential indicators.\n"
-            "`premise_gwp` provides characterization factors for such flows.\n"
-            "It also provides factors for hydrogen emissions to air.\n\n"
-            "Within your bw2 project:\n"
-            "from premise_gwp import add_premise_gwp\n"
-            "add_premise_gwp()"
-        ]
-    )
-    # align text to the left
-    t.align = "l"
-    print(t)
-
-
-class HiddenPrints:
-    """
-    From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
-    """
-
-    def __enter__(self):
-        self._original_stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        sys.stdout.close()
-        sys.stdout = self._original_stdout
-
-
 class NewDatabase:
     """
     Class that represents a new wurst inventory database, modified according to IAM data.
@@ -500,6 +461,7 @@ class NewDatabase:
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
         custom_scenario: dict = None,
+        quiet=False,
     ) -> None:
 
         self.source = source_db
@@ -519,8 +481,12 @@ class NewDatabase:
 
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
 
-        # warning about biogenic CO2
-        warning_about_biogenic_co2()
+        # print some info
+        if not quiet:
+            print_version()
+            warning_about_biogenic_co2()
+            info_on_utils_functions()
+            hide_messages()
 
         if additional_inventories:
             self.additional_inventories = check_additional_inventories(
@@ -631,6 +597,11 @@ class NewDatabase:
         print("Cannot find cached inventories. Will create them now for next time...")
         data = self.__import_inventories()
         pickle.dump(data, open(file_name, "wb"))
+        print(
+            "Data cached. It is advised to restart your workflow at this point. "
+            "This allows premise to use the cached data instead, which results in"
+            "a faster workflow."
+        )
         return None
 
     def __clean_database(self) -> List[dict]:
@@ -1147,3 +1118,31 @@ class NewDatabase:
                 scenario["year"],
                 filepath,
             ).export_db_to_simapro()
+
+    def generate_scenario_report(
+        self,
+        filepath: [str, Path] = None,
+        name: str = f"scenario_report_{date.today()}.xlsx",
+    ):
+        """
+        Generate a report of the scenarios.
+        """
+
+        print("Generate scenario report.")
+
+        if filepath is not None:
+            if isinstance(filepath, str):
+                filepath = Path(filepath)
+        else:
+            filepath = Path(DATA_DIR / "export" / "scenario_report")
+
+        if not os.path.exists(filepath):
+            os.makedirs(filepath)
+
+        name = Path(name)
+        if name.suffix != ".xlsx":
+            name = name.with_suffix(".xlsx")
+
+        generate_summary_report(self.scenarios, filepath / name)
+
+        print(f"Report saved under {filepath}.")

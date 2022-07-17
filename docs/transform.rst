@@ -184,6 +184,7 @@ based on GAINS projections: such emissions, while partly correlated to fuel use,
 are mostly mitigated via investments in electrostatic precipitators,
 which is what GAINS scenarios model.
 
+
  =================================================== =========== =========== =======
   electricity production, natura gas, conventional    before      after       unit
  =================================================== =========== =========== =======
@@ -200,9 +201,19 @@ which is what GAINS scenarios model.
 
 * *scaling factors* inferior to 1 beyond 2020 are not accepted and are treated as 1.
 * *scaling factors* superior to 1 before 2020 are not accepted and are treated as 1.
+* efficiency can only improve over time.
 
 This is to prevent degrading the performance of a technology in the future, or
 improving its performance in the past, relative to today.
+
+.. note::
+
+    You can check the efficiencies assumed in your scenarios by generating
+    a scenario summary report.
+
+.. code-block:: python
+
+    ndb.generate_scenario_report()
 
 Photovoltaics panels
 --------------------
@@ -310,6 +321,16 @@ is represented by the following activities:
 The sum of those shares equal 1. The activity "Supply of forest residue" includes
 the energy, transport and associated emissions to chip the residual biomass
 and transport it to the powerplant, but no other forestry-related burden is included.
+
+.. note::
+
+    You can check the share of residual biomass used for power generation
+    assumed in your scenarios by generating a scenario summary report.
+
+.. code-block:: python
+
+    ndb.generate_scenario_report()
+
 
 Regional electricity markets
 ----------------------------
@@ -428,6 +449,14 @@ regional "WEU".
   sulfur hexafluoride                                            2.99E-09       kilogram                     transformer emissions
  ============================================================== ============== ================ =========== ==================================================
 
+.. note::
+
+    You can check the electricity supply mixes assumed
+    in your scenarios by generating a scenario summary report.
+
+.. code-block:: python
+
+    ndb.generate_scenario_report()
 
 Long-term regional electricity markets
 --------------------------------------
@@ -513,6 +542,27 @@ Once the energy required per ton clinker today (2020) is known, it is
 multiplied by a *scaling factor* that represents a change in efficiency
 between today and the scenario year.
 
+.. note::
+
+    You can check the efficiency gains assumed relative to 2020
+    in your scenarios by generating a scenario summary report.
+
+.. code-block:: python
+
+    ndb.generate_scenario_report()
+
+
+.. note::
+
+    *premise* enforces a lower limit on the fuel consumption per ton of clinker.
+    This limit is set to 2.8 GJ/t clinker and corresponds to the minimum
+    theoretical fuel consumption with an moisture content of the raw materials,
+    as considered in the 2018 IEA_ cement roadmap report. Hence, regardless of the
+    scaling factor, the fuel consumption per ton of clinker will never be less than
+    2.8 GJ/t.
+
+.. _IEA: https://iea.blob.core.windows.net/assets/cbaa3da1-fd61-4c2a-8719-31538f59b54f/TechnologyRoadmapLowCarbonTransitionintheCementIndustry.pdf
+
 Then, *premise* determines
 the fuel mix required, here also based on the GNR/IEA data. Essentially,
 such fuel mix is composed of fossil fuel (i.e., coal), alternative fuel
@@ -552,14 +602,29 @@ The dataset described the capture of CO2 from a cement plant.
 To that dataset, *premise* adds another dataset that models the storage
 of the CO2 underground, from Volkart_ et al, 2013.
 
+
+Besides electricity, the CCS process requires heat, water and others inputs
+to regenerate the amine-based sorbent. We use two data points to approximate the heat
+requirement: 3.66 MJ/kg CO2 captured in 2020, and 2.6 MJ/kg in 2050.
+The first number is from Meunier_ et al., 2020, while the second number is described
+as the best-performing pilot project today, according to the 2022 review of pilot
+projects by the Global CCS Institute_. It is further assumed that the heat requirement
+is fulfilled to an extent of 15% by the recovery of excess heat, as mentioned in
+the 2018 IEA_ cement roadmap report.
+
 .. _Meunier: https://www.sciencedirect.com/science/article/pii/S0960148119310304
 .. _Volkart: https://doi.org/10.1016/j.ijggc.2013.03.003
+.. _Institute: https://www.globalccsinstitute.com/wp-content/uploads/2022/05/State-of-the-Art-CCS-Technologies-2022.pdf
 
-Besides electricity, the CCS process requires heat (3.66 MJ/kg CO2 captured)
-to regenerate the MEA sorbent. When coupling the clinker production datasets
-with that of the CCS, *premise* deducts from the heat required any amount
-of heat recovered from the kiln, as indicated by the GNR/IEA roadmap data.
 
+.. note::
+
+    You can check the the carbon capture rate for cement production assumed
+    in your scenarios by generating a scenario summary report.
+
+.. code-block:: python
+
+    ndb.generate_scenario_report()
 
 Cement markets
 ++++++++++++++
@@ -705,29 +770,69 @@ in different fields, such as that of *production volume*.
 Efficiency adjustment
 +++++++++++++++++++++
 
-*premise* adjust the inputs of fuels found in the steel production
-datasets, by multiplying those by a *scaling factor* provided by the
-IAM scenario.
+Regarding primary steel production (using BO-BOF), *premise* adjusts
+the inputs of fuels found in:
 
-Emissions of fossil and biogenic CO2 are scaled accordingly.
+* the pig iron production datasets,
+* the steel production datasets,
+
+assuming an integrated steel mill unit, by multiplying these fuel
+inputs by a *scaling factor* provided by the IAM scenario.
+
+Typical fuel inputs for these process are natural gas, coal, coal-based coke.
+Emissions of (fossil) CO2 are scaled accordingly.
+
+Regarding the production of secondary steel (using EAF),
+*premise* adjusts the input of electricity based on teh scaling factor
+provided by the IAM scenario.
 
 Finally, another *scaling factor* is used to scale emissions of non-CO2
 substances (CO, VOCs, etc.), based on GAINS projections for the steel sector,
 given a region and year.
 
+.. note::
+
+    You can check the efficiency gains assumed relative to 2020
+    for steel production in your scenarios by generating a scenario
+    summary report.
+
+.. code-block:: python
+
+    ndb.generate_scenario_report()
+
+
+.. warning::
+
+    If your system of interest relies heavily on the provision
+    of steel, you should probably consider modelling steel production
+    based on primary data. ecoinvent datasets for steel production rely
+    on a few data points, which are then further process transformed
+    by *premise*. Therefore, there is a large modelling uncertainty.
+
 Carbon Capture and Storage
 ++++++++++++++++++++++++++
 
 If the IAM scenario indicates that a share of the CO2 emissions
-for the steel sector in a given region and year is sequestered and stored,
-*premise* adds additional electricity and heat requirements from Volkart_ et al, 2013
-to the steel production dataset (in addition to reducing its CO2 emissions).
+from the steel sector in a given region and year is sequestered and stored,
+*premise* adds a corresponding input from a CCS dataset.
+The datatset used to that effect is from Meunier_ et al., 2020.
+The dataset described the capture of CO2 from a cement plant, not a steel mill,
+but it is assumed to be an acceptable approximation since the CO2 concentration
+in teh flue gases should not be significantly different.
 
-*premise* adds 0.024 kWh/kg CO2 captured for the capture process,
-and 0.146 kWh/kg CO2 captured for compressing the gas.
+To that dataset, *premise* adds another dataset that models the storage
+of the CO2 underground, from Volkart_ et al, 2013.
 
-It also adds 3.48 MJ of industrial steam heat per kg CO2 captured,
-to regenerate the MEA sorbent.
+Besides electricity, the CCS process requires heat, water and others inputs
+to regenerate the amine-based sorbent. We use two data points to approximate the heat
+requirement: 3.66 MJ/kg CO2 captured in 2020, and 2.6 MJ/kg in 2050.
+The first number is from Meunier_ et al., 2020, while the second number is described
+as the best-performing pilot project today, according to the 2022 review of pilot
+projects by the Global CCS Institute_. It is further assumed that the heat requirement
+is fulfilled to an extent of 15% by the recovery of excess heat, as mentioned in
+the 2018 IEA_ cement roadmap report, which is assumed to be also valid in the
+case of a steel mill.
+
 
 Steel markets
 +++++++++++++
