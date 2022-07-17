@@ -108,7 +108,7 @@ class BaseInventoryImport:
         self.biosphere_dict = get_biosphere_code()
         self.outdated_flows = get_outdated_flows()
 
-        if "http" in path:
+        if "http" in str(path):
             r = requests.head(path)
             if r.status_code != 200:
                 raise ValueError(
