@@ -2,16 +2,18 @@
 Implements external scenario data.
 """
 
+import xarray as xr
 import yaml
 from numpy import ndarray
-import xarray as xr
 
 from .clean_datasets import get_biosphere_flow_uuid
 from .transformation import *
 from .utils import eidb_label
 
 
-def flag_activities_to_adjust(dataset: dict, scenario_data: dict, year: int, dataset_vars: dict) -> dict:
+def flag_activities_to_adjust(
+    dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
+) -> dict:
     """
     Flag datasets that will need to be adjusted.
     :param dataset: dataset to be adjusted
@@ -32,17 +34,19 @@ def flag_activities_to_adjust(dataset: dict, scenario_data: dict, year: int, dat
 
         d_tech_filters = {
             k.get("variable"): [
-                    k.get("includes").get("technosphere"),
-                    {
-                        region: find_iam_efficiency_change(
-                            k["variable"],
-                            region,
-                            scenario_data["efficiency"],
-                            year,
-                        ) for region in regions
-                    }
-                ] for k in dataset_vars["efficiency"]
-                if "technosphere" in k.get("includes")
+                k.get("includes").get("technosphere"),
+                {
+                    region: find_iam_efficiency_change(
+                        k["variable"],
+                        region,
+                        scenario_data["efficiency"],
+                        year,
+                    )
+                    for region in regions
+                },
+            ]
+            for k in dataset_vars["efficiency"]
+            if "technosphere" in k.get("includes")
         }
 
         d_tech_filters.update(
@@ -55,26 +59,30 @@ def flag_activities_to_adjust(dataset: dict, scenario_data: dict, year: int, dat
                             region,
                             scenario_data["efficiency"],
                             year,
-                        ) for region in regions
-                    }
-                ] for k in dataset_vars["efficiency"]
+                        )
+                        for region in regions
+                    },
+                ]
+                for k in dataset_vars["efficiency"]
                 if "includes" not in k
             }
         )
 
         d_bio_filters = {
             k.get("variable"): [
-                    k.get("includes").get("biosphere"),
-                    {
-                        region: find_iam_efficiency_change(
-                            k["variable"],
-                            region,
-                            scenario_data["efficiency"],
-                            year,
-                        ) for region in regions
-                    }
-                ] for k in dataset_vars["efficiency"]
-                if "biosphere" in k.get("includes")
+                k.get("includes").get("biosphere"),
+                {
+                    region: find_iam_efficiency_change(
+                        k["variable"],
+                        region,
+                        scenario_data["efficiency"],
+                        year,
+                    )
+                    for region in regions
+                },
+            ]
+            for k in dataset_vars["efficiency"]
+            if "biosphere" in k.get("includes")
         }
 
         d_bio_filters.update(
@@ -87,9 +95,11 @@ def flag_activities_to_adjust(dataset: dict, scenario_data: dict, year: int, dat
                             region,
                             scenario_data["efficiency"],
                             year,
-                        ) for region in regions
-                    }
-                ] for k in dataset_vars["efficiency"]
+                        )
+                        for region in regions
+                    },
+                ]
+                for k in dataset_vars["efficiency"]
                 if "includes" not in k
             }
         )
@@ -128,9 +138,7 @@ def find_iam_efficiency_change(
     if variable in efficiency_data.variables.values:
 
         scaling_factor = (
-            efficiency_data
-            .sel(region=location, variables=variable)
-            .interp(year=year)
+            efficiency_data.sel(region=location, variables=variable).interp(year=year)
         ).values.item(0)
 
         if scaling_factor in (np.nan, np.inf):
@@ -217,7 +225,9 @@ def adjust_efficiency(dataset: dict) -> dict:
     return dataset
 
 
-def fetch_dataset_description_from_production_pathways(config: dict, item: str) -> tuple[str, str, bool, bool, bool]:
+def fetch_dataset_description_from_production_pathways(
+    config: dict, item: str
+) -> tuple[str, str, bool, bool, bool]:
     """
     Fetch a few ecoinvent variables for a given production pathway
     in the config file, such as the name, reference product, etc.
@@ -529,10 +539,12 @@ class ExternalScenario(BaseTransformation):
         """
         return np.clip(
             (
-                self.external_scenarios_data[i]["production volume"].sel(
+                self.external_scenarios_data[i]["production volume"]
+                .sel(
                     region=region,
                     variables=var,
-                ).interp(year=self.year)
+                )
+                .interp(year=self.year)
                 / self.external_scenarios_data[i]["production volume"]
                 .sel(
                     region=region,
@@ -545,7 +557,9 @@ class ExternalScenario(BaseTransformation):
             1,
         )
 
-    def fetch_potential_suppliers(self, possible_locations: list, name:str , ref_prod: str) -> list:
+    def fetch_potential_suppliers(
+        self, possible_locations: list, name: str, ref_prod: str
+    ) -> list:
         """
         Fetch the potential suppliers for a given name and reference product.
         :param possible_locations: list of possible locations
@@ -618,8 +632,7 @@ class ExternalScenario(BaseTransformation):
             ecoinvent_regions = [
                 r[-1]
                 for r in self.geo.geo.within(region)
-                if r[0] == "ecoinvent"
-                   and r[-1] not in ["GLO", "RoW"]
+                if r[0] == "ecoinvent" and r[-1] not in ["GLO", "RoW"]
             ]
 
             possible_locations = [
@@ -630,18 +643,12 @@ class ExternalScenario(BaseTransformation):
                 "RoW",
                 "GLO",
             ]
-            potential_suppliers = (
-                self.fetch_potential_suppliers(
-                    possible_locations, name, ref_prod
-                )
+            potential_suppliers = self.fetch_potential_suppliers(
+                possible_locations, name, ref_prod
             )
-            suppliers = get_shares_from_production_volume(
-                potential_suppliers
-            )
+            suppliers = get_shares_from_production_volume(potential_suppliers)
 
-            return self.write_suppliers_exchanges(
-                suppliers, amount
-            )
+            return self.write_suppliers_exchanges(suppliers, amount)
 
         else:
             # this is a biosphere exchange
@@ -666,21 +673,18 @@ class ExternalScenario(BaseTransformation):
                 }
             ]
 
-    def adjust_efficiency_of_new_markets(self, datatset: dict, vars: dict, region: str, eff_data: xr.DataArray) -> dict:
+    def adjust_efficiency_of_new_markets(
+        self, datatset: dict, vars: dict, region: str, eff_data: xr.DataArray
+    ) -> dict:
 
         for ineff in vars["efficiency"]:
             scaling_factor = 1 / find_iam_efficiency_change(
-                ineff["variable"],
-                region,
-                eff_data,
-                self.year
+                ineff["variable"], region, eff_data, self.year
             )
 
             if not "includes" in ineff:
 
-                wurst.change_exchanges_by_constant_factor(
-                    datatset, scaling_factor
-                )
+                wurst.change_exchanges_by_constant_factor(datatset, scaling_factor)
 
             else:
 
@@ -690,12 +694,8 @@ class ExternalScenario(BaseTransformation):
                         for k, v in y.items():
                             fltr.append(wurst.contains(k, v))
 
-                    for exc in ws.technosphere(
-                            datatset, *(fltr or [])
-                    ):
-                        wurst.rescale_exchange(
-                            exc, scaling_factor
-                        )
+                    for exc in ws.technosphere(datatset, *(fltr or [])):
+                        wurst.rescale_exchange(exc, scaling_factor)
 
                 if "biosphere" in ineff["includes"]:
                     fltr = []
@@ -703,12 +703,8 @@ class ExternalScenario(BaseTransformation):
                         for k, v in y.items():
                             fltr.append(wurst.contains(k, v))
 
-                    for exc in ws.biosphere(
-                            datatset, *(fltr or [])
-                    ):
-                        wurst.rescale_exchange(
-                            exc, scaling_factor
-                        )
+                    for exc in ws.biosphere(datatset, *(fltr or [])):
+                        wurst.rescale_exchange(exc, scaling_factor)
         return datatset
 
     def create_custom_markets(self) -> None:
@@ -842,20 +838,20 @@ class ExternalScenario(BaseTransformation):
 
                                 for additional_exc in market_vars["add"]:
 
-                                    add_excs = self.add_additional_exchanges(additional_exc, region)
+                                    add_excs = self.add_additional_exchanges(
+                                        additional_exc, region
+                                    )
                                     new_market["exchanges"].extend(add_excs)
-
 
                             # check if there are variables that
                             # relate to inefficiencies or losses
 
                             if "efficiency" in market_vars:
-                                efficiency_data = self.external_scenarios_data[i]["efficiency"]
+                                efficiency_data = self.external_scenarios_data[i][
+                                    "efficiency"
+                                ]
                                 new_market = self.adjust_efficiency_of_new_markets(
-                                    new_market,
-                                    market_vars,
-                                    region,
-                                    efficiency_data
+                                    new_market, market_vars, region, efficiency_data
                                 )
 
                             self.database.append(new_market)

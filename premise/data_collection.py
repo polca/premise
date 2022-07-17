@@ -1720,9 +1720,7 @@ class IAMDataCollection:
 
                         array.loc[dict(variables=v)] = array.loc[
                             dict(variables=v)
-                        ] / array.loc[dict(variables=v)].sel(
-                            year=int(y)
-                        )
+                        ] / array.loc[dict(variables=v)].sel(year=int(y))
 
                     # convert NaNs to ones
                     array = array.fillna(1)
