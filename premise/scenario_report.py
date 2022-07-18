@@ -158,7 +158,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                     row += 3
 
                     dataframe = iam_data.sel(
-                        variables=[v for v in variables if v in iam_data.variables.values],
+                        variables=[
+                            v for v in variables if v in iam_data.variables.values
+                        ],
                         region=region,
                         year=[y for y in iam_data.coords["year"].values if y <= 2100],
                     )

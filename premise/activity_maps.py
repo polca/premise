@@ -190,7 +190,9 @@ class InventorySet:
             if isinstance(conditions, list):
                 for condition in conditions:
                     # this is effectively connecting the statements by *or*
-                    result.extend([act for act in database if like(act[field], condition)])
+                    result.extend(
+                        [act for act in database if like(act[field], condition)]
+                    )
             else:
                 result.extend([act for act in database if like(act[field], conditions)])
 
@@ -215,9 +217,7 @@ class InventorySet:
             and a set of activity data set names as values.
         :rtype: dict
         """
-        techs = {tech: self.act_fltr(self.database, **fltr)
-                 for tech, fltr in filtr.items()}
-        return {
-            tech: {act["name"] for act in actlst}
-            for tech, actlst in techs.items()
+        techs = {
+            tech: self.act_fltr(self.database, **fltr) for tech, fltr in filtr.items()
         }
+        return {tech: {act["name"] for act in actlst} for tech, actlst in techs.items()}

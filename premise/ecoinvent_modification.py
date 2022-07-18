@@ -19,7 +19,12 @@ from premise.cement import Cement
 from premise.clean_datasets import DatabaseCleaner
 from premise.data_collection import IAMDataCollection
 from premise.electricity import Electricity
-from premise.export import Export, check_for_duplicates, prepare_db_for_export, build_superstructure_db
+from premise.export import (
+    Export,
+    build_superstructure_db,
+    check_for_duplicates,
+    prepare_db_for_export,
+)
 from premise.fuels import Fuels
 from premise.inventory_imports import AdditionalInventory, DefaultInventory
 from premise.scenario_report import generate_summary_report
@@ -883,7 +888,6 @@ class NewDatabase:
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
 
-
     def update_buses(self) -> None:
         """
         This method will update the buses inventories
@@ -923,7 +927,6 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
         self.update_fuels()
-
 
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None

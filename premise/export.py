@@ -8,15 +8,16 @@ import json
 import os
 import re
 import uuid
-from pathlib import Path
 from itertools import chain
+from pathlib import Path
 from typing import Dict, List
-import pandas as pd
-from wurst import searching as ws
-import yaml
 
-from premise.transformation import BaseTransformation
+import pandas as pd
+import yaml
+from wurst import searching as ws
+
 from premise import DATA_DIR, __version__
+from premise.transformation import BaseTransformation
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
@@ -596,7 +597,9 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
     # Remove rows whose values across scenarios do not change
     dataframe = dataframe.loc[dataframe.loc[:, "original":].std(axis=1) > 0, :]
     # Remove `original` column
-    dataframe = dataframe.iloc[:, [j for j, c in enumerate(dataframe.columns) if j != 13]]
+    dataframe = dataframe.iloc[
+        :, [j for j, c in enumerate(dataframe.columns) if j != 13]
+    ]
 
     after = len(dataframe)
     print(f"Dropped {before - after} duplicates.")

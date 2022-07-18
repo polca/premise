@@ -205,7 +205,9 @@ class DatabaseCleaner:
 
         """
         # Create a dictionary that contains the 'code' field as key and the 'product' field as value
-        d_product = {a["code"]: (a["reference product"], a["name"]) for a in self.database}
+        d_product = {
+            a["code"]: (a["reference product"], a["name"]) for a in self.database
+        }
         # Add a `product` field to the production exchange
         for dataset in self.database:
             for exchange in dataset["exchanges"]:
@@ -241,7 +243,9 @@ class DatabaseCleaner:
         # When handling ecospold files directly, the parameter field is a list.
         # It is here transformed into a dictionary
         for dataset in self.database:
-            dataset["parameters"] = {k["name"]: k["amount"] for k in dataset["parameters"]}
+            dataset["parameters"] = {
+                k["name"]: k["amount"] for k in dataset["parameters"]
+            }
 
     # Functions to clean up Wurst import and additional technologies
     def fix_unset_technosphere_and_production_exchange_locations(
@@ -333,7 +337,9 @@ class DatabaseCleaner:
                             print(f"no input or categories for {exc['name']}")
                             exc["delete"] = True
 
-            dataset["exchanges"] = [exc for exc in dataset["exchanges"] if "delete" not in exc]
+            dataset["exchanges"] = [
+                exc for exc in dataset["exchanges"] if "delete" not in exc
+            ]
 
     def prepare_datasets(self) -> List[dict]:
         """

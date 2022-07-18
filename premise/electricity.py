@@ -19,19 +19,18 @@ import yaml
 from .transformation import (
     BaseTransformation,
     Dict,
+    IAMDataCollection,
+    InventorySet,
     List,
     Tuple,
-    InventorySet,
-    ws,
-    wurst,
-    IAMDataCollection,
+    get_shares_from_production_volume,
+    get_suppliers_of_a_region,
+    get_tuples_from_database,
     np,
     uuid,
-    get_suppliers_of_a_region,
-    get_shares_from_production_volume,
-    get_tuples_from_database
+    ws,
+    wurst,
 )
-
 from .utils import DATA_DIR, eidb_label, get_efficiency_ratio_solar_photovoltaics
 
 PRODUCTION_PER_TECH = (
@@ -1335,8 +1334,7 @@ class Electricity(BaseTransformation):
         for tech in techs:
             for dataset in ws.get_many(
                 self.database,
-                ws.either(*[ws.contains("name", n)
-                            for n in self.powerplant_map[tech]])
+                ws.either(*[ws.contains("name", n) for n in self.powerplant_map[tech]])
                 if tech in self.powerplant_map
                 else ws.contains("name", tech),
             ):

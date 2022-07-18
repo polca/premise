@@ -5,11 +5,7 @@ import os
 from typing import List
 
 from premise.data_collection import IAMDataCollection
-from premise.transformation import (
-    BaseTransformation,
-    ws,
-    wurst,
-)
+from premise.transformation import BaseTransformation, ws, wurst
 from premise.utils import DATA_DIR
 
 
@@ -336,7 +332,7 @@ class Steel(BaseTransformation):
                             "type": "technosphere",
                             "production volume": 0,
                             "name": "CO2 capture, at cement production plant, "
-                                    "with underground storage, post, 200 km",
+                            "with underground storage, post, 200 km",
                             "unit": "kilogram",
                             "location": activity["location"],
                             "product": "CO2, captured and stored",
