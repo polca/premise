@@ -223,7 +223,9 @@ class IAMDataCollection:
         self.year = year
         key = key or None
 
-        prod_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, variable="iam_aliases")
+        prod_vars = self.__get_iam_variable_labels(
+            IAM_ELEC_VARS, variable="iam_aliases"
+        )
         eff_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, variable="eff_aliases")
 
         prod_vars.update(
@@ -236,7 +238,9 @@ class IAMDataCollection:
             self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="iam_aliases")
         )
         eff_vars.update(
-            self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="energy_use_aliases")
+            self.__get_iam_variable_labels(
+                IAM_CEMENT_VARS, variable="energy_use_aliases"
+            )
         )
         eff_vars.update(
             self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="eff_aliases")
@@ -248,10 +252,14 @@ class IAMDataCollection:
             self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="iam_aliases")
         )
         eff_vars.update(
-            self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="energy_use_aliases")
+            self.__get_iam_variable_labels(
+                IAM_STEEL_VARS, variable="energy_use_aliases"
+            )
         )
         energy_use_vars.update(
-            self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="energy_use_aliases")
+            self.__get_iam_variable_labels(
+                IAM_STEEL_VARS, variable="energy_use_aliases"
+            )
         )
         prod_vars.update(
             self.__get_iam_variable_labels(IAM_BIOMASS_VARS, variable="iam_aliases")
@@ -259,7 +267,9 @@ class IAMDataCollection:
         eff_vars.update(
             self.__get_iam_variable_labels(IAM_BIOMASS_VARS, variable="eff_aliases")
         )
-        land_use_vars = self.__get_iam_variable_labels(IAM_CROPS_VARS, variable="land_use")
+        land_use_vars = self.__get_iam_variable_labels(
+            IAM_CROPS_VARS, variable="land_use"
+        )
         land_use_change_vars = self.__get_iam_variable_labels(
             IAM_CROPS_VARS, variable="land_use_change"
         )
@@ -268,7 +278,9 @@ class IAMDataCollection:
             IAM_CARBON_CAPTURE_VARS, variable="iam_aliases"
         )
 
-        other_vars = self.__get_iam_variable_labels(IAM_OTHER_VARS, variable="iam_aliases")
+        other_vars = self.__get_iam_variable_labels(
+            IAM_OTHER_VARS, variable="iam_aliases"
+        )
 
         variables = list(prod_vars.values())
         variables.extend(eff_vars.values())
@@ -352,7 +364,6 @@ class IAMDataCollection:
         )
         self.trsp_buses = get_vehicle_fleet_composition(self.model, vehicle_type="bus")
 
-
     def __get_iam_variable_labels(
         self, filepath: Path, variable: str
     ) -> Dict[str, Union[str, List[str]]]:
@@ -379,7 +390,9 @@ class IAMDataCollection:
 
         return dict_vars
 
-    def __get_iam_data(self, key: bytes, filepath: Path, variables: List) -> xr.DataArray:
+    def __get_iam_data(
+        self, key: bytes, filepath: Path, variables: List
+    ) -> xr.DataArray:
         """
         Read the IAM result file and return an `xarray` with dimensions:
 
@@ -805,8 +818,13 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-        if len(self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="eff_aliases")) > 0:
-            eff = self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="eff_aliases")
+        if (
+            len(self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="eff_aliases"))
+            > 0
+        ):
+            eff = self.__get_iam_variable_labels(
+                IAM_CEMENT_VARS, variable="eff_aliases"
+            )
 
             if eff["cement"] in data.variables.values:
                 data_to_return = 1 / data.loc[:, [eff["cement"]], :]
@@ -816,7 +834,9 @@ class IAMDataCollection:
                 var = data_to_return.variables.values.tolist()
                 data_to_return = data_to_return.sel(variables=[var[0]])
         else:
-            prod = self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="iam_aliases")
+            prod = self.__get_iam_variable_labels(
+                IAM_CEMENT_VARS, variable="iam_aliases"
+            )
             energy = self.__get_iam_variable_labels(
                 IAM_CEMENT_VARS, variable="energy_use_aliases"
             )
@@ -904,7 +924,10 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-        if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases")) > 0:
+        if (
+            len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases"))
+            > 0
+        ):
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases")
 
             if eff["steel - primary"] in data.variables.values:
@@ -916,7 +939,9 @@ class IAMDataCollection:
                 data_primary = data_primary.sel(variables=[var[0]])
 
         else:
-            prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="iam_aliases")
+            prod = self.__get_iam_variable_labels(
+                IAM_STEEL_VARS, variable="iam_aliases"
+            )
             energy = self.__get_iam_variable_labels(
                 IAM_STEEL_VARS, variable="energy_use_aliases"
             )
@@ -940,7 +965,10 @@ class IAMDataCollection:
         # primary steel efficiency changes relative to 2020
         data_primary = data_primary / data_primary.sel(year=2020)
 
-        if len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases")) > 0:
+        if (
+            len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases"))
+            > 0
+        ):
             eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases")
 
             if eff["steel - secondary"] in data.variables.values:
@@ -954,7 +982,9 @@ class IAMDataCollection:
                 data_secondary = data_secondary.sel(variables=[var[0]])
 
         else:
-            prod = self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="iam_aliases")
+            prod = self.__get_iam_variable_labels(
+                IAM_STEEL_VARS, variable="iam_aliases"
+            )
             energy = self.__get_iam_variable_labels(
                 IAM_STEEL_VARS, variable="energy_use_aliases"
             )
@@ -1460,22 +1490,18 @@ class IAMDataCollection:
             .values
         )
 
-        rate.loc[dict(region="World", variables="steel")] = (
-            data.loc[
-                dict(
-                    region=[r for r in self.regions if r != "World"],
-                    variables=dict_vars["steel - cco2"],
-                )
-            ]
-            .sum(dim=["variables", "region"])
-            /
-            data.loc[
-                dict(
-                    region=[r for r in self.regions if r != "World"],
-                    variables=dict_vars["steel - co2"],
-                )
-            ]
-            .sum(dim=["variables", "region"])
+        rate.loc[dict(region="World", variables="steel")] = data.loc[
+            dict(
+                region=[r for r in self.regions if r != "World"],
+                variables=dict_vars["steel - cco2"],
+            )
+        ].sum(dim=["variables", "region"]) / data.loc[
+            dict(
+                region=[r for r in self.regions if r != "World"],
+                variables=dict_vars["steel - co2"],
+            )
+        ].sum(
+            dim=["variables", "region"]
         )
 
         # we ensure that the rate can only be between 0 and 1

@@ -10,20 +10,20 @@ import yaml
 from numpy import ndarray
 
 from premise.transformation import (
-    BaseTransformation,
-    List,
-    Dict,
-    Tuple,
     Any,
-    np,
+    BaseTransformation,
+    Dict,
     IAMDataCollection,
-    ws,
-    uuid,
-    relink_technosphere_exchanges,
-    wurst,
-    get_shares_from_production_volume,
     InventorySet,
-    get_suppliers_of_a_region
+    List,
+    Tuple,
+    get_shares_from_production_volume,
+    get_suppliers_of_a_region,
+    np,
+    relink_technosphere_exchanges,
+    uuid,
+    ws,
+    wurst,
 )
 from premise.utils import DATA_DIR, get_crops_properties
 
@@ -181,7 +181,11 @@ class Fuels(BaseTransformation):
                 )
 
                 self.cache, dataset = relink_technosphere_exchanges(
-                    dataset, self.database, self.model, cache=self.cache, contained=False
+                    dataset,
+                    self.database,
+                    self.model,
+                    cache=self.cache,
+                    contained=False,
                 )
             self.database.extend(new_ds.values())
 

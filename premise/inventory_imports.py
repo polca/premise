@@ -550,7 +550,9 @@ class AdditionalInventory(BaseInventoryImport):
         if len(list_missing_prod) > 0:
             print("The following datasets are missing a `production` exchange.")
             print("You should fix those before proceeding further.\n")
-            table = PrettyTable(["Name", "Reference product", "Location", "Unit", "File"])
+            table = PrettyTable(
+                ["Name", "Reference product", "Location", "Unit", "File"]
+            )
             for dataset in list_missing_prod:
                 table.add_row(
                     [
@@ -579,7 +581,9 @@ class AdditionalInventory(BaseInventoryImport):
             )
 
             print("You should fix those before proceeding further.\n")
-            table = PrettyTable(["Name", "Reference product", "Location", "Unit", "File"])
+            table = PrettyTable(
+                ["Name", "Reference product", "Location", "Unit", "File"]
+            )
             for dataset in list_missing_ref:
                 table.add_row(
                     [

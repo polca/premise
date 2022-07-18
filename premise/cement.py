@@ -13,16 +13,20 @@ from datetime import date
 
 from premise.transformation import (
     BaseTransformation,
-    List,
-    IAMDataCollection,
     Dict,
-    remove_exchanges,
-    np,
-    get_suppliers_of_a_region,
+    IAMDataCollection,
+    List,
     get_shares_from_production_volume,
-    ws
+    get_suppliers_of_a_region,
+    np,
+    remove_exchanges,
+    ws,
 )
-from premise.utils import DATA_DIR, get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
+from premise.utils import (
+    DATA_DIR,
+    get_clinker_ratio_ecoinvent,
+    get_clinker_ratio_remind,
+)
 
 
 class Cement(BaseTransformation):

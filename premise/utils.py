@@ -2,14 +2,13 @@
 Various utils functions.
 """
 
-import sys
-import os
 import csv
+import os
+import sys
 from copy import deepcopy
 from functools import lru_cache
-
 from pathlib import Path
-from typing import Dict,  Tuple
+from typing import Dict, Tuple
 
 import pandas as pd
 import xarray as xr
@@ -20,8 +19,7 @@ from prettytable import ALL, PrettyTable
 from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
 
-from premise import __version__, geomap
-from premise import DATA_DIR
+from premise import DATA_DIR, __version__, geomap
 from premise.geomap import Geomap
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
@@ -133,7 +131,12 @@ def get_clinker_ratio_remind(year: int) -> xr.DataArray:
 
     dataframe = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
 
-    return dataframe.groupby(["region", "year"]).mean()["value"].to_xarray().interp(year=year)
+    return (
+        dataframe.groupby(["region", "year"])
+        .mean()["value"]
+        .to_xarray()
+        .interp(year=year)
+    )
 
 
 def relink_technosphere_exchanges(

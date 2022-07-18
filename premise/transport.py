@@ -271,18 +271,21 @@ def create_fleet_vehicles(
                     "code": str(uuid.uuid4().hex),
                     "database": eidb_label(model, scenario, year),
                     "comment": f"Fleet-average vehicle for the year {year}, "
-                               f"for the region {region}.",
+                    f"for the region {region}.",
                 }
 
                 for size in sizes:
                     for construction_year in sel.coords["construction_year"].values:
                         for pwt in sel.coords["powertrain"].values:
                             indiv_km = sel.sel(
-                                size=size, construction_year=construction_year, powertrain=pwt
+                                size=size,
+                                construction_year=construction_year,
+                                powertrain=pwt,
                             )
                             if (
                                 indiv_km > 0
-                                and (pwt, size, constr_year_map[construction_year]) in available_ds
+                                and (pwt, size, constr_year_map[construction_year])
+                                in available_ds
                             ):
                                 indiv_share = (indiv_km / total_km).values.item(0)
 
@@ -296,7 +299,11 @@ def create_fleet_vehicles(
                                     )
                                 else:
                                     load = 1
-                                    to_look_for = (pwt, size, constr_year_map[construction_year])
+                                    to_look_for = (
+                                        pwt,
+                                        size,
+                                        constr_year_map[construction_year],
+                                    )
 
                                 if to_look_for in d_names:
 
@@ -346,7 +353,9 @@ def create_fleet_vehicles(
                                 "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
                             }
 
-                            for construction_year in sel.coords["construction_year"].values:
+                            for construction_year in sel.coords[
+                                "construction_year"
+                            ].values:
                                 for pwt in sel.coords["powertrain"].values:
                                     indiv_km = sel.sel(
                                         size=size,
@@ -355,7 +364,11 @@ def create_fleet_vehicles(
                                     )
                                     if (
                                         indiv_km > 0
-                                        and (pwt, size, constr_year_map[construction_year])
+                                        and (
+                                            pwt,
+                                            size,
+                                            constr_year_map[construction_year],
+                                        )
                                         in available_ds
                                     ):
                                         indiv_share = (
