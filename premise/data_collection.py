@@ -1499,7 +1499,7 @@ class IAMDataCollection:
 
         cement_rate = data.loc[:, dict_vars["cement - cco2"], :].sum(
             dim=["variables"]
-        ) / data.loc[:, dict_vars["cement - co2"] + dict_vars["cement - cco2"], :].sum(
+        ) / data.loc[:, dict_vars["cement - co2"], :].sum(
             dim=["variables"]
         )
 
@@ -1507,7 +1507,7 @@ class IAMDataCollection:
 
         steel_rate = data.loc[:, dict_vars["steel - cco2"], :].sum(
             dim="variables"
-        ) / data.loc[:, dict_vars["steel - co2"] + dict_vars["steel - cco2"], :].sum(
+        ) / data.loc[:, dict_vars["steel - co2"], :].sum(
             dim="variables"
         )
         steel_rate.coords["variables"] = "steel"
@@ -1532,7 +1532,7 @@ class IAMDataCollection:
             / data.loc[
                 dict(
                     region=[r for r in self.regions if r != "World"],
-                    variables=dict_vars["cement - co2"] + dict_vars["cement - cco2"],
+                    variables=dict_vars["cement - co2"],
                 )
             ]
             .sum(dim=["variables", "region"])
@@ -1551,7 +1551,7 @@ class IAMDataCollection:
             / data.loc[
                 dict(
                     region=[r for r in self.regions if r != "World"],
-                    variables=dict_vars["steel - co2"] + dict_vars["steel - cco2"],
+                    variables=dict_vars["steel - co2"],
                 )
             ]
             .sum(dim=["variables", "region"])
