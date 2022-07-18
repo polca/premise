@@ -47,7 +47,7 @@ def get_db():
 if "IAM_FILES_KEY" in os.environ:
     key = os.environ["IAM_FILES_KEY"]
 else:
-    with open('/Users/romain/Dropbox/Notebooks/key.txt') as f:
+    with open("/Users/romain/Dropbox/Notebooks/key.txt") as f:
         lines = f.readlines()
     key = lines[0]
 
