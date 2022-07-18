@@ -148,6 +148,7 @@ class Cement(BaseTransformation):
                 energy_input_per_ton_clinker, 2800, None
             )
 
+
             # Fuel mix (waste, biomass, fossil)
             fuel_mix = self.iam_data.gnr_data.sel(
                 variables=[
@@ -165,7 +166,7 @@ class Cement(BaseTransformation):
             # Calculate quantities (in kg) of fuel, per type of fuel, per ton of clinker
             # MJ per ton of clinker * fuel mix * (1 / lower heating value)
             fuel_qty_per_type = (
-                energy_input_per_ton_clinker.sum()
+                energy_input_per_ton_clinker
                 * fuel_mix
                 * 1
                 / np.array(
@@ -176,6 +177,7 @@ class Cement(BaseTransformation):
                     ]
                 )
             )
+
 
             fuel_fossil_co2_per_type = (
                 energy_input_per_ton_clinker
@@ -250,6 +252,7 @@ class Cement(BaseTransformation):
                             names=list(self.fuel_map[fuel[0]]),
                             reference_product=fuel[1],
                             unit="kilogram",
+                            exclude=["ash", "mine"]
                         )
                     )
                     counter += 1
@@ -411,7 +414,7 @@ class Cement(BaseTransformation):
                 + f"Improvement of specific energy use compared to 2020: {(scaling_factor - 1) * 100} %.\n"
                 + f"Share of biomass fuel energy-wise: {int(fuel_mix[1] * 100)} pct.\n"
                 + f"Share of waste fuel energy-wise: {int(fuel_mix[0] * 100)} pct.\n"
-                + f"Share of fossil carbon in waste fuel energy-wise: {int(self.fuels_specs['waste']['biogenic_share'] * 100)} pct.\n"
+                + f"Share of biogenic carbon in waste fuel energy-wise: {int(self.fuels_specs['waste']['biogenic_share'] * 100)} pct.\n"
                 + f"Share of fossil CO2 emissions from fuel combustion: {share_fossil_from_fuel} pct.\n"
                 + f"Share of fossil CO2 emissions from calcination: {share_fossil_from_calcination} pct.\n"
                 + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"

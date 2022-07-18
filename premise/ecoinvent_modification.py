@@ -468,7 +468,6 @@ class NewDatabase:
         time_horizon: int = None,
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
-        custom_scenario: dict = None,
         quiet=False,
     ) -> None:
 
@@ -933,6 +932,12 @@ class NewDatabase:
         according to https://github.com/dgdekoning/brightway-superstructure
         :return: filepath of the "scenarios difference file"
         """
+
+        if len(self.scenarios) < 2:
+            raise ValueError(
+                "At least two scenarios are needed to"
+                "create a super-structure database."
+            )
 
         for scen, scenario in enumerate(self.scenarios):
 
