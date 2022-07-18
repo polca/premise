@@ -70,12 +70,16 @@ from .custom import (
 )
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import Export, check_for_duplicates, prepare_db_for_export, build_superstructure_db
+from .export import (
+    Export,
+    build_superstructure_db,
+    check_for_duplicates,
+    prepare_db_for_export,
+)
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .scenario_report import generate_summary_report
 from .steel import Steel
-
 from .transport import Transport
 from .utils import (
     HiddenPrints,
@@ -929,7 +933,6 @@ class NewDatabase:
         self.update_steel()
         self.update_fuels()
         self.update_custom_scenario()
-
 
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None

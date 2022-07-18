@@ -1,12 +1,11 @@
+import csv
+import os
 import sys
 import uuid
-import os
-import csv
 import warnings
 from copy import deepcopy
 from datetime import date
 from functools import lru_cache
-
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -19,8 +18,7 @@ from prettytable import ALL, PrettyTable
 from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
 
-from . import __version__, geomap
-from . import DATA_DIR
+from . import DATA_DIR, __version__, geomap
 from .geomap import Geomap
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"

@@ -41,6 +41,7 @@ GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 
+
 def get_crops_properties() -> dict:
     """
     Return a dictionary with crop names as keys and IAM labels as values
@@ -51,6 +52,7 @@ def get_crops_properties() -> dict:
         crop_props = yaml.safe_load(stream)
 
     return crop_props
+
 
 def get_lifetime(list_tech: List) -> np.array:
     """
@@ -1509,17 +1511,13 @@ class IAMDataCollection:
 
         cement_rate = data.loc[:, dict_vars["cement - cco2"], :].sum(
             dim=["variables"]
-        ) / data.loc[:, dict_vars["cement - co2"], :].sum(
-            dim=["variables"]
-        )
+        ) / data.loc[:, dict_vars["cement - co2"], :].sum(dim=["variables"])
 
         cement_rate.coords["variables"] = "cement"
 
         steel_rate = data.loc[:, dict_vars["steel - cco2"], :].sum(
             dim="variables"
-        ) / data.loc[:, dict_vars["steel - co2"], :].sum(
-            dim="variables"
-        )
+        ) / data.loc[:, dict_vars["steel - co2"], :].sum(dim="variables")
         steel_rate.coords["variables"] = "steel"
 
         rate = xr.concat([cement_rate, steel_rate], dim="variables")

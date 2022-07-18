@@ -1,7 +1,10 @@
-from premise.utils import *
+from unittest.mock import call, patch
+
 import xarray as xr
+
 from premise import __version__
-from unittest.mock import patch, call
+from premise.utils import *
+
 
 def test_ei_db_label():
     model = "remind"
@@ -9,21 +12,25 @@ def test_ei_db_label():
     year = 2012
     assert eidb_label(model, pathway, year) == f"ecoinvent_{model}_{pathway}_{year}"
 
+
 def test_crops_properties():
     crop_props = get_crops_properties()
     assert type(crop_props) == dict
     assert crop_props["sugar"]["crop_type"]["image"]["temperate"] == "sugarbeet"
+
 
 def test_fuels_properties():
     fuels_props = get_fuel_properties()
     assert type(fuels_props) == dict
     assert fuels_props["bioethanol, wood, with CCS"]["lhv"] == 26.5
 
+
 def test_eff_solar_PV():
     eff_PV = get_efficiency_ratio_solar_PV()
     assert type(eff_PV) == xr.DataArray
     assert eff_PV.sel(technology="multi-Si", year=2010) == 0.14
-    assert "moni-Si" not in  eff_PV.technology.values
+    assert "moni-Si" not in eff_PV.technology.values
+
 
 def test_default_location():
     dummy_db = [
@@ -74,15 +81,15 @@ def test_default_location():
                     "input": ("dummy_bio", "123"),
                 },
             ],
-        }
+        },
     ]
 
     corrected_db = default_global_location(dummy_db)
 
     assert not any(ds["location"] is None for ds in corrected_db)
 
-@patch('builtins.print')
+
+@patch("builtins.print")
 def test_print_version(mocked_print):
     print_version()
     assert mocked_print.mock_calls == [call(f"premise v.{__version__}")]
-

@@ -4,15 +4,16 @@ import json
 import os
 import re
 import uuid
-import pandas as pd
-from pathlib import Path
 from itertools import chain
+from pathlib import Path
 from typing import Dict, List
-from .transformation import BaseTransformation
-from wurst import searching as ws
+
+import pandas as pd
 import yaml
+from wurst import searching as ws
 
 from . import DATA_DIR, __version__
+from .transformation import BaseTransformation
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
@@ -185,6 +186,7 @@ def check_for_duplicates(database):
         )
     ]
 
+
 def check_amount_format(database: list) -> list:
     """
     Check that the `amount` field is of type `float`.
@@ -217,8 +219,10 @@ def create_index_of_A_matrix(db):
         for i in range(0, len(db))
     }
 
+
 def rev_index(inds: dict) -> dict:
     return {v: k for k, v in inds.items()}
+
 
 def create_codes_index_of_A_matrix(db):
     """
@@ -227,6 +231,7 @@ def create_codes_index_of_A_matrix(db):
     :rtype: dict
     """
     return {db[i]["code"]: i for i in range(0, len(db))}
+
 
 def create_codes_index_of_B_matrix():
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
@@ -241,6 +246,7 @@ def create_codes_index_of_B_matrix():
 
     return csv_dict
 
+
 def create_index_of_B_matrix():
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
@@ -253,6 +259,7 @@ def create_index_of_B_matrix():
             csv_dict[(row[0], row[1], row[2], row[3])] = i
 
     return csv_dict
+
 
 def create_codes_and_names_of_tech_matrix(db: List[dict]):
     """
@@ -721,7 +728,6 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     origin_db.extend(acts_to_add)
 
     return origin_db
-
 
 
 def prepare_db_for_export(scenario):
@@ -1543,5 +1549,3 @@ class Export:
     def get_bio_code(self, idx):
 
         return self.bio_codes[idx]
-
-
