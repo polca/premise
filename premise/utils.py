@@ -1,5 +1,7 @@
 import sys
 import uuid
+import os
+import csv
 import warnings
 from copy import deepcopy
 from datetime import date
@@ -14,14 +16,14 @@ import yaml
 from constructive_geometries import resolved_row
 from country_converter import CountryConverter
 from prettytable import ALL, PrettyTable
-from wurst import log
 from wurst import searching as ws
 from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
 
 from . import __version__, geomap
-from .export import *
+from . import DATA_DIR
 from .geomap import Geomap
+from .export import Export, create_codes_index_of_A_matrix, create_codes_index_of_B_matrix
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"

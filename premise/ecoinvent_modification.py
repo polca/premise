@@ -58,7 +58,6 @@ from pathlib import Path
 from typing import List, Union
 
 import wurst
-from prettytable import PrettyTable
 
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
@@ -71,12 +70,12 @@ from .custom import (
 )
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import Export, check_for_duplicates, remove_uncertainty
+from .export import Export, check_for_duplicates, prepare_db_for_export
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .scenario_report import generate_summary_report
 from .steel import Steel
-from .transformation import BaseTransformation
+
 from .transport import Transport
 from .utils import (
     HiddenPrints,
@@ -932,49 +931,6 @@ class NewDatabase:
         self.update_fuels()
         self.update_custom_scenario()
 
-    def prepare_db_for_export(self, scenario):
-
-        base = BaseTransformation(
-            database=scenario["database"],
-            iam_data=scenario["iam data"],
-            model=scenario["model"],
-            pathway=scenario["pathway"],
-            year=scenario["year"],
-        )
-
-        # check if additional inventories
-        # need to be duplicated for each
-        # IAM region
-
-        list_add_ds = []
-        for ds in base.database:
-            if "duplicate" in ds:
-                list_add_ds.extend(
-                    base.fetch_proxies(
-                        ds["name"], ds["reference product"], relink=True
-                    ).values()
-                )
-
-        if len(list_add_ds) > 0:
-            base.database.extend(list_add_ds)
-
-        # we ensure the absence of duplicate datasets
-        base.database = check_for_duplicates(base.database)
-        base.database = remove_uncertainty(base.database)
-
-        base.relink_datasets(
-            excludes_datasets=["cobalt industry", "market group for electricity"],
-            alt_names=[
-                "market group for electricity, high voltage",
-                "market group for electricity, medium voltage",
-                "market group for electricity, low voltage",
-                "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
-                "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-            ],
-        )
-
-        return base.database
 
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None
@@ -987,7 +943,7 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = self.prepare_db_for_export(scenario)
+            scenario["database"] = prepare_db_for_export(scenario)
 
         self.database = build_superstructure_db(
             self.database, self.scenarios, db_name=name, fp=filepath
@@ -1036,7 +992,7 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = self.prepare_db_for_export(scenario)
+            scenario["database"] = prepare_db_for_export(scenario)
 
             wurst.write_brightway2_database(
                 scenario["database"],
@@ -1081,7 +1037,7 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = self.prepare_db_for_export(scenario)
+            scenario["database"] = prepare_db_for_export(scenario)
 
             Export(
                 scenario["database"],
@@ -1109,7 +1065,7 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = self.prepare_db_for_export(scenario)
+            scenario["database"] = prepare_db_for_export(scenario)
 
             Export(
                 scenario["database"],

@@ -179,6 +179,20 @@ def check_for_duplicates(database):
         )
     ]
 
+def check_amount_format(database: list) -> list:
+    """
+    Check that the `amount` field is of type `float`.
+    :param database: database to check
+    :return: database with corrected amount field
+    """
+
+    for dataset in database:
+        for exc in dataset["exchanges"]:
+            if not isinstance(exc["amount"], float):
+                exc["amount"] = float(exc["amount"])
+
+    return database
+
 
 def create_index_of_A_matrix(db):
     """
@@ -233,6 +247,37 @@ def create_index_of_B_matrix():
             csv_dict[(row[0], row[1], row[2], row[3])] = i
 
     return csv_dict
+
+def prepare_db_for_export(scenario):
+
+    base = BaseTransformation(
+        database=scenario["database"],
+        iam_data=scenario["iam data"],
+        model=scenario["model"],
+        pathway=scenario["pathway"],
+        year=scenario["year"],
+    )
+
+    # we ensure the absence of duplicate datasets
+    base.database = check_for_duplicates(base.database)
+    # we remove uncertainty data
+    base.database = remove_uncertainty(base.database)
+    # we check the format of numbers
+    base.database = check_amount_format(base.database)
+
+    base.relink_datasets(
+        excludes_datasets=["cobalt industry", "market group for electricity"],
+        alt_names=[
+            "market group for electricity, high voltage",
+            "market group for electricity, medium voltage",
+            "market group for electricity, low voltage",
+            "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
+            "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
+            "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
+        ],
+    )
+
+    return base.database
 
 
 class Export:
@@ -1022,3 +1067,5 @@ class Export:
     def get_bio_code(self, idx):
 
         return self.bio_codes[idx]
+
+

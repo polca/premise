@@ -545,10 +545,8 @@ bioethanol, grain:
   co2: 0.0739
   biogenic_share: 1
   iam_aliases:
-    remind: SE|Liquids|Biomass|Conventional Ethanol
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Maize|w/oCCS
   eff_aliases:
-    remind: Tech|Liquids|Biomass|Conventional Ethanol|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Maize|w/o CCS
   ecoinvent_aliases:
     fltr:
