@@ -1497,20 +1497,15 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
 
-
         cement_rate = data.loc[:, dict_vars["cement - cco2"], :].sum(
             dim=["variables"]
-        ) / data.loc[:, dict_vars["cement - co2"], :].sum(
-            dim=["variables"]
-        )
+        ) / data.loc[:, dict_vars["cement - co2"], :].sum(dim=["variables"])
 
         cement_rate.coords["variables"] = "cement"
 
         steel_rate = data.loc[:, dict_vars["steel - cco2"], :].sum(
             dim="variables"
-        ) / data.loc[:, dict_vars["steel - co2"], :].sum(
-            dim="variables"
-        )
+        ) / data.loc[:, dict_vars["steel - co2"], :].sum(dim="variables")
         steel_rate.coords["variables"] = "steel"
 
         rate = xr.concat([cement_rate, steel_rate], dim="variables")
