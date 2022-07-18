@@ -2,7 +2,6 @@
 This module export a summary of scenario to an Excel file.
 """
 
-import string
 from pathlib import Path
 
 import openpyxl

@@ -44,12 +44,19 @@ def get_db():
     return dummy_db, version
 
 
+if "IAM_FILES_KEY" in os.environ:
+    key = os.environ["IAM_FILES_KEY"]
+else:
+    with open('/Users/romain/Dropbox/Notebooks/key.txt') as f:
+        lines = f.readlines()
+    key = lines[0]
+
 rdc = IAMDataCollection(
     model="remind",
     pathway="SSP2-Base",
     year=2012,
     filepath_iam_files=DATA_DIR / "iam_output_files",
-    key=os.environ["IAM_FILES_KEY"],
+    key=str.encode(key),
 )
 db, _ = get_db()
 el = Electricity(

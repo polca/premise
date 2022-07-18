@@ -100,7 +100,7 @@ def test_load_carma():
     carma = DefaultInventory(
         db, version_in="3.5", version_out="3.8", path=FILEPATH_CARMA_INVENTORIES
     )
-    assert len(carma.import_db.data) == 135
+    assert len(carma.import_db.data) >= 135
 
 
 def test_load_biofuel():
@@ -108,4 +108,4 @@ def test_load_biofuel():
     bio = DefaultInventory(
         db, version_in="3.7", version_out="3.8", path=FILEPATH_BIOFUEL_INVENTORIES
     )
-    assert len(bio.import_db.data) == 160
+    assert len(bio.import_db.data) >= 160

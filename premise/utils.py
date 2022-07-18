@@ -62,14 +62,6 @@ def eidb_label(model: str, scenario: str, year: int) -> str:
     return f"ecoinvent_{model}_{scenario}_{year}"
 
 
-
-
-
-
-
-
-
-
 @lru_cache(maxsize=None)
 def get_fuel_properties() -> dict:
     """
@@ -138,8 +130,6 @@ def get_clinker_ratio_remind(year: int) -> xr.DataArray:
     df = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
 
     return df.groupby(["region", "year"]).mean()["value"].to_xarray().interp(year=year)
-
-
 
 
 def relink_technosphere_exchanges(

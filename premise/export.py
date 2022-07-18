@@ -145,6 +145,8 @@ def remove_uncertainty(database):
         "loc",
         "scale",
         "pedigree",
+        "minimum",
+        "maximum",
     ]
 
     for dataset in database:
