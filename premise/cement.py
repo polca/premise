@@ -152,7 +152,6 @@ class Cement(BaseTransformation):
                 energy_input_per_ton_clinker, 2800, None
             )
 
-
             # Fuel mix (waste, biomass, fossil)
             fuel_mix = self.iam_data.gnr_data.sel(
                 variables=[
@@ -181,7 +180,6 @@ class Cement(BaseTransformation):
                     ]
                 )
             )
-
 
             fuel_fossil_co2_per_type = (
                 energy_input_per_ton_clinker
@@ -256,7 +254,7 @@ class Cement(BaseTransformation):
                             names=list(self.fuel_map[fuel[0]]),
                             reference_product=fuel[1],
                             unit="kilogram",
-                            exclude=["ash", "mine"]
+                            exclude=["ash", "mine"],
                         )
                     )
                     counter += 1
