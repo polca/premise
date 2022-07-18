@@ -23,7 +23,7 @@ def flag_activities_to_adjust(
     :return: dataset with additional info on variables to adjust
     """
 
-    regions = scenario_data["production volume"].region.values
+    regions = scenario_data["production volume"].region.values.tolist()
     if "except regions" in dataset_vars:
         regions = regions.difference(dataset_vars["except regions"])
 
