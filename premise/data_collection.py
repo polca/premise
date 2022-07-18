@@ -20,7 +20,6 @@ import yaml
 from cryptography.fernet import Fernet
 
 from . import DATA_DIR
-from .utils import get_crops_properties
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
@@ -40,7 +39,18 @@ VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
+CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 
+def get_crops_properties() -> dict:
+    """
+    Return a dictionary with crop names as keys and IAM labels as values
+    relating to land use change CO2 per crop type
+    :return: dict
+    """
+    with open(CROPS_PROPERTIES, "r") as stream:
+        crop_props = yaml.safe_load(stream)
+
+    return crop_props
 
 def get_lifetime(list_tech: List) -> np.array:
     """
@@ -1537,7 +1547,7 @@ class IAMDataCollection:
             ]
             .sum(dim=["variables", "region"])
             .values
-        ).T.sum(axis=-1)
+        )
 
         rate.loc[dict(region="World", variables="steel")] = (
             data.loc[
@@ -1556,7 +1566,7 @@ class IAMDataCollection:
             ]
             .sum(dim=["variables", "region"])
             .values
-        ).T.sum(axis=-1)
+        )
 
         # we ensure that the rate can only be between 0 and 1
         rate = np.clip(rate, 0, 1)

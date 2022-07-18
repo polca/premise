@@ -70,7 +70,7 @@ from .custom import (
 )
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import Export, check_for_duplicates, prepare_db_for_export
+from .export import Export, check_for_duplicates, prepare_db_for_export, build_superstructure_db
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .scenario_report import generate_summary_report
@@ -79,7 +79,6 @@ from .steel import Steel
 from .transport import Transport
 from .utils import (
     HiddenPrints,
-    build_superstructure_db,
     eidb_label,
     hide_messages,
     info_on_utils_functions,
