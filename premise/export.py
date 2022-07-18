@@ -1,18 +1,22 @@
+"""
+export.py contains all the functions to format, prepare and export databases.
+"""
+
 import csv
 import datetime
 import json
 import os
 import re
 import uuid
-import pandas as pd
 from pathlib import Path
 from itertools import chain
 from typing import Dict, List
-from .transformation import BaseTransformation
+import pandas as pd
 from wurst import searching as ws
 import yaml
 
-from . import DATA_DIR, __version__
+from premise.transformation import BaseTransformation
+from premise import DATA_DIR, __version__
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
@@ -27,7 +31,7 @@ def get_simapro_units() -> Dict[str, str]:
     :return: a dictionary that maps brightway2 unit to Simapro units
     """
 
-    with open(FILEPATH_SIMAPRO_UNITS, "r") as stream:
+    with open(FILEPATH_SIMAPRO_UNITS, "r", encoding="utf-8") as stream:
         simapro_units = yaml.safe_load(stream)
 
     return simapro_units
@@ -39,7 +43,7 @@ def get_simapro_compartments() -> Dict[str, str]:
     :return: a dictionary that maps brightway2 unit to Simapro compartments.
     """
 
-    with open(FILEPATH_SIMAPRO_COMPARTMENTS, "r") as stream:
+    with open(FILEPATH_SIMAPRO_COMPARTMENTS, "r", encoding="utf-8") as stream:
         simapro_comps = yaml.safe_load(stream)
 
     return simapro_comps
@@ -57,7 +61,7 @@ def load_simapro_categories():
         )
     with open(filepath, encoding="latin1") as f:
         csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-    header, *data = csv_list
+    _, *data = csv_list
 
     dict_cat = {}
     for row in data:
@@ -82,9 +86,9 @@ def get_simapro_category_of_exchange():
         raise FileNotFoundError(
             "The dictionary of Simapro categories could not be found."
         )
-    with open(filepath) as f:
-        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-    header, *data = csv_list
+    with open(filepath, encoding="utf-8") as file:
+        csv_list = [[val.strip() for val in r.split(";")] for r in file.readlines()]
+    _, *data = csv_list
 
     dict_cat = {}
     for row in data:
@@ -105,9 +109,9 @@ def load_references():
     filepath = DATA_DIR / "utils" / "export" / filename
     if not filepath.is_file():
         raise FileNotFoundError("The dictionary of references could not be found.")
-    with open(filepath) as f:
-        csv_list = [[val.strip() for val in r.split(";")] for r in f.readlines()]
-    header, *data = csv_list
+    with open(filepath, encoding="utf-8") as file:
+        csv_list = [[val.strip() for val in r.split(";")] for r in file.readlines()]
+    _, *data = csv_list
 
     dict_reference = {}
     for row in data:
@@ -118,18 +122,23 @@ def load_references():
 
 
 def get_simapro_biosphere_dictionnary():
+    """
+    Load a dictionary with biosphere flows to use for Simapro export.
+    """
+
     # Load the matching dictionary between ecoinvent and Simapro biosphere flows
     filename = "simapro-biosphere.json"
     filepath = DATA_DIR / "utils" / "export" / filename
     if not filepath.is_file():
         raise FileNotFoundError(
-            "The dictionary of biosphere flow match between ecoinvent and Simapro could not be found."
+            "The dictionary of biosphere flow match between ecoinvent "
+            "and Simapro could not be found."
         )
-    with open(filepath) as json_file:
+    with open(filepath, encoding="utf-8") as json_file:
         data = json.load(json_file)
     dict_bio = {}
-    for d in data:
-        dict_bio[d[2]] = d[1]
+    for row in data:
+        dict_bio[row[2]] = row[1]
 
     return dict_bio
 
@@ -152,13 +161,11 @@ def remove_uncertainty(database):
     for dataset in database:
         for exc in dataset["exchanges"]:
             if "uncertainty type" in exc:
-                if "uncertainty type" != 0:
+                if exc["uncertainty type"] != 0:
                     exc["uncertainty type"] = 0
-
                     for key in keys_to_remove:
                         if key in exc:
                             del exc[key]
-
     return database
 
 
@@ -185,6 +192,7 @@ def check_for_duplicates(database):
         )
     ]
 
+
 def check_amount_format(database: list) -> list:
     """
     Check that the `amount` field is of type `float`.
@@ -200,61 +208,75 @@ def check_amount_format(database: list) -> list:
     return database
 
 
-def create_index_of_A_matrix(db):
+def create_index_of_A_matrix(database):
     """
-    Create a dictionary with row/column indices of the A matrix as key and a tuple (activity name, reference product,
+    Create a dictionary with row/column indices of the exchanges
+    matrix as key and a tuple (activity name, reference product,
     unit, location) as value.
     :return: a dictionary to map indices to activities
     :rtype: dict
     """
     return {
         (
-            db[i]["name"],
-            db[i]["reference product"],
-            db[i]["unit"],
-            db[i]["location"],
+            database[i]["name"],
+            database[i]["reference product"],
+            database[i]["unit"],
+            database[i]["location"],
         ): i
-        for i in range(0, len(db))
+        for i in range(0, len(database))
     }
 
+
 def rev_index(inds: dict) -> dict:
+    """
+    Reverse the index of the A matrix.
+    """
     return {v: k for k, v in inds.items()}
 
-def create_codes_index_of_A_matrix(db):
+
+def create_codes_index_of_exchanges_matrix(database):
     """
-    Create a dictionary with row/column indices of the A matrix as key and the activity code as value.
+    Create a dictionary with row/column indices of the A matrix
+    as key and the activity code as value.
     :return: a dictionary to map indices to activity codes
     :rtype: dict
     """
-    return {db[i]["code"]: i for i in range(0, len(db))}
 
-def create_codes_index_of_B_matrix():
+    return {database[i]["code"]: i for i in range(0, len(database))}
+
+
+def create_codes_index_of_biosphere_flows_matrix():
+    """
+    Create a dictionary with row/column indices of the biosphere matrix
+    """
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
-    csv_dict = dict()
+    csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS) as f:
-        input_dict = csv.reader(f, delimiter=";")
+    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+        input_dict = csv.reader(file, delimiter=";")
         for i, row in enumerate(input_dict):
             csv_dict[row[-1]] = i
 
     return csv_dict
 
-def create_index_of_B_matrix():
+
+def create_index_of_biosphere_flows_matrix():
     if not FILEPATH_BIOSPHERE_FLOWS.is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
-    csv_dict = dict()
+    csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS) as f:
-        input_dict = csv.reader(f, delimiter=";")
+    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+        input_dict = csv.reader(file, delimiter=";")
         for i, row in enumerate(input_dict):
             csv_dict[(row[0], row[1], row[2], row[3])] = i
 
     return csv_dict
 
-def create_codes_and_names_of_tech_matrix(db: List[dict]):
+
+def create_codes_and_names_of_tech_matrix(database: List[dict]):
     """
     Create a dictionary a tuple (activity name, reference product,
     unit, location) as key, and its code as value.
@@ -268,7 +290,7 @@ def create_codes_and_names_of_tech_matrix(db: List[dict]):
             i["unit"],
             i["location"],
         ): i["code"]
-        for i in db
+        for i in database
     }
 
 
@@ -283,7 +305,7 @@ def add_modified_tags(original_db, scenarios):
     # Class `Export` to which the original database is passed
     exp = Export(original_db)
     # Collect a dictionary of activities {row/col index in A matrix: code}
-    rev_ind_A = rev_index(create_codes_index_of_A_matrix(original_db))
+    rev_ind_A = rev_index(create_codes_index_of_exchanges_matrix(original_db))
     # Retrieve list of coordinates [activity, activity, value]
     coords_A = exp.create_A_matrix_coordinates()
     # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
@@ -291,7 +313,7 @@ def add_modified_tags(original_db, scenarios):
     # Collect a dictionary with activities' names and corresponding codes
     codes_names = create_codes_and_names_of_tech_matrix(original_db)
     # Collect list of substances
-    rev_ind_B = rev_index(create_codes_index_of_B_matrix())
+    rev_ind_B = rev_index(create_codes_index_of_biosphere_flows_matrix())
     # Retrieve list of coordinates of the B matrix [activity index, substance index, value]
     coords_B = exp.create_B_matrix_coordinates()
     # Turn it into a dictionary {(activity code, substance code): value}
@@ -299,7 +321,9 @@ def add_modified_tags(original_db, scenarios):
 
     for s, scenario in enumerate(scenarios):
         print(f"Looking for differences in database {s + 1} ...")
-        rev_ind_A = rev_index(create_codes_index_of_A_matrix(scenario["database"]))
+        rev_ind_A = rev_index(
+            create_codes_index_of_exchanges_matrix(scenario["database"])
+        )
         exp = Export(
             scenario["database"],
             scenario["model"],
@@ -310,23 +334,23 @@ def add_modified_tags(original_db, scenarios):
         coords_A = exp.create_A_matrix_coordinates()
         new = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
 
-        rev_ind_B = rev_index(create_codes_index_of_B_matrix())
+        rev_ind_B = rev_index(create_codes_index_of_biosphere_flows_matrix())
         coords_B = exp.create_B_matrix_coordinates()
         new.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
 
         list_new = set(i[0] for i in original.keys()) ^ set(i[0] for i in new.keys())
 
-        ds = (d for d in scenario["database"] if d["code"] in list_new)
+        datasets = (d for d in scenario["database"] if d["code"] in list_new)
 
         # Tag new activities
-        for d in ds:
-            d["modified"] = True
+        for dataset in datasets:
+            dataset["modified"] = True
 
         # List codes that belong to activities that contain modified exchanges
         list_modified = (i[0] for i in new if i in original and new[i] != original[i])
         #
         # Filter for activities that have modified exchanges
-        for ds in ws.get_many(
+        for datasets in ws.get_many(
             scenario["database"],
             ws.either(*[ws.equals("code", c) for c in set(list_modified)]),
         ):
@@ -334,15 +358,17 @@ def add_modified_tags(original_db, scenarios):
             # the exchange also exists in the original database
             # and if it has the same value
             # if any of these two conditions is False, we tag the exchange
-            excs = (exc for exc in ds["exchanges"] if exc["type"] == "biosphere")
+            excs = (exc for exc in datasets["exchanges"] if exc["type"] == "biosphere")
             for exc in excs:
-                if (ds["code"], exc["input"][0]) not in original or new[
-                    (ds["code"], exc["input"][0])
-                ] != original[(ds["code"], exc["input"][0])]:
+                if (datasets["code"], exc["input"][0]) not in original or new[
+                    (datasets["code"], exc["input"][0])
+                ] != original[(datasets["code"], exc["input"][0])]:
                     exc["modified"] = True
             # Same thing for technosphere exchanges,
             # except that we first need to look up the provider's code first
-            excs = (exc for exc in ds["exchanges"] if exc["type"] == "technosphere")
+            excs = (
+                exc for exc in datasets["exchanges"] if exc["type"] == "technosphere"
+            )
             for exc in excs:
                 if (
                     exc["name"],
@@ -353,7 +379,10 @@ def add_modified_tags(original_db, scenarios):
                     exc_code = codes_names[
                         (exc["name"], exc["product"], exc["unit"], exc["location"])
                     ]
-                    if new[(ds["code"], exc_code)] != original[(ds["code"], exc_code)]:
+                    if (
+                        new[(datasets["code"], exc_code)]
+                        != original[(datasets["code"], exc_code)]
+                    ):
                         exc["modified"] = True
                 else:
                     exc["modified"] = True
@@ -361,9 +390,14 @@ def add_modified_tags(original_db, scenarios):
     return scenarios
 
 
-def build_superstructure_db(origin_db, scenarios, db_name, fp):
+def build_superstructure_db(origin_db, scenarios, db_name, filepath):
+    """
+    Build a superstructure database from the original database and the
+    scenarios.
+    """
+
     # Class `Export` to which the original database is passed
-    exp = Export(db=origin_db, filepath=fp)
+    exp = Export(db=origin_db, filepath=filepath)
 
     # Collect a dictionary of activities
     # {(name, ref_prod, loc, database, unit):row/col index in A matrix}
@@ -373,7 +407,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     coords_A = exp.create_A_matrix_coordinates()
 
     # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
-    original = dict()
+    original = {}
     for x in coords_A:
         if (rev_ind_A[x[0]], rev_ind_A[x[1]]) in original:
             original[(rev_ind_A[x[0]], rev_ind_A[x[1]])] += x[2] * -1
@@ -388,7 +422,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     # Turn it into a dictionary {(activity name, ref prod, location, database, unit): value}
     original.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] * -1 for x in coords_B})
 
-    modified = {}
+    modified_items = {}
 
     print("Looping through scenarios to detect changes...")
 
@@ -399,13 +433,13 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             model=scenario["model"],
             scenario=scenario["pathway"],
             year=scenario["year"],
-            filepath=fp,
+            filepath=filepath,
         )
 
         new_rev_ind_A = exp.rev_index(exp.create_names_and_indices_of_A_matrix())
         new_coords_A = exp.create_A_matrix_coordinates()
 
-        new = dict()
+        new = {}
         for x in new_coords_A:
             if (new_rev_ind_A[x[0]], new_rev_ind_A[x[1]]) in new:
                 new[(new_rev_ind_A[x[0]], new_rev_ind_A[x[1]])] += x[2] * -1
@@ -428,10 +462,10 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         list_modified = chain(list_modified, list_new)
 
         for i in list_modified:
-            if i not in modified:
-                modified[i] = {"original": original.get(i, 0)}
+            if i not in modified_items:
+                modified_items[i] = {"original": original.get(i, 0)}
 
-            modified[i][
+            modified_items[i][
                 f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
             ] = new.get(i, 0)
 
@@ -446,15 +480,17 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios
     ]
 
-    for m in modified:
-        for s in list_scenarios:
-            if s not in modified[m].keys():
+    for modified_item in modified_items:
+        for scenario in list_scenarios:
+            if scenario not in modified_items[modified_item].keys():
                 # if it is a production exchange
                 # the value should be -1
-                if m[1] == m[0]:
-                    modified[m][s] = -1
+                if modified_item[1] == modified_item[0]:
+                    modified_items[modified_item][scenario] = -1
                 else:
-                    modified[m][s] = modified[m]["original"]
+                    modified_items[modified_item][scenario] = modified_items[
+                        modified_item
+                    ]["original"]
 
     columns = [
         "from activity name",
@@ -477,35 +513,37 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
     l_modified = [columns]
 
-    for m in modified:
+    for modified_item, modified_value in modified_items.items():
 
-        if m[1][2] == "biosphere3":
+        if modified_item[1][2] == "biosphere3":
             d = [
-                m[1][0],
+                modified_item[1][0],
                 "",
                 "",
-                m[1][1],
-                m[1][2],
+                modified_item[1][1],
+                modified_item[1][2],
                 "",  # biosphere flow code
-                m[0][0],
-                m[0][1],
-                m[0][3],
+                modified_item[0][0],
+                modified_item[0][1],
+                modified_item[0][3],
                 "",
                 db_name,
                 "",  # activity code
                 "biosphere",
             ]
-        elif m[1] == m[0] and any(v < 0 for v in modified[m].values()):
+        elif modified_item[1] == modified_item[0] and any(
+            v < 0 for v in modified_items[modified_item].values()
+        ):
             d = [
-                m[1][0],
-                m[1][1],
-                m[1][3],
+                modified_item[1][0],
+                modified_item[1][1],
+                modified_item[1][3],
                 "",
                 db_name,
                 "",  # activity code
-                m[0][0],
-                m[0][1],
-                m[0][3],
+                modified_item[0][0],
+                modified_item[0][1],
+                modified_item[0][3],
                 "",
                 db_name,
                 "",  # activity code
@@ -513,34 +551,34 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             ]
         else:
             d = [
-                m[1][0],
-                m[1][1],
-                m[1][3],
+                modified_item[1][0],
+                modified_item[1][1],
+                modified_item[1][3],
                 "",
                 db_name,
                 "",  # activity code
-                m[0][0],
-                m[0][1],
-                m[0][3],
+                modified_item[0][0],
+                modified_item[0][1],
+                modified_item[0][3],
                 "",
                 db_name,
                 "",  # activity code
                 "technosphere",
             ]
 
-        for s in list_scenarios:
+        for scenario in list_scenarios:
             # we do not want a zero here,
             # as it would render the matrix undetermined
-            if m[1] == m[0] and modified[m][s] == 0:
+            if modified_item[1] == modified_item[0] and modified_value[scenario] == 0:
                 d.append(1)
-            elif m[1] == m[0] and modified[m][s] < 0:
-                d.append(modified[m][s] * -1)
+            elif modified_item[1] == modified_item[0] and modified_value[scenario] < 0:
+                d.append(modified_value[scenario] * -1)
             else:
-                d.append(modified[m][s])
+                d.append(modified_value[scenario])
         l_modified.append(d)
 
-    if fp is not None:
-        filepath = Path(fp)
+    if filepath is not None:
+        filepath = Path(filepath)
     else:
         filepath = DATA_DIR / "export" / "scenario diff files"
 
@@ -549,26 +587,26 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
     filepath = filepath / f"scenario_diff_{db_name}.xlsx"
 
-    df = pd.DataFrame(l_modified[1:], columns=l_modified[0])
+    dataframe = pd.DataFrame(l_modified[1:], columns=l_modified[0])
 
-    before = len(df)
+    before = len(dataframe)
 
     # Drop duplicate rows
-    df = df.drop_duplicates()
+    dataframe = dataframe.drop_duplicates()
     # Remove rows whose values across scenarios do not change
-    df = df.loc[df.loc[:, "original":].std(axis=1) > 0, :]
+    dataframe = dataframe.loc[dataframe.loc[:, "original":].std(axis=1) > 0, :]
     # Remove `original` column
-    df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
+    dataframe = dataframe.iloc[:, [j for j, c in enumerate(dataframe.columns) if j != 13]]
 
-    after = len(df)
+    after = len(dataframe)
     print(f"Dropped {before - after} duplicates.")
 
-    df.to_excel(filepath, index=False)
+    dataframe.to_excel(filepath, index=False)
 
     print(f"Scenario difference file exported to {filepath}!")
 
     list_modified_acts = list(
-        set([e[0] for e, v in modified.items() if v["original"] == 0])
+        {e[0] for e, v in modified_items.items() if v["original"] == 0}
     )
 
     acts_to_extend = [
@@ -592,7 +630,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         exc_to_add = []
         for exc in [
             e
-            for e in modified
+            for e in modified_items
             if e[0]
             == (
                 ds["name"],
@@ -601,7 +639,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 ds["location"],
                 ds["unit"],
             )
-            and modified[e]["original"] == 0
+            and modified_items[e]["original"] == 0
         ]:
             # a biosphere flow
             if isinstance(exc[1][1], tuple):
@@ -642,7 +680,9 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
         for a in origin_db
     ]
     list_to_add = [
-        m[0] for m, v in modified.items() if v["original"] == 0 and m[0] not in list_act
+        m[0]
+        for m, v in modified_items.items()
+        if v["original"] == 0 and m[0] not in list_act
     ]
     list_to_add = list(set(list_to_add))
 
@@ -660,7 +700,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             "exchanges": [],
         }
 
-        acts = (act for act in modified if act[0] == add)
+        acts = (act for act in modified_items if act[0] == add)
         excs_to_add = []
         for act in acts:
             if isinstance(act[1][1], tuple):
@@ -723,7 +763,6 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
     return origin_db
 
 
-
 def prepare_db_for_export(scenario):
 
     base = BaseTransformation(
@@ -782,7 +821,7 @@ class Export:
         self.scenario = scenario
         self.year = year
         self.filepath = filepath
-        self.bio_codes = self.rev_index(create_codes_index_of_B_matrix())
+        self.bio_codes = self.rev_index(create_codes_index_of_biosphere_flows_matrix())
 
     def create_A_matrix_coordinates(self):
         index_A = create_index_of_A_matrix(self.db)
@@ -840,7 +879,7 @@ class Export:
 
     def create_B_matrix_coordinates(self):
 
-        index_B = create_index_of_B_matrix()
+        index_B = create_index_of_biosphere_flows_matrix()
         rev_index_B = self.create_rev_index_of_B_matrix()
         index_A = create_index_of_A_matrix(self.db)
         list_rows = []
@@ -881,9 +920,9 @@ class Export:
             os.makedirs(self.filepath)
 
         # Export A matrix
-        with open(self.filepath / "A_matrix.csv", "w") as f:
+        with open(self.filepath / "A_matrix.csv", "w", encoding="utf-8") as file:
             writer = csv.writer(
-                f,
+                file,
                 delimiter=";",
                 lineterminator="\n",
             )
@@ -893,9 +932,9 @@ class Export:
                 writer.writerow(row)
 
         # Export A index
-        with open(self.filepath / "A_matrix_index.csv", "w") as f:
+        with open(self.filepath / "A_matrix_index.csv", "w", encoding="utf-8") as file:
             writer = csv.writer(
-                f,
+                file,
                 delimiter=";",
                 lineterminator="\n",
             )
@@ -904,12 +943,12 @@ class Export:
                 data = list(d) + [index_A[d]]
                 writer.writerow(data)
 
-        index_B = create_index_of_B_matrix()
+        index_B = create_index_of_biosphere_flows_matrix()
 
         # Export B matrix
-        with open(self.filepath / "B_matrix.csv", "w") as f:
+        with open(self.filepath / "B_matrix.csv", "w", encoding="utf-8") as file:
             writer = csv.writer(
-                f,
+                file,
                 delimiter=";",
                 lineterminator="\n",
             )
@@ -919,9 +958,9 @@ class Export:
                 writer.writerow(row)
 
         # Export B index
-        with open(self.filepath / "B_matrix_index.csv", "w") as f:
+        with open(self.filepath / "B_matrix_index.csv", "w", encoding="utf-8") as file:
             writer = csv.writer(
-                f,
+                file,
                 delimiter=";",
                 lineterminator="\n",
             )
@@ -940,7 +979,7 @@ class Export:
 
         csv_dict = {}
 
-        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
+        with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as f:
             input_dict = csv.reader(f, delimiter=";")
             for row in input_dict:
                 csv_dict[row[-1]] = (row[0], row[1], row[2], row[3])
@@ -974,7 +1013,7 @@ class Export:
                                         "category 1"
                                     ]
 
-                                except:
+                                except KeyError:
                                     try:
                                         key = x[1].split(":")[0].strip()
                                         main_category = dict_classifications[key][
@@ -1525,10 +1564,10 @@ class Export:
                 "The dictionary of biosphere flows could not be found."
             )
 
-        csv_dict = dict()
+        csv_dict = {}
 
-        with open(FILEPATH_BIOSPHERE_FLOWS) as f:
-            input_dict = csv.reader(f, delimiter=";")
+        with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+            input_dict = csv.reader(file, delimiter=";")
             for i, row in enumerate(input_dict):
                 if row[2] != "unspecified":
                     csv_dict[(row[0], (row[1], row[2]), "biosphere3", row[3])] = i
@@ -1543,5 +1582,3 @@ class Export:
     def get_bio_code(self, idx):
 
         return self.bio_codes[idx]
-
-

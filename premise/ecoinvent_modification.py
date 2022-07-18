@@ -3,6 +3,37 @@ ecoinvent_modification.py exposes methods to create a database, perform transfor
 as well as export it back.
 
 """
+
+import copy
+import os
+import pickle
+import sys
+from datetime import date
+from pathlib import Path
+from typing import List, Union
+
+import wurst
+
+from premise import DATA_DIR, INVENTORY_DIR
+from premise.cement import Cement
+from premise.clean_datasets import DatabaseCleaner
+from premise.data_collection import IAMDataCollection
+from premise.electricity import Electricity
+from premise.export import Export, check_for_duplicates, prepare_db_for_export, build_superstructure_db
+from premise.fuels import Fuels
+from premise.inventory_imports import AdditionalInventory, DefaultInventory
+from premise.scenario_report import generate_summary_report
+from premise.steel import Steel
+from premise.transport import Transport
+from premise.utils import (
+    HiddenPrints,
+    eidb_label,
+    hide_messages,
+    info_on_utils_functions,
+    print_version,
+    warning_about_biogenic_co2,
+)
+
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
 LIST_REMIND_REGIONS = [
     "CAZ",
@@ -49,42 +80,7 @@ LIST_IMAGE_REGIONS = [
     "WEU",
     "World",
 ]
-import copy
-import os
-import pickle
-import sys
-from datetime import date
-from pathlib import Path
-from typing import List, Union
 
-import wurst
-
-from . import DATA_DIR, INVENTORY_DIR
-from .cement import Cement
-from .clean_datasets import DatabaseCleaner
-from .custom import (
-    Custom,
-    check_custom_scenario,
-    check_inventories,
-    detect_ei_activities_to_adjust,
-)
-from .data_collection import IAMDataCollection
-from .electricity import Electricity
-from .export import Export, check_for_duplicates, prepare_db_for_export, build_superstructure_db
-from .fuels import Fuels
-from .inventory_imports import AdditionalInventory, DefaultInventory
-from .scenario_report import generate_summary_report
-from .steel import Steel
-
-from .transport import Transport
-from .utils import (
-    HiddenPrints,
-    eidb_label,
-    hide_messages,
-    info_on_utils_functions,
-    print_version,
-    warning_about_biogenic_co2,
-)
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -231,22 +227,22 @@ def check_pathway_name(name: str, filepath: Path, model: str) -> str:
         raise ValueError(
             f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
         )
+
+    if model.lower() not in name:
+        name_check = "_".join((model.lower(), name))
     else:
-        if model.lower() not in name:
-            name_check = "_".join((model.lower(), name))
-        else:
-            name_check = name
+        name_check = name
 
-        if (filepath / name_check).with_suffix(".mif").is_file():
-            return name
-        if (filepath / name_check).with_suffix(".xlsx").is_file():
-            return name
-        if (filepath / name_check).with_suffix(".csv").is_file():
-            return name
+    if (filepath / name_check).with_suffix(".mif").is_file():
+        return name
+    if (filepath / name_check).with_suffix(".xlsx").is_file():
+        return name
+    if (filepath / name_check).with_suffix(".csv").is_file():
+        return name
 
-        raise ValueError(
-            f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
-        )
+    raise ValueError(
+        f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
+    )
 
 
 def check_year(year: [int, float]) -> int:
@@ -265,12 +261,18 @@ def check_year(year: [int, float]) -> int:
 
 
 def check_filepath(path: str) -> Path:
+    """
+    Check for the existence of the file.
+    """
     if not Path(path).is_dir():
         raise FileNotFoundError(f"The IAM output directory {path} could not be found.")
     return Path(path)
 
 
 def check_exclude(list_exc: List[str]) -> List[str]:
+    """
+    Check for the validity of the list of excluded functions.
+    """
 
     if not isinstance(list_exc, list):
         raise TypeError("`exclude` should be a sequence of strings.")
@@ -317,7 +319,8 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
             i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
         ):
             raise TypeError(
-                "Both `inventories` and `ecoinvent version` must be present in the list of inventories to import."
+                "Both `inventories` and `ecoinvent version` "
+                "must be present in the list of inventories to import."
             )
 
         if not Path(inventory["inventories"]).is_file():
@@ -350,6 +353,10 @@ def check_db_version(version: [str, float]) -> str:
 
 
 def check_scenarios(scenario: dict, key: bytes) -> dict:
+    """
+    Check that the scenarios are properly formatted and that
+    all the necessary info is given.
+    """
 
     if not all(name in scenario for name in ["model", "pathway", "year"]):
         raise ValueError(
@@ -384,6 +391,9 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
 
 
 def check_system_model(system_model: str) -> str:
+    """
+    Check that the system model is valid.
+    """
 
     if not isinstance(system_model, str):
         raise TypeError(
@@ -400,33 +410,33 @@ def check_system_model(system_model: str) -> str:
     return system_model
 
 
-def check_time_horizon(th: int) -> int:
+def check_time_horizon(time_horizon: int) -> int:
     """
     Check the validity of the time horizon provided (in years).
-    :param th: time horizon (in years), to determine marginal mixes for consequential modelling.
+    :param time_horizon: time horizon (in years), to determine marginal mixes for consequential modelling.
     :return: time horizon (in years)
     """
 
-    if th is None:
+    if time_horizon is None:
         print(
             "`time_horizon`, used to identify marginal suppliers, is not specified. "
             "It is therefore set to 20 years."
         )
-        th = 20
+        time_horizon = 20
 
     try:
-        int(th)
+        int(time_horizon)
     except ValueError as err:
         raise Exception(
             "`time_horizon` must be an integer with a value between 5 and 50 years."
         ) from err
 
-    if th < 5 or th > 50:
+    if time_horizon < 5 or time_horizon > 50:
         raise ValueError(
             "`time_horizon` must be an integer with a value between 5 and 50 years."
         )
 
-    return int(th)
+    return int(time_horizon)
 
 
 class NewDatabase:
@@ -493,12 +503,7 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        if custom_scenario:
-            self.custom_scenario = check_custom_scenario(
-                custom_scenario, self.scenarios
-            )
-        else:
-            self.custom_scenario = None
+        self.custom_scenario = None
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
@@ -562,12 +567,12 @@ class NewDatabase:
         if file_name.exists():
             # return the cached database
             return pickle.load(open(file_name, "rb"))
-        else:
-            # extract the database, pickle it for next time and return it
-            print("Cannot find cached database. Will create one now for next time...")
-            db = self.__clean_database()
-            pickle.dump(db, open(file_name, "wb"))
-            return db
+
+        # extract the database, pickle it for next time and return it
+        print("Cannot find cached database. Will create one now for next time...")
+        database = self.__clean_database()
+        pickle.dump(database, open(file_name, "wb", encoding="utf-8"))
+        return database
 
     def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
         """
@@ -594,7 +599,7 @@ class NewDatabase:
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
         data = self.__import_inventories()
-        pickle.dump(data, open(file_name, "wb"))
+        pickle.dump(data, open(file_name, "wb", encoding="utf-8"))
         print(
             "Data cached. It is advised to restart your workflow at this point. "
             "This allows premise to use the cached data instead, which results in"
@@ -699,14 +704,19 @@ class NewDatabase:
                 # we flag them
                 if "region_duplicate" in file:
                     if file["region_duplicate"]:
-                        for ds in additional.import_db:
-                            ds["duplicate"] = True
+                        for dataset in additional.import_db:
+                            dataset["duplicate"] = True
 
                 data.extend(additional.merge_inventory())
 
         return data
 
     def update_electricity(self) -> None:
+        """
+        This method will update the electricity inventories
+        with the data from the IAM scenarios.
+
+        """
 
         print("\n/////////////////////////// ELECTRICITY ////////////////////////////")
 
@@ -732,6 +742,10 @@ class NewDatabase:
                 scenario["database"] = electricity.database
 
     def update_fuels(self) -> None:
+        """
+        This method will update the fuels inventories
+        with the data from the IAM scenarios.
+        """
         print("\n////////////////////////////// FUELS ///////////////////////////////")
 
         for scenario in self.scenarios:
@@ -750,6 +764,10 @@ class NewDatabase:
                 scenario["database"] = fuels.database
 
     def update_cement(self) -> None:
+        """
+        This method will update the cement inventories
+        with the data from the IAM scenarios.
+        """
         print("\n///////////////////////////// CEMENT //////////////////////////////")
 
         for scenario in self.scenarios:
@@ -768,6 +786,10 @@ class NewDatabase:
                 scenario["database"] = cement.database
 
     def update_steel(self) -> None:
+        """
+        This method will update the steel inventories
+        with the data from the IAM scenarios.
+        """
         print("\n////////////////////////////// STEEL //////////////////////////////")
 
         for scenario in self.scenarios:
@@ -786,6 +808,10 @@ class NewDatabase:
                 scenario["database"] = steel.database
 
     def update_cars(self) -> None:
+        """
+        This method will update the cars inventories
+        with the data from the IAM scenarios.
+        """
         print("\n///////////////////////// PASSENGER CARS ///////////////////////////")
 
         for scenario in self.scenarios:
@@ -805,6 +831,10 @@ class NewDatabase:
                 scenario["database"] = trspt.database
 
     def update_two_wheelers(self) -> None:
+        """
+        This method will update the two wheelers inventories
+        with the data from the IAM scenarios.
+        """
         print("\n////////////////////////// TWO-WHEELERS ////////////////////////////")
 
         for scenario in self.scenarios:
@@ -828,6 +858,10 @@ class NewDatabase:
                 scenario["database"] = trspt.database
 
     def update_trucks(self) -> None:
+        """
+        This method will update the trucks inventories
+        with the data from the IAM scenarios.
+        """
 
         print("\n////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
 
@@ -849,51 +883,12 @@ class NewDatabase:
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
 
-    def update_custom_scenario(self):
-
-        if self.custom_scenario:
-            for i, scenario in enumerate(self.scenarios):
-                if (
-                    "exclude" not in scenario
-                    or "update_custom_scenario" not in scenario["exclude"]
-                ):
-
-                    data = self.__import_additional_inventories(self.custom_scenario)
-
-                    if data:
-                        data = check_inventories(
-                            self.custom_scenario,
-                            data,
-                            scenario["model"],
-                            scenario["pathway"],
-                            scenario["custom data"],
-                        )
-                        scenario["database"].extend(data)
-
-                    scenario["database"] = detect_ei_activities_to_adjust(
-                        self.custom_scenario,
-                        scenario["database"],
-                        scenario["model"],
-                        scenario["pathway"],
-                        scenario["custom data"],
-                    )
-
-                    custom = Custom(
-                        database=scenario["database"],
-                        model=scenario["model"],
-                        pathway=scenario["pathway"],
-                        iam_data=scenario["iam data"],
-                        year=scenario["year"],
-                        version=self.version,
-                        custom_scenario=self.custom_scenario,
-                        custom_data=scenario["custom data"],
-                    )
-                    custom.regionalize_imported_inventories()
-                    scenario["database"] = custom.database
-                    custom.create_custom_markets()
-                    scenario["database"] = custom.database
 
     def update_buses(self) -> None:
+        """
+        This method will update the buses inventories
+        with the data from the IAM scenarios.
+        """
 
         print("\n////////////////////////////// BUSES ///////////////////////////////")
 
@@ -928,14 +923,14 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
         self.update_fuels()
-        self.update_custom_scenario()
 
 
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None
     ) -> None:
         """
-        Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
+        Register a super-structure database,
+        according to https://github.com/dgdekoning/brightway-superstructure
         :return: filepath of the "scenarios difference file"
         """
 
@@ -945,7 +940,7 @@ class NewDatabase:
             scenario["database"] = prepare_db_for_export(scenario)
 
         self.database = build_superstructure_db(
-            self.database, self.scenarios, db_name=name, fp=filepath
+            self.database, self.scenarios, db_name=name, filepath=filepath
         )
 
         print("Done!")
@@ -1024,7 +1019,8 @@ class NewDatabase:
                 filepath = [Path(f) for f in filepath]
             else:
                 raise TypeError(
-                    f"Expected a string or a sequence of strings for `filepath`, not {type(filepath)}."
+                    f"Expected a string or a sequence of "
+                    f"strings for `filepath`, not {type(filepath)}."
                 )
         else:
             filepath = [

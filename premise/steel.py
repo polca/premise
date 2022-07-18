@@ -1,17 +1,16 @@
+"""
+Integrates projections regarding steel production.
+"""
 import os
-from typing import List, Tuple
+from typing import List
 
-import numpy as np
-
-from .data_collection import IAMDataCollection
-from .transformation import (
+from premise.data_collection import IAMDataCollection
+from premise.transformation import (
     BaseTransformation,
-    get_shares_from_production_volume,
-    get_suppliers_of_a_region,
     ws,
     wurst,
 )
-from .utils import DATA_DIR
+from premise.utils import DATA_DIR
 
 
 class Steel(BaseTransformation):
@@ -284,7 +283,7 @@ class Steel(BaseTransformation):
 
                 # update comments
                 text = (
-                    f"This dataset has been modified by `premise`, according to "
+                    "This dataset has been modified by `premise`, according to "
                     f"the performance for steel production indicated by the IAM model {self.model.upper()} "
                     f"for the IAM region {region} in {self.year}, following the scenario {self.scenario}. "
                     f"The energy efficiency of the process "
@@ -336,7 +335,8 @@ class Steel(BaseTransformation):
                             "amount": co2_amount - co2_emitted,
                             "type": "technosphere",
                             "production volume": 0,
-                            "name": "CO2 capture, at cement production plant, with underground storage, post, 200 km",
+                            "name": "CO2 capture, at cement production plant, "
+                                    "with underground storage, post, 200 km",
                             "unit": "kilogram",
                             "location": activity["location"],
                             "product": "CO2, captured and stored",

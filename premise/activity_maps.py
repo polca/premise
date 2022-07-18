@@ -9,7 +9,7 @@ from typing import List, Union
 
 import yaml
 
-from . import DATA_DIR
+from premise import DATA_DIR
 
 GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
     DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
@@ -27,7 +27,7 @@ def get_mapping(filepath: Path, var: str) -> dict:
     :return: a dictionary
     """
 
-    with open(filepath, "r") as stream:
+    with open(filepath, "r", encoding="utf-8") as stream:
         techs = yaml.safe_load(stream)
 
     mapping = {}
@@ -51,8 +51,8 @@ def get_gains_to_ecoinvent_emissions() -> dict:
 
     csv_dict = {}
 
-    with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH) as f:
-        input_dict = csv.reader(f, delimiter=";")
+    with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH, encoding="utf-8") as file:
+        input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[row[0]] = row[1]
 
@@ -77,8 +77,8 @@ class InventorySet:
     These functions return the result of applying :func:`act_fltr` to the filter dictionaries.
     """
 
-    def __init__(self, db: List[dict]) -> None:
-        self.db = db
+    def __init__(self, database: List[dict]) -> None:
+        self.database = database
         self.powerplant_filters = get_mapping(
             filepath=POWERPLANT_TECHS, var="ecoinvent_aliases"
         )
@@ -124,11 +124,16 @@ class InventorySet:
         return self.generate_sets_from_filters(self.fuels_filters)
 
     def generate_material_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to materials.
+        Rerurns a dictionary with material names as keys (see below) and
+        a set of related ecoinvent activities' names as values.
+        """
         return self.generate_sets_from_filters(self.materials_filters)
 
     @staticmethod
     def act_fltr(
-        db: List[dict],
+        database: List[dict],
         fltr: Union[str, List[str]] = None,
         mask: Union[str, List[str]] = None,
         filter_exact: bool = False,
@@ -142,8 +147,8 @@ class InventorySet:
         `mask`: used in the same way as `fltr`, but filters add up with each other (*and*).
         `filter_exact` and `mask_exact`: boolean, set `True` to only allow for exact matches.
 
-        :param db: A lice cycle inventory database
-        :type db: brightway2 database object
+        :param database: A lice cycle inventory database
+        :type database: brightway2 database object
         :param fltr: value(s) to filter with.
         :type fltr: Union[str, lst, dict]
         :param mask: value(s) to filter with.
@@ -163,41 +168,40 @@ class InventorySet:
         result = []
 
         # default field is name
-        if type(fltr) == list or type(fltr) == str:
+        if isinstance(fltr, (list, str)):
             fltr = {"name": fltr}
-        if type(mask) == list or type(mask) == str:
+        if isinstance(mask, (list, str)):
             mask = {"name": mask}
 
-        def like(a, b):
+        def like(item_a, item_b):
             if filter_exact:
-                return a.lower() == b.lower()
-            else:
-                return a.lower().startswith(b.lower())
+                return item_a.lower() == item_b.lower()
+            return item_a.lower().startswith(item_b.lower())
 
-        def notlike(a, b):
+        def notlike(item_a, item_b):
             if mask_exact:
-                return a.lower() != b.lower()
-            else:
-                return b.lower() not in a.lower()
+                return item_a.lower() != item_b.lower()
+            return item_b.lower() not in item_a.lower()
 
         assert len(fltr) > 0, "Filter dict must not be empty."
+
         for field in fltr:
-            condition = fltr[field]
-            if type(condition) == list:
-                for el in condition:
+            conditions = fltr[field]
+            if isinstance(conditions, list):
+                for condition in conditions:
                     # this is effectively connecting the statements by *or*
-                    result.extend([act for act in db if like(act[field], el)])
+                    result.extend([act for act in database if like(act[field], condition)])
             else:
-                result.extend([act for act in db if like(act[field], condition)])
+                result.extend([act for act in database if like(act[field], conditions)])
 
         for field in mask:
-            condition = mask[field]
-            if type(condition) == list:
-                for el in condition:
+            conditions = mask[field]
+            if isinstance(conditions, list):
+                for condition in conditions:
                     # this is effectively connecting the statements by *and*
-                    result = [act for act in result if notlike(act[field], el)]
+                    result = [act for act in result if notlike(act[field], condition)]
             else:
-                result = [act for act in result if notlike(act[field], condition)]
+                result = [act for act in result if notlike(act[field], conditions)]
         return result
 
     def generate_sets_from_filters(self, filtr: dict) -> dict:
@@ -211,7 +215,9 @@ class InventorySet:
             and a set of activity data set names as values.
         :rtype: dict
         """
-        techs = {tech: self.act_fltr(self.db, **fltr) for tech, fltr in filtr.items()}
+        techs = {tech: self.act_fltr(self.database, **fltr)
+                 for tech, fltr in filtr.items()}
         return {
-            tech: set([act["name"] for act in actlst]) for tech, actlst in techs.items()
+            tech: {act["name"] for act in actlst}
+            for tech, actlst in techs.items()
         }

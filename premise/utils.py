@@ -1,14 +1,15 @@
+"""
+Various utils functions.
+"""
+
 import sys
-import uuid
 import os
 import csv
-import warnings
 from copy import deepcopy
-from datetime import date
 from functools import lru_cache
 
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict,  Tuple
 
 import pandas as pd
 import xarray as xr
@@ -19,9 +20,9 @@ from prettytable import ALL, PrettyTable
 from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
 
-from . import __version__, geomap
-from . import DATA_DIR
-from .geomap import Geomap
+from premise import __version__, geomap
+from premise import DATA_DIR
+from premise.geomap import Geomap
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
@@ -44,7 +45,7 @@ class HiddenPrints:
 
     def __enter__(self):
         self._original_stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")
+        sys.stdout = open(os.devnull, "w", encoding="utf-8")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         sys.stdout.close()
@@ -74,7 +75,7 @@ def get_fuel_properties() -> dict:
     :rtype: dict
     """
 
-    with open(FUELS_PROPERTIES, "r") as stream:
+    with open(FUELS_PROPERTIES, "r", encoding="utf-8") as stream:
         fuel_props = yaml.safe_load(stream)
 
     return fuel_props
@@ -86,54 +87,57 @@ def get_crops_properties() -> dict:
     relating to land use change CO2 per crop type
     :return: dict
     """
-    with open(CROPS_PROPERTIES, "r") as stream:
+    with open(CROPS_PROPERTIES, "r", encoding="utf-8") as stream:
         crop_props = yaml.safe_load(stream)
 
     return crop_props
 
 
-def get_efficiency_ratio_solar_PV() -> xr.DataArray:
+def get_efficiency_ratio_solar_photovoltaics() -> xr.DataArray:
     """
     Return an array with PV module efficiencies in function of year and technology.
     :return: xr.DataArray with PV module efficiencies
     """
 
-    df = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
+    dataframe = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
 
-    return df.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
+    return dataframe.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
 
 
 def get_clinker_ratio_ecoinvent(version: str) -> Dict[Tuple[str, str], float]:
     """
-    Return a dictionary with (cement names, location) as keys and clinker-to-cement ratios as values,
+    Return a dictionary with (cement names, location) as keys
+    and clinker-to-cement ratios as values,
     as found in ecoinvent.
     :return: dict
     """
     if version == "3.5":
-        fp = CLINKER_RATIO_ECOINVENT_35
+        filepath = CLINKER_RATIO_ECOINVENT_35
     else:
-        fp = CLINKER_RATIO_ECOINVENT_36
+        filepath = CLINKER_RATIO_ECOINVENT_36
 
-    with open(fp) as f:
-        d = {}
-        for val in csv.reader(f, delimiter=","):
-            d[(val[0], val[1])] = float(val[2])
-    return d
+    with open(filepath, encoding="utf-8") as file:
+        clinker_ratios = {}
+        for val in csv.reader(file, delimiter=","):
+            clinker_ratios[(val[0], val[1])] = float(val[2])
+    return clinker_ratios
 
 
 def get_clinker_ratio_remind(year: int) -> xr.DataArray:
     """
-    Return an array with the average clinker-to-cement ratio per year and per region, as given by REMIND.
+    Return an array with the average clinker-to-cement ratio
+    per year and per region, as given by REMIND.
     :return: xarray
     :return:
     """
-    df = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
 
-    return df.groupby(["region", "year"]).mean()["value"].to_xarray().interp(year=year)
+    dataframe = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
+
+    return dataframe.groupby(["region", "year"]).mean()["value"].to_xarray().interp(year=year)
 
 
 def relink_technosphere_exchanges(
-    ds,
+    dataset,
     data,
     model,
     cache,
@@ -167,15 +171,15 @@ def relink_technosphere_exchanges(
 
     list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()]
 
-    for exc in filter(technosphere, ds["exchanges"]):
+    for exc in filter(technosphere, dataset["exchanges"]):
 
         try:
-            e = cache[ds["location"]][
+            exchange = cache[dataset["location"]][
                 (exc["name"], exc["product"], exc["location"], exc["unit"])
             ]
 
-            if isinstance(e, tuple):
-                name, prod, unit, loc = e
+            if isinstance(exchange, tuple):
+                name, prod, unit, loc = exchange
 
                 new_exchanges.append(
                     {
@@ -200,7 +204,7 @@ def relink_technosphere_exchanges(
                             "type": "technosphere",
                             "amount": exc["amount"] * i[-1],
                         }
-                        for i in e
+                        for i in exchange
                     ]
                 )
 
@@ -210,8 +214,8 @@ def relink_technosphere_exchanges(
             ]
             possible_locations = [obj["location"] for obj in possible_datasets]
 
-            if ds["location"] in possible_locations:
-                exc["location"] = ds["location"]
+            if dataset["location"] in possible_locations:
+                exc["location"] = dataset["location"]
                 new_exchanges.append(exc)
                 continue
 
@@ -225,10 +229,10 @@ def relink_technosphere_exchanges(
                 with resolved_row(possible_locations, geomatcher.geo) as g:
                     func = g.contained if contained else g.intersects
 
-                    if ds["location"] in geomatcher.iam_regions:
-                        location = (model.upper(), ds["location"])
+                    if dataset["location"] in geomatcher.iam_regions:
+                        location = (model.upper(), dataset["location"])
                     else:
-                        location = ds["location"]
+                        location = dataset["location"]
 
                     gis_match = func(
                         location,
@@ -279,15 +283,15 @@ def relink_technosphere_exchanges(
                 if not kept:
                     if drop_invalid:
                         continue
-                    else:
-                        new_exchanges.append(exc)
-                        continue
+
+                    new_exchanges.append(exc)
+                    continue
 
                 allocated, share = allocate_inputs(exc, kept)
                 new_exchanges.extend(allocated)
 
-                if ds["location"] in cache:
-                    cache[ds["location"]][
+                if dataset["location"] in cache:
+                    cache[dataset["location"]][
                         (
                             exc["name"],
                             exc["product"],
@@ -301,7 +305,7 @@ def relink_technosphere_exchanges(
 
                 else:
 
-                    cache[ds["location"]] = {
+                    cache[dataset["location"]] = {
                         (exc["name"], exc["product"], exc["location"], exc["unit"],): [
                             (e["name"], e["product"], e["location"], e["unit"], s)
                             for e, s in zip(allocated, share)
@@ -310,8 +314,8 @@ def relink_technosphere_exchanges(
             else:
                 new_exchanges.append(exc)
                 # add to cache
-                if ds["location"] in cache:
-                    cache[ds["location"]][
+                if dataset["location"] in cache:
+                    cache[dataset["location"]][
                         (
                             exc["name"],
                             exc["product"],
@@ -326,7 +330,7 @@ def relink_technosphere_exchanges(
                     )
 
                 else:
-                    cache[ds["location"]] = {
+                    cache[dataset["location"]] = {
                         (exc["name"], exc["product"], exc["location"], exc["unit"],): (
                             exc["name"],
                             exc["product"],
@@ -335,16 +339,19 @@ def relink_technosphere_exchanges(
                         )
                     }
 
-    ds["exchanges"] = [
-        exc for exc in ds["exchanges"] if exc["type"] != "technosphere"
+    dataset["exchanges"] = [
+        exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
     ] + new_exchanges
 
-    return cache, ds
+    return cache, dataset
 
 
 def allocate_inputs(exc, lst):
-    """Allocate the input exchanges in ``lst`` to ``exc``, using production volumes where possible, and equal splitting otherwise.
-    Always uses equal splitting if ``RoW`` is present."""
+    """
+    Allocate the input exchanges in ``lst`` to ``exc``,
+    using production volumes where possible, and equal splitting otherwise.
+    Always uses equal splitting if ``RoW`` is present.
+    """
     has_row = any((x["location"] in ("RoW", "GLO") for x in lst))
     pvs = [reference_product(o).get("production volume") or 0 for o in lst]
     if all((x > 0 for x in pvs)) and not has_row:
@@ -356,9 +363,9 @@ def allocate_inputs(exc, lst):
         pvs = [1 for _ in range(total)]
 
     def new_exchange(exc, location, factor):
-        cp = deepcopy(exc)
-        cp["location"] = location
-        return rescale_exchange(cp, factor)
+        copied_exc = deepcopy(exc)
+        copied_exc["location"] = location
+        return rescale_exchange(copied_exc, factor)
 
     return [
         new_exchange(exc, obj["location"], factor / total)
@@ -367,21 +374,31 @@ def allocate_inputs(exc, lst):
 
 
 def get_possibles(exchange, data):
-    """Filter a list of datasets ``data``, returning those with the save name, reference product, and unit as in ``exchange``.
+    """Filter a list of datasets ``data``,
+    returning those with the save name,
+    reference product, and unit as in ``exchange``.
     Returns a generator."""
     key = (exchange["name"], exchange["product"], exchange["unit"])
     list_exc = []
-    for ds in data:
-        if (ds["name"], ds["reference product"], ds["unit"]) == key:
-            list_exc.append(ds)
+    for dataset in data:
+        if (dataset["name"], dataset["reference product"], dataset["unit"]) == key:
+            list_exc.append(dataset)
     return list_exc
 
 
 def default_global_location(database):
-    """Set missing locations to ```GLO``` for datasets in ``database``.
-    Changes location if ``location`` is missing or ``None``. Will add key ``location`` if missing."""
-    for ds in get_many(database, *[equals("location", None)]):
-        ds["location"] = "GLO"
+
+    """
+    Set missing locations to ```GLO```
+    for datasets in ``database``.
+    Changes location if ``location``
+    is missing or ``None``.
+    Will add key ``location`` if missing.
+    :param database: database to update
+    """
+
+    for dataset in get_many(database, *[equals("location", None)]):
+        dataset["location"] = "GLO"
     return database
 
 
@@ -391,28 +408,28 @@ def get_regions_definition(model: str) -> None:
 
     Return a table containing the list of countries
     corresponding to each region of the model."""
-    t = PrettyTable(["Region", "Countries"])
+    table = PrettyTable(["Region", "Countries"])
 
     geo = Geomap(model)
-    c = CountryConverter()
+    country_converter = CountryConverter()
 
     for region in geo.iam_regions:
 
         list_countries = []
         for iso_2 in geo.iam_to_ecoinvent_location(region):
-            if iso_2 in c.ISO2["ISO2"].values:
-                country_name = c.convert(iso_2, to="name")
+            if iso_2 in country_converter.ISO2["ISO2"].values:
+                country_name = country_converter.convert(iso_2, to="name")
             else:
                 country_name = iso_2
 
             list_countries.append(country_name)
 
-        t.add_row([region, list_countries])
+        table.add_row([region, list_countries])
 
-    t._max_width = {"Region": 50, "Countries": 125}
-    t.hrules = ALL
+    table._max_width = {"Region": 50, "Countries": 125}
+    table.hrules = ALL
 
-    print(t)
+    print(table)
 
 
 # clear the cache folder
@@ -428,8 +445,8 @@ def print_version():
 def info_on_utils_functions():
     """Display message to list utils functions"""
 
-    t = PrettyTable(["Utils functions", "Description"])
-    t.add_row(
+    table = PrettyTable(["Utils functions", "Description"])
+    table.add_row(
         [
             "clear_cache()",
             (
@@ -440,23 +457,23 @@ def info_on_utils_functions():
             ),
         ]
     )
-    t.add_row(
+    table.add_row(
         [
             "get_regions_definition(model)",
-            ("Retrieves the list " "of countries for each " "region of the model."),
+            "Retrieves the list of countries for each region of the model.",
         ]
     )
-    t.add_row(
+    table.add_row(
         [
             "ndb.NewDatabase(...)\nndb.generate_scenario_report()",
-            ("Generates a summary of the most important scenarios' variables."),
+            "Generates a summary of the most important scenarios' variables.",
         ]
     )
     # align text to the left
-    t.align = "l"
-    t.hrules = ALL
-    t._max_width = {"Utils functions": 50, "Description": 32}
-    print(t)
+    table.align = "l"
+    table.hrules = ALL
+    table._max_width = {"Utils functions": 50, "Description": 32}
+    print(table)
 
 
 def warning_about_biogenic_co2() -> None:
@@ -464,8 +481,8 @@ def warning_about_biogenic_co2() -> None:
     Prints a simple warning about characterizing biogenic CO2 flows.
     :return: Does not return anything.
     """
-    t = PrettyTable(["Warning"])
-    t.add_row(
+    table = PrettyTable(["Warning"])
+    table.add_row(
         [
             "Because some of the scenarios can yield LCI databases\n"
             "containing net negative emission technologies (NET),\n"
@@ -479,11 +496,14 @@ def warning_about_biogenic_co2() -> None:
         ]
     )
     # align text to the left
-    t.align = "l"
-    print(t)
+    table.align = "l"
+    print(table)
 
 
 def hide_messages():
+    """
+    Hide messages from the console.
+    """
 
     print("Hide these messages?")
     print("NewDatabase(..., quiet=True)")

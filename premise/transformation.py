@@ -894,7 +894,7 @@ class BaseTransformation:
 
             scaling_factor = 1 / self.find_gains_emissions_change(
                 pollutant=pollutant,
-                location=self.geo.iam_to_GAINS_region(
+                location=self.geo.iam_to_gains_region(
                     self.geo.ecoinvent_to_iam_location(dataset["location"])
                 ),
                 sector=sector,
