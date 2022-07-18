@@ -5,6 +5,8 @@ cement - co2:
     remind:
       - Emi|CO2|Industrial Processes|+|Cement
       - Emi|CO2|Energy|Demand|Industry|++|Cement
+      - Carbon Management|Carbon Capture|Industry Energy|Cement
+      - Carbon Management|Carbon Capture|+|Industry Process
     image:
       - Emissions|CO2|Industry|Cement|Gross
 cement - cco2:
@@ -18,6 +20,7 @@ steel - co2:
   iam_aliases:
     remind:
       - Emi|CO2|Energy|Demand|Industry|++|Steel
+      - Carbon Management|Carbon Capture|Industry Energy|Steel
     image:
       - Emissions|CO2|Industry|Steel|Gross
 steel - cco2:
