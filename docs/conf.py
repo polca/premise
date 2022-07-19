@@ -13,7 +13,7 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath("../.."))
+sys.path.insert(0, os.path.abspath(".."))
 
 print(sys.path)
 
@@ -57,6 +57,7 @@ autodoc_mock_imports = [
     "pyYaml",
     "schema",
     "datapackage",
+    "premise"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
