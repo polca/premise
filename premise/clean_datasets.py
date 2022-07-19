@@ -176,11 +176,12 @@ class DatabaseCleaner:
         ]
 
     def add_location_field_to_exchanges(self) -> None:
-        """Add the `location` key to the production and
+        """
+        Add the `location` key to the production and
         technosphere exchanges in :attr:`database`.
 
         :raises IndexError: if no corresponding activity
-        (and reference product) can be found.
+            (and reference product) can be found.
 
         """
         d_location = {(a["database"], a["code"]): a["location"] for a in self.database}
@@ -191,7 +192,9 @@ class DatabaseCleaner:
                     exchange["location"] = d_location[exc_input]
 
     def add_product_field_to_exchanges(self) -> None:
-        """Add the `product` key to the production and
+        """
+
+        Add the `product` key to the production and
         technosphere exchanges in :attr:`database`.
 
         For production exchanges, use the value
@@ -201,7 +204,7 @@ class DatabaseCleaner:
         use the reference product.
 
         :raises IndexError: if no corresponding
-        activity (and reference product) can be found.
+            activity (and reference product) can be found.
 
         """
         # Create a dictionary that contains the 'code' field as key and the 'product' field as value

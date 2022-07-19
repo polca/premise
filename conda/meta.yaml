@@ -30,8 +30,6 @@ requirements:
     - pycountry
     - cryptography
     - pyYaml
-    - schema
-    - datapackage
 
 test:
   imports:
