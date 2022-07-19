@@ -605,8 +605,8 @@ class NewDatabase:
         data = self.__import_inventories()
         pickle.dump(data, open(file_name, "wb"))
         print(
-            "Data cached. It is advised to restart your workflow at this point. "
-            "This allows premise to use the cached data instead, which results in"
+            "Data cached. It is advised to restart your workflow at this point.\n "
+            "This allows premise to use the cached data instead, which results in\n "
             "a faster workflow."
         )
         return None

@@ -763,10 +763,4 @@ class Cement(BaseTransformation):
             for line in created_datasets:
                 writer.writerow(line)
 
-        print("Relink cement production datasets to new clinker market datasets")
-
-        # print("Relink clinker market datasets to new clinker production datasets")
-
-        # self.relink_datasets()
-
         print("Done!")
