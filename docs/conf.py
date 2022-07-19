@@ -12,6 +12,7 @@
 #
 import os
 import sys
+
 import premise
 from premise import *
 
