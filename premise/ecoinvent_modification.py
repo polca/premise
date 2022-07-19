@@ -575,7 +575,7 @@ class NewDatabase:
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
         database = self.__clean_database()
-        pickle.dump(database, open(file_name, "wb", encoding="utf-8"))
+        pickle.dump(database, open(file_name, "wb"))
         return database
 
     def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
@@ -603,7 +603,7 @@ class NewDatabase:
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
         data = self.__import_inventories()
-        pickle.dump(data, open(file_name, "wb", encoding="utf-8"))
+        pickle.dump(data, open(file_name, "wb"))
         print(
             "Data cached. It is advised to restart your workflow at this point. "
             "This allows premise to use the cached data instead, which results in"
