@@ -14,23 +14,23 @@ from typing import List, Union
 
 import wurst
 
-from premise import DATA_DIR, INVENTORY_DIR
-from premise.cement import Cement
-from premise.clean_datasets import DatabaseCleaner
-from premise.data_collection import IAMDataCollection
-from premise.electricity import Electricity
-from premise.export import (
+from . import DATA_DIR, INVENTORY_DIR
+from .cement import Cement
+from .clean_datasets import DatabaseCleaner
+from .data_collection import IAMDataCollection
+from .electricity import Electricity
+from .export import (
     Export,
     build_superstructure_db,
     check_for_duplicates,
     prepare_db_for_export,
 )
-from premise.fuels import Fuels
-from premise.inventory_imports import AdditionalInventory, DefaultInventory
-from premise.scenario_report import generate_summary_report
-from premise.steel import Steel
-from premise.transport import Transport
-from premise.utils import (
+from .fuels import Fuels
+from .inventory_imports import AdditionalInventory, DefaultInventory
+from .scenario_report import generate_summary_report
+from .steel import Steel
+from .transport import Transport
+from .utils import (
     HiddenPrints,
     eidb_label,
     hide_messages,

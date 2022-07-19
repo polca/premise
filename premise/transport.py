@@ -13,16 +13,16 @@ import numpy as np
 import xarray as xr
 import yaml
 
-from premise import INVENTORY_DIR
-from premise.inventory_imports import VariousVehicles
-from premise.transformation import (
+from . import INVENTORY_DIR
+from .inventory_imports import VariousVehicles
+from .transformation import (
     BaseTransformation,
     IAMDataCollection,
     relink_technosphere_exchanges,
     ws,
     wt,
 )
-from premise.utils import DATA_DIR, eidb_label
+from .utils import DATA_DIR, eidb_label
 
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"

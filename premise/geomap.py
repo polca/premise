@@ -8,7 +8,7 @@ from typing import Dict, List, Union
 import yaml
 from wurst import geomatcher
 
-from premise import DATA_DIR
+from . import DATA_DIR
 
 ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"

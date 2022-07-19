@@ -9,7 +9,7 @@ from datetime import date
 import yaml
 from numpy import ndarray
 
-from premise.transformation import (
+from .transformation import (
     Any,
     BaseTransformation,
     Dict,
@@ -25,7 +25,7 @@ from premise.transformation import (
     ws,
     wurst,
 )
-from premise.utils import DATA_DIR, get_crops_properties
+from .utils import DATA_DIR, get_crops_properties
 
 REGION_CLIMATE_MAP = DATA_DIR / "fuels" / "region_to_climate.yml"
 FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"

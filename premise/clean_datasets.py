@@ -14,7 +14,7 @@ import wurst
 from bw2data.database import DatabaseChooser
 from wurst import searching as ws
 
-from premise import DATA_DIR
+from . import DATA_DIR
 
 FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"

@@ -9,7 +9,7 @@ from typing import List, Union
 
 import yaml
 
-from premise import DATA_DIR
+from . import DATA_DIR
 
 GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
     DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"

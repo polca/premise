@@ -18,7 +18,7 @@ import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
 
-from premise import DATA_DIR
+from . import DATA_DIR
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"

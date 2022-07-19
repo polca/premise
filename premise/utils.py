@@ -19,8 +19,8 @@ from prettytable import ALL, PrettyTable
 from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
 
-from premise import DATA_DIR, __version__, geomap
-from premise.geomap import Geomap
+from . import DATA_DIR, __version__, geomap
+from .geomap import Geomap
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"

@@ -11,7 +11,7 @@ import csv
 import os
 from datetime import date
 
-from premise.transformation import (
+from .transformation import (
     BaseTransformation,
     Dict,
     IAMDataCollection,
@@ -22,7 +22,7 @@ from premise.transformation import (
     remove_exchanges,
     ws,
 )
-from premise.utils import (
+from .utils import (
     DATA_DIR,
     get_clinker_ratio_ecoinvent,
     get_clinker_ratio_remind,

@@ -16,8 +16,8 @@ import pandas as pd
 import yaml
 from wurst import searching as ws
 
-from premise import DATA_DIR, __version__
-from premise.transformation import BaseTransformation
+from . import DATA_DIR, __version__
+from .transformation import BaseTransformation
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"

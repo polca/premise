@@ -4,9 +4,9 @@ Integrates projections regarding steel production.
 import os
 from typing import List
 
-from premise.data_collection import IAMDataCollection
-from premise.transformation import BaseTransformation, ws, wurst
-from premise.utils import DATA_DIR
+from .data_collection import IAMDataCollection
+from .transformation import BaseTransformation, ws, wurst
+from .utils import DATA_DIR
 
 
 class Steel(BaseTransformation):
