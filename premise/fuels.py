@@ -1151,14 +1151,17 @@ class Fuels(BaseTransformation):
 
                 for name in names:
 
-                    prod_label = [
-                        l
-                        for l in self.fuel_labels
-                        if crop_type.lower() in l.lower()
-                        and any(
-                            i.lower() in l.lower() for i in ("biodiesel", "bioethanol")
-                        )
-                    ][0]
+                    try:
+                        prod_label = [
+                            l
+                            for l in self.fuel_labels
+                            if crop_type.lower() in l.lower()
+                            and any(
+                                i.lower() in l.lower() for i in ("biodiesel", "bioethanol")
+                            )
+                        ][0]
+                    except IndexError:
+                        continue
 
                     new_ds = self.fetch_proxies(
                         name=name,
