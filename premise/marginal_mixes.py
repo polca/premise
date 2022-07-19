@@ -620,7 +620,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             market_shares.loc[dict(region=region)] /= n
 
-        # market_shares.loc[dict(region=region)] = market_shares.loc[dict(region=region)][:, None]
         market_shares.loc[dict(region=region)] = market_shares.loc[
             dict(region=region)
         ].round(3)
