@@ -84,7 +84,7 @@ jobs:
       - name: Run tests
         run: |
           pytest -m "not ecoinvent" -s --cov=premise
-          coveralls --service=github
+          coveralls --service=github-actions
         env:
           GITHUB_TOKEN: ${{ secrets.COVERALLS }}
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
