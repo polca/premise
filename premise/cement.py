@@ -22,11 +22,7 @@ from .transformation import (
     remove_exchanges,
     ws,
 )
-from .utils import (
-    DATA_DIR,
-    get_clinker_ratio_ecoinvent,
-    get_clinker_ratio_remind,
-)
+from .utils import DATA_DIR, get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
 
 
 class Cement(BaseTransformation):
