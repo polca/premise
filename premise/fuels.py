@@ -1157,7 +1157,8 @@ class Fuels(BaseTransformation):
                             for l in self.fuel_labels
                             if crop_type.lower() in l.lower()
                             and any(
-                                i.lower() in l.lower() for i in ("biodiesel", "bioethanol")
+                                i.lower() in l.lower()
+                                for i in ("biodiesel", "bioethanol")
                             )
                         ][0]
                     except IndexError:
