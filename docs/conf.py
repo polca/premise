@@ -12,6 +12,8 @@
 #
 import os
 import sys
+import premise
+from premise import *
 
 sys.path.insert(0, os.path.abspath(".."))
 
