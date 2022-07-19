@@ -654,5 +654,4 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 dict(region=region)
             ].sum(dim="variables")
 
-    print(market_shares.sum(dim="variables"))
     return market_shares
