@@ -24,7 +24,7 @@ copyright = (
 author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "1.0.0"
+release = "1.2.0"
 
 # -- General configuration ---------------------------------------------------
 
@@ -38,6 +38,8 @@ extensions = [
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 master_doc = "index"
+
+autodoc_mock_imports = ["cryptography"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
