@@ -41,7 +41,23 @@ autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 master_doc = "index"
 
-autodoc_mock_imports = ["cryptography"]
+autodoc_mock_imports = [
+    "brightway2",
+    "numpy",
+    "pandas",
+    "bw2io",
+    "bw2data",
+    "bw2calc",
+    "wurst",
+    "xarray",
+    "prettytable",
+    "pycountry",
+    "cryptography",
+    "premise_gwp",
+    "pyYaml",
+    "schema",
+    "datapackage",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
