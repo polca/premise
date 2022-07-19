@@ -58,7 +58,7 @@ autodoc_mock_imports = [
     "pyYaml",
     "schema",
     "datapackage",
-    #"premise"
+    # "premise"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
