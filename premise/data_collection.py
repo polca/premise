@@ -17,7 +17,7 @@ import yaml
 from cryptography.fernet import Fernet
 
 from . import DATA_DIR
-from .marginal_mixes import baseline_method
+from .marginal_mixes import consequential_method
 from .utils import create_scenario_label
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
@@ -29,10 +29,6 @@ GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtech
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 
-
-marginal_mix_methods = {
-    "consequential baseline": baseline_method,
-}
 
 
 def get_gnr_data():
@@ -136,7 +132,7 @@ class IAMDataCollection:
         filepath_iam_files,
         key,
         system_model="attributional",
-        time_horizon=30,
+        system_model_args=None,
     ):
         self.model = model
         self.pathway = pathway
@@ -145,7 +141,7 @@ class IAMDataCollection:
         data = self.__get_iam_data(key=key, filepath=filepath_iam_files)
         self.regions = data.region.values.tolist()
         self.system_model = system_model
-        self.time_horizon = time_horizon
+        self.system_model_args = system_model_args or {}
 
         gains_data = get_gains_data()
         self.gnr_data = get_gnr_data()
@@ -386,9 +382,7 @@ class IAMDataCollection:
 
         if self.system_model != "attributional":
 
-            data_to_return = marginal_mix_methods[self.system_model](
-                data_to_return, self.year, self.time_horizon
-            )
+            data_to_return = consequential_method(data_to_return, self.year, self.system_model_args)
 
         else:
             data_to_return /= (

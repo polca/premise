@@ -472,40 +472,16 @@ def check_system_model(system_model):
     if not isinstance(system_model, str):
         raise TypeError(
             "The argument `system_model` must be a string"
-            "('attributional', 'consequential baseline')."
+            "('attributional', 'consequential')."
         )
 
-    if system_model not in ("attributional", "consequential baseline"):
+    if system_model not in ("attributional", "consequential"):
         raise ValueError(
             "The argument `system_model` must be one of the two values:"
-            "'attributional', 'consequential baseline'."
+            "'attributional', 'consequential'."
         )
 
     return system_model
-
-
-def check_time_horizon(th):
-
-    if th is None:
-        print(
-            "`time_horizon`, used to identify marginal suppliers, is not specified. "
-            "It is therefore set to 20 years."
-        )
-        th = 20
-
-    try:
-        int(th)
-    except ValueError as err:
-        raise Exception(
-            "`time_horizon` must be an integer or float with a value between 5 and 50 years."
-        ) from err
-
-    if th < 5 or th > 50:
-        raise ValueError(
-            "`time_horizon` must be an integer or float with a value between 5 and 50 years."
-        )
-
-    return int(th)
 
 
 def warning_about_biogenic_co2():
@@ -603,18 +579,14 @@ class NewDatabase:
         use_cached_inventories=True,
         use_cached_database=True,
         system_model="attributional",
-        time_horizon=None,
+        system_args=None,
     ):
 
         self.source = source_db
         self.version = check_db_version(source_version)
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
-        self.time_horizon = (
-            check_time_horizon(time_horizon)
-            if system_model != "attributional"
-            else None
-        )
+        self.system_model_args = system_args
 
         if self.source_type == "ecospold":
             self.source_file_path = check_ei_filepath(source_file_path)
@@ -671,7 +643,7 @@ class NewDatabase:
                 filepath_iam_files=scenario["filepath"],
                 key=key,
                 system_model=self.system_model,
-                time_horizon=self.time_horizon,
+                system_model_args=self.system_model_args,
             )
             list_data.append(data)
 
