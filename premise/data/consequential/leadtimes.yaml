@@ -1,0 +1,55 @@
+Biomass IGCC CCS: 2
+Biomass IGCC: 2
+Biomass CHP: 2
+Biomass CHP CCS: 2
+Biomass ST: 2
+Coal IGCC: 4
+Coal IGCC CCS: 5
+Coal PC: 4
+Coal PC CCS: 5
+Coal CHP: 4
+Coal CHP CCS: 5
+Gas OC: 2
+Gas CC: 2
+Gas CC CCS: 3
+Gas CHP: 2
+Gas CHP CCS: 3
+Oil ST: 3
+Oil CC CCS: 3
+Oil CC: 3
+Oil CHP CCS: 3
+Oil CHP: 3
+Geothermal: 1
+Hydro: 4
+Hydrogen: 1
+Nuclear: 7
+Solar CSP: 1
+Solar PV Centralized: 1
+Solar PV Residential: 1
+Wind Onshore: 1
+Wind Offshore: 1
+diesel: 3
+petrol: 3
+bioethanol, woody: 3
+bioethanol, grassy: 3
+bioethanol, sugar: 3
+biodiesel, oil: 3
+petrol, synthetic, hydrogen: 3
+petrol, synthetic, coal: 3
+diesel, synthetic, hydrogen: 3
+diesel, synthetic, coal: 3
+diesel, synthetic, wood: 3
+diesel, synthetic, wood, with CCS: 3
+natural gas: 2
+biomethane: 2
+hydrogen, electrolysis: 1
+hydrogen, biogas: 1
+hydrogen, biogas, with CCS: 1
+hydrogen, nat. gas: 2
+hydrogen, nat. gas, with CCS: 3
+hydrogen, coal: 4
+bioethanol, grain: 3
+diesel, synthetic, grass: 3
+diesel, synthetic, grass, with CCS: 3
+methanol, wood: 3
+methanol, grass: 3
