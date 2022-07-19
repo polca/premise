@@ -30,7 +30,6 @@ GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 
 
-
 def get_gnr_data():
     """
     Read the GNR csv file on cement production and return an `xarray` with dimensions:
@@ -382,7 +381,9 @@ class IAMDataCollection:
 
         if self.system_model != "attributional":
 
-            data_to_return = consequential_method(data_to_return, self.year, self.system_model_args)
+            data_to_return = consequential_method(
+                data_to_return, self.year, self.system_model_args
+            )
 
         else:
             data_to_return /= (

@@ -2,8 +2,9 @@
 Calculate the marginal mix of a market in different ways.
 """
 
-from typing import Tuple
 from functools import lru_cache
+from typing import Tuple
+
 import numpy as np
 import xarray as xr
 import yaml
@@ -272,17 +273,19 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         if not capital_repl_rate and measurement == 0:
             # if the capital replacement rate is not used,
 
-            market_shares.loc[dict(region=region)] = ((
-                data_full.sel(
-                    region=region,
-                    year=avg_end,
+            market_shares.loc[dict(region=region)] = (
+                (
+                    data_full.sel(
+                        region=region,
+                        year=avg_end,
+                    )
+                    - data_full.sel(
+                        region=region,
+                        year=avg_start,
+                    )
                 )
-                - data_full.sel(
-                    region=region,
-                    year=avg_start,
-                )
-            ) / (avg_end - avg_start)).values[:, None]
-
+                / (avg_end - avg_start)
+            ).values[:, None]
 
         if not capital_repl_rate and measurement == 1:
 
@@ -292,8 +295,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             coeff_b = coeff_a.where(coeff_a.year <= avg_end)
             coeff_c = coeff_b.polyfit(dim="year", deg=1)
 
-            market_shares.loc[dict(region=region)] = coeff_c.polyfit_coefficients[0].values[:, None]
-
+            market_shares.loc[dict(region=region)] = coeff_c.polyfit_coefficients[
+                0
+            ].values[:, None]
 
         if not capital_repl_rate and measurement == 2:
 
@@ -321,7 +325,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 )
                 * n
             )
-            market_shares.loc[dict(region=region)] = (total_area - baseline_area).values[:, None]
+            market_shares.loc[dict(region=region)] = (
+                total_area - baseline_area
+            ).values[:, None]
 
         if not capital_repl_rate and measurement == 3:
 
@@ -349,15 +355,19 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             x = np.where(slope == 0, 0, slope / short_slope)
             split_year = np.where(x < 0, -1, 1)
-            split_year = np.where((x > -500) & (x < 500), 2 * (np.exp(-1 + x) / (1 + np.exp(-1 + x)) - 0.5), split_year)
+            split_year = np.where(
+                (x > -500) & (x < 500),
+                2 * (np.exp(-1 + x) / (1 + np.exp(-1 + x)) - 0.5),
+                split_year,
+            )
 
-            market_shares.loc[dict(region=region)] = (slope + slope * split_year)[:, None]
+            market_shares.loc[dict(region=region)] = (slope + slope * split_year)[
+                :, None
+            ]
 
         if not capital_repl_rate and measurement == 4:
             n = avg_end - avg_start
-            split_years = range(
-                    avg_start, avg_end
-                )
+            split_years = range(avg_start, avg_end)
             for split_year in split_years:
                 market_shares_split = xr.zeros_like(market_shares)
                 market_shares_split.loc[dict(region=region)] = (
@@ -408,16 +418,19 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             market_shares.loc[dict(region=region)] /= n
 
         if capital_repl_rate and measurement == 0:
-            market_shares.loc[dict(region=region)] = ((
-                data_full.sel(
-                    region=region,
-                    year=avg_end,
-                ).values
-                - data_full.sel(
-                    region=region,
-                    year=avg_start,
-                ).values
-            ) / (avg_end - avg_start))[:, None]
+            market_shares.loc[dict(region=region)] = (
+                (
+                    data_full.sel(
+                        region=region,
+                        year=avg_end,
+                    ).values
+                    - data_full.sel(
+                        region=region,
+                        year=avg_start,
+                    ).values
+                )
+                / (avg_end - avg_start)
+            )[:, None]
 
             # get the capital replacement rate
             # which is here defined as -1 / lifetime
@@ -436,7 +449,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             )
             coeff_b = coeff_a.where(coeff_a.year <= avg_end)
             coeff_c = coeff_b.polyfit(dim="year", deg=1)
-            market_shares.loc[dict(region=region)] = coeff_c.polyfit_coefficients[0].values[:, None]
+            market_shares.loc[dict(region=region)] = coeff_c.polyfit_coefficients[
+                0
+            ].values[:, None]
 
             # get the capital replacement rate
             # which is here defined as -1 / lifetime
@@ -447,7 +462,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             # subtract the capital replacement (which is negative) rate
             # to the changes market share
             market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
-
 
         if capital_repl_rate and measurement == 2:
 
@@ -476,7 +490,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 ).values
                 * n
             )
-            market_shares.loc[dict(region=region)] = (total_area - baseline_area)[:, None]
+            market_shares.loc[dict(region=region)] = (total_area - baseline_area)[
+                :, None
+            ]
 
             # get the capital replacement rate
             # which is here defined as -1 / lifetime
@@ -505,15 +521,11 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             ) / (avg_end - avg_start)
 
             short_slope_start = int(
-                avg_start
-                + (avg_end - avg_start)
-                * weighted_slope_start
+                avg_start + (avg_end - avg_start) * weighted_slope_start
             )
 
             short_slope_end = int(
-                avg_start
-                + (avg_end - avg_start)
-                * weighted_slope_end
+                avg_start + (avg_end - avg_start) * weighted_slope_end
             )
 
             short_slope = (
@@ -529,16 +541,16 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             x = np.where(slope == 0, 0, slope / short_slope)
             split_year = np.where(x < 0, -1, 1)
-            split_year = np.where((x > -500) & (x < 500), 2 * (np.exp(-1 + x) / (1 + np.exp(-1 + x)) - 0.5), split_year)
+            split_year = np.where(
+                (x > -500) & (x < 500),
+                2 * (np.exp(-1 + x) / (1 + np.exp(-1 + x)) - 0.5),
+                split_year,
+            )
 
             market_shares.loc[dict(region=region)] = slope + slope * split_year
 
-
         if capital_repl_rate and measurement == 4:
-            n = (
-                avg_end
-                - avg_start
-            )
+            n = avg_end - avg_start
             split_years = list(
                 range(
                     avg_start,
@@ -606,9 +618,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     dict(region=region)
                 ]
 
-
             market_shares.loc[dict(region=region)] /= n
-
 
         # market_shares.loc[dict(region=region)] = market_shares.loc[dict(region=region)][:, None]
         market_shares.loc[dict(region=region)] = market_shares.loc[
@@ -627,11 +637,8 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         # in this case, the idea is that oldest/non-competitive technologies
         # are likely to supply by increasing their lifetime
         # as the market does not justify additional capacity installation
-        if (
-            (not capital_repl_rate
-            and volume_change < 0)
-            or (capital_repl_rate
-            and volume_change < avg_cap_repl_rate)
+        if (not capital_repl_rate and volume_change < 0) or (
+            capital_repl_rate and volume_change < avg_cap_repl_rate
         ):
             # we remove suppliers with a positive growth
             market_shares.loc[dict(region=region)].values[
