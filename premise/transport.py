@@ -14,7 +14,7 @@ import yaml
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from . import INVENTORY_DIR, DATA_DIR
+from . import DATA_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import (
     BaseTransformation,
