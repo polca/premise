@@ -26,15 +26,3 @@ Technical Reference
    :recursive:
 
    premise.clean_datasets
-   premise.ecoinvent_modification
-   premise.data_collection
-   premise.geomap
-   premise.activity_maps
-   premise.transformation
-   premise.electricity
-   premise.cement
-   premise.steel
-   premise.transport
-   premise.fuels
-   premise.export
-   premise.utils
