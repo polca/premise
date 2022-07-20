@@ -202,7 +202,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 "start": year - fetch_avg_leadtime(leadtime, shares),
                 "end": year,
                 "start_avg": year - fetch_avg_leadtime(leadtime, shares),
-                 "end_avg": year + fetch_avg_lifetime(lifetime=leadtime, shares=shares),
+                "end_avg": year + fetch_avg_lifetime(lifetime=leadtime, shares=shares),
             },
             (False, False, False, True): {"start": year, "end": year + leadtime},
             (True, False, False, True): {
