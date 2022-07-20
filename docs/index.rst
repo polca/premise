@@ -26,3 +26,4 @@ Technical Reference
    :recursive:
 
    premise.clean_datasets
+   premise.ecoinvent_modification
