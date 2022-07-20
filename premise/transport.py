@@ -13,7 +13,7 @@ import numpy as np
 import xarray as xr
 import yaml
 
-from . import INVENTORY_DIR
+from . import DATA_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import (
     BaseTransformation,
@@ -22,7 +22,6 @@ from .transformation import (
     ws,
     wt,
 )
-from . import DATA_DIR
 from .utils import eidb_label
 
 FILEPATH_FLEET_COMP = (
