@@ -159,7 +159,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         data.interp(year=[year]),
     )
 
-
     # Since there can be different start and end values,
     # I interpolated the entire data of the IAM instead
     # of doing it each time over
