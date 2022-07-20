@@ -4,7 +4,6 @@ for a number of different vehicle types, and create fleet average vehicles based
 IAM data, and integrate them into the database.
 """
 
-
 import re
 import uuid
 from typing import Any, Dict, List, Union
@@ -12,17 +11,16 @@ from typing import Any, Dict, List, Union
 import numpy as np
 import xarray as xr
 import yaml
+from wurst import searching as ws
+from wurst import transformations as wt
 
-from . import INVENTORY_DIR
+from . import INVENTORY_DIR, DATA_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import (
     BaseTransformation,
     IAMDataCollection,
     relink_technosphere_exchanges,
-    ws,
-    wt,
 )
-from . import DATA_DIR
 from .utils import eidb_label
 
 FILEPATH_FLEET_COMP = (
