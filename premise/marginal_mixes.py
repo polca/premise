@@ -233,8 +233,12 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
         try:
 
-            start = time_parameters[(foresight, capital_repl_rate, lead_time, measurement)]["start"]
-            end = time_parameters[(foresight, capital_repl_rate, lead_time, measurement)]["end"]
+            start = time_parameters[
+                (foresight, capital_repl_rate, lead_time, measurement)
+            ]["start"]
+            end = time_parameters[
+                (foresight, capital_repl_rate, lead_time, measurement)
+            ]["end"]
 
             avg_start = time_parameters[
                 bool(range_time), bool(duration), bool(foresight), bool(lead_time)
@@ -394,7 +398,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 market_shares_split.loc[dict(region=region)] = market_shares_split.loc[
                     dict(region=region)
                 ].fillna(0)
-
 
                 if volume_change < 0:
                     # we remove suppliers with a positive growth
@@ -597,9 +600,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     dict(region=region)
                 ].fillna(0)
 
-                if (
-                    volume_change < avg_cap_repl_rate
-                ):
+                if volume_change < avg_cap_repl_rate:
                     # we remove suppliers with a positive growth
                     market_shares.loc[dict(region=region)].values[
                         market_shares.loc[dict(region=region)].values > 0
