@@ -146,12 +146,12 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     :return: marginal market mixes
     """
 
-    range_time: int = args.get("range time", 0)
-    duration: int = args.get("duration", 0)
+    range_time: int = args.get("range time", False)
+    duration: int = args.get("duration", False)
     foresight: bool = args.get("foresight", False)
     lead_time: int = args.get("lead time", False)
     capital_repl_rate: bool = args.get("capital replacement rate", False)
-    measurement: int = args.get("measurement", 1)
+    measurement: int = args.get("measurement", 0)
     weighted_slope_start: float = args.get("weighted slope start", 0.75)
     weighted_slope_end: float = args.get("weighted slope end", 1.0)
 
@@ -159,16 +159,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         data.interp(year=[year]),
     )
 
-    # as the time interval can be different for each technology
-    # if the individual lead time is used,
-    # I use DataArrays to store the values
-    # (= start and end of the time interval)
-
-    start = xr.zeros_like(market_shares)
-    start.name = "start"
-    end = xr.zeros_like(market_shares)
-    end.name = "end"
-    start_end = xr.merge([start, end])
 
     # Since there can be different start and end values,
     # I interpolated the entire data of the IAM instead
@@ -202,52 +192,84 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 "start": year - fetch_avg_leadtime(leadtime, shares),
                 "end": year,
                 "start_avg": year - fetch_avg_leadtime(leadtime, shares),
+                "end_avg": year,
+            },
+            (False, False, False, True): {
+                "start": year,
+                "end": year + leadtime,
+                "start_avg": year,
                 "end_avg": year + fetch_avg_lifetime(lifetime=leadtime, shares=shares),
             },
-            (False, False, False, True): {"start": year, "end": year + leadtime},
-            (True, False, False, True): {
+            (False, False, True, True): {
+                "start": year - leadtime,
+                "end": year,
+                "start_avg": year
+                - fetch_avg_lifetime(lifetime=leadtime, shares=shares),
+                "end_avg": year,
+            },
+            (True, False, False, False): {
                 "start": year + fetch_avg_leadtime(leadtime, shares) - range_time,
                 "end": year + fetch_avg_leadtime(leadtime, shares) + range_time,
+                "start_avg": year + fetch_avg_leadtime(leadtime, shares) - range_time,
+                "end_avg": year + fetch_avg_leadtime(leadtime, shares) + range_time,
             },
             (True, False, True, False): {
                 "start": year - range_time,
                 "end": year + range_time,
+                "start_avg": year - range_time,
+                "end_avg": year + range_time,
             },
             (True, False, False, True): {
                 "start": year + leadtime - range_time,
                 "end": year + leadtime + range_time,
+                "start_avg": year + fetch_avg_leadtime(leadtime, shares) - range_time,
+                "end_avg": year + fetch_avg_leadtime(leadtime, shares) + range_time,
             },
             (True, False, True, True): {
                 "start": year - range_time,
                 "end": year + range_time,
+                "start_avg": year - range_time,
+                "end_avg": year + range_time,
             },
             (True, True, False, False): {
                 "start": year + fetch_avg_leadtime(leadtime, shares),
                 "end": year + fetch_avg_leadtime(leadtime, shares) + duration,
+                "start_avg": year + fetch_avg_leadtime(leadtime, shares),
+                "end_avg": year + fetch_avg_leadtime(leadtime, shares) + duration,
             },
-            (True, True, True, False): {"start": year, "end": year + duration},
+            (True, True, True, False): {
+                "start": year,
+                "end": year + duration,
+                "start_avg": year,
+                "end_avg": year + duration,
+            },
             (True, True, False, True): {
                 "start": year + leadtime,
                 "end": year + leadtime + duration,
+                "start_avg": year + fetch_avg_leadtime(leadtime, shares),
+                "end_avg": year + fetch_avg_leadtime(leadtime, shares) + duration,
             },
-            (True, True, True, True): {"start": year, "end": year + duration},
+            (True, True, True, True): {
+                "start": year,
+                "end": year + duration,
+                "start_avg": year,
+                "end_avg": year + duration,
+            },
         }
 
         try:
 
-            start = time_parameters[
-                (foresight, capital_repl_rate, lead_time, measurement)
-            ]["start"]
-            end = time_parameters[
-                (foresight, capital_repl_rate, lead_time, measurement)
-            ]["end"]
+            start = time_parameters[(range_time, duration, foresight, lead_time)][
+                "start"
+            ]
+            end = time_parameters[(range_time, duration, foresight, lead_time)]["end"]
 
-            avg_start = time_parameters[
-                bool(range_time), bool(duration), bool(foresight), bool(lead_time)
-            ]["start_avg"]
-            avg_end = time_parameters[
-                bool(range_time), bool(duration), bool(foresight), bool(lead_time)
-            ]["end_avg"]
+            avg_start = time_parameters[(range_time, duration, foresight, lead_time)][
+                "start_avg"
+            ]
+            avg_end = time_parameters[(range_time, duration, foresight, lead_time)][
+                "end_avg"
+            ]
 
         except KeyError as err:
             raise KeyError(
@@ -283,92 +305,132 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         # within the determined time interval
         # for each technology
         # using the selected measuring method and baseline
-        if not capital_repl_rate and measurement == 0:
+        if measurement == 0:
             # if the capital replacement rate is not used,
-
-            # TODO: should be tech-specific start and end years
 
             market_shares.loc[dict(region=region)] = (
                 (
                     data_full.sel(
                         region=region,
-                        year=avg_end,
+                        year=end,
                     )
                     - data_full.sel(
                         region=region,
-                        year=avg_start,
+                        year=start,
                     )
                 )
-                / (avg_end - avg_start)
+                / (end - start)
             ).values[:, None]
 
-        if not capital_repl_rate and measurement == 1:
+            if capital_repl_rate:
+                # get the capital replacement rate
+                # which is here defined as -1 / lifetime
+                cap_repl_rate = fetch_capital_replacement_rates(
+                    lifetime, data_full.sel(region=region, year=avg_start)
+                )
+
+                # subtract the capital replacement (which is negative) rate
+                # to the changes market share
+
+                market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
+
+        if measurement == 1:
 
             coeff_a = data_full.sel(region=region).where(
-                data_full.sel(region=region).year >= avg_start
+                data_full.sel(region=region).year >= start
             )
-            coeff_b = coeff_a.where(coeff_a.year <= avg_end)
+            coeff_b = coeff_a.where(coeff_a.year <= end)
             coeff_c = coeff_b.polyfit(dim="year", deg=1)
 
             market_shares.loc[dict(region=region)] = coeff_c.polyfit_coefficients[
                 0
             ].values[:, None]
 
+            if capital_repl_rate:
+                # get the capital replacement rate
+                # which is here defined as -1 / lifetime
+                cap_repl_rate = fetch_capital_replacement_rates(
+                    lifetime, data_full.sel(region=region, year=avg_start)
+                )
+
+                # subtract the capital replacement (which is negative) rate
+                # to the changes market share
+                market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
+
         if not capital_repl_rate and measurement == 2:
 
             coeff_a = data_full.sel(region=region).where(
-                data_full.sel(region=region).year >= avg_start
+                data_full.sel(region=region).year >= start
             )
-            coeff_b = coeff_a.where(coeff_a.year <= avg_end)
+            coeff_b = coeff_a.where(coeff_a.year <= end)
             coeff_c = coeff_b.sum(dim="year").values
-            n = avg_end - avg_start
+            n = end - start
 
             total_area = 0.5 * (
                 2 * coeff_c
                 - data_full.sel(
                     region=region,
-                    year=avg_end,
+                    year=end,
                 )
                 - data_full.sel(
                     region=region,
-                    year=avg_start,
+                    year=start,
                 )
             )
             baseline_area = (
                 data_full.sel(
                     region=region,
-                    year=avg_start,
+                    year=start,
                 )
                 * n
             )
-            # TODO: divide this by the time interval `n`
+
             market_shares.loc[dict(region=region)] = (
                 total_area - baseline_area
-            ).values[:, None]
+            ).values[:, None] / n
 
-        if not capital_repl_rate and measurement == 3:
+            if capital_repl_rate:
+                # this bit differs from above
+                # get the capital replacement rate
+                # which is here defined as -1 / lifetime
+                cap_repl_rate = (
+                    fetch_capital_replacement_rates(
+                        lifetime, data_full.sel(region=region, year=avg_start)
+                    )
+                    * ((avg_end - avg_start) ^ 2)
+                    * 0.5
+                )
+
+                # subtract the capital replacement (which is negative) rate
+                # to the changes market share
+                market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
+
+        if measurement == 3:
 
             slope = (
                 data_full.sel(
                     region=region,
-                    year=avg_end,
+                    year=end,
                 ).values
                 - data_full.sel(
                     region=region,
-                    year=avg_start,
+                    year=start,
                 ).values
-            ) / (avg_end - avg_start)
+            ) / (end - start)
 
-            short_slope_start = int(
-                avg_start + (avg_end - avg_start) * weighted_slope_start
-            )
-            short_slope_end = int(
-                avg_start + (avg_end - avg_start) * weighted_slope_end
-            )
+            short_slope_start = int(start + (end - start) * weighted_slope_start)
+            short_slope_end = int(start + (end - start) * weighted_slope_end)
             short_slope = (
                 data_full.sel(region=region, year=short_slope_end).values
                 - data_full.sel(region=region, year=short_slope_start).values
             ) / (short_slope_end - short_slope_start)
+
+            if capital_repl_rate:
+                cap_repl_rate = fetch_capital_replacement_rates(
+                    lifetime, data_full.sel(region=region, year=avg_start)
+                )
+                slope -= cap_repl_rate
+                short_slope -= cap_repl_rate
 
             x = np.where(slope == 0, 0, slope / short_slope)
             split_year = np.where(x < 0, -1, 1)
@@ -382,8 +444,8 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 :, None
             ]
 
-        if not capital_repl_rate and measurement == 4:
-            n = avg_end - avg_start
+        if measurement == 4:
+            n = end - start
             # use average start and end years
             split_years = range(avg_start, avg_end)
             for split_year in split_years:
@@ -393,15 +455,27 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     - data_full.sel(region=region, year=split_year)
                 ).values[:, None]
 
-                # we remove NaNs and np.inf
-                market_shares_split.loc[dict(region=region)].values[
-                    market_shares_split.loc[dict(region=region)].values == np.inf
-                ] = 0
-                market_shares_split.loc[dict(region=region)] = market_shares_split.loc[
-                    dict(region=region)
-                ].fillna(0)
+                if capital_repl_rate:
+                    cap_repl_rate = fetch_capital_replacement_rates(
+                        lifetime, data_full.sel(region=region, year=avg_start)
+                    )
 
-                if volume_change < 0:
+                    max_cap_repl_rate = (
+                        data_full.sel(
+                            region=region,
+                            year=avg_start,
+                        ).values
+                        / n
+                    )
+
+                    cap_repl_rate = np.clip(cap_repl_rate, None, max_cap_repl_rate)
+                    market_shares_split.loc[dict(region=region)] -= cap_repl_rate[
+                        :, None
+                    ]
+
+                if (not capital_repl_rate and volume_change < 0) or (
+                    capital_repl_rate and volume_change < avg_cap_repl_rate
+                ):
                     # we remove suppliers with a positive growth
                     market_shares.loc[dict(region=region)].values[
                         market_shares.loc[dict(region=region)].values > 0
@@ -426,206 +500,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 market_shares.loc[dict(region=region)] += market_shares_split.loc[
                     dict(region=region)
                 ]
-            market_shares.loc[dict(region=region)] /= n
-
-        if capital_repl_rate and measurement == 0:
-            # same as above for measurement 0, 1, 3, 4
-            market_shares.loc[dict(region=region)] = (
-                (
-                    data_full.sel(
-                        region=region,
-                        year=avg_end,
-                    ).values
-                    - data_full.sel(
-                        region=region,
-                        year=avg_start,
-                    ).values
-                )
-                / (avg_end - avg_start)
-            )[:, None]
-
-            # get the capital replacement rate
-            # which is here defined as -1 / lifetime
-            cap_repl_rate = fetch_capital_replacement_rates(
-                lifetime, data_full.sel(region=region, year=avg_start)
-            )
-
-            # subtract the capital replacement (which is negative) rate
-            # to the changes market share
-
-            market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
-
-        if capital_repl_rate and measurement == 1:
-            coeff_a = data_full.sel(region=region).where(
-                data_full.sel(region=region).year >= avg_start
-            )
-            coeff_b = coeff_a.where(coeff_a.year <= avg_end)
-            coeff_c = coeff_b.polyfit(dim="year", deg=1)
-            market_shares.loc[dict(region=region)] = coeff_c.polyfit_coefficients[
-                0
-            ].values[:, None]
-
-            # get the capital replacement rate
-            # which is here defined as -1 / lifetime
-            cap_repl_rate = fetch_capital_replacement_rates(
-                lifetime, data_full.sel(region=region, year=avg_start)
-            )
-
-            # subtract the capital replacement (which is negative) rate
-            # to the changes market share
-            market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
-
-        if capital_repl_rate and measurement == 2:
-
-            coeff_a = data_full.sel(region=region).where(
-                data_full.sel(region=region).year >= avg_start
-            )
-            coeff_b = coeff_a.where(coeff_a.year <= avg_end)
-            coeff_c = coeff_b.sum(dim="year").values
-            n = avg_end - avg_start
-
-            total_area = 0.5 * (
-                2 * coeff_c
-                - data_full.sel(
-                    region=region,
-                    year=avg_end,
-                ).values
-                - data_full.sel(
-                    region=region,
-                    year=avg_start,
-                ).values
-            )
-            baseline_area = (
-                data_full.sel(
-                    region=region,
-                    year=avg_start,
-                ).values
-                * n
-            )
-            market_shares.loc[dict(region=region)] = (total_area - baseline_area)[
-                :, None
-            ]
-
-            # this bit differs from above
-            # get the capital replacement rate
-            # which is here defined as -1 / lifetime
-            cap_repl_rate = (
-                fetch_capital_replacement_rates(
-                    lifetime, data_full.sel(region=region, year=avg_start)
-                )
-                * ((avg_end - avg_start) ^ 2)
-                * 0.5
-            )
-
-            # subtract the capital replacement (which is negative) rate
-            # to the changes market share
-            market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
-
-        if capital_repl_rate and measurement == 3:
-            slope = (
-                data_full.sel(
-                    region=region,
-                    year=avg_end,
-                ).values
-                - data_full.sel(
-                    region=region,
-                    year=avg_start,
-                ).values
-            ) / (avg_end - avg_start)
-
-            short_slope_start = int(
-                avg_start + (avg_end - avg_start) * weighted_slope_start
-            )
-
-            short_slope_end = int(
-                avg_start + (avg_end - avg_start) * weighted_slope_end
-            )
-
-            short_slope = (
-                data_full.sel(region=region, year=short_slope_end)
-                - data_full.sel(region=region, year=short_slope_start)
-            ) / (short_slope_end - short_slope_start)[:, None]
-
-            cap_repl_rate = fetch_capital_replacement_rates(
-                lifetime, data_full.sel(region=region, year=avg_start)
-            )
-            slope -= cap_repl_rate[:, None]
-            short_slope -= cap_repl_rate[:, None]
-
-            x = np.where(slope == 0, 0, slope / short_slope)
-            split_year = np.where(x < 0, -1, 1)
-            split_year = np.where(
-                (x > -500) & (x < 500),
-                2 * (np.exp(-1 + x) / (1 + np.exp(-1 + x)) - 0.5),
-                split_year,
-            )
-
-            market_shares.loc[dict(region=region)] = slope + slope * split_year
-
-        if capital_repl_rate and measurement == 4:
-            n = avg_end - avg_start
-            split_years = list(
-                range(
-                    avg_start,
-                    avg_end,
-                )
-            )
-            for split_year in split_years:
-                market_shares_split = xr.zeros_like(market_shares)
-
-                market_shares_split.loc[dict(region=region)] = (
-                    data_full.sel(region=region, year=split_year + 1)
-                    - data_full.sel(region=region, year=split_year)
-                ).values[:, None]
-
-                cap_repl_rate = fetch_capital_replacement_rates(
-                    lifetime, data_full.sel(region=region, year=avg_start)
-                )
-
-                max_cap_repl_rate = (
-                    data_full.sel(
-                        region=region,
-                        year=avg_start,
-                    ).values
-                    / n
-                )
-
-                cap_repl_rate = np.clip(cap_repl_rate, None, max_cap_repl_rate)
-
-                market_shares_split.loc[dict(region=region)] -= cap_repl_rate[:, None]
-
-                # we remove NaNs and np.inf
-                market_shares_split.loc[dict(region=region)].values[
-                    market_shares_split.loc[dict(region=region)].values == np.inf
-                ] = 0
-                market_shares_split.loc[dict(region=region)] = market_shares_split.loc[
-                    dict(region=region)
-                ].fillna(0)
-
-                if volume_change < avg_cap_repl_rate:
-                    # we remove suppliers with a positive growth
-                    market_shares.loc[dict(region=region)].values[
-                        market_shares.loc[dict(region=region)].values > 0
-                    ] = 0
-                    # we reverse the sign of negative growth suppliers
-                    market_shares.loc[dict(region=region)] *= -1
-                    market_shares.loc[dict(region=region)] /= market_shares.loc[
-                        dict(region=region)
-                    ].sum(dim="variables")
-                else:
-                    # we remove suppliers with a negative growth
-                    market_shares_split.loc[dict(region=region)].values[
-                        market_shares_split.loc[dict(region=region)].values < 0
-                    ] = 0
-                    market_shares_split.loc[
-                        dict(region=region)
-                    ] /= market_shares_split.loc[dict(region=region)].sum(
-                        dim="variables"
-                    )
-                market_shares.loc[dict(region=region)] += market_shares_split.loc[
-                    dict(region=region)
-                ]
-
             market_shares.loc[dict(region=region)] /= n
 
         market_shares.loc[dict(region=region)] = market_shares.loc[
