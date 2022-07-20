@@ -33,7 +33,6 @@ Technical Reference
    premise.electricity
    premise.cement
    premise.steel
-   premise.transport
    premise.fuels
    premise.export
    premise.utils

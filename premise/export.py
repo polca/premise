@@ -391,14 +391,9 @@ def add_modified_tags(original_db, scenarios):
     return scenarios
 
 
-def build_superstructure_db(origin_db, scenarios, db_name, filepath):
-    """
-    Build a superstructure database from the original database and the
-    scenarios.
-    """
-
+def build_superstructure_db(origin_db, scenarios, db_name, fp):
     # Class `Export` to which the original database is passed
-    exp = Export(db=origin_db, filepath=filepath)
+    exp = Export(db=origin_db, filepath=fp)
 
     # Collect a dictionary of activities
     # {(name, ref_prod, loc, database, unit):row/col index in A matrix}
@@ -408,7 +403,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
     coords_A = exp.create_A_matrix_coordinates()
 
     # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
-    original = {}
+    original = dict()
     for x in coords_A:
         if (rev_ind_A[x[0]], rev_ind_A[x[1]]) in original:
             original[(rev_ind_A[x[0]], rev_ind_A[x[1]])] += x[2] * -1
@@ -423,7 +418,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
     # Turn it into a dictionary {(activity name, ref prod, location, database, unit): value}
     original.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] * -1 for x in coords_B})
 
-    modified_items = {}
+    modified = {}
 
     print("Looping through scenarios to detect changes...")
 
@@ -434,13 +429,13 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
             model=scenario["model"],
             scenario=scenario["pathway"],
             year=scenario["year"],
-            filepath=filepath,
+            filepath=fp,
         )
 
         new_rev_ind_A = exp.rev_index(exp.create_names_and_indices_of_A_matrix())
         new_coords_A = exp.create_A_matrix_coordinates()
 
-        new = {}
+        new = dict()
         for x in new_coords_A:
             if (new_rev_ind_A[x[0]], new_rev_ind_A[x[1]]) in new:
                 new[(new_rev_ind_A[x[0]], new_rev_ind_A[x[1]])] += x[2] * -1
@@ -463,10 +458,10 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
         list_modified = chain(list_modified, list_new)
 
         for i in list_modified:
-            if i not in modified_items:
-                modified_items[i] = {"original": original.get(i, 0)}
+            if i not in modified:
+                modified[i] = {"original": original.get(i, 0)}
 
-            modified_items[i][
+            modified[i][
                 f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
             ] = new.get(i, 0)
 
@@ -481,17 +476,15 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
         f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios
     ]
 
-    for modified_item in modified_items:
-        for scenario in list_scenarios:
-            if scenario not in modified_items[modified_item].keys():
+    for m in modified:
+        for s in list_scenarios:
+            if s not in modified[m].keys():
                 # if it is a production exchange
                 # the value should be -1
-                if modified_item[1] == modified_item[0]:
-                    modified_items[modified_item][scenario] = -1
+                if m[1] == m[0]:
+                    modified[m][s] = -1
                 else:
-                    modified_items[modified_item][scenario] = modified_items[
-                        modified_item
-                    ]["original"]
+                    modified[m][s] = modified[m]["original"]
 
     columns = [
         "from activity name",
@@ -514,37 +507,35 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
 
     l_modified = [columns]
 
-    for modified_item, modified_value in modified_items.items():
+    for m in modified:
 
-        if modified_item[1][2] == "biosphere3":
+        if m[1][2] == "biosphere3":
             d = [
-                modified_item[1][0],
+                m[1][0],
                 "",
                 "",
-                modified_item[1][1],
-                modified_item[1][2],
+                m[1][1],
+                m[1][2],
                 "",  # biosphere flow code
-                modified_item[0][0],
-                modified_item[0][1],
-                modified_item[0][3],
+                m[0][0],
+                m[0][1],
+                m[0][3],
                 "",
                 db_name,
                 "",  # activity code
                 "biosphere",
             ]
-        elif modified_item[1] == modified_item[0] and any(
-            v < 0 for v in modified_items[modified_item].values()
-        ):
+        elif m[1] == m[0] and any(v < 0 for v in modified[m].values()):
             d = [
-                modified_item[1][0],
-                modified_item[1][1],
-                modified_item[1][3],
+                m[1][0],
+                m[1][1],
+                m[1][3],
                 "",
                 db_name,
                 "",  # activity code
-                modified_item[0][0],
-                modified_item[0][1],
-                modified_item[0][3],
+                m[0][0],
+                m[0][1],
+                m[0][3],
                 "",
                 db_name,
                 "",  # activity code
@@ -552,34 +543,34 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
             ]
         else:
             d = [
-                modified_item[1][0],
-                modified_item[1][1],
-                modified_item[1][3],
+                m[1][0],
+                m[1][1],
+                m[1][3],
                 "",
                 db_name,
                 "",  # activity code
-                modified_item[0][0],
-                modified_item[0][1],
-                modified_item[0][3],
+                m[0][0],
+                m[0][1],
+                m[0][3],
                 "",
                 db_name,
                 "",  # activity code
                 "technosphere",
             ]
 
-        for scenario in list_scenarios:
+        for s in list_scenarios:
             # we do not want a zero here,
             # as it would render the matrix undetermined
-            if modified_item[1] == modified_item[0] and modified_value[scenario] == 0:
+            if m[1] == m[0] and modified[m][s] == 0:
                 d.append(1)
-            elif modified_item[1] == modified_item[0] and modified_value[scenario] < 0:
-                d.append(modified_value[scenario] * -1)
+            elif m[1] == m[0] and modified[m][s] < 0:
+                d.append(modified[m][s] * -1)
             else:
-                d.append(modified_value[scenario])
+                d.append(modified[m][s])
         l_modified.append(d)
 
-    if filepath is not None:
-        filepath = Path(filepath)
+    if fp is not None:
+        filepath = Path(fp)
     else:
         filepath = DATA_DIR / "export" / "scenario diff files"
 
@@ -588,28 +579,26 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
 
     filepath = filepath / f"scenario_diff_{db_name}.xlsx"
 
-    dataframe = pd.DataFrame(l_modified[1:], columns=l_modified[0])
+    df = pd.DataFrame(l_modified[1:], columns=l_modified[0])
 
-    before = len(dataframe)
+    before = len(df)
 
     # Drop duplicate rows
-    dataframe = dataframe.drop_duplicates()
+    df = df.drop_duplicates()
     # Remove rows whose values across scenarios do not change
-    dataframe = dataframe.loc[dataframe.loc[:, "original":].std(axis=1) > 0, :]
+    df = df.loc[df.loc[:, "original":].std(axis=1) > 0, :]
     # Remove `original` column
-    dataframe = dataframe.iloc[
-        :, [j for j, c in enumerate(dataframe.columns) if j != 13]
-    ]
+    df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
 
-    after = len(dataframe)
+    after = len(df)
     print(f"Dropped {before - after} duplicates.")
 
-    dataframe.to_excel(filepath, index=False)
+    df.to_excel(filepath, index=False)
 
     print(f"Scenario difference file exported to {filepath}!")
 
     list_modified_acts = list(
-        {e[0] for e, v in modified_items.items() if v["original"] == 0}
+        set([e[0] for e, v in modified.items() if v["original"] == 0])
     )
 
     acts_to_extend = [
@@ -633,7 +622,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
         exc_to_add = []
         for exc in [
             e
-            for e in modified_items
+            for e in modified
             if e[0]
             == (
                 ds["name"],
@@ -642,7 +631,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
                 ds["location"],
                 ds["unit"],
             )
-            and modified_items[e]["original"] == 0
+            and modified[e]["original"] == 0
         ]:
             # a biosphere flow
             if isinstance(exc[1][1], tuple):
@@ -683,9 +672,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
         for a in origin_db
     ]
     list_to_add = [
-        m[0]
-        for m, v in modified_items.items()
-        if v["original"] == 0 and m[0] not in list_act
+        m[0] for m, v in modified.items() if v["original"] == 0 and m[0] not in list_act
     ]
     list_to_add = list(set(list_to_add))
 
@@ -703,7 +690,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
             "exchanges": [],
         }
 
-        acts = (act for act in modified_items if act[0] == add)
+        acts = (act for act in modified if act[0] == add)
         excs_to_add = []
         for act in acts:
             if isinstance(act[1][1], tuple):
@@ -764,7 +751,6 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
     origin_db.extend(acts_to_add)
 
     return origin_db
-
 
 def prepare_db_for_export(scenario):
 
