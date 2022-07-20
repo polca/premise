@@ -149,7 +149,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     range_time: int = args.get("range time", 0)
     duration: int = args.get("duration", 0)
     foresight: bool = args.get("foresight", False)
-    lead_time: int = args.get("lead time", 0)
+    lead_time: int = args.get("lead time", False)
     capital_repl_rate: bool = args.get("capital replacement rate", False)
     measurement: int = args.get("measurement", 1)
     weighted_slope_start: float = args.get("weighted slope start", 0.75)
@@ -195,6 +195,8 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             (False, False, False, False): {
                 "start": year,
                 "end": year + fetch_avg_leadtime(leadtime, shares),
+                "start_avg": year,
+                "end_avg": year + fetch_avg_lifetime(lifetime=leadtime, shares=shares),
             },
             (False, False, True, True): {
                 "start": year - fetch_avg_leadtime(leadtime, shares),
@@ -230,12 +232,17 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         }
 
         try:
+
+            start = time_parameters[(foresight, capital_repl_rate, lead_time, measurement)]["start"]
+            end = time_parameters[(foresight, capital_repl_rate, lead_time, measurement)]["end"]
+
             avg_start = time_parameters[
                 bool(range_time), bool(duration), bool(foresight), bool(lead_time)
-            ]["start"]
+            ]["start_avg"]
             avg_end = time_parameters[
                 bool(range_time), bool(duration), bool(foresight), bool(lead_time)
-            ]["end"]
+            ]["end_avg"]
+
         except KeyError as err:
             raise KeyError(
                 "The combination of range_time, duration, foresight, and lead_time "
@@ -273,6 +280,8 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         if not capital_repl_rate and measurement == 0:
             # if the capital replacement rate is not used,
 
+            # TODO: should be tech-specific start and end years
+
             market_shares.loc[dict(region=region)] = (
                 (
                     data_full.sel(
@@ -307,6 +316,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             coeff_b = coeff_a.where(coeff_a.year <= avg_end)
             coeff_c = coeff_b.sum(dim="year").values
             n = avg_end - avg_start
+
             total_area = 0.5 * (
                 2 * coeff_c
                 - data_full.sel(
@@ -325,6 +335,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 )
                 * n
             )
+            # TODO: divide this by the time interval `n`
             market_shares.loc[dict(region=region)] = (
                 total_area - baseline_area
             ).values[:, None]
@@ -367,6 +378,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
         if not capital_repl_rate and measurement == 4:
             n = avg_end - avg_start
+            # use average start and end years
             split_years = range(avg_start, avg_end)
             for split_year in split_years:
                 market_shares_split = xr.zeros_like(market_shares)
@@ -383,13 +395,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     dict(region=region)
                 ].fillna(0)
 
-                # capital_repl_rate cannot be == 1
-                # if (
-                #     (capital_repl_rate == 0
-                #     and volume_change < 0)
-                #     or (capital_repl_rate == 1
-                #     and volume_change < avg_cap_repl_rate)
-                # ):
+
                 if volume_change < 0:
                     # we remove suppliers with a positive growth
                     market_shares.loc[dict(region=region)].values[
@@ -418,6 +424,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             market_shares.loc[dict(region=region)] /= n
 
         if capital_repl_rate and measurement == 0:
+            # same as above for measurement 0, 1, 3, 4
             market_shares.loc[dict(region=region)] = (
                 (
                     data_full.sel(
@@ -494,6 +501,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 :, None
             ]
 
+            # this bit differs from above
             # get the capital replacement rate
             # which is here defined as -1 / lifetime
             cap_repl_rate = (
@@ -590,10 +598,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 ].fillna(0)
 
                 if (
-                    capital_repl_rate == 0
-                    and volume_change < 0
-                    or capital_repl_rate == 1
-                    and volume_change < avg_cap_repl_rate
+                    volume_change < avg_cap_repl_rate
                 ):
                     # we remove suppliers with a positive growth
                     market_shares.loc[dict(region=region)].values[
