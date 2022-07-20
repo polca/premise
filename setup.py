@@ -32,7 +32,7 @@ def package_files(directory):
 
 setup(
     name="premise",
-    version="1.2.1",
+    version="1.2.2",
     python_requires=">=3.9",
     packages=packages,
     author="Romain Sacchi <romain.sacchi@psi.ch>, Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>",

@@ -391,9 +391,9 @@ def add_modified_tags(original_db, scenarios):
     return scenarios
 
 
-def build_superstructure_db(origin_db, scenarios, db_name, fp):
+def build_superstructure_db(origin_db, scenarios, db_name, filepath):
     # Class `Export` to which the original database is passed
-    exp = Export(db=origin_db, filepath=fp)
+    exp = Export(db=origin_db, filepath=filepath)
 
     # Collect a dictionary of activities
     # {(name, ref_prod, loc, database, unit):row/col index in A matrix}
@@ -429,7 +429,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
             model=scenario["model"],
             scenario=scenario["pathway"],
             year=scenario["year"],
-            filepath=fp,
+            filepath=filepath,
         )
 
         new_rev_ind_A = exp.rev_index(exp.create_names_and_indices_of_A_matrix())
@@ -569,8 +569,8 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
                 d.append(modified[m][s])
         l_modified.append(d)
 
-    if fp is not None:
-        filepath = Path(fp)
+    if filepath is not None:
+        filepath = Path(filepath)
     else:
         filepath = DATA_DIR / "export" / "scenario diff files"
 
