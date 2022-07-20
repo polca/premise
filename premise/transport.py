@@ -107,9 +107,6 @@ def create_fleet_vehicles(
     """
     print("Create fleet average vehicles...")
 
-    if not FILEPATH_FLEET_COMP.is_file():
-        raise FileNotFoundError("The fleet composition file could not be found.")
-
     vehicles_map = get_vehicles_mapping()
 
     if model == "remind":
@@ -238,6 +235,7 @@ def create_fleet_vehicles(
         ]
 
         sel = arr.sel(region=fleet_region, size=sizes, year=ref_year)
+
         total_km = sel.sum()
 
         if total_km > 0:
@@ -287,6 +285,7 @@ def create_fleet_vehicles(
                                 and (pwt, size, constr_year_map[construction_year])
                                 in available_ds
                             ):
+
                                 indiv_share = (indiv_km / total_km).values.item(0)
 
                                 if vehicle_type == "truck":
@@ -297,6 +296,7 @@ def create_fleet_vehicles(
                                         constr_year_map[construction_year],
                                         driving_cycle,
                                     )
+
                                 else:
                                     load = 1
                                     to_look_for = (
@@ -319,6 +319,7 @@ def create_fleet_vehicles(
                                             "amount": indiv_share * load,
                                         }
                                     )
+
                 if len(act["exchanges"]) > 1:
                     list_act.append(act)
 
@@ -486,8 +487,7 @@ class Transport(BaseTransformation):
             "Moped,",
             "Scooter,",
             "Motorbike,",
-            "regional delivery",
-            "long haul",
+            "urban delivery",
             "passenger bus",
         ]
 
@@ -504,13 +504,17 @@ class Transport(BaseTransformation):
                 if not any(
                     vehicle in dataset["name"].lower() for vehicle in list_vehicles
                 )
-                or (
-                    not any(
-                        z
-                        for z in re.findall(r"\d+", dataset["name"])
-                        if int(z) > self.year
-                    )
-                    and "label-certified electricity" not in dataset["name"]
+            ]
+
+            datasets.import_db.data = [
+                dataset
+                for dataset in datasets.import_db.data
+                if not any(
+                    z for z in re.findall(r"\d+", dataset["name"]) if int(z) > self.year
+                )
+                and not any(
+                    z in dataset["name"]
+                    for z in ["label-certified electricity", "label-certified gas"]
                 )
             ]
 
