@@ -752,6 +752,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, fp):
 
     return origin_db
 
+
 def prepare_db_for_export(scenario):
 
     base = BaseTransformation(
