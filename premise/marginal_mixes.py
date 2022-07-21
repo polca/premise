@@ -362,13 +362,13 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 new_start[:, :] = start[:, None]
                 start = new_start
 
-            mask_end = (data_full.sel(region=region).year.values[None, :] <= end)
-            mask_start = (data_full.sel(region=region).year.values[None, :] >= start)
+            mask_end = data_full.sel(region=region).year.values[None, :] <= end
+            mask_start = data_full.sel(region=region).year.values[None, :] >= start
 
-            masked_data = (data_full.sel(region=region).where(
+            masked_data = data_full.sel(region=region).where(
                 (data_full.sel(region=region) <= mask_end)
-                &(data_full.sel(region=region) >= mask_start)
-            ))
+                & (data_full.sel(region=region) >= mask_start)
+            )
 
             coeff = masked_data.polyfit(dim="year", deg=1)
 
@@ -391,11 +391,11 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             if isinstance(end, np.ndarray):
                 data_end = (
-                        data_full.sel(
-                            region=region,
-                            year=end,
-                        )
-                        * np.identity(end.shape[0])
+                    data_full.sel(
+                        region=region,
+                        year=end,
+                    )
+                    * np.identity(end.shape[0])
                 ).sum(dim="variables")
 
                 new_end = np.zeros_like(data_full.sel(region=region))
@@ -409,11 +409,11 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             if isinstance(start, np.ndarray):
                 data_start = (
-                        data_full.sel(
-                            region=region,
-                            year=start,
-                        )
-                        * np.identity(start.shape[0])
+                    data_full.sel(
+                        region=region,
+                        year=start,
+                    )
+                    * np.identity(start.shape[0])
                 ).sum(dim="variables")
 
                 new_start = np.zeros_like(data_full.sel(region=region))
@@ -425,30 +425,21 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     year=start,
                 )
 
+            mask_end = data_full.sel(region=region).year.values[None, :] <= end
+            mask_start = data_full.sel(region=region).year.values[None, :] >= start
 
-            mask_end = (data_full.sel(region=region).year.values[None, :] <= end)
-            mask_start = (data_full.sel(region=region).year.values[None, :] >= start)
-
-            masked_data = (data_full.sel(region=region).where(
+            masked_data = data_full.sel(region=region).where(
                 (data_full.sel(region=region) <= mask_end)
-                &(data_full.sel(region=region) >= mask_start)
-            ))
+                & (data_full.sel(region=region) >= mask_start)
+            )
 
             coeff = masked_data.sum(dim="year").values
 
             n = np.mean(end, 1) - start
 
-            total_area = 0.5 * (
-                2 * coeff
-                - data_end
-                - data_start
-            )
+            total_area = 0.5 * (2 * coeff - data_end - data_start)
 
-
-            baseline_area = (
-                data_start
-                * n
-            )
+            baseline_area = data_start * n
 
             print(market_shares.loc[dict(region=region)].shape)
             print(total_area.shape)
