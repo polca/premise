@@ -443,9 +443,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             baseline_area = data_start * n
 
-            market_shares.loc[dict(region=region)] = ((
-                total_area - baseline_area
-            ) / n).values[:, None]
+            market_shares.loc[dict(region=region)] = (
+                (total_area - baseline_area) / n
+            ).values[:, None]
 
             if capital_repl_rate:
                 # this bit differs from above
@@ -495,19 +495,16 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     year=start,
                 )
 
-            slope = (
-                data_end.values
-                - data_start.values
-            ) / (end - start)
+            slope = (data_end.values - data_start.values) / (end - start)
 
-            short_slope_start = (start + (end - start) * weighted_slope_start)
+            short_slope_start = start + (end - start) * weighted_slope_start
 
             if isinstance(short_slope_start, np.ndarray):
                 short_slope_start = short_slope_start.astype(int)
             else:
                 short_slope_start = np.array([short_slope_start]).astype(int)
 
-            short_slope_end = (start + (end - start) * weighted_slope_end)
+            short_slope_end = start + (end - start) * weighted_slope_end
 
             if isinstance(short_slope_end, np.ndarray):
                 short_slope_end = short_slope_end.astype(int)
@@ -515,14 +512,18 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 short_slope_end = np.array([short_slope_end]).astype(int)
 
             short_slope = (
-                    (
-                        data_full.sel(region=region, year=short_slope_end)
-                        * np.identity(short_slope_end.shape[0])
-                    ).sum(dim="variables").values
+                (
+                    data_full.sel(region=region, year=short_slope_end)
+                    * np.identity(short_slope_end.shape[0])
+                )
+                .sum(dim="variables")
+                .values
                 - (
-                        data_full.sel(region=region, year=short_slope_start)
-                        * np.identity(short_slope_start.shape[0])
-                   ).sum(dim="variables").values
+                    data_full.sel(region=region, year=short_slope_start)
+                    * np.identity(short_slope_start.shape[0])
+                )
+                .sum(dim="variables")
+                .values
             ) / (short_slope_end - short_slope_start)
 
             if capital_repl_rate:
@@ -541,7 +542,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 split_year,
             )
 
-            market_shares.loc[dict(region=region)] = (slope + slope * split_year)[:, None]
+            market_shares.loc[dict(region=region)] = (slope + slope * split_year)[
+                :, None
+            ]
 
         if measurement == 4:
             n = end - start
