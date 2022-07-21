@@ -525,6 +525,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                    ).sum(dim="variables").values
             ) / (short_slope_end - short_slope_start)
 
+            if short_slope.shape != slope.shape:
+                short_slope = np.repeat(short_slope, slope.shape[0])
+
             if capital_repl_rate:
                 cap_repl_rate = fetch_capital_replacement_rates(
                     lifetime, data_full.sel(region=region, year=avg_start)
