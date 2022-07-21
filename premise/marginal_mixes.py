@@ -352,33 +352,27 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
         if measurement == 1:
 
-            coeff_a = data_full.sel(region=region).where(
-                data_full.sel(region=region).year >= start
-            )
+            if isinstance(end, np.ndarray):
+                new_end = np.zeros_like(data_full.sel(region=region))
+                new_end[:, :] = end[:, None]
+                end = new_end
 
-            new_end = np.zeros_like(data_full.sel(region=region))
+            if isinstance(start, np.ndarray):
+                new_start = np.zeros_like(data_full.sel(region=region))
+                new_start[:, :] = start[:, None]
+                start = new_start
 
-            new_end[:, :] = end[:, None]
-            end = new_end
+            mask_end = (data_full.sel(region=region).year.values[None, :] <= end)
+            mask_start = (data_full.sel(region=region).year.values[None, :] >= start)
 
-            data_full.sel(region=region).where(data_full.sel(region=region).year <= end)
+            masked_data = (data_full.sel(region=region).where(
+                (data_full.sel(region=region) <= mask_end)
+                &(data_full.sel(region=region) >= mask_start)
+            ))
 
-            # print(data_full.sel(region=region).year <= end)
-            # print(data_full.sel(region=region).year >= start)
+            coeff = masked_data.polyfit(dim="year", deg=1)
 
-            # print(start)
-
-            # print(end - start)
-
-            # print(coeff_a.shape)
-
-            coeff_b = coeff_a.where(coeff_a.year <= end)
-            coeff_c = coeff_b.polyfit(dim="year", deg=1)
-
-            print(coeff_c.shape)
-            print(market_shares.loc[dict(region=region)].shape)
-
-            market_shares.loc[dict(region=region)] = coeff_c.polyfit_coefficients[
+            market_shares.loc[dict(region=region)] = coeff.polyfit_coefficients[
                 0
             ].values[:, None]
 
@@ -395,31 +389,70 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
         if not capital_repl_rate and measurement == 2:
 
-            coeff_a = data_full.sel(region=region).where(
-                data_full.sel(region=region).year >= start
-            )
-            coeff_b = coeff_a.where(coeff_a.year <= end)
-            coeff_c = coeff_b.sum(dim="year").values
-            n = end - start
+            if isinstance(end, np.ndarray):
+                data_end = (
+                        data_full.sel(
+                            region=region,
+                            year=end,
+                        )
+                        * np.identity(end.shape[0])
+                ).sum(dim="variables")
 
-            total_area = 0.5 * (
-                2 * coeff_c
-                - data_full.sel(
+                new_end = np.zeros_like(data_full.sel(region=region))
+                new_end[:, :] = end[:, None]
+                end = new_end
+            else:
+                data_end = data_full.sel(
                     region=region,
                     year=end,
                 )
-                - data_full.sel(
+
+            if isinstance(start, np.ndarray):
+                data_start = (
+                        data_full.sel(
+                            region=region,
+                            year=start,
+                        )
+                        * np.identity(start.shape[0])
+                ).sum(dim="variables")
+
+                new_start = np.zeros_like(data_full.sel(region=region))
+                new_start[:, :] = start[:, None]
+                start = new_start
+            else:
+                data_start = data_full.sel(
                     region=region,
                     year=start,
                 )
+
+
+            mask_end = (data_full.sel(region=region).year.values[None, :] <= end)
+            mask_start = (data_full.sel(region=region).year.values[None, :] >= start)
+
+            masked_data = (data_full.sel(region=region).where(
+                (data_full.sel(region=region) <= mask_end)
+                &(data_full.sel(region=region) >= mask_start)
+            ))
+
+            coeff = masked_data.sum(dim="year").values
+
+            n = np.mean(end, 1) - start
+
+            total_area = 0.5 * (
+                2 * coeff
+                - data_end
+                - data_start
             )
+
+
             baseline_area = (
-                data_full.sel(
-                    region=region,
-                    year=start,
-                )
+                data_start
                 * n
             )
+
+            print(market_shares.loc[dict(region=region)].shape)
+            print(total_area.shape)
+            print(baseline_area.shape)
 
             market_shares.loc[dict(region=region)] = (
                 total_area - baseline_area
