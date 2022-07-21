@@ -159,7 +159,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         data.interp(year=[year]),
     )
 
-
     # Since there can be different start and end values,
     # I interpolated the entire data of the IAM instead
     # of doing it each time over
@@ -308,19 +307,37 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         if measurement == 0:
             # if the capital replacement rate is not used,
 
-            market_shares.loc[dict(region=region)] = (
-                (
+            if isinstance(start, np.ndarray):
+                data_start = (
+                    data_full.sel(
+                        region=region,
+                        year=start,
+                    )
+                    * np.identity(start.shape[0])
+                ).sum(dim="variables")
+            else:
+                data_start = data_full.sel(
+                    region=region,
+                    year=start,
+                )
+
+            if isinstance(end, np.ndarray):
+                data_end = (
                     data_full.sel(
                         region=region,
                         year=end,
                     )
-                    - data_full.sel(
-                        region=region,
-                        year=start,
-                    )
+                    * np.identity(end.shape[0])
+                ).sum(dim="variables")
+            else:
+                data_end = data_full.sel(
+                    region=region,
+                    year=end,
                 )
-                / (end - start)
-            ).values[:, None]
+
+            market_shares.loc[dict(region=region)] = (
+                (data_end.values - data_start.values) / (end - start)
+            )[:, None]
 
             if capital_repl_rate:
                 # get the capital replacement rate
@@ -331,7 +348,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
                 # subtract the capital replacement (which is negative) rate
                 # to the changes market share
-
                 market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
 
         if measurement == 1:
@@ -339,8 +355,31 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             coeff_a = data_full.sel(region=region).where(
                 data_full.sel(region=region).year >= start
             )
+
+            new_end = np.zeros_like(data_full.sel(region=region))
+
+            new_end[:, :] = end[:, None]
+            end = new_end
+
+            data_full.sel(region=region).where(
+                data_full.sel(region=region).year <= end
+            )
+
+
+            #print(data_full.sel(region=region).year <= end)
+            #print(data_full.sel(region=region).year >= start)
+
+            #print(start)
+
+            #print(end - start)
+
+            #print(coeff_a.shape)
+
             coeff_b = coeff_a.where(coeff_a.year <= end)
             coeff_c = coeff_b.polyfit(dim="year", deg=1)
+
+            print(coeff_c.shape)
+            print(market_shares.loc[dict(region=region)].shape)
 
             market_shares.loc[dict(region=region)] = coeff_c.polyfit_coefficients[
                 0
