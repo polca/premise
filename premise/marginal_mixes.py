@@ -270,11 +270,12 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 "end_avg"
             ]
 
-        except KeyError as err:
-            raise KeyError(
+        except KeyError:
+            print(
                 "The combination of range_time, duration, foresight, and lead_time "
                 "is not possible. Please check your input."
-            ) from err
+            )
+            continue
 
         # Now that we do know the start year of the time interval,
         # we can use this to "more accurately" calculate the current shares
@@ -440,6 +441,10 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             n = end - start
 
             total_area = 0.5 * (2 * coeff - data_end.values - data_start.values)
+
+            if isinstance(n, np.ndarray):
+                if n.shape != data_start.shape:
+                    n = n.mean(axis=1)
 
             baseline_area = data_start * n
 
