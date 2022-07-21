@@ -1305,7 +1305,7 @@ class IAMDataCollection:
         list_vars = [x["land_use"][self.model] for x in crops_vars.values()]
 
         data_to_return = data.loc[:, list_vars, :]
-        data_to_return.coords["variables"] = list(labels)
+        data_to_return.coords["variables"] = labels
 
         return data_to_return
 
@@ -1326,7 +1326,7 @@ class IAMDataCollection:
         list_vars = [x["land_use_change"][self.model] for x in crops_vars.values()]
 
         data_to_return = data.loc[:, list_vars, :]
-        data_to_return.coords["variables"] = list(labels)
+        data_to_return.coords["variables"] = labels
 
         return data_to_return
 
