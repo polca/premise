@@ -361,19 +361,16 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             new_end[:, :] = end[:, None]
             end = new_end
 
-            data_full.sel(region=region).where(
-                data_full.sel(region=region).year <= end
-            )
+            data_full.sel(region=region).where(data_full.sel(region=region).year <= end)
 
+            # print(data_full.sel(region=region).year <= end)
+            # print(data_full.sel(region=region).year >= start)
 
-            #print(data_full.sel(region=region).year <= end)
-            #print(data_full.sel(region=region).year >= start)
+            # print(start)
 
-            #print(start)
+            # print(end - start)
 
-            #print(end - start)
-
-            #print(coeff_a.shape)
+            # print(coeff_a.shape)
 
             coeff_b = coeff_a.where(coeff_a.year <= end)
             coeff_c = coeff_b.polyfit(dim="year", deg=1)
