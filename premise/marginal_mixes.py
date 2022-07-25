@@ -258,17 +258,19 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
         try:
 
-            start = time_parameters[(bool(range_time), bool(duration), foresight, lead_time)][
-                "start"
-            ]
-            end = time_parameters[(bool(range_time), bool(duration), foresight, lead_time)]["end"]
+            start = time_parameters[
+                (bool(range_time), bool(duration), foresight, lead_time)
+            ]["start"]
+            end = time_parameters[
+                (bool(range_time), bool(duration), foresight, lead_time)
+            ]["end"]
 
-            avg_start = time_parameters[(bool(range_time), bool(duration), foresight, lead_time)][
-                "start_avg"
-            ]
-            avg_end = time_parameters[(bool(range_time), bool(duration), foresight, lead_time)][
-                "end_avg"
-            ]
+            avg_start = time_parameters[
+                (bool(range_time), bool(duration), foresight, lead_time)
+            ]["start_avg"]
+            avg_end = time_parameters[
+                (bool(range_time), bool(duration), foresight, lead_time)
+            ]["end_avg"]
 
         except KeyError:
             print(
@@ -662,7 +664,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 # subtract the capital replacement (which is negative) rate
                 # to the changes market share
                 market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
-            
+
             if (not capital_repl_rate and volume_change < 0) or (
                 capital_repl_rate and volume_change < avg_cap_repl_rate
             ):
