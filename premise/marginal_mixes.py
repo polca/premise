@@ -230,25 +230,25 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 "start_avg": year - range_time,
                 "end_avg": year + range_time,
             },
-            (True, True, False, False): {
+            (False, True, False, False): {
                 "start": year + fetch_avg_leadtime(leadtime, shares),
                 "end": year + fetch_avg_leadtime(leadtime, shares) + duration,
                 "start_avg": year + fetch_avg_leadtime(leadtime, shares),
                 "end_avg": year + fetch_avg_leadtime(leadtime, shares) + duration,
             },
-            (True, True, True, False): {
+            (False, True, True, False): {
                 "start": year,
                 "end": year + duration,
                 "start_avg": year,
                 "end_avg": year + duration,
             },
-            (True, True, False, True): {
+            (False, True, False, True): {
                 "start": year + leadtime,
                 "end": year + leadtime + duration,
                 "start_avg": year + fetch_avg_leadtime(leadtime, shares),
                 "end_avg": year + fetch_avg_leadtime(leadtime, shares) + duration,
             },
-            (True, True, True, True): {
+            (False, True, True, True): {
                 "start": year,
                 "end": year + duration,
                 "start_avg": year,
@@ -258,15 +258,15 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
         try:
 
-            start = time_parameters[(range_time, duration, foresight, lead_time)][
+            start = time_parameters[(bool(range_time), bool(duration), foresight, lead_time)][
                 "start"
             ]
-            end = time_parameters[(range_time, duration, foresight, lead_time)]["end"]
+            end = time_parameters[(bool(range_time), bool(duration), foresight, lead_time)]["end"]
 
-            avg_start = time_parameters[(range_time, duration, foresight, lead_time)][
+            avg_start = time_parameters[(bool(range_time), bool(duration), foresight, lead_time)][
                 "start_avg"
             ]
-            avg_end = time_parameters[(range_time, duration, foresight, lead_time)][
+            avg_end = time_parameters[(bool(range_time), bool(duration), foresight, lead_time)][
                 "end_avg"
             ]
 
@@ -616,6 +616,80 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 ]
 
             market_shares.loc[dict(region=region)] /= n[:, None]
+
+        if measurement == 5:
+            # if the capital replacement rate is not used,
+
+            if isinstance(start, np.ndarray):
+                data_start = (
+                    data_full.sel(
+                        region=region,
+                        year=start,
+                    )
+                    * np.identity(start.shape[0])
+                ).sum(dim="variables")
+            else:
+                data_start = data_full.sel(
+                    region=region,
+                    year=start,
+                )
+
+            if isinstance(end, np.ndarray):
+                data_end = (
+                    data_full.sel(
+                        region=region,
+                        year=end,
+                    )
+                    * np.identity(end.shape[0])
+                ).sum(dim="variables")
+            else:
+                data_end = data_full.sel(
+                    region=region,
+                    year=end,
+                )
+
+            market_shares.loc[dict(region=region)] = (
+                (data_end.values - data_start.values) / (end - start)
+            )[:, None]
+
+            if capital_repl_rate:
+                # get the capital replacement rate
+                # which is here defined as -1 / lifetime
+                cap_repl_rate = fetch_capital_replacement_rates(
+                    lifetime, data_full.sel(region=region, year=avg_start)
+                )
+
+                # subtract the capital replacement (which is negative) rate
+                # to the changes market share
+                market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
+            
+            if (not capital_repl_rate and volume_change < 0) or (
+                capital_repl_rate and volume_change < avg_cap_repl_rate
+            ):
+                # we remove suppliers with a positive growth
+                market_shares.loc[dict(region=region)].values[
+                    market_shares.loc[dict(region=region)].values >= 0
+                ] = 0
+                # we keep suppliers with a negative growth
+                market_shares.loc[dict(region=region)].values[
+                    market_shares.loc[dict(region=region)].values < 0
+                ] = 1
+                # and use their production volume as their indicator
+                market_shares.loc[dict(region=region)] *= data_start.values[:, None]
+            # increasing market or
+            # market decreasing slowlier than the
+            # capital renewal rate
+            else:
+                # we remove suppliers with a negative growth
+                market_shares.loc[dict(region=region)].values[
+                    market_shares.loc[dict(region=region)].values <= 0
+                ] = 0
+                # we keep suppliers with a positive growth
+                market_shares.loc[dict(region=region)].values[
+                    market_shares.loc[dict(region=region)].values > 0
+                ] = 1
+                # and use their production volume as their indicator
+                market_shares.loc[dict(region=region)] *= data_start.values[:, None]
 
         market_shares.loc[dict(region=region)] = market_shares.loc[
             dict(region=region)
