@@ -596,11 +596,11 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     market_shares.loc[dict(region=region)].values[
                         market_shares.loc[dict(region=region)].values > 0
                     ] = 0
-                    # we reverse the sign of negative growth suppliers
-                    market_shares.loc[dict(region=region)] *= -1
                     market_shares.loc[dict(region=region)] /= market_shares.loc[
                         dict(region=region)
                     ].sum(dim="variables")
+                    # we reverse the sign so that the suppliers are still seen as negative in the next step
+                    market_shares.loc[dict(region=region)] *= -1
 
                 else:
                     # we remove suppliers with a negative growth
@@ -673,9 +673,10 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     market_shares.loc[dict(region=region)].values >= 0
                 ] = 0
                 # we keep suppliers with a negative growth
+                # we use negative 1 so that in the next step they are still seen as negative
                 market_shares.loc[dict(region=region)].values[
                     market_shares.loc[dict(region=region)].values < 0
-                ] = 1
+                ] = -1
                 # and use their production volume as their indicator
                 market_shares.loc[dict(region=region)] *= data_start.values[:, None]
             # increasing market or
