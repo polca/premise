@@ -365,12 +365,12 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 new_start[:, :] = start[:, None]
                 start = new_start
 
-            mask_end = data_full.sel(region=region).year.values[None, :] <= end
-            mask_start = data_full.sel(region=region).year.values[None, :] >= start
+            mask_end = data_full.sel(region=region).year <= end
+            mask_start = data_full.sel(region=region).year >= start
+            mask = mask_end & mask_start
 
             masked_data = data_full.sel(region=region).where(
-                (data_full.sel(region=region) <= mask_end)
-                & (data_full.sel(region=region) >= mask_start)
+                mask, drop = True
             )
 
             coeff = masked_data.polyfit(dim="year", deg=1)
@@ -428,12 +428,12 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     year=start,
                 )
 
-            mask_end = data_full.sel(region=region).year.values[None, :] <= end
-            mask_start = data_full.sel(region=region).year.values[None, :] >= start
+            mask_end = data_full.sel(region=region).year <= end
+            mask_start = data_full.sel(region=region).year >= start
+            mask = mask_end & mask_start
 
             masked_data = data_full.sel(region=region).where(
-                (data_full.sel(region=region) <= mask_end)
-                & (data_full.sel(region=region) >= mask_start)
+                mask, drop = True
             )
 
             coeff = masked_data.sum(dim="year").values
