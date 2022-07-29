@@ -557,7 +557,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             ]
 
         if measurement == 4:
-            n = end - start
+            n = avg_end - avg_start
 
             if isinstance(n, int):
                 n = np.array([n])
