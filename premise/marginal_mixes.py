@@ -593,14 +593,14 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     capital_repl_rate and volume_change < avg_cap_repl_rate
                 ):
                     # we remove suppliers with a positive growth
-                    market_shares.loc[dict(region=region)].values[
-                        market_shares.loc[dict(region=region)].values > 0
+                    market_shares_split.loc[dict(region=region)].values[
+                        market_shares_split.loc[dict(region=region)].values > 0
                     ] = 0
-                    market_shares.loc[dict(region=region)] /= market_shares.loc[
+                    market_shares_split.loc[dict(region=region)] /= market_shares_split.loc[
                         dict(region=region)
                     ].sum(dim="variables")
                     # we reverse the sign so that the suppliers are still seen as negative in the next step
-                    market_shares.loc[dict(region=region)] *= -1
+                    market_shares_split.loc[dict(region=region)] *= -1
 
                 else:
                     # we remove suppliers with a negative growth
