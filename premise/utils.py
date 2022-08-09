@@ -212,9 +212,11 @@ def relink_technosphere_exchanges(
                 )
 
         except KeyError:
+
             possible_datasets = [
                 x for x in get_possibles(exc, data) if x["location"] in list_loc
             ]
+
             possible_locations = [obj["location"] for obj in possible_datasets]
 
             if dataset["location"] in possible_locations:
@@ -227,23 +229,16 @@ def relink_technosphere_exchanges(
                 for p in possible_locations
             ]
 
+
             if len(possible_datasets) > 0:
 
-                with resolved_row(possible_locations, geomatcher.geo) as g:
-                    func = g.contained if contained else g.intersects
+                location = (
+                    dataset["location"]
+                    if dataset["location"] not in geomatcher.iam_regions
+                    else (model.upper(), dataset["location"])
+                )
 
-                    if dataset["location"] in geomatcher.iam_regions:
-                        location = (model.upper(), dataset["location"])
-                    else:
-                        location = dataset["location"]
-
-                    gis_match = func(
-                        location,
-                        include_self=True,
-                        exclusive=exclusive,
-                        biggest_first=biggest_first,
-                        only=possible_locations,
-                    )
+                gis_match = get_gis_match(dataset, location, possible_locations, geomatcher, contained, exclusive, biggest_first)
 
                 kept = [
                     ds
@@ -264,6 +259,40 @@ def relink_technosphere_exchanges(
                                 if obj["location"] == "RoW"
                             ]
                         )
+
+                if not kept and exc["name"].startswith("market group for"):
+
+                    exc["name"] = exc["name"].replace("market group for", "market for")
+
+                    possible_datasets = [
+                        x for x in get_possibles(exc, data) if x["location"] in list_loc
+                    ]
+
+                    possible_locations = [obj["location"] for obj in possible_datasets]
+
+                    possible_locations = [
+                        (model.upper(), p) if p in geomatcher.iam_regions else p
+                        for p in possible_locations
+                    ]
+
+                    location = (
+                        dataset["location"]
+                        if dataset["location"] not in geomatcher.iam_regions
+                        else (model.upper(), dataset["location"])
+                    )
+
+
+                    gis_match = get_gis_match(dataset, location, possible_locations, geomatcher, contained, exclusive,
+                                              biggest_first)
+
+                    kept = [
+                        ds
+                        for loc in gis_match
+                        for ds in possible_datasets
+                        if ds["location"] == loc
+                    ]
+
+
                 if not kept and "RoW" in possible_locations:
                     kept = [
                         obj for obj in possible_datasets if obj["location"] == "RoW"
@@ -375,6 +404,28 @@ def allocate_inputs(exc, lst):
         for obj, factor in zip(lst, pvs)
     ], [p / total for p in pvs]
 
+def get_gis_match(dataset, location, possible_locations, geomatcher, contained, exclusive, biggest_first):
+
+    with resolved_row(possible_locations, geomatcher.geo) as g:
+        func = g.contained if contained else g.intersects
+
+        if dataset["location"] not in geomatcher.iam_regions:
+
+            gis_match = func(
+                location,
+                include_self=True,
+                exclusive=exclusive,
+                biggest_first=biggest_first,
+                only=possible_locations,
+            )
+
+        else:
+            gis_match = geomatcher.iam_to_ecoinvent_location(
+                dataset["location"]
+            )
+
+    return gis_match
+
 
 def get_possibles(exchange, data):
     """Filter a list of datasets ``data``,
@@ -382,10 +433,12 @@ def get_possibles(exchange, data):
     reference product, and unit as in ``exchange``.
     Returns a generator."""
     key = (exchange["name"], exchange["product"], exchange["unit"])
+
     list_exc = []
     for dataset in data:
         if (dataset["name"], dataset["reference product"], dataset["unit"]) == key:
             list_exc.append(dataset)
+
     return list_exc
 
 

@@ -526,6 +526,7 @@ Hydrogen
 * Woody biomass gasification, using an entrained flow gasifier
 * Woody biomass gasification, using an entrained flow gasifier, with Carbon Capture and Storage
 * Coal gasification
+* Coal gasification, with Carbon Capture and Storage
 * Electrolysis
 
 Inventories using Steam Methane Reforming are from Antonini_ et al. 2021.
@@ -534,7 +535,8 @@ Inventories using Auto Thermal Reforming are from Antonini_ et al. 2021.
 They can be consulted here: LCI_ATR_.
 Inventories using Woody biomass gasification are from Antonini2_ et al. 2021.
 They can be consulted here: LCI_woody_.
-Inventories using coal gasification are from Wokaun_ et al. 2011.
+Inventories using coal gasification are from Wokaun_ et al. 2015, but updated
+with Li_ et al. 2022, which also provide an option with CCS.
 They can be consulted here: LCI_coal_.
 Inventories using electrolysis are from Bareiss_ et al. 2019.
 They can be consulted here: LCI_electrolysis_.
@@ -542,6 +544,7 @@ They can be consulted here: LCI_electrolysis_.
 .. _Antonini: https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00222d
 .. _Antonini2: https://pubs.rsc.org/en/Content/ArticleLanding/2021/SE/D0SE01637C
 .. _Wokaun: https://www.cambridge.org/core/books/transition-to-hydrogen/43144AF26ED80E7106B675A6E83B1579
+.. _Li: https://doi.org/10.1016/j.jclepro.2022.132514
 .. _Bareiss: https://www.sciencedirect.com/science/article/pii/S0306261919300017
 .. _LCI_SMR: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
 .. _LCI_ATR: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
@@ -626,13 +629,14 @@ often leads to the production of co-products (dried distiller's grain, electrici
 Hence, energy, economic and system expansion partitioning approaches are available.
 These inventories originate from several different sources
 (Wu_ et al. 2006 (2020 update), Cozzolino_ 2018, Pereira_ et al. 2019 and Gonzalez-Garcia_ et al. 2012),
-indicated in the table below.
+Cavalett_ & Cherubini 2022, as indicated in the table below.
 
 .. _LCI_biofuels: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-biofuels.xlsx
 .. _Cozzolino: https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf
 .. _Gonzalez-Garcia: https://doi.org/10.1016/j.scitotenv.2012.07.044
 .. _Wu: http://greet.es.anl.gov/publication-2lli584z
 .. _Pereira: http://task39.sites.olt.ubc.ca/files/2019/04/Task-39-GHS-models-Final-Report-Phase-1.pdf
+.. _Cavalett: https://doi.org/10.1002/bbb.2395
 
 The following datasets are introduced:
 
@@ -682,10 +686,16 @@ The following datasets are introduced:
   Ethanol production, via fermentation, from corn starch                             RER         Cozzolino 2018
   Ethanol production, via fermentation, from sugarbeet                               RER         Cozzolino 2018
   Ethanol production, via fermentation, from forest residue                          RER         Cozzolino 2018
+  Ethanol production, via fermentation, from forest residues                         RER         Cavalett & Cherubini 2022
+  Ethanol production, via fermentation, from forest product (non-residual)           RER         Cavalett & Cherubini 2022
   Biodiesel production, via transesterification, from used cooking oil               RER         Cozzolino 2018
   Biodiesel production, via transesterification, from rapeseed oil                   RER         Cozzolino 2018
   Biodiesel production, via transesterification, from palm oil, energy allocation    RER         Cozzolino 2018
   Biodiesel production, via transesterification, from algae, energy allocation       RER         Cozzolino 2018
+  Biodiesel production, via Fischer-Tropsch, from forest residues                    RER         Cavalett & Cherubini 2022
+  Biodiesel production, via Fischer-Tropsch, from forest product (non-residual)      RER         Cavalett & Cherubini 2022
+  Kerosene production, via Fischer-Tropsch, from forest residues                     RER         Cavalett & Cherubini 2022
+  Kerosene production, via Fischer-Tropsch, from forest product (non-residual)       RER         Cavalett & Cherubini 2022
  ================================================================================== =========== =============================
 
 Synthetic fuels
@@ -717,19 +727,23 @@ from direct air capture (DAC). However, *premise* builds different configuration
   Fuel production dataset                                                                                                                                                      location           source
  ============================================================================================================================================================================ ================== =============================
   Diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, at fuelling station                                                             all IAM regions    van der Giesen et al. 2014
+  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, at fuelling station                                                   all IAM regions    van der Giesen et al. 2014
   Diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, at fuelling station                                                                  all IAM regions    van der Giesen et al. 2014
   Diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, at fuelling station                                                             all IAM regions    van der Giesen et al. 2014
   Diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, at fuelling station                                                   all IAM regions    van der Giesen et al. 2014
-  Diesel production, synthetic, from methanol, hydrogen from coal gasification, CO2 from DAC, at fuelling station                                                              all IAM regions    Hank et al, 2019
+  Diesel production, synthetic, from methanol, hydrogen from coal gasification, at fuelling station                                                                            all IAM regions    Hank et al, 2019
+  Diesel production, synthetic, from methanol, hydrogen from coal gasification, with CCS, at fuelling station                                                                  all IAM regions    Hank et al, 2019
   Diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, at fuelling station                                                          all IAM regions    Hank et al, 2019
   Diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                                   all IAM regions    Hank et al, 2019
-  Gasoline production, synthetic, from methanol, hydrogen from coal gasification, CO2 from DAC, at fuelling station                                                            all IAM regions    Hank et al, 2019
+  Gasoline production, synthetic, from methanol, hydrogen from coal gasification, at fuelling station                                                                          all IAM regions    Hank et al, 2019
+  Gasoline production, synthetic, from methanol, hydrogen from coal gasification, with CCS, at fuelling station                                                                all IAM regions    Hank et al, 2019
   Gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, at fuelling station                                                        all IAM regions    Hank et al, 2019
   Gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                                 all IAM regions    Hank et al, 2019
-  Kerosene production, from methanol, hydrogen from coal gasification, CO2 from DAC                                                                                            all IAM regions    Hank et al, 2019
+  Kerosene production, from methanol, hydrogen from coal gasification                                                                                                          all IAM regions    Hank et al, 2019
   Kerosene production, from methanol, hydrogen from electrolysis, CO2 from cement plant                                                                                        all IAM regions    Hank et al, 2019
   Kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC                                                                                                 all IAM regions    Hank et al, 2019
   Kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification                                                                                     all IAM regions    van der Giesen et al. 2014
+  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS                                                                           all IAM regions    van der Giesen et al. 2014
   Kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis                                                                                          all IAM regions    van der Giesen et al. 2014
   Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification                                                                                     all IAM regions    van der Giesen et al. 2014
   Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS                                                                           all IAM regions    van der Giesen et al. 2014
@@ -748,6 +762,19 @@ from direct air capture (DAC). However, *premise* builds different configuration
   Liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                  all IAM regions    Hank et al, 2019
  ============================================================================================================================================================================ ================== =============================
 
+In the case of wood and coal gasification-based fuels, the CO2 needed to produce methanol
+or syncrude originates from the gasification process itself. This also implies
+that in the methanol and/or RWGS process, a carbon balance correction is applied to reflect the
+fact that a part of the CO2 from the gasification process is redirected into
+the fuel production process.
+
+If the CO2 originates from:
+
+* a gasification process without CCS, a negative carbon correction is added to
+reflect the fact that part of the CO2 has not been emitted but has ended in the fuel instead.
+* the gasification process with CCS, no carbon correction is necessary, because the CO2 is stored
+in the fuel instead of being stored underground, which from a carbon accounting standpoint is
+similar.
 
 Direct Air Capture
 ------------------
@@ -770,7 +797,7 @@ They introduce the following datasets:
 
 In its default configuration, the DAC process uses "free of burden" excess heat
 and grid-supplied electricity. *premise* creates various configurations of that
-same process, using different sources for heat (industrial steam heat, heat
+same process, using different sources for heat (industrial steam heat, high-temp heat
 pump heat), which are found under the following names, for each IAM region:
 
  ============================================================================================= ==================

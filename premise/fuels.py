@@ -1604,7 +1604,6 @@ class Fuels(BaseTransformation):
                     name=activity["name"],
                     ref_prod=activity["reference product"],
                     production_variable=prod_vars,
-                    relink=True,
                 )
 
                 for region, dataset in d_act.items():
@@ -1635,6 +1634,7 @@ class Fuels(BaseTransformation):
                             )
 
                             if share > 0:
+
                                 possible_suppliers = self.select_multiple_suppliers(
                                     var, d_fuels, dataset, vars_map[fuel]
                                 )

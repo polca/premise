@@ -231,7 +231,7 @@ syngas:
   ecoinvent_aliases:
     fltr: Syngas, RWGS
 
-petrol, synthetic, hydrogen:
+petrol, synthetic, from electrolysis:
   lhv: 42.6
   co2: 0.0737
   iam_aliases:
@@ -241,7 +241,7 @@ petrol, synthetic, hydrogen:
     fltr:
       - gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station
 
-petrol, synthetic, coal:
+petrol, synthetic, from coal:
   lhv: 42.6
   co2: 0.0737
   biogenic_share: 0
@@ -251,7 +251,7 @@ petrol, synthetic, coal:
     fltr:
       - gasoline production, synthetic, from methanol, hydrogen from coal gasification, energy allocation, at fuelling station
 
-petrol, synthetic, coal, with CCS:
+petrol, synthetic, from coal, with CCS:
   lhv: 42.6
   co2: 0.0737
   biogenic_share: 0
@@ -259,9 +259,9 @@ petrol, synthetic, coal, with CCS:
     remind: SE|Liquids|Fossil|Coal|+|w/ CC
   ecoinvent_aliases:
     fltr:
-      - gasoline production, synthetic, from methanol, hydrogen from coal gasification, energy allocation, with carbon capture, at fuelling station
+      - gasoline production, synthetic, from methanol, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station
 
-diesel, synthetic, hydrogen:
+diesel, synthetic, from electrolysis:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
@@ -271,7 +271,7 @@ diesel, synthetic, hydrogen:
     fltr:
       - diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station
 
-diesel, synthetic, coal:
+diesel, synthetic, from coal:
   lhv: 43
   co2: 0.0732
   biogenic_share: 0
@@ -281,7 +281,7 @@ diesel, synthetic, coal:
     fltr:
       - diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, energy allocation, at fuelling station
 
-diesel, synthetic, coal, with CCS:
+diesel, synthetic, from coal, with CCS:
   lhv: 43
   co2: 0.0732
   biogenic_share: 0
@@ -289,10 +289,10 @@ diesel, synthetic, coal, with CCS:
     remind: SE|Liquids|Fossil|Coal|+|w/ CC
   ecoinvent_aliases:
     fltr:
-      - diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, energy allocation, at fuelling station
+      - diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station
 
 
-diesel, synthetic, wood:
+diesel, synthetic, from wood:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
@@ -305,7 +305,7 @@ diesel, synthetic, wood:
     fltr:
       - diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station
 
-diesel, synthetic, wood, with CCS:
+diesel, synthetic, from wood, with CCS:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
@@ -317,7 +317,7 @@ diesel, synthetic, wood, with CCS:
   ecoinvent_aliases:
     fltr:
       - diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation, at fuelling station
-diesel, synthetic, grass:
+diesel, synthetic, from grass:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
@@ -328,7 +328,7 @@ diesel, synthetic, grass:
   ecoinvent_aliases:
     fltr:
       - diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station
-diesel, synthetic, grass, with CCS:
+diesel, synthetic, from grass, with CCS:
   lhv: 43
   co2: 0.0732
   biogenic_share: 1
@@ -832,6 +832,7 @@ kerosene, synthetic, from electrolysis, energy allocation:
     fltr:
       - Kerosene, synthetic, from electrolysis-based hydrogen, energy allocation
       - Kerosene, synthetic, from MTO, hydrogen from electrolysis, energy allocation
+
 kerosene, synthetic, from electrolysis, economic allocation:
   lhv: 43
   co2: 0.0715
@@ -840,34 +841,39 @@ kerosene, synthetic, from electrolysis, economic allocation:
     fltr:
       - Kerosene, synthetic, from electrolysis-based hydrogen, economic allocation
       - Kerosene, synthetic, from MTO, hydrogen from electrolysis, economic allocation
+
 kerosene, synthetic, from coal, energy allocation:
   lhv: 43
   co2: 0.0715
-  biogenic_share: 1
+  biogenic_share: 0
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from coal-based hydrogen, energy allocation, at fuelling station
+
 kerosene, synthetic, from coal, economic allocation:
   lhv: 43
   co2: 0.0715
-  biogenic_share: 1
+  biogenic_share: 0
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from coal-based hydrogen, economic allocation, at fuelling station
+
 kerosene, synthetic, from natural gas, energy allocation:
   lhv: 43
   co2: 0.0715
-  biogenic_share: 1
+  biogenic_share: 0
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from natural gas-based hydrogen, energy allocation, at fuelling station
+
 kerosene, synthetic, from natural gas, economic allocation:
   lhv: 43
   co2: 0.0715
-  biogenic_share: 1
+  biogenic_share: 0
   ecoinvent_aliases:
     fltr:
       - Kerosene, synthetic, from natural gas-based hydrogen, economic allocation, at fuelling station
+
 kerosene, synthetic, from biomethane, energy allocation:
   lhv: 43
   co2: 0.0715

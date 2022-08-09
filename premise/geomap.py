@@ -49,6 +49,14 @@ class Geomap:
         self.model = model
         self.geo = geomatcher
         self.additional_mappings = get_additional_mapping()
+        self.rev_additional_mappings = {}
+
+        for key, val in self.additional_mappings.items():
+            if (self.model.upper(), val[self.model]) not in self.rev_additional_mappings:
+                self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [key]
+            else:
+                self.rev_additional_mappings[(self.model.upper(), val[self.model])].append(key)
+
         self.iam_to_iam_mappings = get_iam_to_iam_mapping()
 
         self.iam_regions = [
@@ -72,6 +80,11 @@ class Geomap:
         location = (self.model.upper(), location)
 
         ecoinvent_locations = []
+
+        # first, include the missing mappings
+        if location in self.rev_additional_mappings:
+            ecoinvent_locations.extend(self.rev_additional_mappings[location])
+
         try:
             searchfunc = self.geo.contained if contained else self.geo.intersects
             for region in searchfunc(location):
@@ -113,9 +126,10 @@ class Geomap:
         # Second, it can be an ecoinvent region
         # with no native mapping
         if location in self.additional_mappings:
-
             if self.additional_mappings[location][self.model] in self.iam_regions:
+
                 return self.additional_mappings[location][self.model]
+
             # likely a case of missing "EUR" region
             raise ValueError(f"Could not find equivalent for {location}.")
 

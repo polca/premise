@@ -126,6 +126,9 @@ FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES = (
 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
 )
+FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx"
+)
 
 FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
@@ -141,6 +144,9 @@ FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES = (
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
+)
+FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
@@ -664,10 +670,15 @@ class NewDatabase:
                     FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
                     "3.7",
                 ),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES,
+                    "3.7",
+                ),
                 (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
                 (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES, "3.7"),
                 (FILEPATH_BIGCC, "3.8"),
             ]
             for filepath in filepaths:
@@ -679,6 +690,7 @@ class NewDatabase:
                 )
                 datasets = inventory.merge_inventory()
                 data.extend(datasets)
+
                 self.database.extend(datasets)
 
         print("Done!\n")
