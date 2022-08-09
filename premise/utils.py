@@ -229,7 +229,6 @@ def relink_technosphere_exchanges(
                 for p in possible_locations
             ]
 
-
             if len(possible_datasets) > 0:
 
                 location = (
@@ -238,7 +237,15 @@ def relink_technosphere_exchanges(
                     else (model.upper(), dataset["location"])
                 )
 
-                gis_match = get_gis_match(dataset, location, possible_locations, geomatcher, contained, exclusive, biggest_first)
+                gis_match = get_gis_match(
+                    dataset,
+                    location,
+                    possible_locations,
+                    geomatcher,
+                    contained,
+                    exclusive,
+                    biggest_first,
+                )
 
                 kept = [
                     ds
@@ -281,9 +288,15 @@ def relink_technosphere_exchanges(
                         else (model.upper(), dataset["location"])
                     )
 
-
-                    gis_match = get_gis_match(dataset, location, possible_locations, geomatcher, contained, exclusive,
-                                              biggest_first)
+                    gis_match = get_gis_match(
+                        dataset,
+                        location,
+                        possible_locations,
+                        geomatcher,
+                        contained,
+                        exclusive,
+                        biggest_first,
+                    )
 
                     kept = [
                         ds
@@ -291,7 +304,6 @@ def relink_technosphere_exchanges(
                         for ds in possible_datasets
                         if ds["location"] == loc
                     ]
-
 
                 if not kept and "RoW" in possible_locations:
                     kept = [
@@ -404,7 +416,16 @@ def allocate_inputs(exc, lst):
         for obj, factor in zip(lst, pvs)
     ], [p / total for p in pvs]
 
-def get_gis_match(dataset, location, possible_locations, geomatcher, contained, exclusive, biggest_first):
+
+def get_gis_match(
+    dataset,
+    location,
+    possible_locations,
+    geomatcher,
+    contained,
+    exclusive,
+    biggest_first,
+):
 
     with resolved_row(possible_locations, geomatcher.geo) as g:
         func = g.contained if contained else g.intersects
@@ -420,9 +441,7 @@ def get_gis_match(dataset, location, possible_locations, geomatcher, contained, 
             )
 
         else:
-            gis_match = geomatcher.iam_to_ecoinvent_location(
-                dataset["location"]
-            )
+            gis_match = geomatcher.iam_to_ecoinvent_location(dataset["location"])
 
     return gis_match
 

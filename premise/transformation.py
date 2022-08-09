@@ -497,8 +497,7 @@ class BaseTransformation:
             # add tag
             existing_ds["has_downstream_consumer"] = False
             existing_ds["exchanges"] = [
-                e for e in existing_ds["exchanges"]
-                if e["type"] == "production"
+                e for e in existing_ds["exchanges"] if e["type"] == "production"
             ]
 
             if len(existing_ds["exchanges"]) == 0:
