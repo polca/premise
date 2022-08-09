@@ -187,7 +187,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 "start_avg": year,
                 "end_avg": year + fetch_avg_lifetime(lifetime=leadtime, shares=shares),
             },
-            (False, False, True, True): {
+            (False, False, True, False): {
                 "start": year - fetch_avg_leadtime(leadtime, shares),
                 "end": year,
                 "start_avg": year - fetch_avg_leadtime(leadtime, shares),
@@ -365,12 +365,12 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 new_start[:, :] = start[:, None]
                 start = new_start
 
-            mask_end = data_full.sel(region=region).year.values[None, :] <= end
-            mask_start = data_full.sel(region=region).year.values[None, :] >= start
+            mask_end = data_full.sel(region=region).year <= end
+            mask_start = data_full.sel(region=region).year >= start
+            mask = mask_end & mask_start
 
             masked_data = data_full.sel(region=region).where(
-                (data_full.sel(region=region) <= mask_end)
-                & (data_full.sel(region=region) >= mask_start)
+                mask, drop = True
             )
 
             coeff = masked_data.polyfit(dim="year", deg=1)
@@ -428,12 +428,12 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     year=start,
                 )
 
-            mask_end = data_full.sel(region=region).year.values[None, :] <= end
-            mask_start = data_full.sel(region=region).year.values[None, :] >= start
+            mask_end = data_full.sel(region=region).year <= end
+            mask_start = data_full.sel(region=region).year >= start
+            mask = mask_end & mask_start
 
             masked_data = data_full.sel(region=region).where(
-                (data_full.sel(region=region) <= mask_end)
-                & (data_full.sel(region=region) >= mask_start)
+                mask, drop = True
             )
 
             coeff = masked_data.sum(dim="year").values
@@ -557,7 +557,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             ]
 
         if measurement == 4:
-            n = end - start
+            n = avg_end - avg_start
 
             if isinstance(n, int):
                 n = np.array([n])
@@ -593,14 +593,14 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     capital_repl_rate and volume_change < avg_cap_repl_rate
                 ):
                     # we remove suppliers with a positive growth
-                    market_shares.loc[dict(region=region)].values[
-                        market_shares.loc[dict(region=region)].values > 0
+                    market_shares_split.loc[dict(region=region)].values[
+                        market_shares_split.loc[dict(region=region)].values > 0
                     ] = 0
-                    # we reverse the sign of negative growth suppliers
-                    market_shares.loc[dict(region=region)] *= -1
-                    market_shares.loc[dict(region=region)] /= market_shares.loc[
+                    market_shares_split.loc[dict(region=region)] /= market_shares_split.loc[
                         dict(region=region)
                     ].sum(dim="variables")
+                    # we reverse the sign so that the suppliers are still seen as negative in the next step
+                    market_shares_split.loc[dict(region=region)] *= -1
 
                 else:
                     # we remove suppliers with a negative growth
@@ -673,9 +673,10 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     market_shares.loc[dict(region=region)].values >= 0
                 ] = 0
                 # we keep suppliers with a negative growth
+                # we use negative 1 so that in the next step they are still seen as negative
                 market_shares.loc[dict(region=region)].values[
                     market_shares.loc[dict(region=region)].values < 0
-                ] = 1
+                ] = -1
                 # and use their production volume as their indicator
                 market_shares.loc[dict(region=region)] *= data_start.values[:, None]
             # increasing market or
