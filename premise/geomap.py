@@ -52,10 +52,17 @@ class Geomap:
         self.rev_additional_mappings = {}
 
         for key, val in self.additional_mappings.items():
-            if (self.model.upper(), val[self.model]) not in self.rev_additional_mappings:
-                self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [key]
+            if (
+                self.model.upper(),
+                val[self.model],
+            ) not in self.rev_additional_mappings:
+                self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [
+                    key
+                ]
             else:
-                self.rev_additional_mappings[(self.model.upper(), val[self.model])].append(key)
+                self.rev_additional_mappings[
+                    (self.model.upper(), val[self.model])
+                ].append(key)
 
         self.iam_to_iam_mappings = get_iam_to_iam_mapping()
 
