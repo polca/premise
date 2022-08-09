@@ -19,44 +19,23 @@ Concentration Pathway (RCP).
 
 **IMAGE** scenarios:
 
-* **SSP2-Base**: worst-case scenario. Reaching 6.5 W/m2 by 2100,
-translating into an atmospheric temperature increase of 3.5 C
-relative ot pre-industrial levels.
+* **SSP2-Base**: worst-case scenario. Reaching 6.5 W/m2 by 2100, translating into an atmospheric temperature increase of 3.5 C relative ot pre-industrial levels.
 
-* **SSP2-RCP26**: compliant with the soft targets of
-the Paris Agreement, reaching 2.6 W/m2 by 2100, or an atmospheric
-temperature increase of 1.8-2 C relative to pre-industrial levels.
+* **SSP2-RCP26**: compliant with the soft targets of the Paris Agreement, reaching 2.6 W/m2 by 2100, or an atmospheric temperature increase of 1.8-2 C relative to pre-industrial levels.
 
-* **SSP2-RCP19**: compliant with the hard targets of the Paris Agreement,
-reaching 1.9 W/m2 by 2100, or an atmospheric temperature increase of
-1.5 C relative to pre-industrial levels.
+* **SSP2-RCP19**: compliant with the hard targets of the Paris Agreement, reaching 1.9 W/m2 by 2100, or an atmospheric temperature increase of 1.5 C relative to pre-industrial levels.
 
 **REMIND** scenarios:
 
-* **SSP2-Base**: worst-case scenario, with a representative
-concentration pathway (RCP) equivalent to RCP6.5, or 6.5 W/m2,
-translating into an atmospheric temperature increase of 3.5 C
-relative ot pre-industrial levels.
+* **SSP2-Base**: worst-case scenario, with a representative concentration pathway (RCP) equivalent to RCP6.5, or 6.5 W/m2, translating into an atmospheric temperature increase of 3.5 C relative to pre-industrial levels. This scenario is worst-case, which even witnesses a roll-back of renewables and should probably not be used as a baseline.
 
-* **SSP2-NDC**: Current Nationally-determined Contributions implemented
-by teh parties of the Paris Agreement. Currently not enough to reach the
-soft targets of the Paris Agreement. Can be considered a baseline.
+* **SSP2-NDC**: Current Nationally-determined Contributions implemented by the parties of the Paris Agreement. Currently not enough to reach the soft targets of the Paris Agreement. Can be considered a **baseline**.
 
-* **SSP2-NPI**: National Policies implemented. This scenario describes energy,
-climate and economic projections for the period until 2030,
-and equivalent efforts thereafter.
+* **SSP2-NPI**: National Policies implemented. This scenario describes energy, climate and economic projections for the period until 2030, and equivalent efforts thereafter.
 
-* **SSP2-PkBudg1150**: CO2 emissions peak at 1150 Gt. Scenario
-compliant with the soft targets of
-the Paris Agreement, with a representative concentration pathway
-(RCP) equivalent to RCP2.6, or 2.6 W/m2, or an atmospheric
-temperature increase of 1.8-2 C relative to pre-industrial levels.
+* **SSP2-PkBudg1150**: CO2 emissions peak at 1150 Gt. Scenario compliant with the soft targets of the Paris Agreement, with a representative concentration pathway (RCP) equivalent to RCP2.6, or 2.6 W/m2, or an atmospheric temperature increase of 1.8-2 C relative to pre-industrial levels.
 
-* **SSP2-PkBudg500**: CO2 emissions peak at 5o0 Gt. Scenario
-compliant with the hard targets of the Paris Agreement, with a
-representative concentration pathway (RCP) equivalent to RCP1.9,
-or 1.9 W/m2, or an atmospheric temperature increase of 1.5 C
-relative to pre-industrial levels.
+* **SSP2-PkBudg500**: CO2 emissions peak at 500 Gt. Scenario compliant with the hard targets of the Paris Agreement, with a representative concentration pathway (RCP) equivalent to RCP1.9, or 1.9 W/m2, or an atmospheric temperature increase of 1.5 C relative to pre-industrial levels.
 
 .. note::
 
@@ -68,6 +47,11 @@ relative to pre-industrial levels.
 
     ndb = NewDatabase(...)
     ndb.generate_scenario_report()
+
+.. warning::
+
+    Starting v.1.2, scenarios from REMIND v.2.1 (e.g., PkBudg1300, PkBudg900) are no longer available.
+    From v.1.2 on, scenarios from REMIND v.3 are available instead.
 
 
 Supported versions of ecoinvent
