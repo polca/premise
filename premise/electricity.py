@@ -1255,7 +1255,7 @@ class Electricity(BaseTransformation):
 
                     for supplier, supply_share in suppliers.items():
 
-                        multiplication_factor = 2.5 if "wet" in supplier[0] else 1.0
+                        multiplication_factor = 1.0
 
                         amount = supply_share * share * multiplication_factor
 
