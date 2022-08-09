@@ -11,9 +11,17 @@ import csv
 import os
 from datetime import date
 
-import xarray as xr
-
-from .transformation import *
+from .transformation import (
+    BaseTransformation,
+    Dict,
+    IAMDataCollection,
+    List,
+    get_shares_from_production_volume,
+    get_suppliers_of_a_region,
+    np,
+    remove_exchanges,
+    ws,
+)
 from .utils import DATA_DIR, get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
 
 
@@ -157,7 +165,7 @@ class Cement(BaseTransformation):
             # Calculate quantities (in kg) of fuel, per type of fuel, per ton of clinker
             # MJ per ton of clinker * fuel mix * (1 / lower heating value)
             fuel_qty_per_type = (
-                energy_input_per_ton_clinker.sum()
+                energy_input_per_ton_clinker
                 * fuel_mix
                 * 1
                 / np.array(
@@ -214,7 +222,7 @@ class Cement(BaseTransformation):
             # Append it to the dataset exchanges
             new_exchanges = []
 
-            for f, fuel in enumerate(
+            for f_idx, fuel in enumerate(
                 [
                     ("waste", "waste plastic, mixture"),
                     ("wood pellet", "wood pellet, measured as dry mass"),
@@ -242,6 +250,7 @@ class Cement(BaseTransformation):
                             names=list(self.fuel_map[fuel[0]]),
                             reference_product=fuel[1],
                             unit="kilogram",
+                            exclude=["ash", "mine"],
                         )
                     )
                     counter += 1
@@ -253,7 +262,7 @@ class Cement(BaseTransformation):
                         {
                             "uncertainty type": 0,
                             "loc": 1,
-                            "amount": (share * fuel_qty_per_type[f].values) / 1000,
+                            "amount": (share * fuel_qty_per_type[f_idx].values) / 1000,
                             "type": "technosphere",
                             "production volume": 0,
                             "product": supplier[2],
@@ -335,7 +344,9 @@ class Cement(BaseTransformation):
             # add CCS-related dataset
             if carbon_capture_rate > 0:
 
-                # total CO2 emissions = bio CO2 emissions + fossil CO2 emissions + calcination emissions
+                # total CO2 emissions = bio CO2 emissions
+                # + fossil CO2 emissions
+                # + calcination emissions
                 total_co2_emissions = (
                     fuel_fossil_co2_per_type.sum()
                     + fuel_biogenic_co2_per_type.sum()
@@ -401,7 +412,7 @@ class Cement(BaseTransformation):
                 + f"Improvement of specific energy use compared to 2020: {(scaling_factor - 1) * 100} %.\n"
                 + f"Share of biomass fuel energy-wise: {int(fuel_mix[1] * 100)} pct.\n"
                 + f"Share of waste fuel energy-wise: {int(fuel_mix[0] * 100)} pct.\n"
-                + f"Share of fossil carbon in waste fuel energy-wise: {int(self.fuels_specs['waste']['biogenic_share'] * 100)} pct.\n"
+                + f"Share of biogenic carbon in waste fuel energy-wise: {int(self.fuels_specs['waste']['biogenic_share'] * 100)} pct.\n"
                 + f"Share of fossil CO2 emissions from fuel combustion: {share_fossil_from_fuel} pct.\n"
                 + f"Share of fossil CO2 emissions from calcination: {share_fossil_from_calcination} pct.\n"
                 + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"
@@ -433,8 +444,10 @@ class Cement(BaseTransformation):
 
         for region in d_act:
 
-            # we fetch the clinker-to-cement ratio forecast by REMIND (as other IAMs do not seem to consider
-            # this). This ratio decreases over time (reducing the amount of clinker in cement), but at
+            # we fetch the clinker-to-cement ratio forecast
+            # by REMIND (as other IAMs do not seem to consider
+            # this). This ratio decreases over time
+            # (reducing the amount of clinker in cement), but at
             # different pace across regions.
             ratio_to_reach = self.clinker_ratio_remind.sel(
                 dict(
@@ -517,7 +530,7 @@ class Cement(BaseTransformation):
                 self.iam_data.gnr_data.loc[
                     dict(
                         variables=["Power generation", "Power consumption"],
-                        region=self.geo.iam_to_GAINS_region(region),
+                        region=self.geo.iam_to_gains_region(region),
                     )
                 ]
                 / 1000
@@ -745,11 +758,5 @@ class Cement(BaseTransformation):
             writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
             for line in created_datasets:
                 writer.writerow(line)
-
-        print("Relink cement production datasets to new clinker market datasets")
-
-        # print("Relink clinker market datasets to new clinker production datasets")
-
-        # self.relink_datasets()
 
         print("Done!")

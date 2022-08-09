@@ -480,32 +480,32 @@ class BaseTransformation:
         :return: Does not return anything. Just empties the original dataset.
         """
 
-        existing_ds = ws.get_many(
+        existing_datasets = ws.get_many(
             self.database,
             ws.equals("name", name),
             ws.contains("reference product", ref_prod),
             ws.doesnt_contain_any("location", self.regions),
         )
 
-        for ds in existing_ds:
+        for existing_ds in existing_datasets:
 
-            iam_locs = [self.ecoinvent_to_iam_loc[ds["location"]]]
+            iam_locs = [self.ecoinvent_to_iam_loc[existing_ds["location"]]]
 
-            if iam_locs == ["World"] or ds["location"] == "RoW":
+            if iam_locs == ["World"] or existing_ds["location"] == "RoW":
                 iam_locs = [r for r in self.regions if r != "World"]
 
-            if len(iam_locs) > 0:
+            # add tag
+            existing_ds["has_downstream_consumer"] = False
+            existing_ds["exchanges"] = [
+                e for e in existing_ds["exchanges"] if e["type"] == "production"
+            ]
 
-                # add tag
-                ds["has_downstream_consumer"] = False
-                ds["exchanges"] = [
-                    e for e in ds["exchanges"] if e["type"] == "production"
-                ]
+            if len(existing_ds["exchanges"]) == 0:
+                print(
+                    f"ISSUE: no exchanges found in {existing_ds['name']} in {existing_ds['location']}"
+                )
 
-                if len(ds["exchanges"]) == 0:
-                    print(
-                        f"ISSUE: no exchanges found in {ds['name']} in {ds['location']}"
-                    )
+            if len(iam_locs) > 1:
 
                 if production_variable:
                     # Add `production volume` field
@@ -551,17 +551,31 @@ class BaseTransformation:
                     else:
                         share = 1 / len(iam_locs)
 
-                    ds["exchanges"].append(
+                    existing_ds["exchanges"].append(
                         {
-                            "name": ds["name"],
-                            "product": ds["reference product"],
+                            "name": existing_ds["name"],
+                            "product": existing_ds["reference product"],
                             "amount": share,
-                            "unit": ds["unit"],
+                            "unit": existing_ds["unit"],
                             "uncertainty type": 0,
                             "location": iam_loc,
                             "type": "technosphere",
                         }
                     )
+
+            else:
+
+                existing_ds["exchanges"].append(
+                    {
+                        "name": existing_ds["name"],
+                        "product": existing_ds["reference product"],
+                        "amount": 1.0,
+                        "unit": existing_ds["unit"],
+                        "uncertainty type": 0,
+                        "location": iam_locs[0],
+                        "type": "technosphere",
+                    }
+                )
 
     def relink_datasets(
         self, excludes_datasets: List[str] = None, alt_names: List[str] = None
@@ -651,7 +665,6 @@ class BaseTransformation:
                             break
 
                     if not is_found:
-                        # print(exc[0], exc[2], act["name"], act["location"])
 
                         if (exc[0], exc[2]) == (act["name"], act["location"]):
                             new_name, new_prod, new_loc, new_unit = (
@@ -894,7 +907,7 @@ class BaseTransformation:
 
             scaling_factor = 1 / self.find_gains_emissions_change(
                 pollutant=pollutant,
-                location=self.geo.iam_to_GAINS_region(
+                location=self.geo.iam_to_gains_region(
                     self.geo.ecoinvent_to_iam_location(dataset["location"])
                 ),
                 sector=sector,

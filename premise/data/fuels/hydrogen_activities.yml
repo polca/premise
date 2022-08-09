@@ -40,3 +40,6 @@ from gasification of biomass:
 from coal gasification:
   name: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant
   var: hydrogen, coal
+from coal gasification, with CCS:
+  name: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, with CCS, at coal gasification plant
+  var: hydrogen, coal

@@ -59,4 +59,4 @@ def test_validity_db():
     db_act.write(dummy_db)
 
     dbc = DatabaseCleaner("dummy_db", "brightway", Path("."))
-    assert dbc.db[0]["name"] == "fake activity"
+    assert dbc.database[0]["name"] == "fake activity"

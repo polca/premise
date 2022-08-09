@@ -1,12 +1,14 @@
+"""
+Various utils functions.
+"""
+
+import csv
+import os
 import sys
-import uuid
-import warnings
 from copy import deepcopy
-from datetime import date
 from functools import lru_cache
-from itertools import chain
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, Tuple
 
 import pandas as pd
 import xarray as xr
@@ -14,13 +16,10 @@ import yaml
 from constructive_geometries import resolved_row
 from country_converter import CountryConverter
 from prettytable import ALL, PrettyTable
-from wurst import log
-from wurst import searching as ws
 from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
 
-from . import __version__, geomap
-from .export import *
+from . import DATA_DIR, __version__, geomap
 from .geomap import Geomap
 
 FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
@@ -28,6 +27,7 @@ CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
 STEEL_RECYCLING_SHARES = DATA_DIR / "steel" / "steel_recycling_shares.csv"
 METALS_RECYCLING_SHARES = DATA_DIR / "metals" / "metals_recycling_shares.csv"
@@ -43,7 +43,7 @@ class HiddenPrints:
 
     def __enter__(self):
         self._original_stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")
+        sys.stdout = open(os.devnull, "w", encoding="utf-8")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         sys.stdout.close()
@@ -73,7 +73,7 @@ def get_fuel_properties() -> dict:
     :rtype: dict
     """
 
-    with open(FUELS_PROPERTIES, "r") as stream:
+    with open(FUELS_PROPERTIES, "r", encoding="utf-8") as stream:
         fuel_props = yaml.safe_load(stream)
 
     return fuel_props
@@ -85,527 +85,62 @@ def get_crops_properties() -> dict:
     relating to land use change CO2 per crop type
     :return: dict
     """
-    with open(CROPS_PROPERTIES, "r") as stream:
+    with open(CROPS_PROPERTIES, "r", encoding="utf-8") as stream:
         crop_props = yaml.safe_load(stream)
 
     return crop_props
 
 
-def get_efficiency_ratio_solar_PV() -> xr.DataArray:
+def get_efficiency_ratio_solar_photovoltaics() -> xr.DataArray:
     """
     Return an array with PV module efficiencies in function of year and technology.
     :return: xr.DataArray with PV module efficiencies
     """
 
-    df = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
+    dataframe = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
 
-    return df.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
+    return dataframe.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
 
 
 def get_clinker_ratio_ecoinvent(version: str) -> Dict[Tuple[str, str], float]:
     """
-    Return a dictionary with (cement names, location) as keys and clinker-to-cement ratios as values,
+    Return a dictionary with (cement names, location) as keys
+    and clinker-to-cement ratios as values,
     as found in ecoinvent.
     :return: dict
     """
     if version == "3.5":
-        fp = CLINKER_RATIO_ECOINVENT_35
+        filepath = CLINKER_RATIO_ECOINVENT_35
     else:
-        fp = CLINKER_RATIO_ECOINVENT_36
+        filepath = CLINKER_RATIO_ECOINVENT_36
 
-    with open(fp) as f:
-        d = {}
-        for val in csv.reader(f, delimiter=","):
-            d[(val[0], val[1])] = float(val[2])
-    return d
+    with open(filepath, encoding="utf-8") as file:
+        clinker_ratios = {}
+        for val in csv.reader(file, delimiter=","):
+            clinker_ratios[(val[0], val[1])] = float(val[2])
+    return clinker_ratios
 
 
 def get_clinker_ratio_remind(year: int) -> xr.DataArray:
     """
-    Return an array with the average clinker-to-cement ratio per year and per region, as given by REMIND.
+    Return an array with the average clinker-to-cement ratio
+    per year and per region, as given by REMIND.
     :return: xarray
     :return:
     """
-    df = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
 
-    return df.groupby(["region", "year"]).mean()["value"].to_xarray().interp(year=year)
+    dataframe = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
 
-
-def rev_index(inds: dict) -> dict:
-    return {v: k for k, v in inds.items()}
-
-
-def create_codes_and_names_of_tech_matrix(db: List[dict]):
-    """
-    Create a dictionary a tuple (activity name, reference product,
-    unit, location) as key, and its code as value.
-    :return: a dictionary to map indices to activities
-    :rtype: dict
-    """
-    return {
-        (
-            i["name"],
-            i["reference product"],
-            i["unit"],
-            i["location"],
-        ): i["code"]
-        for i in db
-    }
-
-
-def add_modified_tags(original_db, scenarios):
-    """
-    Add a `modified` label to any activity that is new
-    Also add a `modified` label to any exchange that has been added
-    or that has a different value than the source database.
-    :return:
-    """
-
-    # Class `Export` to which the original database is passed
-    exp = Export(original_db)
-    # Collect a dictionary of activities {row/col index in A matrix: code}
-    rev_ind_A = rev_index(create_codes_index_of_A_matrix(original_db))
-    # Retrieve list of coordinates [activity, activity, value]
-    coords_A = exp.create_A_matrix_coordinates()
-    # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
-    original = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
-    # Collect a dictionary with activities' names and corresponding codes
-    codes_names = create_codes_and_names_of_tech_matrix(original_db)
-    # Collect list of substances
-    rev_ind_B = rev_index(create_codes_index_of_B_matrix())
-    # Retrieve list of coordinates of the B matrix [activity index, substance index, value]
-    coords_B = exp.create_B_matrix_coordinates()
-    # Turn it into a dictionary {(activity code, substance code): value}
-    original.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
-
-    for s, scenario in enumerate(scenarios):
-        print(f"Looking for differences in database {s + 1} ...")
-        rev_ind_A = rev_index(create_codes_index_of_A_matrix(scenario["database"]))
-        exp = Export(
-            scenario["database"],
-            scenario["model"],
-            scenario["pathway"],
-            scenario["year"],
-            "",
-        )
-        coords_A = exp.create_A_matrix_coordinates()
-        new = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
-
-        rev_ind_B = rev_index(create_codes_index_of_B_matrix())
-        coords_B = exp.create_B_matrix_coordinates()
-        new.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
-
-        list_new = set(i[0] for i in original.keys()) ^ set(i[0] for i in new.keys())
-
-        ds = (d for d in scenario["database"] if d["code"] in list_new)
-
-        # Tag new activities
-        for d in ds:
-            d["modified"] = True
-
-        # List codes that belong to activities that contain modified exchanges
-        list_modified = (i[0] for i in new if i in original and new[i] != original[i])
-        #
-        # Filter for activities that have modified exchanges
-        for ds in ws.get_many(
-            scenario["database"],
-            ws.either(*[ws.equals("code", c) for c in set(list_modified)]),
-        ):
-            # Loop through biosphere exchanges and check if
-            # the exchange also exists in the original database
-            # and if it has the same value
-            # if any of these two conditions is False, we tag the exchange
-            excs = (exc for exc in ds["exchanges"] if exc["type"] == "biosphere")
-            for exc in excs:
-                if (ds["code"], exc["input"][0]) not in original or new[
-                    (ds["code"], exc["input"][0])
-                ] != original[(ds["code"], exc["input"][0])]:
-                    exc["modified"] = True
-            # Same thing for technosphere exchanges,
-            # except that we first need to look up the provider's code first
-            excs = (exc for exc in ds["exchanges"] if exc["type"] == "technosphere")
-            for exc in excs:
-                if (
-                    exc["name"],
-                    exc["product"],
-                    exc["unit"],
-                    exc["location"],
-                ) in codes_names:
-                    exc_code = codes_names[
-                        (exc["name"], exc["product"], exc["unit"], exc["location"])
-                    ]
-                    if new[(ds["code"], exc_code)] != original[(ds["code"], exc_code)]:
-                        exc["modified"] = True
-                else:
-                    exc["modified"] = True
-
-    return scenarios
-
-
-def build_superstructure_db(origin_db, scenarios, db_name, fp):
-    # Class `Export` to which the original database is passed
-    exp = Export(db=origin_db, filepath=fp)
-
-    # Collect a dictionary of activities
-    # {(name, ref_prod, loc, database, unit):row/col index in A matrix}
-    rev_ind_A = exp.rev_index(exp.create_names_and_indices_of_A_matrix())
-
-    # Retrieve list of coordinates [activity, activity, value]
-    coords_A = exp.create_A_matrix_coordinates()
-
-    # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
-    original = dict()
-    for x in coords_A:
-        if (rev_ind_A[x[0]], rev_ind_A[x[1]]) in original:
-            original[(rev_ind_A[x[0]], rev_ind_A[x[1]])] += x[2] * -1
-        else:
-            original[(rev_ind_A[x[0]], rev_ind_A[x[1]])] = x[2] * -1
-
-    # Collect list of substances
-    rev_ind_B = exp.rev_index(exp.create_names_and_indices_of_B_matrix())
-    # Retrieve list of coordinates of the B matrix [activity index, substance index, value]
-    coords_B = exp.create_B_matrix_coordinates()
-
-    # Turn it into a dictionary {(activity name, ref prod, location, database, unit): value}
-    original.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] * -1 for x in coords_B})
-
-    modified = {}
-
-    print("Looping through scenarios to detect changes...")
-
-    for scenario in scenarios:
-
-        exp = Export(
-            db=scenario["database"],
-            model=scenario["model"],
-            scenario=scenario["pathway"],
-            year=scenario["year"],
-            filepath=fp,
-        )
-
-        new_rev_ind_A = exp.rev_index(exp.create_names_and_indices_of_A_matrix())
-        new_coords_A = exp.create_A_matrix_coordinates()
-
-        new = dict()
-        for x in new_coords_A:
-            if (new_rev_ind_A[x[0]], new_rev_ind_A[x[1]]) in new:
-                new[(new_rev_ind_A[x[0]], new_rev_ind_A[x[1]])] += x[2] * -1
-            else:
-                new[(new_rev_ind_A[x[0]], new_rev_ind_A[x[1]])] = x[2] * -1
-
-        new_coords_B = exp.create_B_matrix_coordinates()
-        new.update(
-            {(new_rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] * -1 for x in new_coords_B}
-        )
-        # List activities that are in the new database
-        # but not in the original one
-        # As well as exchanges that are present
-        # in both databases but with a different value
-        list_modified = (i for i in new if i not in original or new[i] != original[i])
-        # Also add activities from the original database that are not present in
-        # the new one
-        list_new = (i for i in original if i not in new)
-
-        list_modified = chain(list_modified, list_new)
-
-        for i in list_modified:
-            if i not in modified:
-                modified[i] = {"original": original.get(i, 0)}
-
-            modified[i][
-                f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
-            ] = new.get(i, 0)
-
-    # some scenarios may have not been modified
-    # and that means that exchanges might be absent
-    # from `modified`
-    # so we need to manually add them
-    # and set the exchange value similar to that
-    # of the original database
-
-    list_scenarios = ["original"] + [
-        f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios
-    ]
-
-    for m in modified:
-        for s in list_scenarios:
-            if s not in modified[m].keys():
-                # if it is a production exchange
-                # the value should be -1
-                if m[1] == m[0]:
-                    modified[m][s] = -1
-                else:
-                    modified[m][s] = modified[m]["original"]
-
-    columns = [
-        "from activity name",
-        "from reference product",
-        "from location",
-        "from categories",
-        "from database",
-        "from key",
-        "to activity name",
-        "to reference product",
-        "to location",
-        "to categories",
-        "to database",
-        "to key",
-        "flow type",
-    ]
-    columns.extend(list_scenarios)
-
-    print("Export a scenario difference file.")
-
-    l_modified = [columns]
-
-    for m in modified:
-
-        if m[1][2] == "biosphere3":
-            d = [
-                m[1][0],
-                "",
-                "",
-                m[1][1],
-                m[1][2],
-                "",  # biosphere flow code
-                m[0][0],
-                m[0][1],
-                m[0][3],
-                "",
-                db_name,
-                "",  # activity code
-                "biosphere",
-            ]
-        elif m[1] == m[0] and any(v < 0 for v in modified[m].values()):
-            d = [
-                m[1][0],
-                m[1][1],
-                m[1][3],
-                "",
-                db_name,
-                "",  # activity code
-                m[0][0],
-                m[0][1],
-                m[0][3],
-                "",
-                db_name,
-                "",  # activity code
-                "production",
-            ]
-        else:
-            d = [
-                m[1][0],
-                m[1][1],
-                m[1][3],
-                "",
-                db_name,
-                "",  # activity code
-                m[0][0],
-                m[0][1],
-                m[0][3],
-                "",
-                db_name,
-                "",  # activity code
-                "technosphere",
-            ]
-
-        for s in list_scenarios:
-            # we do not want a zero here,
-            # as it would render the matrix undetermined
-            if m[1] == m[0] and modified[m][s] == 0:
-                d.append(1)
-            elif m[1] == m[0] and modified[m][s] < 0:
-                d.append(modified[m][s] * -1)
-            else:
-                d.append(modified[m][s])
-        l_modified.append(d)
-
-    if fp is not None:
-        filepath = Path(fp)
-    else:
-        filepath = DATA_DIR / "export" / "scenario diff files"
-
-    if not os.path.exists(filepath):
-        os.makedirs(filepath)
-
-    filepath = filepath / f"scenario_diff_{db_name}.xlsx"
-
-    df = pd.DataFrame(l_modified[1:], columns=l_modified[0])
-
-    before = len(df)
-
-    # Drop duplicate rows
-    df = df.drop_duplicates()
-    # Remove rows whose values across scenarios do not change
-    df = df.loc[df.loc[:, "original":].std(axis=1) > 0, :]
-    # Remove `original` column
-    df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
-
-    after = len(df)
-    print(f"Dropped {before - after} duplicates.")
-
-    df.to_excel(filepath, index=False)
-
-    print(f"Scenario difference file exported to {filepath}!")
-
-    list_modified_acts = list(
-        set([e[0] for e, v in modified.items() if v["original"] == 0])
+    return (
+        dataframe.groupby(["region", "year"])
+        .mean()["value"]
+        .to_xarray()
+        .interp(year=year)
     )
-
-    acts_to_extend = [
-        act
-        for act in origin_db
-        if (
-            act["name"],
-            act["reference product"],
-            "ecoinvent",
-            act["location"],
-            act["unit"],
-        )
-        in list_modified_acts
-    ]
-
-    print(f"Adding exchanges to {len(acts_to_extend)} activities.")
-
-    dict_bio = exp.create_names_and_indices_of_B_matrix()
-
-    for ds in acts_to_extend:
-        exc_to_add = []
-        for exc in [
-            e
-            for e in modified
-            if e[0]
-            == (
-                ds["name"],
-                ds["reference product"],
-                "ecoinvent",
-                ds["location"],
-                ds["unit"],
-            )
-            and modified[e]["original"] == 0
-        ]:
-            # a biosphere flow
-            if isinstance(exc[1][1], tuple):
-                exc_to_add.append(
-                    {
-                        "amount": 0,
-                        "input": (
-                            "biosphere3",
-                            exp.get_bio_code(
-                                dict_bio[(exc[1][0], exc[1][1], exc[1][2], exc[1][3])]
-                            ),
-                        ),
-                        "type": "biosphere",
-                        "name": exc[1][0],
-                        "unit": exc[1][3],
-                        "categories": exc[1][1],
-                    }
-                )
-
-            # a technosphere flow
-            else:
-                exc_to_add.append(
-                    {
-                        "amount": 0,
-                        "type": "technosphere",
-                        "product": exc[1][1],
-                        "name": exc[1][0],
-                        "unit": exc[1][4],
-                        "location": exc[1][3],
-                    }
-                )
-
-        if len(exc_to_add) > 0:
-            ds["exchanges"].extend(exc_to_add)
-
-    list_act = [
-        (a["name"], a["reference product"], a["database"], a["location"], a["unit"])
-        for a in origin_db
-    ]
-    list_to_add = [
-        m[0] for m, v in modified.items() if v["original"] == 0 and m[0] not in list_act
-    ]
-    list_to_add = list(set(list_to_add))
-
-    print(f"Adding {len(list_to_add)} extra activities to the original database...")
-
-    acts_to_add = []
-    for add in list_to_add:
-        act_to_add = {
-            "location": add[3],
-            "name": add[0],
-            "reference product": add[1],
-            "unit": add[4],
-            "database": add[2],
-            "code": str(uuid.uuid4().hex),
-            "exchanges": [],
-        }
-
-        acts = (act for act in modified if act[0] == add)
-        excs_to_add = []
-        for act in acts:
-            if isinstance(act[1][1], tuple):
-                # this is a biosphere flow
-                excs_to_add.append(
-                    {
-                        "uncertainty type": 0,
-                        "loc": 0,
-                        "amount": 0,
-                        "type": "biosphere",
-                        "input": (
-                            "biosphere3",
-                            exp.get_bio_code(
-                                dict_bio[(act[1][0], act[1][1], act[1][2], act[1][3])]
-                            ),
-                        ),
-                        "name": act[1][0],
-                        "unit": act[1][3],
-                        "categories": act[1][1],
-                    }
-                )
-
-            else:
-
-                if act[1] == act[0]:
-                    excs_to_add.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "production",
-                            "production volume": 0,
-                            "product": act[1][1],
-                            "name": act[1][0],
-                            "unit": act[1][4],
-                            "location": act[1][3],
-                        }
-                    )
-
-                else:
-
-                    excs_to_add.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": 0,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": act[1][1],
-                            "name": act[1][0],
-                            "unit": act[1][4],
-                            "location": act[1][3],
-                        }
-                    )
-        act_to_add["exchanges"].extend(excs_to_add)
-        acts_to_add.append(act_to_add)
-
-    origin_db.extend(acts_to_add)
-
-    return origin_db
 
 
 def relink_technosphere_exchanges(
-    ds,
+    dataset,
     data,
     model,
     cache,
@@ -639,15 +174,15 @@ def relink_technosphere_exchanges(
 
     list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()]
 
-    for exc in filter(technosphere, ds["exchanges"]):
+    for exc in filter(technosphere, dataset["exchanges"]):
 
         try:
-            e = cache[ds["location"]][
+            exchange = cache[dataset["location"]][
                 (exc["name"], exc["product"], exc["location"], exc["unit"])
             ]
 
-            if isinstance(e, tuple):
-                name, prod, unit, loc = e
+            if isinstance(exchange, tuple):
+                name, prod, unit, loc = exchange
 
                 new_exchanges.append(
                     {
@@ -672,18 +207,20 @@ def relink_technosphere_exchanges(
                             "type": "technosphere",
                             "amount": exc["amount"] * i[-1],
                         }
-                        for i in e
+                        for i in exchange
                     ]
                 )
 
         except KeyError:
+
             possible_datasets = [
                 x for x in get_possibles(exc, data) if x["location"] in list_loc
             ]
+
             possible_locations = [obj["location"] for obj in possible_datasets]
 
-            if ds["location"] in possible_locations:
-                exc["location"] = ds["location"]
+            if dataset["location"] in possible_locations:
+                exc["location"] = dataset["location"]
                 new_exchanges.append(exc)
                 continue
 
@@ -694,21 +231,21 @@ def relink_technosphere_exchanges(
 
             if len(possible_datasets) > 0:
 
-                with resolved_row(possible_locations, geomatcher.geo) as g:
-                    func = g.contained if contained else g.intersects
+                location = (
+                    dataset["location"]
+                    if dataset["location"] not in geomatcher.iam_regions
+                    else (model.upper(), dataset["location"])
+                )
 
-                    if ds["location"] in geomatcher.iam_regions:
-                        location = (model.upper(), ds["location"])
-                    else:
-                        location = ds["location"]
-
-                    gis_match = func(
-                        location,
-                        include_self=True,
-                        exclusive=exclusive,
-                        biggest_first=biggest_first,
-                        only=possible_locations,
-                    )
+                gis_match = get_gis_match(
+                    dataset,
+                    location,
+                    possible_locations,
+                    geomatcher,
+                    contained,
+                    exclusive,
+                    biggest_first,
+                )
 
                 kept = [
                     ds
@@ -729,6 +266,45 @@ def relink_technosphere_exchanges(
                                 if obj["location"] == "RoW"
                             ]
                         )
+
+                if not kept and exc["name"].startswith("market group for"):
+
+                    exc["name"] = exc["name"].replace("market group for", "market for")
+
+                    possible_datasets = [
+                        x for x in get_possibles(exc, data) if x["location"] in list_loc
+                    ]
+
+                    possible_locations = [obj["location"] for obj in possible_datasets]
+
+                    possible_locations = [
+                        (model.upper(), p) if p in geomatcher.iam_regions else p
+                        for p in possible_locations
+                    ]
+
+                    location = (
+                        dataset["location"]
+                        if dataset["location"] not in geomatcher.iam_regions
+                        else (model.upper(), dataset["location"])
+                    )
+
+                    gis_match = get_gis_match(
+                        dataset,
+                        location,
+                        possible_locations,
+                        geomatcher,
+                        contained,
+                        exclusive,
+                        biggest_first,
+                    )
+
+                    kept = [
+                        ds
+                        for loc in gis_match
+                        for ds in possible_datasets
+                        if ds["location"] == loc
+                    ]
+
                 if not kept and "RoW" in possible_locations:
                     kept = [
                         obj for obj in possible_datasets if obj["location"] == "RoW"
@@ -751,15 +327,15 @@ def relink_technosphere_exchanges(
                 if not kept:
                     if drop_invalid:
                         continue
-                    else:
-                        new_exchanges.append(exc)
-                        continue
+
+                    new_exchanges.append(exc)
+                    continue
 
                 allocated, share = allocate_inputs(exc, kept)
                 new_exchanges.extend(allocated)
 
-                if ds["location"] in cache:
-                    cache[ds["location"]][
+                if dataset["location"] in cache:
+                    cache[dataset["location"]][
                         (
                             exc["name"],
                             exc["product"],
@@ -773,7 +349,7 @@ def relink_technosphere_exchanges(
 
                 else:
 
-                    cache[ds["location"]] = {
+                    cache[dataset["location"]] = {
                         (exc["name"], exc["product"], exc["location"], exc["unit"],): [
                             (e["name"], e["product"], e["location"], e["unit"], s)
                             for e, s in zip(allocated, share)
@@ -782,8 +358,8 @@ def relink_technosphere_exchanges(
             else:
                 new_exchanges.append(exc)
                 # add to cache
-                if ds["location"] in cache:
-                    cache[ds["location"]][
+                if dataset["location"] in cache:
+                    cache[dataset["location"]][
                         (
                             exc["name"],
                             exc["product"],
@@ -798,7 +374,7 @@ def relink_technosphere_exchanges(
                     )
 
                 else:
-                    cache[ds["location"]] = {
+                    cache[dataset["location"]] = {
                         (exc["name"], exc["product"], exc["location"], exc["unit"],): (
                             exc["name"],
                             exc["product"],
@@ -807,16 +383,19 @@ def relink_technosphere_exchanges(
                         )
                     }
 
-    ds["exchanges"] = [
-        exc for exc in ds["exchanges"] if exc["type"] != "technosphere"
+    dataset["exchanges"] = [
+        exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
     ] + new_exchanges
 
-    return cache, ds
+    return cache, dataset
 
 
 def allocate_inputs(exc, lst):
-    """Allocate the input exchanges in ``lst`` to ``exc``, using production volumes where possible, and equal splitting otherwise.
-    Always uses equal splitting if ``RoW`` is present."""
+    """
+    Allocate the input exchanges in ``lst`` to ``exc``,
+    using production volumes where possible, and equal splitting otherwise.
+    Always uses equal splitting if ``RoW`` is present.
+    """
     has_row = any((x["location"] in ("RoW", "GLO") for x in lst))
     pvs = [reference_product(o).get("production volume") or 0 for o in lst]
     if all((x > 0 for x in pvs)) and not has_row:
@@ -828,9 +407,9 @@ def allocate_inputs(exc, lst):
         pvs = [1 for _ in range(total)]
 
     def new_exchange(exc, location, factor):
-        cp = deepcopy(exc)
-        cp["location"] = location
-        return rescale_exchange(cp, factor)
+        copied_exc = deepcopy(exc)
+        copied_exc["location"] = location
+        return rescale_exchange(copied_exc, factor)
 
     return [
         new_exchange(exc, obj["location"], factor / total)
@@ -838,22 +417,63 @@ def allocate_inputs(exc, lst):
     ], [p / total for p in pvs]
 
 
+def get_gis_match(
+    dataset,
+    location,
+    possible_locations,
+    geomatcher,
+    contained,
+    exclusive,
+    biggest_first,
+):
+
+    with resolved_row(possible_locations, geomatcher.geo) as g:
+        func = g.contained if contained else g.intersects
+
+        if dataset["location"] not in geomatcher.iam_regions:
+
+            gis_match = func(
+                location,
+                include_self=True,
+                exclusive=exclusive,
+                biggest_first=biggest_first,
+                only=possible_locations,
+            )
+
+        else:
+            gis_match = geomatcher.iam_to_ecoinvent_location(dataset["location"])
+
+    return gis_match
+
+
 def get_possibles(exchange, data):
-    """Filter a list of datasets ``data``, returning those with the save name, reference product, and unit as in ``exchange``.
+    """Filter a list of datasets ``data``,
+    returning those with the save name,
+    reference product, and unit as in ``exchange``.
     Returns a generator."""
     key = (exchange["name"], exchange["product"], exchange["unit"])
+
     list_exc = []
-    for ds in data:
-        if (ds["name"], ds["reference product"], ds["unit"]) == key:
-            list_exc.append(ds)
+    for dataset in data:
+        if (dataset["name"], dataset["reference product"], dataset["unit"]) == key:
+            list_exc.append(dataset)
+
     return list_exc
 
 
 def default_global_location(database):
-    """Set missing locations to ```GLO``` for datasets in ``database``.
-    Changes location if ``location`` is missing or ``None``. Will add key ``location`` if missing."""
-    for ds in get_many(database, *[equals("location", None)]):
-        ds["location"] = "GLO"
+
+    """
+    Set missing locations to ```GLO```
+    for datasets in ``database``.
+    Changes location if ``location``
+    is missing or ``None``.
+    Will add key ``location`` if missing.
+    :param database: database to update
+    """
+
+    for dataset in get_many(database, *[equals("location", None)]):
+        dataset["location"] = "GLO"
     return database
 
 
@@ -863,28 +483,28 @@ def get_regions_definition(model: str) -> None:
 
     Return a table containing the list of countries
     corresponding to each region of the model."""
-    t = PrettyTable(["Region", "Countries"])
+    table = PrettyTable(["Region", "Countries"])
 
     geo = Geomap(model)
-    c = CountryConverter()
+    country_converter = CountryConverter()
 
     for region in geo.iam_regions:
 
         list_countries = []
         for iso_2 in geo.iam_to_ecoinvent_location(region):
-            if iso_2 in c.ISO2["ISO2"].values:
-                country_name = c.convert(iso_2, to="name")
+            if iso_2 in country_converter.ISO2["ISO2"].values:
+                country_name = country_converter.convert(iso_2, to="name")
             else:
                 country_name = iso_2
 
             list_countries.append(country_name)
 
-        t.add_row([region, list_countries])
+        table.add_row([region, list_countries])
 
-    t._max_width = {"Region": 50, "Countries": 125}
-    t.hrules = ALL
+    table._max_width = {"Region": 50, "Countries": 125}
+    table.hrules = ALL
 
-    print(t)
+    print(table)
 
 
 # clear the cache folder
@@ -900,8 +520,8 @@ def print_version():
 def info_on_utils_functions():
     """Display message to list utils functions"""
 
-    t = PrettyTable(["Utils functions", "Description"])
-    t.add_row(
+    table = PrettyTable(["Utils functions", "Description"])
+    table.add_row(
         [
             "clear_cache()",
             (
@@ -912,23 +532,23 @@ def info_on_utils_functions():
             ),
         ]
     )
-    t.add_row(
+    table.add_row(
         [
             "get_regions_definition(model)",
-            ("Retrieves the list " "of countries for each " "region of the model."),
+            "Retrieves the list of countries for each region of the model.",
         ]
     )
-    t.add_row(
+    table.add_row(
         [
             "ndb.NewDatabase(...)\nndb.generate_scenario_report()",
-            ("Generates a summary of the most important scenarios' variables."),
+            "Generates a summary of the most important scenarios' variables.",
         ]
     )
     # align text to the left
-    t.align = "l"
-    t.hrules = ALL
-    t._max_width = {"Utils functions": 50, "Description": 32}
-    print(t)
+    table.align = "l"
+    table.hrules = ALL
+    table._max_width = {"Utils functions": 50, "Description": 32}
+    print(table)
 
 
 def warning_about_biogenic_co2() -> None:
@@ -936,8 +556,8 @@ def warning_about_biogenic_co2() -> None:
     Prints a simple warning about characterizing biogenic CO2 flows.
     :return: Does not return anything.
     """
-    t = PrettyTable(["Warning"])
-    t.add_row(
+    table = PrettyTable(["Warning"])
+    table.add_row(
         [
             "Because some of the scenarios can yield LCI databases\n"
             "containing net negative emission technologies (NET),\n"
@@ -951,11 +571,14 @@ def warning_about_biogenic_co2() -> None:
         ]
     )
     # align text to the left
-    t.align = "l"
-    print(t)
+    table.align = "l"
+    print(table)
 
 
 def hide_messages():
+    """
+    Hide messages from the console.
+    """
 
     print("Hide these messages?")
     print("NewDatabase(..., quiet=True)")

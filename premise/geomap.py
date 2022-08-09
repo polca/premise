@@ -8,7 +8,7 @@ from typing import Dict, List, Union
 import yaml
 from wurst import geomatcher
 
-from premise import DATA_DIR
+from . import DATA_DIR
 
 ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
@@ -18,7 +18,7 @@ def get_additional_mapping() -> Dict[str, str]:
     """
     Return a dictionary with additional ecoinvent to IAM mappings
     """
-    with open(ECO_IAM_MAPPING, "r") as stream:
+    with open(ECO_IAM_MAPPING, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
 
     return out
@@ -30,7 +30,7 @@ def get_iam_to_iam_mapping() -> Dict[str, str]:
     :return: dictionary with IAM to IAM location mapping
 
     """
-    with open(IAM_TO_IAM_MAPPING, "r") as stream:
+    with open(IAM_TO_IAM_MAPPING, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
 
     return out
@@ -49,6 +49,21 @@ class Geomap:
         self.model = model
         self.geo = geomatcher
         self.additional_mappings = get_additional_mapping()
+        self.rev_additional_mappings = {}
+
+        for key, val in self.additional_mappings.items():
+            if (
+                self.model.upper(),
+                val[self.model],
+            ) not in self.rev_additional_mappings:
+                self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [
+                    key
+                ]
+            else:
+                self.rev_additional_mappings[
+                    (self.model.upper(), val[self.model])
+                ].append(key)
+
         self.iam_to_iam_mappings = get_iam_to_iam_mapping()
 
         self.iam_regions = [
@@ -72,14 +87,19 @@ class Geomap:
         location = (self.model.upper(), location)
 
         ecoinvent_locations = []
+
+        # first, include the missing mappings
+        if location in self.rev_additional_mappings:
+            ecoinvent_locations.extend(self.rev_additional_mappings[location])
+
         try:
             searchfunc = self.geo.contained if contained else self.geo.intersects
-            for r in searchfunc(location):
-                if not isinstance(r, tuple):
-                    ecoinvent_locations.append(r)
+            for region in searchfunc(location):
+                if not isinstance(region, tuple):
+                    ecoinvent_locations.append(region)
                 else:
-                    if r[0] not in ("REMIND", "IMAGE"):
-                        ecoinvent_locations.append(r[1])
+                    if region[0] not in ("REMIND", "IMAGE"):
+                        ecoinvent_locations.append(region[1])
 
             # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.
             if location != (self.model.upper(), "World"):
@@ -87,7 +107,7 @@ class Geomap:
             return ecoinvent_locations
 
         except KeyError:
-            print("Can't find location {} using the geomatcher.".format(location))
+            print(f"Can't find location {location} using the geomatcher.")
             return ["RoW"]
 
     def ecoinvent_to_iam_location(self, location: str) -> str:
@@ -101,24 +121,24 @@ class Geomap:
         # First, it can be that the location is already
         # an IAM location
 
-        list_IAM_regions = [
+        list_iam_regions = [
             k[1]
             for k in list(self.geo.keys())
             if isinstance(k, tuple) and k[0].lower() == self.model.lower()
         ]
 
-        if location in list_IAM_regions:
+        if location in list_iam_regions:
             return location
 
         # Second, it can be an ecoinvent region
         # with no native mapping
         if location in self.additional_mappings:
-
             if self.additional_mappings[location][self.model] in self.iam_regions:
+
                 return self.additional_mappings[location][self.model]
+
             # likely a case of missing "EUR" region
-            else:
-                raise ValueError(f"Could not find equivalent for {location}.")
+            raise ValueError(f"Could not find equivalent for {location}.")
 
         # If not, then we look for IAM regions that contain it
         iam_location = [
@@ -145,41 +165,39 @@ class Geomap:
 
         if len(iam_location) == 0:
             print(
-                "Cannot find the IAM location for {} from IAM model {}.".format(
-                    location, self.model
-                )
+                f"Cannot find the IAM location for {location} from IAM model {self.model}."
             )
             return "World"
 
-        elif len(iam_location) == 1:
+        if len(iam_location) == 1:
             return iam_location[0]
-        else:
 
-            if all(x in iam_location for x in ["NEU", "EUR"]):
-                return "NEU"
-            if all(x in iam_location for x in ["OAS", "JPN"]):
-                return "JPN"
-            if all(x in iam_location for x in ["CAZ", "USA"]):
-                return "CAZ"
-            if all(x in iam_location for x in ["OAS", "IND"]):
-                return "IND"
-            if all(x in iam_location for x in ["OAS", "CHA"]):
-                return "CHA"
-            if all(x in iam_location for x in ["OAS", "MEA"]):
-                return "MEA"
-            if all(x in iam_location for x in ["OAS", "REF"]):
-                return "REF"
-            if all(x in iam_location for x in ["OAS", "EUR"]):
-                return "EUR"
-            if all(x in iam_location for x in ["REF", "EUR"]):
-                return "REF"
-            if all(x in iam_location for x in ["MEA", "SSA"]):
-                return "MEA"
+        if all(x in iam_location for x in ["NEU", "EUR"]):
+            return "NEU"
+        if all(x in iam_location for x in ["OAS", "JPN"]):
+            return "JPN"
+        if all(x in iam_location for x in ["CAZ", "USA"]):
+            return "CAZ"
+        if all(x in iam_location for x in ["OAS", "IND"]):
+            return "IND"
+        if all(x in iam_location for x in ["OAS", "CHA"]):
+            return "CHA"
+        if all(x in iam_location for x in ["OAS", "MEA"]):
+            return "MEA"
+        if all(x in iam_location for x in ["OAS", "REF"]):
+            return "REF"
+        if all(x in iam_location for x in ["OAS", "EUR"]):
+            return "EUR"
+        if all(x in iam_location for x in ["REF", "EUR"]):
+            return "REF"
+        if all(x in iam_location for x in ["MEA", "SSA"]):
+            return "MEA"
 
-            # more than one region is found
-            print(f"More than one region found for {location}:{iam_location}")
+        # more than one region is found
+        print(f"More than one region found for {location}:{iam_location}")
+        return "World"
 
-    def iam_to_GAINS_region(self, location: str) -> str:
+    def iam_to_gains_region(self, location: str) -> str:
         """
         Regions defined in GAINS emission data follows REMIND naming
         convention, but those are different for other IAMs.

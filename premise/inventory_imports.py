@@ -1,3 +1,8 @@
+"""
+Contains class and methods to imports inventories from ecoinvent, premise,
+and those provided by the user.
+"""
+
 import csv
 import itertools
 import sys
@@ -23,8 +28,11 @@ OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
 
 
 def get_outdated_flows():
+    """
+    Retrieve a list of outdated flows from the outdated flows file.
+    """
 
-    with open(OUTDATED_FLOWS, "r") as stream:
+    with open(OUTDATED_FLOWS, "r", encoding="utf-8") as stream:
         flows = yaml.safe_load(stream)
 
     return flows
@@ -42,8 +50,8 @@ def get_biosphere_code() -> dict:
 
     csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as f:
-        input_dict = csv.reader(f, delimiter=";")
+    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+        input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
 
@@ -125,13 +133,13 @@ class BaseInventoryImport:
         # as imported inventories link to different ecoinvent versions
         ei_versions = ["35", "36", "37", "38"]
 
-        for r in itertools.product(ei_versions, ei_versions):
-            if r[0] != r[1]:
-                mapping = generate_migration_maps(r[0], r[1])
+        for combination in itertools.product(ei_versions, ei_versions):
+            if combination[0] != combination[1]:
+                mapping = generate_migration_maps(combination[0], combination[1])
                 if len(mapping["data"]) > 0:
-                    Migration(f"migration_{r[0]}_{r[1]}").write(
+                    Migration(f"migration_{combination[0]}_{combination[1]}").write(
                         mapping,
-                        description=f"Change technosphere names due to change from {r[0]} to {r[1]}",
+                        description=f"Change technosphere names due to change from {combination[0]} to {combination[1]}",
                     )
 
     def load_inventory(self, path: Union[str, Path]) -> None:
@@ -140,6 +148,7 @@ class BaseInventoryImport:
         :param str path: Path to the inventory file
         :returns: Nothing.
         """
+        return None
 
     def prepare_inventory(self) -> None:
         """Prepare the inventory for the merger with Ecoinvent.
@@ -171,15 +180,17 @@ class BaseInventoryImport:
 
         if len(already_exist) > 0:
             print(
-                "The following datasets to import already exist in the source database. They will not be imported"
+                "The following datasets to import already exist "
+                "in the source database. "
+                "They will not be imported"
             )
-            t = PrettyTable(["Name", "Reference product", "Location", "File"])
+            table = PrettyTable(["Name", "Reference product", "Location", "File"])
             for dataset in already_exist:
-                t.add_row(
+                table.add_row(
                     [dataset[0][:50], dataset[1][:30], dataset[2], self.path.name]
                 )
 
-            print(t)
+            print(table)
 
         self.import_db.data = [
             x for x in self.import_db.data if x["code"] not in self.db_code
@@ -257,22 +268,22 @@ class BaseInventoryImport:
         :raises IndexError: if no corresponding activity (and reference product) can be found.
         """
         # Add a `product` field to the production exchange
-        for x in self.import_db.data:
-            for y in x["exchanges"]:
-                if y["type"] == "production":
-                    if "product" not in y:
-                        y["product"] = x["reference product"]
+        for dataset in self.import_db.data:
+            for exchange in dataset["exchanges"]:
+                if exchange["type"] == "production":
+                    if "product" not in exchange:
+                        exchange["product"] = dataset["reference product"]
 
-                    if y["name"] != x["name"]:
-                        y["name"] = x["name"]
+                    if exchange["name"] != dataset["name"]:
+                        exchange["name"] = dataset["name"]
 
         # Add a `product` field to technosphere exchanges
-        for x in self.import_db.data:
-            for y in x["exchanges"]:
-                if y["type"] == "technosphere":
+        for dataset in self.import_db.data:
+            for exchange in dataset["exchanges"]:
+                if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
-                    if not "product" in y:
-                        y["product"] = self.correct_product_field(y)
+                    if not "product" in exchange:
+                        exchange["product"] = self.correct_product_field(exchange)
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
@@ -283,9 +294,9 @@ class BaseInventoryImport:
                     #        y["product"] = self.correct_product_field(y)
 
         # Add a `code` field if missing
-        for x in self.import_db.data:
-            if "code" not in x:
-                x["code"] = str(uuid.uuid4().hex)
+        for dataset in self.import_db.data:
+            if "code" not in dataset:
+                dataset["code"] = str(uuid.uuid4().hex)
 
     def correct_product_field(self, exc: dict) -> str:
         """
@@ -325,6 +336,8 @@ class BaseInventoryImport:
             f"biosphere or the ecoinvent database: {exc}"
         )
 
+        return exc["reference product"]
+
     def add_biosphere_links(self, delete_missing: bool = False) -> None:
         """Add links for biosphere exchanges to :attr:`import_db`
         Modifies the :attr:`import_db` attribute in place.
@@ -361,7 +374,9 @@ class BaseInventoryImport:
                                     if delete_missing:
                                         y["flag_deletion"] = True
                                     else:
-                                        raise
+                                        print(
+                                            f"Could not find a biosphere flow for {key}"
+                                        )
 
                         except KeyError:
                             if delete_missing:
@@ -542,11 +557,14 @@ class AdditionalInventory(BaseInventoryImport):
             )
 
     def remove_missing_fields(self):
+        """
+        Remove any field that does not have information.
+        """
 
-        for x in self.import_db.data:
-            for k, v in list(x.items()):
-                if not v:
-                    del x[k]
+        for dataset in self.import_db.data:
+            for key, value in list(dataset.items()):
+                if not value:
+                    del dataset[key]
 
     def prepare_inventory(self):
 
@@ -565,9 +583,11 @@ class AdditionalInventory(BaseInventoryImport):
         if len(list_missing_prod) > 0:
             print("The following datasets are missing a `production` exchange.")
             print("You should fix those before proceeding further.\n")
-            t = PrettyTable(["Name", "Reference product", "Location", "Unit", "File"])
+            table = PrettyTable(
+                ["Name", "Reference product", "Location", "Unit", "File"]
+            )
             for dataset in list_missing_prod:
-                t.add_row(
+                table.add_row(
                     [
                         dataset.get("name", "XXXX"),
                         dataset.get("referece product", "XXXX"),
@@ -577,9 +597,9 @@ class AdditionalInventory(BaseInventoryImport):
                     ]
                 )
 
-            print(t)
+            print(table)
 
-            exit()
+            sys.exit()
 
         self.add_biosphere_links(delete_missing=True)
         list_missing_ref = self.search_missing_field(field="name")
@@ -594,9 +614,11 @@ class AdditionalInventory(BaseInventoryImport):
             )
 
             print("You should fix those before proceeding further.\n")
-            t = PrettyTable(["Name", "Reference product", "Location", "Unit", "File"])
+            table = PrettyTable(
+                ["Name", "Reference product", "Location", "Unit", "File"]
+            )
             for dataset in list_missing_ref:
-                t.add_row(
+                table.add_row(
                     [
                         dataset.get("name", "XXXX"),
                         dataset.get("referece product", "XXXX"),
@@ -606,7 +628,7 @@ class AdditionalInventory(BaseInventoryImport):
                     ]
                 )
 
-            print(t)
+            print(table)
 
         if len(list_missing_prod) > 0 or len(list_missing_ref) > 0:
             sys.exit()

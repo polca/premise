@@ -2,7 +2,6 @@
 This module export a summary of scenario to an Excel file.
 """
 
-import string
 from pathlib import Path
 
 import openpyxl
@@ -56,9 +55,13 @@ SECTORS = {
 
 
 def get_variables(
-    fp,
+    filepath,
 ):
-    with open(fp, "r") as stream:
+    """
+    Get the variables from a yaml file.
+    :param filepath: path to the yaml file
+    """
+    with open(filepath, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
 
     return list(out.keys())
@@ -69,24 +72,24 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     Generate a summary report of the scenarios.
     """
 
-    with open(REPORT_METADATA_FILEPATH, "r") as stream:
+    with open(REPORT_METADATA_FILEPATH, "r", encoding="utf-8") as stream:
         metadata = yaml.safe_load(stream)
 
-    wb = openpyxl.Workbook()
-    wb.remove(wb.active)
+    workbook = openpyxl.Workbook()
+    workbook.remove(workbook.active)
 
-    for sector, fp in SECTORS.items():
+    for sector, filepath in SECTORS.items():
 
-        if isinstance(fp, tuple):
-            fp, vars = fp
+        if isinstance(filepath, tuple):
+            filepath, variables = filepath
         else:
-            vars = get_variables(fp)
+            variables = get_variables(filepath)
 
-        ws = wb.create_sheet(sector)
+        worksheet = workbook.create_sheet(sector)
 
         col, row = (1, 1)
 
-        ws.cell(
+        worksheet.cell(
             column=col,
             row=row,
             value=metadata[sector]["expl_text"],
@@ -96,7 +99,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
         last_col_used = 0
 
-        for s, scenario in enumerate(scenarios):
+        for scenario_idx, scenario in enumerate(scenarios):
 
             if (scenario["model"], scenario["pathway"]) not in scenario_list:
 
@@ -133,46 +136,48 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 else:
                     iam_data = scenario["iam data"].other_vars
 
-                if s > 0:
+                if scenario_idx > 0:
                     col = last_col_used + metadata[sector]["offset"]
 
                 row = 3
 
-                ws.cell(
+                worksheet.cell(
                     column=col,
                     row=row,
                     value=f"{scenario['model'].upper()} - {scenario['pathway'].upper()}",
                 )
-                ws.cell(column=col, row=row).font = Font(
+                worksheet.cell(column=col, row=row).font = Font(
                     bold=True, size=14, underline="single"
                 )
 
                 row += 2
 
                 for region in scenario["iam data"].regions:
-                    ws.cell(column=col, row=row, value=region)
+                    worksheet.cell(column=col, row=row, value=region)
 
                     row += 3
 
-                    df = iam_data.sel(
-                        variables=[v for v in vars if v in iam_data.variables.values],
+                    dataframe = iam_data.sel(
+                        variables=[
+                            v for v in variables if v in iam_data.variables.values
+                        ],
                         region=region,
                         year=[y for y in iam_data.coords["year"].values if y <= 2100],
                     )
 
-                    if len(df) > 0:
-                        df = df.to_dataframe("val")
-                        df = df.unstack()["val"]
-                        df = df.T
-                        df = df.rename_axis(index=None)
+                    if len(dataframe) > 0:
+                        dataframe = dataframe.to_dataframe("val")
+                        dataframe = dataframe.unstack()["val"]
+                        dataframe = dataframe.T
+                        dataframe = dataframe.rename_axis(index=None)
 
-                        data = dataframe_to_rows(df)
+                        data = dataframe_to_rows(dataframe)
 
                         counter = 0
-                        for r_idx, r in enumerate(data, 1):
-                            if r != [None]:
-                                for c_idx, value in enumerate(r, 1):
-                                    ws.cell(
+                        for _, data_row in enumerate(data, 1):
+                            if data_row != [None]:
+                                for c_idx, value in enumerate(data_row, 1):
+                                    worksheet.cell(
                                         row=row + counter,
                                         column=col + c_idx,
                                         value=value,
@@ -181,14 +186,14 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                                 counter += 1
 
                         values = Reference(
-                            ws,
+                            worksheet,
                             min_col=col + 2,
                             min_row=row,
                             max_col=col + c_idx,
                             max_row=row + counter - 1,
                         )
                         cats = Reference(
-                            ws,
+                            worksheet,
                             min_col=col + 1,
                             min_row=row + 1,
                             max_row=row + counter - 1,
@@ -212,10 +217,10 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                         chart.height = 8
                         chart.width = 16
                         chart.anchor = f"{get_column_letter(col + 2)}{row + 1}"
-                        ws.add_chart(chart)
+                        worksheet.add_chart(chart)
 
                         row += counter + 2
 
                 scenario_list.append((scenario["model"], scenario["pathway"]))
 
-    wb.save(filename)
+    workbook.save(filename)

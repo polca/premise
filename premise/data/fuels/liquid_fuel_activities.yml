@@ -6,6 +6,10 @@ methanol, from coal:
   - methanol distillation, hydrogen from coal gasification
   - methanol synthesis, hydrogen from coal gasification
 
+methanol, from coal, with CCS:
+  - methanol distillation, hydrogen from coal gasification, with CCS
+  - methanol synthesis, hydrogen from coal gasification, with CCS
+
 fischer-tropsch:
   - Diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation
   - diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station
@@ -26,16 +30,28 @@ fischer-tropsch, from coal:
   - Syngas, RWGS, Production, for Fischer Tropsch process, hydrogen from coal gasification
   - Carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from coal gasification
 
+fischer-tropsch, from coal, with CCS:
+  - Diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation
+  - diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station
+  - Syngas, RWGS, Production, for Fischer Tropsch process, hydrogen from coal gasification, with CCS
+  - Carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from coal gasification, with CCS
+
 methanol-to-liquids:
   - gasoline production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation
   - gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station
   - gasoline production, from methanol, hydrogen from coal gasification, energy allocation
   - gasoline production, synthetic, from methanol, hydrogen from coal gasification, energy allocation, at fuelling station
+  - gasoline production, from methanol, hydrogen from coal gasification, with CCS, energy allocation
+  - gasoline production, synthetic, from methanol, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station
   - diesel production, from methanol, hydrogen from coal gasification, energy allocation
   - diesel production, synthetic, from methanol, hydrogen from coal gasification, energy allocation, at fuelling station
+  - diesel production, from methanol, hydrogen from coal gasification, with CCS, energy allocation
+  - diesel production, synthetic, from methanol, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station
   - diesel production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation
   - diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station
   - kerosene production, from methanol, hydrogen from coal gasification, energy allocation
+  - kerosene production, from methanol, hydrogen from coal gasification, with CCS, energy allocation
   - kerosene production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, energy allocation, at fuelling station
+  - kerosene production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station
   - kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation
   - kerosene production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station

@@ -16,8 +16,22 @@ from datetime import date
 
 import yaml
 
-from .transformation import *
-from .utils import DATA_DIR, eidb_label, get_efficiency_ratio_solar_PV
+from .transformation import (
+    BaseTransformation,
+    Dict,
+    IAMDataCollection,
+    InventorySet,
+    List,
+    Tuple,
+    get_shares_from_production_volume,
+    get_suppliers_of_a_region,
+    get_tuples_from_database,
+    np,
+    uuid,
+    ws,
+    wurst,
+)
+from .utils import DATA_DIR, eidb_label, get_efficiency_ratio_solar_photovoltaics
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -938,7 +952,7 @@ class Electricity(BaseTransformation):
         log_eff = []
 
         # efficiency of modules in the future
-        module_eff = get_efficiency_ratio_solar_PV()
+        module_eff = get_efficiency_ratio_solar_photovoltaics()
 
         ds = ws.get_many(
             self.database,
@@ -1241,7 +1255,7 @@ class Electricity(BaseTransformation):
 
                     for supplier, supply_share in suppliers.items():
 
-                        multiplication_factor = 2.5 if "wet" in supplier[0] else 1.0
+                        multiplication_factor = 1.0
 
                         amount = supply_share * share * multiplication_factor
 
@@ -1318,15 +1332,15 @@ class Electricity(BaseTransformation):
         ]
 
         for tech in techs:
-            for ds in ws.get_many(
+            for dataset in ws.get_many(
                 self.database,
                 ws.either(*[ws.contains("name", n) for n in self.powerplant_map[tech]])
                 if tech in self.powerplant_map
                 else ws.contains("name", tech),
             ):
                 new_plants = self.fetch_proxies(
-                    name=ds["name"],
-                    ref_prod=ds["reference product"],
+                    name=dataset["name"],
+                    ref_prod=dataset["reference product"],
                     production_variable=tech,
                     relink=True,
                 )
@@ -1337,7 +1351,7 @@ class Electricity(BaseTransformation):
                 # by each provider, and capture 90% of the amount
 
                 if "CHP CCS" in tech:
-                    for p, plant in new_plants.items():
+                    for plant in new_plants.values():
                         co2_amount = 0
 
                         providers = [

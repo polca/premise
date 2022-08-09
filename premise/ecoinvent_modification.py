@@ -3,6 +3,46 @@ ecoinvent_modification.py exposes methods to create a database, perform transfor
 as well as export it back.
 
 """
+
+import copy
+import os
+import pickle
+import sys
+from datetime import date
+from pathlib import Path
+from typing import List, Union
+
+import wurst
+import yaml
+
+from . import DATA_DIR, INVENTORY_DIR
+from .cement import Cement
+from .clean_datasets import DatabaseCleaner
+from .data_collection import IAMDataCollection
+from .electricity import Electricity
+from .export import (
+    Export,
+    build_superstructure_db,
+    check_for_duplicates,
+    prepare_db_for_export, remove_uncertainty,
+)
+from .external import ExternalScenario
+from .external_data_validation import check_external_scenarios, check_inventories
+from .fuels import Fuels
+from .inventory_imports import AdditionalInventory, DefaultInventory
+from .scenario_report import generate_summary_report
+from .steel import Steel
+from .transformation import BaseTransformation
+from .transport import Transport
+from .utils import (
+    HiddenPrints,
+    eidb_label,
+    hide_messages,
+    info_on_utils_functions,
+    print_version,
+    warning_about_biogenic_co2,
+)
+
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
 LIST_REMIND_REGIONS = [
     "CAZ",
@@ -49,41 +89,7 @@ LIST_IMAGE_REGIONS = [
     "WEU",
     "World",
 ]
-import copy
-import os
-import pickle
-import sys
-from datetime import date
-from pathlib import Path
-from typing import List, Union
 
-import wurst
-import yaml
-from prettytable import PrettyTable
-
-from . import DATA_DIR, INVENTORY_DIR
-from .cement import Cement
-from .clean_datasets import DatabaseCleaner
-from .data_collection import IAMDataCollection
-from .electricity import Electricity
-from .export import Export, check_for_duplicates, remove_uncertainty
-from .external import ExternalScenario
-from .external_data_validation import check_external_scenarios, check_inventories
-from .fuels import Fuels
-from .inventory_imports import AdditionalInventory, DefaultInventory
-from .scenario_report import generate_summary_report
-from .steel import Steel
-from .transformation import BaseTransformation
-from .transport import Transport
-from .utils import (
-    HiddenPrints,
-    build_superstructure_db,
-    eidb_label,
-    hide_messages,
-    info_on_utils_functions,
-    print_version,
-    warning_about_biogenic_co2,
-)
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -124,6 +130,9 @@ FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES = (
 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
 )
+FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx"
+)
 
 FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
@@ -139,6 +148,9 @@ FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES = (
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
+)
+FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
@@ -230,22 +242,22 @@ def check_pathway_name(name: str, filepath: Path, model: str) -> str:
         raise ValueError(
             f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
         )
+
+    if model.lower() not in name:
+        name_check = "_".join((model.lower(), name))
     else:
-        if model.lower() not in name:
-            name_check = "_".join((model.lower(), name))
-        else:
-            name_check = name
+        name_check = name
 
-        if (filepath / name_check).with_suffix(".mif").is_file():
-            return name
-        if (filepath / name_check).with_suffix(".xlsx").is_file():
-            return name
-        if (filepath / name_check).with_suffix(".csv").is_file():
-            return name
+    if (filepath / name_check).with_suffix(".mif").is_file():
+        return name
+    if (filepath / name_check).with_suffix(".xlsx").is_file():
+        return name
+    if (filepath / name_check).with_suffix(".csv").is_file():
+        return name
 
-        raise ValueError(
-            f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
-        )
+    raise ValueError(
+        f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
+    )
 
 
 def check_year(year: [int, float]) -> int:
@@ -264,12 +276,18 @@ def check_year(year: [int, float]) -> int:
 
 
 def check_filepath(path: str) -> Path:
+    """
+    Check for the existence of the file.
+    """
     if not Path(path).is_dir():
         raise FileNotFoundError(f"The IAM output directory {path} could not be found.")
     return Path(path)
 
 
 def check_exclude(list_exc: List[str]) -> List[str]:
+    """
+    Check for the validity of the list of excluded functions.
+    """
 
     if not isinstance(list_exc, list):
         raise TypeError("`exclude` should be a sequence of strings.")
@@ -316,7 +334,8 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
             i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
         ):
             raise TypeError(
-                "Both `inventories` and `ecoinvent version` must be present in the list of inventories to import."
+                "Both `inventories` and `ecoinvent version` "
+                "must be present in the list of inventories to import."
             )
 
         if not Path(inventory["inventories"]).is_file():
@@ -349,6 +368,10 @@ def check_db_version(version: [str, float]) -> str:
 
 
 def check_scenarios(scenario: dict, key: bytes) -> dict:
+    """
+    Check that the scenarios are properly formatted and that
+    all the necessary info is given.
+    """
 
     if not all(name in scenario for name in ["model", "pathway", "year"]):
         raise ValueError(
@@ -383,6 +406,9 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
 
 
 def check_system_model(system_model: str) -> str:
+    """
+    Check that the system model is valid.
+    """
 
     if not isinstance(system_model, str):
         raise TypeError(
@@ -399,33 +425,33 @@ def check_system_model(system_model: str) -> str:
     return system_model
 
 
-def check_time_horizon(th: int) -> int:
+def check_time_horizon(time_horizon: int) -> int:
     """
     Check the validity of the time horizon provided (in years).
-    :param th: time horizon (in years), to determine marginal mixes for consequential modelling.
+    :param time_horizon: time horizon (in years), to determine marginal mixes for consequential modelling.
     :return: time horizon (in years)
     """
 
-    if th is None:
+    if time_horizon is None:
         print(
             "`time_horizon`, used to identify marginal suppliers, is not specified. "
             "It is therefore set to 20 years."
         )
-        th = 20
+        time_horizon = 20
 
     try:
-        int(th)
+        int(time_horizon)
     except ValueError as err:
         raise Exception(
             "`time_horizon` must be an integer with a value between 5 and 50 years."
         ) from err
 
-    if th < 5 or th > 50:
+    if time_horizon < 5 or time_horizon > 50:
         raise ValueError(
             "`time_horizon` must be an integer with a value between 5 and 50 years."
         )
 
-    return int(th)
+    return int(time_horizon)
 
 
 class NewDatabase:
@@ -561,12 +587,12 @@ class NewDatabase:
         if file_name.exists():
             # return the cached database
             return pickle.load(open(file_name, "rb"))
-        else:
-            # extract the database, pickle it for next time and return it
-            print("Cannot find cached database. Will create one now for next time...")
-            db = self.__clean_database()
-            pickle.dump(db, open(file_name, "wb"))
-            return db
+
+        # extract the database, pickle it for next time and return it
+        print("Cannot find cached database. Will create one now for next time...")
+        database = self.__clean_database()
+        pickle.dump(database, open(file_name, "wb"))
+        return database
 
     def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
         """
@@ -595,8 +621,8 @@ class NewDatabase:
         data = self.__import_inventories()
         pickle.dump(data, open(file_name, "wb"))
         print(
-            "Data cached. It is advised to restart your workflow at this point. "
-            "This allows premise to use the cached data instead, which results in"
+            "Data cached. It is advised to restart your workflow at this point.\n "
+            "This allows premise to use the cached data instead, which results in\n "
             "a faster workflow."
         )
         return None
@@ -654,10 +680,15 @@ class NewDatabase:
                     FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
                     "3.7",
                 ),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES,
+                    "3.7",
+                ),
                 (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
                 (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
                 (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES, "3.7"),
                 (FILEPATH_BIGCC, "3.8"),
             ]
             for filepath in filepaths:
@@ -669,6 +700,7 @@ class NewDatabase:
                 )
                 datasets = inventory.merge_inventory()
                 data.extend(datasets)
+
                 self.database.extend(datasets)
 
         print("Done!\n")
@@ -693,6 +725,11 @@ class NewDatabase:
         return data
 
     def update_electricity(self) -> None:
+        """
+        This method will update the electricity inventories
+        with the data from the IAM scenarios.
+
+        """
 
         print("\n/////////////////////////// ELECTRICITY ////////////////////////////")
 
@@ -718,6 +755,10 @@ class NewDatabase:
                 scenario["database"] = electricity.database
 
     def update_fuels(self) -> None:
+        """
+        This method will update the fuels inventories
+        with the data from the IAM scenarios.
+        """
         print("\n////////////////////////////// FUELS ///////////////////////////////")
 
         for scenario in self.scenarios:
@@ -736,6 +777,10 @@ class NewDatabase:
                 scenario["database"] = fuels.database
 
     def update_cement(self) -> None:
+        """
+        This method will update the cement inventories
+        with the data from the IAM scenarios.
+        """
         print("\n///////////////////////////// CEMENT //////////////////////////////")
 
         for scenario in self.scenarios:
@@ -754,6 +799,10 @@ class NewDatabase:
                 scenario["database"] = cement.database
 
     def update_steel(self) -> None:
+        """
+        This method will update the steel inventories
+        with the data from the IAM scenarios.
+        """
         print("\n////////////////////////////// STEEL //////////////////////////////")
 
         for scenario in self.scenarios:
@@ -772,6 +821,10 @@ class NewDatabase:
                 scenario["database"] = steel.database
 
     def update_cars(self) -> None:
+        """
+        This method will update the cars inventories
+        with the data from the IAM scenarios.
+        """
         print("\n///////////////////////// PASSENGER CARS ///////////////////////////")
 
         for scenario in self.scenarios:
@@ -791,6 +844,10 @@ class NewDatabase:
                 scenario["database"] = trspt.database
 
     def update_two_wheelers(self) -> None:
+        """
+        This method will update the two wheelers inventories
+        with the data from the IAM scenarios.
+        """
         print("\n////////////////////////// TWO-WHEELERS ////////////////////////////")
 
         for scenario in self.scenarios:
@@ -814,6 +871,10 @@ class NewDatabase:
                 scenario["database"] = trspt.database
 
     def update_trucks(self) -> None:
+        """
+        This method will update the trucks inventories
+        with the data from the IAM scenarios.
+        """
 
         print("\n////////////////// MEDIUM AND HEAVY DUTY TRUCKS ////////////////////")
 
@@ -874,6 +935,10 @@ class NewDatabase:
                     scenario["database"] = external_scenario.database
 
     def update_buses(self) -> None:
+        """
+        This method will update the buses inventories
+        with the data from the IAM scenarios.
+        """
 
         print("\n////////////////////////////// BUSES ///////////////////////////////")
 
@@ -942,17 +1007,24 @@ class NewDatabase:
         self, name: str = f"super_db_{date.today()}", filepath: str = None
     ) -> None:
         """
-        Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
+        Register a super-structure database,
+        according to https://github.com/dgdekoning/brightway-superstructure
         :return: filepath of the "scenarios difference file"
         """
+
+        if len(self.scenarios) < 2:
+            raise ValueError(
+                "At least two scenarios are needed to"
+                "create a super-structure database."
+            )
 
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = self.prepare_db_for_export(scenario)
+            scenario["database"] = prepare_db_for_export(scenario)
 
         self.database = build_superstructure_db(
-            self.database, self.scenarios, db_name=name, fp=filepath
+            self.database, self.scenarios, db_name=name, filepath=filepath
         )
 
         print("Done!")
@@ -998,7 +1070,7 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = self.prepare_db_for_export(scenario)
+            scenario["database"] = prepare_db_for_export(scenario)
 
             wurst.write_brightway2_database(
                 scenario["database"],
@@ -1031,7 +1103,8 @@ class NewDatabase:
                 filepath = [Path(f) for f in filepath]
             else:
                 raise TypeError(
-                    f"Expected a string or a sequence of strings for `filepath`, not {type(filepath)}."
+                    f"Expected a string or a sequence of "
+                    f"strings for `filepath`, not {type(filepath)}."
                 )
         else:
             filepath = [
@@ -1043,7 +1116,7 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = self.prepare_db_for_export(scenario)
+            scenario["database"] = prepare_db_for_export(scenario)
 
             Export(
                 scenario["database"],
@@ -1071,7 +1144,7 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = self.prepare_db_for_export(scenario)
+            scenario["database"] = prepare_db_for_export(scenario)
 
             Export(
                 scenario["database"],
