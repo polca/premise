@@ -24,7 +24,8 @@ from .export import (
     Export,
     build_superstructure_db,
     check_for_duplicates,
-    prepare_db_for_export, remove_uncertainty,
+    prepare_db_for_export,
+    remove_uncertainty,
 )
 from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
