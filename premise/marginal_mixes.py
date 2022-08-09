@@ -369,9 +369,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             mask_start = data_full.sel(region=region).year >= start
             mask = mask_end & mask_start
 
-            masked_data = data_full.sel(region=region).where(
-                mask, drop = True
-            )
+            masked_data = data_full.sel(region=region).where(mask, drop=True)
 
             coeff = masked_data.polyfit(dim="year", deg=1)
 
@@ -432,9 +430,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             mask_start = data_full.sel(region=region).year >= start
             mask = mask_end & mask_start
 
-            masked_data = data_full.sel(region=region).where(
-                mask, drop = True
-            )
+            masked_data = data_full.sel(region=region).where(mask, drop=True)
 
             coeff = masked_data.sum(dim="year").values
 
@@ -596,9 +592,11 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     market_shares_split.loc[dict(region=region)].values[
                         market_shares_split.loc[dict(region=region)].values > 0
                     ] = 0
-                    market_shares_split.loc[dict(region=region)] /= market_shares_split.loc[
+                    market_shares_split.loc[
                         dict(region=region)
-                    ].sum(dim="variables")
+                    ] /= market_shares_split.loc[dict(region=region)].sum(
+                        dim="variables"
+                    )
                     # we reverse the sign so that the suppliers are still seen as negative in the next step
                     market_shares_split.loc[dict(region=region)] *= -1
 
