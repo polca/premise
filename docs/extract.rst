@@ -1487,8 +1487,8 @@ The mapping file is available in the library root folder: mappingElec_.
   Solar CSP                  SE|Electricity|Solar|CSP              Secondary Energy|Electricity|Solar|CSP            electricity production, solar thermal parabolic trough, 50 MW
   Solar PV Centralized       SE|Electricity|Solar|PV               Secondary Energy|Electricity|Solar|PV|1           electricity production, photovoltaic, commercial
   Solar PV Residential                                             Secondary Energy|Electricity|Solar|PV|2           electricity production, photovoltaic, residential
-  Wind Onshore                                                     Secondary Energy|Electricity|Wind|1               electricity production, wind, <1MW turbine, onshore
-  Wind Offshore              SE|Electricity|Wind                   Secondary Energy|Electricity|Wind|2               electricity production, wind, 1-3MW turbine, offshore
+  Wind Onshore               SE|Electricity|Wind|Onshore           Secondary Energy|Electricity|Wind|1               electricity production, wind, <1MW turbine, onshore
+  Wind Offshore              SE|Electricity|Wind|Offshore          Secondary Energy|Electricity|Wind|2               electricity production, wind, 1-3MW turbine, offshore
   biomass - purpose grown    SE|Electricity|Biomass|Energy Crops   Primary Energy|Biomass|Energy Crops               market for wood chips
   biomass - residual         SE|Electricity|Biomass|Residues       Primary Energy|Biomass|Residues                   Supply of forest residue
  ========================== ===================================== ================================================= ===================================================================================================
