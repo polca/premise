@@ -2,9 +2,9 @@
 Validates datapackages that contain external scenario data.
 """
 
+import numpy as np
 import pandas as pd
 import yaml
-import numpy as np
 from datapackage import exceptions, validate
 from schema import And, Optional, Schema, Use
 
@@ -14,7 +14,6 @@ from .ecoinvent_modification import (
     SUPPORTED_EI_VERSIONS,
 )
 from .external import flag_activities_to_adjust
-
 from .geomap import Geomap
 
 
@@ -351,7 +350,7 @@ def check_scenario_data_file(datapackages, iam_scenarios):
 
         if not all(
             v in df["variables"].unique()
-            for v in  get_recursively(config_file, "variable")
+            for v in get_recursively(config_file, "variable")
         ):
             list_unfound_variables = [
                 p

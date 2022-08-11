@@ -542,7 +542,11 @@ class AdditionalInventory(BaseInventoryImport):
             path = str(Path(DATA_DIR / "cache" / "temp.csv"))
             with open(path, "w", encoding="utf-8") as f:
                 writer = csv.writer(
-                    f, quoting=csv.QUOTE_NONE, delimiter=",", quotechar="'", escapechar='\\'
+                    f,
+                    quoting=csv.QUOTE_NONE,
+                    delimiter=",",
+                    quotechar="'",
+                    escapechar="\\",
                 )
                 for line in response.iter_lines():
                     writer.writerow(line.decode("utf-8").split(","))

@@ -188,7 +188,6 @@ def adjust_efficiency(dataset: dict) -> dict:
     if "adjust efficiency" in dataset:
         # loop through the type of flows to adjust
 
-
         for eff_type in ["technosphere", "biosphere"]:
 
             if f"{eff_type} filters" in dataset:
@@ -223,7 +222,7 @@ def adjust_efficiency(dataset: dict) -> dict:
                         if filters:
                             for exc in ws.biosphere(
                                 dataset,
-                                ws.either(*[ws.contains("name", x) for x in filters])
+                                ws.either(*[ws.contains("name", x) for x in filters]),
                             ):
                                 wurst.rescale_exchange(exc, scaling_factor)
                         else:
@@ -231,7 +230,6 @@ def adjust_efficiency(dataset: dict) -> dict:
                                 dataset,
                             ):
                                 wurst.rescale_exchange(exc, scaling_factor)
-
 
     return dataset
 
@@ -331,8 +329,7 @@ class ExternalScenario(BaseTransformation):
                 "regions": ds.get("regions", self.regions),
             }
             for ds in self.database
-            if "custom scenario dataset" in ds
-               and ds["name"] in ds_names
+            if "custom scenario dataset" in ds and ds["name"] in ds_names
         ]
 
         for ds in acts_to_regionalize:

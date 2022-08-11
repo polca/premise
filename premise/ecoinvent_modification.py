@@ -91,8 +91,6 @@ from .utils import (
     warning_about_biogenic_co2,
 )
 
-
-
 DIR_CACHED_DB = DATA_DIR / "cache"
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
