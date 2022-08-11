@@ -3,10 +3,10 @@ Validates datapackages that contain external scenario data.
 """
 
 import pandas as pd
-import xarray as xr
 import yaml
+import numpy as np
 from datapackage import exceptions, validate
-from schema import And, Optional, Or, Schema, Use
+from schema import And, Optional, Schema, Use
 
 from .ecoinvent_modification import (
     LIST_IMAGE_REGIONS,
@@ -14,7 +14,8 @@ from .ecoinvent_modification import (
     SUPPORTED_EI_VERSIONS,
 )
 from .external import flag_activities_to_adjust
-from .transformation import *
+
+from .geomap import Geomap
 
 
 def check_inventories(
@@ -349,12 +350,18 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                 )
 
         if not all(
-            v in get_recursively(config_file, "variable")
-            for v in df["variables"].unique()
+            v in df["variables"].unique()
+            for v in  get_recursively(config_file, "variable")
         ):
+            list_unfound_variables = [
+                p
+                for p in get_recursively(config_file, "variable")
+                if p not in df["variables"].unique()
+            ]
+
             raise ValueError(
-                f"One or several variable names in the scenario data file no. {i + 1} "
-                "cannot be found in the configuration file."
+                "The following variables from the configuration file "
+                f"cannot be found in the scenario file no. {i + 1}.: {list_unfound_variables}"
             )
 
         if not all(
@@ -420,7 +427,7 @@ def check_external_scenarios(datapackage: list, iam_scenarios: list) -> list:
     check_datapackage(datapackage)
 
     # Validate yaml config file
-    need_for_ext_inventories = check_config_file(datapackage)
+    check_config_file(datapackage)
 
     # Validate scenario data
     check_scenario_data_file(datapackage, iam_scenarios)

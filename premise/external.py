@@ -25,7 +25,7 @@ def flag_activities_to_adjust(
 
     regions = scenario_data["production volume"].region.values.tolist()
     if "except regions" in dataset_vars:
-        regions = regions.difference(dataset_vars["except regions"])
+        regions = [r for r in regions if r not in dataset_vars["except regions"]]
 
     # add potential technosphere or biosphere filters
     if "efficiency" in dataset_vars:
@@ -46,7 +46,7 @@ def flag_activities_to_adjust(
                 },
             ]
             for k in dataset_vars["efficiency"]
-            if "technosphere" in k.get("includes")
+            if "technosphere" in k.get("includes", {})
         }
 
         d_tech_filters.update(
@@ -82,7 +82,7 @@ def flag_activities_to_adjust(
                 },
             ]
             for k in dataset_vars["efficiency"]
-            if "biosphere" in k.get("includes")
+            if "biosphere" in k.get("includes", {})
         }
 
         d_bio_filters.update(
@@ -187,6 +187,8 @@ def adjust_efficiency(dataset: dict) -> dict:
     # if the dataset has been tagged with `adjust efficiency`
     if "adjust efficiency" in dataset:
         # loop through the type of flows to adjust
+
+
         for eff_type in ["technosphere", "biosphere"]:
 
             if f"{eff_type} filters" in dataset:
@@ -201,26 +203,35 @@ def adjust_efficiency(dataset: dict) -> dict:
                         # adjust technosphere flows
                         # all of them if no filters are provided
 
-                        for exc in ws.technosphere(
-                            dataset,
-                            *[ws.contains("name", x) for x in filters]
-                            if filters is not None
-                            else [],
-                        ):
-                            wurst.rescale_exchange(exc, scaling_factor)
+                        if filters:
+                            for exc in ws.technosphere(
+                                dataset,
+                                ws.either(*[ws.contains("name", x) for x in filters]),
+                            ):
+                                wurst.rescale_exchange(exc, scaling_factor)
+                        else:
+                            for exc in ws.technosphere(
+                                dataset,
+                            ):
+                                wurst.rescale_exchange(exc, scaling_factor)
 
                     else:
 
                         # adjust biosphere flows
                         # all of them if a filter is not provided
 
-                        for exc in ws.biosphere(
-                            dataset,
-                            *[ws.contains("name", x) for x in filters]
-                            if filters is not None
-                            else [],
-                        ):
-                            wurst.rescale_exchange(exc, scaling_factor)
+                        if filters:
+                            for exc in ws.biosphere(
+                                dataset,
+                                ws.either(*[ws.contains("name", x) for x in filters])
+                            ):
+                                wurst.rescale_exchange(exc, scaling_factor)
+                        else:
+                            for exc in ws.biosphere(
+                                dataset,
+                            ):
+                                wurst.rescale_exchange(exc, scaling_factor)
+
 
     return dataset
 
@@ -299,10 +310,11 @@ class ExternalScenario(BaseTransformation):
             # Open corresponding config file
             resource = datapackage.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
-            self.regionalize_imported_inventories(external_scenario_regions)
+            ds_names = get_recursively(config_file, "name")
+            self.regionalize_imported_inventories(ds_names, external_scenario_regions)
         self.dict_bio_flows = get_biosphere_flow_uuid()
 
-    def regionalize_imported_inventories(self, regions) -> None:
+    def regionalize_imported_inventories(self, ds_names, regions) -> None:
         """
         Produce IAM region-specific version of the dataset.
         :param regions: list of regions to produce datasets for
@@ -316,19 +328,23 @@ class ExternalScenario(BaseTransformation):
                 "location": ds["location"],
                 "replaces": ds.get("replaces", None),
                 "replaces in": ds.get("replaces in", None),
+                "regions": ds.get("regions", self.regions),
             }
             for ds in self.database
             if "custom scenario dataset" in ds
+               and ds["name"] in ds_names
         ]
 
         for ds in acts_to_regionalize:
+
             # Check if datasets already exist for IAM regions
             # if not, create them
             if ds["location"] not in regions:
+
                 new_acts = self.fetch_proxies(
                     name=ds["name"],
                     ref_prod=ds["reference product"],
-                    regions=regions,
+                    regions=ds["regions"],
                 )
 
                 # adjust efficiency
@@ -337,7 +353,7 @@ class ExternalScenario(BaseTransformation):
                 self.database.extend(new_acts.values())
 
             else:
-                # if them do, we just need to adjust their efficiency
+                # if they do, we just need to adjust their efficiency
                 new_acts = ws.get_many(
                     self.database,
                     ws.equals("name", ds["name"]),
@@ -920,12 +936,11 @@ class ExternalScenario(BaseTransformation):
         datasets = []
 
         if replaces_in:
-
             for k in replaces_in:
                 list_fltr = []
-                for f in ["name", "reference product", "location", "unit"]:
-                    if f in k:
-                        list_fltr.append(ws.equals(f, k[f]))
+                for field in ["name", "reference product", "location", "unit"]:
+                    if field in k:
+                        list_fltr.append(ws.equals(field, k[field]))
 
                 datasets.extend(list(ws.get_many(self.database, *list_fltr)))
         else:
@@ -933,14 +948,14 @@ class ExternalScenario(BaseTransformation):
 
         list_fltr = []
         for k in replaces:
-            for f in ["name", "product", "location", "unit"]:
-                if f in k:
-                    list_fltr.append(ws.equals(f, k[f]))
+            for field in ["name", "product", "location", "unit"]:
+                if field in k:
+                    list_fltr.append(ws.equals(field, k[field]))
 
         for ds in datasets:
             for exc in ws.technosphere(ds, ws.either(*list_fltr)):
 
-                if ds["location"] in regions or ds["location"] == "World":
+                if ds["location"] in self.regions or ds["location"] == "World":
                     if ds["location"] not in regions:
                         new_loc = "World"
                     else:

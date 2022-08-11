@@ -540,12 +540,12 @@ class AdditionalInventory(BaseInventoryImport):
             # we need to save it locally first
             response = requests.get(path)
             path = str(Path(DATA_DIR / "cache" / "temp.csv"))
-            with open(path, "w", encoding="utf-8-sig") as f:
+            with open(path, "w", encoding="utf-8") as f:
                 writer = csv.writer(
-                    f, quoting=csv.QUOTE_NONE, delimiter=",", quotechar="'"
+                    f, quoting=csv.QUOTE_NONE, delimiter=",", quotechar="'", escapechar='\\'
                 )
                 for line in response.iter_lines():
-                    writer.writerow(line.decode("utf-8-sig").split(","))
+                    writer.writerow(line.decode("utf-8").split(","))
 
         if Path(path).suffix == ".xlsx":
             return ExcelImporter(path)

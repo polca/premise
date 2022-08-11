@@ -4,6 +4,53 @@ as well as export it back.
 
 """
 
+SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
+LIST_REMIND_REGIONS = [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World",
+]
+LIST_IMAGE_REGIONS = [
+    "BRA",
+    "CAN",
+    "CEU",
+    "CHN",
+    "EAF",
+    "INDIA",
+    "INDO",
+    "JAP",
+    "KOR",
+    "ME",
+    "MEX",
+    "NAF",
+    "OCE",
+    "RCAM",
+    "RSAF",
+    "RSAM",
+    "RSAS",
+    "RUS",
+    "SAF",
+    "SEAS",
+    "STAN",
+    "TUR",
+    "UKR",
+    "USA",
+    "WAF",
+    "WEU",
+    "World",
+]
+
+
 import copy
 import os
 import pickle
@@ -44,52 +91,6 @@ from .utils import (
     warning_about_biogenic_co2,
 )
 
-SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
-LIST_REMIND_REGIONS = [
-    "CAZ",
-    "CHA",
-    "EUR",
-    "IND",
-    "JPN",
-    "LAM",
-    "MEA",
-    "NEU",
-    "OAS",
-    "REF",
-    "SSA",
-    "USA",
-    "World",
-]
-
-LIST_IMAGE_REGIONS = [
-    "BRA",
-    "CAN",
-    "CEU",
-    "CHN",
-    "EAF",
-    "INDIA",
-    "INDO",
-    "JAP",
-    "KOR",
-    "ME",
-    "MEX",
-    "NAF",
-    "OCE",
-    "RCAM",
-    "RSAF",
-    "RSAM",
-    "RSAS",
-    "RUS",
-    "SAF",
-    "SEAS",
-    "STAN",
-    "TUR",
-    "UKR",
-    "USA",
-    "WAF",
-    "WEU",
-    "World",
-]
 
 
 DIR_CACHED_DB = DATA_DIR / "cache"

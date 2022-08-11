@@ -1757,7 +1757,7 @@ class IAMDataCollection:
                                     )
                     for market in config_file["markets"]:
                         for e, f in market.items():
-                            if "efficiency" in f:
+                            if f == "efficiency":
                                 for x in f["efficiency"]:
                                     ref_years[x["variable"]] = x.get(
                                         "reference year", 2020
