@@ -165,7 +165,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     minimum = min(data.year.values)
     maximum = max(data.year.values)
     years_to_interp_for = list(range(minimum, maximum + 1))
-        data_full = xr.DataArray(np.nan, 
+    data_full = xr.DataArray(np.nan, 
                              dims=["region", "variables", "year"], 
                              coords={
                                  "region":data.region, 
