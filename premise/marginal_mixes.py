@@ -165,7 +165,17 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     minimum = min(data.year.values)
     maximum = max(data.year.values)
     years_to_interp_for = list(range(minimum, maximum + 1))
-    data_full = data.interp(year=years_to_interp_for)
+    data_full = xr.DataArray(np.nan, 
+                             dims=["region", "variables", "year"], 
+                             coords={
+                                 "region":data.region, 
+                                 "year":years_to_interp_for,
+                                 "variables":data.variables
+                                 }
+                             )
+    data_full.loc[dict(year=data.year)] = data 
+    #interpolation is done using cubic spline interpolation
+    data_full = data_full.interpolate_na(dim = "year", method ="cubic")
 
     techs = tuple(data_full.variables.values.tolist())
     leadtime = get_leadtime(techs)
@@ -571,16 +581,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     cap_repl_rate = fetch_capital_replacement_rates(
                         lifetime, data_full.sel(region=region, year=avg_start)
                     )
-
-                    max_cap_repl_rate = (
-                        data_full.sel(
-                            region=region,
-                            year=avg_start,
-                        ).values
-                        / n
-                    )
-
-                    cap_repl_rate = np.clip(cap_repl_rate, None, max_cap_repl_rate)
+                    #In cases where a technology is fully phased out somewhere during the time interval we do not want to add capital replacement rate
+                    mask = data_full.sel(region=region, year=split_year) != 0
+                    cap_repl_rate = cap_repl_rate*mask.values
                     market_shares_split.loc[dict(region=region)] -= cap_repl_rate[
                         :, None
                     ]
