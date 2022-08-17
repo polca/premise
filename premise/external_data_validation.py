@@ -2,6 +2,7 @@
 Validates datapackages that contain external scenario data.
 """
 
+import sys
 import numpy as np
 import pandas as pd
 import yaml
@@ -258,7 +259,40 @@ def check_config_file(datapackages):
 
 
 def check_scenario_data_file(datapackages, iam_scenarios):
+
     for i, dp in enumerate(datapackages):
+
+        scenarios = dp.descriptor["scenarios"]
+
+        rev_scenarios = {}
+
+        for scenario, lst_iam_scen in scenarios.items():
+            for iam_scen in lst_iam_scen:
+                if (iam_scen["model"], iam_scen["pathway"]) not in rev_scenarios:
+                    rev_scenarios[(iam_scen["model"], iam_scen["pathway"])] = [scenario]
+                else:
+                    rev_scenarios[(iam_scen["model"], iam_scen["pathway"])].append(scenario)
+
+        for iam_scen, lst_ext_scen in rev_scenarios.items():
+            if len(lst_ext_scen) > 1:
+                if iam_scen in [(x["model"], x["pathway"]) for x in iam_scenarios]:
+                    print(f"{iam_scen} can be used with more than one external scenarios: {lst_ext_scen}.")
+                    print(f"Choose the scenario to associate {iam_scen} with: {[(i, j) for i, j in enumerate(lst_ext_scen)]}.")
+                    usr_input = ''
+
+                    while usr_input not in [str(i) for i in range(0, len(lst_ext_scen))]:
+                        usr_input = input("Scenario no.: ")
+                    rev_scenarios[iam_scen] = [lst_ext_scen[int(usr_input)]]
+
+
+        for iam_scen in iam_scenarios:
+            try:
+                if "external scenarios" in iam_scen:
+                    iam_scen["external scenarios"].append(rev_scenarios[(iam_scen["model"], iam_scen["pathway"])])
+                else:
+                    iam_scen["external scenarios"] = rev_scenarios[(iam_scen["model"], iam_scen["pathway"])]
+            except KeyError as err:
+                raise KeyError(f"External scenario no. {i + 1} is not compatible with {iam_scen['model'], iam_scen['pathway']}.") from err
 
         resource = dp.get_resource("scenario_data")
         scenario_data = resource.read()
@@ -269,7 +303,14 @@ def check_scenario_data_file(datapackages, iam_scenarios):
         resource = dp.get_resource("config")
         config_file = yaml.safe_load(resource.raw_read())
 
-        mandatory_fields = ["model", "pathway", "region", "variables", "unit"]
+        mandatory_fields = [
+            "model",
+            "pathway",
+            "scenario",
+            "region",
+            "variables",
+            "unit",
+        ]
         if not all(v in df.columns for v in mandatory_fields):
             raise ValueError(
                 f"One or several mandatory column are missing "
@@ -348,6 +389,25 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                     f"and is not found within ecoinvent locations."
                 )
 
+        available_scenarios = df["scenario"].unique()
+        if not all(
+            s in scenarios for s in available_scenarios
+        ):  # check that all scenarios are available in the scenario file
+            raise ValueError(
+                f"One or several scenarios are not available in the scenario file no. {i + 1}."
+            )
+
+        # check that all scenarios in `iam_scenarios` are listed in `scenarios`
+
+        if not any(
+            (iam_s["model"], iam_s["pathway"])
+            in [(t["model"], t["pathway"]) for s in scenarios.values() for t in s]
+            for iam_s in iam_scenarios
+        ):
+            raise ValueError(
+                f"One or several scenarios are not available in the external scenario file no. {i + 1}."
+            )
+
         if not all(
             v in df["variables"].unique()
             for v in get_recursively(config_file, "variable")
@@ -378,14 +438,14 @@ def check_scenario_data_file(datapackages, iam_scenarios):
             )
 
         try:
-            np.array_equal(df.iloc[:, 5:], df.iloc[:, 5:].astype(float))
+            np.array_equal(df.iloc[:, 6:], df.iloc[:, 6:].astype(float))
         except ValueError as e:
             raise TypeError(
                 f"All values provided in the time series must be numerical "
                 f"in the scenario data file no. {i + 1}."
             ) from e
 
-    return datapackages
+    return datapackages, iam_scenarios
 
 
 def get_recursively(search_dict, field):
@@ -429,9 +489,9 @@ def check_external_scenarios(datapackage: list, iam_scenarios: list) -> list:
     check_config_file(datapackage)
 
     # Validate scenario data
-    check_scenario_data_file(datapackage, iam_scenarios)
+    datapackage, iam_scenarios = check_scenario_data_file(datapackage, iam_scenarios)
 
-    return datapackage
+    return datapackage, iam_scenarios
 
 
 def fetch_dataset_description_from_production_pathways(config, item):

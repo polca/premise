@@ -937,7 +937,7 @@ class ExternalScenario(BaseTransformation):
                 list_fltr = []
                 for field in ["name", "reference product", "location", "unit"]:
                     if field in k:
-                        list_fltr.append(ws.equals(field, k[field]))
+                        list_fltr.append(ws.contains(field, k[field]))
 
                 datasets.extend(list(ws.get_many(self.database, *list_fltr)))
         else:

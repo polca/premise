@@ -519,7 +519,7 @@ class NewDatabase:
             self.additional_inventories = None
 
         if external_scenarios:
-            self.datapackages = check_external_scenarios(
+            self.datapackages, self.scenarios = check_external_scenarios(
                 external_scenarios, self.scenarios
             )
         else:
@@ -554,6 +554,7 @@ class NewDatabase:
                 model=scenario["model"],
                 pathway=scenario["pathway"],
                 year=scenario["year"],
+                external_scenarios=scenario.get("external scenarios"),
                 filepath_iam_files=scenario["filepath"],
                 key=key,
                 system_model=self.system_model,

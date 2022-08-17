@@ -185,9 +185,15 @@ class BaseInventoryImport:
                 "They will not be imported"
             )
             table = PrettyTable(["Name", "Reference product", "Location", "File"])
+
+            if isinstance(self.path, str):
+                name = self.path
+            else:
+                name = self.path.name
+                
             for dataset in already_exist:
                 table.add_row(
-                    [dataset[0][:50], dataset[1][:30], dataset[2], self.path.name]
+                    [dataset[0][:50], dataset[1][:30], dataset[2], name]
                 )
 
             print(table)
