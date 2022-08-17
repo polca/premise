@@ -142,10 +142,7 @@ def find_iam_efficiency_change(
     if variable in efficiency_data.variables.values:
 
         scaling_factor = (
-            efficiency_data.sel(
-                region=location,
-                variables=variable
-            ).interp(year=year)
+            efficiency_data.sel(region=location, variables=variable).interp(year=year)
         ).values.item(0)
 
         if scaling_factor in (np.nan, np.inf):
@@ -337,9 +334,8 @@ class ExternalScenario(BaseTransformation):
             }
             for ds in self.database
             if any(i in ds for i in ["custom scenario dataset", "regionalize"])
-               and ds["name"] in ds_names
+            and ds["name"] in ds_names
         ]
-
 
         for ds in acts_to_regionalize:
 
