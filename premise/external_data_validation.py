@@ -3,6 +3,7 @@ Validates datapackages that contain external scenario data.
 """
 
 import sys
+
 import numpy as np
 import pandas as pd
 import yaml
@@ -271,28 +272,41 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                 if (iam_scen["model"], iam_scen["pathway"]) not in rev_scenarios:
                     rev_scenarios[(iam_scen["model"], iam_scen["pathway"])] = [scenario]
                 else:
-                    rev_scenarios[(iam_scen["model"], iam_scen["pathway"])].append(scenario)
+                    rev_scenarios[(iam_scen["model"], iam_scen["pathway"])].append(
+                        scenario
+                    )
 
         for iam_scen, lst_ext_scen in rev_scenarios.items():
             if len(lst_ext_scen) > 1:
                 if iam_scen in [(x["model"], x["pathway"]) for x in iam_scenarios]:
-                    print(f"{iam_scen} can be used with more than one external scenarios: {lst_ext_scen}.")
-                    print(f"Choose the scenario to associate {iam_scen} with: {[(i, j) for i, j in enumerate(lst_ext_scen)]}.")
-                    usr_input = ''
+                    print(
+                        f"{iam_scen} can be used with more than one external scenarios: {lst_ext_scen}."
+                    )
+                    print(
+                        f"Choose the scenario to associate {iam_scen} with: {[(i, j) for i, j in enumerate(lst_ext_scen)]}."
+                    )
+                    usr_input = ""
 
-                    while usr_input not in [str(i) for i in range(0, len(lst_ext_scen))]:
+                    while usr_input not in [
+                        str(i) for i in range(0, len(lst_ext_scen))
+                    ]:
                         usr_input = input("Scenario no.: ")
                     rev_scenarios[iam_scen] = [lst_ext_scen[int(usr_input)]]
-
 
         for iam_scen in iam_scenarios:
             try:
                 if "external scenarios" in iam_scen:
-                    iam_scen["external scenarios"].append(rev_scenarios[(iam_scen["model"], iam_scen["pathway"])])
+                    iam_scen["external scenarios"].append(
+                        rev_scenarios[(iam_scen["model"], iam_scen["pathway"])]
+                    )
                 else:
-                    iam_scen["external scenarios"] = rev_scenarios[(iam_scen["model"], iam_scen["pathway"])]
+                    iam_scen["external scenarios"] = rev_scenarios[
+                        (iam_scen["model"], iam_scen["pathway"])
+                    ]
             except KeyError as err:
-                raise KeyError(f"External scenario no. {i + 1} is not compatible with {iam_scen['model'], iam_scen['pathway']}.") from err
+                raise KeyError(
+                    f"External scenario no. {i + 1} is not compatible with {iam_scen['model'], iam_scen['pathway']}."
+                ) from err
 
         resource = dp.get_resource("scenario_data")
         scenario_data = resource.read()

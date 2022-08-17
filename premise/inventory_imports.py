@@ -190,11 +190,9 @@ class BaseInventoryImport:
                 name = self.path
             else:
                 name = self.path.name
-                
+
             for dataset in already_exist:
-                table.add_row(
-                    [dataset[0][:50], dataset[1][:30], dataset[2], name]
-                )
+                table.add_row([dataset[0][:50], dataset[1][:30], dataset[2], name])
 
             print(table)
 

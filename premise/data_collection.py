@@ -218,7 +218,7 @@ class IAMDataCollection:
         key: bytes,
         system_model: str = "attributional",
         time_horizon: int = 30,
-        external_scenarios: list = None
+        external_scenarios: list = None,
     ) -> None:
         self.model = model
         self.pathway = pathway
@@ -1573,7 +1573,6 @@ class IAMDataCollection:
 
         for i, dp in enumerate(datapackages):
 
-
             data[i] = {}
 
             resource = dp.get_resource("scenario_data")
@@ -1594,12 +1593,12 @@ class IAMDataCollection:
                         continue
 
                 subset = df.loc[
-                         (df["model"] == self.model)
-                         & (df["pathway"] == self.pathway)
-                         & (df["scenario"] == self.external_scenarios[i])
-                         & (df["variables"].isin(variables.values())),
-                         "region":,
-                         ]
+                    (df["model"] == self.model)
+                    & (df["pathway"] == self.pathway)
+                    & (df["scenario"] == self.external_scenarios[i])
+                    & (df["variables"].isin(variables.values())),
+                    "region":,
+                ]
 
                 array = (
                     subset.melt(
