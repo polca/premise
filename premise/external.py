@@ -27,10 +27,11 @@ def flag_activities_to_adjust(
     if "except regions" in dataset_vars:
         regions = [r for r in regions if r not in dataset_vars["except regions"]]
 
+    dataset["regions"] = regions
+
     # add potential technosphere or biosphere filters
     if "efficiency" in dataset_vars:
         dataset["adjust efficiency"] = True
-        dataset["regions"] = regions
 
         d_tech_filters = {
             k.get("variable"): [
@@ -119,6 +120,9 @@ def flag_activities_to_adjust(
     if "replacement ratio" in dataset_vars:
         dataset["replacement ratio"] = dataset_vars["replacement ratio"]
 
+    if "regionalize" in dataset_vars["ecoinvent alias"]:
+        dataset["regionalize"] = dataset_vars["ecoinvent alias"]["regionalize"]
+
     return dataset
 
 
@@ -138,7 +142,10 @@ def find_iam_efficiency_change(
     if variable in efficiency_data.variables.values:
 
         scaling_factor = (
-            efficiency_data.sel(region=location, variables=variable).interp(year=year)
+            efficiency_data.sel(
+                region=location,
+                variables=variable
+            ).interp(year=year)
         ).values.item(0)
 
         if scaling_factor in (np.nan, np.inf):
@@ -309,10 +316,10 @@ class ExternalScenario(BaseTransformation):
             resource = datapackage.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
             ds_names = get_recursively(config_file, "name")
-            self.regionalize_imported_inventories(ds_names, external_scenario_regions)
+            self.regionalize_inventories(ds_names, external_scenario_regions)
         self.dict_bio_flows = get_biosphere_flow_uuid()
 
-    def regionalize_imported_inventories(self, ds_names, regions) -> None:
+    def regionalize_inventories(self, ds_names, regions) -> None:
         """
         Produce IAM region-specific version of the dataset.
         :param regions: list of regions to produce datasets for
@@ -329,8 +336,10 @@ class ExternalScenario(BaseTransformation):
                 "regions": ds.get("regions", self.regions),
             }
             for ds in self.database
-            if "custom scenario dataset" in ds and ds["name"] in ds_names
+            if any(i in ds for i in ["custom scenario dataset", "regionalize"])
+               and ds["name"] in ds_names
         ]
+
 
         for ds in acts_to_regionalize:
 

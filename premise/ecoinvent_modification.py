@@ -911,17 +911,21 @@ class NewDatabase:
                             inventories = self.__import_additional_inventories(
                                 datapackage
                             )
-                            resource = datapackage.get_resource("config")
-                            config_file = yaml.safe_load(resource.raw_read())
+                        else:
+                            inventories = []
 
-                            if inventories:
-                                checked_inventories = check_inventories(
-                                    config_file,
-                                    inventories,
-                                    scenario["external data"][d],
-                                    scenario["year"],
-                                )
-                                scenario["database"].extend(checked_inventories)
+                        resource = datapackage.get_resource("config")
+                        config_file = yaml.safe_load(resource.raw_read())
+
+
+                        checked_inventories = check_inventories(
+                            config_file,
+                            inventories,
+                            scenario["external data"][d],
+                            scenario["database"],
+                            scenario["year"],
+                        )
+                        scenario["database"].extend(checked_inventories)
 
                     external_scenario = ExternalScenario(
                         database=scenario["database"],
