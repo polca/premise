@@ -917,7 +917,6 @@ class NewDatabase:
                         resource = datapackage.get_resource("config")
                         config_file = yaml.safe_load(resource.raw_read())
 
-
                         checked_inventories = check_inventories(
                             config_file,
                             inventories,
