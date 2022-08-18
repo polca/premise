@@ -922,7 +922,6 @@ class NewDatabase:
                             config_file,
                             inventories,
                             scenario["external data"][d],
-                            scenario["database"],
                             scenario["year"],
                         )
                         scenario["database"].extend(checked_inventories)
