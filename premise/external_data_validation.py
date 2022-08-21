@@ -9,6 +9,7 @@ import pandas as pd
 import yaml
 from datapackage import exceptions, validate
 from schema import And, Optional, Schema, Use
+from wurst import searching as ws
 
 from .ecoinvent_modification import (
     LIST_IMAGE_REGIONS,
@@ -23,6 +24,7 @@ def check_inventories(
     config: dict,
     inventory_data: list,
     scenario_data: dict,
+    database: list,
     year: int,
 ):
     """
@@ -34,35 +36,50 @@ def check_inventories(
     :param pathway: IAM pathway name
     :param year: scenario year
     """
-    for k, v in config["production pathways"].items():
 
-        name = v["ecoinvent alias"]["name"]
-        ref = v["ecoinvent alias"]["reference product"]
+    d_datasets = {
+        (val["ecoinvent alias"]["name"], val["ecoinvent alias"]["reference product"]): {
+        "exists in original database": val["ecoinvent alias"].get("exists in original database", "False"),
+        "new dataset": val["ecoinvent alias"].get("new dataset", "False"),
+        "regionalize": val["ecoinvent alias"].get("regionalize", "False"),
+        "except regions": val.get("except regions", []),
+        "efficiency": val.get("efficiency", []),
+        "replaces": val.get("replaces", []),
+        "replaces in": val.get("replaces in", []),
+        "replacement ratio": val.get("replacement ratio", 1),
+        }
+        for val in config["production pathways"].values()
+    }
 
-        if (
-            (
-                len(
-                    [
-                        a
-                        for a in inventory_data
-                        if (name, ref) == (a["name"], a["reference product"])
-                    ]
-                )
-                == 0
-            )
-            and not v["ecoinvent alias"].get("exists in original database")
-            and not v["ecoinvent alias"].get("new dataset")
-        ):
-            raise ValueError(
-                f"The inventories provided do not contain the activity: {name, ref}"
-            )
+    list_datasets = [(i["name"], i["reference product"]) for i in inventory_data]
 
-        for i, dataset in enumerate(inventory_data):
+    assert all((i[0], i[1]) in list_datasets for i, v in d_datasets.items()
+               if not v["exists in original database"]
+               and not v["new dataset"]), \
+        "Config file refers to one or several dataset(s) that cannot be found."
+
+    # flag imported inventories
+    for i, dataset in enumerate(inventory_data):
+        if (dataset["name"], dataset["reference product"]) in d_datasets:
             dataset["custom scenario dataset"] = True
+            data_vars = d_datasets[(dataset["name"], dataset["reference product"])]
 
-            if (name, ref) == (dataset["name"], dataset["reference product"]):
-                inventory_data[i] = flag_activities_to_adjust(
-                    dataset, scenario_data, year, v
+
+            inventory_data[i] = flag_activities_to_adjust(
+                    dataset, scenario_data, year, data_vars
+            )
+
+    # flag inventories present in the original database
+    for key, val in d_datasets.items():
+        if val.get("exists in original database"):
+            for original_ds in ws.get_many(
+                database,
+                ws.equals("name", key[0]),
+                ws.equals("reference product", key[1]),
+
+            ):
+                flag_activities_to_adjust(
+                    original_ds, scenario_data, year, val
                 )
 
     return inventory_data
@@ -294,15 +311,16 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                     rev_scenarios[iam_scen] = [lst_ext_scen[int(usr_input)]]
 
         for iam_scen in iam_scenarios:
+
             try:
                 if "external scenarios" in iam_scen:
                     iam_scen["external scenarios"].append(
-                        rev_scenarios[(iam_scen["model"], iam_scen["pathway"])]
+                        rev_scenarios[(iam_scen["model"], iam_scen["pathway"])][0]
                     )
                 else:
-                    iam_scen["external scenarios"] = rev_scenarios[
+                    iam_scen["external scenarios"] = [rev_scenarios[
                         (iam_scen["model"], iam_scen["pathway"])
-                    ]
+                    ][0]]
             except KeyError as err:
                 raise KeyError(
                     f"External scenario no. {i + 1} is not compatible with {iam_scen['model'], iam_scen['pathway']}."

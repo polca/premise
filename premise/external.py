@@ -5,6 +5,7 @@ Implements external scenario data.
 import xarray as xr
 import yaml
 from numpy import ndarray
+from wurst import searching as ws
 
 from .clean_datasets import get_biosphere_flow_uuid
 from .transformation import *
@@ -30,7 +31,7 @@ def flag_activities_to_adjust(
     dataset["regions"] = regions
 
     # add potential technosphere or biosphere filters
-    if "efficiency" in dataset_vars:
+    if dataset_vars["efficiency"]:
         dataset["adjust efficiency"] = True
 
         d_tech_filters = {
@@ -111,17 +112,17 @@ def flag_activities_to_adjust(
         if d_bio_filters:
             dataset["biosphere filters"] = d_bio_filters
 
-    if "replaces" in dataset_vars:
+    if dataset_vars["replaces"]:
         dataset["replaces"] = dataset_vars["replaces"]
 
-    if "replaces in" in dataset_vars:
+    if dataset_vars["replaces in"]:
         dataset["replaces in"] = dataset_vars["replaces in"]
 
-    if "replacement ratio" in dataset_vars:
+    if dataset_vars["replacement ratio"] != 1.0:
         dataset["replacement ratio"] = dataset_vars["replacement ratio"]
 
-    if "regionalize" in dataset_vars["ecoinvent alias"]:
-        dataset["regionalize"] = dataset_vars["ecoinvent alias"]["regionalize"]
+    if dataset_vars["regionalize"]:
+        dataset["regionalize"] = dataset_vars["regionalize"]
 
     return dataset
 
@@ -190,6 +191,7 @@ def adjust_efficiency(dataset: dict) -> dict:
 
     # if the dataset has been tagged with `adjust efficiency`
     if "adjust efficiency" in dataset:
+
         # loop through the type of flows to adjust
 
         for eff_type in ["technosphere", "biosphere"]:
@@ -198,7 +200,13 @@ def adjust_efficiency(dataset: dict) -> dict:
                 for k, v in dataset[f"{eff_type} filters"].items():
 
                     # the scaling factor is the inverse of the efficiency change
-                    scaling_factor = 1 / v[1][dataset["location"]]
+                    if len(dataset["regions"]) > 1:
+                        try:
+                            scaling_factor = 1 / v[1][dataset["location"]]
+                        except KeyError as err:
+                            raise KeyError(f"No efficiency factor provided for region {dataset['location']}") from err
+                    else:
+                        scaling_factor = 1 / v[1].get(dataset["regions"][0], 1)
                     filters = v[0]
 
                     if eff_type == "technosphere":
@@ -234,7 +242,6 @@ def adjust_efficiency(dataset: dict) -> dict:
                                 dataset,
                             ):
                                 wurst.rescale_exchange(exc, scaling_factor)
-
     return dataset
 
 
@@ -333,7 +340,7 @@ class ExternalScenario(BaseTransformation):
                 "regions": ds.get("regions", self.regions),
             }
             for ds in self.database
-            if any(i in ds for i in ["custom scenario dataset", "regionalize"])
+            if ds.get("regionalize", False) is True
             and ds["name"] in ds_names
         ]
 
@@ -342,40 +349,46 @@ class ExternalScenario(BaseTransformation):
             # Check if datasets already exist for IAM regions
             # if not, create them
             if ds["location"] not in regions:
-
                 new_acts = self.fetch_proxies(
                     name=ds["name"],
                     ref_prod=ds["reference product"],
                     regions=ds["regions"],
                 )
 
-                # adjust efficiency
-                new_acts = {k: adjust_efficiency(v) for k, v in new_acts.items()}
                 # add new datasets to database
                 self.database.extend(new_acts.values())
 
-            else:
-                # if they do, we just need to adjust their efficiency
-                new_acts = ws.get_many(
-                    self.database,
-                    ws.equals("name", ds["name"]),
-                    ws.equals("reference product", ds["reference product"]),
-                    ws.either(*[ws.equals("location", x) for x in regions]),
-                )
-                for v in new_acts:
-                    adjust_efficiency(v)
+        replacing_acts = [
+            {
+                "name": ds["name"],
+                "reference product": ds["reference product"],
+                "location": ds["location"],
+                "replaces": ds.get("replaces", None),
+                "replaces in": ds.get("replaces in", None),
+                "regions": ds.get("regions", self.regions),
+            }
+            for ds in self.database
+            if "replaces" in ds
+        ]
 
-            # these datasets might be meant to replace the supply
-            # of other datasets, so we need to adjust those
-            if ds["replaces"]:
-                self.relink_to_new_datasets(
-                    replaces=ds["replaces"],
-                    replaces_in=ds.get("replaces in", None),
-                    new_name=ds["name"],
-                    new_ref=ds["reference product"],
-                    ratio=ds.get("replacement ratio", 1),
-                    regions=ds.get("regions", regions),
-                )
+        # some datasets might be meant to replace the supply
+        # of other datasets, so we need to adjust those
+        for ds in replacing_acts:
+            self.relink_to_new_datasets(
+                replaces=ds["replaces"],
+                replaces_in=ds.get("replaces in", None),
+                new_name=ds["name"],
+                new_ref=ds["reference product"],
+                ratio=ds.get("replacement ratio", 1),
+                regions=ds.get("regions", regions),
+            )
+
+        # adjust efficiency of datasets
+        for dataset in ws.get_many(
+            self.database,
+            ws.equals("adjust efficiency", True)
+        ):
+            adjust_efficiency(dataset)
 
     def get_market_dictionary_structure(self, market: dict, region: str) -> dict:
         """
@@ -498,10 +511,16 @@ class ExternalScenario(BaseTransformation):
                                 ]
                             else:
                                 ecoinvent_regions = [
-                                    r[-1]
-                                    for r in [self.geo.geo.within(x) for x in regions]
-                                    if r[0] == "ecoinvent" and r[-1] != "GLO"
+                                    r if isinstance(r, str) or r[0] == "ecoinvent" else None
+                                    for r in [y for x in regions for y in self.geo.geo.within(x)]
                                 ]
+
+                                ecoinvent_regions = [i for i in ecoinvent_regions if i and i != "GLO"]
+
+                                if len(ecoinvent_regions) == 0:
+                                    ecoinvent_regions = [i for i in list(self.geo.geo.keys()) if isinstance(i, str)
+                                                         and i != "GLO"]
+
 
                             possible_locations = [
                                 *regions,
@@ -794,11 +813,15 @@ class ExternalScenario(BaseTransformation):
 
                             else:
                                 ecoinvent_regions = [
-                                    r[-1]
-                                    for r in self.geo.geo.within(region)
-                                    if r[0] == "ecoinvent"
-                                    and r[-1] not in ["GLO", "RoW"]
+                                    r if isinstance(r, str) or r[0] == "ecoinvent" else None
+                                    for r in [y for x in regions for y in self.geo.geo.within(x)]
                                 ]
+
+                                ecoinvent_regions = [i for i in ecoinvent_regions if i and i != "GLO"]
+
+                                if len(ecoinvent_regions) == 0:
+                                    ecoinvent_regions = [i for i in list(self.geo.geo.keys()) if isinstance(i, str)
+                                                         and i != "GLO"]
 
                             possible_locations = [
                                 region,
@@ -900,6 +923,7 @@ class ExternalScenario(BaseTransformation):
 
                     # if the new markets are meant to replace for other
                     # providers in the database
+
                     if "replaces" in market_vars:
 
                         self.relink_to_new_datasets(
@@ -933,8 +957,6 @@ class ExternalScenario(BaseTransformation):
 
         """
 
-        print("Relink to new markets.")
-
         datasets = []
 
         if replaces_in:
@@ -955,9 +977,10 @@ class ExternalScenario(BaseTransformation):
                     list_fltr.append(ws.equals(field, k[field]))
 
         for ds in datasets:
+
             for exc in ws.technosphere(ds, ws.either(*list_fltr)):
 
-                if ds["location"] in self.regions or ds["location"] == "World":
+                if ds["location"] in regions or ds["location"] == "World":
                     if ds["location"] not in regions:
                         new_loc = "World"
                     else:
@@ -971,3 +994,4 @@ class ExternalScenario(BaseTransformation):
 
                 if "input" in exc:
                     del exc["input"]
+
