@@ -39,24 +39,27 @@ def check_inventories(
 
     d_datasets = {
         (val["ecoinvent alias"]["name"], val["ecoinvent alias"]["reference product"]): {
-        "exists in original database": val["ecoinvent alias"].get("exists in original database", "False"),
-        "new dataset": val["ecoinvent alias"].get("new dataset", "False"),
-        "regionalize": val["ecoinvent alias"].get("regionalize", "False"),
-        "except regions": val.get("except regions", []),
-        "efficiency": val.get("efficiency", []),
-        "replaces": val.get("replaces", []),
-        "replaces in": val.get("replaces in", []),
-        "replacement ratio": val.get("replacement ratio", 1),
+            "exists in original database": val["ecoinvent alias"].get(
+                "exists in original database", "False"
+            ),
+            "new dataset": val["ecoinvent alias"].get("new dataset", "False"),
+            "regionalize": val["ecoinvent alias"].get("regionalize", "False"),
+            "except regions": val.get("except regions", []),
+            "efficiency": val.get("efficiency", []),
+            "replaces": val.get("replaces", []),
+            "replaces in": val.get("replaces in", []),
+            "replacement ratio": val.get("replacement ratio", 1),
         }
         for val in config["production pathways"].values()
     }
 
     list_datasets = [(i["name"], i["reference product"]) for i in inventory_data]
 
-    assert all((i[0], i[1]) in list_datasets for i, v in d_datasets.items()
-               if not v["exists in original database"]
-               and not v["new dataset"]), \
-        "Config file refers to one or several dataset(s) that cannot be found."
+    assert all(
+        (i[0], i[1]) in list_datasets
+        for i, v in d_datasets.items()
+        if not v["exists in original database"] and not v["new dataset"]
+    ), "Config file refers to one or several dataset(s) that cannot be found."
 
     # flag imported inventories
     for i, dataset in enumerate(inventory_data):
@@ -64,9 +67,8 @@ def check_inventories(
             dataset["custom scenario dataset"] = True
             data_vars = d_datasets[(dataset["name"], dataset["reference product"])]
 
-
             inventory_data[i] = flag_activities_to_adjust(
-                    dataset, scenario_data, year, data_vars
+                dataset, scenario_data, year, data_vars
             )
 
     # flag inventories present in the original database
@@ -76,11 +78,8 @@ def check_inventories(
                 database,
                 ws.equals("name", key[0]),
                 ws.equals("reference product", key[1]),
-
             ):
-                flag_activities_to_adjust(
-                    original_ds, scenario_data, year, val
-                )
+                flag_activities_to_adjust(original_ds, scenario_data, year, val)
 
     return inventory_data
 
@@ -318,9 +317,9 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                         rev_scenarios[(iam_scen["model"], iam_scen["pathway"])][0]
                     )
                 else:
-                    iam_scen["external scenarios"] = [rev_scenarios[
-                        (iam_scen["model"], iam_scen["pathway"])
-                    ][0]]
+                    iam_scen["external scenarios"] = [
+                        rev_scenarios[(iam_scen["model"], iam_scen["pathway"])][0]
+                    ]
             except KeyError as err:
                 raise KeyError(
                     f"External scenario no. {i + 1} is not compatible with {iam_scen['model'], iam_scen['pathway']}."

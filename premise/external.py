@@ -204,7 +204,9 @@ def adjust_efficiency(dataset: dict) -> dict:
                         try:
                             scaling_factor = 1 / v[1][dataset["location"]]
                         except KeyError as err:
-                            raise KeyError(f"No efficiency factor provided for region {dataset['location']}") from err
+                            raise KeyError(
+                                f"No efficiency factor provided for region {dataset['location']}"
+                            ) from err
                     else:
                         scaling_factor = 1 / v[1].get(dataset["regions"][0], 1)
                     filters = v[0]
@@ -340,8 +342,7 @@ class ExternalScenario(BaseTransformation):
                 "regions": ds.get("regions", self.regions),
             }
             for ds in self.database
-            if ds.get("regionalize", False) is True
-            and ds["name"] in ds_names
+            if ds.get("regionalize", False) is True and ds["name"] in ds_names
         ]
 
         for ds in acts_to_regionalize:
@@ -384,10 +385,7 @@ class ExternalScenario(BaseTransformation):
             )
 
         # adjust efficiency of datasets
-        for dataset in ws.get_many(
-            self.database,
-            ws.equals("adjust efficiency", True)
-        ):
+        for dataset in ws.get_many(self.database, ws.equals("adjust efficiency", True)):
             adjust_efficiency(dataset)
 
     def get_market_dictionary_structure(self, market: dict, region: str) -> dict:
@@ -511,16 +509,26 @@ class ExternalScenario(BaseTransformation):
                                 ]
                             else:
                                 ecoinvent_regions = [
-                                    r if isinstance(r, str) or r[0] == "ecoinvent" else None
-                                    for r in [y for x in regions for y in self.geo.geo.within(x)]
+                                    r
+                                    if isinstance(r, str) or r[0] == "ecoinvent"
+                                    else None
+                                    for r in [
+                                        y
+                                        for x in regions
+                                        for y in self.geo.geo.within(x)
+                                    ]
                                 ]
 
-                                ecoinvent_regions = [i for i in ecoinvent_regions if i and i != "GLO"]
+                                ecoinvent_regions = [
+                                    i for i in ecoinvent_regions if i and i != "GLO"
+                                ]
 
                                 if len(ecoinvent_regions) == 0:
-                                    ecoinvent_regions = [i for i in list(self.geo.geo.keys()) if isinstance(i, str)
-                                                         and i != "GLO"]
-
+                                    ecoinvent_regions = [
+                                        i
+                                        for i in list(self.geo.geo.keys())
+                                        if isinstance(i, str) and i != "GLO"
+                                    ]
 
                             possible_locations = [
                                 *regions,
@@ -813,15 +821,26 @@ class ExternalScenario(BaseTransformation):
 
                             else:
                                 ecoinvent_regions = [
-                                    r if isinstance(r, str) or r[0] == "ecoinvent" else None
-                                    for r in [y for x in regions for y in self.geo.geo.within(x)]
+                                    r
+                                    if isinstance(r, str) or r[0] == "ecoinvent"
+                                    else None
+                                    for r in [
+                                        y
+                                        for x in regions
+                                        for y in self.geo.geo.within(x)
+                                    ]
                                 ]
 
-                                ecoinvent_regions = [i for i in ecoinvent_regions if i and i != "GLO"]
+                                ecoinvent_regions = [
+                                    i for i in ecoinvent_regions if i and i != "GLO"
+                                ]
 
                                 if len(ecoinvent_regions) == 0:
-                                    ecoinvent_regions = [i for i in list(self.geo.geo.keys()) if isinstance(i, str)
-                                                         and i != "GLO"]
+                                    ecoinvent_regions = [
+                                        i
+                                        for i in list(self.geo.geo.keys())
+                                        if isinstance(i, str) and i != "GLO"
+                                    ]
 
                             possible_locations = [
                                 region,
@@ -994,4 +1013,3 @@ class ExternalScenario(BaseTransformation):
 
                 if "input" in exc:
                     del exc["input"]
-
