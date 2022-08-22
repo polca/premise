@@ -476,6 +476,8 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
         f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios
     ]
 
+
+
     for m in modified:
         for s in list_scenarios:
             if s not in modified[m].keys():
@@ -577,7 +579,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
     if not os.path.exists(filepath):
         os.makedirs(filepath)
 
-    filepath = filepath / f"scenario_diff_{db_name}.xlsx"
+    filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
 
     df = pd.DataFrame(l_modified[1:], columns=l_modified[0])
 
@@ -593,7 +595,14 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
     after = len(df)
     print(f"Dropped {before - after} duplicates.")
 
-    df.to_excel(filepath, index=False)
+    try:
+        df.to_excel(filepath_sdf, index=False)
+    except ValueError:
+        # from https://stackoverflow.com/questions/66356152/splitting-a-dataframe-into-multiple-sheets
+        GROUP_LENGTH = 1000000  # set nr of rows to slice df
+        with pd.ExcelWriter(filepath_sdf) as writer:
+            for i in range(0, len(df), GROUP_LENGTH):
+                df[i: i + GROUP_LENGTH].to_excel(writer, sheet_name=f'Row {i}', index=False, header=True)
 
     print(f"Scenario difference file exported to {filepath}!")
 
