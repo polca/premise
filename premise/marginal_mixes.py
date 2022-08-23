@@ -375,12 +375,14 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 new_start[:, :] = start[:, None]
                 start = new_start
 
-            mask_end = data_full.sel(region=region).year <= end
-            mask_start = data_full.sel(region=region).year >= start
+            mask_end = data_full.sel(region=region).year.values[None, :] <= end
+            mask_start = data_full.sel(region=region).year.values[None, :] >= start
             mask = mask_end & mask_start
+            maskxr= xr.zeros_like(data_full.sel(region=region))
+            maskxr += mask
 
             masked_data = data_full.sel(region=region).where(
-                mask, drop = True
+                maskxr, drop = True
             )
 
             coeff = masked_data.polyfit(dim="year", deg=1)
@@ -400,7 +402,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 # to the changes market share
                 market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
 
-        if not capital_repl_rate and measurement == 2:
+        if measurement == 2:
 
             if isinstance(end, np.ndarray):
                 data_end = (
@@ -438,18 +440,24 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     year=start,
                 )
 
-            mask_end = data_full.sel(region=region).year <= end
-            mask_start = data_full.sel(region=region).year >= start
+            mask_end = data_full.sel(region=region).year.values[None, :] <= end
+            mask_start = data_full.sel(region=region).year.values[None, :] >= start
             mask = mask_end & mask_start
+            maskxr= xr.zeros_like(data_full.sel(region=region))
+            maskxr += mask
 
             masked_data = data_full.sel(region=region).where(
-                mask, drop = True
+                maskxr, drop = True
             )
 
             coeff = masked_data.sum(dim="year").values
 
             if isinstance(end, np.ndarray):
                 end = np.mean(end, 1)
+
+            if isinstance(start, np.ndarray):
+                start = np.mean(start, 1)
+                
             n = end - start
 
             total_area = 0.5 * (2 * coeff - data_end.values - data_start.values)
