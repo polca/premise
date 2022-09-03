@@ -1,6 +1,7 @@
 import xarray as xr
 
 from premise.export import *
+from premise.clean_datasets import remove_uncertainty
 
 
 def test_simapro_units():
