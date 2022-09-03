@@ -19,11 +19,7 @@ from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import (
-    Export,
-    build_superstructure_db,
-    prepare_db_for_export,
-)
+from .export import Export, build_superstructure_db, prepare_db_for_export
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .scenario_report import generate_summary_report
@@ -479,7 +475,7 @@ class NewDatabase:
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
         quiet=False,
-        keep_uncertainty_data=False
+        keep_uncertainty_data=False,
     ) -> None:
 
         self.source = source_db
@@ -517,10 +513,14 @@ class NewDatabase:
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
-            self.database = self.__find_cached_db(source_db, keep_uncertainty_data=keep_uncertainty_data)
+            self.database = self.__find_cached_db(
+                source_db, keep_uncertainty_data=keep_uncertainty_data
+            )
             print("Done!")
         else:
-            self.database = self.__clean_database(keep_uncertainty_data=keep_uncertainty_data)
+            self.database = self.__clean_database(
+                keep_uncertainty_data=keep_uncertainty_data
+            )
 
         print("\n////////////////// IMPORTING DEFAULT INVENTORIES ///////////////////")
         if use_cached_inventories:
@@ -1002,7 +1002,7 @@ class NewDatabase:
 
         print("Write new database(s) to Brightway2.")
 
-        cache={}
+        cache = {}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
@@ -1050,7 +1050,7 @@ class NewDatabase:
 
         print("Write new database(s) to matrix.")
 
-        cache={}
+        cache = {}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
@@ -1080,7 +1080,7 @@ class NewDatabase:
 
         print("Write Simapro import file(s).")
 
-        cache={}
+        cache = {}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")

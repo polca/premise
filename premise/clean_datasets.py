@@ -14,7 +14,6 @@ import wurst
 from bw2data.database import DatabaseChooser
 from wurst import searching as ws
 
-
 from . import DATA_DIR
 
 FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
@@ -45,6 +44,7 @@ def remove_uncertainty(database):
                         if key in exc:
                             del exc[key]
     return database
+
 
 def get_fix_names_dict() -> Dict[str, str]:
     """

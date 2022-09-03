@@ -1084,7 +1084,12 @@ class Fuels(BaseTransformation):
             wurst.change_exchanges_by_constant_factor(
                 dataset,
                 scaling_factor,
-                [ws.equals("unit", "kilogram"), ws.either(ws.contains("name", "Farming"), ws.contains("name", "Supply"))],
+                [
+                    ws.equals("unit", "kilogram"),
+                    ws.either(
+                        ws.contains("name", "Farming"), ws.contains("name", "Supply")
+                    ),
+                ],
                 [ws.doesnt_contain_any("name", self.emissions_map)],
             )
 
@@ -1195,8 +1200,10 @@ class Fuels(BaseTransformation):
                                 "farming and supply" in new_ds[region]["name"].lower()
                                 and crop_type.lower()
                                 in self.iam_data.land_use.variables.values
-                                and not any(i in new_ds[region]["name"].lower()
-                                            for i in ["straw", "residue", "stover"])
+                                and not any(
+                                    i in new_ds[region]["name"].lower()
+                                    for i in ["straw", "residue", "stover"]
+                                )
                             ):
                                 new_ds[region] = self.adjust_land_use(
                                     dataset=new_ds[region],
@@ -1212,8 +1219,10 @@ class Fuels(BaseTransformation):
                                 "farming and supply" in new_ds[region]["name"].lower()
                                 and crop_type.lower()
                                 in self.iam_data.land_use_change.variables.values
-                                    and not any(i in new_ds[region]["name"].lower()
-                                                for i in ["straw", "residue", "stover"])
+                                and not any(
+                                    i in new_ds[region]["name"].lower()
+                                    for i in ["straw", "residue", "stover"]
+                                )
                             ):
                                 new_ds[region] = self.adjust_land_use_change_emissions(
                                     dataset=new_ds[region],

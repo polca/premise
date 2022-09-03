@@ -8,16 +8,16 @@ import json
 import os
 import re
 import uuid
-import numpy as np
+from collections import defaultdict
+from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List
-from scipy import sparse as nsp
-import sparse
-from functools import lru_cache
-from collections import defaultdict
 
+import numpy as np
 import pandas as pd
+import sparse
 import yaml
+from scipy import sparse as nsp
 
 from . import DATA_DIR, __version__
 from .transformation import BaseTransformation
@@ -27,7 +27,7 @@ FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
     DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
 )
-OUTDATED_FLOWS = (DATA_DIR / "utils" / "export" / "outdated_flows.yaml")
+OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
 
 
 def get_simapro_units() -> Dict[str, str]:
@@ -273,6 +273,7 @@ def create_codes_and_names_of_tech_matrix(database: List[dict]):
         for i in database
     }
 
+
 def biosphere_flows_dictionary():
     """
     Create a dictionary with biosphere flows
@@ -289,6 +290,7 @@ def biosphere_flows_dictionary():
             csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
 
     return csv_dict
+
 
 def get_list_unique_acts(scenarios):
     list_unique_acts = []
@@ -310,6 +312,7 @@ def get_list_unique_acts(scenarios):
             )
     return list(set(list_unique_acts))
 
+
 def get_outdated_flows():
 
     with open(OUTDATED_FLOWS, "r", encoding="utf-8") as stream:
@@ -317,9 +320,11 @@ def get_outdated_flows():
 
     return outdated_flows
 
+
 bio_dict = biosphere_flows_dictionary()
 outdated_flows = get_outdated_flows()
 exc_codes = {}
+
 
 @lru_cache()
 def fetch_exchange_code(name, ref, loc, unit):
@@ -328,9 +333,10 @@ def fetch_exchange_code(name, ref, loc, unit):
         code = str(uuid.uuid4().hex)
         exc_codes[(name, ref, loc, unit)] = code
     else:
-       code = exc_codes[(name, ref, loc, unit)]
+        code = exc_codes[(name, ref, loc, unit)]
 
     return code
+
 
 def get_act_dict_structure(ind, acts_ind, db_name):
     name, ref, _, loc, unit = acts_ind[ind]
@@ -375,7 +381,10 @@ def get_exchange(ind, acts_ind, db_name, amount=1.0, production=False):
                     "input": (
                         "biosphere3",
                         bio_dict[
-                            outdated_flows[name], cat[0], cat[1] if len(cat) > 1 else "unspecified", unit
+                            outdated_flows[name],
+                            cat[0],
+                            cat[1] if len(cat) > 1 else "unspecified",
+                            unit,
                         ],
                     ),
                 }
@@ -386,8 +395,8 @@ def get_exchange(ind, acts_ind, db_name, amount=1.0, production=False):
         "location": loc,
         "type": "production" if production else "technosphere",
         "amount": amount,
-        "input": (db_name, fetch_exchange_code(name, ref, loc, unit))
-        }
+        "input": (db_name, fetch_exchange_code(name, ref, loc, unit)),
+    }
 
 
 def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dict]:
@@ -402,7 +411,12 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
 
     print("Building superstructure database...")
 
-    exc_codes.update({(a["name"], a["reference product"], a["location"], a["unit"]): a["code"] for a in origin_db})
+    exc_codes.update(
+        {
+            (a["name"], a["reference product"], a["location"], a["unit"]): a["code"]
+            for a in origin_db
+        }
+    )
     list_acts = get_list_unique_acts([{"database": origin_db}] + scenarios)
     acts_ind = dict(enumerate(list_acts))
     acts_ind_rev = {v: k for k, v in acts_ind.items()}
@@ -477,22 +491,40 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
             flow_type = "biosphere"
             database_name = "biosphere3"
             try:
-                exc_key_supplier = (database_name, bio_dict[
-                            s_name, s_cat[0], s_cat[1] if len(s_cat) > 1 else "unspecified", s_unit
-                        ])
+                exc_key_supplier = (
+                    database_name,
+                    bio_dict[
+                        s_name,
+                        s_cat[0],
+                        s_cat[1] if len(s_cat) > 1 else "unspecified",
+                        s_unit,
+                    ],
+                )
             except KeyError:
-                exc_key_supplier = (database_name, bio_dict[
-                    outdated_flows[s_name], s_cat[0], s_cat[1] if len(s_cat) > 1 else "unspecified", s_unit
-                ])
+                exc_key_supplier = (
+                    database_name,
+                    bio_dict[
+                        outdated_flows[s_name],
+                        s_cat[0],
+                        s_cat[1] if len(s_cat) > 1 else "unspecified",
+                        s_unit,
+                    ],
+                )
 
         elif i[0] == i[1]:
             flow_type = "production"
             database_name = db_name
-            exc_key_supplier = (db_name, fetch_exchange_code(s_name, s_ref, s_loc, s_unit))
+            exc_key_supplier = (
+                db_name,
+                fetch_exchange_code(s_name, s_ref, s_loc, s_unit),
+            )
         else:
             flow_type = "technosphere"
             database_name = db_name
-            exc_key_supplier = (db_name, fetch_exchange_code(s_name, s_ref, s_loc, s_unit))
+            exc_key_supplier = (
+                db_name,
+                fetch_exchange_code(s_name, s_ref, s_loc, s_unit),
+            )
 
         exc_key_consumer = (db_name, fetch_exchange_code(c_name, c_ref, c_loc, c_unit))
 
@@ -581,7 +613,7 @@ def prepare_db_for_export(scenario, cache):
         model=scenario["model"],
         pathway=scenario["pathway"],
         year=scenario["year"],
-        cache=cache
+        cache=cache,
     )
 
     # we ensure the absence of duplicate datasets
@@ -602,7 +634,7 @@ def prepare_db_for_export(scenario, cache):
             "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
             "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
             "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-        ]
+        ],
     )
 
     print("Done!")
