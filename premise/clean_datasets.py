@@ -14,11 +14,37 @@ import wurst
 from bw2data.database import DatabaseChooser
 from wurst import searching as ws
 
+
 from . import DATA_DIR
 
 FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
+
+def remove_uncertainty(database):
+    """
+    Remove uncertainty information from database exchanges.
+    :param database:
+    :return:
+    """
+
+    keys_to_remove = [
+        "loc",
+        "scale",
+        "pedigree",
+        "minimum",
+        "maximum",
+    ]
+
+    for dataset in database:
+        for exc in dataset["exchanges"]:
+            if "uncertainty type" in exc:
+                if exc["uncertainty type"] != 0:
+                    exc["uncertainty type"] = 0
+                    for key in keys_to_remove:
+                        if key in exc:
+                            del exc[key]
+    return database
 
 def get_fix_names_dict() -> Dict[str, str]:
     """
@@ -344,7 +370,7 @@ class DatabaseCleaner:
                 exc for exc in dataset["exchanges"] if "delete" not in exc
             ]
 
-    def prepare_datasets(self) -> List[dict]:
+    def prepare_datasets(self, keep_uncertainty_data) -> List[dict]:
         """
         Clean datasets for all databases listed in
         scenarios: fix location names, remove
@@ -368,5 +394,10 @@ class DatabaseCleaner:
         # Remove empty exchanges
         print("Remove empty exchanges.")
         remove_nones(self.database)
+
+        # Remove uncertainty data
+        if not keep_uncertainty_data:
+            print("Remove uncertainty data.")
+            self.database = remove_uncertainty(self.database)
 
         return self.database

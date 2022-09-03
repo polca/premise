@@ -1,6 +1,10 @@
 pig iron:
   ecoinvent_aliases:
     fltr: pig iron production
+    mask:
+      name:
+       - market for
+       - treatment of
 
 steel - primary:
   ecoinvent_aliases:

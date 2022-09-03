@@ -557,6 +557,7 @@ bioethanol, grain:
         - expansion
         - economic
         - carbon
+        - stover
 bioethanol, grain, with CCS:
   lhv: 26.5
   co2: 0.0739
@@ -590,6 +591,7 @@ bioethanol, sugar:
       name:
         - expansion
         - economic
+        - straw
 bioethanol, sugar, with CCS:
   lhv: 26.5
   co2: 0.0739
@@ -613,7 +615,8 @@ ethanol:
   ecoinvent_aliases:
     fltr:
       - market for ethanol
-      - bioethanol
+      - ethanol, without water
+
 ethyl tert-butyl ether:
   lhv: 37.97
   ecoinvent_aliases:

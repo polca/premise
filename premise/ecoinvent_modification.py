@@ -22,7 +22,6 @@ from .electricity import Electricity
 from .export import (
     Export,
     build_superstructure_db,
-    check_for_duplicates,
     prepare_db_for_export,
 )
 from .fuels import Fuels
@@ -480,6 +479,7 @@ class NewDatabase:
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
         quiet=False,
+        keep_uncertainty_data=False
     ) -> None:
 
         self.source = source_db
@@ -517,10 +517,10 @@ class NewDatabase:
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
-            self.database = self.__find_cached_db(source_db)
+            self.database = self.__find_cached_db(source_db, keep_uncertainty_data=keep_uncertainty_data)
             print("Done!")
         else:
-            self.database = self.__clean_database()
+            self.database = self.__clean_database(keep_uncertainty_data=keep_uncertainty_data)
 
         print("\n////////////////// IMPORTING DEFAULT INVENTORIES ///////////////////")
         if use_cached_inventories:
@@ -558,7 +558,7 @@ class NewDatabase:
 
         print("Done!")
 
-    def __find_cached_db(self, db_name: str) -> List[dict]:
+    def __find_cached_db(self, db_name: str, keep_uncertainty_data: bool) -> List[dict]:
         """
         If `use_cached_db` = True, then we look for a cached database.
         If cannot be found, we create a cache for next time.
@@ -580,7 +580,7 @@ class NewDatabase:
 
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
-        database = self.__clean_database()
+        database = self.__clean_database(keep_uncertainty_data=keep_uncertainty_data)
         pickle.dump(database, open(file_name, "wb"))
         return database
 
@@ -611,13 +611,13 @@ class NewDatabase:
         data = self.__import_inventories()
         pickle.dump(data, open(file_name, "wb"))
         print(
-            "Data cached. It is advised to restart your workflow at this point.\n "
-            "This allows premise to use the cached data instead, which results in\n "
+            "Data cached. It is advised to restart your workflow at this point.\n"
+            "This allows premise to use the cached data instead, which results in\n"
             "a faster workflow."
         )
         return None
 
-    def __clean_database(self) -> List[dict]:
+    def __clean_database(self, keep_uncertainty_data) -> List[dict]:
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
         (adds missing locations, reference products, etc.).
@@ -625,7 +625,7 @@ class NewDatabase:
         """
         return DatabaseCleaner(
             self.source, self.source_type, self.source_file_path
-        ).prepare_datasets()
+        ).prepare_datasets(keep_uncertainty_data)
 
     def __import_inventories(self) -> List[dict]:
         """
@@ -954,18 +954,16 @@ class NewDatabase:
                 "create a super-structure database."
             )
 
+        cache = {}
         for scen, scenario in enumerate(self.scenarios):
-
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = prepare_db_for_export(scenario)
+            scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
         self.database = build_superstructure_db(
             self.database, self.scenarios, db_name=name, filepath=filepath
         )
 
         print("Done!")
-
-        self.database = check_for_duplicates(self.database)
 
         wurst.write_brightway2_database(
             self.database,
@@ -1003,10 +1001,12 @@ class NewDatabase:
             )
 
         print("Write new database(s) to Brightway2.")
+
+        cache={}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = prepare_db_for_export(scenario)
+            scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
             wurst.write_brightway2_database(
                 scenario["database"],
@@ -1049,10 +1049,12 @@ class NewDatabase:
             ]
 
         print("Write new database(s) to matrix.")
+
+        cache={}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = prepare_db_for_export(scenario)
+            scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
             Export(
                 scenario["database"],
@@ -1077,10 +1079,12 @@ class NewDatabase:
             os.makedirs(filepath)
 
         print("Write Simapro import file(s).")
+
+        cache={}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = prepare_db_for_export(scenario)
+            scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
             Export(
                 scenario["database"],

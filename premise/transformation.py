@@ -157,6 +157,7 @@ class BaseTransformation:
         model: str,
         pathway: str,
         year: int,
+        cache: dict = None,
     ) -> None:
 
         self.database: List[dict] = database
@@ -178,7 +179,7 @@ class BaseTransformation:
             loc: self.geo.ecoinvent_to_iam_location(loc)
             for loc in self.get_ecoinvent_locs()
         }
-        self.cache: dict = {}
+        self.cache: dict = cache or {}
 
     def get_ecoinvent_locs(self) -> List[str]:
         """
@@ -394,51 +395,52 @@ class BaseTransformation:
                 ws.equals("location", d_iam_to_eco[region]),
             )
 
-            d_act[region] = wt.copy_to_new_location(dataset, region)
-            d_act[region]["code"] = str(uuid.uuid4().hex)
+            if (name, ref_prod, region) not in self.list_datasets:
+                d_act[region] = wt.copy_to_new_location(dataset, region)
+                d_act[region]["code"] = str(uuid.uuid4().hex)
 
-            for exc in ws.production(d_act[region]):
-                if "input" in exc:
-                    exc.pop("input")
+                for exc in ws.production(d_act[region]):
+                    if "input" in exc:
+                        exc.pop("input")
 
-            if "input" in d_act[region]:
-                d_act[region].pop("input")
+                if "input" in d_act[region]:
+                    d_act[region].pop("input")
 
-            if production_variable:
+                if production_variable:
 
-                # Add `production volume` field
-                if isinstance(production_variable, str):
-                    production_variable = [production_variable]
+                    # Add `production volume` field
+                    if isinstance(production_variable, str):
+                        production_variable = [production_variable]
 
-                if all(
-                    i in self.iam_data.production_volumes.variables
-                    for i in production_variable
-                ):
-                    prod_vol = (
-                        self.iam_data.production_volumes.sel(
-                            region=region, variables=production_variable
+                    if all(
+                        i in self.iam_data.production_volumes.variables
+                        for i in production_variable
+                    ):
+                        prod_vol = (
+                            self.iam_data.production_volumes.sel(
+                                region=region, variables=production_variable
+                            )
+                            .interp(year=self.year)
+                            .sum(dim="variables")
+                            .values.item(0)
                         )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
-                        .values.item(0)
-                    )
 
+                    else:
+                        prod_vol = 1
                 else:
                     prod_vol = 1
-            else:
-                prod_vol = 1
 
-            for prod in ws.production(d_act[region]):
-                prod["location"] = region
-                prod["production volume"] = prod_vol
+                for prod in ws.production(d_act[region]):
+                    prod["location"] = region
+                    prod["production volume"] = prod_vol
 
-            if relink:
-                self.cache, d_act[region] = relink_technosphere_exchanges(
-                    d_act[region], self.database, self.model, cache=self.cache
-                )
+                if relink:
+                    self.cache, d_act[region] = relink_technosphere_exchanges(
+                        d_act[region], self.database, self.model, cache=self.cache
+                    )
 
-            ds_name = d_act[region]["name"]
-            ds_ref_prod = d_act[region]["reference product"]
+                ds_name = d_act[region]["name"]
+                ds_ref_prod = d_act[region]["reference product"]
 
         # Remove original datasets from `self.list_datasets`
         if ds_name:
@@ -579,11 +581,13 @@ class BaseTransformation:
 
     def relink_datasets(
         self, excludes_datasets: List[str] = None, alt_names: List[str] = None
-    ) -> None:
+    ) -> dict:
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
 
+        :param excludes_datasets: list of datasets to exclude from relinking
+        :param alt_names: list of alternative names to use for relinking
         """
 
         if alt_names is None:

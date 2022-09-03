@@ -8,13 +8,16 @@ import json
 import os
 import re
 import uuid
-from itertools import chain
+import numpy as np
 from pathlib import Path
 from typing import Dict, List
+from scipy import sparse as nsp
+import sparse
+from functools import lru_cache
+from collections import defaultdict
 
 import pandas as pd
 import yaml
-from wurst import searching as ws
 
 from . import DATA_DIR, __version__
 from .transformation import BaseTransformation
@@ -24,6 +27,7 @@ FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
     DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
 )
+OUTDATED_FLOWS = (DATA_DIR / "utils" / "export" / "outdated_flows.yaml")
 
 
 def get_simapro_units() -> Dict[str, str]:
@@ -144,32 +148,6 @@ def get_simapro_biosphere_dictionnary():
     return dict_bio
 
 
-def remove_uncertainty(database):
-    """
-    Remove uncertainty information from database exchanges.
-    :param database:
-    :return:
-    """
-
-    keys_to_remove = [
-        "loc",
-        "scale",
-        "pedigree",
-        "minimum",
-        "maximum",
-    ]
-
-    for dataset in database:
-        for exc in dataset["exchanges"]:
-            if "uncertainty type" in exc:
-                if exc["uncertainty type"] != 0:
-                    exc["uncertainty type"] = 0
-                    for key in keys_to_remove:
-                        if key in exc:
-                            del exc[key]
-    return database
-
-
 def check_for_duplicates(database):
     """Check for the absence of duplicates before export"""
 
@@ -182,6 +160,7 @@ def check_for_duplicates(database):
         return database
 
     print("One or multiple duplicates detected. Removing them...")
+
     seen = set()
     return [
         x
@@ -294,199 +273,251 @@ def create_codes_and_names_of_tech_matrix(database: List[dict]):
         for i in database
     }
 
-
-def add_modified_tags(original_db, scenarios):
+def biosphere_flows_dictionary():
     """
-    Add a `modified` label to any activity that is new
-    Also add a `modified` label to any exchange that has been added
-    or that has a different value than the source database.
-    :return:
+    Create a dictionary with biosphere flows
+    (name, category, sub-category, unit) -> code
     """
+    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
-    # Class `Export` to which the original database is passed
-    exp = Export(original_db)
-    # Collect a dictionary of activities {row/col index in A matrix: code}
-    rev_ind_A = rev_index(create_codes_index_of_exchanges_matrix(original_db))
-    # Retrieve list of coordinates [activity, activity, value]
-    coords_A = exp.create_A_matrix_coordinates()
-    # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
-    original = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
-    # Collect a dictionary with activities' names and corresponding codes
-    codes_names = create_codes_and_names_of_tech_matrix(original_db)
-    # Collect list of substances
-    rev_ind_B = rev_index(create_codes_index_of_biosphere_flows_matrix())
-    # Retrieve list of coordinates of the B matrix [activity index, substance index, value]
-    coords_B = exp.create_B_matrix_coordinates()
-    # Turn it into a dictionary {(activity code, substance code): value}
-    original.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
+    csv_dict = {}
 
-    for s, scenario in enumerate(scenarios):
-        print(f"Looking for differences in database {s + 1} ...")
-        rev_ind_A = rev_index(
-            create_codes_index_of_exchanges_matrix(scenario["database"])
-        )
-        exp = Export(
-            scenario["database"],
-            scenario["model"],
-            scenario["pathway"],
-            scenario["year"],
-            "",
-        )
-        coords_A = exp.create_A_matrix_coordinates()
-        new = {(rev_ind_A[x[0]], rev_ind_A[x[1]]): x[2] for x in coords_A}
+    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+        input_dict = csv.reader(file, delimiter=";")
+        for row in input_dict:
+            csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
 
-        rev_ind_B = rev_index(create_codes_index_of_biosphere_flows_matrix())
-        coords_B = exp.create_B_matrix_coordinates()
-        new.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] for x in coords_B})
+    return csv_dict
 
-        list_new = set(i[0] for i in original.keys()) ^ set(i[0] for i in new.keys())
-
-        datasets = (d for d in scenario["database"] if d["code"] in list_new)
-
-        # Tag new activities
-        for dataset in datasets:
-            dataset["modified"] = True
-
-        # List codes that belong to activities that contain modified exchanges
-        list_modified = (i[0] for i in new if i in original and new[i] != original[i])
-        #
-        # Filter for activities that have modified exchanges
-        for datasets in ws.get_many(
-            scenario["database"],
-            ws.either(*[ws.equals("code", c) for c in set(list_modified)]),
-        ):
-            # Loop through biosphere exchanges and check if
-            # the exchange also exists in the original database
-            # and if it has the same value
-            # if any of these two conditions is False, we tag the exchange
-            excs = (exc for exc in datasets["exchanges"] if exc["type"] == "biosphere")
-            for exc in excs:
-                if (datasets["code"], exc["input"][0]) not in original or new[
-                    (datasets["code"], exc["input"][0])
-                ] != original[(datasets["code"], exc["input"][0])]:
-                    exc["modified"] = True
-            # Same thing for technosphere exchanges,
-            # except that we first need to look up the provider's code first
-            excs = (
-                exc for exc in datasets["exchanges"] if exc["type"] == "technosphere"
+def get_list_unique_acts(scenarios):
+    list_unique_acts = []
+    for db in scenarios:
+        for ds in db["database"]:
+            list_unique_acts.extend(
+                [
+                    (a["name"], None, a.get("categories"), None, a["unit"])
+                    if a["type"] == "biosphere"
+                    else (
+                        a["name"],
+                        a.get("product"),
+                        None,
+                        a.get("location"),
+                        a["unit"],
+                    )
+                    for a in ds["exchanges"]
+                ]
             )
-            for exc in excs:
-                if (
-                    exc["name"],
-                    exc["product"],
-                    exc["unit"],
-                    exc["location"],
-                ) in codes_names:
-                    exc_code = codes_names[
-                        (exc["name"], exc["product"], exc["unit"], exc["location"])
-                    ]
-                    if (
-                        new[(datasets["code"], exc_code)]
-                        != original[(datasets["code"], exc_code)]
-                    ):
-                        exc["modified"] = True
-                else:
-                    exc["modified"] = True
+    return list(set(list_unique_acts))
 
-    return scenarios
+def get_outdated_flows():
+
+    with open(OUTDATED_FLOWS, "r", encoding="utf-8") as stream:
+        outdated_flows = yaml.safe_load(stream)
+
+    return outdated_flows
+
+bio_dict = biosphere_flows_dictionary()
+outdated_flows = get_outdated_flows()
+exc_codes = {}
+
+@lru_cache()
+def fetch_exchange_code(name, ref, loc, unit):
+
+    if (name, ref, loc, unit) not in exc_codes:
+        code = str(uuid.uuid4().hex)
+        exc_codes[(name, ref, loc, unit)] = code
+    else:
+       code = exc_codes[(name, ref, loc, unit)]
+
+    return code
+
+def get_act_dict_structure(ind, acts_ind, db_name):
+    name, ref, _, loc, unit = acts_ind[ind]
+    code = fetch_exchange_code(name, ref, loc, unit)
+
+    return {
+        "name": name,
+        "reference product": ref,
+        "unit": unit,
+        "location": loc,
+        "database": db_name,
+        "code": code,
+        "exchanges": [],
+    }
 
 
-def build_superstructure_db(origin_db, scenarios, db_name, filepath):
-    # Class `Export` to which the original database is passed
-    exp = Export(db=origin_db, filepath=filepath)
+def get_exchange(ind, acts_ind, db_name, amount=1.0, production=False):
+    name, ref, cat, loc, unit = acts_ind[ind]
+    if cat:
+        try:
+            return {
+                "name": name,
+                "unit": unit,
+                "categories": cat,
+                "type": "biosphere",
+                "amount": amount,
+                "input": (
+                    "biosphere3",
+                    bio_dict[
+                        name, cat[0], cat[1] if len(cat) > 1 else "unspecified", unit
+                    ],
+                ),
+            }
+        except KeyError:
+            if name in outdated_flows:
+                return {
+                    "name": name,
+                    "unit": unit,
+                    "categories": cat,
+                    "type": "biosphere",
+                    "amount": amount,
+                    "input": (
+                        "biosphere3",
+                        bio_dict[
+                            outdated_flows[name], cat[0], cat[1] if len(cat) > 1 else "unspecified", unit
+                        ],
+                    ),
+                }
+    return {
+        "name": name,
+        "product": ref,
+        "unit": unit,
+        "location": loc,
+        "type": "production" if production else "technosphere",
+        "amount": amount,
+        "input": (db_name, fetch_exchange_code(name, ref, loc, unit))
+        }
 
-    # Collect a dictionary of activities
-    # {(name, ref_prod, loc, database, unit):row/col index in A matrix}
-    rev_ind_A = exp.rev_index(exp.create_names_and_indices_of_A_matrix())
 
-    # Retrieve list of coordinates [activity, activity, value]
-    coords_A = exp.create_A_matrix_coordinates()
+def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dict]:
+    """
+    Build a superstructure database from a list of databases
+    :param origin_db: the original database
+    :param scenarios: a list of modified databases
+    :param db_name: the name of the new database
+    :param filepath: the filepath of the new database
+    :return: a superstructure database
+    """
 
-    # Turn it into a dictionary {(code of receiving activity, code of supplying activity): value}
-    original = dict()
-    for x in coords_A:
-        if (rev_ind_A[x[0]], rev_ind_A[x[1]]) in original:
-            original[(rev_ind_A[x[0]], rev_ind_A[x[1]])] += x[2] * -1
-        else:
-            original[(rev_ind_A[x[0]], rev_ind_A[x[1]])] = x[2] * -1
+    print("Building superstructure database...")
 
-    # Collect list of substances
-    rev_ind_B = exp.rev_index(exp.create_names_and_indices_of_B_matrix())
-    # Retrieve list of coordinates of the B matrix [activity index, substance index, value]
-    coords_B = exp.create_B_matrix_coordinates()
-
-    # Turn it into a dictionary {(activity name, ref prod, location, database, unit): value}
-    original.update({(rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] * -1 for x in coords_B})
-
-    modified = {}
-
-    print("Looping through scenarios to detect changes...")
-
-    for scenario in scenarios:
-
-        exp = Export(
-            db=scenario["database"],
-            model=scenario["model"],
-            scenario=scenario["pathway"],
-            year=scenario["year"],
-            filepath=filepath,
-        )
-
-        new_rev_ind_A = exp.rev_index(exp.create_names_and_indices_of_A_matrix())
-        new_coords_A = exp.create_A_matrix_coordinates()
-
-        new = dict()
-        for x in new_coords_A:
-            if (new_rev_ind_A[x[0]], new_rev_ind_A[x[1]]) in new:
-                new[(new_rev_ind_A[x[0]], new_rev_ind_A[x[1]])] += x[2] * -1
-            else:
-                new[(new_rev_ind_A[x[0]], new_rev_ind_A[x[1]])] = x[2] * -1
-
-        new_coords_B = exp.create_B_matrix_coordinates()
-        new.update(
-            {(new_rev_ind_A[x[0]], rev_ind_B[x[1]]): x[2] * -1 for x in new_coords_B}
-        )
-        # List activities that are in the new database
-        # but not in the original one
-        # As well as exchanges that are present
-        # in both databases but with a different value
-        list_modified = (i for i in new if i not in original or new[i] != original[i])
-        # Also add activities from the original database that are not present in
-        # the new one
-        list_new = (i for i in original if i not in new)
-
-        list_modified = chain(list_modified, list_new)
-
-        for i in list_modified:
-            if i not in modified:
-                modified[i] = {"original": original.get(i, 0)}
-
-            modified[i][
-                f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
-            ] = new.get(i, 0)
-
-    # some scenarios may have not been modified
-    # and that means that exchanges might be absent
-    # from `modified`
-    # so we need to manually add them
-    # and set the exchange value similar to that
-    # of the original database
-
+    exc_codes.update({(a["name"], a["reference product"], a["location"], a["unit"]): a["code"] for a in origin_db})
+    list_acts = get_list_unique_acts([{"database": origin_db}] + scenarios)
+    acts_ind = dict(enumerate(list_acts))
+    acts_ind_rev = {v: k for k, v in acts_ind.items()}
     list_scenarios = ["original"] + [
         f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios
     ]
+    list_dbs = [origin_db] + [a["database"] for a in scenarios]
 
+    matrices = {
+        a: nsp.lil_matrix((len(list_acts), len(list_acts)))
+        for a, _ in enumerate(list_scenarios)
+    }
 
-
-    for m in modified:
-        for s in list_scenarios:
-            if s not in modified[m].keys():
-                # if it is a production exchange
-                # the value should be -1
-                if m[1] == m[0]:
-                    modified[m][s] = -1
+    for i, db in enumerate(list_dbs):
+        for ds in db:
+            for exc in ds["exchanges"]:
+                if exc["type"] == "biosphere":
+                    s = (exc["name"], None, exc.get("categories"), None, exc["unit"])
                 else:
-                    modified[m][s] = modified[m]["original"]
+                    s = (
+                        exc["name"],
+                        exc["product"],
+                        None,
+                        exc["location"],
+                        exc["unit"],
+                    )
+                c = (
+                    ds["name"],
+                    ds.get("reference product"),
+                    ds.get("categories"),
+                    ds.get("location"),
+                    ds["unit"],
+                )
+                matrices[i][acts_ind_rev[s], acts_ind_rev[c]] += exc["amount"]
+
+    m = sparse.stack([sparse.COO(x) for x in matrices.values()], axis=-1)
+    inds = sparse.argwhere(m.sum(-1).T != 0)
+    inds = list(map(tuple, inds))
+
+    dataframe_rows = []
+
+    inds_d = defaultdict(list)
+    for ind in inds:
+        inds_d[ind[0]].append(ind[1])
+
+    new_db = []
+
+    for k, v in inds_d.items():
+        act = get_act_dict_structure(
+            k,
+            acts_ind,
+            db_name,
+        )
+
+        act["exchanges"].extend(
+            get_exchange(i, acts_ind, db_name, amount=m[i, k, 0])
+            if i != k
+            else get_exchange(k, acts_ind, db_name, production=True)
+            for i in v
+        )
+
+        new_db.append(act)
+
+    inds_std = sparse.argwhere(m.std(-1).T > 1e-12)
+
+    for i in inds_std:
+
+        c_name, c_ref, c_cat, c_loc, c_unit = acts_ind[i[0]]
+        s_name, s_ref, s_cat, s_loc, s_unit = acts_ind[i[1]]
+
+        if s_cat:
+            flow_type = "biosphere"
+            database_name = "biosphere3"
+            try:
+                exc_key_supplier = (database_name, bio_dict[
+                            s_name, s_cat[0], s_cat[1] if len(s_cat) > 1 else "unspecified", s_unit
+                        ])
+            except KeyError:
+                exc_key_supplier = (database_name, bio_dict[
+                    outdated_flows[s_name], s_cat[0], s_cat[1] if len(s_cat) > 1 else "unspecified", s_unit
+                ])
+
+        elif i[0] == i[1]:
+            flow_type = "production"
+            database_name = db_name
+            exc_key_supplier = (db_name, fetch_exchange_code(s_name, s_ref, s_loc, s_unit))
+        else:
+            flow_type = "technosphere"
+            database_name = db_name
+            exc_key_supplier = (db_name, fetch_exchange_code(s_name, s_ref, s_loc, s_unit))
+
+        exc_key_consumer = (db_name, fetch_exchange_code(c_name, c_ref, c_loc, c_unit))
+
+        row = [
+            s_name,
+            s_ref,
+            s_loc,
+            s_cat,
+            database_name,
+            exc_key_supplier,
+            c_name,
+            c_ref,
+            c_loc,
+            c_cat,
+            db_name,
+            exc_key_consumer,
+            flow_type,
+        ]
+
+        if flow_type == "production":
+            row.extend(np.ones_like(m[i[1], i[0], :]))
+        else:
+            row.extend(m[i[1], i[0], :])
+
+        dataframe_rows.append(row)
 
     columns = [
         "from activity name",
@@ -502,74 +533,12 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
         "to database",
         "to key",
         "flow type",
-    ]
-    columns.extend(list_scenarios)
+    ] + list_scenarios
 
-    print("Export a scenario difference file.")
-
-    l_modified = [columns]
-
-    for m in modified:
-
-        if m[1][2] == "biosphere3":
-            d = [
-                m[1][0],
-                "",
-                "",
-                m[1][1],
-                m[1][2],
-                "",  # biosphere flow code
-                m[0][0],
-                m[0][1],
-                m[0][3],
-                "",
-                db_name,
-                "",  # activity code
-                "biosphere",
-            ]
-        elif m[1] == m[0] and any(v < 0 for v in modified[m].values()):
-            d = [
-                m[1][0],
-                m[1][1],
-                m[1][3],
-                "",
-                db_name,
-                "",  # activity code
-                m[0][0],
-                m[0][1],
-                m[0][3],
-                "",
-                db_name,
-                "",  # activity code
-                "production",
-            ]
-        else:
-            d = [
-                m[1][0],
-                m[1][1],
-                m[1][3],
-                "",
-                db_name,
-                "",  # activity code
-                m[0][0],
-                m[0][1],
-                m[0][3],
-                "",
-                db_name,
-                "",  # activity code
-                "technosphere",
-            ]
-
-        for s in list_scenarios:
-            # we do not want a zero here,
-            # as it would render the matrix undetermined
-            if m[1] == m[0] and modified[m][s] == 0:
-                d.append(1)
-            elif m[1] == m[0] and modified[m][s] < 0:
-                d.append(modified[m][s] * -1)
-            else:
-                d.append(modified[m][s])
-        l_modified.append(d)
+    # create the dataframe
+    df = pd.DataFrame(dataframe_rows, columns=columns)
+    # remove the column `original`
+    df = df.drop(columns=["original"])
 
     if filepath is not None:
         filepath = Path(filepath)
@@ -581,19 +550,12 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
 
     filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
 
-    df = pd.DataFrame(l_modified[1:], columns=l_modified[0])
-
-    before = len(df)
-
     # Drop duplicate rows
+    # should not be any, but just in case
+    before = len(df)
     df = df.drop_duplicates()
-    # Remove rows whose values across scenarios do not change
-    df = df.loc[df.loc[:, "original":].std(axis=1) > 0, :]
-    # Remove `original` column
-    df = df.iloc[:, [j for j, c in enumerate(df.columns) if j != 13]]
-
     after = len(df)
-    print(f"Dropped {before - after} duplicates.")
+    print(f"Dropped {before - after} duplicate(s).")
 
     try:
         df.to_excel(filepath_sdf, index=False)
@@ -602,167 +564,16 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath):
         GROUP_LENGTH = 1000000  # set nr of rows to slice df
         with pd.ExcelWriter(filepath_sdf) as writer:
             for i in range(0, len(df), GROUP_LENGTH):
-                df[i: i + GROUP_LENGTH].to_excel(writer, sheet_name=f'Row {i}', index=False, header=True)
+                df[i : i + GROUP_LENGTH].to_excel(
+                    writer, sheet_name=f"Row {i}", index=False, header=True
+                )
 
     print(f"Scenario difference file exported to {filepath}!")
 
-    list_modified_acts = list(
-        set([e[0] for e, v in modified.items() if v["original"] == 0])
-    )
-
-    acts_to_extend = [
-        act
-        for act in origin_db
-        if (
-            act["name"],
-            act["reference product"],
-            "ecoinvent",
-            act["location"],
-            act["unit"],
-        )
-        in list_modified_acts
-    ]
-
-    print(f"Adding exchanges to {len(acts_to_extend)} activities.")
-
-    dict_bio = exp.create_names_and_indices_of_B_matrix()
-
-    for ds in acts_to_extend:
-        exc_to_add = []
-        for exc in [
-            e
-            for e in modified
-            if e[0]
-            == (
-                ds["name"],
-                ds["reference product"],
-                "ecoinvent",
-                ds["location"],
-                ds["unit"],
-            )
-            and modified[e]["original"] == 0
-        ]:
-            # a biosphere flow
-            if isinstance(exc[1][1], tuple):
-                exc_to_add.append(
-                    {
-                        "amount": 0,
-                        "input": (
-                            "biosphere3",
-                            exp.get_bio_code(
-                                dict_bio[(exc[1][0], exc[1][1], exc[1][2], exc[1][3])]
-                            ),
-                        ),
-                        "type": "biosphere",
-                        "name": exc[1][0],
-                        "unit": exc[1][3],
-                        "categories": exc[1][1],
-                    }
-                )
-
-            # a technosphere flow
-            else:
-                exc_to_add.append(
-                    {
-                        "amount": 0,
-                        "type": "technosphere",
-                        "product": exc[1][1],
-                        "name": exc[1][0],
-                        "unit": exc[1][4],
-                        "location": exc[1][3],
-                    }
-                )
-
-        if len(exc_to_add) > 0:
-            ds["exchanges"].extend(exc_to_add)
-
-    list_act = [
-        (a["name"], a["reference product"], a["database"], a["location"], a["unit"])
-        for a in origin_db
-    ]
-    list_to_add = [
-        m[0] for m, v in modified.items() if v["original"] == 0 and m[0] not in list_act
-    ]
-    list_to_add = list(set(list_to_add))
-
-    print(f"Adding {len(list_to_add)} extra activities to the original database...")
-
-    acts_to_add = []
-    for add in list_to_add:
-        act_to_add = {
-            "location": add[3],
-            "name": add[0],
-            "reference product": add[1],
-            "unit": add[4],
-            "database": add[2],
-            "code": str(uuid.uuid4().hex),
-            "exchanges": [],
-        }
-
-        acts = (act for act in modified if act[0] == add)
-        excs_to_add = []
-        for act in acts:
-            if isinstance(act[1][1], tuple):
-                # this is a biosphere flow
-                excs_to_add.append(
-                    {
-                        "uncertainty type": 0,
-                        "loc": 0,
-                        "amount": 0,
-                        "type": "biosphere",
-                        "input": (
-                            "biosphere3",
-                            exp.get_bio_code(
-                                dict_bio[(act[1][0], act[1][1], act[1][2], act[1][3])]
-                            ),
-                        ),
-                        "name": act[1][0],
-                        "unit": act[1][3],
-                        "categories": act[1][1],
-                    }
-                )
-
-            else:
-
-                if act[1] == act[0]:
-                    excs_to_add.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 1,
-                            "amount": 1,
-                            "type": "production",
-                            "production volume": 0,
-                            "product": act[1][1],
-                            "name": act[1][0],
-                            "unit": act[1][4],
-                            "location": act[1][3],
-                        }
-                    )
-
-                else:
-
-                    excs_to_add.append(
-                        {
-                            "uncertainty type": 0,
-                            "loc": 0,
-                            "amount": 0,
-                            "type": "technosphere",
-                            "production volume": 0,
-                            "product": act[1][1],
-                            "name": act[1][0],
-                            "unit": act[1][4],
-                            "location": act[1][3],
-                        }
-                    )
-        act_to_add["exchanges"].extend(excs_to_add)
-        acts_to_add.append(act_to_add)
-
-    origin_db.extend(acts_to_add)
-
-    return origin_db
+    return new_db
 
 
-def prepare_db_for_export(scenario):
+def prepare_db_for_export(scenario, cache):
 
     base = BaseTransformation(
         database=scenario["database"],
@@ -770,15 +581,18 @@ def prepare_db_for_export(scenario):
         model=scenario["model"],
         pathway=scenario["pathway"],
         year=scenario["year"],
+        cache=cache
     )
 
     # we ensure the absence of duplicate datasets
+    print("- check for duplicates...")
     base.database = check_for_duplicates(base.database)
-    # we remove uncertainty data
-    base.database = remove_uncertainty(base.database)
     # we check the format of numbers
+    print("- check for values format...")
     base.database = check_amount_format(base.database)
 
+    # we relink "dead" exchanges
+    print("- relinking exchanges...")
     base.relink_datasets(
         excludes_datasets=["cobalt industry", "market group for electricity"],
         alt_names=[
@@ -788,10 +602,12 @@ def prepare_db_for_export(scenario):
             "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
             "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
             "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-        ],
+        ]
     )
 
-    return base.database
+    print("Done!")
+
+    return base.database, base.cache
 
 
 class Export:
