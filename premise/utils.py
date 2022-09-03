@@ -270,10 +270,14 @@ def relink_technosphere_exchanges(
                 if not kept and exc["name"].startswith("market group for"):
 
                     market_group_exc = exc.copy()
-                    market_group_exc["name"] = market_group_exc["name"].replace("market group for", "market for")
+                    market_group_exc["name"] = market_group_exc["name"].replace(
+                        "market group for", "market for"
+                    )
 
                     possible_datasets = [
-                        x for x in get_possibles(market_group_exc, data) if x["location"] in list_loc
+                        x
+                        for x in get_possibles(market_group_exc, data)
+                        if x["location"] in list_loc
                     ]
 
                     possible_locations = [obj["location"] for obj in possible_datasets]
