@@ -30,6 +30,7 @@ requirements:
     - pycountry
     - cryptography
     - pyYaml
+    - sparse
 
 test:
   imports:

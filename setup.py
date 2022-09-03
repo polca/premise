@@ -53,6 +53,7 @@ setup(
         "cryptography",
         "premise_gwp",
         "pyYaml",
+        "sparse"
     ],
     url="https://github.com/polca/premise",
     description="Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA",
