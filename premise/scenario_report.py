@@ -11,7 +11,6 @@ from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 from openpyxl.utils.dataframe import dataframe_to_rows
 
-
 from . import DATA_DIR
 from .data_collection import IAMDataCollection
 
@@ -101,7 +100,9 @@ def generate_summary_report(scenarios: IAMDataCollection, filename: Path) -> Non
 
         last_col_used = 0
 
-        for scenario_idx, scenario in enumerate(scenarios.production_volumes.scenario.values):
+        for scenario_idx, scenario in enumerate(
+            scenarios.production_volumes.scenario.values
+        ):
             model, pathway, year = scenario.split("::")
 
             if (model, pathway) not in scenario_list:
@@ -111,7 +112,9 @@ def generate_summary_report(scenarios: IAMDataCollection, filename: Path) -> Non
                 elif "efficiency" in sector:
                     iam_data = scenarios.efficiency.sel(scenario=scenario)
                 elif "CCS" in sector:
-                    iam_data = scenarios.carbon_capture_rate.sel(scenario=scenario) * 100
+                    iam_data = (
+                        scenarios.carbon_capture_rate.sel(scenario=scenario) * 100
+                    )
                 elif "car" in sector:
                     if scenarios.trsp_cars is not None:
                         if scenario in scenarios.trsp_cars.scenario.values:
@@ -166,7 +169,10 @@ def generate_summary_report(scenarios: IAMDataCollection, filename: Path) -> Non
 
                 for region in iam_data.region.values:
 
-                    if scenario in iam_data.scenario.values and iam_data.sel(region=region).sum() > 0:
+                    if (
+                        scenario in iam_data.scenario.values
+                        and iam_data.sel(region=region).sum() > 0
+                    ):
                         worksheet.cell(column=col, row=row, value=region)
 
                         row += 3
@@ -176,7 +182,9 @@ def generate_summary_report(scenarios: IAMDataCollection, filename: Path) -> Non
                                 v for v in variables if v in iam_data.variables.values
                             ],
                             region=region,
-                            year=[y for y in iam_data.coords["year"].values if y <= 2100],
+                            year=[
+                                y for y in iam_data.coords["year"].values if y <= 2100
+                            ],
                         )
 
                         if len(dataframe) > 0:

@@ -11,10 +11,10 @@ import sys
 from datetime import date
 from pathlib import Path
 from typing import List, Union
-import xarray as xr
-import numpy as np
 
+import numpy as np
 import wurst
+import xarray as xr
 
 from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import DatabaseCleaner
@@ -28,17 +28,17 @@ from .export import (
 from .inventory_imports import AdditionalInventory, DefaultInventory, VariousVehicles
 from .scenario_report import generate_summary_report
 from .utils import (
+    HiddenPrints,
     c,
     convert_db_to_dataframe,
     convert_df_to_dict,
     create_scenario_label,
     eidb_label,
-    s,
-    print_version,
-    warning_about_biogenic_co2,
-    info_on_utils_functions,
     hide_messages,
-    HiddenPrints
+    info_on_utils_functions,
+    print_version,
+    s,
+    warning_about_biogenic_co2,
 )
 
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
@@ -410,7 +410,6 @@ def check_system_model(system_model: str) -> str:
     return system_model
 
 
-
 class IAMData:
     """
     Class that contains all the IAM data needed to perform
@@ -424,28 +423,44 @@ class IAMData:
         self.electricity_markets = xr.concat(
             [d.electricity_markets for d in list_data], dim="scenario"
         )
-        self.electricity_markets = self.electricity_markets.interpolate_na(dim="year", method="linear")
+        self.electricity_markets = self.electricity_markets.interpolate_na(
+            dim="year", method="linear"
+        )
         self.production_volumes = xr.concat(
             [d.production_volumes for d in list_data], dim="scenario"
         )
-        self.production_volumes = self.production_volumes.interpolate_na(dim="year", method="linear")
+        self.production_volumes = self.production_volumes.interpolate_na(
+            dim="year", method="linear"
+        )
         self.fuel_markets = xr.concat(
             [d.fuel_markets for d in list_data], dim="scenario"
         )
-        self.fuel_markets = self.fuel_markets.interpolate_na(dim="year", method="linear")
+        self.fuel_markets = self.fuel_markets.interpolate_na(
+            dim="year", method="linear"
+        )
         self.gnr_data = list_data[0].gnr_data
         self.carbon_capture_rate = xr.concat(
             [d.carbon_capture_rate for d in list_data], dim="scenario"
         )
-        self.carbon_capture_rate = self.carbon_capture_rate.interpolate_na(dim="year", method="linear")
+        self.carbon_capture_rate = self.carbon_capture_rate.interpolate_na(
+            dim="year", method="linear"
+        )
         self.efficiency = xr.concat([d.efficiency for d in list_data], dim="scenario")
         self.efficiency = self.efficiency.interpolate_na(dim="year", method="linear")
         self.emissions = xr.concat([d.emissions for d in list_data], dim="scenario")
         self.other_vars = xr.concat([d.other_vars for d in list_data], dim="scenario")
         self.other_vars = self.other_vars.interpolate_na(dim="year", method="linear")
-        self.trsp_cars = xr.concat([d.trsp_cars for d in list_data if d.trsp_cars is not None], dim="scenario")
-        self.trsp_trucks = xr.concat([d.trsp_trucks for d in list_data if d.trsp_trucks is not None], dim="scenario")
-        self.trsp_buses = xr.concat([d.trsp_buses for d in list_data if d.trsp_buses is not None], dim="scenario")
+        self.trsp_cars = xr.concat(
+            [d.trsp_cars for d in list_data if d.trsp_cars is not None], dim="scenario"
+        )
+        self.trsp_trucks = xr.concat(
+            [d.trsp_trucks for d in list_data if d.trsp_trucks is not None],
+            dim="scenario",
+        )
+        self.trsp_buses = xr.concat(
+            [d.trsp_buses for d in list_data if d.trsp_buses is not None],
+            dim="scenario",
+        )
 
 
 class NewDatabase:
