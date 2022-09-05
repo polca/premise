@@ -5,7 +5,7 @@ cement:
     remind: Production|Industry|Cement
     image: Production|Cement
   energy_use_aliases:
-    remind: FE|Industry|Cement
+    remind: FE|Industry|+++|Cement
     image:
       - Final Energy|Industry|Cement|Electricity
       - Final Energy|Industry|Cement|Gases
@@ -14,4 +14,4 @@ cement:
       - Final Energy|Industry|Cement|Liquids
       - Final Energy|Industry|Cement|Solids
   eff_aliases:
-    remind: Specific Energy Consumption|Production|Cement
+    remind: FE|Industry|Specific Energy Consumption|Cement

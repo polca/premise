@@ -1,3 +1,7 @@
+"""
+export.py contains all the functions to format, prepare and export databases.
+"""
+
 import csv
 import datetime
 import json

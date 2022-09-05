@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from setuptools import setup
 
@@ -6,6 +7,10 @@ packages = []
 root_dir = os.path.dirname(__file__)
 if root_dir:
     os.chdir(root_dir)
+
+# read the contents of your README file
+this_directory = Path(__file__).parent
+README = (this_directory / "README.md").read_text()
 
 # Probably should be changed, __init__.py is no longer required for Python 3
 for dirpath, dirnames, filenames in os.walk("premise"):
@@ -29,14 +34,15 @@ setup(
     name="premise",
     version="2.0.0",
     packages=packages,
-    author="Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>, Tom Terlouw <tom.terlouw@psi.ch>, Romain Sacchi <romain.sacchi@psi.ch>",
+    author="Romain Sacchi <romain.sacchi@psi.ch>, Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>",
     license=open("LICENSE").read(),
     # Only if you have non-python data (CSV, etc.). Might need to change the directory name as well.
     include_package_data=True,
     install_requires=[
         "numpy",
-        "wurst>=0.3",
+        "wurst",
         "bw2io>=0.8",
+        "bw2calc==1.8.1",
         "pandas",
         "bw2data",
         "brightway2",
@@ -47,8 +53,10 @@ setup(
         "premise_gwp",
         "pyyaml",
     ],
-    url="https://github.com/romainsacchi/premise",
+    url="https://github.com/polca/premise",
     description="Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA",
+    long_description_content_type="text/markdown",
+    long_description=README,
     classifiers=[
         "Intended Audience :: End Users/Desktop",
         "Intended Audience :: Developers",

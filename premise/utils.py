@@ -1,4 +1,10 @@
+"""
+Various utils functions.
+"""
+
 import csv
+import sys
+import os
 import enum
 import hashlib
 import pprint
@@ -11,9 +17,13 @@ import pandas as pd
 import xarray as xr
 import yaml
 from wurst import searching as ws
+from prettytable import PrettyTable, ALL
+from pathlib import Path
+from country_converter import CountryConverter
 
-from . import DATA_DIR
+from . import DATA_DIR, __version__
 from .framework.tags import TagLibrary
+from .geomap import Geomap
 
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
@@ -30,6 +40,21 @@ FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 
 cache_match = {}
+
+class HiddenPrints:
+    """
+    From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
+    """
+
+    def __enter__(self):
+        self._original_stdout = sys.stdout
+        sys.stdout = open(os.devnull, "w", encoding="utf-8")
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        sys.stdout.close()
+        sys.stdout = self._original_stdout
+
+
 
 
 class c(enum.Enum):
@@ -604,3 +629,112 @@ def get_efficiency_ratio_solar_PV() -> xr.DataArray:
 def create_scenario_label(model: str, pathway: str, year: int) -> str:
 
     return f"{model}::{pathway}::{year}"
+
+def get_regions_definition(model: str) -> None:
+    """
+    :param model: IAM model name, e.g., "remind", "image"
+
+    Return a table containing the list of countries
+    corresponding to each region of the model."""
+    table = PrettyTable(["Region", "Countries"])
+
+    geo = Geomap(model)
+    country_converter = CountryConverter()
+
+    for region in geo.iam_regions:
+
+        list_countries = []
+        for iso_2 in geo.iam_to_ecoinvent_location(region):
+            if iso_2 in country_converter.ISO2["ISO2"].values:
+                country_name = country_converter.convert(iso_2, to="name")
+            else:
+                country_name = iso_2
+
+            list_countries.append(country_name)
+
+        table.add_row([region, list_countries])
+
+    table._max_width = {"Region": 50, "Countries": 125}
+    table.hrules = ALL
+
+    print(table)
+
+
+# clear the cache folder
+def clear_cache():
+    [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file()]
+    print("Cache folder cleared!")
+
+
+def print_version():
+    print(f"premise v.{__version__}")
+
+
+def info_on_utils_functions():
+    """Display message to list utils functions"""
+
+    table = PrettyTable(["Utils functions", "Description"])
+    table.add_row(
+        [
+            "clear_cache()",
+            (
+                "Clears the cache folder. "
+                "Useful when updating `premise`"
+                "or encountering issues with "
+                "inventories."
+            ),
+        ]
+    )
+    table.add_row(
+        [
+            "get_regions_definition(model)",
+            "Retrieves the list of countries for each region of the model.",
+        ]
+    )
+    table.add_row(
+        [
+            "ndb.NewDatabase(...)\nndb.generate_scenario_report()",
+            "Generates a summary of the most important scenarios' variables.",
+        ]
+    )
+    # align text to the left
+    table.align = "l"
+    table.hrules = ALL
+    table._max_width = {"Utils functions": 50, "Description": 32}
+    print(table)
+
+
+def warning_about_biogenic_co2() -> None:
+    """
+    Prints a simple warning about characterizing biogenic CO2 flows.
+    :return: Does not return anything.
+    """
+    table = PrettyTable(["Warning"])
+    table.add_row(
+        [
+            "Because some of the scenarios can yield LCI databases\n"
+            "containing net negative emission technologies (NET),\n"
+            "it is advised to account for biogenic CO2 flows when calculating\n"
+            "Global Warming potential indicators.\n"
+            "`premise_gwp` provides characterization factors for such flows.\n"
+            "It also provides factors for hydrogen emissions to air.\n\n"
+            "Within your bw2 project:\n"
+            "from premise_gwp import add_premise_gwp\n"
+            "add_premise_gwp()"
+        ]
+    )
+    # align text to the left
+    table.align = "l"
+    print(table)
+
+
+def hide_messages():
+    """
+    Hide messages from the console.
+    """
+
+    print("Keep uncertainty data?")
+    print("NewDatabase(..., keep_uncertainty_data=True)")
+    print("")
+    print("Hide these messages?")
+    print("NewDatabase(..., quiet=True)")

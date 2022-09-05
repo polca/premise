@@ -27,11 +27,10 @@ def get_mapping(filepath, var):
     return mapping
 
 
-def get_gains_to_ecoinvent_emissions():
+def get_gains_to_ecoinvent_emissions() -> dict:
     """
     Retrieve the correspondence between GAINS and ecoinvent emission labels.
     :return: GAINS emission labels as keys and ecoinvent emission labels as values
-    :rtype: dict
     """
 
     if not GAINS_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
@@ -41,8 +40,8 @@ def get_gains_to_ecoinvent_emissions():
 
     csv_dict = {}
 
-    with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH) as f:
-        input_dict = csv.reader(f, delimiter=";")
+    with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH, encoding="utf-8") as file:
+        input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[row[0]] = row[1]
 
@@ -63,8 +62,8 @@ class InventorySet:
     These functions return the result of applying :func:`act_fltr` to the filter dictionaries.
     """
 
-    def __init__(self, db):
-        self.db = db
+    def __init__(self, database: List[dict]) -> None:
+        self.database = database
         self.powerplant_filters = get_mapping(
             filepath=POWERPLANT_TECHS, var="ecoinvent_aliases"
         )
@@ -73,7 +72,7 @@ class InventorySet:
         )
         self.fuels_filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
 
-    def generate_powerplant_map(self):
+    def generate_powerplant_map(self) -> dict:
         """
         Filter ecoinvent processes related to electricity production.
 
@@ -84,7 +83,7 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.powerplant_filters)
 
-    def generate_powerplant_fuels_map(self):
+    def generate_powerplant_fuels_map(self) -> dict:
         """
         Filter ecoinvent processes related to electricity production.
 
@@ -95,7 +94,7 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.powerplant_fuels_filters)
 
-    def generate_fuel_map(self):
+    def generate_fuel_map(self) -> dict:
         """
         Filter ecoinvent processes related to fuel supply.
 

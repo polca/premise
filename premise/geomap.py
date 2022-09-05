@@ -10,8 +10,6 @@ from wurst import geomatcher, resolved_row
 
 from premise import DATA_DIR
 
-from .utils import c, s
-
 ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
 

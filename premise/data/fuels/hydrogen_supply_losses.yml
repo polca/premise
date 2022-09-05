@@ -1,0 +1,48 @@
+production:
+  electrolysis:
+    casing leak: 0
+    venting startup:
+      best guess: 0.00055
+      min: 0.0005
+      max: 0.0006
+    venting oxygen:
+      best guess: 0.001
+      min: 0.0005
+      max: 0.0015
+    purging:
+      best guess: 0.035
+      min: 0.0052
+      max: 0.1
+  smr:
+    purging:
+      best guess: 0.1
+      min: 0.08
+      max: 0.2
+
+truck:
+  gaseous: 
+    compression: 0.005
+  liquid:
+    liquefaction: 0.013
+    vaporization: 0.02
+    boil-off: 0.002
+  liquid organic compound:
+    hydrogenation: 0.005
+ship:
+  liquid:
+    liquefaction: 0.013
+    vaporization: 0.02
+    boil-off: 0.002
+H2 pipeline:
+  gaseous:
+    compression: 0.005
+    storage_buffer: 0.023
+    storage_leak: 0.01
+    pipeline_leak: 4e-5
+CNG pipeline:
+  gaseous:
+    compression: 0.005
+    storage_buffer: 0.023
+    storage_leak: 0.01
+    pipeline_leak: 4e-5
+    purification: 0.07

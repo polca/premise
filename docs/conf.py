@@ -19,24 +19,44 @@ sys.path.insert(0, os.path.abspath(".."))
 
 project = "premise"
 copyright = (
-    "2020, Potsdam Institute for Climate Impact Research, Paul Scherrer Institut"
+    "2022, Paul Scherrer Institut, Potsdam Institute for Climate Impact Research"
 )
-author = "Alois Dirnaichner, Romain Sacchi, Chris Mutel"
+author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.0"
+release = "2.0.0"
 
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["sphinx.ext.autodoc"]
-
-autoapi_type = "python"
-autoapi_dirs = ["../premise"]
+extensions = [
+    "sphinx.ext.autodoc",  # Core library for html generation from docstrings
+    "sphinx.ext.autosummary",  # Create neat summary tables
+]
+autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 master_doc = "index"
+
+autodoc_mock_imports = [
+    "brightway2",
+    "numpy",
+    "pandas",
+    "bw2io",
+    "bw2data",
+    "bw2calc",
+    "wurst",
+    "xarray",
+    "prettytable",
+    "pycountry",
+    "cryptography",
+    "premise_gwp",
+    "pyYaml",
+    "schema",
+    "datapackage",
+    # "premise"
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
