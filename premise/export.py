@@ -338,7 +338,7 @@ def fetch_exchange_code(name, ref, loc, unit):
     return code
 
 
-def get_act_dict_structure(ind, acts_ind, db_name):
+def get_act_dict_structure(ind, acts_ind, db_name) -> dict:
     name, ref, _, loc, unit = acts_ind[ind]
     code = fetch_exchange_code(name, ref, loc, unit)
 
@@ -430,6 +430,26 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
         for a, _ in enumerate(list_scenarios)
     }
 
+    # store the metadata in a dictionary
+    dict_meta = {
+        (a["name"], a["reference product"], None, a["location"], a["unit"]): {
+            b: c
+            for b, c in a.items()
+            if b
+            not in [
+                "exchanges",
+                "code",
+                "name",
+                "reference product",
+                "location",
+                "unit",
+                "database",
+            ]
+        }
+        for db in list_dbs
+        for a in db
+    }
+
     for i, db in enumerate(list_dbs):
         for ds in db:
             for exc in ds["exchanges"]:
@@ -470,6 +490,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
             acts_ind,
             db_name,
         )
+        act.update(dict_meta[acts_ind[k]])
 
         act["exchanges"].extend(
             get_exchange(i, acts_ind, db_name, amount=m[i, k, 0])
