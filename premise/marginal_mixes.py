@@ -165,18 +165,17 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     minimum = min(data.year.values)
     maximum = max(data.year.values)
     years_to_interp_for = list(range(minimum, maximum + 1))
-    data_full = xr.DataArray(
-        np.nan,
-        dims=["region", "variables", "year"],
-        coords={
-            "region": data.region,
-            "year": years_to_interp_for,
-            "variables": data.variables,
-        },
-    )
-    data_full.loc[dict(year=data.year)] = data
-    # interpolation is done using cubic spline interpolation
-    data_full = data_full.interpolate_na(dim="year", method="cubic")
+    data_full = xr.DataArray(np.nan, 
+                             dims=["region", "variables", "year"], 
+                             coords={
+                                 "region":data.region, 
+                                 "year":years_to_interp_for,
+                                 "variables":data.variables
+                                 }
+                             )
+    data_full.loc[dict(year=data.year)] = data 
+    #interpolation is done using cubic spline interpolation
+    data_full = data_full.interpolate_na(dim = "year", method ="cubic")
 
     techs = tuple(data_full.variables.values.tolist())
     leadtime = get_leadtime(techs)
@@ -376,11 +375,15 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 new_start[:, :] = start[:, None]
                 start = new_start
 
-            mask_end = data_full.sel(region=region).year <= end
-            mask_start = data_full.sel(region=region).year >= start
+            mask_end = data_full.sel(region=region).year.values[None, :] <= end
+            mask_start = data_full.sel(region=region).year.values[None, :] >= start
             mask = mask_end & mask_start
+            maskxr= xr.zeros_like(data_full.sel(region=region))
+            maskxr += mask
 
-            masked_data = data_full.sel(region=region).where(mask, drop=True)
+            masked_data = data_full.sel(region=region).where(
+                maskxr, drop = True
+            )
 
             coeff = masked_data.polyfit(dim="year", deg=1)
 
@@ -399,7 +402,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 # to the changes market share
                 market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
 
-        if not capital_repl_rate and measurement == 2:
+        if measurement == 2:
 
             if isinstance(end, np.ndarray):
                 data_end = (
@@ -437,16 +440,24 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     year=start,
                 )
 
-            mask_end = data_full.sel(region=region).year <= end
-            mask_start = data_full.sel(region=region).year >= start
+            mask_end = data_full.sel(region=region).year.values[None, :] <= end
+            mask_start = data_full.sel(region=region).year.values[None, :] >= start
             mask = mask_end & mask_start
+            maskxr= xr.zeros_like(data_full.sel(region=region))
+            maskxr += mask
 
-            masked_data = data_full.sel(region=region).where(mask, drop=True)
+            masked_data = data_full.sel(region=region).where(
+                maskxr, drop = True
+            )
 
             coeff = masked_data.sum(dim="year").values
 
             if isinstance(end, np.ndarray):
                 end = np.mean(end, 1)
+
+            if isinstance(start, np.ndarray):
+                start = np.mean(start, 1)
+
             n = end - start
 
             total_area = 0.5 * (2 * coeff - data_end.values - data_start.values)
@@ -582,9 +593,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     cap_repl_rate = fetch_capital_replacement_rates(
                         lifetime, data_full.sel(region=region, year=avg_start)
                     )
-                    # In cases where a technology is fully phased out somewhere during the time interval we do not want to add capital replacement rate
+                    #In cases where a technology is fully phased out somewhere during the time interval we do not want to add capital replacement rate
                     mask = data_full.sel(region=region, year=split_year) != 0
-                    cap_repl_rate = cap_repl_rate * mask.values
+                    cap_repl_rate = cap_repl_rate*mask.values
                     market_shares_split.loc[dict(region=region)] -= cap_repl_rate[
                         :, None
                     ]
@@ -596,11 +607,9 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                     market_shares_split.loc[dict(region=region)].values[
                         market_shares_split.loc[dict(region=region)].values > 0
                     ] = 0
-                    market_shares_split.loc[
+                    market_shares_split.loc[dict(region=region)] /= market_shares_split.loc[
                         dict(region=region)
-                    ] /= market_shares_split.loc[dict(region=region)].sum(
-                        dim="variables"
-                    )
+                    ].sum(dim="variables")
                     # we reverse the sign so that the suppliers are still seen as negative in the next step
                     market_shares_split.loc[dict(region=region)] *= -1
 
