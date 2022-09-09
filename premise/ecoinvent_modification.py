@@ -152,6 +152,7 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
+FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
@@ -646,6 +647,7 @@ class NewDatabase:
                 (FILEPATH_DAC_INVENTORIES, "3.7"),
                 (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
                 (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_LITHIUM, "3.8"),
                 (FILEPATH_BATTERIES, "3.8"),
                 (FILEPATH_PHOTOVOLTAICS, "3.7"),
                 (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
