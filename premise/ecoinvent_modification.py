@@ -159,6 +159,7 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
+FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
@@ -652,6 +653,7 @@ class NewDatabase:
                 (FILEPATH_DAC_INVENTORIES, "3.7"),
                 (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
                 (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_LITHIUM, "3.8"),
                 (FILEPATH_BATTERIES, "3.8"),
                 (FILEPATH_PHOTOVOLTAICS, "3.7"),
                 (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
@@ -775,12 +777,7 @@ class NewDatabase:
 
         export_scenario_factor_file(self.database, name, self.scenarios, filepath)
 
-    def write_superstructure_db_to_brightway(self, name=None, filepath=None):
-
-        """
-        Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
-        :return: filepath of the "scenarios difference file"
-        """
+    def write_scenario_difference_file(self, filepath=None, name=None) -> None:
 
         if filepath is not None:
             filepath = Path(filepath)
@@ -800,6 +797,16 @@ class NewDatabase:
         )
 
         export_scenario_difference_file(file, self.scenarios, filepath)
+
+
+    def write_superstructure_db_to_brightway(self, name=None, filepath=None):
+
+        """
+        Register a super-structure database, according to https://github.com/dgdekoning/brightway-superstructure
+        :return: filepath of the "scenarios difference file"
+        """
+
+        self.write_scenario_difference_file(filepath, name)
 
         # FIXME: REVIEW It might be a good idea to start thinking about refactoring all prints into a logging library based approach.
         #        That way we can control the amount of output that is generated via log levels.

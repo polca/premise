@@ -979,7 +979,7 @@ class IAMDataCollection:
         # 5/10 = 0.5
         # 1/0.5 = 2. Improvement factor of 2.
         data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+            data_to_return.interp(year=[self.year]) / data_to_return.sel(year=2020)
         )
 
         # If we are looking at a year post 2020
@@ -1028,7 +1028,7 @@ class IAMDataCollection:
         # 5/10 = 0.5
         # 1/0.5 = 2. Improvement factor of 2.
         data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+            data_to_return.interp(year=[self.year]) / data_to_return.sel(year=2020)
         )
 
         # If we are looking at a year post 2020
@@ -1082,7 +1082,7 @@ class IAMDataCollection:
         # 5/10 = 0.5
         # 1/0.5 = 2. Improvement factor of 2.
         data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
+            data_to_return.interp(year=[self.year]) / data_to_return.sel(year=2020)
         )
 
         # If we are looking at a year post 2020
@@ -1176,8 +1176,12 @@ class IAMDataCollection:
 
         if self.system_model != "attributional":
 
-            data_to_return = consequential_method(
-                data_to_return, self.year, self.system_model_args
+            #TODO: add lead times for fuels
+            #data_to_return = consequential_method(
+            #    data_to_return, self.year, self.system_model_args
+            #)
+            data_to_return /= (
+                data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
             )
 
         else:
