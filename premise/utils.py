@@ -3,23 +3,23 @@ Various utils functions.
 """
 
 import csv
-import sys
-import os
 import enum
 import hashlib
+import os
 import pprint
+import sys
 import warnings
 from functools import lru_cache
+from pathlib import Path
 from typing import List
 
 import numpy as np
 import pandas as pd
 import xarray as xr
 import yaml
-from wurst import searching as ws
-from prettytable import PrettyTable, ALL
-from pathlib import Path
 from country_converter import CountryConverter
+from prettytable import ALL, PrettyTable
+from wurst import searching as ws
 
 from . import DATA_DIR, __version__
 from .framework.tags import TagLibrary
@@ -41,6 +41,7 @@ CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
 
 cache_match = {}
 
+
 class HiddenPrints:
     """
     From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
@@ -53,8 +54,6 @@ class HiddenPrints:
     def __exit__(self, exc_type, exc_val, exc_tb):
         sys.stdout.close()
         sys.stdout = self._original_stdout
-
-
 
 
 class c(enum.Enum):
@@ -629,6 +628,7 @@ def get_efficiency_ratio_solar_PV() -> xr.DataArray:
 def create_scenario_label(model: str, pathway: str, year: int) -> str:
 
     return f"{model}::{pathway}::{year}"
+
 
 def get_regions_definition(model: str) -> None:
     """
