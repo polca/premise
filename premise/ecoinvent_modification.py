@@ -813,7 +813,6 @@ class NewDatabase:
 
         export_scenario_difference_file(file, self.scenarios, filepath)
 
-
     def write_superstructure_db_to_brightway(self, name=None, filepath=None):
 
         """

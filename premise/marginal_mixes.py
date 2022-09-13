@@ -181,7 +181,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     techs = tuple(data_full.variables.values.tolist())
     leadtime = get_leadtime(techs)
 
-
     for region in data.coords["region"].values:
 
         # I don't yet know the exact start year

@@ -1173,10 +1173,10 @@ class IAMDataCollection:
 
         if self.system_model != "attributional":
 
-            #TODO: add lead times for fuels
-            #data_to_return = consequential_method(
+            # TODO: add lead times for fuels
+            # data_to_return = consequential_method(
             #    data_to_return, self.year, self.system_model_args
-            #)
+            # )
             data_to_return /= (
                 data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
             )

@@ -264,4 +264,3 @@ def export_scenario_difference_file(database, scenarios, filepath):
     database.to_excel(filepath, index=False)
 
     print(f"Scenario factor file exported to {filepath}!")
-
