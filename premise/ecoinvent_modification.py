@@ -67,11 +67,7 @@ from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
-from .export import (
-    Export,
-    build_superstructure_db,
-    prepare_db_for_export,
-)
+from .export import Export, build_superstructure_db, prepare_db_for_export
 from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
 from .fuels import Fuels

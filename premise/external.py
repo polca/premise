@@ -851,7 +851,6 @@ class ExternalScenario(BaseTransformation):
                                 "GLO",
                             ]
 
-
                             potential_suppliers = self.fetch_potential_suppliers(
                                 possible_locations, name, ref_prod
                             )
