@@ -700,8 +700,6 @@ class Cement(BaseTransformation):
                 name=dataset[0],
                 ref_prod=dataset[1],
                 production_variable="cement",
-                # if `True`, it will find the best suited providers for each exchange
-                # in the new market datasets, which is time-consuming, but more accurate
             )
 
             self.database.extend(list(new_cement_markets.values()))

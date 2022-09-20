@@ -342,7 +342,7 @@ class Steel(BaseTransformation):
                 # Update hot pollutant emission according to GAINS
                 self.update_pollutant_emissions(dataset=activity, sector="steel")
 
-            if steel != "pig iron":
+            if steel != ("pig iron production", "pig iron"):
                 self.database.extend(list(d_act_steel[steel].values()))
 
         print("Done!")

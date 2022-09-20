@@ -269,10 +269,15 @@ def relink_technosphere_exchanges(
 
                 if not kept and exc["name"].startswith("market group for"):
 
-                    exc["name"] = exc["name"].replace("market group for", "market for")
+                    market_group_exc = exc.copy()
+                    market_group_exc["name"] = market_group_exc["name"].replace(
+                        "market group for", "market for"
+                    )
 
                     possible_datasets = [
-                        x for x in get_possibles(exc, data) if x["location"] in list_loc
+                        x
+                        for x in get_possibles(market_group_exc, data)
+                        if x["location"] in list_loc
                     ]
 
                     possible_locations = [obj["location"] for obj in possible_datasets]
@@ -304,6 +309,9 @@ def relink_technosphere_exchanges(
                         for ds in possible_datasets
                         if ds["location"] == loc
                     ]
+
+                    if kept:
+                        exc = market_group_exc
 
                 if not kept and "RoW" in possible_locations:
                     kept = [
@@ -580,5 +588,8 @@ def hide_messages():
     Hide messages from the console.
     """
 
+    print("Keep uncertainty data?")
+    print("NewDatabase(..., keep_uncertainty_data=True)")
+    print("")
     print("Hide these messages?")
     print("NewDatabase(..., quiet=True)")

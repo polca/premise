@@ -70,9 +70,7 @@ from .electricity import Electricity
 from .export import (
     Export,
     build_superstructure_db,
-    check_for_duplicates,
     prepare_db_for_export,
-    remove_uncertainty,
 )
 from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
@@ -80,7 +78,6 @@ from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .scenario_report import generate_summary_report
 from .steel import Steel
-from .transformation import BaseTransformation
 from .transport import Transport
 from .utils import (
     HiddenPrints,
@@ -161,6 +158,9 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
+FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
+FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
+FILEPATH_GRAPHITE = INVENTORY_DIR / "lci-graphite.xlsx"
 FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
@@ -485,6 +485,7 @@ class NewDatabase:
         use_cached_database: bool = True,
         external_scenarios: list = None,
         quiet=False,
+        keep_uncertainty_data=False,
     ) -> None:
 
         self.source = source_db
@@ -527,10 +528,14 @@ class NewDatabase:
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
-            self.database = self.__find_cached_db(source_db)
+            self.database = self.__find_cached_db(
+                source_db, keep_uncertainty_data=keep_uncertainty_data
+            )
             print("Done!")
         else:
-            self.database = self.__clean_database()
+            self.database = self.__clean_database(
+                keep_uncertainty_data=keep_uncertainty_data
+            )
 
         print("\n////////////////// IMPORTING DEFAULT INVENTORIES ///////////////////")
         if use_cached_inventories:
@@ -569,7 +574,7 @@ class NewDatabase:
 
         print("Done!")
 
-    def __find_cached_db(self, db_name: str) -> List[dict]:
+    def __find_cached_db(self, db_name: str, keep_uncertainty_data: bool) -> List[dict]:
         """
         If `use_cached_db` = True, then we look for a cached database.
         If cannot be found, we create a cache for next time.
@@ -591,7 +596,7 @@ class NewDatabase:
 
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
-        database = self.__clean_database()
+        database = self.__clean_database(keep_uncertainty_data=keep_uncertainty_data)
         pickle.dump(database, open(file_name, "wb"))
         return database
 
@@ -622,13 +627,13 @@ class NewDatabase:
         data = self.__import_inventories()
         pickle.dump(data, open(file_name, "wb"))
         print(
-            "Data cached. It is advised to restart your workflow at this point.\n "
-            "This allows premise to use the cached data instead, which results in\n "
+            "Data cached. It is advised to restart your workflow at this point.\n"
+            "This allows premise to use the cached data instead, which results in\n"
             "a faster workflow."
         )
         return None
 
-    def __clean_database(self) -> List[dict]:
+    def __clean_database(self, keep_uncertainty_data) -> List[dict]:
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
         (adds missing locations, reference products, etc.).
@@ -636,7 +641,7 @@ class NewDatabase:
         """
         return DatabaseCleaner(
             self.source, self.source_type, self.source_file_path
-        ).prepare_datasets()
+        ).prepare_datasets(keep_uncertainty_data)
 
     def __import_inventories(self) -> List[dict]:
         """
@@ -657,6 +662,9 @@ class NewDatabase:
                 (FILEPATH_DAC_INVENTORIES, "3.7"),
                 (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
                 (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_LITHIUM, "3.8"),
+                (FILEPATH_COBALT, "3.8"),
+                (FILEPATH_GRAPHITE, "3.8"),
                 (FILEPATH_BATTERIES, "3.8"),
                 (FILEPATH_PHOTOVOLTAICS, "3.7"),
                 (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
@@ -977,35 +985,6 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
         self.update_fuels()
-        self.update_external_scenario()
-
-    def prepare_db_for_export(self, scenario):
-
-        base = BaseTransformation(
-            database=scenario["database"],
-            iam_data=scenario["iam data"],
-            model=scenario["model"],
-            pathway=scenario["pathway"],
-            year=scenario["year"],
-        )
-
-        # we ensure the absence of duplicate datasets
-        base.database = check_for_duplicates(base.database)
-        base.database = remove_uncertainty(base.database)
-
-        base.relink_datasets(
-            excludes_datasets=["cobalt industry", "market group for electricity"],
-            alt_names=[
-                "market group for electricity, high voltage",
-                "market group for electricity, medium voltage",
-                "market group for electricity, low voltage",
-                "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
-                "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-                "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-            ],
-        )
-
-        return base.database
 
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None
@@ -1022,18 +1001,16 @@ class NewDatabase:
                 "create a super-structure database."
             )
 
+        cache = {}
         for scen, scenario in enumerate(self.scenarios):
-
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = prepare_db_for_export(scenario)
+            scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
         self.database = build_superstructure_db(
             self.database, self.scenarios, db_name=name, filepath=filepath
         )
 
         print("Done!")
-
-        self.database = check_for_duplicates(self.database)
 
         wurst.write_brightway2_database(
             self.database,
@@ -1071,10 +1048,12 @@ class NewDatabase:
             )
 
         print("Write new database(s) to Brightway2.")
+
+        cache = {}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = prepare_db_for_export(scenario)
+            scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
             wurst.write_brightway2_database(
                 scenario["database"],
@@ -1117,10 +1096,12 @@ class NewDatabase:
             ]
 
         print("Write new database(s) to matrix.")
+
+        cache = {}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = prepare_db_for_export(scenario)
+            scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
             Export(
                 scenario["database"],
@@ -1145,10 +1126,12 @@ class NewDatabase:
             os.makedirs(filepath)
 
         print("Write Simapro import file(s).")
+
+        cache = {}
         for scen, scenario in enumerate(self.scenarios):
 
             print(f"Prepare database {scen + 1}.")
-            scenario["database"] = prepare_db_for_export(scenario)
+            scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
             Export(
                 scenario["database"],

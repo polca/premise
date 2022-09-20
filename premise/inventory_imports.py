@@ -20,6 +20,7 @@ from wurst import searching as ws
 
 from . import DATA_DIR, INVENTORY_DIR
 from .geomap import Geomap
+from .export import check_amount_format
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
@@ -253,14 +254,6 @@ class BaseInventoryImport:
                         results.append(ex)
         return results
 
-    def check_numbers_format(self):
-        """
-        Check whether the numbers in the inventory are in the correct format.
-        """
-        for act in self.import_db.data:
-            for ex in act["exchanges"]:
-                ex["amount"] = float(ex["amount"])
-
     def add_product_field_to_exchanges(self) -> None:
         """Add the `product` key to the production and
         technosphere exchanges in :attr:`import_db`.
@@ -461,7 +454,6 @@ class DefaultInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
-        self.check_numbers_format()
 
 
 class VariousVehicles(BaseInventoryImport):
@@ -645,5 +637,5 @@ class AdditionalInventory(BaseInventoryImport):
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_duplicates()
-        # Check for numbers format
-        self.check_numbers_format()
+        # check numbers format
+        self.import_db.data = check_amount_format(self.import_db.data)

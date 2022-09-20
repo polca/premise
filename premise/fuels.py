@@ -833,6 +833,7 @@ class Fuels(BaseTransformation):
             for activity in activities:
 
                 original_ds = self.fetch_proxies(name=activity, ref_prod=" ")
+
                 # delete original
                 # self.database = [x for x in self.database if x["name"] != f]
 
@@ -1079,16 +1080,21 @@ class Fuels(BaseTransformation):
                 variable=variables, location=region
             )
 
-            # Rescale all the technosphere exchanges according to the IAM efficiency values
+            # Rescale the biomass input according to the IAM efficiency values
             wurst.change_exchanges_by_constant_factor(
                 dataset,
                 scaling_factor,
-                [],
+                [
+                    ws.equals("unit", "kilogram"),
+                    ws.either(
+                        ws.contains("name", "Farming"), ws.contains("name", "Supply")
+                    ),
+                ],
                 [ws.doesnt_contain_any("name", self.emissions_map)],
             )
 
             string = (
-                f"The process conversion efficiency has been rescaled by `premise` "
+                f"The biomass input has been rescaled by `premise` "
                 f"by {int((scaling_factor - 1) * 100)}%.\n"
                 f"To be in line with the scenario {self.scenario} of {self.model.upper()} "
                 f"in {self.year} in the region {region}.\n"
@@ -1168,7 +1174,6 @@ class Fuels(BaseTransformation):
                         name=name,
                         ref_prod=" ",
                         production_variable=prod_label,
-                        relink=True,
                         regions=regions,
                     )
 
@@ -1195,6 +1200,10 @@ class Fuels(BaseTransformation):
                                 "farming and supply" in new_ds[region]["name"].lower()
                                 and crop_type.lower()
                                 in self.iam_data.land_use.variables.values
+                                and not any(
+                                    i in new_ds[region]["name"].lower()
+                                    for i in ["straw", "residue", "stover"]
+                                )
                             ):
                                 new_ds[region] = self.adjust_land_use(
                                     dataset=new_ds[region],
@@ -1210,6 +1219,10 @@ class Fuels(BaseTransformation):
                                 "farming and supply" in new_ds[region]["name"].lower()
                                 and crop_type.lower()
                                 in self.iam_data.land_use_change.variables.values
+                                and not any(
+                                    i in new_ds[region]["name"].lower()
+                                    for i in ["straw", "residue", "stover"]
+                                )
                             ):
                                 new_ds[region] = self.adjust_land_use_change_emissions(
                                     dataset=new_ds[region],

@@ -851,6 +851,7 @@ class ExternalScenario(BaseTransformation):
                                 "GLO",
                             ]
 
+
                             potential_suppliers = self.fetch_potential_suppliers(
                                 possible_locations, name, ref_prod
                             )
@@ -917,7 +918,6 @@ class ExternalScenario(BaseTransformation):
                             self.database.append(new_market)
                         else:
                             regions.remove(region)
-
                         # Loop through the technologies that should
                         # compose the market
 
