@@ -355,7 +355,7 @@ class Electricity(BaseTransformation):
                                 e.prod_loc: infra_exc["location"],
                                 e.prod_key: key,
                                 e.ext_type: infra_exc["type"],
-                            }
+                            },
                         )
 
                     else:
@@ -402,7 +402,7 @@ class Electricity(BaseTransformation):
                         ]
                     )
 
-                    #loss_excs.append(extra_exc)
+                    # loss_excs.append(extra_exc)
 
                 new_exchanges = None
                 if voltage in ["low", "high"]:
@@ -454,9 +454,9 @@ class Electricity(BaseTransformation):
                 if isinstance(distr_loss_exc, pd.Series):
                     loss_excs.append(distr_loss_exc)
 
-                #concat_list = [
+                # concat_list = [
                 #    pd.DataFrame([new_market] + loss_excs, columns=new_market.index),
-                #]
+                # ]
                 concat_list = [pd.DataFrame([new_market], columns=new_market.index)]
 
                 if isinstance(new_exchanges, pd.DataFrame):
