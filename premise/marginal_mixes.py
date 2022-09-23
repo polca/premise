@@ -175,7 +175,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                              )
     data_full.loc[dict(year=data.year)] = data 
     #interpolation is done using cubic spline interpolation
-    data_full = data_full.interpolate_na(dim = "year", method ="cubic")
+    data_full = data_full.interpolate_na(dim = "year", method ="akima")
 
     techs = tuple(data_full.variables.values.tolist())
     leadtime = get_leadtime(techs)
@@ -379,7 +379,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             mask_start = data_full.sel(region=region).year.values[None, :] >= start
             mask = mask_end & mask_start
             maskxr= xr.zeros_like(data_full.sel(region=region))
-            maskxr += mask
+            maskxr += mask          
 
             masked_data = data_full.sel(region=region).where(
                 maskxr, drop = True
@@ -444,7 +444,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             mask_start = data_full.sel(region=region).year.values[None, :] >= start
             mask = mask_end & mask_start
             maskxr= xr.zeros_like(data_full.sel(region=region))
-            maskxr += mask
+            maskxr += mask        
 
             masked_data = data_full.sel(region=region).where(
                 maskxr, drop = True
@@ -454,7 +454,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             if isinstance(end, np.ndarray):
                 end = np.mean(end, 1)
-
+                
             if isinstance(start, np.ndarray):
                 start = np.mean(start, 1)
                 
