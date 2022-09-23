@@ -555,7 +555,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 .values
             ) / (short_slope_end - short_slope_start)
 
-            if region== "EUR":
+            if region == "EUR":
                 print("short slope")
                 print(short_slope)
 
