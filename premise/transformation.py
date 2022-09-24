@@ -560,28 +560,26 @@ class BaseTransformation:
         if key in self.gains_eff_cache:
             return self.gains_eff_cache[key]
 
-        else:
+        location = [
+            self.iam_to_gains[s][location]
+            if location not in self.iam_data.emissions.region
+            else location
+            for s in scenarios
+        ]
 
-            location = [
-                self.iam_to_gains[s][location]
-                if location not in self.iam_data.emissions.region
-                else location
-                for s in scenarios
-            ]
+        scaling_factor = self.iam_data.emissions.loc[
+            dict(
+                region=location,
+                pollutant=pollutant,
+                sector=sector,
+                scenario=scenarios,
+            )
+        ]
+        scaling_factor = scaling_factor.mean(dim=["year", "region"]).values
 
-            scaling_factor = self.iam_data.emissions.loc[
-                dict(
-                    region=location,
-                    pollutant=pollutant,
-                    sector=sector,
-                    scenario=scenarios,
-                )
-            ]
-            scaling_factor = scaling_factor.mean(dim=["year", "region"]).values
+        self.gains_eff_cache[key] = scaling_factor
 
-            self.gains_eff_cache[key] = scaling_factor
-
-            return scaling_factor
+        return scaling_factor
 
     def find_iam_efficiency_change(self, variable, location, year, scenario):
         """

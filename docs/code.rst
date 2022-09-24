@@ -11,7 +11,7 @@ Database Cleaner
     :members:
 
 Inventory Imports
-================
+=================
 
 .. autoclass:: premise.inventory_imports.BaseInventoryImport
    :members:

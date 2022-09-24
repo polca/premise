@@ -1,0 +1,30 @@
+pig iron:
+  ecoinvent_aliases:
+    fltr: pig iron production
+    mask:
+      name:
+       - market for
+       - treatment of
+
+steel - primary:
+  ecoinvent_aliases:
+    fltr: steel production, converter
+    mask: hot rolled
+steel - secondary:
+  ecoinvent_aliases:
+    fltr: steel production, electric
+    mask:
+      name: hot rolled
+      reference product: heat
+concrete:
+  ecoinvent_aliases:
+    fltr: market for concrete
+copper:
+  ecoinvent_aliases:
+    fltr: market for copper
+    filter_exact: True
+aluminium:
+  ecoinvent_aliases:
+    fltr:
+      - market for aluminium, primary
+      - market for aluminium alloy
