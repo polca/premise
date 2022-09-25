@@ -9,7 +9,6 @@ production (GNR data), and for non-CO2 emissions (GAINS data).
 
 import csv
 from io import StringIO
-from itertools import chain
 from pathlib import Path
 from typing import Dict, List, Union
 

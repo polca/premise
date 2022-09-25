@@ -585,7 +585,7 @@ class BaseTransformation:
 
     def relink_datasets(
         self, excludes_datasets: List[str] = None, alt_names: List[str] = None
-    ) -> None:
+    ) -> dict:
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
