@@ -6,17 +6,20 @@ and those provided by the user.
 import csv
 import itertools
 import sys
+import urllib
 import uuid
 from pathlib import Path
 from typing import Dict, List, Union
 
 import bw2io
+import requests
 import yaml
-from bw2io import ExcelImporter, Migration
+from bw2io import CSVImporter, ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
 
 from . import DATA_DIR, INVENTORY_DIR
+from .export import check_amount_format
 from .geomap import Geomap
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
@@ -113,15 +116,17 @@ class BaseInventoryImport:
         self.biosphere_dict = get_biosphere_code()
         self.outdated_flows = get_outdated_flows()
 
-        if not isinstance(path, Path):
-            path = Path(path)
-        self.path = path
-
-        if self.path != Path("."):
-            if not self.path.exists():
+        if "http" in str(path):
+            r = requests.head(path)
+            if r.status_code != 200:
+                raise ValueError("The file at {} could not be found.".format(path))
+        else:
+            if not Path(path).exists():
                 raise FileNotFoundError(
-                    f"The inventory file {self.path} could not be found."
+                    f"The inventory file {path} could not be found."
                 )
+
+        self.path = path
 
         self.import_db = self.load_inventory(path)
 
@@ -181,10 +186,14 @@ class BaseInventoryImport:
                 "They will not be imported"
             )
             table = PrettyTable(["Name", "Reference product", "Location", "File"])
+
+            if isinstance(self.path, str):
+                name = self.path
+            else:
+                name = self.path.name
+
             for dataset in already_exist:
-                table.add_row(
-                    [dataset[0][:50], dataset[1][:30], dataset[2], self.path.name]
-                )
+                table.add_row([dataset[0][:50], dataset[1][:30], dataset[2], name])
 
             print(table)
 
@@ -521,7 +530,31 @@ class AdditionalInventory(BaseInventoryImport):
         super().__init__(database, version_in, version_out, path)
 
     def load_inventory(self, path):
-        return ExcelImporter(path)
+
+        if "http" in path:
+            # online file
+            # we need to save it locally first
+            response = requests.get(path)
+            path = str(Path(DATA_DIR / "cache" / "temp.csv"))
+            with open(path, "w", encoding="utf-8") as f:
+                writer = csv.writer(
+                    f,
+                    quoting=csv.QUOTE_NONE,
+                    delimiter=",",
+                    quotechar="'",
+                    escapechar="\\",
+                )
+                for line in response.iter_lines():
+                    writer.writerow(line.decode("utf-8").split(","))
+
+        if Path(path).suffix == ".xlsx":
+            return ExcelImporter(path)
+        elif Path(path).suffix == ".csv":
+            return CSVImporter(path)
+        else:
+            raise ValueError(
+                "Incorrect filetype for inventories." "Should be either .xlsx or .csv"
+            )
 
     def remove_missing_fields(self):
         """
@@ -604,3 +637,5 @@ class AdditionalInventory(BaseInventoryImport):
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_duplicates()
+        # check numbers format
+        self.import_db.data = check_amount_format(self.import_db.data)

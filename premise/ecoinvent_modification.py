@@ -4,36 +4,6 @@ as well as export it back.
 
 """
 
-import copy
-import os
-import pickle
-import sys
-from datetime import date
-from pathlib import Path
-from typing import List, Union
-
-import wurst
-
-from . import DATA_DIR, INVENTORY_DIR
-from .cement import Cement
-from .clean_datasets import DatabaseCleaner
-from .data_collection import IAMDataCollection
-from .electricity import Electricity
-from .export import Export, build_superstructure_db, prepare_db_for_export
-from .fuels import Fuels
-from .inventory_imports import AdditionalInventory, DefaultInventory
-from .scenario_report import generate_summary_report
-from .steel import Steel
-from .transport import Transport
-from .utils import (
-    HiddenPrints,
-    eidb_label,
-    hide_messages,
-    info_on_utils_functions,
-    print_version,
-    warning_about_biogenic_co2,
-)
-
 SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
 LIST_REMIND_REGIONS = [
     "CAZ",
@@ -50,7 +20,6 @@ LIST_REMIND_REGIONS = [
     "USA",
     "World",
 ]
-
 LIST_IMAGE_REGIONS = [
     "BRA",
     "CAN",
@@ -81,6 +50,39 @@ LIST_IMAGE_REGIONS = [
     "World",
 ]
 
+
+import copy
+import os
+import pickle
+import sys
+from datetime import date
+from pathlib import Path
+from typing import List, Union
+
+import wurst
+import yaml
+
+from . import DATA_DIR, INVENTORY_DIR
+from .cement import Cement
+from .clean_datasets import DatabaseCleaner
+from .data_collection import IAMDataCollection
+from .electricity import Electricity
+from .export import Export, build_superstructure_db, prepare_db_for_export
+from .external import ExternalScenario
+from .external_data_validation import check_external_scenarios, check_inventories
+from .fuels import Fuels
+from .inventory_imports import AdditionalInventory, DefaultInventory
+from .scenario_report import generate_summary_report
+from .steel import Steel
+from .transport import Transport
+from .utils import (
+    HiddenPrints,
+    eidb_label,
+    hide_messages,
+    info_on_utils_functions,
+    print_version,
+    warning_about_biogenic_co2,
+)
 
 DIR_CACHED_DB = DATA_DIR / "cache"
 
@@ -182,7 +184,7 @@ LIST_TRANSF_FUNC = [
     "update_trucks",
     "update_buses",
     "update_fuels",
-    "update_custom_scenario",
+    "update_external_scenario",
 ]
 
 # Disable printing
@@ -477,6 +479,7 @@ class NewDatabase:
         time_horizon: int = None,
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
+        external_scenarios: list = None,
         quiet=False,
         keep_uncertainty_data=False,
     ) -> None:
@@ -512,7 +515,12 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
-        self.custom_scenario = None
+        if external_scenarios:
+            self.datapackages, self.scenarios = check_external_scenarios(
+                external_scenarios, self.scenarios
+            )
+        else:
+            self.datapackages = None
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
@@ -547,6 +555,7 @@ class NewDatabase:
                 model=scenario["model"],
                 pathway=scenario["pathway"],
                 year=scenario["year"],
+                external_scenarios=scenario.get("external scenarios"),
                 filepath_iam_files=scenario["filepath"],
                 key=key,
                 system_model=self.system_model,
@@ -554,8 +563,8 @@ class NewDatabase:
             )
             scenario["iam data"] = data
 
-            if self.custom_scenario:
-                scenario["custom data"] = data.get_custom_data(self.custom_scenario)
+            if self.datapackages:
+                scenario["external data"] = data.get_external_data(self.datapackages)
 
             scenario["database"] = copy.deepcopy(self.database)
 
@@ -702,34 +711,21 @@ class NewDatabase:
         print("Done!\n")
         return data
 
-    def __import_additional_inventories(self, list_inventories) -> List[dict]:
+    def __import_additional_inventories(self, datapackage: list) -> List[dict]:
 
         print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
 
-        for file in list_inventories:
-
-            if file["inventories"] != "":
-                additional = AdditionalInventory(
-                    database=self.database,
-                    version_in=file["ecoinvent version"]
-                    if "ecoinvent version" in file
-                    else "3.8",
-                    version_out=self.version,
-                    path=file["inventories"],
-                )
-                additional.prepare_inventory()
-
-                # if the inventories are to be duplicated
-                # to be made specific to each IAM region
-                # we flag them
-                if "region_duplicate" in file:
-                    if file["region_duplicate"]:
-                        for dataset in additional.import_db:
-                            dataset["duplicate"] = True
-
-                data.extend(additional.merge_inventory())
+        if datapackage.get_resource("inventories"):
+            additional = AdditionalInventory(
+                database=self.database,
+                version_in=datapackage.descriptor["ecoinvent"]["version"],
+                version_out=self.version,
+                path=datapackage.get_resource("inventories").source,
+            )
+            additional.prepare_inventory()
+            data.extend(additional.merge_inventory())
 
         return data
 
@@ -904,6 +900,47 @@ class NewDatabase:
 
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
+
+    def update_external_scenario(self):
+
+        if self.datapackages:
+            for i, scenario in enumerate(self.scenarios):
+                if (
+                    "exclude" not in scenario
+                    or "update_external_scenario" not in scenario["exclude"]
+                ):
+
+                    for d, datapackage in enumerate(self.datapackages):
+                        if "inventories" in [r.name for r in datapackage.resources]:
+                            inventories = self.__import_additional_inventories(
+                                datapackage
+                            )
+                        else:
+                            inventories = []
+
+                        resource = datapackage.get_resource("config")
+                        config_file = yaml.safe_load(resource.raw_read())
+
+                        checked_inventories = check_inventories(
+                            config_file,
+                            inventories,
+                            scenario["external data"][d],
+                            scenario["database"],
+                            scenario["year"],
+                        )
+                        scenario["database"].extend(checked_inventories)
+
+                    external_scenario = ExternalScenario(
+                        database=scenario["database"],
+                        model=scenario["model"],
+                        pathway=scenario["pathway"],
+                        iam_data=scenario["iam data"],
+                        year=scenario["year"],
+                        external_scenarios=self.datapackages,
+                        external_scenarios_data=scenario["external data"],
+                    )
+                    external_scenario.create_custom_markets()
+                    scenario["database"] = external_scenario.database
 
     def update_buses(self) -> None:
         """

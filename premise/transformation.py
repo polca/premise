@@ -502,6 +502,10 @@ class BaseTransformation:
                 e for e in existing_ds["exchanges"] if e["type"] == "production"
             ]
 
+            # for cases where external scenarios are used
+            if "adjust efficiency" in existing_ds:
+                del existing_ds["adjust efficiency"]
+
             if len(existing_ds["exchanges"]) == 0:
                 print(
                     f"ISSUE: no exchanges found in {existing_ds['name']} in {existing_ds['location']}"

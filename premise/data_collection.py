@@ -217,10 +217,12 @@ class IAMDataCollection:
         key: bytes,
         system_model: str = "attributional",
         time_horizon: int = 30,
+        external_scenarios: list = None,
     ) -> None:
         self.model = model
         self.pathway = pathway
         self.year = year
+        self.external_scenarios = external_scenarios
         key = key or None
 
         prod_vars = self.__get_iam_variable_labels(
@@ -1563,3 +1565,119 @@ class IAMDataCollection:
         ]
 
         return data_to_return
+
+    def get_external_data(self, datapackages):
+
+        data = {}
+
+        for i, dp in enumerate(datapackages):
+
+            data[i] = {}
+
+            resource = dp.get_resource("scenario_data")
+            scenario_data = resource.read()
+            scenario_headers = resource.headers
+            df = pd.DataFrame(scenario_data, columns=scenario_headers)
+
+            resource = dp.get_resource("config")
+            config_file = yaml.safe_load(resource.raw_read())
+
+            if "production pathways" in config_file:
+
+                variables = {}
+                for k, v in config_file["production pathways"].items():
+                    try:
+                        variables[k] = v["production volume"]["variable"]
+                    except KeyError:
+                        continue
+
+                subset = df.loc[
+                    (df["model"] == self.model)
+                    & (df["pathway"] == self.pathway)
+                    & (df["scenario"] == self.external_scenarios[i])
+                    & (df["variables"].isin(variables.values())),
+                    "region":,
+                ]
+
+                array = (
+                    subset.melt(
+                        id_vars=["region", "variables", "unit"],
+                        var_name="year",
+                        value_name="value",
+                    )[["region", "variables", "year", "value"]]
+                    .groupby(["region", "variables", "year"])["value"]
+                    .mean()
+                    .to_xarray()
+                )
+
+                array.coords["year"] = [int(y) for y in array.coords["year"]]
+
+                data[i]["production volume"] = array
+                regions = subset["region"].unique().tolist()
+                data[i]["regions"] = regions
+
+                variables = {}
+                for k, v in config_file["production pathways"].items():
+                    try:
+                        variables[k] = [e["variable"] for e in v["efficiency"]]
+                    except KeyError:
+                        continue
+
+                for m, market in enumerate(config_file["markets"]):
+                    try:
+                        variables[f"market {m}"] = [
+                            e["variable"] for e in market["efficiency"]
+                        ]
+                    except KeyError:
+                        continue
+
+                if len(variables) > 0:
+
+                    subset = df.loc[
+                        (df["model"] == self.model)
+                        & (df["pathway"] == self.pathway)
+                        & (df["scenario"] == self.external_scenarios[i])
+                        & (df["variables"].isin(list(chain(*variables.values())))),
+                        "region":,
+                    ]
+
+                    array = (
+                        subset.melt(
+                            id_vars=["region", "variables", "unit"],
+                            var_name="year",
+                            value_name="value",
+                        )[["region", "variables", "year", "value"]]
+                        .groupby(["region", "variables", "year"])["value"]
+                        .mean()
+                        .to_xarray()
+                    )
+                    array.coords["year"] = [int(y) for y in array.coords["year"]]
+
+                    ref_years = {}
+                    for v in config_file["production pathways"].values():
+                        for e, f in v.items():
+                            if e == "efficiency":
+                                for x in f:
+                                    ref_years[x["variable"]] = x.get(
+                                        "reference year", 2020
+                                    )
+                    for market in config_file["markets"]:
+                        for e, f in market.items():
+                            if f == "efficiency":
+                                for x in f["efficiency"]:
+                                    ref_years[x["variable"]] = x.get(
+                                        "reference year", 2020
+                                    )
+
+                    for v, y in ref_years.items():
+
+                        array.loc[dict(variables=v)] = array.loc[
+                            dict(variables=v)
+                        ] / array.loc[dict(variables=v)].sel(year=int(y))
+
+                    # convert NaNs to ones
+                    array = array.fillna(1)
+
+                    data[i]["efficiency"] = array
+
+        return data

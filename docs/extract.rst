@@ -799,16 +799,6 @@ Li-ion batteries
 NMC-111, NMC-6222 NMC-811 and NCA Lithium-ion battery inventories are originally
 from Dai_ et al. 2019. They have been adapted to ecoinvent by Crenna_ et al, 2021.
 LFP and LTO Lithium-ion battery inventories are from  Schmidt_ et al. 2019.
-Additionally, *premise* uses new inventories for natural graphite, from Engels_
-et al. 2022, to partly replace the synthetic graphite used in Dai's inventories,
-to represent a 50:50 split between natural and synthetic graphite.
-These inventories can be found here: LCI_batteries_.
-
-.. _Dai: https://www.mdpi.com/2313-0105/5/2/48
-.. _Crenna: https://doi.org/10.1016/j.resconrec.2021.105619
-.. _Schmidt: https://doi.org/10.1021/acs.est.8b05313
-.. _Engels: https://doi.org/10.1016/j.jclepro.2022.130474
-.. _LCI_batteries: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-batteries.xlsx
 
 They introduce the following datasets:
 
@@ -822,14 +812,87 @@ They introduce the following datasets:
   Battery cell, NCA              GLO         Dai et al. 2019, Crenna et al. 2021
   Battery cell, LFP              GLO         Schmidt et al. 2019
   Battery cell, LTO              GLO         Schmidt et al. 2019
-  coating of natural graphite    CN          Engels et al. 2022
-  graphite purification          CN          Engels et al. 2022
-  graphite ore mining            CN          Engels et al. 2022
  ============================== =========== ======================================
 
 These battery inventories are mostly used by battery electric vehicles
 (also imported by *premise*), and are to be preferred to battery
-inventories coming with ecoinvent.
+inventories coming with ecoinvent (battery inventories since ecoinvent 3.8
+are also from Crenna_ et al, 2021, but have been implemented with
+some errors, which may be corrected in the future in ecoinvent 3.9).
+
+These inventories can be found here: LCI_batteries_.
+
+Graphite
+--------
+
+*premise* includes new inventories for:
+
+* natural graphite, from Engels_ et al. 2022,
+* synthetic graphite, from Surovtseva_ et al. 2022,
+
+forming a new market for graphite, with the following datasets:
+
+ ===================================== =========== ===========
+  Activity                              Location
+ ===================================== =========== ===========
+  market for graphite, battery grade                1.0
+  graphite, natural                     CN          0.8
+  graphite, synthetic                   CN          0.2
+ ===================================== =========== ===========
+
+to represent a 80:20 split between natural and synthetic graphite,
+according to Surovtseva_ et al, 2022.
+
+These inventories can be found here: LCI_graphite_.
+
+Cobalt
+------
+
+New inventories of cobalt are added, from the work of Dai, Kelly and Elgowainy_, 2018.
+They are available under the following datasets:
+
+=================================================================================== ===========
+Activity                                                                             Location
+=================================================================================== ===========
+cobalt sulfate production, from copper mining, economic allocation                   CN
+cobalt sulfate production, from copper mining, energy allocation                     CN
+cobalt metal production, from copper mining, via electrolysis, economic allocation   CN
+cobalt metal production, from copper mining, via electrolysis, energy allocation     CN
+=================================================================================== ===========
+
+We recommend using those rather than the original ecoinvent inventories for cobalt, provided
+by the Cobalt Development Institute (CDI) since ecoinvent 3.7, which seem to lack transparency.
+
+These inventories can be found here: LCI_cobalt_.
+
+Lithium
+-------
+
+New inventories for lithium extraction are also added,
+from the work of Schenker_ et al., 2022.
+They cover lithium extraction from five different locations in Chile, Argentina and China.
+They are available under the following datasets for battery production:
+
+=================================================================================== ===========
+Activity                                                                             Location
+=================================================================================== ===========
+market for lithium carbonate, battery grade                                          GLO
+market for lithium hydroxide, battery grade                                          GLO
+=================================================================================== ===========
+
+These inventories can be found here: LCI_lithium_.
+
+.. _Dai: https://www.mdpi.com/2313-0105/5/2/48
+.. _Crenna: https://doi.org/10.1016/j.resconrec.2021.105619
+.. _Schmidt: https://doi.org/10.1021/acs.est.8b05313
+.. _Engels: https://doi.org/10.1016/j.jclepro.2022.130474
+.. _Surovtseva: https://doi.org/10.1111/jiec.13234
+.. _Elgowainy: https://greet.es.anl.gov/publication-update_cobalt
+.. _Schenker: https://doi.org/10.1016/j.resconrec.2022.106611
+.. _LCI_batteries: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-batteries.xlsx
+.. _LCI_graphite: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-graphite.xlsx
+.. _LCI_cobalt: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-cobalt.xlsx
+.. _LCI_lithium: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-lithium.xlsx
 
 
 Road vehicles

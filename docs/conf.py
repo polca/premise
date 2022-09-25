@@ -15,8 +15,6 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
-print(sys.path)
-
 # -- Project information -----------------------------------------------------
 
 project = "premise"
@@ -26,7 +24,7 @@ copyright = (
 author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "1.2.0"
+release = "1.3.0"
 
 # -- General configuration ---------------------------------------------------
 

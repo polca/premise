@@ -12,3 +12,5 @@ cryptography
 premise_gwp
 pyYaml
 sparse
+schema
+datapackage
