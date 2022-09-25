@@ -354,7 +354,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 (data_end.values - data_start.values) / (end - start)
             )[:, None]
 
-
             if capital_repl_rate:
                 # get the capital replacement rate
                 # which is here defined as -1 / lifetime
@@ -523,7 +522,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             slope = (data_end.values - data_start.values) / (end - start)
 
-
             short_slope_start = start + (end - start) * weighted_slope_start
 
             if isinstance(short_slope_start, np.ndarray):
@@ -553,7 +551,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 .values
             ) / (short_slope_end - short_slope_start)
 
-
             if short_slope.shape != slope.shape:
                 short_slope = np.repeat(short_slope, slope.shape[0])
 
@@ -564,9 +561,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 slope -= cap_repl_rate
                 short_slope -= cap_repl_rate
 
-
             x = np.where(slope == 0, 0, slope / short_slope)
-
 
             split_year = np.where(x < 0, -1, 1)
             split_year = np.where(
@@ -574,7 +569,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 2 * (np.exp(-1 + x) / (1 + np.exp(-1 + x)) - 0.5),
                 split_year,
             )
-
 
             market_shares.loc[dict(region=region)] = (slope + slope * split_year)[
                 :, None
