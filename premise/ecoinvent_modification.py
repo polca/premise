@@ -981,6 +981,7 @@ class NewDatabase:
         self.update_cement()
         self.update_steel()
         self.update_fuels()
+        self.update_external_scenario()
 
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None
