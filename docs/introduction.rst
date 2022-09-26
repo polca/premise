@@ -36,9 +36,11 @@ Provided a decryption key (ask the maintainers_), the following IAM scenarios ar
  =================== =========================================================================================== ================== =============
   SSP/RCP scenario    Description                                                                                 REMIND             IMAGE
  =================== =========================================================================================== ================== =============
-  SSP2-RCP6.5         Counter-factual scenario with no stringent climate policy implemented.                      SSP2-Base          SSP2-Base
-  SSP2-RCP2.6         Limit the global temperature increase to <2C by 2100, compared to pre-industrial levels.    SSP2-PkBudg1300    SSP2-RCP26
-  SSP2-RCP1.9         Limit the global temperature increase to 1.5C by 2100, compared to pre-industrial levels.   SSP2-PkBudg900     SSP2-RCP19
+  SSP2-RCP6.5 ~3.5C   Counter-factual scenario with no stringent climate policy implemented.                      SSP2-Base          SSP2-Base
+  ~+3.3C              National Policies Implemented (NPI).                                                        SSP2-NPI           -
+  ~+2.5C              Nationally Determined Contributions (NDCs) scenario.                                        SSP2-NDC           -
+  SSP2-RCP2.6 ~2C     Limit the global temperature increase to 2C by 2100, compared to pre-industrial levels.     SSP2-PkBudg1300    SSP2-RCP26
+  SSP2-RCP1.9 ~1.5C   Limit the global temperature increase to 1.5C by 2100, compared to pre-industrial levels.   SSP2-PkBudg900     SSP2-RCP19
  =================== =========================================================================================== ================== =============
 
 CarbonBrief_ wrote a very good article explaining the meaning of the SSP/RCP system.
