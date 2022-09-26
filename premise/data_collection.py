@@ -302,7 +302,7 @@ class IAMDataCollection:
 
         data = self.__get_iam_data(
             key=key,
-            filepath=filepath_iam_files,
+            filedir=filepath_iam_files,
             variables=new_vars,
         )
 
@@ -394,7 +394,7 @@ class IAMDataCollection:
         return dict_vars
 
     def __get_iam_data(
-        self, key: bytes, filepath: Path, variables: List
+        self, key: bytes, filedir: Path, variables: List
     ) -> xr.DataArray:
         """
         Read the IAM result file and return an `xarray` with dimensions:
@@ -411,7 +411,7 @@ class IAMDataCollection:
         """
 
         file_ext = self.model + "_" + self.pathway + ".csv"
-        filepath = Path(filepath) / file_ext
+        filepath = Path(filedir) / file_ext
 
         if key is None:
             # Uses a non-encrypted file
@@ -421,7 +421,7 @@ class IAMDataCollection:
                     encrypted_data = file.read()
             except FileNotFoundError:
                 file_ext = self.model + "_" + self.pathway + ".mif"
-                filepath = Path(filepath) / file_ext
+                filepath = Path(filedir) / file_ext
                 with open(filepath, "rb") as file:
                     # read the encrypted data
                     encrypted_data = file.read()
