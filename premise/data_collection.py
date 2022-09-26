@@ -17,6 +17,7 @@ import pandas as pd
 import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
+from itertools import chain
 
 from . import DATA_DIR
 
