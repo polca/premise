@@ -33,5 +33,4 @@ Technical Reference
    premise.electricity
    premise.cement
    premise.steel
-   premise.fuels
    premise.utils
