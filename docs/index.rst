@@ -32,5 +32,4 @@ Technical Reference
    premise.transformation
    premise.electricity
    premise.cement
-   premise.steel
    premise.utils
