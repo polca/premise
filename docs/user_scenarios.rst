@@ -21,7 +21,7 @@ Using user-generated scenarios
 ------------------------------
 
 Quite simply, the user needs to fetch the url of the datapackage.json
-file of the scenario of interest. Using the library `datapackage`,
+file of the scenario of interest. Using the library **datapackage**,
 the user can then load the scenario package (including a scenario file,
 inventories and a configuration file) and include it as an argument
 to the premise instance.
@@ -49,9 +49,9 @@ Example
     external_scenarios=[
         cobalt,
     ]
-)
 
-The function `ndb.update_external_scenario()`can be called after that
+
+The function **ndb.update_external_scenario()**can be called after that
 to implement the user-defined scenario in the database.
 
 Producing your own scenario
@@ -60,9 +60,9 @@ Producing your own scenario
 The user can produce his/her own scenario by following the steps below:
 
 1. Clone an existing scenario repository from the public repository_.
-2. Modify the scenario file (`scenario_data/scenario_data.csv`). 3. Add any inventories needed, under `inventories/lci-xxx.csv`.
-3. Modify the configuration file (`configuration_file/config.yaml`), to instruct `premise` what to do.
-4. Ensure that the file names and paths above are consistent with what is indicated in `datapackage.json`.
+2. Modify the scenario file (**scenario_data/scenario_data.csv**). 3. Add any inventories needed, under **inventories/lci-xxx.csv**.
+3. Modify the configuration file (**configuration_file/config.yaml**), to instruct **premise** what to do.
+4. Ensure that the file names and paths above are consistent with what is indicated in **datapackage.json**.
 5. Once you are happy with your scenario, you can contact the admin of the public repository to add your scenario to the repository.
 
 
@@ -70,27 +70,41 @@ The user can produce his/her own scenario by following the steps below:
 
 
 Example with Ammonia scenarios
-******************************
+------------------------------
 
 Using ammonia as an example, this guide shows how to create prospective databases
-from your custom scenarios and other background scenarios from `premise`.
+from your custom scenarios and other background scenarios from **premise**.
 A datapackage needs four files to define a scenario:
 
-1. `datapackage.json`: a datapackage descriptor file, indicating the scenario author,
+1. **datapackage.json**: a datapackage descriptor file, indicating the scenario author,
     scenario name, scenario description, scenario version, and the file names and paths
     of the scenario file, configuration file, and inventories.
 
-2. `scenario_data.csv`: a scenario file, which defines some variables (production volumes,
+2. **scenario_data.csv**: a scenario file, which defines some variables (production volumes,
     efficiencies, etc.) across time, space and scenarios.
 
-3. `config.yaml`: a configuration file, which tells `premise` what to do. Among other things,
-    it tells `premise` which technologies the scenario considers, their names in the scenario data
+3. **config.yaml**: a configuration file, which tells **premise** what to do. Among other things,
+    it tells **premise** which technologies the scenario considers, their names in the scenario data
     file and the inventories, and which inventories to use for which technologies. It also
     indicates which markets to create and for which regions.
 
-4. `lci-xxx.csv`: optional, a csv file containing the inventories of the scenario, if needed.
+4. **lci-xxx.csv**: optional, a csv file containing the inventories of the scenario, if needed.
 
 
+datapackage.json
+****************
+
+
+scenario data
+*************
+
+
+inventories
+***********
+
+
+config.yaml
+***********
 
 
 Main contributors
