@@ -94,12 +94,104 @@ A datapackage needs four files to define a scenario:
 datapackage.json
 ****************
 
+The datapackage.json file is a descriptor file that indicates the scenario author,
+scenario name, scenario description, scenario version, and the file names and paths
+of the scenario file, configuration file, and inventories.
 
-scenario data
+Example:
+
+.. code-block:: json
+
+    {
+    "profile": "data-package",
+    "name": "ammonia-prospective-scenarios",
+    "title": "Ammonia decarbonisation pathways and their effects on life cycle assessments: Integrating future ammonia scenarios into background data for prospective LCAs",
+    "description": "Implementation of the scenarios on future ammonia supply from the Master thesis of J. Boyce, 2022.",
+    "source":"Boyce, J. C. (2022). Ammonia decarbonisation pathways and their effects on life cycle assessments: Integrating future ammonia scenarios into background data for prospective LCAs [Master’s Thesis, Leiden University and TU Delft].",
+    "version": "0.0.1",
+    "contributors":[
+        {
+        "title": "Johanna C. Boyce",
+        "email": "xxxx@umail.leidenuniv.nl"
+    }
+    ], ...
+
+The mapping betweenn the IAM scenarios and the user-defined scenarios is
+also done in the configuration file. Here, for exmaple, the **SSP2-Base**
+scenario from the IAM model **IMAGE** is mapped to the user-defined
+scenario **Business As Usual**.
+
+
+.. code-block:: json
+
+    "scenarios": {
+        "Business As Usual": [
+            {
+                "model": "image",
+                "pathway": "SSP2-Base"
+            },
+            {
+                "model": "remind",
+                "pathway": "SSP2-Base"
+            }
+        ],
+
+The resources section of the datapackage.json file indicates the file names, location
+of the scenario file, configuration file, and inventories, as well as how their
+data should present.
+
+.. code-block:: json
+
+    "resources": [
+        {
+            "path": "scenario_data/scenario_data.csv",
+            "profile": "tabular-data-resource",
+            "name": "scenario_data",
+            "format": "csv",
+            "mediatype": "text/csv",
+            "encoding": "utf-8-sig",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "model",
+                        "type": "string",
+                        "format": "default"
+                    },
+
+Scenario data
 *************
 
+The **scenario_data.csv** file contains the scenario data.
 
-inventories
++-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
+| model | pathway    | scenario                | region | variables                                               | unit | 2020 | 2025 | 2030 | 2035 | 2040 | 2045 | 2050 | 2100 |
++-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
+| image | SSP2-RCP19 | Sustainable development | CHN    | Efficiency|Hydrogen|Alkaline Electrolysis (electricity) | %    | 66   | 67.5 | 69   | 71   | 73   | 74.5 | 76   | 76   |
++-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
+| image | SSP2-RCP19 | Sustainable development | INDIA  | Efficiency|Hydrogen|Alkaline Electrolysis (electricity) | %    | 66   | 67.5 | 69   | 71   | 73   | 74.5 | 76   | 76   |
++-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
+| image | SSP2-RCP19 | Sustainable development | CAN    | Efficiency|Hydrogen|Alkaline Electrolysis (electricity) | %    | 66   | 67.5 | 69   | 71   | 73   | 74.5 | 76   | 76   |
++-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
+| image | SSP2-RCP19 | Sustainable development | USA    | Efficiency|Hydrogen|Alkaline Electrolysis (electricity) | %    | 66   | 67.5 | 69   | 71   | 73   | 74.5 | 76   | 76   |
++-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
+| image | SSP2-RCP19 | Sustainable development | MEX    | Efficiency|Hydrogen|Alkaline Electrolysis (electricity) | %    | 66   | 67.5 | 69   | 71   | 73   | 74.5 | 76   | 76   |
++-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
+
+The first column
+is the **model** column, which indicates the IAM model that the scenario
+maps with. The second column is the **pathway** column, which indicates
+the IAM scenario that the user-defined scenario should map with.
+The third column is the name of the user-defined scenario. The fourth column
+is the region, which can be either a country or a region. The fifth column
+is the **variable** column, which indicates the variable that the
+scenario data is about. The sixth column is the **unit** column,
+which indicates the unit of that variable. The columns after that are the
+values of the variable across time.
+
+Variables can be production volumes (used to build markets), efficiencies,
+or other variables that are needed to calculate the inventories.
+
+Inventories
 ***********
 
 
