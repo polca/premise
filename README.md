@@ -78,6 +78,12 @@ is available from Anaconda Cloud:
 
     conda install -c romainsacchi premise
 
+Note: currently there is an [issue](https://github.com/polca/premise/issues/85) with the version of `bw2calc` shipped by conda. If you ran into problems importing brightway2 in the conda env, downgrade to the latest stable release of `bw2calc`
+```
+conda install bw2calc=1.8.1
+```
+ 
+
 For a more stable and proven version, from Pypi:
 
     pip install premise
