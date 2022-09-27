@@ -994,7 +994,6 @@ class ExternalScenario(BaseTransformation):
                 if field in k:
                     list_fltr.append(ws.equals(field, k[field]))
 
-
         for ds in datasets:
 
             for exc in ws.technosphere(ds, ws.either(*list_fltr)):
@@ -1013,7 +1012,8 @@ class ExternalScenario(BaseTransformation):
                     else:
                         for region in regions:
                             if (
-                                ds["location"] in self.geo.iam_to_ecoinvent_location(region)
+                                ds["location"]
+                                in self.geo.iam_to_ecoinvent_location(region)
                                 and region != "World"
                             ):
                                 new_loc = region
