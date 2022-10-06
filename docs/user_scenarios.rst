@@ -51,7 +51,7 @@ Example
     ]
 
 
-The function **ndb.update_external_scenario()**can be called after that
+The function **ndb.update_external_scenario()** can be called after that
 to implement the user-defined scenario in the database.
 
 Producing your own scenario
