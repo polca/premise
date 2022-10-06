@@ -455,9 +455,9 @@ class Electricity(BaseTransformation):
                     loss_excs.append(distr_loss_exc)
 
                 concat_list = [
-                   pd.DataFrame([new_market] + loss_excs, columns=new_market.index),
+                    pd.DataFrame([new_market] + loss_excs, columns=new_market.index),
                 ]
-                #concat_list = [pd.DataFrame([new_market], columns=new_market.index)]
+                # concat_list = [pd.DataFrame([new_market], columns=new_market.index)]
 
                 if isinstance(new_exchanges, pd.DataFrame):
                     concat_list.append(new_exchanges)
