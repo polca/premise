@@ -60,10 +60,11 @@ Producing your own scenario
 The user can produce his/her own scenario by following the steps below:
 
 1. Clone an existing scenario repository from the public repository_.
-2. Modify the scenario file (**scenario_data/scenario_data.csv**). 3. Add any inventories needed, under **inventories/lci-xxx.csv**.
-3. Modify the configuration file (**configuration_file/config.yaml**), to instruct **premise** what to do.
-4. Ensure that the file names and paths above are consistent with what is indicated in **datapackage.json**.
-5. Once you are happy with your scenario, you can contact the admin of the public repository to add your scenario to the repository.
+2. Modify the scenario file (**scenario_data/scenario_data.csv**).
+3. Add any inventories needed, under **inventories/lci-xxx.csv**.
+4. Modify the configuration file (**configuration_file/config.yaml**), to instruct **premise** what to do.
+5. Ensure that the file names and paths above are consistent with what is indicated in **datapackage.json**.
+6. Once you are happy with your scenario, you can contact the admin of the public repository to add your scenario to the repository.
 
 
 .. _repository: https://github.com/premise-community-scenarios
@@ -74,21 +75,28 @@ Example with Ammonia scenarios
 
 Using ammonia as an example, this guide shows how to create prospective databases
 from your custom scenarios and other background scenarios from **premise**.
+
+You can clone the Ammonia scenario repository:
+
+.. code-block:: bash
+
+    git clone https://github.com/premise-community-scenarios/scenario-example-bread.git
+
 A datapackage needs four files to define a scenario:
 
-1. **datapackage.json**: a datapackage descriptor file, indicating the scenario author,
-    scenario name, scenario description, scenario version, and the file names and paths
-    of the scenario file, configuration file, and inventories.
+#    **datapackage.json**: a datapackage descriptor file, indicating the scenario author,
+scenario name, scenario description, scenario version, and the file names and paths
+of the scenario file, configuration file, and inventories.
 
-2. **scenario_data.csv**: a scenario file, which defines some variables (production volumes,
-    efficiencies, etc.) across time, space and scenarios.
+#    **scenario_data.csv**: a scenario file, which defines some variables (production volumes,
+efficiencies, etc.) across time, space and scenarios.
 
-3. **config.yaml**: a configuration file, which tells **premise** what to do. Among other things,
-    it tells **premise** which technologies the scenario considers, their names in the scenario data
-    file and the inventories, and which inventories to use for which technologies. It also
-    indicates which markets to create and for which regions.
+#    **config.yaml**: a configuration file, which tells **premise** what to do. Among other things,
+it tells **premise** which technologies the scenario considers, their names in the scenario data
+file and the inventories, and which inventories to use for which technologies. It also
+indicates which markets to create and for which regions.
 
-4. **lci-xxx.csv**: optional, a csv file containing the inventories of the scenario, if needed.
+#    **lci-xxx.csv**: optional, a csv file containing the inventories of the scenario, if needed.
 
 
 datapackage.json
@@ -116,8 +124,8 @@ Example:
     }
     ], ...
 
-The mapping betweenn the IAM scenarios and the user-defined scenarios is
-also done in the configuration file. Here, for exmaple, the **SSP2-Base**
+The mapping between the IAM scenarios and the user-defined scenarios is
+also done in the configuration file. Here, for example, the **SSP2-Base**
 scenario from the IAM model **IMAGE** is mapped to the user-defined
 scenario **Business As Usual**.
 
@@ -194,10 +202,136 @@ or other variables that are needed to calculate the inventories.
 Inventories
 ***********
 
+Inventories are stored in csv files (for version control).
+The name of the csv file should be similar to what is indicated in the
+datapackage.json file. For example, if the datapackage.json file indicates
+that the inventory file is **inventories/lci-xxx.csv**, then the inventory file should
+be named **lci-xxx.csv** under the folder **inventories** in the root folder.
 
 config.yaml
 ***********
 
+The config.yaml file is a configuration file that indicates the mapping between
+the variables in the scenario data and the variables in the LCA inventories.
+
+It is composed of two main parts: **production pathways** and **markets**.
+The **production pathways** part indicates the mapping between the variables
+representing a production route and the variables in the LCA inventories. It is
+where one can indicate the efficiency of a production route, the amount of
+electricity used, the amount of hydrogen used, etc.
+
+Consider the following example:
+
+.. code-block:: yaml
+
+    # `production pathways` lists the different technologies
+    production pathways:
+      # name given to a technology: this name is internal to premise
+      MP:
+        # variables to look for in the scenario data file to fetch production volumes
+        # values fetched from the scenario data file as production volumes are used to calculate
+        # the supply share if markets are to be built
+        production volume:
+          # `variable` in `production volume` refers to the variable name in the scenario data file
+          variable: Production|Ammonia|Methane Pyrolysis
+        # dataset in the imported inventories that represents the technology
+        ecoinvent alias:
+          # name of the original dataset
+          name: ammonia production, hydrogen from methane pyrolysis
+          # reference product of the original dataset
+          reference product: ammonia, anhydrous, liquid
+          # indicate whether the dataset exists in the original database
+          # or if it should be sourced from the inventories folder
+          exists in original database: False
+          # indicate whether a region-specific version of the dataset should be created
+          regionalize: True
+
+This excerpt from the config.yaml file indicates that the variable
+**Production|Ammonia|Methane Pyrolysis** in the scenario data file
+should be mapped with the dataset **ammonia production, hydrogen from methane pyrolysis**
+in the LCA inventories. The **reference product** of the dataset is
+**ammonia, anhydrous, liquid**. The **regionalize** parameter indicates
+that a region-specific version of the dataset should be created for
+each region in teh scenario data file. The **exists in original database**
+parameter indicates that the dataset does not exist in the original
+database, but is sourced from the inventories folder.
+
+Also, consider this other excerpt from the config.yaml file:
+
+.. code-block:: yaml
+
+    #adding PEM and AE separately to make a sub-market
+  # and allow for efficiency improvements to the
+  # electrolysis processes
+  AE:
+    production volume:
+      variable: Production|Hydrogen|Alkaline Electrolysis
+    ecoinvent alias:
+      name: hydrogen production, alkaline electrolysis
+      reference product: hydrogen, alkaline electrolysis
+      exists in original database: False
+      regionalize: True
+    efficiency:
+      - variable: Efficiency|Hydrogen|Alkaline Electrolysis (electricity)
+        reference year: 2020
+        includes:
+          # efficiency gains will only apply to flows whose name
+          # contains `electricity`
+          technosphere:
+            - electricity
+
+This is essentially the same as above, but it indicates that the
+variable **Efficiency|Hydrogen|Alkaline Electrolysis (electricity)** in the scenario
+data file should be mapped with the **efficiency** of the dataset
+**hydrogen production, alkaline electrolysis** in the LCA inventories.
+The **includes** parameter indicates that the efficiency gains will only
+apply to flows of type *technosphere* whose name contains **electricity**.
+
+
+The **markets** part indicates which markets to build, which produciton routes
+these markets should be composed of, which inputs should they provide, and if
+they substitute a prior market in the database.
+
+Consider the followigne excerpt from the config.yaml file:
+
+.. code-block:: yaml
+
+  # name of the market dataset
+  - name: market for ammonia (APS)
+    reference product: ammonia, anhydrous, liquid
+    # unit of the market dataset
+    unit: kilogram
+    # names of datasets that should compose the market
+    includes:
+      - MP
+      - SMR
+      - SMR_w_CCS
+      - ELE
+      - OIL
+      - CG
+      - CGC
+    # 'market for ammonia` will replace the existing markets.
+    replaces:
+      - name: market for ammonia, anhydrous, liquid
+        reference product: ammonia, anhydrous, liquid
+    replaces in:
+      - location: DE
+
+This tells **premise** to build a market dataset named **market for ammonia (APS)**
+with the reference product **ammonia, anhydrous, liquid** and the unit
+**kilogram**. The market should be composed of the production routes
+**MP**, **SMR**, **SMR_w_CCS**, **ELE**, **OIL**, **CG**, and **CGC**, which
+have been defined in the **production pathways** part of the config.yaml file.
+The market will replace the existing market dataset **market for ammonia, anhydrous, liquid**.
+
+The **replaces** parameter is optional. If it is not provided, the market
+will be added to the database without replacing any existing market.
+
+The **replaces in** parameter is also optional. If it is not provided, the
+market will be replaced in all regions. If it is provided, the market will
+only be replaced in the regions indicated in the **replaces in** parameter.
+
+Have fun!
 
 Main contributors
 -----------------
