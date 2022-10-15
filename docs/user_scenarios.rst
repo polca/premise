@@ -5,7 +5,7 @@ Purpose
 -------
 
 *premise* allows users to integrate user-made scenarios in addition
-to an IAM scenario. This is useful for example when a user wants to
+(or not) to an IAM scenario. This is useful for example when a user wants to
 integrate projections for a sector, product or a technology
 that is not really covered by IAM scenarios.
 
@@ -80,9 +80,12 @@ You can clone the Ammonia scenario repository:
 
 .. code-block:: bash
 
-    git clone https://github.com/premise-community-scenarios/scenario-example-bread.git
+    git clone https://github.com/premise-community-scenarios/ammonia-prospective-scenarios.git
 
-A datapackage needs four files to define a scenario:
+This will download a copy of the repository to your local machine.
+You can then rename it and modify it to your liking.
+
+A datapackage needs four files (called *resources*) to define a scenario:
 
 #    **datapackage.json**: a datapackage descriptor file, indicating the scenario author,
 scenario name, scenario description, scenario version, and the file names and paths
@@ -125,9 +128,13 @@ Example:
     ], ...
 
 The mapping between the IAM scenarios and the user-defined scenarios is
-also done in the configuration file. Here, for example, the **SSP2-Base**
-scenario from the IAM model **IMAGE** is mapped to the user-defined
-scenario **Business As Usual**.
+also done in the datapackage.json file. Here, for example, the **SSP2-Base**
+scenario from the IAM models **IMAGE** and **REMIND** are mapped to the user-defined
+scenario **Business As Usual**. This means that when a user wants to use the
+**SSP2-Base** scenario from **IMAGE** and **REMIND**, the user-defined scenario
+**Business As Usual** will be picked. While your scenario may not be meant to
+be used in addition to an IAM scenario, you must still map it to an IAM scenario
+(should be improved in the future).
 
 
 .. code-block:: json
@@ -147,6 +154,12 @@ scenario **Business As Usual**.
 The resources section of the datapackage.json file indicates the file names, location
 of the scenario file, configuration file, and inventories, as well as how their
 data should present.
+
+For example, here the scenario file is called **scenario_data.csv**,
+and is located in the **scenario_data** folder. The data in the file is in the
+**long** format, with the columns **region**, **year**, **scenario**, **variable**, etc.
+A scenario is, along with a configuration file, a mandatory resource
+of a scenario package -- inventories are optional.
 
 .. code-block:: json
 
@@ -170,6 +183,14 @@ Scenario data
 *************
 
 The **scenario_data.csv** file contains the scenario data.
+Having this file as a csv is mandatory, as it allows to track changes
+between scenario versions.
+Below are shown some variables that indicate the efficiency of the
+production of hydrogen from alkaline-based electrolysers, from 2020
+to 2050, for the **Sustainable development** scenario, for several regions.
+The actual meaning of this variable is not important here, as it is
+defined in the configuration file.
+
 
 +-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
 | model | pathway    | scenario                | region | variables                                               | unit | 2020 | 2025 | 2030 | 2035 | 2040 | 2045 | 2050 | 2100 |
@@ -197,14 +218,14 @@ which indicates the unit of that variable. The columns after that are the
 values of the variable across time.
 
 Variables can be production volumes (used to build markets), efficiencies,
-or other variables that are needed to calculate the inventories.
+or other variables that are needed to modify/adjust inventories.
 
 Inventories
 ***********
 
 Inventories are stored in csv files (for version control).
 The name of the csv file should be similar to what is indicated in the
-datapackage.json file. For example, if the datapackage.json file indicates
+*datapackage.json* file. For example, if the *datapackage.json* file indicates
 that the inventory file is **inventories/lci-xxx.csv**, then the inventory file should
 be named **lci-xxx.csv** under the folder **inventories** in the root folder.
 
@@ -216,8 +237,9 @@ the variables in the scenario data and the variables in the LCA inventories.
 
 It is composed of two main parts: **production pathways** and **markets**.
 The **production pathways** part indicates the mapping between the variables
-representing a production route and the variables in the LCA inventories. It is
-where one can indicate the efficiency of a production route, the amount of
+representing a production route and listed in the scenario data file,
+with the names of the LCI datasets.
+It is where one can indicate the efficiency of a production route, the amount of
 electricity used, the amount of hydrogen used, etc.
 
 Consider the following example:
@@ -252,15 +274,15 @@ should be mapped with the dataset **ammonia production, hydrogen from methane py
 in the LCA inventories. The **reference product** of the dataset is
 **ammonia, anhydrous, liquid**. The **regionalize** parameter indicates
 that a region-specific version of the dataset should be created for
-each region in teh scenario data file. The **exists in original database**
-parameter indicates that the dataset does not exist in the original
-database, but is sourced from the inventories folder.
+each region listed in the scenario data file in the *region* column.
+The **exists in original database** parameter indicates that the
+dataset does not exist in the original database, but is sourced from the inventories folder.
 
-Also, consider this other excerpt from the config.yaml file:
+Also, consider this other example from the *config.yaml* file:
 
 .. code-block:: yaml
 
-    #adding PEM and AE separately to make a sub-market
+  #adding PEM and AE separately to make a sub-market
   # and allow for efficiency improvements to the
   # electrolysis processes
   AE:
@@ -284,15 +306,25 @@ This is essentially the same as above, but it indicates that the
 variable **Efficiency|Hydrogen|Alkaline Electrolysis (electricity)** in the scenario
 data file should be mapped with the **efficiency** of the dataset
 **hydrogen production, alkaline electrolysis** in the LCA inventories.
+
 The **includes** parameter indicates that the efficiency gains will only
 apply to flows of type *technosphere* whose name contains **electricity**.
+In practice, this will reduce the input of electricity over time for that dataset.
+If you do not specify **includes**, then the efficiency gains will apply to all
+flows (of type *technosphere* and *biosphere*).
+
+The field **reference year**
+indicates the baseline year **premise** should use to calculate the factor
+by which the flows should be scaled by. For example, if the electrolyzer
+has an efficiency of 60% in 2020, and 70% in 2030, the input of electricity
+will be reduced by 14.3% (1 / (70%/60%)) if the database is created for 2030.
 
 
-The **markets** part indicates which markets to build, which produciton routes
+The **markets** part indicates which markets to build, which production routes
 these markets should be composed of, which inputs should they provide, and if
 they substitute a prior market in the database.
 
-Consider the followigne excerpt from the config.yaml file:
+Consider the following example from the *config.yaml* file:
 
 .. code-block:: yaml
 
@@ -321,15 +353,46 @@ This tells **premise** to build a market dataset named **market for ammonia (APS
 with the reference product **ammonia, anhydrous, liquid** and the unit
 **kilogram**. The market should be composed of the production routes
 **MP**, **SMR**, **SMR_w_CCS**, **ELE**, **OIL**, **CG**, and **CGC**, which
-have been defined in the **production pathways** part of the config.yaml file.
+have been defined in the **production pathways** part of the *config.yaml* file.
 The market will replace the existing market dataset **market for ammonia, anhydrous, liquid**.
 
 The **replaces** parameter is optional. If it is not provided, the market
-will be added to the database without replacing any existing market.
+will be added to the database without replacing any existing supplier.
 
 The **replaces in** parameter is also optional. If it is not provided, the
-market will be replaced in all regions. If it is provided, the market will
+market will be replaced in all regions. In this case, the market will
 only be replaced in the regions indicated in the **replaces in** parameter.
+But **replaces in** is flexible. For example, instead of a region, you can
+indicate a string that should be contain in the *name* or *reference product* of activities
+to update.
+
+.. code-block:: yaml
+
+  # name of the market dataset
+  - name: market for ammonia (APS)
+    reference product: ammonia, anhydrous, liquid
+    # unit of the market dataset
+    unit: kilogram
+    # names of datasets that should compose the market
+    includes:
+      - MP
+      - SMR
+      - SMR_w_CCS
+      - ELE
+      - OIL
+      - CG
+      - CGC
+    # 'market for ammonia` will replace the existing markets.
+    replaces:
+      - name: market for ammonia, anhydrous, liquid
+        reference product: ammonia, anhydrous, liquid
+    replaces in:
+      - reference product: urea
+      - location: DE
+
+Hence, in this example, the ammonia supplier will be replaced in all
+activities whose reference product contains the string **urea**
+and location in **DE**.
 
 Have fun!
 
