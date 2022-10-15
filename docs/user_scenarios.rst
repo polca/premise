@@ -67,11 +67,12 @@ of the global IAM model, you can run the function **ndb.update_all()**.
 
     ndb.update_all()
 
-Or if you just want the IMA projections relating to, for example, electricity:
+Or if you just want the IAM projections relating to, for example, electricity and steel:
 
 .. code-block:: python
 
     ndb.update_electricity()
+    ndb.update_steel()
     ndb.update_external_scenario()
 
 Once the integrations are complete, you can export your databases to
@@ -88,7 +89,10 @@ to Brightway2, regardless of the number of scenarios:
 
     ndb.write_superstructure_db_to_brightway()
 
-"""
+
+.. note::
+
+    SuperStructure databases can only be used from the Activity-Browser.
 
 You can also export the databases to a csv file, which can be used
 by Simapro, or as a set of sparse matrices.
