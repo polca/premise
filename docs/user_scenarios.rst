@@ -114,18 +114,18 @@ Example:
 .. code-block:: json
 
     {
-    "profile": "data-package",
-    "name": "ammonia-prospective-scenarios",
-    "title": "Ammonia decarbonisation pathways and their effects on life cycle assessments: Integrating future ammonia scenarios into background data for prospective LCAs",
-    "description": "Implementation of the scenarios on future ammonia supply from the Master thesis of J. Boyce, 2022.",
-    "source":"Boyce, J. C. (2022). Ammonia decarbonisation pathways and their effects on life cycle assessments: Integrating future ammonia scenarios into background data for prospective LCAs [Master’s Thesis, Leiden University and TU Delft].",
-    "version": "0.0.1",
-    "contributors":[
-        {
-        "title": "Johanna C. Boyce",
-        "email": "xxxx@umail.leidenuniv.nl"
+        "profile": "data-package",
+        "name": "ammonia-prospective-scenarios",
+        "title": "Ammonia decarbonisation pathways and their effects on life cycle assessments: Integrating future ammonia scenarios into background data for prospective LCAs",
+        "description": "Implementation of the scenarios on future ammonia supply from the Master thesis of J. Boyce, 2022.",
+        "source":"Boyce, J. C. (2022). Ammonia decarbonisation pathways and their effects on life cycle assessments: Integrating future ammonia scenarios into background data for prospective LCAs [Master’s Thesis, Leiden University and TU Delft].",
+        "version": "0.0.1",
+        "contributors":[
+            {
+            "title": "Johanna C. Boyce",
+            "email": "xxxx@umail.leidenuniv.nl"
     }
-    ], ...
+
 
 The mapping between the IAM scenarios and the user-defined scenarios is
 also done in the datapackage.json file. Here, for example, the **SSP2-Base**
