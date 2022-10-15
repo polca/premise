@@ -24,7 +24,9 @@ Quite simply, the user needs to fetch the url of the datapackage.json
 file of the scenario of interest. Using the library **datapackage**,
 the user can then load the scenario package (including a scenario file,
 inventories and a configuration file) and include it as an argument
-to the premise instance.
+to the premise instance. You can include any number of user-defined
+in this list. It is not guarantee though that the user-defined scenarios
+will be compatible with one another.
 
 Example
 
@@ -40,8 +42,8 @@ Example
 
     ndb = NewDatabase(
     scenarios = [
-        {"model":"image", "pathway":"SSP2-Base", "year":2025, "exclude": ["update_two_wheelers", "update_cars", "update_buses"]},
-        {"model":"image", "pathway":"SSP2-Base", "year":2030, "exclude": ["update_two_wheelers", "update_cars", "update_buses"]},
+        {"model":"image", "pathway":"SSP2-Base", "year":2025},
+        {"model":"image", "pathway":"SSP2-Base", "year":2030},
     ],
     source_db="ecoinvent cutoff 3.8",
     source_version="3.8",
@@ -53,6 +55,43 @@ Example
 
 The function **ndb.update_external_scenario()** can be called after that
 to implement the user-defined scenario in the database.
+
+.. code-block:: python
+
+    ndb.update_external_scenario()
+
+But of course, if you wish your database to also integrate the projections
+of the global IAM model, you can run the function **ndb.update_all()**.
+
+.. code-block:: python
+
+    ndb.update_all()
+
+Or if you just want the IMA projections relating to, for example, electricity:
+
+.. code-block:: python
+
+    ndb.update_electricity()
+    ndb.update_external_scenario()
+
+Once the integrations are complete, you can export your databases to
+Brightway2, within the activated project:
+
+.. code-block:: python
+
+    ndb.write_db_to_brightway(name="my_custom_db_2025", "my_custom_db_2030")
+
+Or as a SuperStructure database, which allows you to export only one database
+to Brightway2, regardless of the number of scenarios:
+
+.. code-block:: python
+
+    ndb.write_superstructure_db_to_brightway()
+
+"""
+
+You can also export the databases to a csv file, which can be used
+by Simapro, or as a set of sparse matrices.
 
 Producing your own scenario
 ---------------------------
@@ -99,7 +138,8 @@ it tells **premise** which technologies the scenario considers, their names in t
 file and the inventories, and which inventories to use for which technologies. It also
 indicates which markets to create and for which regions.
 
-#    **lci-xxx.csv**: optional, a csv file containing the inventories of the scenario, if needed.
+#    **lci-xxx.csv**: optional, a csv file containing the inventories of the scenario, if those
+are needed but not present in the LCA database.
 
 
 datapackage.json
