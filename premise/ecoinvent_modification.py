@@ -921,13 +921,14 @@ class NewDatabase:
                         resource = datapackage.get_resource("config")
                         config_file = yaml.safe_load(resource.raw_read())
 
-                        checked_inventories = check_inventories(
+                        checked_inventories, checked_database = check_inventories(
                             config_file,
                             inventories,
                             scenario["external data"][d],
                             scenario["database"],
                             scenario["year"],
                         )
+                        scenario["database"] = checked_database
                         scenario["database"].extend(checked_inventories)
 
                     external_scenario = ExternalScenario(
@@ -941,6 +942,7 @@ class NewDatabase:
                     )
                     external_scenario.create_custom_markets()
                     scenario["database"] = external_scenario.database
+            print(f"Log file of exchanges saved under {DATA_DIR / 'logs'}.")
 
     def update_buses(self) -> None:
         """

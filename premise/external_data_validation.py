@@ -81,7 +81,7 @@ def check_inventories(
             ):
                 flag_activities_to_adjust(original_ds, scenario_data, year, val)
 
-    return inventory_data
+    return inventory_data, database
 
 
 def check_datapackage(datapackages: list):
@@ -167,12 +167,19 @@ def check_config_file(datapackages):
                                 i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
                             ),
                         ),
-                        Optional("replaces"): [{"name": str, "reference product": str}],
+                        Optional("replaces"): [{
+                            "name": str,
+                            "product": str,
+                            Optional("location"): str,
+                            Optional("operator"): str
+                        }
+                        ],
                         Optional("replaces in"): [
                             {
                                 Optional("name"): str,
                                 Optional("reference product"): str,
                                 Optional("location"): str,
+                                Optional("operator"): str,
                             }
                         ],
                         Optional("replacement ratio"): float,
@@ -206,12 +213,20 @@ def check_config_file(datapackages):
                                 i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
                             ),
                         ),
-                        Optional("replaces"): [{"name": str, "reference product": str}],
+                        Optional("replaces"): [
+                            {
+                                "name": str,
+                                "product": str,
+                                Optional("location"): str,
+                                Optional("operator"): str
+                            }
+                        ],
                         Optional("replaces in"): [
                             {
                                 Optional("name"): str,
                                 Optional("reference product"): str,
                                 Optional("location"): str,
+                                Optional("operator"): str,
                             }
                         ],
                         Optional("replacement ratio"): float,
