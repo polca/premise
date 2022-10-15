@@ -2,17 +2,18 @@
 Implements external scenario data.
 """
 
-import xarray as xr
-import yaml
 import csv
-from numpy import ndarray
-from wurst import searching as ws
 from datetime import date
 
+import xarray as xr
+import yaml
+from numpy import ndarray
+from wurst import searching as ws
+
+from . import DATA_DIR
 from .clean_datasets import get_biosphere_flow_uuid
 from .transformation import *
 from .utils import eidb_label
-from . import DATA_DIR
 
 
 def flag_activities_to_adjust(
@@ -1017,11 +1018,7 @@ class ExternalScenario(BaseTransformation):
         for dataset in datasets:
             filtered_exchanges = []
             for fltr in list_fltr:
-                filtered_exchanges.extend(
-                    list(
-                        ws.technosphere(dataset, *fltr)
-                    )
-                )
+                filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
 
             for exc in filtered_exchanges:
                 if dataset["location"] in regions:
@@ -1029,9 +1026,7 @@ class ExternalScenario(BaseTransformation):
                 elif dataset["location"] == "World":
                     new_loc = "World"
                 else:
-                    new_loc = self.geo.ecoinvent_to_iam_location(
-                        dataset["location"]
-                    )
+                    new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
 
                 log.append(
                     [
@@ -1078,4 +1073,3 @@ class ExternalScenario(BaseTransformation):
                 )
                 for line in log:
                     writer.writerow(line)
-
