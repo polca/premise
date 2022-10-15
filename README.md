@@ -20,6 +20,12 @@ As it now evolves towards a more IAM-neutral approach, a change of name was cons
 
 Scientific publication available here: [Sacchi et al, 2022](https://doi.org/10.1016/j.rser.2022.112311).
 
+What's new in 1.3.0?
+====================
+
+-   Added support for user-generated scenarios (see [docs](https://premise.readthedocs.io/en/latest/user_scenarios.html) and [notebook](https://github.com/polca/premise/blob/master/examples/examples%20user-defined%20scenarios.ipynb))
+-   Updated REMIND scenarios to REMIND v.3.0
+
 What's new in 1.0.0?
 ====================
 
