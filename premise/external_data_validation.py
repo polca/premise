@@ -167,12 +167,13 @@ def check_config_file(datapackages):
                                 i in LIST_REMIND_REGIONS + LIST_IMAGE_REGIONS for i in s
                             ),
                         ),
-                        Optional("replaces"): [{
-                            "name": str,
-                            "product": str,
-                            Optional("location"): str,
-                            Optional("operator"): str
-                        }
+                        Optional("replaces"): [
+                            {
+                                "name": str,
+                                "product": str,
+                                Optional("location"): str,
+                                Optional("operator"): str,
+                            }
                         ],
                         Optional("replaces in"): [
                             {
@@ -218,7 +219,7 @@ def check_config_file(datapackages):
                                 "name": str,
                                 "product": str,
                                 Optional("location"): str,
-                                Optional("operator"): str
+                                Optional("operator"): str,
                             }
                         ],
                         Optional("replaces in"): [
