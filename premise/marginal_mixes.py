@@ -166,18 +166,18 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     maximum = max(data.year.values)
     years_to_interp_for = list(range(minimum, maximum + 1))
 
-    data_full = xr.DataArray(np.nan, 
-                             dims=["region", "variables", "year"], 
-                             coords={
-                                 "region":data.region, 
-                                 "year":years_to_interp_for,
-                                 "variables":data.variables
-                                 }
-                             )
-    data_full.loc[dict(year=data.year)] = data 
-    #interpolation is done using cubic spline interpolation
-    data_full = data_full.interpolate_na(dim = "year", method ="akima")
-
+    data_full = xr.DataArray(
+        np.nan,
+        dims=["region", "variables", "year"],
+        coords={
+            "region": data.region,
+            "year": years_to_interp_for,
+            "variables": data.variables,
+        },
+    )
+    data_full.loc[dict(year=data.year)] = data
+    # interpolation is done using cubic spline interpolation
+    data_full = data_full.interpolate_na(dim="year", method="akima")
 
     techs = tuple(data_full.variables.values.tolist())
     leadtime = get_leadtime(techs)
@@ -354,10 +354,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 (data_end.values - data_start.values) / (end - start)
             )[:, None]
 
-            if region == "EUR":
-                print("market shares")
-                print(market_shares.loc[dict(region=region)])
-
             if capital_repl_rate:
                 # get the capital replacement rate
                 # which is here defined as -1 / lifetime
@@ -387,7 +383,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
             maskxr = xr.zeros_like(data_full.sel(region=region))
             maskxr += mask
-
 
             masked_data = data_full.sel(region=region).where(maskxr, drop=True)
 
@@ -453,14 +448,13 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             maskxr = xr.zeros_like(data_full.sel(region=region))
             maskxr += mask
 
-
             masked_data = data_full.sel(region=region).where(maskxr, drop=True)
 
             coeff = masked_data.sum(dim="year").values
 
             if isinstance(end, np.ndarray):
                 end = np.mean(end, 1)
-                
+
             if isinstance(start, np.ndarray):
                 start = np.mean(start, 1)
 
@@ -567,7 +561,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 - data_short_slope_start.values
             ) / (short_slope_end - short_slope_start)
 
-
             if short_slope.shape != slope.shape:
                 short_slope = np.repeat(short_slope, slope.shape[0])
 
@@ -579,6 +572,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 short_slope -= cap_repl_rate
 
             x = np.divide(short_slope, slope, out = np.zeros(short_slope.shape, dtype = float), where = slope != 0)
+
 
             split_year = np.where(x < 0, -1, 1)
             split_year = np.where(
