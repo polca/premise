@@ -42,11 +42,9 @@ setup(
     install_requires=[
         "numpy",
         "wurst",
-        "bw2io>=0.8.6",
-        "bw2calc==1.8.1",
+        "bw2io",
         "pandas",
         "bw2data",
-        "brightway2",
         "xarray",
         "prettytable",
         "pycountry",

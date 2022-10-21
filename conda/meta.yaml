@@ -18,11 +18,9 @@ requirements:
     - python
     - setuptools
   run:
-    - brightway2
     - numpy
     - pandas
     - bw2io
-    - bw2calc
     - bw2data
     - wurst
     - xarray

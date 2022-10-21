@@ -1,9 +1,7 @@
-brightway2
 numpy
 pandas
 bw2io
 bw2data
-bw2calc
 wurst
 xarray
 prettytable
