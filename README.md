@@ -31,7 +31,7 @@ What's new in 1.0.0?
 
 We have just released the first major version of *premise*.
 
-Compared to 0.4.5, here are the some of the most notable changes:
+Compared to 0.4.5, here are some of the most notable changes:
 
 * there's now a [detailed documentation](https://premise.readthedocs.io/en/latest/) for *premise*.
 * *premise* works with ecoinvent 3.8, cut-off.
@@ -82,13 +82,14 @@ Two options:
 A development version with the latest advancements (but with the risks of unseen bugs),
 is available from Anaconda Cloud:
 
-    conda install -c romainsacchi premise
+    
+    conda config --append conda-forge
+    conda config --append cmutel
+    conda config --append konstantinstadler
+    conda config --append haasad
+    conda config --append romainsacchi
+    conda install premise
 
-Note: currently there is an [issue](https://github.com/polca/premise/issues/85) with the version of `bw2calc` shipped by conda. If you ran into problems importing brightway2 in the conda env, downgrade to the latest stable release of `bw2calc`
-```
-conda install bw2calc=1.8.1
-```
- 
 
 For a more stable and proven version, from Pypi:
 
