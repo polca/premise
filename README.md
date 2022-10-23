@@ -85,8 +85,6 @@ is available from Anaconda Cloud:
     
     conda config --append conda-forge
     conda config --append cmutel
-    conda config --append konstantinstadler
-    conda config --append haasad
     conda config --append romainsacchi
     conda install premise
 
