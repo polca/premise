@@ -1618,19 +1618,21 @@ class IAMDataCollection:
                 data[i]["regions"] = regions
 
                 variables = {}
-                for k, v in config_file["production pathways"].items():
-                    try:
-                        variables[k] = [e["variable"] for e in v["efficiency"]]
-                    except KeyError:
-                        continue
+                if "production pathways" in config_file:
+                    for k, v in config_file["production pathways"].items():
+                        try:
+                            variables[k] = [e["variable"] for e in v["efficiency"]]
+                        except KeyError:
+                            continue
 
-                for m, market in enumerate(config_file["markets"]):
-                    try:
-                        variables[f"market {m}"] = [
-                            e["variable"] for e in market["efficiency"]
-                        ]
-                    except KeyError:
-                        continue
+                if "markets" in config_file:
+                    for m, market in enumerate(config_file["markets"]):
+                        try:
+                            variables[f"market {m}"] = [
+                                e["variable"] for e in market["efficiency"]
+                            ]
+                        except KeyError:
+                            continue
 
                 if len(variables) > 0:
 
@@ -1655,26 +1657,31 @@ class IAMDataCollection:
                     array.coords["year"] = [int(y) for y in array.coords["year"]]
 
                     ref_years = {}
-                    for v in config_file["production pathways"].values():
-                        for e, f in v.items():
-                            if e == "efficiency":
-                                for x in f:
-                                    ref_years[x["variable"]] = x.get(
-                                        "reference year", 2020
-                                    )
-                    for market in config_file["markets"]:
-                        for e, f in market.items():
-                            if f == "efficiency":
-                                for x in f["efficiency"]:
-                                    ref_years[x["variable"]] = x.get(
-                                        "reference year", 2020
-                                    )
 
-                    for v, y in ref_years.items():
+                    if "production pathways" in config_file:
+                        for v in config_file["production pathways"].values():
+                            for e, f in v.items():
+                                if e == "efficiency":
+                                    for x in f:
+                                        ref_years[x["variable"]] = x.get(
+                                            "reference year", 2020
+                                        )
 
-                        array.loc[dict(variables=v)] = array.loc[
-                            dict(variables=v)
-                        ] / array.loc[dict(variables=v)].sel(year=int(y))
+                    if "markets" in config_file:
+                        for market in config_file["markets"]:
+                            for e, f in market.items():
+                                if f == "efficiency":
+                                    for x in f["efficiency"]:
+                                        ref_years[x["variable"]] = x.get(
+                                            "reference year", 2020
+                                        )
+
+                    if ref_years:
+                        for v, y in ref_years.items():
+
+                            array.loc[dict(variables=v)] = array.loc[
+                                dict(variables=v)
+                            ] / array.loc[dict(variables=v)].sel(year=int(y))
 
                     # convert NaNs to ones
                     array = array.fillna(1)
