@@ -975,10 +975,14 @@ class NewDatabase:
         Shortcut method to execute all transformation functions.
         """
 
-        self.update_two_wheelers()
-        self.update_cars()
+        print("`update_all()` will skip the following steps:")
+        print("update_two_wheelers(), update_cars(), and update_buses()")
+        print("If you want to update these steps, please run them separately afterwards.")
+
+        #self.update_two_wheelers()
+        #self.update_cars()
         self.update_trucks()
-        self.update_buses()
+        #self.update_buses()
         self.update_electricity()
         self.update_cement()
         self.update_steel()
