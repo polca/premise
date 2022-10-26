@@ -593,4 +593,3 @@ def hide_messages():
     print("")
     print("Hide these messages?")
     print("NewDatabase(..., quiet=True)")
-

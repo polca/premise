@@ -626,9 +626,9 @@ class BaseTransformation:
             for exc in unique_excs_to_relink:
 
                 try:
-                    new_name, new_prod, new_loc, new_unit = self.cache[act["location"]][self.model][
-                        exc
-                    ]
+                    new_name, new_prod, new_loc, new_unit = self.cache[act["location"]][
+                        self.model
+                    ][exc]
 
                 except ValueError:
                     print(f"Issue with {self.cache[act['location']][self.model][exc]}.")
@@ -670,7 +670,12 @@ class BaseTransformation:
                             else:
                                 self.cache[act["location"]] = {
                                     self.model: {
-                                        exc: (name_to_look_for, exc[1], alt_loc, exc[-1])
+                                        exc: (
+                                            name_to_look_for,
+                                            exc[1],
+                                            alt_loc,
+                                            exc[-1],
+                                        )
                                     }
                                 }
                             break
