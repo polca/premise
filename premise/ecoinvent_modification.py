@@ -1008,7 +1008,6 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
-
         self.database = build_superstructure_db(
             self.database, self.scenarios, db_name=name, filepath=filepath
         )
