@@ -13,19 +13,19 @@ from typing import Dict, Tuple
 import pandas as pd
 import xarray as xr
 import yaml
+from bw2data import databases
+from bw2io.importers.base_lci import LCIImporter
 from constructive_geometries import resolved_row
 from country_converter import CountryConverter
 from prettytable import ALL, PrettyTable
-from wurst.searching import equals, get_many, reference_product
-from wurst.transformations.uncertainty import rescale_exchange
 from wurst.linking import (
     change_db_name,
     check_duplicate_codes,
     check_internal_linking,
-    link_internal
+    link_internal,
 )
-from bw2io.importers.base_lci import LCIImporter
-from bw2data import databases
+from wurst.searching import equals, get_many, reference_product
+from wurst.transformations.uncertainty import rescale_exchange
 
 from . import DATA_DIR, __version__, geomap
 from .geomap import Geomap
@@ -602,8 +602,8 @@ def hide_messages():
     print("Hide these messages?")
     print("NewDatabase(..., quiet=True)")
 
-class PremiseImporter(LCIImporter):
 
+class PremiseImporter(LCIImporter):
     def __init__(self, db_name, data):
         self.db_name = db_name
         self.data = data
@@ -615,9 +615,11 @@ class PremiseImporter(LCIImporter):
     # to be overwritten
     def write_database(self):
         if self.db_name in databases:
-            print(f"Database {self.db_name} already existing: "
-                  f"it will be overwritten.")
+            print(
+                f"Database {self.db_name} already existing: " f"it will be overwritten."
+            )
         super().write_database()
+
 
 def write_brightway2_database(data, name):
 
@@ -626,9 +628,7 @@ def write_brightway2_database(data, name):
     for ds in data:
         if "parameters" in ds:
             ds["parameters"] = {
-                name: {"amount": amount}
-                for name, amount
-                in ds["parameters"].items()
+                name: {"amount": amount} for name, amount in ds["parameters"].items()
             }
 
     change_db_name(data, name)

@@ -82,7 +82,7 @@ from .utils import (
     info_on_utils_functions,
     print_version,
     warning_about_biogenic_co2,
-    write_brightway2_database
+    write_brightway2_database,
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"

@@ -466,7 +466,6 @@ class IAMDataCollection:
                 data, index_col=[2, 3, 4], encoding="latin-1", sep=","
             ).drop(columns=["Model", "Scenario"])
 
-
         else:
             raise ValueError(
                 f"The IAM model name {self.model.upper()} is not valid."
