@@ -1328,7 +1328,15 @@ class IAMDataCollection:
         labels = list(crops_vars.keys())
         list_vars = [x["land_use_change"][self.model] for x in crops_vars.values()]
 
-        data_to_return = data.loc[:, list_vars, :]
+        try:
+            data_to_return = data.loc[:, list_vars, :]
+
+        except KeyError:
+            list_missing_vars = [
+                var for var in list_vars if var not in data.variables.values
+            ]
+            raise KeyError(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+
         data_to_return.coords["variables"] = labels
 
         return data_to_return
