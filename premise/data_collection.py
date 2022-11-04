@@ -1336,7 +1336,9 @@ class IAMDataCollection:
             list_missing_vars = [
                 var for var in list_vars if var not in data.variables.values
             ]
-            raise KeyError(f"The following variables cannot be found in the IAM file: {list_missing_vars}")
+            raise KeyError(
+                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
+            )
 
         data_to_return.coords["variables"] = labels
 
