@@ -386,17 +386,20 @@ class BaseInventoryImport:
                                 "biosphere3",
                                 self.biosphere_dict[
                                     (
-                                        y["name"],
-                                        y["categories"][0],
+                                        y["name"].strip(),
+                                        y["categories"][0].strip(),
                                         "unspecified",
-                                        y["unit"],
+                                        y["unit"].strip(),
                                     )
                                 ],
                             )
                         except KeyError:
                             if delete_missing:
                                 print(
-                                    f"The following biosphere exchange cannot be found and will be deleted: {y['name']}"
+                                    f"The following biosphere exchange: "
+                                    f"{y['name']}, {y['categories'][0]}, unspecified, {y['unit']} "
+                                    f"in {x['name']}, {x['location']}"
+                                    f" cannot be found and will be deleted."
                                 )
                                 y["flag_deletion"] = True
                             else:
