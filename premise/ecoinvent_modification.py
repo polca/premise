@@ -82,6 +82,7 @@ from .utils import (
     info_on_utils_functions,
     print_version,
     warning_about_biogenic_co2,
+    write_brightway2_database,
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -1016,7 +1017,7 @@ class NewDatabase:
 
         print("Done!")
 
-        wurst.write_brightway2_database(
+        write_brightway2_database(
             self.database,
             name,
         )
@@ -1059,7 +1060,7 @@ class NewDatabase:
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(scenario, cache=cache)
 
-            wurst.write_brightway2_database(
+            write_brightway2_database(
                 scenario["database"],
                 name[scen],
             )

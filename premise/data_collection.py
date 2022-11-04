@@ -468,7 +468,8 @@ class IAMDataCollection:
 
         else:
             raise ValueError(
-                f"The IAM model name {self.model.upper()} is not valid. Currently supported: 'REMIND' or 'IMAGE'"
+                f"The IAM model name {self.model.upper()} is not valid."
+                f"Currently supported: 'REMIND' or 'IMAGE'"
             )
 
         dataframe.columns = dataframe.columns.astype(int)
