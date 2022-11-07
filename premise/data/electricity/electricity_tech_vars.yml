@@ -80,7 +80,7 @@ Biomass IGCC:
       - market for wood chips
 Coal PC:
   iam_aliases:
-    remind: SE|Electricity|Coal|++|Pulverised Coal w/ CC
+    remind: SE|Electricity|Coal|++|Pulverised Coal w/o CC
     image: Secondary Energy|Electricity|Coal|w/o CCS|1
   eff_aliases:
     remind: Tech|Electricity|Coal|Pulverised Coal w/o CC|Efficiency
