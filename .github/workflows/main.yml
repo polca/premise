@@ -94,6 +94,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
 
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ "ubuntu-latest" ]
+        python-version: [ "3.9", "3.10", "3.11" ]
+
     steps:
       - uses: actions/checkout@v2
 
@@ -138,7 +144,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.9"]
+        python-version: ["3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
