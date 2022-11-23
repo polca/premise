@@ -12,8 +12,8 @@ the newly created electricity markets.
 import csv
 import os
 import re
-from datetime import date
 from collections import defaultdict
+from datetime import date
 
 import yaml
 
@@ -277,8 +277,7 @@ class Electricity(BaseTransformation):
 
         # Get the possible names of ecoinvent datasets
         ecoinvent_technologies = {
-            technology: self.powerplant_map[technology]
-            for technology in technologies
+            technology: self.powerplant_map[technology] for technology in technologies
         }
 
         # Loop through IAM regions
@@ -297,7 +296,6 @@ class Electricity(BaseTransformation):
                 ["RoW"],
                 ["CH"],
             ]
-
 
             tech_suppliers = defaultdict(list)
 
@@ -319,12 +317,8 @@ class Electricity(BaseTransformation):
 
                 suppliers = self.check_for_production_volume(suppliers)
                 for supplier in suppliers:
-                    share = self.get_production_weighted_share(
-                        supplier, suppliers
-                    )
-                    tech_suppliers[technology].append(
-                        (supplier, share)
-                    )
+                    share = self.get_production_weighted_share(supplier, suppliers)
+                    tech_suppliers[technology].append((supplier, share))
 
             # `period` is a period of time considered to create time-weighted average mix
             # when `period` == 0, this is a market mix for the year `self.year`
@@ -743,11 +737,9 @@ class Electricity(BaseTransformation):
             if "solar pv residential" not in tech.lower()
         ]
 
-
         # Get the possible names of ecoinvent datasets
         ecoinvent_technologies = {
-            technology: self.powerplant_map[technology]
-            for technology in technologies
+            technology: self.powerplant_map[technology] for technology in technologies
         }
 
         for region in self.regions:
@@ -767,7 +759,6 @@ class Electricity(BaseTransformation):
                 ["RoW"],
                 ["CH"],
             ]
-
 
             tech_suppliers = defaultdict(list)
 
@@ -790,13 +781,9 @@ class Electricity(BaseTransformation):
                 suppliers = self.check_for_production_volume(suppliers)
 
                 for supplier in suppliers:
-                    share = self.get_production_weighted_share(
-                        supplier, suppliers
-                    )
+                    share = self.get_production_weighted_share(supplier, suppliers)
 
-                    tech_suppliers[technology].append(
-                        (supplier, share)
-                    )
+                    tech_suppliers[technology].append((supplier, share))
 
             for period in [0, 20, 40, 60]:
                 electriciy_mix = dict(
@@ -848,7 +835,6 @@ class Electricity(BaseTransformation):
                         f"-year period {self.year}-{self.year + period}."
                     )
                     new_exchanges[0]["name"] += f", {period}-year period"
-
 
                 new_exchanges.append(
                     {
@@ -909,7 +895,7 @@ class Electricity(BaseTransformation):
                                     supplier["location"],
                                     share,
                                     (amount * share) / (1 - solar_amount),
-                                    ]
+                                ]
                             )
 
                 new_dataset["exchanges"] = new_exchanges
@@ -1364,12 +1350,10 @@ class Electricity(BaseTransformation):
         ]
 
         list_datasets_to_duplicate = [
-            dataset["name"] for dataset in self.database
-            if dataset["name"] in [
-                y for k, v in self.powerplant_map.items()
-                for y in v
-                if k in techs
-            ]
+            dataset["name"]
+            for dataset in self.database
+            if dataset["name"]
+            in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
         ]
 
         list_datasets_to_duplicate.extend(
@@ -1386,10 +1370,7 @@ class Electricity(BaseTransformation):
         for dataset in ws.get_many(
             self.database,
             ws.either(
-                *[
-                    ws.contains("name", name)
-                    for name in list_datasets_to_duplicate
-                ]
+                *[ws.contains("name", name) for name in list_datasets_to_duplicate]
             ),
         ):
 
@@ -1412,8 +1393,7 @@ class Electricity(BaseTransformation):
                     providers = [
                         e
                         for e in plant["exchanges"]
-                        if e["type"] == "technosphere"
-                        and e["unit"] == "kilowatt hour"
+                        if e["type"] == "technosphere" and e["unit"] == "kilowatt hour"
                     ]
 
                     for provider in providers:
@@ -1449,8 +1429,6 @@ class Electricity(BaseTransformation):
                             exc["amount"] = co2_amount * 0.9
 
             all_plants.extend(new_plants.values())
-
-
 
         self.database.extend(all_plants)
 
