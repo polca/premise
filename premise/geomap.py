@@ -127,7 +127,11 @@ class Geomap:
             if isinstance(k, tuple) and k[0].lower() == self.model.lower()
         ]
 
-        if location in list_iam_regions:
+        # list of ecoinvent locations that are named
+        # the same as IAM locations
+        blacklist = ["ME"]
+
+        if location in list_iam_regions and location not in blacklist:
             return location
 
         # Second, it can be an ecoinvent region
