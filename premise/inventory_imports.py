@@ -538,6 +538,7 @@ class AdditionalInventory(BaseInventoryImport):
             # online file
             # we need to save it locally first
             response = requests.get(path)
+            Path(DATA_DIR / "cache").mkdir(parents=True, exist_ok=True)
             path = str(Path(DATA_DIR / "cache" / "temp.csv"))
             with open(path, "w", encoding="utf-8") as f:
                 writer = csv.writer(

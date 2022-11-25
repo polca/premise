@@ -8,6 +8,7 @@ from datetime import date
 import xarray as xr
 import yaml
 from numpy import ndarray
+from pathlib import Path
 from wurst import searching as ws
 
 from . import DATA_DIR
@@ -1051,9 +1052,13 @@ class ExternalScenario(BaseTransformation):
                     del exc["input"]
 
         if log:
+
+            # check that directory exists, otherwise create it
+            Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
+
             with open(
-                DATA_DIR
-                / f"logs/external scenario - exchanges {self.scenario} {self.year}-{date.today()}.csv",
+                DATA_DIR / "logs" /
+                f"external scenario - exchanges {self.scenario} {self.year}-{date.today()}.csv",
                 "a",
                 encoding="utf-8",
             ) as csv_file:

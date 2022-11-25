@@ -14,6 +14,7 @@ import os
 import re
 from collections import defaultdict
 from datetime import date
+from pathlib import Path
 
 import yaml
 
@@ -531,6 +532,8 @@ class Electricity(BaseTransformation):
             ]
         )
 
+        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
+
         with open(
             DATA_DIR
             / f"logs/log created electricity markets {self.scenario} {self.year}-{date.today()}.csv",
@@ -710,6 +713,8 @@ class Electricity(BaseTransformation):
                 for dataset in log_created_markets
             ]
         )
+
+        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
 
         with open(
             DATA_DIR
@@ -915,6 +920,7 @@ class Electricity(BaseTransformation):
         )
 
         # Writing log of created markets
+        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
         with open(
             DATA_DIR
             / f"logs/log created electricity markets {self.scenario} {self.year}-{date.today()}.csv",
@@ -1048,6 +1054,7 @@ class Electricity(BaseTransformation):
                             [d["name"], d["location"], pv_tech, current_eff, new_eff]
                         )
 
+        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
         with open(
             DATA_DIR / f"logs/log photovoltaics efficiencies change "
             f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
@@ -1522,6 +1529,7 @@ class Electricity(BaseTransformation):
                 # update the emissions of pollutants
                 self.update_pollutant_emissions(dataset=dataset, sector=technology)
 
+        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
         with open(
             DATA_DIR / f"logs/log power plant efficiencies change "
             f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",

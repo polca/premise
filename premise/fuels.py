@@ -8,6 +8,7 @@ from datetime import date
 
 import yaml
 from numpy import ndarray
+from pathlib import Path
 
 from .transformation import (
     Any,
@@ -1822,6 +1823,7 @@ class Fuels(BaseTransformation):
                 self.database.extend(d_act.values())
 
         # write log to CSV
+        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
         with open(
             DATA_DIR
             / f"logs/log created fuel markets {self.model} {self.scenario} {self.year}-{date.today()}.csv",

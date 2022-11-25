@@ -10,6 +10,7 @@ of the wurst database to the newly created cement markets.
 import csv
 import os
 from datetime import date
+from pathlib import Path
 
 from .transformation import (
     BaseTransformation,
@@ -746,6 +747,8 @@ class Cement(BaseTransformation):
                     for act in new_cement_production.values()
                 ]
             )
+
+        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
 
         with open(
             DATA_DIR
