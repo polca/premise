@@ -33,7 +33,7 @@ def package_files(directory):
 setup(
     name="premise",
     version="1.3.9",
-    python_requires="3.9, 3.10",
+    python_requires=">=3.9,<3.11",
     packages=packages,
     author="Romain Sacchi <romain.sacchi@psi.ch>, Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel <chris.mutel@psi.ch>",
     license=open("LICENSE").read(),
