@@ -5,10 +5,10 @@ Integrates projections regarding fuel production and supply.
 import copy
 import csv
 from datetime import date
+from pathlib import Path
 
 import yaml
 from numpy import ndarray
-from pathlib import Path
 
 from .transformation import (
     Any,
