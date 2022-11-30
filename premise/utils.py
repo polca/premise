@@ -180,7 +180,7 @@ def relink_technosphere_exchanges(
 
     geomatcher = geomap.Geomap(model=model)
 
-    list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()]
+    list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()] + ["RoW"]
 
     for exc in filter(technosphere, dataset["exchanges"]):
 
@@ -226,6 +226,7 @@ def relink_technosphere_exchanges(
             ]
 
             possible_locations = [obj["location"] for obj in possible_datasets]
+
 
             if dataset["location"] in possible_locations:
 
@@ -409,32 +410,6 @@ def relink_technosphere_exchanges(
                     if kept:
                         exc = market_group_exc
 
-                # if not kept and "RoW" in possible_locations:
-                #     kept = [
-                #         obj for obj in possible_datasets if obj["location"] == "RoW"
-                #     ]
-                #
-                # if not kept and "GLO" in possible_locations:
-                #     kept = [
-                #         obj for obj in possible_datasets if obj["location"] == "GLO"
-                #     ]
-                #
-                # if not kept and any(
-                #     x in possible_locations for x in ["RER", "EUR", "WEU"]
-                # ):
-                #     kept = [
-                #         obj
-                #         for obj in possible_datasets
-                #         if obj["location"] in ["RER", "EUR", "WEU"]
-                #     ]
-                #
-                # if not kept:
-                #     if drop_invalid:
-                #         continue
-                #
-                #     new_exchanges.append(exc)
-                #     continue
-
                 kept = possible_datasets
 
                 allocated, share = allocate_inputs(exc, kept)
@@ -533,9 +508,9 @@ def allocate_inputs(exc, lst):
     using production volumes where possible, and equal splitting otherwise.
     Always uses equal splitting if ``RoW`` is present.
     """
-    has_row = any((x["location"] in ("RoW", "GLO") for x in lst))
     pvs = [reference_product(o).get("production volume") or 0 for o in lst]
-    if all((x > 0 for x in pvs)) and not has_row:
+
+    if all((x > 0 for x in pvs)):
         # Allocate using production volume
         total = sum(pvs)
     else:

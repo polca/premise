@@ -255,7 +255,8 @@ class DatabaseCleaner:
                     if "product" not in exchange:
                         exchange["product"] = d_product[exchange["input"][1]][0]
 
-                    # If a 'reference product' field is present, we make sure it matches with the new 'product' field
+                    # If a 'reference product' field is present,
+                    # we make sure it matches with the new 'product' field
                     if "reference product" in exchange:
                         try:
                             assert exchange["product"] == exchange["reference product"]

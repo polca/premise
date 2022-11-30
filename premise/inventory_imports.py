@@ -266,6 +266,8 @@ class BaseInventoryImport:
         """
         # Add a `product` field to the production exchange
         for dataset in self.import_db.data:
+
+
             for exchange in dataset["exchanges"]:
                 if exchange["type"] == "production":
                     if "product" not in exchange:
@@ -276,6 +278,7 @@ class BaseInventoryImport:
 
         # Add a `product` field to technosphere exchanges
         for dataset in self.import_db.data:
+
             for exchange in dataset["exchanges"]:
                 if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
@@ -285,10 +288,11 @@ class BaseInventoryImport:
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
                     # if "reference product" in y:
-                    #    try:
-                    #        assert y["product"] == y["reference product"]
-                    #    except AssertionError:
-                    #        y["product"] = self.correct_product_field(y)
+                    try:
+                        assert exchange["product"] == exchange["reference product"]
+                    except AssertionError:
+                        exchange["product"] = self.correct_product_field(exchange)
+
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:
@@ -315,15 +319,27 @@ class BaseInventoryImport:
 
         # If not, look in the ecoinvent inventories
         if candidate is None:
-            candidate = next(
-                ws.get_many(
-                    self.database,
-                    ws.equals("name", exc["name"]),
-                    ws.equals("location", exc["location"]),
-                    ws.equals("unit", exc["unit"]),
-                ),
-                None,
-            )
+            if "reference product" in exc:
+                candidate = next(
+                    ws.get_many(
+                        self.database,
+                        ws.equals("name", exc["name"]),
+                        ws.equals("reference product", exc["reference product"]),
+                        ws.equals("location", exc["location"]),
+                        ws.equals("unit", exc["unit"]),
+                    ),
+                    None,
+                )
+            else:
+                candidate = next(
+                    ws.get_many(
+                        self.database,
+                        ws.equals("name", exc["name"]),
+                        ws.equals("location", exc["location"]),
+                        ws.equals("unit", exc["unit"]),
+                    ),
+                    None,
+                )
 
         if candidate is not None:
             return candidate["reference product"]
