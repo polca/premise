@@ -245,31 +245,79 @@ def relink_technosphere_exchanges(
                 continue
 
             if dataset["location"] in geomatcher.iam_regions:
-                if (
-                    geomatcher.iam_to_ecoinvent_location(dataset["location"])
-                    in possible_locations
-                ):
-                    new_loc = geomatcher.iam_to_ecoinvent_location(dataset["location"])
-                    cache[dataset["location"]] = {
-                        model: {
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["location"],
-                                exc["unit"],
-                            ): [
-                                (e["name"], e["product"], e["location"], e["unit"], s)
-                                for e, s in zip(
-                                    [new_exchange(exc, new_loc, 1.0)], [1.0]
-                                )
-                            ]
-                        }
-                    }
-
-                    exc["location"] = geomatcher.iam_to_ecoinvent_location(
+                if any(
+                    iloc in possible_locations
+                    for iloc in geomatcher.iam_to_ecoinvent_location(
                         dataset["location"]
                     )
-                    new_exchanges.append(exc)
+                ):
+                    locs = [
+                        iloc
+                        for iloc in geomatcher.iam_to_ecoinvent_location(
+                            dataset["location"]
+                        )
+                        if iloc in possible_locations
+                    ]
+                    kept = [ds for ds in possible_datasets if ds["location"] in locs]
+
+                    allocated, share = allocate_inputs(exc, kept)
+                    new_exchanges.extend(allocated)
+
+                    if dataset["location"] in cache:
+                        if model in cache[dataset["location"]]:
+                            cache[dataset["location"]][model][
+                                (
+                                    exc["name"],
+                                    exc["product"],
+                                    exc["location"],
+                                    exc["unit"],
+                                )
+                            ] = [
+                                (e["name"], e["product"], e["location"], e["unit"], s)
+                                for e, s in zip(allocated, share)
+                            ]
+                        else:
+                            cache[dataset["location"]] = {
+                                model: {
+                                    (
+                                        exc["name"],
+                                        exc["product"],
+                                        exc["location"],
+                                        exc["unit"],
+                                    ): [
+                                        (
+                                            e["name"],
+                                            e["product"],
+                                            e["location"],
+                                            e["unit"],
+                                            s,
+                                        )
+                                        for e, s in zip(allocated, share)
+                                    ]
+                                }
+                            }
+
+                    else:
+                        cache[dataset["location"]] = {
+                            model: {
+                                (
+                                    exc["name"],
+                                    exc["product"],
+                                    exc["location"],
+                                    exc["unit"],
+                                ): [
+                                    (
+                                        e["name"],
+                                        e["product"],
+                                        e["location"],
+                                        e["unit"],
+                                        s,
+                                    )
+                                    for e, s in zip(allocated, share)
+                                ]
+                            }
+                        }
+
                     continue
 
             possible_locations = [
