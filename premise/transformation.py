@@ -661,7 +661,7 @@ class BaseTransformation:
 
                             if act["location"] in self.cache:
                                 if self.model in self.cache[act["location"]]:
-                                    self.cache[act["location"]][exc] = (
+                                    self.cache[act["location"]][self.model][exc] = (
                                         name_to_look_for,
                                         exc[1],
                                         alt_loc,

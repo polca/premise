@@ -185,7 +185,7 @@ def relink_technosphere_exchanges(
     for exc in filter(technosphere, dataset["exchanges"]):
 
         try:
-            exchange = cache[dataset["location"]][
+            exchange = cache[dataset["location"]][model][
                 (exc["name"], exc["product"], exc["location"], exc["unit"])
             ]
 
@@ -228,9 +228,33 @@ def relink_technosphere_exchanges(
             possible_locations = [obj["location"] for obj in possible_datasets]
 
             if dataset["location"] in possible_locations:
+
+                cache[dataset["location"]] = {model: {
+                    (exc["name"], exc["product"], exc["location"], exc["unit"],): [
+                        (e["name"], e["product"], e["location"], e["unit"], s)
+                        for e, s in zip([new_exchange(exc, dataset["location"], 1.0)], [1.0])
+                        ]
+                    }
+                }
+
                 exc["location"] = dataset["location"]
                 new_exchanges.append(exc)
                 continue
+
+            if dataset["location"] in geomatcher.iam_regions:
+                if geomatcher.iam_to_ecoinvent_location(dataset["location"]) in possible_locations:
+                    new_loc = geomatcher.iam_to_ecoinvent_location(dataset["location"])
+                    cache[dataset["location"]] = {model: {
+                            (exc["name"], exc["product"], exc["location"], exc["unit"],): [
+                                (e["name"], e["product"], e["location"], e["unit"], s)
+                                for e, s in zip([new_exchange(exc, new_loc, 1.0)], [1.0])
+                            ]
+                        }
+                    }
+
+                    exc["location"] = geomatcher.iam_to_ecoinvent_location(dataset["location"])
+                    new_exchanges.append(exc)
+                    continue
 
             possible_locations = [
                 (model.upper(), p) if p in geomatcher.iam_regions else p
@@ -351,56 +375,66 @@ def relink_technosphere_exchanges(
                 new_exchanges.extend(allocated)
 
                 if dataset["location"] in cache:
-                    cache[dataset["location"]][
-                        (
-                            exc["name"],
-                            exc["product"],
-                            exc["location"],
-                            exc["unit"],
-                        )
-                    ] = [
-                        (e["name"], e["product"], e["location"], e["unit"], s)
-                        for e, s in zip(allocated, share)
-                    ]
-
-                else:
-
-                    cache[dataset["location"]] = {
-                        (exc["name"], exc["product"], exc["location"], exc["unit"],): [
+                    if model in cache[dataset["location"]]:
+                        cache[dataset["location"]][model][
+                            (exc["name"], exc["product"], exc["location"], exc["unit"])
+                        ] = [
                             (e["name"], e["product"], e["location"], e["unit"], s)
                             for e, s in zip(allocated, share)
                         ]
+                    else:
+                        cache[dataset["location"]][model] = {
+                            (exc["name"], exc["product"], exc["location"], exc["unit"]): [
+                                (e["name"], e["product"], e["location"], e["unit"], s)
+                                for e, s in zip(allocated, share)
+                            ]
+                        }
+
+                else:
+                    cache[dataset["location"]] = {model: {
+                            (exc["name"], exc["product"], exc["location"], exc["unit"]): [
+                                (e["name"], e["product"], e["location"], e["unit"], s)
+                                for e, s in zip(allocated, share)
+                            ]
+                        }
                     }
             else:
                 new_exchanges.append(exc)
                 # add to cache
                 if dataset["location"] in cache:
-                    cache[dataset["location"]][
-                        (
+                    if model in cache[dataset["location"]]:
+                        cache[dataset["location"]][model][
+                            (exc["name"], exc["product"], exc["location"], exc["unit"])
+                        ] = (
                             exc["name"],
                             exc["product"],
                             exc["location"],
                             exc["unit"],
                         )
-                    ] = (
-                        exc["name"],
-                        exc["product"],
-                        exc["location"],
-                        exc["unit"],
-                    )
+                    else:
+                        cache[dataset["location"]][model] = {
+                            (exc["name"], exc["product"], exc["location"], exc["unit"]): (
+                                exc["name"],
+                                exc["product"],
+                                exc["location"],
+                                exc["unit"],
+                            )
+                        }
 
                 else:
-                    cache[dataset["location"]] = {
-                        (exc["name"], exc["product"], exc["location"], exc["unit"],): (
-                            exc["name"],
-                            exc["product"],
-                            exc["location"],
-                            exc["unit"],
-                        )
+                    cache[dataset["location"]] = {model: {
+                            (exc["name"], exc["product"], exc["location"], exc["unit"]): (
+                                exc["name"],
+                                exc["product"],
+                                exc["location"],
+                                exc["unit"],
+                            )
+                        }
                     }
 
     dataset["exchanges"] = [
-        exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
+        exc for exc in dataset["exchanges"]
+        if exc["type"] != "technosphere"
     ] + new_exchanges
 
     return cache, dataset
@@ -422,16 +456,15 @@ def allocate_inputs(exc, lst):
         total = len(lst)
         pvs = [1 for _ in range(total)]
 
-    def new_exchange(exc, location, factor):
-        copied_exc = deepcopy(exc)
-        copied_exc["location"] = location
-        return rescale_exchange(copied_exc, factor)
-
     return [
         new_exchange(exc, obj["location"], factor / total)
         for obj, factor in zip(lst, pvs)
     ], [p / total for p in pvs]
 
+def new_exchange(exc, location, factor):
+    copied_exc = deepcopy(exc)
+    copied_exc["location"] = location
+    return rescale_exchange(copied_exc, factor)
 
 def get_gis_match(
     dataset,
