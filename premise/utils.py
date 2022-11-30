@@ -345,31 +345,33 @@ def relink_technosphere_exchanges(
                     if kept:
                         exc = market_group_exc
 
-                if not kept and "RoW" in possible_locations:
-                    kept = [
-                        obj for obj in possible_datasets if obj["location"] == "RoW"
-                    ]
+                # if not kept and "RoW" in possible_locations:
+                #     kept = [
+                #         obj for obj in possible_datasets if obj["location"] == "RoW"
+                #     ]
+                #
+                # if not kept and "GLO" in possible_locations:
+                #     kept = [
+                #         obj for obj in possible_datasets if obj["location"] == "GLO"
+                #     ]
+                #
+                # if not kept and any(
+                #     x in possible_locations for x in ["RER", "EUR", "WEU"]
+                # ):
+                #     kept = [
+                #         obj
+                #         for obj in possible_datasets
+                #         if obj["location"] in ["RER", "EUR", "WEU"]
+                #     ]
+                #
+                # if not kept:
+                #     if drop_invalid:
+                #         continue
+                #
+                #     new_exchanges.append(exc)
+                #     continue
 
-                if not kept and "GLO" in possible_locations:
-                    kept = [
-                        obj for obj in possible_datasets if obj["location"] == "GLO"
-                    ]
-
-                if not kept and any(
-                    x in possible_locations for x in ["RER", "EUR", "WEU"]
-                ):
-                    kept = [
-                        obj
-                        for obj in possible_datasets
-                        if obj["location"] in ["RER", "EUR", "WEU"]
-                    ]
-
-                if not kept:
-                    if drop_invalid:
-                        continue
-
-                    new_exchanges.append(exc)
-                    continue
+                kept = possible_datasets
 
                 allocated, share = allocate_inputs(exc, kept)
                 new_exchanges.extend(allocated)
