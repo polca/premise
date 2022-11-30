@@ -229,10 +229,13 @@ def relink_technosphere_exchanges(
 
             if dataset["location"] in possible_locations:
 
-                cache[dataset["location"]] = {model: {
-                    (exc["name"], exc["product"], exc["location"], exc["unit"],): [
-                        (e["name"], e["product"], e["location"], e["unit"], s)
-                        for e, s in zip([new_exchange(exc, dataset["location"], 1.0)], [1.0])
+                cache[dataset["location"]] = {
+                    model: {
+                        (exc["name"], exc["product"], exc["location"], exc["unit"],): [
+                            (e["name"], e["product"], e["location"], e["unit"], s)
+                            for e, s in zip(
+                                [new_exchange(exc, dataset["location"], 1.0)], [1.0]
+                            )
                         ]
                     }
                 }
@@ -242,17 +245,30 @@ def relink_technosphere_exchanges(
                 continue
 
             if dataset["location"] in geomatcher.iam_regions:
-                if geomatcher.iam_to_ecoinvent_location(dataset["location"]) in possible_locations:
+                if (
+                    geomatcher.iam_to_ecoinvent_location(dataset["location"])
+                    in possible_locations
+                ):
                     new_loc = geomatcher.iam_to_ecoinvent_location(dataset["location"])
-                    cache[dataset["location"]] = {model: {
-                            (exc["name"], exc["product"], exc["location"], exc["unit"],): [
+                    cache[dataset["location"]] = {
+                        model: {
+                            (
+                                exc["name"],
+                                exc["product"],
+                                exc["location"],
+                                exc["unit"],
+                            ): [
                                 (e["name"], e["product"], e["location"], e["unit"], s)
-                                for e, s in zip([new_exchange(exc, new_loc, 1.0)], [1.0])
+                                for e, s in zip(
+                                    [new_exchange(exc, new_loc, 1.0)], [1.0]
+                                )
                             ]
                         }
                     }
 
-                    exc["location"] = geomatcher.iam_to_ecoinvent_location(dataset["location"])
+                    exc["location"] = geomatcher.iam_to_ecoinvent_location(
+                        dataset["location"]
+                    )
                     new_exchanges.append(exc)
                     continue
 
@@ -384,15 +400,26 @@ def relink_technosphere_exchanges(
                         ]
                     else:
                         cache[dataset["location"]][model] = {
-                            (exc["name"], exc["product"], exc["location"], exc["unit"]): [
+                            (
+                                exc["name"],
+                                exc["product"],
+                                exc["location"],
+                                exc["unit"],
+                            ): [
                                 (e["name"], e["product"], e["location"], e["unit"], s)
                                 for e, s in zip(allocated, share)
                             ]
                         }
 
                 else:
-                    cache[dataset["location"]] = {model: {
-                            (exc["name"], exc["product"], exc["location"], exc["unit"]): [
+                    cache[dataset["location"]] = {
+                        model: {
+                            (
+                                exc["name"],
+                                exc["product"],
+                                exc["location"],
+                                exc["unit"],
+                            ): [
                                 (e["name"], e["product"], e["location"], e["unit"], s)
                                 for e, s in zip(allocated, share)
                             ]
@@ -413,7 +440,12 @@ def relink_technosphere_exchanges(
                         )
                     else:
                         cache[dataset["location"]][model] = {
-                            (exc["name"], exc["product"], exc["location"], exc["unit"]): (
+                            (
+                                exc["name"],
+                                exc["product"],
+                                exc["location"],
+                                exc["unit"],
+                            ): (
                                 exc["name"],
                                 exc["product"],
                                 exc["location"],
@@ -422,8 +454,14 @@ def relink_technosphere_exchanges(
                         }
 
                 else:
-                    cache[dataset["location"]] = {model: {
-                            (exc["name"], exc["product"], exc["location"], exc["unit"]): (
+                    cache[dataset["location"]] = {
+                        model: {
+                            (
+                                exc["name"],
+                                exc["product"],
+                                exc["location"],
+                                exc["unit"],
+                            ): (
                                 exc["name"],
                                 exc["product"],
                                 exc["location"],
@@ -433,8 +471,7 @@ def relink_technosphere_exchanges(
                     }
 
     dataset["exchanges"] = [
-        exc for exc in dataset["exchanges"]
-        if exc["type"] != "technosphere"
+        exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
     ] + new_exchanges
 
     return cache, dataset
@@ -461,10 +498,12 @@ def allocate_inputs(exc, lst):
         for obj, factor in zip(lst, pvs)
     ], [p / total for p in pvs]
 
+
 def new_exchange(exc, location, factor):
     copied_exc = deepcopy(exc)
     copied_exc["location"] = location
     return rescale_exchange(copied_exc, factor)
+
 
 def get_gis_match(
     dataset,
