@@ -501,7 +501,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
 
         new_db.append(act)
 
-    inds_std = sparse.argwhere(m.std(-1).T > 1e-5)
+    inds_std = sparse.argwhere((m[..., 1:] == m[..., 0, None]).all(axis=-1) == False)
 
     for i in inds_std:
 
