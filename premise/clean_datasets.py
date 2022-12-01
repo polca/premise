@@ -117,6 +117,7 @@ def remove_nones(database: List[dict]) -> List[dict]:
 
     return database
 
+
 def remove_categories(database: List[dict]) -> List[dict]:
     """
     Remove categories from datasets in the wurst inventory database.
@@ -135,6 +136,7 @@ def remove_categories(database: List[dict]) -> List[dict]:
                     del exc["categories"]
 
     return database
+
 
 class DatabaseCleaner:
     """
@@ -197,8 +199,7 @@ class DatabaseCleaner:
         return [
             x["product"]
             for x in wurst.searching.get_many(
-                self.database, *[ws.equals(k, v)
-                for k, v in lookup_dict.items()]
+                self.database, *[ws.equals(k, v) for k, v in lookup_dict.items()]
             )
         ]
 

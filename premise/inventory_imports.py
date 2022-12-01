@@ -19,9 +19,9 @@ from prettytable import PrettyTable
 from wurst import searching as ws
 
 from . import DATA_DIR, INVENTORY_DIR
+from .clean_datasets import remove_categories
 from .export import check_amount_format
 from .geomap import Geomap
-from .clean_datasets import remove_categories
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
