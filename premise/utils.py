@@ -180,7 +180,9 @@ def relink_technosphere_exchanges(
 
     geomatcher = geomap.Geomap(model=model)
 
-    list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()] + ["RoW"]
+    list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()] + [
+        "RoW"
+    ]
 
     for exc in filter(technosphere, dataset["exchanges"]):
 
@@ -226,7 +228,6 @@ def relink_technosphere_exchanges(
             ]
 
             possible_locations = [obj["location"] for obj in possible_datasets]
-
 
             if dataset["location"] in possible_locations:
 

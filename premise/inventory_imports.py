@@ -267,7 +267,6 @@ class BaseInventoryImport:
         # Add a `product` field to the production exchange
         for dataset in self.import_db.data:
 
-
             for exchange in dataset["exchanges"]:
                 if exchange["type"] == "production":
                     if "product" not in exchange:
@@ -292,7 +291,6 @@ class BaseInventoryImport:
                         assert exchange["product"] == exchange["reference product"]
                     except AssertionError:
                         exchange["product"] = self.correct_product_field(exchange)
-
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:
