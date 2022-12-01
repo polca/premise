@@ -21,6 +21,7 @@ from wurst import searching as ws
 from . import DATA_DIR, INVENTORY_DIR
 from .export import check_amount_format
 from .geomap import Geomap
+from .clean_datasets import remove_categories
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
@@ -287,10 +288,11 @@ class BaseInventoryImport:
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
                     # if "reference product" in y:
-                    try:
-                        assert exchange["product"] == exchange["reference product"]
-                    except AssertionError:
-                        exchange["product"] = self.correct_product_field(exchange)
+                    if "reference product" in exchange:
+                        try:
+                            assert exchange["product"] == exchange["reference product"]
+                        except AssertionError:
+                            exchange["product"] = self.correct_product_field(exchange)
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:
@@ -466,6 +468,7 @@ class DefaultInventory(BaseInventoryImport):
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
             )
 
+        self.import_db.data = remove_categories(self.import_db.data)
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
 

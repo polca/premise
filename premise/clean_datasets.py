@@ -117,6 +117,24 @@ def remove_nones(database: List[dict]) -> List[dict]:
 
     return database
 
+def remove_categories(database: List[dict]) -> List[dict]:
+    """
+    Remove categories from datasets in the wurst inventory database.
+    Modifies in place (does not return anything).
+
+    :param database: wurst inventory database
+    :type database: list
+
+    """
+    for dataset in database:
+        if "categories" in dataset:
+            del dataset["categories"]
+        for exc in dataset["exchanges"]:
+            if exc["type"] in ["production", "technosphere"]:
+                if "categories" in exc:
+                    del exc["categories"]
+
+    return database
 
 class DatabaseCleaner:
     """
@@ -143,6 +161,7 @@ class DatabaseCleaner:
                     "The database selected is empty. Make sure the name is correct"
                 )
             self.database = wurst.extract_brightway2_databases(source_db)
+            self.database = remove_categories(self.database)
 
         if source_type == "ecospold":
             # The ecospold data needs to be formatted
@@ -178,7 +197,8 @@ class DatabaseCleaner:
         return [
             x["product"]
             for x in wurst.searching.get_many(
-                self.database, *[ws.equals(k, v) for k, v in lookup_dict.items()]
+                self.database, *[ws.equals(k, v)
+                for k, v in lookup_dict.items()]
             )
         ]
 
