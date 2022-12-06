@@ -22,7 +22,7 @@ requirements:
     - pandas
     - bw2io==0.8.7
     - bw2data
-    - wurst
+    - wurst==0.3.3
     - xarray
     - prettytable
     - pycountry
