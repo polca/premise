@@ -677,11 +677,15 @@ class ExternalScenario(BaseTransformation):
 
         if ref_prod:
             # this is a technosphere exchange
-            ecoinvent_regions = [
-                r[-1]
-                for r in self.geo.geo.within(region)
-                if r[0] == "ecoinvent" and r[-1] not in ["GLO", "RoW"]
-            ]
+
+            if region in self.geo.iam_regions:
+                ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
+            else:
+                ecoinvent_regions = [
+                    r[-1]
+                    for r in self.geo.geo.within(region)
+                    if r[0] == "ecoinvent" and r[-1] not in ["GLO", "RoW"]
+                ]
 
             possible_locations = [
                 region,

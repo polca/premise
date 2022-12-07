@@ -725,7 +725,6 @@ class NewDatabase:
                 version_out=self.version,
                 path=datapackage.get_resource("inventories").source,
             )
-            additional.prepare_inventory()
             data.extend(additional.merge_inventory())
 
         return data

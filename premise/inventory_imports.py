@@ -116,6 +116,7 @@ class BaseInventoryImport:
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code()
         self.outdated_flows = get_outdated_flows()
+        self.list_unlinked = []
 
         if "http" in str(path):
             r = requests.head(path)
@@ -344,9 +345,16 @@ class BaseInventoryImport:
         if candidate is not None:
             return candidate["reference product"]
 
-        print(
-            f"An inventory exchange in {self.import_db.db_name} cannot be linked to the "
-            f"biosphere or the ecoinvent database: {exc}"
+
+        self.list_unlinked.append(
+            (
+                exc["name"],
+                exc.get("reference product"),
+                exc.get("location"),
+                exc.get("categories"),
+                exc["unit"],
+                exc["type"]
+            )
         )
 
         return exc["reference product"]
@@ -447,6 +455,25 @@ class BaseInventoryImport:
             for key in act:
                 if act[key] is None:
                     act.pop(key)
+    def display_unlinked_exchanges(self):
+        """
+        Display the list of unlinked exchanges
+        using prettytable
+        """
+        print("List of unlinked exchanges:")
+
+        table = PrettyTable()
+        table.field_names = [
+            "Name",
+            "Reference product",
+            "Location",
+            "Categories",
+            "Unit",
+            "Type"
+        ]
+        table.add_rows(list(set(self.list_unlinked)))
+        print(table)
+
 
 
 class DefaultInventory(BaseInventoryImport):
@@ -474,6 +501,9 @@ class DefaultInventory(BaseInventoryImport):
 
         # Check for duplicates
         self.check_for_duplicates()
+
+        if self.list_unlinked:
+            self.display_unlinked_exchanges()
 
 
 class VariousVehicles(BaseInventoryImport):
@@ -660,3 +690,6 @@ class AdditionalInventory(BaseInventoryImport):
         self.check_for_duplicates()
         # check numbers format
         self.import_db.data = check_amount_format(self.import_db.data)
+
+        if self.list_unlinked:
+            self.display_unlinked_exchanges()
