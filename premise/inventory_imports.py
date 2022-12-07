@@ -345,7 +345,6 @@ class BaseInventoryImport:
         if candidate is not None:
             return candidate["reference product"]
 
-
         self.list_unlinked.append(
             (
                 exc["name"],
@@ -353,7 +352,7 @@ class BaseInventoryImport:
                 exc.get("location"),
                 exc.get("categories"),
                 exc["unit"],
-                exc["type"]
+                exc["type"],
             )
         )
 
@@ -455,6 +454,7 @@ class BaseInventoryImport:
             for key in act:
                 if act[key] is None:
                     act.pop(key)
+
     def display_unlinked_exchanges(self):
         """
         Display the list of unlinked exchanges
@@ -469,11 +469,10 @@ class BaseInventoryImport:
             "Location",
             "Categories",
             "Unit",
-            "Type"
+            "Type",
         ]
         table.add_rows(list(set(self.list_unlinked)))
         print(table)
-
 
 
 class DefaultInventory(BaseInventoryImport):
