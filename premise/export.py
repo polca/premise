@@ -366,7 +366,8 @@ def get_exchange(ind, acts_ind, db_name, amount=1.0, production=False):
                 "input": (
                     "biosphere3",
                     bio_dict[
-                        name, cat[0], cat[1] if len(cat) > 1 else "unspecified", unit
+                        name, cat[0], cat[1] if len(cat) > 1
+                        else "unspecified", unit
                     ],
                 ),
             }

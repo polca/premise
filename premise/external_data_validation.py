@@ -40,10 +40,10 @@ def check_inventories(
     d_datasets = {
         (val["ecoinvent alias"]["name"], val["ecoinvent alias"]["reference product"]): {
             "exists in original database": val["ecoinvent alias"].get(
-                "exists in original database", "False"
+                "exists in original database", False
             ),
-            "new dataset": val["ecoinvent alias"].get("new dataset", "False"),
-            "regionalize": val["ecoinvent alias"].get("regionalize", "False"),
+            "new dataset": val["ecoinvent alias"].get("new dataset", False),
+            "regionalize": val["ecoinvent alias"].get("regionalize", False),
             "except regions": val.get("except regions", []),
             "efficiency": val.get("efficiency", []),
             "replaces": val.get("replaces", []),
@@ -53,13 +53,45 @@ def check_inventories(
         for val in config["production pathways"].values()
     }
 
+    if "regionalize" in config:
+        d_datasets.update(
+            {
+                (val["name"], val["reference product"]): {
+                    "exists in original database": val.get(
+                        "exists in original database", False
+                    ),
+                    "regionalize": True,
+                    "new dataset": False,
+                    "except regions": val.get("except regions", []),
+                    "efficiency": val.get("efficiency", []),
+                    "replaces": val.get("replaces", []),
+                    "replaces in": val.get("replaces in", []),
+                    "replacement ratio": val.get("replacement ratio", 1),
+                }
+                for val in config["regionalize"]
+            }
+        )
+
     list_datasets = [(i["name"], i["reference product"]) for i in inventory_data]
 
-    assert all(
-        (i[0], i[1]) in list_datasets
-        for i, v in d_datasets.items()
-        if not v["exists in original database"] and not v["new dataset"]
-    ), "Config file refers to one or several dataset(s) that cannot be found."
+    try:
+        assert all(
+            (i[0], i[1]) in list_datasets
+            for i, v in d_datasets.items()
+            if not v["exists in original database"] and not v.get("new dataset")
+        )
+    except AssertionError as e:
+        print("The following datasets are not in the inventory data:")
+        print(
+            [
+                i[0]
+                for i, v in d_datasets.items()
+                if not v["exists in original database"]
+                and not v.get("new dataset")
+                and (i[0], i[1]) not in list_datasets
+            ]
+        )
+        sys.exit()
 
     # flag imported inventories
     for i, dataset in enumerate(inventory_data):
@@ -243,6 +275,13 @@ def check_config_file(datapackages):
                                 },
                             }
                         ],
+                    }
+                ],
+                Optional("regionalize"): [
+                    {
+                        "name": str,
+                        "reference product": str,
+                        Optional("exists in original database"): bool,
                     }
                 ],
             }
