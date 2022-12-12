@@ -8,7 +8,7 @@ import sys
 from copy import deepcopy
 from functools import lru_cache
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict, Tuple, List
 
 import pandas as pd
 import xarray as xr
@@ -147,6 +147,65 @@ def get_clinker_ratio_remind(year: int) -> xr.DataArray:
     )
 
 
+def add_entry_to_cache(cache: dict, location: str, model: str, exc: dict, allocated: List[dict], share: List[float]) -> dict:
+
+    if location in cache:
+        if model in cache[location]:
+            cache[location][model][
+                (
+                    exc["name"],
+                    exc["product"],
+                    exc["location"],
+                    exc["unit"],
+                )
+            ] = [
+                (e["name"], e["product"], e["location"], e["unit"], s)
+                for e, s in zip(allocated, share)
+            ]
+        else:
+            cache[location] = {
+                model: {
+                    (
+                        exc["name"],
+                        exc["product"],
+                        exc["location"],
+                        exc["unit"],
+                    ): [
+                        (
+                            e["name"],
+                            e["product"],
+                            e["location"],
+                            e["unit"],
+                            s,
+                        )
+                        for e, s in zip(allocated, share)
+                    ]
+                }
+            }
+
+    else:
+        cache[location] = {
+            model: {
+                (
+                    exc["name"],
+                    exc["product"],
+                    exc["location"],
+                    exc["unit"],
+                ): [
+                    (
+                        e["name"],
+                        e["product"],
+                        e["location"],
+                        e["unit"],
+                        s,
+                    )
+                    for e, s in zip(allocated, share)
+                ]
+            }
+        }
+
+    return cache
+
 def relink_technosphere_exchanges(
     dataset,
     data,
@@ -180,7 +239,10 @@ def relink_technosphere_exchanges(
 
     geomatcher = geomap.Geomap(model=model)
 
-    list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()] + [
+    list_loc = [k if isinstance(k, str)
+                else k[1]
+                for k in geomatcher.geo.keys()
+        ] + [
         "RoW"
     ]
 
@@ -206,7 +268,6 @@ def relink_technosphere_exchanges(
                 )
 
             else:
-
                 new_exchanges.extend(
                     [
                         {
@@ -223,11 +284,21 @@ def relink_technosphere_exchanges(
 
         except KeyError:
 
+            kept = None
+
             possible_datasets = [
-                x for x in get_possibles(exc, data) if x["location"] in list_loc
+                x for x in get_possibles(exc, data)
+                if x["location"] in list_loc
             ]
 
             possible_locations = [obj["location"] for obj in possible_datasets]
+
+            if len(possible_datasets) == 1:
+                assert possible_datasets[0]["location"] == exc["location"]
+                assert possible_datasets[0]["name"] == exc["name"]
+                assert possible_datasets[0]["reference product"] == exc["product"]
+                new_exchanges.append(exc)
+                continue
 
             if dataset["location"] in possible_locations:
 
@@ -260,67 +331,31 @@ def relink_technosphere_exchanges(
                         )
                         if iloc in possible_locations
                     ]
+
                     kept = [ds for ds in possible_datasets if ds["location"] in locs]
+
+                    if dataset["location"] == "World" and "GLO" in locs:
+                        kept = [ds for ds in kept if ds["location"] == "GLO"]
 
                     allocated, share = allocate_inputs(exc, kept)
                     new_exchanges.extend(allocated)
 
-                    if dataset["location"] in cache:
-                        if model in cache[dataset["location"]]:
-                            cache[dataset["location"]][model][
-                                (
-                                    exc["name"],
-                                    exc["product"],
-                                    exc["location"],
-                                    exc["unit"],
-                                )
-                            ] = [
-                                (e["name"], e["product"], e["location"], e["unit"], s)
-                                for e, s in zip(allocated, share)
-                            ]
-                        else:
-                            cache[dataset["location"]] = {
-                                model: {
-                                    (
-                                        exc["name"],
-                                        exc["product"],
-                                        exc["location"],
-                                        exc["unit"],
-                                    ): [
-                                        (
-                                            e["name"],
-                                            e["product"],
-                                            e["location"],
-                                            e["unit"],
-                                            s,
-                                        )
-                                        for e, s in zip(allocated, share)
-                                    ]
-                                }
-                            }
-
-                    else:
-                        cache[dataset["location"]] = {
-                            model: {
-                                (
-                                    exc["name"],
-                                    exc["product"],
-                                    exc["location"],
-                                    exc["unit"],
-                                ): [
-                                    (
-                                        e["name"],
-                                        e["product"],
-                                        e["location"],
-                                        e["unit"],
-                                        s,
-                                    )
-                                    for e, s in zip(allocated, share)
-                                ]
-                            }
-                        }
+                    cache = add_entry_to_cache(
+                        cache,
+                        dataset["location"],
+                        model,
+                        exc,
+                        allocated,
+                        share
+                    )
 
                     continue
+
+            if not kept and "GLO" in possible_locations:
+                kept = [ds for ds in possible_datasets if ds["location"] == "GLO"]
+                allocated, share = allocate_inputs(exc, kept)
+                new_exchanges.extend(allocated)
+                continue
 
             possible_locations = [
                 (model.upper(), p) if p in geomatcher.iam_regions else p
@@ -416,88 +451,33 @@ def relink_technosphere_exchanges(
                 allocated, share = allocate_inputs(exc, kept)
                 new_exchanges.extend(allocated)
 
-                if dataset["location"] in cache:
-                    if model in cache[dataset["location"]]:
-                        cache[dataset["location"]][model][
-                            (exc["name"], exc["product"], exc["location"], exc["unit"])
-                        ] = [
-                            (e["name"], e["product"], e["location"], e["unit"], s)
-                            for e, s in zip(allocated, share)
-                        ]
-                    else:
-                        cache[dataset["location"]][model] = {
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["location"],
-                                exc["unit"],
-                            ): [
-                                (e["name"], e["product"], e["location"], e["unit"], s)
-                                for e, s in zip(allocated, share)
-                            ]
-                        }
+                # add to cache
+                cache = add_entry_to_cache(
+                    cache,
+                    dataset["location"],
+                    model,
+                    exc,
+                    allocated,
+                    share
+                )
 
-                else:
-                    cache[dataset["location"]] = {
-                        model: {
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["location"],
-                                exc["unit"],
-                            ): [
-                                (e["name"], e["product"], e["location"], e["unit"], s)
-                                for e, s in zip(allocated, share)
-                            ]
-                        }
-                    }
             else:
+                # there's no better candidate than the initial one
                 new_exchanges.append(exc)
                 # add to cache
-                if dataset["location"] in cache:
-                    if model in cache[dataset["location"]]:
-                        cache[dataset["location"]][model][
-                            (exc["name"], exc["product"], exc["location"], exc["unit"])
-                        ] = (
-                            exc["name"],
-                            exc["product"],
-                            exc["location"],
-                            exc["unit"],
-                        )
-                    else:
-                        cache[dataset["location"]][model] = {
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["location"],
-                                exc["unit"],
-                            ): (
-                                exc["name"],
-                                exc["product"],
-                                exc["location"],
-                                exc["unit"],
-                            )
-                        }
+                cache = add_entry_to_cache(
+                    cache,
+                    dataset["location"],
+                    model,
+                    exc,
+                    [exc],
+                    [1.0]
+                )
 
-                else:
-                    cache[dataset["location"]] = {
-                        model: {
-                            (
-                                exc["name"],
-                                exc["product"],
-                                exc["location"],
-                                exc["unit"],
-                            ): (
-                                exc["name"],
-                                exc["product"],
-                                exc["location"],
-                                exc["unit"],
-                            )
-                        }
-                    }
 
     dataset["exchanges"] = [
-        exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
+        exc for exc in dataset["exchanges"]
+        if exc["type"] != "technosphere"
     ] + new_exchanges
 
     return cache, dataset

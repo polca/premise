@@ -86,6 +86,41 @@ def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
     return response
 
 
+def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
+    """Check whether there are duplicate datasets in the inventory to import."""
+    datasets = [(ds["name"], ds["reference product"], ds["location"]) for ds in data]
+    duplicates = [
+        item
+        for item, count in itertools.groupby(sorted(datasets))
+        if len(list(count)) > 1
+    ]
+    if duplicates:
+        print("Duplicate datasets found (they need to be removed):")
+        # print them using prettytable
+        table = PrettyTable()
+        table.field_names = ["Name", "Reference product", "Location"]
+        for duplicate in duplicates:
+            table.add_row(duplicate)
+        print(table)
+
+        # remove duplicates
+        duplicates_added = []
+        for ds in data:
+            if (ds["name"], ds["reference product"], ds["location"]) in duplicates:
+                if (
+                    ds["name"],
+                    ds["reference product"],
+                    ds["location"],
+                ) not in duplicates_added:
+                    duplicates_added.append(
+                        (ds["name"], ds["reference product"], ds["location"])
+                    )
+                else:
+                    data.remove(ds)
+
+    return data
+
+
 class BaseInventoryImport:
     """
     Base class for inventories that are to be merged with the wurst database.
@@ -159,7 +194,7 @@ class BaseInventoryImport:
         :returns: Nothing
         """
 
-    def check_for_duplicates(self) -> None:
+    def check_for_already_existing_datasets(self) -> None:
         """
         Check whether the inventories to be imported are not
         already in the source database.
@@ -499,7 +534,8 @@ class DefaultInventory(BaseInventoryImport):
         self.add_product_field_to_exchanges()
 
         # Check for duplicates
-        self.check_for_duplicates()
+        self.check_for_already_existing_datasets()
+        self.import_db.data = check_for_duplicate_datasets(self.import_db.data)
 
         if self.list_unlinked:
             self.display_unlinked_exchanges()
@@ -559,7 +595,7 @@ class VariousVehicles(BaseInventoryImport):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
         # Check for duplicates
-        self.check_for_duplicates()
+        self.check_for_already_existing_datasets()
 
     def merge_inventory(self):
 
@@ -686,7 +722,8 @@ class AdditionalInventory(BaseInventoryImport):
         self.remove_missing_fields()
         self.add_product_field_to_exchanges()
         # Check for duplicates
-        self.check_for_duplicates()
+        self.check_for_already_existing_datasets()
+        self.import_db.data = check_for_duplicate_datasets(self.import_db.data)
         # check numbers format
         self.import_db.data = check_amount_format(self.import_db.data)
 

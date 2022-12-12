@@ -6,7 +6,7 @@ on the wurst database.
 """
 
 import uuid
-from collections import Counter
+from collections import Counter, defaultdict
 from itertools import product
 from typing import Any, Dict, List, Set, Tuple, Union
 
@@ -388,12 +388,19 @@ class BaseTransformation:
 
         for region in d_iam_to_eco:
 
-            dataset = ws.get_one(
-                self.database,
-                ws.equals("name", name),
-                ws.contains("reference product", ref_prod),
-                ws.equals("location", d_iam_to_eco[region]),
-            )
+            try:
+                dataset = ws.get_one(
+                    self.database,
+                    ws.equals("name", name),
+                    ws.contains("reference product", ref_prod),
+                    ws.equals("location", d_iam_to_eco[region]),
+                )
+            except ws.MultipleResults as err:
+                print(
+                    err,
+                    "A single dataset was expected, "
+                    f"but found more than one for: {name, ref_prod}",
+                )
 
             if (name, ref_prod, region) not in self.list_datasets:
                 d_act[region] = wt.copy_to_new_location(dataset, region)
@@ -465,12 +472,18 @@ class BaseTransformation:
             ref_prod=ds_ref_prod,
             loc_map=d_iam_to_eco,
             production_variable=production_variable,
+            regions=regions,
         )
 
         return d_act
 
     def empty_original_datasets(
-        self, name: str, ref_prod: str, loc_map: dict, production_variable: str
+        self,
+        name: str,
+        ref_prod: str,
+        production_variable: str,
+        loc_map: Dict[str, str],
+        regions: List[str] = None,
     ) -> None:
         """
         Empty original ecoinvent dataset and introduce an input to the regional IAM
@@ -482,19 +495,29 @@ class BaseTransformation:
         :return: Does not return anything. Just empties the original dataset.
         """
 
+        regions = regions or self.regions
+        if loc_map:
+            mapping = defaultdict(list)
+            for k, v in loc_map.items():
+                mapping[v].append(k)
+
         existing_datasets = ws.get_many(
             self.database,
             ws.equals("name", name),
             ws.contains("reference product", ref_prod),
-            ws.doesnt_contain_any("location", self.regions),
+            ws.doesnt_contain_any("location", regions),
         )
 
         for existing_ds in existing_datasets:
 
-            iam_locs = [self.ecoinvent_to_iam_loc[existing_ds["location"]]]
+            if existing_ds["location"] in mapping:
+                iam_locs = mapping[existing_ds["location"]]
+            else:
+                iam_locs = [self.ecoinvent_to_iam_loc[existing_ds["location"]]]
+                iam_locs = [loc for loc in iam_locs if loc in regions]
 
-            if iam_locs == ["World"] or existing_ds["location"] == "RoW":
-                iam_locs = [r for r in self.regions if r != "World"]
+            if iam_locs == ["World"]:
+                iam_locs = [r for r in regions if r != "World"]
 
             # add tag
             existing_ds["has_downstream_consumer"] = False
@@ -508,7 +531,8 @@ class BaseTransformation:
 
             if len(existing_ds["exchanges"]) == 0:
                 print(
-                    f"ISSUE: no exchanges found in {existing_ds['name']} in {existing_ds['location']}"
+                    f"ISSUE: no exchanges found in {existing_ds['name']} "
+                    f"in {existing_ds['location']}"
                 )
 
             if len(iam_locs) > 1:
@@ -609,10 +633,10 @@ class BaseTransformation:
         ):
             # and find exchanges of datasets to relink
             excs_to_relink = [
-                exc
-                for exc in act["exchanges"]
-                if exc["type"] == "technosphere"
-                and (exc["name"], exc["product"], exc["location"])
+                exchange
+                for exchange in act["exchanges"]
+                if exchange["type"] == "technosphere"
+                and (exchange["name"], exchange["product"], exchange["location"])
                 not in self.list_datasets
             ]
 
@@ -624,7 +648,9 @@ class BaseTransformation:
             list_new_exc = []
 
             for exc in unique_excs_to_relink:
+                new_name, new_prod, new_loc, new_unit = (None, None, None, None)
 
+                # check if already in cache
                 try:
                     new_name, new_prod, new_loc, new_unit = self.cache[act["location"]][
                         self.model
@@ -632,18 +658,25 @@ class BaseTransformation:
 
                 except ValueError:
                     print(f"Issue with {self.cache[act['location']][self.model][exc]}.")
+                    print(self.cache[act["location"]][
+                        self.model
+                    ][exc])
+
                     continue
 
+                # not in cache, so find new candidate
                 except KeyError:
 
                     names_to_look_for = [exc[0], *alt_names]
+
+                    if exc[0].startswith("market group for"):
+                        names_to_look_for.append(exc[0].replace("market group for", "market for"))
+
                     alternative_locations = (
                         [act["location"]]
                         if act["location"] in self.regions
                         else [self.ecoinvent_to_iam_loc[act["location"]]]
                     )
-
-                    is_found = False
 
                     for name_to_look_for, alt_loc in product(
                         names_to_look_for, alternative_locations
@@ -657,40 +690,25 @@ class BaseTransformation:
                                 exc[-1],
                             )
 
-                            is_found = True
-
-                            if act["location"] in self.cache:
-                                if self.model in self.cache[act["location"]]:
-                                    self.cache[act["location"]][self.model][exc] = (
-                                        name_to_look_for,
-                                        exc[1],
-                                        alt_loc,
-                                        exc[-1],
-                                    )
-                            else:
-                                self.cache[act["location"]] = {
-                                    self.model: {
-                                        exc: (
-                                            name_to_look_for,
-                                            exc[1],
-                                            alt_loc,
-                                            exc[-1],
-                                        )
-                                    }
-                                }
+                            self.add_entry_to_cache(
+                                location=act["location"],
+                                exchange=exc,
+                                new_exchange=(name_to_look_for, exc[1], alt_loc, exc[-1]),
+                            )
                             break
 
-                    if not is_found:
-
-                        if (exc[0], exc[2]) == (act["name"], act["location"]):
+                    if not new_name:
+                        if exc == (act["name"], act["reference product"], act["location"], act["unit"]):
                             new_name, new_prod, new_loc, new_unit = (
                                 act["name"],
                                 act["reference product"],
                                 act["location"],
                                 act["unit"],
                             )
-                        else:
-                            continue
+
+                    if not new_name:
+                        new_name, new_prod, new_loc, new_unit = exc
+
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset
@@ -734,6 +752,17 @@ class BaseTransformation:
             ]
             act["exchanges"].extend(list_new_exc)
 
+    def add_entry_to_cache(self, location, exchange, new_exchange):
+
+        if location in self.cache:
+            if self.model in self.cache[location]:
+                self.cache[location][self.model][exchange] = new_exchange
+        else:
+            self.cache[location] = {
+                self.model: {
+                    exchange: new_exchange
+                }
+            }
     def get_carbon_capture_rate(self, loc: str, sector: str) -> float:
         """
         Returns the carbon capture rate (between 0 and 1) as indicated by the IAM
