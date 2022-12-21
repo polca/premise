@@ -8,7 +8,7 @@ import sys
 from copy import deepcopy
 from functools import lru_cache
 from pathlib import Path
-from typing import Dict, Tuple, List
+from typing import Dict, List, Tuple
 
 import pandas as pd
 import xarray as xr
@@ -147,7 +147,14 @@ def get_clinker_ratio_remind(year: int) -> xr.DataArray:
     )
 
 
-def add_entry_to_cache(cache: dict, location: str, model: str, exc: dict, allocated: List[dict], share: List[float]) -> dict:
+def add_entry_to_cache(
+    cache: dict,
+    location: str,
+    model: str,
+    exc: dict,
+    allocated: List[dict],
+    share: List[float],
+) -> dict:
 
     if location in cache:
         if model in cache[location]:
@@ -165,12 +172,7 @@ def add_entry_to_cache(cache: dict, location: str, model: str, exc: dict, alloca
         else:
             cache[location] = {
                 model: {
-                    (
-                        exc["name"],
-                        exc["product"],
-                        exc["location"],
-                        exc["unit"],
-                    ): [
+                    (exc["name"], exc["product"], exc["location"], exc["unit"],): [
                         (
                             e["name"],
                             e["product"],
@@ -186,12 +188,7 @@ def add_entry_to_cache(cache: dict, location: str, model: str, exc: dict, alloca
     else:
         cache[location] = {
             model: {
-                (
-                    exc["name"],
-                    exc["product"],
-                    exc["location"],
-                    exc["unit"],
-                ): [
+                (exc["name"], exc["product"], exc["location"], exc["unit"],): [
                     (
                         e["name"],
                         e["product"],
@@ -205,6 +202,7 @@ def add_entry_to_cache(cache: dict, location: str, model: str, exc: dict, alloca
         }
 
     return cache
+
 
 def relink_technosphere_exchanges(
     dataset,
@@ -239,10 +237,7 @@ def relink_technosphere_exchanges(
 
     geomatcher = geomap.Geomap(model=model)
 
-    list_loc = [k if isinstance(k, str)
-                else k[1]
-                for k in geomatcher.geo.keys()
-        ] + [
+    list_loc = [k if isinstance(k, str) else k[1] for k in geomatcher.geo.keys()] + [
         "RoW"
     ]
 
@@ -287,8 +282,7 @@ def relink_technosphere_exchanges(
             kept = None
 
             possible_datasets = [
-                x for x in get_possibles(exc, data)
-                if x["location"] in list_loc
+                x for x in get_possibles(exc, data) if x["location"] in list_loc
             ]
 
             possible_locations = [obj["location"] for obj in possible_datasets]
@@ -341,12 +335,7 @@ def relink_technosphere_exchanges(
                     new_exchanges.extend(allocated)
 
                     cache = add_entry_to_cache(
-                        cache,
-                        dataset["location"],
-                        model,
-                        exc,
-                        allocated,
-                        share
+                        cache, dataset["location"], model, exc, allocated, share
                     )
 
                     continue
@@ -453,12 +442,7 @@ def relink_technosphere_exchanges(
 
                 # add to cache
                 cache = add_entry_to_cache(
-                    cache,
-                    dataset["location"],
-                    model,
-                    exc,
-                    allocated,
-                    share
+                    cache, dataset["location"], model, exc, allocated, share
                 )
 
             else:
@@ -466,18 +450,11 @@ def relink_technosphere_exchanges(
                 new_exchanges.append(exc)
                 # add to cache
                 cache = add_entry_to_cache(
-                    cache,
-                    dataset["location"],
-                    model,
-                    exc,
-                    [exc],
-                    [1.0]
+                    cache, dataset["location"], model, exc, [exc], [1.0]
                 )
 
-
     dataset["exchanges"] = [
-        exc for exc in dataset["exchanges"]
-        if exc["type"] != "technosphere"
+        exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
     ] + new_exchanges
 
     return cache, dataset

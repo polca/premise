@@ -658,9 +658,7 @@ class BaseTransformation:
 
                 except ValueError:
                     print(f"Issue with {self.cache[act['location']][self.model][exc]}.")
-                    print(self.cache[act["location"]][
-                        self.model
-                    ][exc])
+                    print(self.cache[act["location"]][self.model][exc])
 
                     continue
 
@@ -670,7 +668,9 @@ class BaseTransformation:
                     names_to_look_for = [exc[0], *alt_names]
 
                     if exc[0].startswith("market group for"):
-                        names_to_look_for.append(exc[0].replace("market group for", "market for"))
+                        names_to_look_for.append(
+                            exc[0].replace("market group for", "market for")
+                        )
 
                     alternative_locations = (
                         [act["location"]]
@@ -693,12 +693,22 @@ class BaseTransformation:
                             self.add_entry_to_cache(
                                 location=act["location"],
                                 exchange=exc,
-                                new_exchange=(name_to_look_for, exc[1], alt_loc, exc[-1]),
+                                new_exchange=(
+                                    name_to_look_for,
+                                    exc[1],
+                                    alt_loc,
+                                    exc[-1],
+                                ),
                             )
                             break
 
                     if not new_name:
-                        if exc == (act["name"], act["reference product"], act["location"], act["unit"]):
+                        if exc == (
+                            act["name"],
+                            act["reference product"],
+                            act["location"],
+                            act["unit"],
+                        ):
                             new_name, new_prod, new_loc, new_unit = (
                                 act["name"],
                                 act["reference product"],
@@ -708,7 +718,6 @@ class BaseTransformation:
 
                     if not new_name:
                         new_name, new_prod, new_loc, new_unit = exc
-
 
                 # summing up the amounts provided by the unwanted exchanges
                 # and remove these unwanted exchanges from the dataset
@@ -758,11 +767,8 @@ class BaseTransformation:
             if self.model in self.cache[location]:
                 self.cache[location][self.model][exchange] = new_exchange
         else:
-            self.cache[location] = {
-                self.model: {
-                    exchange: new_exchange
-                }
-            }
+            self.cache[location] = {self.model: {exchange: new_exchange}}
+
     def get_carbon_capture_rate(self, loc: str, sector: str) -> float:
         """
         Returns the carbon capture rate (between 0 and 1) as indicated by the IAM
