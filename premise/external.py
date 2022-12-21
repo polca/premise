@@ -342,9 +342,7 @@ class ExternalScenario(BaseTransformation):
 
             # Check if datasets already exist for IAM regions
             # if not, create them
-
             if ds["location"] not in regions:
-
                 new_acts = self.fetch_proxies(
                     name=ds["name"],
                     ref_prod=ds["reference product"],

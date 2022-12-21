@@ -1,4 +1,5 @@
 # mapping between premise and IAM terminology regarding steel
+# production volumes and energy use
 ---
 steel - primary:
   iam_aliases:

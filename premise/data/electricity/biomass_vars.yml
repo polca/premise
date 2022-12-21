@@ -1,3 +1,7 @@
+# mapping between premise and the terminology
+# used in the IAMs regarding the origin of biomass
+# used in the production of electricity
+---
 biomass - purpose grown:
   iam_aliases:
     image: Primary Energy|Biomass|Energy Crops

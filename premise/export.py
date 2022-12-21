@@ -11,16 +11,20 @@ import uuid
 from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
-from typing import Dict, List
+from typing import Any, Dict, List, Tuple, Union
 
+import bw2io
 import numpy as np
 import pandas as pd
 import sparse
 import yaml
+from datapackage import Package
+from pandas import DataFrame
 from scipy import sparse as nsp
 
 from . import DATA_DIR, __version__
 from .transformation import BaseTransformation
+from .utils import check_database_name
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
@@ -28,6 +32,8 @@ FILEPATH_SIMAPRO_COMPARTMENTS = (
     DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
 )
 OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
+DIR_DATAPACKAGE = DATA_DIR / "export" / "datapackage"
+DIR_DATAPACKAGE_TEMP = DATA_DIR / "export" / "datapackage" / "temp"
 
 
 def get_simapro_units() -> Dict[str, str]:
@@ -188,6 +194,39 @@ def check_amount_format(database: list) -> list:
     return database
 
 
+def remove_unused_fields(database: list) -> list:
+    """
+    Remove fields wich have no values from each dataset in database.
+    :param database: database to check
+    :return: database with unused fields removed
+    """
+
+    for dataset in database:
+        for key in list(dataset.keys()):
+            if not dataset[key]:
+                del dataset[key]
+
+    return database
+
+
+def correct_fields_format(database: list) -> list:
+    """
+    Correct the format of some fields.
+    :param database: database to check
+    :return: database with corrected fields
+    """
+
+    for dataset in database:
+        if "parameters" in dataset:
+            if not isinstance(dataset["parameters"], list):
+                dataset["parameters"] = [dataset["parameters"]]
+        if "categories" in dataset:
+            if not isinstance(dataset["categories"], tuple):
+                dataset["categories"] = tuple(dataset["categories"])
+
+    return database
+
+
 def create_index_of_A_matrix(database):
     """
     Create a dictionary with row/column indices of the exchanges
@@ -292,20 +331,25 @@ def biosphere_flows_dictionary():
     return csv_dict
 
 
-def get_list_unique_acts(scenarios):
+def get_list_unique_acts(scenarios: List[dict]) -> list:
+    """
+    Get a list of unique activities from a list of databases
+    :param scenarios: list of databases
+    :return: list of unique activities
+    """
+
     list_unique_acts = []
     for db in scenarios:
         for ds in db["database"]:
             list_unique_acts.extend(
                 [
-                    (a["name"], None, a.get("categories"), None, a["unit"])
-                    if a["type"] == "biosphere"
-                    else (
+                    (
                         a["name"],
                         a.get("product"),
-                        None,
+                        a.get("categories"),
                         a.get("location"),
                         a["unit"],
+                        a["type"],
                     )
                     for a in ds["exchanges"]
                 ]
@@ -339,7 +383,7 @@ def fetch_exchange_code(name, ref, loc, unit):
 
 
 def get_act_dict_structure(ind, acts_ind, db_name) -> dict:
-    name, ref, _, loc, unit = acts_ind[ind]
+    name, ref, _, loc, unit, _ = acts_ind[ind]
     code = fetch_exchange_code(name, ref, loc, unit)
 
     return {
@@ -349,67 +393,240 @@ def get_act_dict_structure(ind, acts_ind, db_name) -> dict:
         "location": loc,
         "database": db_name,
         "code": code,
+        "parameters": [],
         "exchanges": [],
     }
 
+def correct_biosphere_flow(name, cat, unit):
+    """
+    Correct the biosphere flow name if it is outdated.
+    """
+    if len(cat) > 1:
+        main_cat = cat[0]
+        sub_cat = cat[1]
+    else:
+        main_cat = cat[0]
+        sub_cat = "unspecified"
 
-def get_exchange(ind, acts_ind, db_name, amount=1.0, production=False):
-    name, ref, cat, loc, unit = acts_ind[ind]
-    if cat:
-        try:
-            return {
-                "name": name,
-                "unit": unit,
-                "categories": cat,
-                "type": "biosphere",
-                "amount": amount,
-                "input": (
-                    "biosphere3",
-                    bio_dict[
-                        name, cat[0], cat[1] if len(cat) > 1 else "unspecified", unit
-                    ],
-                ),
-            }
-        except KeyError:
-            if name in outdated_flows:
-                return {
-                    "name": name,
-                    "unit": unit,
-                    "categories": cat,
-                    "type": "biosphere",
-                    "amount": amount,
-                    "input": (
-                        "biosphere3",
-                        bio_dict[
-                            outdated_flows[name],
-                            cat[0],
-                            cat[1] if len(cat) > 1 else "unspecified",
-                            unit,
-                        ],
-                    ),
-                }
+    if name in outdated_flows:
+        if (outdated_flows[name], main_cat, sub_cat, unit) in bio_dict:
+            return bio_dict[(outdated_flows[name], main_cat, sub_cat, unit)]
+    return bio_dict[(name, main_cat, sub_cat, unit)]
+
+
+def get_exchange(ind, acts_ind, db_name, amount=1.0):
+    name, ref, cat, loc, unit, flow_type = acts_ind[ind]
+    _ = lambda x: x if x != 0 else 1.0
     return {
         "name": name,
         "product": ref,
         "unit": unit,
         "location": loc,
-        "type": "production" if production else "technosphere",
-        "amount": amount,
-        "input": (db_name, fetch_exchange_code(name, ref, loc, unit)),
+        "categories": cat,
+        "type": flow_type,
+        "amount": amount if flow_type != "production" else _(amount),
+        "input": (
+            "biosphere3",
+            correct_biosphere_flow(name, cat, unit)
+        ) if flow_type == "biosphere"
+        else (db_name, fetch_exchange_code(name, ref, loc, unit)),
     }
 
 
-def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dict]:
+def check_for_outdated_flows(database):
+    for ds in database:
+        for exc in ds["exchanges"]:
+            if exc["name"] in outdated_flows:
+                exc["name"] = outdated_flows[exc["name"]]
+    return database
+
+
+def write_formatted_data(name, data, filepath):
     """
-    Build a superstructure database from a list of databases
-    :param origin_db: the original database
-    :param scenarios: a list of modified databases
-    :param db_name: the name of the new database
-    :param filepath: the filepath of the new database
-    :return: a superstructure database
+    Adapted from bw2io.export.csv
+    :param name: name of the database
+    :param data: data to write
+    :param filepath: path to the file
     """
 
-    print("Building superstructure database...")
+    sections = [
+        "project parameters",
+        "database",
+        "database parameters",
+        "activities",
+        "activity parameters",
+        "exchanges",
+    ]
+
+    result = []
+
+    if "database" in sections:
+        result.append(["Database", name])
+        result.append([])
+
+    if "activities" not in sections:
+        return result
+
+    for act in data:
+        result.append(["Activity", act["name"]])
+        result.append(["reference product", act["reference product"]])
+        result.append(["unit", act["unit"]])
+        result.append(["location", act["location"]])
+        result.append(["comment", act.get("comment", "")])
+        result.append(["source", act.get("source", "")])
+        result.append(["parameters", act.get("parameters", [])])
+        result.append([""])
+
+        if "exchanges" in sections:
+            result.append(["Exchanges"])
+            if act.get("exchanges"):
+                result.append(
+                    [
+                        "name",
+                        "amount",
+                        "unit",
+                        "location",
+                        "categories",
+                        "type",
+                        "product",
+                    ]
+                )
+                for exc in act["exchanges"]:
+                    result.append(
+                        [
+                            exc["name"],
+                            exc["amount"],
+                            exc["unit"],
+                            exc.get("location"),
+                            "::".join([x for x in exc.get("categories", [])])
+                            if exc["type"] == "biosphere"
+                            else None,
+                            exc["type"],
+                            exc.get("product"),
+                        ]
+                    )
+        result.append([])
+
+    with open(filepath, "w", newline="") as f:
+        writer = csv.writer(f)
+        for line in result:
+            writer.writerow(line)
+
+    return filepath
+
+
+def build_datapackage(df, inventories, list_scenarios, ei_version, name):
+    """
+    Create and export a scenario datapackage.
+    """
+
+    # check that directory exists, otherwise create it
+    Path(DIR_DATAPACKAGE_TEMP).mkdir(parents=True, exist_ok=True)
+    df.to_csv(DIR_DATAPACKAGE_TEMP / "scenario_data.csv", index=False)
+    write_formatted_data(
+        name=name, data=inventories, filepath=DIR_DATAPACKAGE_TEMP / "inventories.csv"
+    )
+    package = Package(base_path=str(DIR_DATAPACKAGE_TEMP))
+    package.infer("**/*.csv")
+    package.descriptor["name"] = name
+    package.descriptor["title"] = name.capitalize()
+    package.descriptor[
+        "description"
+    ] = f"Data package generated by premise {__version__}."
+    package.descriptor["premise version"] = str(__version__)
+    package.descriptor["dependencies"] = [
+        {
+            "name": "ecoinvent",
+            "system model": "cut-off",
+            "version": ei_version,
+            "type": "source",
+        },
+        {
+            "name": "biosphere3",
+        },
+    ]
+    package.descriptor["scenarios"] = [
+        {
+            "name": s,
+            "description": f"Prospective db, "
+            f"based on {s.split(' - ')[0].upper()}, "
+            f"pathway {s.split(' - ')[1].upper()}, "
+            f"for the year {s.split(' - ')[2]}.",
+        }
+        for s in list_scenarios[1:]
+    ]
+    package.descriptor["keywords"] = [
+        "ecoinvent",
+        "scenario",
+        "data package",
+        "premise",
+    ]
+    package.descriptor["licenses"] = [
+        {
+            "id": "CC0-1.0",
+            "title": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        }
+    ]
+    package.commit()
+    package.save(DIR_DATAPACKAGE / f"{name}.zip")
+
+    print(f"Data package saved at {DIR_DATAPACKAGE / f'{name}.zip'}")
+
+
+def generate_scenario_factor_file(origin_db, scenarios, db_name):
+    """
+    Generate a scenario factor file from a list of databases
+    :param origin_db: the original database
+    :param scenarios: a list of databases
+    :param db_name: the name of the database
+    """
+
+    print("Building scenario factor file...")
+
+    # create the dataframe
+    df, new_db, list_unique_acts = generate_scenario_difference_file(
+        origin_db=origin_db, scenarios=scenarios, db_name=db_name
+    )
+
+    original = df["original"]
+    original = original.replace(0, 1)
+    df.loc[:, "original":] = df.loc[:, "original":].div(original, axis=0)
+
+    # remove the column `original`
+    df = df.drop(columns=["original"])
+    # fetch a list of activities not present in original_db
+    list_original_acts = get_list_unique_acts([{"database": origin_db}])
+    list_original_acts = [a for a in list_original_acts if a[-1] == "production"]
+    new_acts_list = list(set(list_unique_acts) - set(list_original_acts))
+
+    # fetch the additional activities from new_db
+    extra_acts = [
+        dataset
+        for dataset in new_db
+        if (
+            dataset["name"],
+            dataset.get("reference product"),
+            None,
+            dataset.get("location"),
+            dataset["unit"],
+            "production",
+        )
+        in new_acts_list
+    ]
+
+    return df, extra_acts
+
+
+def generate_scenario_difference_file(
+    db_name, origin_db, scenarios
+) -> tuple[DataFrame, list[dict], list[tuple]]:
+    """
+    Generate a scenario difference file for a given list of databases
+    :param db_name: name of the new database
+    :param origin_db: the original database
+    :param scenarios: list of databases
+    """
 
     exc_codes.update(
         {
@@ -452,23 +669,22 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
 
     for i, db in enumerate(list_dbs):
         for ds in db:
+            c = (
+                ds["name"],
+                ds.get("reference product"),
+                ds.get("categories"),
+                ds.get("location"),
+                ds["unit"],
+                "production",
+            )
             for exc in ds["exchanges"]:
-                if exc["type"] == "biosphere":
-                    s = (exc["name"], None, exc.get("categories"), None, exc["unit"])
-                else:
-                    s = (
-                        exc["name"],
-                        exc["product"],
-                        None,
-                        exc["location"],
-                        exc["unit"],
-                    )
-                c = (
-                    ds["name"],
-                    ds.get("reference product"),
-                    ds.get("categories"),
-                    ds.get("location"),
-                    ds["unit"],
+                s = (
+                    exc["name"],
+                    exc.get("product"),
+                    exc.get("categories"),
+                    exc.get("location"),
+                    exc["unit"],
+                    exc["type"],
                 )
                 matrices[i][acts_ind_rev[s], acts_ind_rev[c]] += exc["amount"]
 
@@ -490,13 +706,11 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
             acts_ind,
             db_name,
         )
-        act.update(dict_meta[acts_ind[k]])
+        meta_id = tuple(list(acts_ind[k])[:-1])
+        act.update(dict_meta[meta_id])
 
         act["exchanges"].extend(
-            get_exchange(i, acts_ind, db_name, amount=m[i, k, 0])
-            if i != k
-            else get_exchange(k, acts_ind, db_name, production=True)
-            for i in v
+            get_exchange(i, acts_ind, db_name, amount=m[i, k, 0]) for i in v
         )
 
         new_db.append(act)
@@ -505,42 +719,24 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
 
     for i in inds_std:
 
-        c_name, c_ref, c_cat, c_loc, c_unit = acts_ind[i[0]]
-        s_name, s_ref, s_cat, s_loc, s_unit = acts_ind[i[1]]
+        c_name, c_ref, c_cat, c_loc, c_unit, c_type = acts_ind[i[0]]
+        s_name, s_ref, s_cat, s_loc, s_unit, s_type = acts_ind[i[1]]
 
-        if s_cat:
-            flow_type = "biosphere"
+        if s_type == "biosphere":
             database_name = "biosphere3"
-            try:
-                exc_key_supplier = (
-                    database_name,
-                    bio_dict[
-                        s_name,
-                        s_cat[0],
-                        s_cat[1] if len(s_cat) > 1 else "unspecified",
-                        s_unit,
-                    ],
-                )
-            except KeyError:
-                exc_key_supplier = (
-                    database_name,
-                    bio_dict[
-                        outdated_flows[s_name],
-                        s_cat[0],
-                        s_cat[1] if len(s_cat) > 1 else "unspecified",
-                        s_unit,
-                    ],
-                )
 
-        elif i[0] == i[1]:
-            flow_type = "production"
-            database_name = db_name
             exc_key_supplier = (
-                db_name,
-                fetch_exchange_code(s_name, s_ref, s_loc, s_unit),
+                database_name,
+                bio_dict[
+                    outdated_flows.get(s_name, s_name),
+                    s_cat[0],
+                    s_cat[1] if len(s_cat) > 1 else "unspecified",
+                    s_unit,
+                ],
             )
+
         else:
-            flow_type = "technosphere"
+
             database_name = db_name
             exc_key_supplier = (
                 db_name,
@@ -556,19 +752,17 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
             s_cat,
             database_name,
             exc_key_supplier,
+            s_unit,
             c_name,
             c_ref,
             c_loc,
             c_cat,
             db_name,
             exc_key_consumer,
-            flow_type,
+            s_type,
         ]
 
-        if flow_type == "production":
-            row.extend(np.ones_like(m[i[1], i[0], :]))
-        else:
-            row.extend(m[i[1], i[0], :])
+        row.extend(m[i[1], i[0], :])
 
         dataframe_rows.append(row)
 
@@ -579,6 +773,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
         "from categories",
         "from database",
         "from key",
+        "unit",
         "to activity name",
         "to reference product",
         "to location",
@@ -588,10 +783,41 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
         "flow type",
     ] + list_scenarios
 
-    # create the dataframe
     df = pd.DataFrame(dataframe_rows, columns=columns)
+
+    df["to categories"] = None
+    df = df.replace("None", None)
+    df = df.replace({np.nan: None})
+    df.loc[df["flow type"] == "biosphere", "from reference product"] = None
+    df.loc[df["flow type"] == "biosphere", "from location"] = None
+    df.loc[df["flow type"] == "technosphere", "from categories"] = None
+    df.loc[df["flow type"] == "production", "from categories"] = None
+
+    # return the dataframe and the new db
+    return df, new_db, list_acts
+
+
+def generate_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dict]:
+    """
+    Build a superstructure database from a list of databases
+    :param origin_db: the original database
+    :param scenarios: a list of modified databases
+    :param db_name: the name of the new database
+    :param filepath: the filepath of the new database
+    :return: a superstructure database
+    """
+
+    print("Building superstructure database...")
+
+    # create the dataframe
+    df, new_db, _ = generate_scenario_difference_file(
+        origin_db=origin_db, scenarios=scenarios, db_name=db_name
+    )
+
     # remove the column `original`
     df = df.drop(columns=["original"])
+    if "unit" in df.columns:
+        df = df.drop(columns=["unit"])
 
     if filepath is not None:
         filepath = Path(filepath)
@@ -601,8 +827,6 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
     if not os.path.exists(filepath):
         os.makedirs(filepath)
 
-    filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
-
     # Drop duplicate rows
     # should not be any, but just in case
     before = len(df)
@@ -610,6 +834,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
     after = len(df)
     print(f"Dropped {before - after} duplicate(s).")
 
+    filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
     try:
         df.to_excel(filepath_sdf, index=False)
     except ValueError:
@@ -626,7 +851,7 @@ def build_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dic
     return new_db
 
 
-def prepare_db_for_export(scenario, cache):
+def prepare_db_for_export(scenario, cache, name):
 
     base = BaseTransformation(
         database=scenario["database"],
@@ -640,8 +865,12 @@ def prepare_db_for_export(scenario, cache):
     # we ensure the absence of duplicate datasets
     print("- check for duplicates...")
     base.database = check_for_duplicates(base.database)
+
     # we check the format of numbers
     print("- check for values format...")
+    base.database = check_database_name(data=base.database, name=name)
+    base.database = remove_unused_fields(base.database)
+    base.database = correct_fields_format(base.database)
     base.database = check_amount_format(base.database)
 
     # we relink "dead" exchanges
@@ -652,10 +881,6 @@ def prepare_db_for_export(scenario, cache):
             "market group for electricity, high voltage",
             "market group for electricity, medium voltage",
             "market group for electricity, low voltage",
-            "market group for tap water",
-            "market group for natural gas, high pressure",
-            "market group for natural gas, medium pressure",
-            "market group for natural gas, low pressure",
             "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
             "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
             "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
@@ -680,9 +905,9 @@ class Export:
 
     :ivar db: transformed database
     :vartype database: dict
-    :ivar scenario: name of a Remind pathway
+    :ivar scenario: name of an IAM pathway
     :vartype pathway: str
-    :ivar year: year of a Remind pathway
+    :ivar year: year of scenario
     :vartype year: int
 
     """
@@ -880,7 +1105,10 @@ class Export:
                             if x[0] == "ISIC rev.4 ecoinvent":
 
                                 try:
-                                    key = str(int(x[1].split(":")[0].strip()))
+                                    key = [
+                                        int(s)
+                                        for s in re.findall(r"\d+", x[1].split(":")[0])
+                                    ][0]
                                     main_category = dict_classifications[key][
                                         "category 1"
                                     ]
@@ -893,9 +1121,6 @@ class Export:
                                         ]
 
                                     except KeyError:
-                                        print(
-                                            "missing class", x[1].split(":")[0].strip()
-                                        )
                                         continue
 
                                 if dict_classifications[key]["category 3"] != "":

@@ -1,4 +1,5 @@
-# mapping between premise and IAM terminology regarding cement
+# mapping between premise and IAM terminology
+# regarding cement production volumes and energy use
 ---
 cement:
   iam_aliases:

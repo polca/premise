@@ -645,6 +645,19 @@ def info_on_utils_functions():
     print(table)
 
 
+def check_database_name(data: List[dict], name: str) -> List[dict]:
+
+    for ds in data:
+        ds["database"] = name
+
+        for exc in ds["exchanges"]:
+            if exc["type"] in ["production", "technosphere"]:
+                if "input" in exc:
+                    del exc["input"]
+
+    return data
+
+
 def warning_about_biogenic_co2() -> None:
     """
     Prints a simple warning about characterizing biogenic CO2 flows.
@@ -694,20 +707,59 @@ class PremiseImporter(LCIImporter):
     def write_database(self):
         if self.db_name in databases:
             print(
-                f"Database {self.db_name} already existing: " f"it will be overwritten."
+                f"Database {self.db_name} already existing: " "it will be overwritten."
             )
         super().write_database()
+
+
+def clean_up(exc):
+    """Remove keys from ``exc`` that are not in the schema."""
+
+    FORBIDDEN_FIELDS_TECH = [
+        "categories",
+    ]
+
+    FORBIDDEN_FIELDS_BIO = ["location", "product"]
+
+    for field in list(exc.keys()):
+        if exc[field] is None or exc[field] == "None":
+            del exc[field]
+            continue
+
+        if exc["type"] == "biosphere" and field in FORBIDDEN_FIELDS_BIO:
+            del exc[field]
+        if exc["type"] == "technosphere" and field in FORBIDDEN_FIELDS_TECH:
+            del exc[field]
+
+    return exc
 
 
 def write_brightway2_database(data, name):
 
     # Restore parameters to Brightway2 format
     # which allows for uncertainty and comments
+
     for ds in data:
         if "parameters" in ds:
-            ds["parameters"] = {
-                name: {"amount": amount} for name, amount in ds["parameters"].items()
-            }
+            if not isinstance(ds["parameters"], list):
+                if isinstance(ds["parameters"], dict):
+                    ds["parameters"] = [
+                        {"name": k, "amount": v} for k, v in ds["parameters"].items()
+                    ]
+                else:
+                    ds["parameters"] = [ds["parameters"]]
+            else:
+                ds["parameters"] = [
+                    {"name": k, "amount": v}
+                    for o in ds["parameters"]
+                    for k, v in o.items()
+                ]
+
+        for key, value in list(ds.items()):
+            if not value:
+                del ds[key]
+
+        ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
 
     change_db_name(data, name)
     link_internal(data)
