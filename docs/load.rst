@@ -148,3 +148,23 @@ This is done as follows:
     *premise* relies on ISIC v.4 and CCP classifications to categorize activities.
     Also, a number of activities do not have a category and are found under *Meterials/Others*.
 
+As a data package
+-----------------
+
+*premise* can export the databases as a data package, which is a standardized way of
+packaging data. This is useful when you want to share your databases with others,
+without sharing the source database (i.e., ecoinvent), which is under restrictive license.
+
+This is done as follows:
+
+.. code-block:: python
+
+    ndb.write_db_to_datapackage()
+
+This creates a zip file that contains the all the data necessary for
+other users to replicate teh databases, provided they have access
+to the source database locally.
+
+See the library ``unfold`` for more information on data packages
+for sharing LCA databases.
+

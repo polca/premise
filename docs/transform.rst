@@ -461,7 +461,7 @@ regional "WEU".
 Long-term regional electricity markets
 --------------------------------------
 
-Long-term (i.e., 10, 20, 30, 40 and 50 years) regional markets are created
+Long-term (i.e., 20, 40 and 60 years) regional markets are created
 for modelling the lifetime-weighted burden associated to electricity supply
 for systems that have a long lifetime (e.g., battery electric vehicles, buildings).
 
@@ -1798,6 +1798,26 @@ implementation in the wurst_ library.
   ZM                                        SSA              RSAF
   ZW                                        SSA              RSAF
  ========================================= ================ ===============
+
+Regionalization
+"""""""""""""""
+
+Several of the integration steps described above involve the
+regionalization of datasets. It is the case, for example, when introducing
+datasets representing a process for each of the IAM regions.
+In such case, the datasets are regionalized by selecting the most
+representative suppliers of inputs for each region. If a dataset
+in a specific IAM region requires tap water, for example, the regionalization process will
+select the most representative water suppliers in that region.
+
+If more than one supplier is available, the regionalization process will
+allocated a supply share to each candidate supplier based on their
+respective production volume. If no adequate supplier is found for a given region,
+the regionalization process will select all the existing suppliers and
+allocate a supply share to each supplier based on their respective
+production volume.
+
+
 
 Logs
 """"

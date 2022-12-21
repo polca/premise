@@ -757,6 +757,7 @@ def generate_scenario_difference_file(
             c_ref,
             c_loc,
             c_cat,
+            c_unit,
             db_name,
             exc_key_consumer,
             s_type,
@@ -773,11 +774,12 @@ def generate_scenario_difference_file(
         "from categories",
         "from database",
         "from key",
-        "unit",
+        "from unit",
         "to activity name",
         "to reference product",
         "to location",
         "to categories",
+        "to unit",
         "to database",
         "to key",
         "flow type",
@@ -813,6 +815,12 @@ def generate_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[
     df, new_db, _ = generate_scenario_difference_file(
         origin_db=origin_db, scenarios=scenarios, db_name=db_name
     )
+
+    # remove unneeded columns "to unit"
+    df = df.drop(columns=["to unit"])
+
+    # rename column "from unit" to "unit"
+    df = df.rename(columns={"from unit": "unit"})
 
     # remove the column `original`
     df = df.drop(columns=["original"])
