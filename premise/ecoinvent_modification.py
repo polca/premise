@@ -655,7 +655,7 @@ class NewDatabase:
 
         print("Importing default inventories...\n")
 
-        #with HiddenPrints():
+        # with HiddenPrints():
         # Manual import
         # file path and original ecoinvent version
         data = []
@@ -702,7 +702,6 @@ class NewDatabase:
                 "3.7",
             ),
             (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
-
             (FILEPATH_BIGCC, "3.8"),
         ]
         for filepath in filepaths:
