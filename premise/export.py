@@ -397,6 +397,7 @@ def get_act_dict_structure(ind, acts_ind, db_name) -> dict:
         "exchanges": [],
     }
 
+
 def correct_biosphere_flow(name, cat, unit):
     """
     Correct the biosphere flow name if it is outdated.
@@ -425,10 +426,8 @@ def get_exchange(ind, acts_ind, db_name, amount=1.0):
         "categories": cat,
         "type": flow_type,
         "amount": amount if flow_type != "production" else _(amount),
-        "input": (
-            "biosphere3",
-            correct_biosphere_flow(name, cat, unit)
-        ) if flow_type == "biosphere"
+        "input": ("biosphere3", correct_biosphere_flow(name, cat, unit))
+        if flow_type == "biosphere"
         else (db_name, fetch_exchange_code(name, ref, loc, unit)),
     }
 

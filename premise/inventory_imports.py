@@ -388,7 +388,7 @@ class BaseInventoryImport:
                 exc.get("categories"),
                 exc["unit"],
                 exc["type"],
-                self.path
+                self.path,
             )
         )
 
@@ -506,7 +506,7 @@ class BaseInventoryImport:
             "Categories",
             "Unit",
             "Type",
-            "File"
+            "File",
         ]
         table.add_rows(list(set(self.list_unlinked)))
         print(table)
