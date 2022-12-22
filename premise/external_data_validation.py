@@ -11,9 +11,9 @@ from datapackage import exceptions, validate
 from schema import And, Optional, Schema, Use
 from wurst import searching as ws
 
-from .utils import load_constants
 from .external import flag_activities_to_adjust
 from .geomap import Geomap
+from .utils import load_constants
 
 config = load_constants()
 
@@ -141,7 +141,8 @@ def check_datapackage(datapackages: list):
             )
 
         assert (
-            datapackage.descriptor["ecoinvent"]["version"] in config["SUPPORTED_EI_VERSIONS"]
+            datapackage.descriptor["ecoinvent"]["version"]
+            in config["SUPPORTED_EI_VERSIONS"]
         ), f"The ecoinvent version in datapackage  {d + 1} is not supported. Must be one of {config['SUPPORTED_EI_VERSIONS']}."
 
         if (
@@ -194,7 +195,10 @@ def check_config_file(datapackages):
                             list,
                             Use(list),
                             lambda s: all(
-                                i in config["LIST_REMIND_REGIONS"] + config["LIST_IMAGE_REGIONS"] for i in s
+                                i
+                                in config["LIST_REMIND_REGIONS"]
+                                + config["LIST_IMAGE_REGIONS"]
+                                for i in s
                             ),
                         ),
                         Optional("replaces"): [
@@ -241,7 +245,10 @@ def check_config_file(datapackages):
                             list,
                             Use(list),
                             lambda s: all(
-                                i in config["LIST_REMIND_REGIONS"] + config["LIST_IMAGE_REGIONS"] for i in s
+                                i
+                                in config["LIST_REMIND_REGIONS"]
+                                + config["LIST_IMAGE_REGIONS"]
+                                for i in s
                             ),
                         ),
                         Optional("replaces"): [
@@ -457,7 +464,7 @@ def check_scenario_data_file(datapackages, iam_scenarios):
 
         d_regions = {
             "remind": config["LIST_REMIND_REGIONS"],
-            "image": config["LIST_IMAGE_REGIONS"]
+            "image": config["LIST_IMAGE_REGIONS"],
         }
 
         list_ei_locs = [
