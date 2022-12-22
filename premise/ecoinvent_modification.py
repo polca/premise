@@ -4,53 +4,6 @@ as well as export it back.
 
 """
 
-SUPPORTED_EI_VERSIONS = ["3.5", "3.6", "3.7", "3.7.1", "3.8"]
-LIST_REMIND_REGIONS = [
-    "CAZ",
-    "CHA",
-    "EUR",
-    "IND",
-    "JPN",
-    "LAM",
-    "MEA",
-    "NEU",
-    "OAS",
-    "REF",
-    "SSA",
-    "USA",
-    "World",
-]
-LIST_IMAGE_REGIONS = [
-    "BRA",
-    "CAN",
-    "CEU",
-    "CHN",
-    "EAF",
-    "INDIA",
-    "INDO",
-    "JAP",
-    "KOR",
-    "ME",
-    "MEX",
-    "NAF",
-    "OCE",
-    "RCAM",
-    "RSAF",
-    "RSAM",
-    "RSAS",
-    "RUS",
-    "SAF",
-    "SEAS",
-    "STAN",
-    "TUR",
-    "UKR",
-    "USA",
-    "WAF",
-    "WEU",
-    "World",
-]
-
-
 import copy
 import os
 import pickle
@@ -58,8 +11,6 @@ import sys
 from datetime import date
 from pathlib import Path
 from typing import List, Union
-
-import wurst
 import yaml
 
 from . import DATA_DIR, INVENTORY_DIR
@@ -90,6 +41,7 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     write_brightway2_database,
+    load_constants
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -170,30 +122,7 @@ FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
 
 
-SUPPORTED_MODELS = ["remind", "image"]
-SUPPORTED_PATHWAYS = [
-    "SSP2-Base",
-    "SSP2-NDC",
-    "SSP2-NPi",
-    "SSP2-PkBudg1150",
-    "SSP2-PkBudg500",
-    "SSP2-RCP26",
-    "SSP2-RCP19",
-    "static",
-]
-
-
-LIST_TRANSF_FUNC = [
-    "update_electricity",
-    "update_cement",
-    "update_steel",
-    "update_two_wheelers",
-    "update_cars",
-    "update_trucks",
-    "update_buses",
-    "update_fuels",
-    "update_external_scenario",
-]
+config = load_constants()
 
 # Disable printing
 def blockPrint():
@@ -217,9 +146,9 @@ def check_ei_filepath(filepath: str) -> Path:
 
 def check_model_name(name: str) -> str:
     """Check for the validity of the IAM model name."""
-    if name.lower() not in SUPPORTED_MODELS:
+    if name.lower() not in config["SUPPORTED_MODELS"]:
         raise ValueError(
-            f"Only {SUPPORTED_MODELS} are currently supported, not {name}."
+            f"Only {config['SUPPORTED_MODELS']} are currently supported, not {name}."
         )
     return name.lower()
 
@@ -227,7 +156,7 @@ def check_model_name(name: str) -> str:
 def check_pathway_name(name: str, filepath: Path, model: str) -> str:
     """Check the pathway name"""
 
-    if name not in SUPPORTED_PATHWAYS:
+    if name not in config["SUPPORTED_PATHWAYS"]:
         # If the pathway name is not a default one,
         # check that the filepath + pathway name
         # leads to an actual file
@@ -244,7 +173,7 @@ def check_pathway_name(name: str, filepath: Path, model: str) -> str:
         if (filepath / name_check).with_suffix(".csv").is_file():
             return name
         raise ValueError(
-            f"Only {SUPPORTED_PATHWAYS} are currently supported, not {name}."
+            f"Only {config['SUPPORTED_PATHWAYS']} are currently supported, not {name}."
         )
 
     if model.lower() not in name:
@@ -296,7 +225,7 @@ def check_exclude(list_exc: List[str]) -> List[str]:
     if not isinstance(list_exc, list):
         raise TypeError("`exclude` should be a sequence of strings.")
 
-    if not set(list_exc).issubset(LIST_TRANSF_FUNC):
+    if not set(list_exc).issubset(config["LIST_TRANSF_FUNC"]):
         raise ValueError(
             "One or several of the transformation that you wish to exclude is not recognized."
         )
@@ -364,9 +293,9 @@ def check_db_version(version: [str, float]) -> str:
     :return:
     """
     version = str(version)
-    if version not in SUPPORTED_EI_VERSIONS:
+    if version not in config["SUPPORTED_EI_VERSIONS"]:
         raise ValueError(
-            f"Only {SUPPORTED_EI_VERSIONS} are currently supported, not {version}."
+            f"Only {config['SUPPORTED_EI_VERSIONS']} are currently supported, not {version}."
         )
     return version
 
@@ -655,66 +584,66 @@ class NewDatabase:
 
         print("Importing default inventories...\n")
 
-        # with HiddenPrints():
-        # Manual import
-        # file path and original ecoinvent version
-        data = []
-        filepaths = [
-            (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
-            (FILEPATH_CARMA_INVENTORIES, "3.5"),
-            (FILEPATH_CHP_INVENTORIES, "3.5"),
-            (FILEPATH_DAC_INVENTORIES, "3.7"),
-            (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
-            (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
-            (FILEPATH_LITHIUM, "3.8"),
-            (FILEPATH_COBALT, "3.8"),
-            (FILEPATH_GRAPHITE, "3.8"),
-            (FILEPATH_BATTERIES, "3.8"),
-            (FILEPATH_PHOTOVOLTAICS, "3.7"),
-            (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
-            (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
-            (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
-            (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
-            (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
-            (FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES, "3.7"),
-            (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
-            (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
-            (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
-            (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
-            (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
-            (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
-            (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
-            (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-            (
-                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
-                "3.7",
-            ),
-            (
-                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
-                "3.7",
-            ),
-            (
-                FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
-                "3.7",
-            ),
-            (
-                FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES,
-                "3.7",
-            ),
-            (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
-            (FILEPATH_BIGCC, "3.8"),
-        ]
-        for filepath in filepaths:
-            inventory = DefaultInventory(
-                database=self.database,
-                version_in=filepath[1],
-                version_out=self.version,
-                path=filepath[0],
-            )
-            datasets = inventory.merge_inventory()
-            data.extend(datasets)
+        with HiddenPrints():
+            # Manual import
+            # file path and original ecoinvent version
+            data = []
+            filepaths = [
+                (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
+                (FILEPATH_CARMA_INVENTORIES, "3.5"),
+                (FILEPATH_CHP_INVENTORIES, "3.5"),
+                (FILEPATH_DAC_INVENTORIES, "3.7"),
+                (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
+                (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+                (FILEPATH_LITHIUM, "3.8"),
+                (FILEPATH_COBALT, "3.8"),
+                (FILEPATH_GRAPHITE, "3.8"),
+                (FILEPATH_BATTERIES, "3.8"),
+                (FILEPATH_PHOTOVOLTAICS, "3.7"),
+                (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+                (FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
+                (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
+                (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
+                (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
+                (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
+                (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
+                    "3.7",
+                ),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
+                    "3.7",
+                ),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
+                    "3.7",
+                ),
+                (
+                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES,
+                    "3.7",
+                ),
+                (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
+                (FILEPATH_BIGCC, "3.8"),
+            ]
+            for filepath in filepaths:
+                inventory = DefaultInventory(
+                    database=self.database,
+                    version_in=filepath[1],
+                    version_out=self.version,
+                    path=filepath[0],
+                )
+                datasets = inventory.merge_inventory()
+                data.extend(datasets)
 
-            self.database.extend(datasets)
+                self.database.extend(datasets)
 
         print("Done!\n")
         return data

@@ -68,6 +68,15 @@ def eidb_label(model: str, scenario: str, year: int) -> str:
     """
     return f"ecoinvent_{model}_{scenario}_{year}"
 
+def load_constants():
+    """
+    Load constants from the constants.yml file.
+    :return: dict
+    """
+    with open(DATA_DIR / "utils" / "constants.yml", "r", encoding="utf-8") as stream:
+        constants = yaml.safe_load(stream)
+
+    return constants
 
 @lru_cache(maxsize=None)
 def get_fuel_properties() -> dict:
