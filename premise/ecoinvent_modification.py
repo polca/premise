@@ -11,6 +11,7 @@ import sys
 from datetime import date
 from pathlib import Path
 from typing import List, Union
+
 import yaml
 
 from . import DATA_DIR, INVENTORY_DIR
@@ -38,10 +39,10 @@ from .utils import (
     eidb_label,
     hide_messages,
     info_on_utils_functions,
+    load_constants,
     print_version,
     warning_about_biogenic_co2,
     write_brightway2_database,
-    load_constants
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
