@@ -584,66 +584,66 @@ class NewDatabase:
 
         print("Importing default inventories...\n")
 
-        with HiddenPrints():
-            # Manual import
-            # file path and original ecoinvent version
-            data = []
-            filepaths = [
-                (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
-                (FILEPATH_CARMA_INVENTORIES, "3.5"),
-                (FILEPATH_CHP_INVENTORIES, "3.5"),
-                (FILEPATH_DAC_INVENTORIES, "3.7"),
-                (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
-                (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
-                (FILEPATH_LITHIUM, "3.8"),
-                (FILEPATH_COBALT, "3.8"),
-                (FILEPATH_GRAPHITE, "3.8"),
-                (FILEPATH_BATTERIES, "3.8"),
-                (FILEPATH_PHOTOVOLTAICS, "3.7"),
-                (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
-                (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
-                (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
-                (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
-                (FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
-                (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
-                (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
-                (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
-                (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
-                (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-                (
-                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
-                    "3.7",
-                ),
-                (
-                    FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
-                    "3.7",
-                ),
-                (
-                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
-                    "3.7",
-                ),
-                (
-                    FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES,
-                    "3.7",
-                ),
-                (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
-                (FILEPATH_BIGCC, "3.8"),
-            ]
-            for filepath in filepaths:
-                inventory = DefaultInventory(
-                    database=self.database,
-                    version_in=filepath[1],
-                    version_out=self.version,
-                    path=filepath[0],
-                )
-                datasets = inventory.merge_inventory()
-                data.extend(datasets)
+        # with HiddenPrints():
+        # Manual import
+        # file path and original ecoinvent version
+        data = []
+        filepaths = [
+            (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
+            (FILEPATH_CARMA_INVENTORIES, "3.5"),
+            (FILEPATH_CHP_INVENTORIES, "3.5"),
+            (FILEPATH_DAC_INVENTORIES, "3.7"),
+            (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
+            (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+            (FILEPATH_LITHIUM, "3.8"),
+            (FILEPATH_COBALT, "3.8"),
+            (FILEPATH_GRAPHITE, "3.8"),
+            (FILEPATH_BATTERIES, "3.8"),
+            (FILEPATH_PHOTOVOLTAICS, "3.7"),
+            (FILEPATH_HYDROGEN_INVENTORIES, "3.7"),
+            (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
+            (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
+            (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
+            (FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
+            (FILEPATH_SYNGAS_INVENTORIES, "3.6"),
+            (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
+            (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
+            (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
+            (
+                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
+                "3.7",
+            ),
+            (
+                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
+                "3.7",
+            ),
+            (
+                FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
+                "3.7",
+            ),
+            (
+                FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES,
+                "3.7",
+            ),
+            (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
+            (FILEPATH_BIGCC, "3.8"),
+        ]
+        for filepath in filepaths:
+            inventory = DefaultInventory(
+                database=self.database,
+                version_in=filepath[1],
+                version_out=self.version,
+                path=filepath[0],
+            )
+            datasets = inventory.merge_inventory()
+            data.extend(datasets)
 
-                self.database.extend(datasets)
+            self.database.extend(datasets)
 
         print("Done!\n")
         return data

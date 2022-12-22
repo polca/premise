@@ -284,3 +284,7 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 35;37;market for nickel, 99.5%;nickel, 99.5%;GLO;market for nickel, class 1;nickel, class 1;
 35;38;market for nickel, 99.5%;nickel, 99.5%;GLO;market for nickel, class 1;nickel, class 1;
 37;38;polyurethane production, flexible foam;polyurethane, flexible foam;RER;polyurethane production, flexible foam, MDI-based;polyurethane, flexible foam;RER
+37;36;market for natural gas, low pressure, vehicle grade;natural gas, low pressure, vehicle grade;GLO;market for natural gas, from low pressure network (<0.1 bar), at service station;natural gas, from low pressure network (<0.1 bar), at service station;GLO
+38;36;market for natural gas, low pressure, vehicle grade;natural gas, low pressure, vehicle grade;GLO;market for natural gas, from low pressure network (<0.1 bar), at service station;natural gas, from low pressure network (<0.1 bar), at service station;GLO
+36;38;market for internal combustion engine, passenger car;internal combustion engine, for passenger car;GLO;market for internal combustion engine, passenger car;internal combustion engine, passenger car;GLO
+37;38;market for internal combustion engine, passenger car;internal combustion engine, for passenger car;GLO;market for internal combustion engine, passenger car;internal combustion engine, passenger car;GLO
