@@ -485,7 +485,7 @@ def check_scenario_data_file(datapackages, iam_scenarios):
 
         available_scenarios = df["scenario"].unique()
         if not all(
-            s in scenarios for s in available_scenarios
+            s in available_scenarios for s in scenarios
         ):  # check that all scenarios are available in the scenario file
             raise ValueError(
                 f"One or several scenarios are not available in the scenario file no. {i + 1}."
