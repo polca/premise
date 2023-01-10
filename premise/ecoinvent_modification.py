@@ -121,6 +121,9 @@ FILEPATH_GRAPHITE = INVENTORY_DIR / "lci-graphite.xlsx"
 FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
+FILEPATH_NUCLEAR_EPR = INVENTORY_DIR / "lci-nuclear_EPR.xlsx"
+FILEPATH_NUCLEAR_SMR = INVENTORY_DIR / "lci-nuclear_SMR.xlsx"
+FILEPATH_WAVE = INVENTORY_DIR / "lci-wave_energy.xlsx"
 
 
 config = load_constants()
@@ -633,6 +636,9 @@ class NewDatabase:
             ),
             (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
             (FILEPATH_BIGCC, "3.8"),
+            (FILEPATH_NUCLEAR_EPR, "3.8"),
+            (FILEPATH_NUCLEAR_SMR, "3.8"),
+            (FILEPATH_WAVE, "3.8"),
         ]
         for filepath in filepaths:
             inventory = DefaultInventory(

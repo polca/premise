@@ -312,13 +312,32 @@ Nuclear:
     fltr:
       - electricity production, nuclear
     mask:
-      name: aluminium
+      name:
+        - aluminium
+        - SMR
+        - EPR
+Nuclear_EPR:
+  ecoinvent_aliases:
+    fltr:
+      - electricity production, Evolutionary Power Reactor (EPR)
   ecoinvent_fuel_aliases:
     fltr:
       - market for uranium, enriched
       - market for nuclear fuel element, for pressure water reactor
       - market for nuclear fuel element, for boiling water reactor
       - market for uranium hexafluoride
+
+Nuclear_SMR:
+  ecoinvent_aliases:
+    fltr:
+      - electricity production, Small Modular Reactor (SMR)
+  ecoinvent_fuel_aliases:
+    fltr:
+      - market for uranium, enriched
+      - market for nuclear fuel element, for pressure water reactor
+      - market for nuclear fuel element, for boiling water reactor
+      - market for uranium hexafluoride
+
 Oil ST:
   iam_aliases:
     remind: SE|Electricity|Oil|w/o CC
@@ -447,3 +466,8 @@ Wind Offshore:
       - electricity production, wind, 1-3MW turbine, offshore
     mask:
       name: label-certified
+
+Wave:
+  ecoinvent_aliases:
+    fltr:
+      - electricity production, wave energy converter

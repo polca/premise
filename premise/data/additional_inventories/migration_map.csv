@@ -22,6 +22,7 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 37;35;hydrogen production, gaseous, petroleum refinery operation;hydrogen, gaseous;BR;hydrogen cracking, APME;hydrogen, liquid;RoW
 37;35;market for tap water;tap water;IN;;;RoW
 37;35;steel production, electric, low-alloyed;steel, low-alloyed;Europe without Switzerland and Austria;;;RER
+38;36;steel production, electric, low-alloyed;steel, low-alloyed;Europe without Switzerland and Austria;;;RER
 37;35;reinforcing steel production;reinforcing steel;Europe without Austria;;;RER
 37;35;smelting of copper concentrate, sulfide ore;copper, anode;RoW;smelting and refining of nickel ore;copper concentrate, sulfide ore;GLO
 37;35;market for nylon 6;nylon 6;RoW;;;GLO
@@ -76,12 +77,15 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 37;36;smelting of copper concentrate, sulfide ore;copper, anode;RoW;market for copper;copper;GLO
 37;36;market for copper, anode;copper, anode;GLO;market for copper;copper;GLO
 37;36;market for nickel, class 1;nickel, class 1;GLO;market for nickel, 99.5%;nickel, 99.5%;
+38;36;market for nickel, class 1;nickel, class 1;GLO;market for nickel, 99.5%;nickel, 99.5%;
 37;36;kraft paper production;kraft paper;RER;kraft paper production, bleached;kraft paper, bleached;
 37;35;kraft paper production;kraft paper;RER;kraft paper production, bleached;kraft paper, bleached;
 37;36;nitric acid production, product in 50% solution state;nitric acid, without water, in 50% solution state;RER w/o RU;;;RER
 37;35;nitric acid production, product in 50% solution state;nitric acid, without water, in 50% solution state;RER w/o RU;;;RER
 37;36;market for nitric acid, without water, in 50% solution state;nitric acid, without water, in 50% solution state;RER w/o RU;;;RER
 37;35;market for nitric acid, without water, in 50% solution state;nitric acid, without water, in 50% solution state;RER w/o RU;;;RER
+38;35;market for nitric acid, without water, in 50% solution state;nitric acid, without water, in 50% solution state;RER w/o RU;;;RER
+38;36;market for nitric acid, without water, in 50% solution state;nitric acid, without water, in 50% solution state;RER w/o RU;;;RER
 37;36;nickel mine operation and benefication to nickel concentrate, 7% Ni;nickel concentrate, 7% Ni;CN;nickel mine operation, sulfidic ore;nickel, 99.5%;GLO
 37;36;nickel mine operation and benefication to nickel concentrate, 7% Ni;nickel concentrate, 7% Ni;RoW;nickel mine operation, sulfidic ore;nickel, 99.5%;GLO
 37;35;nickel mine operation and benefication to nickel concentrate, 7% Ni;nickel concentrate, 7% Ni;CN;nickel mine operation, sulfidic ore;nickel, 99.5%;GLO
@@ -288,3 +292,11 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 38;36;market for natural gas, low pressure, vehicle grade;natural gas, low pressure, vehicle grade;GLO;market for natural gas, from low pressure network (<0.1 bar), at service station;natural gas, from low pressure network (<0.1 bar), at service station;GLO
 36;38;market for internal combustion engine, passenger car;internal combustion engine, for passenger car;GLO;market for internal combustion engine, passenger car;internal combustion engine, passenger car;GLO
 37;38;market for internal combustion engine, passenger car;internal combustion engine, for passenger car;GLO;market for internal combustion engine, passenger car;internal combustion engine, passenger car;GLO
+38;36;nuclear power plant construction, pressure water reactor, 1000MW;nuclear power plant, pressure water reactor, 1000MW;CH;nuclear power plant construction, pressure water reactor 1000MW;nuclear power plant, pressure water reactor 1000MW;CH
+38;37;nuclear power plant construction, pressure water reactor, 1000MW;nuclear power plant, pressure water reactor, 1000MW;CH;nuclear power plant construction, pressure water reactor 1000MW;nuclear power plant, pressure water reactor 1000MW;CH
+38;36;market for chemical, inorganic;chemical, inorganic;GLO;market for chemicals, inorganic;chemical, inorganic;GLO
+38;37;market for chemical, inorganic;chemical, inorganic;GLO;market for chemicals, inorganic;chemical, inorganic;GLO
+38;36;structural timber production;structural timber;RER;market for laminated timber element, transversally prestressed, for outdoor use;laminated timber element, transversally prestressed, for outdoor use;GLO
+38;36;market for fatty acid methyl ester;fatty acid methyl ester;RoW;market for vegetable oil methyl ester;vegetable oil methyl ester;GLO
+38;37;market for fatty acid methyl ester;fatty acid methyl ester;RoW;market for vegetable oil methyl ester;vegetable oil methyl ester;GLO
+38;36;market for kraft paper;kraft paper;RER;market for kraft paper, unbleached;kraft paper, unbleached;GLO
