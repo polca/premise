@@ -299,23 +299,23 @@ def check_config_file(datapackages):
                 ],
                 Optional("regionalize"): {
                     "datasets": [
-                    {
-                        "name": str,
-                        "reference product": str,
-                        Optional("exists in original database"): bool,
-                    }
-                ],
+                        {
+                            "name": str,
+                            "reference product": str,
+                            Optional("exists in original database"): bool,
+                        }
+                    ],
                     Optional("except regions"): And(
-                            list,
-                            Use(list),
-                            lambda s: all(
-                                i
-                                in config["LIST_REMIND_REGIONS"]
-                                + config["LIST_IMAGE_REGIONS"]
-                                for i in s
-                            ),
+                        list,
+                        Use(list),
+                        lambda s: all(
+                            i
+                            in config["LIST_REMIND_REGIONS"]
+                            + config["LIST_IMAGE_REGIONS"]
+                            for i in s
                         ),
-                }
+                    ),
+                },
             }
         )
 
