@@ -594,7 +594,6 @@ class BaseTransformation:
                     )
 
             else:
-
                 existing_ds["exchanges"].append(
                     {
                         "name": existing_ds["name"],

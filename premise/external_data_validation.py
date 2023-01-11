@@ -60,13 +60,13 @@ def check_inventories(
                     ),
                     "regionalize": True,
                     "new dataset": False,
-                    "except regions": val.get("except regions", []),
+                    "except regions": config.get("except regions", []),
                     "efficiency": val.get("efficiency", []),
                     "replaces": val.get("replaces", []),
                     "replaces in": val.get("replaces in", []),
                     "replacement ratio": val.get("replacement ratio", 1),
                 }
-                for val in config["regionalize"]
+                for val in config["regionalize"]["datasets"]
             }
         )
 
@@ -282,13 +282,25 @@ def check_config_file(datapackages):
                         ],
                     }
                 ],
-                Optional("regionalize"): [
+                Optional("regionalize"): {
+                    "datasets": [
                     {
                         "name": str,
                         "reference product": str,
                         Optional("exists in original database"): bool,
                     }
                 ],
+                    Optional("except regions"): And(
+                            list,
+                            Use(list),
+                            lambda s: all(
+                                i
+                                in config["LIST_REMIND_REGIONS"]
+                                + config["LIST_IMAGE_REGIONS"]
+                                for i in s
+                            ),
+                        ),
+                }
             }
         )
 
