@@ -17,6 +17,15 @@ from .transformation import *
 from .utils import eidb_label
 
 
+def fetch_loc(loc):
+    if isinstance(loc, str):
+        return loc
+    elif isinstance(loc, tuple):
+        if loc[0] == "ecoinvent":
+            return loc[1]
+    else:
+        return None
+
 def flag_activities_to_adjust(
     dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
 ) -> dict:
@@ -511,10 +520,9 @@ class ExternalScenario(BaseTransformation):
                                     for region in regions
                                 ]
                             else:
+
                                 ecoinvent_regions = [
-                                    r
-                                    if isinstance(r, str) or r[0] == "ecoinvent"
-                                    else None
+                                    fetch_loc(r)
                                     for r in [
                                         y
                                         for x in regions
@@ -523,7 +531,8 @@ class ExternalScenario(BaseTransformation):
                                 ]
 
                                 ecoinvent_regions = [
-                                    i for i in ecoinvent_regions if i and i != "GLO"
+                                    i for i in ecoinvent_regions
+                                    if i and i not in ["GLO", "RoW"]
                                 ]
 
                                 if len(ecoinvent_regions) == 0:
@@ -540,6 +549,8 @@ class ExternalScenario(BaseTransformation):
                                 "Europe without Switzerland",
                                 "RoW",
                                 "GLO",
+                                # add all ecoinvent locations
+                                *[fetch_loc(loc) for loc in list(self.geo.geo.keys())],
                             ]
 
                             suppliers, counter = [], 0
@@ -576,15 +587,16 @@ class ExternalScenario(BaseTransformation):
                                 for ds in suppliers:
                                     ds["custom scenario dataset"] = True
 
-    def fetch_supply_share(self, i: int, region: str, var: str, vars: list) -> ndarray:
+    def fetch_supply_share(self, i: int, region: str, var: str, variables: list) -> ndarray:
         """
         Return the supply share of a given variable in a given region.
         :param i: index of the scenario
         :param region: region
         :param var: variable
-        :param vars: list of all variables
+        :param variables: list of all variables
         :return: ndarray
         """
+
         return np.clip(
             (
                 self.external_scenarios_data[i]["production volume"]
@@ -596,7 +608,7 @@ class ExternalScenario(BaseTransformation):
                 / self.external_scenarios_data[i]["production volume"]
                 .sel(
                     region=region,
-                    variables=vars,
+                    variables=variables,
                 )
                 .interp(year=self.year)
                 .sum(dim="variables")
@@ -681,10 +693,16 @@ class ExternalScenario(BaseTransformation):
             if region in self.geo.iam_regions:
                 ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
             else:
+
+
                 ecoinvent_regions = [
-                    r[-1]
+                    fetch_loc(r)
                     for r in self.geo.geo.within(region)
-                    if r[0] == "ecoinvent" and r[-1] not in ["GLO", "RoW"]
+                ]
+
+                ecoinvent_regions = [
+                    i for i in ecoinvent_regions
+                    if i and i not in ["GLO", "RoW"]
                 ]
 
             possible_locations = [
@@ -694,6 +712,8 @@ class ExternalScenario(BaseTransformation):
                 "Europe without Switzerland",
                 "RoW",
                 "GLO",
+                # add all ecoinvent locations
+                *[fetch_loc(loc) for loc in list(self.geo.geo.keys())],
             ]
             potential_suppliers = self.fetch_potential_suppliers(
                 possible_locations, name, ref_prod
@@ -785,8 +805,7 @@ class ExternalScenario(BaseTransformation):
                     # relate to this market
 
                     pathways = market_vars["includes"]
-
-                    vars = fetch_var(config_file, pathways)
+                    variables = fetch_var(config_file, pathways)
 
                     # Check if there are regions we should not
                     # create a market for
@@ -828,26 +847,14 @@ class ExternalScenario(BaseTransformation):
 
                             else:
                                 ecoinvent_regions = [
-                                    r
-                                    if isinstance(r, str) or r[0] == "ecoinvent"
-                                    else None
-                                    for r in [
-                                        y
-                                        for x in regions
-                                        for y in self.geo.geo.within(x)
-                                    ]
+                                    fetch_loc(r)
+                                    for r in self.geo.geo.within(region)
                                 ]
 
                                 ecoinvent_regions = [
-                                    i for i in ecoinvent_regions if i and i != "GLO"
+                                    i for i in ecoinvent_regions
+                                    if i and i not in ["GLO", "RoW"]
                                 ]
-
-                                if len(ecoinvent_regions) == 0:
-                                    ecoinvent_regions = [
-                                        i
-                                        for i in list(self.geo.geo.keys())
-                                        if isinstance(i, str) and i != "GLO"
-                                    ]
 
                             possible_locations = [
                                 region,
@@ -856,6 +863,8 @@ class ExternalScenario(BaseTransformation):
                                 "Europe without Switzerland",
                                 "RoW",
                                 "GLO",
+                                # add all ecoinvent locations
+                                *[fetch_loc(loc) for loc in list(self.geo.geo.keys())],
                             ]
 
                             potential_suppliers = self.fetch_potential_suppliers(
@@ -865,9 +874,13 @@ class ExternalScenario(BaseTransformation):
                             # supply share = production volume of that technology in this region
                             # over production volume of all technologies in this region
 
+                            supply_share = self.fetch_supply_share(
+                                i, region, var, variables
+                            )
+
                             try:
                                 supply_share = self.fetch_supply_share(
-                                    i, region, var, vars
+                                    i, region, var, variables
                                 )
 
                             except KeyError:
@@ -932,17 +945,12 @@ class ExternalScenario(BaseTransformation):
 
                     create_world_region = True
 
-                    if "World" in regions:
+                    if "World" in regions or "World" in market_vars.get("except regions", []):
                         create_world_region = False
 
-                    if "except regions" in market_vars:
-                        if "World" in market_vars["except regions"]:
-                            create_world_region = False
-
                     if create_world_region:
-
                         world_market = self.fill_in_world_market(
-                            market_vars, regions, i, vars
+                            market_vars, regions, i, variables
                         )
                         self.database.append(world_market)
 
@@ -1026,34 +1034,50 @@ class ExternalScenario(BaseTransformation):
                 filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
 
             for exc in filtered_exchanges:
-                if dataset["location"] in regions:
+
+                new_loc = None
+
+                if len(regions) == 1:
+                    new_loc = regions[0]
+                elif dataset["location"] in regions:
                     new_loc = dataset["location"]
-                elif dataset["location"] == "World":
-                    new_loc = "World"
-                else:
+                elif self.geo.ecoinvent_to_iam_location(dataset["location"]) in regions:
                     new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                else:
+                    if any(r in regions for r in self.geo.geo.contained(dataset["location"])):
+                        new_loc = [r for r in self.geo.geo.contained(dataset["location"])
+                                   if r in regions][0]
 
-                log.append(
-                    [
-                        dataset["name"],
-                        dataset["reference product"],
-                        dataset["location"],
-                        exc["name"],
-                        exc["product"],
-                        exc["location"],
-                        new_name,
-                        new_ref,
-                        new_loc,
-                    ]
-                )
+                    if not new_loc:
+                        if any(r in regions for r in self.geo.geo.intersects(dataset["location"])):
+                            new_loc = [r for r in self.geo.geo.intersects(dataset["location"])
+                                       if r in regions][0]
 
-                exc["name"] = new_name
-                exc["product"] = new_ref
-                exc["location"] = new_loc
-                exc["amount"] *= ratio
+                if new_loc:
+                    log.append(
+                        [
+                            dataset["name"],
+                            dataset["reference product"],
+                            dataset["location"],
+                            exc["name"],
+                            exc["product"],
+                            exc["location"],
+                            new_name,
+                            new_ref,
+                            new_loc,
+                        ]
+                    )
 
-                if "input" in exc:
-                    del exc["input"]
+                    exc["name"] = new_name
+                    exc["product"] = new_ref
+                    exc["location"] = new_loc
+                    exc["amount"] *= ratio
+
+                    if "input" in exc:
+                        del exc["input"]
+
+                else:
+                    print(f"Cannot find a substitute location for {dataset['location']} in {regions}.")
 
         if log:
 

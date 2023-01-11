@@ -1675,7 +1675,7 @@ class IAMDataCollection:
                                 if e == "efficiency":
                                     for x in f:
                                         ref_years[x["variable"]] = x.get(
-                                            "reference year", 2020
+                                            "reference year", None
                                         )
 
                     if "markets" in config_file:
@@ -1684,15 +1684,19 @@ class IAMDataCollection:
                                 if f == "efficiency":
                                     for x in f["efficiency"]:
                                         ref_years[x["variable"]] = x.get(
-                                            "reference year", 2020
+                                            "reference year", None
                                         )
 
-                    if ref_years:
-                        for v, y in ref_years.items():
+                    for y, ref_year in ref_years.items():
+                        if ref_year is None:
+                            # use the earliest year in `array`
+                            ref_years[y] = array.year.values.min()
 
-                            array.loc[dict(variables=v)] = array.loc[
-                                dict(variables=v)
-                            ] / array.loc[dict(variables=v)].sel(year=int(y))
+                    for v, y in ref_years.items():
+
+                        array.loc[dict(variables=v)] = array.loc[
+                            dict(variables=v)
+                        ] / array.loc[dict(variables=v)].sel(year=int(y))
 
                     # convert NaNs to ones
                     array = array.fillna(1)
