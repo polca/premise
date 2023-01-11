@@ -1046,14 +1046,28 @@ class ExternalScenario(BaseTransformation):
                 else:
 
                     try:
-                        if any(r in regions for r in self.geo.geo.contained(dataset["location"])):
-                            new_loc = [r for r in self.geo.geo.contained(dataset["location"])
-                                       if r in regions][0]
+                        if any(
+                            r in regions
+                            for r in self.geo.geo.contained(dataset["location"])
+                        ):
+                            new_loc = [
+                                r
+                                for r in self.geo.geo.contained(dataset["location"])
+                                if r in regions
+                            ][0]
 
                         if not new_loc:
-                            if any(r in regions for r in self.geo.geo.intersects(dataset["location"])):
-                                new_loc = [r for r in self.geo.geo.intersects(dataset["location"])
-                                           if r in regions][0]
+                            if any(
+                                r in regions
+                                for r in self.geo.geo.intersects(dataset["location"])
+                            ):
+                                new_loc = [
+                                    r
+                                    for r in self.geo.geo.intersects(
+                                        dataset["location"]
+                                    )
+                                    if r in regions
+                                ][0]
                     except KeyError:
                         pass
 
@@ -1081,8 +1095,10 @@ class ExternalScenario(BaseTransformation):
                         del exc["input"]
 
                 else:
-                    print(f"Cannot find a substitute location "
-                          f"for {dataset['location']} in {regions}.")
+                    print(
+                        f"Cannot find a substitute location "
+                        f"for {dataset['location']} in {regions}."
+                    )
                     print(
                         f"Cannot find a substitute location for {dataset['location']} in {regions}."
                     )
