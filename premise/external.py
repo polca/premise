@@ -343,6 +343,7 @@ class ExternalScenario(BaseTransformation):
 
         """
 
+
         for ds in ws.get_many(
             self.database,
             ws.equals("regionalize", True),
@@ -1012,7 +1013,6 @@ class ExternalScenario(BaseTransformation):
             datasets = self.database
 
         log = []
-
         list_fltr = []
         for k in replaces:
             fltr = []
@@ -1034,9 +1034,7 @@ class ExternalScenario(BaseTransformation):
                 filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
 
             for exc in filtered_exchanges:
-
                 new_loc = None
-
                 if len(regions) == 1:
                     new_loc = regions[0]
                 elif dataset["location"] in regions:
@@ -1088,7 +1086,6 @@ class ExternalScenario(BaseTransformation):
                     )
 
         if log:
-
             # check that directory exists, otherwise create it
             Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
 
@@ -1115,3 +1112,5 @@ class ExternalScenario(BaseTransformation):
                 )
                 for line in log:
                     writer.writerow(line)
+        else:
+            print("No exchanges were replaced.")

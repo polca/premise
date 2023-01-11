@@ -60,7 +60,7 @@ def check_inventories(
                     ),
                     "regionalize": True,
                     "new dataset": False,
-                    "except regions": config.get("except regions", []),
+                    "except regions": config["regionalize"].get("except regions", []),
                     "efficiency": val.get("efficiency", []),
                     "replaces": val.get("replaces", []),
                     "replaces in": val.get("replaces in", []),
@@ -70,13 +70,20 @@ def check_inventories(
             }
         )
 
-    list_datasets = [(i["name"], i["reference product"]) for i in inventory_data]
+    list_datasets = [
+        (
+            i["name"],
+            i["reference product"]
+        )
+            for i in inventory_data
+    ]
 
     try:
         assert all(
             (i[0], i[1]) in list_datasets
             for i, v in d_datasets.items()
-            if not v["exists in original database"] and not v.get("new dataset")
+            if not v["exists in original database"]
+            and not v.get("new dataset")
         )
     except AssertionError as e:
         print("The following datasets are not in the inventory data:")
@@ -95,10 +102,18 @@ def check_inventories(
     for i, dataset in enumerate(inventory_data):
         if (dataset["name"], dataset["reference product"]) in d_datasets:
             dataset["custom scenario dataset"] = True
-            data_vars = d_datasets[(dataset["name"], dataset["reference product"])]
+            data_vars = d_datasets[
+                (
+                    dataset["name"],
+                    dataset["reference product"]
+                )
+            ]
 
             inventory_data[i] = flag_activities_to_adjust(
-                dataset, scenario_data, year, data_vars
+                dataset,
+                scenario_data,
+                year,
+                data_vars
             )
 
     # flag inventories present in the original database
