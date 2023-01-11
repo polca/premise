@@ -25,6 +25,7 @@ def fetch_loc(loc):
     else:
         return None
 
+
 def flag_activities_to_adjust(
     dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
 ) -> dict:
@@ -530,7 +531,8 @@ class ExternalScenario(BaseTransformation):
                                 ]
 
                                 ecoinvent_regions = [
-                                    i for i in ecoinvent_regions
+                                    i
+                                    for i in ecoinvent_regions
                                     if i and i not in ["GLO", "RoW"]
                                 ]
 
@@ -586,7 +588,9 @@ class ExternalScenario(BaseTransformation):
                                 for ds in suppliers:
                                     ds["custom scenario dataset"] = True
 
-    def fetch_supply_share(self, i: int, region: str, var: str, variables: list) -> ndarray:
+    def fetch_supply_share(
+        self, i: int, region: str, var: str, variables: list
+    ) -> ndarray:
         """
         Return the supply share of a given variable in a given region.
         :param i: index of the scenario
@@ -693,15 +697,10 @@ class ExternalScenario(BaseTransformation):
                 ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
             else:
 
+                ecoinvent_regions = [fetch_loc(r) for r in self.geo.geo.within(region)]
 
                 ecoinvent_regions = [
-                    fetch_loc(r)
-                    for r in self.geo.geo.within(region)
-                ]
-
-                ecoinvent_regions = [
-                    i for i in ecoinvent_regions
-                    if i and i not in ["GLO", "RoW"]
+                    i for i in ecoinvent_regions if i and i not in ["GLO", "RoW"]
                 ]
 
             possible_locations = [
@@ -846,12 +845,12 @@ class ExternalScenario(BaseTransformation):
 
                             else:
                                 ecoinvent_regions = [
-                                    fetch_loc(r)
-                                    for r in self.geo.geo.within(region)
+                                    fetch_loc(r) for r in self.geo.geo.within(region)
                                 ]
 
                                 ecoinvent_regions = [
-                                    i for i in ecoinvent_regions
+                                    i
+                                    for i in ecoinvent_regions
                                     if i and i not in ["GLO", "RoW"]
                                 ]
 
@@ -944,7 +943,9 @@ class ExternalScenario(BaseTransformation):
 
                     create_world_region = True
 
-                    if "World" in regions or "World" in market_vars.get("except regions", []):
+                    if "World" in regions or "World" in market_vars.get(
+                        "except regions", []
+                    ):
                         create_world_region = False
 
                     if create_world_region:
@@ -1082,6 +1083,9 @@ class ExternalScenario(BaseTransformation):
                 else:
                     print(f"Cannot find a substitute location "
                           f"for {dataset['location']} in {regions}.")
+                    print(
+                        f"Cannot find a substitute location for {dataset['location']} in {regions}."
+                    )
 
         if log:
 

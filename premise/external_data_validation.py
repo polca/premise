@@ -500,15 +500,11 @@ def check_scenario_data_file(datapackages, iam_scenarios):
         if not all(
             s in available_scenarios for s in scenarios
         ):  # check that all scenarios are available in the scenario file
-            print("The following scenarios listed in the json file "
-                  "are not available in the scenario data file:")
             print(
-                set([
-                    s
-                    for s in scenarios
-                    if s not in available_scenarios
-                ])
+                "The following scenarios listed in the json file "
+                "are not available in the scenario data file:"
             )
+            print(set([s for s in scenarios if s not in available_scenarios]))
             raise ValueError(
                 f"One or several scenarios are not available in the scenario file no. {i + 1}."
             )
