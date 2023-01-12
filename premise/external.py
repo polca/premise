@@ -27,10 +27,7 @@ def fetch_loc(loc):
 
 
 def flag_activities_to_adjust(
-    dataset: dict,
-    scenario_data: dict,
-    year: int,
-    dataset_vars: dict
+    dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
 ) -> dict:
     """
     Flag datasets that will need to be adjusted.
@@ -165,10 +162,7 @@ def find_iam_efficiency_change(
     if variable in efficiency_data.variables.values:
 
         scaling_factor = (
-            efficiency_data.sel(
-                region=location,
-                variables=variable
-            ).interp(year=year)
+            efficiency_data.sel(region=location, variables=variable).interp(year=year)
         ).values.item(0)
 
         if scaling_factor in (np.nan, np.inf):
@@ -373,10 +367,13 @@ class ExternalScenario(BaseTransformation):
                 if ds.get("production volume variable"):
                     for region, act in new_acts.items():
                         act["production volume"] = (
-                            self.external_scenarios_data[0]["production volume"].sel(
+                            self.external_scenarios_data[0]["production volume"]
+                            .sel(
                                 region=region,
                                 variables=ds["production volume variable"],
-                            ).interp(year=self.year).values
+                            )
+                            .interp(year=self.year)
+                            .values
                         )
 
                 # add new datasets to database
@@ -1031,10 +1028,7 @@ class ExternalScenario(BaseTransformation):
         datasets = [
             d
             for d in datasets
-            if not (
-                d["name"] == new_name
-                and d["reference product"] == new_ref
-            )
+            if not (d["name"] == new_name and d["reference product"] == new_ref)
         ]
 
         log = []
@@ -1056,16 +1050,11 @@ class ExternalScenario(BaseTransformation):
         for dataset in datasets:
             filtered_exchanges = []
             for fltr in list_fltr:
-                filtered_exchanges.extend(
-                    list(
-                        ws.technosphere(dataset, *fltr)
-                    )
-                )
+                filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
-                exc for exc in dataset["exchanges"]
-                if exc not in filtered_exchanges
+                exc for exc in dataset["exchanges"] if exc not in filtered_exchanges
             ]
 
             new_exchanges = []
@@ -1085,17 +1074,16 @@ class ExternalScenario(BaseTransformation):
                         pass
                     else:
                         suppliers = get_shares_from_production_volume(
-                            list(ws.get_many(
-                                self.database,
-                                ws.equals("name", new_name),
-                                ws.equals("reference product", new_ref),
-                                ws.either(
-                                    *[
-                                        ws.equals("location", r)
-                                        for r in regions
-                                    ]
+                            list(
+                                ws.get_many(
+                                    self.database,
+                                    ws.equals("name", new_name),
+                                    ws.equals("reference product", new_ref),
+                                    ws.either(
+                                        *[ws.equals("location", r) for r in regions]
+                                    ),
                                 )
-                            ))
+                            )
                         )
                         new_loc = [(x[1], y) for x, y in suppliers.items()]
                 else:
@@ -1159,9 +1147,7 @@ class ExternalScenario(BaseTransformation):
                             }
                         )
                 else:
-                    new_exchanges.append(
-                        exc
-                    )
+                    new_exchanges.append(exc)
 
             if len(filtered_exchanges) > 1:
                 # sum up exchanges with the same name, product, and location
@@ -1212,7 +1198,7 @@ class ExternalScenario(BaseTransformation):
                 exc.get("location"),
                 exc.get("unit"),
                 exc.get("input"),
-                exc.get("type")
+                exc.get("type"),
             )
             new_exc[key] += exc["amount"]
 
@@ -1227,6 +1213,13 @@ class ExternalScenario(BaseTransformation):
                 "type": exc_type,
                 "amount": amount,
             }
-            for (name, product, categories, location, unit, input, exc_type), amount
-            in new_exc.items()
+            for (
+                name,
+                product,
+                categories,
+                location,
+                unit,
+                input,
+                exc_type,
+            ), amount in new_exc.items()
         ]

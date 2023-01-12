@@ -291,8 +291,7 @@ def relink_technosphere_exchanges(
             kept = None
 
             possible_datasets = [
-                x for x in get_possibles(exc, data)
-                if x["location"] in list_loc
+                x for x in get_possibles(exc, data) if x["location"] in list_loc
             ]
 
             possible_locations = [obj["location"] for obj in possible_datasets]
