@@ -360,12 +360,7 @@ class BaseTransformation:
         return {region: d_map.get(region, fallback_loc) for region in regions}
 
     def fetch_proxies(
-        self,
-        name,
-        ref_prod,
-        production_variable=None,
-        relink=True,
-        regions=None
+        self, name, ref_prod, production_variable=None, relink=True, regions=None
     ) -> Dict[str, dict]:
         """
         Fetch dataset proxies, given a dataset `name` and `reference product`.
@@ -541,7 +536,6 @@ class BaseTransformation:
                         f"in {existing_ds['location']}"
                     )
 
-
                 if len(iam_locs) > 1:
                     if production_variable:
                         # Add `production volume` field
@@ -571,7 +565,8 @@ class BaseTransformation:
                     for iam_loc in iam_locs:
 
                         if production_variable and all(
-                            i in self.iam_data.production_volumes.variables.values.tolist()
+                            i
+                            in self.iam_data.production_volumes.variables.values.tolist()
                             for i in production_variable
                         ):
                             region_prod = (
@@ -611,7 +606,6 @@ class BaseTransformation:
                             "type": "technosphere",
                         }
                     )
-
 
     def relink_datasets(
         self, excludes_datasets: List[str] = None, alt_names: List[str] = None
