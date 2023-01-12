@@ -221,7 +221,6 @@ def relink_technosphere_exchanges(
     model,
     cache,
     exclusive=True,
-    drop_invalid=False,
     biggest_first=False,
     contained=True,
 ):
@@ -272,7 +271,6 @@ def relink_technosphere_exchanges(
                         "amount": exc["amount"],
                     }
                 )
-
             else:
                 new_exchanges.extend(
                     [
@@ -293,7 +291,8 @@ def relink_technosphere_exchanges(
             kept = None
 
             possible_datasets = [
-                x for x in get_possibles(exc, data) if x["location"] in list_loc
+                x for x in get_possibles(exc, data)
+                if x["location"] in list_loc
             ]
 
             possible_locations = [obj["location"] for obj in possible_datasets]
@@ -306,7 +305,6 @@ def relink_technosphere_exchanges(
                 continue
 
             if dataset["location"] in possible_locations:
-
                 cache[dataset["location"]] = {
                     model: {
                         (exc["name"], exc["product"], exc["location"], exc["unit"],): [

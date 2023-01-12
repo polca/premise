@@ -27,7 +27,10 @@ def fetch_loc(loc):
 
 
 def flag_activities_to_adjust(
-    dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
+    dataset: dict,
+    scenario_data: dict,
+    year: int,
+    dataset_vars: dict
 ) -> dict:
     """
     Flag datasets that will need to be adjusted.
@@ -138,6 +141,11 @@ def flag_activities_to_adjust(
     if dataset_vars["regionalize"]:
         dataset["regionalize"] = dataset_vars["regionalize"]
 
+    if "production volume variable" in dataset_vars:
+        dataset["production volume variable"] = dataset_vars[
+            "production volume variable"
+        ]
+
     return dataset
 
 
@@ -157,7 +165,10 @@ def find_iam_efficiency_change(
     if variable in efficiency_data.variables.values:
 
         scaling_factor = (
-            efficiency_data.sel(region=location, variables=variable).interp(year=year)
+            efficiency_data.sel(
+                region=location,
+                variables=variable
+            ).interp(year=year)
         ).values.item(0)
 
         if scaling_factor in (np.nan, np.inf):
@@ -358,6 +369,16 @@ class ExternalScenario(BaseTransformation):
                     ref_prod=ds["reference product"],
                     regions=ds["regions"],
                 )
+
+                # add production volume
+                if ds.get("production volume variable"):
+                    for region, act in new_acts.items():
+                        act["production volume"] = (
+                            self.external_scenarios_data[0]["production volume"].sel(
+                                region=region,
+                                variables=ds["production volume variable"],
+                            ).interp(year=self.year).values
+                        )
 
                 # add new datasets to database
                 self.database.extend(new_acts.values())
@@ -693,13 +714,10 @@ class ExternalScenario(BaseTransformation):
 
         if ref_prod:
             # this is a technosphere exchange
-
             if region in self.geo.iam_regions:
                 ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
             else:
-
                 ecoinvent_regions = [fetch_loc(r) for r in self.geo.geo.within(region)]
-
                 ecoinvent_regions = [
                     i for i in ecoinvent_regions if i and i not in ["GLO", "RoW"]
                 ]
@@ -873,10 +891,6 @@ class ExternalScenario(BaseTransformation):
                             # supply share = production volume of that technology in this region
                             # over production volume of all technologies in this region
 
-                            supply_share = self.fetch_supply_share(
-                                i, region, var, variables
-                            )
-
                             try:
                                 supply_share = self.fetch_supply_share(
                                     i, region, var, variables
@@ -954,6 +968,7 @@ class ExternalScenario(BaseTransformation):
                             market_vars, regions, i, variables
                         )
                         self.database.append(world_market)
+                        regions.append("World")
 
                     # if the new markets are meant to replace for other
                     # providers in the database
@@ -1012,6 +1027,17 @@ class ExternalScenario(BaseTransformation):
         else:
             datasets = self.database
 
+        # also filter out datasets that have the same name and ref product
+        # as new_name and new_ref
+        datasets = [
+            d
+            for d in datasets
+            if not (
+                d["name"] == new_name
+                and d["reference product"] == new_ref
+            )
+        ]
+
         log = []
         list_fltr = []
         for k in replaces:
@@ -1031,7 +1057,19 @@ class ExternalScenario(BaseTransformation):
         for dataset in datasets:
             filtered_exchanges = []
             for fltr in list_fltr:
-                filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
+                filtered_exchanges.extend(
+                    list(
+                        ws.technosphere(dataset, *fltr)
+                    )
+                )
+
+            # remove filtered exchanges from the dataset
+            dataset["exchanges"] = [
+                exc for exc in dataset["exchanges"]
+                if exc not in filtered_exchanges
+            ]
+
+            new_exchanges = []
 
             for exc in filtered_exchanges:
                 new_loc = None
@@ -1041,8 +1079,27 @@ class ExternalScenario(BaseTransformation):
                     new_loc = dataset["location"]
                 elif self.geo.ecoinvent_to_iam_location(dataset["location"]) in regions:
                     new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                elif dataset["location"] in ["GLO", "RoW"]:
+                    if "World" in regions:
+                        new_loc = "World"
+                    elif exc["location"] in regions:
+                        pass
+                    else:
+                        suppliers = get_shares_from_production_volume(
+                            list(ws.get_many(
+                                self.database,
+                                ws.equals("name", new_name),
+                                ws.equals("reference product", new_ref),
+                                ws.either(
+                                    *[
+                                        ws.equals("location", r)
+                                        for r in regions
+                                    ]
+                                )
+                            ))
+                        )
+                        new_loc = [(x[1], y) for x, y in suppliers.items()]
                 else:
-
                     try:
                         if any(
                             r in regions
@@ -1069,37 +1126,49 @@ class ExternalScenario(BaseTransformation):
                     except KeyError:
                         pass
 
+                if isinstance(new_loc, str):
+                    new_loc = [(new_loc, 1.0)]
+
                 if new_loc:
-                    log.append(
-                        [
-                            dataset["name"],
-                            dataset["reference product"],
-                            dataset["location"],
-                            exc["name"],
-                            exc["product"],
-                            exc["location"],
-                            new_name,
-                            new_ref,
-                            new_loc,
-                        ]
-                    )
 
-                    exc["name"] = new_name
-                    exc["product"] = new_ref
-                    exc["location"] = new_loc
-                    exc["amount"] *= ratio
+                    for loc, share in new_loc:
+                        log.append(
+                            [
+                                dataset["name"],
+                                dataset["reference product"],
+                                dataset["location"],
+                                exc["name"],
+                                exc["product"],
+                                exc["location"],
+                                exc["amount"],
+                                new_name,
+                                new_ref,
+                                loc,
+                                exc["amount"] * ratio * share,
+                            ]
+                        )
 
-                    if "input" in exc:
-                        del exc["input"]
-
+                        # add new exchange
+                        new_exchanges.append(
+                            {
+                                "amount": exc["amount"] * ratio * share,
+                                "type": "technosphere",
+                                "unit": exc["unit"],
+                                "location": loc,
+                                "name": new_name,
+                                "product": new_ref,
+                            }
+                        )
                 else:
-                    print(
-                        f"Cannot find a substitute location "
-                        f"for {dataset['location']} in {regions}."
+                    new_exchanges.append(
+                        exc
                     )
-                    print(
-                        f"Cannot find a substitute location for {dataset['location']} in {regions}."
-                    )
+
+            if len(filtered_exchanges) > 1:
+                # sum up exchanges with the same name, product, and location
+                new_exchanges = self.sum_exchanges(new_exchanges)
+
+            dataset["exchanges"].extend(new_exchanges)
 
         if log:
             # check that directory exists, otherwise create it
@@ -1118,15 +1187,47 @@ class ExternalScenario(BaseTransformation):
                         "name",
                         "product",
                         "location",
+                        "amount",
                         "old supplier name",
                         "old supplier product",
                         "old supplier location",
                         "new supplier name",
                         "new supplier product",
                         "new supplier location",
+                        "new amount",
                     ]
                 )
                 for line in log:
                     writer.writerow(line)
         else:
             print("No exchanges were replaced.")
+
+    def sum_exchanges(self, dataset_exchanges):
+        # sum up exchanges with the same name, product, and location
+        new_exc = defaultdict(float)
+        for exc in dataset_exchanges:
+            key = (
+                exc["name"],
+                exc.get("product"),
+                exc.get("categories"),
+                exc.get("location"),
+                exc.get("unit"),
+                exc.get("input"),
+                exc.get("type")
+            )
+            new_exc[key] += exc["amount"]
+
+        return [
+            {
+                "name": name,
+                "product": product,
+                "categories": categories,
+                "location": location,
+                "unit": unit,
+                "input": input,
+                "type": exc_type,
+                "amount": amount,
+            }
+            for (name, product, categories, location, unit, input, exc_type), amount
+            in new_exc.items()
+        ]

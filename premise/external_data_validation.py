@@ -47,6 +47,7 @@ def check_inventories(
             "replaces": val.get("replaces", []),
             "replaces in": val.get("replaces in", []),
             "replacement ratio": val.get("replacement ratio", 1),
+            "production volume variable": val.get("production volume", {}).get("variable"),
         }
         for val in config["production pathways"].values()
     }
