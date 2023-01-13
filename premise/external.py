@@ -389,7 +389,7 @@ class ExternalScenario(BaseTransformation):
                 "replaces": ds["replaces"],
                 "replaces in": ds.get("replaces in", None),
                 "replacement ratio": ds.get("replacement ratio", 1),
-                "regions": ds.get("regions", regions)
+                "regions": ds.get("regions", regions),
             }
             for ds in self.database
             if "replaces" in ds and ds["name"] in ds_names
@@ -975,8 +975,6 @@ class ExternalScenario(BaseTransformation):
                             regions=regions,
                         )
 
-
-
     def relink_to_new_datasets(
         self,
         replaces: list,
@@ -1027,10 +1025,7 @@ class ExternalScenario(BaseTransformation):
         datasets = [
             d
             for d in datasets
-            if not (
-                d["name"] == new_name
-                and d["reference product"] == new_ref
-            )
+            if not (d["name"] == new_name and d["reference product"] == new_ref)
         ]
 
         log = []
@@ -1052,19 +1047,11 @@ class ExternalScenario(BaseTransformation):
         for dataset in datasets:
             filtered_exchanges = []
             for fltr in list_fltr:
-                filtered_exchanges.extend(
-                    list(
-                        ws.technosphere(
-                            dataset,
-                            *fltr
-                        )
-                    )
-                )
+                filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
-                exc for exc in dataset["exchanges"]
-                if exc not in filtered_exchanges
+                exc for exc in dataset["exchanges"] if exc not in filtered_exchanges
             ]
 
             new_exchanges = []
@@ -1093,7 +1080,9 @@ class ExternalScenario(BaseTransformation):
                     if "World" in regions:
                         new_loc = "World"
                     else:
-                        new_loc = self.find_best_substitute_suppliers(new_name, new_ref, regions)
+                        new_loc = self.find_best_substitute_suppliers(
+                            new_name, new_ref, regions
+                        )
 
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
@@ -1155,8 +1144,7 @@ class ExternalScenario(BaseTransformation):
             ):
                 # remove all exchanges except production exchanges
                 ds["exchanges"] = [
-                    exc for exc in ds["exchanges"]
-                    if exc["type"] == "production"
+                    exc for exc in ds["exchanges"] if exc["type"] == "production"
                 ]
                 # add ann exchange from new supplier
                 if ds["location"] in ["GLO", "RoW"] and "World" in regions:
@@ -1166,7 +1154,9 @@ class ExternalScenario(BaseTransformation):
                 elif self.geo.ecoinvent_to_iam_location(ds["location"]) in regions:
                     new_loc = self.geo.ecoinvent_to_iam_location(ds["location"])
                 else:
-                    new_loc = self.find_best_substitute_suppliers(new_name, new_ref, regions)
+                    new_loc = self.find_best_substitute_suppliers(
+                        new_name, new_ref, regions
+                    )
 
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
