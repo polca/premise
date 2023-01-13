@@ -384,29 +384,25 @@ class ExternalScenario(BaseTransformation):
 
         # some datasets might be meant to replace the supply
         # of other datasets, so we need to adjust those
-        replacing_acts = list(
-            (
-                {
-                    "replaces": ds["replaces"],
-                    "replaces in": ds.get("replaces in", None),
-                    "name": ds["name"],
-                    "reference product": ds["reference product"],
-                    "replacement ratio": ds.get("replacement ratio", 1),
-                    "regions": ds.get("regions", regions),
-                }
-                for ds in self.database
-                if "replaces" in ds and ds["name"] in ds_names
-            )
-        )
+        replacing_acts = {
+            (ds["name"], ds["reference product"]): {
+                "replaces": ds["replaces"],
+                "replaces in": ds.get("replaces in", None),
+                "replacement ratio": ds.get("replacement ratio", 1),
+                "regions": ds.get("regions", regions)
+            }
+            for ds in self.database
+            if "replaces" in ds and ds["name"] in ds_names
+        }
 
-        for ds in replacing_acts:
+        for (name, ref_prod), values in replacing_acts.items():
             self.relink_to_new_datasets(
-                replaces=ds["replaces"],
-                replaces_in=ds.get("replaces in", None),
-                new_name=ds["name"],
-                new_ref=ds["reference product"],
-                ratio=ds.get("replacement ratio", 1),
-                regions=ds.get("regions", regions),
+                replaces=values["replaces"],
+                replaces_in=values.get("replaces in", None),
+                new_name=name,
+                new_ref=ref_prod,
+                ratio=values.get("replacement ratio", 1),
+                regions=values.get("regions", regions),
             )
 
         # adjust efficiency of datasets
@@ -970,7 +966,6 @@ class ExternalScenario(BaseTransformation):
                     # providers in the database
 
                     if "replaces" in market_vars:
-
                         self.relink_to_new_datasets(
                             replaces=market_vars["replaces"],
                             replaces_in=market_vars.get("replaces in", None),
@@ -979,6 +974,8 @@ class ExternalScenario(BaseTransformation):
                             ratio=market_vars.get("replacement ratio", 1),
                             regions=regions,
                         )
+
+
 
     def relink_to_new_datasets(
         self,
@@ -1003,6 +1000,7 @@ class ExternalScenario(BaseTransformation):
         """
 
         datasets = []
+        exchanges_replaced = []
 
         if replaces_in:
             for k in replaces_in:
@@ -1023,12 +1021,16 @@ class ExternalScenario(BaseTransformation):
         else:
             datasets = self.database
 
-        # also filter out datasets that have the same name and ref product
+        # also filter out datasets that
+        # have the same name and ref product
         # as new_name and new_ref
         datasets = [
             d
             for d in datasets
-            if not (d["name"] == new_name and d["reference product"] == new_ref)
+            if not (
+                d["name"] == new_name
+                and d["reference product"] == new_ref
+            )
         ]
 
         log = []
@@ -1050,17 +1052,37 @@ class ExternalScenario(BaseTransformation):
         for dataset in datasets:
             filtered_exchanges = []
             for fltr in list_fltr:
-                filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
+                filtered_exchanges.extend(
+                    list(
+                        ws.technosphere(
+                            dataset,
+                            *fltr
+                        )
+                    )
+                )
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
-                exc for exc in dataset["exchanges"] if exc not in filtered_exchanges
+                exc for exc in dataset["exchanges"]
+                if exc not in filtered_exchanges
             ]
 
             new_exchanges = []
 
             for exc in filtered_exchanges:
+
+                if exc["location"] in regions:
+                    new_exchanges.append(exc)
+                    continue
+
                 new_loc = None
+                exchanges_replaced.append(
+                    (
+                        exc["name"],
+                        exc["product"],
+                        exc["location"],
+                    )
+                )
                 if len(regions) == 1:
                     new_loc = regions[0]
                 elif dataset["location"] in regions:
@@ -1070,54 +1092,13 @@ class ExternalScenario(BaseTransformation):
                 elif dataset["location"] in ["GLO", "RoW"]:
                     if "World" in regions:
                         new_loc = "World"
-                    elif exc["location"] in regions:
-                        pass
                     else:
-                        suppliers = get_shares_from_production_volume(
-                            list(
-                                ws.get_many(
-                                    self.database,
-                                    ws.equals("name", new_name),
-                                    ws.equals("reference product", new_ref),
-                                    ws.either(
-                                        *[ws.equals("location", r) for r in regions]
-                                    ),
-                                )
-                            )
-                        )
-                        new_loc = [(x[1], y) for x, y in suppliers.items()]
-                else:
-                    try:
-                        if any(
-                            r in regions
-                            for r in self.geo.geo.contained(dataset["location"])
-                        ):
-                            new_loc = [
-                                r
-                                for r in self.geo.geo.contained(dataset["location"])
-                                if r in regions
-                            ][0]
-
-                        if not new_loc:
-                            if any(
-                                r in regions
-                                for r in self.geo.geo.intersects(dataset["location"])
-                            ):
-                                new_loc = [
-                                    r
-                                    for r in self.geo.geo.intersects(
-                                        dataset["location"]
-                                    )
-                                    if r in regions
-                                ][0]
-                    except KeyError:
-                        pass
+                        new_loc = self.find_best_substitute_suppliers(new_name, new_ref, regions)
 
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
 
                 if new_loc:
-
                     for loc, share in new_loc:
                         log.append(
                             [
@@ -1154,6 +1135,53 @@ class ExternalScenario(BaseTransformation):
                 new_exchanges = self.sum_exchanges(new_exchanges)
 
             dataset["exchanges"].extend(new_exchanges)
+
+        # if no "replaces in" is given, we consider that the dataset to
+        # be replaced should be emptied and a link to the new dataset
+        # should be added
+
+        if not replaces_in:
+
+            unique_exchanges_replaced = list(set(exchanges_replaced))
+            name = unique_exchanges_replaced[0][0]
+            ref = unique_exchanges_replaced[0][1]
+            locs = [x[2] for x in unique_exchanges_replaced]
+
+            for ds in ws.get_many(
+                self.database,
+                ws.equals("name", name),
+                ws.equals("reference product", ref),
+                ws.either(*[ws.equals("location", l) for l in locs]),
+            ):
+                # remove all exchanges except production exchanges
+                ds["exchanges"] = [
+                    exc for exc in ds["exchanges"]
+                    if exc["type"] == "production"
+                ]
+                # add ann exchange from new supplier
+                if ds["location"] in ["GLO", "RoW"] and "World" in regions:
+                    new_loc = "World"
+                elif ds["location"] in regions:
+                    new_loc = ds["location"]
+                elif self.geo.ecoinvent_to_iam_location(ds["location"]) in regions:
+                    new_loc = self.geo.ecoinvent_to_iam_location(ds["location"])
+                else:
+                    new_loc = self.find_best_substitute_suppliers(new_name, new_ref, regions)
+
+                if isinstance(new_loc, str):
+                    new_loc = [(new_loc, 1.0)]
+
+                for (loc, share) in new_loc:
+                    ds["exchanges"].append(
+                        {
+                            "amount": 1.0 * ratio * share,
+                            "type": "technosphere",
+                            "unit": ds["unit"],
+                            "location": loc,
+                            "name": new_name,
+                            "product": new_ref,
+                        }
+                    )
 
         if log:
             # check that directory exists, otherwise create it
@@ -1223,3 +1251,19 @@ class ExternalScenario(BaseTransformation):
                 exc_type,
             ), amount in new_exc.items()
         ]
+
+    def find_best_substitute_suppliers(self, new_name, new_ref, regions):
+        # find best suppliers for new dataset
+        # if there are several suppliers with the same name and product, the one
+        # with the highest production volume is chosen
+        suppliers = get_shares_from_production_volume(
+            list(
+                ws.get_many(
+                    self.database,
+                    ws.equals("name", new_name),
+                    ws.equals("reference product", new_ref),
+                    ws.either(*[ws.equals("location", r) for r in regions]),
+                )
+            )
+        )
+        return [(x[1], y) for x, y in suppliers.items()]
