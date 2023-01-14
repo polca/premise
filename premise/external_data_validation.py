@@ -271,6 +271,7 @@ def check_config_file(datapackages):
                             }
                         ],
                         Optional("replacement ratio"): float,
+                        Optional("waste market"): bool,
                         Optional("efficiency"): [
                             {
                                 "variable": str,
@@ -316,7 +317,7 @@ def check_config_file(datapackages):
             for market in config_file["markets"]:
 
                 try:
-                    market_providers = [
+                    [
                         (
                             config_file["production pathways"][a]["ecoinvent alias"][
                                 "name"

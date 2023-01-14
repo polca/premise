@@ -414,7 +414,9 @@ class ExternalScenario(BaseTransformation):
             adjust_efficiency(dataset)
             del dataset["adjust efficiency"]
 
-    def get_market_dictionary_structure(self, market: dict, region: str) -> dict:
+    def get_market_dictionary_structure(
+        self, market: dict, region: str, waste_market: bool = False
+    ) -> dict:
         """
         Return a dictionary for market creation, given the location passed.
         To be further filled with exchanges.
@@ -437,13 +439,18 @@ class ExternalScenario(BaseTransformation):
                     "unit": market["unit"],
                     "location": region,
                     "type": "production",
-                    "amount": 1,
+                    "amount": -1 if waste_market else 1,
                 }
             ],
         }
 
     def fill_in_world_market(
-        self, market: dict, regions: list, i: int, pathways: list
+        self,
+        market: dict,
+        regions: list,
+        i: int,
+        pathways: list,
+        waste_market: bool = False,
     ) -> dict:
         """
         Fill in the world market with the supply of all regional markets
@@ -452,11 +459,14 @@ class ExternalScenario(BaseTransformation):
         :param regions: List of regions
         :param i: index of production volumes array in external_data
         :param pathways: List of production pathways
+        :param waste_market: True if the market is a waste market
         :return: World market dataset
         """
 
         # fetch a template for the world market dataset
-        world_market = self.get_market_dictionary_structure(market, "World")
+        world_market = self.get_market_dictionary_structure(
+            market=market, region="World", waste_market=waste_market
+        )
         new_excs = []
 
         # fetch the supply share for each regional market
@@ -483,7 +493,7 @@ class ExternalScenario(BaseTransformation):
                     "unit": market["unit"],
                     "location": region,
                     "type": "technosphere",
-                    "amount": supply_share,
+                    "amount": supply_share * -1 if waste_market else supply_share,
                 }
             )
 
@@ -788,6 +798,24 @@ class ExternalScenario(BaseTransformation):
                         wurst.rescale_exchange(exc, scaling_factor)
         return datatset
 
+    def get_region_for_non_null_production_volume(self, i, variables):
+
+        nz = np.argwhere(
+            (
+                self.external_scenarios_data[i]["production volume"]
+                .sel(variables=variables)
+                .sum(dim=["year", "variables"])
+                > 0
+            ).values
+        )
+
+        return [
+            self.external_scenarios_data[i]["production volume"]
+            .coords["region"][x[0]]
+            .values.item(0)
+            for x in nz
+        ]
+
     def create_custom_markets(self) -> None:
         """
         Create new custom markets, and create a `World` market
@@ -809,16 +837,17 @@ class ExternalScenario(BaseTransformation):
                 print("Create custom markets.")
 
                 for market_vars in config_file["markets"]:
-
-                    # fetch all scenario file vars that
+                    # fetch all scenario file variables that
                     # relate to this market
-
                     pathways = market_vars["includes"]
                     variables = fetch_var(config_file, pathways)
+                    waste_market = market_vars.get("waste market", False)
 
                     # Check if there are regions we should not
                     # create a market for
-                    regions = self.external_scenarios_data[i]["regions"]
+                    regions = self.get_region_for_non_null_production_volume(
+                        i=i, variables=variables
+                    )
 
                     if "except regions" in market_vars:
                         regions = [
@@ -830,7 +859,7 @@ class ExternalScenario(BaseTransformation):
 
                         # Create market dictionary
                         new_market = self.get_market_dictionary_structure(
-                            market_vars, region
+                            market=market_vars, region=region, waste_market=waste_market
                         )
 
                         new_excs = []
@@ -856,12 +885,11 @@ class ExternalScenario(BaseTransformation):
 
                             else:
                                 ecoinvent_regions = [
-                                    fetch_loc(r) for r in self.geo.geo.within(region)
-                                ]
-
-                                ecoinvent_regions = [
                                     i
-                                    for i in ecoinvent_regions
+                                    for i in [
+                                        fetch_loc(r)
+                                        for r in self.geo.geo.within(region)
+                                    ]
                                     if i and i not in ["GLO", "RoW"]
                                 ]
 
@@ -890,19 +918,15 @@ class ExternalScenario(BaseTransformation):
 
                             except KeyError:
                                 print(
-                                    "suppliers for ",
-                                    name,
-                                    ref_prod,
-                                    region,
-                                    "not found",
+                                    f"Could not fond suppliers for {name}, {ref_prod}, from {region}"
                                 )
                                 continue
 
                             if supply_share > 0:
-
                                 suppliers = get_shares_from_production_volume(
                                     potential_suppliers
                                 )
+
                                 new_excs.extend(
                                     self.write_suppliers_exchanges(
                                         suppliers, supply_share
@@ -911,18 +935,21 @@ class ExternalScenario(BaseTransformation):
 
                         if len(new_excs) > 0:
                             total = 0
+
                             for exc in new_excs:
                                 total += exc["amount"]
                             for exc in new_excs:
                                 exc["amount"] /= total
+                                if waste_market:
+                                    # if this is a waste market, we need to
+                                    # flip the sign of the amount
+                                    exc["amount"] *= -1
 
                             new_market["exchanges"].extend(new_excs)
 
                             # check if we should add some additional exchanges
                             if "add" in market_vars:
-
                                 for additional_exc in market_vars["add"]:
-
                                     add_excs = self.add_additional_exchanges(
                                         additional_exc, region
                                     )
@@ -942,14 +969,10 @@ class ExternalScenario(BaseTransformation):
                             self.database.append(new_market)
                         else:
                             regions.remove(region)
-                        # Loop through the technologies that should
-                        # compose the market
 
                     # if so far, a market for `World` has not been created
                     # we need to create one then
-
                     create_world_region = True
-
                     if "World" in regions or "World" in market_vars.get(
                         "except regions", []
                     ):
@@ -957,7 +980,11 @@ class ExternalScenario(BaseTransformation):
 
                     if create_world_region:
                         world_market = self.fill_in_world_market(
-                            market_vars, regions, i, variables
+                            market=market_vars,
+                            regions=regions,
+                            i=i,
+                            pathways=variables,
+                            waste_market=waste_market,
                         )
                         self.database.append(world_market)
                         regions.append("World")
@@ -973,6 +1000,7 @@ class ExternalScenario(BaseTransformation):
                             new_ref=market_vars["reference product"],
                             ratio=market_vars.get("replacement ratio", 1),
                             regions=regions,
+                            waste_process=waste_market,
                         )
 
     def relink_to_new_datasets(
@@ -983,6 +1011,7 @@ class ExternalScenario(BaseTransformation):
         new_ref: str,
         ratio,
         regions: list,
+        waste_process: bool = False,
     ) -> None:
         """
         Replaces exchanges that match `old_name` and `old_ref` with exchanges that
@@ -1164,7 +1193,10 @@ class ExternalScenario(BaseTransformation):
                 for (loc, share) in new_loc:
                     ds["exchanges"].append(
                         {
-                            "amount": 1.0 * ratio * share,
+                            "amount": 1.0
+                            * ratio
+                            * share
+                            * (-1.0 if waste_process else 1.0),
                             "type": "technosphere",
                             "unit": ds["unit"],
                             "location": loc,
