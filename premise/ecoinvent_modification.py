@@ -128,6 +128,7 @@ FILEPATH_WAVE = INVENTORY_DIR / "lci-wave_energy.xlsx"
 
 config = load_constants()
 
+
 # Disable printing
 def blockPrint():
     sys.stdout = open(os.devnull, "w")
@@ -424,7 +425,6 @@ class NewDatabase:
         quiet=False,
         keep_uncertainty_data=False,
     ) -> None:
-
         self.source = source_db
         self.version = check_db_version(source_version)
         self.source_type = source_type
@@ -656,7 +656,6 @@ class NewDatabase:
         return data
 
     def __import_additional_inventories(self, datapackage: list) -> List[dict]:
-
         print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
@@ -711,9 +710,7 @@ class NewDatabase:
         print("\n////////////////////////////// FUELS ///////////////////////////////")
 
         for scenario in self.scenarios:
-
             if "exclude" not in scenario or "update_fuels" not in scenario["exclude"]:
-
                 fuels = Fuels(
                     database=scenario["database"],
                     iam_data=scenario["iam data"],
@@ -734,7 +731,6 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_cement" not in scenario["exclude"]:
-
                 cement = Cement(
                     database=scenario["database"],
                     model=scenario["model"],
@@ -755,9 +751,7 @@ class NewDatabase:
         print("\n////////////////////////////// STEEL //////////////////////////////")
 
         for scenario in self.scenarios:
-
             if "exclude" not in scenario or "update_steel" not in scenario["exclude"]:
-
                 steel = Steel(
                     database=scenario["database"],
                     model=scenario["model"],
@@ -804,7 +798,6 @@ class NewDatabase:
                 "exclude" not in scenario
                 or "update_two_wheelers" not in scenario["exclude"]
             ):
-
                 trspt = Transport(
                     database=scenario["database"],
                     year=scenario["year"],
@@ -829,7 +822,6 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_trucks" not in scenario["exclude"]:
-
                 trspt = Transport(
                     database=scenario["database"],
                     year=scenario["year"],
@@ -846,14 +838,12 @@ class NewDatabase:
                 scenario["database"] = trspt.database
 
     def update_external_scenario(self):
-
         if self.datapackages:
             for i, scenario in enumerate(self.scenarios):
                 if (
                     "exclude" not in scenario
                     or "update_external_scenario" not in scenario["exclude"]
                 ):
-
                     for d, datapackage in enumerate(self.datapackages):
                         if "inventories" in [r.name for r in datapackage.resources]:
                             inventories = self.__import_additional_inventories(
@@ -898,7 +888,6 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "exclude" not in scenario or "update_buses" not in scenario["exclude"]:
-
                 trspt = Transport(
                     database=scenario["database"],
                     year=scenario["year"],
@@ -1001,7 +990,6 @@ class NewDatabase:
 
         cache = {}
         for scen, scenario in enumerate(self.scenarios):
-
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
                 scenario, cache=cache, name=name[scen]
@@ -1051,7 +1039,6 @@ class NewDatabase:
 
         cache = {}
         for scen, scenario in enumerate(self.scenarios):
-
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
                 scenario, cache=cache, name="database"
@@ -1083,7 +1070,6 @@ class NewDatabase:
 
         cache = {}
         for scen, scenario in enumerate(self.scenarios):
-
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
                 scenario, cache=cache, name="database"
@@ -1098,7 +1084,6 @@ class NewDatabase:
             ).export_db_to_simapro()
 
     def write_datapackage(self, name: str = f"datapackage_{date.today()}"):
-
         cached_inventories = self.__find_cached_inventories(self.source)
 
         if not cached_inventories:
