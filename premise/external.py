@@ -160,7 +160,6 @@ def find_iam_efficiency_change(
     scaling_factor = 1
 
     if variable in efficiency_data.variables.values:
-
         scaling_factor = (
             efficiency_data.sel(region=location, variables=variable).interp(year=year)
         ).values.item(0)
@@ -182,7 +181,6 @@ def get_recursively(search_dict: dict, field: str) -> list:
     fields_found = []
 
     for key, value in search_dict.items():
-
         if key == field:
             fields_found.append(value)
 
@@ -210,10 +208,8 @@ def adjust_efficiency(dataset: dict) -> dict:
 
     # loop through the type of flows to adjust
     for eff_type in ["technosphere", "biosphere"]:
-
         if f"{eff_type} filters" in dataset:
             for k, v in dataset[f"{eff_type} filters"].items():
-
                 # the scaling factor is the inverse of the efficiency change
                 if len(dataset["regions"]) > 1:
                     try:
@@ -228,7 +224,6 @@ def adjust_efficiency(dataset: dict) -> dict:
                 filters = v[0]
 
                 if eff_type == "technosphere":
-
                     # adjust technosphere flows
                     # all of them if no filters are provided
 
@@ -245,7 +240,6 @@ def adjust_efficiency(dataset: dict) -> dict:
                             wurst.rescale_exchange(exc, scaling_factor)
 
                 else:
-
                     # adjust biosphere flows
                     # all of them if a filter is not provided
 
@@ -353,7 +347,6 @@ class ExternalScenario(BaseTransformation):
             ws.equals("regionalize", True),
             ws.either(*[ws.contains("name", name) for name in ds_names]),
         ):
-
             # Check if datasets already exist for IAM regions
             # if not, create them
             if ds["location"] not in regions:
@@ -509,19 +502,15 @@ class ExternalScenario(BaseTransformation):
 
         # Loop through custom scenarios
         for i, dp in enumerate(self.datapackages):
-
             # Open corresponding config file
             resource = dp.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
 
             # Check if information on market creation is provided
             if "markets" in config_file:
-
                 for market in config_file["markets"]:
-
                     # Loop through the technologies that should compose the market
                     for pathway_to_include in market["includes"]:
-
                         # fetch the dataset name/ref corresponding to this item
                         # under `production pathways`
                         (
@@ -544,7 +533,6 @@ class ExternalScenario(BaseTransformation):
                                     for region in regions
                                 ]
                             else:
-
                                 ecoinvent_regions = [
                                     fetch_loc(r)
                                     for r in [
@@ -767,18 +755,15 @@ class ExternalScenario(BaseTransformation):
     def adjust_efficiency_of_new_markets(
         self, datatset: dict, vars: dict, region: str, eff_data: xr.DataArray
     ) -> dict:
-
         for ineff in vars["efficiency"]:
             scaling_factor = 1 / find_iam_efficiency_change(
                 ineff["variable"], region, eff_data, self.year
             )
 
             if not "includes" in ineff:
-
                 wurst.change_exchanges_by_constant_factor(datatset, scaling_factor)
 
             else:
-
                 if "technosphere" in ineff["includes"]:
                     fltr = []
                     for y in ineff["includes"]["technosphere"]:
@@ -799,7 +784,6 @@ class ExternalScenario(BaseTransformation):
         return datatset
 
     def get_region_for_non_null_production_volume(self, i, variables):
-
         nz = np.argwhere(
             (
                 self.external_scenarios_data[i]["production volume"]
@@ -827,7 +811,6 @@ class ExternalScenario(BaseTransformation):
 
         # Loop through custom scenarios
         for i, dp in enumerate(self.datapackages):
-
             # Open corresponding config file
             resource = dp.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
@@ -856,7 +839,6 @@ class ExternalScenario(BaseTransformation):
 
                     # Loop through regions
                     for region in regions:
-
                         # Create market dictionary
                         new_market = self.get_market_dictionary_structure(
                             market=market_vars, region=region, waste_market=waste_market
@@ -864,7 +846,6 @@ class ExternalScenario(BaseTransformation):
 
                         new_excs = []
                         for pathway in pathways:
-
                             var = fetch_var(config_file, [pathway])[0]
 
                             # fetch the dataset name/ref corresponding to this item
@@ -1086,7 +1067,6 @@ class ExternalScenario(BaseTransformation):
             new_exchanges = []
 
             for exc in filtered_exchanges:
-
                 if exc["location"] in regions:
                     new_exchanges.append(exc)
                     continue
@@ -1159,7 +1139,6 @@ class ExternalScenario(BaseTransformation):
         # should be added
 
         if not replaces_in:
-
             unique_exchanges_replaced = list(set(exchanges_replaced))
             name = unique_exchanges_replaced[0][0]
             ref = unique_exchanges_replaced[0][1]
@@ -1190,7 +1169,7 @@ class ExternalScenario(BaseTransformation):
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
 
-                for (loc, share) in new_loc:
+                for loc, share in new_loc:
                     ds["exchanges"].append(
                         {
                             "amount": 1.0

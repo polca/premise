@@ -79,7 +79,6 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     workbook.remove(workbook.active)
 
     for sector, filepath in SECTORS.items():
-
         if isinstance(filepath, tuple):
             filepath, variables = filepath
         else:
@@ -100,9 +99,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         last_col_used = 0
 
         for scenario_idx, scenario in enumerate(scenarios):
-
             if (scenario["model"], scenario["pathway"]) not in scenario_list:
-
                 if "generation" in sector:
                     iam_data = scenario["iam data"].production_volumes
                 elif "efficiency" in sector:
