@@ -33,18 +33,20 @@ authors:
     email: brian.cox@infras.ch
     affiliation: INFRAS AG
     orcid: 'https://orcid.org/0000-0002-4531-6709'
-  - orcid: 'https://orcid.org/0000-0002-7898-9862'
+  - given-names: Christopher
+    family-names: Mutel
     affiliation: Paul Scherrer Institut
     email: chritopher.mutel@psi.ch
-  - orcid: 'https://orcid.org/0000-0002-6028-352X'
-    affiliation: PBL Netherlands Environmental Assessment Agency
-    given-names: Vassilis
+    orcid: 0000-0002-7898-9862
+  - given-names: Vassilis
     family-names: Daioglou
+    orcid: 'https://orcid.org/0000-0002-6028-352X'
+    affiliation: PBL Netherlands Environmental Assessment Agency
     email: vassilis.daioglou@pbl.nl
-  - orcid: 'https://orcid.org/0000-0002-9057-6155'
-    affiliation: Potsdam Institute for Climate Impact Research
-    given-names: Gunnar
+  - given-names: Gunnar
     family-names: Luderer
+    orcid: 'https://orcid.org/0000-0002-9057-6155'
+    affiliation: Potsdam Institute for Climate Impact Research
     email: luderer@pik-potsdam.de
 identifiers:
   - type: url
