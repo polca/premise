@@ -33,7 +33,12 @@ from .transformation import (
     ws,
     wurst,
 )
-from .utils import DATA_DIR, eidb_label, get_efficiency_ratio_solar_photovoltaics
+from .utils import (
+    DATA_DIR,
+    eidb_label,
+    get_efficiency_ratio_solar_photovoltaics,
+    write_log
+)
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -944,35 +949,12 @@ class Electricity(BaseTransformation):
 
         print("Update efficiency of solar PV.")
 
-        if not os.path.exists(DATA_DIR / "logs"):
-            os.makedirs(DATA_DIR / "logs")
-
-        with open(
-            DATA_DIR / f"logs/log photovoltaics efficiencies change "
-            f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
-            "w",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            writer.writerow(
-                [
-                    "dataset name",
-                    "location",
-                    "technology",
-                    "original efficiency",
-                    "new efficiency",
-                ]
-            )
-
-        print(f"Log of changes in photovoltaics efficiencies saved in {DATA_DIR}/logs")
-
-        # to log changes in efficiency
-        log_eff = []
+        print(f"Log of changes in photovoltaics datasets saved under {DATA_DIR}/logs")
 
         # efficiency of modules in the future
         module_eff = get_efficiency_ratio_solar_photovoltaics()
 
-        ds = ws.get_many(
+        datasets = ws.get_many(
             self.database,
             *[
                 ws.contains("name", "photovoltaic"),
@@ -985,14 +967,14 @@ class Electricity(BaseTransformation):
             ],
         )
 
-        for d in ds:
-            power = float(re.findall(r"[-+]?\d*\.\d+|\d+", d["name"])[0])
+        for dataset in datasets:
+            power = float(re.findall(r"[-+]?\d*\.\d+|\d+", dataset["name"])[0])
 
-            if "mwp" in d["name"].lower():
+            if "mwp" in dataset["name"].lower():
                 power *= 1000
 
             for exc in ws.technosphere(
-                d,
+                dataset,
                 *[
                     ws.contains("name", "photovoltaic"),
                     ws.equals("unit", "square meter"),
@@ -1029,29 +1011,18 @@ class Electricity(BaseTransformation):
                     # We only update the efficiency if it is higher than the current one.
                     if new_eff > current_eff:
                         exc["amount"] *= float(current_eff / new_eff)
-                        d["parameters"] = {
+                        dataset["parameters"] = {
                             "efficiency": new_eff,
                             "old_efficiency": current_eff,
                         }
-                        d["comment"] = (
+                        dataset["comment"] = (
                             f"`premise` has changed the efficiency "
                             f"of this photovoltaic installation "
                             f"from {int(current_eff * 100)} pct. to {int(new_eff * 100)} pt."
                         )
-                        log_eff.append(
-                            [d["name"], d["location"], pv_tech, current_eff, new_eff]
-                        )
 
-        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
-        with open(
-            DATA_DIR / f"logs/log photovoltaics efficiencies change "
-            f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
-            "a",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            for row in log_eff:
-                writer.writerow(row)
+                        # add log
+                        write_log("photovoltaic", "updated", dataset, self.model, self.scenario, self.year)
 
     def update_ng_production_ds(self) -> None:
         """
@@ -1064,10 +1035,10 @@ class Electricity(BaseTransformation):
 
         countries = ["NL", "DE", "FR", "RER", "IT", "CH"]
 
-        for ds in self.database:
+        for dataset in self.database:
             amount = {}
             to_remove = []
-            for exc in ds["exchanges"]:
+            for exc in dataset["exchanges"]:
                 if (
                     exc["name"] == "market for natural gas, high pressure"
                     and exc["location"] in countries
@@ -1082,15 +1053,15 @@ class Electricity(BaseTransformation):
                     )
 
             if amount:
-                ds["exchanges"] = [
+                dataset["exchanges"] = [
                     e
-                    for e in ds["exchanges"]
+                    for e in dataset["exchanges"]
                     if (e["name"], e.get("product"), e.get("location"), e["type"])
                     not in to_remove
                 ]
 
                 for loc in amount:
-                    ds["exchanges"].append(
+                    dataset["exchanges"].append(
                         {
                             "name": "natural gas, high pressure, at consumer",
                             "product": "natural gas, high pressure, at consumer",
@@ -1101,14 +1072,17 @@ class Electricity(BaseTransformation):
                         }
                     )
 
+                # add to log
+                write_log("natural gas", "updated", [dataset], self.model, self.scenario, self.year)
+
         countries = ["DE", "DZ", "GB", "NG", "NL", "NO", "RU", "US"]
 
         names = ["natural gas production", "petroleum and gas production"]
 
-        for ds in self.database:
+        for dataset in self.database:
             amount = {}
             to_remove = []
-            for exc in ds["exchanges"]:
+            for exc in dataset["exchanges"]:
                 if (
                     any(i in exc["name"] for i in names)
                     and "natural gas, high pressure"
@@ -1124,15 +1098,15 @@ class Electricity(BaseTransformation):
                     )
 
             if amount:
-                ds["exchanges"] = [
+                dataset["exchanges"] = [
                     e
-                    for e in ds["exchanges"]
+                    for e in dataset["exchanges"]
                     if (e["name"], e.get("product"), e.get("location"), e["type"])
                     not in to_remove
                 ]
 
                 for loc in amount:
-                    ds["exchanges"].append(
+                    dataset["exchanges"].append(
                         {
                             "name": "natural gas, at production",
                             "product": "natural gas, high pressure",
@@ -1142,6 +1116,9 @@ class Electricity(BaseTransformation):
                             "type": "technosphere",
                         }
                     )
+
+                # add to log
+                write_log("natural gas", "updated", [dataset], self.model, self.scenario, self.year)
 
     def create_biomass_markets(self) -> None:
         print("Create biomass markets.")
@@ -1164,8 +1141,12 @@ class Electricity(BaseTransformation):
         # add them to the database
         self.database.extend(forest_residues_ds.values())
 
+        # add log
+        for datasets in list(forest_residues_ds.values()):
+            write_log("biomass", "created", datasets, self.model, self.scenario, self.year)
+
         for region in self.regions:
-            act = {
+            dataset = {
                 "name": "market for biomass, used as fuel",
                 "reference product": "biomass, used as fuel",
                 "location": region,
@@ -1225,10 +1206,10 @@ class Electricity(BaseTransformation):
 
                 if share > 0:
                     ecoinvent_regions = self.geo.iam_to_ecoinvent_location(
-                        act["location"]
+                        dataset["location"]
                     )
                     possible_locations = [
-                        act["location"],
+                        dataset["location"],
                         *ecoinvent_regions,
                         "RER",
                         "Europe without Switzerland",
@@ -1272,7 +1253,7 @@ class Electricity(BaseTransformation):
                     for supplier, supply_share in suppliers.items():
                         multiplication_factor = 1.0
                         amount = supply_share * share * multiplication_factor
-                        act["exchanges"].append(
+                        dataset["exchanges"].append(
                             {
                                 "type": "technosphere",
                                 "product": supplier[2],
@@ -1284,11 +1265,14 @@ class Electricity(BaseTransformation):
                             }
                         )
 
-            self.database.append(act)
+            self.database.append(dataset)
 
             self.list_datasets.append(
-                (act["location"], act["reference product"], act["location"])
+                (dataset["location"], dataset["reference product"], dataset["location"])
             )
+
+            # add to log
+            write_log("biomass", "created", [dataset], self.model, self.scenario, self.year)
 
         # replace biomass inputs
         print("Replace biomass inputs.")

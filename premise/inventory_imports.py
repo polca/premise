@@ -6,7 +6,6 @@ and those provided by the user.
 import csv
 import itertools
 import sys
-import urllib
 import uuid
 from pathlib import Path
 from typing import Dict, List, Union
@@ -163,8 +162,7 @@ class BaseInventoryImport:
                     f"The inventory file {path} could not be found."
                 )
 
-        self.path = path
-
+        self.path = Path(path) if isinstance(path, str) else path
         self.import_db = self.load_inventory(path)
 
         # register migration maps
@@ -386,7 +384,7 @@ class BaseInventoryImport:
                 exc.get("categories"),
                 exc["unit"],
                 exc["type"],
-                self.path,
+                self.path.name,
             )
         )
 

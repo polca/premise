@@ -18,7 +18,7 @@ from wurst import transformations as wt
 from .activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
 from .data_collection import IAMDataCollection
 from .geomap import Geomap
-from .utils import get_fuel_properties, relink_technosphere_exchanges
+from .utils import get_fuel_properties, relink_technosphere_exchanges, write_log
 
 
 def get_suppliers_of_a_region(
@@ -31,7 +31,7 @@ def get_suppliers_of_a_region(
 ) -> filter:
     """
     Return a list of datasets, for which the location, name,
-    reference product and unit correspondto the region and name
+    reference product and unit correspond to the region and name
     given, respectively.
 
     :param database: database to search
@@ -332,6 +332,7 @@ class BaseTransformation:
     def region_to_proxy_dataset_mapping(
         self, name: str, ref_prod: str, regions: List[str] = None
     ) -> Dict[str, str]:
+
         d_map = {
             self.ecoinvent_to_iam_loc[d["location"]]: d["location"]
             for d in ws.get_many(
@@ -599,13 +600,15 @@ class BaseTransformation:
                         }
                     )
 
+        # add log
+        write_log("", "updated", existing_datasets, self.model, self.scenario, self.year)
+
     def relink_datasets(
         self, excludes_datasets: List[str] = None, alt_names: List[str] = None
-    ) -> dict:
+    ) -> None:
         """
         For a given exchange name, product and unit, change its location to an IAM location,
         to effectively link to the newly built market(s)/activity(ies).
-
         :param excludes_datasets: list of datasets to exclude from relinking
         :param alt_names: list of alternative names to use for relinking
         """
@@ -787,6 +790,7 @@ class BaseTransformation:
         loc: str,
         bio_co2_stored: float,
         bio_co2_leaked: float,
+        sector: str = "cement",
     ) -> None:
         """
         Create a CCS dataset, reflecting the share of fossil vs. biogenic CO2.
@@ -797,7 +801,9 @@ class BaseTransformation:
         :param loc: location of the dataset to create
         :param bio_co2_stored: share of biogenic CO2 over biogenic + fossil CO2
         :param bio_co2_leaked: share of biogenic CO2 leaked back into the atmosphere
+        :param sector: name of the sector to look capture rate for
         :return: Does not return anything, but adds the dataset to the database.
+
         """
 
         # select the dataset
@@ -808,7 +814,7 @@ class BaseTransformation:
             self.database,
             ws.equals(
                 "name",
-                "CO2 capture, at cement production plant, "
+                "carbon dioxide, captured at cement production plant, "
                 "with underground storage, post, 200 km",
             ),
             ws.equals("location", "RER"),
@@ -817,6 +823,11 @@ class BaseTransformation:
         # duplicate the dataset
         ccs = wt.copy_to_new_location(dataset, loc)
         ccs["code"] = str(uuid.uuid4().hex)
+
+        if sector != "cement":
+            ccs["name"] = ccs["name"].replace("cement", sector)
+            for e in ws.production(ccs):
+                e["name"] = e["name"].replace("cement", sector)
 
         # relink the providers inside the dataset given the new location
         self.cache, ccs = relink_technosphere_exchanges(
@@ -829,12 +840,12 @@ class BaseTransformation:
         # we first fix the biogenic CO2 permanent storage
         # this corresponds to the share of biogenic CO2
         # in the fossil + biogenic CO2 emissions of the plant
-        if bio_co2_stored > 0:
-            for exc in ws.biosphere(
-                ccs,
-                ws.equals("name", "Carbon dioxide, in air"),
-            ):
-                exc["amount"] = bio_co2_stored
+
+        for exc in ws.biosphere(
+            ccs,
+            ws.equals("name", "Carbon dioxide, in air"),
+        ):
+            exc["amount"] = bio_co2_stored
 
         if bio_co2_leaked > 0:
             # then the biogenic CO2 leaked during the capture process

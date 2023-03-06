@@ -882,9 +882,9 @@ def prepare_db_for_export(scenario, cache, name):
             "market group for electricity, high voltage",
             "market group for electricity, medium voltage",
             "market group for electricity, low voltage",
-            "carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity",
+            "carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity",
             "methane, from electrochemical methanation, with carbon from atmospheric CO2 capture, using heat pump heat",
-            "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
+            "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from direct_air_capture using heat pump heat), at fuelling station, using heat pump heat",
         ],
     )
 

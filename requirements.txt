@@ -12,3 +12,4 @@ pyYaml
 sparse
 schema
 datapackage
+requests

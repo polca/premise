@@ -27,6 +27,7 @@ IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
 IAM_CROPS_VARS = DATA_DIR / "fuels" / "crops_properties.yml"
 IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
 IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
+IAM_DAC_VARS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yml"
 IAM_OTHER_VARS = DATA_DIR / "utils" / "report" / "other_vars.yaml"
 IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
 FILEPATH_FLEET_COMP = (
@@ -264,6 +265,10 @@ class IAMDataCollection:
             )
         )
         prod_vars.update(
+            self.__get_iam_variable_labels(IAM_DAC_VARS, variable="iam_aliases")
+        )
+
+        prod_vars.update(
             self.__get_iam_variable_labels(IAM_BIOMASS_VARS, variable="iam_aliases")
         )
         eff_vars.update(
@@ -385,10 +390,12 @@ class IAMDataCollection:
         for key, values in out.items():
             if variable in values:
                 if variable == "gains_aliases":
-                    dict_vars[key] = values[variable]
+                    if values[variable] is not None:
+                        dict_vars[key] = values[variable]
                 else:
                     if self.model in values[variable]:
-                        dict_vars[key] = values[variable][self.model]
+                        if values[variable][self.model] is not None:
+                            dict_vars[key] = values[variable][self.model]
 
         return dict_vars
 
@@ -446,15 +453,6 @@ class IAMDataCollection:
                 index_col=["Region", "Variable", "Unit"],
                 encoding="latin-1",
             ).drop(columns=["Model", "Scenario"])
-
-            # if new sub-European regions are present, we remove EUR and NEU
-            if any(
-                x in dataframe.index.get_level_values("Region").unique()
-                for x in ["ESC", "DEU", "NEN"]
-            ):
-                dataframe = dataframe.loc[
-                    ~dataframe.index.get_level_values("Region").isin(["EUR", "NEU"])
-                ]
 
             if len(dataframe.columns == 20):
                 dataframe.drop(columns=dataframe.columns[-1], inplace=True)

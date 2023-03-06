@@ -763,34 +763,43 @@ similar.
 Direct Air Capture
 ------------------
 
-Inventories for direct air capture of CO2 using ClimeWork's low-temperature
-process are imported. They originate from the work of Terlouw_ et al. 2021.
+Two sets of inventories for Direct Air Capture (DAC) are available in *premise*.
+One for a solvent.based system, and one for a sorbent-based system. The inventories
+were developed by Qiu_ and are available in the LCI_DAC_ spreadsheet. For each,
+a variant including the subsequent compression, transport and storage of the
+captured CO2 is also available.
+
 They can be consulted here: LCI_DAC_.
 
-.. _Terlouw: https://pubs.acs.org/doi/10.1021/acs.est.1c03263
+.. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 .. _LCI_DAC: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-direct-air-capture.xlsx
 
 They introduce the following datasets:
 
 
- ================================================================================== ===========
-  Activity                                                                           Location
- ================================================================================== ===========
-  carbon dioxide, captured from the atmosphere                                       RER
- ================================================================================== ===========
+ =============================================================================================================== ===========
+  Activity                                                                                                         Location
+ =============================================================================================================== ===========
+  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2               RER
+  carbon dioxide, captured from atmosphere and stored, with a sorbent-based direct air capture system, 100ktCO2    RER
+  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2                 RER
+  carbon dioxide, captured from atmosphere and stored, with a solvent-based direct air capture system, 1MtCO2      RER
+ =============================================================================================================== ===========
 
-In its default configuration, the DAC process uses "free of burden" excess heat
-and grid-supplied electricity. *premise* creates various configurations of that
-same process, using different sources for heat (industrial steam heat, high-temp heat
-pump heat), which are found under the following names, for each IAM region:
+Using the transformation function `update_dac()`, *premise* creates various configurations of these processes,
+using different sources for heat (industrial steam heat, high-temp heat
+pump heat and excess heat), which are found under the following names, for each IAM region:
 
- ============================================================================================= ==================
-  name                                                                                          location
- ============================================================================================= ==================
-  carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity           all IAM regions
-  carbon dioxide, captured from atmosphere, with industrial steam heat, and grid electricity    all IAM regions
-  carbon dioxide, captured from atmosphere, with waste heat, and grid electricity               all IAM regions
- ============================================================================================= ==================
+ ======================================================================================================================================================= ==================
+  name                                                                                                                                                      location
+ ======================================================================================================================================================= ==================
+  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with waste heat, and grid electricity                  all IAM regions
+  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity       all IAM regions
+  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity              all IAM regions
+  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity                all IAM regions
+  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity     all IAM regions
+  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity            all IAM regions
+ ======================================================================================================================================================= ==================
 
 
 Li-ion batteries

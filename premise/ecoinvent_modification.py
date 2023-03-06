@@ -12,10 +12,12 @@ from datetime import date
 from pathlib import Path
 from typing import List, Union
 
+import datapackage
 import yaml
 
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
+from .direct_air_capture import DirectAirCapture
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
@@ -276,11 +278,10 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 "must be present in the list of inventories to import."
             )
 
-        if not Path(inventory["inventories"]).is_file():
+        if not Path(inventory["filepath"]).is_file():
             raise FileNotFoundError(
                 f"Cannot find the inventory file: {inventory['inventories']}."
             )
-        inventory["inventories"] = Path(inventory["inventories"])
 
         if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8"]:
             raise ValueError(
@@ -295,13 +296,18 @@ def check_db_version(version: [str, float]) -> str:
     """
     Check that the ecoinvent database version is supported
     :param version:
-    :return:
+    :return: str
     """
     version = str(version)
     if version not in config["SUPPORTED_EI_VERSIONS"]:
         raise ValueError(
             f"Only {config['SUPPORTED_EI_VERSIONS']} are currently supported, not {version}."
         )
+
+    # convert "3.7.1" to "3.7"
+    if version == "3.7.1":
+        version = "3.7"
+
     return version
 
 
@@ -655,20 +661,43 @@ class NewDatabase:
         print("Done!\n")
         return data
 
-    def __import_additional_inventories(self, datapackage: list) -> List[dict]:
+    def __import_additional_inventories(self, data_package: [datapackage.DataPackage, list]) -> List[dict]:
+        """
+        This method will trigger the import of a number of inventories
+        and merge them into the database dictionary.
+
+        :param data_package: datapackage.DataPackage or list of file paths
+        :return: list of dictionaries
+
+        """
         print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
 
-        if datapackage.get_resource("inventories"):
-            additional = AdditionalInventory(
-                database=self.database,
-                version_in=datapackage.descriptor["ecoinvent"]["version"],
-                version_out=self.version,
-                path=datapackage.get_resource("inventories").source,
-            )
-            additional.prepare_inventory()
-            data.extend(additional.merge_inventory())
+        if isinstance(data_package, list):
+            # this is a list of file paths
+            for file_path in data_package:
+                additional = AdditionalInventory(
+                    database=self.database,
+                    version_in=file_path["ecoinvent version"],
+                    version_out=self.version,
+                    path=file_path["filepath"],
+                )
+                additional.prepare_inventory()
+                data.extend(additional.merge_inventory())
+
+        elif isinstance(data_package, datapackage.DataPackage):
+            if data_package.get_resource("inventories"):
+                additional = AdditionalInventory(
+                    database=self.database,
+                    version_in=data_package.descriptor["ecoinvent"]["version"],
+                    version_out=self.version,
+                    path=data_package.get_resource("inventories").source,
+                )
+                additional.prepare_inventory()
+                data.extend(additional.merge_inventory())
+        else:
+            raise TypeError("Unknown data type for datapackage.")
 
         return data
 
@@ -701,6 +730,32 @@ class NewDatabase:
                 electricity.update_electricity_markets()
                 electricity.update_electricity_efficiency()
                 scenario["database"] = electricity.database
+
+    def update_dac(self) -> None:
+        """
+        This method will update the Direct Air Capture (DAC) inventories
+        with the data from the IAM scenarios.
+
+        """
+
+        print("\n//////////////////////// DIRECT AIR CAPTURE ////////////////////////")
+
+        for scenario in self.scenarios:
+            if (
+                "exclude" not in scenario
+                or "update_dac" not in scenario["exclude"]
+            ):
+                dac = DirectAirCapture(
+                    database=scenario["database"],
+                    iam_data=scenario["iam data"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    year=scenario["year"],
+                    version=self.version,
+                )
+
+                dac.generate_dac_activities()
+                scenario["database"] = dac.database
 
     def update_fuels(self) -> None:
         """
@@ -919,6 +974,7 @@ class NewDatabase:
         self.update_trucks()
         # self.update_buses()
         self.update_electricity()
+        self.update_dac()
         self.update_cement()
         self.update_steel()
         self.update_fuels()

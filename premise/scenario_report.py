@@ -18,6 +18,7 @@ IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
 IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
 IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
+IAM_DACCS_VARS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yml"
 IAM_OTHER_VARS = DATA_DIR / "utils" / "report" / "other_vars.yaml"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
@@ -39,6 +40,7 @@ SECTORS = {
     "Steel - generation": IAM_STEEL_VARS,
     "Steel - efficiency": IAM_STEEL_VARS,
     "Steel - CCS": (IAM_CARBON_CAPTURE_VARS, ["steel"]),
+    "Direct Air Capture - generation": (IAM_DACCS_VARS, ["dac_solvent", "dac_sorbent"]),
     "Transport (cars)": (
         VEHICLES_MAP,
         ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],

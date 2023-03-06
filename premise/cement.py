@@ -7,10 +7,6 @@ It eventually re-links all the cement-consuming activities (e.g., concrete produ
 of the wurst database to the newly created cement markets.
 
 """
-import csv
-import os
-from datetime import date
-from pathlib import Path
 
 from .transformation import (
     BaseTransformation,
@@ -23,7 +19,12 @@ from .transformation import (
     remove_exchanges,
     ws,
 )
-from .utils import DATA_DIR, get_clinker_ratio_ecoinvent, get_clinker_ratio_remind
+from .utils import (
+    DATA_DIR,
+    get_clinker_ratio_ecoinvent,
+    get_clinker_ratio_remind,
+    write_log
+)
 
 
 class Cement(BaseTransformation):
@@ -377,10 +378,10 @@ class Cement(BaseTransformation):
                     "amount": float((total_co2_emissions / 1000) * carbon_capture_rate),
                     "type": "technosphere",
                     "production volume": 0,
-                    "name": "CO2 capture, at cement production plant, with underground storage, post, 200 km",
+                    "name": "carbon dioxide, captured at cement production plant, with underground storage, post, 200 km",
                     "unit": "kilogram",
                     "location": dataset["location"],
-                    "product": "CO2, captured and stored",
+                    "product": "carbon dioxide, captured and stored",
                 }
                 dataset["exchanges"].append(ccs_exc)
 
@@ -601,39 +602,16 @@ class Cement(BaseTransformation):
         print(f"Log of deleted cement datasets saved in {DATA_DIR}/logs")
         print(f"Log of created cement datasets saved in {DATA_DIR}/logs")
 
-        if not os.path.exists(DATA_DIR / "logs"):
-            os.makedirs(DATA_DIR / "logs")
 
-        with open(
-            DATA_DIR
-            / f"logs/log deleted cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
-            "w",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            writer.writerow(["dataset name", "reference product", "location"])
-
-        with open(
-            DATA_DIR
-            / f"logs/log created cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
-            "w",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            writer.writerow(["dataset name", "reference product", "location"])
-
-        created_datasets = []
 
         print("\nCreate new clinker production datasets and delete old datasets")
         clinker_prod_datasets = list(self.build_clinker_production_datasets().values())
         self.database.extend(clinker_prod_datasets)
 
-        created_datasets.extend(
-            [
-                (act["name"], act["reference product"], act["location"])
-                for act in clinker_prod_datasets
-            ]
-        )
+        for datasets in clinker_prod_datasets:
+            write_log(
+                "cement", "created", datasets, self.model, self.scenario, self.year
+            )
 
         print("\nCreate new clinker market datasets and delete old datasets")
         clinker_market_datasets = list(
@@ -646,12 +624,10 @@ class Cement(BaseTransformation):
 
         self.database.extend(clinker_market_datasets)
 
-        created_datasets.extend(
-            [
-                (act["name"], act["reference product"], act["location"])
-                for act in clinker_market_datasets
-            ]
-        )
+        for datasets in clinker_market_datasets:
+            write_log(
+                "cement", "created", datasets, self.model, self.scenario, self.year
+            )
 
         print('Adjust clinker-to-cement ratio in "unspecified cement" datasets')
 
@@ -671,12 +647,10 @@ class Cement(BaseTransformation):
         act_cement_unspecified = self.adjust_clinker_ratio(act_cement_unspecified)
         self.database.extend(list(act_cement_unspecified.values()))
 
-        created_datasets.extend(
-            [
-                (act["name"], act["reference product"], act["location"])
-                for act in act_cement_unspecified.values()
-            ]
-        )
+        for datasets in list(act_cement_unspecified.values()):
+            write_log(
+                "cement", "created", datasets, self.model, self.scenario, self.year
+            )
 
         print("\nCreate new cement market datasets")
 
@@ -699,12 +673,11 @@ class Cement(BaseTransformation):
             )
 
             self.database.extend(list(new_cement_markets.values()))
-            created_datasets.extend(
-                [
-                    (act["name"], act["reference product"], act["location"])
-                    for act in new_cement_markets.values()
-                ]
-            )
+
+            for datasets in list(new_cement_markets.values()):
+                write_log(
+                    "cement", "created", datasets, self.model, self.scenario, self.year
+                )
 
         print(
             "\nCreate new cement production datasets and adjust electricity consumption"
@@ -735,24 +708,9 @@ class Cement(BaseTransformation):
             # add them to the wurst database
             self.database.extend(list(new_cement_production.values()))
 
-            # relink cement production-consuming datasets to the new ones
-            created_datasets.extend(
-                [
-                    (act["name"], act["reference product"], act["location"])
-                    for act in new_cement_production.values()
-                ]
-            )
-
-        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
-
-        with open(
-            DATA_DIR
-            / f"logs/log created cement datasets {self.model} {self.scenario} {self.year}-{date.today()}.csv",
-            "a",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            for line in created_datasets:
-                writer.writerow(line)
+            for datasets in list(new_cement_production.values()):
+                write_log(
+                    "cement", "created", datasets, self.model, self.scenario, self.year
+                )
 
         print("Done!")

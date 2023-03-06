@@ -1122,6 +1122,62 @@ of India.
   steel production, electric, low-alloyed                           0.34         kilogram         IND
  ================================================================= ============ ================ ===========
 
+Direct Air Capture
+""""""""""""""""""
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update_dac()
+
+
+
+*premise* create different region-specific Direct Air Capture (DAC)
+datasets. If cumulative DAC deployment data is available from the IAM scenario,
+
+*premise* applies a learning rate on the input
+of thermal and electrical energy as well as infrastructure
+relative to 2020 (see SI of Qiu_ et al., 2022).
+
+The learning indicates the percentage improvement applied
+for every doubling of the cumulated deployment capacity,
+relative to 2020.
+
+The following table shows the learning rates applied for
+DAC systems for energy inputs:
+
++--------------------------------------------------+-------------------+-------------------+
+| Technology                                       | Solvent-based DAC | Sorbent-based DAC |
++==================================================+===================+===================+
+| Learning rate                                    | 2.50%             | 2.50%             |
+| Theoretical minimum (relative to initial value)  | 50%               | 50%               |
++--------------------------------------------------+-------------------+-------------------+
+
+The following table shows the learning rates applied for
+DAC systems for infrastructure inputs (materials, chemicals, system):
+
++-------------------------------------------------+-------------------+-------------------+
+| Technology                                      | Solvent-based DAC | Sorbent-based DAC |
++=================================================+===================+===================+
+| Learning rate                                   | 10.00%            | 15.00%            |
+| Theoretical minimum (relative to initial value) | 44%               | 18%               |
++-------------------------------------------------+-------------------+-------------------+
+
+.. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 
 Fuels
 """""
@@ -1230,7 +1286,7 @@ ________
 * the transport mode: truck, hydrogen pipeline, re-assigned CNG pipeline, ship,
 * the distance: 500 km, 2000 km
 * the state of the hydrogen: gaseous, liquid, liquid organic compound,
-* the hydrogen production route: electrolysis, SMR, ATR, biomass gasifier (coal, woody biommas)
+* the hydrogen production route: electrolysis, SMR, biomass gasifier (coal, woody biomass)
 
 Hence, for each IAM region, the following supply chains for hydrogen are built:
 
@@ -1248,21 +1304,12 @@ Hence, for each IAM region, the following supply chains for hydrogen are built:
 - hydrogen supply, from SMR of nat. gas, with CCS, by truck, as liquid, over 500 km
 - hydrogen supply, from electrolysis, by truck, as liquid organic compound, over 500 km
 - hydrogen supply, from gasification of biomass, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from ATR of nat. gas, by CNG pipeline, as gaseous, over 500 km
-- hydrogen supply, from ATR of nat. gas, with CCS, by truck, as gaseous, over 500 km
 - hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
 - hydrogen supply, from SMR of biogas, with CCS, by CNG pipeline, as gaseous, over 500 km
 - hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
-- hydrogen supply, from ATR of biogas, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from ATR of nat. gas, with CCS, by ship, as liquid, over 2000 km
 - hydrogen supply, from SMR of nat. gas, by H2 pipeline, as gaseous, over 500 km
 - hydrogen supply, from gasification of biomass, with CCS, by truck, as liquid organic compound, over 500 km
 - hydrogen supply, from gasification of biomass, by ship, as liquid, over 2000 km
-- hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from ATR of biogas, with CCS, by CNG pipeline, as gaseous, over 500 km
-- hydrogen supply, from ATR of biogas, with CCS, by truck, as gaseous, over 500 km
-- hydrogen supply, from ATR of nat. gas, by truck, as liquid, over 500 km
-- hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as gaseous, over 500 km
 
 Each supply route is associated with specific losses.
 Losses for the transport of H2 by truck and hydrogen pipelines, and losses

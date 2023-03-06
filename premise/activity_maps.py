@@ -17,6 +17,8 @@ GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
 POWERPLANT_TECHS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 FUELS_TECHS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
+DAC_TECHS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yml"
+CARBON_STORAGE_TECHS = DATA_DIR / "direct_air_capture" / "carbon_storage_tech_vars.yml"
 
 
 def get_mapping(filepath: Path, var: str) -> dict:
@@ -89,6 +91,10 @@ class InventorySet:
         self.materials_filters = get_mapping(
             filepath=MATERIALS_TECHS, var="ecoinvent_aliases"
         )
+        self.daccs_filters = get_mapping(filepath=DAC_TECHS, var="ecoinvent_aliases")
+        self.carbon_storage_filters = get_mapping(
+            filepath=CARBON_STORAGE_TECHS, var="ecoinvent_aliases"
+        )
 
     def generate_powerplant_map(self) -> dict:
         """
@@ -100,6 +106,28 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.powerplant_filters)
+
+    def generate_daccs_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to direct air capture.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.daccs_filters)
+
+    def generate_carbon_storage_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to carbon storage.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.carbon_storage_filters)
 
     def generate_powerplant_fuels_map(self) -> dict:
         """

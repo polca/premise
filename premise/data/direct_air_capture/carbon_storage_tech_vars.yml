@@ -1,0 +1,10 @@
+# mapping between premise and IAM terminology
+# regarding direct_air_capture use
+---
+cs:
+  iam_aliases:
+    remind:
+    image:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide compression, transport and storage

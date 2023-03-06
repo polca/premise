@@ -23,6 +23,7 @@ SUPPORTED_PATHWAYS:
 
 LIST_TRANSF_FUNC:
   - update_electricity
+  - update_dac
   - update_cement
   - update_steel
   - update_two_wheelers

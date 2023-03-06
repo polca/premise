@@ -9,10 +9,13 @@ from copy import deepcopy
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Tuple
+from datetime import date
 
 import pandas as pd
 import xarray as xr
 import yaml
+from itertools import groupby
+from operator import itemgetter
 from bw2data import databases
 from bw2io.importers.base_lci import LCIImporter
 from constructive_geometries import resolved_row
@@ -162,65 +165,26 @@ def add_entry_to_cache(
     cache: dict,
     location: str,
     model: str,
-    exc: dict,
+    exchange: dict,
     allocated: List[dict],
-    share: List[float],
+    shares: List[float],
 ) -> dict:
-    if location in cache:
-        if model in cache[location]:
-            cache[location][model][
-                (
-                    exc["name"],
-                    exc["product"],
-                    exc["location"],
-                    exc["unit"],
-                )
-            ] = [
-                (e["name"], e["product"], e["location"], e["unit"], s)
-                for e, s in zip(allocated, share)
-            ]
-        else:
-            cache[location] = {
-                model: {
-                    (
-                        exc["name"],
-                        exc["product"],
-                        exc["location"],
-                        exc["unit"],
-                    ): [
-                        (
-                            e["name"],
-                            e["product"],
-                            e["location"],
-                            e["unit"],
-                            s,
-                        )
-                        for e, s in zip(allocated, share)
-                    ]
-                }
-            }
-
-    else:
-        cache[location] = {
-            model: {
-                (
-                    exc["name"],
-                    exc["product"],
-                    exc["location"],
-                    exc["unit"],
-                ): [
-                    (
-                        e["name"],
-                        e["product"],
-                        e["location"],
-                        e["unit"],
-                        s,
-                    )
-                    for e, s in zip(allocated, share)
-                ]
-            }
-        }
-
+    """
+    Add an entry to the cache.
+    :param cache: cache
+    :param location: location
+    :param model: model
+    :param exchange: exchange
+    :param allocated: allocated
+    :param shares: shares
+    :return: cache
+    """
+    exc_key = tuple(exchange[k] for k in ("name", "product", "location", "unit"))
+    entry = [
+        (e["name"], e["product"], e["location"], e["unit"], s)
+        for e, s in zip(allocated, shares)
+    ]
+    cache.setdefault(location, {}).setdefault(model, {})[exc_key] = entry
     return cache
 
 
@@ -470,6 +434,23 @@ def relink_technosphere_exchanges(
                 cache = add_entry_to_cache(
                     cache, dataset["location"], model, exc, [exc], [1.0]
                 )
+
+    # make unique list of exchanges from new_exchanges
+    # and sum the amounts of exchanges with the same name, product, location and unit
+    new_exchanges = [
+        {
+            "name": name,
+            "product": product,
+            "location": location,
+            "unit": unit,
+            "type": "technosphere",
+            "amount": sum([exc["amount"] for exc in exchanges]),
+        }
+        for (name, product, location, unit), exchanges in groupby(
+            sorted(new_exchanges, key=itemgetter("name", "product", "location", "unit")),
+            key=itemgetter("name", "product", "location", "unit"),
+        )
+    ]
 
     dataset["exchanges"] = [
         exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
@@ -753,3 +734,53 @@ def write_brightway2_database(data, name):
     check_internal_linking(data)
     check_duplicate_codes(data)
     PremiseImporter(name, data).write_database()
+
+
+def write_log(sector, status, datasets, model, scenario, year):
+    """
+    Write a log file with the name of the created datasets.
+
+    :param sector: str
+    :param status: str
+    :param datasets: list of dictionaries
+    :param filename: str
+    :param model: str
+    :param scenario: str
+    :param year: int
+    :return: None
+    """
+
+    if status not in ["created", "updated"]:
+        raise ValueError("Status must be either 'created' or 'updated'.")
+
+    if isinstance(datasets, dict):
+        datasets = [datasets]
+
+    created_datasets = [
+        (sector, status, act["name"], act["reference product"], act["location"])
+        for act in datasets
+    ]
+
+    if not os.path.exists(DATA_DIR / "logs"):
+        os.makedirs(DATA_DIR / "logs")
+
+    filepath = DATA_DIR / f"logs/created datasets {model} {scenario} {year}-{date.today()}.csv"
+
+    # if the file is new, write the header
+    if not os.path.exists(filepath):
+        with open(
+            filepath,
+            "w",
+            encoding="utf-8",
+        ) as csv_file:
+            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+            writer.writerow(["Sector", "Status", "Name", "Reference product", "Location"])
+
+    with open(
+            filepath,
+            "a",
+            encoding="utf-8",
+    ) as csv_file:
+        writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
+        for line in created_datasets:
+            writer.writerow(line)
