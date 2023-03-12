@@ -17,8 +17,8 @@ GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
 POWERPLANT_TECHS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 FUELS_TECHS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
-DAC_TECHS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yml"
-CARBON_STORAGE_TECHS = DATA_DIR / "direct_air_capture" / "carbon_storage_tech_vars.yml"
+DAC_TECHS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yaml"
+CARBON_STORAGE_TECHS = DATA_DIR / "direct_air_capture" / "carbon_storage_tech_vars.yaml"
 CEMENT_TECHS = DATA_DIR / "cement" / "cement_tech_vars.yml"
 
 
