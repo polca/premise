@@ -14,6 +14,19 @@ ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
 
 
+def load_constants():
+    """
+    Load constants from the constants.yml file.
+    :return: dict
+    """
+    with open(DATA_DIR / "utils" / "constants.yml", "r", encoding="utf-8") as stream:
+        constants = yaml.safe_load(stream)
+    return constants
+
+
+constants = load_constants()
+
+
 def get_additional_mapping() -> Dict[str, str]:
     """
     Return a dictionary with additional ecoinvent to IAM mappings
@@ -52,8 +65,8 @@ class Geomap:
 
         for key, val in self.additional_mappings.items():
             if (
-                self.model.upper(),
-                val[self.model],
+                    self.model.upper(),
+                    val[self.model],
             ) not in self.rev_additional_mappings:
                 self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [
                     key
@@ -72,7 +85,7 @@ class Geomap:
         ]
 
     def iam_to_ecoinvent_location(
-        self, location: str, contained: bool = True
+            self, location: str, contained: bool = True
     ) -> Union[List[str], str]:
         """
         Find the corresponding ecoinvent region given an IAM region.
@@ -97,7 +110,7 @@ class Geomap:
                 if not isinstance(region, tuple):
                     ecoinvent_locations.append(region)
                 else:
-                    if region[0] not in ("REMIND", "IMAGE"):
+                    if region[0].lower() not in constants["SUPPORTED_MODELS"]:
                         ecoinvent_locations.append(region[1])
 
             # Current behaviour of `intersects` is to include "GLO" in all REMIND regions.

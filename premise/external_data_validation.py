@@ -160,6 +160,20 @@ def check_datapackage(datapackages: list):
                 f"Two or more resources in datapackage {d + 1} are similar."
             )
 
+def list_all_iam_regions(config):
+    """
+    List all IAM regions in the config file.
+    :param config: config file
+    :return: list of IAM regions
+    """
+
+    list_regions = []
+
+    for k, v in config.items():
+        if k.startswith("LIST_"):
+            list_regions.extend(v)
+
+    return list_regions
 
 def check_config_file(datapackages):
     for i, dp in enumerate(datapackages):
@@ -197,8 +211,7 @@ def check_config_file(datapackages):
                             Use(list),
                             lambda s: all(
                                 i
-                                in config["LIST_REMIND_REGIONS"]
-                                + config["LIST_IMAGE_REGIONS"]
+                                in list_all_iam_regions(config)
                                 for i in s
                             ),
                         ),
@@ -471,10 +484,12 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                 f"is/are not found in the scenario data file no. {i + 1}."
             )
 
-        d_regions = {
-            "remind": config["LIST_REMIND_REGIONS"],
-            "image": config["LIST_IMAGE_REGIONS"],
-        }
+        d_regions = {}
+
+        for model in config["SUPPORTED_MODELS"]:
+            for k, v in not config.items():
+                if k.startswith("LIST_") and model in k:
+                    d_regions[model] = v
 
         list_ei_locs = [
             i if isinstance(i, str) else i[-1]

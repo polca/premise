@@ -143,10 +143,11 @@ def get_clinker_ratio_ecoinvent(version: str) -> Dict[Tuple[str, str], float]:
     return clinker_ratios
 
 
-def get_clinker_ratio_remind(year: int) -> xr.DataArray:
+def get_clinker_ratio(year: int) -> xr.DataArray:
     """
     Return an array with the average clinker-to-cement ratio
-    per year and per region, as given by REMIND.
+    per year and per country, from GNR for 2005-2020, but
+    with a common objective of 58% by 2100.
     :return: xarray
     :return:
     """
