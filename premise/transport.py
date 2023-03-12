@@ -458,7 +458,6 @@ class Transport(BaseTransformation):
             model=self.model,
             scenario=self.scenario,
             vehicle_type=self.vehicle_type,
-            relink=False,
             has_fleet=True,
         )
 

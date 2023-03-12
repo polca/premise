@@ -9,6 +9,7 @@ import uuid
 from collections import Counter, defaultdict
 from itertools import product
 from typing import Any, Dict, List, Set, Tuple, Union
+import pprint
 
 import numpy as np
 import wurst
@@ -18,8 +19,20 @@ from wurst import transformations as wt
 from .activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
 from .data_collection import IAMDataCollection
 from .geomap import Geomap
-from .utils import get_fuel_properties, relink_technosphere_exchanges, write_log
+from .utils import get_fuel_properties, relink_technosphere_exchanges, DATA_DIR
 
+
+import logging.config
+import yaml
+
+
+LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+
+with open(LOG_CONFIG, "r") as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
+
+logger = logging.getLogger("module")
 
 def get_suppliers_of_a_region(
     database: List[dict],
@@ -168,7 +181,16 @@ class BaseTransformation:
         self.fuels_specs: dict = get_fuel_properties()
         mapping = InventorySet(self.database)
         self.emissions_map: dict = get_gains_to_ecoinvent_emissions()
+        self.cement_fuels_map: dict = mapping.generate_cement_fuels_map()
         self.fuel_map: Dict[str, Set] = mapping.generate_fuel_map()
+
+        # reverse the fuel map to get a mapping from ecoinvent to premise
+        self.fuel_map_reverse: Dict = {}
+
+        for key, value in self.fuel_map.items():
+            for v in list(value):
+                self.fuel_map_reverse[v] = key
+
         self.material_map: Dict[str, Set] = mapping.generate_material_map()
         self.list_datasets: List[Tuple[str, str, str]] = get_tuples_from_database(
             self.database
@@ -238,15 +260,16 @@ class BaseTransformation:
 
         # if fuel input other than MJ
         if fuel_unit in ["kilogram", "cubic meter", "kilowatt hour"]:
-            lhv = [
-                self.fuels_specs[k]["lhv"]
-                for k in self.fuels_specs
-                if k in fuel_name.lower()
-            ][0]
-            return float(lhv) * fuel_amount
+
+            try:
+                lhv = self.fuels_specs[self.fuel_map_reverse[fuel_name]]["lhv"]
+            except KeyError:
+                lhv = 0
+        else:
+            lhv = 1
 
         # if already in MJ
-        return fuel_amount
+        return fuel_amount * lhv
 
     def find_fuel_efficiency(
         self, dataset: dict, fuel_filters: List[str], energy_out: float
@@ -600,8 +623,8 @@ class BaseTransformation:
                         }
                     )
 
-        # add log
-        write_log("", "updated", existing_datasets, self.model, self.scenario, self.year)
+            # add log
+            self.write_log(dataset=existing_ds, status="empty")
 
     def relink_datasets(
         self, excludes_datasets: List[str] = None, alt_names: List[str] = None
@@ -970,4 +993,20 @@ class BaseTransformation:
                 f"GAINS projections for the {sector} sector by `premise`."
             )
 
+            dataset.get("parameters", {}).update(
+                {
+                    f"{pollutant} change": f"{(scaling_factor - 1) * 100} %",
+                }
+            )
+
         return dataset
+
+    def write_log(self, dataset, status="created"):
+        """
+        Write log file.
+        """
+
+        logger.info(
+            f"{status}|{self.model}|{self.scenario}|{self.year}|"
+            f"{dataset['name']}|{dataset['location']}|"
+        )

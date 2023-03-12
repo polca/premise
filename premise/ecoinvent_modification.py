@@ -33,7 +33,7 @@ from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
-from .scenario_report import generate_summary_report
+from .report import generate_summary_report, generate_change_report
 from .steel import Steel
 from .transport import Transport
 from .utils import (
@@ -45,6 +45,7 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     write_brightway2_database,
+    delete_log,
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -1012,6 +1013,9 @@ class NewDatabase:
             name,
         )
 
+        # generate change report from logs
+        self.generate_change_report()
+
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
         Register the new database into an open brightway2 project.
@@ -1055,6 +1059,9 @@ class NewDatabase:
                 scenario["database"],
                 name[scen],
             )
+
+        # generate change report from logs
+        self.generate_change_report()
 
     def write_db_to_matrices(self, filepath: str = None):
         """
@@ -1108,6 +1115,9 @@ class NewDatabase:
                 filepath[scen],
             ).export_db_to_matrices()
 
+        # generate change report from logs
+        self.generate_change_report()
+
     def write_db_to_simapro(self, filepath: str = None):
         """
         Exports database as a CSV file to be imported in Simapro 9.x
@@ -1138,6 +1148,9 @@ class NewDatabase:
                 scenario["year"],
                 filepath,
             ).export_db_to_simapro()
+
+        # generate change report from logs
+        self.generate_change_report()
 
     def write_datapackage(self, name: str = f"datapackage_{date.today()}"):
         cached_inventories = self.__find_cached_inventories(self.source)
@@ -1172,6 +1185,9 @@ class NewDatabase:
             name=name,
         )
 
+        # generate change report from logs
+        self.generate_change_report()
+
     def generate_scenario_report(
         self,
         filepath: [str, Path] = None,
@@ -1199,3 +1215,18 @@ class NewDatabase:
         generate_summary_report(self.scenarios, filepath / name)
 
         print(f"Report saved under {filepath}.")
+
+    def generate_change_report(self):
+        """
+        Generate a report of the changes between the original database and the scenarios.
+        """
+
+        print("Generate change report.")
+        generate_change_report(
+            self.source,
+            self.version,
+            self.source_type,
+            self.system_model
+        )
+        # saved under working directory
+        print(f"Report saved under {os.getcwd()}.")

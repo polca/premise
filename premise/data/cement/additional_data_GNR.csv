@@ -113,7 +113,7 @@ EUR,2010,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 EUR,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3541
 EUR,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3528
 EUR,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3347
-EUR,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+EUR,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
 EUR,1990,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3837
 EUR,2000,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3591
 EUR,2005,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3619
@@ -122,7 +122,7 @@ EUR,2015,"Thermal energy consumption, dry kiln, with preheater, without precalci
 EUR,2016,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3748
 EUR,2017,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3715
 EUR,2030,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3700
-EUR,2150,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,2800
+EUR,2150,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3000
 EUR,1990,"Thermal energy consumption, dry kiln, without preheater",megajoule,3871
 EUR,2000,"Thermal energy consumption, dry kiln, without preheater",megajoule,3936
 EUR,2005,"Thermal energy consumption, dry kiln, without preheater",megajoule,3770
@@ -324,7 +324,7 @@ NEU,2010,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 NEU,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3541
 NEU,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3528
 NEU,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3347
-NEU,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+NEU,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3300
 NEU,1990,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3837
 NEU,2000,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3591
 NEU,2005,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3619
@@ -333,7 +333,7 @@ NEU,2015,"Thermal energy consumption, dry kiln, with preheater, without precalci
 NEU,2016,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3748
 NEU,2017,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3715
 NEU,2030,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3700
-NEU,2150,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,2800
+NEU,2150,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3000
 NEU,1990,"Thermal energy consumption, dry kiln, without preheater",megajoule,3871
 NEU,2000,"Thermal energy consumption, dry kiln, without preheater",megajoule,3936
 NEU,2005,"Thermal energy consumption, dry kiln, without preheater",megajoule,3770
@@ -545,7 +545,7 @@ LAM,2015,"Thermal energy consumption, dry kiln, with preheater, without precalci
 LAM,2016,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3723.295003
 LAM,2017,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3680.763355
 LAM,2030,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3600
-LAM,2150,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,2800
+LAM,2150,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3000
 LAM,1990,"Thermal energy consumption, dry kiln, without preheater",megajoule,5097.639155
 LAM,2010,"Thermal energy consumption, dry kiln, without preheater",megajoule,4132.223703
 LAM,2015,"Thermal energy consumption, dry kiln, without preheater",megajoule,3914.197686
@@ -735,7 +735,7 @@ USA,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 USA,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3668.177158
 USA,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3592.93982
 USA,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3500
-USA,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+USA,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
 USA,1990,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3970.301803
 USA,2000,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3866.250202
 USA,2005,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3840.612077
@@ -947,7 +947,7 @@ CHA,2015,"Thermal energy consumption, semi-wet kiln",megajoule,3351.050808
 CHA,2016,"Thermal energy consumption, semi-wet kiln",megajoule,3222.527611
 CHA,2017,"Thermal energy consumption, semi-wet kiln",megajoule,3203.702925
 CHA,2030,"Thermal energy consumption, semi-wet kiln",megajoule,3200
-CHA,2150,"Thermal energy consumption, semi-wet kiln",megajoule,2800
+CHA,2150,"Thermal energy consumption, semi-wet kiln",megajoule,3000
 CHA,1990,Share waste fuel,percentage,0.009685505
 CHA,2000,Share waste fuel,percentage,0.044724678
 CHA,2005,Share waste fuel,percentage,0.054963786
@@ -1119,7 +1119,7 @@ JPN,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 JPN,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3324.516407
 JPN,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3324.516407
 JPN,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3300
-JPN,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+JPN,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
 JPN,1990,"Thermal energy consumption, semi-wet kiln",megajoule,5857.322184
 JPN,2000,"Thermal energy consumption, semi-wet kiln",megajoule,5488.881805
 JPN,2005,"Thermal energy consumption, semi-wet kiln",megajoule,4460.014171
@@ -1293,20 +1293,20 @@ IND,2014,"Production volume share, wet kiln type",percentage,0
 IND,2015,"Production volume share, wet kiln type",percentage,0
 IND,2016,"Production volume share, wet kiln type",percentage,0
 IND,2017,"Production volume share, wet kiln type",percentage,0
-IND,1990,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3558.87652
-IND,2000,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3107.98176
-IND,2005,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3029.221014
-IND,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3045.978238
-IND,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
-IND,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
-IND,1990,"Thermal energy consumption, semi-wet kiln",megajoule,4403.515648
-IND,2000,"Thermal energy consumption, semi-wet kiln",megajoule,3490.852564
-IND,2005,"Thermal energy consumption, semi-wet kiln",megajoule,3194.191633
-IND,2010,"Thermal energy consumption, semi-wet kiln",megajoule,3130.227235
-IND,2015,"Thermal energy consumption, semi-wet kiln",megajoule,3600.039633
-IND,2016,"Thermal energy consumption, semi-wet kiln",megajoule,3082.693753
-IND,2030,"Thermal energy consumption, semi-wet kiln",megajoule,3000
-IND,2017,"Thermal energy consumption, semi-wet kiln",megajoule,3060.352751
+IND,1990,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3560
+IND,2000,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3300
+IND,2005,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3200
+IND,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3200
+IND,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3100
+IND,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
+IND,1990,"Thermal energy consumption, semi-wet kiln",megajoule,4400
+IND,2000,"Thermal energy consumption, semi-wet kiln",megajoule,3500
+IND,2005,"Thermal energy consumption, semi-wet kiln",megajoule,3450
+IND,2010,"Thermal energy consumption, semi-wet kiln",megajoule,3400
+IND,2015,"Thermal energy consumption, semi-wet kiln",megajoule,3350
+IND,2016,"Thermal energy consumption, semi-wet kiln",megajoule,3350
+IND,2017,"Thermal energy consumption, semi-wet kiln",megajoule,3350
+IND,2030,"Thermal energy consumption, semi-wet kiln",megajoule,3300
 IND,1990,Share waste fuel,percentage,0.001577739
 IND,2000,Share waste fuel,percentage,0
 IND,2005,Share waste fuel,percentage,0.000608794
@@ -1481,7 +1481,7 @@ CAZ,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 CAZ,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3402.009033
 CAZ,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3484.945373
 CAZ,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3400
-CAZ,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+CAZ,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
 CAZ,1990,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,4174.376455
 CAZ,2000,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,4174.376455
 CAZ,2005,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,4174.376455
@@ -1649,7 +1649,7 @@ MEA,2016,"Production volume share, dry, without preheater",percentage,0
 MEA,2017,"Production volume share, dry, without preheater",percentage,0
 MEA,1990,"Production volume share, semi-wet kiln type",percentage,0.229711693
 MEA,2000,"Production volume share, semi-wet kiln type",percentage,0.237038583
-MEA,2005,"Production volume share, semi-wet kiln type",percentage,0.280096046
+MEA,2005,"Production volume share, semi-wet kiln type",percentage,0.300096046
 MEA,2006,"Production volume share, semi-wet kiln type",percentage,0.258661487
 MEA,2007,"Production volume share, semi-wet kiln type",percentage,0.250670251
 MEA,2008,"Production volume share, semi-wet kiln type",percentage,0.208365637
@@ -1686,7 +1686,7 @@ MEA,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 MEA,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3701.379456
 MEA,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3701.379456
 MEA,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3700
-MEA,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+MEA,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
 MEA,1990,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3701.379456
 MEA,2000,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3701.379456
 MEA,2005,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3701.379456
@@ -1876,7 +1876,7 @@ OAS,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 OAS,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3301.116624
 OAS,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3301.116624
 OAS,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3300
-OAS,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+OAS,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
 OAS,1990,"Thermal energy consumption, semi-wet kiln",megajoule,3306.30932
 OAS,2000,"Thermal energy consumption, semi-wet kiln",megajoule,3306.30932
 OAS,2005,"Thermal energy consumption, semi-wet kiln",megajoule,3309.626339
@@ -2061,7 +2061,7 @@ SSA,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 SSA,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3389.00914
 SSA,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3349.602686
 SSA,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3300
-SSA,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+SSA,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
 SSA,1990,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3856.059531
 SSA,2000,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3683.761685
 SSA,2005,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3636.213319
@@ -2271,7 +2271,7 @@ REF,2015,"Thermal energy consumption, dry kiln, with preheater, with precalciner
 REF,2016,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3389.00914
 REF,2017,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3349.602686
 REF,2030,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3340
-REF,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,2800
+REF,2150,"Thermal energy consumption, dry kiln, with preheater, with precalciner",megajoule,3000
 REF,1990,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3856.059531
 REF,2000,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3683.761685
 REF,2005,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3636.213319
@@ -2491,7 +2491,7 @@ World,2015,"Thermal energy consumption, dry kiln, with preheater, without precal
 World,2016,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3729.383261
 World,2017,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3609.699025
 World,2030,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3600
-World,2150,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,2800
+World,2150,"Thermal energy consumption, dry kiln, with preheater, without precalciner",megajoule,3000
 World,1990,"Thermal energy consumption, dry kiln, without preheater",megajoule,4583.791826
 World,2000,"Thermal energy consumption, dry kiln, without preheater",megajoule,4465.821252
 World,2005,"Thermal energy consumption, dry kiln, without preheater",megajoule,4288.302401

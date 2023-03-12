@@ -19,6 +19,7 @@ hard coal:
   ecoinvent_aliases:
     fltr:
       - market for hard coal
+      - market for charcoal
     mask:
       name:
         - factory
@@ -26,6 +27,21 @@ hard coal:
         - briquettes
         - ash
         - clinker
+pulverised lignite:
+  lhv: 1
+  co2: 0.098
+  biogenic_share: 0
+  ecoinvent_aliases:
+      fltr:
+        name:
+          - market for pulverised lignite
+      mask:
+        name:
+            - factory
+            - plant
+            - briquettes
+            - ash
+            - clinker
 lignite:
   lhv: 11.2
   co2: 0.101
@@ -46,6 +62,19 @@ petroleum coke:
   ecoinvent_aliases:
     fltr:
       - market for petroleum coke
+
+biomass:
+  lhv: 16.2
+  co2: 0.112
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      - market for biomass, used as fuel
+    mask:
+      name:
+        - clinker
+        - factory
+
 wood pellet:
   lhv: 16.2
   co2: 0.112
@@ -72,16 +101,18 @@ natural gas:
     remind: SE|Gases|Fossil|+|Natural Gas
   ecoinvent_aliases:
     fltr:
-      - natural gas, high pressure
-      - natural gas, medium pressure
-      - natural gas, low pressure
-      - natural gas, at production
-      - gas, natural, in ground
-      - natural gas production
-      - petroleum and gas production, on-shore
+      name:
+        - natural gas, high pressure
+        - natural gas, medium pressure
+        - natural gas, low pressure
+        - natural gas, at production
+        - gas, natural, in ground
+        - natural gas production
+        - petroleum and gas production, on-shore
+        - market for natural gas
+        - market group for natural gas
     mask:
       name:
-        - market
         - import
         - synthetic
         - burned
@@ -102,28 +133,38 @@ propane:
   lhv: 46.46
   co2: 0.0611
   biogenic_share: 0
+
 heavy fuel oil:
   lhv: 38.5
   co2: 0.0739
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+        - heavy fuel oil
   biogenic_share: 0
 oil, crude, in ground:
   lhv: 38.5
   co2: 0.0739
   biogenic_share: 0
+
 light fuel oil:
   lhv: 42.6
   co2: 0.0686
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
-      - light fuel oil
+      reference product:
+        - light fuel oil
+
 biogas:
   lhv: 22.73
   co2: 0.058
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - biogas
+      reference product:
+        - biogas
+
 biomethane:
   lhv: 47.5
   co2: 0.058
@@ -148,9 +189,7 @@ waste:
         - waste plastic, mixture
     mask:
       name:
-        - market for
         - treatment
-        - market group
 methane, fossil:
   lhv: 47.5
   co2: 0.058
@@ -189,13 +228,13 @@ diesel:
         - diesel, low-sulfur
     mask:
       name:
-        - market
         - import
         - synthetic
         - burned
         - methanol
         - electric
         - biodiesel
+        - generator
 gasoline:
   lhv: 42.6
   co2: 0.0737
@@ -214,7 +253,6 @@ gasoline:
         - petrol production
     mask:
       name:
-        - market
         - import
         - synthetic
         - burned
@@ -665,14 +703,25 @@ methanol, grass, with CCS:
   ecoinvent_aliases:
     fltr:
       - market for methanol, from biomass
-liquified petroleum gas, natural:
+
+liquefied petroleum gas:
   lhv: 45.5
   co2: 0.0631
   biogenic_share: 0
-liquified petroleum gas, synthetic:
+  ecoinvent_aliases:
+    fltr:
+      - market for liquefied petroleum gas
+
+liquefied petroleum gas, natural:
+  lhv: 45.5
+  co2: 0.0631
+  biogenic_share: 0
+
+liquefied petroleum gas, synthetic:
   lhv: 45.5
   co2: 0.0631
   biogenic_share: 1
+
 uranium, enriched 3.8%, in fuel element for light water reactor:
   lhv: 4199040
 nuclear fuel element, for boiling water reactor, uo2 3.8%:
@@ -755,11 +804,11 @@ heat, from biodiesel:
   lhv: 1
   co2: 0.0734
   biogenic_share: 1
-heat, from liquified petroleum gas, natural:
+heat, from liquefied petroleum gas, natural:
   lhv: 1
   co2: 0.0631
   biogenic_share: 0
-heat, from liquified petroleum gas, synthetic:
+heat, from liquefied petroleum gas, synthetic:
   lhv: 1
   co2: 0.0631
   biogenic_share: 1
@@ -815,6 +864,17 @@ manure, liquid:
   lhv: 0.875
 manure, solid:
   lhv: 3.6
+
+meat and bone meal:
+  lhv: 14.3
+  co2: 0.0814
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      - market for meat and bone meal
+      - meat and bone meal to generic market for protein feed
+
+
 Carbon monoxide, from RWGS:
   lhv: 10.83
 kerosene, from petroleum:

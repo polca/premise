@@ -1,0 +1,312 @@
+premise_dac:
+  columns:
+    timestamp:
+      name: timestamp
+      description: Timestamp of the log entry
+    module:
+      name: module
+      description: Module name
+    level:
+      name: level
+      description: Log level
+    status:
+      name: status
+      description: Status of the dataset
+    model:
+      name: model
+      description: IAM model name
+    pathway:
+      name: pathway
+      description: Pathway name
+    year:
+      name: year
+      description: Year
+    dataset:
+      name: dataset
+      description: Dataset name
+    region:
+      name: region
+      description: Region name
+    scaling factor operation:
+      name: Reduction factor of thermal and electrical energy input
+      description: Reduction factor (0-1) in operation energy relative to 2020
+    scaling factor infrastructure:
+      name: Reduction factor (0-1) of infrastructure input
+      description: Reduction factor (0-1) in infrastructure use relative to 2020
+    initial energy input per kg CO2:
+      name: Initial energy input per kg CO2 captured
+      description: Energy input per kg CO2 captured before adjustment
+      unit: MJ/kg
+    new energy input per kg CO2:
+      name: New energy input per kg CO2 captured
+      description: Energy input per kg CO2 captured after adjustment
+      unit: MJ/kg
+  tab: Direct Air Capture
+
+premise_electricity:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      old electrical efficiency:
+        name: Old electrical efficiency
+        description: Electrical efficiency before adjustment
+        unit: 0-1
+      new electrical efficiency:
+        name: New electrical efficiency
+        description: Electrical efficiency after adjustment
+        unit: 0-1
+      biomass share:
+        name: Biomass share
+        description: Share of biomass from forestry residues
+        unit: 0-1
+      transformation loss:
+        name: Transformation loss
+        description: Loss in transforming high to medium and low-voltage electricity
+        unit: kWh/kWh
+      distribution loss:
+        name: Distribution loss
+        description: Loss in distribution of electricity
+        unit: kWh/kWh
+      renewable share:
+        name: Renewable share
+        description: Share of renewable electricity in the mix
+        unit: 0-1
+    tab: Electricity
+
+premise_steel:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      carbon capture rate:
+        name: Carbon capture rate
+        description: Rate of CO2 capture
+        unit: 0-1
+      thermal efficiency change:
+        name: Reduction factor (0-1) of thermal energy input
+        description: Reduction factor (0-1) of thermal energy input
+        unit: 0-1
+      primary steel share:
+        name: Primary steel share
+        description: Share of primary steel in market
+        unit: 0-1
+      secondary steel share:
+        name: Secondary steel share
+        description: Share of secondary steel in market
+        unit: 0-1
+    tab: Steel
+
+premise_cement:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      initial energy input per ton clinker:
+        name: Initial energy input per ton clinker
+        description: Energy input per ton clinker before adjustment (kj/kg)
+        unit: kj/kg
+      new energy input per ton clinker:
+        name: New energy input per ton clinker after adjustment
+        description: Energy input per ton clinker after (kj/kg)
+        unit: kj/kg
+      carbon capture rate:
+        name: Carbon capture rate
+        description: Rate of CO2 capture
+        unit: 0-1
+      initial fossil CO2:
+        name: Initial fossil CO2
+        description: Fossil CO2 emissions per kg clinker before adjustment
+        unit: kg CO2/kg clinker
+      initial biogenic CO2:
+        name: Initial biogenic CO2
+        description: Biogenic CO2 emissions per kg clinker before adjustment
+        unit: kg CO2/kg clinker
+      new fossil CO2:
+        name: New fossil CO2
+        description: Fossil CO2 emissions per kg clinker after adjustment and carbon capture
+        unit: kg CO2/kg clinker
+      new biogenic CO2:
+        name: New biogenic CO2
+        description: Biogenic CO2 emissions per kg clinker after adjustment and carbon capture
+        unit: kg CO2/kg clinker
+      electricity generated:
+        name: Electricity generated
+        description: Electricity generated (Kwh) per kg cement
+        unit: kWh/kg
+      electricity consumed:
+        name: Electricity consumed
+        description: Electricity consumed (kWh) per kg cement
+        unit: kWh/kg
+      old clinker-to-cement ratio:
+        name: Old clinker-to-cement ratio
+        description: Clinker-to-cement ratio before adjustment
+        unit: 0-1
+      new clinker-to-cement ratio:
+        name: New clinker-to-cement ratio
+        description: Clinker-to-cement ratio after adjustment
+        unit: 0-1
+    tab: Cement
+
+premise_fuel:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      initial amount of fossil CO2:
+        name: Initial amount of fossil CO2
+        description: Amount of fossil CO2 emitted per kg fuel before adjustment
+        unit: kg CO2/kg fuel
+      new amount of fossil CO2:
+        name: New amount of fossil CO2
+        description: Amount of fossil CO2 emitted per kg fuel after adjustment
+        unit: kg CO2/kg fuel
+      new amount of biogenic CO2:
+        name: New amount of biogenic CO2
+        description: Amount of biogenic CO2 emitted per kg fuel after adjustment
+        unit: kg CO2/kg fuel
+      electricity input for electrolysis:
+        name: Electricity input for electrolysis
+        description: Electricity input for electrolysis (kWh) per kg fuel
+        unit: kWh/kg
+      hydrogen distribution losses:
+        name: Hydrogen distribution losses
+        description: Hydrogen distribution losses (kg) per kg hydrogen
+        unit: kg/kg
+      electricity for hydrogen compression:
+        name: Electricity for hydrogen compression
+        description: Electricity for hydrogen compression (kWh) per kg fuel
+        unit: kWh/kg
+      electricity for hydrogen compression after dehydrogenation:
+        name: Electricity for hydrogen compression after dehydrogenation
+        description: Electricity for hydrogen compression after dehydrogenation (kWh) per kg fuel
+        unit: kWh/kg
+      electricity for hydrogen pre-cooling:
+        name: Electricity for hydrogen pre-cooling
+        description: Electricity for hydrogen pre-cooling (kWh) per kg fuel at fuelling station
+        unit: kWh/kg
+      initial biomass per kg biofuel:
+        name: Initial biomass per kg biofuel
+        description: Biomass per kg biofuel before adjustment
+        unit: kg biomass/kg biofuel
+      final biomass per kg biofuel:
+        name: Final biomass per kg biofuel
+        description: Biomass per kg biofuel after adjustment
+        unit: kg biomass/kg biofuel
+      land footprint:
+        name: Land footprint
+        description: Land footprint (m2) per kg crop
+        unit: m2/kg
+      land use CO2:
+        name: Land use CO2
+        description: Land use CO2 (kg CO2) per kg crop
+        unit: kg CO2/kg
+      fossil CO2 per kg fuel:
+        name: Fossil CO2 per kg fuel combusted
+        description: Amount of fossil CO2 emitted per kg fuel combusted
+        unit: kg CO2/kg
+      non-fossil CO2 per kg fuel:
+        name: Non-fossil CO2 per kg fuel combusted
+        description: Amount of non-fossil CO2 emitted per kg fuel combusted
+        unit: kg CO2/kg
+      lower heating value:
+        name: Lower heating value
+        description: Average lower heating value of the fuel blend (MJ/kg)
+        unit: MJ/kg
+    tab: Fuel

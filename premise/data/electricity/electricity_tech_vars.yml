@@ -64,6 +64,7 @@ Biomass IGCC CCS:
       - Wood chips, burned in power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
       - Hydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass with CCS, at gasification plant
       - market for wood chips
+      - market for biomass, used as fuel
 Biomass IGCC:
   iam_aliases:
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/o CC
@@ -78,6 +79,7 @@ Biomass IGCC:
   ecoinvent_fuel_aliases:
     fltr:
       - market for wood chips
+      - market for biomass, used as fuel
 Coal PC:
   iam_aliases:
     remind: SE|Electricity|Coal|++|Pulverised Coal w/o CC
@@ -146,8 +148,8 @@ Coal IGCC CCS:
       - electricity production, at power plant/lignite, pre, pipeline 200km, storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
-      - Hard coal, burned in power plant/pre, pipeline 200km, storage 1000m
-      - Lignite, burned in power plant/pre, pipeline 200km, storage 1000m
+      - Hard coal, burned in power plant/pre
+      - Lignite, burned in power plant/pre
 Coal CHP:
   iam_aliases:
     remind: SE|Electricity|Coal|++|Combined Heat and Power w/o CC
@@ -251,6 +253,7 @@ Gas CHP:
       - market for natural gas, high pressure
       - market for natural gas, medium pressure
       - market for natural gas, low pressure
+      - market group for natural gas
     mask:
       - liquids
       - liquefied
@@ -285,8 +288,9 @@ Gas CC CCS:
       - electricity production, at power plant/natural gas, post, pipeline
   ecoinvent_fuel_aliases:
     fltr:
-      - Natural gas, in ATR H2-CC/pre, pipeline 200km, storage 1000m
-      - Natural gas, burned in power plant/post, pipeline 200km, storage 1000m/RER
+      - Natural gas, in ATR H2-CC/pre
+      - Natural gas, burned in power plant/post
+
 Geothermal:
   iam_aliases:
     remind: SE|Electricity|+|Geothermal
@@ -333,7 +337,6 @@ Nuclear_EPR:
       - market for nuclear fuel element, for pressure water reactor
       - market for nuclear fuel element, for boiling water reactor
       - market for uranium hexafluoride
-
 Nuclear_SMR:
   ecoinvent_aliases:
     fltr:
@@ -344,7 +347,6 @@ Nuclear_SMR:
       - market for nuclear fuel element, for pressure water reactor
       - market for nuclear fuel element, for boiling water reactor
       - market for uranium hexafluoride
-
 Oil ST:
   iam_aliases:
     remind: SE|Electricity|Oil|w/o CC
@@ -413,6 +415,7 @@ Oil CHP:
   ecoinvent_fuel_aliases:
     fltr:
       - market for heavy fuel oil
+      - market group for heavy fuel oil
     mask:
       name: burned
 Oil CHP CCS:
@@ -473,7 +476,6 @@ Wind Offshore:
       - electricity production, wind, 1-3MW turbine, offshore
     mask:
       name: label-certified
-
 Wave:
   ecoinvent_aliases:
     fltr:

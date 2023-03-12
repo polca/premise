@@ -1,0 +1,75 @@
+version: 1
+disable_existing_loggers: true
+
+formatters:
+  simple:
+    format: '%(asctime)s|%(module)s|%(levelname)s|%(message)s'
+  error:
+    format: "%(levelname)s|<PID %(process)d:%(processName)s>|%(name)s.%(funcName)s()|%(message)s"
+
+handlers:
+  file_dac:
+    class: logging.FileHandler
+    level: INFO
+    filename: premise_dac.log
+    encoding: utf8
+    formatter: simple
+    mode: w
+
+  file_electricity:
+    class: logging.FileHandler
+    level: INFO
+    filename: premise_electricity.log
+    encoding: utf8
+    formatter: simple
+    mode: w
+
+  file_steel:
+    class: logging.FileHandler
+    level: INFO
+    filename: premise_steel.log
+    encoding: utf8
+    formatter: simple
+    mode: w
+
+  file_cement:
+    class: logging.FileHandler
+    level: INFO
+    filename: premise_cement.log
+    encoding: utf8
+    formatter: simple
+    mode: w
+
+  file_fuel:
+    class: logging.FileHandler
+    level: INFO
+    filename: premise_fuel.log
+    encoding: utf8
+    formatter: simple
+    mode: w
+
+loggers:
+  dac:
+    level: INFO
+    handlers: [file_dac]
+    propagate: False
+
+  electricity:
+    level: INFO
+    handlers: [ file_electricity ]
+    propagate: False
+
+  steel:
+    level: INFO
+    handlers: [ file_steel ]
+    propagate: False
+
+  cement:
+    level: INFO
+    handlers: [ file_cement ]
+    propagate: False
+
+  fuel:
+    level: INFO
+    handlers: [ file_fuel ]
+    propagate: False

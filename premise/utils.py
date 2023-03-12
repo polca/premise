@@ -162,12 +162,12 @@ def get_clinker_ratio_remind(year: int) -> xr.DataArray:
 
 
 def add_entry_to_cache(
-    cache: dict,
-    location: str,
-    model: str,
-    exchange: dict,
-    allocated: List[dict],
-    shares: List[float],
+        cache: dict,
+        location: str,
+        model: str,
+        exchange: dict,
+        allocated: List[dict],
+        shares: List[float],
 ) -> dict:
     """
     Add an entry to the cache.
@@ -189,13 +189,13 @@ def add_entry_to_cache(
 
 
 def relink_technosphere_exchanges(
-    dataset,
-    data,
-    model,
-    cache,
-    exclusive=True,
-    biggest_first=False,
-    contained=True,
+        dataset,
+        data,
+        model,
+        cache,
+        exclusive=True,
+        biggest_first=False,
+        contained=True,
 ):
     """Find new technosphere providers based on the location of the dataset.
     Designed to be used when the dataset's location changes, or when new datasets are added.
@@ -297,10 +297,10 @@ def relink_technosphere_exchanges(
 
             if dataset["location"] in geomatcher.iam_regions:
                 if any(
-                    iloc in possible_locations
-                    for iloc in geomatcher.iam_to_ecoinvent_location(
-                        dataset["location"]
-                    )
+                        iloc in possible_locations
+                        for iloc in geomatcher.iam_to_ecoinvent_location(
+                            dataset["location"]
+                        )
                 ):
                     locs = [
                         iloc
@@ -453,8 +453,8 @@ def relink_technosphere_exchanges(
     ]
 
     dataset["exchanges"] = [
-        exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
-    ] + new_exchanges
+                               exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
+                           ] + new_exchanges
 
     return cache, dataset
 
@@ -488,13 +488,13 @@ def new_exchange(exc, location, factor):
 
 
 def get_gis_match(
-    dataset,
-    location,
-    possible_locations,
-    geomatcher,
-    contained,
-    exclusive,
-    biggest_first,
+        dataset,
+        location,
+        possible_locations,
+        geomatcher,
+        contained,
+        exclusive,
+        biggest_first,
 ):
     with resolved_row(possible_locations, geomatcher.geo) as g:
         func = g.contained if contained else g.intersects
@@ -736,51 +736,11 @@ def write_brightway2_database(data, name):
     PremiseImporter(name, data).write_database()
 
 
-def write_log(sector, status, datasets, model, scenario, year):
+def delete_log():
     """
-    Write a log file with the name of the created datasets.
-
-    :param sector: str
-    :param status: str
-    :param datasets: list of dictionaries
-    :param filename: str
-    :param model: str
-    :param scenario: str
-    :param year: int
-    :return: None
+    Delete log file.
+    It is located in the working directory.
     """
-
-    if status not in ["created", "updated"]:
-        raise ValueError("Status must be either 'created' or 'updated'.")
-
-    if isinstance(datasets, dict):
-        datasets = [datasets]
-
-    created_datasets = [
-        (sector, status, act["name"], act["reference product"], act["location"])
-        for act in datasets
-    ]
-
-    if not os.path.exists(DATA_DIR / "logs"):
-        os.makedirs(DATA_DIR / "logs")
-
-    filepath = DATA_DIR / f"logs/created datasets {model} {scenario} {year}-{date.today()}.csv"
-
-    # if the file is new, write the header
-    if not os.path.exists(filepath):
-        with open(
-            filepath,
-            "w",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            writer.writerow(["Sector", "Status", "Name", "Reference product", "Location"])
-
-    with open(
-            filepath,
-            "a",
-            encoding="utf-8",
-    ) as csv_file:
-        writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-        for line in created_datasets:
-            writer.writerow(line)
+    log_path = Path.cwd() / "premise.log"
+    if log_path.exists():
+        log_path.unlink()

@@ -10,8 +10,15 @@ from openpyxl.chart import AreaChart, LineChart, Reference
 from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
+from datetime import datetime
+
+import pandas as pd
+from pandas.errors import EmptyDataError
+import os
 
 from . import DATA_DIR
+from . import __version__
 
 IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
@@ -25,6 +32,9 @@ GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
+
+LOG_REPORTING_FILEPATH = DATA_DIR / "utils" / "logging" / "reporting.yaml"
+
 SECTORS = {
     "Population": (IAM_OTHER_VARS, ["Population"]),
     "GDP": (IAM_OTHER_VARS, ["GDP|PPP"]),
@@ -57,7 +67,7 @@ SECTORS = {
 
 
 def get_variables(
-    filepath,
+        filepath,
 ):
     """
     Get the variables from a yaml file.
@@ -223,3 +233,123 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 scenario_list.append((scenario["model"], scenario["pathway"]))
 
     workbook.save(filename)
+
+
+def generate_change_report(source, version, source_type, system_model):
+    """
+    Generate a change report of the scenarios from the log files.
+    """
+
+    # create an Excel workbook
+    workbook = openpyxl.Workbook()
+    workbook.remove(workbook.active)
+
+    log_filepaths = [
+        "premise_dac",
+        "premise_electricity",
+        "premise_fuel",
+        "premise_transport",
+        "premise_steel",
+        "premise_cement"
+    ]
+
+    # fetch YAML file containing the reporting metadata
+    with open(LOG_REPORTING_FILEPATH, "r") as f:
+        metadata = yaml.load(f, Loader=yaml.FullLoader)
+
+    # create a first tab
+    # where is displayed
+    # the name and version of the library
+    # the date of the report
+    # and the name of the source database
+    worksheet = workbook.create_sheet("Change report")
+    worksheet.cell(row=1, column=1, value="Library name")
+    worksheet.cell(row=1, column=2, value="Library version")
+    worksheet.cell(row=1, column=3, value="Report date")
+    worksheet.cell(row=1, column=4, value="Source database")
+    worksheet.cell(row=1, column=5, value="Source database format")
+    worksheet.cell(row=1, column=6, value="Database version")
+    worksheet.cell(row=1, column=7, value="Database system model")
+    worksheet.cell(row=2, column=1, value="premise")
+    worksheet.cell(row=2, column=2, value=".".join(map(str, __version__)))
+    worksheet.cell(row=2, column=3, value=datetime.now())
+    worksheet.cell(row=2, column=4, value=source)
+    worksheet.cell(row=2, column=5, value=source_type)
+    worksheet.cell(row=2, column=6, value=version)
+    worksheet.cell(row=2, column=7, value=system_model)
+
+    dim_holder = DimensionHolder(worksheet=worksheet)
+    for col in range(worksheet.min_column, worksheet.max_column + 1):
+        dim_holder[get_column_letter(col)] = ColumnDimension(worksheet, min=col, max=col, width=20)
+
+    worksheet.column_dimensions = dim_holder
+
+    for filepath in log_filepaths:
+
+        # check if log ile exists
+        if not os.path.isfile(filepath + ".log"):
+            continue
+        # if file exists, check that it is not empty
+        elif os.stat(filepath + ".log").st_size == 0:
+            continue
+
+        df = convert_log_to_excel_file(filepath)
+
+        # create a worksheet for this sector
+        worksheet = workbook.create_sheet(fetch_tab_name(filepath))
+
+        # add a description of each column
+        # in each row
+        for col, column in enumerate(fetch_columns(filepath), 1):
+            worksheet.cell(row=1, column=col, value=metadata[filepath]["columns"][column]["description"])
+            worksheet.cell(row=2, column=col, value=metadata[filepath]["columns"][column].get("unit"))
+
+        # add the df dataframe to the sheet
+        for r in dataframe_to_rows(df, index=False):
+            worksheet.append(r)
+
+    # save the workbook in the working directory
+    # the file name is change_report with the current date
+    fp = os.path.join(os.getcwd(), f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx")
+    workbook.save(fp)
+
+
+def fetch_columns(variable):
+    """
+    Read reporting.yaml which return
+    the columns for the variable.
+    """
+
+    with open(LOG_REPORTING_FILEPATH, "r", encoding="utf-8") as stream:
+        reporting = yaml.safe_load(stream)
+
+    return list(reporting[variable]["columns"].keys())
+
+
+def fetch_tab_name(variable):
+    """
+    Read reporting.yaml which return
+    the tab name for the variable.
+    """
+
+    with open(LOG_REPORTING_FILEPATH, "r", encoding="utf-8") as stream:
+        reporting = yaml.safe_load(stream)
+
+    return reporting[variable]["tab"]
+
+
+def convert_log_to_excel_file(filepath):
+    """
+    Read the log file premise.log in the working directory.
+    Load into pandas dataframe and group the data by
+    scenario and variable.
+    """
+
+    try:
+        df = pd.read_csv(filepath + ".log", sep="|", header=None)
+        df.columns = fetch_columns(filepath)
+        return df
+
+    except EmptyDataError:
+        # return an empty dataframe
+        return pd.DataFrame(columns=fetch_columns(filepath))

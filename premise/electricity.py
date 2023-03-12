@@ -10,13 +10,11 @@ the newly created electricity markets.
 """
 
 import csv
-import os
 import re
 from collections import defaultdict
-from datetime import date
-from pathlib import Path
 
 import yaml
+import logging.config
 
 from .transformation import (
     BaseTransformation,
@@ -37,14 +35,21 @@ from .utils import (
     DATA_DIR,
     eidb_label,
     get_efficiency_ratio_solar_photovoltaics,
-    write_log
 )
 
 PRODUCTION_PER_TECH = (
-    DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
+        DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
 )
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
+
+LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+
+with open(LOG_CONFIG, "r") as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
+
+logger = logging.getLogger("electricity")
 
 
 def get_losses_per_country_dict() -> Dict[str, Dict[str, float]]:
@@ -72,7 +77,7 @@ def get_losses_per_country_dict() -> Dict[str, Dict[str, float]]:
 
 
 def get_production_weighted_losses(
-    losses: Dict[str, Dict[str, float]], locs: List[str]
+        losses: Dict[str, Dict[str, float]], locs: List[str]
 ) -> Dict[str, Dict[str, float]]:
     """
     Return the transformation, transmission and distribution losses at a given voltage level for a given location.
@@ -90,8 +95,8 @@ def get_production_weighted_losses(
         )
 
         transf_loss += (
-            dict_loss["Transformation loss, high voltage"]
-            * dict_loss["Production volume"]
+                dict_loss["Transformation loss, high voltage"]
+                * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]
     transf_loss /= cumul_prod
@@ -110,12 +115,12 @@ def get_production_weighted_losses(
             },
         )
         transf_loss += (
-            dict_loss["Transformation loss, medium voltage"]
-            * dict_loss["Production volume"]
+                dict_loss["Transformation loss, medium voltage"]
+                * dict_loss["Production volume"]
         )
         distr_loss += (
-            dict_loss["Transmission loss to medium voltage"]
-            * dict_loss["Production volume"]
+                dict_loss["Transmission loss to medium voltage"]
+                * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]
     transf_loss /= cumul_prod
@@ -135,12 +140,12 @@ def get_production_weighted_losses(
             },
         )
         transf_loss += (
-            dict_loss["Transformation loss, low voltage"]
-            * dict_loss["Production volume"]
+                dict_loss["Transformation loss, low voltage"]
+                * dict_loss["Production volume"]
         )
         distr_loss += (
-            dict_loss["Transmission loss to low voltage"]
-            * dict_loss["Production volume"]
+                dict_loss["Transmission loss to low voltage"]
+                * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]
     transf_loss /= cumul_prod
@@ -192,12 +197,12 @@ class Electricity(BaseTransformation):
     """
 
     def __init__(
-        self,
-        database: List[dict],
-        iam_data: IAMDataCollection,
-        model: str,
-        pathway: str,
-        year: int,
+            self,
+            database: List[dict],
+            iam_data: IAMDataCollection,
+            model: str,
+            pathway: str,
+            year: int,
     ) -> None:
         super().__init__(database, iam_data, model, pathway, year)
         mapping = InventorySet(self.database)
@@ -227,7 +232,7 @@ class Electricity(BaseTransformation):
         ]
 
     def get_production_weighted_share(
-        self, supplier: dict, suppliers: List[dict]
+            self, supplier: dict, suppliers: List[dict]
     ) -> float:
         """
         Return the share of production of an electricity-producing dataset in a specific location,
@@ -354,7 +359,7 @@ class Electricity(BaseTransformation):
                     "database": self.database[1]["database"],
                     "code": str(uuid.uuid4().hex),
                     "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                    f" using the pathway {self.scenario} for the year {self.year}.",
+                               f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
                 # First, add the reference product exchange
@@ -518,7 +523,20 @@ class Electricity(BaseTransformation):
                 )
 
                 new_dataset["exchanges"] = new_exchanges
+
+                if "log parameters" not in new_dataset:
+                    new_dataset["log parameters"] = {}
+
+                new_dataset["log parameters"].update(
+                    {
+                        "distribution loss": distr_loss,
+                        "transformation loss": transf_loss,
+                        "renewable share": solar_amount / (1 + distr_loss),
+                    }
+                )
                 self.database.append(new_dataset)
+
+                self.write_log(new_dataset)
 
         # update `self.list_datasets`
         self.list_datasets.extend(
@@ -531,18 +549,6 @@ class Electricity(BaseTransformation):
                 for dataset in log_created_markets
             ]
         )
-
-        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
-
-        with open(
-            DATA_DIR
-            / f"logs/log created electricity markets {self.scenario} {self.year}-{date.today()}.csv",
-            "a",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            for line in log_created_markets:
-                writer.writerow(line)
 
     def create_new_markets_medium_voltage(self) -> None:
         """
@@ -574,7 +580,7 @@ class Electricity(BaseTransformation):
                     "database": self.database[1]["database"],
                     "code": str(uuid.uuid4().hex),
                     "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                    f" using the pathway {self.scenario} for the year {self.year}.",
+                               f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
                 # First, add the reference product exchange
@@ -698,7 +704,20 @@ class Electricity(BaseTransformation):
                     ]
                 )
 
+                if "log parameters" not in new_dataset:
+                    new_dataset["log parameters"] = {}
+
+                new_dataset["log parameters"].update(
+                    {
+                        "distribution loss": distr_loss,
+                        "transformation loss": transf_loss,
+                        "renewable share": 0.0,
+                    }
+                )
+
                 self.database.append(new_dataset)
+
+                self.write_log(new_dataset)
 
         # update `self.list_datasets`
         self.list_datasets.extend(
@@ -711,18 +730,6 @@ class Electricity(BaseTransformation):
                 for dataset in log_created_markets
             ]
         )
-
-        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
-
-        with open(
-            DATA_DIR
-            / f"logs/log created electricity markets {self.scenario} {self.year}-{date.today()}.csv",
-            "a",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            for line in log_created_markets:
-                writer.writerow(line)
 
     def create_new_markets_high_voltage(self) -> None:
         """
@@ -811,7 +818,7 @@ class Electricity(BaseTransformation):
                     "database": self.database[1]["database"],
                     "code": str(uuid.uuid4().hex),
                     "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                    f" using the pathway {self.scenario} for the year {self.year}.",
+                               f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
                 # First, add the reference product exchange
@@ -860,7 +867,23 @@ class Electricity(BaseTransformation):
                     if "solar pv residential" in tech.lower():
                         solar_amount += electriciy_mix[tech]
 
+                # calculate the share of renewable energy in the mix
+                renewable_share = 0
+                renewable_techs = [
+                    "solar",
+                    "wind",
+                    "geothermal",
+                    "hydro",
+                    "biomass",
+                    "biogas",
+                    "wave"
+                ]
+                for tech in electriciy_mix:
+                    if any(x in tech.lower() for x in renewable_techs):
+                        renewable_share += electriciy_mix[tech]
+
                 for technology in technologies:
+
                     # If the given technology contributes to the mix
                     if electriciy_mix[technology] > 0:
                         # Contribution in supply
@@ -899,7 +922,20 @@ class Electricity(BaseTransformation):
 
                 new_dataset["exchanges"] = new_exchanges
 
+                if "log parameters" not in new_dataset:
+                    new_dataset["log parameters"] = {}
+
+                new_dataset["log parameters"].update(
+                    {
+                        "distribution loss": 0.0,
+                        "transformation loss": transf_loss,
+                        "renewable share": (renewable_share - solar_amount) / sum(electriciy_mix.values()),
+                    }
+                )
+
                 self.database.append(new_dataset)
+
+                self.write_log(new_dataset)
 
         # update `self.list_datasets`
         self.list_datasets.extend(
@@ -913,31 +949,6 @@ class Electricity(BaseTransformation):
             ]
         )
 
-        # Writing log of created markets
-        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
-        with open(
-            DATA_DIR
-            / f"logs/log created electricity markets {self.scenario} {self.year}-{date.today()}.csv",
-            "w",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            writer.writerow(
-                [
-                    "dataset name",
-                    "energy type",
-                    "IAM location",
-                    "Transformation loss",
-                    "Distr./Transmission loss",
-                    "Supplier name",
-                    "Supplier location",
-                    "Contribution within energy type",
-                    "Final contribution",
-                ]
-            )
-            for line in log_created_markets:
-                writer.writerow(line)
-
     def update_efficiency_of_solar_pv(self) -> None:
         """
         Update the efficiency of solar PV modules.
@@ -948,8 +959,6 @@ class Electricity(BaseTransformation):
         """
 
         print("Update efficiency of solar PV.")
-
-        print(f"Log of changes in photovoltaics datasets saved under {DATA_DIR}/logs")
 
         # efficiency of modules in the future
         module_eff = get_efficiency_ratio_solar_photovoltaics()
@@ -974,11 +983,11 @@ class Electricity(BaseTransformation):
                 power *= 1000
 
             for exc in ws.technosphere(
-                dataset,
-                *[
-                    ws.contains("name", "photovoltaic"),
-                    ws.equals("unit", "square meter"),
-                ],
+                    dataset,
+                    *[
+                        ws.contains("name", "photovoltaic"),
+                        ws.equals("unit", "square meter"),
+                    ],
             ):
                 surface = float(exc["amount"])
                 max_power = surface  # in kW, since we assume a constant 1,000W/m^2
@@ -1011,18 +1020,21 @@ class Electricity(BaseTransformation):
                     # We only update the efficiency if it is higher than the current one.
                     if new_eff > current_eff:
                         exc["amount"] *= float(current_eff / new_eff)
-                        dataset["parameters"] = {
-                            "efficiency": new_eff,
-                            "old_efficiency": current_eff,
-                        }
+
                         dataset["comment"] = (
                             f"`premise` has changed the efficiency "
                             f"of this photovoltaic installation "
                             f"from {int(current_eff * 100)} pct. to {int(new_eff * 100)} pt."
                         )
 
-                        # add log
-                        write_log("photovoltaic", "updated", dataset, self.model, self.scenario, self.year)
+                        if "log parameters" not in dataset:
+                            dataset["log parameters"] = {}
+
+                        dataset["log parameters"].update({"old efficiency": current_eff})
+                        dataset["log parameters"].update({"new efficiency": new_eff})
+
+                        # add to log
+                        self.write_log(dataset=dataset, status="updated")
 
     def update_ng_production_ds(self) -> None:
         """
@@ -1040,9 +1052,9 @@ class Electricity(BaseTransformation):
             to_remove = []
             for exc in dataset["exchanges"]:
                 if (
-                    exc["name"] == "market for natural gas, high pressure"
-                    and exc["location"] in countries
-                    and exc["type"] == "technosphere"
+                        exc["name"] == "market for natural gas, high pressure"
+                        and exc["location"] in countries
+                        and exc["type"] == "technosphere"
                 ):
                     if exc["location"] in amount:
                         amount[exc["location"]] += exc["amount"]
@@ -1057,7 +1069,7 @@ class Electricity(BaseTransformation):
                     e
                     for e in dataset["exchanges"]
                     if (e["name"], e.get("product"), e.get("location"), e["type"])
-                    not in to_remove
+                       not in to_remove
                 ]
 
                 for loc in amount:
@@ -1072,9 +1084,6 @@ class Electricity(BaseTransformation):
                         }
                     )
 
-                # add to log
-                write_log("natural gas", "updated", [dataset], self.model, self.scenario, self.year)
-
         countries = ["DE", "DZ", "GB", "NG", "NL", "NO", "RU", "US"]
 
         names = ["natural gas production", "petroleum and gas production"]
@@ -1084,10 +1093,10 @@ class Electricity(BaseTransformation):
             to_remove = []
             for exc in dataset["exchanges"]:
                 if (
-                    any(i in exc["name"] for i in names)
-                    and "natural gas, high pressure"
-                    and exc["location"] in countries
-                    and exc["type"] == "technosphere"
+                        any(i in exc["name"] for i in names)
+                        and "natural gas, high pressure"
+                        and exc["location"] in countries
+                        and exc["type"] == "technosphere"
                 ):
                     if exc["location"] in amount:
                         amount[exc["location"]] += exc["amount"]
@@ -1102,7 +1111,7 @@ class Electricity(BaseTransformation):
                     e
                     for e in dataset["exchanges"]
                     if (e["name"], e.get("product"), e.get("location"), e["type"])
-                    not in to_remove
+                       not in to_remove
                 ]
 
                 for loc in amount:
@@ -1116,9 +1125,6 @@ class Electricity(BaseTransformation):
                             "type": "technosphere",
                         }
                     )
-
-                # add to log
-                write_log("natural gas", "updated", [dataset], self.model, self.scenario, self.year)
 
     def create_biomass_markets(self) -> None:
         print("Create biomass markets.")
@@ -1135,15 +1141,14 @@ class Electricity(BaseTransformation):
             production_variable=biomass_map["biomass - residual"]["iam_aliases"][
                 self.model
             ][0],
-            relink=True,
         )
 
         # add them to the database
         self.database.extend(forest_residues_ds.values())
 
         # add log
-        for datasets in list(forest_residues_ds.values()):
-            write_log("biomass", "created", datasets, self.model, self.scenario, self.year)
+        for dataset in list(forest_residues_ds.values()):
+            self.write_log(dataset=dataset)
 
         for region in self.regions:
             dataset = {
@@ -1151,11 +1156,11 @@ class Electricity(BaseTransformation):
                 "reference product": "biomass, used as fuel",
                 "location": region,
                 "comment": f"Biomass market, created by `premise`, "
-                f"to align with projections for the region {region} in {self.year}. "
-                "Calculated for an average energy input (LHV) of 19 MJ/kg, dry basis. "
-                "Sum of inputs can be superior to 1, as "
-                "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
-                "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
+                           f"to align with projections for the region {region} in {self.year}. "
+                           "Calculated for an average energy input (LHV) of 19 MJ/kg, dry basis. "
+                           "Sum of inputs can be superior to 1, as "
+                           "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
+                           "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
                 "unit": "kilogram",
                 "database": eidb_label(self.model, self.scenario, self.year),
                 "code": str(uuid.uuid4().hex),
@@ -1187,12 +1192,12 @@ class Electricity(BaseTransformation):
 
                 share = np.clip(
                     (
-                        self.iam_data.production_volumes.sel(
-                            variables=biomass_type, region=region
-                        )
-                        .interp(year=self.year)
-                        .sum()
-                        / total_prod_vol
+                            self.iam_data.production_volumes.sel(
+                                variables=biomass_type, region=region
+                            )
+                            .interp(year=self.year)
+                            .sum()
+                            / total_prod_vol
                     ).values.item(0),
                     0,
                     1,
@@ -1265,37 +1270,49 @@ class Electricity(BaseTransformation):
                             }
                         )
 
+                if "log parameters" not in dataset:
+                    dataset["log parameters"] = {}
+
+                dataset["log parameters"].update(
+                    {
+                        "biomass share": share,
+                    }
+                )
+
             self.database.append(dataset)
 
             self.list_datasets.append(
                 (dataset["location"], dataset["reference product"], dataset["location"])
             )
 
-            # add to log
-            write_log("biomass", "created", [dataset], self.model, self.scenario, self.year)
+            # add log
+            self.write_log(dataset=dataset)
 
         # replace biomass inputs
         print("Replace biomass inputs.")
         for dataset in ws.get_many(
-            self.database,
-            ws.either(
-                *[ws.equals("unit", unit) for unit in ["kilowatt hour", "megajoule"]]
-            ),
-            ws.either(
-                *[
-                    ws.contains("name", name)
-                    for name in ["electricity", "heat", "power"]
-                ]
-            ),
+                self.database,
+                ws.either(
+                    *[ws.equals("unit", unit) for unit in ["kilowatt hour", "megajoule"]]
+                ),
+                ws.either(
+                    *[
+                        ws.contains("name", name)
+                        for name in ["electricity", "heat", "power"]
+                    ]
+                ),
         ):
             for exc in ws.technosphere(
-                dataset,
-                ws.contains("name", "market for wood chips"),
-                ws.equals("unit", "kilogram"),
+                    dataset,
+                    ws.contains("name", "market for wood chips"),
+                    ws.equals("unit", "kilogram"),
             ):
                 exc["name"] = "market for biomass, used as fuel"
                 exc["product"] = "biomass, used as fuel"
                 exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]]
+
+        mapping = InventorySet(self.database)
+        self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
 
     def create_region_specific_power_plants(self):
         """
@@ -1328,7 +1345,7 @@ class Electricity(BaseTransformation):
             dataset["name"]
             for dataset in self.database
             if dataset["name"]
-            in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
+               in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
         ]
 
         list_datasets_to_duplicate.extend(
@@ -1343,10 +1360,10 @@ class Electricity(BaseTransformation):
         )
 
         for dataset in ws.get_many(
-            self.database,
-            ws.either(
-                *[ws.contains("name", name) for name in list_datasets_to_duplicate]
-            ),
+                self.database,
+                ws.either(
+                    *[ws.contains("name", name) for name in list_datasets_to_duplicate]
+                ),
         ):
             new_plants = self.fetch_proxies(
                 name=dataset["name"],
@@ -1388,22 +1405,25 @@ class Electricity(BaseTransformation):
 
                     for exc in plant["exchanges"]:
                         if (
-                            exc["type"] == "technosphere"
-                            and exc["unit"] == "kilogram"
-                            and exc["name"].startswith("CO2 capture")
+                                exc["type"] == "technosphere"
+                                and exc["unit"] == "kilogram"
+                                and exc["name"].startswith("CO2 capture")
                         ):
                             exc["amount"] = co2_amount * 0.9
 
                         if (
-                            exc["type"] == "biosphere"
-                            and exc["unit"] == "kilogram"
-                            and exc["name"].startswith("Carbon dioxide")
+                                exc["type"] == "biosphere"
+                                and exc["unit"] == "kilogram"
+                                and exc["name"].startswith("Carbon dioxide")
                         ):
                             exc["amount"] = co2_amount * 0.9
 
             all_plants.extend(new_plants.values())
 
         self.database.extend(all_plants)
+
+        for dataset in all_plants:
+            self.write_log(dataset=dataset)
 
     def update_electricity_efficiency(self) -> None:
         """
@@ -1417,6 +1437,15 @@ class Electricity(BaseTransformation):
 
         print("Adjust efficiency of power plants...")
 
+        mapping = InventorySet(self.database)
+        self.fuel_map = mapping.generate_fuel_map()
+        # reverse the fuel map to get a mapping from ecoinvent to premise
+        self.fuel_map_reverse: Dict = {}
+
+        for key, value in self.fuel_map.items():
+            for v in list(value):
+                self.fuel_map_reverse[v] = key
+
         eff_labels = self.iam_data.efficiency.variables.values
         all_techs = self.iam_data.electricity_markets.variables.values
 
@@ -1426,22 +1455,6 @@ class Electricity(BaseTransformation):
             technologies=list(set(eff_labels).intersection(all_techs)),
         )
 
-        if not os.path.exists(DATA_DIR / "logs"):
-            os.makedirs(DATA_DIR / "logs")
-
-        with open(
-            DATA_DIR / f"logs/log power plant efficiencies change "
-            f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
-            "w",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            writer.writerow(
-                ["dataset name", "location", "original efficiency", "new efficiency"]
-            )
-
-        print(f"Log of changes in power plants efficiencies saved in {DATA_DIR}/logs")
-
         # to store changes in efficiency
         eff_change_log = []
 
@@ -1450,14 +1463,14 @@ class Electricity(BaseTransformation):
             print("Rescale inventories and emissions for", technology)
 
             for dataset in ws.get_many(
-                self.database,
-                ws.equals("unit", "kilowatt hour"),
-                ws.either(
-                    *[
-                        ws.contains("name", n)
-                        for n in dict_technology["technology filters"]
-                    ]
-                ),
+                    self.database,
+                    ws.equals("unit", "kilowatt hour"),
+                    ws.either(
+                        *[
+                            ws.contains("name", n)
+                            for n in dict_technology["technology filters"]
+                        ]
+                    ),
             ):
                 # Find current efficiency
                 ei_eff = dict_technology["current_eff_func"](
@@ -1470,11 +1483,16 @@ class Electricity(BaseTransformation):
                     location=self.geo.ecoinvent_to_iam_location(dataset["location"]),
                 )
 
-                new_efficiency = ei_eff * 1 / scaling_factor
+                new_efficiency = np.clip(ei_eff * 1 / scaling_factor, 0, 1)
 
-                # we log changes in efficiency
-                eff_change_log.append(
-                    [dataset["name"], dataset["location"], ei_eff, new_efficiency]
+                if "log parameters" not in dataset:
+                    dataset["log parameters"] = {}
+
+                dataset["log parameters"].update(
+                    {
+                        "old efficiency": ei_eff,
+                        "new efficiency": new_efficiency,
+                    }
                 )
 
                 self.update_ecoinvent_efficiency_parameter(
@@ -1482,8 +1500,8 @@ class Electricity(BaseTransformation):
                 )
 
                 # Rescale all the technosphere exchanges
-                # according to the change in efficiency between `year` and 2020
-                # from the IAM efficiency values
+                # according to the change in efficiency between `year`
+                # and 2020 from the IAM efficiency values
                 wurst.change_exchanges_by_constant_factor(
                     dataset,
                     scaling_factor,
@@ -1494,16 +1512,7 @@ class Electricity(BaseTransformation):
                 # update the emissions of pollutants
                 self.update_pollutant_emissions(dataset=dataset, sector=technology)
 
-        Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
-        with open(
-            DATA_DIR / f"logs/log power plant efficiencies change "
-            f"{self.model.upper()} {self.scenario} {self.year}-{date.today()}.csv",
-            "a",
-            encoding="utf-8",
-        ) as csv_file:
-            writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-            for row in eff_change_log:
-                writer.writerow(row)
+                self.write_log(dataset=dataset, status="updated")
 
     def update_electricity_markets(self) -> None:
         """
@@ -1553,7 +1562,6 @@ class Electricity(BaseTransformation):
 
             # add tag
             dataset["has_downstream_consumer"] = False
-
             dataset["exchanges"] = [
                 e for e in dataset["exchanges"] if e["type"] == "production"
             ]
@@ -1577,6 +1585,8 @@ class Electricity(BaseTransformation):
                 }
             )
 
+            self.write_log(dataset=dataset, status="updated")
+
         # update `self.list_datasets`
         self.list_datasets = [
             s for s in self.list_datasets if (s[0], s[2]) not in list_to_remove
@@ -1590,7 +1600,21 @@ class Electricity(BaseTransformation):
         print("Create low voltage markets.")
         self.create_new_markets_low_voltage()
 
-        print(f"Log of deleted electricity markets saved in {DATA_DIR}/logs")
-        print(f"Log of created electricity markets saved in {DATA_DIR}/logs")
-
         print("Done!")
+
+    def write_log(self, dataset, status="created"):
+        """
+        Write log file.
+        """
+
+        logger.info(
+            f"{status}|{self.model}|{self.scenario}|{self.year}|"
+            f"{dataset['name']}|{dataset['location']}|"
+            f"{dataset.get('log parameters', {}).get('old efficiency', '')}|"
+            f"{dataset.get('log parameters', {}).get('new efficiency', '')}|"
+            f"{dataset.get('log parameters', {}).get('biomass share', '')}|"
+            f"{dataset.get('log parameters', {}).get('transformation loss', '')}|"
+            f"{dataset.get('log parameters', {}).get('distribution loss', '')}|"
+            f"{dataset.get('log parameters', {}).get('renewable share', '')}"
+
+        )

@@ -3,9 +3,20 @@ Integrates projections regarding direct air capture and storage.
 """
 
 import copy
+import logging
+import logging.config
+from .utils import DATA_DIR
+import yaml
+
+LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+
+with open(LOG_CONFIG, "r") as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
+
+logger = logging.getLogger("dac")
 
 import numpy as np
-import yaml
 
 from .transformation import (
     BaseTransformation,
@@ -17,7 +28,7 @@ from .transformation import (
     ws,
     wurst,
 )
-from .utils import DATA_DIR, write_log
+
 
 HEAT_SOURCES = DATA_DIR / "fuels" / "heat_sources_map.yml"
 
@@ -98,6 +109,10 @@ class DirectAirCapture(BaseTransformation):
                     ]
                 )
 
+                # add to log
+                for dataset in list(new_ds.values()):
+                    self.write_log(dataset)
+
         # define heat sources
         heat_map_ds = fetch_mapping(HEAT_SOURCES)
 
@@ -149,15 +164,8 @@ class DirectAirCapture(BaseTransformation):
                     self.database.extend(new_ds.values())
 
                     # add to log
-                    for datasets in list(new_ds.values()):
-                        write_log(
-                            "direct air capture",
-                            "created",
-                            datasets,
-                            self.model,
-                            self.scenario,
-                            self.year,
-                        )
+                    for dataset in list(new_ds.values()):
+                        self.write_log(dataset)
 
                     # Add created dataset to `self.list_datasets`
                     self.list_datasets.extend(
@@ -212,7 +220,6 @@ class DirectAirCapture(BaseTransformation):
         # fetch cumulated deployment of DAC from IAM file
         if "dac_solvent" in self.iam_data.production_volumes.variables.values:
             for region, dataset in datasets.items():
-
                 cumulated_deployment = (
                     np.clip(
                         self.iam_data.production_volumes.sel(
@@ -266,6 +273,20 @@ class DirectAirCapture(BaseTransformation):
                     technology
                 ]
 
+                current_energy_inputs = sum(
+                    e["amount"] for e in dataset["exchanges"] if e["unit"] == "megajoule"
+                )
+                current_energy_inputs += sum(
+                    e["amount"] * 3.6 for e in dataset["exchanges"] if e["unit"] == "kilowatt hour"
+                )
+
+                if "log parameters" not in dataset:
+                    dataset["log parameters"] = {}
+
+                dataset["log parameters"].update({
+                    "initial energy input per kg CO2": current_energy_inputs,
+                })
+
                 # Scale down the energy exchanges using the scaling factor
                 wurst.change_exchanges_by_constant_factor(
                     dataset,
@@ -278,11 +299,27 @@ class DirectAirCapture(BaseTransformation):
                     biosphere_filters=[ws.exclude(ws.contains("type", "biosphere"))],
                 )
 
+                new_energy_inputs = sum(
+                    e["amount"] for e in dataset["exchanges"] if e["unit"] == "megajoule"
+                )
+                new_energy_inputs += sum(
+                    e["amount"] * 3.6 for e in dataset["exchanges"] if e["unit"] == "kilowatt hour"
+                )
+
+                dataset["log parameters"].update({
+                    "new energy input per kg CO2": new_energy_inputs,
+                })
+
                 # add in comments the scaling factor applied
                 dataset["comment"] += (
                     f" Operation-related expenditures have been "
                     f"reduced by: {int((1 - scaling_factor_operation) * 100)}%."
                 )
+
+                dataset["log parameters"].update({
+                    "scaling factor operation": scaling_factor_operation,
+                    "scaling factor infrastructure": scaling_factor_infra,
+                })
 
                 # Scale down the infra and material exchanges using the scaling factor
                 wurst.change_exchanges_by_constant_factor(
@@ -308,3 +345,16 @@ class DirectAirCapture(BaseTransformation):
                 )
 
         return datasets
+
+    def write_log(self, dataset, status="created"):
+        """
+        Write log file.
+        """
+        logger.info(
+            f"{status}|{self.model}|{self.scenario}|{self.year}|"
+            f"{dataset['name']}|{dataset['location']}|"
+            f"{dataset.get('log parameters', {}).get('scaling factor operation', '')}|"
+            f"{dataset.get('log parameters', {}).get('scaling factor infrastructure', '')}|"
+            f"{dataset.get('log parameters', {}).get('initial energy input per kg CO2', '')}|"
+            f"{dataset.get('log parameters', {}).get('new energy input per kg CO2', '')}"
+        )

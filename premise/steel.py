@@ -5,7 +5,18 @@ from typing import List, Dict
 
 from .data_collection import IAMDataCollection
 from .transformation import BaseTransformation, ws, wurst
-from .utils import DATA_DIR, write_log
+from .utils import DATA_DIR
+
+import logging.config
+import yaml
+
+LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+
+with open(LOG_CONFIG, "r") as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
+
+logger = logging.getLogger("steel")
 
 
 class Steel(BaseTransformation):
@@ -20,13 +31,13 @@ class Steel(BaseTransformation):
     """
 
     def __init__(
-        self,
-        database: List[dict],
-        iam_data: IAMDataCollection,
-        model: str,
-        pathway: str,
-        year: int,
-        version: str,
+            self,
+            database: List[dict],
+            iam_data: IAMDataCollection,
+            model: str,
+            pathway: str,
+            year: int,
+            version: str,
     ) -> None:
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
@@ -38,9 +49,6 @@ class Steel(BaseTransformation):
 
         :return: Returns a modified database with newly added steel activities for the corresponding year
         """
-
-        print(f"Log of deleted steel datasets saved in {DATA_DIR / 'logs'}")
-        print(f"Log of created steel datasets saved in {DATA_DIR / 'logs'}")
 
         self.create_steel_markets()
         self.create_steel_production_activities()
@@ -120,6 +128,12 @@ class Steel(BaseTransformation):
                         ]
                         dataset["exchanges"].extend(new_exc)
 
+                        dataset["log parameters"] = {
+                            "primary steel share": primary_share,
+                            "secondary steel share": secondary_share,
+                        }
+
+
             else:
                 for loc, dataset in steel_markets.items():
                     if loc != "World":
@@ -160,18 +174,18 @@ class Steel(BaseTransformation):
 
             for region in regions:
                 share = (
-                    self.iam_data.production_volumes.sel(
-                        variables=["steel - primary", "steel - secondary"],
-                        region=region,
-                    )
-                    .interp(year=self.year)
-                    .sum(dim="variables")
-                    / self.iam_data.production_volumes.sel(
-                        variables=["steel - primary", "steel - secondary"],
-                        region="World",
-                    )
-                    .interp(year=self.year)
-                    .sum(dim="variables")
+                        self.iam_data.production_volumes.sel(
+                            variables=["steel - primary", "steel - secondary"],
+                            region=region,
+                        )
+                        .interp(year=self.year)
+                        .sum(dim="variables")
+                        / self.iam_data.production_volumes.sel(
+                    variables=["steel - primary", "steel - secondary"],
+                    region="World",
+                )
+                        .interp(year=self.year)
+                        .sum(dim="variables")
                 ).values.item(0)
 
                 steel_markets["World"]["exchanges"].append(
@@ -187,9 +201,9 @@ class Steel(BaseTransformation):
 
             self.database.extend(list(steel_markets.values()))
 
-            # add log
-            for datasets in list(steel_markets.values()):
-                write_log("steel", "created", datasets, self.model, self.scenario, self.year)
+            # add to log
+            for new_dataset in list(steel_markets.values()):
+                self.write_log(new_dataset)
 
     def create_steel_production_activities(self):
         """
@@ -232,6 +246,10 @@ class Steel(BaseTransformation):
             # update the database with the modified datasets
             self.database.extend(list(steel.values()))
 
+            # add to log
+            for new_dataset in list(steel.values()):
+                self.write_log(new_dataset)
+
         # adjust efficiency of secondary steel production
         # and add carbon capture and storage, if needed
         for _, steel in d_act_secondary_steel.items():
@@ -242,8 +260,9 @@ class Steel(BaseTransformation):
             # update the database with the modified datasets
             self.database.extend(list(steel.values()))
 
-            for datasets in list(steel.values()):
-                write_log("steel", "created", datasets, self.model, self.scenario, self.year)
+            # add to log
+            for new_dataset in list(steel.values()):
+                self.write_log(new_dataset)
 
     def create_pig_iron_production_activities(self):
         """
@@ -267,8 +286,9 @@ class Steel(BaseTransformation):
 
         self.database.extend(list(pig_iron.values()))
 
-        for datasets in list(pig_iron.values()):
-            write_log("steel", "created", datasets, self.model, self.scenario, self.year)
+        # add to log
+        for new_dataset in list(pig_iron.values()):
+            self.write_log(new_dataset)
 
     def create_pig_iron_markets(self):
         """
@@ -283,8 +303,9 @@ class Steel(BaseTransformation):
         )
         self.database.extend(list(pig_iron_markets.values()))
 
-        for datasets in list(pig_iron_markets.values()):
-            write_log("steel", "created", datasets, self.model, self.scenario, self.year)
+        # add to log
+        for new_dataset in list(pig_iron_markets.values()):
+            self.write_log(new_dataset)
 
     def adjust_process_efficiency(self, datasets):
         """
@@ -310,16 +331,16 @@ class Steel(BaseTransformation):
             "steam",
         ]
 
-        for region, activity in datasets.items():
+        for region, dataset in datasets.items():
             # Determine the sector based on the activity name
-            if any(i in activity["name"] for i in ["converter", "pig iron"]):
+            if any(i in dataset["name"] for i in ["converter", "pig iron"]):
                 sector = "steel - primary"
             else:
                 sector = "steel - secondary"
 
             # Calculate the scaling factor based on the efficiency change from 2020 to the current year
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable=sector, location=activity["location"]
+                variable=sector, location=dataset["location"]
             )
 
             # Update the comments
@@ -329,16 +350,25 @@ class Steel(BaseTransformation):
                 f"region {region} in {self.year}, following the scenario {self.scenario}. "
                 f"The energy efficiency of the process has been improved by {int((1 - scaling_factor) * 100)}%."
             )
-            activity["comment"] = text + activity["comment"]
+            dataset["comment"] = text + dataset["comment"]
 
             # Scale down the fuel exchanges using the scaling factor
             wurst.change_exchanges_by_constant_factor(
-                activity,
+                dataset,
                 scaling_factor,
                 technosphere_filters=[
                     ws.either(*[ws.contains("name", x) for x in list_fuels])
                 ],
                 biosphere_filters=[ws.contains("name", "Carbon dioxide, fossil")],
+            )
+
+            if "log parameters" not in dataset:
+                dataset["log parameters"] = {}
+
+            dataset["log parameters"].update(
+                {
+                    "thermal efficiency change": scaling_factor,
+                }
             )
 
         return datasets
@@ -366,7 +396,7 @@ class Steel(BaseTransformation):
 
                 # Modify the CO2 flow in the input dataset
                 for co2_flow in ws.biosphere(
-                    dataset, ws.contains("name", "Carbon dioxide, fossil")
+                        dataset, ws.contains("name", "Carbon dioxide, fossil")
                 ):
                     co2_amount = co2_flow["amount"]
                     co2_emitted = co2_amount * (1 - carbon_capture_rate)
@@ -380,13 +410,35 @@ class Steel(BaseTransformation):
                         "type": "technosphere",
                         "production volume": 0,
                         "name": "carbon dioxide, captured at steel production plant, "
-                        "with underground storage, post, 200 km",
+                                "with underground storage, post, 200 km",
                         "unit": "kilogram",
                         "location": dataset["location"],
                         "product": "carbon dioxide, captured and stored",
                     }
                     dataset["exchanges"].append(ccs_exc)
 
+            if "log parameters" not in dataset:
+                dataset["log parameters"] = {}
+
+            dataset["log parameters"].update(
+                {
+                    "carbon capture rate": carbon_capture_rate
+                }
+            )
+
         return datasets
 
+    def write_log(self, dataset, status="created"):
+        """
+        Write log file.
+        """
 
+        logger.info(
+            f"{status}|{self.model}|{self.scenario}|{self.year}|"
+            f"{dataset['name']}|{dataset['location']}|"
+            f"{dataset.get('log parameters', {}).get('carbon capture rate', '')}|"
+            f"{dataset.get('log parameters', {}).get('thermal efficiency change', '')}|"
+            f"{dataset.get('log parameters', {}).get('primary steel share', '')}|"
+            f"{dataset.get('log parameters', {}).get('secondary steel share', '')}"
+
+        )

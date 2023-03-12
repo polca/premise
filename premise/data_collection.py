@@ -95,10 +95,14 @@ def get_gnr_data() -> xr.DataArray:
     gnr_array = (
         dataframe.groupby(["region", "year", "variables"]).mean()["value"].to_xarray()
     )
-    gnr_array = gnr_array.interpolate_na(
-        dim="year", method="linear", fill_value="extrapolate"
-    )
-    gnr_array = gnr_array.interp(year=2020)
+
+    # forward-fill nan values
+    gnr_array = gnr_array.ffill(dim="year")
+
+    # backward-fill nan values
+    gnr_array = gnr_array.bfill(dim="year")
+
+    # fill Nans with 0
     gnr_array = gnr_array.fillna(0)
 
     return gnr_array
