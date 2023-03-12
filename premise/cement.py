@@ -463,102 +463,6 @@ class Cement(BaseTransformation):
 
         return d_act_clinker
 
-    def adjust_clinker_ratio(self, d_act: Dict[str, dict]) -> Dict[str, dict]:
-        """Adjust the cement suppliers composition for "cement, unspecified", in order to reach
-        the average clinker-to-cement ratio given by the IAM.
-
-        The supply of the cement with the highest clinker-to-cement ratio is decreased by 1% to the favor of
-        the supply of the cement with the lowest clinker-to-cement ratio, and the average clinker-to-cement ratio
-        is calculated.
-
-        This operation is repeated until the average clinker-to-cement ratio aligns with that given by the IAM.
-        When the supply of the cement with the highest clinker-to-cement ratio goes below 1%,
-        the cement with the second highest clinker-to-cement ratio becomes affected and so forth.
-
-        """
-
-        for region in d_act:
-            # we fetch the clinker-to-cement ratio forecast
-            # This ratio decreases over time
-            # (reducing the amount of clinker in cement), but at
-            # different pace across regions.
-
-            clinker_ratio_to_reach = 1
-            for r in self.clinker_ratio.region.values:
-                if self.geo.ecoinvent_to_iam_location(r) == region:
-                    clinker_ratio_to_reach = self.clinker_ratio.sel(region=r).values
-                    break
-
-            if clinker_ratio_to_reach == 1:
-                raise ValueError(f"clinker-to-cement ratio not found for {region}")
-
-            share, ratio = [], []
-
-            # we loop through the exchange of the dataset
-            # if we meet a cement exchange, we store its clinker-to-cement ratio
-            # in `ratio`
-            for exc in d_act[region]["exchanges"]:
-                if "cement" in exc["product"] and exc["type"] == "technosphere":
-                    share.append(exc["amount"])
-                    try:
-                        ratio.append(
-                            self.clinker_ratio_eco[(exc["name"], exc["location"])]
-                        )
-                    except KeyError:
-                        print(
-                            f"clinker-to-cement ratio not found for {exc['name'], exc['location']}"
-                        )
-
-            share = np.array(share)
-            ratio = np.array(ratio)
-
-            # once we know what cement exchanges are in the dataset
-            # we can calculate the volume-weighted clinker-to-cement ratio
-            # of the dataset
-            average_ratio = (share * ratio).sum()
-
-            if "log parameters" not in d_act[region]:
-                d_act[region]["log parameters"] = {}
-
-            d_act[region]["log parameters"].update(
-                {"old clinker-to-cement ratio": average_ratio}
-            )
-
-            # As long as we do not reach the clinker-to-cement ratio forecast by REMIND
-            # we will decrease the input of the highest clinker-containing cement
-            # and increase the input of the lowest clinker-containing cement
-            iteration = 0
-            while average_ratio > clinker_ratio_to_reach and iteration < 100:
-                share[share == 0] = np.nan
-
-                ratio = np.where(share >= 0.001, ratio, np.nan)
-
-                highest_ratio = np.nanargmax(ratio)
-                lowest_ratio = np.nanargmin(ratio)
-
-                share[highest_ratio] -= 0.01
-                share[lowest_ratio] += 0.01
-
-                average_ratio = (np.nan_to_num(ratio) * np.nan_to_num(share)).sum()
-                iteration += 1
-
-            share = np.nan_to_num(share)
-
-            count = 0
-            for exc in d_act[region]["exchanges"]:
-                if "cement" in exc["product"] and exc["type"] == "technosphere":
-                    exc["amount"] = share[count]
-                    count += 1
-
-            if "log parameters" not in d_act[region]:
-                d_act[region]["log parameters"] = {}
-
-            d_act[region]["log parameters"].update(
-                {"new clinker-to-cement ratio": average_ratio}
-            )
-
-        return d_act
-
     def update_electricity_exchanges(self, d_act: Dict[str, dict]) -> Dict[str, dict]:
         """
         Update electricity exchanges in cement production datasets.
@@ -702,7 +606,6 @@ class Cement(BaseTransformation):
             ref_prod=ref_prod,
             production_variable="cement",
         )
-        act_cement_unspecified = self.adjust_clinker_ratio(act_cement_unspecified)
         self.database.extend(list(act_cement_unspecified.values()))
 
         # add to log
