@@ -72,8 +72,3 @@ def test_losses():
 def test_powerplant_map():
     s = el.powerplant_map["Biomass IGCC CCS"]
     assert isinstance(s, set)
-
-
-def test_emissions_map():
-    s = el.emissions_map["Sulfur dioxide"]
-    assert isinstance(s, str)

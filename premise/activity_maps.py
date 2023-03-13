@@ -4,22 +4,22 @@ mapping between ``premise`` and ``ecoinvent`` terminology.
 """
 
 import csv
+from collections import defaultdict
 from pathlib import Path
+from pprint import pprint
 from typing import List, Union
 
 import yaml
 
 from . import DATA_DIR
 
-GAINS_TO_ECOINVENT_EMISSION_FILEPATH = (
-    DATA_DIR / "GAINS_emission_factors" / "ecoinvent_to_gains_emission_mappping.csv"
-)
 POWERPLANT_TECHS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
 FUELS_TECHS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
 MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
 DAC_TECHS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yaml"
 CARBON_STORAGE_TECHS = DATA_DIR / "direct_air_capture" / "carbon_storage_tech_vars.yaml"
 CEMENT_TECHS = DATA_DIR / "cement" / "cement_tech_vars.yml"
+GAINS_MAPPING = DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
 
 
 def get_mapping(filepath: Path, var: str) -> dict:
@@ -39,27 +39,6 @@ def get_mapping(filepath: Path, var: str) -> dict:
             mapping[key] = val[var]
 
     return mapping
-
-
-def get_gains_to_ecoinvent_emissions() -> dict:
-    """
-    Retrieve the correspondence between GAINS and ecoinvent emission labels.
-    :return: GAINS emission labels as keys and ecoinvent emission labels as values
-    """
-
-    if not GAINS_TO_ECOINVENT_EMISSION_FILEPATH.is_file():
-        raise FileNotFoundError(
-            "The dictionary of emission labels correspondences could not be found."
-        )
-
-    csv_dict = {}
-
-    with open(GAINS_TO_ECOINVENT_EMISSION_FILEPATH, encoding="utf-8") as file:
-        input_dict = csv.reader(file, delimiter=";")
-        for row in input_dict:
-            csv_dict[row[0]] = row[1]
-
-    return csv_dict
 
 
 class InventorySet:
@@ -99,6 +78,28 @@ class InventorySet:
         self.cement_fuel_filters = get_mapping(
             filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases"
         )
+
+        self.gains_filters_EU = get_mapping(
+            filepath=GAINS_MAPPING, var="ecoinvent_aliases"
+        )
+
+    def generate_gains_mapping_IAM(self):
+
+        map = self.generate_gains_mapping()
+        EU_to_IAM_var = get_mapping(filepath=GAINS_MAPPING, var="gains_aliases_IAM")
+
+        new_map = defaultdict(set)
+        for eu, iam in EU_to_IAM_var.items():
+            new_map[iam].update(map[eu])
+
+        return new_map
+
+    def generate_gains_mapping(self):
+        """
+        Generate a dictionary with GAINS variables as keys and
+        ecoinvent datasets as values.
+        """
+        return self.generate_sets_from_filters(self.gains_filters_EU)
 
     def generate_powerplant_map(self) -> dict:
         """

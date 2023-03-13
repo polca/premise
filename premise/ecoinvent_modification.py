@@ -21,6 +21,7 @@ from .direct_air_capture import DirectAirCapture
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import Electricity
+from .emissions import Emissions
 from .export import (
     Export,
     build_datapackage,
@@ -431,7 +432,9 @@ class NewDatabase:
         external_scenarios: list = None,
         quiet=False,
         keep_uncertainty_data=False,
+        gains_scenario="CLE",
     ) -> None:
+
         self.source = source_db
         self.version = check_db_version(source_version)
         self.source_type = source_type
@@ -441,6 +444,10 @@ class NewDatabase:
             if system_model == "consequential"
             else None
         )
+
+        if gains_scenario not in ["CLE", "MFR"]:
+            raise ValueError("gains_scenario must be either 'CLE' or 'MFR'")
+        self.gains_scenario = gains_scenario
 
         if self.source_type == "ecospold":
             self.source_file_path = check_ei_filepath(source_file_path)
@@ -508,6 +515,7 @@ class NewDatabase:
                 key=key,
                 system_model=self.system_model,
                 time_horizon=self.time_horizon,
+                gains_scenario=self.gains_scenario,
             )
             scenario["iam data"] = data
 
@@ -662,7 +670,9 @@ class NewDatabase:
         print("Done!\n")
         return data
 
-    def __import_additional_inventories(self, data_package: [datapackage.DataPackage, list]) -> List[dict]:
+    def __import_additional_inventories(
+        self, data_package: [datapackage.DataPackage, list]
+    ) -> List[dict]:
         """
         This method will trigger the import of a number of inventories
         and merge them into the database dictionary.
@@ -742,10 +752,7 @@ class NewDatabase:
         print("\n//////////////////////// DIRECT AIR CAPTURE ////////////////////////")
 
         for scenario in self.scenarios:
-            if (
-                "exclude" not in scenario
-                or "update_dac" not in scenario["exclude"]
-            ):
+            if "exclude" not in scenario or "update_dac" not in scenario["exclude"]:
                 dac = DirectAirCapture(
                     database=scenario["database"],
                     iam_data=scenario["iam data"],
@@ -959,6 +966,29 @@ class NewDatabase:
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
 
+    def update_emissions(self) -> None:
+        """
+        This method will update the hot pollutants emissions
+        with the data from the GAINS model.
+        """
+
+        print("\n/////////////////////////// EMISSIONS //////////////////////////////")
+
+        for scenario in self.scenarios:
+            if "update_emissions" not in scenario.get("exclude", []):
+                emissions = Emissions(
+                    database=scenario["database"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["iam data"],
+                    version=self.version,
+                    gains_scenario=self.gains_scenario,
+                )
+
+                emissions.update_emissions_in_database()
+                scenario["database"] = emissions.database
+
     def update_all(self) -> None:
         """
         Shortcut method to execute all transformation functions.
@@ -970,16 +1000,14 @@ class NewDatabase:
             "If you want to update these steps, please run them separately afterwards."
         )
 
-        # self.update_two_wheelers()
-        # self.update_cars()
         self.update_trucks()
-        # self.update_buses()
         self.update_electricity()
         self.update_dac()
         self.update_cement()
         self.update_steel()
         self.update_fuels()
         self.update_external_scenario()
+        self.update_emissions()
 
     def write_superstructure_db_to_brightway(
         self, name: str = f"super_db_{date.today()}", filepath: str = None
@@ -1223,10 +1251,7 @@ class NewDatabase:
 
         print("Generate change report.")
         generate_change_report(
-            self.source,
-            self.version,
-            self.source_type,
-            self.system_model
+            self.source, self.version, self.source_type, self.system_model
         )
         # saved under working directory
         print(f"Report saved under {os.getcwd()}.")

@@ -41,6 +41,7 @@ GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtech
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
 CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
+GAINS_GEO_MAP = DATA_DIR / "GAINS_emission_factors" / "iam_data" / "region_mapping.yaml"
 
 
 def get_crops_properties() -> dict:
@@ -108,7 +109,54 @@ def get_gnr_data() -> xr.DataArray:
     return gnr_array
 
 
-def get_gains_data() -> xr.DataArray:
+def get_gains_IAM_data(model, gains_scenario):
+
+    filepath = Path(
+        DATA_DIR / "GAINS_emission_factors" / "iam_data" / gains_scenario
+    ).glob("*")
+
+    list_arrays = []
+
+    for file in filepath:
+
+        df = pd.read_csv(file)
+        df = df.rename(columns={"Region": "region", "EMF30 Sector": "sector"})
+        df = df.rename(columns={str(v): int(v) for v in range(1990, 2055, 5)})
+
+        df["pollutant"] = file.stem
+
+        array = (
+            df.melt(
+                id_vars=["region", "sector", "pollutant"],
+                value_vars=range(1990, 2055, 5),
+                var_name="year",
+                value_name="value",
+            )
+            .groupby(["region", "sector", "year", "pollutant"])["value"]
+            .mean()
+            .to_xarray()
+        )
+
+        array = array.interpolate_na(
+            dim="year", method="nearest", fill_value="extrapolate"
+        )
+        array = array.bfill(dim="year")
+        array = array.ffill(dim="year")
+
+        list_arrays.append(array)
+
+    arr = xr.concat(list_arrays, dim="pollutant")
+
+    with open(GAINS_GEO_MAP, "r", encoding="utf-8") as stream:
+        geo_map = yaml.safe_load(stream)
+
+    arr.coords["region"] = [geo_map[v][model] for v in arr.region.values]
+    arr = arr.drop_duplicates(dim="region")
+
+    return arr
+
+
+def get_gains_EU_data() -> xr.DataArray:
     """
     Read the GAINS emissions csv file and return an `xarray` with dimensions:
 
@@ -120,46 +168,43 @@ def get_gains_data() -> xr.DataArray:
     :return: a multi-dimensional array with GAINS emissions data
 
     """
-    filename = "GAINS emission factors.csv"
+
+    filename = "GAINS_emission_factors_EU.xlsx"
     filepath = DATA_DIR / "GAINS_emission_factors" / filename
 
-    gains_emi = pd.read_csv(
+    gains_emi_EU = pd.read_excel(
         filepath,
-        skiprows=4,
-        names=["year", "region", "GAINS", "pollutant", "pathway", "factor"],
+        names=[
+            "Region",
+            "Sector",
+            "Activity",
+            "variable",
+            "value",
+            "year",
+            "substance",
+            "Activity_long",
+        ],
     )
-    gains_emi["unit"] = "Mt/TWa"
-    gains_emi = gains_emi[gains_emi.pathway == "SSP2"]
+    gains_emi_EU["sector"] = gains_emi_EU["Sector"] + gains_emi_EU["Activity"]
+    gains_emi_EU.drop(["Sector", "Activity", "variable", "Activity_long"], axis=1)
 
-    sector_mapping = pd.read_csv(GAINS_TO_IAM_FILEPATH).drop(
-        ["noef", "elasticity"], axis=1
+    gains_emi_EU = gains_emi_EU[~gains_emi_EU["value"].isna()]
+
+    gains_emi_EU = gains_emi_EU.rename(
+        columns={"Region": "region", "substance": "pollutant"}
     )
 
-    gains_emi = (
-        gains_emi.join(sector_mapping.set_index("GAINS"), on="GAINS")
-        .dropna()
-        .drop(["pathway", "REMIND"], axis=1)
-        .pivot_table(
-            index=["region", "GAINS", "pollutant", "unit"],
-            values="factor",
-            columns="year",
-        )
-    )
-
-    gains_emi = gains_emi.reset_index()
-    gains_emi = gains_emi.melt(
-        id_vars=["region", "pollutant", "unit", "GAINS"],
-        var_name="year",
-        value_name="value",
-    )[["region", "pollutant", "GAINS", "year", "value"]]
-    gains_emi = gains_emi.rename(columns={"GAINS": "sector"})
     array = (
-        gains_emi.groupby(["region", "pollutant", "year", "sector"])["value"]
+        gains_emi_EU.groupby(["region", "pollutant", "year", "sector"])["value"]
         .mean()
         .to_xarray()
     )
 
-    return array / 8760  # per TWha --> per TWh
+    array = array.interpolate_na(dim="year", method="nearest", fill_value="extrapolate")
+    array = array.bfill(dim="year")
+    array = array.ffill(dim="year")
+
+    return array
 
 
 def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, None]:
@@ -222,6 +267,7 @@ class IAMDataCollection:
         key: bytes,
         system_model: str = "attributional",
         time_horizon: int = 30,
+        gains_scenario: str = "CLE",
         external_scenarios: list = None,
     ) -> None:
         self.model = model
@@ -318,7 +364,10 @@ class IAMDataCollection:
         self.system_model = system_model
         self.time_horizon = time_horizon
 
-        gains_data = get_gains_data()
+        self.gains_data_EU = get_gains_EU_data()
+        self.gains_data_IAM = get_gains_IAM_data(
+            self.model, gains_scenario=gains_scenario
+        )
         self.gnr_data = get_gnr_data()
 
         self.electricity_markets = self.__get_iam_electricity_markets(data=data)
@@ -337,10 +386,7 @@ class IAMDataCollection:
         self.other_vars = self.__get_other_iam_vars(data=data)
 
         electricity_efficiencies = self.__get_iam_electricity_efficiencies(data=data)
-        electricity_emissions = self.__get_gains_electricity_emissions(data=gains_data)
-        cement_emissions = self.__get_gains_cement_emissions(data=gains_data)
         cement_efficiencies = self.__get_iam_cement_efficiencies(data=data)
-        steel_emissions = self.__get_gains_steel_emissions(data=gains_data)
         steel_efficiencies = self.__get_iam_steel_efficiencies(data=data)
         fuel_efficiencies = self.__get_iam_fuel_efficiencies(data=data)
 
@@ -353,14 +399,7 @@ class IAMDataCollection:
             ],
             dim="variables",
         )
-        self.emissions = xr.concat(
-            [
-                electricity_emissions,
-                steel_emissions,
-                cement_emissions,
-            ],
-            dim="sector",
-        )
+
 
         if self.model == "image":
             self.land_use = self.__get_iam_land_use(data=data)

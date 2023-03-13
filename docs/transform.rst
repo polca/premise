@@ -171,18 +171,13 @@ for the different fuels used in combustion-based powerplants.
 Additionally, the biogenic and fossil CO2 emissions of the datasets are also scaled up or down
 by the same factor, as those are proportionate to the amount of fuel used.
 
-Finally, another *scaling factor* is used to scale emissions of non-CO2 substances (CO, VOCs, etc.),
-based on GAINS projections for the given technology, region and year.
-
 We provide below an example of a natural gas powerplant, with a current (2020)
 conversion efficiency of 77%. If the IAM scenario indicates a *scaling factor*
 of 1.03 in 2030, this indicates tha the efficiency increases by 3% relative to current.
 As shown in the table below, this would results in a new efficiency of 79%, where
 all inputs, as well as CO2 emissions outputs are re-scaled by 1/1.03 (=0.97).
 This excludes non-CO2 emissions, such as CO in this example, which are re-scaled separately,
-based on GAINS projections: such emissions, while partly correlated to fuel use,
-are mostly mitigated via investments in electrostatic precipitators,
-which is what GAINS scenarios model.
+using the `update_emissions` function.
 
 
  =================================================== =========== =========== =======
@@ -586,9 +581,6 @@ concern the calcination emissions due to the production of
 calcium oxide (CaO) from calcium carbonate (CaCO3), which is set
 at a fix emission rate of 525 kg CO2/t clinker.
 
-Finally, another *scaling factor* is used to scale emissions of non-CO2 substances (CO, VOCs, etc.),
-based on GAINS projections for the cement sector, given a region and year.
-
 
 Carbon Capture and Storage
 ++++++++++++++++++++++++++
@@ -786,9 +778,6 @@ Regarding the production of secondary steel (using EAF),
 *premise* adjusts the input of electricity based on teh scaling factor
 provided by the IAM scenario.
 
-Finally, another *scaling factor* is used to scale emissions of non-CO2
-substances (CO, VOCs, etc.), based on GAINS projections for the steel sector,
-given a region and year.
 
 .. note::
 
@@ -1864,10 +1853,83 @@ the regionalization process will select all the existing suppliers and
 allocate a supply share to each supplier based on their respective
 production volume.
 
+GAINS emission factors
+""""""""""""""""""""""
 
+When using `update_emissions()`, emission factors from the GAINS-EU and GAINS-IAM models are used to scale
+non-CO2 emissions in various datasets. The emission factors are available under
+data/GAINS_emission_factors.
+Emission factors from GAINS-EU are applied to activities in European countries.
+Emission factors from GAINS-IAM are applied to activities in non-European countries.
+Emission factors are specific to:
+* an activity type,
+* a year,
+* a country (for GAIN-EU, otherwise a region),
+* a fuel type,
+* a technology type,
+* and a scenario.
+
+The mapping between GAINS and ecoinvent activities is available under the following file:
+* data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml
+
+The table below shows the mapping between ecoinvent and GAINS emission flows.
+
++-------------------------------------------------------------------+----------------+
+| ecoinvent species                                                 | GAINS species  |
++===================================================================+================+
+| Sulfur dioxide                                                    |  SO2           |
+| Sulfur oxides                                                     |  SO2           |
+| Carbon monoxide, fossil                                           |  CO            |
+| Carbon monoxide, non-fossil                                       |  CO            |
+| Carbon monoxide, from soil or biomass stock                       |  CO            |
+| Nitrogen oxides                                                   |  NOx           |
+| Ammonia                                                           |  NH3           |
+| NMVOC, non-methane volatile organic compounds, unspecified origin |  VOC           |
+| VOC, volatile organic compounds, unspecified origin               |  VOC           |
+| Methane                                                           |  CH4           |
+| Methane, fossil                                                   |  CH4           |
+| Methane, non-fossil                                               |  CH4           |
+| Methane, from soil or biomass stock                               |  CH4           |
+| Dinitrogen monoxide                                               |  N2O           |
+| Particulates, > 10 um                                             |  PM10          |
+| Particulates, > 2.5 um, and < 10um                                |  PM25          |
+| Particulates, < 2.5 um                                            |  PM1           |
++-------------------------------------------------------------------+----------------+
+
+We considered emission factors in ecoinvent as representative of the current situation.
+Hence, we calculate a scaling factor from the GAINS emission factors for the year of
+the scenario relative to the year 2020.
+
+Two GAINS-IAM scenarios are available:
+* CLE: Current LEgislation scenario
+* MFR: Maximum Feasible Reduction scenario
+
+By default, the CLE scenario is used. To use the MFR scenario:
+
+.. code-block:: python
+
+    ndb = NewDatabase(
+        ...
+        gains_scenario="MFR",
+    )
+
+Finally, unlike GAINS-EU, GAINS-IAM uses IAM-like regions, not countries.
+The mapping between IAM regions and GAINS-IAM regions is available under the following file:
+* data/GAINS_emission_factors/iam_data/region_mapping.yaml
+
+For questions related to GAINS modelling, please contact the GAINS team:
+* GAINS-EU: https://gains.iiasa.ac.at/gains/EUN/index.login
+* GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
 
 Logs
 """"
 
-*premise* generates log files for each transformation function applied to the database.
-They are found in the library folder, under *premise/data/logs*.
+*premise* generates a spreadsheet report detailing changes made to the database
+for each scenario. The report is saved in the current working directory and
+is automatically generated after database export.
+
+The report lists the datasets added, updaed and emptied.
+It also gives a number of indicators relating to efficiency,
+emissions, etc. for each scenario.
+
+This report can also be generated manually using the `generate_change_report()` method.

@@ -48,6 +48,14 @@ handlers:
     formatter: simple
     mode: w
 
+  file_emissions:
+    class: logging.FileHandler
+    level: INFO
+    filename: premise_emissions.log
+    encoding: utf8
+    formatter: simple
+    mode: w
+
 loggers:
   dac:
     level: INFO
@@ -72,4 +80,9 @@ loggers:
   fuel:
     level: INFO
     handlers: [ file_fuel ]
+    propagate: False
+
+  emissions:
+    level: INFO
+    handlers: [ file_emissions ]
     propagate: False

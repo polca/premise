@@ -160,6 +160,7 @@ def check_datapackage(datapackages: list):
                 f"Two or more resources in datapackage {d + 1} are similar."
             )
 
+
 def list_all_iam_regions(config):
     """
     List all IAM regions in the config file.
@@ -174,6 +175,7 @@ def list_all_iam_regions(config):
             list_regions.extend(v)
 
     return list_regions
+
 
 def check_config_file(datapackages):
     for i, dp in enumerate(datapackages):
@@ -209,11 +211,7 @@ def check_config_file(datapackages):
                         Optional("except regions"): And(
                             list,
                             Use(list),
-                            lambda s: all(
-                                i
-                                in list_all_iam_regions(config)
-                                for i in s
-                            ),
+                            lambda s: all(i in list_all_iam_regions(config) for i in s),
                         ),
                         Optional("replaces"): [
                             {

@@ -277,18 +277,24 @@ class DirectAirCapture(BaseTransformation):
                 ]
 
                 current_energy_inputs = sum(
-                    e["amount"] for e in dataset["exchanges"] if e["unit"] == "megajoule"
+                    e["amount"]
+                    for e in dataset["exchanges"]
+                    if e["unit"] == "megajoule"
                 )
                 current_energy_inputs += sum(
-                    e["amount"] * 3.6 for e in dataset["exchanges"] if e["unit"] == "kilowatt hour"
+                    e["amount"] * 3.6
+                    for e in dataset["exchanges"]
+                    if e["unit"] == "kilowatt hour"
                 )
 
                 if "log parameters" not in dataset:
                     dataset["log parameters"] = {}
 
-                dataset["log parameters"].update({
-                    "initial energy input per kg CO2": current_energy_inputs,
-                })
+                dataset["log parameters"].update(
+                    {
+                        "initial energy input per kg CO2": current_energy_inputs,
+                    }
+                )
 
                 # Scale down the energy exchanges using the scaling factor
                 wurst.change_exchanges_by_constant_factor(
@@ -303,15 +309,21 @@ class DirectAirCapture(BaseTransformation):
                 )
 
                 new_energy_inputs = sum(
-                    e["amount"] for e in dataset["exchanges"] if e["unit"] == "megajoule"
+                    e["amount"]
+                    for e in dataset["exchanges"]
+                    if e["unit"] == "megajoule"
                 )
                 new_energy_inputs += sum(
-                    e["amount"] * 3.6 for e in dataset["exchanges"] if e["unit"] == "kilowatt hour"
+                    e["amount"] * 3.6
+                    for e in dataset["exchanges"]
+                    if e["unit"] == "kilowatt hour"
                 )
 
-                dataset["log parameters"].update({
-                    "new energy input per kg CO2": new_energy_inputs,
-                })
+                dataset["log parameters"].update(
+                    {
+                        "new energy input per kg CO2": new_energy_inputs,
+                    }
+                )
 
                 # add in comments the scaling factor applied
                 dataset["comment"] += (
@@ -319,10 +331,12 @@ class DirectAirCapture(BaseTransformation):
                     f"reduced by: {int((1 - scaling_factor_operation) * 100)}%."
                 )
 
-                dataset["log parameters"].update({
-                    "scaling factor operation": scaling_factor_operation,
-                    "scaling factor infrastructure": scaling_factor_infra,
-                })
+                dataset["log parameters"].update(
+                    {
+                        "scaling factor operation": scaling_factor_operation,
+                        "scaling factor infrastructure": scaling_factor_infra,
+                    }
+                )
 
                 # Scale down the infra and material exchanges using the scaling factor
                 wurst.change_exchanges_by_constant_factor(

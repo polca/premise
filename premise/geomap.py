@@ -65,8 +65,8 @@ class Geomap:
 
         for key, val in self.additional_mappings.items():
             if (
-                    self.model.upper(),
-                    val[self.model],
+                self.model.upper(),
+                val[self.model],
             ) not in self.rev_additional_mappings:
                 self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [
                     key
@@ -85,7 +85,7 @@ class Geomap:
         ]
 
     def iam_to_ecoinvent_location(
-            self, location: str, contained: bool = True
+        self, location: str, contained: bool = True
     ) -> Union[List[str], str]:
         """
         Find the corresponding ecoinvent region given an IAM region.

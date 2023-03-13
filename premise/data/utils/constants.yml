@@ -32,6 +32,7 @@ LIST_TRANSF_FUNC:
   - update_buses
   - update_fuels
   - update_external_scenario
+  - update_emissions
 
 
 LIST_REMIND_REGIONS:

@@ -11,9 +11,8 @@ import uuid
 from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Dict, List, Tuple, Union
+from typing import Dict, List
 
-import bw2io
 import numpy as np
 import pandas as pd
 import sparse

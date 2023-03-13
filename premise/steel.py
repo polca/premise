@@ -31,13 +31,13 @@ class Steel(BaseTransformation):
     """
 
     def __init__(
-            self,
-            database: List[dict],
-            iam_data: IAMDataCollection,
-            model: str,
-            pathway: str,
-            year: int,
-            version: str,
+        self,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
     ) -> None:
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
@@ -133,7 +133,6 @@ class Steel(BaseTransformation):
                             "secondary steel share": secondary_share,
                         }
 
-
             else:
                 for loc, dataset in steel_markets.items():
                     if loc != "World":
@@ -174,18 +173,18 @@ class Steel(BaseTransformation):
 
             for region in regions:
                 share = (
-                        self.iam_data.production_volumes.sel(
-                            variables=["steel - primary", "steel - secondary"],
-                            region=region,
-                        )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
-                        / self.iam_data.production_volumes.sel(
-                    variables=["steel - primary", "steel - secondary"],
-                    region="World",
-                )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
+                    self.iam_data.production_volumes.sel(
+                        variables=["steel - primary", "steel - secondary"],
+                        region=region,
+                    )
+                    .interp(year=self.year)
+                    .sum(dim="variables")
+                    / self.iam_data.production_volumes.sel(
+                        variables=["steel - primary", "steel - secondary"],
+                        region="World",
+                    )
+                    .interp(year=self.year)
+                    .sum(dim="variables")
                 ).values.item(0)
 
                 steel_markets["World"]["exchanges"].append(
@@ -396,7 +395,7 @@ class Steel(BaseTransformation):
 
                 # Modify the CO2 flow in the input dataset
                 for co2_flow in ws.biosphere(
-                        dataset, ws.contains("name", "Carbon dioxide, fossil")
+                    dataset, ws.contains("name", "Carbon dioxide, fossil")
                 ):
                     co2_amount = co2_flow["amount"]
                     co2_emitted = co2_amount * (1 - carbon_capture_rate)
@@ -410,7 +409,7 @@ class Steel(BaseTransformation):
                         "type": "technosphere",
                         "production volume": 0,
                         "name": "carbon dioxide, captured at steel production plant, "
-                                "with underground storage, post, 200 km",
+                        "with underground storage, post, 200 km",
                         "unit": "kilogram",
                         "location": dataset["location"],
                         "product": "carbon dioxide, captured and stored",
@@ -421,9 +420,7 @@ class Steel(BaseTransformation):
                 dataset["log parameters"] = {}
 
             dataset["log parameters"].update(
-                {
-                    "carbon capture rate": carbon_capture_rate
-                }
+                {"carbon capture rate": carbon_capture_rate}
             )
 
         return datasets
@@ -440,5 +437,4 @@ class Steel(BaseTransformation):
             f"{dataset.get('log parameters', {}).get('thermal efficiency change', '')}|"
             f"{dataset.get('log parameters', {}).get('primary steel share', '')}|"
             f"{dataset.get('log parameters', {}).get('secondary steel share', '')}"
-
         )

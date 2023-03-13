@@ -103,6 +103,7 @@ def test_remove_uncertainty():
 
 
 def test_check_for_duplicates():
+
     db = dummy_db.copy()
     db = check_for_duplicates(db)
     assert len(db) != len(dummy_db)

@@ -310,3 +310,70 @@ premise_fuel:
         description: Average lower heating value of the fuel blend (MJ/kg)
         unit: MJ/kg
     tab: Fuel
+premise_emissions:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      CH4 reduction factor:
+        name: CH4 reduction factor
+        description: Reduction factor applied on the initial amount of CH4 emissions
+        unit: 0-1
+      N2O reduction factor:
+        name: N2O reduction factor
+        description: Reduction factor applied on the initial amount of N2O emissions
+        unit: 0-1
+      NH3 reduction factor:
+        name: NH3 reduction factor
+        description: Reduction factor applied on the initial amount of NH3 emissions
+        unit: 0-1
+      NOx reduction factor:
+        name: NOx reduction factor
+        description: Reduction factor applied on the initial amount of NOx emissions
+        unit: 0-1
+      PM1 reduction factor:
+        name: PM1 reduction factor
+        description: Reduction factor applied on the initial amount of emissions of fine particles inferior to 1 um.
+        unit: 0-1
+      PM10 reduction factor:
+        name: PM10 reduction factor
+        description: Reduction factor applied on the initial amount of fine particles inferior to 10 um.
+        unit: 0-1
+      PM25 reduction factor:
+        name: PM25 reduction factor
+        description: Reduction factor applied on the initial amount of fine particles inferior to 2.5 um.
+        unit: 0-1
+      SO2 reduction factor:
+        name: SO2 reduction factor
+        description: Reduction factor applied on the initial amount of SO2 emissions
+        unit: 0-1
+      VOC reduction factor:
+        name: VOC reduction factor
+        description: Reduction factor applied on the initial amount of VOC emissions
+        unit: 0-1
+
+    tab: Emissions

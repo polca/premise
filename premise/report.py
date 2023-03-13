@@ -67,7 +67,7 @@ SECTORS = {
 
 
 def get_variables(
-        filepath,
+    filepath,
 ):
     """
     Get the variables from a yaml file.
@@ -250,7 +250,8 @@ def generate_change_report(source, version, source_type, system_model):
         "premise_fuel",
         "premise_transport",
         "premise_steel",
-        "premise_cement"
+        "premise_cement",
+        "premise_emissions",
     ]
 
     # fetch YAML file containing the reporting metadata
@@ -280,7 +281,9 @@ def generate_change_report(source, version, source_type, system_model):
 
     dim_holder = DimensionHolder(worksheet=worksheet)
     for col in range(worksheet.min_column, worksheet.max_column + 1):
-        dim_holder[get_column_letter(col)] = ColumnDimension(worksheet, min=col, max=col, width=20)
+        dim_holder[get_column_letter(col)] = ColumnDimension(
+            worksheet, min=col, max=col, width=20
+        )
 
     worksheet.column_dimensions = dim_holder
 
@@ -301,8 +304,16 @@ def generate_change_report(source, version, source_type, system_model):
         # add a description of each column
         # in each row
         for col, column in enumerate(fetch_columns(filepath), 1):
-            worksheet.cell(row=1, column=col, value=metadata[filepath]["columns"][column]["description"])
-            worksheet.cell(row=2, column=col, value=metadata[filepath]["columns"][column].get("unit"))
+            worksheet.cell(
+                row=1,
+                column=col,
+                value=metadata[filepath]["columns"][column]["description"],
+            )
+            worksheet.cell(
+                row=2,
+                column=col,
+                value=metadata[filepath]["columns"][column].get("unit"),
+            )
 
         # add the df dataframe to the sheet
         for r in dataframe_to_rows(df, index=False):
@@ -310,7 +321,9 @@ def generate_change_report(source, version, source_type, system_model):
 
     # save the workbook in the working directory
     # the file name is change_report with the current date
-    fp = os.path.join(os.getcwd(), f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx")
+    fp = os.path.join(
+        os.getcwd(), f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx"
+    )
     workbook.save(fp)
 
 

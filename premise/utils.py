@@ -163,12 +163,12 @@ def get_clinker_ratio(year: int) -> xr.DataArray:
 
 
 def add_entry_to_cache(
-        cache: dict,
-        location: str,
-        model: str,
-        exchange: dict,
-        allocated: List[dict],
-        shares: List[float],
+    cache: dict,
+    location: str,
+    model: str,
+    exchange: dict,
+    allocated: List[dict],
+    shares: List[float],
 ) -> dict:
     """
     Add an entry to the cache.
@@ -190,13 +190,13 @@ def add_entry_to_cache(
 
 
 def relink_technosphere_exchanges(
-        dataset,
-        data,
-        model,
-        cache,
-        exclusive=True,
-        biggest_first=False,
-        contained=True,
+    dataset,
+    data,
+    model,
+    cache,
+    exclusive=True,
+    biggest_first=False,
+    contained=True,
 ):
     """Find new technosphere providers based on the location of the dataset.
     Designed to be used when the dataset's location changes, or when new datasets are added.
@@ -278,12 +278,7 @@ def relink_technosphere_exchanges(
             if dataset["location"] in possible_locations:
                 cache[dataset["location"]] = {
                     model: {
-                        (
-                            exc["name"],
-                            exc["product"],
-                            exc["location"],
-                            exc["unit"],
-                        ): [
+                        (exc["name"], exc["product"], exc["location"], exc["unit"],): [
                             (e["name"], e["product"], e["location"], e["unit"], s)
                             for e, s in zip(
                                 [new_exchange(exc, dataset["location"], 1.0)], [1.0]
@@ -298,10 +293,10 @@ def relink_technosphere_exchanges(
 
             if dataset["location"] in geomatcher.iam_regions:
                 if any(
-                        iloc in possible_locations
-                        for iloc in geomatcher.iam_to_ecoinvent_location(
-                            dataset["location"]
-                        )
+                    iloc in possible_locations
+                    for iloc in geomatcher.iam_to_ecoinvent_location(
+                        dataset["location"]
+                    )
                 ):
                     locs = [
                         iloc
@@ -448,14 +443,16 @@ def relink_technosphere_exchanges(
             "amount": sum([exc["amount"] for exc in exchanges]),
         }
         for (name, product, location, unit), exchanges in groupby(
-            sorted(new_exchanges, key=itemgetter("name", "product", "location", "unit")),
+            sorted(
+                new_exchanges, key=itemgetter("name", "product", "location", "unit")
+            ),
             key=itemgetter("name", "product", "location", "unit"),
         )
     ]
 
     dataset["exchanges"] = [
-                               exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
-                           ] + new_exchanges
+        exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
+    ] + new_exchanges
 
     return cache, dataset
 
@@ -489,13 +486,13 @@ def new_exchange(exc, location, factor):
 
 
 def get_gis_match(
-        dataset,
-        location,
-        possible_locations,
-        geomatcher,
-        contained,
-        exclusive,
-        biggest_first,
+    dataset,
+    location,
+    possible_locations,
+    geomatcher,
+    contained,
+    exclusive,
+    biggest_first,
 ):
     with resolved_row(possible_locations, geomatcher.geo) as g:
         func = g.contained if contained else g.intersects

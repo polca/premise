@@ -8,4 +8,3 @@ INVENTORY_DIR = Path(__file__).resolve().parent / "data" / "additional_inventori
 
 from .utils import clear_cache, get_regions_definition
 from .ecoinvent_modification import NewDatabase
-

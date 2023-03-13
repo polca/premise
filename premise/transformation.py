@@ -16,7 +16,7 @@ import wurst
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from .activity_maps import InventorySet, get_gains_to_ecoinvent_emissions
+from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
 from .geomap import Geomap
 from .utils import get_fuel_properties, relink_technosphere_exchanges, DATA_DIR
@@ -33,6 +33,7 @@ with open(LOG_CONFIG, "r") as f:
     logging.config.dictConfig(config)
 
 logger = logging.getLogger("module")
+
 
 def get_suppliers_of_a_region(
     database: List[dict],
@@ -180,7 +181,6 @@ class BaseTransformation:
         self.year: int = year
         self.fuels_specs: dict = get_fuel_properties()
         mapping = InventorySet(self.database)
-        self.emissions_map: dict = get_gains_to_ecoinvent_emissions()
         self.cement_fuels_map: dict = mapping.generate_cement_fuels_map()
         self.fuel_map: Dict[str, Set] = mapping.generate_fuel_map()
 
@@ -913,100 +913,3 @@ class BaseTransformation:
 
         # finally, we add this new dataset to the database
         self.database.append(ccs)
-
-    def find_gains_emissions_change(
-        self, pollutant: str, location: str, sector: str
-    ) -> float:
-        """
-        Return the relative change in emissions compared to 2020
-        for a given pollutant, location and sector.
-        :param pollutant: name of pollutant
-        :param sector: name of technology/sector
-        :param location: location of emitting dataset
-        :return: a scaling factor
-        """
-
-        scaling_factor = self.iam_data.emissions.loc[
-            dict(
-                region=location,
-                pollutant=pollutant,
-                sector=sector,
-            )
-        ].values.item(0)
-
-        return scaling_factor
-
-    def find_iam_efficiency_change(
-        self,
-        variable: Union[str, list],
-        location: str,
-    ) -> float:
-        """
-        Return the relative change in efficiency for `variable` in `location`
-        relative to 2020.
-        :param variable: IAM variable name
-        :param location: IAM region
-        :return: relative efficiency change (e.g., 1.05)
-        """
-
-        scaling_factor = (
-            self.iam_data.efficiency.sel(region=location, variables=variable)
-            .interp(year=self.year)
-            .values.item(0)
-        )
-
-        if scaling_factor in (np.nan, np.inf):
-            scaling_factor = 1
-
-        return scaling_factor
-
-    def update_pollutant_emissions(self, dataset: dict, sector: str) -> dict:
-        """
-        Update pollutant emissions based on GAINS data.
-        We apply a correction factor equal to the relative change in emissions compared
-        to 2020
-
-        :param dataset: dataset to adjust non-CO2 emission for
-        :param sector: GAINS industrial sector to look up
-        :return: Does not return anything. Modified in place.
-        """
-
-        # Update biosphere exchanges according to GAINS emission values
-        for exc in ws.biosphere(
-            dataset, ws.either(*[ws.contains("name", x) for x in self.emissions_map])
-        ):
-            pollutant = self.emissions_map[exc["name"]]
-
-            scaling_factor = 1 / self.find_gains_emissions_change(
-                pollutant=pollutant,
-                location=self.geo.iam_to_gains_region(
-                    self.geo.ecoinvent_to_iam_location(dataset["location"])
-                ),
-                sector=sector,
-            )
-
-            if exc["amount"] != 0:
-                wurst.rescale_exchange(exc, scaling_factor, remove_uncertainty=True)
-
-            exc["comment"] = (
-                f"This exchange has been modified by a factor {scaling_factor} based on "
-                f"GAINS projections for the {sector} sector by `premise`."
-            )
-
-            dataset.get("parameters", {}).update(
-                {
-                    f"{pollutant} change": f"{(scaling_factor - 1) * 100} %",
-                }
-            )
-
-        return dataset
-
-    def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
-
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-        )
