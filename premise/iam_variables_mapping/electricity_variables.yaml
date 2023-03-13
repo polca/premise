@@ -2,7 +2,6 @@
 # to refer to electricity production technologies
 # iam_aliases --> name of the technology in the IAM file
 # eff_aliases --> name of the variable referring to the efficiency of the technology in the IAM file
-# gains_aliases --> name of the variable referring to the technology in the GAINS file for non-CO2 emissions
 # ecoinvent_aliases --> list of names to be found in the ecoinvent database
 # ecoinvent_fuel_aliases --> list of names of fuels consumed by a given technology to be found in the ecoinvent database
 ---
@@ -13,7 +12,6 @@ Biomass CHP:
   eff_aliases:
     remind: Tech|Electricity|Biomass|Combined Heat and Power w/o CC|Efficiency
     image: Efficiency|Electricity|Biomass|w/o CCS|3
-  gains_aliases: Power_Gen_Bio_Trad
   ecoinvent_aliases:
     fltr:
       - heat and power co-generation, wood chips
@@ -27,7 +25,7 @@ Biomass CHP CCS:
     image: Secondary Energy|Electricity|Biomass|w/ CCS|2
   eff_aliases:
     image: Efficiency|Electricity|Biomass|w/ CCS|2
-  gains_aliases: Power_Gen_Bio_Trad
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at co-generation power plant/wood, post, pipeline 200km, storage 1000m
@@ -40,7 +38,7 @@ Biomass ST:
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
   eff_aliases:
     image: Efficiency|Electricity|Biomass|w/o CCS|1
-  gains_aliases: Power_Gen_Bio_Trad
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at wood burning power plant 20 MW, truck 25km, no CCS
@@ -54,7 +52,7 @@ Biomass IGCC CCS:
   eff_aliases:
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     image: Efficiency|Electricity|Biomass|w/ CCS|1
-  gains_aliases: Power_Gen_Bio_Trad
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
@@ -72,7 +70,7 @@ Biomass IGCC:
   eff_aliases:
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/o CC|Efficiency
     image: Efficiency|Electricity|Biomass|w/o CCS|2
-  gains_aliases: Power_Gen_Bio_Trad
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at BIGCC power plant, no CCS
@@ -87,7 +85,7 @@ Coal PC:
   eff_aliases:
     remind: Tech|Electricity|Coal|Pulverised Coal w/o CC|Efficiency
     image: Efficiency|Electricity|Coal|w/o CCS|1
-  gains_aliases: Power_Gen_Coal
+
   ecoinvent_aliases:
     fltr:
       - electricity production, hard coal
@@ -111,7 +109,7 @@ Coal IGCC:
   eff_aliases:
     remind: Tech|Electricity|Coal|Gasification Combined Cycle w/o CC|Efficiency
     image: Efficiency|Electricity|Coal|w/o CCS|2
-  gains_aliases: Power_Gen_Coal
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at power plant/hard coal, IGCC, no CCS
@@ -125,7 +123,7 @@ Coal PC CCS:
     remind: SE|Electricity|Coal|++|Pulverised Coal w/ CC
   eff_aliases:
     remind: Tech|Electricity|Coal|Pulverised Coal w/ CC|Efficiency
-  gains_aliases: Power_Gen_Coal
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at power plant/hard coal, post, pipeline 200km, storage 1000m
@@ -141,7 +139,7 @@ Coal IGCC CCS:
   eff_aliases:
     remind: Tech|Electricity|Coal|Gasification Combined Cycle w/ CC|Efficiency
     image: Efficiency|Electricity|Coal|w/ CCS|1
-  gains_aliases: Power_Gen_Coal
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at power plant/hard coal, pre, pipeline 200km, storage 1000m
@@ -157,7 +155,7 @@ Coal CHP:
   eff_aliases:
     remind: Tech|Electricity|Coal|Combined Heat and Power w/o CC|Efficiency
     image: Efficiency|Electricity|Coal|w/o CCS|3
-  gains_aliases: Power_Gen_Coal
+
   ecoinvent_aliases:
     fltr:
       - heat and power co-generation, hard coal
@@ -179,7 +177,7 @@ Coal CHP CCS:
     image: Secondary Energy|Electricity|Coal|w/ CCS|2
   eff_aliases:
     image: Efficiency|Electricity|Coal|w/ CCS|2
-  gains_aliases: Power_Gen_Coal
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at co-generation power plant/hard coal, oxy, pipeline
@@ -194,7 +192,7 @@ Gas OC:
   eff_aliases:
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
     image: Efficiency|Electricity|Gas|w/o CCS|1
-  gains_aliases: Power_Gen_NatGas
+
   ecoinvent_fuel_aliases:
     fltr:
       - market for natural gas, high pressure
@@ -218,7 +216,7 @@ Gas CC:
   eff_aliases:
     remind: Tech|Electricity|Gas|Combined Cycle w/o CC|Efficiency
     image: Efficiency|Electricity|Gas|w/o CCS|2
-  gains_aliases: Power_Gen_NatGas
+
   ecoinvent_aliases:
     fltr:
       - electricity production, natural gas, combined cycle power plant
@@ -241,7 +239,7 @@ Gas CHP:
   eff_aliases:
     remind: Tech|Electricity|Gas|Combined Heat and Power w/o CC|Efficiency
     image: Efficiency|Electricity|Gas|w/o CCS|3
-  gains_aliases: Power_Gen_NatGas
+
   ecoinvent_aliases:
     fltr:
       - heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical
@@ -266,7 +264,7 @@ Gas CHP CCS:
     image: Secondary Energy|Electricity|Gas|w/ CCS|2
   eff_aliases:
     image: Efficiency|Electricity|Gas|w/ CCS|2
-  gains_aliases: Power_Gen_NatGas
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at co-generation power plant/natural gas, post, pipeline
@@ -281,7 +279,7 @@ Gas CC CCS:
   eff_aliases:
     remind: Tech|Electricity|Gas|Combined Cycle w/ CC|Efficiency
     image: Efficiency|Electricity|Gas|w/ CCS|1
-  gains_aliases: Power_Gen_NatGas
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at power plant/natural gas, pre, pipeline
@@ -354,7 +352,7 @@ Oil ST:
   eff_aliases:
     remind: Tech|Electricity|Oil|DOT|Efficiency
     image: Efficiency|Electricity|Oil|w/o CCS|1
-  gains_aliases: Power_Gen_LLF
+
   ecoinvent_aliases:
     fltr:
       - electricity production, oil
@@ -371,7 +369,7 @@ Oil CC:
     image: Secondary Energy|Electricity|Oil|w/o CCS|2
   eff_aliases:
     image: Efficiency|Electricity|Oil|w/o CCS|2
-  gains_aliases: Power_Gen_LLF
+
   ecoinvent_aliases:
     fltr:
       - electricity production, oil
@@ -388,7 +386,7 @@ Oil CC CCS:
     image: Secondary Energy|Electricity|Oil|w/ CCS|1
   eff_aliases:
     image: Efficiency|Electricity|Oil|w/ CCS|1
-  gains_aliases: Power_Gen_LLF
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at co-generation power plant/oil, post, pipeline 200km, storage 1000m
@@ -405,7 +403,7 @@ Oil CHP:
     image: Secondary Energy|Electricity|Oil|w/o CCS|3
   eff_aliases:
     image: Efficiency|Electricity|Oil|w/o CCS|3
-  gains_aliases: Power_Gen_LLF
+
   ecoinvent_aliases:
     fltr:
       - heat and power co-generation, oil
@@ -423,7 +421,7 @@ Oil CHP CCS:
     image: Secondary Energy|Electricity|Oil|w/ CCS|2
   eff_aliases:
     image: Efficiency|Electricity|Oil|w/ CCS|2
-  gains_aliases: Power_Gen_LLF
+
   ecoinvent_aliases:
     fltr:
       - electricity production, at co-generation power plant/oil, post, pipeline 200km, storage 1000m

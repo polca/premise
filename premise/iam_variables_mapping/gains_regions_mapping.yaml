@@ -1,3 +1,5 @@
+# mapping between GAINS-IAM regions and IAM regions
+---
 AFRI_EAST:
   remind: SSA
   image: EAF

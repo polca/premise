@@ -46,7 +46,6 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     write_brightway2_database,
-    delete_log,
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -64,60 +63,60 @@ FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distributio
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
 
 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
+        INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
 )
 FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
+        INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
 )
 FILEPATH_HYDROGEN_WOODY_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx"
+        INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx"
 )
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
+        INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
 
 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx"
 )
 
 FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
 )
 FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
 FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
 FILEPATH_METHANOL_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
 FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-cement-plant.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-methanol-from-cement-plant.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xlsx"
 )
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
+        INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
 FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
@@ -128,7 +127,6 @@ FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
 FILEPATH_NUCLEAR_EPR = INVENTORY_DIR / "lci-nuclear_EPR.xlsx"
 FILEPATH_NUCLEAR_SMR = INVENTORY_DIR / "lci-nuclear_SMR.xlsx"
 FILEPATH_WAVE = INVENTORY_DIR / "lci-wave_energy.xlsx"
-
 
 config = load_constants()
 
@@ -222,7 +220,7 @@ def check_filepath(path: str) -> Path:
     Check for the existence of the file.
     """
     if not Path(path).is_dir():
-        raise FileNotFoundError(f"The IAM output directory {path} could not be found.")
+        raise FileNotFoundError(f"The filepath {path} could not be found.")
     return Path(path)
 
 
@@ -273,7 +271,7 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 )
 
         if not all(
-            i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
+                i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
         ):
             raise TypeError(
                 "Both `inventories` and `ecoinvent version` "
@@ -371,6 +369,29 @@ def check_system_model(system_model: str) -> str:
     return system_model
 
 
+def check_iam_regions_filepath(filepath: str) -> Path:
+    """
+    Check that the filepath leads to a valid json file.
+    """
+
+    filepath = check_filepath(filepath)
+
+    if not filepath.is_file():
+        raise FileNotFoundError(
+            f"The file {filepath} does not exist. "
+            "Please provide a valid filepath."
+        )
+
+    # check the file is a json file
+    if filepath.suffix != ".json":
+        raise ValueError(
+            f"The file {filepath} is not a json file. "
+            "Please provide a valid filepath."
+        )
+
+    return filepath
+
+
 def check_time_horizon(time_horizon: int) -> int:
     """
     Check the validity of the time horizon provided (in years).
@@ -417,22 +438,23 @@ class NewDatabase:
     """
 
     def __init__(
-        self,
-        scenarios: List[dict],
-        source_version: str = "3.8",
-        source_type: str = "brightway",
-        key: bytes = None,
-        source_db: str = None,
-        source_file_path: str = None,
-        additional_inventories: List[dict] = None,
-        system_model: str = "attributional",
-        time_horizon: int = None,
-        use_cached_inventories: bool = True,
-        use_cached_database: bool = True,
-        external_scenarios: list = None,
-        quiet=False,
-        keep_uncertainty_data=False,
-        gains_scenario="CLE",
+            self,
+            scenarios: List[dict],
+            source_version: str = "3.8",
+            source_type: str = "brightway",
+            key: bytes = None,
+            source_db: str = None,
+            source_file_path: str = None,
+            additional_inventories: List[dict] = None,
+            system_model: str = "attributional",
+            time_horizon: int = None,
+            use_cached_inventories: bool = True,
+            use_cached_database: bool = True,
+            external_scenarios: list = None,
+            quiet=False,
+            keep_uncertainty_data=False,
+            gains_scenario="CLE",
+            iam_regions_filepath: str = None,
     ) -> None:
 
         self.source = source_db
@@ -444,6 +466,7 @@ class NewDatabase:
             if system_model == "consequential"
             else None
         )
+        self.extra_topology = check_iam_regions_filepath(iam_regions_filepath)
 
         if gains_scenario not in ["CLE", "MFR"]:
             raise ValueError("gains_scenario must be either 'CLE' or 'MFR'")
@@ -671,7 +694,7 @@ class NewDatabase:
         return data
 
     def __import_additional_inventories(
-        self, data_package: [datapackage.DataPackage, list]
+            self, data_package: [datapackage.DataPackage, list]
     ) -> List[dict]:
         """
         This method will trigger the import of a number of inventories
@@ -723,8 +746,8 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if (
-                "exclude" not in scenario
-                or "update_electricity" not in scenario["exclude"]
+                    "exclude" not in scenario
+                    or "update_electricity" not in scenario["exclude"]
             ):
                 electricity = Electricity(
                     database=scenario["database"],
@@ -858,8 +881,8 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if (
-                "exclude" not in scenario
-                or "update_two_wheelers" not in scenario["exclude"]
+                    "exclude" not in scenario
+                    or "update_two_wheelers" not in scenario["exclude"]
             ):
                 trspt = Transport(
                     database=scenario["database"],
@@ -904,8 +927,8 @@ class NewDatabase:
         if self.datapackages:
             for i, scenario in enumerate(self.scenarios):
                 if (
-                    "exclude" not in scenario
-                    or "update_external_scenario" not in scenario["exclude"]
+                        "exclude" not in scenario
+                        or "update_external_scenario" not in scenario["exclude"]
                 ):
                     for d, datapackage in enumerate(self.datapackages):
                         if "inventories" in [r.name for r in datapackage.resources]:
@@ -1010,7 +1033,7 @@ class NewDatabase:
         self.update_emissions()
 
     def write_superstructure_db_to_brightway(
-        self, name: str = f"super_db_{date.today()}", filepath: str = None
+            self, name: str = f"super_db_{date.today()}", filepath: str = None
     ) -> None:
         """
         Register a super-structure database,
@@ -1217,9 +1240,9 @@ class NewDatabase:
         self.generate_change_report()
 
     def generate_scenario_report(
-        self,
-        filepath: [str, Path] = None,
-        name: str = f"scenario_report_{date.today()}.xlsx",
+            self,
+            filepath: [str, Path] = None,
+            name: str = f"scenario_report_{date.today()}.xlsx",
     ):
         """
         Generate a report of the scenarios.

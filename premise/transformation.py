@@ -6,10 +6,9 @@ on the wurst database.
 """
 
 import uuid
-from collections import Counter, defaultdict
+from collections import defaultdict
 from itertools import product
 from typing import Any, Dict, List, Set, Tuple, Union
-import pprint
 
 import numpy as np
 import wurst
@@ -913,3 +912,27 @@ class BaseTransformation:
 
         # finally, we add this new dataset to the database
         self.database.append(ccs)
+
+    def find_iam_efficiency_change(
+            self,
+            variable: Union[str, list],
+            location: str,
+    ) -> float:
+        """
+        Return the relative change in efficiency for `variable` in `location`
+        relative to 2020.
+        :param variable: IAM variable name
+        :param location: IAM region
+        :return: relative efficiency change (e.g., 1.05)
+        """
+
+        scaling_factor = (
+            self.iam_data.efficiency.sel(region=location, variables=variable)
+            .interp(year=self.year)
+            .values.item(0)
+        )
+
+        if scaling_factor in (np.nan, np.inf):
+            scaling_factor = 1
+
+        return scaling_factor

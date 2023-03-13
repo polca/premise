@@ -7,21 +7,22 @@ from typing import Dict, List, Union
 
 import yaml
 from wurst import geomatcher
+import json
 
-from . import DATA_DIR
+from . import DATA_DIR, VARIABLES_DIR
 
-ECO_IAM_MAPPING = DATA_DIR / "geomap" / "missing_definitions.yml"
+ECO_IAM_MAPPING = VARIABLES_DIR / "missing_geography_equivalences.yaml"
 IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
 
 
 def load_constants():
     """
-    Load constants from the constants.yml file.
+    Load constants from the constants.yaml file.
     :return: dict
     """
-    with open(DATA_DIR / "utils" / "constants.yml", "r", encoding="utf-8") as stream:
-        constants = yaml.safe_load(stream)
-    return constants
+    with open(VARIABLES_DIR / "constants.yaml", "r", encoding="utf-8") as stream:
+        data = yaml.safe_load(stream)
+    return data
 
 
 constants = load_constants()
@@ -36,17 +37,13 @@ def get_additional_mapping() -> Dict[str, str]:
 
     return out
 
-
-def get_iam_to_iam_mapping() -> Dict[str, str]:
+def load_json(filepath: str) -> Dict:
     """
-    Return a dictionary with IAM to IAM mappings
-    :return: dictionary with IAM to IAM location mapping
-
+    Load a json file.
     """
-    with open(IAM_TO_IAM_MAPPING, "r", encoding="utf-8") as stream:
-        out = yaml.safe_load(stream)
-
-    return out
+    with open(filepath, "r", encoding="utf-8") as stream:
+        data = json.load(stream)
+    return data
 
 
 class Geomap:
@@ -63,10 +60,22 @@ class Geomap:
         self.additional_mappings = get_additional_mapping()
         self.rev_additional_mappings = {}
 
+        if model not in ["remind", "image"]:
+            if "EXTRA_TOPOLOGY" in constants:
+                if model in constants["EXTRA_TOPOLOGY"]:
+                    self.geo.add_definitions(load_json(constants["EXTRA_TOPOLOGY"][model]))
+            else:
+                raise ValueError(
+                    f"You must provide geographical definition "
+                    f"of the regions of the model {model} "
+                    f"if you are not using "
+                    "REMIND or IMAGE."
+                )
+
         for key, val in self.additional_mappings.items():
             if (
-                self.model.upper(),
-                val[self.model],
+                    self.model.upper(),
+                    val[self.model],
             ) not in self.rev_additional_mappings:
                 self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [
                     key
@@ -76,8 +85,6 @@ class Geomap:
                     (self.model.upper(), val[self.model])
                 ].append(key)
 
-        self.iam_to_iam_mappings = get_iam_to_iam_mapping()
-
         self.iam_regions = [
             x[1]
             for x in list(self.geo.keys())
@@ -85,7 +92,7 @@ class Geomap:
         ]
 
     def iam_to_ecoinvent_location(
-        self, location: str, contained: bool = True
+            self, location: str, contained: bool = True
     ) -> Union[List[str], str]:
         """
         Find the corresponding ecoinvent region given an IAM region.
@@ -211,23 +218,3 @@ class Geomap:
         # more than one region is found
         print(f"More than one region found for {location}:{iam_location}")
         return "World"
-
-    def iam_to_gains_region(self, location: str) -> str:
-        """
-        Regions defined in GAINS emission data follows REMIND naming
-        convention, but those are different for other IAMs.
-        :param location: IAM location
-        :return: GAINS location
-        """
-        return self.iam_to_iam_mappings[self.model][location]["gains"]
-
-    def iam_to_iam_region(self, location: str, from_iam: str) -> str:
-        """
-        When data is defined according to one IAM geography naming convention
-        but needs to be used with another IAM.
-        :param location: location to search the equivalent for
-        :param: to_iam: the IAM to search the equivalent for
-        :return: the equivalent location
-        """
-
-        return self.iam_to_iam_mappings[self.model][location][from_iam]

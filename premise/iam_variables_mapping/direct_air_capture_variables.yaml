@@ -1,5 +1,7 @@
 # mapping between premise and IAM terminology
-# regarding direct_air_capture use
+# regarding direct air capture use
+# the cumulative deployment of DACCS allows to
+# apply a learning curve to the DACCS datasets
 ---
 
 dac_solvent:

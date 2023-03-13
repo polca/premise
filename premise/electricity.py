@@ -41,7 +41,7 @@ PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
 )
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
-IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
+IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_variabless.yaml"
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 

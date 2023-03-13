@@ -16,6 +16,7 @@ This user guide will help you navigate the inner workings of *premise*.
    extract
    transform
    load
+   mapping
    user_scenarios
 
 Technical Reference

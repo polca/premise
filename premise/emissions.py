@@ -3,11 +3,7 @@ Integrates projections regarding emissions of hot pollutants
 from GAINS.
 """
 
-from datetime import date
-from pathlib import Path
-
 import numpy as np
-import pandas as pd
 import xarray as xr
 import yaml
 import logging.config

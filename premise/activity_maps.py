@@ -11,14 +11,14 @@ from typing import List, Union
 
 import yaml
 
-from . import DATA_DIR
+from . import DATA_DIR, VARIABLES_DIR
 
-POWERPLANT_TECHS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
-FUELS_TECHS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
+POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
+FUELS_TECHS = VARIABLES_DIR / "fuels_variables.yaml"
 MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
-DAC_TECHS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yaml"
-CARBON_STORAGE_TECHS = DATA_DIR / "direct_air_capture" / "carbon_storage_tech_vars.yaml"
-CEMENT_TECHS = DATA_DIR / "cement" / "cement_tech_vars.yml"
+DAC_TECHS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
+CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_storage_variables.yaml"
+CEMENT_TECHS = VARIABLES_DIR / "cement_variables.yaml"
 GAINS_MAPPING = DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
 
 

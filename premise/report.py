@@ -20,16 +20,16 @@ import os
 from . import DATA_DIR
 from . import __version__
 
-IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
-IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
-IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
-IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
-IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
-IAM_DACCS_VARS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yaml"
-IAM_OTHER_VARS = DATA_DIR / "utils" / "report" / "other_vars.yaml"
+IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_variables.yaml"
+IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuels_variables.yaml"
+IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_variabless.yaml"
+IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_variables.yaml"
+IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_variables.yaml"
+IAM_DACCS_VARS = DATA_DIR / "direct_air_capture" / "direct_air_capture_variables.yaml"
+IAM_OTHER_VARS = DATA_DIR / "utils" / "report" / "other_variables.yaml"
 GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
-IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
+IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_variables.yaml"
 REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 

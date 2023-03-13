@@ -10,7 +10,6 @@ of the wurst database to the newly created cement markets.
 
 import yaml
 import logging.config
-import pprint
 from collections import defaultdict
 
 from .transformation import (
@@ -18,10 +17,7 @@ from .transformation import (
     Dict,
     IAMDataCollection,
     List,
-    get_shares_from_production_volume,
-    get_suppliers_of_a_region,
     np,
-    remove_exchanges,
     ws,
 )
 from .utils import (
@@ -44,12 +40,11 @@ class Cement(BaseTransformation):
     Class that modifies clinker and cement production datasets in ecoinvent.
     It creates region-specific new clinker production datasets (and deletes the original ones).
     It adjusts the kiln efficiency based on the improvement indicated in the IAM file, relative to 2020.
-    It adjusts non-CO2 pollutants emission, based on improvement indicated by the GAINS file, relative to 2020.
     It adds CCS, if indicated in the IAM file.
     It creates regions-specific cement production datasets (and deletes the original ones).
     It adjust electricity consumption in cement production datasets.
     It creates regions-specific cement market datasets (and deletes the original ones).
-    It adjust the clinker-to-cement ratio in the generic cement market dataset.
+    It adjusts the clinker-to-cement ratio in the generic cement market dataset.
 
 
     :ivar database: wurst database, which is a list of dictionaries
@@ -62,13 +57,13 @@ class Cement(BaseTransformation):
     """
 
     def __init__(
-        self,
-        database: List[dict],
-        iam_data: IAMDataCollection,
-        model: str,
-        pathway: str,
-        year: int,
-        version: str,
+            self,
+            database: List[dict],
+            iam_data: IAMDataCollection,
+            model: str,
+            pathway: str,
+            year: int,
+            version: str,
     ):
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
@@ -93,8 +88,8 @@ class Cement(BaseTransformation):
 
         for exc in dataset["exchanges"]:
             if (
-                exc["name"] in self.cement_fuels_map["cement"]
-                and exc["type"] == "technosphere"
+                    exc["name"] in self.cement_fuels_map["cement"]
+                    and exc["type"] == "technosphere"
             ):
 
                 if exc["name"] not in d_fuels:
@@ -102,42 +97,42 @@ class Cement(BaseTransformation):
                         "amount": exc["amount"],
                         "energy": _(exc) * 1000,
                         "fossil CO2": self.fuels_specs[
-                            self.fuel_map_reverse[exc["name"]]
-                        ]["co2"]
-                        * _(exc)
-                        * (
-                            1
-                            - self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
-                                "biogenic_share"
-                            ]
-                        ),
+                                          self.fuel_map_reverse[exc["name"]]
+                                      ]["co2"]
+                                      * _(exc)
+                                      * (
+                                              1
+                                              - self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
+                                                  "biogenic_share"
+                                              ]
+                                      ),
                         "biogenic CO2": self.fuels_specs[
-                            self.fuel_map_reverse[exc["name"]]
-                        ]["co2"]
-                        * _(exc)
-                        * self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
-                            "biogenic_share"
-                        ],
+                                            self.fuel_map_reverse[exc["name"]]
+                                        ]["co2"]
+                                        * _(exc)
+                                        * self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
+                                            "biogenic_share"
+                                        ],
                     }
                 else:
                     d_fuels[exc["name"]]["amount"] += exc["amount"]
                     d_fuels[exc["name"]]["energy"] += _(exc) * 1000
                     d_fuels[exc["name"]]["fossil CO2"] += (
-                        self.fuels_specs[self.fuel_map_reverse[exc["name"]]]["co2"]
-                        * _(exc)
-                        * (
-                            1
-                            - self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
-                                "biogenic_share"
-                            ]
-                        )
+                            self.fuels_specs[self.fuel_map_reverse[exc["name"]]]["co2"]
+                            * _(exc)
+                            * (
+                                    1
+                                    - self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
+                                        "biogenic_share"
+                                    ]
+                            )
                     )
                     d_fuels[exc["name"]]["biogenic CO2"] += (
-                        self.fuels_specs[self.fuel_map_reverse[exc["name"]]]["co2"]
-                        * _(exc)
-                        * self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
-                            "biogenic_share"
-                        ]
+                            self.fuels_specs[self.fuel_map_reverse[exc["name"]]]["co2"]
+                            * _(exc)
+                            * self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
+                                "biogenic_share"
+                            ]
                     )
 
         return d_fuels
@@ -293,18 +288,18 @@ class Cement(BaseTransformation):
             # the biogenic CO2 emissions
             # biogenic CO2 / MJ for waste fuel
             waste_fuel_biogenic_co2_emission_factor = (
-                self.fuels_specs["waste"]["co2"]
-                * self.fuels_specs["waste"]["biogenic_share"]
+                    self.fuels_specs["waste"]["co2"]
+                    * self.fuels_specs["waste"]["biogenic_share"]
             )
 
             waste_fuel_fossil_co2_emission_factor = self.fuels_specs["waste"]["co2"] * (
-                1 - self.fuels_specs["waste"]["biogenic_share"]
+                    1 - self.fuels_specs["waste"]["biogenic_share"]
             )
             # energy input of waste fuel in MJ
             energy_input_waste_fuel = bio_CO2 / waste_fuel_biogenic_co2_emission_factor
             # amount waste fuel, in kg
             amount_waste_fuel = (
-                energy_input_waste_fuel / self.fuels_specs["waste"]["lhv"]
+                    energy_input_waste_fuel / self.fuels_specs["waste"]["lhv"]
             )
 
             # add waste fuel to the energy details
@@ -312,7 +307,7 @@ class Cement(BaseTransformation):
                 "amount": amount_waste_fuel,
                 "energy": energy_input_waste_fuel * 1000,
                 "fossil CO2": waste_fuel_fossil_co2_emission_factor
-                * energy_input_waste_fuel,
+                              * energy_input_waste_fuel,
                 "biogenic CO2": bio_CO2,
             }
 
@@ -341,7 +336,7 @@ class Cement(BaseTransformation):
             # calculate new thermal energy
             # consumption per kg clinker
             new_energy_input_per_ton_clinker = (
-                current_energy_input_per_ton_clinker * scaling_factor
+                    current_energy_input_per_ton_clinker * scaling_factor
             )
 
             # put a floor value of 3000 kj/kg clinker
@@ -349,7 +344,8 @@ class Cement(BaseTransformation):
                 new_energy_input_per_ton_clinker = 3000
 
             scaling_factor = (
-                new_energy_input_per_ton_clinker / current_energy_input_per_ton_clinker
+                    new_energy_input_per_ton_clinker
+                    / current_energy_input_per_ton_clinker
             )
 
             # rescale fuel consumption and emissions
@@ -381,8 +377,8 @@ class Cement(BaseTransformation):
                 ) + dataset["log parameters"].get("new biogenic CO2", 0)
                 # share bio CO2 stored = sum of biogenic fuel emissions / total CO2 emissions
                 bio_co2_stored = (
-                    dataset["log parameters"].get("new biogenic CO2", 0)
-                    / total_co2_emissions
+                        dataset["log parameters"].get("new biogenic CO2", 0)
+                        / total_co2_emissions
                 )
 
                 # 0.11 kg CO2 leaks per kg captured
@@ -415,8 +411,8 @@ class Cement(BaseTransformation):
                 # Update CO2 exchanges
                 for exc in dataset["exchanges"]:
                     if (
-                        exc["name"].lower().startswith("carbon dioxide")
-                        and exc["type"] == "biosphere"
+                            exc["name"].lower().startswith("carbon dioxide")
+                            and exc["type"] == "biosphere"
                     ):
                         exc["amount"] *= 1 - carbon_capture_rate
 
@@ -437,117 +433,14 @@ class Cement(BaseTransformation):
 
             # update comment
             dataset["comment"] = (
-                "Dataset modified by `premise` based on WBCSD's GNR data and IAM projections "
-                + " for the cement industry.\n"
-                + f"Calculated energy input per kg clinker: {np.round(new_energy_input_per_ton_clinker, 1) / 1000}"
-                f" MJ/kg clinker.\n"
-                + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"
-            ) + dataset["comment"]
-
-        print(
-            "Adjusting emissions of hot pollutants for clinker production datasets..."
-        )
-        d_act_clinker = {
-            k: self.update_pollutant_emissions(dataset=v, sector="cement")
-            for k, v in d_act_clinker.items()
-        }
+                                         "Dataset modified by `premise` based on WBCSD's GNR data and IAM projections "
+                                         + " for the cement industry.\n"
+                                         + f"Calculated energy input per kg clinker: {np.round(new_energy_input_per_ton_clinker, 1) / 1000}"
+                                           f" MJ/kg clinker.\n"
+                                         + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"
+                                 ) + dataset["comment"]
 
         return d_act_clinker
-
-    def update_electricity_exchanges(self, d_act: Dict[str, dict]) -> Dict[str, dict]:
-        """
-        Update electricity exchanges in cement production datasets.
-        Here, we use data from the GNR database for current consumption, and the 2018 IEA/GNR roadmap publication
-        for future consumption.
-        Electricity consumption equals electricity use minus on-site electricity generation from excess heat recovery.
-
-        :return:
-        """
-        d_act = remove_exchanges(d_act, ["electricity"])
-
-        for region in d_act:
-            new_exchanges = []
-
-            electricity = (
-                self.iam_data.gnr_data.loc[
-                    dict(
-                        variables=["Power generation", "Power consumption"],
-                        region=self.geo.iam_to_gains_region(region),
-                    )
-                ].interp(year=self.year)
-                / 1000
-            )
-            electricity_needed = (
-                electricity.sel(variables="Power consumption")
-                - electricity.sel(variables="Power generation")
-            ).values
-
-            # Fetch electricity-producing technologies contained in the IAM region
-            # if they cannot be found for the ecoinvent locations concerned
-            # we widen the scope to EU-based datasets, and RoW
-            ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
-            possible_locations = [[region], ecoinvent_regions, ["RER"], ["RoW"]]
-            suppliers, counter = [], 0
-
-            while len(suppliers) == 0:
-                suppliers = list(
-                    get_suppliers_of_a_region(
-                        database=self.database,
-                        locations=possible_locations[counter],
-                        names=["electricity, medium voltage"],
-                        reference_product="electricity",
-                        unit="kilowatt hour",
-                    )
-                )
-                counter += 1
-
-            suppliers = get_shares_from_production_volume(suppliers)
-
-            for supplier, share in suppliers.items():
-                new_exchanges.append(
-                    {
-                        "uncertainty type": 0,
-                        "loc": electricity_needed * share,
-                        "amount": electricity_needed * share,
-                        "type": "technosphere",
-                        "production volume": 0,
-                        "product": supplier[2],
-                        "name": supplier[0],
-                        "unit": supplier[-1],
-                        "location": supplier[1],
-                    }
-                )
-
-            d_act[region]["exchanges"].extend(new_exchanges)
-            d_act[region]["exchanges"] = [v for v in d_act[region]["exchanges"] if v]
-
-            txt = (
-                "Dataset modified by `premise` based on WBCSD's GNR data and 2018 IEA "
-                "roadmap for the cement industry.\n "
-                f"Electricity consumption per kg cement: {electricity_needed} kWh."
-                f"Of which a part was generated from on-site waste heat recovery.\n"
-            )
-
-            if "comment" in d_act[region]:
-                d_act[region]["comment"] += txt
-            else:
-                d_act[region]["comment"] = txt
-
-            if "log parameters" not in d_act[region]:
-                d_act[region]["log parameters"] = {}
-
-            d_act[region]["log parameters"].update(
-                {
-                    "electricity generated": electricity.sel(
-                        variables="Power generation"
-                    ).values.item(),
-                    "electricity consumed": electricity.sel(
-                        variables="Power consumption"
-                    ).values.item(),
-                }
-            )
-
-        return d_act
 
     def add_datasets_to_database(self) -> None:
         """
@@ -650,10 +543,6 @@ class Cement(BaseTransformation):
                 name=dataset[0],
                 ref_prod=dataset[1],
                 production_variable="cement",
-            )
-            # Update electricity use
-            new_cement_production = self.update_electricity_exchanges(
-                new_cement_production
             )
 
             # add them to the wurst database

@@ -7,10 +7,8 @@ from datetime import date
 from pathlib import Path
 
 import xarray as xr
-import yaml
 from numpy import ndarray
 
-from . import DATA_DIR
 from .clean_datasets import get_biosphere_flow_uuid
 from .transformation import *
 from .utils import eidb_label

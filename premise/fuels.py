@@ -26,8 +26,9 @@ from .transformation import (
     wurst,
 )
 from .utils import DATA_DIR, get_crops_properties
+from . import VARIABLES_DIR
 
-REGION_CLIMATE_MAP = DATA_DIR / "fuels" / "region_to_climate.yml"
+REGION_CLIMATE_MAP = VARIABLES_DIR / "iam_region_to_climate.yaml"
 FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"
 SUPPLY_CHAIN_SCENARIOS = DATA_DIR / "fuels" / "supply_chain_scenarios.yml"
 HEAT_SOURCES = DATA_DIR / "fuels" / "heat_sources_map.yml"

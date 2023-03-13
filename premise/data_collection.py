@@ -19,16 +19,16 @@ import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
 
-from . import DATA_DIR
+from . import DATA_DIR, VARIABLES_DIR
 
-IAM_ELEC_VARS = DATA_DIR / "electricity" / "electricity_tech_vars.yml"
-IAM_FUELS_VARS = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
-IAM_BIOMASS_VARS = DATA_DIR / "electricity" / "biomass_vars.yml"
-IAM_CROPS_VARS = DATA_DIR / "fuels" / "crops_properties.yml"
-IAM_CEMENT_VARS = DATA_DIR / "cement" / "cement_tech_vars.yml"
-IAM_STEEL_VARS = DATA_DIR / "steel" / "steel_tech_vars.yml"
-IAM_DAC_VARS = DATA_DIR / "direct_air_capture" / "daccs_tech_vars.yaml"
-IAM_OTHER_VARS = DATA_DIR / "utils" / "report" / "other_vars.yaml"
+IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
+IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
+IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variabless.yaml"
+IAM_CROPS_VARS = VARIABLES_DIR / "crops_variables.yaml"
+IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
+IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
+IAM_DAC_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
+IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
 IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
@@ -37,11 +37,10 @@ FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
 )
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
-GAINS_TO_IAM_FILEPATH = DATA_DIR / "GAINS_emission_factors" / "GAINStoREMINDtechmap.csv"
 GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
-IAM_CARBON_CAPTURE_VARS = DATA_DIR / "utils" / "carbon_capture_vars.yml"
-CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
-GAINS_GEO_MAP = DATA_DIR / "GAINS_emission_factors" / "iam_data" / "region_mapping.yaml"
+IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
+CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
+GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions_mapping.yaml"
 
 
 def get_crops_properties() -> dict:
@@ -432,13 +431,9 @@ class IAMDataCollection:
 
         for key, values in out.items():
             if variable in values:
-                if variable == "gains_aliases":
-                    if values[variable] is not None:
-                        dict_vars[key] = values[variable]
-                else:
-                    if self.model in values[variable]:
-                        if values[variable][self.model] is not None:
-                            dict_vars[key] = values[variable][self.model]
+                if self.model in values[variable]:
+                    if values[variable][self.model] is not None:
+                        dict_vars[key] = values[variable][self.model]
 
         return dict_vars
 
@@ -1098,154 +1093,6 @@ class IAMDataCollection:
             "steel - primary",
             "steel - secondary",
         ]
-
-        return data_to_return
-
-    def __get_gains_electricity_emissions(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves emission values for electricity-producing technology,
-        for a specified year, for each region provided by GAINS.
-
-        :return: an multi-dimensional array with emissions for different technologies
-        for a given year, for all regions.
-
-        """
-
-        labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, variable="gains_aliases")
-
-        # If the year specified is not contained within the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        # Interpolation between two periods
-        data_to_return = data.sel(sector=list(labels.values()))
-
-        # Example: 5g CO per kWh in 2030, against 10g in 2020
-        # 5/10 = 0.5
-        # 1/0.5 = 2. Improvement factor of 2.
-        data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
-        )
-
-        # If we are looking at a year post 2020
-        # and the ratio in efficiency change is inferior to 1
-        # we correct it to 1, as we do not accept
-        # that efficiency degrades over time
-        if self.year > 2020:
-            data_to_return.values[data_to_return.values < 1] = 1
-
-        # Inversely, if we are looking at a year prior to 2020
-        # and the ratio in efficiency change is superior to 1
-        # we correct it to 1, as we do not accept
-        # that efficiency in the past was higher than now
-        if self.year < 2020:
-            data_to_return.values[data_to_return.values > 1] = 1
-
-        # convert NaNs to ones
-        data_to_return = data_to_return.fillna(1)
-
-        data_to_return.coords["sector"] = list(labels.keys())
-
-        return data_to_return
-
-    def __get_gains_cement_emissions(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves emission values for cement production,
-        for a specified year, for each region provided by GAINS.
-
-        :return: a multi-dimensional array with emissions for different technologies
-        for a given year, for all regions.
-
-
-        """
-        # If the year specified is not contained within the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        # Interpolation between two periods
-        data_to_return = data.sel(sector=["CEMENT"])
-
-        # Example: 5g CO per kg cement in 2030, against 10g in 2020
-        # 5/10 = 0.5
-        # 1/0.5 = 2. Improvement factor of 2.
-        data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
-        )
-
-        # If we are looking at a year post 2020
-        # and the ratio in efficiency change is inferior to 1
-        # we correct it to 1, as we do not accept
-        # that efficiency degrades over time
-        if self.year > 2020:
-            data_to_return.values[data_to_return.values < 1] = 1
-
-        # Inversely, if we are looking at a year prior to 2020
-        # and the ratio in efficiency change is superior to 1
-        # we correct it to 1, as we do not accept
-        # that efficiency in the past was higher than now
-        if self.year < 2020:
-            data_to_return.values[data_to_return.values > 1] = 1
-
-        # convert NaNs to ones
-        data_to_return = data_to_return.fillna(1)
-
-        data_to_return.coords["sector"] = ["cement"]
-
-        return data_to_return
-
-    def __get_gains_steel_emissions(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves emission values for steel production, for a specified year,
-        for each region provided by GAINS.
-
-        :return: a multi-dimensional array with emissions for different technologies
-        for a given year, for all regions.
-
-        """
-        # If the year specified is not contained within the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        # Interpolation between two periods
-        data_to_return = data.sel(sector=["STEEL"])
-
-        # Example: 5g CO per kg cement in 2030, against 10g in 2020
-        # 5/10 = 0.5
-        # 1/0.5 = 2. Improvement factor of 2.
-        data_to_return = 1 / (
-            data_to_return.interp(year=self.year) / data_to_return.sel(year=2020)
-        )
-
-        # If we are looking at a year post 2020
-        # and the ratio in efficiency change is inferior to 1
-        # we correct it to 1, as we do not accept
-        # that efficiency degrades over time
-        if self.year > 2020:
-            data_to_return.values[data_to_return.values < 1] = 1
-
-        # Inversely, if we are looking at a year prior to 2020
-        # and the ratio in efficiency change is superior to 1
-        # we correct it to 1, as we do not accept
-        # that efficiency in the past was higher than now
-        if self.year < 2020:
-            data_to_return.values[data_to_return.values > 1] = 1
-
-        # convert NaNs to ones
-        data_to_return = data_to_return.fillna(1)
-
-        data_to_return.coords["sector"] = ["steel"]
 
         return data_to_return
 

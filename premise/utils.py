@@ -9,7 +9,6 @@ from copy import deepcopy
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Tuple
-from datetime import date
 
 import pandas as pd
 import xarray as xr
@@ -30,20 +29,15 @@ from wurst.linking import (
 from wurst.searching import equals, get_many, reference_product
 from wurst.transformations.uncertainty import rescale_exchange
 
-from . import DATA_DIR, __version__, geomap
+from . import DATA_DIR, VARIABLES_DIR, __version__, geomap
 from .geomap import Geomap
 
-FUELS_PROPERTIES = DATA_DIR / "fuels" / "fuel_tech_vars.yml"
-CROPS_PROPERTIES = DATA_DIR / "fuels" / "crops_properties.yml"
+FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
+CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
 CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
 CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
 CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
-
-STEEL_RECYCLING_SHARES = DATA_DIR / "steel" / "steel_recycling_shares.csv"
-METALS_RECYCLING_SHARES = DATA_DIR / "metals" / "metals_recycling_shares.csv"
-
-REMIND_TO_FUELS = DATA_DIR / "steel" / "remind_fuels_correspondance.txt"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 
@@ -74,10 +68,10 @@ def eidb_label(model: str, scenario: str, year: int) -> str:
 
 def load_constants():
     """
-    Load constants from the constants.yml file.
+    Load constants from the constants.yaml file.
     :return: dict
     """
-    with open(DATA_DIR / "utils" / "constants.yml", "r", encoding="utf-8") as stream:
+    with open(VARIABLES_DIR / "constants.yaml", "r", encoding="utf-8") as stream:
         constants = yaml.safe_load(stream)
 
     return constants

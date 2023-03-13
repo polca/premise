@@ -1,4 +1,5 @@
-# a mapping for a few ecoinvent locations for which constructive_geometries
+# a mapping for a few ecoinvent locations
+# for which constructive_geometries
 # cannot find an IAM equivalent
 ---
 Europe without Austria:
