@@ -147,6 +147,9 @@ class DirectAirCapture(BaseTransformation):
                                 exc["product"] = activities["reference product"]
                                 exc["location"] = "RoW"
 
+                                if "input" in exc:
+                                    del exc["input"]
+
                                 if heat_type == "heat pump heat":
                                     exc["unit"] = "kilowatt hour"
                                     exc["amount"] *= 1 / (2.9 * 3.6)

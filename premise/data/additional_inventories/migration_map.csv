@@ -300,3 +300,5 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 38;36;market for fatty acid methyl ester;fatty acid methyl ester;RoW;market for vegetable oil methyl ester;vegetable oil methyl ester;GLO
 38;37;market for fatty acid methyl ester;fatty acid methyl ester;RoW;market for vegetable oil methyl ester;vegetable oil methyl ester;GLO
 38;36;market for kraft paper;kraft paper;RER;market for kraft paper, unbleached;kraft paper, unbleached;GLO
+38;36;treatment of hazardous waste, hazardous waste incineration, with energy recovery;hazardous waste, for incineration;CH;treatment of hazardous waste, hazardous waste incineration;hazardous waste, for incineration;CH
+37;36;treatment of hazardous waste, hazardous waste incineration, with energy recovery;hazardous waste, for incineration;CH;treatment of hazardous waste, hazardous waste incineration;hazardous waste, for incineration;CH
