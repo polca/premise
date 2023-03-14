@@ -433,12 +433,12 @@ class Cement(BaseTransformation):
 
             # update comment
             dataset["comment"] = (
-                                         "Dataset modified by `premise` based on WBCSD's GNR data and IAM projections "
-                                         + " for the cement industry.\n"
-                                         + f"Calculated energy input per kg clinker: {np.round(new_energy_input_per_ton_clinker, 1) / 1000}"
-                                           f" MJ/kg clinker.\n"
-                                         + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"
-                                 ) + dataset["comment"]
+                     "Dataset modified by `premise` based on IAM projections "
+                     + " for the cement industry.\n"
+                     + f"Calculated energy input per kg clinker: {np.round(new_energy_input_per_ton_clinker, 1) / 1000}"
+                       f" MJ/kg clinker.\n"
+                     + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"
+             ) + dataset["comment"]
 
         return d_act_clinker
 

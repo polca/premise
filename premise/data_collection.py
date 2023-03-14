@@ -2,8 +2,6 @@
 data_collection.py contains the IAMDataCollection class which collects a number of data,
 mostly from the IAM file. This class will have offer market shares, efficiency
 and emission values for different sectors, carbon capture rates, etc.
-Additional external sources of data have to be used as well, notably for cement
-production (GNR data), and for non-CO2 emissions (GAINS data).
 """
 
 
@@ -23,7 +21,7 @@ from . import DATA_DIR, VARIABLES_DIR
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
-IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variabless.yaml"
+IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 IAM_CROPS_VARS = VARIABLES_DIR / "crops_variables.yaml"
 IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
@@ -37,7 +35,6 @@ FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
 )
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
-GNR_DATA = DATA_DIR / "cement" / "additional_data_GNR.csv"
 IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
 GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions_mapping.yaml"
@@ -75,37 +72,6 @@ def get_lifetime(list_tech: List) -> np.array:
         arr[i] = lifetime
 
     return arr.astype(float)
-
-
-def get_gnr_data() -> xr.DataArray:
-    """
-    Read the GNR csv file on cement production and return an `xarray` with dimensions:
-
-    * region
-    * year
-    * variables
-    This data is further used in cement.py.
-
-    :return: a multi-dimensional array with GNR data about cement production
-
-    """
-    dataframe = pd.read_csv(GNR_DATA)
-    dataframe = dataframe[["region", "year", "variables", "value"]]
-
-    gnr_array = (
-        dataframe.groupby(["region", "year", "variables"]).mean()["value"].to_xarray()
-    )
-
-    # forward-fill nan values
-    gnr_array = gnr_array.ffill(dim="year")
-
-    # backward-fill nan values
-    gnr_array = gnr_array.bfill(dim="year")
-
-    # fill Nans with 0
-    gnr_array = gnr_array.fillna(0)
-
-    return gnr_array
 
 
 def get_gains_IAM_data(model, gains_scenario):
@@ -367,7 +333,6 @@ class IAMDataCollection:
         self.gains_data_IAM = get_gains_IAM_data(
             self.model, gains_scenario=gains_scenario
         )
-        self.gnr_data = get_gnr_data()
 
         self.electricity_markets = self.__get_iam_electricity_markets(data=data)
         self.fuel_markets = self.__get_iam_fuel_markets(data=data)

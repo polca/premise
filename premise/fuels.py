@@ -1392,7 +1392,6 @@ class Fuels(BaseTransformation):
                     ws.either(
                         ws.contains("name", "Farming"), ws.contains("name", "Supply")
                     ),
-                    ws.doesnt_contain_any("name", self.emissions_map),
                 ]
                 wurst.change_exchanges_by_constant_factor(
                     dataset, scaling_factor, biomass_inputs

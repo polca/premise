@@ -369,29 +369,6 @@ def check_system_model(system_model: str) -> str:
     return system_model
 
 
-def check_iam_regions_filepath(filepath: str) -> Path:
-    """
-    Check that the filepath leads to a valid json file.
-    """
-
-    filepath = check_filepath(filepath)
-
-    if not filepath.is_file():
-        raise FileNotFoundError(
-            f"The file {filepath} does not exist. "
-            "Please provide a valid filepath."
-        )
-
-    # check the file is a json file
-    if filepath.suffix != ".json":
-        raise ValueError(
-            f"The file {filepath} is not a json file. "
-            "Please provide a valid filepath."
-        )
-
-    return filepath
-
-
 def check_time_horizon(time_horizon: int) -> int:
     """
     Check the validity of the time horizon provided (in years).
@@ -454,7 +431,6 @@ class NewDatabase:
             quiet=False,
             keep_uncertainty_data=False,
             gains_scenario="CLE",
-            iam_regions_filepath: str = None,
     ) -> None:
 
         self.source = source_db
@@ -466,7 +442,6 @@ class NewDatabase:
             if system_model == "consequential"
             else None
         )
-        self.extra_topology = check_iam_regions_filepath(iam_regions_filepath)
 
         if gains_scenario not in ["CLE", "MFR"]:
             raise ValueError("gains_scenario must be either 'CLE' or 'MFR'")
