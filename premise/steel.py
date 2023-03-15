@@ -79,20 +79,23 @@ class Steel(BaseTransformation):
             if market == "market for steel, low-alloyed":
                 for loc, dataset in steel_markets.items():
                     if loc != "World":
-                        primary_share = self.iam_data.production_volumes.sel(
-                            region=loc, variables="steel - primary"
-                        ).interp(year=self.year).values.item(
-                            0
-                        ) / self.iam_data.production_volumes.sel(
-                            region=loc,
-                            variables=["steel - primary", "steel - secondary"],
-                        ).interp(
-                            year=self.year
-                        ).sum(
-                            dim="variables"
-                        ).values.item(
-                            0
-                        )
+                        if self.system_model != "consequential":
+                            primary_share = self.iam_data.production_volumes.sel(
+                                region=loc, variables="steel - primary"
+                            ).interp(year=self.year).values.item(
+                                0
+                            ) / self.iam_data.production_volumes.sel(
+                                region=loc,
+                                variables=["steel - primary", "steel - secondary"],
+                            ).interp(
+                                year=self.year
+                            ).sum(
+                                dim="variables"
+                            ).values.item(
+                                0
+                            )
+                        else:
+                            primary_share = 1
 
                         secondary_share = 1 - primary_share
 
@@ -132,7 +135,6 @@ class Steel(BaseTransformation):
                             "primary steel share": primary_share,
                             "secondary steel share": secondary_share,
                         }
-
             else:
                 for loc, dataset in steel_markets.items():
                     if loc != "World":
@@ -223,17 +225,21 @@ class Steel(BaseTransformation):
                 ["steel"] * len(self.material_map["steel - primary"]),
             )
         }
-        d_act_secondary_steel = {
-            mat: self.fetch_proxies(
-                name=mat[0],
-                ref_prod=mat[1],
-                production_variable=["steel - secondary"],
-            )
-            for mat in zip(
-                self.material_map["steel - secondary"],
-                ["steel"] * len(self.material_map["steel - secondary"]),
-            )
-        }
+
+        if self.system_model != "consequential":
+            d_act_secondary_steel = {
+                mat: self.fetch_proxies(
+                    name=mat[0],
+                    ref_prod=mat[1],
+                    production_variable=["steel - secondary"],
+                )
+                for mat in zip(
+                    self.material_map["steel - secondary"],
+                    ["steel"] * len(self.material_map["steel - secondary"]),
+                )
+            }
+        else:
+            d_act_secondary_steel = {}
 
         # adjust efficiency of primary steel production
         # and add carbon capture and storage, if needed

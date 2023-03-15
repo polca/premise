@@ -19,7 +19,9 @@ MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
 DAC_TECHS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
 CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_storage_variables.yaml"
 CEMENT_TECHS = VARIABLES_DIR / "cement_variables.yaml"
-GAINS_MAPPING = DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
+GAINS_MAPPING = (
+    DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
+)
 
 
 def get_mapping(filepath: Path, var: str) -> dict:

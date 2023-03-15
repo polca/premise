@@ -37,6 +37,7 @@ def get_additional_mapping() -> Dict[str, str]:
 
     return out
 
+
 def load_json(filepath: str) -> Dict:
     """
     Load a json file.
@@ -63,7 +64,9 @@ class Geomap:
         if model not in ["remind", "image"]:
             if "EXTRA_TOPOLOGY" in constants:
                 if model in constants["EXTRA_TOPOLOGY"]:
-                    self.geo.add_definitions(load_json(constants["EXTRA_TOPOLOGY"][model]))
+                    self.geo.add_definitions(
+                        load_json(constants["EXTRA_TOPOLOGY"][model])
+                    )
             else:
                 raise ValueError(
                     f"You must provide geographical definition "
@@ -74,8 +77,8 @@ class Geomap:
 
         for key, val in self.additional_mappings.items():
             if (
-                    self.model.upper(),
-                    val[self.model],
+                self.model.upper(),
+                val[self.model],
             ) not in self.rev_additional_mappings:
                 self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [
                     key
@@ -92,7 +95,7 @@ class Geomap:
         ]
 
     def iam_to_ecoinvent_location(
-            self, location: str, contained: bool = True
+        self, location: str, contained: bool = True
     ) -> Union[List[str], str]:
         """
         Find the corresponding ecoinvent region given an IAM region.

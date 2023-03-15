@@ -30,6 +30,7 @@ with open(LOG_CONFIG, "r") as f:
 
 logger = logging.getLogger("emissions")
 
+
 def fetch_mapping(filepath: str) -> dict:
     """Returns a dictionary from a YML file"""
 
@@ -100,7 +101,6 @@ class Emissions(BaseTransformation):
 
                 self.write_log(ds, status="updated")
 
-
     def update_pollutant_emissions(
         self, dataset: dict, sector: str, gains_data: xr.DataArray
     ) -> dict:
@@ -116,8 +116,7 @@ class Emissions(BaseTransformation):
 
         # Update biosphere exchanges according to GAINS emission values
         for exc in ws.biosphere(
-            dataset, ws.either(*[ws.equals("name", x)
-            for x in self.ei_pollutants])
+            dataset, ws.either(*[ws.equals("name", x) for x in self.ei_pollutants])
         ):
 
             gains_pollutant = self.ei_pollutants[exc["name"]]
@@ -144,9 +143,7 @@ class Emissions(BaseTransformation):
                         dataset["log parameters"] = {}
 
                     dataset["log parameters"].update(
-                        {
-                            f"{gains_pollutant} reduction factor": scaling_factor
-                        }
+                        {f"{gains_pollutant} reduction factor": scaling_factor}
                     )
 
         return dataset
@@ -204,7 +201,6 @@ class Emissions(BaseTransformation):
             return scaling_factor.astype(float)
         else:
             return 1.0
-
 
     def write_log(self, dataset, status="created"):
         """

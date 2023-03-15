@@ -57,13 +57,13 @@ class Cement(BaseTransformation):
     """
 
     def __init__(
-            self,
-            database: List[dict],
-            iam_data: IAMDataCollection,
-            model: str,
-            pathway: str,
-            year: int,
-            version: str,
+        self,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
     ):
         super().__init__(database, iam_data, model, pathway, year)
         self.version = version
@@ -88,8 +88,8 @@ class Cement(BaseTransformation):
 
         for exc in dataset["exchanges"]:
             if (
-                    exc["name"] in self.cement_fuels_map["cement"]
-                    and exc["type"] == "technosphere"
+                exc["name"] in self.cement_fuels_map["cement"]
+                and exc["type"] == "technosphere"
             ):
 
                 if exc["name"] not in d_fuels:
@@ -97,42 +97,42 @@ class Cement(BaseTransformation):
                         "amount": exc["amount"],
                         "energy": _(exc) * 1000,
                         "fossil CO2": self.fuels_specs[
-                                          self.fuel_map_reverse[exc["name"]]
-                                      ]["co2"]
-                                      * _(exc)
-                                      * (
-                                              1
-                                              - self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
-                                                  "biogenic_share"
-                                              ]
-                                      ),
+                            self.fuel_map_reverse[exc["name"]]
+                        ]["co2"]
+                        * _(exc)
+                        * (
+                            1
+                            - self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
+                                "biogenic_share"
+                            ]
+                        ),
                         "biogenic CO2": self.fuels_specs[
-                                            self.fuel_map_reverse[exc["name"]]
-                                        ]["co2"]
-                                        * _(exc)
-                                        * self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
-                                            "biogenic_share"
-                                        ],
+                            self.fuel_map_reverse[exc["name"]]
+                        ]["co2"]
+                        * _(exc)
+                        * self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
+                            "biogenic_share"
+                        ],
                     }
                 else:
                     d_fuels[exc["name"]]["amount"] += exc["amount"]
                     d_fuels[exc["name"]]["energy"] += _(exc) * 1000
                     d_fuels[exc["name"]]["fossil CO2"] += (
-                            self.fuels_specs[self.fuel_map_reverse[exc["name"]]]["co2"]
-                            * _(exc)
-                            * (
-                                    1
-                                    - self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
-                                        "biogenic_share"
-                                    ]
-                            )
-                    )
-                    d_fuels[exc["name"]]["biogenic CO2"] += (
-                            self.fuels_specs[self.fuel_map_reverse[exc["name"]]]["co2"]
-                            * _(exc)
-                            * self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
+                        self.fuels_specs[self.fuel_map_reverse[exc["name"]]]["co2"]
+                        * _(exc)
+                        * (
+                            1
+                            - self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
                                 "biogenic_share"
                             ]
+                        )
+                    )
+                    d_fuels[exc["name"]]["biogenic CO2"] += (
+                        self.fuels_specs[self.fuel_map_reverse[exc["name"]]]["co2"]
+                        * _(exc)
+                        * self.fuels_specs[self.fuel_map_reverse[exc["name"]]][
+                            "biogenic_share"
+                        ]
                     )
 
         return d_fuels
@@ -288,18 +288,18 @@ class Cement(BaseTransformation):
             # the biogenic CO2 emissions
             # biogenic CO2 / MJ for waste fuel
             waste_fuel_biogenic_co2_emission_factor = (
-                    self.fuels_specs["waste"]["co2"]
-                    * self.fuels_specs["waste"]["biogenic_share"]
+                self.fuels_specs["waste"]["co2"]
+                * self.fuels_specs["waste"]["biogenic_share"]
             )
 
             waste_fuel_fossil_co2_emission_factor = self.fuels_specs["waste"]["co2"] * (
-                    1 - self.fuels_specs["waste"]["biogenic_share"]
+                1 - self.fuels_specs["waste"]["biogenic_share"]
             )
             # energy input of waste fuel in MJ
             energy_input_waste_fuel = bio_CO2 / waste_fuel_biogenic_co2_emission_factor
             # amount waste fuel, in kg
             amount_waste_fuel = (
-                    energy_input_waste_fuel / self.fuels_specs["waste"]["lhv"]
+                energy_input_waste_fuel / self.fuels_specs["waste"]["lhv"]
             )
 
             # add waste fuel to the energy details
@@ -307,7 +307,7 @@ class Cement(BaseTransformation):
                 "amount": amount_waste_fuel,
                 "energy": energy_input_waste_fuel * 1000,
                 "fossil CO2": waste_fuel_fossil_co2_emission_factor
-                              * energy_input_waste_fuel,
+                * energy_input_waste_fuel,
                 "biogenic CO2": bio_CO2,
             }
 
@@ -336,7 +336,7 @@ class Cement(BaseTransformation):
             # calculate new thermal energy
             # consumption per kg clinker
             new_energy_input_per_ton_clinker = (
-                    current_energy_input_per_ton_clinker * scaling_factor
+                current_energy_input_per_ton_clinker * scaling_factor
             )
 
             # put a floor value of 3000 kj/kg clinker
@@ -344,8 +344,7 @@ class Cement(BaseTransformation):
                 new_energy_input_per_ton_clinker = 3000
 
             scaling_factor = (
-                    new_energy_input_per_ton_clinker
-                    / current_energy_input_per_ton_clinker
+                new_energy_input_per_ton_clinker / current_energy_input_per_ton_clinker
             )
 
             # rescale fuel consumption and emissions
@@ -377,8 +376,8 @@ class Cement(BaseTransformation):
                 ) + dataset["log parameters"].get("new biogenic CO2", 0)
                 # share bio CO2 stored = sum of biogenic fuel emissions / total CO2 emissions
                 bio_co2_stored = (
-                        dataset["log parameters"].get("new biogenic CO2", 0)
-                        / total_co2_emissions
+                    dataset["log parameters"].get("new biogenic CO2", 0)
+                    / total_co2_emissions
                 )
 
                 # 0.11 kg CO2 leaks per kg captured
@@ -411,8 +410,8 @@ class Cement(BaseTransformation):
                 # Update CO2 exchanges
                 for exc in dataset["exchanges"]:
                     if (
-                            exc["name"].lower().startswith("carbon dioxide")
-                            and exc["type"] == "biosphere"
+                        exc["name"].lower().startswith("carbon dioxide")
+                        and exc["type"] == "biosphere"
                     ):
                         exc["amount"] *= 1 - carbon_capture_rate
 
@@ -433,12 +432,12 @@ class Cement(BaseTransformation):
 
             # update comment
             dataset["comment"] = (
-                     "Dataset modified by `premise` based on IAM projections "
-                     + " for the cement industry.\n"
-                     + f"Calculated energy input per kg clinker: {np.round(new_energy_input_per_ton_clinker, 1) / 1000}"
-                       f" MJ/kg clinker.\n"
-                     + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"
-             ) + dataset["comment"]
+                "Dataset modified by `premise` based on IAM projections "
+                + " for the cement industry.\n"
+                + f"Calculated energy input per kg clinker: {np.round(new_energy_input_per_ton_clinker, 1) / 1000}"
+                f" MJ/kg clinker.\n"
+                + f"Rate of carbon capture: {int(carbon_capture_rate * 100)} pct.\n"
+            ) + dataset["comment"]
 
         return d_act_clinker
 

@@ -205,6 +205,7 @@ class Electricity(BaseTransformation):
         model: str,
         pathway: str,
         year: int,
+        system_model: str,
     ) -> None:
         super().__init__(database, iam_data, model, pathway, year)
         mapping = InventorySet(self.database)
@@ -224,6 +225,7 @@ class Electricity(BaseTransformation):
             )
             for loc in self.regions
         }
+        self.system_model = system_model
 
     def check_for_production_volume(self, suppliers: List[dict]) -> List[dict]:
         # Remove suppliers that do not have a production volume
@@ -336,21 +338,42 @@ class Electricity(BaseTransformation):
             # when `period` == 10, this is a market mix for the period `self.year` + 10
             # this is useful for systems that consume electricity
             # over a long period of time (e.g., buildings, BEVs, etc.)
-            for period in [0, 20, 40, 60]:
-                mix = dict(
-                    zip(
-                        self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(
-                            region=region,
+
+            if self.system_model == "consequential":
+                periods = [0, ]
+            else:
+                periods = [0, 20, 40, 60]
+
+            for period in periods:
+
+                if self.system_model == "consequential":
+                    electricity_mix = dict(
+                        zip(
+                            self.iam_data.electricity_markets.variables.values,
+                            self.iam_data.electricity_markets.sel(
+                                region=region,
+                                year=self.year
+                            )
+                            .values,
                         )
-                        .interp(
-                            year=np.arange(self.year, self.year + period + 1),
-                            kwargs={"fill_value": "extrapolate"},
-                        )
-                        .mean(dim="year")
-                        .values,
                     )
-                )
+
+                else:
+                    # Create a time-weighted average mix
+                    electricity_mix = dict(
+                        zip(
+                            self.iam_data.electricity_markets.variables.values,
+                            self.iam_data.electricity_markets.sel(
+                                region=region,
+                            )
+                            .interp(
+                                year=np.arange(self.year, self.year + period + 1),
+                                kwargs={"fill_value": "extrapolate"},
+                            )
+                            .mean(dim="year")
+                            .values,
+                        )
+                    )
 
                 # Create an empty dataset
                 new_dataset = {
@@ -436,9 +459,9 @@ class Electricity(BaseTransformation):
 
                 for technology in technologies:
                     # If the solar power technology contributes to the mix
-                    if mix[technology] > 0:
+                    if electricity_mix[technology] > 0:
                         # Contribution in supply
-                        amount = mix[technology]
+                        amount = electricity_mix[technology]
                         solar_amount += amount
 
                         for supplier, share in tech_suppliers[technology]:
@@ -571,9 +594,14 @@ class Electricity(BaseTransformation):
             # when `period` == 10, this is a market mix for the period `self.year` + 10
             # this is useful for systems that consume electricity
             # over a long period of time (e.g., buildings, BEVs, etc.)
-            for period in [0, 20, 40, 60]:
-                # Create an empty dataset
 
+            if self.system_model == "consequential":
+                periods = [0, ]
+            else:
+                periods = [0, 20, 40, 60]
+
+            for period in periods:
+                # Create an empty dataset
                 new_dataset = {
                     "location": region,
                     "name": "market group for electricity, medium voltage",
@@ -777,40 +805,63 @@ class Electricity(BaseTransformation):
             for technology in ecoinvent_technologies:
                 suppliers, counter = [], 0
 
-                while len(suppliers) == 0:
-                    suppliers = list(
-                        get_suppliers_of_a_region(
-                            database=self.database,
-                            locations=possible_locations[counter],
-                            names=ecoinvent_technologies[technology],
-                            reference_product="electricity",
-                            unit="kilowatt hour",
+                try:
+                    while len(suppliers) == 0:
+                        suppliers = list(
+                            get_suppliers_of_a_region(
+                                database=self.database,
+                                locations=possible_locations[counter],
+                                names=ecoinvent_technologies[technology],
+                                reference_product="electricity",
+                                unit="kilowatt hour",
+                            )
+                        )
+                        counter += 1
+
+                    suppliers = self.check_for_production_volume(suppliers)
+
+                    for supplier in suppliers:
+                        share = self.get_production_weighted_share(supplier, suppliers)
+                        tech_suppliers[technology].append((supplier, share))
+                except IndexError:
+                    if self.system_model == "consequential":
+                        continue
+                    else:
+                        raise
+
+            if self.system_model == "consequential":
+                periods = [0, ]
+            else:
+                periods = [0, 20, 40, 60]
+
+            for period in periods:
+                if self.system_model == "consequential":
+                    electricity_mix = dict(
+                        zip(
+                            self.iam_data.electricity_markets.variables.values,
+                            self.iam_data.electricity_markets.sel(
+                                region=region,
+                                year=self.year
+                            )
+                            .values,
                         )
                     )
-                    counter += 1
 
-                suppliers = self.check_for_production_volume(suppliers)
-
-                for supplier in suppliers:
-                    share = self.get_production_weighted_share(supplier, suppliers)
-
-                    tech_suppliers[technology].append((supplier, share))
-
-            for period in [0, 20, 40, 60]:
-                electriciy_mix = dict(
-                    zip(
-                        self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(
-                            region=region,
+                else:
+                    electricity_mix = dict(
+                        zip(
+                            self.iam_data.electricity_markets.variables.values,
+                            self.iam_data.electricity_markets.sel(
+                                region=region,
+                            )
+                            .interp(
+                                year=np.arange(self.year, self.year + period + 1),
+                                kwargs={"fill_value": "extrapolate"},
+                            )
+                            .mean(dim="year")
+                            .values,
                         )
-                        .interp(
-                            year=np.arange(self.year, self.year + period + 1),
-                            kwargs={"fill_value": "extrapolate"},
-                        )
-                        .mean(dim="year")
-                        .values,
                     )
-                )
 
                 new_dataset = {
                     "location": region,
@@ -865,9 +916,9 @@ class Electricity(BaseTransformation):
                 # as solar energy is an input of low-voltage markets
 
                 solar_amount = 0
-                for tech in electriciy_mix:
+                for tech in electricity_mix:
                     if "solar pv residential" in tech.lower():
-                        solar_amount += electriciy_mix[tech]
+                        solar_amount += electricity_mix[tech]
 
                 # calculate the share of renewable energy in the mix
                 renewable_share = 0
@@ -880,16 +931,15 @@ class Electricity(BaseTransformation):
                     "biogas",
                     "wave",
                 ]
-                for tech in electriciy_mix:
+                for tech in electricity_mix:
                     if any(x in tech.lower() for x in renewable_techs):
-                        renewable_share += electriciy_mix[tech]
+                        renewable_share += electricity_mix[tech]
 
                 for technology in technologies:
-
                     # If the given technology contributes to the mix
-                    if electriciy_mix[technology] > 0:
+                    if electricity_mix[technology] > 0:
                         # Contribution in supply
-                        amount = electriciy_mix[technology]
+                        amount = electricity_mix[technology]
 
                         for supplier, share in tech_suppliers[technology]:
                             new_exchanges.append(
@@ -932,7 +982,7 @@ class Electricity(BaseTransformation):
                         "distribution loss": 0.0,
                         "transformation loss": transf_loss,
                         "renewable share": (renewable_share - solar_amount)
-                        / sum(electriciy_mix.values()),
+                        / sum(electricity_mix.values()),
                     }
                 )
 
@@ -1511,7 +1561,6 @@ class Electricity(BaseTransformation):
                     dataset,
                     scaling_factor,
                 )
-
 
                 self.write_log(dataset=dataset, status="updated")
 

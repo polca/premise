@@ -1924,6 +1924,9 @@ class Fuels(BaseTransformation):
                 prod_var, vars_map[fuel], region
             )
 
+            if isinstance(share, np.ndarray):
+                share = share.item(0)
+
             if share <= 0:
                 continue
 

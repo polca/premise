@@ -18,6 +18,8 @@ import yaml
 from cryptography.fernet import Fernet
 
 from . import DATA_DIR, VARIABLES_DIR
+from .marginal_mixes import consequential_method
+
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
@@ -130,7 +132,7 @@ def get_gains_EU_data() -> xr.DataArray:
     * sector
     * year
 
-    :return: a multi-dimensional array with GAINS emissions data
+    :return: a multidimensional array with GAINS emissions data
 
     """
 
@@ -217,10 +219,7 @@ class IAMDataCollection:
     :var model: name of the IAM model (e.g., "remind")
     :var pathway: name of the IAM scenario (e.g., "SSP2-Base")
     :var year: year to produce the database for
-    :var filepath_iam_files: if a custom file is provided, the filepath to it
-    :var key: decryption key, provided by user, if built-in IAM files are to be used
     :var system_model: "attributional" or "consequential" (not yet implemented.
-    :var time_horizon: for consequential modelling (not yet implemented.
     """
 
     def __init__(
@@ -230,15 +229,16 @@ class IAMDataCollection:
         year: int,
         filepath_iam_files: Path,
         key: bytes,
+        external_scenarios: dict = None,
         system_model: str = "attributional",
-        time_horizon: int = 30,
+        system_model_args: dict = None,
         gains_scenario: str = "CLE",
-        external_scenarios: list = None,
     ) -> None:
         self.model = model
         self.pathway = pathway
         self.year = year
         self.external_scenarios = external_scenarios
+        self.system_model_args = system_model_args
         key = key or None
 
         prod_vars = self.__get_iam_variable_labels(
@@ -327,7 +327,6 @@ class IAMDataCollection:
 
         self.regions = data.region.values.tolist()
         self.system_model = system_model
-        self.time_horizon = time_horizon
 
         self.gains_data_EU = get_gains_EU_data()
         self.gains_data_IAM = get_gains_IAM_data(
@@ -363,7 +362,6 @@ class IAMDataCollection:
             ],
             dim="variables",
         )
-
 
         if self.model == "image":
             self.land_use = self.__get_iam_land_use(data=data)
@@ -415,7 +413,7 @@ class IAMDataCollection:
         :param key: encryption key, if provided by user
         :param filepath: file path to IAM file
 
-        :return: a multi-dimensional array with IAM data
+        :return: a multidimensional array with IAM data
 
         """
 
@@ -493,137 +491,6 @@ class IAMDataCollection:
 
         return array
 
-    def __transform_to_marginal_markets(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        Used for consequential modeling only. Returns marginal market mixes.
-
-        :param data: IAM data
-        :return: marginal market mixes
-        """
-
-        shape = list(data.shape)
-        shape[-1] = 1
-
-        market_shares = xr.DataArray(
-            np.zeros(tuple(shape)),
-            dims=["region", "variables", "year"],
-            coords={
-                "region": data.coords["region"],
-                "variables": data.variables,
-                "year": [self.year],
-            },
-        )
-
-        for region in data.coords["region"].values:
-            current_shares = data.sel(region=region, year=self.year) / data.sel(
-                region=region, year=self.year
-            ).sum(dim="variables")
-
-            # we first need to calculate the average capital replacement rate of the market
-            # which is here defined as the inverse of the production-weighted average lifetime
-            lifetime = get_lifetime(current_shares.variables.values.tolist())
-
-            avg_lifetime = np.sum(current_shares.values * lifetime)
-
-            avg_cap_repl_rate = -1 / avg_lifetime
-
-            volume_change = (
-                data.sel(region=region)
-                .sum(dim="variables")
-                .interp(year=self.year + self.time_horizon)
-                / data.sel(region=region).sum(dim="variables").interp(year=self.year)
-            ) - 1
-
-            # first, we set CHP suppliers to zero
-            # as electricity production is not a determining product for CHPs
-            tech_to_ignore = ["CHP", "biomethane"]
-            data.loc[
-                dict(
-                    variables=[
-                        v
-                        for v in data.variables.values
-                        if any(x in v for x in tech_to_ignore)
-                    ],
-                    region=region,
-                )
-            ] = 0
-
-            # second, we fetch the ratio between production in `self.year` and `self.year` + `time_horizon`
-            # for each technology
-            market_shares.loc[dict(region=region)] = (
-                data.sel(region=region)
-                .interp(year=self.year + self.time_horizon)
-                .values
-                / data.sel(region=region).interp(year=self.year).values
-            )[:, None] - 1
-
-            market_shares.loc[dict(region=region)] = market_shares.loc[
-                dict(region=region)
-            ].round(3)
-
-            # we remove NaNs and np.inf
-            market_shares.loc[dict(region=region)].values[
-                market_shares.loc[dict(region=region)].values == np.inf
-            ] = 0
-            market_shares.loc[dict(region=region)] = market_shares.loc[
-                dict(region=region)
-            ].fillna(0)
-
-            # we fetch the technologies' lifetimes
-            lifetime = get_lifetime(market_shares.variables.values)
-            # get the capital replacement rate
-            # which is here defined as -1 / lifetime
-            cap_repl_rate = -1 / lifetime
-
-            # subtract the capital replacement (which is negative) rate
-            # to the changes market share
-            market_shares.loc[dict(region=region, year=self.year)] += cap_repl_rate
-
-            # market decreasing faster than the average capital renewal rate
-            # in this case, the idea is that oldest/non-competitive technologies
-            # are likely to supply by increasing their lifetime
-            # as the market does not justify additional capacity installation
-            if volume_change < avg_cap_repl_rate:
-                # we remove suppliers with a positive growth
-                market_shares.loc[dict(region=region)].values[
-                    market_shares.loc[dict(region=region)].values > 0
-                ] = 0
-                # we reverse the sign of negative growth suppliers
-                market_shares.loc[dict(region=region)] *= -1
-                market_shares.loc[dict(region=region)] /= market_shares.loc[
-                    dict(region=region)
-                ].sum(dim="variables")
-
-                # multiply by volumes at T0
-                market_shares.loc[dict(region=region)] *= data.sel(
-                    region=region, year=self.year
-                )
-                market_shares.loc[dict(region=region)] /= market_shares.loc[
-                    dict(region=region)
-                ].sum(dim="variables")
-
-            # increasing market or
-            # market decreasing slowlier than the
-            # capital renewal rate
-            else:
-                # we remove suppliers with a negative growth
-                market_shares.loc[dict(region=region)].values[
-                    market_shares.loc[dict(region=region)].values < 0
-                ] = 0
-                market_shares.loc[dict(region=region)] /= market_shares.loc[
-                    dict(region=region)
-                ].sum(dim="variables")
-
-                # multiply by volumes at T0
-                market_shares.loc[dict(region=region)] *= data.sel(
-                    region=region, year=self.year
-                )
-                market_shares.loc[dict(region=region)] /= market_shares.loc[
-                    dict(region=region)
-                ].sum(dim="variables")
-
-        return market_shares
-
     def __get_other_iam_vars(self, data: xr.DataArray) -> xr.DataArray:
         """
         Returns various IAM variables.
@@ -691,8 +558,10 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list_vars
 
-        if self.system_model == "consequential":
-            data_to_return = self.__transform_to_marginal_markets(data_to_return)
+        if self.system_model != "attributional":
+            data_to_return = consequential_method(
+                data_to_return, self.year, self.system_model_args
+            )
 
         else:
             data_to_return /= (
@@ -752,7 +621,7 @@ class IAMDataCollection:
             else:
                 raise SystemExit from exc
 
-        data_to_return = data_to_return / data_to_return.sel(year=2020)
+        data_to_return /= data_to_return.sel(year=2020)
 
         # If we are looking at a year post 2020
         # and the ratio in efficiency change is inferior to 1
@@ -1085,7 +954,8 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-        # Finally, if the specified year falls in between two periods provided by the IAM
+        # Finally, if the specified year falls in between
+        # two periods provided by the IAM
         # sometimes, the World region is either neglected
         # or wrongly evaluated, so we fix that here
 
@@ -1099,14 +969,17 @@ class IAMDataCollection:
 
         except KeyError as exc:
             list_missing_vars = [
-                var for var in list_technologies if var not in data.variables.values
+                var for var in list_technologies
+                if var not in data.variables.values
             ]
             print(
                 f"The following variables cannot be found in the IAM file: {list_missing_vars}"
             )
+
             if len(list_technologies) - len(list_missing_vars) > 0:
                 available_vars = [
-                    var for var in list_technologies if var in data.variables.values
+                    var for var in list_technologies
+                    if var in data.variables.values
                 ]
                 print(
                     "The process continues with the remaining variables, "
@@ -1120,12 +993,14 @@ class IAMDataCollection:
         data_to_return = data.loc[:, list_technologies, :]
 
         data_to_return.coords["variables"] = [
-            k for k, v in labels.items() if v in list_technologies
+            k for k, v in labels.items()
+            if v in list_technologies
         ]
 
         if self.system_model == "consequential":
-            data_to_return = self.__transform_to_marginal_markets(data_to_return)
-
+            data_to_return = consequential_method(
+                data_to_return, self.year, self.system_model_args
+            )
         else:
             data_to_return = data_to_return.interp(year=self.year)
             data_to_return /= (
@@ -1145,7 +1020,7 @@ class IAMDataCollection:
         for crop farming in fuels.py.
 
         :param data: IAM data
-        :return: a multi-dimensional array with land use
+        :return: a multidimensional array with land use
         for different crops types, for all years, for all regions.
         """
 
@@ -1237,7 +1112,7 @@ class IAMDataCollection:
             else:
                 raise SystemExit from exc
 
-        data_to_return = data_to_return / data_to_return.sel(year=2020)
+        data_to_return /= data_to_return.sel(year=2020)
 
         # If we are looking at a year post 2020
         # and the ratio in specific energy use change is superior to 1

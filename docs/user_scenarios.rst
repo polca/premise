@@ -438,7 +438,6 @@ Hence, in this example, the ammonia supplier will be replaced in all
 activities whose reference product contains the string **urea**
 and location in **DE**.
 
-Have fun!
 
 Main contributors
 -----------------

@@ -1904,25 +1904,12 @@ can be consulted like so:
 Cement production
 *****************
 
-A number of parameters to model future clinker/cement production is not sourced from the
-IAM file, but from data from the GCCA_ database "Getting the Numbers Right", as well as
-from the IEA_ roadmap report for the cement industry.
+A number of parameters to model future clinker/cement production is sourced from the
+IAM file.
 
-.. _GCCA: https://gccassociation.org/sustainability-innovation/gnr-gcca-in-numbers/
-.. _IEA: https://www.wbcsd.org/contentwbc/download/4586/61682/1
+The expected change in fuel efficiency for clinker production
+is based on IAM scenario projections.
 
-These two sources are combined and used to derive the following parameters:
-
-* share of kiln technology (wet, dry, wet with pre-heater, etc.)
-* fuel mix
-* heat recovery rate
-* electricity use
-
-This data is available here: GNRdata_.
-
-The expected change in fuel efficiency is based on IAM scenario projections.
-
-.. _GNRdata: https://github.com/polca/premise/blob/master/premise/data/cement/additional_data_GNR.csv
 
 Photovoltaic panels
 *******************

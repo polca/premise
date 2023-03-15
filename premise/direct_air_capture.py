@@ -25,7 +25,7 @@ from .transformation import (
     relink_technosphere_exchanges,
     uuid,
     ws,
-    wurst
+    wurst,
 )
 
 HEAT_SOURCES = DATA_DIR / "fuels" / "heat_sources_map.yml"
@@ -46,13 +46,13 @@ class DirectAirCapture(BaseTransformation):
     """
 
     def __init__(
-            self,
-            database: List[dict],
-            iam_data: IAMDataCollection,
-            model: str,
-            pathway: str,
-            year: int,
-            version: str,
+        self,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
     ):
         super().__init__(database, iam_data, model, pathway, year)
         # ecoinvent version
@@ -222,33 +222,33 @@ class DirectAirCapture(BaseTransformation):
         if "dac_solvent" in self.iam_data.production_volumes.variables.values:
             for region, dataset in datasets.items():
                 cumulated_deployment = (
-                        np.clip(
-                            self.iam_data.production_volumes.sel(
-                                variables="dac_solvent",
-                            )
-                            .interp(year=self.year)
-                            .sum(dim="region")
-                            .values.item()
-                            * -1,
-                            1e-3,
-                            None,
+                    np.clip(
+                        self.iam_data.production_volumes.sel(
+                            variables="dac_solvent",
                         )
-                        / 2
+                        .interp(year=self.year)
+                        .sum(dim="region")
+                        .values.item()
+                        * -1,
+                        1e-3,
+                        None,
+                    )
+                    / 2
                 )  # divide by 2,
                 # as we assume sorbent and solvent are deployed equally
 
                 initial_deployment = (
-                        np.clip(
-                            self.iam_data.production_volumes.sel(
-                                variables="dac_solvent", year=2020
-                            )
-                            .sum(dim="region")
-                            .values.item()
-                            * -1,
-                            1e-3,
-                            None,
+                    np.clip(
+                        self.iam_data.production_volumes.sel(
+                            variables="dac_solvent", year=2020
                         )
-                        / 2
+                        .sum(dim="region")
+                        .values.item()
+                        * -1,
+                        1e-3,
+                        None,
+                    )
+                    / 2
                 )  # divide by 2,
                 # as we assume sorbent and solvent are deployed equally
 
@@ -257,22 +257,22 @@ class DirectAirCapture(BaseTransformation):
                 # relative to 2020
 
                 scaling_factor_operation = (
-                                                   1 - theoretical_min_operation[technology]
-                                           ) * np.power(
+                    1 - theoretical_min_operation[technology]
+                ) * np.power(
                     (1 - learning_rates_operation[technology]),
                     np.log2(cumulated_deployment / initial_deployment),
                 ) + theoretical_min_operation[
-                                               technology
-                                           ]
+                    technology
+                ]
 
                 scaling_factor_infra = (
-                                               1 - theoretical_min_infra[technology]
-                                       ) * np.power(
+                    1 - theoretical_min_infra[technology]
+                ) * np.power(
                     (1 - learning_rates_infra[technology]),
                     np.log2(cumulated_deployment / initial_deployment),
                 ) + theoretical_min_infra[
-                                           technology
-                                       ]
+                    technology
+                ]
 
                 current_energy_inputs = sum(
                     e["amount"]

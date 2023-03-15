@@ -170,6 +170,7 @@ class BaseTransformation:
         pathway: str,
         year: int,
         cache: dict = None,
+        system_model: str = "attributional",
     ) -> None:
         self.database: List[dict] = database
         self.iam_data: IAMDataCollection = iam_data
@@ -182,6 +183,7 @@ class BaseTransformation:
         mapping = InventorySet(self.database)
         self.cement_fuels_map: dict = mapping.generate_cement_fuels_map()
         self.fuel_map: Dict[str, Set] = mapping.generate_fuel_map()
+        self.system_model: str = system_model
 
         # reverse the fuel map to get a mapping from ecoinvent to premise
         self.fuel_map_reverse: Dict = {}
@@ -914,9 +916,9 @@ class BaseTransformation:
         self.database.append(ccs)
 
     def find_iam_efficiency_change(
-            self,
-            variable: Union[str, list],
-            location: str,
+        self,
+        variable: Union[str, list],
+        location: str,
     ) -> float:
         """
         Return the relative change in efficiency for `variable` in `location`

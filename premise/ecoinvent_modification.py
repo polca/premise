@@ -63,60 +63,60 @@ FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distributio
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
 
 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
 )
 FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
 )
 FILEPATH_HYDROGEN_WOODY_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx"
 )
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
 
 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx"
 )
 
 FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
 )
 FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
 FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
 FILEPATH_METHANOL_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
 FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-cement-plant.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-cement-plant.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xlsx"
 )
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
 FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
@@ -271,7 +271,7 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 )
 
         if not all(
-                i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
+            i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
         ):
             raise TypeError(
                 "Both `inventories` and `ecoinvent version` "
@@ -415,33 +415,37 @@ class NewDatabase:
     """
 
     def __init__(
-            self,
-            scenarios: List[dict],
-            source_version: str = "3.8",
-            source_type: str = "brightway",
-            key: bytes = None,
-            source_db: str = None,
-            source_file_path: str = None,
-            additional_inventories: List[dict] = None,
-            system_model: str = "attributional",
-            time_horizon: int = None,
-            use_cached_inventories: bool = True,
-            use_cached_database: bool = True,
-            external_scenarios: list = None,
-            quiet=False,
-            keep_uncertainty_data=False,
-            gains_scenario="CLE",
+        self,
+        scenarios: List[dict],
+        source_version: str = "3.8",
+        source_type: str = "brightway",
+        key: bytes = None,
+        source_db: str = None,
+        source_file_path: str = None,
+        additional_inventories: List[dict] = None,
+        system_model: str = "attributional",
+        system_args: dict = None,
+        use_cached_inventories: bool = True,
+        use_cached_database: bool = True,
+        external_scenarios: list = None,
+        quiet=False,
+        keep_uncertainty_data=False,
+        gains_scenario="CLE",
     ) -> None:
 
         self.source = source_db
         self.version = check_db_version(source_version)
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
-        self.time_horizon = (
-            check_time_horizon(time_horizon)
-            if system_model == "consequential"
-            else None
-        )
+        self.system_model_args = system_args
+
+        # if version is anything other than 3.8
+        # and system_model is "consequential"
+        # raise an error
+        if self.version != "3.8" and self.system_model == "consequential":
+            raise ValueError(
+                "Consequential system model is only available for ecoinvent 3.8."
+            )
 
         if gains_scenario not in ["CLE", "MFR"]:
             raise ValueError("gains_scenario must be either 'CLE' or 'MFR'")
@@ -512,7 +516,7 @@ class NewDatabase:
                 filepath_iam_files=scenario["filepath"],
                 key=key,
                 system_model=self.system_model,
-                time_horizon=self.time_horizon,
+                system_model_args=self.system_model_args,
                 gains_scenario=self.gains_scenario,
             )
             scenario["iam data"] = data
@@ -659,6 +663,7 @@ class NewDatabase:
                 version_in=filepath[1],
                 version_out=self.version,
                 path=filepath[0],
+                system_model=self.system_model,
             )
             datasets = inventory.merge_inventory()
             data.extend(datasets)
@@ -669,7 +674,7 @@ class NewDatabase:
         return data
 
     def __import_additional_inventories(
-            self, data_package: [datapackage.DataPackage, list]
+        self, data_package: [datapackage.DataPackage, list]
     ) -> List[dict]:
         """
         This method will trigger the import of a number of inventories
@@ -721,8 +726,8 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if (
-                    "exclude" not in scenario
-                    or "update_electricity" not in scenario["exclude"]
+                "exclude" not in scenario
+                or "update_electricity" not in scenario["exclude"]
             ):
                 electricity = Electricity(
                     database=scenario["database"],
@@ -730,6 +735,7 @@ class NewDatabase:
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     year=scenario["year"],
+                    system_model=self.system_model,
                 )
 
                 electricity.update_ng_production_ds()
@@ -856,8 +862,8 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if (
-                    "exclude" not in scenario
-                    or "update_two_wheelers" not in scenario["exclude"]
+                "exclude" not in scenario
+                or "update_two_wheelers" not in scenario["exclude"]
             ):
                 trspt = Transport(
                     database=scenario["database"],
@@ -902,8 +908,8 @@ class NewDatabase:
         if self.datapackages:
             for i, scenario in enumerate(self.scenarios):
                 if (
-                        "exclude" not in scenario
-                        or "update_external_scenario" not in scenario["exclude"]
+                    "exclude" not in scenario
+                    or "update_external_scenario" not in scenario["exclude"]
                 ):
                     for d, datapackage in enumerate(self.datapackages):
                         if "inventories" in [r.name for r in datapackage.resources]:
@@ -1008,7 +1014,7 @@ class NewDatabase:
         self.update_emissions()
 
     def write_superstructure_db_to_brightway(
-            self, name: str = f"super_db_{date.today()}", filepath: str = None
+        self, name: str = f"super_db_{date.today()}", filepath: str = None
     ) -> None:
         """
         Register a super-structure database,
@@ -1215,9 +1221,9 @@ class NewDatabase:
         self.generate_change_report()
 
     def generate_scenario_report(
-            self,
-            filepath: [str, Path] = None,
-            name: str = f"scenario_report_{date.today()}.xlsx",
+        self,
+        filepath: [str, Path] = None,
+        name: str = f"scenario_report_{date.today()}.xlsx",
     ):
         """
         Generate a report of the scenarios.

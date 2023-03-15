@@ -18,6 +18,7 @@ This user guide will help you navigate the inner workings of *premise*.
    load
    mapping
    user_scenarios
+   consequential
 
 Technical Reference
 ===================

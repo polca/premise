@@ -459,6 +459,7 @@ class Transport(BaseTransformation):
             scenario=self.scenario,
             vehicle_type=self.vehicle_type,
             has_fleet=True,
+            system_model=self.system_model,
         )
 
         various_veh.prepare_inventory()

@@ -24,7 +24,7 @@ from .geomap import Geomap
 
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
-
+FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
 OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
 
 
@@ -57,6 +57,13 @@ def get_biosphere_code() -> dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
 
     return csv_dict
+
+
+def get_consequential_blacklist():
+    with open(FILEPATH_CONSEQUENTIAL_BLACKLIST, "r") as stream:
+        flows = yaml.safe_load(stream)
+
+    return flows
 
 
 def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
@@ -107,9 +114,9 @@ def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
         for ds in data:
             if (ds["name"], ds["reference product"], ds["location"]) in duplicates:
                 if (
-                    ds["name"],
-                    ds["reference product"],
-                    ds["location"],
+                        ds["name"],
+                        ds["reference product"],
+                        ds["location"],
                 ) not in duplicates_added:
                     duplicates_added.append(
                         (ds["name"], ds["reference product"], ds["location"])
@@ -118,6 +125,52 @@ def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
                     data.remove(ds)
 
     return data
+
+
+def check_for_datasets_compliance_with_consequential_database(
+        datasets: List[dict], blacklist: List[dict]
+):
+    """
+    Check whether the datasets to import are compliant with the consequential database.
+
+    :param datasets: list of datasets to import
+    :param blacklist: list of datasets that are not in the consequential database
+    :return: list of datasets that are compliant with the consequential database
+
+    """
+    # if system model is `consequential`` there is a
+    # number of datasets we do not want to import
+
+    tuples_of_blacklisted_datasets = [
+        (i["name"], i["reference product"], i["unit"]) for i in blacklist
+    ]
+
+    datasets = [
+        d
+        for d in datasets
+        if (d["name"], d["reference product"], d["unit"]) not in tuples_of_blacklisted_datasets
+    ]
+
+    # also, we want to change exchanges that do not
+    # exist in the consequential LCA database
+    # and change them for the consequential equivalent
+
+    for ds in datasets:
+        for exchange in ds["exchanges"]:
+            if exchange["type"] == "technosphere":
+                exc_id = (exchange["name"], exchange.get("reference product"), exchange["unit"])
+
+                if exc_id in tuples_of_blacklisted_datasets:
+                    for d in blacklist:
+                        if exc_id == (d["name"], d.get("reference product"), d["unit"]):
+                            if "replacement" in d:
+                                exchange["name"] = d["replacement"]["name"]
+                                exchange["reference product"] = d["replacement"][
+                                    "reference product"
+                                ]
+                                exchange["location"] = d["replacement"]["location"]
+
+    return datasets
 
 
 class BaseInventoryImport:
@@ -134,22 +187,26 @@ class BaseInventoryImport:
     """
 
     def __init__(
-        self,
-        database: List[dict],
-        version_in: str,
-        version_out: str,
-        path: Union[str, Path],
+            self,
+            database: List[dict],
+            version_in: str,
+            version_out: str,
+            path: Union[str, Path],
+            system_model: str,
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
         self.db_code = [x["code"] for x in self.database]
         self.db_names = [
-            (x["name"], x["reference product"], x["location"]) for x in self.database
+            (x["name"], x["reference product"], x["location"])
+            for x in self.database
         ]
         self.version_in = version_in
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code()
         self.outdated_flows = get_outdated_flows()
+        self.system_model = system_model
+        self.consequential_blacklist = get_consequential_blacklist()
         self.list_unlinked = []
 
         if "http" in str(path):
@@ -166,7 +223,8 @@ class BaseInventoryImport:
         self.import_db = self.load_inventory(path)
 
         # register migration maps
-        # as imported inventories link to different ecoinvent versions
+        # as imported inventories link
+        # to different ecoinvent versions
         ei_versions = ["35", "36", "37", "38"]
 
         for combination in itertools.product(ei_versions, ei_versions):
@@ -210,7 +268,7 @@ class BaseInventoryImport:
                 (x["name"].lower(), x["reference product"].lower(), x["location"])
                 for x in self.import_db.data
                 if (x["name"].lower(), x["reference product"].lower(), x["location"])
-                in self.db_names
+                   in self.db_names
             ]
         )
 
@@ -262,8 +320,8 @@ class BaseInventoryImport:
         results = []
         for act in self.import_db.data:
             if (
-                len([a for a in act["exchanges"] if label in a and a[label] == value])
-                == 0
+                    len([a for a in act["exchanges"] if label in a and a[label] == value])
+                    == 0
             ):
                 results.append(act)
 
@@ -514,8 +572,8 @@ class DefaultInventory(BaseInventoryImport):
 
     """
 
-    def __init__(self, database, version_in, version_out, path):
-        super().__init__(database, version_in, version_out, path)
+    def __init__(self, database, version_in, version_out, path, system_model):
+        super().__init__(database, version_in, version_out, path, system_model)
 
     def load_inventory(self, path: Union[str, Path]) -> bw2io.ExcelImporter:
         return ExcelImporter(path)
@@ -524,6 +582,13 @@ class DefaultInventory(BaseInventoryImport):
         if self.version_in != self.version_out:
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+            )
+
+        if self.system_model == "consequential":
+            self.import_db.data = (
+                check_for_datasets_compliance_with_consequential_database(
+                    self.import_db.data, self.consequential_blacklist
+                )
             )
 
         self.import_db.data = remove_categories(self.import_db.data)
@@ -556,20 +621,21 @@ class VariousVehicles(BaseInventoryImport):
     """
 
     def __init__(
-        self,
-        database: List[dict],
-        version_in: str,
-        version_out: str,
-        path: Union[str, Path],
-        year: int,
-        regions: List[str],
-        model: str,
-        scenario: str,
-        vehicle_type: str,
-        relink: bool = False,
-        has_fleet: bool = False,
+            self,
+            database: List[dict],
+            version_in: str,
+            version_out: str,
+            path: Union[str, Path],
+            year: int,
+            regions: List[str],
+            model: str,
+            scenario: str,
+            vehicle_type: str,
+            relink: bool = False,
+            has_fleet: bool = False,
+            system_model: str = "attributional",
     ) -> None:
-        super().__init__(database, version_in, version_out, path)
+        super().__init__(database, version_in, version_out, path, system_model)
         self.year = year
         self.regions = regions
         self.model = model
