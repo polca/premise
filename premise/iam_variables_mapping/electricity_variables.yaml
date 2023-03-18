@@ -288,7 +288,6 @@ Gas CC CCS:
     fltr:
       - Natural gas, in ATR H2-CC/pre
       - Natural gas, burned in power plant/post
-
 Geothermal:
   iam_aliases:
     remind: SE|Electricity|+|Geothermal

@@ -225,7 +225,7 @@ class BaseInventoryImport:
         # register migration maps
         # as imported inventories link
         # to different ecoinvent versions
-        ei_versions = ["35", "36", "37", "38"]
+        ei_versions = ["35", "36", "37", "38", "39"]
 
         for combination in itertools.product(ei_versions, ei_versions):
             if combination[0] != combination[1]:
@@ -580,6 +580,16 @@ class DefaultInventory(BaseInventoryImport):
 
     def prepare_inventory(self) -> None:
         if self.version_in != self.version_out:
+            # if version_out is 3.9, migrate towards 3.8 first, then 3.9
+            if self.version_out == "3.9":
+                print("Migrating to 3.8 first")
+                if self.version_in != "3.8":
+                    self.import_db.migrate(
+                        f"migration_{self.version_in.replace('.', '')}_38"
+                    )
+                self.import_db.migrate(
+                    f"migration_38_{self.version_out.replace('.', '')}"
+                )
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
             )
@@ -715,6 +725,7 @@ class AdditionalInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         if self.version_in != self.version_out:
+
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
             )

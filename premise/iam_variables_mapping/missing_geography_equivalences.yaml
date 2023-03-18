@@ -104,3 +104,30 @@ US only:
 APAC:
   remind: OAS
   image: SEAS
+CN-NCGC:
+  remind: CHA
+  image: CHN
+CN-CSG:
+  remind: CHA
+  image: CHN
+CN-SWG:
+  remind: CHA
+  image: CHN
+CN-CCG:
+  remind: CHA
+  image: CHN
+CN-ECGC:
+  remind: CHA
+  image: CHN
+RoE:
+  remind: EUR
+  image: WEU
+CN-NWG:
+  remind: CHA
+  image: CHN
+BR-South-eastern/Mid-western grid:
+  remind: LAM
+  image: RSAM
+CN-NECG:
+  remind: CHA
+  image: CHN

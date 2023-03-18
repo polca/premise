@@ -31,28 +31,12 @@ What's new in 1.0.0?
 
 We have just released the first major version of *premise*.
 
-Compared to 0.4.5, here are some of the most notable changes:
+Compared to 1.2, here are some of the most notable changes:
 
-* there's now a [detailed documentation](https://premise.readthedocs.io/en/latest/) for *premise*.
-* *premise* works with ecoinvent 3.8, cut-off.
-* none of the original datasets in ecoinvent are deleted. This means that any inventories linking successfully
-with the original ecoinvent database will link with a premise-generated database.
-* uncertainty information is removed from the database.
-* *premise* reverts to using "Carbon dioxide, in air" and "Carbon dioxide, non-fossil" to model uptake
-and release of biogenic carbon dioxide. If you wish to account for those in the global warming indicator,
-you need to execute [premise_gwp](https://github.com/polca/premise_gwp), which installs the necessary 
-GWP LCIA methods.
-* *premise* caches the extraction of the database and the import of the inventories the first time 
-a database is created, skipping those steps for the next time.
-* updates inventories for PV and natural gas.
-* updates inventories for two-wheelers, cars, trucks and buses and creates region-specific
- fleet average vehicles (from REMIND or IMAGE fleet data). Activities using transport 
-are relinked to these new vehicles.
-* creates region-specific biomass markets that feed biomass to power plants,
-reflecting the share of biomass coming as forestry or agricultural residue.
-* creates liquid and gaseous fuel markets, reflecting the share of biofuels, methanol and synfuels.
-Also it modifies the split between fossil and biogenic CO2 emissions in the activities feeding
-from the fuel market (based on the fuel mix).
+* *premise* works with ecoinvent 3.8 and 3.9, cut-off and consequential.
+* emission factors for local air pollutants are updated, using GAINS-EU and GAINS-IAM
+* region- and scenario-specific inventories for DAC and DACCS
+* additional REMIND scenarios (SSP1 and SSP5)
 
 
 Documentation

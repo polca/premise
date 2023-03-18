@@ -558,7 +558,7 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list_vars
 
-        if self.system_model != "cutoff":
+        if self.system_model == "consequential":
             data_to_return = consequential_method(
                 data_to_return, self.year, self.system_model_args
             )

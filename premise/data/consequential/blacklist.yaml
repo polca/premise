@@ -220,3 +220,12 @@
     name: heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas
     reference product: heat, for reuse in municipal waste incineration only
     location: RoW
+
+- name: market for carbon dioxide, in chemical industry
+  reference product: carbon dioxide, in chemical industry
+  unit: kilogram
+  location: GLO
+  replacement:
+    name: market for carbon dioxide, liquid
+    reference product: carbon dioxide, liquid
+    location: RoW

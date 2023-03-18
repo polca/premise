@@ -566,6 +566,11 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
         }
     ]
     package.commit()
+
+    # check that directory exists, otherwise create it
+    Path(DIR_DATAPACKAGE).mkdir(parents=True, exist_ok=True)
+
+    # save the datapackage
     package.save(DIR_DATAPACKAGE / f"{name}.zip")
 
     print(f"Data package saved at {DIR_DATAPACKAGE / f'{name}.zip'}")

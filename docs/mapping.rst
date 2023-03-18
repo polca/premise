@@ -4,11 +4,13 @@ MAPPING
 Link to a new IAM model
 -----------------------
 
-While `premise` comes with a set of scenarios from the REMIND and IMAGE IAM models,
-it is possible to link it to a new IAM model.
-To do so, one needs to populate the .yaml mapping files under the folder `premise/iam_variables_mapping`.
+Although *premise* comes with a set of scenarios from the REMIND
+and IMAGE IAM models, it is possible to link it to a new IAM model.
+To do so, you need to populate the .yaml mapping files under the
+folder premise/iam_variables_mapping.
 
-For each variable in in each of the .yaml file, the user needs to specify the corresponding IAM variable name, like so:
+For each variable in each of the .yaml files, specify the
+corresponding IAM variable name as follows:
 
 .. code-block:: yaml
 
@@ -34,18 +36,18 @@ For each variable in in each of the .yaml file, the user needs to specify the co
         fltr:
           - market for wood chips, wet, measured as dry mass
 
-If efficiency-related variables are not available, the corresponding technologies will
-simply not have their efficiency adjusted.
+If efficiency-related variables are not available, the corresponding
+technologies will simply not have their efficiency adjusted.
 
-You also need to add your model name to the models list
-as well as the list of geographical regions as `LIST_xxx_REGIONS`,
-with xxx being your model name, in the file
-`iam_variables_mapping/constants.yaml`.
+Additionally, add your model name to the models list as well as
+the list of geographical regions as LIST_xxx_REGIONS, with xxx
+being the IAM model name, in the file iam_variables_mapping/constants.yaml.
 
-Finally, you need to inform `premise` about the geographical definitions
-of the IAM model you are using. These definitions are already stored for REMIND
-and IMAGE, but not for new IAM models. To do so, you need to create a .json file
-which lists ISO 3166-1 alpha-2 country codes and their corresponding IAM regions. See example below.
+Lastly, inform premise about the geographical definitions of
+the IAM model you are using. These definitions are already
+stored for REMIND and IMAGE, but not for new IAM models.
+Create a .json file listing ISO 3166-1 alpha-2 country codes
+and their corresponding IAM regions, as shown below.
 
 .. code-block:: json
     {
@@ -59,12 +61,13 @@ which lists ISO 3166-1 alpha-2 country codes and their corresponding IAM regions
         "World": ["GLO", "RoW"]
     }
 
-then, you need to add to the `constants.yaml` file the path to this file:
+then, you need to add to the `constants.yaml` file the path
+to this file:
 
 .. code-block:: yaml
     ...
     EXTRA_TOPOLOGY:
       my_iam_name: filepath/to/the/geographical/definitions.json
 
-On the longer-term, we can integrate this information in `premise`
-so that it is not necessary to provide it manually.
+In the long term, this information can be integrated
+into premise so that it is not necessary to provide it manually.

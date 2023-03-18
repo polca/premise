@@ -22,8 +22,6 @@ from .transformation import (
 )
 from .utils import (
     DATA_DIR,
-    get_clinker_ratio_ecoinvent,
-    get_clinker_ratio,
 )
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
@@ -68,8 +66,6 @@ class Cement(BaseTransformation):
     ):
         super().__init__(database, iam_data, model, pathway, year, version, system_model)
         self.version = version
-        self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
-        self.clinker_ratio = get_clinker_ratio(self.year)
 
     def fetch_current_energy_details(self, dataset):
         """
@@ -474,27 +470,6 @@ class Cement(BaseTransformation):
         # add to log
         for new_dataset in clinker_market_datasets:
             self.write_log(new_dataset)
-
-        print('Adjust clinker-to-cement ratio in "unspecified cement" datasets')
-
-        if self.version == 3.5:
-            name = "market for cement, unspecified"
-            ref_prod = "cement, unspecified"
-
-        else:
-            name = "cement, all types to generic market for cement, unspecified"
-            ref_prod = "cement, unspecified"
-
-        act_cement_unspecified = self.fetch_proxies(
-            name=name,
-            ref_prod=ref_prod,
-            production_variable="cement",
-        )
-        self.database.extend(list(act_cement_unspecified.values()))
-
-        # add to log
-        for new_dataset in list(act_cement_unspecified.values()):
-            self.write_log(dataset=new_dataset, status="updated")
 
         print("\nCreate new cement market datasets")
 

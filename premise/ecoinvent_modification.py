@@ -283,10 +283,10 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 f"Cannot find the inventory file: {inventory['inventories']}."
             )
 
-        if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8"]:
+        if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8", "3.9", "3.9.1"]:
             raise ValueError(
                 "A lot of trouble will be avoided if the additional "
-                f"inventories to import are ecoinvent 3.7 or 3.8-compliant, not {inventory['ecoinvent version']}."
+                f"inventories to import are ecoinvent 3.7, 3-8 or 3.9-compliant, not {inventory['ecoinvent version']}."
             )
 
     return inventories_list
@@ -307,6 +307,9 @@ def check_db_version(version: [str, float]) -> str:
     # convert "3.7.1" to "3.7"
     if version == "3.7.1":
         version = "3.7"
+
+    if version == "3.9.1":
+        version = "3.9"
 
     return version
 
@@ -407,7 +410,7 @@ class NewDatabase:
     :ivar source_db: name of the ecoinvent source database
     :vartype source_db: str
     :ivar source_version: version of the ecoinvent source database.
-        Currently works with ecoinvent cut-off 3.5, 3.6, 3.7, 3.7.1 and 3.8.
+        Currently works with ecoinvent cut-off 3.5, 3.6, 3.7, 3.7.1, 3.8, 3.9 and 3.9.1.
     :vartype source_version: str
     :ivar system_model: Can be `cutoff` (default) or `consequential`.
     :vartype system_model: str
@@ -417,7 +420,7 @@ class NewDatabase:
     def __init__(
         self,
         scenarios: List[dict],
-        source_version: str = "3.8",
+        source_version: str = "3.9",
         source_type: str = "brightway",
         key: bytes = None,
         source_db: str = None,
@@ -439,12 +442,12 @@ class NewDatabase:
         self.system_model = check_system_model(system_model)
         self.system_model_args = system_args
 
-        # if version is anything other than 3.8
+        # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
         # raise an error
-        if self.version != "3.8" and self.system_model == "consequential":
+        if self.version not in ["3.8", "3.9"] and self.system_model == "consequential":
             raise ValueError(
-                "Consequential system model is only available for ecoinvent 3.8."
+                "Consequential system model is only available for ecoinvent 3.8 or 3.9."
             )
 
         if gains_scenario not in ["CLE", "MFR"]:
@@ -658,6 +661,12 @@ class NewDatabase:
             (FILEPATH_WAVE, "3.8"),
         ]
         for filepath in filepaths:
+
+            # make an exception for FILEPATH_OIL_GAS_INVENTORIES
+            # ecoinvent version is 3.9
+            if filepath[0] == FILEPATH_OIL_GAS_INVENTORIES and self.version == "3.9":
+                continue
+
             inventory = DefaultInventory(
                 database=self.database,
                 version_in=filepath[1],
@@ -741,7 +750,10 @@ class NewDatabase:
                     system_model=self.system_model,
                 )
 
-                electricity.update_ng_production_ds()
+                # datasets in 3.9 have been updated
+                if self.version not in ["3.9", "3.9.1"]:
+                    electricity.update_ng_production_ds()
+
                 electricity.update_efficiency_of_solar_pv()
                 electricity.create_biomass_markets()
                 electricity.create_region_specific_power_plants()

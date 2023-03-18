@@ -5,7 +5,7 @@ Purpose
 -------
 
 *premise* enables the alignment of life cycle inventories within the ecoinvent_
-3.5-3.8 database, using either a "cut-off" or "consequential"
+3.6-3.9 database, using either a "cut-off" or "consequential"
 system model, to match the output results of Integrated
 Assessment Models (IAMs) such as REMIND_ or IMAGE_.
 This allows for the creation of life cycle inventory databases

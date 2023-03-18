@@ -166,11 +166,15 @@ class Geomap:
             raise ValueError(f"Could not find equivalent for {location}.")
 
         # If not, then we look for IAM regions that contain it
-        iam_location = [
-            r[1]
-            for r in self.geo.within(location)
-            if r[0] == self.model.upper() and r[1] != "World"
-        ]
+        try:
+            iam_location = [
+                r[1]
+                for r in self.geo.within(location)
+                if r[0] == self.model.upper() and r[1] != "World"
+            ]
+        except KeyError:
+            print(f"Can't find location {location} using the geomatcher.")
+            return "World"
 
         # If not, then we look for IAM regions that intersects with it
         if len(iam_location) == 0:

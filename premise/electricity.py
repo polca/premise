@@ -1583,6 +1583,12 @@ class Electricity(BaseTransformation):
             "market for electricity",
             "electricity, high voltage, import",
             "electricity, high voltage, production mix",
+            #"electricity, high voltage, residual mix",
+            #"electricity, medium voltage, residual mix",
+            #"electricity, low voltage, residual mix",
+            #"electricity voltage transformation, residual mix, from high to medium voltage",
+            #"electricity voltage transformation, residual mix, from medium to low voltage"
+
         ]
 
         # we want to preserve some electricity-related datasets

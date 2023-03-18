@@ -34,9 +34,6 @@ from .geomap import Geomap
 
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
-CLINKER_RATIO_ECOINVENT_36 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_36.csv"
-CLINKER_RATIO_ECOINVENT_35 = DATA_DIR / "cement" / "clinker_ratio_ecoinvent_35.csv"
-CLINKER_RATIO_REMIND = DATA_DIR / "cement" / "clinker_ratios.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
@@ -117,44 +114,6 @@ def get_efficiency_ratio_solar_photovoltaics() -> xr.DataArray:
     dataframe = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
 
     return dataframe.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
-
-
-def get_clinker_ratio_ecoinvent(version: str) -> Dict[Tuple[str, str], float]:
-    """
-    Return a dictionary with (cement names, location) as keys
-    and clinker-to-cement ratios as values,
-    as found in ecoinvent.
-    :return: dict
-    """
-    if version == "3.5":
-        filepath = CLINKER_RATIO_ECOINVENT_35
-    else:
-        filepath = CLINKER_RATIO_ECOINVENT_36
-
-    with open(filepath, encoding="utf-8") as file:
-        clinker_ratios = {}
-        for val in csv.reader(file, delimiter=","):
-            clinker_ratios[(val[0], val[1])] = float(val[2])
-    return clinker_ratios
-
-
-def get_clinker_ratio(year: int) -> xr.DataArray:
-    """
-    Return an array with the average clinker-to-cement ratio
-    per year and per country, from IEA roadmap for 2005-2020, but
-    with a common objective of 58% by 2100.
-    :return: xarray
-    :return:
-    """
-
-    dataframe = pd.read_csv(CLINKER_RATIO_REMIND, sep=",")
-
-    return (
-        dataframe.groupby(["region", "year"])
-        .mean()["value"]
-        .to_xarray()
-        .interp(year=year)
-    )
 
 
 def add_entry_to_cache(

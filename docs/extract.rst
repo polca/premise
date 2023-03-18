@@ -65,6 +65,7 @@ Supported versions of ecoinvent
 * v.3.7, cut-off
 * v.3.7.1, cut-off
 * **v.3.8, cut-off and consequential**
+* **v.3.9, cut-off and consequential**
 
 
 Supported sources of ecoinvent
