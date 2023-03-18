@@ -1,8 +1,8 @@
 TRANSFORM
 =========
 
-A series of transformation are operation on the LCI database to align process performance
-and technology market shares with outputs from the IAM scenario.
+A series of transformations are applied to the Life Cycle Inventory (LCI) database to align process performance
+and technology market shares with the outputs from the Integrated Assessment Model (IAM) scenario.
 
 Power generation
 """"""""""""""""
@@ -30,24 +30,24 @@ Run
 Efficiency adjustment
 +++++++++++++++++++++
 
-The energy conversion efficiency of powerplant datasets for a given technology
-is adjusted to align with the change in efficiency indicated by the IAM scenario.
+The energy conversion efficiency of power plant datasets for specific technologies is adjusted
+to align with the efficiency changes indicated by the IAM scenario.
 
 Combustion-based powerplants
 ----------------------------
 
-*premise* iterates through coal, lignite, natural gas, biogas and wood-fired powerplants
-datasets in the LCI database to calculate their current efficiency (i.e., the ratio between
-the primary fuel energy entering the process and the output energy produced, which is often 1 kWh).
-If the IAM scenario foresees a change in efficiency for these processes, the input of the datasets
-are scaled up or down by the *scaling factor* to effectively reflect a change in fuel input
-per kWh produced.
+*premise* iterates through coal, lignite, natural gas, biogas, and wood-fired power plant datasets
+in the LCI database to calculate their current efficiency (i.e., the ratio between the primary fuel
+energy entering the process and the output energy produced, which is often 1 kWh).
+If the IAM scenario anticipates a change in efficiency for these processes, the inputs of the
+datasets are scaled up or down by the scaling factor to effectively reflect a change in
+fuel input per kWh produced.
 
-The origin of this *scaling factor* is explained in XXX.
+The origin of this scaling factor is the IAM scenario selected.
 
 To calculate the old and new efficiency of the dataset, it is necessary to know
-the net calorific content of the fuel. The table below shows the Lower Heating Value
-for the different fuels used in combustion-based powerplants.
+the net calorific content of the fuel. The table below shows the Lower Heating Value for
+the different fuels used in combustion-based power plants.
 
  ================================================================== ===========================
   name of fuel                                                       LHV [MJ/kg, as received]
@@ -168,16 +168,20 @@ for the different fuels used in combustion-based powerplants.
   kerosene, synthetic, from biomass, economic allocation             43
  ================================================================== ===========================
 
-Additionally, the biogenic and fossil CO2 emissions of the datasets are also scaled up or down
-by the same factor, as those are proportionate to the amount of fuel used.
+Additionally, the biogenic and fossil CO2 emissions of the datasets are also
+scaled up or down by the same factor, as they are proportional to the amount of fuel used.
 
-We provide below an example of a natural gas powerplant, with a current (2020)
-conversion efficiency of 77%. If the IAM scenario indicates a *scaling factor*
-of 1.03 in 2030, this indicates tha the efficiency increases by 3% relative to current.
-As shown in the table below, this would results in a new efficiency of 79%, where
-all inputs, as well as CO2 emissions outputs are re-scaled by 1/1.03 (=0.97).
-This excludes non-CO2 emissions, such as CO in this example, which are re-scaled separately,
-using the `update_emissions` function.
+Below is an example of a natural gas power plant with a current (2020) conversion efficiency
+of 77%. If the IAM scenario indicates a scaling factor of 1.03 in 2030, this suggests
+that the efficiency increases by 3% relative to the current level. As shown in the table below,
+this would result in a new efficiency of 79%, where all inputs, as well as CO2
+emissions outputs, are re-scaled by 1/1.03 (=0.97).
+
+While non-CO2 emissions (e.g., CO) are reduced because of the reduction in fuel consumption,
+the emission factor per energy unit remains the same (i.e., gCO/MJ natural gas)).
+It can be re-scaled using the `update_emissions` function, which updates emission factors according
+to GAINS projections.
+
 
 
  =================================================== =========== =========== =======
@@ -204,11 +208,13 @@ improving its performance in the past, relative to today.
 .. note::
 
     You can check the efficiencies assumed in your scenarios by generating
-    a scenario summary report.
+    a scenario summary report, or a report of changes. They are automatically
+    generated after each database export, but you can also generate them manually:
 
 .. code-block:: python
 
     ndb.generate_scenario_report()
+    ndb.generate_change_report()
 
 Photovoltaics panels
 --------------------
@@ -225,7 +231,9 @@ are considered for the different types of PV panels:
   2050                   12.5        26.7         24.4        23.4    23.4   21
  ====================== =========== ============ =========== ======= ====== =======
 
-The sources for these efficiencies are given in XXX.
+The sources for these efficiencies are given in the inventory file LCI_PV_:
+
+.. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
 
 Given a scenario year, *premise* iterates through the different PV panel installation
 datasets to update their efficiency accordingly.
@@ -558,25 +566,14 @@ between today and the scenario year.
 
 .. _IEA: https://iea.blob.core.windows.net/assets/cbaa3da1-fd61-4c2a-8719-31538f59b54f/TechnologyRoadmapLowCarbonTransitionintheCementIndustry.pdf
 
-Then, *premise* determines
-the fuel mix required, here also based on the GNR/IEA data. Essentially,
-such fuel mix is composed of fossil fuel (i.e., coal), alternative fuel
-(i.e., refuse-derived fuel) and biomass (i.e., wood chips).
 
-Once the new ful mix is determined, *premise* modifies the fossil
-and biogenic CO2 emissions accordingly, based on the Lower Heating Value
-and CO2 emission factors for these fuels, shown in the table below.
 
- =============== =========================== ============== =====================
-  name of fuel    LHV [MJ/kg, as received]    CO2 [kg/MJ]    Share non-fossil C
- =============== =========================== ============== =====================
-  hard coal       26.7                        0.098          0
-  wood chips      18.9                        0.112          1
-  waste           14                          0.0917         0.34
- =============== =========================== ============== =====================
+Once the new energy input is determined, *premise* scales down the fuel,
+and the fossil and biogenic CO2 emissions accordingly, based on the Lower Heating Value
+and CO2 emission factors for these fuels.
 
 Note that the change in CO2 emissions only concerns the share
-that originates from the combustion of fuels. it does not
+that originates from the combustion of fuels. It does not
 concern the calcination emissions due to the production of
 calcium oxide (CaO) from calcium carbonate (CaCO3), which is set
 at a fix emission rate of 525 kg CO2/t clinker.
@@ -1211,10 +1208,40 @@ that represents the change in efficiency relative to today (2020).
 Hydrogen
 ________
 
-The process of producing hydrogen by electrolysis is expected to improve in
-the future. Upon import, *premise* adjusts the amount of electricity needed
+Several pathways for hydrogen production are modeled in *premise*:
+
+- electrolysis
+- steam methane reforming of natural gas
+- steam methane reforming of biomethane
+- gasification of coal
+- gasification of woody biomass
+
+The last four pathways are modeled with and without CCS.
+
+Inventories for these pathways are available under:
+
+* premise/data/additional_inventories/lci-hydrogen-electrolysis.xlsx
+* premise/data/additional_inventories/lci-smr-atr-natgas.xlsx
+* premise/data/additional_inventories/lci-smr-atr-biogas.xlsx
+* premise/data/additional_inventories/lci-hydrogen-coal-gasification.xlsx
+* premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
+
+
+In case the IAM variable that relates to a given hydrogen pathway's
+efficiency is not available, the process' efficiency is not modified,
+with the exception of electrolysis, which is modified regardless.
+
+A scaling factor is calculated for each pathway, which is the ratio
+between the IAM variable value for the year in question
+and the current efficiency value (i.e., in 2020). *premise*
+uses this scaling factor to adjust the amount of feedstock
+input to produce 1 kg of hydrogen (e.g., m3 of natural gas per kg hydrogen).
+
+If the IAM variable that relates to the efficiency of
+the electrolysis hydrogen process is not available,
+*premise* adjusts the amount of electricity needed
 to produce 1 kg of hydrogen by electrolysis, on the basis of the following
-requirements, which are sourced from Bauer et al, 2022 (in review):
+requirements, which are sourced from Bauer_ et al, 2022:
 
  ==================== ======= ======= =======
   kWh/kg H2, 25 bar    2010    2020    2050
@@ -1222,6 +1249,7 @@ requirements, which are sourced from Bauer et al, 2022 (in review):
   electricity          58      55      44
  ==================== ======= ======= =======
 
+.. _Bauer: https://www.psi.ch/en/media/77703/download?attachment
 
 Land use and land use change
 ++++++++++++++++++++++++++++

@@ -205,9 +205,10 @@ class Electricity(BaseTransformation):
         model: str,
         pathway: str,
         year: int,
+        version: str,
         system_model: str,
     ) -> None:
-        super().__init__(database, iam_data, model, pathway, year)
+        super().__init__(database, iam_data, model, pathway, year, version, system_model)
         mapping = InventorySet(self.database)
         self.powerplant_map = mapping.generate_powerplant_map()
         # reverse dictionary of self.powerplant_map
@@ -1217,7 +1218,7 @@ class Electricity(BaseTransformation):
                 "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
                 "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
                 "unit": "kilogram",
-                "database": eidb_label(self.model, self.scenario, self.year),
+                "database": eidb_label(self.model, self.scenario, self.year, self.system_model),
                 "code": str(uuid.uuid4().hex),
                 "exchanges": [
                     {

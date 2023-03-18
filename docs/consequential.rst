@@ -133,7 +133,6 @@ If not, the following default arguments value are used:
 
 .. code-block:: python
 
-
     ndb = NewDatabase(
         scenarios = scenarios,
         source_db="ecoinvent 3.8 consequential",

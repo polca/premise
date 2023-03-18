@@ -12,6 +12,7 @@
 electricity:
   lhv: 3.6
   biogenic_share: 0
+
 hard coal:
   lhv: 26.7
   co2: 0.098
@@ -392,6 +393,8 @@ hydrogen, electrolysis:
   biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|+|Electricity
+  eff_aliases:
+    remind: Tech|Hydrogen|Electricity|Efficiency
   ecoinvent_aliases:
     fltr:
       - hydrogen supply, from electrolysis
@@ -403,48 +406,75 @@ hydrogen, biomass:
   biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Biomass|+|w/o CC
+  eff_aliases:
+    remind: Tech|Hydrogen|Biomass|w/o CC|Efficiency
   ecoinvent_aliases:
     fltr:
       - hydrogen supply, from gasification of biomass, by
       - hydrogen supply, from gasification of biomass by heatpipe reformer, by
       - hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant
+
 hydrogen, biomass, with CCS:
   lhv: 120
   co2: 0
   biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Biomass|+|w/ CC
+  eff_aliases:
+    remind: Tech|Hydrogen|Biomass|w/ CC|Efficiency
   ecoinvent_aliases:
     fltr:
       - hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS
       - hydrogen supply, from gasification of biomass, with CCS
       - hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant
+
 hydrogen, coal:
   lhv: 120
   co2: 0
   biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Coal|+|w/o CC
+  eff_aliases:
+    remind: Tech|Hydrogen|Coal|w/o CC|Efficiency
   ecoinvent_aliases:
     fltr: hydrogen supply, from coal gasification, by truck, as gaseous, over 500 km
+
+hydrogen, coal, with CCS:
+  lhv: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    remind: SE|Hydrogen|Coal|+|w/ CC
+  eff_aliases:
+    remind: Tech|Hydrogen|Coal|w/ CC|Efficiency
+  ecoinvent_aliases:
+    fltr: hydrogen supply, from coal gasification, with CCS, by truck, as gaseous, over 500 km
+
+
 hydrogen, nat. gas:
   lhv: 120
   co2: 0
   biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Gas|+|w/o CC
+  eff_aliases:
+    remind: Tech|Hydrogen|Gas|w/o CC|Efficiency
   ecoinvent_aliases:
     fltr: hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
+
 hydrogen, nat. gas, with CCS:
   lhv: 120
   co2: 0
   biogenic_share: 1
   iam_aliases:
     remind: SE|Hydrogen|Gas|+|w/ CC
+  eff_aliases:
+    remind: Tech|Hydrogen|Gas|w/ CC|Efficiency
   ecoinvent_aliases:
     fltr: hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+
 hydrogen, biogas:
   lhv: 120
   co2: 0
@@ -669,7 +699,13 @@ methanol, wood:
     image: Efficiency|Liquids|Biomass|Methanol|Woody|w/o CCS
   ecoinvent_aliases:
     fltr:
-      - market for methanol, from biomass
+      name:
+        - methanol production
+    mask:
+      name:
+        - synthetic
+        - facility
+
 methanol, grass:
   lhv: 19.9
   co2: 0.05477
@@ -680,7 +716,8 @@ methanol, grass:
     image: Efficiency|Liquids|Biomass|Methanol|Grassy|w/o CCS
   ecoinvent_aliases:
     fltr:
-      - market for methanol, from biomass
+      - methanol production, from synthetic gas
+
 methanol, wood, with CCS:
   lhv: 19.9
   co2: 0.05477
@@ -691,7 +728,13 @@ methanol, wood, with CCS:
     image: Efficiency|Liquids|Biomass|Methanol|Woody|w/ CCS
   ecoinvent_aliases:
     fltr:
-      - market for methanol, from biomass
+      name:
+        - methanol production
+    mask:
+      name:
+        - synthetic
+        - facility
+
 methanol, grass, with CCS:
   lhv: 19.9
   co2: 0.05477
@@ -702,7 +745,7 @@ methanol, grass, with CCS:
     image: Efficiency|Liquids|Biomass|Methanol|Grassy|w/ CCS
   ecoinvent_aliases:
     fltr:
-      - market for methanol, from biomass
+      - methanol production, from synthetic gas
 
 liquefied petroleum gas:
   lhv: 45.5

@@ -64,8 +64,9 @@ class Cement(BaseTransformation):
         pathway: str,
         year: int,
         version: str,
+        system_model: str,
     ):
-        super().__init__(database, iam_data, model, pathway, year)
+        super().__init__(database, iam_data, model, pathway, year, version, system_model)
         self.version = version
         self.clinker_ratio_eco = get_clinker_ratio_ecoinvent(version)
         self.clinker_ratio = get_clinker_ratio(self.year)

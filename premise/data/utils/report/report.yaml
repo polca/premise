@@ -6,6 +6,10 @@ GDP:
   label: billion US dollars
   expl_text: Not used by premise. Annual gross domestic product based on purchasing power parity. For informative purpose only.
   offset: 10
+GMST:
+  label: degrees Celsius
+  expl_text: Not used by premise. Global mean surface temperature anomaly relative to 1850-1900. For informative purpose only.
+  offset: 10
 CO2:
   label: million tons
   expl_text: Not used by premise. Annual CO2 emissions (not CO2-eq.). For informative purpose only.

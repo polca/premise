@@ -633,7 +633,7 @@ class VariousVehicles(BaseInventoryImport):
             vehicle_type: str,
             relink: bool = False,
             has_fleet: bool = False,
-            system_model: str = "attributional",
+            system_model: str = "cutoff",
     ) -> None:
         super().__init__(database, version_in, version_out, path, system_model)
         self.year = year
@@ -673,8 +673,8 @@ class AdditionalInventory(BaseInventoryImport):
     Import additional inventories, if any.
     """
 
-    def __init__(self, database, version_in, version_out, path):
-        super().__init__(database, version_in, version_out, path)
+    def __init__(self, database, version_in, version_out, path, system_model):
+        super().__init__(database, version_in, version_out, path, system_model)
 
     def load_inventory(self, path):
         if "http" in path:

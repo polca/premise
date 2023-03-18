@@ -169,8 +169,9 @@ class BaseTransformation:
         model: str,
         pathway: str,
         year: int,
+        version: str,
+        system_model: str,
         cache: dict = None,
-        system_model: str = "attributional",
     ) -> None:
         self.database: List[dict] = database
         self.iam_data: IAMDataCollection = iam_data
@@ -179,6 +180,7 @@ class BaseTransformation:
         self.geo: Geomap = Geomap(model=model)
         self.scenario: str = pathway
         self.year: int = year
+        self.version: str = version
         self.fuels_specs: dict = get_fuel_properties()
         mapping = InventorySet(self.database)
         self.cement_fuels_map: dict = mapping.generate_cement_fuels_map()

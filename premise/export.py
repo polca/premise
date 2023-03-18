@@ -31,8 +31,10 @@ FILEPATH_SIMAPRO_COMPARTMENTS = (
     DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
 )
 OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
-DIR_DATAPACKAGE = DATA_DIR / "export" / "datapackage"
-DIR_DATAPACKAGE_TEMP = DATA_DIR / "export" / "datapackage" / "temp"
+
+#current working directory
+DIR_DATAPACKAGE = Path.cwd() / "export" / "datapackage"
+DIR_DATAPACKAGE_TEMP = Path.cwd() / "export" / "temp"
 
 
 def get_simapro_units() -> Dict[str, str]:
@@ -823,7 +825,7 @@ def generate_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[
     if filepath is not None:
         filepath = Path(filepath)
     else:
-        filepath = DATA_DIR / "export" / "scenario diff files"
+        filepath = Path.cwd() / "export" / "scenario diff files"
 
     if not os.path.exists(filepath):
         os.makedirs(filepath)
@@ -852,13 +854,15 @@ def generate_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[
     return new_db
 
 
-def prepare_db_for_export(scenario, cache, name):
+def prepare_db_for_export(scenario, cache, name, version, system_model):
     base = BaseTransformation(
         database=scenario["database"],
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],
         year=scenario["year"],
+        version=version,
+        system_model=system_model,
         cache=cache,
     )
 

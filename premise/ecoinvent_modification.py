@@ -357,13 +357,13 @@ def check_system_model(system_model: str) -> str:
     if not isinstance(system_model, str):
         raise TypeError(
             "The argument `system_model` must be a string"
-            "('attributional', 'consequential')."
+            "('consequential', 'cutoff')."
         )
 
-    if system_model not in ("attributional", "consequential"):
+    if system_model not in ("consequential", "cutoff"):
         raise ValueError(
             "The argument `system_model` must be one of the two values:"
-            "'attributional', 'consequential'."
+            "'consequential', 'cutoff'."
         )
 
     return system_model
@@ -409,7 +409,7 @@ class NewDatabase:
     :ivar source_version: version of the ecoinvent source database.
         Currently works with ecoinvent cut-off 3.5, 3.6, 3.7, 3.7.1 and 3.8.
     :vartype source_version: str
-    :ivar system_model: Can be `attributional` (default) or `consequential`.
+    :ivar system_model: Can be `cutoff` (default) or `consequential`.
     :vartype system_model: str
 
     """
@@ -423,7 +423,7 @@ class NewDatabase:
         source_db: str = None,
         source_file_path: str = None,
         additional_inventories: List[dict] = None,
-        system_model: str = "attributional",
+        system_model: str = "cutoff",
         system_args: dict = None,
         use_cached_inventories: bool = True,
         use_cached_database: bool = True,
@@ -696,6 +696,7 @@ class NewDatabase:
                     version_in=file_path["ecoinvent version"],
                     version_out=self.version,
                     path=file_path["filepath"],
+                    system_model=self.system_model,
                 )
                 additional.prepare_inventory()
                 data.extend(additional.merge_inventory())
@@ -707,6 +708,7 @@ class NewDatabase:
                     version_in=data_package.descriptor["ecoinvent"]["version"],
                     version_out=self.version,
                     path=data_package.get_resource("inventories").source,
+                    system_model=self.system_model,
                 )
                 additional.prepare_inventory()
                 data.extend(additional.merge_inventory())
@@ -735,6 +737,7 @@ class NewDatabase:
                     model=scenario["model"],
                     pathway=scenario["pathway"],
                     year=scenario["year"],
+                    version=self.version,
                     system_model=self.system_model,
                 )
 
@@ -764,6 +767,7 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     year=scenario["year"],
                     version=self.version,
+                    system_model=self.system_model
                 )
 
                 dac.generate_dac_activities()
@@ -785,6 +789,7 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     year=scenario["year"],
                     version=self.version,
+                    system_model=self.system_model,
                 )
                 fuels.generate_fuel_markets()
                 scenario["database"] = fuels.database
@@ -805,6 +810,7 @@ class NewDatabase:
                     iam_data=scenario["iam data"],
                     year=scenario["year"],
                     version=self.version,
+                    system_model=self.system_model,
                 )
 
                 cement.add_datasets_to_database()
@@ -826,6 +832,7 @@ class NewDatabase:
                     iam_data=scenario["iam data"],
                     year=scenario["year"],
                     version=self.version,
+                    system_model=self.system_model,
                 )
                 steel.generate_activities()
                 scenario["database"] = steel.database
@@ -846,6 +853,7 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     iam_data=scenario["iam data"],
                     version=self.version,
+                    system_model=self.system_model,
                     vehicle_type="car",
                     relink=False,
                     has_fleet=True,
@@ -872,6 +880,7 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     iam_data=scenario["iam data"],
                     version=self.version,
+                    system_model=self.system_model,
                     vehicle_type="two wheeler",
                     relink=False,
                     has_fleet=False,
@@ -896,6 +905,7 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     iam_data=scenario["iam data"],
                     version=self.version,
+                    system_model=self.system_model,
                     vehicle_type="truck",
                     relink=False,
                     has_fleet=True,
@@ -962,6 +972,7 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     iam_data=scenario["iam data"],
                     version=self.version,
+                    system_model=self.system_model,
                     vehicle_type="bus",
                     relink=False,
                     has_fleet=True,
@@ -987,6 +998,7 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     iam_data=scenario["iam data"],
                     version=self.version,
+                    system_model=self.system_model,
                     gains_scenario=self.gains_scenario,
                 )
 
@@ -1032,7 +1044,8 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name=name
+                scenario, cache=cache, name=name, version=self.version,
+                system_model=self.system_model
             )
         self.database = generate_superstructure_db(
             self.database, self.scenarios, db_name=name, filepath=filepath
@@ -1045,6 +1058,8 @@ class NewDatabase:
             name,
         )
 
+        # generate scenario report
+        self.generate_scenario_report()
         # generate change report from logs
         self.generate_change_report()
 
@@ -1069,7 +1084,12 @@ class NewDatabase:
                 raise TypeError("`name` should be a string or a sequence of strings.")
         else:
             name = [
-                eidb_label(scenario["model"], scenario["pathway"], scenario["year"])
+                eidb_label(
+                    scenario["model"],
+                    scenario["pathway"],
+                    scenario["year"],
+                    system_model=self.system_model
+                )
                 for scenario in self.scenarios
             ]
 
@@ -1084,14 +1104,16 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name=name[scen]
+                scenario, cache=cache, name=name[scen], version=self.version,
+                system_model=self.system_model
             )
 
             write_brightway2_database(
                 scenario["database"],
                 name[scen],
             )
-
+        # generate scenario report
+        self.generate_scenario_report()
         # generate change report from logs
         self.generate_change_report()
 
@@ -1106,7 +1128,7 @@ class NewDatabase:
         If it is a sequence of strings, each string becomes the directory
         under which the set of matrices is saved. If `filepath` is not provided,
         "iam model" / "pathway" / "year" subdirectories are created under
-        "premise" / "data" / "export".
+        the working directory.
         :type filepath: str or list
 
         """
@@ -1126,7 +1148,7 @@ class NewDatabase:
                 )
         else:
             filepath = [
-                (DATA_DIR / "export" / s["model"] / s["pathway"] / str(s["year"]))
+                (Path.cwd() / "export" / s["model"] / s["pathway"] / str(s["year"]))
                 for s in self.scenarios
             ]
 
@@ -1136,7 +1158,8 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name="database"
+                scenario, cache=cache, name="database", version=self.version,
+                system_model=self.system_model
             )
 
             Export(
@@ -1147,6 +1170,8 @@ class NewDatabase:
                 filepath[scen],
             ).export_db_to_matrices()
 
+        # generate scenario report
+        self.generate_scenario_report()
         # generate change report from logs
         self.generate_change_report()
 
@@ -1159,7 +1184,7 @@ class NewDatabase:
 
         """
 
-        filepath = filepath or Path(DATA_DIR / "export" / "simapro")
+        filepath = filepath or Path(Path.cwd() / "export" / "simapro")
 
         if not os.path.exists(filepath):
             os.makedirs(filepath)
@@ -1170,7 +1195,8 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name="database"
+                scenario, cache=cache, name="database", version=self.version,
+                system_model=self.system_model
             )
 
             Export(
@@ -1181,6 +1207,8 @@ class NewDatabase:
                 filepath,
             ).export_db_to_simapro()
 
+        # generate scenario report
+        self.generate_scenario_report()
         # generate change report from logs
         self.generate_change_report()
 
@@ -1197,7 +1225,8 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name="database"
+                scenario, cache=cache, name="database", version=self.version,
+                system_model=self.system_model
             )
 
         df, extra_inventories = generate_scenario_factor_file(
@@ -1217,6 +1246,8 @@ class NewDatabase:
             name=name,
         )
 
+        # generate scenario report
+        self.generate_scenario_report()
         # generate change report from logs
         self.generate_change_report()
 
@@ -1235,7 +1266,7 @@ class NewDatabase:
             if isinstance(filepath, str):
                 filepath = Path(filepath)
         else:
-            filepath = Path(DATA_DIR / "export" / "scenario_report")
+            filepath = Path(Path.cwd() / "export" / "scenario_report")
 
         if not os.path.exists(filepath):
             os.makedirs(filepath)

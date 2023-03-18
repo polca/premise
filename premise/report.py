@@ -37,6 +37,7 @@ SECTORS = {
     "Population": (IAM_OTHER_VARS, ["Population"]),
     "GDP": (IAM_OTHER_VARS, ["GDP|PPP"]),
     "CO2": (IAM_OTHER_VARS, ["Emi|CO2"]),
+    "GMST": (IAM_OTHER_VARS, ["Temperature|Global Mean"]),
     "Electricity - generation": IAM_ELEC_VARS,
     "Electricity (biom) - generation": IAM_BIOMASS_VARS,
     "Electricity - efficiency": IAM_ELEC_VARS,
@@ -160,13 +161,18 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 row += 2
 
                 for region in scenario["iam data"].regions:
+
+                    if sector == "GMST" and region != "World":
+                        continue
+
                     worksheet.cell(column=col, row=row, value=region)
 
                     row += 3
 
                     dataframe = iam_data.sel(
                         variables=[
-                            v for v in variables if v in iam_data.variables.values
+                            v for v in variables
+                            if v in iam_data.variables.values
                         ],
                         region=region,
                         year=[y for y in iam_data.coords["year"].values if y <= 2100],

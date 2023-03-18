@@ -19,6 +19,8 @@ SUPPORTED_PATHWAYS:
   - SSP2-PkBudg500
   - SSP2-RCP26
   - SSP2-RCP19
+  - SSP1-Base
+  - SSP5-Base
   - static
 
 LIST_TRANSF_FUNC:

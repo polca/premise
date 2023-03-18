@@ -38,8 +38,9 @@ class Steel(BaseTransformation):
         pathway: str,
         year: int,
         version: str,
+        system_model: str,
     ) -> None:
-        super().__init__(database, iam_data, model, pathway, year)
+        super().__init__(database, iam_data, model, pathway, year, version, system_model)
         self.version = version
 
     def generate_activities(self):
@@ -110,19 +111,23 @@ class Steel(BaseTransformation):
                                 "name": "steel production, converter, low-alloyed",
                                 "unit": "kilogram",
                                 "location": loc,
-                            },
-                            {
-                                "uncertainty type": 0,
-                                "loc": secondary_share,
-                                "amount": secondary_share,
-                                "type": "technosphere",
-                                "production volume": 1,
-                                "product": steel_product,
-                                "name": "steel production, electric, low-alloyed",
-                                "unit": "kilogram",
-                                "location": loc,
-                            },
+                            }
                         ]
+
+                        if secondary_share > 0:
+                            new_exc.append(
+                                {
+                                    "uncertainty type": 0,
+                                    "loc": secondary_share,
+                                    "amount": secondary_share,
+                                    "type": "technosphere",
+                                    "production volume": 1,
+                                    "product": steel_product,
+                                    "name": "steel production, electric, low-alloyed",
+                                    "unit": "kilogram",
+                                    "location": loc,
+                                },
+                            )
 
                         dataset["exchanges"] = [
                             e
@@ -148,7 +153,8 @@ class Steel(BaseTransformation):
                         dataset["exchanges"] = [
                             e
                             for e in dataset["exchanges"]
-                            if e["type"] == "production" or e["unit"] == "ton kilometer"
+                            if e["type"] == "production"
+                            or e["unit"] == "ton kilometer"
                         ]
 
                         dataset["exchanges"].append(
@@ -226,20 +232,18 @@ class Steel(BaseTransformation):
             )
         }
 
-        if self.system_model != "consequential":
-            d_act_secondary_steel = {
-                mat: self.fetch_proxies(
-                    name=mat[0],
-                    ref_prod=mat[1],
-                    production_variable=["steel - secondary"],
-                )
-                for mat in zip(
-                    self.material_map["steel - secondary"],
-                    ["steel"] * len(self.material_map["steel - secondary"]),
-                )
-            }
-        else:
-            d_act_secondary_steel = {}
+
+        d_act_secondary_steel = {
+            mat: self.fetch_proxies(
+                name=mat[0],
+                ref_prod=mat[1],
+                production_variable=["steel - secondary"],
+            )
+            for mat in zip(
+                self.material_map["steel - secondary"],
+                ["steel"] * len(self.material_map["steel - secondary"]),
+            )
+        }
 
         # adjust efficiency of primary steel production
         # and add carbon capture and storage, if needed

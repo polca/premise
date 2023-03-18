@@ -28,11 +28,11 @@ premise_dac:
       name: region
       description: Region name
     scaling factor operation:
-      name: Reduction factor of thermal and electrical energy input
-      description: Reduction factor (0-1) in operation energy relative to 2020
+      name: Thermal and electrical scaling factor
+      description: Scaling factor the initial energy input related to operation is multiplied by
     scaling factor infrastructure:
-      name: Reduction factor (0-1) of infrastructure input
-      description: Reduction factor (0-1) in infrastructure use relative to 2020
+      name: Infrastructure input scaling factor
+      description: Scaling factor the initial infrastructure and sorbent/solvent inputs are multiplied by
     initial energy input per kg CO2:
       name: Initial energy input per kg CO2 captured
       description: Energy input per kg CO2 captured before adjustment
@@ -74,15 +74,15 @@ premise_electricity:
         description: Region name
       old electrical efficiency:
         name: Old electrical efficiency
-        description: Electrical efficiency before adjustment
+        description: Electrical efficiency before adjustment (1 / fuel energy input)
         unit: 0-1
       new electrical efficiency:
         name: New electrical efficiency
-        description: Electrical efficiency after adjustment
+        description: Electrical efficiency after adjustment (1 / fuel energy input)
         unit: 0-1
       biomass share:
         name: Biomass share
-        description: Share of biomass from forestry residues
+        description: Share of biomass from forestry residues vs. purpose-grown biomass
         unit: 0-1
       transformation loss:
         name: Transformation loss
@@ -94,7 +94,7 @@ premise_electricity:
         unit: kWh/kWh
       renewable share:
         name: Renewable share
-        description: Share of renewable electricity in the mix
+        description: Share of renewable electricity (i.e., solar, wind, hydro, wave, geothermal) in the mix
         unit: 0-1
     tab: Electricity
 
@@ -129,19 +129,19 @@ premise_steel:
         description: Region name
       carbon capture rate:
         name: Carbon capture rate
-        description: Rate of CO2 capture
+        description: Amount of CO2 over amount of CO2 emitted. Excludes subsequent losses.
         unit: 0-1
       thermal efficiency change:
-        name: Reduction factor (0-1) of thermal energy input
-        description: Reduction factor (0-1) of thermal energy input
+        name: Thermal and electrical scaling factor
+        description: Scaling factor the initial energy input related to operation is multiplied by.
         unit: 0-1
       primary steel share:
         name: Primary steel share
-        description: Share of primary steel in market
+        description: Share of primary steel in market vs. secondary steel.
         unit: 0-1
       secondary steel share:
         name: Secondary steel share
-        description: Share of secondary steel in market
+        description: Share of secondary (electric) steel in market vs. primary steel.
         unit: 0-1
     tab: Steel
 
@@ -184,7 +184,7 @@ premise_cement:
         unit: kj/kg
       carbon capture rate:
         name: Carbon capture rate
-        description: Rate of CO2 capture
+        description: Amount of CO2 over amount of CO2 emitted. Excludes subsequent losses.
         unit: 0-1
       initial fossil CO2:
         name: Initial fossil CO2
@@ -261,10 +261,14 @@ premise_fuel:
         name: New amount of biogenic CO2
         description: Amount of biogenic CO2 emitted per kg fuel after adjustment
         unit: kg CO2/kg fuel
-      electricity input for electrolysis:
-        name: Electricity input for electrolysis
-        description: Electricity input for electrolysis (kWh) per kg fuel
-        unit: kWh/kg
+      initial energy input for hydrogen production:
+        name: Energy input for hydrogen production before adjustment
+        description: Energy input for hydrogen production (kWh, MJ or kg fuel) per kg hydrogen
+        unit: kWh, MJ or kg fuel /kg
+      new energy input for hydrogen production:
+        name: Energy input for hydrogen production after adjustment
+        description: Energy input for hydrogen production (kWh, MJ or kg fuel) per kg hydrogen
+        unit: kWh, MJ or kg fuel /kg
       hydrogen distribution losses:
         name: Hydrogen distribution losses
         description: Hydrogen distribution losses (kg) per kg hydrogen
@@ -340,40 +344,40 @@ premise_emissions:
         name: region
         description: Region name
       CH4 reduction factor:
-        name: CH4 reduction factor
-        description: Reduction factor applied on the initial amount of CH4 emissions
+        name: CH4 scaling factor
+        description: Scaling factor applied on the initial amount of CH4 emissions
         unit: 0-1
       N2O reduction factor:
-        name: N2O reduction factor
-        description: Reduction factor applied on the initial amount of N2O emissions
+        name: N2O scaling factor
+        description: Scaling factor applied on the initial amount of N2O emissions
         unit: 0-1
       NH3 reduction factor:
-        name: NH3 reduction factor
-        description: Reduction factor applied on the initial amount of NH3 emissions
+        name: NH3 scaling factor
+        description: Scaling factor applied on the initial amount of NH3 emissions
         unit: 0-1
       NOx reduction factor:
-        name: NOx reduction factor
-        description: Reduction factor applied on the initial amount of NOx emissions
+        name: NOx scaling factor
+        description: Scaling factor applied on the initial amount of NOx emissions
         unit: 0-1
       PM1 reduction factor:
-        name: PM1 reduction factor
-        description: Reduction factor applied on the initial amount of emissions of fine particles inferior to 1 um.
+        name: PM1 scaling factor
+        description: Scaling factor applied on the initial amount of emissions of fine particles inferior to 1 um.
         unit: 0-1
       PM10 reduction factor:
-        name: PM10 reduction factor
-        description: Reduction factor applied on the initial amount of fine particles inferior to 10 um.
+        name: PM10 scaling factor
+        description: Scaling factor applied on the initial amount of fine particles inferior to 10 um.
         unit: 0-1
       PM25 reduction factor:
-        name: PM25 reduction factor
-        description: Reduction factor applied on the initial amount of fine particles inferior to 2.5 um.
+        name: PM25 scaling factor
+        description: Scaling factor applied on the initial amount of fine particles inferior to 2.5 um.
         unit: 0-1
       SO2 reduction factor:
-        name: SO2 reduction factor
-        description: Reduction factor applied on the initial amount of SO2 emissions
+        name: SO2 scaling factor
+        description: Scaling factor applied on the initial amount of SO2 emissions
         unit: 0-1
       VOC reduction factor:
-        name: VOC reduction factor
-        description: Reduction factor applied on the initial amount of VOC emissions
-        unit: 0-1
+        name: VOC scaling factor
+        description: Scaling factor applied on the initial amount of VOC emissions
+        unit: unitless
 
     tab: Emissions

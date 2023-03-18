@@ -219,7 +219,7 @@ class IAMDataCollection:
     :var model: name of the IAM model (e.g., "remind")
     :var pathway: name of the IAM scenario (e.g., "SSP2-Base")
     :var year: year to produce the database for
-    :var system_model: "attributional" or "consequential" (not yet implemented.
+    :var system_model: "cutoff" or "consequential".
     """
 
     def __init__(
@@ -230,7 +230,7 @@ class IAMDataCollection:
         filepath_iam_files: Path,
         key: bytes,
         external_scenarios: dict = None,
-        system_model: str = "attributional",
+        system_model: str = "cutoff",
         system_model_args: dict = None,
         gains_scenario: str = "CLE",
     ) -> None:
@@ -558,7 +558,7 @@ class IAMDataCollection:
 
         data_to_return.coords["variables"] = list_vars
 
-        if self.system_model != "attributional":
+        if self.system_model != "cutoff":
             data_to_return = consequential_method(
                 data_to_return, self.year, self.system_model_args
             )
@@ -969,8 +969,7 @@ class IAMDataCollection:
 
         except KeyError as exc:
             list_missing_vars = [
-                var for var in list_technologies
-                if var not in data.variables.values
+                var for var in list_technologies if var not in data.variables.values
             ]
             print(
                 f"The following variables cannot be found in the IAM file: {list_missing_vars}"
@@ -978,8 +977,7 @@ class IAMDataCollection:
 
             if len(list_technologies) - len(list_missing_vars) > 0:
                 available_vars = [
-                    var for var in list_technologies
-                    if var in data.variables.values
+                    var for var in list_technologies if var in data.variables.values
                 ]
                 print(
                     "The process continues with the remaining variables, "
@@ -993,19 +991,78 @@ class IAMDataCollection:
         data_to_return = data.loc[:, list_technologies, :]
 
         data_to_return.coords["variables"] = [
-            k for k, v in labels.items()
-            if v in list_technologies
+            k for k, v in labels.items() if v in list_technologies
         ]
 
         if self.system_model == "consequential":
-            data_to_return = consequential_method(
-                data_to_return, self.year, self.system_model_args
-            )
+            # If the system model is consequential,
+            # we need to identify marginal suppliers
+            # but we need first to separate fuel types
+
+            fuel_types = {
+                "diesel": [
+                    "diesel",
+                    "diesel, synthetic, from electrolysis",
+                    "diesel, synthetic, from coal",
+                    "diesel, synthetic, from coal, with CCS",
+                    "diesel, synthetic, from wood",
+                    "diesel, synthetic, from wood, with CCS",
+                    "biodiesel, oil",
+                ],
+                "gasoline": [
+                    "gasoline",
+                    "petrol, synthetic, from electrolysis",
+                    "petrol, synthetic, from coal",
+                    "petrol, synthetic, from coal, with CCS",
+                    "bioethanol, wood",
+                    "bioethanol, wood, with CCS",
+                    "bioethanol, grass",
+                    "bioethanol, sugar",
+                ],
+                "natural gas": [
+                    "natural gas",
+                    "biomethane",
+                ],
+                "hydrogen": [
+                    "hydrogen, electrolysis",
+                    "hydrogen, biomass",
+                    "hydrogen, biomass, with CCS",
+                    "hydrogen, coal",
+                    "hydrogen, nat. gas",
+                    "hydrogen, nat. gas, with CCS",
+                ],
+            }
+
+            for fuel_type, fuel_list in fuel_types.items():
+
+                data_to_return.loc[
+                    dict(
+                        variables=[
+                            f
+                            for f in fuel_list
+                            if f in data_to_return.coords["variables"].values
+                        ],
+                        year=[self.year],
+                    )
+                ] = consequential_method(
+                    data_to_return.loc[
+                        dict(
+                            variables=[
+                                f
+                                for f in fuel_list
+                                if f in data_to_return.coords["variables"].values
+                            ]
+                        )
+                    ],
+                    self.year,
+                    self.system_model_args,
+                )
+
         else:
-            data_to_return = data_to_return.interp(year=self.year)
+            data_to_return = data_to_return.interp(year=[self.year])
             data_to_return /= (
                 data.loc[:, list_technologies, :]
-                .interp(year=self.year)
+                .interp(year=[self.year])
                 .groupby("region")
                 .sum(dim="variables")
             )

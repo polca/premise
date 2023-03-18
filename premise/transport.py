@@ -423,11 +423,12 @@ class Transport(BaseTransformation):
         pathway: str,
         year: int,
         version: str,
+        system_model: str,
         relink: bool,
         vehicle_type: str,
         has_fleet: bool,
     ):
-        super().__init__(database, iam_data, model, pathway, year)
+        super().__init__(database, iam_data, model, pathway, year, version, system_model)
         self.version = version
         self.relink = relink
         self.vehicle_type = vehicle_type

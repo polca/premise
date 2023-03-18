@@ -137,11 +137,19 @@ def get_pre_cooling_energy(
 
 def adjust_electrolysis_electricity_requirement(year: int) -> ndarray:
     """
+
     Calculate the adjusted electricity requirement for hydrogen electrolysis
     based on the given year.
 
     The electricity requirement decreases linearly from 58 kWh/kg H2 in 2010
-    to 44 kWh/kg H2 in 2050.
+    to 44 kWh/kg H2 in 2050, according to a literature review conducted by
+    the Paul Scherrer Institute:
+
+    Bauer (ed.), C., Desai, H., Heck, T., Sacchi, R., Schneider, S., Terlouw,
+    T., Treyer, K., Zhang, X. Electricity storage and hydrogen – technologies,
+    costs and impacts on climate change.
+    Auftraggeberin: Bundesamt für Energie BFE, 3003 Bern.
+
 
     :param year: the year for which to calculate the adjusted electricity requirement
     :return: the adjusted electricity requirement in kWh/kg H2
@@ -243,8 +251,9 @@ class Fuels(BaseTransformation):
         pathway: str,
         year: int,
         version: str,
+        system_model: str,
     ):
-        super().__init__(database, iam_data, model, pathway, year)
+        super().__init__(database, iam_data, model, pathway, year, version, system_model)
         # ecoinvent version
         self.version = version
         # list of fuel types
@@ -307,10 +316,10 @@ class Fuels(BaseTransformation):
         ecoinvent_regions = self.geo.iam_to_ecoinvent_location(loc)
         # search first for suppliers in `loc`, but also in the ecoinvent
         # locations to are comprised in `loc`, and finally in `RER`, `RoW` and `GLO`,
-        possible_locations = [[loc], ecoinvent_regions, ["RER"], ["RoW"], ["GLO"]]
+        possible_locations = [[loc], ecoinvent_regions, ["RER"], ["RoW"], ["GLO"], ["CH"]]
         suppliers, counter = [], 0
 
-        # while we do nto find a result
+        # while we do not find a result
         while len(suppliers) == 0:
             suppliers = list(
                 get_suppliers_of_a_region(
@@ -323,6 +332,7 @@ class Fuels(BaseTransformation):
                 )
             )
             counter += 1
+
         suppliers = [s for s in suppliers if s]  # filter out empty lists
 
         # find production volume-based share
@@ -355,55 +365,44 @@ class Fuels(BaseTransformation):
           Sustain Energy Fuels 2020;4:2256–73. https://doi.org/10.1039/d0se00067a.
         * Petitpas G. Boil-off losses along the LH2 pathway. US Dep Energy Off Sci Tech Inf 2018.
 
-        We also assume efficiency gains over time for the PEM electrolysis process: from 58 kWh/kg H2 in 2010,
-        down to 44 kWh by 2050, according to a literature review conducted by the Paul Scherrer Institute.
 
         """
 
         hydrogen_sources = fetch_mapping(HYDROGEN_SOURCES)
 
-        for hydrogen_type, hydrogen_activity in hydrogen_sources.items():
+        for hydrogen_type, hydrogen_vars in hydrogen_sources.items():
+
+            hydrogen_activity_name = hydrogen_sources[hydrogen_type].get("name")
+            hydrogen_efficiency_variable = hydrogen_sources[hydrogen_type].get("var")
+            hydrogen_feedstock_name = hydrogen_sources[hydrogen_type].get("feedstock name")
+            hydrogen_feedstock_unit = hydrogen_sources[hydrogen_type].get("feedstock unit")
+            efficiency_floor_value = hydrogen_sources[hydrogen_type].get("floor value")
+
             new_ds = self.fetch_proxies(
-                name=hydrogen_activity["name"],
+                name=hydrogen_activity_name,
                 ref_prod="Hydrogen",
-                production_variable=hydrogen_activity["var"],
+                production_variable=hydrogen_efficiency_variable,
             )
 
             for region, dataset in new_ds.items():
-                # we adjust the electrolysis efficiency
-                if hydrogen_type == "from electrolysis":
 
-                    # get the electricity consumption
-                    electricity_consumption = (
-                        adjust_electrolysis_electricity_requirement(self.year)
+                # Fetch the efficiency change of the
+                # electrolysis process over time,
+                # according to the IAM scenario,
+                # if available.
+
+                if hydrogen_efficiency_variable in self.iam_data.efficiency.variables.values:
+                    # Find scaling factor compared to 2020
+                    scaling_factor = 1 / self.find_iam_efficiency_change(
+                        variable=hydrogen_efficiency_variable, location=region
                     )
-
-                    # remove electricity inputs
-                    dataset["exchanges"] = [
-                        exc
+                    # find current energy consumption in dataset
+                    energy_consumption = sum(
+                        exc["amount"]
                         for exc in dataset["exchanges"]
-                        if exc["unit"] != "kilowatt hour"
-                    ]
-
-                    electricity_suppliers = self.find_suppliers(
-                        name="market group for electricity, low voltage",
-                        ref_prod="electricity, low voltage",
-                        unit="kilowatt hour",
-                        loc=region,
-                        exclude=["period"],
-                    )
-
-                    dataset["exchanges"].extend(
-                        {
-                            "uncertainty type": 0,
-                            "amount": electricity_consumption * share,
-                            "type": "technosphere",
-                            "product": supplier[2],
-                            "name": supplier[0],
-                            "unit": supplier[-1],
-                            "location": supplier[1],
-                        }
-                        for supplier, share in electricity_suppliers.items()
+                        if exc["unit"] == hydrogen_feedstock_unit
+                        and hydrogen_feedstock_name in exc["name"]
+                        and exc["type"] == "technosphere"
                     )
 
                     # add it to "log parameters"
@@ -411,7 +410,67 @@ class Fuels(BaseTransformation):
                         dataset["log parameters"] = {}
 
                     dataset["log parameters"].update(
-                        {"electricity input for electrolysis": electricity_consumption}
+                        {"initial energy input for hydrogen production": energy_consumption}
+                    )
+
+                    # new energy consumption
+                    energy_consumption *= scaling_factor
+
+                    # set a floor value/kg H2
+                    if energy_consumption < efficiency_floor_value:
+                        energy_consumption = efficiency_floor_value
+
+                else:
+
+                    if hydrogen_type == "from electrolysis":
+                        # get the electricity consumption
+                        energy_consumption = (
+                            adjust_electrolysis_electricity_requirement(self.year)
+                        )
+                    else:
+                        energy_consumption = None
+
+                if energy_consumption:
+
+                    # remove energy inputs
+                    dataset["exchanges"] = [
+                        exc
+                        for exc in dataset["exchanges"]
+                        if not (
+                                exc["unit"] == hydrogen_feedstock_unit
+                                and hydrogen_feedstock_name in exc["name"]
+                                and exc["type"] == "technosphere"
+                            )
+                    ]
+
+                    energy_suppliers = self.find_suppliers(
+                        name=hydrogen_feedstock_name,
+                        ref_prod=hydrogen_feedstock_name,
+                        unit=hydrogen_feedstock_unit,
+                        loc=region,
+                        exclude=["period"],
+                    )
+
+                    dataset["exchanges"].extend(
+                        {
+                            "uncertainty type": 0,
+                            "amount": energy_consumption * share,
+                            "type": "technosphere",
+                            "product": supplier[2],
+                            "name": supplier[0],
+                            "unit": supplier[-1],
+                            "location": supplier[1],
+                        }
+                        for supplier, share in energy_suppliers.items()
+                    )
+
+                    # add it to "log parameters"
+                    if "log parameters" not in dataset:
+                        dataset["log parameters"] = {}
+
+                    # add it to "log parameters"
+                    dataset["log parameters"].update(
+                        {"new energy input for hydrogen production": energy_consumption}
                     )
 
                     self.write_log(dataset)
@@ -422,10 +481,10 @@ class Fuels(BaseTransformation):
                     else:
                         dataset["comment"] = string
 
-                dataset["comment"] = (
-                    "Region-specific hydrogen production dataset "
-                    "generated by `premise`. "
-                )
+                    dataset["comment"] = (
+                        "Region-specific hydrogen production dataset "
+                        "generated by `premise`. "
+                    )
 
             self.database.extend(new_ds.values())
 
@@ -461,7 +520,7 @@ class Fuels(BaseTransformation):
                 self.write_log(dataset)
 
         for region in self.regions:
-            for hydrogen_type, hydrogen_activity in hydrogen_sources.items():
+            for hydrogen_type, hydrogen_vars in hydrogen_sources.items():
                 for vehicle, config in supply_chain_scenarios.items():
                     for state in config["state"]:
                         for distance in config["distance"]:
@@ -526,7 +585,7 @@ class Fuels(BaseTransformation):
                                 dataset = self.add_hydrogenation_energy(region, dataset)
 
                             dataset = self.add_hydrogen_input_and_losses(
-                                hydrogen_activity,
+                                hydrogen_vars,
                                 region,
                                 losses,
                                 vehicle,
@@ -539,7 +598,7 @@ class Fuels(BaseTransformation):
                             dataset = self.add_h2_fuelling_station(dataset, region)
 
                             # add pre-cooling
-                            dataset = self.add_pre_cooling_electricit(dataset, region)
+                            dataset = self.add_pre_cooling_electricity(dataset, region)
 
                             self.cache, dataset = relink_technosphere_exchanges(
                                 dataset, self.database, self.model, cache=self.cache
@@ -1001,7 +1060,7 @@ class Fuels(BaseTransformation):
 
         return dataset
 
-    def add_pre_cooling_electricit(self, dataset: dict, region: str) -> dict:
+    def add_pre_cooling_electricity(self, dataset: dict, region: str) -> dict:
         """
         Add the electricity needed for pre-cooling the hydrogen.
 
@@ -1109,9 +1168,39 @@ class Fuels(BaseTransformation):
                                     "carbon dioxide, captured from atmosphere"
                                     in exc["name"].lower()
                                 ):
-                                    exc["name"] = co2_type[0]
-                                    exc["product"] = co2_type[1]
-                                    exc["location"] = region
+                                    # store amount
+                                    co2_amount = exc["amount"]
+
+
+                                    try:
+                                        # add new exchanges
+                                        dac_suppliers = self.find_suppliers(
+                                            name=co2_type[0],
+                                            ref_prod=co2_type[1],
+                                            unit="kilogram",
+                                            loc=region,
+                                        )
+                                    except IndexError:
+                                        dac_suppliers = None
+
+                                    if dac_suppliers:
+                                        # remove exchange
+                                        dataset["exchanges"].remove(exc)
+
+                                        dataset["exchanges"].extend(
+                                            {
+                                                "uncertainty type": 0,
+                                                "amount": co2_amount * share,
+                                                "type": "technosphere",
+                                                "product": supplier[2],
+                                                "name": supplier[0],
+                                                "unit": supplier[-1],
+                                                "location": supplier[1],
+                                            }
+                                            for supplier, share in dac_suppliers.items()
+                                        )
+
+
 
                             for exc in ws.technosphere(dataset):
                                 if (
@@ -1198,13 +1287,38 @@ class Fuels(BaseTransformation):
 
                     for exc in ws.technosphere(dataset):
                         if "carbon dioxide, captured from atmosphere" in exc["name"]:
-                            exc["name"] = (
-                                "carbon dioxide, captured from atmosphere, with a solvent-based direct air capture "
-                                "system, 1MtCO2, with heat pump heat, and grid electricity"
-                            )
-                            exc["product"] = "carbon dioxide, captured from atmosphere"
-                            exc["location"] = region
-                            exc["unit"] = "kilogram"
+
+                            # store amount
+                            co2_amount = exc["amount"]
+
+                            try:
+                                # add new exchanges
+                                dac_suppliers = self.find_suppliers(
+                                    name="carbon dioxide, captured from atmosphere, with a solvent-based direct air capture "
+                                        "system, 1MtCO2, with heat pump heat, and grid electricity",
+                                    ref_prod="carbon dioxide, captured from atmosphere",
+                                    unit="kilogram",
+                                    loc=region,
+                                )
+                            except IndexError:
+                                dac_suppliers = None
+
+                            if dac_suppliers:
+                                # remove exchange
+                                dataset["exchanges"].remove(exc)
+
+                                dataset["exchanges"].extend(
+                                    {
+                                        "uncertainty type": 0,
+                                        "amount": co2_amount * share,
+                                        "type": "technosphere",
+                                        "product": supplier[2],
+                                        "name": supplier[0],
+                                        "unit": supplier[-1],
+                                        "location": supplier[1],
+                                    }
+                                    for supplier, share in dac_suppliers.items()
+                                )
 
                     self.cache, dataset = relink_technosphere_exchanges(
                         dataset, self.database, self.model, cache=self.cache
@@ -1417,7 +1531,8 @@ class Fuels(BaseTransformation):
                 l
                 for l in self.fuel_labels
                 if crop_type.lower() in l.lower()
-                and any(i.lower() in l.lower() for i in ("biodiesel", "bioethanol"))
+                and any(i.lower() in l.lower()
+                for i in ("biodiesel", "bioethanol"))
             ][0]
         except IndexError:
             return None
@@ -1574,9 +1689,9 @@ class Fuels(BaseTransformation):
         ]
 
         fuel_share = (
-            self.iam_data.fuel_markets.sel(region=region, variables=fuel)
+            self.iam_data.fuel_markets.sel(region=region, variables=fuel, year=self.year)
             / self.iam_data.fuel_markets.sel(
-                region=region, variables=relevant_variables
+                region=region, variables=relevant_variables, year=self.year
             ).sum(dim="variables")
         ).values
 
@@ -1705,6 +1820,16 @@ class Fuels(BaseTransformation):
         possible_names = list(d_fuels[fuel]["fuel filters"])
         suppliers, counter = [], 0
 
+        blacklist = [
+            "petroleum coke",
+            "petroleum gas",
+            "wax",
+            "low pressure",
+            "pressure, vehicle grade",
+            "burned",
+            "market"
+        ]
+
         while not suppliers:
             suppliers = list(
                 ws.get_many(
@@ -1721,16 +1846,11 @@ class Fuels(BaseTransformation):
                     ws.either(
                         *[ws.contains("reference product", item) for item in look_for]
                     ),
-                    ws.doesnt_contain_any(
-                        "reference product",
-                        [
-                            "petroleum coke",
-                            "petroleum gas",
-                            "wax",
-                            "low pressure",
-                            "pressure, vehicle grade",
-                            "burned",
-                        ],
+                    ws.exclude(
+                        ws.either(*[ws.contains("reference product", x) for x in blacklist])
+                    ),
+                    ws.exclude(
+                        ws.either(*[ws.contains("name", x) for x in blacklist])
                     ),
                 )
             )
@@ -1881,7 +2001,7 @@ class Fuels(BaseTransformation):
         fuel_providers: dict,
         prod_vars: list,
         vars_map: dict,
-        fuel: str,
+        fuel_category: str,
         region: str,
         activity: dict,
     ) -> tuple:
@@ -1892,7 +2012,7 @@ class Fuels(BaseTransformation):
         :param fuel_providers: A dictionary of fuel providers, keyed by product variable.
         :param prod_vars: A list of product variables.
         :param vars_map: A dictionary mapping product variables to fuel names.
-        :param fuel: The fuel name.
+        :param fuel_category: The fuel name.
         :param region: The region for which to generate the regional fuel market.
         :param activity: The activity dataset for the region.
         :param new_fuel_markets: A list of new fuel markets.
@@ -1921,7 +2041,7 @@ class Fuels(BaseTransformation):
 
         for prod_var in prod_vars:
             share = fuel_providers[prod_var]["find_share"](
-                prod_var, vars_map[fuel], region
+                prod_var, vars_map[fuel_category], region
             )
 
             if isinstance(share, np.ndarray):
@@ -1931,8 +2051,9 @@ class Fuels(BaseTransformation):
                 continue
 
             possible_suppliers = self.select_multiple_suppliers(
-                prod_var, fuel_providers, dataset, vars_map[fuel]
+                prod_var, fuel_providers, dataset, vars_map[fuel_category]
             )
+
             if not possible_suppliers:
                 print(
                     f"No suppliers found for {prod_var} "
@@ -2089,7 +2210,7 @@ class Fuels(BaseTransformation):
                             fuel_providers=d_fuels,
                             prod_vars=prod_vars,
                             vars_map=vars_map,
-                            fuel=fuel,
+                            fuel_category=fuel,
                             region=region,
                             activity=activity,
                         )
@@ -2139,7 +2260,8 @@ class Fuels(BaseTransformation):
             f"{dataset.get('log parameters', {}).get('initial amount of fossil CO2', '')}|"
             f"{dataset.get('log parameters', {}).get('new amount of fossil CO2', '')}|"
             f"{dataset.get('log parameters', {}).get('new amount of biogenic CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('electricity input for electrolysis', '')}|"
+            f"{dataset.get('log parameters', {}).get('initial energy input for hydrogen production', '')}|"
+            f"{dataset.get('log parameters', {}).get('new energy input for hydrogen production', '')}|"
             f"{dataset.get('log parameters', {}).get('hydrogen distribution losses', '')}|"
             f"{dataset.get('log parameters', {}).get('electricity for hydrogen compression', '')}|"
             f"{dataset.get('log parameters', {}).get('electricity for hydrogen compression after dehydrogenation', '')}|"

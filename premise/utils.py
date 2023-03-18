@@ -55,15 +55,16 @@ class HiddenPrints:
         sys.stdout = self._original_stdout
 
 
-def eidb_label(model: str, scenario: str, year: int) -> str:
+def eidb_label(model: str, scenario: str, year: int, system_model: str = "cutoff") -> str:
     """
     Return a label to name a scenario.
     :param model: IAM model
     :param scenario: SSP/RCP scenario
     :param year: year
+    :param system_model: cutoff or consequential
     :return: scenario label, str.
     """
-    return f"ecoinvent_{model}_{scenario}_{year}"
+    return f"ecoinvent_{system_model}_{model}_{scenario}_{year}"
 
 
 def load_constants():

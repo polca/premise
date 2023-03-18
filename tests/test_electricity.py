@@ -5,7 +5,6 @@ from premise import DATA_DIR
 from premise.data_collection import IAMDataCollection
 from premise.electricity import Electricity
 
-REGION_MAPPING_FILEPATH = DATA_DIR / "regionmappingH12.csv"
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
 )

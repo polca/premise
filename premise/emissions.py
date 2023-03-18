@@ -53,9 +53,10 @@ class Emissions(BaseTransformation):
         pathway: str,
         year: int,
         version: str,
+        system_model: str,
         gains_scenario: str,
     ):
-        super().__init__(database, iam_data, model, pathway, year)
+        super().__init__(database, iam_data, model, pathway, year, version, system_model)
 
         self.version = version
         self.gains_EU = iam_data.gains_data_EU

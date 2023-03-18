@@ -53,10 +53,16 @@ class DirectAirCapture(BaseTransformation):
         pathway: str,
         year: int,
         version: str,
+        system_model: str,
     ):
-        super().__init__(database, iam_data, model, pathway, year)
-        # ecoinvent version
+        super().__init__(database, iam_data, model, pathway, year, version, system_model)
+        self.database = database
+        self.iam_data = iam_data
+        self.model = model
+        self.pathway = pathway
+        self.year = year
         self.version = version
+        self.system_model = system_model
         mapping = InventorySet(self.database)
         self.dac_plants = mapping.generate_daccs_map()
         self.carbon_storage = mapping.generate_carbon_storage_map()
@@ -127,6 +133,10 @@ class DirectAirCapture(BaseTransformation):
 
                 # loop through heat sources
                 for heat_type, activities in heat_map_ds.items():
+
+                    if self.system_model == "consequential" and heat_type == "waste heat":
+                        continue
+
                     new_ds = copy.deepcopy(original_ds)
                     for _, dataset in new_ds.items():
 
@@ -218,9 +228,10 @@ class DirectAirCapture(BaseTransformation):
             "daccs_sorbent": 0.18,
         }
 
-        # fetch cumulated deployment of DAC from IAM file
-        if "dac_solvent" in self.iam_data.production_volumes.variables.values:
-            for region, dataset in datasets.items():
+
+        for region, dataset in datasets.items():
+            # fetch cumulated deployment of DAC from IAM file
+            if "dac_solvent" in self.iam_data.production_volumes.variables.values:
                 cumulated_deployment = (
                     np.clip(
                         self.iam_data.production_volumes.sel(
@@ -251,49 +262,53 @@ class DirectAirCapture(BaseTransformation):
                     / 2
                 )  # divide by 2,
                 # as we assume sorbent and solvent are deployed equally
+            else:
+                cumulated_deployment = 1
+                initial_deployment = 1
 
-                # the learning rate is applied per doubling
-                # of the cumulative deployment
-                # relative to 2020
+            # the learning rate is applied per doubling
+            # of the cumulative deployment
+            # relative to 2020
 
-                scaling_factor_operation = (
-                    1 - theoretical_min_operation[technology]
-                ) * np.power(
-                    (1 - learning_rates_operation[technology]),
-                    np.log2(cumulated_deployment / initial_deployment),
-                ) + theoretical_min_operation[
-                    technology
-                ]
+            scaling_factor_operation = (
+                1 - theoretical_min_operation[technology]
+            ) * np.power(
+                (1 - learning_rates_operation[technology]),
+                np.log2(cumulated_deployment / initial_deployment),
+            ) + theoretical_min_operation[
+                technology
+            ]
 
-                scaling_factor_infra = (
-                    1 - theoretical_min_infra[technology]
-                ) * np.power(
-                    (1 - learning_rates_infra[technology]),
-                    np.log2(cumulated_deployment / initial_deployment),
-                ) + theoretical_min_infra[
-                    technology
-                ]
+            scaling_factor_infra = (
+                1 - theoretical_min_infra[technology]
+            ) * np.power(
+                (1 - learning_rates_infra[technology]),
+                np.log2(cumulated_deployment / initial_deployment),
+            ) + theoretical_min_infra[
+                technology
+            ]
 
-                current_energy_inputs = sum(
-                    e["amount"]
-                    for e in dataset["exchanges"]
-                    if e["unit"] == "megajoule"
-                )
-                current_energy_inputs += sum(
-                    e["amount"] * 3.6
-                    for e in dataset["exchanges"]
-                    if e["unit"] == "kilowatt hour"
-                )
+            current_energy_inputs = sum(
+                e["amount"]
+                for e in dataset["exchanges"]
+                if e["unit"] == "megajoule"
+            )
+            current_energy_inputs += sum(
+                e["amount"] * 3.6
+                for e in dataset["exchanges"]
+                if e["unit"] == "kilowatt hour"
+            )
 
-                if "log parameters" not in dataset:
-                    dataset["log parameters"] = {}
+            if "log parameters" not in dataset:
+                dataset["log parameters"] = {}
 
-                dataset["log parameters"].update(
-                    {
-                        "initial energy input per kg CO2": current_energy_inputs,
-                    }
-                )
+            dataset["log parameters"].update(
+                {
+                    "initial energy input per kg CO2": current_energy_inputs,
+                }
+            )
 
+            if scaling_factor_operation != 1:
                 # Scale down the energy exchanges using the scaling factor
                 wurst.change_exchanges_by_constant_factor(
                     dataset,
@@ -306,36 +321,37 @@ class DirectAirCapture(BaseTransformation):
                     biosphere_filters=[ws.exclude(ws.contains("type", "biosphere"))],
                 )
 
-                new_energy_inputs = sum(
-                    e["amount"]
-                    for e in dataset["exchanges"]
-                    if e["unit"] == "megajoule"
-                )
-                new_energy_inputs += sum(
-                    e["amount"] * 3.6
-                    for e in dataset["exchanges"]
-                    if e["unit"] == "kilowatt hour"
-                )
+            new_energy_inputs = sum(
+                e["amount"]
+                for e in dataset["exchanges"]
+                if e["unit"] == "megajoule"
+            )
+            new_energy_inputs += sum(
+                e["amount"] * 3.6
+                for e in dataset["exchanges"]
+                if e["unit"] == "kilowatt hour"
+            )
 
-                dataset["log parameters"].update(
-                    {
-                        "new energy input per kg CO2": new_energy_inputs,
-                    }
-                )
+            dataset["log parameters"].update(
+                {
+                    "new energy input per kg CO2": new_energy_inputs,
+                }
+            )
 
-                # add in comments the scaling factor applied
-                dataset["comment"] += (
-                    f" Operation-related expenditures have been "
-                    f"reduced by: {int((1 - scaling_factor_operation) * 100)}%."
-                )
+            # add in comments the scaling factor applied
+            dataset["comment"] += (
+                f" Operation-related expenditures have been "
+                f"reduced by: {int((1 - scaling_factor_operation) * 100)}%."
+            )
 
-                dataset["log parameters"].update(
-                    {
-                        "scaling factor operation": scaling_factor_operation,
-                        "scaling factor infrastructure": scaling_factor_infra,
-                    }
-                )
+            dataset["log parameters"].update(
+                {
+                    "scaling factor operation": scaling_factor_operation,
+                    "scaling factor infrastructure": scaling_factor_infra,
+                }
+            )
 
+            if scaling_factor_infra != 1:
                 # Scale down the infra and material exchanges using the scaling factor
                 wurst.change_exchanges_by_constant_factor(
                     dataset,
@@ -353,11 +369,11 @@ class DirectAirCapture(BaseTransformation):
                     biosphere_filters=[ws.exclude(ws.contains("type", "biosphere"))],
                 )
 
-                # add in comments the scaling factor applied
-                dataset["comment"] += (
-                    f" Infrastructure-related expenditures have been "
-                    f"reduced by: {int((1 - scaling_factor_infra) * 100)}%."
-                )
+            # add in comments the scaling factor applied
+            dataset["comment"] += (
+                f" Infrastructure-related expenditures have been "
+                f"reduced by: {int((1 - scaling_factor_infra) * 100)}%."
+            )
 
         return datasets
 
