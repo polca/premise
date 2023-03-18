@@ -597,7 +597,7 @@ class NewDatabase:
         :return:
         """
         return DatabaseCleaner(
-            self.source, self.source_type, self.source_file_path
+            self.source, self.source_type, self.source_file_path, self.version
         ).prepare_datasets(keep_uncertainty_data)
 
     def __import_inventories(self) -> List[dict]:
@@ -1060,7 +1060,8 @@ class NewDatabase:
                 system_model=self.system_model
             )
         self.database = generate_superstructure_db(
-            self.database, self.scenarios, db_name=name, filepath=filepath
+            self.database, self.scenarios, db_name=name, filepath=filepath,
+            version=self.version
         )
 
         print("Done!")
@@ -1100,6 +1101,7 @@ class NewDatabase:
                     scenario["model"],
                     scenario["pathway"],
                     scenario["year"],
+                    version=self.version,
                     system_model=self.system_model
                 )
                 for scenario in self.scenarios
@@ -1242,7 +1244,7 @@ class NewDatabase:
             )
 
         df, extra_inventories = generate_scenario_factor_file(
-            origin_db=self.database, scenarios=self.scenarios, db_name=name
+            origin_db=self.database, scenarios=self.scenarios, db_name=name, version=self.version,
         )
 
         cached_inventories.extend(extra_inventories)

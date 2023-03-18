@@ -39,19 +39,23 @@ def get_outdated_flows():
     return flows
 
 
-def get_biosphere_code() -> dict:
+def get_biosphere_code(version) -> dict:
     """
     Retrieve a dictionary with biosphere flow names and uuid codes.
     :returns: dictionary with biosphere flow names as keys and uuid codes as values
 
     """
+    if version == "3.9":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    else:
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+    if not Path(fp).is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+    with open(fp, encoding="utf-8") as file:
         input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
@@ -203,7 +207,7 @@ class BaseInventoryImport:
         ]
         self.version_in = version_in
         self.version_out = version_out
-        self.biosphere_dict = get_biosphere_code()
+        self.biosphere_dict = get_biosphere_code(self.version_out)
         self.outdated_flows = get_outdated_flows()
         self.system_model = system_model
         self.consequential_blacklist = get_consequential_blacklist()
@@ -485,7 +489,8 @@ class BaseInventoryImport:
                                         y["flag_deletion"] = True
                                     else:
                                         print(
-                                            f"Could not find a biosphere flow for {key}"
+                                            f"Could not find a biosphere flow for {key}."
+
                                         )
 
                         except KeyError:
@@ -494,20 +499,27 @@ class BaseInventoryImport:
                             else:
                                 raise
                     else:
+                        key = (
+                            y["name"],
+                            y["categories"][0].strip(),
+                            "unspecified",
+                            y["unit"],
+                        )
+
                         try:
                             y["input"] = (
                                 "biosphere3",
-                                self.biosphere_dict[
-                                    (
-                                        y["name"].strip(),
-                                        y["categories"][0].strip(),
-                                        "unspecified",
-                                        y["unit"].strip(),
-                                    )
-                                ],
+                                self.biosphere_dict[key],
                             )
                         except KeyError:
-                            if delete_missing:
+                            if y["name"] in self.outdated_flows:
+                                new_key = list(key)
+                                new_key[0] = self.outdated_flows[key[0]]
+                                y["input"] = (
+                                    "biosphere3",
+                                    self.biosphere_dict[tuple(new_key)],
+                                )
+                            elif delete_missing:
                                 print(
                                     f"The following biosphere exchange: "
                                     f"{y['name']}, {y['categories'][0]}, unspecified, {y['unit']} "

@@ -421,7 +421,7 @@ class ExternalScenario(BaseTransformation):
             "reference product": market["reference product"],
             "unit": market["unit"],
             "location": region,
-            "database": eidb_label(self.model, self.scenario, self.year),
+            "database": eidb_label(self.model, self.scenario, self.year, self.version),
             "code": str(uuid.uuid4().hex),
             "exchanges": [
                 {

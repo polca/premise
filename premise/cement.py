@@ -339,6 +339,9 @@ class Cement(BaseTransformation):
             # put a floor value of 3000 kj/kg clinker
             if new_energy_input_per_ton_clinker < 3000:
                 new_energy_input_per_ton_clinker = 3000
+            # and a ceiling value of 5000 kj/kg clinker
+            elif new_energy_input_per_ton_clinker > 5000:
+                new_energy_input_per_ton_clinker = 5000
 
             scaling_factor = (
                 new_energy_input_per_ton_clinker / current_energy_input_per_ton_clinker

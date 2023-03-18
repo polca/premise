@@ -37,6 +37,8 @@ from .utils import (
     get_efficiency_ratio_solar_photovoltaics,
 )
 
+from .export import biosphere_flows_dictionary
+
 from . import VARIABLES_DIR
 
 PRODUCTION_PER_TECH = (
@@ -227,6 +229,7 @@ class Electricity(BaseTransformation):
             for loc in self.regions
         }
         self.system_model = system_model
+        self.biosphere_dict = biosphere_flows_dictionary(self.version)
 
     def check_for_production_volume(self, suppliers: List[dict]) -> List[dict]:
         # Remove suppliers that do not have a production volume
@@ -435,7 +438,14 @@ class Electricity(BaseTransformation):
                             "type": "biosphere",
                             "input": (
                                 "biosphere3",
-                                "35d1dff5-b535-4628-9826-4a8fce08a1f2",
+                                self.biosphere_dict[
+                                (
+                                    "Sulfur hexafluoride",
+                                    "air",
+                                    "non-urban air or from high stacks",
+                                    "kilogram",
+                                )
+                                ],
                             ),
                             "name": "Sulfur hexafluoride",
                             "unit": "kilogram",
@@ -695,7 +705,17 @@ class Electricity(BaseTransformation):
                         "loc": 5.4e-8,
                         "amount": 5.4e-8,
                         "type": "biosphere",
-                        "input": ("biosphere3", "35d1dff5-b535-4628-9826-4a8fce08a1f2"),
+                        "input": (
+                            "biosphere3",
+                            self.biosphere_dict[
+                                (
+                                    "Sulfur hexafluoride",
+                                    "air",
+                                    "non-urban air or from high stacks",
+                                    "kilogram",
+                                )
+                            ]
+                        ),
                         "name": "Sulfur hexafluoride",
                         "unit": "kilogram",
                         "categories": ("air", "non-urban air or from high stacks"),
@@ -1218,7 +1238,7 @@ class Electricity(BaseTransformation):
                 "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
                 "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
                 "unit": "kilogram",
-                "database": eidb_label(self.model, self.scenario, self.year, self.system_model),
+                "database": eidb_label(self.model, self.scenario, self.year, self.version, self.system_model),
                 "code": str(uuid.uuid4().hex),
                 "exchanges": [
                     {

@@ -34,7 +34,6 @@ from .geomap import Geomap
 
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 
@@ -52,16 +51,17 @@ class HiddenPrints:
         sys.stdout = self._original_stdout
 
 
-def eidb_label(model: str, scenario: str, year: int, system_model: str = "cutoff") -> str:
+def eidb_label(model: str, scenario: str, year: int, version: str, system_model: str = "cutoff") -> str:
     """
     Return a label to name a scenario.
     :param model: IAM model
     :param scenario: SSP/RCP scenario
     :param year: year
+    :param version: version of the ecoinvent database
     :param system_model: cutoff or consequential
     :return: scenario label, str.
     """
-    return f"ecoinvent_{system_model}_{model}_{scenario}_{year}"
+    return f"ecoinvent_{system_model}_{version}_{model}_{scenario}_{year}"
 
 
 def load_constants():

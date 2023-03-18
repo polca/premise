@@ -25,7 +25,6 @@ from . import DATA_DIR, __version__
 from .transformation import BaseTransformation
 from .utils import check_database_name
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
     DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
@@ -264,16 +263,20 @@ def create_codes_index_of_exchanges_matrix(database):
     return {database[i]["code"]: i for i in range(0, len(database))}
 
 
-def create_codes_index_of_biosphere_flows_matrix():
+def create_codes_index_of_biosphere_flows_matrix(version):
     """
     Create a dictionary with row/column indices of the biosphere matrix
     """
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
+    if version == "3.9":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    else:
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
+    if not Path(fp).is_file():
+        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
     csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+    with open(fp, encoding="utf-8") as file:
         input_dict = csv.reader(file, delimiter=";")
         for i, row in enumerate(input_dict):
             csv_dict[row[-1]] = i
@@ -281,13 +284,19 @@ def create_codes_index_of_biosphere_flows_matrix():
     return csv_dict
 
 
-def create_index_of_biosphere_flows_matrix():
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+def create_index_of_biosphere_flows_matrix(version):
+
+    if version == "3.9":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    else:
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+    if not Path(fp).is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+    with open(fp, encoding="utf-8") as file:
         input_dict = csv.reader(file, delimiter=";")
         for i, row in enumerate(input_dict):
             csv_dict[(row[0], row[1], row[2], row[3])] = i
@@ -313,17 +322,22 @@ def create_codes_and_names_of_tech_matrix(database: List[dict]):
     }
 
 
-def biosphere_flows_dictionary():
+def biosphere_flows_dictionary(version):
     """
     Create a dictionary with biosphere flows
     (name, category, sub-category, unit) -> code
     """
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+    if version == "3.9":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    else:
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+    if not Path(fp).is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+    with open(fp, encoding="utf-8") as file:
         input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
@@ -364,7 +378,7 @@ def get_outdated_flows():
     return outdated_flows
 
 
-bio_dict = biosphere_flows_dictionary()
+
 outdated_flows = get_outdated_flows()
 exc_codes = {}
 
@@ -396,10 +410,13 @@ def get_act_dict_structure(ind, acts_ind, db_name) -> dict:
     }
 
 
-def correct_biosphere_flow(name, cat, unit):
+def correct_biosphere_flow(name, cat, unit, version):
     """
     Correct the biosphere flow name if it is outdated.
     """
+
+    bio_dict = biosphere_flows_dictionary(version)
+
     if len(cat) > 1:
         main_cat = cat[0]
         sub_cat = cat[1]
@@ -413,7 +430,7 @@ def correct_biosphere_flow(name, cat, unit):
     return bio_dict[(name, main_cat, sub_cat, unit)]
 
 
-def get_exchange(ind, acts_ind, db_name, amount=1.0):
+def get_exchange(ind, acts_ind, db_name, version, amount=1.0):
     name, ref, cat, loc, unit, flow_type = acts_ind[ind]
     _ = lambda x: x if x != 0 else 1.0
     return {
@@ -424,7 +441,7 @@ def get_exchange(ind, acts_ind, db_name, amount=1.0):
         "categories": cat,
         "type": flow_type,
         "amount": amount if flow_type != "production" else _(amount),
-        "input": ("biosphere3", correct_biosphere_flow(name, cat, unit))
+        "input": ("biosphere3", correct_biosphere_flow(name, cat, unit, version))
         if flow_type == "biosphere"
         else (db_name, fetch_exchange_code(name, ref, loc, unit)),
     }
@@ -576,7 +593,7 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
     print(f"Data package saved at {DIR_DATAPACKAGE / f'{name}.zip'}")
 
 
-def generate_scenario_factor_file(origin_db, scenarios, db_name):
+def generate_scenario_factor_file(origin_db, scenarios, db_name, version):
     """
     Generate a scenario factor file from a list of databases
     :param origin_db: the original database
@@ -588,7 +605,7 @@ def generate_scenario_factor_file(origin_db, scenarios, db_name):
 
     # create the dataframe
     df, new_db, list_unique_acts = generate_scenario_difference_file(
-        origin_db=origin_db, scenarios=scenarios, db_name=db_name
+        origin_db=origin_db, scenarios=scenarios, db_name=db_name, version=version
     )
 
     original = df["original"]
@@ -621,7 +638,7 @@ def generate_scenario_factor_file(origin_db, scenarios, db_name):
 
 
 def generate_scenario_difference_file(
-    db_name, origin_db, scenarios
+    db_name, origin_db, scenarios, version
 ) -> tuple[DataFrame, list[dict], list[tuple]]:
     """
     Generate a scenario difference file for a given list of databases
@@ -629,6 +646,8 @@ def generate_scenario_difference_file(
     :param origin_db: the original database
     :param scenarios: list of databases
     """
+
+    bio_dict = biosphere_flows_dictionary(version)
 
     exc_codes.update(
         {
@@ -712,7 +731,7 @@ def generate_scenario_difference_file(
         act.update(dict_meta[meta_id])
 
         act["exchanges"].extend(
-            get_exchange(i, acts_ind, db_name, amount=m[i, k, 0]) for i in v
+            get_exchange(i, acts_ind, db_name, version, amount=m[i, k, 0]) for i in v
         )
 
         new_db.append(act)
@@ -799,7 +818,7 @@ def generate_scenario_difference_file(
     return df, new_db, list_acts
 
 
-def generate_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[dict]:
+def generate_superstructure_db(origin_db, scenarios, db_name, filepath, version) -> List[dict]:
     """
     Build a superstructure database from a list of databases
     :param origin_db: the original database
@@ -813,7 +832,7 @@ def generate_superstructure_db(origin_db, scenarios, db_name, filepath) -> List[
 
     # create the dataframe
     df, new_db, _ = generate_scenario_difference_file(
-        origin_db=origin_db, scenarios=scenarios, db_name=db_name
+        origin_db=origin_db, scenarios=scenarios, db_name=db_name, version=version
     )
 
     # remove unneeded columns "to unit"
@@ -921,13 +940,15 @@ class Export:
 
     """
 
-    def __init__(self, db, model=None, scenario=None, year=None, filepath=None):
+    def __init__(self, db, model=None, scenario=None, year=None, filepath=None, version=None):
         self.db = db
         self.model = model
         self.scenario = scenario
         self.year = year
         self.filepath = filepath
-        self.bio_codes = self.rev_index(create_codes_index_of_biosphere_flows_matrix())
+        self.version = version
+        self.bio_codes = self.rev_index(create_codes_index_of_biosphere_flows_matrix(self.version))
+        self.bio_dict = biosphere_flows_dictionary(self.version)
 
     def create_A_matrix_coordinates(self):
         index_A = create_index_of_A_matrix(self.db)
@@ -984,8 +1005,8 @@ class Export:
         return list_rows
 
     def create_B_matrix_coordinates(self):
-        index_B = create_index_of_biosphere_flows_matrix()
-        rev_index_B = self.create_rev_index_of_B_matrix()
+        index_B = create_index_of_biosphere_flows_matrix(self.version)
+        rev_index_B = self.create_rev_index_of_B_matrix(self.version)
         index_A = create_index_of_A_matrix(self.db)
         list_rows = []
 
@@ -1047,7 +1068,7 @@ class Export:
                 data = list(d) + [index_A[d]]
                 writer.writerow(data)
 
-        index_B = create_index_of_biosphere_flows_matrix()
+        index_B = create_index_of_biosphere_flows_matrix(self.version)
 
         # Export B matrix
         with open(self.filepath / "B_matrix.csv", "w", encoding="utf-8") as file:
@@ -1075,15 +1096,19 @@ class Export:
         print("Matrices saved in {}.".format(self.filepath))
 
     @staticmethod
-    def create_rev_index_of_B_matrix():
-        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flows could not be found."
-            )
+    def create_rev_index_of_B_matrix(version):
+
+        if version == "3.9":
+            fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+        else:
+            fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+        if not Path(fp).is_file():
+            raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
         csv_dict = {}
 
-        with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as f:
+        with open(fp, encoding="utf-8") as f:
             input_dict = csv.reader(f, delimiter=";")
             for row in input_dict:
                 csv_dict[row[-1]] = (row[0], row[1], row[2], row[3])
@@ -1649,15 +1674,19 @@ class Export:
             for x, i in enumerate(self.db)
         }
 
-    def create_names_and_indices_of_B_matrix(self):
-        if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-            raise FileNotFoundError(
-                "The dictionary of biosphere flows could not be found."
-            )
+    def create_names_and_indices_of_B_matrix(self, version):
+
+        if version == "3.9":
+            fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+        else:
+            fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+        if not Path(fp).is_file():
+            raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
         csv_dict = {}
 
-        with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+        with open(fp, encoding="utf-8") as file:
             input_dict = csv.reader(file, delimiter=";")
             for i, row in enumerate(input_dict):
                 if row[2] != "unspecified":

@@ -58,7 +58,7 @@ def get_fix_names_dict() -> Dict[str, str]:
         return dict(filter(None, csv.reader(file, delimiter=";")))
 
 
-def get_biosphere_flow_uuid() -> Dict[Tuple[str, str, str, str], str]:
+def get_biosphere_flow_uuid(version: str) -> Dict[Tuple[str, str, str, str], str]:
     """
     Retrieve a dictionary with biosphere flow (name, categories, unit) --> uuid.
 
@@ -66,12 +66,17 @@ def get_biosphere_flow_uuid() -> Dict[Tuple[str, str, str, str], str]:
     :rtype: dict
     """
 
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+    if version == "3.9":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    else:
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+    if not Path(fp).is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+    with open(fp, encoding="utf-8") as file:
         input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
@@ -79,7 +84,7 @@ def get_biosphere_flow_uuid() -> Dict[Tuple[str, str, str, str], str]:
     return csv_dict
 
 
-def get_biosphere_flow_categories() -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
+def get_biosphere_flow_categories(version: str) -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
     """
     Retrieve a dictionary with biosphere flow uuids and categories.
 
@@ -87,12 +92,17 @@ def get_biosphere_flow_categories() -> Dict[str, Union[Tuple[str], Tuple[str, st
     :rtype: dict
     """
 
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+    if version == "3.9":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    else:
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+    if not Path(fp).is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
+    with open(fp, encoding="utf-8") as file:
         input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[row[-1]] = (
@@ -153,7 +163,7 @@ class DatabaseCleaner:
     """
 
     def __init__(
-        self, source_db: str, source_type: str, source_file_path: Path
+        self, source_db: str, source_type: str, source_file_path: Path, version: str
     ) -> None:
         if source_type == "brightway":
             # Check that database exists
@@ -175,6 +185,7 @@ class DatabaseCleaner:
             self.add_product_field_to_exchanges()
             # Parameter field is converted from a list to a dictionary
             self.transform_parameter_field()
+        self.version = version
 
     def get_rev_fix_names_dict(self) -> Dict[str, str]:
         """
@@ -334,8 +345,8 @@ class DatabaseCleaner:
         """Add a `categories` for biosphere flows if missing.
         This happens when importing directly from ecospold files"""
 
-        dict_bio_cat = get_biosphere_flow_categories()
-        dict_bio_uuid = get_biosphere_flow_uuid()
+        dict_bio_cat = get_biosphere_flow_categories(self.version)
+        dict_bio_uuid = get_biosphere_flow_uuid(self.version)
 
         for dataset in self.database:
             for exc in dataset["exchanges"]:

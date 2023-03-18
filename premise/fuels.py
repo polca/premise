@@ -26,6 +26,7 @@ from .transformation import (
     wurst,
 )
 from .utils import DATA_DIR, get_crops_properties
+from .inventory_imports import get_biosphere_code
 from . import VARIABLES_DIR
 
 REGION_CLIMATE_MAP = VARIABLES_DIR / "iam_region_to_climate.yaml"
@@ -176,7 +177,7 @@ def is_fuel_production(name):
     return any(i in name for i in ["Ethanol production", "Biodiesel production"])
 
 
-def update_co2_emissions(dataset: dict, amount_non_fossil_co2: float) -> dict:
+def update_co2_emissions(dataset: dict, amount_non_fossil_co2: float, biosphere_flows: dict) -> dict:
     """Update fossil and non-fossil CO2 emissions of the dataset."""
     # Test for the presence of a fossil CO2 flow
     if not any(
@@ -205,7 +206,17 @@ def update_co2_emissions(dataset: dict, amount_non_fossil_co2: float) -> dict:
         "name": "Carbon dioxide, non-fossil",
         "unit": "kilogram",
         "categories": ("air",),
-        "input": ("biosphere3", "eba59fd6-f37e-41dc-9ca3-c7ea22d602c7"),
+        "input": (
+            "biosphere3",
+            biosphere_flows[
+                (
+                    "Carbon dioxide, non-fossil",
+                    "air",
+                    "unspecified",
+                    "kilogram"
+                )
+            ]
+        ),
     }
 
     dataset["log parameters"].update(
@@ -264,6 +275,7 @@ class Fuels(BaseTransformation):
         self.new_fuel_markets = {}
         # dictionary to store mapping results, to avoid redundant effort
         self.cached_suppliers = {}
+        self.biosphere_flows = get_biosphere_code(self.version)
 
     def find_transport_activity(
         self, items_to_look_for: List[str], items_to_exclude: List[str], loc: str
@@ -725,7 +737,14 @@ class Fuels(BaseTransformation):
                 "categories": ("air",),
                 "input": (
                     "biosphere3",
-                    "b301fa9a-ba60-4eac-8ccc-6ccbdf099b35",
+                    self.biosphere_flows[
+                        (
+                            "Hydrogen",
+                            "air",
+                            "unspecified",
+                            "kilogram",
+                        )
+                    ],
                 ),
             }
         )
@@ -1070,7 +1089,7 @@ class Fuels(BaseTransformation):
         """
 
         # finally, add pre-cooling
-        #  is needed before filling vehicle tanks
+        # is needed before filling vehicle tanks
         # as the hydrogen is pumped, the ambient temperature
         # vaporizes the gas, and because of the Thomson-Joule effect,
         # the gas temperature increases.
@@ -1086,7 +1105,7 @@ class Fuels(BaseTransformation):
         # to 150 kg H2/day in 2050
 
         t_amb = 25
-        cap_util = np.interp(self.year, [2020, 2050], [10, 150])
+        cap_util = np.interp(self.year, [2020, 2050, 2100], [10, 150, 150])
         el_pre_cooling = get_pre_cooling_energy(t_amb, cap_util)
 
         suppliers = self.find_suppliers(
@@ -1426,7 +1445,14 @@ class Fuels(BaseTransformation):
                 "unit": "kilogram",
                 "input": (
                     "biosphere3",
-                    "78eb1859-abd9-44c6-9ce3-f3b5b33d619c",
+                    self.biosphere_flows[
+                        (
+                            "Carbon dioxide, from soil or biomass stock",
+                            "air",
+                            "non-urban air or from high stacks",
+                            "kilogram",
+                        )
+                    ]
                 ),
                 "categories": (
                     "air",
@@ -1795,7 +1821,7 @@ class Fuels(BaseTransformation):
                 if amount_non_fossil_co2 > 0 and not any(
                     x in dataset["name"].lower() for x in list_items_to_ignore
                 ):
-                    update_co2_emissions(dataset, amount_non_fossil_co2)
+                    update_co2_emissions(dataset, amount_non_fossil_co2, self.biosphere_flows)
 
                     self.write_log(dataset, status="updated")
 
@@ -2015,7 +2041,6 @@ class Fuels(BaseTransformation):
         :param fuel_category: The fuel name.
         :param region: The region for which to generate the regional fuel market.
         :param activity: The activity dataset for the region.
-        :param new_fuel_markets: A list of new fuel markets.
         :return: A tuple containing the final LHV, fossil CO2, and biogenic CO2 emissions for the regional fuel market,
         as well as the updated dataset with the regional fuel market exchanges.
 

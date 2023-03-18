@@ -10,7 +10,10 @@ def test_ei_db_label():
     model = "remind"
     pathway = "SSP2-Base"
     year = 2012
-    assert eidb_label(model, pathway, year) == f"ecoinvent_{model}_{pathway}_{year}"
+    version = "3.9"
+    system_model = "cutoff"
+    assert eidb_label(model, pathway, year, version, system_model) == f"ecoinvent_{system_model}_{version}_{model}_{pathway}_{year}"
+
 
 
 def test_crops_properties():
