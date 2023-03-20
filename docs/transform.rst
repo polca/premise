@@ -1894,13 +1894,15 @@ The emission factors are available under
 https://github.com/polca/premise/tree/master/premise/data/GAINS_emission_factors
 
 Emission factors from GAINS-EU are applied to activities in European countries.
-Emission factors from GAINS-IAM are applied to activities in non-European countries.
+Emission factors from GAINS-IAM are applied to activities in non-European countries,
+or to European activities if an emission facor from GAINS-EU has not been
+applied first.
 
 Emission factors are specific to:
 
 * an activity type,
 * a year,
-* a country (for GAIN-EU, otherwise a region),
+* a country (for GAINS-EU, otherwise a region),
 * a fuel type,
 * a technology type,
 * and a scenario.
