@@ -56,6 +56,14 @@ handlers:
     formatter: simple
     mode: w
 
+  file_external:
+    class: logging.FileHandler
+    level: INFO
+    filename: premise_external_scenarios.log
+    encoding: utf8
+    formatter: simple
+    mode: w
+
 loggers:
   dac:
     level: INFO
@@ -85,4 +93,9 @@ loggers:
   emissions:
     level: INFO
     handlers: [ file_emissions ]
+    propagate: False
+
+  external:
+    level: INFO
+    handlers: [ file_external ]
     propagate: False

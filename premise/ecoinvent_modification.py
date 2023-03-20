@@ -966,6 +966,8 @@ class NewDatabase:
                         year=scenario["year"],
                         external_scenarios=self.datapackages,
                         external_scenarios_data=scenario["external data"],
+                        version=self.version,
+                        system_model=self.system_model,
                     )
                     external_scenario.create_custom_markets()
                     scenario["database"] = external_scenario.database

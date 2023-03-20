@@ -13,6 +13,14 @@ from .clean_datasets import get_biosphere_flow_uuid
 from .transformation import *
 from .utils import eidb_label
 
+LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+
+with open(LOG_CONFIG, "r") as f:
+    config = yaml.safe_load(f.read())
+    logging.config.dictConfig(config)
+
+logger = logging.getLogger("external")
+
 
 def fetch_loc(loc):
     if isinstance(loc, str):
@@ -309,6 +317,8 @@ class ExternalScenario(BaseTransformation):
         model: str,
         pathway: str,
         year: int,
+        version: str,
+        system_model: str,
     ):
         """
         :param database: list of datasets representing teh database
@@ -320,20 +330,20 @@ class ExternalScenario(BaseTransformation):
         :param year: year
 
         """
-        super().__init__(database, iam_data, model, pathway, year)
+        super().__init__(database, iam_data, model, pathway, year, version, system_model)
         self.datapackages = external_scenarios
         self.external_scenarios_data = external_scenarios_data
 
-        for i, datapackage in enumerate(self.datapackages):
-            external_scenario_regions = self.external_scenarios_data[i]["regions"]
+        for datapackage_number, datapackage in enumerate(self.datapackages):
+            external_scenario_regions = self.external_scenarios_data[datapackage_number]["regions"]
             # Open corresponding config file
             resource = datapackage.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
             ds_names = get_recursively(config_file, "name")
-            self.regionalize_inventories(ds_names, external_scenario_regions)
-        self.dict_bio_flows = get_biosphere_flow_uuid()
+            self.regionalize_inventories(ds_names, external_scenario_regions, datapackage_number)
+        self.dict_bio_flows = get_biosphere_flow_uuid(self.version)
 
-    def regionalize_inventories(self, ds_names, regions) -> None:
+    def regionalize_inventories(self, ds_names, regions, datapackage_number: int) -> None:
         """
         Produce IAM region-specific version of the dataset.
         :param regions: list of regions to produce datasets for
@@ -358,7 +368,7 @@ class ExternalScenario(BaseTransformation):
                 if ds.get("production volume variable"):
                     for region, act in new_acts.items():
                         act["production volume"] = (
-                            self.external_scenarios_data[0]["production volume"]
+                            self.external_scenarios_data[datapackage_number]["production volume"]
                             .sel(
                                 region=region,
                                 variables=ds["production volume variable"],
@@ -997,8 +1007,6 @@ class ExternalScenario(BaseTransformation):
         have `new_name` and `new_ref`. The new exchange is from an IAM region, and so, if the
         region is not part of `regions`, we use `World` instead.
 
-        :param old_name: `name` of the exchange to replace
-        :param old_ref: `product` of the exchange to replace
         :param new_name: `name`of the new provider
         :param new_ref: `product` of the new provider
         :param regions: list of IAM regions the new provider can originate from
@@ -1008,7 +1016,7 @@ class ExternalScenario(BaseTransformation):
         datasets = []
         exchanges_replaced = []
 
-        if replaces_in:
+        if replaces_in is not None:
             for k in replaces_in:
                 list_fltr = []
                 operator = k.get("operator", "equals")
@@ -1033,8 +1041,13 @@ class ExternalScenario(BaseTransformation):
         datasets = [
             d
             for d in datasets
-            if not (d["name"] == new_name and d["reference product"] == new_ref)
+            if not (
+                d["name"] == new_name
+                and d["reference product"] == new_ref
+            )
         ]
+
+        print("len datasets", len(datasets))
 
         log = []
         list_fltr = []
@@ -1059,13 +1072,14 @@ class ExternalScenario(BaseTransformation):
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
-                exc for exc in dataset["exchanges"] if exc not in filtered_exchanges
+                exc for exc in dataset["exchanges"]
+                if exc not in filtered_exchanges
             ]
 
             new_exchanges = []
 
             for exc in filtered_exchanges:
-                if exc["location"] in regions:
+                if exc["location"] in regions and new_name == exc["name"] and new_ref == exc["product"]:
                     new_exchanges.append(exc)
                     continue
 
@@ -1137,6 +1151,7 @@ class ExternalScenario(BaseTransformation):
         # should be added
 
         if not replaces_in:
+
             unique_exchanges_replaced = list(set(exchanges_replaced))
             name = unique_exchanges_replaced[0][0]
             ref = unique_exchanges_replaced[0][1]
@@ -1150,7 +1165,8 @@ class ExternalScenario(BaseTransformation):
             ):
                 # remove all exchanges except production exchanges
                 ds["exchanges"] = [
-                    exc for exc in ds["exchanges"] if exc["type"] == "production"
+                    exc for exc in ds["exchanges"]
+                    if exc["type"] == "production"
                 ]
                 # add ann exchange from new supplier
                 if ds["location"] in ["GLO", "RoW"] and "World" in regions:

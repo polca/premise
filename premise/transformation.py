@@ -935,3 +935,14 @@ class BaseTransformation:
             scaling_factor = 1
 
         return scaling_factor
+
+    def write_log(self, dataset, status="created"):
+        """
+        Write log file.
+        """
+
+        logger.info(
+            f"{status}|{self.model}|{self.scenario}|{self.year}|"
+            f"{dataset['name']}|{dataset['location']}|"
+        )
+
