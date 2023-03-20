@@ -945,4 +945,3 @@ class BaseTransformation:
             f"{status}|{self.model}|{self.scenario}|{self.year}|"
             f"{dataset['name']}|{dataset['location']}|"
         )
-
