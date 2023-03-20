@@ -25,7 +25,7 @@ What's new in 1.5.0?
 
 -  Added support for ecoinvent 3.9 and 3.9.1
 -  Added support for ecoinvent 3.8 and 3.9/3.9.1 consequential -- see [docs](https://premise.readthedocs.io/en/latest/consequential.html)
--  Added REMIND SSP1 and SSP5 scenarios -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#remind-ssp1-and-ssp5)
+-  Added REMIND SSP1 and SSP5 scenarios -- see [docs](https://premise.readthedocs.io/en/latest/introduction.html#default-iam-scenarios)
 -  Updated GAINS emission factors, using GAINS-EU and GAINS-IAM -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#gains-emission-factors)
 -  Added new inventories for DAC and DACCS -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#dac-and-daccs)
 -  Added new inventories for EPR and SMR nuclear reactors -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#epr-and-smr-nuclear-reactors)

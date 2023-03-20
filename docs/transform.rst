@@ -1884,12 +1884,20 @@ production volume.
 GAINS emission factors
 """"""""""""""""""""""
 
-When using `update_emissions()`, emission factors from the GAINS-EU and GAINS-IAM models are used to scale
-non-CO2 emissions in various datasets. The emission factors are available under
-data/GAINS_emission_factors.
+When using `update_emissions()`, emission factors from the GAINS-EU_ and GAINS-IAM_ models are used to scale
+non-CO2 emissions in various datasets.
+
+.. _GAINS-EU: https://gains.iiasa.ac.at/gains/EUN/index.login
+.. _GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
+
+The emission factors are available under
+https://github.com/polca/premise/tree/master/premise/data/GAINS_emission_factors
+
 Emission factors from GAINS-EU are applied to activities in European countries.
 Emission factors from GAINS-IAM are applied to activities in non-European countries.
+
 Emission factors are specific to:
+
 * an activity type,
 * a year,
 * a country (for GAIN-EU, otherwise a region),
@@ -1898,7 +1906,7 @@ Emission factors are specific to:
 * and a scenario.
 
 The mapping between GAINS and ecoinvent activities is available under the following file:
-* data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml
+https://github.com/polca/premise/blob/master/premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml
 
 The table below shows the mapping between ecoinvent and GAINS emission flows.
 
@@ -1906,31 +1914,48 @@ The table below shows the mapping between ecoinvent and GAINS emission flows.
 | ecoinvent species                                                 | GAINS species  |
 +===================================================================+================+
 | Sulfur dioxide                                                    |  SO2           |
++-------------------------------------------------------------------+----------------+
 | Sulfur oxides                                                     |  SO2           |
++-------------------------------------------------------------------+----------------+
 | Carbon monoxide, fossil                                           |  CO            |
++-------------------------------------------------------------------+----------------+
 | Carbon monoxide, non-fossil                                       |  CO            |
++-------------------------------------------------------------------+----------------+
 | Carbon monoxide, from soil or biomass stock                       |  CO            |
++-------------------------------------------------------------------+----------------+
 | Nitrogen oxides                                                   |  NOx           |
++-------------------------------------------------------------------+----------------+
 | Ammonia                                                           |  NH3           |
++-------------------------------------------------------------------+----------------+
 | NMVOC, non-methane volatile organic compounds, unspecified origin |  VOC           |
++-------------------------------------------------------------------+----------------+
 | VOC, volatile organic compounds, unspecified origin               |  VOC           |
++-------------------------------------------------------------------+----------------+
 | Methane                                                           |  CH4           |
++-------------------------------------------------------------------+----------------+
 | Methane, fossil                                                   |  CH4           |
++-------------------------------------------------------------------+----------------+
 | Methane, non-fossil                                               |  CH4           |
++-------------------------------------------------------------------+----------------+
 | Methane, from soil or biomass stock                               |  CH4           |
++-------------------------------------------------------------------+----------------+
 | Dinitrogen monoxide                                               |  N2O           |
++-------------------------------------------------------------------+----------------+
 | Particulates, > 10 um                                             |  PM10          |
++-------------------------------------------------------------------+----------------+
 | Particulates, > 2.5 um, and < 10um                                |  PM25          |
++-------------------------------------------------------------------+----------------+
 | Particulates, < 2.5 um                                            |  PM1           |
 +-------------------------------------------------------------------+----------------+
 
-We considered emission factors in ecoinvent as representative of the current situation.
+We consider emission factors in ecoinvent as representative of the current situation.
 Hence, we calculate a scaling factor from the GAINS emission factors for the year of
 the scenario relative to the year 2020.
 
 Two GAINS-IAM scenarios are available:
-* CLE: Current LEgislation scenario
-* MFR: Maximum Feasible Reduction scenario
+
+* **CLE**: **C**urrent **LE**gislation scenario
+* **MFR**: **M**aximum **F**easible **R**eduction scenario
 
 By default, the CLE scenario is used. To use the MFR scenario:
 
@@ -1943,9 +1968,11 @@ By default, the CLE scenario is used. To use the MFR scenario:
 
 Finally, unlike GAINS-EU, GAINS-IAM uses IAM-like regions, not countries.
 The mapping between IAM regions and GAINS-IAM regions is available under the following file:
-* data/GAINS_emission_factors/iam_data/region_mapping.yaml
 
-For questions related to GAINS modelling, please contact the GAINS team:
+https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/gains_regions_mapping.yaml
+
+For questions related to GAINS modelling, please contact the respective GAINS team:
+
 * GAINS-EU: https://gains.iiasa.ac.at/gains/EUN/index.login
 * GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
 
