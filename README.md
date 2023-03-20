@@ -38,17 +38,6 @@ What's new in 1.3.0?
 -   Added support for user-generated scenarios (see [docs](https://premise.readthedocs.io/en/latest/user_scenarios.html) and [notebook](https://github.com/polca/premise/blob/master/examples/examples%20user-defined%20scenarios.ipynb))
 -   Updated REMIND scenarios to REMIND v.3.0
 
-What's new in 1.0.0?
-====================
-
-We have just released the first major version of *premise*.
-
-Compared to 1.2, here are some of the most notable changes:
-
-* *premise* works with ecoinvent 3.8 and 3.9, cut-off and consequential.
-* emission factors for local air pollutants are updated, using GAINS-EU and GAINS-IAM
-* region- and scenario-specific inventories for DAC and DACCS
-* additional REMIND scenarios (SSP1 and SSP5)
 
 
 Documentation
