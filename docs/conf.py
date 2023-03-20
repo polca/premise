@@ -56,6 +56,7 @@ autodoc_mock_imports = [
     "datapackage",
     "requests",
     "bottleneck",
+    "premise",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
