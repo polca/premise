@@ -1,5 +1,9 @@
 # list of activities that cannot be imported
 # when the system model is consequential
+# the `replacement` field is optional
+# if it is not present, the activity is simply ignored
+# if it is present, the activity is replaced by the activity
+# specified in the `replacement` field.
 ---
 - name: electricity production, at co-generation power plant/hard coal, oxy, pipeline 200km, storage 1000m
   reference product: electricity, high voltage

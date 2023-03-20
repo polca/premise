@@ -3,8 +3,8 @@ Consequential modelling
 
 The premise module allows users to import and adjust
 the consequential system model of the ecoinvent database
-v3.8, with a focus on electricity markets. This work is
-based on a publication with a pre-print available
+v3.8 and 3.9, with a focus on electricity and fuel markets.
+This work is based on a publication with a pre-print available
 at https://chemrxiv.org/engage/chemrxiv/article-details/63ee10cdfcfb27a31fe227df
 
 Currently, the identification of marginal supplying
@@ -21,9 +21,8 @@ For steel markets, only the BF-BOF route is considered.
 Some imported inventories cannot be
 directly linked to the ecoinvent consequential database.
 To address this, a mapping file is provided under
-premise/data/consequential/blacklist.yaml,
-which helps establish connections to the consequential
-database.
+https://github.com/polca/premise/blob/master/premise/data/consequential/blacklist.yaml
+which proposes alternative candidates to link to the ecoinvent consequential database.
 
 
 How does it work?
@@ -35,7 +34,8 @@ From the user viewpoint, the process is as follows:
 * supply the parameters to `NewDatabase()`
 * point to the your local ecoinvent consequential database
 
-The parameters are:
+The parameters used to identify marginal suppliers that make up
+a market are:
 
 * range time
 * duration
@@ -86,8 +86,8 @@ If True, the capital replacement rate is used as baseline.
 The capital replacement rate is equal to -1 divided by
 the lifetime (in years) of the technology.
 
-Measurement
-^^^^^^^^^^^
+Measurement method
+^^^^^^^^^^^^^^^^^
 
 0 to 4.
 

@@ -7,7 +7,7 @@ Link to a new IAM model
 Although *premise* comes with a set of scenarios from the REMIND
 and IMAGE IAM models, it is possible to link it to a new IAM model.
 To do so, you need to populate the .yaml mapping files under the
-folder premise/iam_variables_mapping.
+folder https://github.com/polca/premise/tree/master/premise/iam_variables_mapping.
 
 For each variable in each of the .yaml files, specify the
 corresponding IAM variable name as follows:
@@ -61,11 +61,11 @@ and their corresponding IAM regions, as shown below.
         "World": ["GLO", "RoW"]
     }
 
-then, you need to add to the `constants.yaml` file the path
+Then, you need to add to the `constants.yaml` file the path
 to this file:
 
 .. code-block:: yaml
-    ...
+
     EXTRA_TOPOLOGY:
       my_iam_name: filepath/to/the/geographical/definitions.json
 
