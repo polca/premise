@@ -20,6 +20,17 @@ As it now evolves towards a more IAM-neutral approach, a change of name was cons
 
 Scientific publication available here: [Sacchi et al, 2022](https://doi.org/10.1016/j.rser.2022.112311).
 
+What's new in 1.5.0?
+====================
+
+-  Added support for ecoinvent 3.9 and 3.9.1
+-  Added support for ecoinvent 3.8 and 3.9/3.9.1 consequential -- see [docs](https://premise.readthedocs.io/en/latest/consequential.html)
+-  Added REMIND SSP1 and SSP5 scenarios -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#remind-ssp1-and-ssp5)
+-  Updated GAINS emission factors, using GAINS-EU and GAINS-IAM -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#gains-emission-factors)
+-  Added new inventories for DAC and DACCS -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#dac-and-daccs)
+-  Added new inventories for EPR and SMR nuclear reactors -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#epr-and-smr-nuclear-reactors)
+-  Made mapping to new IAM easier -- see [docs](https://premise.readthedocs.io/en/latest/usage.html#mapping-to-new-iam)
+
 What's new in 1.3.0?
 ====================
 

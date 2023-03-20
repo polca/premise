@@ -32,6 +32,8 @@ Load the updated database back into a Brightway project or export it as a set of
 .. _ecospold2: https://ecoinvent.org/the-ecoinvent-database/data-formats/ecospold2/
 .. _ETL: https://www.guru99.com/etl-extract-load-process.html#:~:text=ETL%20is%20a%20process%20that,is%20Extract%2C%20Transform%20and%20Load.
 
+Default IAM scenarios
+---------------------
 
 Provided a decryption key (ask the maintainers_), the following IAM scenarios are available when installing *premise*:
 
