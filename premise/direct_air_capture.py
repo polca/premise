@@ -197,7 +197,7 @@ class DirectAirCapture(BaseTransformation):
     def adjust_dac_efficiency(self, datasets, technology):
         """
         Fetch the cumulated deployment of DAC from IAM file.
-        Apply a learning rate (2.5%) -- see Qiu et al., 2022.
+        Apply a learning rate -- see Qiu et al., 2022.
         """
 
         # learning rates for operation-related expenditures

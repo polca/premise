@@ -1132,10 +1132,8 @@ Run
 
 
 
-*premise* create different region-specific Direct Air Capture (DAC)
-datasets. If cumulative DAC deployment data is available from the IAM scenario,
-
-*premise* applies a learning rate on the input
+*premise* creates different region-specific Direct Air Capture (DAC)
+datasets. If the cumulative DAC deployment is available from the IAM scenario, *premise* applies a learning rate on the input
 of thermal and electrical energy as well as infrastructure
 relative to 2020 (see SI of Qiu_ et al., 2022).
 
@@ -1150,6 +1148,7 @@ DAC systems for energy inputs:
 | Technology                                       | Solvent-based DAC | Sorbent-based DAC |
 +==================================================+===================+===================+
 | Learning rate                                    | 2.50%             | 2.50%             |
++--------------------------------------------------+-------------------+-------------------+
 | Theoretical minimum (relative to initial value)  | 50%               | 50%               |
 +--------------------------------------------------+-------------------+-------------------+
 
@@ -1160,8 +1159,14 @@ DAC systems for infrastructure inputs (materials, chemicals, system):
 | Technology                                      | Solvent-based DAC | Sorbent-based DAC |
 +=================================================+===================+===================+
 | Learning rate                                   | 10.00%            | 15.00%            |
++--------------------------------------------------+-------------------+-------------------+
 | Theoretical minimum (relative to initial value) | 44%               | 18%               |
 +-------------------------------------------------+-------------------+-------------------+
+
+A scaling factor is calculated from applying the above learning rates
+to the cumulative DAC deployment in the IAM scenario. The scaling factor
+is then applied to the input of thermal and electrical energy as well as
+infrastructure relative to 2020.
 
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 
@@ -1985,7 +1990,7 @@ Logs
 for each scenario. The report is saved in the current working directory and
 is automatically generated after database export.
 
-The report lists the datasets added, updaed and emptied.
+The report lists the datasets added, updated and emptied.
 It also gives a number of indicators relating to efficiency,
 emissions, etc. for each scenario.
 
