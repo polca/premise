@@ -65,7 +65,7 @@ el = Electricity(
     pathway="SSP2-Base",
     year=2012,
     version="3.5",
-    system_model="cutoff"
+    system_model="cutoff",
 )
 
 
