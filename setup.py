@@ -56,6 +56,7 @@ setup(
         "schema",
         "datapackage",
         "requests",
+        "bottleneck"
     ],
     url="https://github.com/polca/premise",
     description="Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA",

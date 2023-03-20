@@ -485,8 +485,8 @@ def check_scenario_data_file(datapackages, iam_scenarios):
         d_regions = {}
 
         for model in config["SUPPORTED_MODELS"]:
-            for k, v in not config.items():
-                if k.startswith("LIST_") and model in k:
+            for k, v in config.items():
+                if k.startswith("LIST_") and model.lower() in k.lower():
                     d_regions[model] = v
 
         list_ei_locs = [

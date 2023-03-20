@@ -13,3 +13,4 @@ sparse
 schema
 datapackage
 requests
+bottleneck

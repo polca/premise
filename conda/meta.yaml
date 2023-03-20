@@ -32,6 +32,7 @@ requirements:
     - schema
     - datapackage
     - requests
+    - bottleneck
 
 test:
   imports:
