@@ -59,7 +59,13 @@ rdc = IAMDataCollection(
 )
 db, _ = get_db()
 el = Electricity(
-    database=db, iam_data=rdc, model="remind", pathway="SSP2-Base", year=2012
+    database=db,
+    iam_data=rdc,
+    model="remind",
+    pathway="SSP2-Base",
+    year=2012,
+    version="3.5",
+    system_model="cutoff"
 )
 
 
