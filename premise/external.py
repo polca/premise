@@ -10,6 +10,7 @@ import xarray as xr
 from numpy import ndarray
 
 from .clean_datasets import get_biosphere_flow_uuid
+from .inventory_imports import get_outdated_flows
 from .transformation import *
 from .utils import eidb_label
 
@@ -342,6 +343,7 @@ class ExternalScenario(BaseTransformation):
             ds_names = get_recursively(config_file, "name")
             self.regionalize_inventories(ds_names, external_scenario_regions, datapackage_number)
         self.dict_bio_flows = get_biosphere_flow_uuid(self.version)
+        self.outdated_flows = get_outdated_flows()
 
     def regionalize_inventories(self, ds_names, regions, datapackage_number: int) -> None:
         """
@@ -745,6 +747,14 @@ class ExternalScenario(BaseTransformation):
 
             key = (name, categories[0], categories[1], unit)
 
+            if key not in self.dict_bio_flows:
+                if key[0] in self.outdated_flows:
+                    key = (self.outdated_flows[key[0]], key[1], key[2], key[3])
+                else:
+                    raise ValueError(
+                        f"Cannot find biosphere flow {key} in the biosphere database."
+                    )
+
             return [
                 {
                     "name": name,
@@ -1046,8 +1056,6 @@ class ExternalScenario(BaseTransformation):
                 and d["reference product"] == new_ref
             )
         ]
-
-        print("len datasets", len(datasets))
 
         log = []
         list_fltr = []

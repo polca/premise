@@ -415,6 +415,7 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 38;39;market for cement, alternative constituents 21-35%;cement, alternative constituents 21-35%;CO;market for cement, ART;cement, ART;CO
 38;39;market for cement, alternative constituents 21-35%;cement, alternative constituents 21-35%;Europe without Switzerland;market for cement, CEM II/B;cement, CEM II/B;Europe without Switzerland
 38;39;market for cement, alternative constituents 21-35%;cement, alternative constituents 21-35%;GLO;market for cement, CEM II/B;cement, CEM II/B;GLO
+38;39;market for cement, alternative constituents 21-35%;cement, alternative constituents 21-35%;RoW;market for cement, CEM II/B;cement, CEM II/B;RoW
 38;39;market for cement, alternative constituents 45%;cement, alternative constituents 45%;CO;market for cement, type general use;cement, type general use;CO
 38;39;market for cement, alternative constituents 6-20%;cement, alternative constituents 6-20%;CA-QC;market for cement, CEM II/A;cement, CEM II/A;CA-QC
 38;39;market for cement, alternative constituents 6-20%;cement, alternative constituents 6-20%;CH;market for cement, CEM II/A;cement, CEM II/A;CH
@@ -537,6 +538,7 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 37;39;treatment of wastewater, average, capacity 1E9l/year;wastewater, average;RoW;treatment of wastewater, average, wastewater treatment;wastewater, average;RoW
 37;39;treatment of wastewater, average, capacity 1E9l/year;wastewater, average;CH;treatment of wastewater, average, wastewater treatment;wastewater, average;CH
 37;39;treatment of wastewater, average, capacity 1E9l/year;wastewater, average;Europe without Switzerland;treatment of wastewater, average, wastewater treatment;wastewater, average;Europe without Switzerland
+38;39;treatment of wastewater, average, capacity 1E9l/year;wastewater, average;Europe without Switzerland;treatment of wastewater, average, wastewater treatment;wastewater, average;Europe without Switzerland
 35;39;concrete production, for civil engineering, with cement CEM II/B;concrete, sole plate and foundation;CH;concrete production, 25MPa, for building construction, with cement, CEM II/B;concrete, 25MPa;CH
 35;39;treatment of wastewater, average, capacity 1.1E10l/year;wastewater, average;CH;treatment of wastewater, average, wastewater treatment;wastewater, average;CH
 37;39;treatment of wastewater, average, capacity 1.1E10l/year;wastewater, average;CH;treatment of wastewater, average, wastewater treatment;wastewater, average;CH
