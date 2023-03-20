@@ -1,7 +1,5 @@
 from unittest.mock import call, patch
 
-import xarray as xr
-
 from premise import __version__
 from premise.utils import *
 
