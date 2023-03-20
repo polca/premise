@@ -35,17 +35,24 @@ Load the updated database back into a Brightway project or export it as a set of
 
 Provided a decryption key (ask the maintainers_), the following IAM scenarios are available when installing *premise*:
 
- =================== =========================================================================================== ================== =============
-  SSP/RCP scenario    Description                                                                                 REMIND             IMAGE
- =================== =========================================================================================== ================== =============
-  SSP1-RCP6   >3.5C   Optimistic trends for human development, driven by a shift toward sustainable practices.    SSP1-Base          -
-  SSP2-RCP6   >3.5C   Counter-factual scenario with no stringent climate policy implemented.                      SSP2-Base          SSP2-Base
-  ~+3.3C              National Policies Implemented (NPI).                                                        SSP2-NPI           -
-  ~+2.5C              Nationally Determined Contributions (NDCs) scenario.                                        SSP2-NDC           -
-  SSP2-RCP2.6 ~2C     Limit the global temperature increase to 2C by 2100, compared to pre-industrial levels.     SSP2-PkBudg1150    SSP2-RCP26
-  SSP2-RCP1.9 ~1.5C   Limit the global temperature increase to 1.5C by 2100, compared to pre-industrial levels.   SSP2-PkBudg500     SSP2-RCP19
-  SSP5-Base   >3.5C   Optimistic trends for human development, driven by fossil-based activities.                 SSP5-Base          -
- =================== =========================================================================================== ================== =============
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP/RCP scenario | GMST increase by 2100 | Society/economy trend                                                              | Climate policy                              | REMIND          | IMAGE      |
++==================+=======================+====================================================================================+=============================================+=================+============+
+| SSP5-None        | ~4.5 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | None                                        | SSP5-Base       |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-None        | ~2.3 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-RCP6        | ~3.5 °C               | Extrapolation from historical developments.                                        | None                                        | SSP2-Base       | SSP2-Base  |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-None        | ~3.3 °C               | Extrapolation from historical developments.                                        | National Policies Implemented (NPI).        | SSP2-NPi        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-None        | ~2.5 °C               | Extrapolation from historical developments.                                        | Nationally Determined Contributions (NDCs). | SSP2-NDC        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-RCP2.6      | ~2 °C                 | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg1150 | SSP2-RCP26 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-RCP1.9      | ~1.5 °C               | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg500  | SSP2-RCP19 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+
 
 CarbonBrief_ wrote a good article explaining the meaning of the SSP/RCP system.
 

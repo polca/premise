@@ -397,7 +397,7 @@ class BaseInventoryImport:
             if "code" not in dataset:
                 dataset["code"] = str(uuid.uuid4().hex)
 
-    def correct_product_field(self, exc: dict) -> str:
+    def correct_product_field(self, exc: dict) -> [str, None]:
         """
         Find the correct name for the `product` field of the exchange
         :param exc: a dataset exchange
@@ -454,7 +454,7 @@ class BaseInventoryImport:
             )
         )
 
-        return exc["reference product"]
+        return None
 
     def add_biosphere_links(self, delete_missing: bool = False) -> None:
         """Add links for biosphere exchanges to :attr:`import_db`

@@ -20,19 +20,19 @@ Concentration Pathway (RCP)—and a year (e.g., SSP1, Base, 2035).
 
 **IMAGE** scenarios:
 
-SSP2-Base: A worst-case scenario reaching a radiative forcing level of 6.0 W/m2 by 2100, translating into an atmospheric temperature increase of over 3.5°C compared to pre-industrial levels.
+SSP2-Base: Absence of climate policies. A worst-case scenario reaching a radiative forcing level of 6.0 W/m2 by 2100, translating into an atmospheric temperature increase of over 3.5°C compared to pre-industrial levels.
 
-SSP2-RCP26: Compliant with the soft targets of the Paris Agreement, reaching 2.6 W/m2 by 2100, or an atmospheric temperature increase of 1.8-2°C relative to pre-industrial levels.
+SSP2-RCP26: Compliant with the Paris Agreement objective, reaching 2.6 W/m2 by 2100, or an atmospheric temperature increase of 1.8-2°C relative to pre-industrial levels.
 
-SSP2-RCP19: Compliant with the hard targets of the Paris Agreement, reaching 1.9 W/m2 by 2100, or an atmospheric temperature increase of 1.5°C relative to pre-industrial levels.
+SSP2-RCP19: Compliant with the Paris Agreement objective, reaching 1.9 W/m2 by 2100, or an atmospheric temperature increase of 1.5°C relative to pre-industrial levels.
 
 **REMIND** scenarios:
 
-SSP1-Base: Optimistic trends in population, economic growth, and energy demand, driven by a shift towards sustainable practices, with a representative concentration pathway (RCP) equivalent to RCP6, or 6.0 W/m2, translating into an atmospheric temperature increase of 3.5°C relative to pre-industrial levels.
+SSP1-Base: Optimistic trends in population, economic growth, and energy demand, driven by a shift towards sustainable practices, without a climate policy (+2.3 C).
 
-SSP5-Base: Optimistic trends in population, economic growth, and energy demand, but driven by a prolonged use of fossil fuels, with a representative concentration pathway (RCP) equivalent to RCP6, or 6.0 W/m2, translating into an atmospheric temperature increase of 3.5°C relative to pre-industrial levels.
+SSP5-Base: Optimistic trends in population, economic growth, and energy demand, but driven by a prolonged use of fossil fuels, without a climate policy (+4.5 C).
 
-SSP2-Base: Trends in population, economic growth and energy demand follow historical developments. A representative concentration pathway (RCP) equivalent to RCP6, or 6.0 W/m2, translating into an atmospheric temperature increase of 3.5°C relative to pre-industrial levels. This scenario witnesses a slight rollback of renewables, and should probably not be used as a baseline.
+SSP2-Base: Trends in population, economic growth and energy demand follow historical developments, without a climate policy (+3.5°C). This scenario witnesses a slight rollback of renewables, and should probably not be used as a baseline.
 
 SSP2-NDC: Trends in population, economic growth and energy demand follow historical developments. Current Nationally Determined Contributions implemented by the parties of the Paris Agreement. These contributions are currently insufficient to reach the soft targets of the Paris Agreement and can be considered a baseline.
 
