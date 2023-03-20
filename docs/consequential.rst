@@ -78,6 +78,11 @@ If True, technology-specific lead times are used.
 If Range and Duration are both set to False, then the lead time is taken as the
 time interval (just as with ecoinvent v.3.4).
 
+If you wish to modify the default lead time values used for the different
+technologies, you can do so by modifying the file:
+
+https://github.com/polca/premise/blob/master/premise/data/consequential/leadtimes.yaml
+
 Capital replacement rate
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -85,6 +90,11 @@ True or False. If False, a horizontal baseline is used.
 If True, the capital replacement rate is used as baseline.
 The capital replacement rate is equal to -1 divided by
 the lifetime (in years) of the technology.
+
+If you wish to modify the default lifetime values used for the different
+technologies, you can do so by modifying the file:
+
+https://github.com/polca/premise/blob/master/premise/data/consequential/lifetimes.yaml
 
 Measurement method
 ^^^^^^^^^^^^^^^^^
