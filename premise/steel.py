@@ -1,14 +1,14 @@
 """
 Integrates projections regarding steel production.
 """
-from typing import List, Dict
+import logging.config
+from typing import Dict, List
+
+import yaml
 
 from .data_collection import IAMDataCollection
 from .transformation import BaseTransformation, ws, wurst
 from .utils import DATA_DIR
-
-import logging.config
-import yaml
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -40,7 +40,9 @@ class Steel(BaseTransformation):
         version: str,
         system_model: str,
     ) -> None:
-        super().__init__(database, iam_data, model, pathway, year, version, system_model)
+        super().__init__(
+            database, iam_data, model, pathway, year, version, system_model
+        )
         self.version = version
 
     def generate_activities(self):
@@ -153,8 +155,7 @@ class Steel(BaseTransformation):
                         dataset["exchanges"] = [
                             e
                             for e in dataset["exchanges"]
-                            if e["type"] == "production"
-                            or e["unit"] == "ton kilometer"
+                            if e["type"] == "production" or e["unit"] == "ton kilometer"
                         ]
 
                         dataset["exchanges"].append(
@@ -231,7 +232,6 @@ class Steel(BaseTransformation):
                 ["steel"] * len(self.material_map["steel - primary"]),
             )
         }
-
 
         d_act_secondary_steel = {
             mat: self.fetch_proxies(
@@ -397,7 +397,6 @@ class Steel(BaseTransformation):
                 loc=dataset["location"], sector="steel"
             )
             if carbon_capture_rate > 0:
-
                 # Create a new CCS dataset if one doesn't exist
                 self.create_ccs_dataset(
                     loc=region, bio_co2_stored=0, bio_co2_leaked=0, sector="steel"

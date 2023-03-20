@@ -17,9 +17,9 @@ import yaml
 
 from . import DATA_DIR, INVENTORY_DIR
 from .cement import Cement
-from .direct_air_capture import DirectAirCapture
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
+from .direct_air_capture import DirectAirCapture
 from .electricity import Electricity
 from .emissions import Emissions
 from .export import (
@@ -34,7 +34,7 @@ from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
 from .fuels import Fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
-from .report import generate_summary_report, generate_change_report
+from .report import generate_change_report, generate_summary_report
 from .steel import Steel
 from .transport import Transport
 from .utils import (
@@ -283,7 +283,13 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 f"Cannot find the inventory file: {inventory['inventories']}."
             )
 
-        if inventory["ecoinvent version"] not in ["3.7", "3.7.1", "3.8", "3.9", "3.9.1"]:
+        if inventory["ecoinvent version"] not in [
+            "3.7",
+            "3.7.1",
+            "3.8",
+            "3.9",
+            "3.9.1",
+        ]:
             raise ValueError(
                 "A lot of trouble will be avoided if the additional "
                 f"inventories to import are ecoinvent 3.7, 3-8 or 3.9-compliant, not {inventory['ecoinvent version']}."
@@ -435,7 +441,6 @@ class NewDatabase:
         keep_uncertainty_data=False,
         gains_scenario="CLE",
     ) -> None:
-
         self.source = source_db
         self.version = check_db_version(source_version)
         self.source_type = source_type
@@ -661,7 +666,6 @@ class NewDatabase:
             (FILEPATH_WAVE, "3.8"),
         ]
         for filepath in filepaths:
-
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
             # ecoinvent version is 3.9
             if filepath[0] == FILEPATH_OIL_GAS_INVENTORIES and self.version == "3.9":
@@ -779,7 +783,7 @@ class NewDatabase:
                     pathway=scenario["pathway"],
                     year=scenario["year"],
                     version=self.version,
-                    system_model=self.system_model
+                    system_model=self.system_model,
                 )
 
                 dac.generate_dac_activities()
@@ -1056,12 +1060,18 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name=name, version=self.version,
-                system_model=self.system_model
+                scenario,
+                cache=cache,
+                name=name,
+                version=self.version,
+                system_model=self.system_model,
             )
         self.database = generate_superstructure_db(
-            self.database, self.scenarios, db_name=name, filepath=filepath,
-            version=self.version
+            self.database,
+            self.scenarios,
+            db_name=name,
+            filepath=filepath,
+            version=self.version,
         )
 
         print("Done!")
@@ -1102,7 +1112,7 @@ class NewDatabase:
                     scenario["pathway"],
                     scenario["year"],
                     version=self.version,
-                    system_model=self.system_model
+                    system_model=self.system_model,
                 )
                 for scenario in self.scenarios
             ]
@@ -1118,8 +1128,11 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name=name[scen], version=self.version,
-                system_model=self.system_model
+                scenario,
+                cache=cache,
+                name=name[scen],
+                version=self.version,
+                system_model=self.system_model,
             )
 
             write_brightway2_database(
@@ -1172,8 +1185,11 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name="database", version=self.version,
-                system_model=self.system_model
+                scenario,
+                cache=cache,
+                name="database",
+                version=self.version,
+                system_model=self.system_model,
             )
 
             Export(
@@ -1209,8 +1225,11 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name="database", version=self.version,
-                system_model=self.system_model
+                scenario,
+                cache=cache,
+                name="database",
+                version=self.version,
+                system_model=self.system_model,
             )
 
             Export(
@@ -1239,12 +1258,18 @@ class NewDatabase:
         for scen, scenario in enumerate(self.scenarios):
             print(f"Prepare database {scen + 1}.")
             scenario["database"], cache = prepare_db_for_export(
-                scenario, cache=cache, name="database", version=self.version,
-                system_model=self.system_model
+                scenario,
+                cache=cache,
+                name="database",
+                version=self.version,
+                system_model=self.system_model,
             )
 
         df, extra_inventories = generate_scenario_factor_file(
-            origin_db=self.database, scenarios=self.scenarios, db_name=name, version=self.version,
+            origin_db=self.database,
+            scenarios=self.scenarios,
+            db_name=name,
+            version=self.version,
         )
 
         cached_inventories.extend(extra_inventories)

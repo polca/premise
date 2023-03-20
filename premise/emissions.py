@@ -3,10 +3,11 @@ Integrates projections regarding emissions of hot pollutants
 from GAINS.
 """
 
+import logging.config
+
 import numpy as np
 import xarray as xr
 import yaml
-import logging.config
 
 from .transformation import (
     BaseTransformation,
@@ -56,7 +57,9 @@ class Emissions(BaseTransformation):
         system_model: str,
         gains_scenario: str,
     ):
-        super().__init__(database, iam_data, model, pathway, year, version, system_model)
+        super().__init__(
+            database, iam_data, model, pathway, year, version, system_model
+        )
 
         self.version = version
         self.gains_EU = iam_data.gains_data_EU
@@ -80,7 +83,6 @@ class Emissions(BaseTransformation):
                 self.rev_gains_map_IAM[t] = s
 
     def update_emissions_in_database(self):
-
         print("Integrating GAINS EU emission factors.")
         for ds in self.database:
             if (
@@ -88,7 +90,9 @@ class Emissions(BaseTransformation):
                 and ds["location"] in self.gains_EU.coords["region"]
             ):
                 gains_sector = self.rev_gains_map_EU[ds["name"]]
-                self.update_pollutant_emissions(ds, gains_sector, self.gains_EU, model="GAINS-EU")
+                self.update_pollutant_emissions(
+                    ds, gains_sector, self.gains_EU, model="GAINS-EU"
+                )
                 self.write_log(ds, status="updated")
 
         print("Integrating GAINS IAM emission factors.")
@@ -99,7 +103,9 @@ class Emissions(BaseTransformation):
                 in self.gains_IAM.coords["region"]
             ):
                 gains_sector = self.rev_gains_map_IAM[ds["name"]]
-                self.update_pollutant_emissions(ds, gains_sector, self.gains_IAM, model="GAINS-IAM")
+                self.update_pollutant_emissions(
+                    ds, gains_sector, self.gains_IAM, model="GAINS-IAM"
+                )
 
                 self.write_log(ds, status="updated")
 
@@ -120,7 +126,6 @@ class Emissions(BaseTransformation):
         for exc in ws.biosphere(
             dataset, ws.either(*[ws.equals("name", x) for x in self.ei_pollutants])
         ):
-
             gains_pollutant = self.ei_pollutants[exc["name"]]
             scaling_factor = self.find_gains_emissions_change(
                 pollutant=gains_pollutant,
@@ -134,9 +139,9 @@ class Emissions(BaseTransformation):
             )
 
             if scaling_factor != 1.0:
-
-                if f"{gains_pollutant} scaling factor" not in dataset.get("log parameters", {}):
-
+                if f"{gains_pollutant} scaling factor" not in dataset.get(
+                    "log parameters", {}
+                ):
                     wurst.rescale_exchange(exc, scaling_factor)
 
                     if "log parameters" not in dataset:
@@ -215,7 +220,6 @@ class Emissions(BaseTransformation):
 
         if "log parameters" in dataset:
             if "GAINS model" in dataset["log parameters"]:
-
                 logger.info(
                     f"{status}|{self.model}|{self.scenario}|{self.year}|"
                     f"{dataset['name']}|{dataset['location']}|"

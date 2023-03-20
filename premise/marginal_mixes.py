@@ -108,8 +108,7 @@ def remove_constrained_suppliers(data: xr.DataArray) -> xr.DataArray:
     data.loc[
         dict(
             variables=[
-                v for v in data.variables.values
-                if any(x in v for x in tech_to_ignore)
+                v for v in data.variables.values if any(x in v for x in tech_to_ignore)
             ],
         )
     ] = 0
@@ -118,7 +117,6 @@ def remove_constrained_suppliers(data: xr.DataArray) -> xr.DataArray:
 
 
 def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataArray:
-
     """
     Used for consequential modeling only.
     Returns marginal market mixes
@@ -182,7 +180,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     leadtime = get_leadtime(techs)
 
     for region in data.coords["region"].values:
-
         # we don't yet know the exact start year
         # of the time interval, so as an approximation
         # we use for current_shares the start year
@@ -363,7 +360,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
 
         if measurement == 1:
-
             if isinstance(end, np.ndarray):
                 new_end = np.zeros_like(data_full.sel(region=region))
                 new_end[:, :] = end[:, None]
@@ -401,7 +397,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
 
         if measurement == 2:
-
             if isinstance(end, np.ndarray):
                 data_end = (
                     data_full.sel(
@@ -486,7 +481,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 market_shares.loc[dict(region=region)] -= cap_repl_rate[:, None]
 
         if measurement == 3:
-
             if isinstance(end, np.ndarray):
                 data_end = (
                     data_full.sel(

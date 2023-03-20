@@ -86,7 +86,6 @@ class InventorySet:
         )
 
     def generate_gains_mapping_IAM(self):
-
         map = self.generate_gains_mapping()
         EU_to_IAM_var = get_mapping(filepath=GAINS_MAPPING, var="gains_aliases_IAM")
 

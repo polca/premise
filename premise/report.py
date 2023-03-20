@@ -2,23 +2,21 @@
 This module export a summary of scenario to an Excel file.
 """
 
+import os
+from datetime import datetime
 from pathlib import Path
 
 import openpyxl
+import pandas as pd
 import yaml
 from openpyxl.chart import AreaChart, LineChart, Reference
 from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
-from datetime import datetime
-
-import pandas as pd
 from pandas.errors import EmptyDataError
-import os
 
-from . import DATA_DIR, VARIABLES_DIR
-from . import __version__
+from . import DATA_DIR, VARIABLES_DIR, __version__
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
@@ -161,7 +159,6 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 row += 2
 
                 for region in scenario["iam data"].regions:
-
                     if sector == "GMST" and region != "World":
                         continue
 
@@ -171,8 +168,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                     dataframe = iam_data.sel(
                         variables=[
-                            v for v in variables
-                            if v in iam_data.variables.values
+                            v for v in variables if v in iam_data.variables.values
                         ],
                         region=region,
                         year=[y for y in iam_data.coords["year"].values if y <= 2100],
@@ -292,7 +288,6 @@ def generate_change_report(source, version, source_type, system_model):
     worksheet.column_dimensions = dim_holder
 
     for filepath in log_filepaths:
-
         # check if log ile exists
         if not os.path.isfile(filepath + ".log"):
             continue

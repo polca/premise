@@ -8,21 +8,13 @@ of the wurst database to the newly created cement markets.
 
 """
 
-import yaml
 import logging.config
 from collections import defaultdict
 
-from .transformation import (
-    BaseTransformation,
-    Dict,
-    IAMDataCollection,
-    List,
-    np,
-    ws,
-)
-from .utils import (
-    DATA_DIR,
-)
+import yaml
+
+from .transformation import BaseTransformation, Dict, IAMDataCollection, List, np, ws
+from .utils import DATA_DIR
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -64,7 +56,9 @@ class Cement(BaseTransformation):
         version: str,
         system_model: str,
     ):
-        super().__init__(database, iam_data, model, pathway, year, version, system_model)
+        super().__init__(
+            database, iam_data, model, pathway, year, version, system_model
+        )
         self.version = version
 
     def fetch_current_energy_details(self, dataset):
@@ -88,7 +82,6 @@ class Cement(BaseTransformation):
                 exc["name"] in self.cement_fuels_map["cement"]
                 and exc["type"] == "technosphere"
             ):
-
                 if exc["name"] not in d_fuels:
                     d_fuels[exc["name"]] = {
                         "amount": exc["amount"],
@@ -161,7 +154,6 @@ class Cement(BaseTransformation):
         return bio_co2 / (bio_co2 + non_bio_co2)
 
     def rescale_fuel_inputs(self, dataset, scaling_factor, energy_details):
-
         if scaling_factor != 1:
             for exc in dataset["exchanges"]:
                 if exc["name"] in self.cement_fuels_map["cement"]:
@@ -184,11 +176,9 @@ class Cement(BaseTransformation):
         return dataset
 
     def rescale_emissions(self, dataset, energy_details, scaling_factor):
-
         if scaling_factor != 1:
             for exc in dataset["exchanges"]:
                 if exc["name"].lower().startswith("carbon dioxide"):
-
                     if "non-fossil" in exc["name"].lower():
                         dataset["log parameters"].update(
                             {
@@ -232,7 +222,6 @@ class Cement(BaseTransformation):
         else:
             for exc in dataset["exchanges"]:
                 if exc["name"].lower().startswith("carbon dioxide"):
-
                     if "non-fossil" in exc["name"].lower():
                         dataset["log parameters"].update(
                             {
@@ -267,7 +256,6 @@ class Cement(BaseTransformation):
         )
 
         for region, dataset in d_act_clinker.items():
-
             # calculate current thermal energy consumption per kg clinker
             energy_details = self.fetch_current_energy_details(dataset)
             current_energy_input_per_ton_clinker = sum(

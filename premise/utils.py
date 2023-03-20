@@ -7,14 +7,14 @@ import os
 import sys
 from copy import deepcopy
 from functools import lru_cache
+from itertools import groupby
+from operator import itemgetter
 from pathlib import Path
 from typing import Dict, List, Tuple
 
 import pandas as pd
 import xarray as xr
 import yaml
-from itertools import groupby
-from operator import itemgetter
 from bw2data import databases
 from bw2io.importers.base_lci import LCIImporter
 from constructive_geometries import resolved_row
@@ -51,7 +51,9 @@ class HiddenPrints:
         sys.stdout = self._original_stdout
 
 
-def eidb_label(model: str, scenario: str, year: int, version: str, system_model: str = "cutoff") -> str:
+def eidb_label(
+    model: str, scenario: str, year: int, version: str, system_model: str = "cutoff"
+) -> str:
     """
     Return a label to name a scenario.
     :param model: IAM model
@@ -232,7 +234,12 @@ def relink_technosphere_exchanges(
             if dataset["location"] in possible_locations:
                 cache[dataset["location"]] = {
                     model: {
-                        (exc["name"], exc["product"], exc["location"], exc["unit"],): [
+                        (
+                            exc["name"],
+                            exc["product"],
+                            exc["location"],
+                            exc["unit"],
+                        ): [
                             (e["name"], e["product"], e["location"], e["unit"], s)
                             for e, s in zip(
                                 [new_exchange(exc, dataset["location"], 1.0)], [1.0]

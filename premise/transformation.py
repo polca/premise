@@ -5,6 +5,7 @@ It provides basic methods usually used for electricity, cement, steel sector tra
 on the wurst database.
 """
 
+import logging.config
 import uuid
 from collections import defaultdict
 from itertools import product
@@ -12,18 +13,14 @@ from typing import Any, Dict, List, Set, Tuple, Union
 
 import numpy as np
 import wurst
+import yaml
 from wurst import searching as ws
 from wurst import transformations as wt
 
 from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
 from .geomap import Geomap
-from .utils import get_fuel_properties, relink_technosphere_exchanges, DATA_DIR
-
-
-import logging.config
-import yaml
-
+from .utils import DATA_DIR, get_fuel_properties, relink_technosphere_exchanges
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -263,7 +260,6 @@ class BaseTransformation:
 
         # if fuel input other than MJ
         if fuel_unit in ["kilogram", "cubic meter", "kilowatt hour"]:
-
             try:
                 lhv = self.fuels_specs[self.fuel_map_reverse[fuel_name]]["lhv"]
             except KeyError:
@@ -358,7 +354,6 @@ class BaseTransformation:
     def region_to_proxy_dataset_mapping(
         self, name: str, ref_prod: str, regions: List[str] = None
     ) -> Dict[str, str]:
-
         d_map = {
             self.ecoinvent_to_iam_loc[d["location"]]: d["location"]
             for d in ws.get_many(

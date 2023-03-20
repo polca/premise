@@ -118,9 +118,9 @@ def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
         for ds in data:
             if (ds["name"], ds["reference product"], ds["location"]) in duplicates:
                 if (
-                        ds["name"],
-                        ds["reference product"],
-                        ds["location"],
+                    ds["name"],
+                    ds["reference product"],
+                    ds["location"],
                 ) not in duplicates_added:
                     duplicates_added.append(
                         (ds["name"], ds["reference product"], ds["location"])
@@ -132,7 +132,7 @@ def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
 
 
 def check_for_datasets_compliance_with_consequential_database(
-        datasets: List[dict], blacklist: List[dict]
+    datasets: List[dict], blacklist: List[dict]
 ):
     """
     Check whether the datasets to import are compliant with the consequential database.
@@ -152,7 +152,8 @@ def check_for_datasets_compliance_with_consequential_database(
     datasets = [
         d
         for d in datasets
-        if (d["name"], d["reference product"], d["unit"]) not in tuples_of_blacklisted_datasets
+        if (d["name"], d["reference product"], d["unit"])
+        not in tuples_of_blacklisted_datasets
     ]
 
     # also, we want to change exchanges that do not
@@ -162,7 +163,11 @@ def check_for_datasets_compliance_with_consequential_database(
     for ds in datasets:
         for exchange in ds["exchanges"]:
             if exchange["type"] == "technosphere":
-                exc_id = (exchange["name"], exchange.get("reference product"), exchange["unit"])
+                exc_id = (
+                    exchange["name"],
+                    exchange.get("reference product"),
+                    exchange["unit"],
+                )
 
                 if exc_id in tuples_of_blacklisted_datasets:
                     for d in blacklist:
@@ -191,19 +196,18 @@ class BaseInventoryImport:
     """
 
     def __init__(
-            self,
-            database: List[dict],
-            version_in: str,
-            version_out: str,
-            path: Union[str, Path],
-            system_model: str,
+        self,
+        database: List[dict],
+        version_in: str,
+        version_out: str,
+        path: Union[str, Path],
+        system_model: str,
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
         self.db_code = [x["code"] for x in self.database]
         self.db_names = [
-            (x["name"], x["reference product"], x["location"])
-            for x in self.database
+            (x["name"], x["reference product"], x["location"]) for x in self.database
         ]
         self.version_in = version_in
         self.version_out = version_out
@@ -272,7 +276,7 @@ class BaseInventoryImport:
                 (x["name"].lower(), x["reference product"].lower(), x["location"])
                 for x in self.import_db.data
                 if (x["name"].lower(), x["reference product"].lower(), x["location"])
-                   in self.db_names
+                in self.db_names
             ]
         )
 
@@ -324,8 +328,8 @@ class BaseInventoryImport:
         results = []
         for act in self.import_db.data:
             if (
-                    len([a for a in act["exchanges"] if label in a and a[label] == value])
-                    == 0
+                len([a for a in act["exchanges"] if label in a and a[label] == value])
+                == 0
             ):
                 results.append(act)
 
@@ -490,7 +494,6 @@ class BaseInventoryImport:
                                     else:
                                         print(
                                             f"Could not find a biosphere flow for {key}."
-
                                         )
 
                         except KeyError:
@@ -643,19 +646,19 @@ class VariousVehicles(BaseInventoryImport):
     """
 
     def __init__(
-            self,
-            database: List[dict],
-            version_in: str,
-            version_out: str,
-            path: Union[str, Path],
-            year: int,
-            regions: List[str],
-            model: str,
-            scenario: str,
-            vehicle_type: str,
-            relink: bool = False,
-            has_fleet: bool = False,
-            system_model: str = "cutoff",
+        self,
+        database: List[dict],
+        version_in: str,
+        version_out: str,
+        path: Union[str, Path],
+        year: int,
+        regions: List[str],
+        model: str,
+        scenario: str,
+        vehicle_type: str,
+        relink: bool = False,
+        has_fleet: bool = False,
+        system_model: str = "cutoff",
     ) -> None:
         super().__init__(database, version_in, version_out, path, system_model)
         self.year = year
@@ -737,7 +740,6 @@ class AdditionalInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         if self.version_in != self.version_out:
-
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
             )

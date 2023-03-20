@@ -20,7 +20,6 @@ from cryptography.fernet import Fernet
 from . import DATA_DIR, VARIABLES_DIR
 from .marginal_mixes import consequential_method
 
-
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
@@ -77,7 +76,6 @@ def get_lifetime(list_tech: List) -> np.array:
 
 
 def get_gains_IAM_data(model, gains_scenario):
-
     filepath = Path(
         DATA_DIR / "GAINS_emission_factors" / "iam_data" / gains_scenario
     ).glob("*")
@@ -85,7 +83,6 @@ def get_gains_IAM_data(model, gains_scenario):
     list_arrays = []
 
     for file in filepath:
-
         df = pd.read_csv(file)
         df = df.rename(columns={"Region": "region", "EMF30 Sector": "sector"})
         df = df.rename(columns={str(v): int(v) for v in range(1990, 2055, 5)})
@@ -1034,7 +1031,6 @@ class IAMDataCollection:
             }
 
             for fuel_type, fuel_list in fuel_types.items():
-
                 data_to_return.loc[
                     dict(
                         variables=[

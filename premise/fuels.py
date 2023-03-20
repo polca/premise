@@ -9,6 +9,8 @@ from typing import Union
 import yaml
 from numpy import ndarray
 
+from . import VARIABLES_DIR
+from .inventory_imports import get_biosphere_code
 from .transformation import (
     Any,
     BaseTransformation,
@@ -26,8 +28,6 @@ from .transformation import (
     wurst,
 )
 from .utils import DATA_DIR, get_crops_properties
-from .inventory_imports import get_biosphere_code
-from . import VARIABLES_DIR
 
 REGION_CLIMATE_MAP = VARIABLES_DIR / "iam_region_to_climate.yaml"
 FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"
@@ -177,7 +177,9 @@ def is_fuel_production(name):
     return any(i in name for i in ["Ethanol production", "Biodiesel production"])
 
 
-def update_co2_emissions(dataset: dict, amount_non_fossil_co2: float, biosphere_flows: dict) -> dict:
+def update_co2_emissions(
+    dataset: dict, amount_non_fossil_co2: float, biosphere_flows: dict
+) -> dict:
     """Update fossil and non-fossil CO2 emissions of the dataset."""
     # Test for the presence of a fossil CO2 flow
     if not any(
@@ -209,13 +211,8 @@ def update_co2_emissions(dataset: dict, amount_non_fossil_co2: float, biosphere_
         "input": (
             "biosphere3",
             biosphere_flows[
-                (
-                    "Carbon dioxide, non-fossil",
-                    "air",
-                    "unspecified",
-                    "kilogram"
-                )
-            ]
+                ("Carbon dioxide, non-fossil", "air", "unspecified", "kilogram")
+            ],
         ),
     }
 
@@ -264,7 +261,9 @@ class Fuels(BaseTransformation):
         version: str,
         system_model: str,
     ):
-        super().__init__(database, iam_data, model, pathway, year, version, system_model)
+        super().__init__(
+            database, iam_data, model, pathway, year, version, system_model
+        )
         # ecoinvent version
         self.version = version
         # list of fuel types
@@ -328,7 +327,14 @@ class Fuels(BaseTransformation):
         ecoinvent_regions = self.geo.iam_to_ecoinvent_location(loc)
         # search first for suppliers in `loc`, but also in the ecoinvent
         # locations to are comprised in `loc`, and finally in `RER`, `RoW` and `GLO`,
-        possible_locations = [[loc], ecoinvent_regions, ["RER"], ["RoW"], ["GLO"], ["CH"]]
+        possible_locations = [
+            [loc],
+            ecoinvent_regions,
+            ["RER"],
+            ["RoW"],
+            ["GLO"],
+            ["CH"],
+        ]
         suppliers, counter = [], 0
 
         # while we do not find a result
@@ -383,11 +389,14 @@ class Fuels(BaseTransformation):
         hydrogen_sources = fetch_mapping(HYDROGEN_SOURCES)
 
         for hydrogen_type, hydrogen_vars in hydrogen_sources.items():
-
             hydrogen_activity_name = hydrogen_sources[hydrogen_type].get("name")
             hydrogen_efficiency_variable = hydrogen_sources[hydrogen_type].get("var")
-            hydrogen_feedstock_name = hydrogen_sources[hydrogen_type].get("feedstock name")
-            hydrogen_feedstock_unit = hydrogen_sources[hydrogen_type].get("feedstock unit")
+            hydrogen_feedstock_name = hydrogen_sources[hydrogen_type].get(
+                "feedstock name"
+            )
+            hydrogen_feedstock_unit = hydrogen_sources[hydrogen_type].get(
+                "feedstock unit"
+            )
             efficiency_floor_value = hydrogen_sources[hydrogen_type].get("floor value")
 
             new_ds = self.fetch_proxies(
@@ -397,13 +406,15 @@ class Fuels(BaseTransformation):
             )
 
             for region, dataset in new_ds.items():
-
                 # Fetch the efficiency change of the
                 # electrolysis process over time,
                 # according to the IAM scenario,
                 # if available.
 
-                if hydrogen_efficiency_variable in self.iam_data.efficiency.variables.values:
+                if (
+                    hydrogen_efficiency_variable
+                    in self.iam_data.efficiency.variables.values
+                ):
                     # Find scaling factor compared to 2020
                     scaling_factor = 1 / self.find_iam_efficiency_change(
                         variable=hydrogen_efficiency_variable, location=region
@@ -422,7 +433,9 @@ class Fuels(BaseTransformation):
                         dataset["log parameters"] = {}
 
                     dataset["log parameters"].update(
-                        {"initial energy input for hydrogen production": energy_consumption}
+                        {
+                            "initial energy input for hydrogen production": energy_consumption
+                        }
                     )
 
                     # new energy consumption
@@ -433,7 +446,6 @@ class Fuels(BaseTransformation):
                         energy_consumption = efficiency_floor_value
 
                 else:
-
                     if hydrogen_type == "from electrolysis":
                         # get the electricity consumption
                         energy_consumption = (
@@ -443,16 +455,15 @@ class Fuels(BaseTransformation):
                         energy_consumption = None
 
                 if energy_consumption:
-
                     # remove energy inputs
                     dataset["exchanges"] = [
                         exc
                         for exc in dataset["exchanges"]
                         if not (
-                                exc["unit"] == hydrogen_feedstock_unit
-                                and hydrogen_feedstock_name in exc["name"]
-                                and exc["type"] == "technosphere"
-                            )
+                            exc["unit"] == hydrogen_feedstock_unit
+                            and hydrogen_feedstock_name in exc["name"]
+                            and exc["type"] == "technosphere"
+                        )
                     ]
 
                     energy_suppliers = self.find_suppliers(
@@ -536,7 +547,6 @@ class Fuels(BaseTransformation):
                 for vehicle, config in supply_chain_scenarios.items():
                     for state in config["state"]:
                         for distance in config["distance"]:
-
                             # dataset creation
                             dataset: dict[
                                 str,
@@ -1190,7 +1200,6 @@ class Fuels(BaseTransformation):
                                     # store amount
                                     co2_amount = exc["amount"]
 
-
                                     try:
                                         # add new exchanges
                                         dac_suppliers = self.find_suppliers(
@@ -1218,8 +1227,6 @@ class Fuels(BaseTransformation):
                                             }
                                             for supplier, share in dac_suppliers.items()
                                         )
-
-
 
                             for exc in ws.technosphere(dataset):
                                 if (
@@ -1306,7 +1313,6 @@ class Fuels(BaseTransformation):
 
                     for exc in ws.technosphere(dataset):
                         if "carbon dioxide, captured from atmosphere" in exc["name"]:
-
                             # store amount
                             co2_amount = exc["amount"]
 
@@ -1314,7 +1320,7 @@ class Fuels(BaseTransformation):
                                 # add new exchanges
                                 dac_suppliers = self.find_suppliers(
                                     name="carbon dioxide, captured from atmosphere, with a solvent-based direct air capture "
-                                        "system, 1MtCO2, with heat pump heat, and grid electricity",
+                                    "system, 1MtCO2, with heat pump heat, and grid electricity",
                                     ref_prod="carbon dioxide, captured from atmosphere",
                                     unit="kilogram",
                                     loc=region,
@@ -1452,7 +1458,7 @@ class Fuels(BaseTransformation):
                             "non-urban air or from high stacks",
                             "kilogram",
                         )
-                    ]
+                    ],
                 ),
                 "categories": (
                     "air",
@@ -1557,8 +1563,7 @@ class Fuels(BaseTransformation):
                 l
                 for l in self.fuel_labels
                 if crop_type.lower() in l.lower()
-                and any(i.lower() in l.lower()
-                for i in ("biodiesel", "bioethanol"))
+                and any(i.lower() in l.lower() for i in ("biodiesel", "bioethanol"))
             ][0]
         except IndexError:
             return None
@@ -1715,7 +1720,9 @@ class Fuels(BaseTransformation):
         ]
 
         fuel_share = (
-            self.iam_data.fuel_markets.sel(region=region, variables=fuel, year=self.year)
+            self.iam_data.fuel_markets.sel(
+                region=region, variables=fuel, year=self.year
+            )
             / self.iam_data.fuel_markets.sel(
                 region=region, variables=relevant_variables, year=self.year
             ).sum(dim="variables")
@@ -1821,7 +1828,9 @@ class Fuels(BaseTransformation):
                 if amount_non_fossil_co2 > 0 and not any(
                     x in dataset["name"].lower() for x in list_items_to_ignore
                 ):
-                    update_co2_emissions(dataset, amount_non_fossil_co2, self.biosphere_flows)
+                    update_co2_emissions(
+                        dataset, amount_non_fossil_co2, self.biosphere_flows
+                    )
 
                     self.write_log(dataset, status="updated")
 
@@ -1853,7 +1862,7 @@ class Fuels(BaseTransformation):
             "low pressure",
             "pressure, vehicle grade",
             "burned",
-            "market"
+            "market",
         ]
 
         while not suppliers:
@@ -1873,11 +1882,11 @@ class Fuels(BaseTransformation):
                         *[ws.contains("reference product", item) for item in look_for]
                     ),
                     ws.exclude(
-                        ws.either(*[ws.contains("reference product", x) for x in blacklist])
+                        ws.either(
+                            *[ws.contains("reference product", x) for x in blacklist]
+                        )
                     ),
-                    ws.exclude(
-                        ws.either(*[ws.contains("name", x) for x in blacklist])
-                    ),
+                    ws.exclude(ws.either(*[ws.contains("name", x) for x in blacklist])),
                 )
             )
             counter += 1

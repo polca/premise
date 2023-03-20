@@ -266,7 +266,9 @@ def create_fleet_vehicles(
                         }
                     ],
                     "code": str(uuid.uuid4().hex),
-                    "database": eidb_label(model, scenario, year, version, system_model),
+                    "database": eidb_label(
+                        model, scenario, year, version, system_model
+                    ),
                     "comment": f"Fleet-average vehicle for the year {year}, "
                     f"for the region {region}.",
                 }
@@ -346,7 +348,9 @@ def create_fleet_vehicles(
                                     }
                                 ],
                                 "code": str(uuid.uuid4().hex),
-                                "database": eidb_label(model, scenario, year, version, system_model),
+                                "database": eidb_label(
+                                    model, scenario, year, version, system_model
+                                ),
                                 "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
                             }
 
@@ -430,7 +434,9 @@ class Transport(BaseTransformation):
         vehicle_type: str,
         has_fleet: bool,
     ):
-        super().__init__(database, iam_data, model, pathway, year, version, system_model)
+        super().__init__(
+            database, iam_data, model, pathway, year, version, system_model
+        )
         self.version = version
         self.relink = relink
         self.vehicle_type = vehicle_type

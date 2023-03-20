@@ -4,8 +4,10 @@ Integrates projections regarding direct air capture and storage.
 
 import copy
 import logging.config
-from .utils import DATA_DIR
+
 import yaml
+
+from .utils import DATA_DIR
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -55,7 +57,9 @@ class DirectAirCapture(BaseTransformation):
         version: str,
         system_model: str,
     ):
-        super().__init__(database, iam_data, model, pathway, year, version, system_model)
+        super().__init__(
+            database, iam_data, model, pathway, year, version, system_model
+        )
         self.database = database
         self.iam_data = iam_data
         self.model = model
@@ -123,7 +127,6 @@ class DirectAirCapture(BaseTransformation):
         # get original dataset
         for technology, ds_list in self.dac_plants.items():
             for ds_name in ds_list:
-
                 original_ds = self.fetch_proxies(
                     name=ds_name, ref_prod="carbon dioxide", relink=False
                 )
@@ -133,13 +136,14 @@ class DirectAirCapture(BaseTransformation):
 
                 # loop through heat sources
                 for heat_type, activities in heat_map_ds.items():
-
-                    if self.system_model == "consequential" and heat_type == "waste heat":
+                    if (
+                        self.system_model == "consequential"
+                        and heat_type == "waste heat"
+                    ):
                         continue
 
                     new_ds = copy.deepcopy(original_ds)
                     for _, dataset in new_ds.items():
-
                         dataset["name"] += f", with {heat_type}, and grid electricity"
                         dataset["code"] = str(uuid.uuid4().hex)
                         dataset["comment"] += activities["description"]
@@ -228,7 +232,6 @@ class DirectAirCapture(BaseTransformation):
             "daccs_sorbent": 0.18,
         }
 
-
         for region, dataset in datasets.items():
             # fetch cumulated deployment of DAC from IAM file
             if "dac_solvent" in self.iam_data.production_volumes.variables.values:
@@ -279,19 +282,13 @@ class DirectAirCapture(BaseTransformation):
                 technology
             ]
 
-            scaling_factor_infra = (
-                1 - theoretical_min_infra[technology]
-            ) * np.power(
+            scaling_factor_infra = (1 - theoretical_min_infra[technology]) * np.power(
                 (1 - learning_rates_infra[technology]),
                 np.log2(cumulated_deployment / initial_deployment),
-            ) + theoretical_min_infra[
-                technology
-            ]
+            ) + theoretical_min_infra[technology]
 
             current_energy_inputs = sum(
-                e["amount"]
-                for e in dataset["exchanges"]
-                if e["unit"] == "megajoule"
+                e["amount"] for e in dataset["exchanges"] if e["unit"] == "megajoule"
             )
             current_energy_inputs += sum(
                 e["amount"] * 3.6
@@ -322,9 +319,7 @@ class DirectAirCapture(BaseTransformation):
                 )
 
             new_energy_inputs = sum(
-                e["amount"]
-                for e in dataset["exchanges"]
-                if e["unit"] == "megajoule"
+                e["amount"] for e in dataset["exchanges"] if e["unit"] == "megajoule"
             )
             new_energy_inputs += sum(
                 e["amount"] * 3.6

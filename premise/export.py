@@ -31,7 +31,7 @@ FILEPATH_SIMAPRO_COMPARTMENTS = (
 )
 OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
 
-#current working directory
+# current working directory
 DIR_DATAPACKAGE = Path.cwd() / "export" / "datapackage"
 DIR_DATAPACKAGE_TEMP = Path.cwd() / "export" / "temp"
 
@@ -285,7 +285,6 @@ def create_codes_index_of_biosphere_flows_matrix(version):
 
 
 def create_index_of_biosphere_flows_matrix(version):
-
     if version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     else:
@@ -376,7 +375,6 @@ def get_outdated_flows():
         outdated_flows = yaml.safe_load(stream)
 
     return outdated_flows
-
 
 
 outdated_flows = get_outdated_flows()
@@ -831,7 +829,9 @@ def generate_scenario_difference_file(
     return df, new_db, list_acts
 
 
-def generate_superstructure_db(origin_db, scenarios, db_name, filepath, version) -> List[dict]:
+def generate_superstructure_db(
+    origin_db, scenarios, db_name, filepath, version
+) -> List[dict]:
     """
     Build a superstructure database from a list of databases
     :param origin_db: the original database
@@ -953,14 +953,18 @@ class Export:
 
     """
 
-    def __init__(self, db, model=None, scenario=None, year=None, filepath=None, version=None):
+    def __init__(
+        self, db, model=None, scenario=None, year=None, filepath=None, version=None
+    ):
         self.db = db
         self.model = model
         self.scenario = scenario
         self.year = year
         self.filepath = filepath
         self.version = version
-        self.bio_codes = self.rev_index(create_codes_index_of_biosphere_flows_matrix(self.version))
+        self.bio_codes = self.rev_index(
+            create_codes_index_of_biosphere_flows_matrix(self.version)
+        )
         self.bio_dict = biosphere_flows_dictionary(self.version)
 
     def create_A_matrix_coordinates(self):
@@ -1110,14 +1114,15 @@ class Export:
 
     @staticmethod
     def create_rev_index_of_B_matrix(version):
-
         if version == "3.9":
             fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
         else:
             fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
         if not Path(fp).is_file():
-            raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
+            raise FileNotFoundError(
+                "The dictionary of biosphere flows could not be found."
+            )
 
         csv_dict = {}
 
@@ -1688,14 +1693,15 @@ class Export:
         }
 
     def create_names_and_indices_of_B_matrix(self, version):
-
         if version == "3.9":
             fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
         else:
             fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
         if not Path(fp).is_file():
-            raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
+            raise FileNotFoundError(
+                "The dictionary of biosphere flows could not be found."
+            )
 
         csv_dict = {}
 

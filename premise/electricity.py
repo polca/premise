@@ -10,12 +10,14 @@ the newly created electricity markets.
 """
 
 import csv
+import logging.config
 import re
 from collections import defaultdict
 
 import yaml
-import logging.config
 
+from . import VARIABLES_DIR
+from .export import biosphere_flows_dictionary
 from .transformation import (
     BaseTransformation,
     Dict,
@@ -31,15 +33,7 @@ from .transformation import (
     ws,
     wurst,
 )
-from .utils import (
-    DATA_DIR,
-    eidb_label,
-    get_efficiency_ratio_solar_photovoltaics,
-)
-
-from .export import biosphere_flows_dictionary
-
-from . import VARIABLES_DIR
+from .utils import DATA_DIR, eidb_label, get_efficiency_ratio_solar_photovoltaics
 
 PRODUCTION_PER_TECH = (
     DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
@@ -210,7 +204,9 @@ class Electricity(BaseTransformation):
         version: str,
         system_model: str,
     ) -> None:
-        super().__init__(database, iam_data, model, pathway, year, version, system_model)
+        super().__init__(
+            database, iam_data, model, pathway, year, version, system_model
+        )
         mapping = InventorySet(self.database)
         self.powerplant_map = mapping.generate_powerplant_map()
         # reverse dictionary of self.powerplant_map
@@ -344,21 +340,20 @@ class Electricity(BaseTransformation):
             # over a long period of time (e.g., buildings, BEVs, etc.)
 
             if self.system_model == "consequential":
-                periods = [0, ]
+                periods = [
+                    0,
+                ]
             else:
                 periods = [0, 20, 40, 60]
 
             for period in periods:
-
                 if self.system_model == "consequential":
                     electricity_mix = dict(
                         zip(
                             self.iam_data.electricity_markets.variables.values,
                             self.iam_data.electricity_markets.sel(
-                                region=region,
-                                year=self.year
-                            )
-                            .values,
+                                region=region, year=self.year
+                            ).values,
                         )
                     )
 
@@ -439,12 +434,12 @@ class Electricity(BaseTransformation):
                             "input": (
                                 "biosphere3",
                                 self.biosphere_dict[
-                                (
-                                    "Sulfur hexafluoride",
-                                    "air",
-                                    "non-urban air or from high stacks",
-                                    "kilogram",
-                                )
+                                    (
+                                        "Sulfur hexafluoride",
+                                        "air",
+                                        "non-urban air or from high stacks",
+                                        "kilogram",
+                                    )
                                 ],
                             ),
                             "name": "Sulfur hexafluoride",
@@ -607,7 +602,9 @@ class Electricity(BaseTransformation):
             # over a long period of time (e.g., buildings, BEVs, etc.)
 
             if self.system_model == "consequential":
-                periods = [0, ]
+                periods = [
+                    0,
+                ]
             else:
                 periods = [0, 20, 40, 60]
 
@@ -714,7 +711,7 @@ class Electricity(BaseTransformation):
                                     "non-urban air or from high stacks",
                                     "kilogram",
                                 )
-                            ]
+                            ],
                         ),
                         "name": "Sulfur hexafluoride",
                         "unit": "kilogram",
@@ -851,7 +848,9 @@ class Electricity(BaseTransformation):
                         raise
 
             if self.system_model == "consequential":
-                periods = [0, ]
+                periods = [
+                    0,
+                ]
             else:
                 periods = [0, 20, 40, 60]
 
@@ -861,10 +860,8 @@ class Electricity(BaseTransformation):
                         zip(
                             self.iam_data.electricity_markets.variables.values,
                             self.iam_data.electricity_markets.sel(
-                                region=region,
-                                year=self.year
-                            )
-                            .values,
+                                region=region, year=self.year
+                            ).values,
                         )
                     )
 
@@ -1238,7 +1235,13 @@ class Electricity(BaseTransformation):
                 "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
                 "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
                 "unit": "kilogram",
-                "database": eidb_label(self.model, self.scenario, self.year, self.version, self.system_model),
+                "database": eidb_label(
+                    self.model,
+                    self.scenario,
+                    self.year,
+                    self.version,
+                    self.system_model,
+                ),
                 "code": str(uuid.uuid4().hex),
                 "exchanges": [
                     {
@@ -1603,12 +1606,11 @@ class Electricity(BaseTransformation):
             "market for electricity",
             "electricity, high voltage, import",
             "electricity, high voltage, production mix",
-            #"electricity, high voltage, residual mix",
-            #"electricity, medium voltage, residual mix",
-            #"electricity, low voltage, residual mix",
-            #"electricity voltage transformation, residual mix, from high to medium voltage",
-            #"electricity voltage transformation, residual mix, from medium to low voltage"
-
+            # "electricity, high voltage, residual mix",
+            # "electricity, medium voltage, residual mix",
+            # "electricity, low voltage, residual mix",
+            # "electricity voltage transformation, residual mix, from high to medium voltage",
+            # "electricity voltage transformation, residual mix, from medium to low voltage"
         ]
 
         # we want to preserve some electricity-related datasets

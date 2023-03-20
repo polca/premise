@@ -12,8 +12,10 @@ def test_ei_db_label():
     year = 2012
     version = "3.9"
     system_model = "cutoff"
-    assert eidb_label(model, pathway, year, version, system_model) == f"ecoinvent_{system_model}_{version}_{model}_{pathway}_{year}"
-
+    assert (
+        eidb_label(model, pathway, year, version, system_model)
+        == f"ecoinvent_{system_model}_{version}_{model}_{pathway}_{year}"
+    )
 
 
 def test_crops_properties():

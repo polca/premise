@@ -84,7 +84,9 @@ def get_biosphere_flow_uuid(version: str) -> Dict[Tuple[str, str, str, str], str
     return csv_dict
 
 
-def get_biosphere_flow_categories(version: str) -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
+def get_biosphere_flow_categories(
+    version: str,
+) -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
     """
     Retrieve a dictionary with biosphere flow uuids and categories.
 

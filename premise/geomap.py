@@ -3,11 +3,11 @@ geomap.py contains the Geomap class that allows to find equivalents between
 the IAM locations and ecoinvent locations.
 """
 
+import json
 from typing import Dict, List, Union
 
 import yaml
 from wurst import geomatcher
-import json
 
 from . import DATA_DIR, VARIABLES_DIR
 
