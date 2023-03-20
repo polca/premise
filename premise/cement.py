@@ -448,9 +448,9 @@ class Cement(BaseTransformation):
         :return: Does not return anything. Modifies in place.
         """
 
-        print("\nStart integration of cement data...\n")
+        print("Start integration of cement data...\n")
 
-        print("\nCreate new clinker production datasets and delete old datasets")
+        print("Create new clinker production datasets and delete old datasets")
 
         clinker_prod_datasets = list(self.build_clinker_production_datasets().values())
         self.database.extend(clinker_prod_datasets)
@@ -459,7 +459,7 @@ class Cement(BaseTransformation):
         for new_dataset in clinker_prod_datasets:
             self.write_log(new_dataset)
 
-        print("\nCreate new clinker market datasets and delete old datasets")
+        print("Create new clinker market datasets and delete old datasets")
         clinker_market_datasets = list(
             self.fetch_proxies(
                 name="market for clinker",
@@ -474,7 +474,7 @@ class Cement(BaseTransformation):
         for new_dataset in clinker_market_datasets:
             self.write_log(new_dataset)
 
-        print("\nCreate new cement market datasets")
+        print("Create new cement market datasets")
 
         # cement markets
         markets = ws.get_many(
@@ -501,7 +501,7 @@ class Cement(BaseTransformation):
                 self.write_log(new_dataset)
 
         print(
-            "\nCreate new cement production datasets and "
+            "Create new cement production datasets and "
             "adjust electricity consumption"
         )
         # cement production

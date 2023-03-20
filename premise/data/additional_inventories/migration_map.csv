@@ -370,6 +370,8 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 37;39;market for internal combustion engine, passenger car;internal combustion engine, for passenger car;GLO;market for internal combustion engine, passenger car;internal combustion engine, passenger car;GLO
 38;39;acrylic varnish production, product in 87.5% solution state;acrylic varnish, without water, in 87.5% solution state;GLO;acrylic varnish production, with water, in 53% solution state;acrylic varnish, with water, in 53% solution state;GLO
 38;39;acrylic varnish production, product in 87.5% solution state;acrylic varnish, without water, in 87.5% solution state;RER;acrylic varnish production, with water, in 53% solution state;acrylic varnish, with water, in 53% solution state;RER
+37;39;acrylic varnish production, product in 87.5% solution state;acrylic varnish, without water, in 87.5% solution state;GLO;acrylic varnish production, with water, in 53% solution state;acrylic varnish, with water, in 53% solution state;GLO
+37;39;acrylic varnish production, product in 87.5% solution state;acrylic varnish, without water, in 87.5% solution state;RER;acrylic varnish production, with water, in 53% solution state;acrylic varnish, with water, in 53% solution state;RER
 38;39;battery production, NCA, Li-ion, rechargeable, prismatic;battery, Li-ion, NCA, rechargeable, prismatic;CN;battery production, Li-ion, NCA, rechargeable, prismatic;battery, Li-ion, NCA, rechargeable, prismatic;CN
 38;39;battery production, NCA, Li-ion, rechargeable, prismatic;battery, Li-ion, NCA, rechargeable, prismatic;GLO;battery production, Li-ion, NCA, rechargeable, prismatic;battery, Li-ion, NCA, rechargeable, prismatic;GLO
 38;39;battery production, NMC811, Li-ion, rechargeable, prismatic;battery, Li-ion, NMC811, rechargeable, prismatic;CN;battery production, Li-ion, NMC811, rechargeable, prismatic;battery, Li-ion, NMC811, rechargeable, prismatic;CN
@@ -531,6 +533,7 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 38;39;natural gas, burned in gas turbine, for compressor station;electricity, medium voltage;RU;natural gas, burned in gas turbine;natural gas, burned in gas turbine;RU
 38;39;palm oil, refined, to generic market for vegetable oil;vegetable oil, refined;GLO;palm oil, refined, to generic market for vegetable oil, refined;vegetable oil, refined;GLO
 37;39;market for concrete, normal;concrete, normal;RoW;market for concrete, normal strength;concrete, normal strength;RoW
+37;39;market for concrete, normal;concrete, normal;CH;market for concrete, normal strength;concrete, normal strength;CH
 37;39;treatment of wastewater, average, capacity 1E9l/year;wastewater, average;RoW;treatment of wastewater, average, wastewater treatment;wastewater, average;RoW
 37;39;treatment of wastewater, average, capacity 1E9l/year;wastewater, average;CH;treatment of wastewater, average, wastewater treatment;wastewater, average;CH
 37;39;treatment of wastewater, average, capacity 1E9l/year;wastewater, average;Europe without Switzerland;treatment of wastewater, average, wastewater treatment;wastewater, average;Europe without Switzerland
@@ -540,6 +543,8 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 38;39;electricity, high voltage, production mix;electricity, high voltage;CN-QH;market group for electricity, high voltage;electricity, high voltage;CN
 38;39;treatment of wastewater, unpolluted, capacity 5E9l/year;wastewater, unpolluted;RoW;treatment of wastewater, unpolluted, wastewater treatment;wastewater, unpolluted;RoW
 38;39;treatment of wastewater, unpolluted, capacity 5E9l/year;wastewater, unpolluted;CH;treatment of wastewater, unpolluted, wastewater treatment;wastewater, unpolluted;CH
+37;39;treatment of wastewater, unpolluted, capacity 5E9l/year;wastewater, unpolluted;RoW;treatment of wastewater, unpolluted, wastewater treatment;wastewater, unpolluted;RoW
+37;39;treatment of wastewater, unpolluted, capacity 5E9l/year;wastewater, unpolluted;CH;treatment of wastewater, unpolluted, wastewater treatment;wastewater, unpolluted;CH
 38;39;market for concrete, sole plate and foundation;concrete, sole plate and foundation;CH;market for concrete, 30MPa;concrete, 30MPa;CH
 37;39;market for concrete, sole plate and foundation;concrete, sole plate and foundation;CH;market for concrete, 30MPa;concrete, 30MPa;CH
 37;39;soda production, solvay process;soda ash, light, crystalline, heptahydrate;RER;soda production, solvay process;soda ash, light;RER

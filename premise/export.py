@@ -745,15 +745,28 @@ def generate_scenario_difference_file(
         if s_type == "biosphere":
             database_name = "biosphere3"
 
-            exc_key_supplier = (
-                database_name,
-                bio_dict[
-                    outdated_flows.get(s_name, s_name),
-                    s_cat[0],
-                    s_cat[1] if len(s_cat) > 1 else "unspecified",
-                    s_unit,
-                ],
+            key_exc = (
+                s_name,
+                s_cat[0],
+                s_cat[1] if len(s_cat) > 1 else "unspecified",
+                s_unit,
             )
+
+            if key_exc in bio_dict:
+                exc_key_supplier = (
+                    database_name,
+                    bio_dict[key_exc],
+                )
+            else:
+                exc_key_supplier = (
+                    database_name,
+                    bio_dict[
+                        outdated_flows.get(s_name, s_name),
+                        s_cat[0],
+                        s_cat[1] if len(s_cat) > 1 else "unspecified",
+                        s_unit,
+                    ],
+                )
 
         else:
             database_name = db_name

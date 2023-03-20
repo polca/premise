@@ -343,6 +343,12 @@ premise_emissions:
       region:
         name: region
         description: Region name
+      GAINS model:
+        name: GAINS model
+        description: Name of GAINS model
+      GAINS sector:
+        name: GAINS sector
+        description: Name of GAINS sector variable
       CH4 reduction factor:
         name: CH4 scaling factor
         description: Scaling factor applied on the initial amount of CH4 emissions
@@ -361,15 +367,15 @@ premise_emissions:
         unit: 0-1
       PM1 reduction factor:
         name: PM1 scaling factor
-        description: Scaling factor applied on the initial amount of emissions of fine particles inferior to 1 um.
+        description: Scaling factor applied on the initial amount of emissions of fine particles equal or inferior to 1 um.
         unit: 0-1
       PM10 reduction factor:
         name: PM10 scaling factor
-        description: Scaling factor applied on the initial amount of fine particles inferior to 10 um.
+        description: Scaling factor applied on the initial amount of fine particles inferior to 10 um but superior to 2.5 um.
         unit: 0-1
       PM25 reduction factor:
         name: PM25 scaling factor
-        description: Scaling factor applied on the initial amount of fine particles inferior to 2.5 um.
+        description: Scaling factor applied on the initial amount of fine particles equal or inferior to 2.5 um.
         unit: 0-1
       SO2 reduction factor:
         name: SO2 scaling factor

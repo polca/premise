@@ -88,7 +88,8 @@ class Emissions(BaseTransformation):
                 and ds["location"] in self.gains_EU.coords["region"]
             ):
                 gains_sector = self.rev_gains_map_EU[ds["name"]]
-                self.update_pollutant_emissions(ds, gains_sector, self.gains_EU)
+                self.update_pollutant_emissions(ds, gains_sector, self.gains_EU, model="GAINS-EU")
+                self.write_log(ds, status="updated")
 
         print("Integrating GAINS IAM emission factors.")
         for ds in self.database:
@@ -98,12 +99,12 @@ class Emissions(BaseTransformation):
                 in self.gains_IAM.coords["region"]
             ):
                 gains_sector = self.rev_gains_map_IAM[ds["name"]]
-                self.update_pollutant_emissions(ds, gains_sector, self.gains_IAM)
+                self.update_pollutant_emissions(ds, gains_sector, self.gains_IAM, model="GAINS-IAM")
 
                 self.write_log(ds, status="updated")
 
     def update_pollutant_emissions(
-        self, dataset: dict, sector: str, gains_data: xr.DataArray
+        self, dataset: dict, sector: str, gains_data: xr.DataArray, model: str
     ) -> dict:
         """
         Update pollutant emissions based on GAINS data.
@@ -133,18 +134,22 @@ class Emissions(BaseTransformation):
             )
 
             if scaling_factor != 1.0:
-                if sector not in exc.get("comment", ""):
-                    exc["comment"] = (
-                        f"{scaling_factor}, {exc['amount']}, {exc['amount'] * scaling_factor}, "
-                        f"{sector}, {gains_pollutant}, {self.gains_scenario}"
-                    )
+
+                if f"{gains_pollutant} scaling factor" not in dataset.get("log parameters", {}):
+
                     wurst.rescale_exchange(exc, scaling_factor)
 
                     if "log parameters" not in dataset:
                         dataset["log parameters"] = {}
 
+                    if "GAINS model" not in dataset["log parameters"]:
+                        dataset["log parameters"]["GAINS model"] = model
+
+                    if "GAINS sector" not in dataset["log parameters"]:
+                        dataset["log parameters"]["GAINS sector"] = sector
+
                     dataset["log parameters"].update(
-                        {f"{gains_pollutant} reduction factor": scaling_factor}
+                        {f"{gains_pollutant} scaling factor": scaling_factor}
                     )
 
         return dataset
@@ -208,16 +213,21 @@ class Emissions(BaseTransformation):
         Write log file.
         """
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('CH4 reduction factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('N2O reduction factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('NH3 reduction factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('NOx reduction factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM1 reduction factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM10 reduction factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM25 reduction factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('SO2 reduction factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('VOC reduction factor', '')}"
-        )
+        if "log parameters" in dataset:
+            if "GAINS model" in dataset["log parameters"]:
+
+                logger.info(
+                    f"{status}|{self.model}|{self.scenario}|{self.year}|"
+                    f"{dataset['name']}|{dataset['location']}|"
+                    f"{dataset.get('log parameters', {}).get('GAINS model', '')}|"
+                    f"{dataset.get('log parameters', {}).get('GAINS sector', '')}|"
+                    f"{dataset.get('log parameters', {}).get('CH4 scaling factor', '')}|"
+                    f"{dataset.get('log parameters', {}).get('N2O scaling factor', '')}|"
+                    f"{dataset.get('log parameters', {}).get('NH3 scaling factor', '')}|"
+                    f"{dataset.get('log parameters', {}).get('NOx scaling factor', '')}|"
+                    f"{dataset.get('log parameters', {}).get('PM1 scaling factor', '')}|"
+                    f"{dataset.get('log parameters', {}).get('PM10 scaling factor', '')}|"
+                    f"{dataset.get('log parameters', {}).get('PM25 scaling factor', '')}|"
+                    f"{dataset.get('log parameters', {}).get('SO2 scaling factor', '')}|"
+                    f"{dataset.get('log parameters', {}).get('VOC scaling factor', '')}"
+                )
