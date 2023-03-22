@@ -21,7 +21,7 @@ from .transformation import (
 )
 from .utils import DATA_DIR
 
-EI_POLLUTANTS = DATA_DIR / "GAINS_emission_factors" / "GAINS_ei_pollutants.yml"
+EI_POLLUTANTS = DATA_DIR / "GAINS_emission_factors" / "GAINS_ei_pollutants.yaml"
 GAINS_SECTORS = DATA_DIR / "GAINS_emission_factors" / "GAINS_EU_sectors_mapping.yaml"
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 

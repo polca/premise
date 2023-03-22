@@ -24,6 +24,7 @@ include premise/data/fuels/*.csv
 include premise/data/fuels/*.yml
 include premise/data/transport/*.yaml
 include premise/data/GAINS_emission_factors/*.csv
+include premise/data/GAINS_emission_factors/*.yaml
 include premise/data/geomap/*.yml
 include premise/data/renewables/*.csv
 include premise/data/direct_air_capture/*.yaml

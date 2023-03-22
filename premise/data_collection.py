@@ -133,21 +133,13 @@ def get_gains_EU_data() -> xr.DataArray:
 
     """
 
-    filename = "GAINS_emission_factors_EU.xlsx"
+    filename = "GAINS_emission_factors_EU.csv"
     filepath = DATA_DIR / "GAINS_emission_factors" / filename
 
-    gains_emi_EU = pd.read_excel(
+    gains_emi_EU = pd.read_csv(
         filepath,
-        names=[
-            "Region",
-            "Sector",
-            "Activity",
-            "variable",
-            "value",
-            "year",
-            "substance",
-            "Activity_long",
-        ],
+        delimiter=",",
+        low_memory=False,
     )
     gains_emi_EU["sector"] = gains_emi_EU["Sector"] + gains_emi_EU["Activity"]
     gains_emi_EU.drop(["Sector", "Activity", "variable", "Activity_long"], axis=1)
