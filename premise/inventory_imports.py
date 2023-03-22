@@ -674,16 +674,27 @@ class VariousVehicles(BaseInventoryImport):
         return ExcelImporter(path)
 
     def prepare_inventory(self):
-        # initially links to ei37
-        if self.version_in != self.version_out:
+        # if version_out is 3.9, migrate towards 3.8 first, then 3.9
+        if self.version_out == "3.9":
+            print("Migrating to 3.8 first")
+            if self.version_in != "3.8":
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_38"
+                )
             self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+                f"migration_38_{self.version_out.replace('.', '')}"
             )
+        self.import_db.migrate(
+            f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+        )
 
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_already_existing_datasets()
+
+        if self.list_unlinked:
+            self.display_unlinked_exchanges()
 
     def merge_inventory(self):
         self.database.extend(self.import_db.data)
