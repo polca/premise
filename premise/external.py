@@ -487,11 +487,12 @@ class ExternalScenario(BaseTransformation):
             supply_share = np.clip(
                 (
                     self.external_scenarios_data[i]["production volume"]
-                    .sel(region=region, year=self.year, variables=pathways)
-                    .sum(dim="variables")
+                    .sel(region=region, variables=pathways)
+                    .sum(dim="variables").interp(year=self.year)
                     / self.external_scenarios_data[i]["production volume"]
-                    .sel(year=self.year, variables=pathways)
+                    .sel(variables=pathways)
                     .sum(dim=["variables", "region"])
+                    .interp(year=self.year)
                 ).values.item(0),
                 0,
                 1,

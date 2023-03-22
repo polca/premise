@@ -596,7 +596,7 @@ class DefaultInventory(BaseInventoryImport):
     def prepare_inventory(self) -> None:
         if self.version_in != self.version_out:
             # if version_out is 3.9, migrate towards 3.8 first, then 3.9
-            if self.version_out == "3.9":
+            if self.version_out in ["3.9", "3.9.1"]:
                 print("Migrating to 3.8 first")
                 if self.version_in != "3.8":
                     self.import_db.migrate(
@@ -675,7 +675,7 @@ class VariousVehicles(BaseInventoryImport):
 
     def prepare_inventory(self):
         # if version_out is 3.9, migrate towards 3.8 first, then 3.9
-        if self.version_out == "3.9":
+        if self.version_out in ["3.9", "3.9.1"]:
             print("Migrating to 3.8 first")
             if self.version_in != "3.8":
                 self.import_db.migrate(
