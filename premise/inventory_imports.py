@@ -681,9 +681,7 @@ class VariousVehicles(BaseInventoryImport):
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_38"
                 )
-            self.import_db.migrate(
-                f"migration_38_{self.version_out.replace('.', '')}"
-            )
+            self.import_db.migrate(f"migration_38_{self.version_out.replace('.', '')}")
         self.import_db.migrate(
             f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
         )
