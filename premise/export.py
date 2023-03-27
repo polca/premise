@@ -1114,6 +1114,7 @@ class Export:
 
     @staticmethod
     def create_rev_index_of_B_matrix(version):
+        print(version)
         if version == "3.9":
             fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
         else:

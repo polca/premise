@@ -1200,6 +1200,7 @@ class NewDatabase:
                 scenario["pathway"],
                 scenario["year"],
                 filepath[scen],
+                version=self.version,
             ).export_db_to_matrices()
 
         # generate scenario report
