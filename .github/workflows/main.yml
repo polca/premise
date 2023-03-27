@@ -230,6 +230,7 @@ jobs:
           conda install -c romainsacchi premise
           conda update premise
           conda install pytest
+          conda install bottleneck
           pytest -m "not ecoinvent"
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
@@ -242,6 +243,7 @@ jobs:
           conda install -c romainsacchi premise-dev
           conda update premise-dev
           conda install pytest
+          conda install bottleneck
           pytest -m "not ecoinvent"
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
