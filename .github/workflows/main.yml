@@ -220,7 +220,6 @@ jobs:
           allow-softlinks: true
           channel-priority: strict
           auto-update-conda: true
-          conda-build-version: 3.21.4
           activate-environment: test
 
       - name: Pull distribution 📦 from Anaconda and test it if master branch

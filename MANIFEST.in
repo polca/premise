@@ -42,3 +42,4 @@ include premise/data/utils/report/*.yaml
 include premise/data/utils/logging/*.yaml
 include premise/iam_variables_mapping/*.yaml
 include premise/iam_variables_mapping/*.xlsx
+include premise/data/consequential/blacklist/*.yaml
