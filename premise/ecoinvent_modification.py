@@ -1241,6 +1241,7 @@ class NewDatabase:
                 scenario["pathway"],
                 scenario["year"],
                 filepath,
+                version=self.version,
             ).export_db_to_simapro()
 
         # generate scenario report
