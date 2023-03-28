@@ -33,6 +33,7 @@ requirements:
     - datapackage
     - requests
     - bottleneck
+    - constructive_geometries==0.8.2
 
 test:
   imports:
