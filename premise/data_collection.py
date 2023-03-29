@@ -148,7 +148,7 @@ def get_gains_EU_data() -> xr.DataArray:
             "value": float,
             "year": int,
             "substance": str,
-            "Activity_long": str
+            "Activity_long": str,
         },
         encoding="utf-8",
     )
