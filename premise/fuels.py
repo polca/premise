@@ -143,7 +143,7 @@ def adjust_electrolysis_electricity_requirement(year: int) -> ndarray:
     based on the given year.
 
     The electricity requirement decreases linearly from 58 kWh/kg H2 in 2010
-    to 44 kWh/kg H2 in 2050, according to a literature review conducted by
+    to 48 kWh/kg H2 in 2050, according to a literature review conducted by
     the Paul Scherrer Institute:
 
     Bauer (ed.), C., Desai, H., Heck, T., Sacchi, R., Schneider, S., Terlouw,
@@ -157,7 +157,7 @@ def adjust_electrolysis_electricity_requirement(year: int) -> ndarray:
 
     """
     # Constants
-    MIN_ELECTRICITY_REQUIREMENT = 44
+    MIN_ELECTRICITY_REQUIREMENT = 48
     MAX_ELECTRICITY_REQUIREMENT = None  # no maximum
 
     # Calculate adjusted electricity requirement
@@ -1171,7 +1171,7 @@ class Fuels(BaseTransformation):
                 if fuel == "methane, synthetic":
                     for co2_type in [
                         (
-                            "carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with waste heat, and grid electricity",
+                            "carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity",
                             "carbon dioxide, captured from atmosphere",
                             "waste heat",
                         ),
@@ -1238,13 +1238,17 @@ class Fuels(BaseTransformation):
 
                                     dataset["name"] = dataset["name"].replace(
                                         "from electrochemical methanation",
-                                        f"from electrochemical methanation (H2 from electrolysis, CO2 from direct_air_capture using {co2_type[2]})",
+                                        f"from electrochemical methanation "
+                                        f"(H2 from electrolysis, CO2 from direct_air_capture "
+                                        f"using {co2_type[2]})",
                                     )
 
                                     for prod in ws.production(dataset):
                                         prod["name"] = prod["name"].replace(
                                             "from electrochemical methanation",
-                                            f"from electrochemical methanation (H2 from electrolysis, CO2 from direct_air_capture using {co2_type[2]})",
+                                            f"from electrochemical methanation "
+                                            f"(H2 from electrolysis, CO2 from direct_air_capture "
+                                            f"using {co2_type[2]})",
                                         )
 
                         self.database.extend(new_ds.values())

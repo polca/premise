@@ -798,7 +798,6 @@ pump heat and excess heat), which are found under the following names, for each 
  ======================================================================================================================================================= ==================
   name                                                                                                                                                      location
  ======================================================================================================================================================= ==================
-  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with waste heat, and grid electricity                  all IAM regions
   carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity       all IAM regions
   carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity              all IAM regions
   carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity                all IAM regions
@@ -806,6 +805,8 @@ pump heat and excess heat), which are found under the following names, for each 
   carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity            all IAM regions
  ======================================================================================================================================================= ==================
 
+Note that only solid sorbent DAC can use waste heat, as teh heat requirement for liquid solvent DAC
+is too high (~900 C)
 
 Li-ion batteries
 ----------------

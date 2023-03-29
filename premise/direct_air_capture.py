@@ -136,11 +136,19 @@ class DirectAirCapture(BaseTransformation):
 
                 # loop through heat sources
                 for heat_type, activities in heat_map_ds.items():
+
+                    # with consequential modeling, waste heat is not available
                     if (
                         self.system_model == "consequential"
                         and heat_type == "waste heat"
                     ):
                         continue
+
+                    # with solvent-based DAC, we cannot use waste heat
+                    # because the operational temperature required is 900C
+                    if technology in ["solvent_dac", "solvent_daccs"]:
+                        if heat_type == "waste heat":
+                            continue
 
                     new_ds = copy.deepcopy(original_ds)
                     for _, dataset in new_ds.items():
@@ -219,10 +227,10 @@ class DirectAirCapture(BaseTransformation):
         }
 
         theoretical_min_operation = {
-            "dac_solvent": 0.5,
-            "dac_sorbent": 0.5,
-            "daccs_solvent": 0.5,
-            "daccs_sorbent": 0.5,
+            "dac_solvent": 0.95,
+            "dac_sorbent": 0.95,
+            "daccs_solvent": 0.95,
+            "daccs_sorbent": 0.95,
         }
 
         theoretical_min_infra = {

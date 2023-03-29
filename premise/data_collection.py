@@ -140,6 +140,17 @@ def get_gains_EU_data() -> xr.DataArray:
         filepath,
         delimiter=",",
         low_memory=False,
+        dtype={
+            "Region": str,
+            "Sector": str,
+            "Activity": str,
+            "variable": str,
+            "value": float,
+            "year": int,
+            "substance": str,
+            "Activity_long": str
+        },
+        encoding="utf-8",
     )
     gains_emi_EU["sector"] = gains_emi_EU["Sector"] + gains_emi_EU["Activity"]
     gains_emi_EU.drop(["Sector", "Activity", "variable", "Activity_long"], axis=1)

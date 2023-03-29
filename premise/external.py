@@ -1170,7 +1170,7 @@ class ExternalScenario(BaseTransformation):
         # be replaced should be emptied and a link to the new dataset
         # should be added
 
-        if not replaces_in:
+        if not replaces_in and len(exchanges_replaced) > 0:
             unique_exchanges_replaced = list(set(exchanges_replaced))
             name = unique_exchanges_replaced[0][0]
             ref = unique_exchanges_replaced[0][1]

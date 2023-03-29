@@ -7,6 +7,7 @@ import datetime
 import json
 import os
 import re
+import sys
 import uuid
 from collections import defaultdict
 from functools import lru_cache
@@ -19,6 +20,7 @@ import sparse
 import yaml
 from datapackage import Package
 from pandas import DataFrame
+from prettytable import PrettyTable
 from scipy import sparse as nsp
 
 from . import DATA_DIR, __version__
@@ -185,10 +187,42 @@ def check_amount_format(database: list) -> list:
     :return: database with corrected amount field
     """
 
+    list_exchanges_wrong_format = []
+
     for dataset in database:
         for exc in dataset["exchanges"]:
             if not isinstance(exc["amount"], float):
                 exc["amount"] = float(exc["amount"])
+
+            if isinstance(exc["amount"], np.float64):
+                exc["amount"] = float(exc["amount"])
+
+        for k, v in dataset.items():
+            if not type(v) in [str, float, int, tuple, list, dict, bool]:
+                list_exchanges_wrong_format.append([dataset["name"], dataset["location"], k, v, type(v)])
+
+            if isinstance(v, dict):
+                for i, j in v.items():
+                    if isinstance(j, np.float64):
+                        v[i] = float(v[i])
+
+        for e in dataset["exchanges"]:
+            for k, v in e.items():
+                if not type(v) in [str, float, int, tuple, list, dict, bool]:
+                    if isinstance(v, np.float64):
+                        e[k] = float(e[k])
+                    else:
+                        list_exchanges_wrong_format.append([dataset["name"], dataset["location"], k, v, type(v)])
+
+    if list_exchanges_wrong_format:
+        print("One or multiple exchanges have a wrong format.")
+        # print them in prettytable
+        table = PrettyTable()
+        table.field_names = ["Name", "Location", "Field", "Value", "Type"]
+        for row in list_exchanges_wrong_format[:5]:
+            table.add_row(row)
+        print(table)
+        print("This may create issues later on.")
 
     return database
 
