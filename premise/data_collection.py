@@ -4,8 +4,8 @@ mostly from the IAM file. This class will have offer market shares, efficiency
 and emission values for different sectors, carbon capture rates, etc.
 """
 
-
 import csv
+import copy
 from io import StringIO
 from itertools import chain
 from pathlib import Path
@@ -39,6 +39,12 @@ VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
 GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions_mapping.yaml"
+
+
+def get_delimiter(data, bytes=128):
+    sniffer = csv.Sniffer()
+    delimiter = sniffer.sniff(data).delimiter
+    return delimiter
 
 
 def get_crops_properties() -> dict:
@@ -148,7 +154,7 @@ def get_gains_EU_data() -> xr.DataArray:
             "value": float,
             "year": int,
             "substance": str,
-            "Activity_long": str
+            "Activity_long": str,
         },
         encoding="utf-8",
     )
@@ -180,7 +186,7 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
     "region", "year", "powertrain", "construction_year", "size"
     :param model: the model to get the fleet composition for
     :param vehicle_type: the type of vehicle to get the fleet composition for
-    :return: a multi-dimensional array with fleet composition data
+    :return: a multidimensional array with fleet composition data
     """
 
     if not FILEPATH_FLEET_COMP.is_file():
@@ -214,7 +220,6 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
 
 
 class IAMDataCollection:
-
     """
     :var model: name of the IAM model (e.g., "remind")
     :var pathway: name of the IAM scenario (e.g., "SSP2-Base")
@@ -447,30 +452,28 @@ class IAMDataCollection:
             decrypted_data = fernet_obj.decrypt(encrypted_data)
             data = StringIO(str(decrypted_data, "latin-1"))
 
-        if self.model == "remind":
-            dataframe = pd.read_csv(
-                data,
-                sep=";",
-                index_col=["Region", "Variable", "Unit"],
-                encoding="latin-1",
-            ).drop(columns=["Model", "Scenario"])
+        dataframe = pd.read_csv(
+            data,
+            sep=get_delimiter(copy.copy(data).readline()),
+            encoding="latin-1",
+        )
 
-            if len(dataframe.columns == 20):
-                dataframe.drop(columns=dataframe.columns[-1], inplace=True)
+        # if a column name can be an integer
+        # we convert it to an integer
+        new_cols = {c: int(c) if c.isdigit() else c for c in dataframe.columns}
+        dataframe = dataframe.rename(columns=new_cols)
 
-        elif self.model == "image":
-            dataframe = pd.read_csv(
-                data, index_col=[2, 3, 4], encoding="latin-1", sep=","
-            ).drop(columns=["Model", "Scenario"])
+        # remove any column that is a string
+        # and that is not any of "Region", "Variable", "Unit"
+        for col in dataframe.columns:
+            if isinstance(col, str) and col not in ["Region", "Variable", "Unit"]:
+                dataframe = dataframe.drop(col, axis=1)
 
-        else:
-            raise ValueError(
-                f"The IAM model name {self.model.upper()} is not valid."
-                f"Currently supported: 'REMIND' or 'IMAGE'"
-            )
-
-        dataframe.columns = dataframe.columns.astype(int)
         dataframe = dataframe.reset_index()
+
+        # remove "index" column
+        if "index" in dataframe.columns:
+            dataframe = dataframe.drop("index", axis=1)
 
         dataframe = dataframe.loc[dataframe["Variable"].isin(variables)]
 
@@ -512,7 +515,7 @@ class IAMDataCollection:
         This method retrieves the market share for each electricity-producing technology,
         or a specified year, for each region provided by the IAM.
 
-        :return: a multi-dimensional array with electricity technologies market share
+        :return: a multidimensional array with electricity technologies market share
         for a given year, for all regions.
 
         """
@@ -580,7 +583,7 @@ class IAMDataCollection:
         be removed from the mix
         (unless specified, it is removed).
 
-        :return: a multi-dimensional array with electricity
+        :return: a multidimensional array with electricity
         technologies market share for a given year, for all regions.
 
         """
