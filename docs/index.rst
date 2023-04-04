@@ -19,20 +19,4 @@ This user guide will help you navigate the inner workings of *premise*.
    mapping
    user_scenarios
    consequential
-
-Technical Reference
-===================
-
-.. autosummary::
-   :toctree: _autosummary
-   :template: custom-module-template.rst
-   :recursive:
-
-   premise.clean_datasets
-   premise.data_collection
-   premise.geomap
-   premise.activity_maps
-   premise.transformation
-   premise.electricity
-   premise.cement
-   premise.utils
+   faq

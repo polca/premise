@@ -1,4 +1,4 @@
-MAPPING
+Mapping
 =======
 
 Link to a new IAM model
