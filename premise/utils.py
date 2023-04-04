@@ -107,7 +107,7 @@ def get_crops_properties() -> dict:
     return crop_props
 
 
-def get_efficiency_ratio_solar_photovoltaics() -> xr.DataArray:
+def get_efficiency_solar_photovoltaics() -> xr.DataArray:
     """
     Return an array with PV module efficiencies in function of year and technology.
     :return: xr.DataArray with PV module efficiencies
