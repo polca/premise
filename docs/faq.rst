@@ -11,15 +11,16 @@ I use a different IAM than REMIND or IMAGE ... Can I still use ``premise``?
 ___________________________________________________________________________
 
 There is a MAPPING section in the documentation
-that explains how to link to a new IAM. The mapping .yaml files under ````premise``/iam_variables_mapping`` are the main component that needs to
+that explains how to link to a new IAM. The YAML files under ````premise``/iam_variables_mapping``
+are the main body of files that needs to
 be changed, to properly establish a correspondence between your IAM variables
 and the variables used in ``premise``. It is also necessary to provide ``premise``
 with the geographical definitions of the regions used in your IAM. This is done
-by providing a .json file with the regions and their corresponding Ecoinvent regions.
+by providing a .json file with the regions and their corresponding ecoinvent regions.
 The rest of the code is generic and should work with any IAM.
 
-What is the use of column D ('Model') and E ('Scenario') in csv files, since ``premise`` seems to delete them anyway ?
-__________________________________________________________________________________________________________________
+What columns are necessary in the IAM files?
+____________________________________________
 
 The code has been refactored since.
 Any column other than:
@@ -29,12 +30,12 @@ Any column other than:
 * Unit
 * and the variable values for each time step
 
-is removed from the data.
+is ignored.
 
 How big an effort would it be to link to a new IAM? As simple as an extension of the mapping files? What difficulties can be anticipated?
 _________________________________________________________________________________________________________________________________________
 
-In principle, yes. Linking to a new IAM model is a matter of:
+In principle, it is easy. Linking to a new IAM model is a matter of:
 
 * providing the IAM variable for each ``premise`` variable listed in the .yaml mapping files
 * and the geographical definitions of the regions used in the IAM.
@@ -52,13 +53,14 @@ How was the list of variables in the mapping files established?
 _______________________________________________________________
 
 The list of IAM variables and mapping with ``premise`` variables has been established
-through collaboration with developers of IAM models.
+through collaboration with developers of IAM models, to ensure that the meaning between
+each IAM variable corresponds with that of ``premise``.
 
 Is it possible to expand this list? (e.g. agriculture crops for energy)
 _______________________________________________________________________
 
 It is certainly possible to extend this list. You would however need to extend
-``premise``'s code to tell it what to do with it. For example, if you want to
+``premise``'s code to tell it what to do with these additional variables. For example, if you want to
 use the IAM output for integrating projections that relate to agriculture crops for energy,
 you would need to write a module in ``premise`` (e.g., energy_crops.py) that would perform a series
 of modifications on the LCA datasets, just like other modules do.
@@ -97,7 +99,7 @@ Does ``premise`` generate more regionalised datasets than in original EI3.x data
 _________________________________________________________________________________
 
 Yes. ``premise`` generates regionalized datasets for all regions in the IAM model, for
-each technology for which a IAM-``premise`` correspondence is provided, if not already existing in the Ecoinvent database.
+each technology for which a IAM-to-``premise`` correspondence is provided, if not already existing in the Ecoinvent database.
 For example, if the IAM model
 considers technology A over 10 regions, ``premise`` collects datasets in the ecoinvent database
 (or imported inventories) that represent technology A and duplicates it for each region. Sometimes,
