@@ -376,18 +376,28 @@ class ExternalScenario(BaseTransformation):
 
                 # add production volume
                 if ds.get("production volume variable"):
-                    for region, act in new_acts.items():
-                        act["production volume"] = (
-                            self.external_scenarios_data[datapackage_number][
-                                "production volume"
-                            ]
-                            .sel(
-                                region=region,
-                                variables=ds["production volume variable"],
-                            )
-                            .interp(year=self.year)
-                            .values
-                        )
+
+                    if ds["production volume variable"] in self.external_scenarios_data[
+                                datapackage_number
+                            ]["production volume"].variables.values:
+                        for region, act in new_acts.items():
+                            if (
+                                region in self.external_scenarios_data[
+                                    datapackage_number
+                                ]["production volume"].region.values
+                            ):
+
+                                act["production volume"] = (
+                                    self.external_scenarios_data[datapackage_number][
+                                        "production volume"
+                                    ]
+                                    .sel(
+                                        region=region,
+                                        variables=ds["production volume variable"],
+                                    )
+                                    .interp(year=self.year)
+                                    .values
+                                )
 
                 # add new datasets to database
                 self.database.extend(new_acts.values())

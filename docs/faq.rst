@@ -203,8 +203,8 @@ product's supply chain, via the use of variables in data packages.
 Can ``premise`` manage an efficiency evolution for the additional inventories?
 ______________________________________________________________________________
 
-Yes, via the use of data packages. It is possible to map the efficiency of processes to a variable.
-That variable can vary over time and across scenarios.
+Yes, via the use of data packages (see User-defined scenarios section). It is possible to map
+the efficiency of processes to a variable. That variable can vary over time and across scenarios.
 
 Efficiency adjustments
 ----------------------

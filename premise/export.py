@@ -198,10 +198,10 @@ def check_amount_format(database: list) -> list:
                 exc["amount"] = float(exc["amount"])
 
         for k, v in dataset.items():
-            if not type(v) in [str, float, int, tuple, list, dict, bool]:
-                list_exchanges_wrong_format.append(
-                    [dataset["name"], dataset["location"], k, v, type(v)]
-                )
+            # if not type(v) in [str, float, int, tuple, list, dict, bool, None]:
+            #     list_exchanges_wrong_format.append(
+            #         [dataset["name"], dataset["location"], k, v, type(v)]
+            #     )
 
             if isinstance(v, dict):
                 for i, j in v.items():
@@ -210,23 +210,25 @@ def check_amount_format(database: list) -> list:
 
         for e in dataset["exchanges"]:
             for k, v in e.items():
-                if not type(v) in [str, float, int, tuple, list, dict, bool]:
-                    if isinstance(v, np.float64):
-                        e[k] = float(e[k])
-                    else:
-                        list_exchanges_wrong_format.append(
-                            [dataset["name"], dataset["location"], k, v, type(v)]
-                        )
+                if isinstance(v, np.float64):
+                    e[k] = float(e[k])
 
-    if list_exchanges_wrong_format:
-        print("One or multiple exchanges have a wrong format.")
-        # print them in prettytable
-        table = PrettyTable()
-        table.field_names = ["Name", "Location", "Field", "Value", "Type"]
-        for row in list_exchanges_wrong_format[:5]:
-            table.add_row(row)
-        print(table)
-        print("This may create issues later on.")
+    #             if not type(v) in [str, float, int, tuple, list, dict, bool, None]:
+    #
+    #                 else:
+    #                     list_exchanges_wrong_format.append(
+    #                         [dataset["name"], dataset["location"], k, v, type(v)]
+    #                     )
+    #
+    # if list_exchanges_wrong_format:
+    #     print("One or multiple exchanges have a wrong format.")
+    #     # print them in prettytable
+    #     table = PrettyTable()
+    #     table.field_names = ["Name", "Location", "Field", "Value", "Type"]
+    #     for row in list_exchanges_wrong_format[:5]:
+    #         table.add_row(row)
+    #     print(table)
+    #     print("This may create issues later on.")
 
     return database
 
