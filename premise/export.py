@@ -199,7 +199,9 @@ def check_amount_format(database: list) -> list:
 
         for k, v in dataset.items():
             if not type(v) in [str, float, int, tuple, list, dict, bool]:
-                list_exchanges_wrong_format.append([dataset["name"], dataset["location"], k, v, type(v)])
+                list_exchanges_wrong_format.append(
+                    [dataset["name"], dataset["location"], k, v, type(v)]
+                )
 
             if isinstance(v, dict):
                 for i, j in v.items():
@@ -212,7 +214,9 @@ def check_amount_format(database: list) -> list:
                     if isinstance(v, np.float64):
                         e[k] = float(e[k])
                     else:
-                        list_exchanges_wrong_format.append([dataset["name"], dataset["location"], k, v, type(v)])
+                        list_exchanges_wrong_format.append(
+                            [dataset["name"], dataset["location"], k, v, type(v)]
+                        )
 
     if list_exchanges_wrong_format:
         print("One or multiple exchanges have a wrong format.")

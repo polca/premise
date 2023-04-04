@@ -136,7 +136,6 @@ class DirectAirCapture(BaseTransformation):
 
                 # loop through heat sources
                 for heat_type, activities in heat_map_ds.items():
-
                     # with consequential modeling, waste heat is not available
                     if (
                         self.system_model == "consequential"
