@@ -4,8 +4,8 @@ mostly from the IAM file. This class will have offer market shares, efficiency
 and emission values for different sectors, carbon capture rates, etc.
 """
 
-import csv
 import copy
+import csv
 from io import StringIO
 from itertools import chain
 from pathlib import Path
