@@ -122,3 +122,8 @@ You need to point to that file when initiating `NewDatabase`, like so:
         source_db="ecoinvent 3.6 cutoff", # <-- name of the database
         source_version="3.6", # <-- version of ecoinvent
     )
+
+There are essentially two types of variables needed from the IAM scenario files:
+
+- variables that relate to the production volumes of technologies. These variables are used to scale the production volumes of the corresponding activities in the ecoinvent database. For example, if the IAM scenario file contains a variable named ``Electricity|Production|Wind`` for the region ``EUR``, it will help premise calculate the share of wind power in the electricity consumption mix of the said region. Hence, the unit of such variables should refer to a production volume over time (e.g., ``GWh/year``, ``EJ/year``, etc.).
+- variables that relate to the efficiency of technologies over time. These variables are used to calculate scaling factors (which are relative by default to 2020), to adjust the energy or material efficiency of the corresponding activities in the ecoinvent database. For example, if the IAM scenario file contains a variable named ``Electricity|Efficiency|Coal`` for the region ``EUR``, it will help premise adjust the amount of coal and related emissions per unit of kWh produced in the said region. Hence, the unit of such variables can be unitless, or relate to an efficiency ratio or percentage.
