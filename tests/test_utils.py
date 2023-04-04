@@ -29,7 +29,7 @@ def test_fuels_properties():
 
 
 def test_eff_solar_PV():
-    eff_PV = get_efficiency_ratio_solar_photovoltaics()
+    eff_PV = get_efficiency_solar_photovoltaics()
     assert type(eff_PV) == xr.DataArray
     assert eff_PV.sel(technology="multi-Si", year=2010) == 0.14
     assert "moni-Si" not in eff_PV.technology.values

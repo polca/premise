@@ -146,8 +146,8 @@ supply mix for a given technology within a given IAM region.
 Consistency with climate targets
 --------------------------------
 
-How do we ensure consistency between IAM scenario and pLCA results (in terms of GWP / temperature increase)?
-____________________________________________________________________________________________________________
+How do we ensure consistency between IAM scenario and pLCA results (in terms of global warming / temperature increase)?
+_______________________________________________________________________________________________________________________
 
 In theory, there is consistency between the IAM scenario and pLCA database
 when 100% of the IAM variables and related projections are integrated
