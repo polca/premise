@@ -361,6 +361,7 @@ def create_codes_and_names_of_tech_matrix(database: List[dict]):
     }
 
 
+@lru_cache
 def biosphere_flows_dictionary(version):
     """
     Create a dictionary with biosphere flows
