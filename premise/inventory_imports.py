@@ -781,6 +781,7 @@ class AdditionalInventory(BaseInventoryImport):
 
             sys.exit()
 
+        self.import_db.data = remove_categories(self.import_db.data)
         self.add_biosphere_links(delete_missing=True)
         list_missing_ref = self.search_missing_field(field="name")
         list_missing_ref.extend(self.search_missing_field(field="reference product"))
