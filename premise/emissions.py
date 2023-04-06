@@ -225,6 +225,7 @@ class Emissions(BaseTransformation):
                     f"{dataset['name']}|{dataset['location']}|"
                     f"{dataset.get('log parameters', {}).get('GAINS model', '')}|"
                     f"{dataset.get('log parameters', {}).get('GAINS sector', '')}|"
+                    f"{dataset.get('log parameters', {}).get('CO scaling factor', '')}|"
                     f"{dataset.get('log parameters', {}).get('CH4 scaling factor', '')}|"
                     f"{dataset.get('log parameters', {}).get('N2O scaling factor', '')}|"
                     f"{dataset.get('log parameters', {}).get('NH3 scaling factor', '')}|"

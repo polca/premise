@@ -349,38 +349,42 @@ premise_emissions:
       GAINS sector:
         name: GAINS sector
         description: Name of GAINS sector variable
+      CO reduction factor:
+        name: CO scaling factor
+        description: Scaling factor applied on the initial amount of CO emissions
+        unit: unitless
       CH4 reduction factor:
         name: CH4 scaling factor
         description: Scaling factor applied on the initial amount of CH4 emissions
-        unit: 0-1
+        unit: unitless
       N2O reduction factor:
         name: N2O scaling factor
         description: Scaling factor applied on the initial amount of N2O emissions
-        unit: 0-1
+        unit: unitless
       NH3 reduction factor:
         name: NH3 scaling factor
         description: Scaling factor applied on the initial amount of NH3 emissions
-        unit: 0-1
+        unit: unitless
       NOx reduction factor:
         name: NOx scaling factor
         description: Scaling factor applied on the initial amount of NOx emissions
-        unit: 0-1
+        unit: unitless
       PM1 reduction factor:
         name: PM1 scaling factor
         description: Scaling factor applied on the initial amount of emissions of fine particles equal or inferior to 1 um.
-        unit: 0-1
+        unit: unitless
       PM10 reduction factor:
         name: PM10 scaling factor
         description: Scaling factor applied on the initial amount of fine particles inferior to 10 um but superior to 2.5 um.
-        unit: 0-1
+        unit: unitless
       PM25 reduction factor:
         name: PM25 scaling factor
         description: Scaling factor applied on the initial amount of fine particles equal or inferior to 2.5 um.
-        unit: 0-1
+        unit: unitless
       SO2 reduction factor:
         name: SO2 scaling factor
         description: Scaling factor applied on the initial amount of SO2 emissions
-        unit: 0-1
+        unit: unitless
       VOC reduction factor:
         name: VOC scaling factor
         description: Scaling factor applied on the initial amount of VOC emissions

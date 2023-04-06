@@ -436,8 +436,6 @@ Solar CSP:
   iam_aliases:
     remind: SE|Electricity|Solar|+|CSP
     image: Secondary Energy|Electricity|Solar|CSP
-  eff_aliases:
-    remind: Tech|Electricity|Solar|CSP|Efficiency
   ecoinvent_aliases:
     fltr:
       - electricity production, solar thermal parabolic trough, 50 MW
@@ -446,16 +444,12 @@ Solar PV Centralized:
   iam_aliases:
     remind: SE|Electricity|Solar|+|PV
     image: Secondary Energy|Electricity|Solar|PV|1
-  eff_aliases:
-    remind: Tech|Electricity|Solar|PV|Efficiency
   ecoinvent_aliases:
     fltr:
       - electricity production, photovoltaic, commercial
 Solar PV Residential:
   iam_aliases:
     image: Secondary Energy|Electricity|Solar|PV|2
-  eff_aliases:
-    remind: Tech|Electricity|Solar|PV|Efficiency
   ecoinvent_aliases:
     fltr:
       - electricity production, photovoltaic, residential
