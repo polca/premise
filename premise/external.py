@@ -376,17 +376,19 @@ class ExternalScenario(BaseTransformation):
 
                 # add production volume
                 if ds.get("production volume variable"):
-
-                    if ds["production volume variable"] in self.external_scenarios_data[
-                                datapackage_number
-                            ]["production volume"].variables.values:
+                    if (
+                        ds["production volume variable"]
+                        in self.external_scenarios_data[datapackage_number][
+                            "production volume"
+                        ].variables.values
+                    ):
                         for region, act in new_acts.items():
                             if (
-                                region in self.external_scenarios_data[
-                                    datapackage_number
-                                ]["production volume"].region.values
+                                region
+                                in self.external_scenarios_data[datapackage_number][
+                                    "production volume"
+                                ].region.values
                             ):
-
                                 act["production volume"] = (
                                     self.external_scenarios_data[datapackage_number][
                                         "production volume"
