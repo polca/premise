@@ -251,16 +251,16 @@ premise_fuel:
         description: Region name
       initial amount of fossil CO2:
         name: Initial amount of fossil CO2
-        description: Amount of fossil CO2 emitted per kg fuel before adjustment
-        unit: kg CO2/kg fuel
+        description: Amount of fossil CO2 emitted per unit of activity before adjustment
+        unit: kg CO2/reference flow
       new amount of fossil CO2:
         name: New amount of fossil CO2
-        description: Amount of fossil CO2 emitted per kg fuel after adjustment
-        unit: kg CO2/kg fuel
+        description: Amount of fossil CO2 emitted per unit of activity after adjustment
+        unit: kg CO2/reference flow
       new amount of biogenic CO2:
         name: New amount of biogenic CO2
-        description: Amount of biogenic CO2 emitted per kg fuel after adjustment
-        unit: kg CO2/kg fuel
+        description: Amount of biogenic CO2 emitted per unit of activity after adjustment
+        unit: kg CO2/reference flow
       initial energy input for hydrogen production:
         name: Energy input for hydrogen production before adjustment
         description: Energy input for hydrogen production (kWh, MJ or kg fuel) per kg hydrogen
