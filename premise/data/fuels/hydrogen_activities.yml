@@ -3,7 +3,7 @@ from electrolysis:
   var: hydrogen, electrolysis
   feedstock name: electricity
   feedstock unit: kilowatt hour
-  floor value: 44.0
+  floor value: 48.0
 from SMR of biogas, with CCS:
   name: hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar
   var: hydrogen, biomass, with CCS

@@ -560,7 +560,7 @@ def write_formatted_data(name, data, filepath):
                     )
         result.append([])
 
-    with open(filepath, "w", newline="") as f:
+    with open(filepath, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         for line in result:
             writer.writerow(line)

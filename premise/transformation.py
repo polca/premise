@@ -10,6 +10,7 @@ import uuid
 from collections import defaultdict
 from itertools import product
 from typing import Any, Dict, List, Set, Tuple, Union
+from pathlib import Path
 
 import numpy as np
 import wurst
@@ -23,6 +24,12 @@ from .geomap import Geomap
 from .utils import DATA_DIR, get_fuel_properties, relink_technosphere_exchanges
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+# directory for log files
+DIR_LOG_REPORT = Path.cwd() / "export" / "logs"
+# if DIR_LOG_REPORT folder does not exist
+# we create it
+if not Path(DIR_LOG_REPORT).exists():
+    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 with open(LOG_CONFIG, "r") as f:
     config = yaml.safe_load(f.read())

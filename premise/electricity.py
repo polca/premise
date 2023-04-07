@@ -13,6 +13,7 @@ import csv
 import logging.config
 import re
 from collections import defaultdict
+from pathlib import Path
 
 import yaml
 
@@ -42,6 +43,12 @@ LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+# directory for log files
+DIR_LOG_REPORT = Path.cwd() / "export" / "logs"
+# if DIR_LOG_REPORT folder does not exist
+# we create it
+if not Path(DIR_LOG_REPORT).exists():
+    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 with open(LOG_CONFIG, "r") as f:
     config = yaml.safe_load(f.read())
@@ -1204,7 +1211,7 @@ class Electricity(BaseTransformation):
     def create_biomass_markets(self) -> None:
         print("Create biomass markets.")
 
-        with open(IAM_BIOMASS_VARS, "r") as stream:
+        with open(IAM_BIOMASS_VARS, "r", encoding="utf-8") as stream:
             biomass_map = yaml.safe_load(stream)
 
         # create region-specific "Supply of forest residue" datasets

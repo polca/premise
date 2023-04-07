@@ -5,6 +5,7 @@ Integrates projections regarding fuel production and supply.
 import copy
 import logging.config
 from typing import Union
+from pathlib import Path
 
 import yaml
 from numpy import ndarray
@@ -41,6 +42,12 @@ FUEL_MARKETS = DATA_DIR / "fuels" / "fuel_markets.yml"
 BIOFUEL_SOURCES = DATA_DIR / "fuels" / "biofuels_activities.yml"
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+# directory for log files
+DIR_LOG_REPORT = Path.cwd() / "export" / "logs"
+# if DIR_LOG_REPORT folder does not exist
+# we create it
+if not Path(DIR_LOG_REPORT).exists():
+    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 with open(LOG_CONFIG, "r") as f:
     config = yaml.safe_load(f.read())
@@ -158,7 +165,7 @@ def adjust_electrolysis_electricity_requirement(year: int) -> ndarray:
     """
     # Constants
     MIN_ELECTRICITY_REQUIREMENT = 48
-    MAX_ELECTRICITY_REQUIREMENT = None  # no maximum
+    MAX_ELECTRICITY_REQUIREMENT = 60  # no maximum
 
     # Calculate adjusted electricity requirement
     electricity_requirement = -0.3538 * (year - 2010) + 58.589
@@ -406,6 +413,25 @@ class Fuels(BaseTransformation):
             )
 
             for region, dataset in new_ds.items():
+                # find current energy consumption in dataset
+                initial_energy_consumption = sum(
+                    exc["amount"]
+                    for exc in dataset["exchanges"]
+                    if exc["unit"] == hydrogen_feedstock_unit
+                    and hydrogen_feedstock_name in exc["name"]
+                    and exc["type"] == "technosphere"
+                )
+
+                # add it to "log parameters"
+                if "log parameters" not in dataset:
+                    dataset["log parameters"] = {}
+
+                dataset["log parameters"].update(
+                    {
+                        "initial energy input for hydrogen production": initial_energy_consumption
+                    }
+                )
+
                 # Fetch the efficiency change of the
                 # electrolysis process over time,
                 # according to the IAM scenario,
@@ -419,42 +445,23 @@ class Fuels(BaseTransformation):
                     scaling_factor = 1 / self.find_iam_efficiency_change(
                         variable=hydrogen_efficiency_variable, location=region
                     )
-                    # find current energy consumption in dataset
-                    energy_consumption = sum(
-                        exc["amount"]
-                        for exc in dataset["exchanges"]
-                        if exc["unit"] == hydrogen_feedstock_unit
-                        and hydrogen_feedstock_name in exc["name"]
-                        and exc["type"] == "technosphere"
-                    )
-
-                    # add it to "log parameters"
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
-
-                    dataset["log parameters"].update(
-                        {
-                            "initial energy input for hydrogen production": energy_consumption
-                        }
-                    )
 
                     # new energy consumption
-                    energy_consumption *= scaling_factor
+                    new_energy_consumption = scaling_factor * initial_energy_consumption
 
                     # set a floor value/kg H2
-                    if energy_consumption < efficiency_floor_value:
-                        energy_consumption = efficiency_floor_value
-
+                    if new_energy_consumption < efficiency_floor_value:
+                        new_energy_consumption = efficiency_floor_value
                 else:
                     if hydrogen_type == "from electrolysis":
                         # get the electricity consumption
-                        energy_consumption = (
+                        new_energy_consumption = (
                             adjust_electrolysis_electricity_requirement(self.year)
                         )
                     else:
-                        energy_consumption = None
+                        new_energy_consumption = None
 
-                if energy_consumption:
+                if new_energy_consumption:
                     # remove energy inputs
                     dataset["exchanges"] = [
                         exc
@@ -477,7 +484,7 @@ class Fuels(BaseTransformation):
                     dataset["exchanges"].extend(
                         {
                             "uncertainty type": 0,
-                            "amount": energy_consumption * share,
+                            "amount": new_energy_consumption * share,
                             "type": "technosphere",
                             "product": supplier[2],
                             "name": supplier[0],
@@ -493,7 +500,7 @@ class Fuels(BaseTransformation):
 
                     # add it to "log parameters"
                     dataset["log parameters"].update(
-                        {"new energy input for hydrogen production": energy_consumption}
+                        {"new energy input for hydrogen production": new_energy_consumption}
                     )
 
                     self.write_log(dataset)

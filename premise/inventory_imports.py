@@ -64,7 +64,7 @@ def get_biosphere_code(version) -> dict:
 
 
 def get_consequential_blacklist():
-    with open(FILEPATH_CONSEQUENTIAL_BLACKLIST, "r") as stream:
+    with open(FILEPATH_CONSEQUENTIAL_BLACKLIST, "r", encoding="utf-8") as stream:
         flows = yaml.safe_load(stream)
 
     return flows
@@ -734,7 +734,8 @@ class AdditionalInventory(BaseInventoryImport):
             return CSVImporter(path)
         else:
             raise ValueError(
-                "Incorrect filetype for inventories." "Should be either .xlsx or .csv"
+                "Incorrect filetype for inventories." 
+                "Should be either .xlsx or .csv"
             )
 
     def remove_missing_fields(self):

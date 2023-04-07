@@ -30,6 +30,14 @@ REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
 LOG_REPORTING_FILEPATH = DATA_DIR / "utils" / "logging" / "reporting.yaml"
+# directory for log files
+DIR_LOGS = Path.cwd() / "export" / "logs"
+DIR_LOG_REPORT = Path.cwd() / "export" / "change reports"
+
+# if DIR_LOG_REPORT folder does not exist
+# we create it
+if not Path(DIR_LOG_REPORT).exists():
+    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 SECTORS = {
     "Population": (IAM_OTHER_VARS, ["Population"]),
@@ -252,6 +260,7 @@ def generate_change_report(source, version, source_type, system_model):
         "premise_steel",
         "premise_cement",
         "premise_emissions",
+        "premise_external_scenarios",
     ]
 
     # fetch YAML file containing the reporting metadata
@@ -288,21 +297,22 @@ def generate_change_report(source, version, source_type, system_model):
     worksheet.column_dimensions = dim_holder
 
     for filepath in log_filepaths:
-        # check if log ile exists
-        if not os.path.isfile(filepath + ".log"):
+        fp = Path(DIR_LOGS / filepath).with_suffix(".log")
+        # check if log file exists
+        if not fp.is_file():
             continue
         # if file exists, check that it is not empty
-        elif os.stat(filepath + ".log").st_size == 0:
+        if os.stat(fp).st_size == 0:
             continue
 
-        df = convert_log_to_excel_file(filepath)
+        df = convert_log_to_excel_file(fp)
 
         # create a worksheet for this sector
         worksheet = workbook.create_sheet(fetch_tab_name(filepath))
 
         # add a description of each column
         # in each row
-        for col, column in enumerate(fetch_columns(filepath), 1):
+        for col, column in enumerate(fetch_columns(fp), 1):
             worksheet.cell(
                 row=1,
                 column=col,
@@ -320,9 +330,7 @@ def generate_change_report(source, version, source_type, system_model):
 
     # save the workbook in the working directory
     # the file name is change_report with the current date
-    fp = os.path.join(
-        os.getcwd(), f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx"
-    )
+    fp = Path(DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx")
     workbook.save(fp)
 
 
@@ -335,7 +343,7 @@ def fetch_columns(variable):
     with open(LOG_REPORTING_FILEPATH, "r", encoding="utf-8") as stream:
         reporting = yaml.safe_load(stream)
 
-    return list(reporting[variable]["columns"].keys())
+    return list(reporting[variable.stem]["columns"].keys())
 
 
 def fetch_tab_name(variable):
@@ -358,7 +366,7 @@ def convert_log_to_excel_file(filepath):
     """
 
     try:
-        df = pd.read_csv(filepath + ".log", sep="|", header=None)
+        df = pd.read_csv(filepath, sep="|", header=None)
         df.columns = fetch_columns(filepath)
         return df
 

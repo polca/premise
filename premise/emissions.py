@@ -8,6 +8,7 @@ import logging.config
 import numpy as np
 import xarray as xr
 import yaml
+from pathlib import Path
 
 from .transformation import (
     BaseTransformation,
@@ -24,6 +25,12 @@ from .utils import DATA_DIR
 EI_POLLUTANTS = DATA_DIR / "GAINS_emission_factors" / "GAINS_ei_pollutants.yaml"
 GAINS_SECTORS = DATA_DIR / "GAINS_emission_factors" / "GAINS_EU_sectors_mapping.yaml"
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
+# directory for log files
+DIR_LOG_REPORT = Path.cwd() / "export" / "logs"
+# if DIR_LOG_REPORT folder does not exist
+# we create it
+if not Path(DIR_LOG_REPORT).exists():
+    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 with open(LOG_CONFIG, "r") as f:
     config = yaml.safe_load(f.read())

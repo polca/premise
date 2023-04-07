@@ -16,6 +16,13 @@ from .utils import eidb_label
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
+# directory for log files
+DIR_LOGS = Path.cwd() / "export" / "logs"
+# if DIR_LOG_REPORT folder does not exist
+# we create it
+if not Path(DIR_LOGS).exists():
+    Path(DIR_LOGS).mkdir(parents=True, exist_ok=True)
+
 with open(LOG_CONFIG, "r") as f:
     config = yaml.safe_load(f.read())
     logging.config.dictConfig(config)
@@ -261,6 +268,7 @@ def adjust_efficiency(dataset: dict) -> dict:
                             dataset,
                         ):
                             wurst.rescale_exchange(exc, scaling_factor)
+
     return dataset
 
 
@@ -404,6 +412,10 @@ class ExternalScenario(BaseTransformation):
                 # add new datasets to database
                 self.database.extend(new_acts.values())
 
+                for _, act in new_acts.items():
+                    # add to log
+                    self.write_log(act, status="created")
+
             # remove "adjust efficiency" tag
             del ds["regionalize"]
 
@@ -438,6 +450,7 @@ class ExternalScenario(BaseTransformation):
         ):
             adjust_efficiency(dataset)
             del dataset["adjust efficiency"]
+            self.write_log(dataset, status="updated")
 
     def get_market_dictionary_structure(
         self, market: dict, region: str, waste_market: bool = False
@@ -767,9 +780,9 @@ class ExternalScenario(BaseTransformation):
             # this is a biosphere exchange
             categories = tuple(categories.split("::"))
             if len(categories) == 1:
-                categories += ("unspecified",)
-
-            key = (name, categories[0], categories[1], unit)
+                key = (name, categories[0], "unspecified", unit)
+            else:
+                key = (name, categories[0], categories[1], unit)
 
             if key not in self.dict_bio_flows:
                 if key[0] in self.outdated_flows:
@@ -990,6 +1003,8 @@ class ExternalScenario(BaseTransformation):
                                 )
 
                             self.database.append(new_market)
+                            self.write_log(new_market)
+
                         else:
                             regions.remove(region)
 
@@ -1010,6 +1025,7 @@ class ExternalScenario(BaseTransformation):
                             waste_market=waste_market,
                         )
                         self.database.append(world_market)
+                        self.write_log(world_market)
                         regions.append("World")
 
                     # if the new markets are meant to replace for other
@@ -1298,7 +1314,7 @@ class ExternalScenario(BaseTransformation):
         ]
 
     def find_best_substitute_suppliers(self, new_name, new_ref, regions):
-        # find best suppliers for new dataset
+        # find the best suppliers for new dataset
         # if there are several suppliers with the same name and product, the one
         # with the highest production volume is chosen
         suppliers = get_shares_from_production_volume(
@@ -1312,3 +1328,13 @@ class ExternalScenario(BaseTransformation):
             )
         )
         return [(x[1], y) for x, y in suppliers.items()]
+
+    def write_log(self, dataset, status="created"):
+        """
+        Write log file.
+        """
+
+        logger.info(
+            f"{status}|{self.model}|{self.scenario}|{self.year}|"
+            f"{dataset['name']}|{dataset['location']}"
+        )

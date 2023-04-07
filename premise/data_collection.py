@@ -89,7 +89,7 @@ def get_gains_IAM_data(model, gains_scenario):
     list_arrays = []
 
     for file in filepath:
-        df = pd.read_csv(file)
+        df = pd.read_csv(file, sep=",", encoding="utf-8", low_memory=False)
         df = df.rename(columns={"Region": "region", "EMF30 Sector": "sector"})
         df = df.rename(columns={str(v): int(v) for v in range(1990, 2055, 5)})
 

@@ -11,7 +11,7 @@ handlers:
   file_dac:
     class: logging.FileHandler
     level: INFO
-    filename: premise_dac.log
+    filename: "export/logs/premise_dac.log"
     encoding: utf8
     formatter: simple
     mode: w
@@ -19,7 +19,7 @@ handlers:
   file_electricity:
     class: logging.FileHandler
     level: INFO
-    filename: premise_electricity.log
+    filename: "export/logs/premise_electricity.log"
     encoding: utf8
     formatter: simple
     mode: w
@@ -27,7 +27,7 @@ handlers:
   file_steel:
     class: logging.FileHandler
     level: INFO
-    filename: premise_steel.log
+    filename: "export/logs/premise_steel.log"
     encoding: utf8
     formatter: simple
     mode: w
@@ -35,7 +35,7 @@ handlers:
   file_cement:
     class: logging.FileHandler
     level: INFO
-    filename: premise_cement.log
+    filename: "export/logs/premise_cement.log"
     encoding: utf8
     formatter: simple
     mode: w
@@ -43,7 +43,7 @@ handlers:
   file_fuel:
     class: logging.FileHandler
     level: INFO
-    filename: premise_fuel.log
+    filename: "export/logs/premise_fuel.log"
     encoding: utf8
     formatter: simple
     mode: w
@@ -51,7 +51,7 @@ handlers:
   file_emissions:
     class: logging.FileHandler
     level: INFO
-    filename: premise_emissions.log
+    filename: "export/logs/premise_emissions.log"
     encoding: utf8
     formatter: simple
     mode: w
@@ -59,7 +59,7 @@ handlers:
   file_external:
     class: logging.FileHandler
     level: INFO
-    filename: premise_external_scenarios.log
+    filename: "export/logs/premise_external_scenarios.log"
     encoding: utf8
     formatter: simple
     mode: w
