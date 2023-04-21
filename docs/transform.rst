@@ -1149,7 +1149,7 @@ DAC systems for energy inputs:
 +==================================================+===================+===================+
 | Learning rate                                    | 2.50%             | 2.50%             |
 +--------------------------------------------------+-------------------+-------------------+
-| Theoretical minimum (relative to initial value)  | 50%               | 50%               |
+| Theoretical minimum (relative to initial value)  | 95%               | 95%               |
 +--------------------------------------------------+-------------------+-------------------+
 
 The following table shows the learning rates applied for

@@ -6,6 +6,7 @@ import copy
 import logging.config
 from pathlib import Path
 
+import wurst
 import yaml
 
 from .utils import DATA_DIR
@@ -31,10 +32,8 @@ from .transformation import (
     IAMDataCollection,
     InventorySet,
     List,
-    relink_technosphere_exchanges,
     uuid,
     ws,
-    wurst,
 )
 
 HEAT_SOURCES = DATA_DIR / "fuels" / "heat_sources_map.yml"
@@ -63,9 +62,10 @@ class DirectAirCapture(BaseTransformation):
         year: int,
         version: str,
         system_model: str,
+        modified_datasets: dict,
     ):
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model
+            database, iam_data, model, pathway, year, version, system_model, modified_datasets
         )
         self.database = database
         self.iam_data = iam_data
@@ -77,8 +77,6 @@ class DirectAirCapture(BaseTransformation):
         mapping = InventorySet(self.database)
         self.dac_plants = mapping.generate_daccs_map()
         self.carbon_storage = mapping.generate_carbon_storage_map()
-        # dictionary to store mapping results, to avoid redundant effort
-        self.cached_suppliers = {}
 
     def generate_dac_activities(self) -> None:
         """
@@ -99,34 +97,35 @@ class DirectAirCapture(BaseTransformation):
                     ref_prod="carbon dioxide, stored",
                 )
 
-                # delete original
-                self.database = [x for x in self.database if x["name"] != ds_name]
-
-                for _, dataset in new_ds.items():
-                    self.cache, dataset = relink_technosphere_exchanges(
+                for k, dataset in new_ds.items():
+                    new_ds[k] = self.relink_technosphere_exchanges(
                         dataset,
-                        self.database,
-                        self.model,
-                        cache=self.cache,
+                    )
+
+                    # Add created dataset to cache
+                    self.add_new_entry_to_cache(
+                        location=dataset["location"],
+                        exchange=dataset,
+                        allocated=[dataset],
+                        shares=[1.0, ],
                     )
 
                 self.database.extend(new_ds.values())
 
-                # Add created dataset to `self.list_datasets`
-                self.list_datasets.extend(
-                    [
-                        (
-                            act["name"],
-                            act["reference product"],
-                            act["location"],
-                        )
-                        for act in new_ds.values()
-                    ]
-                )
-
                 # add to log
                 for dataset in list(new_ds.values()):
                     self.write_log(dataset)
+                    # add it to list of created datasets
+                    self.modified_datasets[
+                        (self.model, self.scenario, self.year)
+                    ]["created"].append(
+                        (
+                            dataset["name"],
+                            dataset["reference product"],
+                            dataset["location"],
+                            dataset["unit"]
+                        )
+                    )
 
         # define heat sources
         heat_map_ds = fetch_mapping(HEAT_SOURCES)
@@ -135,11 +134,11 @@ class DirectAirCapture(BaseTransformation):
         for technology, ds_list in self.dac_plants.items():
             for ds_name in ds_list:
                 original_ds = self.fetch_proxies(
-                    name=ds_name, ref_prod="carbon dioxide", relink=False
+                    name=ds_name,
+                    ref_prod="carbon dioxide",
+                    relink=False,
+                    delete_original_dataset=True,
                 )
-
-                # delete original
-                self.database = [x for x in self.database if x["name"] != ds_name]
 
                 # loop through heat sources
                 for heat_type, activities in heat_map_ds.items():
@@ -157,7 +156,7 @@ class DirectAirCapture(BaseTransformation):
                             continue
 
                     new_ds = copy.deepcopy(original_ds)
-                    for _, dataset in new_ds.items():
+                    for k, dataset in new_ds.items():
                         dataset["name"] += f", with {heat_type}, and grid electricity"
                         dataset["code"] = str(uuid.uuid4().hex)
                         dataset["comment"] += activities["description"]
@@ -180,11 +179,8 @@ class DirectAirCapture(BaseTransformation):
                                     exc["unit"] = "kilowatt hour"
                                     exc["amount"] *= 1 / (2.9 * 3.6)
 
-                        self.cache, dataset = relink_technosphere_exchanges(
+                        new_ds[k] = self.relink_technosphere_exchanges(
                             dataset,
-                            self.database,
-                            self.model,
-                            cache=self.cache,
                         )
 
                     # adjust efficiency, if needed
@@ -195,18 +191,17 @@ class DirectAirCapture(BaseTransformation):
                     # add to log
                     for dataset in list(new_ds.values()):
                         self.write_log(dataset)
-
-                    # Add created dataset to `self.list_datasets`
-                    self.list_datasets.extend(
-                        [
+                        # add it to list of created datasets
+                        self.modified_datasets[
+                            (self.model, self.scenario, self.year)
+                        ]["created"].append(
                             (
-                                act["name"],
-                                act["reference product"],
-                                act["location"],
+                                dataset["name"],
+                                dataset["reference product"],
+                                dataset["location"],
+                                dataset["unit"]
                             )
-                            for act in new_ds.values()
-                        ]
-                    )
+                        )
 
     def adjust_dac_efficiency(self, datasets, technology):
         """

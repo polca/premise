@@ -72,7 +72,7 @@ to this file:
 In the long term, this information can be integrated
 into premise so that it is not necessary to provide it manually.
 
-IMA scenario file
+IAM scenario file
 -----------------
 
 The scenario file should be a comma-separated text file (i.e., csv)

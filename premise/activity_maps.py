@@ -63,20 +63,27 @@ class InventorySet:
 
     def __init__(self, database: List[dict]) -> None:
         self.database = database
+
         self.powerplant_filters = get_mapping(
             filepath=POWERPLANT_TECHS, var="ecoinvent_aliases"
         )
+
         self.powerplant_fuels_filters = get_mapping(
             filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases"
         )
+
         self.fuels_filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
+
         self.materials_filters = get_mapping(
             filepath=MATERIALS_TECHS, var="ecoinvent_aliases"
         )
+
         self.daccs_filters = get_mapping(filepath=DAC_TECHS, var="ecoinvent_aliases")
+
         self.carbon_storage_filters = get_mapping(
             filepath=CARBON_STORAGE_TECHS, var="ecoinvent_aliases"
         )
+
         self.cement_fuel_filters = get_mapping(
             filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases"
         )
@@ -85,13 +92,11 @@ class InventorySet:
             filepath=GAINS_MAPPING, var="ecoinvent_aliases"
         )
 
-    def generate_gains_mapping_IAM(self):
-        map = self.generate_gains_mapping()
+    def generate_gains_mapping_IAM(self, mapping):
         EU_to_IAM_var = get_mapping(filepath=GAINS_MAPPING, var="gains_aliases_IAM")
-
         new_map = defaultdict(set)
         for eu, iam in EU_to_IAM_var.items():
-            new_map[iam].update(map[eu])
+            new_map[iam].update(mapping[eu])
 
         return new_map
 

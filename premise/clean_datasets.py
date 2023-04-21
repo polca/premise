@@ -16,7 +16,6 @@ from wurst import searching as ws
 
 from . import DATA_DIR
 
-FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
 FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
 
@@ -44,18 +43,6 @@ def remove_uncertainty(database):
                         if key in exc:
                             del exc[key]
     return database
-
-
-def get_fix_names_dict() -> Dict[str, str]:
-    """
-    Loads a csv file into a dictionary. This dictionary contains a few location names
-    that need correction in the wurst inventory database.
-
-    :return: dictionary that contains names equivalence
-    :rtype: dict
-    """
-    with open(FILEPATH_FIX_NAMES, encoding="utf-8") as file:
-        return dict(filter(None, csv.reader(file, delimiter=";")))
 
 
 def get_biosphere_flow_uuid(version: str) -> Dict[Tuple[str, str, str, str], str]:
@@ -94,24 +81,11 @@ def get_biosphere_flow_categories(
     :rtype: dict
     """
 
-    if version == "3.9":
-        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
-    else:
-        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+    data = get_biosphere_flow_uuid(version)
 
-    if not Path(fp).is_file():
-        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
-
-    csv_dict = {}
-
-    with open(fp, encoding="utf-8") as file:
-        input_dict = csv.reader(file, delimiter=";")
-        for row in input_dict:
-            csv_dict[row[-1]] = (
-                (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
-            )
-
-    return csv_dict
+    return {
+        v: (k[1], k[2]) if k[2] != "unspecified" else (k[1],) for k, v in data.items()
+    }
 
 
 def remove_nones(database: List[dict]) -> List[dict]:
@@ -188,15 +162,6 @@ class DatabaseCleaner:
             # Parameter field is converted from a list to a dictionary
             self.transform_parameter_field()
         self.version = version
-
-    def get_rev_fix_names_dict(self) -> Dict[str, str]:
-        """
-        Reverse the fix_names dictionary.
-
-        :return: dictionary that contains names equivalence
-        :rtype: dict
-        """
-        return {v: k for k, v in get_fix_names_dict().items()}
 
     def find_product_given_lookup_dict(self, lookup_dict: Dict[str, str]) -> List[str]:
         """

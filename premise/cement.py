@@ -39,7 +39,7 @@ class Cement(BaseTransformation):
     It adjusts the kiln efficiency based on the improvement indicated in the IAM file, relative to 2020.
     It adds CCS, if indicated in the IAM file.
     It creates regions-specific cement production datasets (and deletes the original ones).
-    It adjust electricity consumption in cement production datasets.
+    It adjusts electricity consumption in cement production datasets.
     It creates regions-specific cement market datasets (and deletes the original ones).
     It adjusts the clinker-to-cement ratio in the generic cement market dataset.
 
@@ -62,9 +62,10 @@ class Cement(BaseTransformation):
         year: int,
         version: str,
         system_model: str,
+        modified_datasets: dict,
     ):
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model
+            database, iam_data, model, pathway, year, version, system_model, modified_datasets
         )
         self.version = version
 
@@ -443,7 +444,7 @@ class Cement(BaseTransformation):
         :return: Does not return anything. Modifies in place.
         """
 
-        print("Start integration of cement data...\n")
+        print("Start integration of cement data...")
 
         print("Create new clinker production datasets and delete old datasets")
 
@@ -453,6 +454,17 @@ class Cement(BaseTransformation):
         # add to log
         for new_dataset in clinker_prod_datasets:
             self.write_log(new_dataset)
+            # add it to list of created datasets
+            self.modified_datasets[
+                (self.model, self.scenario, self.year)
+            ]["created"].append(
+                (
+                    new_dataset["name"],
+                    new_dataset["reference product"],
+                    new_dataset["location"],
+                    new_dataset["unit"]
+                )
+            )
 
         print("Create new clinker market datasets and delete old datasets")
         clinker_market_datasets = list(
@@ -468,6 +480,17 @@ class Cement(BaseTransformation):
         # add to log
         for new_dataset in clinker_market_datasets:
             self.write_log(new_dataset)
+            # add it to list of created datasets
+            self.modified_datasets[
+                (self.model, self.scenario, self.year)
+            ]["created"].append(
+                (
+                    new_dataset["name"],
+                    new_dataset["reference product"],
+                    new_dataset["location"],
+                    new_dataset["unit"]
+                )
+            )
 
         print("Create new cement market datasets")
 
@@ -482,6 +505,8 @@ class Cement(BaseTransformation):
 
         markets = {(m["name"], m["reference product"]) for m in markets}
 
+        new_datasets = []
+
         for dataset in markets:
             new_cement_markets = self.fetch_proxies(
                 name=dataset[0],
@@ -489,11 +514,24 @@ class Cement(BaseTransformation):
                 production_variable="cement",
             )
 
-            self.database.extend(list(new_cement_markets.values()))
-
             # add to log
             for new_dataset in list(new_cement_markets.values()):
                 self.write_log(new_dataset)
+                # add it to list of created datasets
+                self.modified_datasets[
+                    (self.model, self.scenario, self.year)
+                ]["created"].append(
+                    (
+                        new_dataset["name"],
+                        new_dataset["reference product"],
+                        new_dataset["location"],
+                        new_dataset["unit"]
+                    )
+                )
+
+            new_datasets.extend(list(new_cement_markets.values()))
+
+        self.database.extend(new_datasets)
 
         print(
             "Create new cement production datasets and "
@@ -509,6 +547,8 @@ class Cement(BaseTransformation):
 
         production = {(p["name"], p["reference product"]) for p in production}
 
+        new_datasets = []
+
         for dataset in production:
             # Fetch proxy datasets (one per IAM region)
             # Delete old datasets
@@ -518,12 +558,24 @@ class Cement(BaseTransformation):
                 production_variable="cement",
             )
 
-            # add them to the wurst database
-            self.database.extend(list(new_cement_production.values()))
-
             # add to log
             for new_dataset in list(new_cement_production.values()):
                 self.write_log(dataset=new_dataset, status="updated")
+                # add it to list of created datasets
+                self.modified_datasets[
+                    (self.model, self.scenario, self.year)
+                ]["created"].append(
+                    (
+                        new_dataset["name"],
+                        new_dataset["reference product"],
+                        new_dataset["location"],
+                        new_dataset["unit"]
+                    )
+                )
+
+            new_datasets.extend(list(new_cement_production.values()))
+
+        self.database.extend(new_datasets)
 
         print("Done!")
 

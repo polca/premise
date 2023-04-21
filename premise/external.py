@@ -4,7 +4,7 @@ Implements external scenario data.
 
 import csv
 from datetime import date
-from pathlib import Path
+import wurst
 
 import xarray as xr
 from numpy import ndarray
@@ -1094,7 +1094,7 @@ class ExternalScenario(BaseTransformation):
             if not (d["name"] == new_name and d["reference product"] == new_ref)
         ]
 
-        log = []
+
         list_fltr = []
         for k in replaces:
             fltr = []
@@ -1158,21 +1158,6 @@ class ExternalScenario(BaseTransformation):
 
                 if new_loc:
                     for loc, share in new_loc:
-                        log.append(
-                            [
-                                dataset["name"],
-                                dataset["reference product"],
-                                dataset["location"],
-                                exc["name"],
-                                exc["product"],
-                                exc["location"],
-                                exc["amount"],
-                                new_name,
-                                new_ref,
-                                loc,
-                                exc["amount"] * ratio * share,
-                            ]
-                        )
 
                         # add new exchange
                         new_exchanges.append(
@@ -1243,38 +1228,6 @@ class ExternalScenario(BaseTransformation):
                             "product": new_ref,
                         }
                     )
-
-        if log:
-            # check that directory exists, otherwise create it
-            Path(DATA_DIR / "logs").mkdir(parents=True, exist_ok=True)
-
-            with open(
-                DATA_DIR
-                / "logs"
-                / f"external scenario - exchanges {self.scenario} {self.year}-{date.today()}.csv",
-                "a",
-                encoding="utf-8",
-            ) as csv_file:
-                writer = csv.writer(csv_file, delimiter=";", lineterminator="\n")
-                writer.writerow(
-                    [
-                        "name",
-                        "product",
-                        "location",
-                        "amount",
-                        "old supplier name",
-                        "old supplier product",
-                        "old supplier location",
-                        "new supplier name",
-                        "new supplier product",
-                        "new supplier location",
-                        "new amount",
-                    ]
-                )
-                for line in log:
-                    writer.writerow(line)
-        else:
-            print("No exchanges were replaced.")
 
     def sum_exchanges(self, dataset_exchanges):
         # sum up exchanges with the same name, product, and location

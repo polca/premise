@@ -19,7 +19,6 @@ from .inventory_imports import VariousVehicles
 from .transformation import (
     BaseTransformation,
     IAMDataCollection,
-    relink_technosphere_exchanges,
 )
 from .utils import eidb_label
 
@@ -98,7 +97,6 @@ def create_fleet_vehicles(
     Create datasets for fleet average vehicles based on IAM fleet data.
 
     :param datasets: vehicle datasets of all size, powertrain and construction years.
-    :param regions_mapping: mapping between two IAM location terminologies
     :param vehicle_type: "car", "truck"
     :param year: year for the fleet average vehicle
     :param model: IAM model
@@ -433,9 +431,10 @@ class Transport(BaseTransformation):
         relink: bool,
         vehicle_type: str,
         has_fleet: bool,
+        modified_datasets: dict,
     ):
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model
+            database, iam_data, model, pathway, year, version, system_model, modified_datasets
         )
         self.version = version
         self.relink = relink
@@ -596,11 +595,8 @@ class Transport(BaseTransformation):
                             exc.pop("input")
 
                     if self.relink:
-                        self.cache, new_ds = relink_technosphere_exchanges(
+                        new_ds = self.relink_technosphere_exchanges(
                             new_ds,
-                            self.database,
-                            self.model,
-                            cache=self.cache,
                         )
 
                     list_new_ds.append(new_ds)

@@ -6,6 +6,7 @@ and emission values for different sectors, carbon capture rates, etc.
 
 import copy
 import csv
+from functools import lru_cache
 from io import StringIO
 from itertools import chain
 from pathlib import Path
@@ -28,7 +29,6 @@ IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
 IAM_DAC_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
-IAM_LIFETIMES = DATA_DIR / "lifetimes.csv"
 FILEPATH_FLEET_COMP = (
     DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
 )
@@ -58,29 +58,7 @@ def get_crops_properties() -> dict:
 
     return crop_props
 
-
-def get_lifetime(list_tech: List) -> np.array:
-    """
-    Fetch lifetime values for different technologies from a .csv file.
-    This is only used for consequential databases.
-    :param list_tech: technology labels to find lifetime values for.
-    :return: a numpy array with technology lifetime values
-    """
-    dict_ = {}
-    with open(IAM_LIFETIMES, encoding="utf-8") as file:
-        reader = csv.reader(file, delimiter=";")
-        for row in reader:
-            dict_[row[0]] = row[1]
-
-    arr = np.zeros_like(list_tech)
-
-    for i, tech in enumerate(list_tech):
-        lifetime = dict_[tech]
-        arr[i] = lifetime
-
-    return arr.astype(float)
-
-
+@lru_cache
 def get_gains_IAM_data(model, gains_scenario):
     filepath = Path(
         DATA_DIR / "GAINS_emission_factors" / "iam_data" / gains_scenario
@@ -126,6 +104,7 @@ def get_gains_IAM_data(model, gains_scenario):
     return arr
 
 
+@lru_cache
 def get_gains_EU_data() -> xr.DataArray:
     """
     Read the GAINS emissions csv file and return an `xarray` with dimensions:
@@ -159,7 +138,7 @@ def get_gains_EU_data() -> xr.DataArray:
         encoding="utf-8",
     )
     gains_emi_EU["sector"] = gains_emi_EU["Sector"] + gains_emi_EU["Activity"]
-    gains_emi_EU.drop(["Sector", "Activity", "variable", "Activity_long"], axis=1)
+    gains_emi_EU.drop(["Sector", "Activity", ], axis=1)
 
     gains_emi_EU = gains_emi_EU[~gains_emi_EU["value"].isna()]
 
@@ -940,7 +919,7 @@ class IAMDataCollection:
         for a specified year, for each
         region provided by the IAM.
 
-        :return: a multi-dimensional array with
+        :return: a multidimensional array with
         electricity technologies market share
         for a given year, for all regions.
 
@@ -1059,15 +1038,6 @@ class IAMDataCollection:
                     self.year,
                     self.system_model_args,
                 )
-
-        else:
-            data_to_return = data_to_return.interp(year=[self.year])
-            data_to_return /= (
-                data.loc[:, list_technologies, :]
-                .interp(year=[self.year])
-                .groupby("region")
-                .sum(dim="variables")
-            )
 
         return data_to_return
 

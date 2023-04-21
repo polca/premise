@@ -466,6 +466,12 @@ class NewDatabase:
 
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
 
+        # create dictionary that keeps track of emptied and created datasets
+        self.modified_datasets = {
+            (s["model"], s["pathway"], s["year"]): {"emptied": [], "created": []}
+            for s in self.scenarios
+        }
+
         # print some info
         if not quiet:
             print_version()
@@ -752,6 +758,7 @@ class NewDatabase:
                     year=scenario["year"],
                     version=self.version,
                     system_model=self.system_model,
+                    modified_datasets=self.modified_datasets,
                 )
 
                 # datasets in 3.9 have been updated
@@ -764,6 +771,7 @@ class NewDatabase:
                 electricity.update_electricity_markets()
                 electricity.update_electricity_efficiency()
                 scenario["database"] = electricity.database
+                self.modified_datasets = electricity.modified_datasets
 
     def update_dac(self) -> None:
         """
@@ -784,10 +792,12 @@ class NewDatabase:
                     year=scenario["year"],
                     version=self.version,
                     system_model=self.system_model,
+                    modified_datasets=self.modified_datasets,
                 )
 
                 dac.generate_dac_activities()
                 scenario["database"] = dac.database
+                self.modified_datasets = dac.modified_datasets
 
     def update_fuels(self) -> None:
         """
@@ -806,9 +816,11 @@ class NewDatabase:
                     year=scenario["year"],
                     version=self.version,
                     system_model=self.system_model,
+                    modified_datasets=self.modified_datasets,
                 )
                 fuels.generate_fuel_markets()
                 scenario["database"] = fuels.database
+                self.modified_datasets = fuels.modified_datasets
 
     def update_cement(self) -> None:
         """
@@ -827,10 +839,12 @@ class NewDatabase:
                     year=scenario["year"],
                     version=self.version,
                     system_model=self.system_model,
+                    modified_datasets=self.modified_datasets,
                 )
 
                 cement.add_datasets_to_database()
                 scenario["database"] = cement.database
+                self.modified_datasets = cement.modified_datasets
 
     def update_steel(self) -> None:
         """
@@ -849,9 +863,11 @@ class NewDatabase:
                     year=scenario["year"],
                     version=self.version,
                     system_model=self.system_model,
+                    modified_datasets=self.modified_datasets,
                 )
                 steel.generate_activities()
                 scenario["database"] = steel.database
+                self.modified_datasets = steel.modified_datasets
 
     def update_cars(self) -> None:
         """
@@ -873,13 +889,15 @@ class NewDatabase:
                     vehicle_type="car",
                     relink=False,
                     has_fleet=True,
+                    modified_datasets=self.modified_datasets,
                 )
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
+                self.modified_datasets = trspt.modified_datasets
 
     def update_two_wheelers(self) -> None:
         """
-        This method will update the two wheelers inventories
+        This method will update the two-wheelers inventories
         with the data from the IAM scenarios.
         """
         print("\n////////////////////////// TWO-WHEELERS ////////////////////////////")
@@ -900,9 +918,11 @@ class NewDatabase:
                     vehicle_type="two wheeler",
                     relink=False,
                     has_fleet=False,
+                    modified_datasets=self.modified_datasets,
                 )
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
+                self.modified_datasets = trspt.modified_datasets
 
     def update_trucks(self) -> None:
         """
@@ -925,10 +945,40 @@ class NewDatabase:
                     vehicle_type="truck",
                     relink=False,
                     has_fleet=True,
+                    modified_datasets=self.modified_datasets,
                 )
 
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
+                self.modified_datasets = trspt.modified_datasets
+
+    def update_buses(self) -> None:
+        """
+        This method will update the buses inventories
+        with the data from the IAM scenarios.
+        """
+
+        print("\n////////////////////////////// BUSES ///////////////////////////////")
+
+        for scenario in self.scenarios:
+            if "exclude" not in scenario or "update_buses" not in scenario["exclude"]:
+                trspt = Transport(
+                    database=scenario["database"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["iam data"],
+                    version=self.version,
+                    system_model=self.system_model,
+                    vehicle_type="bus",
+                    relink=False,
+                    has_fleet=True,
+                    modified_datasets=self.modified_datasets,
+                )
+
+                trspt.create_vehicle_markets()
+                scenario["database"] = trspt.database
+                self.modified_datasets = trspt.modified_datasets
 
     def update_external_scenario(self):
         if self.datapackages:
@@ -973,32 +1023,6 @@ class NewDatabase:
                     scenario["database"] = external_scenario.database
             print(f"Log file of exchanges saved under {DATA_DIR / 'logs'}.")
 
-    def update_buses(self) -> None:
-        """
-        This method will update the buses inventories
-        with the data from the IAM scenarios.
-        """
-
-        print("\n////////////////////////////// BUSES ///////////////////////////////")
-
-        for scenario in self.scenarios:
-            if "exclude" not in scenario or "update_buses" not in scenario["exclude"]:
-                trspt = Transport(
-                    database=scenario["database"],
-                    year=scenario["year"],
-                    model=scenario["model"],
-                    pathway=scenario["pathway"],
-                    iam_data=scenario["iam data"],
-                    version=self.version,
-                    system_model=self.system_model,
-                    vehicle_type="bus",
-                    relink=False,
-                    has_fleet=True,
-                )
-
-                trspt.create_vehicle_markets()
-                scenario["database"] = trspt.database
-
     def update_emissions(self) -> None:
         """
         This method will update the hot pollutants emissions
@@ -1018,6 +1042,7 @@ class NewDatabase:
                     version=self.version,
                     system_model=self.system_model,
                     gains_scenario=self.gains_scenario,
+                    modified_datasets=self.modified_datasets,
                 )
 
                 emissions.update_emissions_in_database()
@@ -1067,6 +1092,7 @@ class NewDatabase:
                 name=name,
                 version=self.version,
                 system_model=self.system_model,
+                modified_datasets=self.modified_datasets,
             )
         self.database = generate_superstructure_db(
             self.database,
@@ -1135,6 +1161,7 @@ class NewDatabase:
                 name=name[scen],
                 version=self.version,
                 system_model=self.system_model,
+                modified_datasets=self.modified_datasets,
             )
 
             write_brightway2_database(
@@ -1192,6 +1219,7 @@ class NewDatabase:
                 name="database",
                 version=self.version,
                 system_model=self.system_model,
+                modified_datasets=self.modified_datasets,
             )
 
             Export(
@@ -1233,6 +1261,7 @@ class NewDatabase:
                 name="database",
                 version=self.version,
                 system_model=self.system_model,
+                modified_datasets=self.modified_datasets,
             )
 
             Export(
@@ -1267,6 +1296,7 @@ class NewDatabase:
                 name="database",
                 version=self.version,
                 system_model=self.system_model,
+                modified_datasets=self.modified_datasets,
             )
 
         df, extra_inventories = generate_scenario_factor_file(

@@ -1,7 +1,7 @@
 from electrolysis:
   name: hydrogen production, gaseous, 25 bar, from electrolysis
   var: hydrogen, electrolysis
-  feedstock name: electricity
+  feedstock name: electricity, low voltage
   feedstock unit: kilowatt hour
   floor value: 48.0
 from SMR of biogas, with CCS:

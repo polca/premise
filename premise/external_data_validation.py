@@ -30,8 +30,6 @@ def check_inventories(
     :param config: config file
     :param inventory_data: inventory data to check
     :param scenario_data: external scenario data
-    :param model: IAM model name
-    :param pathway: IAM pathway name
     :param year: scenario year
     """
 

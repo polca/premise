@@ -12,6 +12,10 @@ scenarios = [
 
 ndb = NewDatabase(
     scenarios=scenarios,
-    source_db="ecoinvent 3.9 cutoff",
+    source_db="ecoinvent 3.8 cutoff",
+    source_version="3.8",
     key=b"tUePmX_S5B8ieZkkM7WUU2CnO8SmShwmAeWK9x2rTFo=",
 )
+
+ndb.update_all()
+ndb.write_datapackage(name="my_dp")

@@ -9,6 +9,7 @@ import sys
 import uuid
 from pathlib import Path
 from typing import Dict, List, Union
+from functools import lru_cache
 
 import bw2io
 import requests
@@ -38,7 +39,7 @@ def get_outdated_flows():
 
     return flows
 
-
+@lru_cache
 def get_biosphere_code(version) -> dict:
     """
     Retrieve a dictionary with biosphere flow names and uuid codes.
@@ -70,6 +71,7 @@ def get_consequential_blacklist():
     return flows
 
 
+@lru_cache
 def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
     """
     Generate mapping for ecoinvent datasets across different database versions.
@@ -381,7 +383,12 @@ class BaseInventoryImport:
                 if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
                     if not "product" in exchange:
-                        exchange["product"] = self.correct_product_field(exchange)
+                        exchange["product"] = self.correct_product_field((
+                            exchange["name"],
+                            exchange["location"],
+                            exchange["unit"],
+                            exchange.get("reference product", None))
+                        )
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
@@ -390,14 +397,20 @@ class BaseInventoryImport:
                         try:
                             assert exchange["product"] == exchange["reference product"]
                         except AssertionError:
-                            exchange["product"] = self.correct_product_field(exchange)
+                            exchange["product"] = self.correct_product_field((
+                                exchange["name"],
+                                exchange["location"],
+                                exchange["unit"],
+                                exchange.get("reference product", None)
+                            ))
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:
             if "code" not in dataset:
                 dataset["code"] = str(uuid.uuid4().hex)
 
-    def correct_product_field(self, exc: dict) -> [str, None]:
+    @lru_cache
+    def correct_product_field(self, exc: tuple) -> [str, None]:
         """
         Find the correct name for the `product` field of the exchange
         :param exc: a dataset exchange
@@ -408,23 +421,23 @@ class BaseInventoryImport:
         candidate = next(
             ws.get_many(
                 self.import_db.data,
-                ws.equals("name", exc["name"]),
-                ws.equals("location", exc["location"]),
-                ws.equals("unit", exc["unit"]),
+                ws.equals("name", exc[0]),
+                ws.equals("location", exc[1]),
+                ws.equals("unit", exc[2]),
             ),
             None,
         )
 
         # If not, look in the ecoinvent inventories
         if candidate is None:
-            if "reference product" in exc:
+            if exc[-1] is not None:
                 candidate = next(
                     ws.get_many(
                         self.database,
-                        ws.equals("name", exc["name"]),
-                        ws.equals("reference product", exc["reference product"]),
-                        ws.equals("location", exc["location"]),
-                        ws.equals("unit", exc["unit"]),
+                        ws.equals("name", exc[0]),
+                        ws.equals("location", exc[1]),
+                        ws.equals("unit", exc[2]),
+                        ws.equals("reference product", exc[-1]),
                     ),
                     None,
                 )
@@ -432,9 +445,9 @@ class BaseInventoryImport:
                 candidate = next(
                     ws.get_many(
                         self.database,
-                        ws.equals("name", exc["name"]),
-                        ws.equals("location", exc["location"]),
-                        ws.equals("unit", exc["unit"]),
+                        ws.equals("name", exc[0]),
+                        ws.equals("location", exc[1]),
+                        ws.equals("unit", exc[2]),
                     ),
                     None,
                 )
@@ -444,12 +457,12 @@ class BaseInventoryImport:
 
         self.list_unlinked.append(
             (
-                exc["name"],
-                exc.get("reference product"),
-                exc.get("location"),
-                exc.get("categories"),
-                exc["unit"],
-                exc["type"],
+                exc[0],
+                exc[-1],
+                exc[1],
+                None,
+                exc[2],
+                "technosphere",
                 self.path.name,
             )
         )

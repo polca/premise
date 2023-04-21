@@ -4,11 +4,14 @@ from GAINS.
 """
 
 import logging.config
+from typing import Union
 
 import numpy as np
-import xarray as xr
 import yaml
 from pathlib import Path
+from functools import lru_cache
+import wurst
+from numpy import ndarray
 
 from .transformation import (
     BaseTransformation,
@@ -18,9 +21,9 @@ from .transformation import (
     List,
     Set,
     ws,
-    wurst,
 )
 from .utils import DATA_DIR
+import xarray as xr
 
 EI_POLLUTANTS = DATA_DIR / "GAINS_emission_factors" / "GAINS_ei_pollutants.yaml"
 GAINS_SECTORS = DATA_DIR / "GAINS_emission_factors" / "GAINS_EU_sectors_mapping.yaml"
@@ -63,14 +66,22 @@ class Emissions(BaseTransformation):
         version: str,
         system_model: str,
         gains_scenario: str,
+        modified_datasets: dict,
     ):
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            modified_datasets,
         )
 
         self.version = version
-        self.gains_EU = iam_data.gains_data_EU
-        self.gains_IAM = iam_data.gains_data_IAM
+        self.gains_EU = self.prepare_data(iam_data.gains_data_EU)
+        self.gains_IAM = self.prepare_data(iam_data.gains_data_IAM)
         self.ei_pollutants = fetch_mapping(EI_POLLUTANTS)
         self.gains_pollutant = {v: k for k, v in self.ei_pollutants.items()}
         self.gains_sectors = fetch_mapping(GAINS_SECTORS)
@@ -78,7 +89,9 @@ class Emissions(BaseTransformation):
 
         mapping = InventorySet(self.database)
         self.gains_map_EU: Dict[str, Set] = mapping.generate_gains_mapping()
-        self.gains_map_IAM: Dict[str, Set] = mapping.generate_gains_mapping_IAM()
+        self.gains_map_IAM: Dict[str, Set] = mapping.generate_gains_mapping_IAM(
+            mapping=self.gains_map_EU
+        )
         self.rev_gains_map_EU, self.rev_gains_map_IAM = {}, {}
 
         for s in self.gains_map_EU:
@@ -89,6 +102,26 @@ class Emissions(BaseTransformation):
             for t in self.gains_map_IAM[s]:
                 self.rev_gains_map_IAM[t] = s
 
+    def prepare_data(self, data):
+
+        _ = lambda x: xr.where((np.isnan(x)) | (x == 0), 1, x)
+
+        data = (
+            data.interp(year=[self.year])
+            / _(
+                data.loc[
+                    dict(
+                        year=2020,
+                    )
+                ]
+                )
+        )
+
+        # replace 0 values with 1
+        data = xr.where((np.isnan(data)) | (data == 0), 1, data)
+
+        return data
+
     def update_emissions_in_database(self):
         print("Integrating GAINS EU emission factors.")
         for ds in self.database:
@@ -98,7 +131,10 @@ class Emissions(BaseTransformation):
             ):
                 gains_sector = self.rev_gains_map_EU[ds["name"]]
                 self.update_pollutant_emissions(
-                    ds, gains_sector, self.gains_EU, model="GAINS-EU"
+                    ds,
+                    gains_sector,
+                    model="GAINS-EU",
+                    regions=self.gains_EU.region.values,
                 )
                 self.write_log(ds, status="updated")
 
@@ -111,13 +147,16 @@ class Emissions(BaseTransformation):
             ):
                 gains_sector = self.rev_gains_map_IAM[ds["name"]]
                 self.update_pollutant_emissions(
-                    ds, gains_sector, self.gains_IAM, model="GAINS-IAM"
+                    ds,
+                    gains_sector,
+                    model="GAINS-IAM",
+                    regions=self.gains_IAM.region.values,
                 )
 
                 self.write_log(ds, status="updated")
 
     def update_pollutant_emissions(
-        self, dataset: dict, sector: str, gains_data: xr.DataArray, model: str
+        self, dataset: dict, sector: str, model: str, regions: list
     ) -> dict:
         """
         Update pollutant emissions based on GAINS data.
@@ -138,11 +177,11 @@ class Emissions(BaseTransformation):
                 pollutant=gains_pollutant,
                 location=(
                     dataset["location"]
-                    if dataset["location"] in gains_data.region.values
+                    if dataset["location"] in regions
                     else self.ecoinvent_to_iam_loc[dataset["location"]]
                 ),
                 sector=sector,
-                data=gains_data,
+                model=model,
             )
 
             if scaling_factor != 1.0:
@@ -166,57 +205,45 @@ class Emissions(BaseTransformation):
 
         return dataset
 
+    @lru_cache
     def find_gains_emissions_change(
-        self, pollutant: str, location: str, sector: str, data: xr.DataArray
-    ) -> float:
+        self, pollutant: str, location: str, sector: str, model: str
+    ) -> Union[ndarray, float]:
         """
         Return the relative change in emissions compared to 2020
         for a given pollutant, location and sector.
         :param pollutant: name of pollutant
         :param sector: name of technology/sector
         :param location: location of emitting dataset
+        :model: GAINS model
         :return: a scaling factor
         """
 
-        _ = lambda x: np.where((np.isnan(x)) | (x == 0), 1, x)
+        data = self.gains_EU if model == "GAINS-EU" else self.gains_IAM
 
-        try:
-            scaling_factor = _(
-                data.loc[
-                    dict(
-                        region=location,
-                        pollutant=pollutant,
-                        sector=sector,
-                    )
-                ].interp(year=self.year)
-            ) / _(
-                data.loc[
-                    dict(
-                        region=location,
-                        pollutant=pollutant,
-                        sector=sector,
-                        year=2020,
-                    )
-                ]
+        key_exists = all(
+            k in data.coords[dim].values
+            for k, dim in zip(
+                [location, pollutant, sector, self.year],
+                ["region", "pollutant", "sector", "year"],
             )
-        except KeyError:
-            scaling_factor = 1.0
+        )
 
-        if self.year < 2020:
-            scaling_factor = np.clip(
-                scaling_factor,
-                1,
-                None,
-            )
-        else:
-            scaling_factor = np.clip(
-                scaling_factor,
-                0,
-                1,
-            )
+        if key_exists:
+            scaling_factor = data.loc[
+                dict(
+                    region=location,
+                    pollutant=pollutant,
+                    sector=sector,
+                )
+            ]
 
-        if not np.isnan(scaling_factor) and scaling_factor != 1.0:
-            return scaling_factor.astype(float)
+            scaling_factor = np.clip(scaling_factor, 1 if self.year < 2020 else 0, None)
+
+            if np.isnan(scaling_factor):
+                scaling_factor = 1.0
+
+            return float(scaling_factor)
         else:
             return 1.0
 

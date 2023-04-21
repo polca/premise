@@ -4,11 +4,12 @@ Integrates projections regarding steel production.
 import logging.config
 from typing import Dict, List
 from pathlib import Path
+import wurst
 
 import yaml
 
 from .data_collection import IAMDataCollection
-from .transformation import BaseTransformation, ws, wurst
+from .transformation import BaseTransformation, ws
 from .utils import DATA_DIR
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
@@ -46,9 +47,10 @@ class Steel(BaseTransformation):
         year: int,
         version: str,
         system_model: str,
+        modified_datasets: dict,
     ) -> None:
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model
+            database, iam_data, model, pathway, year, version, system_model, modified_datasets
         )
         self.version = version
 
@@ -77,6 +79,8 @@ class Steel(BaseTransformation):
             ("market for steel, unalloyed", "steel, unalloyed"),
             ("market for steel, chromium steel 18/8", "steel, chromium steel 18/8"),
         )
+
+        list_new_steel_markets = []
 
         for market, steel_product in steel_markets_to_create:
             steel_markets = self.fetch_proxies(
@@ -214,11 +218,25 @@ class Steel(BaseTransformation):
                     }
                 )
 
-            self.database.extend(list(steel_markets.values()))
-
             # add to log
             for new_dataset in list(steel_markets.values()):
                 self.write_log(new_dataset)
+                # add it to list of created datasets
+                self.modified_datasets[
+                    (self.model, self.scenario, self.year)
+                ]["created"].append(
+                    (
+                        new_dataset["name"],
+                        new_dataset["reference product"],
+                        new_dataset["location"],
+                        new_dataset["unit"]
+                    )
+                )
+
+            list_new_steel_markets.extend(list(steel_markets.values()))
+
+        # add new steel markets to database
+        self.database.extend(list_new_steel_markets)
 
     def create_steel_production_activities(self):
         """
@@ -257,7 +275,7 @@ class Steel(BaseTransformation):
         for _, steel in d_act_primary_steel.items():
             steel = self.adjust_process_efficiency(steel)
             steel = self.add_carbon_capture_and_storage(
-                datasets=steel, sector="steel - primary"
+                datasets=steel,
             )
             # update the database with the modified datasets
             self.database.extend(list(steel.values()))
@@ -265,13 +283,24 @@ class Steel(BaseTransformation):
             # add to log
             for new_dataset in list(steel.values()):
                 self.write_log(new_dataset)
+                # add it to list of created datasets
+                self.modified_datasets[
+                    (self.model, self.scenario, self.year)
+                ]["created"].append(
+                    (
+                        new_dataset["name"],
+                        new_dataset["reference product"],
+                        new_dataset["location"],
+                        new_dataset["unit"]
+                    )
+                )
 
         # adjust efficiency of secondary steel production
         # and add carbon capture and storage, if needed
         for _, steel in d_act_secondary_steel.items():
             steel = self.adjust_process_efficiency(steel)
             steel = self.add_carbon_capture_and_storage(
-                datasets=steel, sector="steel - secondary"
+                datasets=steel,
             )
             # update the database with the modified datasets
             self.database.extend(list(steel.values()))
@@ -279,6 +308,17 @@ class Steel(BaseTransformation):
             # add to log
             for new_dataset in list(steel.values()):
                 self.write_log(new_dataset)
+                # add it to list of created datasets
+                self.modified_datasets[
+                    (self.model, self.scenario, self.year)
+                ]["created"].append(
+                    (
+                        new_dataset["name"],
+                        new_dataset["reference product"],
+                        new_dataset["location"],
+                        new_dataset["unit"]
+                    )
+                )
 
     def create_pig_iron_production_activities(self):
         """
@@ -297,7 +337,7 @@ class Steel(BaseTransformation):
         pig_iron = self.adjust_process_efficiency(pig_iron)
         # add carbon capture and storage, if needed
         pig_iron = self.add_carbon_capture_and_storage(
-            datasets=pig_iron, sector="steel - primary"
+            datasets=pig_iron,
         )
 
         self.database.extend(list(pig_iron.values()))
@@ -305,6 +345,17 @@ class Steel(BaseTransformation):
         # add to log
         for new_dataset in list(pig_iron.values()):
             self.write_log(new_dataset)
+            # add it to list of created datasets
+            self.modified_datasets[
+                (self.model, self.scenario, self.year)
+            ]["created"].append(
+                (
+                    new_dataset["name"],
+                    new_dataset["reference product"],
+                    new_dataset["location"],
+                    new_dataset["unit"]
+                )
+            )
 
     def create_pig_iron_markets(self):
         """
@@ -322,6 +373,17 @@ class Steel(BaseTransformation):
         # add to log
         for new_dataset in list(pig_iron_markets.values()):
             self.write_log(new_dataset)
+            # add it to list of created datasets
+            self.modified_datasets[
+                (self.model, self.scenario, self.year)
+            ]["created"].append(
+                (
+                    new_dataset["name"],
+                    new_dataset["reference product"],
+                    new_dataset["location"],
+                    new_dataset["unit"]
+                )
+            )
 
     def adjust_process_efficiency(self, datasets):
         """
@@ -389,12 +451,11 @@ class Steel(BaseTransformation):
 
         return datasets
 
-    def add_carbon_capture_and_storage(self, datasets: Dict[str, dict], sector: str):
+    def add_carbon_capture_and_storage(self, datasets: Dict[str, dict]):
         """
         Adds carbon capture-related energy exchanges to the input datasets for the given sector.
 
         :param datasets: A dictionary of datasets to modify.
-        :param sector: The sector to add carbon capture and storage to.
         :return: A modified dictionary of datasets.
         """
 
