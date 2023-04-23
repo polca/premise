@@ -4,13 +4,14 @@ from GAINS.
 """
 
 import logging.config
+from functools import lru_cache
+from pathlib import Path
 from typing import Union
 
 import numpy as np
-import yaml
-from pathlib import Path
-from functools import lru_cache
 import wurst
+import xarray as xr
+import yaml
 from numpy import ndarray
 
 from .transformation import (
@@ -23,7 +24,6 @@ from .transformation import (
     ws,
 )
 from .utils import DATA_DIR
-import xarray as xr
 
 EI_POLLUTANTS = DATA_DIR / "GAINS_emission_factors" / "GAINS_ei_pollutants.yaml"
 GAINS_SECTORS = DATA_DIR / "GAINS_emission_factors" / "GAINS_EU_sectors_mapping.yaml"
@@ -103,7 +103,6 @@ class Emissions(BaseTransformation):
                 self.rev_gains_map_IAM[t] = s
 
     def prepare_data(self, data):
-
         _ = lambda x: xr.where((np.isnan(x)) | (x == 0), 1, x)
 
         data = data.interp(year=[self.year]) / _(

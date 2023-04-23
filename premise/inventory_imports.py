@@ -7,9 +7,9 @@ import csv
 import itertools
 import sys
 import uuid
+from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
-from functools import lru_cache
 
 import bw2io
 import requests
