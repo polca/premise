@@ -4,8 +4,8 @@ Implements external scenario data.
 
 import csv
 from datetime import date
-import wurst
 
+import wurst
 import xarray as xr
 from numpy import ndarray
 
@@ -1157,7 +1157,6 @@ class ExternalScenario(BaseTransformation):
 
                 if new_loc:
                     for loc, share in new_loc:
-
                         # add new exchange
                         new_exchanges.append(
                             {

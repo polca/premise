@@ -4,10 +4,10 @@ Integrates projections regarding fuel production and supply.
 
 import copy
 import logging.config
-from typing import Union
 from pathlib import Path
-import wurst
+from typing import Union
 
+import wurst
 import yaml
 from numpy import ndarray
 
@@ -1231,7 +1231,6 @@ class Fuels(BaseTransformation):
 
         for fuel, activities in fuel_activities.items():
             for activity in activities:
-
                 if fuel == "methane, synthetic":
                     original_ds = self.fetch_proxies(
                         name=activity, ref_prod=" ", delete_original_dataset=True
@@ -1883,7 +1882,6 @@ class Fuels(BaseTransformation):
 
                         # Add new exchange if amount is greater than 0
                         if amount > 0:
-
                             supplier_loc = (
                                 dataset["location"]
                                 if dataset["location"] in self.regions
@@ -2323,9 +2321,7 @@ class Fuels(BaseTransformation):
                     periods = [0, 20, 40, 60]
 
                 for period in periods:
-
                     for region, dataset in copy.deepcopy(d_act).items():
-
                         for exc in ws.production(dataset):
                             if "input" in exc:
                                 del exc["input"]

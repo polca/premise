@@ -2,10 +2,10 @@
 Integrates projections regarding steel production.
 """
 import logging.config
-from typing import Dict, List
 from pathlib import Path
-import wurst
+from typing import Dict, List
 
+import wurst
 import yaml
 
 from .data_collection import IAMDataCollection

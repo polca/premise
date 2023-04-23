@@ -7,18 +7,19 @@ on the wurst database.
 
 import logging.config
 import uuid
-from _operator import itemgetter
 from collections import defaultdict
 from copy import deepcopy
 from functools import lru_cache
 from itertools import groupby, product
-from typing import Any, Dict, List, Set, Tuple, Union
 from pathlib import Path
+from typing import Any, Dict, List, Set, Tuple, Union
 
 import numpy as np
 import yaml
+from _operator import itemgetter
 from constructive_geometries import resolved_row
-from wurst import searching as ws, reference_product, rescale_exchange
+from wurst import reference_product, rescale_exchange
+from wurst import searching as ws
 from wurst import transformations as wt
 
 from .activity_maps import InventorySet
@@ -610,7 +611,6 @@ class BaseTransformation:
                 ds_ref_prod = d_act[region]["reference product"]
 
         if delete_original_dataset:
-
             # add dataset to emptied datasets list
             for ds in self.database:
                 if (ds["name"] == ds_name) and (ds["reference product"] == ds_ref_prod):
@@ -681,7 +681,6 @@ class BaseTransformation:
         )
 
         for existing_ds in existing_datasets:
-
             if existing_ds["location"] in mapping:
                 iam_locs = list(mapping[existing_ds["location"]])
             else:
@@ -714,7 +713,6 @@ class BaseTransformation:
                     i in self.iam_data.production_volumes.variables.values.tolist()
                     for i in production_variable
                 ):
-
                     share = (
                         self.iam_data.production_volumes.sel(
                             region=iam_loc, variables=production_variable
@@ -806,7 +804,6 @@ class BaseTransformation:
             new_exchanges = []
 
             for exc in unique_excs_to_relink:
-
                 entry = None
 
                 # check if already in cache

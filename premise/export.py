@@ -313,7 +313,6 @@ def create_codes_index_of_biosphere_flows_matrix(version):
 
 
 def create_index_of_biosphere_flows_matrix(version):
-
     data = biosphere_flows_dictionary(version)
 
     return {v: k for k, v in enumerate(data.keys())}
@@ -1138,7 +1137,6 @@ class Export:
 
     @staticmethod
     def create_rev_index_of_B_matrix(version):
-
         return {v: k for k, v in biosphere_flows_dictionary(version).items()}
 
     def get_category_of_exchange(self):

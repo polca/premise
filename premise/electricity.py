@@ -12,10 +12,10 @@ the newly created electricity markets.
 import logging.config
 import re
 from collections import defaultdict
-from pathlib import Path
 from functools import lru_cache
-import wurst
+from pathlib import Path
 
+import wurst
 import yaml
 
 from . import VARIABLES_DIR

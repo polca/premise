@@ -16,10 +16,7 @@ from wurst import transformations as wt
 
 from . import DATA_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
-from .transformation import (
-    BaseTransformation,
-    IAMDataCollection,
-)
+from .transformation import BaseTransformation, IAMDataCollection
 from .utils import eidb_label
 
 FILEPATH_FLEET_COMP = (
