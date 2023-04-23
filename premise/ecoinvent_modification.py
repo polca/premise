@@ -283,16 +283,10 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 f"Cannot find the inventory file: {inventory['inventories']}."
             )
 
-        if inventory["ecoinvent version"] not in [
-            "3.7",
-            "3.7.1",
-            "3.8",
-            "3.9",
-            "3.9.1",
-        ]:
+        if inventory["ecoinvent version"] not in config["SUPPORTED_EI_VERSIONS"]:
             raise ValueError(
                 "A lot of trouble will be avoided if the additional "
-                f"inventories to import are ecoinvent 3.7, 3-8 or 3.9-compliant, not {inventory['ecoinvent version']}."
+                f"inventories to import are ecoinvent 3.6, 3.7, 3-8 or 3.9-compliant, not {inventory['ecoinvent version']}."
             )
 
     return inventories_list

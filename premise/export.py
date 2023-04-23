@@ -311,11 +311,13 @@ def create_codes_index_of_biosphere_flows_matrix(version):
 
     return {v: k for k, v in enumerate(data.values())}
 
+
 def create_index_of_biosphere_flows_matrix(version):
 
     data = biosphere_flows_dictionary(version)
 
     return {v: k for k, v in enumerate(data.keys())}
+
 
 def create_codes_and_names_of_tech_matrix(database: List[dict]):
     """
@@ -908,7 +910,9 @@ def generate_superstructure_db(
     return new_db
 
 
-def prepare_db_for_export(scenario, cache, name, version, system_model, modified_datasets):
+def prepare_db_for_export(
+    scenario, cache, name, version, system_model, modified_datasets
+):
     base = BaseTransformation(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -918,7 +922,7 @@ def prepare_db_for_export(scenario, cache, name, version, system_model, modified
         version=version,
         system_model=system_model,
         cache=cache,
-        modified_datasets=modified_datasets
+        modified_datasets=modified_datasets,
     )
 
     # we ensure the absence of duplicate datasets
@@ -945,7 +949,6 @@ def prepare_db_for_export(scenario, cache, name, version, system_model, modified
             "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
             "market for diesel",
             "market for diesel, low-sulfur",
-
         ],
     )
 

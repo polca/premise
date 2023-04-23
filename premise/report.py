@@ -330,7 +330,9 @@ def generate_change_report(source, version, source_type, system_model):
 
     # save the workbook in the working directory
     # the file name is change_report with the current date
-    fp = Path(DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx")
+    fp = Path(
+        DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx"
+    )
     workbook.save(fp)
 
 

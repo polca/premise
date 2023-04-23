@@ -50,7 +50,14 @@ class Steel(BaseTransformation):
         modified_datasets: dict,
     ) -> None:
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model, modified_datasets
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            modified_datasets,
         )
         self.version = version
 
@@ -222,14 +229,14 @@ class Steel(BaseTransformation):
             for new_dataset in list(steel_markets.values()):
                 self.write_log(new_dataset)
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         new_dataset["name"],
                         new_dataset["reference product"],
                         new_dataset["location"],
-                        new_dataset["unit"]
+                        new_dataset["unit"],
                     )
                 )
 
@@ -284,14 +291,14 @@ class Steel(BaseTransformation):
             for new_dataset in list(steel.values()):
                 self.write_log(new_dataset)
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         new_dataset["name"],
                         new_dataset["reference product"],
                         new_dataset["location"],
-                        new_dataset["unit"]
+                        new_dataset["unit"],
                     )
                 )
 
@@ -309,14 +316,14 @@ class Steel(BaseTransformation):
             for new_dataset in list(steel.values()):
                 self.write_log(new_dataset)
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         new_dataset["name"],
                         new_dataset["reference product"],
                         new_dataset["location"],
-                        new_dataset["unit"]
+                        new_dataset["unit"],
                     )
                 )
 
@@ -346,14 +353,14 @@ class Steel(BaseTransformation):
         for new_dataset in list(pig_iron.values()):
             self.write_log(new_dataset)
             # add it to list of created datasets
-            self.modified_datasets[
-                (self.model, self.scenario, self.year)
-            ]["created"].append(
+            self.modified_datasets[(self.model, self.scenario, self.year)][
+                "created"
+            ].append(
                 (
                     new_dataset["name"],
                     new_dataset["reference product"],
                     new_dataset["location"],
-                    new_dataset["unit"]
+                    new_dataset["unit"],
                 )
             )
 
@@ -374,14 +381,14 @@ class Steel(BaseTransformation):
         for new_dataset in list(pig_iron_markets.values()):
             self.write_log(new_dataset)
             # add it to list of created datasets
-            self.modified_datasets[
-                (self.model, self.scenario, self.year)
-            ]["created"].append(
+            self.modified_datasets[(self.model, self.scenario, self.year)][
+                "created"
+            ].append(
                 (
                     new_dataset["name"],
                     new_dataset["reference product"],
                     new_dataset["location"],
-                    new_dataset["unit"]
+                    new_dataset["unit"],
                 )
             )
 

@@ -65,7 +65,14 @@ class Cement(BaseTransformation):
         modified_datasets: dict,
     ):
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model, modified_datasets
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            modified_datasets,
         )
         self.version = version
 
@@ -455,14 +462,14 @@ class Cement(BaseTransformation):
         for new_dataset in clinker_prod_datasets:
             self.write_log(new_dataset)
             # add it to list of created datasets
-            self.modified_datasets[
-                (self.model, self.scenario, self.year)
-            ]["created"].append(
+            self.modified_datasets[(self.model, self.scenario, self.year)][
+                "created"
+            ].append(
                 (
                     new_dataset["name"],
                     new_dataset["reference product"],
                     new_dataset["location"],
-                    new_dataset["unit"]
+                    new_dataset["unit"],
                 )
             )
 
@@ -481,14 +488,14 @@ class Cement(BaseTransformation):
         for new_dataset in clinker_market_datasets:
             self.write_log(new_dataset)
             # add it to list of created datasets
-            self.modified_datasets[
-                (self.model, self.scenario, self.year)
-            ]["created"].append(
+            self.modified_datasets[(self.model, self.scenario, self.year)][
+                "created"
+            ].append(
                 (
                     new_dataset["name"],
                     new_dataset["reference product"],
                     new_dataset["location"],
-                    new_dataset["unit"]
+                    new_dataset["unit"],
                 )
             )
 
@@ -518,14 +525,14 @@ class Cement(BaseTransformation):
             for new_dataset in list(new_cement_markets.values()):
                 self.write_log(new_dataset)
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         new_dataset["name"],
                         new_dataset["reference product"],
                         new_dataset["location"],
-                        new_dataset["unit"]
+                        new_dataset["unit"],
                     )
                 )
 
@@ -562,14 +569,14 @@ class Cement(BaseTransformation):
             for new_dataset in list(new_cement_production.values()):
                 self.write_log(dataset=new_dataset, status="updated")
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         new_dataset["name"],
                         new_dataset["reference product"],
                         new_dataset["location"],
-                        new_dataset["unit"]
+                        new_dataset["unit"],
                     )
                 )
 

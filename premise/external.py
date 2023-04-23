@@ -1094,7 +1094,6 @@ class ExternalScenario(BaseTransformation):
             if not (d["name"] == new_name and d["reference product"] == new_ref)
         ]
 
-
         list_fltr = []
         for k in replaces:
             fltr = []

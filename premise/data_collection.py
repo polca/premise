@@ -58,6 +58,7 @@ def get_crops_properties() -> dict:
 
     return crop_props
 
+
 @lru_cache
 def get_gains_IAM_data(model, gains_scenario):
     filepath = Path(
@@ -138,7 +139,13 @@ def get_gains_EU_data() -> xr.DataArray:
         encoding="utf-8",
     )
     gains_emi_EU["sector"] = gains_emi_EU["Sector"] + gains_emi_EU["Activity"]
-    gains_emi_EU.drop(["Sector", "Activity", ], axis=1)
+    gains_emi_EU.drop(
+        [
+            "Sector",
+            "Activity",
+        ],
+        axis=1,
+    )
 
     gains_emi_EU = gains_emi_EU[~gains_emi_EU["value"].isna()]
 
@@ -656,7 +663,7 @@ class IAMDataCollection:
         This method retrieves specific energy use values for cement-producing technology,
         for a specified year, for each region provided by the IAM.
 
-        :return: a multi-dimensional array with electricity technologies market share
+        :return: a multidimensional array with electricity technologies market share
         for a given year, for all regions.
 
         """
@@ -1112,7 +1119,7 @@ class IAMDataCollection:
         If the efficiency drops after 2020, we ignore it and keep the change
         in efficiency ratio to 1.
 
-        :return: a multi-dimensional array with electricity technologies market
+        :return: a multidimensional array with electricity technologies market
         share for a given year, for all regions.
         """
 

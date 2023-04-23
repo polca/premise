@@ -78,7 +78,7 @@ def get_losses_per_country_dict() -> Dict[str, Dict[str, float]]:
 
 
 def get_production_weighted_losses(
-        losses: Dict[str, Dict[str, float]], locs: List[str]
+    losses: Dict[str, Dict[str, float]], locs: List[str]
 ) -> Dict[str, Dict[str, float]]:
     """
     Return the transformation, transmission and distribution losses at a given voltage level for a given location.
@@ -96,8 +96,8 @@ def get_production_weighted_losses(
         )
 
         transf_loss += (
-                dict_loss["Transformation loss, high voltage"]
-                * dict_loss["Production volume"]
+            dict_loss["Transformation loss, high voltage"]
+            * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]
     transf_loss /= cumul_prod
@@ -116,12 +116,12 @@ def get_production_weighted_losses(
             },
         )
         transf_loss += (
-                dict_loss["Transformation loss, medium voltage"]
-                * dict_loss["Production volume"]
+            dict_loss["Transformation loss, medium voltage"]
+            * dict_loss["Production volume"]
         )
         distr_loss += (
-                dict_loss["Transmission loss to medium voltage"]
-                * dict_loss["Production volume"]
+            dict_loss["Transmission loss to medium voltage"]
+            * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]
     transf_loss /= cumul_prod
@@ -141,12 +141,12 @@ def get_production_weighted_losses(
             },
         )
         transf_loss += (
-                dict_loss["Transformation loss, low voltage"]
-                * dict_loss["Production volume"]
+            dict_loss["Transformation loss, low voltage"]
+            * dict_loss["Production volume"]
         )
         distr_loss += (
-                dict_loss["Transmission loss to low voltage"]
-                * dict_loss["Production volume"]
+            dict_loss["Transmission loss to low voltage"]
+            * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]
     transf_loss /= cumul_prod
@@ -175,18 +175,25 @@ class Electricity(BaseTransformation):
     """
 
     def __init__(
-            self,
-            database: List[dict],
-            iam_data: IAMDataCollection,
-            model: str,
-            pathway: str,
-            year: int,
-            version: str,
-            system_model: str,
-            modified_datasets: dict,
+        self,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
+        system_model: str,
+        modified_datasets: dict,
     ) -> None:
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model, modified_datasets
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            modified_datasets,
         )
         mapping = InventorySet(self.database)
         self.powerplant_map = mapping.generate_powerplant_map()
@@ -222,14 +229,15 @@ class Electricity(BaseTransformation):
         for dataset_names in self.powerplant_map.values():
             for name in dataset_names:
                 for dataset in ws.get_many(
-                        self.database,
-                        ws.equals("name", name),
+                    self.database,
+                    ws.equals("name", name),
                 ):
                     for exc in ws.production(dataset):
                         # even if non-existent, we set a minimum value of 1e-9
                         # because if not, we risk dividing by zero!!!
                         production_vols[(dataset["name"], dataset["location"])] = max(
-                            float(exc.get("production volume", 1e-9)), 1e-9)
+                            float(exc.get("production volume", 1e-9)), 1e-9
+                        )
 
         return production_vols
 
@@ -242,7 +250,7 @@ class Electricity(BaseTransformation):
         ]
 
     def get_production_weighted_share(
-            self, supplier: dict, suppliers: List[dict]
+        self, supplier: dict, suppliers: List[dict]
     ) -> float:
         """
         Return the share of production of an electricity-producing dataset in a specific location,
@@ -343,7 +351,9 @@ class Electricity(BaseTransformation):
                     if supplier[1] > 0.001
                 ]
                 # rescale the shares so that they sum to 1
-                total_share = sum([supplier[1] for supplier in tech_suppliers[technology]])
+                total_share = sum(
+                    [supplier[1] for supplier in tech_suppliers[technology]]
+                )
                 tech_suppliers[technology] = [
                     (supplier[0], supplier[1] / total_share)
                     for supplier in tech_suppliers[technology]
@@ -399,7 +409,7 @@ class Electricity(BaseTransformation):
                     "database": self.database[1]["database"],
                     "code": str(uuid.uuid4().hex),
                     "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                               f" using the pathway {self.scenario} for the year {self.year}.",
+                    f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
                 # First, add the reference product exchange
@@ -430,7 +440,7 @@ class Electricity(BaseTransformation):
                 # And an emission of a corresponding amount
                 # Third, transmission line and SF6 supply and emission
                 possible_suppliers = self.select_multiple_suppliers(
-                    possible_names=("market for sulfur hexafluoride, liquid", ),
+                    possible_names=("market for sulfur hexafluoride, liquid",),
                     dataset_location=region,
                 )
                 new_exchanges.extend(
@@ -445,7 +455,8 @@ class Electricity(BaseTransformation):
                             "name": supplier[0],
                             "unit": supplier[-1],
                             "location": supplier[1],
-                        } for supplier, share in possible_suppliers.items()
+                        }
+                        for supplier, share in possible_suppliers.items()
                     ]
                 )
                 new_exchanges.append(
@@ -472,7 +483,9 @@ class Electricity(BaseTransformation):
                 )
 
                 possible_suppliers = self.select_multiple_suppliers(
-                    possible_names=("distribution network construction, electricity, low voltage", ),
+                    possible_names=(
+                        "distribution network construction, electricity, low voltage",
+                    ),
                     dataset_location=region,
                 )
                 new_exchanges.extend(
@@ -487,10 +500,10 @@ class Electricity(BaseTransformation):
                             "name": supplier[0],
                             "unit": supplier[-1],
                             "location": supplier[1],
-                        } for supplier, share in possible_suppliers.items()
+                        }
+                        for supplier, share in possible_suppliers.items()
                     ]
                 )
-
 
                 # Fourth, add the contribution of solar power
                 solar_amount = 0
@@ -570,14 +583,14 @@ class Electricity(BaseTransformation):
                 self.write_log(new_dataset)
 
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         new_dataset["name"],
                         new_dataset["reference product"],
                         new_dataset["location"],
-                        new_dataset["unit"]
+                        new_dataset["unit"],
                     )
                 )
 
@@ -618,7 +631,7 @@ class Electricity(BaseTransformation):
                     "database": self.database[1]["database"],
                     "code": str(uuid.uuid4().hex),
                     "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                               f" using the pathway {self.scenario} for the year {self.year}.",
+                    f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
                 # First, add the reference product exchange
@@ -700,7 +713,8 @@ class Electricity(BaseTransformation):
                             "name": supplier[0],
                             "unit": supplier[-1],
                             "location": supplier[1],
-                        } for supplier, share in possible_suppliers.items()
+                        }
+                        for supplier, share in possible_suppliers.items()
                     ]
                 )
                 new_exchanges.append(
@@ -728,7 +742,9 @@ class Electricity(BaseTransformation):
 
                 # Fourth, transmission line
                 possible_suppliers = self.select_multiple_suppliers(
-                    possible_names=("transmission network construction, electricity, medium voltage",),
+                    possible_names=(
+                        "transmission network construction, electricity, medium voltage",
+                    ),
                     dataset_location=region,
                 )
                 new_exchanges.extend(
@@ -743,7 +759,8 @@ class Electricity(BaseTransformation):
                             "name": supplier[0],
                             "unit": supplier[-1],
                             "location": supplier[1],
-                        } for supplier, share in possible_suppliers.items()
+                        }
+                        for supplier, share in possible_suppliers.items()
                     ]
                 )
 
@@ -765,14 +782,14 @@ class Electricity(BaseTransformation):
                 self.write_log(new_dataset)
 
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         new_dataset["name"],
                         new_dataset["reference product"],
                         new_dataset["location"],
-                        new_dataset["unit"]
+                        new_dataset["unit"],
                     )
                 )
 
@@ -846,7 +863,9 @@ class Electricity(BaseTransformation):
                         if supplier[1] > 0.001
                     ]
                     # rescale the shares so that they sum to 1
-                    total_share = sum([supplier[1] for supplier in tech_suppliers[technology]])
+                    total_share = sum(
+                        [supplier[1] for supplier in tech_suppliers[technology]]
+                    )
                     tech_suppliers[technology] = [
                         (supplier[0], supplier[1] / total_share)
                         for supplier in tech_suppliers[technology]
@@ -900,7 +919,7 @@ class Electricity(BaseTransformation):
                     "database": self.database[1]["database"],
                     "code": str(uuid.uuid4().hex),
                     "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                               f" using the pathway {self.scenario} for the year {self.year}.",
+                    f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
                 # First, add the reference product exchange
@@ -1010,7 +1029,7 @@ class Electricity(BaseTransformation):
                         "distribution loss": 0.0,
                         "transformation loss": transf_loss,
                         "renewable share": (renewable_share - solar_amount)
-                                           / sum(electricity_mix.values()),
+                        / sum(electricity_mix.values()),
                     }
                 )
 
@@ -1019,14 +1038,14 @@ class Electricity(BaseTransformation):
                 self.write_log(new_dataset)
 
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         new_dataset["name"],
                         new_dataset["reference product"],
                         new_dataset["location"],
-                        new_dataset["unit"]
+                        new_dataset["unit"],
                     )
                 )
 
@@ -1066,11 +1085,11 @@ class Electricity(BaseTransformation):
                 power *= 1000
 
             for exc in ws.technosphere(
-                    dataset,
-                    *[
-                        ws.contains("name", "photovoltaic"),
-                        ws.equals("unit", "square meter"),
-                    ],
+                dataset,
+                *[
+                    ws.contains("name", "photovoltaic"),
+                    ws.equals("unit", "square meter"),
+                ],
             ):
                 surface = float(exc["amount"])
                 max_power = surface  # in kW, since we assume a constant 1,000W/m^2
@@ -1137,9 +1156,9 @@ class Electricity(BaseTransformation):
             to_remove = []
             for exc in dataset["exchanges"]:
                 if (
-                        exc["name"] == "market for natural gas, high pressure"
-                        and exc["location"] in countries
-                        and exc["type"] == "technosphere"
+                    exc["name"] == "market for natural gas, high pressure"
+                    and exc["location"] in countries
+                    and exc["type"] == "technosphere"
                 ):
                     if exc["location"] in amount:
                         amount[exc["location"]] += exc["amount"]
@@ -1154,7 +1173,7 @@ class Electricity(BaseTransformation):
                     e
                     for e in dataset["exchanges"]
                     if (e["name"], e.get("product"), e.get("location"), e["type"])
-                       not in to_remove
+                    not in to_remove
                 ]
 
                 for loc in amount:
@@ -1178,10 +1197,10 @@ class Electricity(BaseTransformation):
             to_remove = []
             for exc in dataset["exchanges"]:
                 if (
-                        any(i in exc["name"] for i in names)
-                        and "natural gas, high pressure"
-                        and exc["location"] in countries
-                        and exc["type"] == "technosphere"
+                    any(i in exc["name"] for i in names)
+                    and "natural gas, high pressure"
+                    and exc["location"] in countries
+                    and exc["type"] == "technosphere"
                 ):
                     if exc["location"] in amount:
                         amount[exc["location"]] += exc["amount"]
@@ -1196,7 +1215,7 @@ class Electricity(BaseTransformation):
                     e
                     for e in dataset["exchanges"]
                     if (e["name"], e.get("product"), e.get("location"), e["type"])
-                       not in to_remove
+                    not in to_remove
                 ]
 
                 for loc in amount:
@@ -1235,14 +1254,14 @@ class Electricity(BaseTransformation):
         for dataset in list(forest_residues_ds.values()):
             self.write_log(dataset=dataset)
             # add it to list of created datasets
-            self.modified_datasets[
-                (self.model, self.scenario, self.year)
-            ]["created"].append(
+            self.modified_datasets[(self.model, self.scenario, self.year)][
+                "created"
+            ].append(
                 (
                     dataset["name"],
                     dataset["reference product"],
                     dataset["location"],
-                    dataset["unit"]
+                    dataset["unit"],
                 )
             )
 
@@ -1252,11 +1271,11 @@ class Electricity(BaseTransformation):
                 "reference product": "biomass, used as fuel",
                 "location": region,
                 "comment": f"Biomass market, created by `premise`, "
-                           f"to align with projections for the region {region} in {self.year}. "
-                           "Calculated for an average energy input (LHV) of 19 MJ/kg, dry basis. "
-                           "Sum of inputs can be superior to 1, as "
-                           "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
-                           "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
+                f"to align with projections for the region {region} in {self.year}. "
+                "Calculated for an average energy input (LHV) of 19 MJ/kg, dry basis. "
+                "Sum of inputs can be superior to 1, as "
+                "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
+                "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
                 "unit": "kilogram",
                 "database": eidb_label(
                     self.model,
@@ -1294,12 +1313,12 @@ class Electricity(BaseTransformation):
 
                 share = np.clip(
                     (
-                            self.iam_data.production_volumes.sel(
-                                variables=biomass_type, region=region
-                            )
-                            .interp(year=self.year)
-                            .sum()
-                            / total_prod_vol
+                        self.iam_data.production_volumes.sel(
+                            variables=biomass_type, region=region
+                        )
+                        .interp(year=self.year)
+                        .sum()
+                        / total_prod_vol
                     ).values.item(0),
                     0,
                     1,
@@ -1387,35 +1406,35 @@ class Electricity(BaseTransformation):
             self.write_log(dataset=dataset)
 
             # add it to list of created datasets
-            self.modified_datasets[
-                (self.model, self.scenario, self.year)
-            ]["created"].append(
+            self.modified_datasets[(self.model, self.scenario, self.year)][
+                "created"
+            ].append(
                 (
                     dataset["name"],
                     dataset["reference product"],
                     dataset["location"],
-                    dataset["unit"]
+                    dataset["unit"],
                 )
             )
 
         # replace biomass inputs
         print("Replace biomass inputs.")
         for dataset in ws.get_many(
-                self.database,
-                ws.either(
-                    *[ws.equals("unit", unit) for unit in ["kilowatt hour", "megajoule"]]
-                ),
-                ws.either(
-                    *[
-                        ws.contains("name", name)
-                        for name in ["electricity", "heat", "power"]
-                    ]
-                ),
+            self.database,
+            ws.either(
+                *[ws.equals("unit", unit) for unit in ["kilowatt hour", "megajoule"]]
+            ),
+            ws.either(
+                *[
+                    ws.contains("name", name)
+                    for name in ["electricity", "heat", "power"]
+                ]
+            ),
         ):
             for exc in ws.technosphere(
-                    dataset,
-                    ws.contains("name", "market for wood chips"),
-                    ws.equals("unit", "kilogram"),
+                dataset,
+                ws.contains("name", "market for wood chips"),
+                ws.equals("unit", "kilogram"),
             ):
                 exc["name"] = "market for biomass, used as fuel"
                 exc["product"] = "biomass, used as fuel"
@@ -1455,8 +1474,7 @@ class Electricity(BaseTransformation):
             dataset["name"]
             for dataset in self.database
             if dataset["name"]
-               in [y for k, v in self.powerplant_map.items()
-                   for y in v if k in techs]
+            in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
         ]
 
         list_datasets_to_duplicate.extend(
@@ -1471,10 +1489,10 @@ class Electricity(BaseTransformation):
         )
 
         for dataset in ws.get_many(
-                self.database,
-                ws.either(
-                    *[ws.contains("name", name) for name in list_datasets_to_duplicate]
-                ),
+            self.database,
+            ws.either(
+                *[ws.contains("name", name) for name in list_datasets_to_duplicate]
+            ),
         ):
             new_plants = self.fetch_proxies(
                 name=dataset["name"],
@@ -1515,16 +1533,16 @@ class Electricity(BaseTransformation):
 
                     for exc in plant["exchanges"]:
                         if (
-                                exc["type"] == "technosphere"
-                                and exc["unit"] == "kilogram"
-                                and exc["name"].startswith("CO2 capture")
+                            exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["name"].startswith("CO2 capture")
                         ):
                             exc["amount"] = co2_amount * 0.9
 
                         if (
-                                exc["type"] == "biosphere"
-                                and exc["unit"] == "kilogram"
-                                and exc["name"].startswith("Carbon dioxide")
+                            exc["type"] == "biosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["name"].startswith("Carbon dioxide")
                         ):
                             exc["amount"] = co2_amount * 0.9
 
@@ -1535,14 +1553,14 @@ class Electricity(BaseTransformation):
         for dataset in all_plants:
             self.write_log(dataset=dataset)
             # add it to list of created datasets
-            self.modified_datasets[
-                (self.model, self.scenario, self.year)
-            ]["created"].append(
+            self.modified_datasets[(self.model, self.scenario, self.year)][
+                "created"
+            ].append(
                 (
                     dataset["name"],
                     dataset["reference product"],
                     dataset["location"],
-                    dataset["unit"]
+                    dataset["unit"],
                 )
             )
 
@@ -1584,14 +1602,14 @@ class Electricity(BaseTransformation):
             print("Rescale inventories and emissions for", technology)
 
             for dataset in ws.get_many(
-                    self.database,
-                    ws.equals("unit", "kilowatt hour"),
-                    ws.either(
-                        *[
-                            ws.contains("name", n)
-                            for n in dict_technology["technology filters"]
-                        ]
-                    ),
+                self.database,
+                ws.equals("unit", "kilowatt hour"),
+                ws.either(
+                    *[
+                        ws.contains("name", n)
+                        for n in dict_technology["technology filters"]
+                    ]
+                ),
             ):
                 # Find current efficiency
                 ei_eff = dict_technology["current_eff_func"](
@@ -1710,9 +1728,16 @@ class Electricity(BaseTransformation):
                 location=dataset["location"],
                 exchange=dataset,
                 allocated=[
-                    {"name": f"market group for electricity, {voltage}", "reference product": f"electricity, {voltage}",
-                     "unit": "kilowatt hour", "location": self.ecoinvent_to_iam_loc[dataset["location"]]}, ],
-                shares=[1.0, ],
+                    {
+                        "name": f"market group for electricity, {voltage}",
+                        "reference product": f"electricity, {voltage}",
+                        "unit": "kilowatt hour",
+                        "location": self.ecoinvent_to_iam_loc[dataset["location"]],
+                    },
+                ],
+                shares=[
+                    1.0,
+                ],
             )
 
         # We then need to create high voltage IAM electricity markets

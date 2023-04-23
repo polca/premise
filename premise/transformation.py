@@ -42,12 +42,12 @@ logger = logging.getLogger("module")
 
 
 def get_suppliers_of_a_region(
-        database: List[dict],
-        locations: List[str],
-        names: List[str],
-        reference_prod: str,
-        unit: str,
-        exclude: List[str] = None,
+    database: List[dict],
+    locations: List[str],
+    names: List[str],
+    reference_prod: str,
+    unit: str,
+    exclude: List[str] = None,
 ) -> filter:
     """
     Return a list of datasets, for which the location, name,
@@ -80,7 +80,7 @@ def get_suppliers_of_a_region(
 
 
 def get_shares_from_production_volume(
-        ds_list: Union[Dict[str, Any], List[Dict[str, Any]]],
+    ds_list: Union[Dict[str, Any], List[Dict[str, Any]]],
 ) -> Dict[Tuple[Any, Any, Any, Any], float]:
     """
     Return shares of supply of each dataset in `ds_list`
@@ -166,13 +166,13 @@ def new_exchange(exc, location, factor):
 
 
 def get_gis_match(
-        dataset,
-        location,
-        possible_locations,
-        geomatcher,
-        contained,
-        exclusive,
-        biggest_first,
+    dataset,
+    location,
+    possible_locations,
+    geomatcher,
+    contained,
+    exclusive,
+    biggest_first,
 ):
     with resolved_row(possible_locations, geomatcher.geo) as g:
         func = g.contained if contained else g.intersects
@@ -215,7 +215,7 @@ def allocate_inputs(exc, lst):
 
 
 def filter_out_results(
-        item_to_look_for: str, results: List[dict], field_to_look_at: str
+    item_to_look_for: str, results: List[dict], field_to_look_at: str
 ) -> List[dict]:
     """Filters a list of results by a given field"""
     return [r for r in results if item_to_look_for not in r[field_to_look_at]]
@@ -232,16 +232,16 @@ class BaseTransformation:
     """
 
     def __init__(
-            self,
-            database: List[dict],
-            iam_data: IAMDataCollection,
-            model: str,
-            pathway: str,
-            year: int,
-            version: str,
-            system_model: str,
-            modified_datasets: dict,
-            cache: dict = None,
+        self,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
+        system_model: str,
+        modified_datasets: dict,
+        cache: dict = None,
     ) -> None:
         self.database: List[dict] = database
         self.iam_data: IAMDataCollection = iam_data
@@ -274,11 +274,11 @@ class BaseTransformation:
 
     @lru_cache
     def select_multiple_suppliers(
-            self,
-            possible_names,
-            dataset_location,
-            look_for=None,
-            blacklist=None,
+        self,
+        possible_names,
+        dataset_location,
+        look_for=None,
+        blacklist=None,
     ):
         """
         Select multiple suppliers for a specific fuel.
@@ -303,22 +303,18 @@ class BaseTransformation:
         extra_filters = []
         if look_for:
             extra_filters.append(
-                ws.either(*[ws.contains("reference product", item) for item in look_for])
+                ws.either(
+                    *[ws.contains("reference product", item) for item in look_for]
+                )
             )
         if blacklist:
             extra_filters.append(
                 ws.exclude(
-                    ws.either(
-                        *[ws.contains("reference product", x) for x in blacklist]
-                    )
+                    ws.either(*[ws.contains("reference product", x) for x in blacklist])
                 )
             )
             extra_filters.append(
-                ws.exclude(
-                    ws.either(
-                        *[ws.contains("name", x) for x in blacklist]
-                    )
-                )
+                ws.exclude(ws.either(*[ws.contains("name", x) for x in blacklist]))
             )
 
         while not suppliers:
@@ -354,7 +350,7 @@ class BaseTransformation:
         return list(set([a["location"] for a in self.database]))
 
     def update_ecoinvent_efficiency_parameter(
-            self, dataset: dict, old_ei_eff: float, new_eff: float
+        self, dataset: dict, old_ei_eff: float, new_eff: float
     ) -> None:
         """
         Update the old efficiency value in the ecoinvent dataset by the newly calculated one.
@@ -390,7 +386,7 @@ class BaseTransformation:
             dataset["comment"] = new_txt
 
     def calculate_input_energy(
-            self, fuel_name: str, fuel_amount: float, fuel_unit: str
+        self, fuel_name: str, fuel_amount: float, fuel_unit: str
     ) -> float:
         """
         Returns the amount of energy entering the conversion process, in MJ
@@ -413,7 +409,7 @@ class BaseTransformation:
         return fuel_amount * lhv
 
     def find_fuel_efficiency(
-            self, dataset: dict, fuel_filters: List[str], energy_out: float
+        self, dataset: dict, fuel_filters: List[str], energy_out: float
     ) -> float:
         """
         This method calculates the efficiency value set initially, in case it is not specified in the parameter
@@ -472,7 +468,7 @@ class BaseTransformation:
         return current_efficiency
 
     def get_iam_mapping(
-            self, activity_map: dict, fuels_map: dict, technologies: list
+        self, activity_map: dict, fuels_map: dict, technologies: list
     ) -> Dict[str, Any]:
         """
         Define filter functions that decide which wurst datasets to modify.
@@ -494,7 +490,7 @@ class BaseTransformation:
         }
 
     def region_to_proxy_dataset_mapping(
-            self, name: str, ref_prod: str, regions: List[str] = None
+        self, name: str, ref_prod: str, regions: List[str] = None
     ) -> Dict[str, str]:
         d_map = {
             self.ecoinvent_to_iam_loc[d["location"]]: d["location"]
@@ -520,13 +516,13 @@ class BaseTransformation:
         return {region: d_map.get(region, fallback_loc) for region in regions}
 
     def fetch_proxies(
-            self,
-            name,
-            ref_prod,
-            production_variable=None,
-            relink=True,
-            regions=None,
-            delete_original_dataset=False,
+        self,
+        name,
+        ref_prod,
+        production_variable=None,
+        relink=True,
+        regions=None,
+        delete_original_dataset=False,
     ) -> Dict[str, dict]:
         """
         Fetch dataset proxies, given a dataset `name` and `reference product`.
@@ -586,8 +582,8 @@ class BaseTransformation:
                         production_variable = [production_variable]
 
                     if all(
-                            i in self.iam_data.production_volumes.variables
-                            for i in production_variable
+                        i in self.iam_data.production_volumes.variables
+                        for i in production_variable
                     ):
                         prod_vol = (
                             self.iam_data.production_volumes.sel(
@@ -634,7 +630,7 @@ class BaseTransformation:
                 ds
                 for ds in self.database
                 if not (
-                        ds["name"] == ds_name and ds["reference product"] == ds_ref_prod
+                    ds["name"] == ds_name and ds["reference product"] == ds_ref_prod
                 )
             ]
 
@@ -652,12 +648,12 @@ class BaseTransformation:
         return d_act
 
     def empty_original_datasets(
-            self,
-            name: str,
-            ref_prod: str,
-            production_variable: str,
-            loc_map: Dict[str, str],
-            regions: List[str] = None,
+        self,
+        name: str,
+        ref_prod: str,
+        production_variable: str,
+        loc_map: Dict[str, str],
+        regions: List[str] = None,
     ) -> None:
         """
         Empty original ecoinvent dataset and introduce an input to the regional IAM
@@ -715,18 +711,18 @@ class BaseTransformation:
 
             for iam_loc in iam_locs:
                 if production_variable and all(
-                        i in self.iam_data.production_volumes.variables.values.tolist()
-                        for i in production_variable
+                    i in self.iam_data.production_volumes.variables.values.tolist()
+                    for i in production_variable
                 ):
 
                     share = (
-                                self.iam_data.production_volumes.sel(
-                                    region=iam_loc, variables=production_variable
-                                )
-                                .interp(year=self.year)
-                                .sum(dim="variables")
-                                .values.item(0)
-                            ) / _(
+                        self.iam_data.production_volumes.sel(
+                            region=iam_loc, variables=production_variable
+                        )
+                        .interp(year=self.year)
+                        .sum(dim="variables")
+                        .values.item(0)
+                    ) / _(
                         self.iam_data.production_volumes.sel(
                             region=iam_locs, variables=production_variable
                         )
@@ -766,7 +762,7 @@ class BaseTransformation:
             self.write_log(dataset=existing_ds, status="empty")
 
     def relink_datasets(
-            self, excludes_datasets: List[str] = None, alt_names: List[str] = None
+        self, excludes_datasets: List[str] = None, alt_names: List[str] = None
     ) -> None:
         """
         For a given exchange name, product and unit, change its location to an IAM location,
@@ -783,18 +779,23 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-                self.database,
-                ws.doesnt_contain_any("name", excludes_datasets),
+            self.database,
+            ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
             excs_to_relink = [
                 exchange
                 for exchange in act["exchanges"]
                 if exchange["type"] == "technosphere"
-                   and (exchange["name"], exchange["product"], exchange["location"], exchange["unit"])
-                   in self.modified_datasets[(self.model, self.scenario, self.year)][
-                       "emptied"
-                   ]
+                and (
+                    exchange["name"],
+                    exchange["product"],
+                    exchange["location"],
+                    exchange["unit"],
+                )
+                in self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "emptied"
+                ]
             ]
 
             unique_excs_to_relink = set(
@@ -831,25 +832,19 @@ class BaseTransformation:
                     )
 
                     for name_to_look_for, alt_loc in product(
-                            names_to_look_for, alternative_locations
+                        names_to_look_for, alternative_locations
                     ):
                         if (
-                                name_to_look_for,
-                                exc[1],
-                                alt_loc,
-                                exc[-1],
+                            name_to_look_for,
+                            exc[1],
+                            alt_loc,
+                            exc[-1],
                         ) in self.modified_datasets[
                             (self.model, self.scenario, self.year)
                         ][
                             "created"
                         ]:
-                            entry = [(
-                                name_to_look_for,
-                                exc[1],
-                                alt_loc,
-                                exc[-1],
-                                1.0
-                            )]
+                            entry = [(name_to_look_for, exc[1], alt_loc, exc[-1], 1.0)]
 
                             self.add_new_entry_to_cache(
                                 location=act["location"],
@@ -873,18 +868,20 @@ class BaseTransformation:
 
                     if not entry:
                         if exc == (
-                                act["name"],
-                                act["reference product"],
-                                act["location"],
-                                act["unit"],
+                            act["name"],
+                            act["reference product"],
+                            act["location"],
+                            act["unit"],
                         ):
-                            entry = [(
-                                act["name"],
-                                act["reference product"],
-                                act["location"],
-                                act["unit"],
-                                1.0
-                            )]
+                            entry = [
+                                (
+                                    act["name"],
+                                    act["reference product"],
+                                    act["location"],
+                                    act["unit"],
+                                    1.0,
+                                )
+                            ]
 
                     if not entry:
                         entry = [exc + (1.0,)]
@@ -907,7 +904,8 @@ class BaseTransformation:
                                 "type": "technosphere",
                                 "unit": e[3],
                                 "location": e[2],
-                            } for e in entry
+                            }
+                            for e in entry
                         ]
                     )
 
@@ -925,7 +923,8 @@ class BaseTransformation:
                 }
                 for (name, prod, location, unit), exchanges in groupby(
                     sorted(
-                        new_exchanges, key=itemgetter("name", "product", "location", "unit")
+                        new_exchanges,
+                        key=itemgetter("name", "product", "location", "unit"),
                     ),
                     key=itemgetter("name", "product", "location", "unit"),
                 )
@@ -935,9 +934,9 @@ class BaseTransformation:
                 e
                 for e in act["exchanges"]
                 if (e["name"], e.get("product"), e.get("location"), e["unit"])
-                   not in [
-                       (iex[0], iex[1], iex[2], iex[3]) for iex in unique_excs_to_relink
-                   ]
+                not in [
+                    (iex[0], iex[1], iex[2], iex[3]) for iex in unique_excs_to_relink
+                ]
             ]
             act["exchanges"].extend(new_exchanges)
 
@@ -966,11 +965,11 @@ class BaseTransformation:
         return rate
 
     def create_ccs_dataset(
-            self,
-            loc: str,
-            bio_co2_stored: float,
-            bio_co2_leaked: float,
-            sector: str = "cement",
+        self,
+        loc: str,
+        bio_co2_stored: float,
+        bio_co2_leaked: float,
+        sector: str = "cement",
     ) -> None:
         """
         Create a CCS dataset, reflecting the share of fossil vs. biogenic CO2.
@@ -1020,16 +1019,16 @@ class BaseTransformation:
         # in the fossil + biogenic CO2 emissions of the plant
 
         for exc in ws.biosphere(
-                ccs,
-                ws.equals("name", "Carbon dioxide, in air"),
+            ccs,
+            ws.equals("name", "Carbon dioxide, in air"),
         ):
             exc["amount"] = bio_co2_stored
 
         if bio_co2_leaked > 0:
             # then the biogenic CO2 leaked during the capture process
             for exc in ws.biosphere(
-                    ccs,
-                    ws.equals("name", "Carbon dioxide, non-fossil"),
+                ccs,
+                ws.equals("name", "Carbon dioxide, non-fossil"),
             ):
                 exc["amount"] = bio_co2_leaked
 
@@ -1068,9 +1067,9 @@ class BaseTransformation:
         self.database.append(ccs)
 
     def find_iam_efficiency_change(
-            self,
-            variable: Union[str, list],
-            location: str,
+        self,
+        variable: Union[str, list],
+        location: str,
     ) -> float:
         """
         Return the relative change in efficiency for `variable` in `location`
@@ -1102,11 +1101,11 @@ class BaseTransformation:
         )
 
     def add_new_entry_to_cache(
-            self,
-            location: str,
-            exchange: dict,
-            allocated: List[dict],
-            shares: List[float],
+        self,
+        location: str,
+        exchange: dict,
+        allocated: List[dict],
+        shares: List[float],
     ) -> None:
         """
         Add an entry to the cache.
@@ -1133,11 +1132,11 @@ class BaseTransformation:
         self.cache.setdefault(location, {}).setdefault(self.model, {})[exc_key] = entry
 
     def relink_technosphere_exchanges(
-            self,
-            dataset,
-            exclusive=True,
-            biggest_first=False,
-            contained=True,
+        self,
+        dataset,
+        exclusive=True,
+        biggest_first=False,
+        contained=True,
     ) -> dict:
         """Find new technosphere providers based on the location of the dataset.
         Designed to be used when the dataset's location changes, or when new datasets are added.
@@ -1160,17 +1159,16 @@ class BaseTransformation:
         new_exchanges = []
         technosphere = lambda x: x["type"] == "technosphere"
 
-        list_loc = [k if isinstance(k, str) else k[1]
-                    for k in self.geo.geo.keys()] + [
-                       "RoW"
-                   ]
+        list_loc = [k if isinstance(k, str) else k[1] for k in self.geo.geo.keys()] + [
+            "RoW"
+        ]
 
         for exc in filter(technosphere, dataset["exchanges"]):
             if (
-                    exc["name"],
-                    exc["product"],
-                    exc["location"],
-                    exc["unit"],
+                exc["name"],
+                exc["product"],
+                exc["location"],
+                exc["unit"],
             ) in self.cache.get(dataset["location"], {}).get(self.model, {}):
                 exchanges = self.cache[dataset["location"]][self.model][
                     (exc["name"], exc["product"], exc["location"], exc["unit"])
@@ -1212,10 +1210,11 @@ class BaseTransformation:
                 )
 
                 if len(possible_datasets) == 1:
-                    assert possible_datasets[0]["name"] == exc[
-                        "name"], f"candidate: {_(possible_datasets[0])}, exc: {_(exc)}"
                     assert (
-                            possible_datasets[0]["reference product"] == exc["product"]
+                        possible_datasets[0]["name"] == exc["name"]
+                    ), f"candidate: {_(possible_datasets[0])}, exc: {_(exc)}"
+                    assert (
+                        possible_datasets[0]["reference product"] == exc["product"]
                     ), f"candidate: {_(possible_datasets[0])}, exc: {_(exc)}"
 
                     self.cache.update(
@@ -1228,9 +1227,16 @@ class BaseTransformation:
                                         exc["location"],
                                         exc["unit"],
                                     ): [
-                                        (e["name"], e["product"], e["location"], e["unit"], s)
+                                        (
+                                            e["name"],
+                                            e["product"],
+                                            e["location"],
+                                            e["unit"],
+                                            s,
+                                        )
                                         for e, s in zip(
-                                            [new_exchange(exc, exc["location"], 1.0)], [1.0]
+                                            [new_exchange(exc, exc["location"], 1.0)],
+                                            [1.0],
                                         )
                                     ]
                                 }
@@ -1252,9 +1258,20 @@ class BaseTransformation:
                                         exc["location"],
                                         exc["unit"],
                                     ): [
-                                        (e["name"], e["product"], e["location"], e["unit"], s)
+                                        (
+                                            e["name"],
+                                            e["product"],
+                                            e["location"],
+                                            e["unit"],
+                                            s,
+                                        )
                                         for e, s in zip(
-                                            [new_exchange(exc, dataset["location"], 1.0)], [1.0]
+                                            [
+                                                new_exchange(
+                                                    exc, dataset["location"], 1.0
+                                                )
+                                            ],
+                                            [1.0],
                                         )
                                     ]
                                 }
@@ -1268,10 +1285,10 @@ class BaseTransformation:
 
                 if dataset["location"] in self.geo.iam_regions:
                     if any(
-                            iloc in possible_locations
-                            for iloc in self.geo.iam_to_ecoinvent_location(
-                                dataset["location"]
-                            )
+                        iloc in possible_locations
+                        for iloc in self.geo.iam_to_ecoinvent_location(
+                            dataset["location"]
+                        )
                     ):
                         locs = [
                             iloc
@@ -1411,7 +1428,14 @@ class BaseTransformation:
                     # there's no better candidate than the initial one
                     new_exchanges.append(exc)
                     # add to cache
-                    self.add_new_entry_to_cache(dataset["location"], exc, [exc], [1.0, ])
+                    self.add_new_entry_to_cache(
+                        dataset["location"],
+                        exc,
+                        [exc],
+                        [
+                            1.0,
+                        ],
+                    )
 
         # make unique list of exchanges from new_exchanges
         # and sum the amounts of exchanges with the same name,
@@ -1434,8 +1458,8 @@ class BaseTransformation:
         ]
 
         dataset["exchanges"] = [
-                                   exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
-                               ] + new_exchanges
+            exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
+        ] + new_exchanges
 
         return dataset
 

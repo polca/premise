@@ -55,9 +55,6 @@ with open(LOG_CONFIG, "r") as f:
 logger = logging.getLogger("fuel")
 
 
-
-
-
 def fetch_mapping(filepath: str) -> dict:
     """Returns a dictionary from a YML file"""
 
@@ -295,7 +292,14 @@ class Fuels(BaseTransformation):
         modified_datasets: dict,
     ):
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model, modified_datasets
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            modified_datasets,
         )
         # ecoinvent version
         self.version = version
@@ -526,20 +530,22 @@ class Fuels(BaseTransformation):
 
                     # add it to "log parameters"
                     dataset["log parameters"].update(
-                        {"new energy input for hydrogen production": new_energy_consumption}
+                        {
+                            "new energy input for hydrogen production": new_energy_consumption
+                        }
                     )
 
                     self.write_log(dataset)
 
                     # add it to list of created datasets
-                    self.modified_datasets[
-                        (self.model, self.scenario, self.year)
-                    ]["created"].append(
+                    self.modified_datasets[(self.model, self.scenario, self.year)][
+                        "created"
+                    ].append(
                         (
                             dataset["name"],
                             dataset["reference product"],
                             dataset["location"],
-                            dataset["unit"]
+                            dataset["unit"],
                         )
                     )
 
@@ -587,14 +593,14 @@ class Fuels(BaseTransformation):
             for dataset in list(new_ds.values()):
                 self.write_log(dataset)
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         dataset["name"],
                         dataset["reference product"],
                         dataset["location"],
-                        dataset["unit"]
+                        dataset["unit"],
                     )
                 )
 
@@ -695,7 +701,7 @@ class Fuels(BaseTransformation):
                                     dataset["name"],
                                     dataset["reference product"],
                                     dataset["location"],
-                                    dataset["unit"]
+                                    dataset["unit"],
                                 )
                             )
 
@@ -1227,7 +1233,9 @@ class Fuels(BaseTransformation):
             for activity in activities:
 
                 if fuel == "methane, synthetic":
-                    original_ds = self.fetch_proxies(name=activity, ref_prod=" ", delete_original_dataset=True)
+                    original_ds = self.fetch_proxies(
+                        name=activity, ref_prod=" ", delete_original_dataset=True
+                    )
 
                     for co2_type in [
                         (
@@ -1325,8 +1333,8 @@ class Fuels(BaseTransformation):
                                     new_dataset["name"],
                                     new_dataset["reference product"],
                                     new_dataset["location"],
-                                    new_dataset["unit"]
-                                 )
+                                    new_dataset["unit"],
+                                )
                             )
                 else:
                     original_ds = self.fetch_proxies(name=activity, ref_prod=" ")
@@ -1348,14 +1356,14 @@ class Fuels(BaseTransformation):
                     for new_dataset in list(new_ds.values()):
                         self.write_log(new_dataset)
                         # add it to list of created datasets
-                        self.modified_datasets[
-                            (self.model, self.scenario, self.year)
-                        ]["created"].append(
+                        self.modified_datasets[(self.model, self.scenario, self.year)][
+                            "created"
+                        ].append(
                             (
                                 new_dataset["name"],
                                 new_dataset["reference product"],
                                 new_dataset["location"],
-                                new_dataset["unit"]
+                                new_dataset["unit"],
                             )
                         )
 
@@ -1417,14 +1425,14 @@ class Fuels(BaseTransformation):
                     # add to log
                     self.write_log(dataset)
                     # add it to list of created datasets
-                    self.modified_datasets[
-                        (self.model, self.scenario, self.year)
-                    ]["created"].append(
+                    self.modified_datasets[(self.model, self.scenario, self.year)][
+                        "created"
+                    ].append(
                         (
                             dataset["name"],
                             dataset["reference product"],
                             dataset["location"],
-                            dataset["unit"]
+                            dataset["unit"],
                         )
                     )
 
@@ -1762,14 +1770,14 @@ class Fuels(BaseTransformation):
                         self.write_log(dataset)
 
                         # add it to list of created datasets
-                        self.modified_datasets[
-                            (self.model, self.scenario, self.year)
-                        ]["created"].append(
+                        self.modified_datasets[(self.model, self.scenario, self.year)][
+                            "created"
+                        ].append(
                             (
                                 dataset["name"],
                                 dataset["reference product"],
                                 dataset["location"],
-                                dataset["unit"]
+                                dataset["unit"],
                             )
                         )
 
@@ -1806,16 +1814,19 @@ class Fuels(BaseTransformation):
         ]
 
         fuel_share = (
-            self.iam_data.fuel_markets.sel(
-                region=region, variables=fuel
+            (
+                self.iam_data.fuel_markets.sel(region=region, variables=fuel)
+                / self.iam_data.fuel_markets.sel(
+                    region=region, variables=relevant_variables
+                ).sum(dim="variables")
             )
-            / self.iam_data.fuel_markets.sel(
-                region=region, variables=relevant_variables
-            ).sum(dim="variables")
-        ).interp(
-            year=np.arange(self.year, self.year + period + 1),
-            kwargs={"fill_value": "extrapolate"},
-        ).mean(dim="year").values
+            .interp(
+                year=np.arange(self.year, self.year + period + 1),
+                kwargs={"fill_value": "extrapolate"},
+            )
+            .mean(dim="year")
+            .values
+        )
 
         return fuel_share
 
@@ -1836,11 +1847,7 @@ class Fuels(BaseTransformation):
         # Iterate over datasets and update exchanges as necessary
         for dataset in ws.get_many(
             self.database,
-            ws.exclude(
-                ws.either(
-                    *[ws.contains("name", x) for x in fuel_consumers]
-                )
-            )
+            ws.exclude(ws.either(*[ws.contains("name", x) for x in fuel_consumers])),
         ):
             # Check that a fuel input exchange is present in the list of inputs
             # Check also for "market group for" inputs
@@ -1911,9 +1918,7 @@ class Fuels(BaseTransformation):
                     x in dataset["name"].lower() for x in list_items_to_ignore
                 ):
                     update_co2_emissions(
-                        dataset,
-                        amount_non_fossil_co2,
-                        self.biosphere_flows
+                        dataset, amount_non_fossil_co2, self.biosphere_flows
                     )
                     self.write_log(dataset, status="updated")
 
@@ -1970,8 +1975,7 @@ class Fuels(BaseTransformation):
 
         # Filter out non-production exchanges
         dataset["exchanges"] = [
-            e for e in dataset["exchanges"]
-            if e["type"] == "production"
+            e for e in dataset["exchanges"] if e["type"] == "production"
         ]
 
         final_lhv, final_fossil_co2, final_biogenic_co2 = 0, 0, 0
@@ -1982,17 +1986,21 @@ class Fuels(BaseTransformation):
                 continue
 
             share = (
-                    self.iam_data.fuel_markets.sel(
-                        region=r, variables=prod_vars
-                    ).sum(dim="variables")
-                    / self.iam_data.fuel_markets.sel(
-                        variables=prod_vars
-                ).sum(dim=["variables", "region"])
-            ).interp(
-                year=np.arange(self.year, self.year + period + 1),
-                kwargs={"fill_value": "extrapolate"},
-            ).mean(dim="year").values
-
+                (
+                    self.iam_data.fuel_markets.sel(region=r, variables=prod_vars).sum(
+                        dim="variables"
+                    )
+                    / self.iam_data.fuel_markets.sel(variables=prod_vars).sum(
+                        dim=["variables", "region"]
+                    )
+                )
+                .interp(
+                    year=np.arange(self.year, self.year + period + 1),
+                    kwargs={"fill_value": "extrapolate"},
+                )
+                .mean(dim="year")
+                .values
+            )
 
             # Add exchange for the region
             exchange = {
@@ -2028,7 +2036,7 @@ class Fuels(BaseTransformation):
         fuel_category: str,
         region: str,
         activity: dict,
-        period: int
+        period: int,
     ) -> tuple:
         """
         Generate regional fuel market for a given dataset and fuel providers.
@@ -2210,7 +2218,7 @@ class Fuels(BaseTransformation):
         for dataset in ws.get_many(
             self.database,
             ws.contains("name", "diesel, burned in"),
-            ws.exclude(ws.contains("name", "market"))
+            ws.exclude(ws.contains("name", "market")),
         ):
             new_ds = self.fetch_proxies(
                 name=dataset["name"],
@@ -2223,14 +2231,14 @@ class Fuels(BaseTransformation):
                 self.write_log(new_dataset)
 
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         dataset["name"],
                         dataset["reference product"],
                         dataset["location"],
-                        dataset["unit"]
+                        dataset["unit"],
                     )
                 )
 
@@ -2256,14 +2264,14 @@ class Fuels(BaseTransformation):
                 self.write_log(new_dataset)
 
                 # add it to list of created datasets
-                self.modified_datasets[
-                    (self.model, self.scenario, self.year)
-                ]["created"].append(
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "created"
+                ].append(
                     (
                         dataset["name"],
                         dataset["reference product"],
                         dataset["location"],
-                        dataset["unit"]
+                        dataset["unit"],
                     )
                 )
 
@@ -2372,14 +2380,14 @@ class Fuels(BaseTransformation):
                         self.write_log(dataset)
 
                         # add it to list of created datasets
-                        self.modified_datasets[
-                            (self.model, self.scenario, self.year)
-                        ]["created"].append(
+                        self.modified_datasets[(self.model, self.scenario, self.year)][
+                            "created"
+                        ].append(
                             (
                                 dataset["name"],
                                 dataset["reference product"],
                                 dataset["location"],
-                                dataset["unit"]
+                                dataset["unit"],
                             )
                         )
 
@@ -2390,9 +2398,9 @@ class Fuels(BaseTransformation):
         self.relink_activities_to_new_markets()
 
         # list `market group for diesel` as "emptied"
-        self.modified_datasets[
-            (self.model, self.scenario, self.year)
-        ]["emptied"].extend(
+        self.modified_datasets[(self.model, self.scenario, self.year)][
+            "emptied"
+        ].extend(
             [
                 (
                     "market group for diesel",

@@ -65,7 +65,14 @@ class DirectAirCapture(BaseTransformation):
         modified_datasets: dict,
     ):
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model, modified_datasets
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            modified_datasets,
         )
         self.database = database
         self.iam_data = iam_data
@@ -107,7 +114,9 @@ class DirectAirCapture(BaseTransformation):
                         location=dataset["location"],
                         exchange=dataset,
                         allocated=[dataset],
-                        shares=[1.0, ],
+                        shares=[
+                            1.0,
+                        ],
                     )
 
                 self.database.extend(new_ds.values())
@@ -116,14 +125,14 @@ class DirectAirCapture(BaseTransformation):
                 for dataset in list(new_ds.values()):
                     self.write_log(dataset)
                     # add it to list of created datasets
-                    self.modified_datasets[
-                        (self.model, self.scenario, self.year)
-                    ]["created"].append(
+                    self.modified_datasets[(self.model, self.scenario, self.year)][
+                        "created"
+                    ].append(
                         (
                             dataset["name"],
                             dataset["reference product"],
                             dataset["location"],
-                            dataset["unit"]
+                            dataset["unit"],
                         )
                     )
 
@@ -192,14 +201,14 @@ class DirectAirCapture(BaseTransformation):
                     for dataset in list(new_ds.values()):
                         self.write_log(dataset)
                         # add it to list of created datasets
-                        self.modified_datasets[
-                            (self.model, self.scenario, self.year)
-                        ]["created"].append(
+                        self.modified_datasets[(self.model, self.scenario, self.year)][
+                            "created"
+                        ].append(
                             (
                                 dataset["name"],
                                 dataset["reference product"],
                                 dataset["location"],
-                                dataset["unit"]
+                                dataset["unit"],
                             )
                         )
 

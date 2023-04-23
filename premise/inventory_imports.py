@@ -39,6 +39,7 @@ def get_outdated_flows():
 
     return flows
 
+
 @lru_cache
 def get_biosphere_code(version) -> dict:
     """
@@ -383,11 +384,13 @@ class BaseInventoryImport:
                 if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
                     if not "product" in exchange:
-                        exchange["product"] = self.correct_product_field((
-                            exchange["name"],
-                            exchange["location"],
-                            exchange["unit"],
-                            exchange.get("reference product", None))
+                        exchange["product"] = self.correct_product_field(
+                            (
+                                exchange["name"],
+                                exchange["location"],
+                                exchange["unit"],
+                                exchange.get("reference product", None),
+                            )
                         )
 
                     # If a 'reference product' field is present, we make sure
@@ -397,12 +400,14 @@ class BaseInventoryImport:
                         try:
                             assert exchange["product"] == exchange["reference product"]
                         except AssertionError:
-                            exchange["product"] = self.correct_product_field((
-                                exchange["name"],
-                                exchange["location"],
-                                exchange["unit"],
-                                exchange.get("reference product", None)
-                            ))
+                            exchange["product"] = self.correct_product_field(
+                                (
+                                    exchange["name"],
+                                    exchange["location"],
+                                    exchange["unit"],
+                                    exchange.get("reference product", None),
+                                )
+                            )
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:
@@ -747,8 +752,7 @@ class AdditionalInventory(BaseInventoryImport):
             return CSVImporter(path)
         else:
             raise ValueError(
-                "Incorrect filetype for inventories." 
-                "Should be either .xlsx or .csv"
+                "Incorrect filetype for inventories." "Should be either .xlsx or .csv"
             )
 
     def remove_missing_fields(self):
@@ -763,11 +767,25 @@ class AdditionalInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         if self.version_in != self.version_out:
+            # if version_out is 3.9, migrate towards 3.8 first, then 3.9
+            if self.version_out in ["3.9", "3.9.1"]:
+                print("Migrating to 3.8 first")
+                if self.version_in != "3.8":
+                    self.import_db.migrate(
+                        f"migration_{self.version_in.replace('.', '')}_38"
+                    )
+                self.import_db.migrate(
+                    f"migration_38_{self.version_out.replace('.', '')}"
+                )
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
             )
-            print(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+
+        if self.system_model == "consequential":
+            self.import_db.data = (
+                check_for_datasets_compliance_with_consequential_database(
+                    self.import_db.data, self.consequential_blacklist
+                )
             )
 
         list_missing_prod = self.search_missing_exchanges(

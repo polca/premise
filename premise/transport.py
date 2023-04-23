@@ -434,7 +434,14 @@ class Transport(BaseTransformation):
         modified_datasets: dict,
     ):
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model, modified_datasets
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            modified_datasets,
         )
         self.version = version
         self.relink = relink
