@@ -937,15 +937,6 @@ class Electricity(BaseTransformation):
                     }
                 ]
 
-                if period != 0:
-                    # this dataset is for a period of time
-                    new_dataset["name"] += f", {period}-year period"
-                    new_dataset["comment"] += (
-                        f" Average electricity mix over a {period}"
-                        f"-year period {self.year}-{self.year + period}."
-                    )
-                    new_exchanges[0]["name"] += f", {period}-year period"
-
                 new_exchanges.append(
                     {
                         "uncertainty type": 0,
@@ -959,6 +950,16 @@ class Electricity(BaseTransformation):
                         "location": region,
                     }
                 )
+
+                if period != 0:
+                    # this dataset is for a period of time
+                    new_dataset["name"] += f", {period}-year period"
+                    new_dataset["comment"] += (
+                        f" Average electricity mix over a {period}"
+                        f"-year period {self.year}-{self.year + period}."
+                    )
+                    new_exchanges[0]["name"] += f", {period}-year period"
+                    new_exchanges[-1]["name"] += f", {period}-year period"
 
                 # Fetch residential solar PV contribution in the mix, to subtract it
                 # as solar energy is an input of low-voltage markets
