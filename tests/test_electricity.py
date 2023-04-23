@@ -66,7 +66,7 @@ el = Electricity(
     year=2012,
     version="3.5",
     system_model="cutoff",
-    modified_datasets={}
+    modified_datasets={},
 )
 
 
