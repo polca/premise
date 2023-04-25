@@ -25,11 +25,11 @@ from .emissions import Emissions
 from .export import (
     Export,
     build_datapackage,
+    check_amount_format,
     check_for_outdated_flows,
     generate_scenario_factor_file,
     generate_superstructure_db,
     prepare_db_for_export,
-    check_amount_format
 )
 from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
