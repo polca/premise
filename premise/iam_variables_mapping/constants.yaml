@@ -22,7 +22,15 @@ SUPPORTED_PATHWAYS:
   - SSP2-RCP26
   - SSP2-RCP19
   - SSP1-Base
+  - SSP1-NDC
+  - SSP1-NPi
+  - SSP1-PkBudg1150
+  - SSP1-PkBudg500
   - SSP5-Base
+  - SSP5-NDC
+  - SSP5-NPi
+  - SSP5-PkBudg1150
+  - SSP5-PkBudg500
   - static
 
 LIST_TRANSF_FUNC:

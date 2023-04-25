@@ -29,6 +29,7 @@ from .export import (
     generate_scenario_factor_file,
     generate_superstructure_db,
     prepare_db_for_export,
+    check_amount_format
 )
 from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
@@ -1095,6 +1096,7 @@ class NewDatabase:
             filepath=filepath,
             version=self.version,
         )
+        self.database = check_amount_format(self.database)
 
         print("Done!")
 
