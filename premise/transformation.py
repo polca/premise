@@ -1058,7 +1058,7 @@ class BaseTransformation:
         # add it to the list of created datasets
         self.modified_datasets[(self.model, self.scenario, self.year)][
             "created"
-        ].append((ccs["name"], ccs["product"], ccs["location"], ccs["unit"]))
+        ].append((ccs["name"], ccs["reference product"], ccs["location"], ccs["unit"]))
 
         # finally, we add this new dataset to the database
         self.database.append(ccs)
