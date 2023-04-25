@@ -18,29 +18,42 @@ In *premise*, scenarios are defined by their Shared Socio-economic
 Pathway (SSP), a climate trajectory—often represented by a Representative
 Concentration Pathway (RCP)—and a year (e.g., SSP1, Base, 2035).
 
-**IMAGE** scenarios:
 
-SSP2-Base: Absence of climate policies. A worst-case scenario reaching a radiative forcing level of 6.0 W/m2 by 2100, translating into an atmospheric temperature increase of over 3.5°C compared to pre-industrial levels.
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP/RCP scenario | GMST increase by 2100 | Society/economy trend                                                              | Climate policy                              | REMIND          | IMAGE      |
++==================+=======================+====================================================================================+=============================================+=================+============+
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-None        | ~2.3 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-None        | ~2.2 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | National Policies Implemented (NPI).        | SSP1-NPi        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-None        | ~1.9 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Nationally Determined Contributions (NDCs). | SSP1-NDC        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg1150 |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-RCP1.9      | ~1.3 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg500  |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-None        | ~3.5 °C               | Extrapolation from historical developments.                                        | None (eq. to RCP6)                          | SSP2-Base       | SSP2-Base  |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-None        | ~3.3 °C               | Extrapolation from historical developments.                                        | National Policies Implemented (NPI).        | SSP2-NPi        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-None        | ~2.5 °C               | Extrapolation from historical developments.                                        | Nationally Determined Contributions (NDCs). | SSP2-NDC        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-RCP2.6      | ~2 °C                 | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg1150 | SSP2-RCP26 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-RCP1.9      | ~1.5 °C               | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg500  | SSP2-RCP19 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-None        | ~4.5 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | None                                        | SSP5-Base       |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-None        | ~4.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | National Policies Implemented (NPI).        | SSP5-NPi        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-None        | ~3.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Nationally Determined Contributions (NDCs). | SSP5-NDC        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg1150 |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-RCP1.9      | ~1.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg500  |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
 
-SSP2-RCP26: Compliant with the Paris Agreement objective, reaching 2.6 W/m2 by 2100, or an atmospheric temperature increase of 1.8-2°C relative to pre-industrial levels.
-
-SSP2-RCP19: Compliant with the Paris Agreement objective, reaching 1.9 W/m2 by 2100, or an atmospheric temperature increase of 1.5°C relative to pre-industrial levels.
-
-**REMIND** scenarios:
-
-SSP1-Base: Optimistic trends in population, economic growth, and energy demand, driven by a shift towards sustainable practices, without a climate policy (+2.3 C).
-
-SSP5-Base: Optimistic trends in population, economic growth, and energy demand, but driven by a prolonged use of fossil fuels, without a climate policy (+4.5 C).
-
-SSP2-Base: Trends in population, economic growth and energy demand follow historical developments, without a climate policy (+3.5°C). This scenario witnesses a slight rollback of renewables, and should probably not be used as a baseline.
-
-SSP2-NDC: Trends in population, economic growth and energy demand follow historical developments. Current Nationally Determined Contributions implemented by the parties of the Paris Agreement. These contributions are currently insufficient to reach the soft targets of the Paris Agreement and can be considered a baseline.
-
-SSP2-NPI: Trends in population, economic growth and energy demand follow historical developments. National Policies implemented. This scenario describes energy, climate, and economic projections for the period until 2030, with equivalent efforts thereafter.
-
-SSP2-PkBudg1150: Trends in population, economic growth and energy demand follow historical developments. CO2 emissions peak at 1150 Gt. This scenario is compliant with the soft targets of the Paris Agreement, with a representative concentration pathway (RCP) equivalent to RCP2.6, or 2.6 W/m2, and an atmospheric temperature increase of 1.8-2°C relative to pre-industrial levels.
-
-SSP2-PkBudg500: Trends in population, economic growth and energy demand follow historical developments. CO2 emissions peak at 500 Gt. This scenario is compliant with the hard targets of the Paris Agreement, with a representative concentration pathway (RCP) equivalent to RCP1.9, or 1.9 W/m2, and an atmospheric temperature increase of 1.5°C relative to pre-industrial levels.
 
 .. note::
 

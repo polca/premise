@@ -192,18 +192,18 @@ def check_amount_format(database: list) -> list:
             if not isinstance(exc["amount"], float):
                 exc["amount"] = float(exc["amount"])
 
-            if isinstance(exc["amount"], np.float64):
+            if isinstance(exc["amount"], (np.float64, np.ndarray)):
                 exc["amount"] = float(exc["amount"])
 
         for k, v in dataset.items():
             if isinstance(v, dict):
                 for i, j in v.items():
-                    if isinstance(j, np.float64):
+                    if isinstance(j, (np.float64, np.ndarray)):
                         v[i] = float(v[i])
 
         for e in dataset["exchanges"]:
             for k, v in e.items():
-                if isinstance(v, np.float64):
+                if isinstance(v, (np.float64, np.ndarray)):
                     e[k] = float(e[k])
 
     return database
