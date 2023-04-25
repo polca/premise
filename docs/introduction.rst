@@ -74,6 +74,10 @@ Provided a decryption key (ask the maintainers_), the following IAM scenarios ar
 
 CarbonBrief_ wrote a good article explaining the meaning of the SSP/RCP system.
 
+Additionally, we provided a summary of the main characteristics of each scenario in a spreadsheet_.
+
+.. _spreadsheet:
+
 
 .. _CarbonBrief: https://www.carbonbrief.org/explainer-how-shared-socioeconomic-pathways-explore-future-climate-change
 
