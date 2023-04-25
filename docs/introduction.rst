@@ -76,7 +76,7 @@ CarbonBrief_ wrote a good article explaining the meaning of the SSP/RCP system.
 
 Additionally, we provided a summary of the main characteristics of each scenario in a spreadsheet_.
 
-.. _spreadsheet:
+.. _spreadsheet: https://github.com/polca/premise/raw/master/docs/scenario_report_2023-04-25.xlsx
 
 
 .. _CarbonBrief: https://www.carbonbrief.org/explainer-how-shared-socioeconomic-pathways-explore-future-climate-change
