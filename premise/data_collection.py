@@ -42,8 +42,10 @@ CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
 GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions_mapping.yaml"
 
 
-def get_delimiter(data, bytes=128):
+def get_delimiter(data=None, filepath=None):
     sniffer = csv.Sniffer()
+    if filepath:
+        data = open(filepath, "r").readline()
     delimiter = sniffer.sniff(data).delimiter
     return delimiter
 
@@ -69,7 +71,12 @@ def get_gains_IAM_data(model, gains_scenario):
     list_arrays = []
 
     for file in filepath:
-        df = pd.read_csv(file, sep=",", encoding="utf-8", low_memory=False)
+        df = pd.read_csv(
+            file,
+            sep=get_delimiter(filepath=filepath),
+            encoding="utf-8",
+            low_memory=False
+        )
         df = df.rename(columns={"Region": "region", "EMF30 Sector": "sector"})
         df = df.rename(columns={str(v): int(v) for v in range(1990, 2055, 5)})
 
@@ -125,7 +132,7 @@ def get_gains_EU_data() -> xr.DataArray:
 
     gains_emi_EU = pd.read_csv(
         filepath,
-        delimiter=",",
+        delimiter=get_delimiter(filepath=filepath),
         low_memory=False,
         dtype={
             "Region": str,
@@ -180,9 +187,15 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
         raise FileNotFoundError("The fleet composition file could not be found.")
 
     if model == "remind":
-        dataframe = pd.read_csv(FILEPATH_FLEET_COMP, sep=";")
+        dataframe = pd.read_csv(
+            FILEPATH_FLEET_COMP,
+            sep=get_delimiter(filepath=FILEPATH_FLEET_COMP)
+        )
     else:
-        dataframe = pd.read_csv(FILEPATH_IMAGE_TRUCKS_FLEET_COMP, sep=";")
+        dataframe = pd.read_csv(
+            FILEPATH_IMAGE_TRUCKS_FLEET_COMP,
+            sep=get_delimiter(filepath=FILEPATH_FLEET_COMP)
+        )
 
     dataframe = dataframe.loc[~dataframe["region"].isnull()]
 
@@ -489,7 +502,7 @@ class IAMDataCollection:
 
         dataframe = pd.read_csv(
             data,
-            sep=get_delimiter(copy.copy(data).readline()),
+            sep=get_delimiter(data=copy.copy(data).readline()),
             encoding="latin-1",
         )
 
@@ -695,8 +708,6 @@ class IAMDataCollection:
             eff = self.__get_iam_variable_labels(
                 IAM_CEMENT_VARS, variable="eff_aliases"
             )
-
-            print(eff)
 
             data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
 
