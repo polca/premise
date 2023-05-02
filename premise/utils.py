@@ -156,6 +156,15 @@ def get_regions_definition(model: str) -> None:
     print(table)
 
 
+def clear_existing_cache():
+    """Clears the cache folder, except for files which contain __version__ in name.
+    Useful when updating `premise`
+    or encountering issues with
+    inventories.
+    """
+    [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file() and "__version__" not in f.name]
+
+
 # clear the cache folder
 def clear_cache():
     [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file()]
