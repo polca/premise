@@ -25,6 +25,7 @@ from wurst.searching import equals, get_many
 
 from . import DATA_DIR, VARIABLES_DIR, __version__
 from .geomap import Geomap
+from .data_collection import get_delimiter
 
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
@@ -107,7 +108,10 @@ def get_efficiency_solar_photovoltaics() -> xr.DataArray:
     :return: xr.DataArray with PV module efficiencies
     """
 
-    dataframe = pd.read_csv(EFFICIENCY_RATIO_SOLAR_PV, sep=";")
+    dataframe = pd.read_csv(
+        EFFICIENCY_RATIO_SOLAR_PV,
+        sep=get_delimiter(filepath=EFFICIENCY_RATIO_SOLAR_PV)
+    )
 
     return dataframe.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
 

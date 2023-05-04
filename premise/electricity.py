@@ -34,6 +34,7 @@ from .transformation import (
     ws,
 )
 from .utils import DATA_DIR, eidb_label, get_efficiency_solar_photovoltaics
+from .data_collection import get_delimiter
 
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
@@ -62,11 +63,17 @@ def get_losses_per_country_dict() -> Dict[str, Dict[str, float]]:
 
     if not LOSS_PER_COUNTRY.is_file():
         raise FileNotFoundError(
-            "The production per country dictionary file could not be found."
+            "The production per country dictionary "
+            "file could not be found."
         )
 
+    sep = get_delimiter(filepath=LOSS_PER_COUNTRY)
+
     with open(LOSS_PER_COUNTRY, encoding="utf-8") as file:
-        csv_list = [[val.strip() for val in r.split(";")] for r in file.readlines()]
+        csv_list = [
+            [val.strip() for val in r.split(sep)]
+            for r in file.readlines()
+        ]
 
     (_, *header), *data = csv_list
     csv_dict = {}
@@ -92,11 +99,11 @@ def get_production_weighted_losses(
     for loc in locs:
         dict_loss = losses.get(
             loc,
-            {"Transformation loss, high voltage": 0.0, "Production volume": 0.0},
+            {"Transformation loss high voltage": 0.0, "Production volume": 0.0},
         )
 
         transf_loss += (
-            dict_loss["Transformation loss, high voltage"]
+            dict_loss["Transformation loss high voltage"]
             * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]
@@ -110,13 +117,13 @@ def get_production_weighted_losses(
         dict_loss = losses.get(
             loc,
             {
-                "Transformation loss, medium voltage": 0,
+                "Transformation loss medium voltage": 0,
                 "Transmission loss to medium voltage": 0,
                 "Production volume": 0,
             },
         )
         transf_loss += (
-            dict_loss["Transformation loss, medium voltage"]
+            dict_loss["Transformation loss medium voltage"]
             * dict_loss["Production volume"]
         )
         distr_loss += (
@@ -135,13 +142,13 @@ def get_production_weighted_losses(
         dict_loss = losses.get(
             loc,
             {
-                "Transformation loss, low voltage": 0.0,
+                "Transformation loss low voltage": 0.0,
                 "Transmission loss to low voltage": 0.0,
                 "Production volume": 0.0,
             },
         )
         transf_loss += (
-            dict_loss["Transformation loss, low voltage"]
+            dict_loss["Transformation loss low voltage"]
             * dict_loss["Production volume"]
         )
         distr_loss += (
