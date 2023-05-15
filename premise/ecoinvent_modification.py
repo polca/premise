@@ -40,6 +40,7 @@ from .steel import Steel
 from .transport import Transport
 from .utils import (
     HiddenPrints,
+    clear_existing_cache,
     eidb_label,
     hide_messages,
     info_on_utils_functions,
@@ -47,7 +48,6 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     write_brightway2_database,
-    clear_existing_cache
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -551,7 +551,10 @@ class NewDatabase:
         if db_name is None:
             db_name = "unnamed"
 
-        file_name = Path(DIR_CACHED_DB / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}.pickle")
+        file_name = Path(
+            DIR_CACHED_DB
+            / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}.pickle"
+        )
 
         # check that file path leads to an existing file
         if file_name.exists():
@@ -579,7 +582,8 @@ class NewDatabase:
             db_name = "unnamed"
 
         file_name = Path(
-            DIR_CACHED_DB / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}_inventories.pickle"
+            DIR_CACHED_DB
+            / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}_inventories.pickle"
         )
 
         # check that file path leads to an existing file

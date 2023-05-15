@@ -72,10 +72,7 @@ def get_gains_IAM_data(model, gains_scenario):
 
     for file in filepath:
         df = pd.read_csv(
-            file,
-            sep=get_delimiter(filepath=file),
-            encoding="utf-8",
-            low_memory=False
+            file, sep=get_delimiter(filepath=file), encoding="utf-8", low_memory=False
         )
         df = df.rename(columns={"Region": "region", "EMF30 Sector": "sector"})
         df = df.rename(columns={str(v): int(v) for v in range(1990, 2055, 5)})
@@ -188,13 +185,12 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
 
     if model == "remind":
         dataframe = pd.read_csv(
-            FILEPATH_FLEET_COMP,
-            sep=get_delimiter(filepath=FILEPATH_FLEET_COMP)
+            FILEPATH_FLEET_COMP, sep=get_delimiter(filepath=FILEPATH_FLEET_COMP)
         )
     else:
         dataframe = pd.read_csv(
             FILEPATH_IMAGE_TRUCKS_FLEET_COMP,
-            sep=get_delimiter(filepath=FILEPATH_FLEET_COMP)
+            sep=get_delimiter(filepath=FILEPATH_FLEET_COMP),
         )
 
     dataframe = dataframe.loc[~dataframe["region"].isnull()]
@@ -220,17 +216,12 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
 
 
 def fix_efficiencies(data: xr.DataArray) -> xr.DataArray:
-
     # If we are looking at a year post 2020
     # and the ratio in efficiency change is inferior to 1
     # we correct it to 1, as we do not accept
     # that efficiency degrades over time
-    data.loc[
-        dict(year=[y for y in data.year.values if y > 2020])
-    ] = np.clip(
-        data.loc[
-            dict(year=[y for y in data.year.values if y > 2020])
-        ],
+    data.loc[dict(year=[y for y in data.year.values if y > 2020])] = np.clip(
+        data.loc[dict(year=[y for y in data.year.values if y > 2020])],
         1,
         None,
     )
@@ -239,12 +230,8 @@ def fix_efficiencies(data: xr.DataArray) -> xr.DataArray:
     # and the ratio in efficiency change is superior to 1
     # we correct it to 1, as we do not accept
     # that efficiency in the past was higher than now
-    data.loc[
-        dict(year=[y for y in data.year.values if y < 2020])
-    ] = np.clip(
-        data.loc[
-            dict(year=[y for y in data.year.values if y < 2020])
-        ],
+    data.loc[dict(year=[y for y in data.year.values if y < 2020])] = np.clip(
+        data.loc[dict(year=[y for y in data.year.values if y < 2020])],
         None,
         1,
     )
@@ -741,13 +728,12 @@ class IAMDataCollection:
             data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
 
             for k, v in prod.items():
-
                 # check that each element of energy.values() is in data.variables.values
                 # knowing that energy.values() is a list of lists
                 # and that each element of prod.values() is in data.variables.values
                 if (
-                        all(var in data.variables.values for var in energy[k])
-                        and v in data.variables.values
+                    all(var in data.variables.values for var in energy[k])
+                    and v in data.variables.values
                 ):
                     d = 1 / (
                         data.loc[:, energy[k], :].sum(dim="variables")
@@ -797,9 +783,7 @@ class IAMDataCollection:
             len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases"))
             > 0
         ):
-            eff = self.__get_iam_variable_labels(
-                IAM_STEEL_VARS, variable="eff_aliases"
-            )
+            eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases")
 
             data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
 
@@ -833,17 +817,16 @@ class IAMDataCollection:
             data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
 
             for k, v in prod.items():
-
                 # check that each element of energy.values() is in data.variables.values
                 # knowing that energy.values() is a list of lists
                 # and that each element of prod.values() is in data.variables.values
                 if (
-                        all(var in data.variables.values for var in energy[k])
-                        and v in data.variables.values
+                    all(var in data.variables.values for var in energy[k])
+                    and v in data.variables.values
                 ):
                     d = 1 / (
-                            data.loc[:, energy[k], :].sum(dim="variables")
-                            / data.loc[:, v, :]
+                        data.loc[:, energy[k], :].sum(dim="variables")
+                        / data.loc[:, v, :]
                     )
 
                 else:
@@ -1235,11 +1218,9 @@ class IAMDataCollection:
                     list_products.remove(var)
             data_to_return = data.loc[:, list_products, :]
 
-
         except KeyError as exc:
             list_missing_vars = [
-                var for var in list_products
-                if var not in data.variables.values
+                var for var in list_products if var not in data.variables.values
             ]
             print(
                 f"The following variables cannot be found in the IAM file: {list_missing_vars}"
@@ -1258,8 +1239,7 @@ class IAMDataCollection:
                 raise SystemExit from exc
 
         data_to_return.coords["variables"] = [
-            k for k, v in dict_products.items()
-            if v in list_products
+            k for k, v in dict_products.items() if v in list_products
         ]
 
         return data_to_return

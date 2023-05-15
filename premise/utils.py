@@ -24,8 +24,8 @@ from wurst.linking import (
 from wurst.searching import equals, get_many
 
 from . import DATA_DIR, VARIABLES_DIR, __version__
-from .geomap import Geomap
 from .data_collection import get_delimiter
+from .geomap import Geomap
 
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
@@ -109,8 +109,7 @@ def get_efficiency_solar_photovoltaics() -> xr.DataArray:
     """
 
     dataframe = pd.read_csv(
-        EFFICIENCY_RATIO_SOLAR_PV,
-        sep=get_delimiter(filepath=EFFICIENCY_RATIO_SOLAR_PV)
+        EFFICIENCY_RATIO_SOLAR_PV, sep=get_delimiter(filepath=EFFICIENCY_RATIO_SOLAR_PV)
     )
 
     return dataframe.groupby(["technology", "year"]).mean()["efficiency"].to_xarray()
@@ -166,7 +165,11 @@ def clear_existing_cache():
     or encountering issues with
     inventories.
     """
-    [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file() and "__version__" not in f.name]
+    [
+        f.unlink()
+        for f in Path(DATA_DIR / "cache").glob("*")
+        if f.is_file() and "__version__" not in f.name
+    ]
 
 
 # clear the cache folder

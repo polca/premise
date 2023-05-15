@@ -20,9 +20,9 @@ from wurst import searching as ws
 
 from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import remove_categories
+from .data_collection import get_delimiter
 from .export import check_amount_format
 from .geomap import Geomap
-from .data_collection import get_delimiter
 
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"

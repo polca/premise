@@ -19,6 +19,7 @@ import wurst
 import yaml
 
 from . import VARIABLES_DIR
+from .data_collection import get_delimiter
 from .export import biosphere_flows_dictionary
 from .transformation import (
     BaseTransformation,
@@ -34,7 +35,6 @@ from .transformation import (
     ws,
 )
 from .utils import DATA_DIR, eidb_label, get_efficiency_solar_photovoltaics
-from .data_collection import get_delimiter
 
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
@@ -63,17 +63,13 @@ def get_losses_per_country_dict() -> Dict[str, Dict[str, float]]:
 
     if not LOSS_PER_COUNTRY.is_file():
         raise FileNotFoundError(
-            "The production per country dictionary "
-            "file could not be found."
+            "The production per country dictionary " "file could not be found."
         )
 
     sep = get_delimiter(filepath=LOSS_PER_COUNTRY)
 
     with open(LOSS_PER_COUNTRY, encoding="utf-8") as file:
-        csv_list = [
-            [val.strip() for val in r.split(sep)]
-            for r in file.readlines()
-        ]
+        csv_list = [[val.strip() for val in r.split(sep)] for r in file.readlines()]
 
     (_, *header), *data = csv_list
     csv_dict = {}

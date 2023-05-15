@@ -24,9 +24,9 @@ from prettytable import PrettyTable
 from scipy import sparse as nsp
 
 from . import DATA_DIR, __version__
+from .data_collection import get_delimiter
 from .transformation import BaseTransformation
 from .utils import check_database_name
-from .data_collection import get_delimiter
 
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
@@ -100,7 +100,10 @@ def get_simapro_category_of_exchange():
             "The dictionary of Simapro categories could not be found."
         )
     with open(filepath, encoding="utf-8") as file:
-        csv_list = [[val.strip() for val in r.split(get_delimiter(filepath=filepath))] for r in file.readlines()]
+        csv_list = [
+            [val.strip() for val in r.split(get_delimiter(filepath=filepath))]
+            for r in file.readlines()
+        ]
     _, *data = csv_list
 
     dict_cat = {}
