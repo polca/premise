@@ -23,7 +23,7 @@ Concentration Pathway (RCP)—and a year (e.g., SSP1, Base, 2035).
 | SSP/RCP scenario | GMST increase by 2100 | Society/economy trend                                                              | Climate policy                              | REMIND          | IMAGE      |
 +==================+=======================+====================================================================================+=============================================+=================+============+
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP1-None        | ~2.3 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       |            |
+| SSP1-None        | 2.3-2.8 °C            | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       | SSP1-Base  |
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
 | SSP1-None        | ~2.2 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | National Policies Implemented (NPI).        | SSP1-NPi        |            |
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
@@ -39,9 +39,9 @@ Concentration Pathway (RCP)—and a year (e.g., SSP1, Base, 2035).
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
 | SSP2-None        | ~2.5 °C               | Extrapolation from historical developments.                                        | Nationally Determined Contributions (NDCs). | SSP2-NDC        |            |
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP2-RCP2.6      | ~2 °C                 | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg1150 | SSP2-RCP26 |
+| SSP2-RCP2.6      | 1.6-1.8 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg1150 | SSP2-RCP26 |
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP2-RCP1.9      | ~1.5 °C               | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg500  | SSP2-RCP19 |
+| SSP2-RCP1.9      | 1.2-1.4 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg500  | SSP2-RCP19 |
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
 | SSP5-None        | ~4.5 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | None                                        | SSP5-Base       |            |
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+

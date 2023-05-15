@@ -94,7 +94,7 @@ class Cement(BaseTransformation):
 
         for exc in dataset["exchanges"]:
             if (
-                exc["name"] in self.cement_fuels_map["cement"]
+                exc["name"] in self.cement_fuels_map["cement, dry feed rotary kiln"]
                 and exc["type"] == "technosphere"
             ):
                 if exc["name"] not in d_fuels:
@@ -171,7 +171,7 @@ class Cement(BaseTransformation):
     def rescale_fuel_inputs(self, dataset, scaling_factor, energy_details):
         if scaling_factor != 1:
             for exc in dataset["exchanges"]:
-                if exc["name"] in self.cement_fuels_map["cement"]:
+                if exc["name"] in self.cement_fuels_map["cement, dry feed rotary kiln"]:
                     exc["amount"] *= scaling_factor
 
                     # update energy_details
@@ -267,7 +267,7 @@ class Cement(BaseTransformation):
         d_act_clinker = self.fetch_proxies(
             name="clinker production",
             ref_prod="clinker",
-            production_variable="cement",
+            production_variable="cement, dry feed rotary kiln",
         )
 
         for region, dataset in d_act_clinker.items():
@@ -330,7 +330,7 @@ class Cement(BaseTransformation):
             # divided by the ratio fuel/output in 2020
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable="cement", location=dataset["location"]
+                variable="cement, dry feed rotary kiln", location=dataset["location"]
             )
 
             # calculate new thermal energy
@@ -359,7 +359,7 @@ class Cement(BaseTransformation):
 
             # Carbon capture rate: share of capture of total CO2 emitted
             carbon_capture_rate = self.get_carbon_capture_rate(
-                loc=dataset["location"], sector="cement"
+                loc=dataset["location"], sector="cement, dry feed rotary kiln"
             )
 
             dataset["log parameters"].update(
@@ -478,7 +478,7 @@ class Cement(BaseTransformation):
             self.fetch_proxies(
                 name="market for clinker",
                 ref_prod="clinker",
-                production_variable="cement",
+                production_variable="cement, dry feed rotary kiln",
             ).values()
         )
 
@@ -518,7 +518,7 @@ class Cement(BaseTransformation):
             new_cement_markets = self.fetch_proxies(
                 name=dataset[0],
                 ref_prod=dataset[1],
-                production_variable="cement",
+                production_variable="cement, dry feed rotary kiln",
             )
 
             # add to log
@@ -562,7 +562,7 @@ class Cement(BaseTransformation):
             new_cement_production = self.fetch_proxies(
                 name=dataset[0],
                 ref_prod=dataset[1],
-                production_variable="cement",
+                production_variable="cement, dry feed rotary kiln",
             )
 
             # add to log

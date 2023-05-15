@@ -5,9 +5,7 @@ from premise import DATA_DIR
 from premise.data_collection import IAMDataCollection
 from premise.electricity import Electricity
 
-PRODUCTION_PER_TECH = (
-    DATA_DIR / "electricity" / "electricity_production_volumes_per_tech.csv"
-)
+
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 LHV_FUELS = DATA_DIR / "fuels_lower_heating_value.txt"
 

@@ -19,11 +19,11 @@ requirements:
     - setuptools
   run:
     - numpy
-    - pandas
+    - pandas<2.0.0
     - bw2io==0.8.8
     - bw2data==3.6.6
     - wurst==0.3.3
-    - xarray
+    - xarray==2023.4.2
     - prettytable
     - pycountry
     - cryptography

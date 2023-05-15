@@ -15,7 +15,7 @@ from typing import List, Union
 import datapackage
 import yaml
 
-from . import DATA_DIR, INVENTORY_DIR
+from . import DATA_DIR, INVENTORY_DIR, __version__
 from .cement import Cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
@@ -47,6 +47,7 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     write_brightway2_database,
+    clear_existing_cache
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -550,7 +551,7 @@ class NewDatabase:
         if db_name is None:
             db_name = "unnamed"
 
-        file_name = Path(DIR_CACHED_DB / f"cached_{db_name.strip().lower()}.pickle")
+        file_name = Path(DIR_CACHED_DB / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}.pickle")
 
         # check that file path leads to an existing file
         if file_name.exists():
@@ -559,6 +560,7 @@ class NewDatabase:
 
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
+        clear_existing_cache()
         database = self.__clean_database(keep_uncertainty_data=keep_uncertainty_data)
         pickle.dump(database, open(file_name, "wb"))
         return database
@@ -577,7 +579,7 @@ class NewDatabase:
             db_name = "unnamed"
 
         file_name = Path(
-            DIR_CACHED_DB / f"cached_{db_name.strip().lower()}_inventories.pickle"
+            DIR_CACHED_DB / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}_inventories.pickle"
         )
 
         # check that file path leads to an existing file

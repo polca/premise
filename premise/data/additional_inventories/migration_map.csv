@@ -568,3 +568,15 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 37;39;treatment of wastewater from lorry production, capacity 4.7E10l/year;wastewater from lorry production;CH;market for wastewater from lorry production;wastewater from lorry production;CH
 37;39;market group for concrete, normal;concrete, normal;GLO;market group for concrete, normal strength;concrete, normal strength;GLO
 38;39;market group for concrete, normal;concrete, normal;GLO;market group for concrete, normal strength;concrete, normal strength;GLO
+37;36;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RER;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO
+38;36;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RER;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO
+39;36;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RER;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO
+37;35;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RER;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO
+38;35;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RER;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO
+39;35;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RER;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO
+36;37;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW
+36;38;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW
+36;39;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW
+35;37;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW
+35;38;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW
+35;39;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW

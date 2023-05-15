@@ -22,8 +22,8 @@ from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import remove_categories
 from .export import check_amount_format
 from .geomap import Geomap
+from .data_collection import get_delimiter
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
 OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
@@ -58,7 +58,10 @@ def get_biosphere_code(version) -> dict:
     csv_dict = {}
 
     with open(fp, encoding="utf-8") as file:
-        input_dict = csv.reader(file, delimiter=";")
+        input_dict = csv.reader(
+            file,
+            delimiter=get_delimiter(filepath=fp),
+        )
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
 
@@ -84,7 +87,10 @@ def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
     response = {"fields": ["name", "reference product", "location"], "data": []}
 
     with open(FILEPATH_MIGRATION_MAP, "r", encoding="utf-8") as read_obj:
-        csv_reader = csv.reader(read_obj, delimiter=";")
+        csv_reader = csv.reader(
+            read_obj,
+            delimiter=get_delimiter(filepath=FILEPATH_MIGRATION_MAP),
+        )
         next(csv_reader)
         for row in csv_reader:
             if row[0] == origin and row[1] == destination:
