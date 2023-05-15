@@ -73,7 +73,7 @@ def get_gains_IAM_data(model, gains_scenario):
     for file in filepath:
         df = pd.read_csv(
             file,
-            sep=get_delimiter(filepath=file),
+            sep=get_delimiter(filepath=filepath),
             encoding="utf-8",
             low_memory=False
         )

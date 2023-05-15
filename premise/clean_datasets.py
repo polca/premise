@@ -15,8 +15,8 @@ from bw2data.database import DatabaseChooser
 from wurst import searching as ws
 
 from . import DATA_DIR
-from .data_collection import get_delimiter
 
+FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
 
 def remove_uncertainty(database):
@@ -64,10 +64,7 @@ def get_biosphere_flow_uuid(version: str) -> Dict[Tuple[str, str, str, str], str
     csv_dict = {}
 
     with open(fp, encoding="utf-8") as file:
-        input_dict = csv.reader(
-            file,
-            delimiter=get_delimiter(filepath=fp),
-        )
+        input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
 

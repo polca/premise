@@ -26,7 +26,6 @@ from scipy import sparse as nsp
 from . import DATA_DIR, __version__
 from .transformation import BaseTransformation
 from .utils import check_database_name
-from .data_collection import get_delimiter
 
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
@@ -100,7 +99,7 @@ def get_simapro_category_of_exchange():
             "The dictionary of Simapro categories could not be found."
         )
     with open(filepath, encoding="utf-8") as file:
-        csv_list = [[val.strip() for val in r.split(get_delimiter(filepath=filepath))] for r in file.readlines()]
+        csv_list = [[val.strip() for val in r.split(";")] for r in file.readlines()]
     _, *data = csv_list
 
     dict_cat = {}
@@ -330,10 +329,7 @@ def biosphere_flows_dictionary(version):
     csv_dict = {}
 
     with open(fp, encoding="utf-8") as file:
-        input_dict = csv.reader(
-            file,
-            delimiter=get_delimiter(filepath=fp),
-        )
+        input_dict = csv.reader(file, delimiter=";")
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
 

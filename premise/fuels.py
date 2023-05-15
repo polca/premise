@@ -1827,9 +1827,6 @@ class Fuels(BaseTransformation):
             .values
         )
 
-        if np.isnan(fuel_share):
-            print("Incorrect fuel share for", fuel, "in", region)
-
         return fuel_share
 
     def relink_activities_to_new_markets(self):
@@ -2003,9 +2000,6 @@ class Fuels(BaseTransformation):
                 .values
             )
 
-            if np.isnan(share):
-                print("Incorrect market share for", dataset["name"], "in", r)
-
             # Add exchange for the region
             exchange = {
                 "uncertainty type": 0,
@@ -2089,9 +2083,6 @@ class Fuels(BaseTransformation):
             share = fuel_providers[prod_var]["find_share"](
                 prod_var, vars_map[fuel_category], region, period
             )
-
-            if np.isnan(share):
-                print("Incorrect fuel supplier share for", dataset["name"], "in", region)
 
             if isinstance(share, np.ndarray):
                 share = share.item(0)
