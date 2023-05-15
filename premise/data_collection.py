@@ -779,6 +779,8 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
+
+
         if (
             len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases"))
             > 0
@@ -820,6 +822,7 @@ class IAMDataCollection:
                 # check that each element of energy.values() is in data.variables.values
                 # knowing that energy.values() is a list of lists
                 # and that each element of prod.values() is in data.variables.values
+
                 if (
                     all(var in data.variables.values for var in energy[k])
                     and v in data.variables.values
@@ -849,6 +852,8 @@ class IAMDataCollection:
         data_to_return = data_to_return / data_to_return.sel(year=2020)
         # fix efficiencies
         data_to_return = fix_efficiencies(data_to_return)
+
+
 
         return data_to_return
 
