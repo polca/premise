@@ -6,7 +6,6 @@ and emission values for different sectors, carbon capture rates, etc.
 
 import copy
 import csv
-import itertools
 from functools import lru_cache
 from io import StringIO
 from itertools import chain
@@ -204,54 +203,6 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
         return arr
 
     return None
-
-
-def fix_efficiencies(data: xr.DataArray) -> xr.DataArray:
-
-    # If we are looking at a year post 2020
-    # and the ratio in efficiency change is inferior to 1
-    # we correct it to 1, as we do not accept
-    # that efficiency degrades over time
-    data.loc[
-        dict(year=[y for y in data.year.values if y > 2020])
-    ] = np.clip(
-        data.loc[
-            dict(year=[y for y in data.year.values if y > 2020])
-        ],
-        1,
-        None,
-    )
-
-    # Inversely, if we are looking at a year prior to 2020
-    # and the ratio in efficiency change is superior to 1
-    # we correct it to 1, as we do not accept
-    # that efficiency in the past was higher than now
-    data.loc[
-        dict(year=[y for y in data.year.values if y < 2020])
-    ] = np.clip(
-        data.loc[
-            dict(year=[y for y in data.year.values if y < 2020])
-        ],
-        None,
-        1,
-    )
-
-    # ensure that efficiency can not decrease over time
-    while data.diff(dim="year").min().values < 0:
-        diff = data.diff(dim="year")
-        diff = xr.concat([data.sel(year=2005), diff], dim="year")
-        diff.values[diff.values > 0] = 0
-        diff *= -1
-        data += diff
-
-    # convert NaNs to ones
-    data = data.fillna(1)
-
-    # only consider efficiency change between
-    # 50% and 300% relative to 2020
-    data.values = np.clip(data, 0.5, None)
-
-    return data
 
 
 class IAMDataCollection:
@@ -661,8 +612,45 @@ class IAMDataCollection:
 
         data_to_return /= data_to_return.sel(year=2020)
 
-        # fix efficiencies
-        data_to_return = fix_efficiencies(data_to_return)
+        # If we are looking at a year post 2020
+        # and the ratio in efficiency change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y > 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y > 2020])
+            ],
+            1,
+            None,
+        )
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in efficiency change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y < 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y < 2020])
+            ],
+            None,
+            1,
+        )
+
+        # ensure that efficiency does not decrease over time
+        # ensure that efficiency can not decrease over time
+        while data_to_return.diff(dim="year").min().values < 0:
+            diff = data_to_return.diff(dim="year")
+            diff = xr.concat([data_to_return.sel(year=2005), diff], dim="year")
+            diff.values[diff.values > 0] = 0
+            diff *= -1
+            data_to_return += diff
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
 
         data_to_return.coords["variables"] = [
             k for k, v in labels.items() if v in list_technologies
@@ -680,8 +668,7 @@ class IAMDataCollection:
 
         """
 
-        # If the year specified is not contained within
-        # the range of years given by the IAM
+        # If the year specified is not contained within the range of years given by the IAM
         if self.year < data.year.values.min() or self.year > data.year.values.max():
             raise KeyError(
                 f"{self.year} is outside of the boundaries "
@@ -696,29 +683,13 @@ class IAMDataCollection:
                 IAM_CEMENT_VARS, variable="eff_aliases"
             )
 
-            print(eff)
-
-            data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
-
-            for k, v in eff.items():
-                if v not in data.variables.values:
-                    print("No efficiency variables is given for the cement sector.")
-                    d = xr.ones_like(data)
-                else:
-                    d = 1 / data.loc[:, [v], :]
-                data_to_return = xr.concat([data_to_return, d], dim="variables")
-
-            # back-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.ffill(dim="variables")
-            )
-            # forward-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.bfill(dim="variables")
-            )
-
-            data_to_return.coords["variables"] = list(eff.keys())
-
+            if eff["cement"] in data.variables.values:
+                data_to_return = 1 / data.loc[:, [eff["cement"]], :]
+            else:
+                print("No efficiency variables is given for the cement sector.")
+                data_to_return = xr.ones_like(data)
+                var = data_to_return.variables.values.tolist()
+                data_to_return = data_to_return.sel(variables=[var[0]])
         else:
             prod = self.__get_iam_variable_labels(
                 IAM_CEMENT_VARS, variable="iam_aliases"
@@ -727,42 +698,69 @@ class IAMDataCollection:
                 IAM_CEMENT_VARS, variable="energy_use_aliases"
             )
 
-            data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
-
-            for k, v in prod.items():
-
-                # check that each element of energy.values() is in data.variables.values
-                # knowing that energy.values() is a list of lists
-                # and that each element of prod.values() is in data.variables.values
-                if (
-                        all(var in data.variables.values for var in energy[k])
-                        and v in data.variables.values
-                ):
-                    d = 1 / (
-                        data.loc[:, energy[k], :].sum(dim="variables")
-                        / data.loc[:, v, :]
-                    )
-
-                else:
-                    print("No efficiency variables is given for the cement sector.")
-                    d = xr.ones_like(data)
-
-                data_to_return = xr.concat([data_to_return, d], dim="variables")
-
-            # back-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.ffill(dim="variables")
-            )
-            # forward-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.bfill(dim="variables")
-            )
-
-            data_to_return.coords["variables"] = list(prod.keys())
+            if (
+                all(v in data.variables.values for v in energy["cement"])
+                and prod["cement"] in data.variables.values
+            ):
+                data_to_return = 1 / (
+                    data.loc[:, energy["cement"], :].sum(dim="variables")
+                    / data.loc[:, [prod["cement"]], :]
+                )
+            else:
+                print("No efficiency variables is given for the cement sector.")
+                data_to_return = xr.ones_like(data)
+                var = data_to_return.variables.values.tolist()
+                data_to_return = data_to_return.sel(variables=[var[0]])
 
         data_to_return = data_to_return / data_to_return.sel(year=2020)
-        # fix efficiencies
-        data_to_return = fix_efficiencies(data_to_return)
+
+        # If we are looking at a year post 2020
+        # and the ratio in specific energy use change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y > 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y > 2020])
+            ],
+            1,
+            None,
+        )
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in specific energy use change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y < 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y < 2020])
+            ],
+            None,
+            1,
+        )
+
+        # ensure that efficiency does not decrease over time
+        # ensure that efficiency can not decrease over time
+        while data_to_return.diff(dim="year").min().values < 0:
+            diff = data_to_return.diff(dim="year")
+            diff = xr.concat([data_to_return.sel(year=2005), diff], dim="year")
+            diff.values[diff.values > 0] = 0
+            diff *= -1
+            data_to_return += diff
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        # we also consider any improvement rate
+        # above 2 (+100%) or below 0.5 (-100%)
+        # to be incorrect
+        data_to_return.values = np.clip(data_to_return, 0.5, None)
+
+        data_to_return.coords["variables"] = ["cement"]
+
         return data_to_return
 
     def __get_iam_steel_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
@@ -786,30 +784,15 @@ class IAMDataCollection:
             len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases"))
             > 0
         ):
-            eff = self.__get_iam_variable_labels(
-                IAM_STEEL_VARS, variable="eff_aliases"
-            )
+            eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases")
 
-            data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
-
-            for k, v in eff.items():
-                if v not in data.variables.values:
-                    print("No efficiency variables is given for the steel sector.")
-                    d = xr.ones_like(data)
-                else:
-                    d = 1 / data.loc[:, [v], :]
-                data_to_return = xr.concat([data_to_return, d], dim="variables")
-
-            # back-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.ffill(dim="variables")
-            )
-            # forward-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.bfill(dim="variables")
-            )
-
-            data_to_return.coords["variables"] = list(eff.keys())
+            if eff["steel - primary"] in data.variables.values:
+                data_primary = 1 / data.loc[:, [eff["steel - primary"]], :]
+            else:
+                print("No efficiency variables is given for the primary steel sector.")
+                data_primary = xr.ones_like(data)
+                var = data_primary.variables.values.tolist()
+                data_primary = data_primary.sel(variables=[var[0]])
 
         else:
             prod = self.__get_iam_variable_labels(
@@ -819,42 +802,120 @@ class IAMDataCollection:
                 IAM_STEEL_VARS, variable="energy_use_aliases"
             )
 
-            data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
+            if isinstance(energy["steel - primary"], str):
+                energy_in = [energy["steel - primary"]]
+            else:
+                energy_in = energy["steel - primary"]
 
-            for k, v in prod.items():
+            if prod["steel - primary"] in data.variables.values:
+                data_primary = 1 / (
+                    data.loc[:, energy_in, :].sum(dim="variables")
+                    / data.loc[:, [prod["steel - primary"]], :]
+                )
+            else:
+                print("No efficiency variables is given for the primary steel sector.")
+                data_primary = xr.ones_like(data)
+                var = data_primary.variables.values.tolist()
+                data_primary = data_primary.sel(variables=[var[0]])
 
-                # check that each element of energy.values() is in data.variables.values
-                # knowing that energy.values() is a list of lists
-                # and that each element of prod.values() is in data.variables.values
-                if (
-                        all(var in data.variables.values for var in energy[k])
-                        and v in data.variables.values
-                ):
-                    d = 1 / (
-                            data.loc[:, energy[k], :].sum(dim="variables")
-                            / data.loc[:, v, :]
-                    )
+        # primary steel efficiency changes relative to 2020
+        data_primary = data_primary / data_primary.sel(year=2020)
 
-                else:
-                    print("No efficiency variables is given for the steel sector.")
-                    d = xr.ones_like(data)
+        if (
+            len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases"))
+            > 0
+        ):
+            eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases")
 
-                data_to_return = xr.concat([data_to_return, d], dim="variables")
+            if eff["steel - secondary"] in data.variables.values:
+                data_secondary = 1 / data.loc[:, [eff["steel - secondary"]], :]
+            else:
+                print(
+                    "No efficiency variables is given for the secondary steel sector."
+                )
+                data_secondary = xr.ones_like(data)
+                var = data_secondary.variables.values.tolist()
+                data_secondary = data_secondary.sel(variables=[var[0]])
 
-            # back-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.ffill(dim="variables")
+        else:
+            prod = self.__get_iam_variable_labels(
+                IAM_STEEL_VARS, variable="iam_aliases"
             )
-            # forward-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.bfill(dim="variables")
+            energy = self.__get_iam_variable_labels(
+                IAM_STEEL_VARS, variable="energy_use_aliases"
             )
 
-            data_to_return.coords["variables"] = list(prod.keys())
+            if isinstance(energy["steel - secondary"], str):
+                energy_in = [energy["steel - secondary"]]
+            else:
+                energy_in = energy["steel - secondary"]
 
-        data_to_return = data_to_return / data_to_return.sel(year=2020)
-        # fix efficiencies
-        data_to_return = fix_efficiencies(data_to_return)
+            if prod["steel - secondary"] in data.variables.values:
+                data_secondary = 1 / (
+                    data.loc[:, energy_in, :].sum(dim="variables")
+                    / data.loc[:, [prod["steel - secondary"]], :]
+                )
+            else:
+                print(
+                    "No efficiency variables is given for the secondary steel sector."
+                )
+                data_secondary = xr.ones_like(data)
+                var = data_secondary.variables.values.tolist()
+                data_secondary = data_secondary.sel(variables=[var[0]])
+
+        # secondary steel efficiency changes relative to 2020
+        data_secondary = data_secondary / data_secondary.sel(year=2020)
+
+        data_to_return = xr.concat([data_primary, data_secondary], dim="variables")
+
+        # If we are looking at a year post 2020
+        # and the ratio in specific energy use change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y > 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y > 2020])
+            ],
+            1,
+            None,
+        )
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in specific energy use change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y < 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y < 2020])
+            ],
+            None,
+            1,
+        )
+
+        # ensure that efficiency can not decrease over time
+        while data_to_return.diff(dim="year").min().values < 0:
+            diff = data_to_return.diff(dim="year")
+            diff = xr.concat([data_to_return.sel(year=2005), diff], dim="year")
+            diff.values[diff.values > 0] = 0
+            diff *= -1
+            data_to_return += diff
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        # we also consider any improvement rate
+        # above 2 (+100%) or below 0.5 (-100%)
+        # to be incorrect
+        data_to_return.values = np.clip(data_to_return, 0.5, None)
+
+        data_to_return.coords["variables"] = [
+            "steel - primary",
+            "steel - secondary",
+        ]
 
         return data_to_return
 
@@ -1099,8 +1160,50 @@ class IAMDataCollection:
 
         data_to_return /= data_to_return.sel(year=2020)
 
-        # fix efficiencies
-        data_to_return = fix_efficiencies(data_to_return)
+        # If we are looking at a year post 2020
+        # and the ratio in specific energy use change is superior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency degrades over time
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y > 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y > 2020])
+            ],
+            1,
+            None,
+        )
+
+        # Inversely, if we are looking at a year prior to 2020
+        # and the ratio in specific energy use change is inferior to 1
+        # we correct it to 1, as we do not accept
+        # that efficiency in the past was higher than now
+        data_to_return.loc[
+            dict(year=[y for y in data_to_return.year.values if y < 2020])
+        ] = np.clip(
+            data_to_return.loc[
+                dict(year=[y for y in data_to_return.year.values if y < 2020])
+            ],
+            None,
+            1,
+        )
+
+        # ensure that efficiency does not decrease over time
+        # ensure that efficiency can not decrease over time
+        while data_to_return.diff(dim="year").min().values < 0:
+            diff = data_to_return.diff(dim="year")
+            diff = xr.concat([data_to_return.sel(year=2005), diff], dim="year")
+            diff.values[diff.values > 0] = 0
+            diff *= -1
+            data_to_return += diff
+
+        # convert NaNs to ones
+        data_to_return = data_to_return.fillna(1)
+
+        # we also consider any improvement rate
+        # above 2 (+100%) or below 0.5 (-100%)
+        # to be incorrect
+        data_to_return.values = np.clip(data_to_return.values, 0.5, None)
 
         data_to_return.coords["variables"] = [
             k for k, v in labels.items() if v in list_technologies
@@ -1141,9 +1244,6 @@ class IAMDataCollection:
         steel_rate.coords["variables"] = "steel"
 
         rate = xr.concat([cement_rate, steel_rate], dim="variables")
-
-        # forward fill missing values
-        rate = rate.ffill(dim="year")
 
         rate = rate.fillna(0)
 
@@ -1212,23 +1312,14 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-        # Finally, if the specified year falls in between
-        # two periods provided by the IAM
+        # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
 
         try:
-            # flatten list
-            for var in list_products:
-                if isinstance(var, list):
-                    list_products.extend(var)
-                    list_products.remove(var)
             data_to_return = data.loc[:, list_products, :]
-
-
         except KeyError as exc:
             list_missing_vars = [
-                var for var in list_products
-                if var not in data.variables.values
+                var for var in list_products if var not in data.variables.values
             ]
             print(
                 f"The following variables cannot be found in the IAM file: {list_missing_vars}"
@@ -1247,8 +1338,7 @@ class IAMDataCollection:
                 raise SystemExit from exc
 
         data_to_return.coords["variables"] = [
-            k for k, v in dict_products.items()
-            if v in list_products
+            k for k, v in dict_products.items() if v in list_products
         ]
 
         return data_to_return

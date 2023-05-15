@@ -7,7 +7,7 @@
 dac_solvent:
   iam_aliases:
     remind: 'Emi|CO2|Cumulated|CDR|DACCS'
-    image: Carbon Capture|Storage|Direct Air Capture|Cumulative
+    image:
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2
@@ -15,7 +15,7 @@ dac_solvent:
 dac_sorbent:
   iam_aliases:
     remind: 'Emi|CO2|Cumulated|CDR|DACCS'
-    image: Carbon Capture|Storage|Direct Air Capture|Cumulative
+    image:
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2
@@ -23,7 +23,7 @@ dac_sorbent:
 daccs_solvent:
   iam_aliases:
     remind: 'Emi|CO2|Cumulated|CDR|DACCS'
-    image: Carbon Capture|Storage|Direct Air Capture|Cumulative
+    image:
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured from atmosphere and stored, with a solvent-based direct air capture system, 1MtCO2
@@ -31,7 +31,7 @@ daccs_solvent:
 daccs_sorbent:
   iam_aliases:
     remind: 'Emi|CO2|Cumulated|CDR|DACCS'
-    image: Carbon Capture|Storage|Direct Air Capture|Cumulative
+    image:
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured from atmosphere and stored, with a sorbent-based direct air capture system, 100ktCO2
