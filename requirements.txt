@@ -3,7 +3,7 @@ pandas
 bw2io==0.8.8
 bw2data==3.6.6
 wurst==0.3.3
-xarray==2023.4.2
+xarray
 prettytable
 pycountry
 cryptography
