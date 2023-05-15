@@ -10,41 +10,24 @@ cement - co2:
       - Carbon Management|Carbon Capture|Industry Energy|Cement
       - Carbon Management|Carbon Capture|+|Industry Process
     image:
-      - Production|Industry|Cement|Dry feed rotary kiln
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln
+      - Emissions|CO2|Industry|Cement|Gross
 cement - cco2:
   iam_aliases:
     remind:
       - Carbon Management|Carbon Capture|Industry Energy|Cement
       - Carbon Management|Carbon Capture|+|Industry Process
     image:
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS
-
+      - Emissions|CO2|Industry|Cement|Sequestered
 steel - co2:
   iam_aliases:
     remind:
       - Emi|CO2|Energy|Demand|Industry|++|Steel
       - Carbon Management|Carbon Capture|Industry Energy|Steel
     image:
-      - Production|Industry|Iron and Steel|BF/ BOF Standard + CCS
-      - Production|Industry|Iron and Steel|BF/BOF Modernized
-      - Production|Industry|Iron and Steel|BF/BOF Standard
-      - Production|Industry|Iron and Steel|SR/BOF + CCS
-      - Production|Industry|Iron and Steel|SR/BOF
-      - Production|Industry|Iron and Steel|TGR BF/BOF BAT + CCS
-      - Production|Industry|Iron and Steel|TGR BF/BOF BAT
-      - Production|Industry|Iron and Steel|TGR BF/BOF
+      - Emissions|CO2|Industry|Steel|Gross
 steel - cco2:
   iam_aliases:
     remind:
       - Carbon Management|Carbon Capture|Industry Energy|Steel
     image:
-      - Production|Industry|Iron and Steel|BF/ BOF Standard + CCS
-      - Production|Industry|Iron and Steel|DRI EAF + CCS
-      - Production|Industry|Iron and Steel|SR/BOF + CCS
-      - Production|Industry|Iron and Steel|TGR BF/BOF BAT + CCS
+      - Emissions|CO2|Industry|Steel|Sequestered
