@@ -779,8 +779,6 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-
-
         if (
             len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases"))
             > 0
@@ -852,8 +850,6 @@ class IAMDataCollection:
         data_to_return = data_to_return / data_to_return.sel(year=2020)
         # fix efficiencies
         data_to_return = fix_efficiencies(data_to_return)
-
-
 
         return data_to_return
 
