@@ -18,7 +18,6 @@ from . import DATA_DIR
 from .data_collection import get_delimiter
 
 
-
 def remove_uncertainty(database):
     """
     Remove uncertainty information from database exchanges.

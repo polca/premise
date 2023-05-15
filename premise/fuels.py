@@ -2091,7 +2091,9 @@ class Fuels(BaseTransformation):
             )
 
             if np.isnan(share):
-                print("Incorrect fuel supplier share for", dataset["name"], "in", region)
+                print(
+                    "Incorrect fuel supplier share for", dataset["name"], "in", region
+                )
 
             if isinstance(share, np.ndarray):
                 share = share.item(0)
