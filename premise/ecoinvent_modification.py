@@ -1019,6 +1019,7 @@ class NewDatabase:
                         external_scenarios_data=scenario["external data"],
                         version=self.version,
                         system_model=self.system_model,
+                        modified_datasets=self.modified_datasets,
                     )
                     external_scenario.create_custom_markets()
                     scenario["database"] = external_scenario.database

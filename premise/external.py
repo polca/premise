@@ -2,17 +2,18 @@
 Implements external scenario data.
 """
 
-import csv
-from datetime import date
 
 import wurst
 import xarray as xr
 from numpy import ndarray
+import csv
 
+from . import INVENTORY_DIR
 from .clean_datasets import get_biosphere_flow_uuid
 from .inventory_imports import get_outdated_flows
 from .transformation import *
 from .utils import eidb_label
+from .inventory_imports import generate_migration_maps
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -30,6 +31,21 @@ with open(LOG_CONFIG, "r") as f:
 logger = logging.getLogger("external")
 
 
+def get_mapping_between_ei_versions(
+        version_in: str,
+        version_out: str
+) -> dict:
+    mapping = generate_migration_maps(
+        version_in.replace('.', ''),
+        version_out.replace('.', '')
+    )["data"]
+    m = {}
+
+    for i, j in mapping:
+        m[(i[0], i[1])] = j
+
+    return m
+
 def fetch_loc(loc):
     if isinstance(loc, str):
         return loc
@@ -38,7 +54,6 @@ def fetch_loc(loc):
             return loc[1]
     else:
         return None
-
 
 def flag_activities_to_adjust(
     dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
@@ -328,6 +343,8 @@ class ExternalScenario(BaseTransformation):
         year: int,
         version: str,
         system_model: str,
+        modified_datasets: dict,
+        cache: dict = None,
     ):
         """
         :param database: list of datasets representing teh database
@@ -340,7 +357,7 @@ class ExternalScenario(BaseTransformation):
 
         """
         super().__init__(
-            database, iam_data, model, pathway, year, version, system_model
+            database, iam_data, model, pathway, year, version, system_model, modified_datasets
         )
         self.datapackages = external_scenarios
         self.external_scenarios_data = external_scenarios_data
@@ -358,6 +375,7 @@ class ExternalScenario(BaseTransformation):
             )
         self.dict_bio_flows = get_biosphere_flow_uuid(self.version)
         self.outdated_flows = get_outdated_flows()
+
 
     def regionalize_inventories(
         self, ds_names, regions, datapackage_number: int
@@ -414,7 +432,17 @@ class ExternalScenario(BaseTransformation):
 
                 for _, act in new_acts.items():
                     # add to log
-                    self.write_log(act, status="created")
+                    self.write_log(act)
+                    self.modified_datasets[(self.model, self.scenario, self.year)][
+                        "created"
+                    ].append(
+                        (
+                            act["name"],
+                            act["reference product"],
+                            act["location"],
+                            act["unit"],
+                        )
+                    )
 
             # remove "adjust efficiency" tag
             del ds["regionalize"]
@@ -451,6 +479,7 @@ class ExternalScenario(BaseTransformation):
             adjust_efficiency(dataset)
             del dataset["adjust efficiency"]
             self.write_log(dataset, status="updated")
+
 
     def get_market_dictionary_structure(
         self, market: dict, region: str, waste_market: bool = False
@@ -738,7 +767,7 @@ class ExternalScenario(BaseTransformation):
 
         return new_excs
 
-    def add_additional_exchanges(self, additional_exc: dict, region: str) -> list:
+    def add_additional_exchanges(self, additional_exc: dict, region: str, ei_version: str) -> list:
         """
         Add additional exchanges to a dataset.
         """
@@ -748,6 +777,20 @@ class ExternalScenario(BaseTransformation):
         categories = additional_exc.get("categories")
         unit = additional_exc.get("unit")
         amount = additional_exc["amount"]
+
+        # we need to ensure that the dataset exists
+        # to do so, we need to load migration.csv
+        # and check if the dataset is there
+        # if it is there, we need to use instead the new values
+
+        mapping = get_mapping_between_ei_versions(
+            str(ei_version),
+            self.version
+        )
+
+        if (name, ref_prod) in mapping:
+            name = mapping[(name, ref_prod)]["name"]
+            ref_prod = mapping[(name, ref_prod)]["reference product"]
 
         if ref_prod:
             # this is a technosphere exchange
@@ -987,7 +1030,7 @@ class ExternalScenario(BaseTransformation):
                             if "add" in market_vars:
                                 for additional_exc in market_vars["add"]:
                                     add_excs = self.add_additional_exchanges(
-                                        additional_exc, region
+                                        additional_exc, region, dp.descriptor["ecoinvent"]["version"]
                                     )
                                     new_market["exchanges"].extend(add_excs)
 
@@ -1004,6 +1047,16 @@ class ExternalScenario(BaseTransformation):
 
                             self.database.append(new_market)
                             self.write_log(new_market)
+                            self.modified_datasets[(self.model, self.scenario, self.year)][
+                                "created"
+                            ].append(
+                                (
+                                    new_market["name"],
+                                    new_market["reference product"],
+                                    new_market["location"],
+                                    new_market["unit"],
+                                )
+                            )
 
                         else:
                             regions.remove(region)
@@ -1026,6 +1079,17 @@ class ExternalScenario(BaseTransformation):
                         )
                         self.database.append(world_market)
                         self.write_log(world_market)
+                        self.modified_datasets[(self.model, self.scenario, self.year)][
+                            "created"
+                        ].append(
+                            (
+                                world_market["name"],
+                                world_market["reference product"],
+                                world_market["location"],
+                                world_market["unit"],
+                            )
+                        )
+
                         regions.append("World")
 
                     # if the new markets are meant to replace for other

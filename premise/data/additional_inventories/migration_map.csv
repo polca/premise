@@ -580,3 +580,11 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 35;37;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW
 35;38;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW
 35;39;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;GLO;market for iron scrap, sorted, pressed;iron scrap, sorted, pressed;RoW
+35;39;transmission network construction, long-distance;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
+36;39;transmission network construction, long-distance;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
+37;39;transmission network construction, long-distance;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
+38;39;transmission network construction, long-distance;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
+35;39;transmission network construction, electricity, high voltage;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
+36;39;transmission network construction, electricity, high voltage;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
+37;39;transmission network construction, electricity, high voltage;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
+38;39;transmission network construction, electricity, high voltage;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
