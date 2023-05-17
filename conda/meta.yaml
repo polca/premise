@@ -19,11 +19,11 @@ requirements:
     - setuptools
   run:
     - numpy
-    - pandas<2.0.0
-    - bw2io==0.8.8
+    - pandas
+    - bw2io==0.8.7
     - bw2data==3.6.6
     - wurst==0.3.3
-    - xarray==2023.4.2
+    - xarray>=2023.4.2
     - prettytable
     - pycountry
     - cryptography
@@ -33,7 +33,7 @@ requirements:
     - datapackage
     - requests
     - bottleneck
-    - constructive_geometries==0.8.2
+    - constructive_geometries>=0.8.2
 
 test:
   imports:

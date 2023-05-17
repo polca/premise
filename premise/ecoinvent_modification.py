@@ -730,7 +730,6 @@ class NewDatabase:
                     path=data_package.get_resource("inventories").source,
                     system_model=self.system_model,
                 )
-                additional.prepare_inventory()
                 data.extend(additional.merge_inventory())
         else:
             raise TypeError("Unknown data type for datapackage.")

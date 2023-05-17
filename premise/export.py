@@ -611,10 +611,14 @@ def generate_scenario_factor_file(origin_db, scenarios, db_name, version):
 
     # remove the column `original`
     df = df.drop(columns=["original"])
+
     # fetch a list of activities not present in original_db
     list_original_acts = get_list_unique_acts([{"database": origin_db}])
-    list_original_acts = [a for a in list_original_acts if a[-1] == "production"]
+
     new_acts_list = list(set(list_unique_acts) - set(list_original_acts))
+
+    print(f"Number of new activities: {len(new_acts_list)}")
+
     # turn new_acts_list into a dictionary
     new_acts_dict = {v: k for k, v in dict(enumerate(new_acts_list)).items()}
 
@@ -655,8 +659,10 @@ def generate_scenario_difference_file(
         }
     )
     list_acts = get_list_unique_acts([{"database": origin_db}] + scenarios)
+
     acts_ind = dict(enumerate(list_acts))
     acts_ind_rev = {v: k for k, v in acts_ind.items()}
+
     list_scenarios = ["original"] + [
         f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios
     ]
