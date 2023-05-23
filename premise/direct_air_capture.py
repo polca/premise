@@ -105,7 +105,6 @@ class DirectAirCapture(BaseTransformation):
                 )
 
                 for k, dataset in new_ds.items():
-
                     # Add created dataset to cache
                     self.add_new_entry_to_cache(
                         location=dataset["location"],
