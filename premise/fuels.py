@@ -2423,13 +2423,13 @@ class Fuels(BaseTransformation):
                 ),
                 (
                     "market group for diesel, low-sulfur",
-                    "diesel",
+                    "diesel, low-sulfur",
                     "RER",
                     "kilogram",
                 ),
                 (
                     "market group for diesel, low-sulfur",
-                    "diesel",
+                    "diesel, low-sulfur",
                     "GLO",
                     "kilogram",
                 ),

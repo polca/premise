@@ -105,9 +105,6 @@ class DirectAirCapture(BaseTransformation):
                 )
 
                 for k, dataset in new_ds.items():
-                    new_ds[k] = self.relink_technosphere_exchanges(
-                        dataset,
-                    )
 
                     # Add created dataset to cache
                     self.add_new_entry_to_cache(
@@ -118,11 +115,6 @@ class DirectAirCapture(BaseTransformation):
                             1.0,
                         ],
                     )
-
-                self.database.extend(new_ds.values())
-
-                # add to log
-                for dataset in list(new_ds.values()):
                     self.write_log(dataset)
                     # add it to list of created datasets
                     self.modified_datasets[(self.model, self.scenario, self.year)][
@@ -135,6 +127,8 @@ class DirectAirCapture(BaseTransformation):
                             dataset["unit"],
                         )
                     )
+
+                self.database.extend(new_ds.values())
 
         # define heat sources
         heat_map_ds = fetch_mapping(HEAT_SOURCES)

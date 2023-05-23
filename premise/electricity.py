@@ -1667,11 +1667,6 @@ class Electricity(BaseTransformation):
             "market for electricity",
             "electricity, high voltage, import",
             "electricity, high voltage, production mix",
-            # "electricity, high voltage, residual mix",
-            # "electricity, medium voltage, residual mix",
-            # "electricity, low voltage, residual mix",
-            # "electricity voltage transformation, residual mix, from high to medium voltage",
-            # "electricity voltage transformation, residual mix, from medium to low voltage"
         ]
 
         # we want to preserve some electricity-related datasets
@@ -1695,15 +1690,12 @@ class Electricity(BaseTransformation):
             ws.doesnt_contain_any("name", list_to_preserve),
         )
 
-        list_to_remove = []
-
         for dataset in datasets_to_empty:
-            list_to_remove.append((dataset["name"], dataset["location"]))
-
             # add tag
             dataset["has_downstream_consumer"] = False
             dataset["exchanges"] = [
-                e for e in dataset["exchanges"] if e["type"] == "production"
+                e for e in dataset["exchanges"]
+                if e["type"] == "production"
             ]
 
             if "high voltage" in dataset["name"]:
@@ -1726,6 +1718,18 @@ class Electricity(BaseTransformation):
             )
 
             self.write_log(dataset=dataset, status="updated")
+
+            # list `market group for electricity` as "emptied"
+            self.modified_datasets[(self.model, self.scenario, self.year)][
+                "emptied"
+            ].append(
+                (
+                    dataset["name"],
+                    dataset["reference product"],
+                    dataset["location"],
+                    dataset["unit"],
+                )
+            )
 
             # add new regional datasets to cache
             self.add_new_entry_to_cache(
