@@ -1694,8 +1694,7 @@ class Electricity(BaseTransformation):
             # add tag
             dataset["has_downstream_consumer"] = False
             dataset["exchanges"] = [
-                e for e in dataset["exchanges"]
-                if e["type"] == "production"
+                e for e in dataset["exchanges"] if e["type"] == "production"
             ]
 
             if "high voltage" in dataset["name"]:

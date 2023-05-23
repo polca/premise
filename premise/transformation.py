@@ -815,7 +815,6 @@ class BaseTransformation:
 
                 # not in cache, so find new candidate
                 else:
-
                     names_to_look_for = [exc[0], *alt_names]
 
                     if exc[0].startswith("market group for"):
@@ -865,7 +864,6 @@ class BaseTransformation:
                             break
 
                     if not entry:
-
                         if exc == (
                             act["name"],
                             act["reference product"],
@@ -1474,5 +1472,3 @@ class BaseTransformation:
             for ds in self.database
             if (ds["name"], ds["reference product"], ds["unit"]) == key
         ]
-
-
