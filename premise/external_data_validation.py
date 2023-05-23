@@ -80,17 +80,15 @@ def check_inventories(
             if not v["exists in original database"] and not v.get("new dataset")
         )
     except AssertionError as e:
-
         list_missing_datasets = [
-                i[0]
-                for i, v in d_datasets.items()
-                if not v["exists in original database"]
-                and not v.get("new dataset")
-                and (i[0], i[1]) not in list_datasets
-            ]
+            i[0]
+            for i, v in d_datasets.items()
+            if not v["exists in original database"]
+            and not v.get("new dataset")
+            and (i[0], i[1]) not in list_datasets
+        ]
 
         raise f"The following datasets are not in the inventory data: {list_missing_datasets}"
-
 
     # flag imported inventories
     for i, dataset in enumerate(inventory_data):
