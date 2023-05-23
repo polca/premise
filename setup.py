@@ -44,7 +44,7 @@ setup(
         "numpy",
         "wurst==0.3.3",
         "bw2io==0.8.7",
-        "pandas",
+        "pandas==1.5.3",
         "bw2data",
         "xarray>=2023.4.2",
         "prettytable",
