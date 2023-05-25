@@ -65,7 +65,8 @@ class Geomap:
             if "EXTRA_TOPOLOGY" in constants:
                 if model in constants["EXTRA_TOPOLOGY"]:
                     self.geo.add_definitions(
-                        load_json(constants["EXTRA_TOPOLOGY"][model])
+                        load_json(constants["EXTRA_TOPOLOGY"][model]),
+                        self.model.upper()
                     )
             else:
                 raise ValueError(

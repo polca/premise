@@ -1246,9 +1246,7 @@ class Electricity(BaseTransformation):
             ref_prod=biomass_map["biomass - residual"]["ecoinvent_aliases"][
                 "reference product"
             ][0],
-            production_variable=biomass_map["biomass - residual"]["iam_aliases"][
-                self.model
-            ][0],
+            production_variable="biomass - residual",
         )
 
         # add them to the database

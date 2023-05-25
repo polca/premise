@@ -496,25 +496,19 @@ class Transport(BaseTransformation):
             "passenger bus",
         ]
 
-        # We filter  vehicles by year of manufacture
+        # We filter vehicles by year of manufacture
         available_years = [2020, 2030, 2040, 2050]
         closest_year = min(available_years, key=lambda x: abs(x - self.year))
         fleet_act = None
 
         if self.has_fleet:
-            datasets.import_db.data = [
-                dataset
-                for dataset in datasets.import_db.data
-                if not any(
-                    vehicle in dataset["name"].lower() for vehicle in list_vehicles
-                )
-            ]
 
             datasets.import_db.data = [
                 dataset
                 for dataset in datasets.import_db.data
                 if not any(
-                    z for z in re.findall(r"\d+", dataset["name"]) if int(z) > self.year
+                    z for z in re.findall(r"\d+", dataset["name"])
+                    if int(z) > self.year
                 )
                 and not any(
                     z in dataset["name"]
