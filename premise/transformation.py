@@ -1156,10 +1156,7 @@ class BaseTransformation:
         new_exchanges = []
         technosphere = lambda x: x["type"] == "technosphere"
 
-        list_loc = [
-                       k if isinstance(k, str)
-                       else k[1]
-                       for k in self.geo.geo.keys()] + [
+        list_loc = [k if isinstance(k, str) else k[1] for k in self.geo.geo.keys()] + [
             "RoW"
         ]
 
@@ -1313,8 +1310,14 @@ class BaseTransformation:
                         )
                         continue
 
-                if not kept and any(loc in possible_locations for loc in ["GLO", "RoW"]):
-                    kept = [ds for ds in possible_datasets if ds["location"] in ["GLO", "RoW"]]
+                if not kept and any(
+                    loc in possible_locations for loc in ["GLO", "RoW"]
+                ):
+                    kept = [
+                        ds
+                        for ds in possible_datasets
+                        if ds["location"] in ["GLO", "RoW"]
+                    ]
                     allocated, share = allocate_inputs(exc, kept)
                     new_exchanges.extend(allocated)
                     continue
