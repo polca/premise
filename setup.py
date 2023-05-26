@@ -46,7 +46,7 @@ setup(
         "bw2io==0.8.7",
         "pandas==1.5.3",
         "bw2data",
-        "xarray>=2023.4.2",
+        "xarray",
         "prettytable",
         "pycountry",
         "cryptography",
