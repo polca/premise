@@ -502,13 +502,11 @@ class Transport(BaseTransformation):
         fleet_act = None
 
         if self.has_fleet:
-
             datasets.import_db.data = [
                 dataset
                 for dataset in datasets.import_db.data
                 if not any(
-                    z for z in re.findall(r"\d+", dataset["name"])
-                    if int(z) > self.year
+                    z for z in re.findall(r"\d+", dataset["name"]) if int(z) > self.year
                 )
                 and not any(
                     z in dataset["name"]
