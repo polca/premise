@@ -1988,10 +1988,16 @@ class Fuels(BaseTransformation):
 
             share = (
                 (
-                    self.iam_data.fuel_markets.sel(region=r, variables=prod_vars).sum(
+                    self.iam_data.fuel_markets.sel(
+                        region=r,
+                        variables=prod_vars
+                    ).sum(
                         dim="variables"
                     )
-                    / self.iam_data.fuel_markets.sel(variables=prod_vars).sum(
+                    / self.iam_data.fuel_markets.sel(
+                    variables=prod_vars,
+                    region=[x for x in self.iam_data.fuel_markets.region.values if x != "World"]
+                ).sum(
                         dim=["variables", "region"]
                     )
                 )

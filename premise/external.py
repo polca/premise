@@ -548,7 +548,10 @@ class ExternalScenario(BaseTransformation):
                     .sum(dim="variables")
                     .interp(year=self.year)
                     / self.external_scenarios_data[i]["production volume"]
-                    .sel(variables=pathways)
+                    .sel(
+                    variables=pathways,
+                    region=[r for r in regions if r != "World"]
+                )
                     .sum(dim=["variables", "region"])
                     .interp(year=self.year)
                 ).values.item(0),
