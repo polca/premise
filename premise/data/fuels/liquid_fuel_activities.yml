@@ -22,6 +22,12 @@ fischer-tropsch, from woody biomass:
   - Carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from wood gasification
   - Carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from wood gasification, with CCS
 
+fischer-tropsch, from coal:
+  - Diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, energy allocation
+  - diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, energy allocation, at fuelling station
+  - Syngas, RWGS, Production, for Fischer Tropsch process, hydrogen from coal gasification
+  - Carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from coal gasification
+
 fischer-tropsch, from coal, with CCS:
   - Diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation
   - diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station

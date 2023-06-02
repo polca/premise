@@ -1,5 +1,5 @@
 __all__ = ("NewDatabase", "clear_cache", "get_regions_definition")
-__version__ = (1, 5, 0, "beta", 9)
+__version__ = (1, 5, 0, "beta", 10)
 
 from pathlib import Path
 
