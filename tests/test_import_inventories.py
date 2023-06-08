@@ -113,7 +113,7 @@ def test_load_carma():
         version_out="3.8",
         path=FILEPATH_CARMA_INVENTORIES,
         system_model="cutoff",
-        keep_uncertainty_data=False
+        keep_uncertainty_data=False,
     )
     assert len(carma.import_db.data) >= 135
 
@@ -126,6 +126,6 @@ def test_load_biofuel():
         version_out="3.8",
         path=FILEPATH_BIOFUEL_INVENTORIES,
         system_model="cutoff",
-        keep_uncertainty_data=False
+        keep_uncertainty_data=False,
     )
     assert len(bio.import_db.data) >= 160
