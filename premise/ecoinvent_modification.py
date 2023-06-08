@@ -507,7 +507,7 @@ class NewDatabase:
                 self.database.extend(data)
 
         else:
-            self.__import_inventories()
+            self.__import_inventories(keep_uncertainty_data=keep_uncertainty_data)
 
         if self.additional_inventories:
             data = self.__import_additional_inventories(self.additional_inventories)
@@ -612,7 +612,7 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path, self.version
         ).prepare_datasets(keep_uncertainty_data)
 
-    def __import_inventories(self) -> List[dict]:
+    def __import_inventories(self, keep_uncertainty_data: bool = False) -> List[dict]:
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
@@ -684,6 +684,7 @@ class NewDatabase:
                 version_out=self.version,
                 path=filepath[0],
                 system_model=self.system_model,
+                keep_uncertainty_data=keep_uncertainty_data,
             )
             datasets = inventory.merge_inventory()
             data.extend(datasets)

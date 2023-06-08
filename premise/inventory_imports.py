@@ -19,7 +19,7 @@ from prettytable import PrettyTable
 from wurst import searching as ws
 
 from . import DATA_DIR, INVENTORY_DIR
-from .clean_datasets import remove_categories
+from .clean_datasets import remove_categories, remove_uncertainty
 from .data_collection import get_delimiter
 from .export import check_amount_format
 from .geomap import Geomap
@@ -211,6 +211,7 @@ class BaseInventoryImport:
         version_out: str,
         path: Union[str, Path],
         system_model: str,
+        keep_uncertainty_data: bool = False,
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
@@ -225,6 +226,7 @@ class BaseInventoryImport:
         self.system_model = system_model
         self.consequential_blacklist = get_consequential_blacklist()
         self.list_unlinked = []
+        self.keep_uncertainty_data = keep_uncertainty_data
 
         if "http" in str(path):
             r = requests.head(path)
@@ -611,8 +613,8 @@ class DefaultInventory(BaseInventoryImport):
 
     """
 
-    def __init__(self, database, version_in, version_out, path, system_model):
-        super().__init__(database, version_in, version_out, path, system_model)
+    def __init__(self, database, version_in, version_out, path, system_model, keep_uncertainty_data):
+        super().__init__(database, version_in, version_out, path, system_model, keep_uncertainty_data)
 
     def load_inventory(self, path: Union[str, Path]) -> bw2io.ExcelImporter:
         return ExcelImporter(path)
@@ -641,8 +643,14 @@ class DefaultInventory(BaseInventoryImport):
             )
 
         self.import_db.data = remove_categories(self.import_db.data)
+
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
+        # Remove uncertainty data
+        if not self.keep_uncertainty_data:
+            print("Remove uncertainty data.")
+            self.database = remove_uncertainty(self.database)
 
         # Check for duplicates
         self.check_for_already_existing_datasets()
