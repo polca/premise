@@ -613,8 +613,18 @@ class DefaultInventory(BaseInventoryImport):
 
     """
 
-    def __init__(self, database, version_in, version_out, path, system_model, keep_uncertainty_data):
-        super().__init__(database, version_in, version_out, path, system_model, keep_uncertainty_data)
+    def __init__(
+        self,
+        database,
+        version_in,
+        version_out,
+        path,
+        system_model,
+        keep_uncertainty_data,
+    ):
+        super().__init__(
+            database, version_in, version_out, path, system_model, keep_uncertainty_data
+        )
 
     def load_inventory(self, path: Union[str, Path]) -> bw2io.ExcelImporter:
         return ExcelImporter(path)
