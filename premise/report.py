@@ -42,7 +42,7 @@ if not Path(DIR_LOG_REPORT).exists():
 SECTORS = {
     "Population": (IAM_OTHER_VARS, ["Population"]),
     "GDP": (IAM_OTHER_VARS, ["GDP|PPP"]),
-    "CO2": (IAM_OTHER_VARS, ["Emi|CO2"]),
+    "CO2": (IAM_OTHER_VARS, ["Emi|CO2", "Emissions|CO2"]),
     "GMST": (IAM_OTHER_VARS, ["Temperature|Global Mean"]),
     "Electricity - generation": IAM_ELEC_VARS,
     "Electricity (biom) - generation": IAM_BIOMASS_VARS,

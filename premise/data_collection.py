@@ -820,7 +820,6 @@ class IAMDataCollection:
                 # check that each element of energy.values() is in data.variables.values
                 # knowing that energy.values() is a list of lists
                 # and that each element of prod.values() is in data.variables.values
-
                 if (
                     all(var in data.variables.values for var in energy[k])
                     and v in data.variables.values
