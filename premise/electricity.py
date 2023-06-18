@@ -1587,7 +1587,7 @@ class Electricity(BaseTransformation):
             for v in list(value):
                 self.fuel_map_reverse[v] = key
 
-        eff_labels = self.iam_data.efficiency.variables.values
+        eff_labels = self.iam_data.electricity_efficiencies.variables.values
         all_techs = self.iam_data.electricity_markets.variables.values
 
         technologies_map = self.get_iam_mapping(
@@ -1619,7 +1619,8 @@ class Electricity(BaseTransformation):
                 )
 
                 # Find relative efficiency change indicated by the IAM
-                scaling_factor = 1 / dict_technology["IAM_eff_func"](
+                scaling_factor = 1 / self.find_iam_efficiency_change(
+                    data=self.iam_data.electricity_efficiencies,
                     variable=technology,
                     location=self.geo.ecoinvent_to_iam_location(dataset["location"]),
                 )

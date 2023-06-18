@@ -15,6 +15,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
 from pandas.errors import EmptyDataError
+import xarray as xr
 
 from . import DATA_DIR, VARIABLES_DIR, __version__
 
@@ -39,36 +40,7 @@ DIR_LOG_REPORT = Path.cwd() / "export" / "change reports"
 if not Path(DIR_LOG_REPORT).exists():
     Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
-SECTORS = {
-    "Population": (IAM_OTHER_VARS, ["Population"]),
-    "GDP": (IAM_OTHER_VARS, ["GDP|PPP"]),
-    "CO2": (IAM_OTHER_VARS, ["Emi|CO2", "Emissions|CO2"]),
-    "GMST": (IAM_OTHER_VARS, ["Temperature|Global Mean"]),
-    "Electricity - generation": IAM_ELEC_VARS,
-    "Electricity (biom) - generation": IAM_BIOMASS_VARS,
-    "Electricity - efficiency": IAM_ELEC_VARS,
-    "Fuel - generation": IAM_FUELS_VARS,
-    "Fuel - efficiency": IAM_FUELS_VARS,
-    "Cement - generation": IAM_CEMENT_VARS,
-    "Cement - efficiency": IAM_CEMENT_VARS,
-    "Cement - CCS": (IAM_CARBON_CAPTURE_VARS, ["cement"]),
-    "Steel - generation": IAM_STEEL_VARS,
-    "Steel - efficiency": IAM_STEEL_VARS,
-    "Steel - CCS": (IAM_CARBON_CAPTURE_VARS, ["steel"]),
-    "Direct Air Capture - generation": (IAM_DACCS_VARS, ["dac_solvent", "dac_sorbent"]),
-    "Transport (cars)": (
-        VEHICLES_MAP,
-        ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
-    ),
-    "Transport (buses)": (
-        VEHICLES_MAP,
-        ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
-    ),
-    "Transport (trucks)": (
-        VEHICLES_MAP,
-        ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
-    ),
-}
+
 
 
 def get_variables(
@@ -83,11 +55,149 @@ def get_variables(
 
     return list(out.keys())
 
+def fetch_data(iam_data: xr.DataArray, sector: str, variable: str) -> [xr.DataArray, None]:
+
+    data = {
+        "Population": iam_data.other_vars,
+        "GDP": iam_data.other_vars,
+        "CO2": iam_data.other_vars,
+        "GMST": iam_data.other_vars,
+        "Electricity - generation": iam_data.production_volumes,
+        "Electricity (biom) - generation": iam_data.production_volumes,
+        "Electricity - efficiency": iam_data.electricity_efficiencies,
+        "Fuel (gasoline) - generation": iam_data.production_volumes,
+        "Fuel (gasoline) - efficiency": iam_data.petrol_efficiencies,
+        "Fuel (diesel) - generation": iam_data.production_volumes,
+        "Fuel (diesel) - efficiency": iam_data.diesel_efficiencies,
+        "Fuel (gas) - generation": iam_data.production_volumes,
+        "Fuel (gas) - efficiency": iam_data.gas_efficiencies,
+        "Fuel (hydrogen) - generation": iam_data.production_volumes,
+        "Fuel (hydrogen) - efficiency": iam_data.hydrogen_efficiencies,
+        "Cement - generation": iam_data.production_volumes,
+        "Cement - efficiency": iam_data.cement_efficiencies,
+        "Cement - CCS": iam_data.carbon_capture_rate,
+        "Steel - generation": iam_data.production_volumes,
+        "Steel - efficiency": iam_data.steel_efficiencies,
+        "Steel - CCS": iam_data.carbon_capture_rate,
+        "Direct Air Capture - generation": iam_data.production_volumes,
+        "Transport (cars)": iam_data.trsp_cars,
+        "Transport (buses)": iam_data.trsp_buses,
+        "Transport (trucks)": iam_data.trsp_trucks,
+    }
+
+    if data[sector] is not None:
+        iam_data = data[sector]
+
+        if any(x in sector for x in ["car", "bus", "truck"]):
+            iam_data = iam_data.sum(
+                dim=["size", "construction_year"]
+            )
+            iam_data = iam_data.rename({"powertrain": "variables"}).T
+
+        return iam_data.sel(variables=[v for v in variable if v in iam_data.coords["variables"].values])
+    else:
+        return None
 
 def generate_summary_report(scenarios: list, filename: Path) -> None:
     """
     Generate a summary report of the scenarios.
     """
+
+    SECTORS = {
+        "Population": {
+            "filepath": IAM_OTHER_VARS,
+            "variables": ["population",],
+        },
+        "GDP": {
+            "filepath": IAM_OTHER_VARS,
+            "variables": ["gdp",],
+        },
+        "CO2": {
+            "filepath": IAM_OTHER_VARS,
+            "variables": ["CO2",],
+        },
+        "GMST": {
+            "filepath": IAM_OTHER_VARS,
+            "variables": ["GMST",],
+        },
+        "Electricity - generation": {
+            "filepath": IAM_ELEC_VARS,
+        },
+        "Electricity (biom) - generation": {
+            "filepath": IAM_BIOMASS_VARS,
+        },
+        "Electricity - efficiency": {
+            "filepath": IAM_ELEC_VARS,
+        },
+        "Fuel (gasoline) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["gasoline", "ethanol"],
+        },
+        "Fuel (gasoline) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["gasoline", "ethanol"],
+        },
+        "Fuel (diesel) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["diesel", ],
+        },
+        "Fuel (diesel) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["diesel", ],
+        },
+        "Fuel (gas) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["natural gas", "biogas", "methane" ],
+        },
+        "Fuel (gas) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["natural gas", "biogas", "methane" ],
+        },
+        "Fuel (hydrogen) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["hydrogen", ],
+        },
+        "Fuel (hydrogen) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["hydrogen", ],
+        },
+        "Cement - generation": {
+            "filepath": IAM_CEMENT_VARS,
+        },
+        "Cement - efficiency": {
+            "filepath": IAM_CEMENT_VARS,
+        },
+        "Cement - CCS": {
+            "filepath": IAM_CARBON_CAPTURE_VARS,
+            "variables": ["cement"],
+        },
+        "Steel - generation": {
+            "filepath": IAM_STEEL_VARS,
+        },
+        "Steel - efficiency": {
+            "filepath": IAM_STEEL_VARS,
+        },
+        "Steel - CCS": {
+            "filepath": IAM_CARBON_CAPTURE_VARS,
+            "variables": ["steel"],
+        },
+        "Direct Air Capture - generation": {
+            "filepath": IAM_DACCS_VARS,
+            "variables": ["dac_solvent", "dac_sorbent"],
+        },
+        "Transport (cars)": {
+            "filepath": VEHICLES_MAP,
+            "variables": ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+        },
+        "Transport (buses)": {
+            "filepath": VEHICLES_MAP,
+            "variables": ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+        },
+        "Transport (trucks)": {
+            "filepath": VEHICLES_MAP,
+            "variables": ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+        },
+    }
 
     with open(REPORT_METADATA_FILEPATH, "r", encoding="utf-8") as stream:
         metadata = yaml.safe_load(stream)
@@ -96,10 +206,12 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     workbook.remove(workbook.active)
 
     for sector, filepath in SECTORS.items():
-        if isinstance(filepath, tuple):
-            filepath, variables = filepath
+        if "variables" in filepath:
+            variables = filepath["variables"]
         else:
-            variables = get_variables(filepath)
+            variables = get_variables(filepath["filepath"])
+            if "filter" in filepath:
+                variables = [x for x in variables if any(y in x for y in filepath["filter"])]
 
         worksheet = workbook.create_sheet(sector)
 
@@ -117,38 +229,17 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
         for scenario_idx, scenario in enumerate(scenarios):
             if (scenario["model"], scenario["pathway"]) not in scenario_list:
-                if "generation" in sector:
-                    iam_data = scenario["iam data"].production_volumes
-                elif "efficiency" in sector:
-                    iam_data = scenario["iam data"].efficiency
-                elif "CCS" in sector:
-                    iam_data = scenario["iam data"].carbon_capture_rate * 100
-                elif "car" in sector:
-                    if scenario["iam data"].trsp_cars is not None:
-                        iam_data = scenario["iam data"].trsp_cars.sum(
-                            dim=["size", "construction_year"]
-                        )
-                        iam_data = iam_data.rename({"powertrain": "variables"}).T
-                    else:
-                        continue
-                elif "bus" in sector:
-                    if scenario["iam data"].trsp_buses is not None:
-                        iam_data = scenario["iam data"].trsp_buses.sum(
-                            dim=["size", "construction_year"]
-                        )
-                        iam_data = iam_data.rename({"powertrain": "variables"}).T
-                    else:
-                        continue
-                elif "truck" in sector:
-                    if scenario["iam data"].trsp_trucks is not None:
-                        iam_data = scenario["iam data"].trsp_trucks.sum(
-                            dim=["size", "construction_year"]
-                        )
-                        iam_data = iam_data.rename({"powertrain": "variables"}).T
-                    else:
-                        continue
-                else:
-                    iam_data = scenario["iam data"].other_vars
+                iam_data = fetch_data(
+                    iam_data=scenario["iam data"],
+                    sector=sector,
+                    variable=variables,
+                )
+
+
+                if iam_data is None:
+                    continue
+
+
 
                 if scenario_idx > 0:
                     col = last_col_used + metadata[sector]["offset"]

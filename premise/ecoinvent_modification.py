@@ -751,6 +751,7 @@ class NewDatabase:
                 "exclude" not in scenario
                 or "update_electricity" not in scenario["exclude"]
             ):
+
                 electricity = Electricity(
                     database=scenario["database"],
                     iam_data=scenario["iam data"],
@@ -767,10 +768,22 @@ class NewDatabase:
                     electricity.update_ng_production_ds()
 
                 electricity.update_efficiency_of_solar_pv()
-                electricity.create_biomass_markets()
+
+                if scenario["iam data"].biomass_markets is not None:
+                    electricity.create_biomass_markets()
+
                 electricity.create_region_specific_power_plants()
-                electricity.update_electricity_markets()
-                electricity.update_electricity_efficiency()
+
+                if scenario["iam data"].electricity_markets is not None:
+                    electricity.update_electricity_markets()
+                else:
+                    print("No electricity markets found in IAM data. Skipping.")
+
+                if scenario["iam data"].electricity_efficiencies is not None:
+                    electricity.update_electricity_efficiency()
+                else:
+                    print("No electricity efficiencies found in IAM data. Skipping.")
+
                 scenario["database"] = electricity.database
                 self.modified_datasets = electricity.modified_datasets
 
@@ -796,9 +809,12 @@ class NewDatabase:
                     modified_datasets=self.modified_datasets,
                 )
 
-                dac.generate_dac_activities()
-                scenario["database"] = dac.database
-                self.modified_datasets = dac.modified_datasets
+                if scenario["iam data"].dac_markets is not None:
+                    dac.generate_dac_activities()
+                    scenario["database"] = dac.database
+                    self.modified_datasets = dac.modified_datasets
+                else:
+                    print("No DAC markets found in IAM data. Skipping.")
 
     def update_fuels(self) -> None:
         """
@@ -819,9 +835,21 @@ class NewDatabase:
                     system_model=self.system_model,
                     modified_datasets=self.modified_datasets,
                 )
-                fuels.generate_fuel_markets()
-                scenario["database"] = fuels.database
-                self.modified_datasets = fuels.modified_datasets
+
+                if any(
+                    x is not None
+                    for x in (
+                        scenario["iam data"].petrol_markets,
+                        scenario["iam data"].diesel_markets,
+                        scenario["iam data"].gas_markets,
+                        scenario["iam data"].hydrogen_markets,
+                    )
+                ):
+                    fuels.generate_fuel_markets()
+                    scenario["database"] = fuels.database
+                    self.modified_datasets = fuels.modified_datasets
+                else:
+                    print("No fuel markets found in IAM data. Skipping.")
 
     def update_cement(self) -> None:
         """
@@ -843,9 +871,12 @@ class NewDatabase:
                     modified_datasets=self.modified_datasets,
                 )
 
-                cement.add_datasets_to_database()
-                scenario["database"] = cement.database
-                self.modified_datasets = cement.modified_datasets
+                if scenario["iam data"].cement_markets is not None:
+                    cement.add_datasets_to_database()
+                    scenario["database"] = cement.database
+                    self.modified_datasets = cement.modified_datasets
+                else:
+                    print("No cement markets found in IAM data. Skipping.")
 
     def update_steel(self) -> None:
         """
@@ -866,9 +897,12 @@ class NewDatabase:
                     system_model=self.system_model,
                     modified_datasets=self.modified_datasets,
                 )
-                steel.generate_activities()
-                scenario["database"] = steel.database
-                self.modified_datasets = steel.modified_datasets
+                if scenario["iam data"].steel_markets is not None:
+                    steel.generate_activities()
+                    scenario["database"] = steel.database
+                    self.modified_datasets = steel.modified_datasets
+                else:
+                    print("No steel markets found in IAM data. Skipping.")
 
     def update_cars(self) -> None:
         """
@@ -892,9 +926,12 @@ class NewDatabase:
                     has_fleet=True,
                     modified_datasets=self.modified_datasets,
                 )
-                trspt.create_vehicle_markets()
-                scenario["database"] = trspt.database
-                self.modified_datasets = trspt.modified_datasets
+                if scenario["iam data"].trsp_cars is not None:
+                    trspt.create_vehicle_markets()
+                    scenario["database"] = trspt.database
+                    self.modified_datasets = trspt.modified_datasets
+                else:
+                    print("No passenger car markets found in IAM data. Skipping.")
 
     def update_two_wheelers(self) -> None:
         """
@@ -921,6 +958,7 @@ class NewDatabase:
                     has_fleet=False,
                     modified_datasets=self.modified_datasets,
                 )
+
                 trspt.create_vehicle_markets()
                 scenario["database"] = trspt.database
                 self.modified_datasets = trspt.modified_datasets
@@ -949,9 +987,13 @@ class NewDatabase:
                     modified_datasets=self.modified_datasets,
                 )
 
-                trspt.create_vehicle_markets()
-                scenario["database"] = trspt.database
-                self.modified_datasets = trspt.modified_datasets
+                if scenario["iam data"].trsp_trucks is not None:
+                    trspt.create_vehicle_markets()
+                    scenario["database"] = trspt.database
+                    self.modified_datasets = trspt.modified_datasets
+                else:
+                    print("No truck transport markets found in IAM data. Skipping.")
+
 
     def update_buses(self) -> None:
         """
@@ -977,9 +1019,12 @@ class NewDatabase:
                     modified_datasets=self.modified_datasets,
                 )
 
-                trspt.create_vehicle_markets()
-                scenario["database"] = trspt.database
-                self.modified_datasets = trspt.modified_datasets
+                if scenario["iam data"].trsp_buses is not None:
+                    trspt.create_vehicle_markets()
+                    scenario["database"] = trspt.database
+                    self.modified_datasets = trspt.modified_datasets
+                else:
+                    print("No bus transport markets found in IAM data. Skipping.")
 
     def update_external_scenario(self):
         if self.datapackages:

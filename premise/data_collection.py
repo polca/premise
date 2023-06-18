@@ -6,7 +6,6 @@ and emission values for different sectors, carbon capture rates, etc.
 
 import copy
 import csv
-import itertools
 from functools import lru_cache
 from io import StringIO
 from itertools import chain
@@ -216,6 +215,11 @@ def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, No
 
 
 def fix_efficiencies(data: xr.DataArray) -> xr.DataArray:
+    """
+    Fix the efficiency data to ensure plausibility.
+
+    """
+
     # If we are looking at a year post 2020
     # and the ratio in efficiency change is inferior to 1
     # we correct it to 1, as we do not accept
@@ -244,14 +248,29 @@ def fix_efficiencies(data: xr.DataArray) -> xr.DataArray:
         diff *= -1
         data += diff
 
-    # convert NaNs to ones
+    # convert NaNs
+    # back-fill missing values with nearest available
+    data = data.fillna(data.ffill(dim="variables"))
+    # forward-fill missing values with nearest available
+    data = data.fillna(data.bfill(dim="variables"))
     data = data.fillna(1)
 
     # only consider efficiency change between
     # 50% and 300% relative to 2020
     data.values = np.clip(data, 0.5, None)
+    data.values = np.clip(data, None, 3)
 
     return data
+
+
+def flatten(list_to_flatten):
+    rt = []
+    for i in list_to_flatten:
+        if isinstance(i, list):
+            rt.extend(flatten(i))
+        else:
+            rt.append(i)
+    return rt
 
 
 class IAMDataCollection:
@@ -281,54 +300,56 @@ class IAMDataCollection:
         self.system_model_args = system_model_args
         key = key or None
 
-        prod_vars = self.__get_iam_variable_labels(
+        electricity_prod_vars = self.__get_iam_variable_labels(
             IAM_ELEC_VARS, variable="iam_aliases"
         )
-        eff_vars = self.__get_iam_variable_labels(IAM_ELEC_VARS, variable="eff_aliases")
+        electricity_eff_vars = self.__get_iam_variable_labels(
+            IAM_ELEC_VARS, variable="eff_aliases"
+        )
 
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_FUELS_VARS, variable="iam_aliases")
+        fuel_prod_vars = self.__get_iam_variable_labels(
+            IAM_FUELS_VARS, variable="iam_aliases"
         )
-        eff_vars.update(
-            self.__get_iam_variable_labels(IAM_FUELS_VARS, variable="eff_aliases")
+        fuel_eff_vars = self.__get_iam_variable_labels(
+            IAM_FUELS_VARS, variable="eff_aliases"
         )
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="iam_aliases")
+
+        cement_prod_vars = self.__get_iam_variable_labels(
+            IAM_CEMENT_VARS, variable="iam_aliases"
         )
-        eff_vars.update(
-            self.__get_iam_variable_labels(
-                IAM_CEMENT_VARS, variable="energy_use_aliases"
-            )
-        )
-        eff_vars.update(
-            self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="eff_aliases")
-        )
-        energy_use_vars = self.__get_iam_variable_labels(
+
+        cement_energy_vars = self.__get_iam_variable_labels(
             IAM_CEMENT_VARS, variable="energy_use_aliases"
         )
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="iam_aliases")
-        )
-        eff_vars.update(
-            self.__get_iam_variable_labels(
-                IAM_STEEL_VARS, variable="energy_use_aliases"
-            )
-        )
-        energy_use_vars.update(
-            self.__get_iam_variable_labels(
-                IAM_STEEL_VARS, variable="energy_use_aliases"
-            )
-        )
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_DAC_VARS, variable="iam_aliases")
+
+        cement_eff_vars = self.__get_iam_variable_labels(
+            IAM_CEMENT_VARS, variable="eff_aliases"
         )
 
-        prod_vars.update(
-            self.__get_iam_variable_labels(IAM_BIOMASS_VARS, variable="iam_aliases")
+        steel_prod_vars = self.__get_iam_variable_labels(
+            IAM_STEEL_VARS, variable="iam_aliases"
         )
-        eff_vars.update(
-            self.__get_iam_variable_labels(IAM_BIOMASS_VARS, variable="eff_aliases")
+
+        steel_energy_vars = self.__get_iam_variable_labels(
+            IAM_STEEL_VARS, variable="energy_use_aliases"
         )
+
+        steel_eff_vars = self.__get_iam_variable_labels(
+            IAM_STEEL_VARS, variable="eff_aliases"
+        )
+
+        dac_prod_vars = self.__get_iam_variable_labels(
+            IAM_DAC_VARS, variable="iam_aliases"
+        )
+
+        biomass_prod_vars = self.__get_iam_variable_labels(
+            IAM_BIOMASS_VARS, variable="iam_aliases"
+        )
+
+        biomass_eff_vars = self.__get_iam_variable_labels(
+            IAM_BIOMASS_VARS, variable="eff_aliases"
+        )
+
         land_use_vars = self.__get_iam_variable_labels(
             IAM_CROPS_VARS, variable="land_use"
         )
@@ -344,20 +365,29 @@ class IAMDataCollection:
             IAM_OTHER_VARS, variable="iam_aliases"
         )
 
-        variables = list(prod_vars.values())
-        variables.extend(eff_vars.values())
-        variables.extend(energy_use_vars.values())
-        variables.extend(land_use_vars.values())
-        variables.extend(land_use_change_vars.values())
-        variables.extend(carbon_capture_vars.values())
-        variables.extend(other_vars.values())
-        new_vars = []
-        for variable in variables:
-            if isinstance(variable, list):
-                for sub_var in variable:
-                    new_vars.append(sub_var)
-            else:
-                new_vars.append(variable)
+        # new_vars is a list of all variables that are declared above
+
+        new_vars = (
+            list(electricity_prod_vars.values())
+            + list(electricity_eff_vars.values())
+            + list(fuel_prod_vars.values())
+            + list(fuel_eff_vars.values())
+            + list(cement_prod_vars.values())
+            + list(cement_energy_vars.values())
+            + list(cement_eff_vars.values())
+            + list(steel_prod_vars.values())
+            + list(steel_energy_vars.values())
+            + list(dac_prod_vars.values())
+            + list(biomass_prod_vars.values())
+            + list(biomass_eff_vars.values())
+            + list(land_use_vars.values())
+            + list(land_use_change_vars.values())
+            + list(carbon_capture_vars.values())
+            + list(other_vars.values())
+        )
+
+        # flatten the list of lists
+        new_vars = flatten(new_vars)
 
         data = self.__get_iam_data(
             key=key,
@@ -373,12 +403,71 @@ class IAMDataCollection:
             self.model, gains_scenario=gains_scenario
         )
 
-        self.electricity_markets = self.__get_iam_electricity_markets(data=data)
-        self.fuel_markets = self.__get_iam_fuel_markets(data=data)
-
-        self.production_volumes = self.__get_iam_production_volumes(
-            prod_vars, data=data
+        self.electricity_markets = self.__fetch_market_data(
+            data=data, input_vars=electricity_prod_vars
         )
+
+        self.petrol_markets = self.__fetch_market_data(
+            data=data,
+            input_vars={
+                k: v
+                for k, v in fuel_prod_vars.items()
+                if any(x in k for x in ["gasoline", "ethanol", "methanol"])
+            },
+        )
+        # divide the volume of "gasoline" by 2
+        self.petrol_markets.loc[dict(variables="gasoline")] /= 2
+
+        self.diesel_markets = self.__fetch_market_data(
+            data=data,
+            input_vars={
+                k: v
+                for k, v in fuel_prod_vars.items()
+                if any(
+                    x in k
+                    for x in [
+                        "diesel",
+                    ]
+                )
+            },
+        )
+        # divide the volume of "gasoline" by 2
+        self.diesel_markets.loc[dict(variables="diesel")] /= 2
+
+        self.gas_markets = self.__fetch_market_data(
+            data=data,
+            input_vars={
+                k: v
+                for k, v in fuel_prod_vars.items()
+                if any(x in k for x in ["biogas", "methane", "natural gas"])
+            },
+        )
+
+        self.hydrogen_markets = self.__fetch_market_data(
+            data=data,
+            input_vars={
+                k: v
+                for k, v in fuel_prod_vars.items()
+                if any(
+                    x in k
+                    for x in [
+                        "hydrogen",
+                    ]
+                )
+            },
+        )
+
+        self.cement_markets = self.__fetch_market_data(
+            data=data, input_vars=cement_prod_vars
+        )
+        self.steel_markets = self.__fetch_market_data(
+            data=data, input_vars=steel_prod_vars
+        )
+        self.dac_markets = self.__fetch_market_data(data=data, input_vars=dac_prod_vars)
+        self.biomass_markets = self.__fetch_market_data(
+            data=data, input_vars=biomass_prod_vars
+        )
+
         self.carbon_capture_rate = self.__get_carbon_capture_rate(
             dict_vars=self.__get_iam_variable_labels(
                 IAM_CARBON_CAPTURE_VARS, variable="iam_aliases"
@@ -386,35 +475,86 @@ class IAMDataCollection:
             data=data,
         )
 
-        self.other_vars = self.__get_other_iam_vars(data=data)
+        self.other_vars = self.__fetch_market_data(data=data, input_vars=other_vars)
 
-        electricity_efficiencies = self.__get_iam_electricity_efficiencies(data=data)
-        cement_efficiencies = self.__get_iam_cement_efficiencies(data=data)
-        steel_efficiencies = self.__get_iam_steel_efficiencies(data=data)
-        fuel_efficiencies = self.__get_iam_fuel_efficiencies(data=data)
-
-        self.efficiency = xr.concat(
-            [
-                electricity_efficiencies,
-                steel_efficiencies,
-                cement_efficiencies,
-                fuel_efficiencies,
-            ],
-            dim="variables",
+        self.electricity_efficiencies = self.get_iam_efficiencies(
+            data=data, efficiency_labels=electricity_eff_vars
+        )
+        self.cement_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            efficiency_labels=cement_eff_vars,
+            energy_labels=cement_energy_vars,
+            production_labels=cement_prod_vars,
+        )
+        self.steel_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            production_labels=steel_prod_vars,
+            energy_labels=steel_energy_vars,
+            efficiency_labels=steel_eff_vars,
+        )
+        self.petrol_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            efficiency_labels={
+                k: v
+                for k, v in fuel_eff_vars.items()
+                if any(x in k for x in ["gasoline", "ethanol", "methanol"])
+            },
+        )
+        self.diesel_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            efficiency_labels={
+                k: v
+                for k, v in fuel_eff_vars.items()
+                if any(
+                    x in k
+                    for x in [
+                        "diesel",
+                    ]
+                )
+            },
+        )
+        self.gas_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            efficiency_labels={
+                k: v
+                for k, v in fuel_eff_vars.items()
+                if any(x in k for x in ["biogas", "methane", "natural gas"])
+            },
+        )
+        self.hydrogen_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            efficiency_labels={
+                k: v
+                for k, v in fuel_eff_vars.items()
+                if any(
+                    x in k
+                    for x in [
+                        "hydrogen",
+                    ]
+                )
+            },
         )
 
-        if self.model == "image":
-            self.land_use = self.__get_iam_land_use(data=data)
-            self.land_use_change = self.__get_iam_land_use_change_emissions(data=data)
-        else:
-            self.land_use = None
-            self.land_use_change = None
+        self.land_use = self.__fetch_market_data(data=data, input_vars=land_use_vars)
+        self.land_use_change = self.__fetch_market_data(data=data, input_vars=land_use_change_vars)
 
         self.trsp_cars = get_vehicle_fleet_composition(self.model, vehicle_type="car")
         self.trsp_trucks = get_vehicle_fleet_composition(
             self.model, vehicle_type="truck"
         )
         self.trsp_buses = get_vehicle_fleet_composition(self.model, vehicle_type="bus")
+
+        self.production_volumes = self.__get_iam_production_volumes(
+            data=data,
+            dict_products={
+                **electricity_prod_vars,
+                **fuel_prod_vars,
+                **cement_prod_vars,
+                **steel_prod_vars,
+                **dac_prod_vars,
+                **biomass_prod_vars,
+            },
+        )
 
     def __get_iam_variable_labels(
         self, filepath: Path, variable: str
@@ -451,7 +591,8 @@ class IAMDataCollection:
         * year
 
         :param key: encryption key, if provided by user
-        :param filepath: file path to IAM file
+        :param filedir: file path to IAM file
+        :param variables: list of variables to extract from IAM file
 
         :return: a multidimensional array with IAM data
 
@@ -529,537 +670,74 @@ class IAMDataCollection:
 
         return array
 
-    def __get_other_iam_vars(self, data: xr.DataArray) -> xr.DataArray:
+    def __fetch_market_data(
+        self, data: xr.DataArray, input_vars: dict
+    ) -> [xr.DataArray, None]:
         """
-        Returns various IAM variables.
-
-        :return: array containing various IAM variables
-        """
-
-        labels = self.__get_iam_variable_labels(IAM_OTHER_VARS, variable="iam_aliases")
-
-        list_vars = list(labels.values())
-        list_vars = [l for p in list_vars for l in p]
-
-        data_to_return = data.loc[:, list_vars, :]
-
-        return data_to_return
-
-    def __get_iam_electricity_markets(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves the market share for each electricity-producing technology,
-        or a specified year, for each region provided by the IAM.
-
-        :return: a multidimensional array with electricity technologies market share
-        for a given year, for all regions.
-
-        """
-
-        labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, variable="iam_aliases")
-
-        list_technologies = list(labels.values())
-
-        # If the year specified is not contained within the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        # Interpolation between two periods
-
-        try:
-            data_to_return = data.loc[:, list_technologies, :]
-        except KeyError as exc:
-            list_missing_vars = [
-                var for var in list_technologies if var not in data.variables.values
-            ]
-            print(
-                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
-            )
-            if len(list_technologies) - len(list_missing_vars) > 0:
-                available_vars = [
-                    var for var in list_technologies if var in data.variables.values
-                ]
-                print(
-                    "The process continues with the remaining variables, "
-                    "but certain transformation functions may not work."
-                )
-                list_technologies = available_vars
-                data_to_return = data.loc[:, list_technologies, :]
-            else:
-                raise SystemExit from exc
-
-        # give the array premise labels
-        list_vars = [k for k, v in labels.items() if v in list_technologies]
-
-        data_to_return.coords["variables"] = list_vars
-
-        if self.system_model == "consequential":
-            data_to_return = consequential_method(
-                data_to_return, self.year, self.system_model_args
-            )
-
-        else:
-            data_to_return /= (
-                data.loc[:, list_technologies, :].groupby("region").sum(dim="variables")
-            )
-
-        return data_to_return
-
-    def __get_iam_electricity_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves efficiency values for
-        electricity-producing technology,
-        for a specified year, for each region
-        provided by the IAM.
-        Electricity production from hydrogen can
-        be removed from the mix
-        (unless specified, it is removed).
-
-        :return: a multidimensional array with electricity
-        technologies market share for a given year, for all regions.
-
-        """
-
-        labels = self.__get_iam_variable_labels(IAM_ELEC_VARS, variable="eff_aliases")
-
-        list_technologies = list(labels.values())
-
-        # If the year specified is not contained within the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        # Interpolation between two periods
-
-        try:
-            data_to_return = data.loc[:, list_technologies, :]
-        except KeyError as exc:
-            list_missing_vars = [
-                var for var in list_technologies if var not in data.variables.values
-            ]
-            print(
-                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
-            )
-            if len(list_technologies) - len(list_missing_vars) > 0:
-                available_vars = [
-                    var for var in list_technologies if var in data.variables.values
-                ]
-                print(
-                    "The process continues with the remaining variables, "
-                    "but certain transformation functions may not work."
-                )
-                list_technologies = available_vars
-                data_to_return = data.loc[:, list_technologies, :]
-            else:
-                raise SystemExit from exc
-
-        data_to_return /= data_to_return.sel(year=2020)
-
-        # fix efficiencies
-        data_to_return = fix_efficiencies(data_to_return)
-
-        data_to_return.coords["variables"] = [
-            k for k, v in labels.items() if v in list_technologies
-        ]
-
-        return data_to_return
-
-    def __get_iam_cement_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves specific energy use values for cement-producing technology,
+        This method retrieves the market share for each technology,
         for a specified year, for each region provided by the IAM.
 
-        :return: a multidimensional array with electricity technologies market share
+        :return: a multidimensional array with technologies market share
         for a given year, for all regions.
-
         """
 
-        # If the year specified is not contained within
-        # the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
+        # Check if the year specified is within the range of years given by the IAM
+        assert (
+            data.year.values.min() <= self.year <= data.year.values.max()
+        ), f"{self.year} is outside of the boundaries of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
 
-        if (
-            len(self.__get_iam_variable_labels(IAM_CEMENT_VARS, variable="eff_aliases"))
-            > 0
-        ):
-            eff = self.__get_iam_variable_labels(
-                IAM_CEMENT_VARS, variable="eff_aliases"
-            )
+        missing_vars = set(input_vars.values()) - set(data.variables.values)
 
-            data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
-
-            for k, v in eff.items():
-                if v not in data.variables.values:
-                    print("No efficiency variables is given for the cement sector.")
-                    d = xr.ones_like(data)
-                else:
-                    d = 1 / data.loc[:, [v], :]
-                data_to_return = xr.concat([data_to_return, d], dim="variables")
-
-            # back-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.ffill(dim="variables")
-            )
-            # forward-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.bfill(dim="variables")
-            )
-
-            data_to_return.coords["variables"] = list(eff.keys())
-
-        else:
-            prod = self.__get_iam_variable_labels(
-                IAM_CEMENT_VARS, variable="iam_aliases"
-            )
-            energy = self.__get_iam_variable_labels(
-                IAM_CEMENT_VARS, variable="energy_use_aliases"
-            )
-
-            data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
-
-            for k, v in prod.items():
-                # check that each element of energy.values() is in data.variables.values
-                # knowing that energy.values() is a list of lists
-                # and that each element of prod.values() is in data.variables.values
-                if (
-                    all(var in data.variables.values for var in energy[k])
-                    and v in data.variables.values
-                ):
-                    d = 1 / (
-                        data.loc[:, energy[k], :].sum(dim="variables")
-                        / data.loc[:, v, :]
-                    )
-
-                else:
-                    print("No efficiency variables is given for the cement sector.")
-                    d = xr.ones_like(data)
-
-                data_to_return = xr.concat([data_to_return, d], dim="variables")
-
-            # back-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.ffill(dim="variables")
-            )
-            # forward-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.bfill(dim="variables")
-            )
-
-            data_to_return.coords["variables"] = list(prod.keys())
-
-        data_to_return = data_to_return / data_to_return.sel(year=2020)
-        # fix efficiencies
-        data_to_return = fix_efficiencies(data_to_return)
-        return data_to_return
-
-    def __get_iam_steel_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves specific energy use values for steel-producing technology,
-        for a specified year, for each region provided by the IAM.
-
-        :return: a multi-dimensional array with electricity technologies market share
-        for a given year, for all regions.
-
-        """
-
-        # If the year specified is not contained within the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
-
-        if (
-            len(self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases"))
-            > 0
-        ):
-            eff = self.__get_iam_variable_labels(IAM_STEEL_VARS, variable="eff_aliases")
-
-            data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
-
-            for k, v in eff.items():
-                if v not in data.variables.values:
-                    print("No efficiency variables is given for the steel sector.")
-                    d = xr.ones_like(data)
-                else:
-                    d = 1 / data.loc[:, [v], :]
-                data_to_return = xr.concat([data_to_return, d], dim="variables")
-
-            # back-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.ffill(dim="variables")
-            )
-            # forward-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.bfill(dim="variables")
-            )
-
-            data_to_return.coords["variables"] = list(eff.keys())
-
-        else:
-            prod = self.__get_iam_variable_labels(
-                IAM_STEEL_VARS, variable="iam_aliases"
-            )
-            energy = self.__get_iam_variable_labels(
-                IAM_STEEL_VARS, variable="energy_use_aliases"
-            )
-
-            data_to_return = xr.DataArray(dims=["variables"], coords={"variables": []})
-
-            for k, v in prod.items():
-                # check that each element of energy.values() is in data.variables.values
-                # knowing that energy.values() is a list of lists
-                # and that each element of prod.values() is in data.variables.values
-                if (
-                    all(var in data.variables.values for var in energy[k])
-                    and v in data.variables.values
-                ):
-                    d = 1 / (
-                        data.loc[:, energy[k], :].sum(dim="variables")
-                        / data.loc[:, v, :]
-                    )
-
-                else:
-                    print("No efficiency variables is given for the steel sector.")
-                    d = xr.ones_like(data)
-
-                data_to_return = xr.concat([data_to_return, d], dim="variables")
-
-            # back-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.ffill(dim="variables")
-            )
-            # forward-fill missing values with nearest available
-            data_to_return = data_to_return.fillna(
-                data_to_return.bfill(dim="variables")
-            )
-
-            data_to_return.coords["variables"] = list(prod.keys())
-
-        data_to_return = data_to_return / data_to_return.sel(year=2020)
-        # fix efficiencies
-        data_to_return = fix_efficiencies(data_to_return)
-
-        return data_to_return
-
-    def __get_iam_fuel_markets(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves the market share
-        for each fuel-producing technology,
-        for a specified year, for each
-        region provided by the IAM.
-
-        :return: a multidimensional array with
-        electricity technologies market share
-        for a given year, for all regions.
-
-        """
-
-        labels = self.__get_iam_variable_labels(IAM_FUELS_VARS, variable="iam_aliases")
-
-        list_technologies = list(labels.values())
-
-        # If the year specified is not contained within the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
-
-        # Finally, if the specified year falls in between
-        # two periods provided by the IAM
-        # sometimes, the World region is either neglected
-        # or wrongly evaluated, so we fix that here
-
-        try:
-            data.loc[dict(region="World", variables=list_technologies)] = data.loc[
-                dict(
-                    region=[r for r in data.coords["region"].values if r != "World"],
-                    variables=list_technologies,
-                )
-            ].sum(dim="region")
-
-        except KeyError as exc:
-            list_missing_vars = [
-                var for var in list_technologies if var not in data.variables.values
-            ]
+        if missing_vars:
             print(
-                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
+                f"The following variables are missing from the IAM file: {list(missing_vars)}"
             )
 
-            if len(list_technologies) - len(list_missing_vars) > 0:
-                available_vars = [
-                    var for var in list_technologies if var in data.variables.values
-                ]
-                print(
-                    "The process continues with the remaining variables, "
-                    "but certain transformation functions may not work."
-                )
-                list_technologies = available_vars
-            else:
-                raise SystemExit from exc
+        available_vars = list(set(input_vars.values()) - missing_vars)
 
-        # Interpolation between two periods
-        data_to_return = data.loc[:, list_technologies, :]
+        if available_vars:
+            market_data = data.loc[:, [v for v in input_vars.values()
+                                       if v in available_vars], :]
+        else:
+            return None
 
-        data_to_return.coords["variables"] = [
-            k for k, v in labels.items() if v in list_technologies
+        market_data.coords["variables"] = [
+            k for k, v in input_vars.items() if v in available_vars
         ]
 
         if self.system_model == "consequential":
-            # If the system model is consequential,
-            # we need to identify marginal suppliers
-            # but we need first to separate fuel types
-
-            fuel_types = {
-                "diesel": [
-                    "diesel",
-                    "diesel, synthetic, from electrolysis",
-                    "diesel, synthetic, from coal",
-                    "diesel, synthetic, from coal, with CCS",
-                    "diesel, synthetic, from wood",
-                    "diesel, synthetic, from wood, with CCS",
-                    "biodiesel, oil",
-                ],
-                "gasoline": [
-                    "gasoline",
-                    "petrol, synthetic, from electrolysis",
-                    "petrol, synthetic, from coal",
-                    "petrol, synthetic, from coal, with CCS",
-                    "bioethanol, wood",
-                    "bioethanol, wood, with CCS",
-                    "bioethanol, grass",
-                    "bioethanol, sugar",
-                ],
-                "natural gas": [
-                    "natural gas",
-                    "biomethane",
-                ],
-                "hydrogen": [
-                    "hydrogen, electrolysis",
-                    "hydrogen, biomass",
-                    "hydrogen, biomass, with CCS",
-                    "hydrogen, coal",
-                    "hydrogen, nat. gas",
-                    "hydrogen, nat. gas, with CCS",
-                ],
-            }
-
-            for fuel_type, fuel_list in fuel_types.items():
-                data_to_return.loc[
-                    dict(
-                        variables=[
-                            f
-                            for f in fuel_list
-                            if f in data_to_return.coords["variables"].values
-                        ],
-                        year=[self.year],
-                    )
-                ] = consequential_method(
-                    data_to_return.loc[
-                        dict(
-                            variables=[
-                                f
-                                for f in fuel_list
-                                if f in data_to_return.coords["variables"].values
-                            ]
-                        )
-                    ],
-                    self.year,
-                    self.system_model_args,
-                )
-
-        return data_to_return
-
-    def __get_iam_land_use(self, data):
-        """
-        Only provided by IMAGE at the moment. Those are land footprint
-        associated with growing a given crop type, in hectares per GJ of that crop,
-        for each region and year. This land occupation is added to the LCI
-        for crop farming in fuels.py.
-
-        :param data: IAM data
-        :return: a multidimensional array with land use
-        for different crops types, for all years, for all regions.
-        """
-
-        crops_vars = get_crops_properties()
-        labels = list(crops_vars.keys())
-        list_vars = [x["land_use"][self.model] for x in crops_vars.values()]
-
-        try:
-            data_to_return = data.loc[:, list_vars, :]
-
-        except KeyError:
-            list_missing_vars = [
-                var for var in list_vars if var not in data.variables.values
-            ]
-            raise KeyError(
-                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
+            market_data = consequential_method(
+                market_data, self.year, self.system_model_args
+            )
+        else:
+            market_data /= (
+                data.loc[:, available_vars, :].groupby("region").sum(dim="variables")
             )
 
-        data_to_return.coords["variables"] = labels
+        return market_data
 
-        return data_to_return
-
-    def __get_iam_land_use_change_emissions(self, data: xr.DataArray) -> xr.DataArray:
+    def get_iam_efficiencies(
+        self,
+        data: xr.DataArray,
+        efficiency_labels: dict = None,
+        production_labels: dict = None,
+        energy_labels: dict = None,
+    ) -> [xr.DataArray, None]:
         """
-        Only provided by IMAGE at the moment. Those are CO2-eq. emissions
-        associated with growing a given crop type, per GJ of that crop,
-        for each region and year. Such LUC emissions are added to the LCI
-        for crop farming in fuels.py.
+        This method retrieves efficiency values for the specified sector,
+        for a specified year, for each region provided by the IAM.
 
-        :param data: IAM data
-        :return: a multi-dimensional array with land use change CO2 emissions
-        for different crops types, for all years, for all regions.
-        """
+        :param data: The data to process.
+        :param efficiency_labels: The efficiency labels to use.
+        :param production_labels: The production labels to use.
+        :param energy_labels: The energy labels to use.
 
-        crops_vars = get_crops_properties()
-        labels = list(crops_vars.keys())
-        list_vars = [x["land_use_change"][self.model] for x in crops_vars.values()]
-
-        try:
-            data_to_return = data.loc[:, list_vars, :]
-
-        except KeyError:
-            list_missing_vars = [
-                var for var in list_vars if var not in data.variables.values
-            ]
-            raise KeyError(
-                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
-            )
-
-        data_to_return.coords["variables"] = labels
-
-        return data_to_return
-
-    def __get_iam_fuel_efficiencies(self, data: xr.DataArray) -> xr.DataArray:
-        """
-        This method retrieves the change in fuel production efficiency
-        between the year in question and 2020, for each region provided by the IAM.
-        Because we assume that the fuel conversion efficiency in ecoinvent or imported
-        inventories are current (hence, representative of 2020).
-        If the efficiency drops after 2020, we ignore it and keep the change
-        in efficiency ratio to 1.
-
-        :return: a multidimensional array with electricity technologies market
+        :return: a multidimensional array with sector's technologies market
         share for a given year, for all regions.
+
         """
 
-        labels = self.__get_iam_variable_labels(IAM_FUELS_VARS, variable="eff_aliases")
-
-        list_technologies = list(labels.values())
-
+        # Check if the year specified is within the range of years given by the IAM
         # If the year specified is not contained within the range of years given by the IAM
         if self.year < data.year.values.min() or self.year > data.year.values.max():
             raise KeyError(
@@ -1069,38 +747,54 @@ class IAMDataCollection:
 
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
-        try:
-            data_to_return = data.loc[:, list_technologies, :]
-        except KeyError as exc:
-            list_missing_vars = [
-                var for var in list_technologies if var not in data.variables.values
-            ]
-            print(
-                f"The following variables cannot be found in the IAM file: {list_missing_vars}"
-            )
-            if len(list_technologies) - len(list_missing_vars) > 0:
-                available_vars = [
-                    var for var in list_technologies if var in data.variables.values
-                ]
+        if efficiency_labels:
+            missing_vars = set(efficiency_labels.values()) - set(data.variables.values)
+            if missing_vars:
                 print(
-                    "The process continues with the remaining variables, "
-                    "but certain transformation functions may not work."
+                    f"The following variables are missing from the IAM file: {list(missing_vars)}"
                 )
-                list_technologies = available_vars
-                data_to_return = data.loc[:, list_technologies, :]
-            else:
-                raise SystemExit from exc
 
-        data_to_return /= data_to_return.sel(year=2020)
+            available_vars = list(set(efficiency_labels.values()) - missing_vars)
+            rev_eff_labels = {v: k for k, v in efficiency_labels.items()}
+
+            if available_vars:
+                eff_data = data.loc[dict(variables=available_vars)]
+                eff_data.coords["variables"] = [
+                    rev_eff_labels[x] for x in eff_data.variables.values
+                ]
+            else:
+                return None
+
+        elif production_labels and energy_labels:
+            eff_data = xr.DataArray(dims=["variables"], coords={"variables": []})
+            for k, v in production_labels.items():
+                # check that each element of energy.values() is in data.variables.values
+                # knowing that energy.values() is a list of lists
+                # and that each element of prod.values() is in data.variables.values
+                if (
+                    all(var in data.variables.values for var in energy_labels[k])
+                    and v in data.variables.values
+                ):
+                    d = 1 / (
+                        data.loc[:, energy_labels[k], :].sum(dim="variables")
+                        / data.loc[:, v, :]
+                    )
+
+                else:
+                    # fill d with ones
+                    d = xr.ones_like(data.loc[:, data.variables[0], :])
+
+                eff_data = xr.concat([eff_data, d], dim="variables")
+            eff_data.coords["variables"] = list(production_labels.keys())
+        else:
+            return None
+
+        eff_data /= eff_data.sel(year=2020)
 
         # fix efficiencies
-        data_to_return = fix_efficiencies(data_to_return)
+        eff_data = fix_efficiencies(eff_data)
 
-        data_to_return.coords["variables"] = [
-            k for k, v in labels.items() if v in list_technologies
-        ]
-
-        return data_to_return
+        return eff_data
 
     def __get_carbon_capture_rate(
         self, dict_vars: Dict[str, str], data: xr.DataArray
@@ -1123,15 +817,32 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
 
-        cement_rate = data.loc[:, dict_vars["cement - cco2"], :].sum(
-            dim=["variables"]
-        ) / data.loc[:, dict_vars["cement - co2"], :].sum(dim=["variables"])
+        # if variable is missing, we assume that the rate is 0
+        # and that none of the  CO2 emissions are captured
+        if dict_vars["cement - cco2"] not in data.variables.values.tolist():
+            cement_rate = xr.DataArray(
+                np.zeros((len(data.region), len(data.year))),
+                coords=[data.region, data.year],
+                dims=["region", "year"],
+            )
+        else:
+            cement_rate = data.loc[:, dict_vars["cement - cco2"], :].sum(
+                dim=["variables"]
+            ) / data.loc[:, dict_vars["cement - co2"], :].sum(dim=["variables"])
 
         cement_rate.coords["variables"] = "cement"
 
-        steel_rate = data.loc[:, dict_vars["steel - cco2"], :].sum(
-            dim="variables"
-        ) / data.loc[:, dict_vars["steel - co2"], :].sum(dim="variables")
+        if dict_vars["steel - cco2"] not in data.variables.values.tolist():
+            steel_rate = xr.DataArray(
+                np.zeros((len(data.region), len(data.year))),
+                coords=[data.region, data.year],
+                dims=["region", "year"],
+            )
+        else:
+            steel_rate = data.loc[:, dict_vars["steel - cco2"], :].sum(
+                dim="variables"
+            ) / data.loc[:, dict_vars["steel - co2"], :].sum(dim="variables")
+
         steel_rate.coords["variables"] = "steel"
 
         rate = xr.concat([cement_rate, steel_rate], dim="variables")
@@ -1145,45 +856,70 @@ class IAMDataCollection:
         # as it is sometimes neglected in the
         # IAM files
 
-        rate.loc[dict(region="World", variables="cement")] = (
-            data.loc[
-                dict(
-                    region=[r for r in self.regions if r != "World"],
-                    variables=dict_vars["cement - cco2"],
-                )
-            ]
-            .sum(dim=["variables", "region"])
-            .values
-            / data.loc[
-                dict(
-                    region=[r for r in self.regions if r != "World"],
-                    variables=dict_vars["cement - co2"],
-                )
-            ]
-            .sum(dim=["variables", "region"])
-            .values
-        )
+        if "cement - cco2" not in data.variables.values.tolist():
+            rate.loc[dict(region="World", variables="cement")] = 1
+        else:
+            rate.loc[dict(region="World", variables="cement")] = (
+                data.loc[
+                    dict(
+                        region=[r for r in self.regions if r != "World"],
+                        variables=dict_vars["cement - cco2"],
+                    )
+                ]
+                .sum(dim=["variables", "region"])
+                .values
+                / data.loc[
+                    dict(
+                        region=[r for r in self.regions if r != "World"],
+                        variables=dict_vars["cement - co2"],
+                    )
+                ]
+                .sum(dim=["variables", "region"])
+                .values
+            )
 
-        rate.loc[dict(region="World", variables="steel")] = data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=dict_vars["steel - cco2"],
+            rate.loc[dict(region="World", variables="steel")] = data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=dict_vars["steel - cco2"],
+                )
+            ].sum(dim=["variables", "region"]) / data.loc[
+                dict(
+                    region=[r for r in self.regions if r != "World"],
+                    variables=dict_vars["steel - co2"],
+                )
+            ].sum(
+                dim=["variables", "region"]
             )
-        ].sum(dim=["variables", "region"]) / data.loc[
-            dict(
-                region=[r for r in self.regions if r != "World"],
-                variables=dict_vars["steel - co2"],
+
+        if "steel - cco2" not in data.variables.values.tolist():
+            rate.loc[dict(region="World", variables="steel")] = 1
+        else:
+            rate.loc[dict(region="World", variables="steel")] = (
+                data.loc[
+                    dict(
+                        region=[r for r in self.regions if r != "World"],
+                        variables=dict_vars["steel - cco2"],
+                    )
+                ]
+                .sum(dim=["variables", "region"])
+                .values
+                / data.loc[
+                    dict(
+                        region=[r for r in self.regions if r != "World"],
+                        variables=dict_vars["steel - co2"],
+                    )
+                ]
+                .sum(dim=["variables", "region"])
+                .values
             )
-        ].sum(
-            dim=["variables", "region"]
-        )
 
         # we ensure that the rate can only be between 0 and 1
         rate.values = np.clip(rate, 0, 1)
 
         return rate
 
-    def __get_iam_production_volumes(self, dict_products, data) -> xr.DataArray:
+    def __get_iam_production_volumes(self, dict_products, data) -> [xr.DataArray, None]:
         """
         Returns n xarray with production volumes for different sectors:
         electricity, steel, cement, fuels.
@@ -1236,7 +972,7 @@ class IAMDataCollection:
                 list_products = available_vars
                 data_to_return = data.loc[:, list_products, :]
             else:
-                raise SystemExit from exc
+                return None
 
         data_to_return.coords["variables"] = [
             k for k, v in dict_products.items() if v in list_products

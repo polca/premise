@@ -330,7 +330,9 @@ class Cement(BaseTransformation):
             # divided by the ratio fuel/output in 2020
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable="cement, dry feed rotary kiln", location=dataset["location"]
+                data=self.iam_data.cement_efficiencies,
+                variable="cement, dry feed rotary kiln",
+                location=dataset["location"]
             )
 
             # calculate new thermal energy

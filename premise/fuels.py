@@ -10,6 +10,7 @@ from typing import Union
 import wurst
 import yaml
 from numpy import ndarray
+import xarray as xr
 
 from . import VARIABLES_DIR
 from .inventory_imports import get_biosphere_code
@@ -39,6 +40,7 @@ METHANE_SOURCES = DATA_DIR / "fuels" / "methane_activities.yml"
 LIQUID_FUEL_SOURCES = DATA_DIR / "fuels" / "liquid_fuel_activities.yml"
 FUEL_MARKETS = DATA_DIR / "fuels" / "fuel_markets.yml"
 BIOFUEL_SOURCES = DATA_DIR / "fuels" / "biofuels_activities.yml"
+FUEL_GROUPS = DATA_DIR / "fuels" / "fuel_groups.yaml"
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 # directory for log files
@@ -303,8 +305,6 @@ class Fuels(BaseTransformation):
         )
         # ecoinvent version
         self.version = version
-        # list of fuel types
-        self.fuel_labels = self.iam_data.fuel_markets.coords["variables"].values
         # dictionary of crops with specifications
         self.crops_props = get_crops_properties()
         # list to store markets that will be created
@@ -312,6 +312,46 @@ class Fuels(BaseTransformation):
         # dictionary to store mapping results, to avoid redundant effort
         self.cached_suppliers = {}
         self.biosphere_flows = get_biosphere_code(self.version)
+        self.fuel_groups = fetch_mapping(FUEL_GROUPS)
+        self.rev_fuel_groups = {
+            sub_type: main_type
+            for main_type, sub_types in self.fuel_groups.items()
+            for sub_type in sub_types
+        }
+
+        self.fuel_markets = xr.DataArray(dims=["variables"], coords={"variables": []})
+        for market in [
+                self.iam_data.petrol_markets,
+                self.iam_data.diesel_markets,
+                self.iam_data.gas_markets,
+                self.iam_data.hydrogen_markets,
+        ]:
+            if market is not None:
+                self.fuel_markets = xr.concat(
+                    [
+                        self.fuel_markets,
+                        market
+                    ],
+                    dim="variables",
+                )
+
+        self.fuel_efficiencies = xr.DataArray(dims=["variables"], coords={"variables": []})
+        for efficiency in [
+                self.iam_data.petrol_efficiencies,
+                self.iam_data.diesel_efficiencies,
+                self.iam_data.gas_efficiencies,
+                self.iam_data.hydrogen_efficiencies,
+        ]:
+            if efficiency is not None:
+                self.fuel_efficiencies = xr.concat(
+                    [
+                        self.fuel_efficiencies,
+                        efficiency
+                    ],
+                    dim="variables",
+                )
+
+
 
     def find_transport_activity(
         self, items_to_look_for: List[str], items_to_exclude: List[str], loc: str
@@ -469,11 +509,13 @@ class Fuels(BaseTransformation):
 
                 if (
                     hydrogen_efficiency_variable
-                    in self.iam_data.efficiency.variables.values
+                    in self.fuel_efficiencies.variables.values
                 ):
                     # Find scaling factor compared to 2020
                     scaling_factor = 1 / self.find_iam_efficiency_change(
-                        variable=hydrogen_efficiency_variable, location=region
+                        data=self.fuel_efficiencies,
+                        variable=hydrogen_efficiency_variable,
+                        location=region,
                     )
 
                     # new energy consumption
@@ -1585,7 +1627,7 @@ class Fuels(BaseTransformation):
         # Find variables with crop type and biofuel type keywords
         variables = [
             v
-            for v in self.iam_data.efficiency.variables.values
+            for v in self.fuel_markets.variables.values.tolist()
             if crop_type.lower() in v.lower()
             and any(x.lower() in v.lower() for x in ["bioethanol", "biodiesel"])
         ]
@@ -1593,7 +1635,7 @@ class Fuels(BaseTransformation):
         if variables:
             # Find scaling factor compared to 2020
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable=variables, location=region
+                data=self.fuel_efficiencies, variable=variables, location=region
             )
 
             if "log parameters" not in dataset:
@@ -1635,16 +1677,14 @@ class Fuels(BaseTransformation):
 
         return dataset
 
-    def get_production_label(self, name: str, crop_type: str) -> [str, None]:
+    def get_production_label(self, crop_type: str) -> [str, None]:
         """
         Get the production label for the dataset.
         """
         try:
             return [
-                l
-                for l in self.fuel_labels
-                if crop_type.lower() in l.lower()
-                and any(i.lower() in l.lower() for i in ("biodiesel", "bioethanol"))
+                i for i in self.fuel_markets.coords["variables"].values.tolist()
+                if crop_type.lower() in i.lower()
             ][0]
         except IndexError:
             return None
@@ -1727,7 +1767,7 @@ class Fuels(BaseTransformation):
                         name=activity,
                         ref_prod=" ",
                         production_variable=self.get_production_label(
-                            name=activity, crop_type=crop_type
+                            crop_type=crop_type
                         ),
                         regions=regions,
                     )
@@ -1792,7 +1832,7 @@ class Fuels(BaseTransformation):
                 "find_share": self.fetch_fuel_share,
                 "fuel filters": self.fuel_map[fuel],
             }
-            for fuel in self.iam_data.fuel_markets.variables.values
+            for fuel in self.fuel_markets.variables.values
         }
 
     def fetch_fuel_share(
@@ -1808,14 +1848,14 @@ class Fuels(BaseTransformation):
 
         relevant_variables = [
             v
-            for v in self.iam_data.fuel_markets.variables.values
+            for v in self.fuel_markets.variables.values
             if any(x.lower() in v.lower() for x in relevant_fuel_types)
         ]
 
         fuel_share = (
             (
-                self.iam_data.fuel_markets.sel(region=region, variables=fuel)
-                / self.iam_data.fuel_markets.sel(
+                self.fuel_markets.sel(region=region, variables=fuel)
+                / self.fuel_markets.sel(
                     region=region, variables=relevant_variables
                 ).sum(dim="variables")
             )
@@ -1988,14 +2028,14 @@ class Fuels(BaseTransformation):
 
             share = (
                 (
-                    self.iam_data.fuel_markets.sel(region=r, variables=prod_vars).sum(
+                    self.fuel_markets.sel(region=r, variables=prod_vars).sum(
                         dim="variables"
                     )
-                    / self.iam_data.fuel_markets.sel(
+                    / self.fuel_markets.sel(
                         variables=prod_vars,
                         region=[
                             x
-                            for x in self.iam_data.fuel_markets.region.values
+                            for x in self.fuel_markets.region.values
                             if x != "World"
                         ],
                     ).sum(dim=["variables", "region"])
@@ -2225,8 +2265,6 @@ class Fuels(BaseTransformation):
         print("Generate new fuel markets.")
 
         # we start by creating region-specific "diesel, burned in" markets
-        prod_vars = [p for p in self.fuel_labels if "diesel" in p]
-
         new_datasets = []
 
         for dataset in ws.get_many(
@@ -2237,7 +2275,7 @@ class Fuels(BaseTransformation):
             new_ds = self.fetch_proxies(
                 name=dataset["name"],
                 ref_prod=dataset["reference product"],
-                production_variable=prod_vars,
+                production_variable=self.fuel_groups["diesel"],
             )
 
             # add to log
@@ -2270,7 +2308,7 @@ class Fuels(BaseTransformation):
             new_ds = self.fetch_proxies(
                 name=dataset["name"],
                 ref_prod=dataset["reference product"],
-                production_variable=prod_vars,
+                production_variable=self.fuel_groups["diesel"],
             )
 
             # add to log
@@ -2314,12 +2352,12 @@ class Fuels(BaseTransformation):
         new_datasets = []
 
         for fuel, activity in fuel_markets.items():
-            if [i for e in self.fuel_labels for i in vars_map[fuel] if i in e]:
+            if [i for e in self.fuel_markets.variables.values for i in vars_map[fuel] if i in e]:
                 print(f"--> {fuel}")
 
                 prod_vars = [
                     v
-                    for v in self.iam_data.fuel_markets.variables.values
+                    for v in self.fuel_markets.variables.values
                     if any(i.lower() in v.lower() for i in vars_map[fuel])
                 ]
 

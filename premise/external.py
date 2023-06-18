@@ -3,13 +3,9 @@ Implements external scenario data.
 """
 
 
-import csv
-
 import wurst
-import xarray as xr
 from numpy import ndarray
 
-from . import INVENTORY_DIR
 from .clean_datasets import get_biosphere_flow_uuid
 from .inventory_imports import generate_migration_maps, get_outdated_flows
 from .transformation import *

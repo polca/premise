@@ -425,7 +425,9 @@ class Steel(BaseTransformation):
 
             # Calculate the scaling factor based on the efficiency change from 2020 to the current year
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable=sector, location=dataset["location"]
+                data=self.iam_data.steel_efficiencies,
+                variable=sector,
+                location=dataset["location"]
             )
 
             # Update the comments

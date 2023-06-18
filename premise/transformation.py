@@ -13,6 +13,7 @@ from functools import lru_cache
 from itertools import groupby, product
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple, Union
+import xarray as xr
 
 import numpy as np
 import yaml
@@ -1065,6 +1066,7 @@ class BaseTransformation:
 
     def find_iam_efficiency_change(
         self,
+        data: xr.DataArray,
         variable: Union[str, list],
         location: str,
     ) -> float:
@@ -1077,7 +1079,7 @@ class BaseTransformation:
         """
 
         scaling_factor = (
-            self.iam_data.efficiency.sel(region=location, variables=variable)
+            data.sel(region=location, variables=variable)
             .interp(year=self.year)
             .values.item(0)
         )

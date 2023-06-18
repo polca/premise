@@ -41,7 +41,7 @@ Provided a decryption key (ask the maintainers_), the following IAM scenarios ar
 | SSP/RCP scenario | GMST increase by 2100 | Society/economy trend                                                              | Climate policy                              | REMIND          | IMAGE      |
 +==================+=======================+====================================================================================+=============================================+=================+============+
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP1-None        | 2.3-2.8 °C            | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       |            |
+| SSP1-None        | 2.3-2.8 °C            | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       | SSP1-Base  |
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
 | SSP1-None        | ~2.2 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | National Policies Implemented (NPI).        | SSP1-NPi        |            |
 +------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
