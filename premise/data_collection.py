@@ -536,7 +536,9 @@ class IAMDataCollection:
         )
 
         self.land_use = self.__fetch_market_data(data=data, input_vars=land_use_vars)
-        self.land_use_change = self.__fetch_market_data(data=data, input_vars=land_use_change_vars)
+        self.land_use_change = self.__fetch_market_data(
+            data=data, input_vars=land_use_change_vars
+        )
 
         self.trsp_cars = get_vehicle_fleet_composition(self.model, vehicle_type="car")
         self.trsp_trucks = get_vehicle_fleet_composition(
@@ -696,8 +698,9 @@ class IAMDataCollection:
         available_vars = list(set(input_vars.values()) - missing_vars)
 
         if available_vars:
-            market_data = data.loc[:, [v for v in input_vars.values()
-                                       if v in available_vars], :]
+            market_data = data.loc[
+                :, [v for v in input_vars.values() if v in available_vars], :
+            ]
         else:
             return None
 

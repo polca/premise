@@ -427,7 +427,7 @@ class Steel(BaseTransformation):
             scaling_factor = 1 / self.find_iam_efficiency_change(
                 data=self.iam_data.steel_efficiencies,
                 variable=sector,
-                location=dataset["location"]
+                location=dataset["location"],
             )
 
             # Update the comments

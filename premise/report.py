@@ -8,6 +8,7 @@ from pathlib import Path
 
 import openpyxl
 import pandas as pd
+import xarray as xr
 import yaml
 from openpyxl.chart import AreaChart, LineChart, Reference
 from openpyxl.styles import Font
@@ -15,7 +16,6 @@ from openpyxl.utils import get_column_letter
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
 from pandas.errors import EmptyDataError
-import xarray as xr
 
 from . import DATA_DIR, VARIABLES_DIR, __version__
 
@@ -41,8 +41,6 @@ if not Path(DIR_LOG_REPORT).exists():
     Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 
-
-
 def get_variables(
     filepath,
 ):
@@ -55,8 +53,10 @@ def get_variables(
 
     return list(out.keys())
 
-def fetch_data(iam_data: xr.DataArray, sector: str, variable: str) -> [xr.DataArray, None]:
 
+def fetch_data(
+    iam_data: xr.DataArray, sector: str, variable: str
+) -> [xr.DataArray, None]:
     data = {
         "Population": iam_data.other_vars,
         "GDP": iam_data.other_vars,
@@ -89,14 +89,15 @@ def fetch_data(iam_data: xr.DataArray, sector: str, variable: str) -> [xr.DataAr
         iam_data = data[sector]
 
         if any(x in sector for x in ["car", "bus", "truck"]):
-            iam_data = iam_data.sum(
-                dim=["size", "construction_year"]
-            )
+            iam_data = iam_data.sum(dim=["size", "construction_year"])
             iam_data = iam_data.rename({"powertrain": "variables"}).T
 
-        return iam_data.sel(variables=[v for v in variable if v in iam_data.coords["variables"].values])
+        return iam_data.sel(
+            variables=[v for v in variable if v in iam_data.coords["variables"].values]
+        )
     else:
         return None
+
 
 def generate_summary_report(scenarios: list, filename: Path) -> None:
     """
@@ -106,19 +107,27 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     SECTORS = {
         "Population": {
             "filepath": IAM_OTHER_VARS,
-            "variables": ["population",],
+            "variables": [
+                "population",
+            ],
         },
         "GDP": {
             "filepath": IAM_OTHER_VARS,
-            "variables": ["gdp",],
+            "variables": [
+                "gdp",
+            ],
         },
         "CO2": {
             "filepath": IAM_OTHER_VARS,
-            "variables": ["CO2",],
+            "variables": [
+                "CO2",
+            ],
         },
         "GMST": {
             "filepath": IAM_OTHER_VARS,
-            "variables": ["GMST",],
+            "variables": [
+                "GMST",
+            ],
         },
         "Electricity - generation": {
             "filepath": IAM_ELEC_VARS,
@@ -139,27 +148,35 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Fuel (diesel) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": ["diesel", ],
+            "filter": [
+                "diesel",
+            ],
         },
         "Fuel (diesel) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": ["diesel", ],
+            "filter": [
+                "diesel",
+            ],
         },
         "Fuel (gas) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": ["natural gas", "biogas", "methane" ],
+            "filter": ["natural gas", "biogas", "methane"],
         },
         "Fuel (gas) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": ["natural gas", "biogas", "methane" ],
+            "filter": ["natural gas", "biogas", "methane"],
         },
         "Fuel (hydrogen) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": ["hydrogen", ],
+            "filter": [
+                "hydrogen",
+            ],
         },
         "Fuel (hydrogen) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": ["hydrogen", ],
+            "filter": [
+                "hydrogen",
+            ],
         },
         "Cement - generation": {
             "filepath": IAM_CEMENT_VARS,
@@ -187,15 +204,39 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Transport (cars)": {
             "filepath": VEHICLES_MAP,
-            "variables": ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+            "variables": [
+                "BEV",
+                "FCEV",
+                "ICEV-d",
+                "ICEV-g",
+                "ICEV-p",
+                "PHEV-d",
+                "PHEV-p",
+            ],
         },
         "Transport (buses)": {
             "filepath": VEHICLES_MAP,
-            "variables": ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+            "variables": [
+                "BEV",
+                "FCEV",
+                "ICEV-d",
+                "ICEV-g",
+                "ICEV-p",
+                "PHEV-d",
+                "PHEV-p",
+            ],
         },
         "Transport (trucks)": {
             "filepath": VEHICLES_MAP,
-            "variables": ["BEV", "FCEV", "ICEV-d", "ICEV-g", "ICEV-p", "PHEV-d", "PHEV-p"],
+            "variables": [
+                "BEV",
+                "FCEV",
+                "ICEV-d",
+                "ICEV-g",
+                "ICEV-p",
+                "PHEV-d",
+                "PHEV-p",
+            ],
         },
     }
 
@@ -211,7 +252,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         else:
             variables = get_variables(filepath["filepath"])
             if "filter" in filepath:
-                variables = [x for x in variables if any(y in x for y in filepath["filter"])]
+                variables = [
+                    x for x in variables if any(y in x for y in filepath["filter"])
+                ]
 
         worksheet = workbook.create_sheet(sector)
 
@@ -235,11 +278,8 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                     variable=variables,
                 )
 
-
                 if iam_data is None:
                     continue
-
-
 
                 if scenario_idx > 0:
                     col = last_col_used + metadata[sector]["offset"]

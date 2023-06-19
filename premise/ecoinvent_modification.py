@@ -751,7 +751,6 @@ class NewDatabase:
                 "exclude" not in scenario
                 or "update_electricity" not in scenario["exclude"]
             ):
-
                 electricity = Electricity(
                     database=scenario["database"],
                     iam_data=scenario["iam data"],
@@ -993,7 +992,6 @@ class NewDatabase:
                     self.modified_datasets = trspt.modified_datasets
                 else:
                     print("No truck transport markets found in IAM data. Skipping.")
-
 
     def update_buses(self) -> None:
         """

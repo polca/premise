@@ -13,9 +13,9 @@ from functools import lru_cache
 from itertools import groupby, product
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple, Union
-import xarray as xr
 
 import numpy as np
+import xarray as xr
 import yaml
 from _operator import itemgetter
 from constructive_geometries import resolved_row

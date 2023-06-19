@@ -8,9 +8,9 @@ from pathlib import Path
 from typing import Union
 
 import wurst
+import xarray as xr
 import yaml
 from numpy import ndarray
-import xarray as xr
 
 from . import VARIABLES_DIR
 from .inventory_imports import get_biosphere_code
@@ -321,37 +321,31 @@ class Fuels(BaseTransformation):
 
         self.fuel_markets = xr.DataArray(dims=["variables"], coords={"variables": []})
         for market in [
-                self.iam_data.petrol_markets,
-                self.iam_data.diesel_markets,
-                self.iam_data.gas_markets,
-                self.iam_data.hydrogen_markets,
+            self.iam_data.petrol_markets,
+            self.iam_data.diesel_markets,
+            self.iam_data.gas_markets,
+            self.iam_data.hydrogen_markets,
         ]:
             if market is not None:
                 self.fuel_markets = xr.concat(
-                    [
-                        self.fuel_markets,
-                        market
-                    ],
+                    [self.fuel_markets, market],
                     dim="variables",
                 )
 
-        self.fuel_efficiencies = xr.DataArray(dims=["variables"], coords={"variables": []})
+        self.fuel_efficiencies = xr.DataArray(
+            dims=["variables"], coords={"variables": []}
+        )
         for efficiency in [
-                self.iam_data.petrol_efficiencies,
-                self.iam_data.diesel_efficiencies,
-                self.iam_data.gas_efficiencies,
-                self.iam_data.hydrogen_efficiencies,
+            self.iam_data.petrol_efficiencies,
+            self.iam_data.diesel_efficiencies,
+            self.iam_data.gas_efficiencies,
+            self.iam_data.hydrogen_efficiencies,
         ]:
             if efficiency is not None:
                 self.fuel_efficiencies = xr.concat(
-                    [
-                        self.fuel_efficiencies,
-                        efficiency
-                    ],
+                    [self.fuel_efficiencies, efficiency],
                     dim="variables",
                 )
-
-
 
     def find_transport_activity(
         self, items_to_look_for: List[str], items_to_exclude: List[str], loc: str
@@ -1683,7 +1677,8 @@ class Fuels(BaseTransformation):
         """
         try:
             return [
-                i for i in self.fuel_markets.coords["variables"].values.tolist()
+                i
+                for i in self.fuel_markets.coords["variables"].values.tolist()
                 if crop_type.lower() in i.lower()
             ][0]
         except IndexError:
@@ -2034,9 +2029,7 @@ class Fuels(BaseTransformation):
                     / self.fuel_markets.sel(
                         variables=prod_vars,
                         region=[
-                            x
-                            for x in self.fuel_markets.region.values
-                            if x != "World"
+                            x for x in self.fuel_markets.region.values if x != "World"
                         ],
                     ).sum(dim=["variables", "region"])
                 )
@@ -2352,7 +2345,12 @@ class Fuels(BaseTransformation):
         new_datasets = []
 
         for fuel, activity in fuel_markets.items():
-            if [i for e in self.fuel_markets.variables.values for i in vars_map[fuel] if i in e]:
+            if [
+                i
+                for e in self.fuel_markets.variables.values
+                for i in vars_map[fuel]
+                if i in e
+            ]:
                 print(f"--> {fuel}")
 
                 prod_vars = [
