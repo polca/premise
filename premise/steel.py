@@ -442,7 +442,6 @@ class Steel(BaseTransformation):
                 scaling_factor = 1
 
             if scaling_factor != 1:
-
                 # Update the comments
                 text = (
                     f"This dataset has been modified by `premise`, according to the performance "
