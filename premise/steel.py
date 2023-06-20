@@ -202,7 +202,6 @@ class Steel(BaseTransformation):
             regions = [r for r in self.regions if r != "World"]
 
             for region in regions:
-
                 try:
                     share = (
                         self.iam_data.production_volumes.sel(
