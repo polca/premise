@@ -1623,8 +1623,7 @@ class Fuels(BaseTransformation):
             v
             for v in self.fuel_markets.variables.values.tolist()
             if crop_type.lower() in v.lower()
-            and any(x.lower() in v.lower()
-            for x in ["bioethanol", "biodiesel"])
+            and any(x.lower() in v.lower() for x in ["bioethanol", "biodiesel"])
         ]
 
         if len(crop_var) == 0:
@@ -2134,7 +2133,6 @@ class Fuels(BaseTransformation):
         string = ""
 
         for prod_var in prod_vars:
-
             share = fuel_providers[prod_var]["find_share"](
                 prod_var, vars_map[fuel_category], region, period
             )
