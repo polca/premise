@@ -559,6 +559,7 @@ bioethanol, wood, with CCS:
     remind: SE|Liquids|Biomass|Cellulosic|+|w/ CC
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS
   eff_aliases:
+    remind: SE|Liquids|Biomass|Cellulosic|+|w/o CC
     image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/ CCS
   ecoinvent_aliases:
     fltr:
