@@ -631,8 +631,7 @@ class BaseTransformation:
                 ds
                 for ds in self.database
                 if not (
-                    ds["name"] == ds_name
-                    and ds["reference product"] == ds_ref_prod
+                    ds["name"] == ds_name and ds["reference product"] == ds_ref_prod
                 )
             ]
 
