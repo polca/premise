@@ -10,9 +10,9 @@ import uuid
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
-import numpy as np
 
 import bw2io
+import numpy as np
 import requests
 import yaml
 from bw2io import CSVImporter, ExcelImporter, Migration
@@ -26,7 +26,9 @@ from .geomap import Geomap
 
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
-CORRESPONDENCE_BIO_FLOWS = DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
+CORRESPONDENCE_BIO_FLOWS = (
+    DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
+)
 
 
 def get_correspondence_bio_flows():
@@ -201,6 +203,7 @@ def check_for_datasets_compliance_with_consequential_database(
 
     return datasets
 
+
 def check_amount_format(database: list) -> list:
     """
     Check that the `amount` field is of type `float`.
@@ -228,6 +231,7 @@ def check_amount_format(database: list) -> list:
                     e[k] = float(e[k])
 
     return database
+
 
 class BaseInventoryImport:
     """
@@ -552,7 +556,9 @@ class BaseInventoryImport:
                             new_key = list(key)
                             new_key[0] = self.correspondence_bio_flows[key[1]][key[0]]
                             key = tuple(new_key)
-                            assert key in self.biosphere_dict, f"Could not find a biosphere flow for {key}."
+                            assert (
+                                key in self.biosphere_dict
+                            ), f"Could not find a biosphere flow for {key}."
                         else:
                             print(key)
                             continue
@@ -561,7 +567,6 @@ class BaseInventoryImport:
                         "biosphere3",
                         self.biosphere_dict[key],
                     )
-
 
     def remove_ds_and_modifiy_exchanges(self, name: str, ex_data: dict) -> None:
         """
