@@ -431,7 +431,7 @@ class Steel(BaseTransformation):
             else:
                 sector = "steel - secondary"
 
-            if sector in self.iam_data.steel_efficiencies:
+            if sector in self.iam_data.steel_efficiencies.variables.values:
                 # Calculate the scaling factor based on the efficiency change from 2020 to the current year
                 scaling_factor = 1 / self.find_iam_efficiency_change(
                     data=self.iam_data.steel_efficiencies,

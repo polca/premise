@@ -725,6 +725,9 @@ class IAMDataCollection:
                 data.loc[:, available_vars, :].groupby("region").sum(dim="variables")
             )
 
+        # back-fill nans
+        market_data = market_data.bfill(dim="year")
+
         return market_data
 
     def get_iam_efficiencies(

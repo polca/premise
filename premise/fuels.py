@@ -472,7 +472,7 @@ class Fuels(BaseTransformation):
 
             new_ds = self.fetch_proxies(
                 name=hydrogen_activity_name,
-                ref_prod="Hydrogen",
+                ref_prod="hydrogen",
                 production_variable=hydrogen_efficiency_variable,
             )
 
