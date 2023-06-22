@@ -62,7 +62,9 @@ FILEPATH_CARBON_FIBER_INVENTORIES = INVENTORY_DIR / "lci-carbon-fiber.xlsx"
 FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distribution.xlsx"
 
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
-FILEPATH_HYDROGEN_SOLAR_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-thermochemical-water-splitting.xlsx"
+FILEPATH_HYDROGEN_SOLAR_INVENTORIES = (
+    INVENTORY_DIR / "lci-hydrogen-thermochemical-water-splitting.xlsx"
+)
 FILEPATH_HYDROGEN_PYROLYSIS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-pyrolysis.xlsx"
 
 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (
@@ -1335,7 +1337,6 @@ class NewDatabase:
         if not cached_inventories:
             cache_fp = DATA_DIR / "cache" / f"cached_{self.source}_inventories.pickle"
             raise ValueError(f"No cached inventories found at {cache_fp}.")
-
 
         cache = {}
         for scen, scenario in enumerate(self.scenarios):

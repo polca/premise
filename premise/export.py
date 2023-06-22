@@ -23,15 +23,17 @@ from scipy import sparse as nsp
 
 from . import DATA_DIR, __version__
 from .data_collection import get_delimiter
+from .inventory_imports import get_correspondence_bio_flows
 from .transformation import BaseTransformation
 from .utils import check_database_name
-from .inventory_imports import get_correspondence_bio_flows
 
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
     DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
 )
-CORRESPONDENCE_BIO_FLOWS = DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
+CORRESPONDENCE_BIO_FLOWS = (
+    DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
+)
 
 # current working directory
 DIR_DATAPACKAGE = Path.cwd() / "export" / "datapackage"
@@ -435,7 +437,6 @@ def get_exchange(ind, acts_ind, db_name, version, amount=1.0):
         if flow_type == "biosphere"
         else (db_name, fetch_exchange_code(name, ref, loc, unit)),
     }
-
 
 
 def write_formatted_data(name, data, filepath):
