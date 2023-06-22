@@ -1504,23 +1504,23 @@ class Fuels(BaseTransformation):
                     # update exchange value
                     exc["amount"] = float(land_use)
 
-                    string = (
-                        f"The land area occupied has been modified to {land_use}, "
-                        f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
-                        f"in {self.year} in the region {region}. "
-                    )
-                    if "comment" in dataset:
-                        dataset["comment"] += string
-                    else:
-                        dataset["comment"] = string
+                string = (
+                    f"The land area occupied has been modified to {land_use}, "
+                    f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                    f"in {self.year} in the region {region}. "
+                )
+                if "comment" in dataset:
+                    dataset["comment"] += string
+                else:
+                    dataset["comment"] = string
 
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
-                    dataset["log parameters"].update(
-                        {
-                            "land footprint": land_use,
-                        }
-                    )
+                if "log parameters" not in dataset:
+                    dataset["log parameters"] = {}
+                dataset["log parameters"].update(
+                    {
+                        "land footprint": land_use,
+                    }
+                )
 
         return dataset
 
