@@ -935,7 +935,9 @@ class IAMDataCollection:
 
         return rate
 
-    def __get_iam_production_volumes(self, input_vars, data, fill: bool = False) -> [xr.DataArray, None]:
+    def __get_iam_production_volumes(
+        self, input_vars, data, fill: bool = False
+    ) -> [xr.DataArray, None]:
         """
         Returns n xarray with production volumes for different sectors:
         electricity, steel, cement, fuels.
