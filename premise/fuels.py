@@ -1481,11 +1481,16 @@ class Fuels(BaseTransformation):
         :return: adjusted dataset
 
         """
+        string = ""
+        land_use = 0
+
         for exc in dataset["exchanges"]:
             # we adjust the land use
             if exc["type"] == "biosphere" and exc["name"].startswith("Occupation"):
-                # lower heating value, dry basis
-                lhv_ar = dataset["LHV [MJ/kg dry]"]
+                if "LHV [MJ/kg as received]" in dataset:
+                    lower_heating_value = dataset["LHV [MJ/kg as received]"]
+                else:
+                    lower_heating_value = dataset.get("LHV [MJ/kg dry]", 0)
 
                 # Ha/GJ
                 land_use = (
@@ -1494,33 +1499,39 @@ class Fuels(BaseTransformation):
                     .values
                 )
 
+                # replace NA values with 0
+                if np.isnan(land_use):
+                    land_use = 0
+
                 if land_use > 0:
                     # HA to m2
                     land_use *= 10000
                     # m2/GJ to m2/MJ
                     land_use /= 1000
                     # m2/kg, as received
-                    land_use *= lhv_ar
+                    land_use *= lower_heating_value
                     # update exchange value
                     exc["amount"] = float(land_use)
 
-                string = (
-                    f"The land area occupied has been modified to {land_use}, "
-                    f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
-                    f"in {self.year} in the region {region}. "
-                )
-                if "comment" in dataset:
-                    dataset["comment"] += string
-                else:
-                    dataset["comment"] = string
+                    string = (
+                        f"The land area occupied has been modified to {land_use}, "
+                        f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                        f"in {self.year} in the region {region}. "
+                    )
 
-                if "log parameters" not in dataset:
-                    dataset["log parameters"] = {}
-                dataset["log parameters"].update(
-                    {
-                        "land footprint": land_use,
-                    }
-                )
+        if string and land_use:
+            if "comment" in dataset:
+                dataset["comment"] += string
+            else:
+                dataset["comment"] = string
+
+            if "log parameters" not in dataset:
+                dataset["log parameters"] = {}
+            dataset["log parameters"].update(
+                {
+                    "land footprint": land_use,
+                }
+            )
 
         return dataset
 
@@ -1551,13 +1562,20 @@ class Fuels(BaseTransformation):
             .values
         )
 
+        # replace NA values with 0
+        if np.isnan(land_use_co2):
+            land_use_co2 = 0
+
         if land_use_co2 > 0:
             # lower heating value, as received
-            lower_heating_value_as_received = dataset["LHV [MJ/kg dry]"]
+            if "LHV [MJ/kg as received]" in dataset:
+                lower_heating_value = dataset["LHV [MJ/kg as received]"]
+            else:
+                lower_heating_value = dataset.get("LHV [MJ/kg dry]", 0)
 
             # kg CO2/MJ
             land_use_co2 /= 1000
-            land_use_co2 *= lower_heating_value_as_received
+            land_use_co2 *= lower_heating_value
 
             land_use_co2_exc = {
                 "uncertainty type": 0,

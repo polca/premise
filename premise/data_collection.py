@@ -544,10 +544,10 @@ class IAMDataCollection:
         )
 
         self.land_use = self.__get_iam_production_volumes(
-            data=data, input_vars=land_use_vars
+            data=data, input_vars=land_use_vars, fill=True
         )
         self.land_use_change = self.__get_iam_production_volumes(
-            data=data, input_vars=land_use_change_vars
+            data=data, input_vars=land_use_change_vars, fill=True
         )
 
         self.trsp_cars = get_vehicle_fleet_composition(self.model, vehicle_type="car")
@@ -935,7 +935,7 @@ class IAMDataCollection:
 
         return rate
 
-    def __get_iam_production_volumes(self, input_vars, data) -> [xr.DataArray, None]:
+    def __get_iam_production_volumes(self, input_vars, data, fill: bool = False) -> [xr.DataArray, None]:
         """
         Returns n xarray with production volumes for different sectors:
         electricity, steel, cement, fuels.
@@ -975,6 +975,16 @@ class IAMDataCollection:
         data_to_return.coords["variables"] = [
             k for k, v in input_vars.items() if v in available_vars
         ]
+
+        if fill:
+            # if fill, we fill zero values
+            # with the nearest year's value
+            # first, convert zero values to NaNs
+            data_to_return = data_to_return.where(data_to_return != 0)
+            # then, backfill
+            data_to_return = data_to_return.bfill(dim="year")
+            # then, forward fill
+            data_to_return = data_to_return.ffill(dim="year")
 
         return data_to_return
 
