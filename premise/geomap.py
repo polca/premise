@@ -13,6 +13,7 @@ from . import DATA_DIR, VARIABLES_DIR
 
 ECO_IAM_MAPPING = VARIABLES_DIR / "missing_geography_equivalences.yaml"
 
+
 def load_constants():
     """
     Load constants from the constants.yaml file.
