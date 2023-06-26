@@ -146,8 +146,10 @@ Coal IGCC CCS:
 
   ecoinvent_aliases:
     fltr:
-      - electricity production, at power plant/hard coal, p
-      - electricity production, at power plant/lignite, p
+      - electricity production, at power plant/hard coal, post
+      - electricity production, at power plant/hard coal, pre
+      - electricity production, at power plant/lignite, post
+      - electricity production, at power plant/lignite, pre
   ecoinvent_fuel_aliases:
     fltr:
       - Hard coal, burned in power plant/pre
