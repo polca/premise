@@ -1596,9 +1596,6 @@ class Electricity(BaseTransformation):
             technologies=list(set(eff_labels).intersection(all_techs)),
         )
 
-        # to store changes in efficiency
-        eff_change_log = []
-
         for technology in technologies_map:
             dict_technology = technologies_map[technology]
             print("Rescale inventories and emissions for", technology)
@@ -1630,26 +1627,28 @@ class Electricity(BaseTransformation):
                 if "log parameters" not in dataset:
                     dataset["log parameters"] = {}
 
-                dataset["log parameters"].update(
-                    {
-                        "old efficiency": ei_eff,
-                        "new efficiency": new_efficiency,
-                    }
-                )
+                # ensure that the dataset has not already been adjusted
+                if "new efficiency" not in dataset["log parameters"] and scaling_factor != 1:
+                    dataset["log parameters"].update(
+                        {
+                            "old efficiency": ei_eff,
+                            "new efficiency": new_efficiency,
+                        }
+                    )
 
-                self.update_ecoinvent_efficiency_parameter(
-                    dataset, ei_eff, new_efficiency
-                )
+                    self.update_ecoinvent_efficiency_parameter(
+                        dataset, ei_eff, new_efficiency
+                    )
 
-                # Rescale all the technosphere exchanges
-                # according to the change in efficiency between `year`
-                # and 2020 from the IAM efficiency values
-                wurst.change_exchanges_by_constant_factor(
-                    dataset,
-                    scaling_factor,
-                )
+                    # Rescale all the technosphere exchanges
+                    # according to the change in efficiency between `year`
+                    # and 2020 from the IAM efficiency values
+                    wurst.change_exchanges_by_constant_factor(
+                        dataset,
+                        scaling_factor,
+                    )
 
-                self.write_log(dataset=dataset, status="updated")
+                    self.write_log(dataset=dataset, status="updated")
 
     def update_electricity_markets(self) -> None:
         """
