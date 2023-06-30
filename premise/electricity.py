@@ -1628,7 +1628,10 @@ class Electricity(BaseTransformation):
                     dataset["log parameters"] = {}
 
                 # ensure that the dataset has not already been adjusted
-                if "new efficiency" not in dataset["log parameters"] and scaling_factor != 1:
+                if (
+                    "new efficiency" not in dataset["log parameters"]
+                    and scaling_factor != 1
+                ):
                     dataset["log parameters"].update(
                         {
                             "old efficiency": ei_eff,
