@@ -1958,8 +1958,10 @@ class Fuels(BaseTransformation):
                             # if (activity["name"], supplier_loc) not in self.new_fuel_markets:
                             # we skip it
 
-                            if (activity["name"], supplier_loc) in self.new_fuel_markets:
-
+                            if (
+                                activity["name"],
+                                supplier_loc,
+                            ) in self.new_fuel_markets:
                                 amount_fossil_co2 += (
                                     amount
                                     * self.new_fuel_markets[
@@ -2080,7 +2082,6 @@ class Fuels(BaseTransformation):
             # if key absent from self.new_fuel_markets, then it does not exist
 
             if fuel_market_key in self.new_fuel_markets and share > 0:
-
                 # Add exchange for the region
                 exchange = {
                     "uncertainty type": 0,
@@ -2104,7 +2105,9 @@ class Fuels(BaseTransformation):
 
                 dataset["log parameters"] = {}
                 dataset["log parameters"]["fossil CO2 per kg fuel"] = final_fossil_co2
-                dataset["log parameters"]["non-fossil CO2 per kg fuel"] = final_biogenic_co2
+                dataset["log parameters"][
+                    "non-fossil CO2 per kg fuel"
+                ] = final_biogenic_co2
                 dataset["log parameters"]["lower heating value"] = final_lhv
 
         return dataset
@@ -2435,7 +2438,6 @@ class Fuels(BaseTransformation):
 
                         # add fuel market to the dictionary
                         if "log parameters" in dataset:
-
                             self.new_fuel_markets.update(
                                 {
                                     (dataset["name"], dataset["location"]): {
@@ -2456,9 +2458,9 @@ class Fuels(BaseTransformation):
                             self.write_log(dataset)
 
                             # add it to list of created datasets
-                            self.modified_datasets[(self.model, self.scenario, self.year)][
-                                "created"
-                            ].append(
+                            self.modified_datasets[
+                                (self.model, self.scenario, self.year)
+                            ]["created"].append(
                                 (
                                     dataset["name"],
                                     dataset["reference product"],

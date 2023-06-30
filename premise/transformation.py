@@ -825,9 +825,13 @@ class BaseTransformation:
                     alternative_locations = []
 
                     if act["location"] in self.regions:
-                        alternative_locations = [act["location"], ]
+                        alternative_locations = [
+                            act["location"],
+                        ]
 
-                    alternative_locations.extend([self.ecoinvent_to_iam_loc[act["location"]]])
+                    alternative_locations.extend(
+                        [self.ecoinvent_to_iam_loc[act["location"]]]
+                    )
 
                     for name_to_look_for, alt_loc in product(
                         names_to_look_for, alternative_locations
