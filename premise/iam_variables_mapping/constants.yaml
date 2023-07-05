@@ -12,6 +12,7 @@ SUPPORTED_EI_VERSIONS:
 SUPPORTED_MODELS:
   - remind
   - image
+  - message
     
 SUPPORTED_PATHWAYS:
   - SSP2-Base
@@ -46,6 +47,20 @@ LIST_TRANSF_FUNC:
   - update_external_scenario
   - update_emissions
 
+LIST_MESSAGE_REGIONS:
+  - AFR
+  - CHN
+  - EEU
+  - FSU
+  - LAM
+  - MEA
+  - NAM
+  - PAO
+  - PAS
+  - RCPA
+  - SAS
+  - WEU
+  - World
 
 LIST_REMIND_REGIONS:
   - CAZ

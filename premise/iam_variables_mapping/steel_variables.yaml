@@ -5,10 +5,17 @@ steel - primary:
   iam_aliases:
     remind: Production|Industry|Steel|Primary
     image: Production|Steel|Primary
+    message: Production|Primary|Steel
   energy_use_aliases:
     remind:
       - FE|Industry|Steel|++|Primary
     image:
+      - Final Energy|Industry|Steel|Gases
+      - Final Energy|Industry|Steel|Heat
+      - Final Energy|Industry|Steel|Hydrogen
+      - Final Energy|Industry|Steel|Liquids
+      - Final Energy|Industry|Steel|Solids
+    message:
       - Final Energy|Industry|Steel|Gases
       - Final Energy|Industry|Steel|Heat
       - Final Energy|Industry|Steel|Hydrogen
@@ -24,11 +31,13 @@ steel - secondary:
   iam_aliases:
     remind: Production|Industry|Steel|Secondary
     image: Production|Steel|Secondary
+    message: Production|Secondary|Steel
   energy_use_aliases:
     remind:
       - FE|Industry|Steel|++|Secondary
     image:
       - Final Energy|Industry|Steel|Electricity
+    message: # missing??
   ecoinvent_aliases:
     fltr:
       - steel production, electric

@@ -1,0 +1,208 @@
+﻿#;Country_ISO;R11_MESSAGE_Region;R12_MESSAGE_Region;MESSAGE_Country;CAIT_Country;EDGAR_Country;PRIMAP_Country
+1;AFG;R11_SAS;R12_SAS;Afghanistan;Afghanistan;Afghanistan;Afghanistan
+2;ALB;R11_EEU;R12_EEU;Albania;Albania;Albania;Albania
+3;DZA;R11_MEA;R12_MEA;Algeria;Algeria;Algeria;Algeria
+4;ASM;R11_PAS;R12_PAS;American Samoa;;American Samoa;
+5;AND;R11_WEU;R12_WEU;Andorra;;;Andorra
+6;AGO;R11_AFR;R12_AFR;Angola;Angola;Angola;Angola
+7;ATG;R11_LAM;R12_LAM;Antigua and Barbuda;Antigua & Barbuda;Antigua and Barbuda;Antigua and Barbuda
+8;ARG;R11_LAM;R12_LAM;Argentina;Argentina;Argentina;Argentina
+9;ARM;R11_FSU;R12_FSU;Armenia;Armenia;Armenia;Armenia
+10;AUS;R11_PAO;R12_PAO;Australia;Australia;Australia;Australia
+11;AUT;R11_WEU;R12_WEU;Austria;Austria;Austria;Austria
+12;AZE;R11_FSU;R12_FSU;Azerbaijan;Azerbaijan;Azerbaijan;Azerbaijan
+13;;R11_WEU;R12_WEU;Azores;;;
+14;BHS;R11_LAM;R12_LAM;Bahamas;Bahamas, The;Bahamas;Bahamas
+15;BHR;R11_MEA;R12_MEA;Bahrain;Bahrain;Bahrain;Bahrain
+16;BGD;R11_SAS;R12_SAS;Bangladesh;Bangladesh;Bangladesh;Bangladesh
+17;BRB;R11_LAM;R12_LAM;Barbados;Barbados;Barbados;Barbados
+18;BLR;R11_FSU;R12_FSU;Belarus;Belarus;Belarus;Belarus
+19;BEL;R11_WEU;R12_WEU;Belgium;Belgium;Belgium;Belgium
+20;BLZ;R11_LAM;R12_LAM;Belize;Belize;Belize;Belize
+21;BEN;R11_AFR;R12_AFR;Benin;Benin;Benin;Benin
+22;BMU;R11_LAM;R12_LAM;Bermuda;;Bermuda;
+23;BTN;R11_SAS;R12_SAS;Bhutan;Bhutan;Bhutan;Bhutan
+24;BOL;R11_LAM;R12_LAM;Bolivia;Bolivia;Bolivia;Bolivia (Plurinational State of)
+25;BIH;R11_EEU;R12_EEU;Bosnia and Herzegovina;Bosnia & Herzegovina;Bosnia and Herzegovina;Bosnia and Herzegovina
+26;BWA;R11_AFR;R12_AFR;Botswana;Botswana;Botswana;Botswana
+27;BRA;R11_LAM;R12_LAM;Brazil;Brazil;Brazil;Brazil
+28;IOT;R11_AFR;R12_AFR;British Indian Ocean Territory;;;
+29;BRN;R11_PAS;R12_PAS;Brunei Darussalam;Brunei;Brunei Darussalam;Brunei Darussalam
+30;BGR;R11_EEU;R12_EEU;Bulgaria;Bulgaria;Bulgaria;Bulgaria
+31;BFA;R11_AFR;R12_AFR;Burkina Faso;Burkina Faso;Burkina Faso;Burkina Faso
+32;BDI;R11_AFR;R12_AFR;Burundi;Burundi;Burundi;Burundi
+33;KHM;R11_CPA;R12_RCPA;Cambodia;Cambodia;Cambodia;Cambodia
+34;CMR;R11_AFR;R12_AFR;Cameroon;Cameroon;Cameroon;Cameroon
+35;CAN;R11_NAM;R12_NAM;Canada;Canada;Canada;Canada
+36;;R11_WEU;R12_WEU;Canary Islands;;;
+37;CPV;R11_AFR;R12_AFR;Cape Verde;Cape Verde;Cape Verde;Cabo Verde
+38;CAF;R11_AFR;R12_AFR;Central African Republic;Central African Republic;Central African Republic;Central African Republic
+39;TCD;R11_AFR;R12_AFR;Chad;Chad;Chad;Chad
+40;;R11_WEU;R12_WEU;Channel Islands;;;
+41;CHL;R11_LAM;R12_LAM;Chile;Chile;Chile;Chile
+42;CHN;R11_CPA;R12_CHN;China (incl. Hong Kong);China;China;China
+43;COL;R11_LAM;R12_LAM;Colombia;Colombia;Colombia;Colombia
+44;COM;R11_AFR;R12_AFR;Comoros;Comoros;Comoros;Comoros
+45;COG;R11_AFR;R12_AFR;Congo;Congo, Dem. Rep.;Congo;Democratic Republic of the Congo
+46;CRI;R11_LAM;R12_LAM;Costa Rica;Costa Rica;Costa Rica;Costa Rica
+47;CIV;R11_AFR;R12_AFR;Cote d'Ivoire;Cote d'Ivoire;Cote d'Ivoire;Cote d'Ivoire
+48;HRV;R11_EEU;R12_EEU;Croatia;Croatia;Croatia;Croatia
+49;CUB;R11_LAM;R12_LAM;Cuba;Cuba;Cuba;Cuba
+50;CYP;R11_WEU;R12_WEU;Cyprus;Cyprus;Cyprus;Cyprus
+51;CZE;R11_EEU;R12_EEU;Czech Republic;Czech Republic;Czech Republic;Czech Republic
+52;DNK;R11_WEU;R12_WEU;Denmark;Denmark;Denmark;Denmark
+53;DJI;R11_AFR;R12_AFR;Djibouti;Djibouti;Djibouti;Djibouti
+54;DMA;R11_LAM;R12_LAM;Dominica;Dominica;Dominica;Dominica
+55;DOM;R11_LAM;R12_LAM;Dominican Republic;Dominican Republic;Dominican Republic;Dominican Republic
+56;ECU;R11_LAM;R12_LAM;Ecuador;Ecuador;Ecuador;Ecuador
+57;EGY;R11_MEA;R12_MEA;Egypt (Arab Republic);Egypt;Egypt;Egypt
+58;SLV;R11_LAM;R12_LAM;El Salvador;El Salvador;El Salvador;El Salvador
+59;GNQ;R11_AFR;R12_AFR;Equatorial Guinea;Equatorial Guinea;Equatorial Guinea;Equatorial Guinea
+60;ERI;R11_AFR;R12_AFR;Eritrea;Eritrea;Eritrea;Eritrea
+61;EST;R11_EEU;R12_EEU;Estonia;Estonia;Estonia;Estonia
+62;ETH;R11_AFR;R12_AFR;Ethiopia;Ethiopia;Ethiopia;Ethiopia
+63;FRO;R11_WEU;R12_WEU;Faeroe Islands;;Faroe Islands;
+64;FJI;R11_PAS;R12_PAS;Fiji;Fiji;Fiji;Fiji
+65;FIN;R11_WEU;R12_WEU;Finland;Finland;Finland;Finland
+66;FRA;R11_WEU;R12_WEU;France;France;France;France
+67;GUF;R11_LAM;R12_LAM;French Guyana;;French Guiana;
+68;PYF;R11_PAS;R12_PAS;French Polynesia;;French Polynesia;
+69;GAB;R11_AFR;R12_AFR;Gabon;Gabon;Gabon;Gabon
+70;GMB;R11_AFR;R12_AFR;Gambia;Gambia, The;Gambia;Gambia
+71;GEO;R11_FSU;R12_FSU;Georgia;Georgia;Georgia;Georgia
+72;DEU;R11_WEU;R12_WEU;Germany;Germany;Germany;Germany
+73;GHA;R11_AFR;R12_AFR;Ghana;Ghana;Ghana;Ghana
+74;GIB;R11_WEU;R12_WEU;Gibraltar;;Gibraltar;
+75;;R11_PAS;R12_PAS;Gilbert-Kiribati;;;
+76;GRC;R11_WEU;R12_WEU;Greece;Greece;Greece;Greece
+77;GRL;R11_WEU;R12_WEU;Greenland;;Greenland;
+78;GRD;R11_LAM;R12_LAM;Grenada;Grenada;Grenada;Grenada
+79;GLP;R11_LAM;R12_LAM;Guadeloupe;;Guadeloupe;
+80;GUM;R11_NAM;R12_NAM;Guam;;Guam;
+81;GTM;R11_LAM;R12_LAM;Guatemala;Guatemala;Guatemala;Guatemala
+82;GIN;R11_AFR;R12_AFR;Guinea;Guinea;Guinea;Guinea
+83;GNB;R11_AFR;R12_AFR;Guinea-Bissau;Guinea-Bissau;Guinea-Bissau;Guinea-Bissau
+84;GUY;R11_LAM;R12_LAM;Guyana;Guyana;Guyana;Guyana
+85;HTI;R11_LAM;R12_LAM;Haiti;Haiti;Haiti;Haiti
+86;HND;R11_LAM;R12_LAM;Honduras;Honduras;Honduras;Honduras
+87;HUN;R11_EEU;R12_EEU;Hungary;Hungary;Hungary;Hungary
+88;ISL;R11_WEU;R12_WEU;Iceland;Iceland;Iceland;Iceland
+89;IND;R11_SAS;R12_SAS;India;India;India;India
+90;IDN;R11_PAS;R12_PAS;Indonesia;Indonesia;Indonesia;Indonesia
+91;IRN;R11_MEA;R12_MEA;Iran (Islamic Republic);Iran;Iran, Islamic Republic of;Iran (Islamic Republic of)
+92;IRQ;R11_MEA;R12_MEA;Iraq;Iraq;Iraq;Iraq
+93;IRL;R11_WEU;R12_WEU;Ireland;Ireland;Ireland;Ireland
+94;IMN;R11_WEU;R12_WEU;Isle of Man;;;
+95;ISR;R11_MEA;R12_MEA;Israel;Israel;Israel;Israel
+96;ITA;R11_WEU;R12_WEU;Italy;Italy;Italy;Italy
+97;JAM;R11_LAM;R12_LAM;Jamaica;Jamaica;Jamaica;Jamaica
+98;JPN;R11_PAO;R12_PAO;Japan;Japan;Japan;Japan
+99;JOR;R11_MEA;R12_MEA;Jordan;Jordan;Jordan;Jordan
+100;KAZ;R11_FSU;R12_FSU;Kazakhstan;Kazakhstan;Kazakhstan;Kazakhstan
+101;KEN;R11_AFR;R12_AFR;Kenya;Kenya;Kenya;Kenya
+102;PRK;R11_CPA;R12_RCPA;Korea (DPR);Korea, Dem. Rep. (North);Korea, Democratic People's Republic of;Democratic People's Republic of Korea
+103;KWT;R11_MEA;R12_MEA;Kuwait;Kuwait;Kuwait;Kuwait
+104;KGZ;R11_FSU;R12_FSU;Kyrgyzstan;Kyrgyzstan;Kyrgyzstan;Kyrgyzstan
+105;LAO;R11_CPA;R12_RCPA;Laos (PDR);Laos;Lao People's Democratic Republic;Lao People's Democratic Republic
+106;LVA;R11_EEU;R12_EEU;Latvia;Latvia;Latvia;Latvia
+107;LBN;R11_MEA;R12_MEA;Lebanon;Lebanon;Lebanon;Lebanon
+108;LSO;R11_AFR;R12_AFR;Lesotho;Lesotho;Lesotho;Lesotho
+109;LBR;R11_AFR;R12_AFR;Liberia;Liberia;Liberia;Liberia
+110;LBY;R11_MEA;R12_MEA;Libya/SPLAJ;Libya;Libyan Arab Jamahiriya;Libya
+111;LIE;R11_WEU;R12_WEU;Liechtenstein;;;Liechtenstein
+112;LTU;R11_EEU;R12_EEU;Lithuania;Lithuania;Lithuania;Lithuania
+113;LUX;R11_WEU;R12_WEU;Luxembourg;Luxembourg;Luxembourg;Luxembourg
+114;MDG;R11_AFR;R12_AFR;Madagascar;Madagascar;Madagascar;Madagascar
+115;;R11_WEU;R12_WEU;Madeira;;;
+116;MWI;R11_AFR;R12_AFR;Malawi;Malawi;Malawi;Malawi
+117;MYS;R11_PAS;R12_PAS;Malaysia;Malaysia;Malaysia;Malaysia
+118;MDV;R11_SAS;R12_SAS;Maldives;Maldives;Maldives;Maldives
+119;MLI;R11_AFR;R12_AFR;Mali;Mali;Mali;Mali
+120;MLT;R11_WEU;R12_WEU;Malta;Malta;Malta;Malta
+121;MTQ;R11_LAM;R12_LAM;Martinique;;Martinique;
+122;MRT;R11_AFR;R12_AFR;Mauritania;Mauritania;Mauritania;Mauritania
+123;MUS;R11_AFR;R12_AFR;Mauritius;Mauritius;Mauritius;Mauritius
+124;MEX;R11_LAM;R12_LAM;Mexico;Mexico;Mexico;Mexico
+125;MCO;R11_WEU;R12_WEU;Monaco;;;Monaco
+126;MNG;R11_CPA;R12_RCPA;Mongolia;Mongolia;Mongolia;Mongolia
+127;MAR;R11_MEA;R12_MEA;Morocco;Morocco;Morocco;Morocco
+128;MOZ;R11_AFR;R12_AFR;Mozambique;Mozambique;Mozambique;Mozambique
+129;MMR;R11_PAS;R12_PAS;Myanmar;Myanmar;Myanmar;Myanmar
+130;NAM;R11_AFR;R12_AFR;Namibia;Namibia;Namibia;Namibia
+131;NPL;R11_SAS;R12_SAS;Nepal;Nepal;Nepal;Nepal
+132;NLD;R11_WEU;R12_WEU;Netherlands;Netherlands;Netherlands;Netherlands
+133;ANT;R11_LAM;R12_LAM;Netherlands Antilles;;;
+134;NCL;R11_PAS;R12_PAS;New Caledonia;;New Caledonia;
+136;NZL;R11_PAO;R12_PAO;New Zealand;New Zealand;New Zealand;New Zealand
+137;NIC;R11_LAM;R12_LAM;Nicaragua;Nicaragua;Nicaragua;Nicaragua
+138;NER;R11_AFR;R12_AFR;Niger;Niger;Niger;Niger
+139;NGA;R11_AFR;R12_AFR;Nigeria;Nigeria;Nigeria;Nigeria
+140;NOR;R11_WEU;R12_WEU;Norway;Norway;Norway;Norway
+141;OMN;R11_MEA;R12_MEA;Oman;Oman;Oman;Oman
+142;PAK;R11_SAS;R12_SAS;Pakistan;Pakistan;Pakistan;Pakistan
+143;PAN;R11_LAM;R12_LAM;Panama;Panama;Panama;Panama
+144;PNG;R11_PAS;R12_PAS;Papua New Guinea;Papua New Guinea;Papua New Guinea;Papua New Guinea
+145;PRY;R11_LAM;R12_LAM;Paraguay;Paraguay;Paraguay;Paraguay
+146;PER;R11_LAM;R12_LAM;Peru;Peru;Peru;Peru
+147;PHL;R11_PAS;R12_PAS;Philippines;Philippines;Philippines;Philippines
+148;POL;R11_EEU;R12_EEU;Poland;Poland;Poland;Poland
+149;PRT;R11_WEU;R12_WEU;Portugal;Portugal;Portugal;Portugal
+150;PRI;R11_NAM;R12_NAM;Puerto Rico;;Puerto Rico;
+151;QAT;R11_MEA;R12_MEA;Qatar;Qatar;Qatar;Qatar
+152;KOR;R11_PAS;R12_PAS;Republic of Korea;Korea, Rep. (South);Korea, Republic of;Republic of Korea
+153;MDA;R11_FSU;R12_FSU;Republic of Moldova;Moldova;Moldova, Republic of;Republic of Moldova
+154;REU;R11_AFR;R12_AFR;Reunion;;Reunion;
+155;ROU;R11_EEU;R12_EEU;Romania;Romania;Romania;Romania
+156;RUS;R11_FSU;R12_FSU;Russian Federation;Russian Federation;Russian Federation;Russian Federation
+157;RWA;R11_AFR;R12_AFR;Rwanda;Rwanda;Rwanda;Rwanda
+158;SHN;R11_AFR;R12_AFR;Saint Helena;;Saint Helena;
+159;KNA;R11_LAM;R12_LAM;Saint Kitts and Nevis;Saint Kitts & Nevis;Saint Kitts and Nevis;Saint Kitts and Nevis
+160;VCT;R11_LAM;R12_LAM;Saint Vincent and the Grenadines;Saint Vincent & Grenadines;Saint Vincent and the Grenadines;Saint Vincent and the Grenadines
+161;LCA;R11_LAM;R12_LAM;Santa Lucia;Saint Lucia;Saint Lucia;Saint Lucia
+162;STP;R11_AFR;R12_AFR;Sao Tome and Principe;Sao Tome & Principe;Sao Tome and Principe;Sao Tome and Principe
+163;SAU;R11_MEA;R12_MEA;Saudi Arabia;Saudi Arabia;Saudi Arabia;Saudi Arabia
+164;SEN;R11_AFR;R12_AFR;Senegal;Senegal;Senegal;Senegal
+165;SYC;R11_AFR;R12_AFR;Seychelles;Seychelles;Seychelles;Seychelles
+166;SLE;R11_AFR;R12_AFR;Sierra Leone;Sierra Leone;Sierra Leone;Sierra Leone
+167;SGP;R11_PAS;R12_PAS;Singapore;Singapore;Singapore;Singapore
+168;SVK;R11_EEU;R12_EEU;Slovak Republic;Slovakia;Slovakia;Slovakia
+169;SVN;R11_EEU;R12_EEU;Slovenia;Slovenia;Slovenia;Slovenia
+170;SLB;R11_PAS;R12_PAS;Solomon Islands;Solomon Islands;Solomon Islands;Solomon Islands
+171;SOM;R11_AFR;R12_AFR;Somalia;;Somalia;Somalia
+172;ZAF;R11_AFR;R12_AFR;South Africa;South Africa;South Africa;South Africa
+173;ESP;R11_WEU;R12_WEU;Spain;Spain;Spain;Spain
+174;LKA;R11_SAS;R12_SAS;Sri Lanka;Sri Lanka;Sri Lanka;Sri Lanka
+175;SDN;R11_MEA;R12_MEA;Sudan;Sudan;Sudan;Sudan
+176;SUR;R11_LAM;R12_LAM;Suriname;Suriname;Suriname;Suriname
+177;SWZ;R11_AFR;R12_AFR;Swaziland;Swaziland;Swaziland;Swaziland
+178;SWE;R11_WEU;R12_WEU;Sweden;Sweden;Sweden;Sweden
+179;CHE;R11_WEU;R12_WEU;Switzerland;Switzerland;Switzerland;Switzerland
+180;SYR;R11_MEA;R12_MEA;Syria (Arab Republic);Syria;Syrian Arab Republic;Syrian Arab Republic
+181;TWN;R11_PAS;R12_PAS;Taiwan (China);;Taiwan_Province of China;
+182;TJK;R11_FSU;R12_FSU;Tajikistan;Tajikistan;Tajikistan;Tajikistan
+183;TZA;R11_AFR;R12_AFR;Tanzania;Tanzania;Tanzania_United Republic of;United Republic of Tanzania
+184;THA;R11_PAS;R12_PAS;Thailand;Thailand;Thailand;Thailand
+185;MKD;R11_EEU;R12_EEU;The former Yugoslav Rep. of Macedonia;Macedonia, FYR;Macedonia, the former Yugoslav Republic of;The former Yugoslav Republic of Macedonia
+186;TGO;R11_AFR;R12_AFR;Togo;Togo;Togo;Togo
+187;TON;R11_PAS;R12_PAS;Tonga;Tonga;Tonga;Tonga
+188;TTO;R11_LAM;R12_LAM;Trinidad and Tobago;Trinidad & Tobago;Trinidad and Tobago;Trinidad and Tobago
+189;TUN;R11_MEA;R12_MEA;Tunisia;Tunisia;Tunisia;Tunisia
+190;TUR;R11_WEU;R12_WEU;Turkey;Turkey;Turkey;Turkey
+191;TKM;R11_FSU;R12_FSU;Turkmenistan;Turkmenistan;Turkmenistan;Turkmenistan
+192;UGA;R11_AFR;R12_AFR;Uganda;Uganda;Uganda;Uganda
+193;UKR;R11_FSU;R12_FSU;Ukraine;Ukraine;Ukraine;Ukraine
+194;ARE;R11_MEA;R12_MEA;United Arab Emirates;United Arab Emirates;United Arab Emirates;United Arab Emirates
+195;GBR;R11_WEU;R12_WEU;United Kingdom;United Kingdom;United Kingdom;United Kingdom of Great Britain and Northern Ireland
+196;USA;R11_NAM;R12_NAM;United States of America;United States;United States;United States of America
+197;URY;R11_LAM;R12_LAM;Uruguay;Uruguay;Uruguay;Uruguay
+198;UZB;R11_FSU;R12_FSU;Uzbekistan (the Baltic republics are in the Central and Eastern Europe region);Uzbekistan;Uzbekistan;Uzbekistan
+199;VUT;R11_PAS;R12_PAS;Vanuatu;Vanuatu;Vanuatu;Vanuatu
+200;VEN;R11_LAM;R12_LAM;Venezuela;Venezuela;Venezuela;Venezuela (Bolivarian Republic of)
+201;VNM;R11_CPA;R12_RCPA;Viet Nam;Vietnam;Viet Nam;Viet Nam
+202;VIR;R11_NAM;R12_NAM;Virgin Islands;;Virgin Islands_British;
+203;WSM;R11_PAS;R12_PAS;Western Samoa;Samoa;;Samoa
+204;YEM;R11_MEA;R12_MEA;Yemen;Yemen;Yemen;Yemen
+205;;R11_EEU;R12_EEU;Yugoslavia;;;
+206;;R11_AFR;R12_AFR;Zaire;;;
+207;ZMB;R11_AFR;R12_AFR;Zambia;Zambia;Zambia;Zambia
+208;ZWE;R11_AFR;R12_AFR;Zimbabwe;Zimbabwe;Zimbabwe;Zimbabwe

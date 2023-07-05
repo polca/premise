@@ -220,6 +220,7 @@ diesel:
   iam_aliases:
     remind: SE|Liquids|Fossil|+|Oil
     image: Secondary Energy|Consumption|Liquids|Fossil
+    message: Secondary Energy|Liquids|Oil
   eff_aliases:
     remind: Tech|Liquids|Fossil|Oil|Efficiency
   ecoinvent_aliases:
@@ -243,6 +244,7 @@ gasoline:
   iam_aliases:
     remind: SE|Liquids|Fossil|+|Oil
     image: Secondary Energy|Consumption|Liquids|Fossil
+    message: Secondary Energy|Liquids|Oil
   eff_aliases:
     remind: Tech|Liquids|Fossil|Oil|Efficiency
   ecoinvent_aliases:
