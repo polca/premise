@@ -611,21 +611,31 @@ class BaseTransformation:
                 ds_name = d_act[region]["name"]
                 ds_ref_prod = d_act[region]["reference product"]
 
-        if delete_original_dataset:
-            # add dataset to emptied datasets list
-            for ds in self.database:
-                if (ds["name"] == ds_name) and (ds["reference product"] == ds_ref_prod):
-                    self.modified_datasets[(self.model, self.scenario, self.year)][
-                        "emptied"
-                    ].append(
-                        (
-                            ds["name"],
-                            ds["reference product"],
-                            ds["location"],
-                            ds["unit"],
-                        )
+        # add dataset to emptied datasets list
+        for ds in self.database:
+            if (ds["name"] == ds_name) and (ds["reference product"] == ds_ref_prod):
+                self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "emptied"
+                ].append(
+                    (
+                        ds["name"],
+                        ds["reference product"],
+                        ds["location"],
+                        ds["unit"],
                     )
+                )
 
+        # empty original datasets
+        # and make them link to new regional datasets
+        self.empty_original_datasets(
+            name=ds_name,
+            ref_prod=ds_ref_prod,
+            loc_map=d_iam_to_eco,
+            production_variable=production_variable,
+            regions=regions,
+        )
+
+        if delete_original_dataset:
             # remove the dataset from `self.database`
             self.database = [
                 ds
@@ -634,17 +644,6 @@ class BaseTransformation:
                     ds["name"] == ds_name and ds["reference product"] == ds_ref_prod
                 )
             ]
-
-        else:
-            # empty original datasets
-            # and make them link to new regional datasets
-            self.empty_original_datasets(
-                name=ds_name,
-                ref_prod=ds_ref_prod,
-                loc_map=d_iam_to_eco,
-                production_variable=production_variable,
-                regions=regions,
-            )
 
         return d_act
 
@@ -733,17 +732,18 @@ class BaseTransformation:
                 else:
                     share = 1 / len(iam_locs)
 
-                existing_ds["exchanges"].append(
-                    {
-                        "name": existing_ds["name"],
-                        "product": existing_ds["reference product"],
-                        "amount": share,
-                        "unit": existing_ds["unit"],
-                        "uncertainty type": 0,
-                        "location": iam_loc,
-                        "type": "technosphere",
-                    }
-                )
+                if share > 0:
+                    existing_ds["exchanges"].append(
+                        {
+                            "name": existing_ds["name"],
+                            "product": existing_ds["reference product"],
+                            "amount": share,
+                            "unit": existing_ds["unit"],
+                            "uncertainty type": 0,
+                            "location": iam_loc,
+                            "type": "technosphere",
+                        }
+                    )
 
             # add dataset to emptied datasets list
             self.modified_datasets[(self.model, self.scenario, self.year)][
@@ -814,19 +814,23 @@ class BaseTransformation:
                     if isinstance(entry, tuple):
                         entry = [entry + (1.0,)]
 
-                # not in cache, so find new candidate
+                # not in cache, so find new candidates
                 else:
                     names_to_look_for = [exc[0], *alt_names]
-
                     if exc[0].startswith("market group for"):
                         names_to_look_for.append(
                             exc[0].replace("market group for", "market for")
                         )
 
-                    alternative_locations = (
-                        [act["location"]]
-                        if act["location"] in self.regions
-                        else [self.ecoinvent_to_iam_loc[act["location"]]]
+                    alternative_locations = []
+
+                    if act["location"] in self.regions:
+                        alternative_locations = [
+                            act["location"],
+                        ]
+
+                    alternative_locations.extend(
+                        [self.ecoinvent_to_iam_loc[act["location"]]]
                     )
 
                     for name_to_look_for, alt_loc in product(
