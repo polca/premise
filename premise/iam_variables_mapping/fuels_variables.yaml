@@ -399,9 +399,6 @@ hydrogen, electrolysis:
     remind: Tech|Hydrogen|Electricity|Efficiency
   ecoinvent_aliases:
     fltr:
-      - hydrogen supply, from electrolysis
-      - hydrogen production, gaseous, 25 bar, from electrolysis
-      - hydrogen production, gaseous, 700 bar, from electrolysis
       - hydrogen production, gaseous, 200 bar, from PEM electrolysis, from grid electricity
 
 hydrogen, solar:
@@ -433,9 +430,6 @@ hydrogen, biomass:
     remind: Tech|Hydrogen|Biomass|w/o CC|Efficiency
   ecoinvent_aliases:
     fltr:
-      - hydrogen supply, from gasification of biomass, by
-      - hydrogen supply, from gasification of biomass by heatpipe reformer, by
-      - hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant
 
 hydrogen, biomass, with CCS:
@@ -449,9 +443,6 @@ hydrogen, biomass, with CCS:
     remind: Tech|Hydrogen|Biomass|w/ CC|Efficiency
   ecoinvent_aliases:
     fltr:
-      - hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS
-      - hydrogen supply, from gasification of biomass, with CCS
-      - hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant
 
 hydrogen, coal:
@@ -464,7 +455,7 @@ hydrogen, coal:
   eff_aliases:
     remind: Tech|Hydrogen|Coal|w/o CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen supply, from coal gasification, by truck, as gaseous, over 500 km
+    fltr: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant
 
 hydrogen, coal, with CCS:
   lhv: 120
@@ -476,7 +467,7 @@ hydrogen, coal, with CCS:
   eff_aliases:
     remind: Tech|Hydrogen|Coal|w/ CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen supply, from coal gasification, with CCS, by truck, as gaseous, over 500 km
+    fltr: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, with CCS, at coal gasification plant
 
 
 hydrogen, nat. gas:
@@ -489,7 +480,7 @@ hydrogen, nat. gas:
   eff_aliases:
     remind: Tech|Hydrogen|Gas|w/o CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
+    fltr: hydrogen production, steam methane reforming of natural gas, 25 bar
 
 hydrogen, nat. gas, with CCS:
   lhv: 120
@@ -501,7 +492,7 @@ hydrogen, nat. gas, with CCS:
   eff_aliases:
     remind: Tech|Hydrogen|Gas|w/ CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+    fltr: hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar
 
 hydrogen, biogas:
   lhv: 120
@@ -509,14 +500,15 @@ hydrogen, biogas:
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - hydrogen supply, from SMR of biogas, by
+      - hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar
+
 hydrogen, biogas, with CCS:
   lhv: 120
   co2: 0
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - hydrogen supply, from SMR of biogas, with CCS
+      - hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar
 hydrogen:
   lhv: 120
   co2: 0
