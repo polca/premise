@@ -34,9 +34,10 @@ Biomass CHP CCS:
       - heat and power co-generation, wood chips, 6667 kW
 Biomass ST:
   iam_aliases:
-    message: 
+    message: Secondary Energy|Electricity|Biomass|w/o CCS|2
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
   eff_aliases:
+    message: Efficiency|Electricity|Biomass|w/o CCS|2
     image: Efficiency|Electricity|Biomass|w/o CCS|1
 
   ecoinvent_aliases:
@@ -45,15 +46,15 @@ Biomass ST:
   ecoinvent_fuel_aliases:
     fltr:
       - Wood chips, burned in power plant 20 MW, truck 25km, no CCS
-
 Biomass IGCC CCS:
   iam_aliases:
-    message: 
+    message: Secondary Energy|Electricity|Biomass|w/ CCS|1
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     image: Secondary Energy|Electricity|Biomass|w/ CCS|1
   eff_aliases:
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     image: Efficiency|Electricity|Biomass|w/ CCS|1
+    message: Efficiency|Electricity|Biomass|w/o CCS|1
   ecoinvent_aliases:
     fltr:
       - electricity production, at wood burning power plant 20 MW, truck 25km, p
@@ -65,15 +66,15 @@ Biomass IGCC CCS:
       - Hydrogen, gaseous, 25 bar, from dual fluidised bed gasification of woody biomass with CCS, at gasification plant
       - market for wood chips
       - market for biomass, used as fuel
-
 Biomass IGCC:
   iam_aliases:
-    message: 
+    message: Secondary Energy|Electricity|Biomass|w/o CCS|1
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/o CC
     image: Secondary Energy|Electricity|Biomass|w/o CCS|2
   eff_aliases:
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/o CC|Efficiency
     image: Efficiency|Electricity|Biomass|w/o CCS|2
+    message: Efficiency|Electricity|Biomass|w/o CCS|1
   ecoinvent_aliases:
     fltr:
       - electricity production, at BIGCC power plant, no CCS
@@ -84,10 +85,11 @@ Biomass IGCC:
 
 Coal PC:
   iam_aliases:
-    message: 
+    message: Secondary Energy|Electricity|Coal|w/o CCS|3
     remind: SE|Electricity|Coal|++|Pulverised Coal w/o CC
     image: Secondary Energy|Electricity|Coal|w/o CCS|1
   eff_aliases:
+    message: Efficiency|Electricity|Coal|w/o CCS|3
     remind: Tech|Electricity|Coal|Pulverised Coal w/o CC|Efficiency
     image: Efficiency|Electricity|Coal|w/o CCS|1
 
@@ -107,13 +109,13 @@ Coal PC:
         - plant
         - briquettes
         - ash
-
 Coal IGCC:
   iam_aliases:
-    message: 
+    message: Secondary Energy|Electricity|Coal|w/o CCS|1
     remind: SE|Electricity|Coal|++|Gasification Combined Cycle w/o CC
     image: Secondary Energy|Electricity|Coal|w/o CCS|2
   eff_aliases:
+    message: Efficiency|Electricity|Coal|w/o CCS|1
     remind: Tech|Electricity|Coal|Gasification Combined Cycle w/o CC|Efficiency
     image: Efficiency|Electricity|Coal|w/o CCS|2
 
@@ -125,12 +127,12 @@ Coal IGCC:
     fltr:
       - Hard coal, burned in power plant/IGCC, no CCS
       - Lignite, burned in power plant/IGCC, no CCS
-
 Coal PC CCS:
   iam_aliases:
-    message: 
+    message: Secondary Energy|Electricity|Coal|w/ CCS|2
     remind: SE|Electricity|Coal|++|Pulverised Coal w/ CC
   eff_aliases:
+    message: Efficiency|Electricity|Coal|w/ CCS|2
     remind: Tech|Electricity|Coal|Pulverised Coal w/ CC|Efficiency
 
   ecoinvent_aliases:
@@ -145,13 +147,13 @@ Coal PC CCS:
       - Hard coal, burned in power plant/pre
       - Lignite, burned in power plant/post
       - Lignite, burned in power plant/pre
-
 Coal IGCC CCS:
   iam_aliases:
-    message:
+    message: Secondary Energy|Electricity|Coal|w/ CCS|1
     remind: SE|Electricity|Coal|++|Gasification Combined Cycle w/ CC
     image: Secondary Energy|Electricity|Coal|w/ CCS|1
   eff_aliases:
+    message: Efficiency|Electricity|Coal|w/ CCS|1
     remind: Tech|Electricity|Coal|Gasification Combined Cycle w/ CC|Efficiency
     image: Efficiency|Electricity|Coal|w/ CCS|1
 
@@ -167,7 +169,6 @@ Coal IGCC CCS:
       - Hard coal, burned in power plant/post
       - Lignite, burned in power plant/pre
       - Lignite, burned in power plant/post
-
 Coal CHP:
   iam_aliases:
     remind: SE|Electricity|Coal|++|Combined Heat and Power w/o CC
@@ -192,7 +193,6 @@ Coal CHP:
         - plant
         - briquettes
         - ash
-
 Coal CHP CCS:
   iam_aliases:
     image: Secondary Energy|Electricity|Coal|w/ CCS|2
@@ -206,12 +206,24 @@ Coal CHP CCS:
   ecoinvent_fuel_aliases:
     fltr:
       - heat and power co-generation, hard coal
+Coal SC: # super critical steam cycle
+  iam_aliases:
+    message: Secondary Energy|Electricity|Coal|w/o CCS|2
+  eff_aliases:
+    message: Efficiency|Electricity|Coal|w/o CCS|2
+Coal PCU: # sub critical steam cycle unfiltered
+  iam_aliases:
+    message: Secondary Energy|Electricity|Coal|w/o CCS|4
+  eff_aliases:
+    message: Efficiency|Electricity|Coal|w/o CCS|4
+
 Gas OC:
   iam_aliases:
-    message: Secondary Energy|Electricity|Gas
+    message: Secondary Energy|Electricity|Gas|w/o CCS|3
     remind: SE|Electricity|Gas|++|Gas Turbine
     image: Secondary Energy|Electricity|Gas|w/o CCS|1
   eff_aliases:
+    message: Efficiency|Electricity|Gas|w/o CCS|3
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
     image: Efficiency|Electricity|Gas|w/o CCS|1
 
@@ -233,10 +245,11 @@ Gas OC:
       - electricity production, natural gas, conventional power plant
 Gas CC:
   iam_aliases:
-    message: 
+    message: Secondary Energy|Electricity|Gas|w/o CCS|1
     remind: SE|Electricity|Gas|++|Combined Cycle w/o CC
     image: Secondary Energy|Electricity|Gas|w/o CCS|2
   eff_aliases:
+    message: Efficiency|Electricity|Gas|w/o CCS|1
     remind: Tech|Electricity|Gas|Combined Cycle w/o CC|Efficiency
     image: Efficiency|Electricity|Gas|w/o CCS|2
 
@@ -295,13 +308,13 @@ Gas CHP CCS:
   ecoinvent_fuel_aliases:
     fltr:
       - heat and power co-generation, natural gas, conventional power plant, 100MW electrical
-
 Gas CC CCS:
   iam_aliases:
-    message: 
+    message: Secondary Energy|Electricity|Gas|w/ CCS|1
     remind: SE|Electricity|Gas|++|Combined Cycle w/ CC
     image: Secondary Energy|Electricity|Gas|w/ CCS|1
   eff_aliases:
+    message: Efficiency|Electricity|Gas|w/ CCS|1
     remind: Tech|Electricity|Gas|Combined Cycle w/ CC|Efficiency
     image: Efficiency|Electricity|Gas|w/ CCS|1
 
@@ -313,6 +326,16 @@ Gas CC CCS:
     fltr:
       - Natural gas, in ATR H2-CC/pre
       - Natural gas, burned in power plant/post
+Gas ST: # ["Note": "Steam cycle sub cricitcal"]
+  iam_aliases:
+    message: Secondary Energy|Electricity|Gas|w/o CCS|2
+    remind: SE|Electricity|Gas|++|Gas Turbine
+    image: Secondary Energy|Electricity|Gas|w/o CCS|1
+  eff_aliases:
+    message: Efficiency|Electricity|Gas|w/o CCS|2
+    remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
+    image: Efficiency|Electricity|Gas|w/o CCS|1
+
 Geothermal:
   iam_aliases:
     message: Secondary Energy|Electricity|Geothermal
@@ -332,9 +355,11 @@ Hydro:
       - electricity production, hydro, run-of-river
 Nuclear:
   iam_aliases:
+    message: Secondary Energy|Efficiency|Electricity|Nuclear
     remind: SE|Electricity|+|Nuclear
     image: Secondary Energy|Electricity|Nuclear
   eff_aliases:
+    message: Efficiency|Electricity|Nuclear
     image: Efficiency|Electricity|Nuclear
   ecoinvent_aliases:
     fltr:
@@ -371,6 +396,7 @@ Nuclear_SMR:
       - market for nuclear fuel element, for pressure water reactor
       - market for nuclear fuel element, for boiling water reactor
       - market for uranium hexafluoride
+
 Oil ST:
   iam_aliases:
     message: 
@@ -393,8 +419,10 @@ Oil ST:
       name: burned
 Oil CC:
   iam_aliases:
+    message: Secondary Energy|Electricity|Oil|w/o CCS|1
     image: Secondary Energy|Electricity|Oil|w/o CCS|2
   eff_aliases:
+    message: Efficiency|Electricity|Oil|w/o CCS|1
     image: Efficiency|Electricity|Oil|w/o CCS|2
 
   ecoinvent_aliases:
@@ -460,15 +488,29 @@ Oil CHP CCS:
       - heat and power co-generation, oil
     mask:
       name: burned
+Loil ST: # ["Note": "Steam cycle light oil"]
+  iam_aliases:
+    message: Secondary Energy|Electricity|Oil|w/o CCS|2
+  eff_aliases:
+    message: Efficiency|Electricity|Oil|w/o CCS|2
+Foil ST: # ["Note": "Steam cycle fuel oil"]
+  iam_aliases:
+    message: Secondary Energy|Electricity|Oil|w/o CCS|3
+  eff_aliases:
+    message: Efficiency|Electricity|Oil|w/o CCS|3
+
 Solar CSP:
   iam_aliases:
-    message: Secondary Energy|Electricity|Solar|CSP
+    message: Secondary Energy|Electricity|Solar|CSP|1
     remind: SE|Electricity|Solar|+|CSP
     image: Secondary Energy|Electricity|Solar|CSP
   ecoinvent_aliases:
     fltr:
       - electricity production, solar thermal parabolic trough, 50 MW
       - electricity production, solar tower power plant, 20 MW
+Solar CSP 3x:
+  iam_aliases:
+    message: Secondary Energy|Electricity|Solar|CSP|2
 Solar PV Centralized:
   iam_aliases:
     message: Secondary Energy|Electricity|Solar|PV
