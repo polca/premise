@@ -291,6 +291,7 @@ class BaseTransformation:
         # And include them proportionally to it
 
         ecoinvent_regions = self.geo.iam_to_ecoinvent_location(dataset_location)
+
         possible_locations = [
             dataset_location,
             [*ecoinvent_regions],
@@ -319,23 +320,28 @@ class BaseTransformation:
                 ws.exclude(ws.either(*[ws.contains("name", x) for x in blacklist]))
             )
 
-        while not suppliers:
-            suppliers = list(
-                ws.get_many(
-                    self.database,
-                    ws.either(*[ws.contains("name", sup) for sup in possible_names]),
-                    ws.either(
-                        *[
-                            ws.equals("location", item)
-                            for item in possible_locations[counter]
-                        ]
+        try:
+            while not suppliers:
+                suppliers = list(
+                    ws.get_many(
+                        self.database,
+                        ws.either(*[ws.contains("name", sup) for sup in possible_names]),
+                        ws.either(
+                            *[
+                                ws.equals("location", item)
+                                for item in possible_locations[counter]
+                            ]
+                        )
+                        if isinstance(possible_locations[counter], list)
+                        else ws.equals("location", possible_locations[counter]),
+                        *extra_filters,
                     )
-                    if isinstance(possible_locations[counter], list)
-                    else ws.equals("location", possible_locations[counter]),
-                    *extra_filters,
                 )
-            )
-            counter += 1
+                counter += 1
+        except IndexError:
+            raise IndexError("No supplier found for {} in {}, "
+                             "looking for terms: {} "
+                             "and with blacklist: {}".format(possible_names, possible_locations, look_for, blacklist))
 
         suppliers = get_shares_from_production_volume(suppliers)
 
@@ -402,6 +408,7 @@ class BaseTransformation:
         if fuel_unit in ["kilogram", "cubic meter", "kilowatt hour"]:
             try:
                 lhv = self.fuels_specs[self.fuel_map_reverse[fuel_name]]["lhv"]
+
             except KeyError:
                 lhv = 0
         else:
