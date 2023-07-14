@@ -1592,8 +1592,7 @@ class Electricity(BaseTransformation):
             dataset["name"]
             for dataset in self.database
             if dataset["name"]
-            in [y for k, v in self.powerplant_map.items()
-                for y in v if k in techs]
+            in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
         ]
 
         list_datasets_to_duplicate.extend(
@@ -1605,7 +1604,6 @@ class Electricity(BaseTransformation):
                 "carbon dioxide, captured from natural gas",
                 "carbon dioxide, captured at wood burning",
                 "carbon dioxide, captured at hydrogen burning",
-
             ]
         )
 
@@ -1632,8 +1630,7 @@ class Electricity(BaseTransformation):
                     providers = [
                         e
                         for e in plant["exchanges"]
-                        if e["type"] == "technosphere"
-                           and e["unit"] == "kilowatt hour"
+                        if e["type"] == "technosphere" and e["unit"] == "kilowatt hour"
                     ]
 
                     for provider in providers:
@@ -1729,13 +1726,14 @@ class Electricity(BaseTransformation):
                     ]
                 ),
             ):
-
                 if (
                     dataset["name"],
                     dataset["reference product"],
                     dataset["location"],
                     dataset["unit"],
-                ) in self.modified_datasets[(self.model, self.scenario, self.year)]["emptied"]:
+                ) in self.modified_datasets[(self.model, self.scenario, self.year)][
+                    "emptied"
+                ]:
                     continue
 
                 # Find current efficiency
@@ -1744,8 +1742,15 @@ class Electricity(BaseTransformation):
                 )
 
                 if not self.use_absolute_efficiency:
-                    iam_location = self.geo.ecoinvent_to_iam_location(dataset["location"])
-                    if iam_location in self.iam_data.electricity_efficiencies.coords["region"].values:
+                    iam_location = self.geo.ecoinvent_to_iam_location(
+                        dataset["location"]
+                    )
+                    if (
+                        iam_location
+                        in self.iam_data.electricity_efficiencies.coords[
+                            "region"
+                        ].values
+                    ):
                         # Find relative efficiency change indicated by the IAM
                         scaling_factor = 1 / self.find_iam_efficiency_change(
                             data=self.iam_data.electricity_efficiencies,
@@ -1760,7 +1765,9 @@ class Electricity(BaseTransformation):
                     new_efficiency = self.find_iam_efficiency_change(
                         data=self.iam_data.electricity_efficiencies,
                         variable=technology,
-                        location=self.geo.ecoinvent_to_iam_location(dataset["location"]),
+                        location=self.geo.ecoinvent_to_iam_location(
+                            dataset["location"]
+                        ),
                     )
 
                     if ei_eff != 1 and not np.isnan(new_efficiency):
@@ -1917,7 +1924,7 @@ class Electricity(BaseTransformation):
                                         }
                                     )
 
-                    #self.write_log(dataset=dataset, status="updated")
+                    # self.write_log(dataset=dataset, status="updated")
 
     def update_electricity_markets(self) -> None:
         """
