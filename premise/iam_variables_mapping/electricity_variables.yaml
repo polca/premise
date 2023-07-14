@@ -355,7 +355,7 @@ Hydro:
       - electricity production, hydro, run-of-river
 Nuclear:
   iam_aliases:
-    message: Secondary Energy|Efficiency|Electricity|Nuclear
+    message: Secondary Energy|Electricity|Nuclear
     remind: SE|Electricity|+|Nuclear
     image: Secondary Energy|Electricity|Nuclear
   eff_aliases:
