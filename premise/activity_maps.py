@@ -3,13 +3,12 @@ activity_maps.py contains InventorySet, which is a class that provides all neces
 mapping between ``premise`` and ``ecoinvent`` terminology.
 """
 
-import csv
 from collections import defaultdict
 from pathlib import Path
-from pprint import pprint
 from typing import List, Union
 
 import yaml
+from wurst import searching as ws
 
 from . import DATA_DIR, VARIABLES_DIR
 
@@ -33,7 +32,7 @@ def get_mapping(filepath: Path, var: str) -> dict:
     """
 
     with open(filepath, "r", encoding="utf-8") as stream:
-        techs = yaml.safe_load(stream)
+        techs = yaml.full_load(stream)
 
     mapping = {}
     for key, val in techs.items():
@@ -61,8 +60,9 @@ class InventorySet:
     These functions return the result of applying :func:`act_fltr` to the filter dictionaries.
     """
 
-    def __init__(self, database: List[dict]) -> None:
+    def __init__(self, database: List[dict], version: str = None) -> None:
         self.database = database
+        self.version = version
 
         self.powerplant_filters = get_mapping(
             filepath=POWERPLANT_TECHS, var="ecoinvent_aliases"
@@ -235,28 +235,24 @@ class InventorySet:
 
         assert len(fltr) > 0, "Filter dict must not be empty."
 
-        for field in fltr:
-            conditions = fltr[field]
-            if isinstance(conditions, list):
-                for condition in conditions:
-                    # this is effectively connecting the statements by *or*
-                    result.extend(
-                        [act for act in database if like(act[field], condition)]
-                    )
+        # find `act` in `database` that match `fltr`
+        # and do not match `mask`
+        filters = []
+        for field, value in fltr.items():
+            if isinstance(value, list):
+                filters.extend([ws.either(*[ws.contains(field, v) for v in value])])
             else:
-                result.extend([act for act in database if like(act[field], conditions)])
+                filters.append(ws.contains(field, value))
 
-        for field in mask:
-            conditions = mask[field]
-            if isinstance(conditions, list):
-                for condition in conditions:
-                    # this is effectively connecting the statements by *and*
-                    result = [act for act in result if notlike(act[field], condition)]
+        for field, value in mask.items():
+            if isinstance(value, list):
+                filters.extend([ws.exclude(ws.contains(field, v)) for v in value])
             else:
-                result = [act for act in result if notlike(act[field], conditions)]
-        return result
+                filters.append(ws.exclude(ws.contains(field, value)))
 
-    def generate_sets_from_filters(self, filtr: dict) -> dict:
+        return list(ws.get_many(database, *filters))
+
+    def generate_sets_from_filters(self, filtr: dict, database=None) -> dict:
         """
         Generate a dictionary with sets of activity names for
         technologies from the filter specifications.
@@ -267,7 +263,8 @@ class InventorySet:
             and a set of activity data set names as values.
         :rtype: dict
         """
-        techs = {
-            tech: self.act_fltr(self.database, **fltr) for tech, fltr in filtr.items()
-        }
+
+        database = database or self.database
+
+        techs = {tech: self.act_fltr(database, **fltr) for tech, fltr in filtr.items()}
         return {tech: {act["name"] for act in actlst} for tech, actlst in techs.items()}

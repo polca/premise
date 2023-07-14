@@ -2184,8 +2184,11 @@ class Fuels(BaseTransformation):
                 "low pressure",
                 "pressure, vehicle grade",
                 "burned",
-                #"market",
+                "market",
             ]
+
+            if "natural gas" in dataset["name"]:
+                blacklist.remove("market")
 
             if "low-sulfur" in dataset["name"]:
                 blacklist.append("unleaded")

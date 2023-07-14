@@ -1592,17 +1592,20 @@ class Electricity(BaseTransformation):
             dataset["name"]
             for dataset in self.database
             if dataset["name"]
-            in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
+            in [y for k, v in self.powerplant_map.items()
+                for y in v if k in techs]
         ]
 
         list_datasets_to_duplicate.extend(
             [
-                "Wood chips, burned in power plant",
-                "Natural gas, in ATR ",
-                "Hard coal, burned",
-                "Lignite, burned",
-                "CO2 storage/",
-                "CO2 capture/",
+                "carbon dioxide storage from",
+                "carbon dioxide storage at",
+                "carbon dioxide, captured from hard coal",
+                "carbon dioxide, captured from lignite",
+                "carbon dioxide, captured from natural gas",
+                "carbon dioxide, captured at wood burning",
+                "carbon dioxide, captured at hydrogen burning",
+
             ]
         )
 
@@ -1626,11 +1629,11 @@ class Electricity(BaseTransformation):
             if "CHP CCS" in self.powerplant_map_rev.get(dataset["name"], ""):
                 for plant in new_plants.values():
                     co2_amount = 0
-
                     providers = [
                         e
                         for e in plant["exchanges"]
-                        if e["type"] == "technosphere" and e["unit"] == "kilowatt hour"
+                        if e["type"] == "technosphere"
+                           and e["unit"] == "kilowatt hour"
                     ]
 
                     for provider in providers:
@@ -1653,7 +1656,7 @@ class Electricity(BaseTransformation):
                         if (
                             exc["type"] == "technosphere"
                             and exc["unit"] == "kilogram"
-                            and exc["name"].startswith("CO2 capture")
+                            and exc["name"].startswith("carbon dioxide, captured")
                         ):
                             exc["amount"] = co2_amount * 0.9
 
@@ -1726,13 +1729,21 @@ class Electricity(BaseTransformation):
                     ]
                 ),
             ):
+
+                if (
+                    dataset["name"],
+                    dataset["reference product"],
+                    dataset["location"],
+                    dataset["unit"],
+                ) in self.modified_datasets[(self.model, self.scenario, self.year)]["emptied"]:
+                    continue
+
                 # Find current efficiency
                 ei_eff = dict_technology["current_eff_func"](
                     dataset, dict_technology["fuel filters"], 3.6
                 )
 
                 if not self.use_absolute_efficiency:
-
                     iam_location = self.geo.ecoinvent_to_iam_location(dataset["location"])
                     if iam_location in self.iam_data.electricity_efficiencies.coords["region"].values:
                         # Find relative efficiency change indicated by the IAM
@@ -1835,7 +1846,7 @@ class Electricity(BaseTransformation):
                     if not np.isnan(new_eff.values.item(0)):
                         wurst.change_exchanges_by_constant_factor(
                             dataset,
-                            new_eff.values.item(0) / ei_eff,
+                            ei_eff / new_eff.values.item(0),
                         )
 
                         if "log parameters" not in dataset:
@@ -1843,8 +1854,14 @@ class Electricity(BaseTransformation):
 
                         dataset["log parameters"].update(
                             {
-                                f"efficiency change": new_eff.values.item(0) / ei_eff,
+                                f"ecoinvent original efficiency": ei_eff,
+                                f"Oberschelp et al. efficiency": new_eff.values.item(0),
+                                f"efficiency change": ei_eff / new_eff.values.item(0),
                             }
+                        )
+
+                        self.update_ecoinvent_efficiency_parameter(
+                            dataset, ei_eff, new_eff.values.item(0)
                         )
 
                     substances = [
@@ -2021,6 +2038,8 @@ class Electricity(BaseTransformation):
             f"{dataset.get('log parameters', {}).get('transformation loss', '')}|"
             f"{dataset.get('log parameters', {}).get('distribution loss', '')}|"
             f"{dataset.get('log parameters', {}).get('renewable share', '')}|"
+            f"{dataset.get('log parameters', {}).get('ecoinvent original efficiency', '')}|"
+            f"{dataset.get('log parameters', {}).get('Oberschelp et al. efficiency', '')}|"
             f"{dataset.get('log parameters', {}).get('efficiency change', '')}|"
             f"{dataset.get('log parameters', {}).get('CO2 scaling factor', '')}|"
             f"{dataset.get('log parameters', {}).get('SO2 scaling factor', '')}|"

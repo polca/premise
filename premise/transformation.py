@@ -648,7 +648,8 @@ class BaseTransformation:
                 ds
                 for ds in self.database
                 if not (
-                    ds["name"] == ds_name and ds["reference product"] == ds_ref_prod
+                    ds["name"] == ds_name
+                    and ds["reference product"] == ds_ref_prod
                 )
             ]
 
@@ -675,7 +676,6 @@ class BaseTransformation:
         regions = regions or self.regions
         if loc_map:
             mapping = defaultdict(set)
-
             for k, v in loc_map.items():
                 if self.geo.ecoinvent_to_iam_location(v) in loc_map.keys():
                     mapping[v].add(self.geo.ecoinvent_to_iam_location(v))
@@ -700,7 +700,8 @@ class BaseTransformation:
             # add tag
             existing_ds["has_downstream_consumer"] = False
             existing_ds["exchanges"] = [
-                e for e in existing_ds["exchanges"] if e["type"] == "production"
+                e for e in existing_ds["exchanges"]
+                if e["type"] == "production"
             ]
 
             # for cases where external scenarios are used
@@ -715,42 +716,55 @@ class BaseTransformation:
 
             _ = lambda x: x if x != 0.0 else 1.0
 
-            for iam_loc in iam_locs:
-                if production_variable and all(
-                    i in self.iam_data.production_volumes.variables.values.tolist()
-                    for i in production_variable
-                ):
-                    share = (
-                        self.iam_data.production_volumes.sel(
-                            region=iam_loc, variables=production_variable
+            if len(iam_locs) == 1:
+                existing_ds["exchanges"].append(
+                    {
+                        "name": existing_ds["name"],
+                        "product": existing_ds["reference product"],
+                        "amount": 1.0,
+                        "unit": existing_ds["unit"],
+                        "uncertainty type": 0,
+                        "location": iam_locs[0],
+                        "type": "technosphere",
+                    }
+                )
+            else:
+                for iam_loc in iam_locs:
+                    if production_variable and all(
+                        i in self.iam_data.production_volumes.variables.values.tolist()
+                        for i in production_variable
+                    ):
+                        share = (
+                            self.iam_data.production_volumes.sel(
+                                region=iam_loc, variables=production_variable
+                            )
+                            .interp(year=self.year)
+                            .sum(dim="variables")
+                            .values.item(0)
+                        ) / _(
+                            self.iam_data.production_volumes.sel(
+                                region=iam_locs, variables=production_variable
+                            )
+                            .interp(year=self.year)
+                            .sum(dim=["variables", "region"])
+                            .values.item(0)
                         )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
-                        .values.item(0)
-                    ) / _(
-                        self.iam_data.production_volumes.sel(
-                            region=iam_locs, variables=production_variable
+
+                    else:
+                        share = 1 / len(iam_locs)
+
+                    if share > 0:
+                        existing_ds["exchanges"].append(
+                            {
+                                "name": existing_ds["name"],
+                                "product": existing_ds["reference product"],
+                                "amount": share,
+                                "unit": existing_ds["unit"],
+                                "uncertainty type": 0,
+                                "location": iam_loc,
+                                "type": "technosphere",
+                            }
                         )
-                        .interp(year=self.year)
-                        .sum(dim=["variables", "region"])
-                        .values.item(0)
-                    )
-
-                else:
-                    share = 1 / len(iam_locs)
-
-                if share > 0:
-                    existing_ds["exchanges"].append(
-                        {
-                            "name": existing_ds["name"],
-                            "product": existing_ds["reference product"],
-                            "amount": share,
-                            "unit": existing_ds["unit"],
-                            "uncertainty type": 0,
-                            "location": iam_loc,
-                            "type": "technosphere",
-                        }
-                    )
 
             # add dataset to emptied datasets list
             self.modified_datasets[(self.model, self.scenario, self.year)][

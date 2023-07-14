@@ -96,6 +96,14 @@ premise_electricity:
         name: Renewable share
         description: Share of renewable electricity (i.e., solar, wind, hydro, wave, geothermal) in the mix
         unit: 0-1
+      ecoinvent original efficiency:
+        name: Original efficiency
+        description: Original efficiency of electricity generation
+        unit: 0-1
+      Oberschelp et al. efficiency:
+        name: New efficiency
+        description: New efficiency according to Oberschelp et al. (2019)
+        unit: 0-1
       efficiency change:
         name: Efficiency change
         description: Change in efficiency of electricity generation

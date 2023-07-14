@@ -46,7 +46,7 @@ pulverised lignite:
             - ash
             - clinker
 lignite:
-  lhv: 11.2
+  lhv: 8.7
   co2: 0.101
   biogenic_share: 0
   ecoinvent_aliases:
@@ -76,6 +76,7 @@ biomass:
   ecoinvent_aliases:
     fltr:
       - market for biomass, used as fuel
+      - market for wood chips
     mask:
       name:
         - clinker
@@ -118,7 +119,7 @@ natural gas:
         - natural gas, at production
         - gas, natural, in ground
         - natural gas production
-        - petroleum and gas production, on-shore
+        - petroleum and gas production
         - market for natural gas
         - market group for natural gas
     mask:
@@ -134,8 +135,10 @@ natural gas:
         - unprocessed
         - station
         - vented
+        - venting
         - liquids
         - domestic
+        - network
 gas, natural, in ground:
   lhv: 45
   co2: 0.0564
@@ -200,6 +203,7 @@ biomethane:
     mask:
       name:
         - burned
+        - station
 waste:
   lhv: 14
   co2: 0.0917
@@ -244,9 +248,12 @@ diesel:
     remind: Tech|Liquids|Fossil|Oil|Efficiency
   ecoinvent_aliases:
     fltr:
+      name:
+        - diesel production
+        - petroleum refinery operation
+        - market for diesel
       reference product:
         - diesel
-        - diesel, low-sulfur
     mask:
       name:
         - import
@@ -276,6 +283,7 @@ gasoline:
       name:
         - petrol production
         - petroleum refinery operation
+        - market for petrol
 
     mask:
       name:

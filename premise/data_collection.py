@@ -893,43 +893,49 @@ class IAMDataCollection:
         # IAM files
 
         if "cement - cco2" not in data.variables.values.tolist():
-            rate.loc[dict(region="World", variables="cement")] = 1
+            rate.loc[dict(region="World", variables="cement")] = 0
         else:
-            rate.loc[dict(region="World", variables="cement")] = (
-                data.loc[
-                    dict(
-                        region=[r for r in self.regions if r != "World"],
-                        variables=dict_vars["cement - cco2"],
-                    )
-                ]
-                .sum(dim=["variables", "region"])
-                .values
-                / data.loc[
-                    dict(
-                        region=[r for r in self.regions if r != "World"],
-                        variables=dict_vars["cement - co2"],
-                    )
-                ]
-                .sum(dim=["variables", "region"])
-                .values
-            )
+            try:
+                rate.loc[dict(region="World", variables="cement")] = (
+                    data.loc[
+                        dict(
+                            region=[r for r in self.regions if r != "World"],
+                            variables=dict_vars["cement - cco2"],
+                        )
+                    ]
+                    .sum(dim=["variables", "region"])
+                    .values
+                    / data.loc[
+                        dict(
+                            region=[r for r in self.regions if r != "World"],
+                            variables=dict_vars["cement - co2"],
+                        )
+                    ]
+                    .sum(dim=["variables", "region"])
+                    .values
+                )
+            except ZeroDivisionError:
+                rate.loc[dict(region="World", variables="cement")] = 0
 
-            rate.loc[dict(region="World", variables="steel")] = data.loc[
-                dict(
-                    region=[r for r in self.regions if r != "World"],
-                    variables=dict_vars["steel - cco2"],
+            try:
+                rate.loc[dict(region="World", variables="steel")] = data.loc[
+                    dict(
+                        region=[r for r in self.regions if r != "World"],
+                        variables=dict_vars["steel - cco2"],
+                    )
+                ].sum(dim=["variables", "region"]) / data.loc[
+                    dict(
+                        region=[r for r in self.regions if r != "World"],
+                        variables=dict_vars["steel - co2"],
+                    )
+                ].sum(
+                    dim=["variables", "region"]
                 )
-            ].sum(dim=["variables", "region"]) / data.loc[
-                dict(
-                    region=[r for r in self.regions if r != "World"],
-                    variables=dict_vars["steel - co2"],
-                )
-            ].sum(
-                dim=["variables", "region"]
-            )
+            except ZeroDivisionError:
+                rate.loc[dict(region="World", variables="steel")] = 0
 
         if "steel - cco2" not in data.variables.values.tolist():
-            rate.loc[dict(region="World", variables="steel")] = 1
+            rate.loc[dict(region="World", variables="steel")] = 0
         else:
             rate.loc[dict(region="World", variables="steel")] = (
                 data.loc[
