@@ -325,7 +325,9 @@ class BaseTransformation:
                 suppliers = list(
                     ws.get_many(
                         self.database,
-                        ws.either(*[ws.contains("name", sup) for sup in possible_names]),
+                        ws.either(
+                            *[ws.contains("name", sup) for sup in possible_names]
+                        ),
                         ws.either(
                             *[
                                 ws.equals("location", item)
@@ -339,9 +341,13 @@ class BaseTransformation:
                 )
                 counter += 1
         except IndexError:
-            raise IndexError("No supplier found for {} in {}, "
-                             "looking for terms: {} "
-                             "and with blacklist: {}".format(possible_names, possible_locations, look_for, blacklist))
+            raise IndexError(
+                "No supplier found for {} in {}, "
+                "looking for terms: {} "
+                "and with blacklist: {}".format(
+                    possible_names, possible_locations, look_for, blacklist
+                )
+            )
 
         suppliers = get_shares_from_production_volume(suppliers)
 
@@ -648,8 +654,7 @@ class BaseTransformation:
                 ds
                 for ds in self.database
                 if not (
-                    ds["name"] == ds_name
-                    and ds["reference product"] == ds_ref_prod
+                    ds["name"] == ds_name and ds["reference product"] == ds_ref_prod
                 )
             ]
 
@@ -700,8 +705,7 @@ class BaseTransformation:
             # add tag
             existing_ds["has_downstream_consumer"] = False
             existing_ds["exchanges"] = [
-                e for e in existing_ds["exchanges"]
-                if e["type"] == "production"
+                e for e in existing_ds["exchanges"] if e["type"] == "production"
             ]
 
             # for cases where external scenarios are used

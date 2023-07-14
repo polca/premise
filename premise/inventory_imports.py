@@ -569,7 +569,6 @@ class BaseInventoryImport:
                     )
 
     def lower_case_technosphere_exchanges(self) -> None:
-
         blakclist = [
             "NOx",
             "SOx",
@@ -582,20 +581,30 @@ class BaseInventoryImport:
             if not any([x in ds["name"] for x in blakclist]):
                 ds["name"] = ds["name"][0].lower() + ds["name"][1:]
             if not any([x in ds["reference product"] for x in blakclist]):
-                ds["reference product"] = ds["reference product"][0].lower() + ds["reference product"][1:]
+                ds["reference product"] = (
+                    ds["reference product"][0].lower() + ds["reference product"][1:]
+                )
 
             for exc in ds["exchanges"]:
                 if exc["type"] in ["technosphere", "production"]:
                     if not any([x in exc["name"] for x in blakclist]):
                         exc["name"] = exc["name"][0].lower() + exc["name"][1:]
 
-                    if not any([x in exc.get("reference product", "") for x in blakclist]):
+                    if not any(
+                        [x in exc.get("reference product", "") for x in blakclist]
+                    ):
                         if exc.get("reference product") is not None:
-                            exc["reference product"] = exc["reference product"][0].lower() + exc["reference product"][1:]
+                            exc["reference product"] = (
+                                exc["reference product"][0].lower()
+                                + exc["reference product"][1:]
+                            )
 
                     if not any([x in exc.get("product", "") for x in blakclist]):
                         if exc.get("product") is not None:
-                            exc["product"] = exc["product"][0].lower() + exc["product"][1:]
+                            exc["product"] = (
+                                exc["product"][0].lower() + exc["product"][1:]
+                            )
+
     def remove_ds_and_modifiy_exchanges(self, name: str, ex_data: dict) -> None:
         """
         Remove an activity dataset from :attr:`import_db` and replace the corresponding
