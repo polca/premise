@@ -133,6 +133,7 @@ FILEPATH_NUCLEAR_EPR = INVENTORY_DIR / "lci-nuclear_EPR.xlsx"
 FILEPATH_NUCLEAR_SMR = INVENTORY_DIR / "lci-nuclear_SMR.xlsx"
 FILEPATH_WAVE = INVENTORY_DIR / "lci-wave_energy.xlsx"
 FILEPATH_FUEL_CELL = INVENTORY_DIR / "lci-fuel_cell.xlsx"
+FILEPATH_CSP = INVENTORY_DIR / "lci-concentrating-solar-power.xlsx"
 
 config = load_constants()
 
@@ -673,6 +674,7 @@ class NewDatabase:
             (FILEPATH_NUCLEAR_SMR, "3.8"),
             (FILEPATH_WAVE, "3.8"),
             (FILEPATH_FUEL_CELL, "3.9"),
+            (FILEPATH_CSP, "3.9"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -765,28 +767,29 @@ class NewDatabase:
                     use_absolute_efficiency=self.use_absolute_efficiency,
                 )
 
+                electricity.create_missing_power_plant_datasets()
                 electricity.adjust_coal_power_plant_emissions()
 
                 # datasets in 3.9 have been updated
                 if self.version not in ["3.9", "3.9.1"]:
-                    electricity.update_ng_production_ds()
+                   electricity.update_ng_production_ds()
 
                 electricity.update_efficiency_of_solar_pv()
 
                 if scenario["iam data"].biomass_markets is not None:
-                    electricity.create_biomass_markets()
+                   electricity.create_biomass_markets()
 
                 electricity.create_region_specific_power_plants()
 
                 if scenario["iam data"].electricity_markets is not None:
-                    electricity.update_electricity_markets()
+                   electricity.update_electricity_markets()
                 else:
-                    print("No electricity markets found in IAM data. Skipping.")
+                   print("No electricity markets found in IAM data. Skipping.")
 
                 if scenario["iam data"].electricity_efficiencies is not None:
-                    electricity.update_electricity_efficiency()
+                   electricity.update_electricity_efficiency()
                 else:
-                    print("No electricity efficiencies found in IAM data. Skipping.")
+                   print("No electricity efficiencies found in IAM data. Skipping.")
 
                 scenario["database"] = electricity.database
                 self.modified_datasets = electricity.modified_datasets

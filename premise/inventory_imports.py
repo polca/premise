@@ -559,6 +559,7 @@ class BaseInventoryImport:
                             assert (
                                 key in self.biosphere_dict
                             ), f"Could not find a biosphere flow for {key}."
+                            y["name"] = new_key[0]
                         else:
                             print(key)
                             continue
@@ -567,6 +568,7 @@ class BaseInventoryImport:
                         "biosphere3",
                         self.biosphere_dict[key],
                     )
+
 
     def lower_case_technosphere_exchanges(self) -> None:
         blakclist = [

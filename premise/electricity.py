@@ -20,6 +20,7 @@ import wurst
 import yaml
 
 from . import VARIABLES_DIR
+from .activity_maps import act_fltr
 from .data_collection import get_delimiter
 from .export import biosphere_flows_dictionary
 from .transformation import (
@@ -39,6 +40,7 @@ from .utils import DATA_DIR, eidb_label, get_efficiency_solar_photovoltaics
 
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
+POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 # directory for log files
@@ -53,6 +55,19 @@ with open(LOG_CONFIG, "r") as f:
     logging.config.dictConfig(config)
 
 logger = logging.getLogger("electricity")
+
+
+def load_electricity_variables() -> dict:
+    """
+    Load the electricity variables from a YAML file.
+    :return: a dictionary with the electricity variables
+    :rtype: dict
+    """
+
+    with open(POWERPLANT_TECHS, "r", encoding="utf-8") as stream:
+        techs = yaml.full_load(stream)
+
+    return techs
 
 
 def get_losses_per_country_dict() -> Dict[str, Dict[str, float]]:
@@ -859,6 +874,7 @@ class Electricity(BaseTransformation):
                 ["RER"],
                 ["RoW"],
                 ["CH"],
+                list(self.ecoinvent_to_iam_loc.keys())
             ]
 
             tech_suppliers = defaultdict(list)
@@ -904,7 +920,7 @@ class Electricity(BaseTransformation):
                     if self.system_model == "consequential":
                         continue
                     else:
-                        raise
+                        raise IndexError(f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}.")
 
             if self.system_model == "consequential":
                 periods = [
@@ -1583,6 +1599,7 @@ class Electricity(BaseTransformation):
             "Coal PC CCS",
             "Coal CHP CCS",
             "Coal IGCC CCS",
+            "Coal SC",
             "Gas CHP CCS",
             "Gas CC CCS",
             "Oil CC CCS",
@@ -1925,6 +1942,40 @@ class Electricity(BaseTransformation):
                                     )
 
                     # self.write_log(dataset=dataset, status="updated")
+
+    def create_missing_power_plant_datasets(self) -> None:
+        """
+        Create missing power plant datasets.
+        We use proxy datasets, copy them and rename them.
+        """
+        for tech, vars in load_electricity_variables().items():
+            if not vars.get("exists in database", True):
+                new_datasets = self.fetch_proxies(
+                    name=vars["proxy"]["name"],
+                    ref_prod=vars["proxy"]["reference product"],
+                    empty_original_activity=False,
+                )
+
+                for loc, ds in new_datasets.items():
+                    ds["name"] = vars["proxy"]["new name"]
+                    ds["code"] = str(uuid.uuid4().hex)
+                    for e in ws.production(ds):
+                        e["name"] = vars["proxy"]["new name"]
+                        if "input" in e:
+                            del e["input"]
+
+                    ds["comment"] = "This dataset is a proxy dataset for a power plant. " \
+                                    "It is used to create missing power plant datasets."
+
+                self.database.extend(new_datasets.values())
+
+        mapping = InventorySet(self.database)
+        self.powerplant_map = mapping.generate_powerplant_map()
+        # reverse dictionary of self.powerplant_map
+        self.powerplant_map_rev = {}
+        for k, v in self.powerplant_map.items():
+            for pp in list(v):
+                self.powerplant_map_rev[pp] = k
 
     def update_electricity_markets(self) -> None:
         """

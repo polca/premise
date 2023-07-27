@@ -57,8 +57,6 @@ class Geomap:
     def __init__(self, model: str) -> None:
         self.model = model
         self.geo = geomatcher
-        self.additional_mappings = get_additional_mapping()
-        self.rev_additional_mappings = {}
 
         if model not in ["remind", "image"]:
             if "EXTRA_TOPOLOGY" in constants:
@@ -75,10 +73,12 @@ class Geomap:
                     "REMIND or IMAGE."
                 )
 
+        self.additional_mappings = get_additional_mapping()
+        self.rev_additional_mappings = {}
         for key, val in self.additional_mappings.items():
             if (
-                self.model.upper(),
-                val[self.model],
+                    self.model.upper(),
+                    val[self.model],
             ) not in self.rev_additional_mappings:
                 self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [
                     key

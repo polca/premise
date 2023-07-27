@@ -42,6 +42,60 @@ def get_mapping(filepath: Path, var: str) -> dict:
     return mapping
 
 
+def act_fltr(
+    database: List[dict],
+    fltr: Union[str, List[str]] = None,
+    mask: Union[str, List[str]] = None,
+) -> List[dict]:
+    """Filter `database` for activities matching field contents given by `fltr` excluding strings in `mask`.
+    `fltr`: string, list of strings or dictionary.
+    If a string is provided, it is used to match the name field from the start (*startswith*).
+    If a list is provided, all strings in the lists are used and results are joined (*or*).
+    A dict can be given in the form <fieldname>: <str> to filter for <str> in <fieldname>.
+    `mask`: used in the same way as `fltr`, but filters add up with each other (*and*).
+    `filter_exact` and `mask_exact`: boolean, set `True` to only allow for exact matches.
+
+    :param database: A lice cycle inventory database
+    :type database: brightway2 database object
+    :param fltr: value(s) to filter with.
+    :type fltr: Union[str, lst, dict]
+    :param mask: value(s) to filter with.
+    :type mask: Union[str, lst, dict]
+    :return: list of activity data set names
+    :rtype: list
+
+    """
+    if fltr is None:
+        fltr = {}
+    if mask is None:
+        mask = {}
+
+    # default field is name
+    if isinstance(fltr, (list, str)):
+        fltr = {"name": fltr}
+    if isinstance(mask, (list, str)):
+        mask = {"name": mask}
+
+    assert len(fltr) > 0, "Filter dict must not be empty."
+
+    # find `act` in `database` that match `fltr`
+    # and do not match `mask`
+    filters = []
+    for field, value in fltr.items():
+        if isinstance(value, list):
+            filters.extend([ws.either(*[ws.contains(field, v) for v in value])])
+        else:
+            filters.append(ws.contains(field, value))
+
+    for field, value in mask.items():
+        if isinstance(value, list):
+            filters.extend([ws.exclude(ws.contains(field, v)) for v in value])
+        else:
+            filters.append(ws.exclude(ws.contains(field, value)))
+
+    return list(ws.get_many(database, *filters))
+
+
 class InventorySet:
     """
     Hosts different filter sets to find equivalencies
@@ -181,84 +235,13 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.materials_filters)
 
-    @staticmethod
-    def act_fltr(
-        database: List[dict],
-        fltr: Union[str, List[str]] = None,
-        mask: Union[str, List[str]] = None,
-        filter_exact: bool = False,
-        mask_exact: bool = False,
-    ) -> List[dict]:
-        """Filter `database` for activities matching field contents given by `fltr` excluding strings in `mask`.
-        `fltr`: string, list of strings or dictionary.
-        If a string is provided, it is used to match the name field from the start (*startswith*).
-        If a list is provided, all strings in the lists are used and results are joined (*or*).
-        A dict can be given in the form <fieldname>: <str> to filter for <str> in <fieldname>.
-        `mask`: used in the same way as `fltr`, but filters add up with each other (*and*).
-        `filter_exact` and `mask_exact`: boolean, set `True` to only allow for exact matches.
-
-        :param database: A lice cycle inventory database
-        :type database: brightway2 database object
-        :param fltr: value(s) to filter with.
-        :type fltr: Union[str, lst, dict]
-        :param mask: value(s) to filter with.
-        :type mask: Union[str, lst, dict]
-        :param filter_exact: requires exact match when true.
-        :type filter_exact: bool
-        :param mask_exact: requires exact match when true.
-        :type mask_exact: bool
-        :return: list of activity data set names
-        :rtype: list
-
-        """
-        if fltr is None:
-            fltr = {}
-        if mask is None:
-            mask = {}
-        result = []
-
-        # default field is name
-        if isinstance(fltr, (list, str)):
-            fltr = {"name": fltr}
-        if isinstance(mask, (list, str)):
-            mask = {"name": mask}
-
-        def like(item_a, item_b):
-            if filter_exact:
-                return item_a.lower() == item_b.lower()
-            return item_a.lower().startswith(item_b.lower())
-
-        def notlike(item_a, item_b):
-            if mask_exact:
-                return item_a.lower() != item_b.lower()
-            return item_b.lower() not in item_a.lower()
-
-        assert len(fltr) > 0, "Filter dict must not be empty."
-
-        # find `act` in `database` that match `fltr`
-        # and do not match `mask`
-        filters = []
-        for field, value in fltr.items():
-            if isinstance(value, list):
-                filters.extend([ws.either(*[ws.contains(field, v) for v in value])])
-            else:
-                filters.append(ws.contains(field, value))
-
-        for field, value in mask.items():
-            if isinstance(value, list):
-                filters.extend([ws.exclude(ws.contains(field, v)) for v in value])
-            else:
-                filters.append(ws.exclude(ws.contains(field, value)))
-
-        return list(ws.get_many(database, *filters))
-
     def generate_sets_from_filters(self, filtr: dict, database=None) -> dict:
         """
         Generate a dictionary with sets of activity names for
         technologies from the filter specifications.
 
-            :param filtr:
-            :func:`activity_maps.InventorySet.act_fltr`.
+        :param filtr:
+        :func:`activity_maps.InventorySet.act_fltr`.
         :return: dictionary with the same keys as provided in filter
             and a set of activity data set names as values.
         :rtype: dict
@@ -266,5 +249,5 @@ class InventorySet:
 
         database = database or self.database
 
-        techs = {tech: self.act_fltr(database, **fltr) for tech, fltr in filtr.items()}
+        techs = {tech: act_fltr(database, fltr.get("fltr"), fltr.get("mask")) for tech, fltr in filtr.items()}
         return {tech: {act["name"] for act in actlst} for tech, actlst in techs.items()}
