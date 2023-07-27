@@ -2,7 +2,7 @@ import brightway2 as bw
 
 from premise import *
 
-bw.projects.set_current("new")
+bw.projects.set_current("ei39")
 
 scenarios = [
     {"model": "remind", "pathway": "SSP1-Base", "year": 2005},
@@ -12,8 +12,8 @@ scenarios = [
 
 ndb = NewDatabase(
     scenarios=scenarios,
-    source_db="ecoinvent 3.8 cutoff",
-    source_version="3.8",
+    source_db="ecoinvent 3.9.1 cutoff",
+    source_version="3.9",
     key=b"tUePmX_S5B8ieZkkM7WUU2CnO8SmShwmAeWK9x2rTFo=",
 )
 

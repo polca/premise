@@ -1434,11 +1434,16 @@ class Electricity(BaseTransformation):
                 ],
             }
 
+            available_biomass_vars = [
+                v for v in list(biomass_map.keys())
+                if v in self.iam_data.production_volumes.variables.values
+            ]
+
             for biomass_type, biomass_act in biomass_map.items():
                 total_prod_vol = np.clip(
                     (
                         self.iam_data.production_volumes.sel(
-                            variables=list(biomass_map.keys()), region=region
+                            variables=available_biomass_vars, region=region
                         )
                         .interp(year=self.year)
                         .sum(dim="variables")
@@ -1447,24 +1452,22 @@ class Electricity(BaseTransformation):
                     None,
                 )
 
-                share = np.clip(
-                    (
-                        self.iam_data.production_volumes.sel(
-                            variables=biomass_type, region=region
-                        )
-                        .interp(year=self.year)
-                        .sum()
-                        / total_prod_vol
-                    ).values.item(0),
-                    0,
-                    1,
-                )
+                if biomass_type in available_biomass_vars:
 
-                if not share:
-                    if biomass_type == "biomass - residual":
-                        share = 1
-                    else:
-                        share = 0
+                    share = np.clip(
+                        (
+                            self.iam_data.production_volumes.sel(
+                                variables=biomass_type, region=region
+                            )
+                            .interp(year=self.year)
+                            .sum()
+                            / total_prod_vol
+                        ).values.item(0),
+                        0,
+                        1,
+                    )
+                else:
+                    share = 0
 
                 if share > 0:
                     ecoinvent_regions = self.geo.iam_to_ecoinvent_location(

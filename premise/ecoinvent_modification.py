@@ -1122,11 +1122,14 @@ class NewDatabase:
         self.update_emissions()
 
     def write_superstructure_db_to_brightway(
-        self, name: str = f"super_db_{date.today()}", filepath: str = None
+        self, name: str = f"super_db_{date.today()}", filepath: str = None, format: str = "excel"
     ) -> None:
         """
         Register a super-structure database,
         according to https://github.com/dgdekoning/brightway-superstructure
+        :param name: name of the super-structure database
+        :param filepath: filepath of the "scenarios difference file"
+        :param format: format of the "scenarios difference file" export. Can be "excel", "csv" or "feather".
         :return: filepath of the "scenarios difference file"
         """
 
@@ -1153,6 +1156,7 @@ class NewDatabase:
             db_name=name,
             filepath=filepath,
             version=self.version,
+            format=format,
         )
         self.database = check_amount_format(self.database)
 

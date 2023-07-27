@@ -819,12 +819,20 @@ def generate_scenario_difference_file(
     df.loc[df["flow type"] == "technosphere", "from categories"] = None
     df.loc[df["flow type"] == "production", "from categories"] = None
 
+    # all exchanges of type production must have the value 1.0 in each scenario
+    df.loc[df["flow type"] == "production", list_scenarios] = 1.0
+
     # return the dataframe and the new db
     return df, new_db, list_acts
 
 
 def generate_superstructure_db(
-    origin_db, scenarios, db_name, filepath, version
+    origin_db,
+    scenarios,
+    db_name,
+    filepath,
+    version,
+    format="excel"
 ) -> List[dict]:
     """
     Build a superstructure database from a list of databases
@@ -832,6 +840,8 @@ def generate_superstructure_db(
     :param scenarios: a list of modified databases
     :param db_name: the name of the new database
     :param filepath: the filepath of the new database
+    :param version: the version of the new database
+    :param format: the format of the scenario difference file. Cna be "excel", "csv" or "feather".
     :return: a superstructure database
     """
 
@@ -868,17 +878,26 @@ def generate_superstructure_db(
     after = len(df)
     print(f"Dropped {before - after} duplicate(s).")
 
-    filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
-    try:
-        df.to_excel(filepath_sdf, index=False)
-    except ValueError:
-        # from https://stackoverflow.com/questions/66356152/splitting-a-dataframe-into-multiple-sheets
-        GROUP_LENGTH = 1000000  # set nr of rows to slice df
-        with pd.ExcelWriter(filepath_sdf) as writer:
-            for i in range(0, len(df), GROUP_LENGTH):
-                df[i : i + GROUP_LENGTH].to_excel(
-                    writer, sheet_name=f"Row {i}", index=False, header=True
-                )
+    if format == "excel":
+        filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
+        try:
+            df.to_excel(filepath_sdf, index=False)
+        except ValueError:
+            # from https://stackoverflow.com/questions/66356152/splitting-a-dataframe-into-multiple-sheets
+            GROUP_LENGTH = 1000000  # set nr of rows to slice df
+            with pd.ExcelWriter(filepath_sdf) as writer:
+                for i in range(0, len(df), GROUP_LENGTH):
+                    df[i : i + GROUP_LENGTH].to_excel(
+                        writer, sheet_name=f"Row {i}", index=False, header=True
+                    )
+    elif format == "csv":
+        filepath_sdf = filepath / f"scenario_diff_{db_name}.csv"
+        df.to_csv(filepath_sdf, index=False, sep=";")
+    elif format == "feather":
+        filepath_sdf = filepath / f"scenario_diff_{db_name}.feather"
+        df.to_feather(filepath_sdf)
+    else:
+        raise ValueError(f"Unknown format {format}")
 
     print(f"Scenario difference file exported to {filepath}!")
 
