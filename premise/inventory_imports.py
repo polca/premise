@@ -569,7 +569,6 @@ class BaseInventoryImport:
                         self.biosphere_dict[key],
                     )
 
-
     def lower_case_technosphere_exchanges(self) -> None:
         blakclist = [
             "NOx",

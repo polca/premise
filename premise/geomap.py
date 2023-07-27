@@ -77,8 +77,8 @@ class Geomap:
         self.rev_additional_mappings = {}
         for key, val in self.additional_mappings.items():
             if (
-                    self.model.upper(),
-                    val[self.model],
+                self.model.upper(),
+                val[self.model],
             ) not in self.rev_additional_mappings:
                 self.rev_additional_mappings[(self.model.upper(), val[self.model])] = [
                     key

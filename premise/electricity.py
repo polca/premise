@@ -874,7 +874,7 @@ class Electricity(BaseTransformation):
                 ["RER"],
                 ["RoW"],
                 ["CH"],
-                list(self.ecoinvent_to_iam_loc.keys())
+                list(self.ecoinvent_to_iam_loc.keys()),
             ]
 
             tech_suppliers = defaultdict(list)
@@ -920,7 +920,9 @@ class Electricity(BaseTransformation):
                     if self.system_model == "consequential":
                         continue
                     else:
-                        raise IndexError(f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}.")
+                        raise IndexError(
+                            f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
+                        )
 
             if self.system_model == "consequential":
                 periods = [
@@ -1964,8 +1966,10 @@ class Electricity(BaseTransformation):
                         if "input" in e:
                             del e["input"]
 
-                    ds["comment"] = "This dataset is a proxy dataset for a power plant. " \
-                                    "It is used to create missing power plant datasets."
+                    ds["comment"] = (
+                        "This dataset is a proxy dataset for a power plant. "
+                        "It is used to create missing power plant datasets."
+                    )
 
                 self.database.extend(new_datasets.values())
 

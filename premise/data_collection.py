@@ -685,7 +685,9 @@ class IAMDataCollection:
             dataframe = dataframe.drop("index", axis=1)
 
         # convert all column names that are string to lower case
-        dataframe.columns = [x.lower() if isinstance(x, str) else x for x in dataframe.columns]
+        dataframe.columns = [
+            x.lower() if isinstance(x, str) else x for x in dataframe.columns
+        ]
 
         dataframe = dataframe.loc[dataframe["variable"].isin(variables)]
 
@@ -730,9 +732,7 @@ class IAMDataCollection:
         available_vars = list(set(input_vars.values()) - missing_vars)
 
         if available_vars:
-            market_data = data.loc[
-                :, available_vars, :
-            ]
+            market_data = data.loc[:, available_vars, :]
         else:
             return None
 
@@ -749,7 +749,9 @@ class IAMDataCollection:
         else:
             if normalize is True:
                 market_data /= (
-                    data.loc[:, available_vars, :].groupby("region").sum(dim="variables")
+                    data.loc[:, available_vars, :]
+                    .groupby("region")
+                    .sum(dim="variables")
                 )
 
         # back-fill nans

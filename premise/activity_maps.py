@@ -249,5 +249,8 @@ class InventorySet:
 
         database = database or self.database
 
-        techs = {tech: act_fltr(database, fltr.get("fltr"), fltr.get("mask")) for tech, fltr in filtr.items()}
+        techs = {
+            tech: act_fltr(database, fltr.get("fltr"), fltr.get("mask"))
+            for tech, fltr in filtr.items()
+        }
         return {tech: {act["name"] for act in actlst} for tech, actlst in techs.items()}

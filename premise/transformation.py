@@ -597,7 +597,9 @@ class BaseTransformation:
                 if production_variable is not None:
                     # Add `production volume` field
                     if isinstance(production_variable, str):
-                        production_variable = [production_variable, ]
+                        production_variable = [
+                            production_variable,
+                        ]
 
                     if all(
                         i in self.iam_data.production_volumes.variables
