@@ -1122,7 +1122,10 @@ class NewDatabase:
         self.update_emissions()
 
     def write_superstructure_db_to_brightway(
-        self, name: str = f"super_db_{date.today()}", filepath: str = None, format: str = "excel"
+        self,
+        name: str = f"super_db_{date.today()}",
+        filepath: str = None,
+        format: str = "excel",
     ) -> None:
         """
         Register a super-structure database,

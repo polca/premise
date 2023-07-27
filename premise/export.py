@@ -827,12 +827,7 @@ def generate_scenario_difference_file(
 
 
 def generate_superstructure_db(
-    origin_db,
-    scenarios,
-    db_name,
-    filepath,
-    version,
-    format="excel"
+    origin_db, scenarios, db_name, filepath, version, format="excel"
 ) -> List[dict]:
     """
     Build a superstructure database from a list of databases
