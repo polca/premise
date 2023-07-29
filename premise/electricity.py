@@ -1463,7 +1463,8 @@ class Electricity(BaseTransformation):
             }
 
             available_biomass_vars = [
-                v for v in list(biomass_map.keys())
+                v
+                for v in list(biomass_map.keys())
                 if v in self.iam_data.production_volumes.variables.values
             ]
 
@@ -1481,7 +1482,6 @@ class Electricity(BaseTransformation):
                 )
 
                 if biomass_type in available_biomass_vars:
-
                     share = np.clip(
                         (
                             self.iam_data.production_volumes.sel(
