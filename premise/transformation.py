@@ -828,6 +828,13 @@ class BaseTransformation:
                 ]
             ]
 
+            # remove excs_to_relink from act["exchanges"]
+            act["exchanges"] = [
+                exchange
+                for exchange in act["exchanges"]
+                if exchange not in excs_to_relink
+            ]
+
             unique_excs_to_relink = set(
                 (exc["name"], exc["product"], exc["location"], exc["unit"])
                 for exc in excs_to_relink
@@ -963,14 +970,6 @@ class BaseTransformation:
                 )
             ]
 
-            act["exchanges"] = [
-                e
-                for e in act["exchanges"]
-                if (e["name"], e.get("product"), e.get("location"), e["unit"])
-                not in [
-                    (iex[0], iex[1], iex[2], iex[3]) for iex in unique_excs_to_relink
-                ]
-            ]
             act["exchanges"].extend(new_exchanges)
 
     def get_carbon_capture_rate(self, loc: str, sector: str) -> float:

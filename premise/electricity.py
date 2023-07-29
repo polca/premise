@@ -10,17 +10,14 @@ the newly created electricity markets.
 """
 
 import copy
-import logging.config
 import re
 from collections import defaultdict
 from functools import lru_cache
-from pathlib import Path
 
 import wurst
 import yaml
 
 from . import VARIABLES_DIR
-from .activity_maps import act_fltr
 from .data_collection import get_delimiter
 from .export import biosphere_flows_dictionary
 from .transformation import (
@@ -37,24 +34,13 @@ from .transformation import (
     ws,
 )
 from .utils import DATA_DIR, eidb_label, get_efficiency_solar_photovoltaics
+from .logger import create_logger
 
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
 
-LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
-# directory for log files
-DIR_LOG_REPORT = Path.cwd() / "export" / "logs"
-# if DIR_LOG_REPORT folder does not exist
-# we create it
-if not Path(DIR_LOG_REPORT).exists():
-    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
-
-with open(LOG_CONFIG, "r") as f:
-    config = yaml.safe_load(f.read())
-    logging.config.dictConfig(config)
-
-logger = logging.getLogger("electricity")
+logger = create_logger("electricity")
 
 
 def load_electricity_variables() -> dict:
@@ -175,6 +161,48 @@ def get_production_weighted_losses(
 
     return {"high": high, "medium": medium, "low": low}
 
+
+def _update_electricity(scenario, version, system_model, modified_datasets, use_absolute_efficiency):
+    electricity = Electricity(
+        database=scenario["database"],
+        iam_data=scenario["iam data"],
+        model=scenario["model"],
+        pathway=scenario["pathway"],
+        year=scenario["year"],
+        version=version,
+        system_model=system_model,
+        modified_datasets=modified_datasets,
+        use_absolute_efficiency=use_absolute_efficiency,
+    )
+
+    electricity.create_missing_power_plant_datasets()
+    electricity.adjust_coal_power_plant_emissions()
+
+    # datasets in 3.9 have been updated
+    if version not in ["3.9", "3.9.1"]:
+        electricity.update_ng_production_ds()
+
+    electricity.update_efficiency_of_solar_pv()
+
+    if scenario["iam data"].biomass_markets is not None:
+        electricity.create_biomass_markets()
+
+    electricity.create_region_specific_power_plants()
+
+    if scenario["iam data"].electricity_markets is not None:
+        electricity.update_electricity_markets()
+    else:
+        print("No electricity markets found in IAM data. Skipping.")
+
+    if scenario["iam data"].electricity_efficiencies is not None:
+        electricity.update_electricity_efficiency()
+    else:
+        print("No electricity efficiencies found in IAM data. Skipping.")
+
+    scenario["database"] = electricity.database
+    modified_datasets = electricity.modified_datasets
+
+    return scenario, modified_datasets
 
 class Electricity(BaseTransformation):
     """
@@ -1196,7 +1224,7 @@ class Electricity(BaseTransformation):
         :return:
         """
 
-        print("Update efficiency of solar PV panels.")
+        #print("Update efficiency of solar PV panels.")
 
         # TODO: check if IAM data provides efficiencies for PV panels and use them instead
 
@@ -1285,7 +1313,7 @@ class Electricity(BaseTransformation):
         to high pressure natural gas markets.
         """
 
-        print("Update natural gas extraction datasets.")
+        #print("Update natural gas extraction datasets.")
 
         countries = ["NL", "DE", "FR", "RER", "IT", "CH"]
 
@@ -1369,7 +1397,7 @@ class Electricity(BaseTransformation):
                     )
 
     def create_biomass_markets(self) -> None:
-        print("Create biomass markets.")
+        #print("Create biomass markets.")
 
         with open(IAM_BIOMASS_VARS, "r", encoding="utf-8") as stream:
             biomass_map = yaml.safe_load(stream)
@@ -1557,7 +1585,7 @@ class Electricity(BaseTransformation):
             )
 
         # replace biomass inputs
-        print("Replace biomass inputs.")
+        #print("Replace biomass inputs.")
         for dataset in ws.get_many(
             self.database,
             ws.either(
@@ -1592,7 +1620,7 @@ class Electricity(BaseTransformation):
 
         """
 
-        print("Create region-specific power plants.")
+        #print("Create region-specific power plants.")
         all_plants = []
 
         techs = [
@@ -1714,7 +1742,7 @@ class Electricity(BaseTransformation):
         :rtype: list
         """
 
-        print("Adjust efficiency of power plants...")
+        #print("Adjust efficiency of power plants...")
 
         mapping = InventorySet(self.database)
         self.fuel_map = mapping.generate_fuel_map()
@@ -1736,7 +1764,7 @@ class Electricity(BaseTransformation):
 
         for technology in technologies_map:
             dict_technology = technologies_map[technology]
-            print("Rescale inventories and emissions for", technology)
+            #print("Rescale inventories and emissions for", technology)
 
             for dataset in ws.get_many(
                 self.database,
@@ -1840,7 +1868,7 @@ class Electricity(BaseTransformation):
         including coal-fired CHPs.
         """
 
-        print("Adjust efficiency and emissions of coal power plants...")
+        #print("Adjust efficiency and emissions of coal power plants...")
 
         coal_techs = [
             "Coal PC",
@@ -2013,7 +2041,7 @@ class Electricity(BaseTransformation):
         ]
 
         # We first need to empty 'market for electricity' and 'market group for electricity' datasets
-        print("Empty old electricity datasets")
+        #print("Empty old electricity datasets")
 
         datasets_to_empty = ws.get_many(
             self.database,
@@ -2080,14 +2108,14 @@ class Electricity(BaseTransformation):
             )
 
         # We then need to create high voltage IAM electricity markets
-        print("Create high voltage markets.")
+        #print("Create high voltage markets.")
         self.create_new_markets_high_voltage()
-        print("Create medium voltage markets.")
+        #print("Create medium voltage markets.")
         self.create_new_markets_medium_voltage()
-        print("Create low voltage markets.")
+        #print("Create low voltage markets.")
         self.create_new_markets_low_voltage()
 
-        print("Done!")
+        #print("Done!")
 
     def write_log(self, dataset, status="created"):
         """

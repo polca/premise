@@ -5,6 +5,7 @@ This module export a summary of scenario to an Excel file.
 import os
 from datetime import datetime
 from pathlib import Path
+from pandas._libs.parsers import ParserError
 
 import openpyxl
 import pandas as pd
@@ -541,10 +542,14 @@ def convert_log_to_excel_file(filepath):
     """
 
     try:
-        df = pd.read_csv(filepath, sep="|", header=None)
+        df = pd.read_csv(filepath, sep="|", header=None, on_bad_lines="skip")
         df.columns = fetch_columns(filepath)
         return df
 
     except EmptyDataError:
         # return an empty dataframe
         return pd.DataFrame(columns=fetch_columns(filepath))
+
+
+
+

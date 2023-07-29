@@ -756,6 +756,8 @@ class IAMDataCollection:
 
         # back-fill nans
         market_data = market_data.bfill(dim="year")
+        # fill NaNs with zeros
+        market_data = market_data.fillna(0)
 
         return market_data
 
