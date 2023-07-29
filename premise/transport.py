@@ -34,7 +34,6 @@ FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
 
 def _update_vehicles(scenario, vehicle_type, version, system_model, modified_datasets):
-
     trspt = Transport(
         database=scenario["database"],
         year=scenario["year"],
@@ -138,7 +137,7 @@ def create_fleet_vehicles(
     :param regions: IAM regions
     :return: list of fleet average vehicle datasets
     """
-    #print("Create fleet average vehicles...")
+    # print("Create fleet average vehicles...")
 
     vehicles_map = get_vehicles_mapping()
 

@@ -9,9 +9,9 @@ import wurst
 import yaml
 
 from .data_collection import IAMDataCollection
+from .logger import create_logger
 from .transformation import BaseTransformation, ws
 from .utils import DATA_DIR
-from .logger import create_logger
 
 logger = create_logger("steel")
 
@@ -36,6 +36,7 @@ def _update_steel(scenario, version, system_model, modified_datasets):
         print("No steel markets found in IAM data. Skipping.")
 
     return scenario, modified_datasets
+
 
 class Steel(BaseTransformation):
     """
@@ -269,7 +270,7 @@ class Steel(BaseTransformation):
 
         """
         # Determine all steel activities in the database. Empty old datasets.
-        #print("Create new steel production datasets and empty old datasets")
+        # print("Create new steel production datasets and empty old datasets")
 
         d_act_primary_steel = {
             mat: self.fetch_proxies(
@@ -350,7 +351,7 @@ class Steel(BaseTransformation):
         Create region-specific pig iron production activities.
         """
 
-        #print("Create pig iron production datasets")
+        # print("Create pig iron production datasets")
 
         pig_iron = self.fetch_proxies(
             name="pig iron production",

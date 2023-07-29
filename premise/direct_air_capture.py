@@ -9,8 +9,8 @@ from pathlib import Path
 import wurst
 import yaml
 
-from .utils import DATA_DIR
 from .logger import create_logger
+from .utils import DATA_DIR
 
 logger = create_logger("dac")
 
@@ -57,6 +57,7 @@ def _update_dac(scenario, version, system_model, modified_datasets):
         print("No DAC markets found in IAM data. Skipping.")
 
     return scenario, modified_datasets
+
 
 class DirectAirCapture(BaseTransformation):
     """
@@ -105,7 +106,7 @@ class DirectAirCapture(BaseTransformation):
         modifies the original datasets to include the heat source, and adds the modified datasets to the database.
 
         """
-        #print("Generate region-specific direct air capture processes.")
+        # print("Generate region-specific direct air capture processes.")
 
         # get original dataset
         for ds_list in self.carbon_storage.values():

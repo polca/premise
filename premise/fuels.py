@@ -4,9 +4,9 @@ Integrates projections regarding fuel production and supply.
 
 import copy
 import logging.config
+from functools import lru_cache
 from pathlib import Path
 from typing import Union
-from functools import lru_cache
 
 import wurst
 import xarray as xr
@@ -15,6 +15,7 @@ from numpy import ndarray
 
 from . import VARIABLES_DIR
 from .inventory_imports import get_biosphere_code
+from .logger import create_logger
 from .transformation import (
     Any,
     BaseTransformation,
@@ -30,7 +31,6 @@ from .transformation import (
     ws,
 )
 from .utils import DATA_DIR, get_crops_properties
-from .logger import create_logger
 
 logger = create_logger("fuel")
 
@@ -180,7 +180,7 @@ def update_co2_emissions(
         exc for exc in dataset["exchanges"] if exc["name"] == "Carbon dioxide, fossil"
     ):
         pass
-        #print(f"{dataset['name']} has no fossil CO2 output.")
+        # print(f"{dataset['name']} has no fossil CO2 output.")
 
     if "log parameters" not in dataset:
         dataset["log parameters"] = {}
@@ -287,13 +287,13 @@ def _update_fuels(scenario, version, system_model, modified_datasets):
     )
 
     if any(
-            x is not None
-            for x in (
-                    scenario["iam data"].petrol_markets,
-                    scenario["iam data"].diesel_markets,
-                    scenario["iam data"].gas_markets,
-                    scenario["iam data"].hydrogen_markets,
-            )
+        x is not None
+        for x in (
+            scenario["iam data"].petrol_markets,
+            scenario["iam data"].diesel_markets,
+            scenario["iam data"].gas_markets,
+            scenario["iam data"].hydrogen_markets,
+        )
     ):
         fuels.generate_fuel_markets()
         scenario["database"] = fuels.database
@@ -302,6 +302,7 @@ def _update_fuels(scenario, version, system_model, modified_datasets):
         print("No fuel markets found in IAM data. Skipping.")
 
     return scenario, modified_datasets
+
 
 class Fuels(BaseTransformation):
     """
@@ -626,7 +627,7 @@ class Fuels(BaseTransformation):
 
             self.database.extend(new_ds.values())
 
-        #print("Generate region-specific hydrogen supply chains.")
+        # print("Generate region-specific hydrogen supply chains.")
 
         # loss coefficients for hydrogen supply
         losses = fetch_mapping(HYDROGEN_SUPPLY_LOSSES)
@@ -2013,19 +2014,19 @@ class Fuels(BaseTransformation):
         """Duplicate fuel chains and make them IAM region-specific"""
 
         # hydrogen
-        #print("Generate region-specific hydrogen production pathways.")
+        # print("Generate region-specific hydrogen production pathways.")
         self.generate_hydrogen_activities()
 
         # biogas
-        #print("Generate region-specific biogas and syngas supply chains.")
+        # print("Generate region-specific biogas and syngas supply chains.")
         self.generate_biogas_activities()
 
         # synthetic fuels
-        #print("Generate region-specific synthetic fuel supply chains.")
+        # print("Generate region-specific synthetic fuel supply chains.")
         self.generate_synthetic_fuel_activities()
 
         # biofuels
-        #print("Generate region-specific biofuel supply chains.")
+        # print("Generate region-specific biofuel supply chains.")
         self.generate_biofuel_activities()
 
     def generate_world_fuel_market(
@@ -2311,7 +2312,7 @@ class Fuels(BaseTransformation):
         # Create new fuel supply chains
         self.generate_fuel_supply_chains()
 
-        #print("Generate new fuel markets.")
+        # print("Generate new fuel markets.")
 
         # we start by creating region-specific "diesel, burned in" markets
         new_datasets = []
@@ -2405,7 +2406,7 @@ class Fuels(BaseTransformation):
                 for i in vars_map[fuel]
                 if i in e
             ]:
-                #print(f"--> {fuel}")
+                # print(f"--> {fuel}")
 
                 prod_vars = [
                     v
@@ -2539,9 +2540,7 @@ class Fuels(BaseTransformation):
 
         for ds in ws.get_many(
             self.database,
-            ws.exclude(
-                ws.either(*[ws.equals("name", i) for i in datasets_to_empty])
-            ),
+            ws.exclude(ws.either(*[ws.equals("name", i) for i in datasets_to_empty])),
         ):
             for exc in ws.technosphere(
                 ds,
@@ -2550,7 +2549,11 @@ class Fuels(BaseTransformation):
                 new_supplier = datasets_to_empty[exc["name"]]
                 exc["name"] = new_supplier[0]
                 exc["product"] = new_supplier[1]
-                exc["location"] = ds["location"] if ds["location"] in self.regions else self.ecoinvent_to_iam_loc[ds["location"]]
+                exc["location"] = (
+                    ds["location"]
+                    if ds["location"] in self.regions
+                    else self.ecoinvent_to_iam_loc[ds["location"]]
+                )
 
         self.relink_activities_to_new_markets()
         print("Done!")

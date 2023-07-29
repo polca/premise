@@ -6,12 +6,12 @@ as well as export it back.
 
 import copy
 import multiprocessing
-from multiprocessing.pool import ThreadPool as Pool
-from multiprocessing import Pool as ProcessPool
 import os
 import pickle
 import sys
 from datetime import date
+from multiprocessing import Pool as ProcessPool
+from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import List, Union
 
@@ -27,10 +27,10 @@ from .electricity import _update_electricity
 from .emissions import _update_emissions
 from .export import (
     Export,
+    _prepare_database,
     build_datapackage,
     generate_scenario_factor_file,
     generate_superstructure_db,
-    _prepare_database,
 )
 from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
@@ -400,16 +400,40 @@ def check_time_horizon(time_horizon: int) -> int:
 
     return int(time_horizon)
 
-def _update_all(scenario, version, system_model, modified_datasets, use_absolute_efficiency, vehicle_type, gains_scenario):
-    scenario, modified_datasets = _update_vehicles(scenario, vehicle_type, version, system_model, modified_datasets)
-    scenario, modified_datasets = _update_electricity(scenario, version, system_model, modified_datasets, use_absolute_efficiency)
-    scenario, modified_datasets = _update_dac(scenario, version, system_model, modified_datasets)
-    scenario, modified_datasets = _update_cement(scenario, version, system_model, modified_datasets)
-    scenario, modified_datasets = _update_steel(scenario, version, system_model, modified_datasets)
-    scenario, modified_datasets = _update_fuels(scenario, version, system_model, modified_datasets)
-    scenario, modified_datasets = _update_emissions(scenario, version, system_model, gains_scenario, modified_datasets)
+
+def _update_all(
+    scenario,
+    version,
+    system_model,
+    modified_datasets,
+    use_absolute_efficiency,
+    vehicle_type,
+    gains_scenario,
+):
+    scenario, modified_datasets = _update_vehicles(
+        scenario, vehicle_type, version, system_model, modified_datasets
+    )
+    scenario, modified_datasets = _update_electricity(
+        scenario, version, system_model, modified_datasets, use_absolute_efficiency
+    )
+    scenario, modified_datasets = _update_dac(
+        scenario, version, system_model, modified_datasets
+    )
+    scenario, modified_datasets = _update_cement(
+        scenario, version, system_model, modified_datasets
+    )
+    scenario, modified_datasets = _update_steel(
+        scenario, version, system_model, modified_datasets
+    )
+    scenario, modified_datasets = _update_fuels(
+        scenario, version, system_model, modified_datasets
+    )
+    scenario, modified_datasets = _update_emissions(
+        scenario, version, system_model, gains_scenario, modified_datasets
+    )
 
     return scenario, modified_datasets
+
 
 class NewDatabase:
     """
@@ -504,7 +528,7 @@ class NewDatabase:
             self.database = self.__find_cached_db(
                 source_db, keep_uncertainty_data=keep_uncertainty_data
             )
-            #print("Done!")
+            # print("Done!")
         else:
             self.database = self.__clean_database(
                 keep_uncertainty_data=keep_uncertainty_data
@@ -523,7 +547,7 @@ class NewDatabase:
             data = self.__import_additional_inventories(self.additional_inventories)
             self.database.extend(data)
 
-        #print("Done!")
+        # print("Done!")
 
         print("\n/////////////////////// EXTRACTING IAM DATA ////////////////////////")
 
@@ -551,7 +575,7 @@ class NewDatabase:
         with Pool(processes=multiprocessing.cpu_count()) as pool:
             pool.map(_fetch_iam_data, self.scenarios)
 
-        #print("Done!")
+        # print("Done!")
 
     def __find_cached_db(self, db_name: str, keep_uncertainty_data: bool) -> List[dict]:
         """
@@ -710,7 +734,7 @@ class NewDatabase:
 
             self.database.extend(datasets)
 
-        #print("Done!\n")
+        # print("Done!\n")
         return data
 
     def __import_additional_inventories(
@@ -808,7 +832,6 @@ class NewDatabase:
         for s, scenario in enumerate(self.scenarios):
             self.scenarios[s] = results[s][0]
             self.modified_datasets.update(results[s][1])
-
 
     def update_fuels(self) -> None:
         """
@@ -1362,8 +1385,7 @@ class NewDatabase:
 
         cached_inventories.extend(extra_inventories)
         list_scenarios = ["original"] + [
-            f"{s['model']} - {s['pathway']} - {s['year']}"
-            for s in self.scenarios
+            f"{s['model']} - {s['pathway']} - {s['year']}" for s in self.scenarios
         ]
 
         build_datapackage(
