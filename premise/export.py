@@ -11,8 +11,8 @@ import re
 import uuid
 from collections import defaultdict
 from functools import lru_cache
-from multiprocessing.pool import ThreadPool as Pool
 from multiprocessing import Pool as ProcessPool
+from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple, Union
 
