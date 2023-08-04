@@ -277,10 +277,11 @@ class BaseTransformation:
     @lru_cache
     def select_multiple_suppliers(
         self,
-        possible_names,
-        dataset_location,
-        look_for=None,
-        blacklist=None,
+        possible_names: Tuple[str],
+        dataset_location: str,
+        look_for: Tuple[str] = None,
+        blacklist: Tuple[str] = None,
+        exclude_region: Tuple[str] = None,
     ):
         """
         Select multiple suppliers for a specific fuel.
@@ -296,9 +297,9 @@ class BaseTransformation:
             dataset_location,
             [*ecoinvent_regions],
             "RoW",
+            "GLO",
             "Europe without Switzerland",
             "RER",
-            "GLO",
         ]
 
         suppliers, counter = [], 0
@@ -318,6 +319,11 @@ class BaseTransformation:
             )
             extra_filters.append(
                 ws.exclude(ws.either(*[ws.contains("name", x) for x in blacklist]))
+            )
+
+        if exclude_region:
+            extra_filters.append(
+                ws.exclude(ws.either(*[ws.contains("location", x) for x in exclude_region]))
             )
 
         try:
