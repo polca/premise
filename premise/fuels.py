@@ -1316,7 +1316,7 @@ class Fuels(BaseTransformation):
                         name=activity,
                         ref_prod=" ",
                         delete_original_dataset=False,
-                        empty_original_activity=False
+                        empty_original_activity=False,
                     )
 
                     for co2_type in [

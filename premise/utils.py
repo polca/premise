@@ -302,6 +302,7 @@ def clean_up(exc):
 
     return exc
 
+
 def reset_all_codes(data):
     """
     Re-generate all codes in each dataset of a database
@@ -316,6 +317,7 @@ def reset_all_codes(data):
                     del exc["input"]
 
     return data
+
 
 def write_brightway2_database(data, name, reset_codes=False):
     # Restore parameters to Brightway2 format
