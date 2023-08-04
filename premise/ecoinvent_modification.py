@@ -1188,8 +1188,9 @@ class NewDatabase:
         )
 
         write_brightway2_database(
-            self.database,
-            name,
+            data=self.database,
+            name=name,
+            reset_codes=True,
         )
 
         # generate scenario report

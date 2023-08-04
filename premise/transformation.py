@@ -681,6 +681,7 @@ class BaseTransformation:
         :param ref_prod: dataset reference product
         :param loc_map: ecoinvent location to IAM location mapping for this activity
         :param production_variable: IAM production variable
+        :param regions: regions to empty original datasets for
         :return: Does not return anything. Just empties the original dataset.
         """
 

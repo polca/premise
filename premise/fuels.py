@@ -1313,7 +1313,10 @@ class Fuels(BaseTransformation):
             for activity in activities:
                 if fuel == "methane, synthetic":
                     original_ds = self.fetch_proxies(
-                        name=activity, ref_prod=" ", delete_original_dataset=True
+                        name=activity,
+                        ref_prod=" ",
+                        delete_original_dataset=False,
+                        empty_original_activity=False
                     )
 
                     for co2_type in [
