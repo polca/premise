@@ -16,7 +16,7 @@ from .utils import DATA_DIR
 logger = create_logger("steel")
 
 
-def _update_steel(scenario, version, system_model, modified_datasets):
+def _update_steel(scenario, version, system_model, modified_datasets, cache):
     steel = Steel(
         database=scenario["database"],
         model=scenario["model"],
@@ -26,16 +26,18 @@ def _update_steel(scenario, version, system_model, modified_datasets):
         version=version,
         system_model=system_model,
         modified_datasets=modified_datasets,
+        cache=cache,
     )
 
     if scenario["iam data"].steel_markets is not None:
         steel.generate_activities()
         scenario["database"] = steel.database
         modified_datasets = steel.modified_datasets
+        cache = steel.cache
     else:
         print("No steel markets found in IAM data. Skipping.")
 
-    return scenario, modified_datasets
+    return scenario, modified_datasets, cache
 
 
 class Steel(BaseTransformation):
@@ -59,6 +61,7 @@ class Steel(BaseTransformation):
         version: str,
         system_model: str,
         modified_datasets: dict,
+        cache: dict = None
     ) -> None:
         super().__init__(
             database,
@@ -69,6 +72,7 @@ class Steel(BaseTransformation):
             version,
             system_model,
             modified_datasets,
+            cache
         )
         self.version = version
 
