@@ -2194,11 +2194,18 @@ class Fuels(BaseTransformation):
 
         # if the sum is zero, we need to select a provider
 
-        if self.iam_fuel_markets.sel(region=region, variables=prod_vars, year=self.year).sum(dim=["variables"]) == 0:
+        if (
+            self.iam_fuel_markets.sel(
+                region=region, variables=prod_vars, year=self.year
+            ).sum(dim=["variables"])
+            == 0
+        ):
             print("No fuel market for", dataset["name"], "in", region)
 
             if "hydrogen" in dataset["name"].lower():
-                prod_vars = ["hydrogen, nat. gas", ]
+                prod_vars = [
+                    "hydrogen, nat. gas",
+                ]
 
         for prod_var in prod_vars:
             if len(prod_vars) > 1:
@@ -2508,7 +2515,6 @@ class Fuels(BaseTransformation):
                             )
 
                             new_datasets.append(dataset)
-
 
         # add to database
         self.database.extend(new_datasets)
