@@ -274,7 +274,7 @@ def update_dataset(dataset, supplier_key, amount):
     return dataset
 
 
-def _update_fuels(scenario, version, system_model, modified_datasets, cache):
+def _update_fuels(scenario, version, system_model, modified_datasets, cache=None):
     fuels = Fuels(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -1936,7 +1936,7 @@ class Fuels(BaseTransformation):
         )
 
         if np.isnan(fuel_share):
-            print(f"Incorrect fuel share for {fuel} in {region}")
+            print(f"Incorrect fuel share for {fuel} in {region}.")
             fuel_share = 0
 
         return float(fuel_share)
@@ -2074,7 +2074,7 @@ class Fuels(BaseTransformation):
 
         # Calculate share of production volume for each region
         for r in d_act.keys():
-            if r == "World":
+            if r == "World" or (dataset["name"], r) not in self.new_fuel_markets:
                 continue
 
             share = (
@@ -2192,10 +2192,21 @@ class Fuels(BaseTransformation):
 
         string = ""
 
+        # if the sum is zero, we need to select a provider
+
+        if self.iam_fuel_markets.sel(region=region, variables=prod_vars, year=self.year).sum(dim=["variables"]) == 0:
+            print("No fuel market for", dataset["name"], "in", region)
+
+            if "hydrogen" in dataset["name"].lower():
+                prod_vars = ["hydrogen, nat. gas", ]
+
         for prod_var in prod_vars:
-            share = fuel_providers[prod_var]["find_share"](
-                prod_var, tuple(vars_map[fuel_category]), region, period
-            )
+            if len(prod_vars) > 1:
+                share = fuel_providers[prod_var]["find_share"](
+                    prod_var, tuple(vars_map[fuel_category]), region, period
+                )
+            else:
+                share = 1.0
 
             if np.isnan(share) or share <= 0:
                 continue
@@ -2497,6 +2508,7 @@ class Fuels(BaseTransformation):
                             )
 
                             new_datasets.append(dataset)
+
 
         # add to database
         self.database.extend(new_datasets)
