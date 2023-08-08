@@ -358,7 +358,7 @@ class Fuels(BaseTransformation):
                     for sublist in list(self.fuel_groups.values())
                     for item in sublist
                 ]
-                if g in self.iam_data.production_volumes.variables.values.tolist()
+                if g in self.iam_data.production_volumes.coords["variables"].values.tolist()
             ]
         )
 
@@ -1926,8 +1926,7 @@ class Fuels(BaseTransformation):
                 / self.iam_fuel_markets.sel(
                     region=region, variables=relevant_variables
                 ).sum(dim="variables")
-            )
-            .interp(
+            ).fillna(0).interp(
                 year=np.arange(self.year, self.year + period + 1),
                 kwargs={"fill_value": "extrapolate"},
             )
@@ -2212,6 +2211,7 @@ class Fuels(BaseTransformation):
                 share = fuel_providers[prod_var]["find_share"](
                     prod_var, tuple(vars_map[fuel_category]), region, period
                 )
+
             else:
                 share = 1.0
 
