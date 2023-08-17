@@ -2195,8 +2195,8 @@ class Fuels(BaseTransformation):
 
         if (
             self.iam_fuel_markets.sel(
-                region=region, variables=prod_vars, year=self.year
-            ).sum(dim=["variables"])
+                region=region, variables=prod_vars
+            ).interp(year=self.year).sum(dim=["variables"])
             == 0
         ):
             print("No fuel market for", dataset["name"], "in", region)
