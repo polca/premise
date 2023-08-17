@@ -486,7 +486,9 @@ class IAMDataCollection:
         self.steel_markets = self.__fetch_market_data(
             data=data, input_vars=steel_prod_vars, system_model="cutoff"
         )
-        self.dac_markets = self.__fetch_market_data(data=data, input_vars=dac_prod_vars, system_model="cutoff")
+        self.dac_markets = self.__fetch_market_data(
+            data=data, input_vars=dac_prod_vars, system_model="cutoff"
+        )
         self.biomass_markets = self.__fetch_market_data(
             data=data, input_vars=biomass_prod_vars, system_model="cutoff"
         )
@@ -499,10 +501,7 @@ class IAMDataCollection:
         )
 
         self.other_vars = self.__fetch_market_data(
-            data=data,
-            input_vars=other_vars,
-            normalize=False,
-            system_model = "cutoff"
+            data=data, input_vars=other_vars, normalize=False, system_model="cutoff"
         )
 
         self.electricity_efficiencies = self.get_iam_efficiencies(
@@ -714,7 +713,11 @@ class IAMDataCollection:
         return array
 
     def __fetch_market_data(
-        self, data: xr.DataArray, input_vars: dict, system_model: str, normalize: bool = True,
+        self,
+        data: xr.DataArray,
+        input_vars: dict,
+        system_model: str,
+        normalize: bool = True,
     ) -> [xr.DataArray, None]:
         """
         This method retrieves the market share for each technology,

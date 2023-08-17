@@ -56,7 +56,6 @@ def get_leadtime(list_tech: Tuple) -> np.ndarray:
         )
     dict_ = {k: dict_[k] for k in list(list_tech)}
 
-
     return np.array(list(dict_.values()), dtype=float)
 
 

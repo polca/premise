@@ -1506,7 +1506,10 @@ class Electricity(BaseTransformation):
                         0,
                         1,
                     )
-                elif self.system_model == "consequential" and biomass_type == "biomass - residual":
+                elif (
+                    self.system_model == "consequential"
+                    and biomass_type == "biomass - residual"
+                ):
                     share = 0
                 else:
                     share = 0

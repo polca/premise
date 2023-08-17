@@ -2197,9 +2197,9 @@ class Fuels(BaseTransformation):
         # if the sum is zero, we need to select a provider
 
         if (
-            self.iam_fuel_markets.sel(
-                region=region, variables=prod_vars
-            ).interp(year=self.year).sum(dim=["variables"])
+            self.iam_fuel_markets.sel(region=region, variables=prod_vars)
+            .interp(year=self.year)
+            .sum(dim=["variables"])
             == 0
         ):
             print("No fuel market for", dataset["name"], "in", region)
