@@ -1938,7 +1938,7 @@ class Fuels(BaseTransformation):
         )
 
         if np.isnan(fuel_share):
-            print(f"Incorrect fuel share for {fuel} in {region}.")
+            print(f"Warning: incorrect fuel share for {fuel} in {region} (-> set to 0%).")
             fuel_share = 0
 
         return float(fuel_share)
@@ -2202,7 +2202,6 @@ class Fuels(BaseTransformation):
             .sum(dim=["variables"])
             == 0
         ):
-            print("No fuel market for", dataset["name"], "in", region)
 
             if "hydrogen" in dataset["name"].lower():
                 prod_vars = [

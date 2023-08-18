@@ -463,6 +463,9 @@ def _update_all(
 def _export_to_matrices(obj):
     obj.export_db_to_matrices()
 
+def _export_to_simapro(obj):
+    obj.export_db_to_simapro()
+
 
 class NewDatabase:
     """
@@ -616,8 +619,8 @@ class NewDatabase:
         # check that directory exists, otherwise create it
         Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
         # build file path
-        if db_name is None:
-            db_name = "unnamed"
+        if db_name is None and self.source_type == "ecospold":
+            db_name = f"ecospold_{self.system_model}_{self.version}"
 
         file_name = Path(
             DIR_CACHED_DB
@@ -646,8 +649,8 @@ class NewDatabase:
         # check that directory exists, otherwise create it
         Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
         # build file path
-        if db_name is None:
-            db_name = "unnamed"
+        if db_name is None and self.source_type == "ecospold":
+            db_name = f"ecospold_{self.system_model}_{self.version}"
 
         file_name = Path(
             DIR_CACHED_DB
@@ -1398,11 +1401,12 @@ class NewDatabase:
                 self.scenarios[s] = results[s][0]
                 cache.update(results[s][1])
 
+        with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
             args = [
-                (scenario, filepath[scen], self.version)
+                Export(scenario, filepath, self.version)
                 for scen, scenario in enumerate(self.scenarios)
             ]
-            pool.starmap(Export().export_db_to_simapro, args)
+            pool.map(_export_to_simapro, args)
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1444,7 +1448,8 @@ class NewDatabase:
 
         cached_inventories.extend(extra_inventories)
         list_scenarios = ["original"] + [
-            f"{s['model']} - {s['pathway']} - {s['year']}" for s in self.scenarios
+            f"{s['model']} - {s['pathway']} - {s['year']}"
+            for s in self.scenarios
         ]
 
         build_datapackage(

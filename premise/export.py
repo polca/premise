@@ -990,7 +990,7 @@ class Export:
     def __init__(
         self,
         scenario: dict = None,
-        filepath: Union[list[Path], list[Union[Path, Any]]] = None,
+        filepath: Path = None,
         version: str = None,
     ):
         self.db = scenario["database"]
