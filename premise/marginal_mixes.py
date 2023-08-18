@@ -150,6 +150,8 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     :return: marginal market mixes
     """
 
+    args = args or {}
+
     range_time: int = args.get("range time", False)
     duration: int = args.get("duration", False)
     foresight: bool = args.get("foresight", False)
