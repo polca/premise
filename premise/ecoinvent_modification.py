@@ -463,6 +463,7 @@ def _update_all(
 def _export_to_matrices(obj):
     obj.export_db_to_matrices()
 
+
 def _export_to_simapro(obj):
     obj.export_db_to_simapro()
 
@@ -1448,8 +1449,7 @@ class NewDatabase:
 
         cached_inventories.extend(extra_inventories)
         list_scenarios = ["original"] + [
-            f"{s['model']} - {s['pathway']} - {s['year']}"
-            for s in self.scenarios
+            f"{s['model']} - {s['pathway']} - {s['year']}" for s in self.scenarios
         ]
 
         build_datapackage(
