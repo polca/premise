@@ -887,7 +887,8 @@ class IAMDataCollection:
 
         # if variable is missing, we assume that the rate is 0
         # and that none of the  CO2 emissions are captured
-        if dict_vars.get("cement - cco2") not in data.variables.values.tolist():
+
+        if not any(x in data.variables.values.tolist() for x in dict_vars.get("cement - cco2")):
             cement_rate = xr.DataArray(
                 np.zeros((len(data.region), len(data.year))),
                 coords=[data.region, data.year],
@@ -900,7 +901,7 @@ class IAMDataCollection:
 
         cement_rate.coords["variables"] = "cement"
 
-        if dict_vars.get("steel - cco2") not in data.variables.values.tolist():
+        if not any(x in data.variables.values.tolist() for x in dict_vars.get("steel - cco2")):
             steel_rate = xr.DataArray(
                 np.zeros((len(data.region), len(data.year))),
                 coords=[data.region, data.year],
@@ -924,7 +925,7 @@ class IAMDataCollection:
         # as it is sometimes neglected in the
         # IAM files
 
-        if "cement - cco2" not in data.variables.values.tolist():
+        if not any(x in data.variables.values.tolist() for x in dict_vars.get("cement - cco2")):
             rate.loc[dict(region="World", variables="cement")] = 0
         else:
             try:
@@ -966,7 +967,7 @@ class IAMDataCollection:
             except ZeroDivisionError:
                 rate.loc[dict(region="World", variables="steel")] = 0
 
-        if "steel - cco2" not in data.variables.values.tolist():
+        if not any(x in data.variables.values.tolist() for x in dict_vars.get("steel - cco2")):
             rate.loc[dict(region="World", variables="steel")] = 0
         else:
             rate.loc[dict(region="World", variables="steel")] = (
