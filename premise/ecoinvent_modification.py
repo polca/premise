@@ -702,7 +702,7 @@ class NewDatabase:
             (FILEPATH_CHP_INVENTORIES, "3.5"),
             (FILEPATH_CC_INVENTORIES, "3.9"),
             (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
-            (FILEPATH_CARBON_FIBER_INVENTORIES, "3.7"),
+            (FILEPATH_CARBON_FIBER_INVENTORIES, "3.9"),
             (FILEPATH_LITHIUM, "3.8"),
             (FILEPATH_COBALT, "3.8"),
             (FILEPATH_GRAPHITE, "3.8"),
