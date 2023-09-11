@@ -197,6 +197,10 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             region=region, year=year
         ).sum(dim="variables")
 
+        # if shares contains only NaNs, we give its elements the value 1
+        if shares.isnull().all():
+            shares = xr.ones_like(shares)
+
         time_parameters = {
             (False, False, False, False): {
                 "start": year,
@@ -287,6 +291,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             avg_end = time_parameters[
                 (bool(range_time), bool(duration), foresight, lead_time)
             ]["end_avg"]
+
 
         except KeyError:
             print(
