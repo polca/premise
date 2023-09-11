@@ -292,7 +292,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 (bool(range_time), bool(duration), foresight, lead_time)
             ]["end_avg"]
 
-
         except KeyError:
             print(
                 f"The combination of range_time, duration, foresight, and lead_time {range_time, duration, foresight, lead_time} "
