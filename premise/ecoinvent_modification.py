@@ -339,6 +339,10 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
         scenario["filepath"] = check_filepath(filepath)
     else:
         scenario["filepath"] = DATA_DIR / "iam_output_files"
+        if key is None:
+            raise ValueError(
+                "You need to provide the encryption key to decrypt the IAM output files provided by `premise`."
+            )
 
     scenario["model"] = check_model_name(scenario["model"])
     scenario["pathway"] = check_pathway_name(
