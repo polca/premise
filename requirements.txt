@@ -1,8 +1,8 @@
 numpy
-pandas==1.5.3
+pandas
 bw2io==0.8.7
-bw2data==3.6.6
-wurst==0.3.3
+bw2data
+wurst
 xarray
 prettytable
 pycountry
