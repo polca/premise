@@ -42,9 +42,9 @@ setup(
     include_package_data=True,
     install_requires=[
         "numpy",
-        "wurst==0.3.3",
+        "wurst",
         "bw2io==0.8.7",
-        "pandas==1.5.3",
+        "pandas",
         "bw2data",
         "xarray",
         "prettytable",

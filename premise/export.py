@@ -934,7 +934,6 @@ def prepare_db_for_export(
     base.database = check_amount_format(base.database)
 
     # we relink "dead" exchanges
-    # print("- relinking exchanges...")
     base.relink_datasets(
         excludes_datasets=["cobalt industry", "market group for electricity"],
         alt_names=[
@@ -947,9 +946,50 @@ def prepare_db_for_export(
         ],
     )
 
-    # print("Done!")
+    for ds in base.database:
+        if "parameters" in ds:
+            if not isinstance(ds["parameters"], list):
+                if isinstance(ds["parameters"], dict):
+                    ds["parameters"] = [
+                        {"name": k, "amount": v} for k, v in ds["parameters"].items()
+                    ]
+                else:
+                    ds["parameters"] = [ds["parameters"]]
+            else:
+                ds["parameters"] = [
+                    {"name": k, "amount": v}
+                    for o in ds["parameters"]
+                    for k, v in o.items()
+                ]
+
+        for key, value in list(ds.items()):
+            if not value:
+                del ds[key]
+
+        ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
 
     return base.database, base.cache
+
+def clean_up(exc):
+    """Remove keys from ``exc`` that are not in the schema."""
+
+    FORBIDDEN_FIELDS_TECH = [
+        "categories",
+    ]
+
+    FORBIDDEN_FIELDS_BIO = ["location", "product"]
+
+    for field in list(exc.keys()):
+        if exc[field] is None or exc[field] == "None":
+            del exc[field]
+            continue
+
+        if exc["type"] == "biosphere" and field in FORBIDDEN_FIELDS_BIO:
+            del exc[field]
+        if exc["type"] == "technosphere" and field in FORBIDDEN_FIELDS_TECH:
+            del exc[field]
+
+    return exc
 
 
 def _prepare_database(

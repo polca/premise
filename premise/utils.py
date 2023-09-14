@@ -280,29 +280,6 @@ class PremiseImporter(LCIImporter):
             print(f"Database {self.db_name} already exists: " "it will be overwritten.")
         super().write_database()
 
-
-def clean_up(exc):
-    """Remove keys from ``exc`` that are not in the schema."""
-
-    FORBIDDEN_FIELDS_TECH = [
-        "categories",
-    ]
-
-    FORBIDDEN_FIELDS_BIO = ["location", "product"]
-
-    for field in list(exc.keys()):
-        if exc[field] is None or exc[field] == "None":
-            del exc[field]
-            continue
-
-        if exc["type"] == "biosphere" and field in FORBIDDEN_FIELDS_BIO:
-            del exc[field]
-        if exc["type"] == "technosphere" and field in FORBIDDEN_FIELDS_TECH:
-            del exc[field]
-
-    return exc
-
-
 def reset_all_codes(data):
     """
     Re-generate all codes in each dataset of a database
@@ -322,36 +299,11 @@ def reset_all_codes(data):
 def write_brightway2_database(data, name, reset_codes=False):
     # Restore parameters to Brightway2 format
     # which allows for uncertainty and comments
-
-    for ds in data:
-        if "parameters" in ds:
-            if not isinstance(ds["parameters"], list):
-                if isinstance(ds["parameters"], dict):
-                    ds["parameters"] = [
-                        {"name": k, "amount": v} for k, v in ds["parameters"].items()
-                    ]
-                else:
-                    ds["parameters"] = [ds["parameters"]]
-            else:
-                ds["parameters"] = [
-                    {"name": k, "amount": v}
-                    for o in ds["parameters"]
-                    for k, v in o.items()
-                ]
-
-        for key, value in list(ds.items()):
-            if not value:
-                del ds[key]
-
-        ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
-
     change_db_name(data, name)
-
     if reset_codes:
         reset_all_codes(data)
     link_internal(data)
     check_internal_linking(data)
-    check_duplicate_codes(data)
     PremiseImporter(name, data).write_database()
 
 
