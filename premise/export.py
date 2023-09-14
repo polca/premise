@@ -970,6 +970,7 @@ def prepare_db_for_export(
 
     return base.database, base.cache
 
+
 def clean_up(exc):
     """Remove keys from ``exc`` that are not in the schema."""
 

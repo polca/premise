@@ -280,6 +280,7 @@ class PremiseImporter(LCIImporter):
             print(f"Database {self.db_name} already exists: " "it will be overwritten.")
         super().write_database()
 
+
 def reset_all_codes(data):
     """
     Re-generate all codes in each dataset of a database
