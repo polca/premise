@@ -881,18 +881,19 @@ def generate_superstructure_db(
     after = len(df)
     print(f"Dropped {before - after} duplicate(s).")
 
+    # remove content from "from key" and "to key"
+    df["from key"] = None
+    df["to key"] = None
+
+    # if df is longer than the row limit of Excel,
+    # the export to Excel is not an option
+    if len(df) > 1048576:
+        format = "csv"
+        print("The scenario difference file is too long to be exported to Excel. Exporting to CSV instead.")
+
     if format == "excel":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
-        try:
-            df.to_excel(filepath_sdf, index=False)
-        except ValueError:
-            # from https://stackoverflow.com/questions/66356152/splitting-a-dataframe-into-multiple-sheets
-            GROUP_LENGTH = 1000000  # set nr of rows to slice df
-            with pd.ExcelWriter(filepath_sdf) as writer:
-                for i in range(0, len(df), GROUP_LENGTH):
-                    df[i : i + GROUP_LENGTH].to_excel(
-                        writer, sheet_name=f"Row {i}", index=False, header=True
-                    )
+        df.to_excel(filepath_sdf, index=False)
     elif format == "csv":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.csv"
         df.to_csv(filepath_sdf, index=False, sep=";")
