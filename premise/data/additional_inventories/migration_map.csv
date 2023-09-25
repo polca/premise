@@ -616,3 +616,4 @@ from;to;name_from;ref_prod_from;location_from;name_to;ref_prod_to;location_to
 36;39;transmission network construction, electricity, high voltage;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
 37;39;transmission network construction, electricity, high voltage;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
 38;39;transmission network construction, electricity, high voltage;transmission network, long-distance;CH;transmission network construction, electricity, high voltage;transmission network, electricity, high voltage;CH
+39;38;market for battery cell, Li-ion, LFP;battery cell, Li-ion, LFP;GLO;market for battery cell, Li-ion;battery cell, Li-ion;GLO

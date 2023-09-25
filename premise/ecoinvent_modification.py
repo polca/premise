@@ -135,6 +135,7 @@ FILEPATH_NUCLEAR_SMR = INVENTORY_DIR / "lci-nuclear_SMR.xlsx"
 FILEPATH_WAVE = INVENTORY_DIR / "lci-wave_energy.xlsx"
 FILEPATH_FUEL_CELL = INVENTORY_DIR / "lci-fuel_cell.xlsx"
 FILEPATH_CSP = INVENTORY_DIR / "lci-concentrating-solar-power.xlsx"
+FILEPATH_HOME_STORAGE_BATTERIES = INVENTORY_DIR / "lci-home-batteries.xlsx"
 
 config = load_constants()
 
@@ -711,6 +712,7 @@ class NewDatabase:
             (FILEPATH_COBALT, "3.8"),
             (FILEPATH_GRAPHITE, "3.8"),
             (FILEPATH_BATTERIES, "3.8"),
+            (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
             (FILEPATH_PHOTOVOLTAICS, "3.7"),
             (FILEPATH_HYDROGEN_INVENTORIES, "3.9"),
             (FILEPATH_HYDROGEN_SOLAR_INVENTORIES, "3.9"),
@@ -728,18 +730,12 @@ class NewDatabase:
             (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
             (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
             (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
-            (
-                FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
-                "3.7",
-            ),
+            (FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES, "3.7",),
             (
                 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES,
                 "3.7",
             ),
-            (
-                FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES,
-                "3.7",
-            ),
+            (FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES, "3.7",),
             (
                 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES,
                 "3.7",
@@ -858,12 +854,7 @@ class NewDatabase:
         # use multiprocessing to speed up the process
         with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
             args = [
-                (
-                    scenario,
-                    self.version,
-                    self.system_model,
-                    self.modified_datasets,
-                )
+                (scenario, self.version, self.system_model, self.modified_datasets,)
                 for scenario in self.scenarios
             ]
             results = pool.starmap(_update_dac, args)
@@ -884,12 +875,7 @@ class NewDatabase:
         # use multiprocessing to speed up the process
         with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
             args = [
-                (
-                    scenario,
-                    self.version,
-                    self.system_model,
-                    self.modified_datasets,
-                )
+                (scenario, self.version, self.system_model, self.modified_datasets,)
                 for scenario in self.scenarios
             ]
             results = pool.starmap(_update_fuels, args)
@@ -910,12 +896,7 @@ class NewDatabase:
         # use multiprocessing to speed up the process
         with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
             args = [
-                (
-                    scenario,
-                    self.version,
-                    self.system_model,
-                    self.modified_datasets,
-                )
+                (scenario, self.version, self.system_model, self.modified_datasets,)
                 for scenario in self.scenarios
             ]
             results = pool.starmap(_update_cement, args)
@@ -936,12 +917,7 @@ class NewDatabase:
         # use multiprocessing to speed up the process
         with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
             args = [
-                (
-                    scenario,
-                    self.version,
-                    self.system_model,
-                    self.modified_datasets,
-                )
+                (scenario, self.version, self.system_model, self.modified_datasets,)
                 for scenario in self.scenarios
             ]
             results = pool.starmap(_update_steel, args)
@@ -1222,9 +1198,7 @@ class NewDatabase:
         )
 
         write_brightway2_database(
-            data=self.database,
-            name=name,
-            reset_codes=True,
+            data=self.database, name=name, reset_codes=True,
         )
 
         # generate scenario report
@@ -1292,8 +1266,7 @@ class NewDatabase:
 
         for scen, scenario in enumerate(self.scenarios):
             write_brightway2_database(
-                scenario["database"],
-                name[scen],
+                scenario["database"], name[scen],
             )
         # generate scenario report
         self.generate_scenario_report()

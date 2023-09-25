@@ -145,11 +145,7 @@ def get_gains_EU_data() -> xr.DataArray:
     )
     gains_emi_EU["sector"] = gains_emi_EU["Sector"] + gains_emi_EU["Activity"]
     gains_emi_EU.drop(
-        [
-            "Sector",
-            "Activity",
-        ],
-        axis=1,
+        ["Sector", "Activity",], axis=1,
     )
 
     gains_emi_EU = gains_emi_EU[~gains_emi_EU["value"].isna()]
@@ -228,9 +224,7 @@ def fix_efficiencies(data: xr.DataArray, min_year: int) -> xr.DataArray:
     # we correct it to 1, as we do not accept
     # that efficiency degrades over time
     data.loc[dict(year=[y for y in data.year.values if y > 2020])] = np.clip(
-        data.loc[dict(year=[y for y in data.year.values if y > 2020])],
-        1,
-        None,
+        data.loc[dict(year=[y for y in data.year.values if y > 2020])], 1, None,
     )
 
     # Inversely, if we are looking at a year prior to 2020
@@ -238,9 +232,7 @@ def fix_efficiencies(data: xr.DataArray, min_year: int) -> xr.DataArray:
     # we correct it to 1, as we do not accept
     # that efficiency in the past was higher than now
     data.loc[dict(year=[y for y in data.year.values if y < 2020])] = np.clip(
-        data.loc[dict(year=[y for y in data.year.values if y < 2020])],
-        None,
-        1,
+        data.loc[dict(year=[y for y in data.year.values if y < 2020])], None, 1,
     )
 
     # ensure that efficiency can not decrease over time
@@ -397,9 +389,7 @@ class IAMDataCollection:
         new_vars = flatten(new_vars)
 
         data = self.__get_iam_data(
-            key=key,
-            filedir=filepath_iam_files,
-            variables=new_vars,
+            key=key, filedir=filepath_iam_files, variables=new_vars,
         )
 
         self.regions = data.region.values.tolist()
@@ -411,9 +401,7 @@ class IAMDataCollection:
         )
 
         self.electricity_markets = self.__fetch_market_data(
-            data=data,
-            input_vars=electricity_prod_vars,
-            system_model=self.system_model,
+            data=data, input_vars=electricity_prod_vars, system_model=self.system_model,
         )
 
         self.petrol_markets = self.__fetch_market_data(
@@ -438,12 +426,7 @@ class IAMDataCollection:
             input_vars={
                 k: v
                 for k, v in fuel_prod_vars.items()
-                if any(
-                    x in k
-                    for x in [
-                        "diesel",
-                    ]
-                )
+                if any(x in k for x in ["diesel",])
             },
             system_model=self.system_model,
         )
@@ -470,12 +453,7 @@ class IAMDataCollection:
             input_vars={
                 k: v
                 for k, v in fuel_prod_vars.items()
-                if any(
-                    x in k
-                    for x in [
-                        "hydrogen",
-                    ]
-                )
+                if any(x in k for x in ["hydrogen",])
             },
             system_model=self.system_model,
         )
@@ -532,12 +510,7 @@ class IAMDataCollection:
             efficiency_labels={
                 k: v
                 for k, v in fuel_eff_vars.items()
-                if any(
-                    x in k
-                    for x in [
-                        "diesel",
-                    ]
-                )
+                if any(x in k for x in ["diesel",])
             },
         )
         self.gas_efficiencies = self.get_iam_efficiencies(
@@ -553,12 +526,7 @@ class IAMDataCollection:
             efficiency_labels={
                 k: v
                 for k, v in fuel_eff_vars.items()
-                if any(
-                    x in k
-                    for x in [
-                        "hydrogen",
-                    ]
-                )
+                if any(x in k for x in ["hydrogen",])
             },
         )
 
@@ -1098,7 +1066,10 @@ class IAMDataCollection:
                     .to_xarray()
                 )
 
-                array.coords["year"] = [int(y) for y in array.coords["year"]]
+                # convert to float64
+                array = array.astype(np.float64)
+                # convert year dim to int64
+                array.coords["year"] = array.coords["year"].astype(np.int64)
 
                 data[i]["production volume"] = array
                 regions = subset["region"].unique().tolist()
@@ -1140,7 +1111,10 @@ class IAMDataCollection:
                         .mean()
                         .to_xarray()
                     )
-                    array.coords["year"] = [int(y) for y in array.coords["year"]]
+                    # convert to float64
+                    array = array.astype(np.float64)
+                    # convert year dim to int64
+                    array.coords["year"] = array.coords["year"].astype(np.int64)
 
                     ref_years = {}
 
@@ -1233,11 +1207,7 @@ class IAMDataCollection:
         df = df.drop(columns=["fuel input"])
         array = (
             df.melt(
-                id_vars=[
-                    "country",
-                    "CHP",
-                    "fuel",
-                ],
+                id_vars=["country", "CHP", "fuel",],
                 var_name="variable",
                 value_name="value",
             )
