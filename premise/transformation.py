@@ -707,9 +707,9 @@ class BaseTransformation:
             self.database,
             ws.equals("name", name),
             ws.contains("reference product", ref_prod),
-            ws.exclude(ws.either(
-                *[ws.equals("location", loc) for loc in self.regions]
-            ))
+            ws.exclude(
+                ws.either(*[ws.equals("location", loc) for loc in self.regions])
+            ),
         )
 
         for existing_ds in existing_datasets:
