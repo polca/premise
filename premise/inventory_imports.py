@@ -60,7 +60,10 @@ def get_biosphere_code(version) -> dict:
     csv_dict = {}
 
     with open(fp, encoding="utf-8") as file:
-        input_dict = csv.reader(file, delimiter=get_delimiter(filepath=fp),)
+        input_dict = csv.reader(
+            file,
+            delimiter=get_delimiter(filepath=fp),
+        )
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
 
@@ -87,7 +90,8 @@ def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
 
     with open(FILEPATH_MIGRATION_MAP, "r", encoding="utf-8") as read_obj:
         csv_reader = csv.reader(
-            read_obj, delimiter=get_delimiter(filepath=FILEPATH_MIGRATION_MAP),
+            read_obj,
+            delimiter=get_delimiter(filepath=FILEPATH_MIGRATION_MAP),
         )
         next(csv_reader)
         for row in csv_reader:
@@ -507,7 +511,15 @@ class BaseInventoryImport:
             return candidate["reference product"]
 
         self.list_unlinked.append(
-            (exc[0], exc[-1], exc[1], None, exc[2], "technosphere", self.path.name,)
+            (
+                exc[0],
+                exc[-1],
+                exc[1],
+                None,
+                exc[2],
+                "technosphere",
+                self.path.name,
+            )
         )
 
         return None
@@ -680,8 +692,10 @@ class DefaultInventory(BaseInventoryImport):
             )
 
         if self.system_model == "consequential":
-            self.import_db.data = check_for_datasets_compliance_with_consequential_database(
-                self.import_db.data, self.consequential_blacklist
+            self.import_db.data = (
+                check_for_datasets_compliance_with_consequential_database(
+                    self.import_db.data, self.consequential_blacklist
+                )
             )
 
         self.import_db.data = remove_categories(self.import_db.data)
@@ -831,8 +845,10 @@ class AdditionalInventory(BaseInventoryImport):
             )
 
         if self.system_model == "consequential":
-            self.import_db.data = check_for_datasets_compliance_with_consequential_database(
-                self.import_db.data, self.consequential_blacklist
+            self.import_db.data = (
+                check_for_datasets_compliance_with_consequential_database(
+                    self.import_db.data, self.consequential_blacklist
+                )
             )
 
         self.import_db.data = remove_categories(self.import_db.data)

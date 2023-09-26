@@ -75,7 +75,10 @@ def get_suppliers_of_a_region(
     if exclude:
         filters.append(ws.doesnt_contain_any("name", exclude))
 
-    return ws.get_many(database, *filters,)
+    return ws.get_many(
+        database,
+        *filters,
+    )
 
 
 def get_shares_from_production_volume(
@@ -106,7 +109,12 @@ def get_shares_from_production_volume(
                 production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
         dict_act[
-            (act["name"], act["location"], act["reference product"], act["unit"],)
+            (
+                act["name"],
+                act["location"],
+                act["reference product"],
+                act["unit"],
+            )
         ] = production_volume
         total_production_volume += production_volume
 
@@ -641,7 +649,12 @@ class BaseTransformation:
                 self.modified_datasets[(self.model, self.scenario, self.year)][
                     "emptied"
                 ].append(
-                    (ds["name"], ds["reference product"], ds["location"], ds["unit"],)
+                    (
+                        ds["name"],
+                        ds["reference product"],
+                        ds["location"],
+                        ds["unit"],
+                    )
                 )
 
         # empty original datasets
@@ -813,7 +826,8 @@ class BaseTransformation:
         # loop through the database
         # ignore datasets which name contains `name`
         for act in ws.get_many(
-            self.database, ws.doesnt_contain_any("name", excludes_datasets),
+            self.database,
+            ws.doesnt_contain_any("name", excludes_datasets),
         ):
             # and find exchanges of datasets to relink
             excs_to_relink = [
@@ -878,11 +892,15 @@ class BaseTransformation:
                         names_to_look_for, alternative_locations
                     ):
                         if (
-                            (name_to_look_for, exc[1], alt_loc, exc[-1],)
-                            in self.modified_datasets[
-                                (self.model, self.scenario, self.year)
-                            ]["created"]
-                        ):
+                            name_to_look_for,
+                            exc[1],
+                            alt_loc,
+                            exc[-1],
+                        ) in self.modified_datasets[
+                            (self.model, self.scenario, self.year)
+                        ][
+                            "created"
+                        ]:
                             entry = [(name_to_look_for, exc[1], alt_loc, exc[-1], 1.0)]
 
                             self.add_new_entry_to_cache(
@@ -983,7 +1001,10 @@ class BaseTransformation:
 
         if sector in self.iam_data.carbon_capture_rate.variables.values:
             rate = (
-                self.iam_data.carbon_capture_rate.sel(variables=sector, region=loc,)
+                self.iam_data.carbon_capture_rate.sel(
+                    variables=sector,
+                    region=loc,
+                )
                 .interp(year=self.year)
                 .values
             )
@@ -1046,13 +1067,17 @@ class BaseTransformation:
         # this corresponds to the share of biogenic CO2
         # in the fossil + biogenic CO2 emissions of the plant
 
-        for exc in ws.biosphere(ccs, ws.equals("name", "Carbon dioxide, in air"),):
+        for exc in ws.biosphere(
+            ccs,
+            ws.equals("name", "Carbon dioxide, in air"),
+        ):
             exc["amount"] = bio_co2_stored
 
         if bio_co2_leaked > 0:
             # then the biogenic CO2 leaked during the capture process
             for exc in ws.biosphere(
-                ccs, ws.equals("name", "Carbon dioxide, non-fossil"),
+                ccs,
+                ws.equals("name", "Carbon dioxide, non-fossil"),
             ):
                 exc["amount"] = bio_co2_leaked
 
@@ -1091,7 +1116,10 @@ class BaseTransformation:
         self.database.append(ccs)
 
     def find_iam_efficiency_change(
-        self, data: xr.DataArray, variable: Union[str, list], location: str,
+        self,
+        data: xr.DataArray,
+        variable: Union[str, list],
+        location: str,
     ) -> float:
         """
         Return the relative change in efficiency for `variable` in `location`
@@ -1123,7 +1151,11 @@ class BaseTransformation:
         )
 
     def add_new_entry_to_cache(
-        self, location: str, exchange: dict, allocated: List[dict], shares: List[float],
+        self,
+        location: str,
+        exchange: dict,
+        allocated: List[dict],
+        shares: List[float],
     ) -> None:
         """
         Add an entry to the cache.
@@ -1157,7 +1189,11 @@ class BaseTransformation:
         self.cache[location][self.model][exc_key] = entry
 
     def relink_technosphere_exchanges(
-        self, dataset, exclusive=True, biggest_first=False, contained=True,
+        self,
+        dataset,
+        exclusive=True,
+        biggest_first=False,
+        contained=True,
     ) -> dict:
         """Find new technosphere providers based on the location of the dataset.
         Designed to be used when the dataset's location changes, or when new datasets are added.
@@ -1413,7 +1449,12 @@ class BaseTransformation:
                     new_exchanges.append(exc)
                     # add to cache
                     self.add_new_entry_to_cache(
-                        dataset["location"], exc, [exc], [1.0,],
+                        dataset["location"],
+                        exc,
+                        [exc],
+                        [
+                            1.0,
+                        ],
                     )
 
         # make unique list of exchanges from new_exchanges
