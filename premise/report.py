@@ -42,9 +42,7 @@ if not Path(DIR_LOG_REPORT).exists():
     Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 
-def get_variables(
-    filepath,
-):
+def get_variables(filepath,):
     """
     Get the variables from a yaml file.
     :param filepath: path to the yaml file
@@ -148,39 +146,13 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     """
 
     SECTORS = {
-        "Population": {
-            "filepath": IAM_OTHER_VARS,
-            "variables": [
-                "population",
-            ],
-        },
-        "GDP": {
-            "filepath": IAM_OTHER_VARS,
-            "variables": [
-                "gdp",
-            ],
-        },
-        "CO2": {
-            "filepath": IAM_OTHER_VARS,
-            "variables": [
-                "CO2",
-            ],
-        },
-        "GMST": {
-            "filepath": IAM_OTHER_VARS,
-            "variables": [
-                "GMST",
-            ],
-        },
-        "Electricity - generation": {
-            "filepath": IAM_ELEC_VARS,
-        },
-        "Electricity (biom) - generation": {
-            "filepath": IAM_BIOMASS_VARS,
-        },
-        "Electricity - efficiency": {
-            "filepath": IAM_ELEC_VARS,
-        },
+        "Population": {"filepath": IAM_OTHER_VARS, "variables": ["population",],},
+        "GDP": {"filepath": IAM_OTHER_VARS, "variables": ["gdp",],},
+        "CO2": {"filepath": IAM_OTHER_VARS, "variables": ["CO2",],},
+        "GMST": {"filepath": IAM_OTHER_VARS, "variables": ["GMST",],},
+        "Electricity - generation": {"filepath": IAM_ELEC_VARS,},
+        "Electricity (biom) - generation": {"filepath": IAM_BIOMASS_VARS,},
+        "Electricity - efficiency": {"filepath": IAM_ELEC_VARS,},
         "Fuel (gasoline) - generation": {
             "filepath": IAM_FUELS_VARS,
             "filter": ["gasoline", "ethanol"],
@@ -191,15 +163,11 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Fuel (diesel) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "diesel",
-            ],
+            "filter": ["diesel",],
         },
         "Fuel (diesel) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "diesel",
-            ],
+            "filter": ["diesel",],
         },
         "Fuel (gas) - generation": {
             "filepath": IAM_FUELS_VARS,
@@ -211,36 +179,18 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Fuel (hydrogen) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "hydrogen",
-            ],
+            "filter": ["hydrogen",],
         },
         "Fuel (hydrogen) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "hydrogen",
-            ],
+            "filter": ["hydrogen",],
         },
-        "Cement - generation": {
-            "filepath": IAM_CEMENT_VARS,
-        },
-        "Cement - efficiency": {
-            "filepath": IAM_CEMENT_VARS,
-        },
-        "Cement - CCS": {
-            "filepath": IAM_CARBON_CAPTURE_VARS,
-            "variables": ["cement"],
-        },
-        "Steel - generation": {
-            "filepath": IAM_STEEL_VARS,
-        },
-        "Steel - efficiency": {
-            "filepath": IAM_STEEL_VARS,
-        },
-        "Steel - CCS": {
-            "filepath": IAM_CARBON_CAPTURE_VARS,
-            "variables": ["steel"],
-        },
+        "Cement - generation": {"filepath": IAM_CEMENT_VARS,},
+        "Cement - efficiency": {"filepath": IAM_CEMENT_VARS,},
+        "Cement - CCS": {"filepath": IAM_CARBON_CAPTURE_VARS, "variables": ["cement"],},
+        "Steel - generation": {"filepath": IAM_STEEL_VARS,},
+        "Steel - efficiency": {"filepath": IAM_STEEL_VARS,},
+        "Steel - CCS": {"filepath": IAM_CARBON_CAPTURE_VARS, "variables": ["steel"],},
         "Direct Air Capture - generation": {
             "filepath": IAM_DACCS_VARS,
             "variables": ["dac_solvent", "dac_sorbent"],
@@ -304,9 +254,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         col, row = (1, 1)
 
         worksheet.cell(
-            column=col,
-            row=row,
-            value=metadata[sector]["expl_text"],
+            column=col, row=row, value=metadata[sector]["expl_text"],
         )
 
         scenario_list = []
@@ -316,9 +264,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         for scenario_idx, scenario in enumerate(scenarios):
             if (scenario["model"], scenario["pathway"]) not in scenario_list:
                 iam_data = fetch_data(
-                    iam_data=scenario["iam data"],
-                    sector=sector,
-                    variable=variables,
+                    iam_data=scenario["iam data"], sector=sector, variable=variables,
                 )
 
                 if iam_data is None:
@@ -327,7 +273,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 if scenario_idx > 0:
                     col = last_col_used + metadata[sector]["offset"]
 
-                row = 3
+                row += 2
 
                 worksheet.cell(
                     column=col,
