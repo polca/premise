@@ -1620,7 +1620,6 @@ class Electricity(BaseTransformation):
                 ws.contains("name", "market for wood chips"),
                 ws.equals("unit", "kilogram"),
             ):
-
                 exc["name"] = "market for biomass, used as fuel"
                 exc["product"] = "biomass, used as fuel"
 
