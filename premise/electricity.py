@@ -1620,9 +1620,14 @@ class Electricity(BaseTransformation):
                 ws.contains("name", "market for wood chips"),
                 ws.equals("unit", "kilogram"),
             ):
+
                 exc["name"] = "market for biomass, used as fuel"
                 exc["product"] = "biomass, used as fuel"
-                exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]]
+
+                if dataset["location"] in self.regions:
+                    exc["location"] = dataset["location"]
+                else:
+                    exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]]
 
         mapping = InventorySet(self.database)
         self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()

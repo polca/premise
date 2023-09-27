@@ -844,7 +844,7 @@ def generate_superstructure_db(
     :param db_name: the name of the new database
     :param filepath: the filepath of the new database
     :param version: the version of the new database
-    :param format: the format of the scenario difference file. Cna be "excel", "csv" or "feather".
+    :param format: the format of the scenario difference file. Can be "excel", "csv" or "feather".
     :return: a superstructure database
     """
 
