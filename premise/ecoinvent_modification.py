@@ -54,6 +54,7 @@ DIR_CACHED_DB = DATA_DIR / "cache"
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
+FILEPATH_CO_FIRING_INVENTORIES = INVENTORY_DIR / "lci-co-firing-power-plants.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
@@ -135,6 +136,7 @@ FILEPATH_NUCLEAR_SMR = INVENTORY_DIR / "lci-nuclear_SMR.xlsx"
 FILEPATH_WAVE = INVENTORY_DIR / "lci-wave_energy.xlsx"
 FILEPATH_FUEL_CELL = INVENTORY_DIR / "lci-fuel_cell.xlsx"
 FILEPATH_CSP = INVENTORY_DIR / "lci-concentrating-solar-power.xlsx"
+FILEPATH_HOME_STORAGE_BATTERIES = INVENTORY_DIR / "lci-home-batteries.xlsx"
 
 config = load_constants()
 
@@ -703,6 +705,7 @@ class NewDatabase:
         filepaths = [
             (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
             (FILEPATH_CARMA_INVENTORIES, "3.5"),
+            (FILEPATH_CO_FIRING_INVENTORIES, "3.5"),
             (FILEPATH_CHP_INVENTORIES, "3.5"),
             (FILEPATH_CC_INVENTORIES, "3.9"),
             (FILEPATH_BIOGAS_INVENTORIES, "3.6"),
@@ -711,6 +714,7 @@ class NewDatabase:
             (FILEPATH_COBALT, "3.8"),
             (FILEPATH_GRAPHITE, "3.8"),
             (FILEPATH_BATTERIES, "3.8"),
+            (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
             (FILEPATH_PHOTOVOLTAICS, "3.7"),
             (FILEPATH_HYDROGEN_INVENTORIES, "3.9"),
             (FILEPATH_HYDROGEN_SOLAR_INVENTORIES, "3.9"),

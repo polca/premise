@@ -213,10 +213,13 @@ def allocate_inputs(exc, lst):
     if lst[0]["name"] != exc["name"]:
         exc["name"] = lst[0]["name"]
 
-    return [
-        new_exchange(exc, obj["location"], factor / total)
-        for obj, factor in zip(lst, pvs)
-    ], [p / total for p in pvs]
+    return (
+        [
+            new_exchange(exc, obj["location"], factor / total)
+            for obj, factor in zip(lst, pvs)
+        ],
+        [p / total for p in pvs],
+    )
 
 
 def filter_out_results(
@@ -707,9 +710,9 @@ class BaseTransformation:
             self.database,
             ws.equals("name", name),
             ws.contains("reference product", ref_prod),
-            ws.exclude(ws.either(
-                *[ws.equals("location", loc) for loc in self.regions]
-            ))
+            ws.exclude(
+                ws.either(*[ws.equals("location", loc) for loc in self.regions])
+            ),
         )
 
         for existing_ds in existing_datasets:

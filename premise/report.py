@@ -327,7 +327,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 if scenario_idx > 0:
                     col = last_col_used + metadata[sector]["offset"]
 
-                row = 3
+                row += 2
 
                 worksheet.cell(
                     column=col,

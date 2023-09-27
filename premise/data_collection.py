@@ -6,6 +6,7 @@ and emission values for different sectors, carbon capture rates, etc.
 
 import copy
 import csv
+import os
 from functools import lru_cache
 from io import StringIO
 from itertools import chain
@@ -631,25 +632,39 @@ class IAMDataCollection:
 
         """
 
-        file_ext = self.model + "_" + self.pathway + ".csv"
-        filepath = Path(filedir) / file_ext
+        # find file in directory which name contains both self.model and self.pathway
+        # Walk through the directory
+        filepath = ""
+        for root, dirs, files in os.walk(filedir):
+            for file in files:
+                # Check if both model and pathway are present in the filename
+                if self.model in file and self.pathway in file:
+                    filepath = Path(os.path.join(root, file))
+
+        if filepath == "":
+            raise FileNotFoundError(
+                f"Could not find any file containing both {self.model} and {self.pathway} in {filedir}"
+            )
 
         if key is None:
             # Uses a non-encrypted file
-            try:
+            # if extension is ".csv"
+            if filepath.suffix in [".csv", ".mif"]:
+                print(f"Reading {filepath} as csv file")
                 with open(filepath, "rb") as file:
                     # read the encrypted data
                     encrypted_data = file.read()
-            except FileNotFoundError:
-                file_ext = self.model + "_" + self.pathway + ".mif"
-                filepath = Path(filedir) / file_ext
-                with open(filepath, "rb") as file:
-                    # read the encrypted data
-                    encrypted_data = file.read()
+                    # create a temp csv-like file to pass to pandas.read_csv()
+                    data = StringIO(str(encrypted_data, "latin-1"))
 
-            # create a temp csv-like file to pass to pandas.read_csv()
-            data = StringIO(str(encrypted_data, "latin-1"))
+            elif filepath.suffix in [".xls", ".xlsx"]:
+                print(f"Reading {filepath} as excel file")
+                data = pd.read_excel(filepath)
 
+            else:
+                raise ValueError(
+                    f"Extension {filepath.suffix} is not supported. Please use .csv, .mif, .xls or .xlsx."
+                )
         else:
             # Uses an encrypted file
             fernet_obj = Fernet(key)
@@ -661,15 +676,18 @@ class IAMDataCollection:
             decrypted_data = fernet_obj.decrypt(encrypted_data)
             data = StringIO(str(decrypted_data, "latin-1"))
 
-        dataframe = pd.read_csv(
-            data,
-            sep=get_delimiter(data=copy.copy(data).readline()),
-            encoding="latin-1",
-        )
+        if filepath.suffix in [".csv", ".mif"]:
+            dataframe = pd.read_csv(
+                data,
+                sep=get_delimiter(data=copy.copy(data).readline()),
+                encoding="latin-1",
+            )
+        else:
+            dataframe = data
 
         # if a column name can be an integer
         # we convert it to an integer
-        new_cols = {c: int(c) if c.isdigit() else c for c in dataframe.columns}
+        new_cols = {c: int(c) if str(c).isdigit() else c for c in dataframe.columns}
         dataframe = dataframe.rename(columns=new_cols)
 
         # remove any column that is a string
@@ -889,7 +907,8 @@ class IAMDataCollection:
         # and that none of the  CO2 emissions are captured
 
         if not any(
-            x in data.variables.values.tolist() for x in dict_vars.get("cement - cco2")
+            x in data.variables.values.tolist()
+            for x in dict_vars.get("cement - cco2", [])
         ):
             cement_rate = xr.DataArray(
                 np.zeros((len(data.region), len(data.year))),
@@ -904,7 +923,8 @@ class IAMDataCollection:
         cement_rate.coords["variables"] = "cement"
 
         if not any(
-            x in data.variables.values.tolist() for x in dict_vars.get("steel - cco2")
+            x in data.variables.values.tolist()
+            for x in dict_vars.get("steel - cco2", [])
         ):
             steel_rate = xr.DataArray(
                 np.zeros((len(data.region), len(data.year))),
@@ -929,17 +949,63 @@ class IAMDataCollection:
         # as it is sometimes neglected in the
         # IAM files
 
-        if not any(
-            x in data.variables.values.tolist() for x in dict_vars.get("cement - cco2")
-        ):
-            rate.loc[dict(region="World", variables="cement")] = 0
-        else:
-            try:
-                rate.loc[dict(region="World", variables="cement")] = (
+        if "World" in rate.region.values.tolist():
+            if not any(
+                x in data.variables.values.tolist()
+                for x in dict_vars.get("cement - cco2", [])
+            ):
+                rate.loc[dict(region="World", variables="cement")] = 0
+            else:
+                try:
+                    rate.loc[dict(region="World", variables="cement")] = (
+                        data.loc[
+                            dict(
+                                region=[r for r in self.regions if r != "World"],
+                                variables=dict_vars["cement - cco2"],
+                            )
+                        ]
+                        .sum(dim=["variables", "region"])
+                        .values
+                        / data.loc[
+                            dict(
+                                region=[r for r in self.regions if r != "World"],
+                                variables=dict_vars["cement - co2"],
+                            )
+                        ]
+                        .sum(dim=["variables", "region"])
+                        .values
+                    )
+                except ZeroDivisionError:
+                    rate.loc[dict(region="World", variables="cement")] = 0
+
+                try:
+                    rate.loc[dict(region="World", variables="steel")] = data.loc[
+                        dict(
+                            region=[r for r in self.regions if r != "World"],
+                            variables=dict_vars["steel - cco2"],
+                        )
+                    ].sum(dim=["variables", "region"]) / data.loc[
+                        dict(
+                            region=[r for r in self.regions if r != "World"],
+                            variables=dict_vars["steel - co2"],
+                        )
+                    ].sum(
+                        dim=["variables", "region"]
+                    )
+                except ZeroDivisionError:
+                    rate.loc[dict(region="World", variables="steel")] = 0
+
+            if not any(
+                x in data.variables.values.tolist()
+                for x in dict_vars.get("steel - cco2", [])
+            ):
+                rate.loc[dict(region="World", variables="steel")] = 0
+            else:
+                rate.loc[dict(region="World", variables="steel")] = (
                     data.loc[
                         dict(
                             region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["cement - cco2"],
+                            variables=dict_vars["steel - cco2"],
                         )
                     ]
                     .sum(dim=["variables", "region"])
@@ -947,55 +1013,12 @@ class IAMDataCollection:
                     / data.loc[
                         dict(
                             region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["cement - co2"],
+                            variables=dict_vars["steel - co2"],
                         )
                     ]
                     .sum(dim=["variables", "region"])
                     .values
                 )
-            except ZeroDivisionError:
-                rate.loc[dict(region="World", variables="cement")] = 0
-
-            try:
-                rate.loc[dict(region="World", variables="steel")] = data.loc[
-                    dict(
-                        region=[r for r in self.regions if r != "World"],
-                        variables=dict_vars["steel - cco2"],
-                    )
-                ].sum(dim=["variables", "region"]) / data.loc[
-                    dict(
-                        region=[r for r in self.regions if r != "World"],
-                        variables=dict_vars["steel - co2"],
-                    )
-                ].sum(
-                    dim=["variables", "region"]
-                )
-            except ZeroDivisionError:
-                rate.loc[dict(region="World", variables="steel")] = 0
-
-        if not any(
-            x in data.variables.values.tolist() for x in dict_vars.get("steel - cco2")
-        ):
-            rate.loc[dict(region="World", variables="steel")] = 0
-        else:
-            rate.loc[dict(region="World", variables="steel")] = (
-                data.loc[
-                    dict(
-                        region=[r for r in self.regions if r != "World"],
-                        variables=dict_vars["steel - cco2"],
-                    )
-                ]
-                .sum(dim=["variables", "region"])
-                .values
-                / data.loc[
-                    dict(
-                        region=[r for r in self.regions if r != "World"],
-                        variables=dict_vars["steel - co2"],
-                    )
-                ]
-                .sum(dim=["variables", "region"])
-                .values
-            )
 
         # we ensure that the rate can only be between 0 and 1
         rate.values = np.clip(rate, 0, 1)
@@ -1098,7 +1121,10 @@ class IAMDataCollection:
                     .to_xarray()
                 )
 
-                array.coords["year"] = [int(y) for y in array.coords["year"]]
+                # convert to float64
+                array = array.astype(np.float64)
+                # convert year dim to int64
+                array.coords["year"] = array.coords["year"].astype(np.int64)
 
                 data[i]["production volume"] = array
                 regions = subset["region"].unique().tolist()
@@ -1140,7 +1166,10 @@ class IAMDataCollection:
                         .mean()
                         .to_xarray()
                     )
-                    array.coords["year"] = [int(y) for y in array.coords["year"]]
+                    # convert to float64
+                    array = array.astype(np.float64)
+                    # convert year dim to int64
+                    array.coords["year"] = array.coords["year"].astype(np.int64)
 
                     ref_years = {}
 

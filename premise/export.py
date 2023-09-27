@@ -889,7 +889,9 @@ def generate_superstructure_db(
     # the export to Excel is not an option
     if len(df) > 1048576:
         format = "csv"
-        print("The scenario difference file is too long to be exported to Excel. Exporting to CSV instead.")
+        print(
+            "The scenario difference file is too long to be exported to Excel. Exporting to CSV instead."
+        )
 
     if format == "excel":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
