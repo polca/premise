@@ -724,7 +724,6 @@ class IAMDataCollection:
         # convert the values in these columns to numeric
         dataframe[headers] = dataframe[headers].apply(pd.to_numeric, errors="coerce")
 
-
         array = (
             dataframe.melt(
                 id_vars=["region", "variables", "unit"],
