@@ -717,6 +717,14 @@ class IAMDataCollection:
 
         dataframe = dataframe.rename(columns={"variable": "variables"})
 
+        # make a list of headers that are integer
+
+        headers = [x for x in dataframe.columns if isinstance(x, int)]
+
+        # convert the values in these columns to numeric
+        dataframe[headers] = dataframe[headers].apply(pd.to_numeric, errors="coerce")
+
+
         array = (
             dataframe.melt(
                 id_vars=["region", "variables", "unit"],
