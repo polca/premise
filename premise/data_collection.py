@@ -8,7 +8,7 @@ import copy
 import csv
 import os
 from functools import lru_cache
-from io import StringIO, BytesIO
+from io import BytesIO, StringIO
 from itertools import chain
 from pathlib import Path
 from typing import Dict, List, Union
