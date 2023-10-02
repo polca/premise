@@ -261,6 +261,9 @@ def hide_messages():
     print("Keep uncertainty data?")
     print("NewDatabase(..., keep_uncertainty_data=True)")
     print("")
+    print("Disable multiprocessing?")
+    print("NewDatabase(..., use_multiprocessing=False)")
+    print("")
     print("Hide these messages?")
     print("NewDatabase(..., quiet=True)")
 

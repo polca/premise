@@ -8,7 +8,7 @@ import copy
 import csv
 import os
 from functools import lru_cache
-from io import StringIO
+from io import StringIO, BytesIO
 from itertools import chain
 from pathlib import Path
 from typing import Dict, List, Union
@@ -1094,9 +1094,11 @@ class IAMDataCollection:
             data[i] = {}
 
             resource = dp.get_resource("scenario_data")
-            scenario_data = resource.read()
-            scenario_headers = resource.headers
-            df = pd.DataFrame(scenario_data, columns=scenario_headers)
+            # getting scenario data in binary format
+            scenario_data = resource.raw_read()
+            df = pd.read_csv(BytesIO(scenario_data), encoding="latin1")
+            # set headers from first row
+            df.columns = resource.headers
 
             resource = dp.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())

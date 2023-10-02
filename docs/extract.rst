@@ -112,7 +112,9 @@ indicate the database name in `source_db` and its version in `source_version`:
             ],
         source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
         source_version="3.7.1", # <-- this is NEW
-        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx',
+        use_multiprocessing=True, # True by default, set to False if multiprocessing is causing troubles
+        keep_uncertainty_data=False # False by default, set to True if you want to keep ecoinvent's uncertainty data
     )
 
 Note that a cache of the database will be created the first time and

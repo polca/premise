@@ -579,28 +579,34 @@ class BaseInventoryImport:
 
         for ds in self.import_db.data:
             # lower case name and reference product
-            if not any([x in ds["name"] for x in blakclist]):
+            # only if they are not in the blacklist
+            # and if the first word is not an acronym
+            if (not any([x in ds["name"] for x in blakclist]) and
+                not ds["name"].split(" ")[0].isupper()):
                 ds["name"] = ds["name"][0].lower() + ds["name"][1:]
-            if not any([x in ds["reference product"] for x in blakclist]):
+            if (not any([x in ds["reference product"] for x in blakclist])
+                    and not ds["reference product"].split(" ")[0].isupper()):
                 ds["reference product"] = (
                     ds["reference product"][0].lower() + ds["reference product"][1:]
                 )
 
             for exc in ds["exchanges"]:
                 if exc["type"] in ["technosphere", "production"]:
-                    if not any([x in exc["name"] for x in blakclist]):
+                    if (not any([x in exc["name"] for x in blakclist])
+                            and not exc["name"].split(" ")[0].isupper()):
                         exc["name"] = exc["name"][0].lower() + exc["name"][1:]
 
-                    if not any(
+                    if (not any(
                         [x in exc.get("reference product", "") for x in blakclist]
-                    ):
+                    ) and not exc.get("reference product", "").split(" ")[0].isupper()):
                         if exc.get("reference product") is not None:
                             exc["reference product"] = (
                                 exc["reference product"][0].lower()
                                 + exc["reference product"][1:]
                             )
 
-                    if not any([x in exc.get("product", "") for x in blakclist]):
+                    if (not any([x in exc.get("product", "") for x in blakclist])
+                            and not exc.get("product", "").split(" ")[0].isupper()):
                         if exc.get("product") is not None:
                             exc["product"] = (
                                 exc["product"][0].lower() + exc["product"][1:]
