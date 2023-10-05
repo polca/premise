@@ -2016,7 +2016,7 @@ class Electricity(BaseTransformation):
                                         }
                                     )
 
-                    # self.write_log(dataset=dataset, status="updated")
+                    self.write_log(dataset=dataset, status="updated")
 
     def create_missing_power_plant_datasets(self) -> None:
         """
@@ -2030,6 +2030,11 @@ class Electricity(BaseTransformation):
                     ref_prod=vars["proxy"]["reference product"],
                     empty_original_activity=False,
                 )
+
+                # if `parameters` in datasets, delete it
+                for ds in new_datasets.values():
+                    if "parameters" in ds:
+                        del ds["parameters"]
 
                 for loc, ds in new_datasets.items():
                     ds["name"] = vars["proxy"]["new name"]
@@ -2048,6 +2053,7 @@ class Electricity(BaseTransformation):
 
         mapping = InventorySet(self.database, model=self.model)
         self.powerplant_map = mapping.generate_powerplant_map()
+
         # reverse dictionary of self.powerplant_map
         self.powerplant_map_rev = {}
         for k, v in self.powerplant_map.items():

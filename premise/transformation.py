@@ -66,7 +66,7 @@ def get_suppliers_of_a_region(
     """
 
     filters = [
-        ws.either(*[ws.contains("name", supplier) for supplier in names]),
+        ws.either(*[ws.equals("name", supplier) for supplier in names]),
         ws.either(*[ws.equals("location", loc) for loc in locations]),
         ws.contains("reference product", reference_prod),
         ws.equals("unit", unit),
