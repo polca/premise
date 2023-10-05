@@ -59,6 +59,7 @@ autodoc_mock_imports = [
     "constructive_geometries>=0.8.2",
     "pyarrow",
     "premise",
+    "sphinx-rtd-theme"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
