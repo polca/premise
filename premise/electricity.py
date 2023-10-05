@@ -1658,24 +1658,34 @@ class Electricity(BaseTransformation):
             "Gas CHP CCS",
             "Gas CC CCS",
             "Oil CC CCS",
-            #"Oil ST",
-            #"Oil CC",
+            # "Oil ST",
+            # "Oil CC",
             "Coal CF 80-20",
             "Coal CF 50-50",
             "Storage, Flow Battery",
-            "Storage, Hydrogen"
+            "Storage, Hydrogen",
         ]
 
-        list_datasets_to_duplicate = list(set([
-            dataset["name"]
-            for dataset in self.database
-            if dataset["name"]
-            in [y for k, v in self.powerplant_map.items()
-                for y in v
-                if k in techs]
-        ]))
+        list_datasets_to_duplicate = list(
+            set(
+                [
+                    dataset["name"]
+                    for dataset in self.database
+                    if dataset["name"]
+                    in [
+                        y
+                        for k, v in self.powerplant_map.items()
+                        for y in v
+                        if k in techs
+                    ]
+                ]
+            )
+        )
 
-        list_datasets_to_duplicate.insert(0,"hydrogen storage, for grid-balancing",)
+        list_datasets_to_duplicate.insert(
+            0,
+            "hydrogen storage, for grid-balancing",
+        )
 
         list_datasets_to_duplicate.extend(
             [
@@ -1695,7 +1705,6 @@ class Electricity(BaseTransformation):
                 *[ws.contains("name", name) for name in list_datasets_to_duplicate]
             ),
         ):
-
             new_plants = self.fetch_proxies(
                 name=dataset["name"],
                 ref_prod=dataset["reference product"],
