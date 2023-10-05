@@ -184,6 +184,7 @@ Coal PC:
       name:
         - mine
         - supercritical
+        - subcritical
   ecoinvent_fuel_aliases:
     fltr:
       - market for hard coal
@@ -784,7 +785,9 @@ Foil ST: # ["Note": "Steam cycle fuel oil"]
       - market for heavy fuel oil
       - market group for heavy fuel oil
     mask:
-      name: burned
+      name:
+        - burned
+        - aluminium
 
 Solar CSP:
   iam_aliases:
@@ -858,3 +861,17 @@ Wave:
   ecoinvent_aliases:
     fltr:
       - electricity production, wave energy converter
+
+Storage, Flow Battery:
+  iam_aliases:
+    image: Secondary Energy|Electricity|Storage
+  ecoinvent_aliases:
+    fltr:
+      - electricity supply, high voltage, from vanadium-redox flow battery system
+
+Storage, Hydrogen:
+  iam_aliases:
+    remind: SE|Electricity|+|Hydrogen
+  ecoinvent_aliases:
+    fltr:
+      - electricity production, from hydrogen-fired one gigawatt gas turbine

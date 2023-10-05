@@ -13,6 +13,7 @@ import copy
 import re
 from collections import defaultdict
 from functools import lru_cache
+from pprint import pprint
 
 import wurst
 import yaml
@@ -255,7 +256,7 @@ class Electricity(BaseTransformation):
             modified_datasets,
             cache,
         )
-        mapping = InventorySet(self.database)
+        mapping = InventorySet(self.database, model=self.model)
         self.powerplant_map = mapping.generate_powerplant_map()
         # reverse dictionary of self.powerplant_map
         self.powerplant_map_rev = {}
@@ -1628,7 +1629,7 @@ class Electricity(BaseTransformation):
                 else:
                     exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]]
 
-        mapping = InventorySet(self.database)
+        mapping = InventorySet(self.database, model=self.model)
         self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
 
     def create_region_specific_power_plants(self):
@@ -1657,14 +1658,24 @@ class Electricity(BaseTransformation):
             "Gas CHP CCS",
             "Gas CC CCS",
             "Oil CC CCS",
+            #"Oil ST",
+            #"Oil CC",
+            "Coal CF 80-20",
+            "Coal CF 50-50",
+            "Storage, Flow Battery",
+            "Storage, Hydrogen"
         ]
 
-        list_datasets_to_duplicate = [
+        list_datasets_to_duplicate = list(set([
             dataset["name"]
             for dataset in self.database
             if dataset["name"]
-            in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
-        ]
+            in [y for k, v in self.powerplant_map.items()
+                for y in v
+                if k in techs]
+        ]))
+
+        list_datasets_to_duplicate.insert(0,"hydrogen storage, for grid-balancing",)
 
         list_datasets_to_duplicate.extend(
             [
@@ -1684,6 +1695,7 @@ class Electricity(BaseTransformation):
                 *[ws.contains("name", name) for name in list_datasets_to_duplicate]
             ),
         ):
+
             new_plants = self.fetch_proxies(
                 name=dataset["name"],
                 ref_prod=dataset["reference product"],
@@ -1765,7 +1777,7 @@ class Electricity(BaseTransformation):
 
         # print("Adjust efficiency of power plants...")
 
-        mapping = InventorySet(self.database)
+        mapping = InventorySet(self.database, model=self.model)
         self.fuel_map = mapping.generate_fuel_map()
         # reverse the fuel map to get a mapping from ecoinvent to premise
         self.fuel_map_reverse: Dict = {}
@@ -2025,7 +2037,7 @@ class Electricity(BaseTransformation):
 
                 self.database.extend(new_datasets.values())
 
-        mapping = InventorySet(self.database)
+        mapping = InventorySet(self.database, model=self.model)
         self.powerplant_map = mapping.generate_powerplant_map()
         # reverse dictionary of self.powerplant_map
         self.powerplant_map_rev = {}

@@ -2237,6 +2237,7 @@ class Fuels(BaseTransformation):
             if "natural gas" in dataset["name"]:
                 blacklist.remove("market")
                 blacklist.append("market for natural gas, high pressure")
+                blacklist.append("market group for natural gas, high pressure")
 
             if "low-sulfur" in dataset["name"]:
                 blacklist.append("unleaded")

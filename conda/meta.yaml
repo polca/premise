@@ -20,7 +20,7 @@ requirements:
   run:
     - numpy
     - pandas
-    - bw2io >=0.8.7, != 0.8.8
+    - bw2io >=0.8.10
     - bw2data
     - wurst
     - xarray
@@ -28,7 +28,7 @@ requirements:
     - pycountry
     - cryptography
     - pyYaml
-    - sparse
+    - sparse>=0.14.0
     - schema
     - datapackage
     - requests

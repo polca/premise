@@ -137,6 +137,9 @@ FILEPATH_WAVE = INVENTORY_DIR / "lci-wave_energy.xlsx"
 FILEPATH_FUEL_CELL = INVENTORY_DIR / "lci-fuel_cell.xlsx"
 FILEPATH_CSP = INVENTORY_DIR / "lci-concentrating-solar-power.xlsx"
 FILEPATH_HOME_STORAGE_BATTERIES = INVENTORY_DIR / "lci-home-batteries.xlsx"
+FILEPATH_VANADIUM = INVENTORY_DIR / "lci-vanadium.xlsx"
+FILEPATH_VANADIUM_REDOX_BATTERY = INVENTORY_DIR / "lci-vanadium-redox-flow-battery.xlsx"
+FILEPATH_HYDROGEN_TURBINE = INVENTORY_DIR / "lci-hydrogen-turbine.xlsx"
 
 config = load_constants()
 
@@ -734,6 +737,7 @@ class NewDatabase:
             (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_TURBINE, "3.9"),
             (FILEPATH_SYNGAS_INVENTORIES, "3.9"),
             (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
             (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
@@ -761,6 +765,8 @@ class NewDatabase:
             (FILEPATH_WAVE, "3.8"),
             (FILEPATH_FUEL_CELL, "3.9"),
             (FILEPATH_CSP, "3.9"),
+            (FILEPATH_VANADIUM, "3.8"),
+            (FILEPATH_VANADIUM_REDOX_BATTERY, "3.9"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES

@@ -227,10 +227,14 @@ class Steel(BaseTransformation):
                         .sum(dim="variables")
                         / self.iam_data.production_volumes.sel(
                             variables=["steel - primary", "steel - secondary"],
-                            region="World",
+                            region=[
+                            x
+                            for x in self.iam_data.production_volumes.region.values
+                            if x != "World"
+                        ],
                         )
                         .interp(year=self.year)
-                        .sum(dim="variables")
+                        .sum(dim=["variables", "region"])
                     ).values.item(0)
 
                 except KeyError:

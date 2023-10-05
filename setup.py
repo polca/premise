@@ -44,7 +44,7 @@ setup(
         "numpy",
         "wurst",
         # bw2io 0.8.7 or 0.8.10
-        "bw2io >=0.8.7, != 0.8.8",
+        "bw2io >=0.8.10",
         "pandas",
         "bw2data",
         "xarray",
@@ -53,7 +53,7 @@ setup(
         "cryptography",
         "premise_gwp",
         "pyYaml",
-        "sparse",
+        "sparse>=0.14.0",
         "schema",
         "datapackage",
         "requests",
