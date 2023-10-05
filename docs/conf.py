@@ -34,6 +34,7 @@ release = "1.7.2"
 extensions = [
     "sphinx.ext.autodoc",  # Core library for html generation from docstrings
     "sphinx.ext.autosummary",  # Create neat summary tables
+    "sphinx_rtd_theme",
 ]
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
