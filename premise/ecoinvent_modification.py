@@ -41,6 +41,7 @@ from .steel import _update_steel
 from .transport import _update_vehicles
 from .utils import (
     clear_existing_cache,
+    create_scenario_list,
     eidb_label,
     hide_messages,
     info_on_utils_functions,
@@ -48,7 +49,6 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     write_brightway2_database,
-    create_scenario_list
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -1590,7 +1590,6 @@ class NewDatabase:
         self.generate_change_report()
 
     def write_datapackage(self, name: str = f"datapackage_{date.today()}"):
-
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
 

@@ -322,17 +322,16 @@ def delete_log():
 
 
 def create_scenario_list(scenarios, datapackages=None):
-
-    list_scenarios = [
-        f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios
-    ]
+    list_scenarios = [f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios]
 
     if "external scenarios" in scenarios[0]:
         external_model_name = "External model"
         for s, scenario in enumerate(scenarios):
             for e, ext_scenario in enumerate(scenario["external scenarios"]):
                 if datapackages is not None:
-                    external_model_name = datapackages[e].descriptor.get("name", "External model")
+                    external_model_name = datapackages[e].descriptor.get(
+                        "name", "External model"
+                    )
                 list_scenarios[s] += f" - {external_model_name} - {ext_scenario}"
 
     return list_scenarios
