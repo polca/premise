@@ -546,16 +546,31 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
             "name": "biosphere3",
         },
     ]
-    package.descriptor["scenarios"] = [
-        {
-            "name": s,
-            "description": f"Prospective db, "
-            f"based on {s.split(' - ')[0].upper()}, "
-            f"pathway {s.split(' - ')[1].upper()}, "
-            f"for the year {s.split(' - ')[2]}.",
-        }
-        for s in list_scenarios[1:]
-    ]
+
+    if len(list_scenarios[0]) == 3:
+        package.descriptor["scenarios"] = [
+            {
+                "name": s,
+                "description": f"Prospective db, "
+                f"based on {s.split(' - ')[0].upper()}, "
+                f"pathway {s.split(' - ')[1].upper()}, "
+                f"for the year {s.split(' - ')[-1]}.",
+            }
+            for s in list_scenarios[1:]
+        ]
+    else:
+        package.descriptor["scenarios"] = [
+            {
+                "name": s,
+                "description": f"Prospective db, "
+                               f"based on {s.split(' - ')[0].upper()}, "
+                               f"pathway {s.split(' - ')[1].upper()}, "
+                               f"for the year {s.split(' - ')[2]}, and "
+                               f"external scenario {' '.join(s.split(' - ')[3:])}.",
+            }
+            for s in list_scenarios[1:]
+        ]
+
     package.descriptor["keywords"] = [
         "ecoinvent",
         "scenario",
@@ -580,19 +595,31 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
     print(f"Data package saved at {DIR_DATAPACKAGE / f'{name}.zip'}")
 
 
-def generate_scenario_factor_file(origin_db, scenarios, db_name, version):
+def generate_scenario_factor_file(
+        origin_db: list,
+        scenarios: dict,
+        db_name: str,
+        version: str,
+        scenario_list: list = None,
+):
     """
     Generate a scenario factor file from a list of databases
     :param origin_db: the original database
     :param scenarios: a list of databases
     :param db_name: the name of the database
+    :param version: the version of ecoinvent
+    :param scenario_list: a list of external scenarios
     """
 
     print("Building scenario factor file...")
 
     # create the dataframe
     df, new_db, list_unique_acts = generate_scenario_difference_file(
-        origin_db=origin_db, scenarios=scenarios, db_name=db_name, version=version
+        origin_db=origin_db,
+        scenarios=scenarios,
+        db_name=db_name,
+        version=version,
+        scenario_list=scenario_list,
     )
 
     original = df["original"]
@@ -643,7 +670,7 @@ def generate_new_activities(args):
 
 
 def generate_scenario_difference_file(
-    db_name, origin_db, scenarios, version
+    db_name,origin_db, scenarios, version, scenario_list
 ) -> tuple[DataFrame, list[dict], set[Any]]:
     """
     Generate a scenario difference file for a given list of databases
@@ -666,9 +693,8 @@ def generate_scenario_difference_file(
     acts_ind = dict(enumerate(list_acts))
     acts_ind_rev = {v: k for k, v in acts_ind.items()}
 
-    list_scenarios = ["original"] + [
-        f"{s['model']} - {s['pathway']} - {s['year']}" for s in scenarios
-    ]
+    list_scenarios = ["original"] + scenario_list
+
     list_dbs = [origin_db] + [a["database"] for a in scenarios]
 
     matrices = {

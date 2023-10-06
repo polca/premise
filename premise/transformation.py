@@ -50,6 +50,7 @@ def get_suppliers_of_a_region(
     reference_prod: str,
     unit: str,
     exclude: List[str] = None,
+    exact_match: bool = False,
 ) -> filter:
     """
     Return a list of datasets, for which the location, name,
@@ -65,8 +66,16 @@ def get_suppliers_of_a_region(
     :param exclude: list of terms to exclude
     """
 
-    filters = [
-        ws.either(*[ws.equals("name", supplier) for supplier in names]),
+    if exact_match:
+        filters = [
+            ws.either(*[ws.equals("name", supplier) for supplier in names]),
+        ]
+    else:
+        filters = [
+            ws.either(*[ws.contains("name", supplier) for supplier in names]),
+        ]
+
+    filters += [
         ws.either(*[ws.equals("location", loc) for loc in locations]),
         ws.contains("reference product", reference_prod),
         ws.equals("unit", unit),

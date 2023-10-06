@@ -48,6 +48,7 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     write_brightway2_database,
+    create_scenario_list
 )
 
 DIR_CACHED_DB = DATA_DIR / "cache"
@@ -1589,6 +1590,10 @@ class NewDatabase:
         self.generate_change_report()
 
     def write_datapackage(self, name: str = f"datapackage_{date.today()}"):
+
+        if not isinstance(name, str):
+            raise TypeError("`name` should be a string.")
+
         cached_inventories = self.__find_cached_inventories(self.source)
 
         if not cached_inventories:
@@ -1624,17 +1629,22 @@ class NewDatabase:
                     modified_datasets=self.modified_datasets,
                 )
 
+        if hasattr(self, "datapackages"):
+            list_scenarios = create_scenario_list(self.scenarios, self.datapackages)
+        else:
+            list_scenarios = create_scenario_list(self.scenarios)
+
         df, extra_inventories = generate_scenario_factor_file(
             origin_db=self.database,
             scenarios=self.scenarios,
             db_name=name,
             version=self.version,
+            scenario_list=list_scenarios,
         )
 
         cached_inventories.extend(extra_inventories)
-        list_scenarios = ["original"] + [
-            f"{s['model']} - {s['pathway']} - {s['year']}" for s in self.scenarios
-        ]
+
+        list_scenarios = ["original"] + list_scenarios
 
         build_datapackage(
             df=df,

@@ -400,6 +400,7 @@ class Electricity(BaseTransformation):
                             names=ecoinvent_technologies[technology],
                             reference_prod="electricity",
                             unit="kilowatt hour",
+                            exact_match=True,
                         )
                     )
                     counter += 1
@@ -932,6 +933,7 @@ class Electricity(BaseTransformation):
                                 names=ecoinvent_technologies[technology],
                                 reference_prod="electricity",
                                 unit="kilowatt hour",
+                                exact_match=True,
                             )
                         )
                         counter += 1

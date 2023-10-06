@@ -441,17 +441,22 @@ class Fuels(BaseTransformation):
 
         # while we do not find a result
         while len(suppliers) == 0:
-            suppliers = list(
-                get_suppliers_of_a_region(
-                    database=self.database,
-                    locations=possible_locations[counter],
-                    names=[name] if isinstance(name, str) else name,
-                    reference_prod=ref_prod,
-                    unit=unit,
-                    exclude=exclude,
+            try:
+                suppliers = list(
+                    get_suppliers_of_a_region(
+                        database=self.database,
+                        locations=possible_locations[counter],
+                        names=[name] if isinstance(name, str) else name,
+                        reference_prod=ref_prod,
+                        unit=unit,
+                        exclude=exclude,
+                    )
                 )
-            )
-            counter += 1
+                counter += 1
+            except IndexError as err:
+                raise IndexError(
+                    f"Could not find any supplier for {name} {ref_prod} in {possible_locations}."
+                ) from err
 
         suppliers = [s for s in suppliers if s]  # filter out empty lists
 
