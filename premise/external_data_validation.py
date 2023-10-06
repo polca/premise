@@ -88,7 +88,9 @@ def check_inventories(
             and (i[0], i[1]) not in list_datasets
         ]
 
-        raise AssertionError(f"The following datasets are not in the inventory data: {list_missing_datasets}") from e
+        raise AssertionError(
+            f"The following datasets are not in the inventory data: {list_missing_datasets}"
+        ) from e
 
     # flag imported inventories
     for i, dataset in enumerate(inventory_data):

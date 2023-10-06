@@ -563,10 +563,10 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
             {
                 "name": s,
                 "description": f"Prospective db, "
-                               f"based on {s.split(' - ')[0].upper()}, "
-                               f"pathway {s.split(' - ')[1].upper()}, "
-                               f"for the year {s.split(' - ')[2]}, and "
-                               f"external scenario {' '.join(s.split(' - ')[3:])}.",
+                f"based on {s.split(' - ')[0].upper()}, "
+                f"pathway {s.split(' - ')[1].upper()}, "
+                f"for the year {s.split(' - ')[2]}, and "
+                f"external scenario {' '.join(s.split(' - ')[3:])}.",
             }
             for s in list_scenarios[1:]
         ]
@@ -596,11 +596,11 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
 
 
 def generate_scenario_factor_file(
-        origin_db: list,
-        scenarios: dict,
-        db_name: str,
-        version: str,
-        scenario_list: list = None,
+    origin_db: list,
+    scenarios: dict,
+    db_name: str,
+    version: str,
+    scenario_list: list = None,
 ):
     """
     Generate a scenario factor file from a list of databases
@@ -670,7 +670,7 @@ def generate_new_activities(args):
 
 
 def generate_scenario_difference_file(
-    db_name,origin_db, scenarios, version, scenario_list
+    db_name, origin_db, scenarios, version, scenario_list
 ) -> tuple[DataFrame, list[dict], set[Any]]:
     """
     Generate a scenario difference file for a given list of databases
