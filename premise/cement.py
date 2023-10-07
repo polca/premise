@@ -376,7 +376,7 @@ class Cement(BaseTransformation):
 
             # Carbon capture rate: share of capture of total CO2 emitted
             carbon_capture_rate = self.get_carbon_capture_rate(
-                loc=dataset["location"], sector="cement, dry feed rotary kiln"
+                loc=dataset["location"], sector="cement"
             )
 
             dataset["log parameters"].update(

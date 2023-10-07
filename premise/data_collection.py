@@ -508,6 +508,7 @@ class IAMDataCollection:
         self.electricity_efficiencies = self.get_iam_efficiencies(
             data=data, efficiency_labels=electricity_eff_vars
         )
+
         self.cement_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels=cement_eff_vars,
@@ -713,8 +714,6 @@ class IAMDataCollection:
             x.lower() if isinstance(x, str) else x for x in dataframe.columns
         ]
 
-        # print(dataframe["variable"].unique())
-
         dataframe = dataframe.loc[dataframe["variable"].isin(variables)]
 
         dataframe = dataframe.rename(columns={"variable": "variables"})
@@ -857,7 +856,7 @@ class IAMDataCollection:
                     all(var in data.variables.values for var in energy_labels[k])
                     and v in data.variables.values
                 ):
-                    d = 1 / (
+                    d = (
                         data.loc[:, energy_labels[k], :].sum(dim="variables")
                         / data.loc[:, v, :]
                     )
@@ -872,9 +871,17 @@ class IAMDataCollection:
             return None
 
         if not self.use_absolute_efficiency:
+            # efficiency expressed
             eff_data /= eff_data.sel(year=2020)
+
+            if len(efficiency_labels) == 0 or any("specific" in x.lower() for x in efficiency_labels.values()):
+                # we are dealing with specific energy consumption, not efficiencies
+                # we need to convert them to efficiencies
+                eff_data = 1 / eff_data
+
             # fix efficiencies
             eff_data = fix_efficiencies(eff_data, self.min_year)
+
         else:
             # if absolute efficiencies are used, we need to make sure that
             # the efficiency is not greater than 1
