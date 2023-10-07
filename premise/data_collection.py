@@ -874,7 +874,9 @@ class IAMDataCollection:
             # efficiency expressed
             eff_data /= eff_data.sel(year=2020)
 
-            if len(efficiency_labels) == 0 or any("specific" in x.lower() for x in efficiency_labels.values()):
+            if len(efficiency_labels) == 0 or any(
+                "specific" in x.lower() for x in efficiency_labels.values()
+            ):
                 # we are dealing with specific energy consumption, not efficiencies
                 # we need to convert them to efficiencies
                 eff_data = 1 / eff_data
