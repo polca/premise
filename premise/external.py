@@ -1063,12 +1063,11 @@ class ExternalScenario(BaseTransformation):
                         else:
                             regions.remove(region)
 
-                    # if so far, a market for `World` has not been created
-                    # we need to create one then
+                    # if there's more than one region, we create a World region
                     create_world_region = True
                     if "World" in regions or "World" in market_vars.get(
                         "except regions", []
-                    ):
+                    ) or len(regions) == 1:
                         create_world_region = False
 
                     if create_world_region:

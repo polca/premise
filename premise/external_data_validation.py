@@ -3,6 +3,7 @@ Validates datapackages that contain external scenario data.
 """
 
 import sys
+from pprint import pprint
 
 import numpy as np
 import pandas as pd
@@ -36,11 +37,11 @@ def check_inventories(
     d_datasets = {
         (val["ecoinvent alias"]["name"], val["ecoinvent alias"]["reference product"]): {
             "exists in original database": val["ecoinvent alias"].get(
-                "exists in original database", False
+                "exists in original database", True
             ),
             "new dataset": val["ecoinvent alias"].get("new dataset", False),
             "regionalize": val["ecoinvent alias"].get("regionalize", False),
-            "except regions": val.get("except regions", []),
+            "except regions": val.get("except regions", ["World",]),
             "efficiency": val.get("efficiency", []),
             "replaces": val.get("replaces", []),
             "replaces in": val.get("replaces in", []),
