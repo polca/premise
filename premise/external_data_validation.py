@@ -41,7 +41,12 @@ def check_inventories(
             ),
             "new dataset": val["ecoinvent alias"].get("new dataset", False),
             "regionalize": val["ecoinvent alias"].get("regionalize", False),
-            "except regions": val.get("except regions", ["World",]),
+            "except regions": val.get(
+                "except regions",
+                [
+                    "World",
+                ],
+            ),
             "efficiency": val.get("efficiency", []),
             "replaces": val.get("replaces", []),
             "replaces in": val.get("replaces in", []),
