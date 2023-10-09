@@ -43,7 +43,7 @@ setup(
     install_requires=[
         "numpy",
         "wurst==0.3.3",
-        "bw2io==0.8.7",
+        "bw2io",
         "pandas==1.5.3",
         "bw2data",
         "xarray",

@@ -2,16 +2,18 @@
 Various utils functions.
 """
 
-import os
-import sys
+from copy import copy
 from functools import lru_cache
 from pathlib import Path
 from typing import List
+import itertools
+import os
+import sys
 
 import pandas as pd
 import xarray as xr
 import yaml
-from bw2data import databases
+from bw2data import databases, Database
 from bw2io.importers.base_lci import LCIImporter
 from country_converter import CountryConverter
 from prettytable import ALL, PrettyTable
@@ -275,9 +277,55 @@ class PremiseImporter(LCIImporter):
     # to allow existing databases
     # to be overwritten
     def write_database(self):
+        def no_exchange_generator(data):
+            for ds in data:
+                cp = copy(ds)
+                cp['exchanges'] = []
+                yield cp
+
         if self.db_name in databases:
             print(f"Database {self.db_name} already exists: " "it will be overwritten.")
-        super().write_database()
+        super().write_database(list(no_exchange_generator(self.data)), backend="iotable")
+
+        dependents = {exc['input'][0] for ds in self.data for exc in ds['exchanges']}
+        lookup = {obj.key: obj.id for obj in itertools.chain(*[Database(label) for label in dependents])}
+
+        def technosphere_generator(data, lookup):
+            for ds in data:
+                target = lookup[(ds['database'], ds['code'])]
+                for exc in ds['exchanges']:
+                    if exc['type'] in ('substitution', 'production', 'generic production'):
+                        yield {
+                            "row": lookup[exc['input']],
+                            "col": target,
+                            "amount": exc['amount'],
+                            "flip": False
+                        }
+                    elif exc['type'] == 'technosphere':
+                        yield {
+                            "row": lookup[exc['input']],
+                            "col": target,
+                            "amount": exc['amount'],
+                            "flip": True
+                        }
+
+        def biosphere_generator(data, lookup):
+            for ds in data:
+                target = lookup[(ds['database'], ds['code'])]
+                for exc in ds['exchanges']:
+                    if exc['type'] == 'biosphere':
+                        yield {
+                            "row": lookup[exc['input']],
+                            "col": target,
+                            "amount": exc['amount'],
+                            "flip": False
+                        }
+
+        Database(self.db_name).write_exchanges(
+            technosphere_generator(self.data, lookup),
+            biosphere_generator(self.data, lookup),
+            list(dependents)
+        )
 
 
 def clean_up(exc):
