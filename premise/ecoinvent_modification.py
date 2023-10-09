@@ -1347,6 +1347,11 @@ class NewDatabase:
                     modified_datasets=self.modified_datasets,
                 )
 
+        if hasattr(self, "datapackages"):
+            list_scenarios = create_scenario_list(self.scenarios, self.datapackages)
+        else:
+            list_scenarios = create_scenario_list(self.scenarios)
+
         self.database = generate_superstructure_db(
             origin_db=self.database,
             scenarios=self.scenarios,
@@ -1354,6 +1359,7 @@ class NewDatabase:
             filepath=filepath,
             version=self.version,
             format=format,
+            scenario_list=list_scenarios,
         )
 
         write_brightway2_database(
