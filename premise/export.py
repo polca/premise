@@ -861,7 +861,13 @@ def generate_scenario_difference_file(
 
 
 def generate_superstructure_db(
-    origin_db, scenarios, db_name, filepath, version, scenario_list, format="excel",
+    origin_db,
+    scenarios,
+    db_name,
+    filepath,
+    version,
+    scenario_list,
+    format="excel",
 ) -> List[dict]:
     """
     Build a superstructure database from a list of databases
@@ -882,7 +888,7 @@ def generate_superstructure_db(
         scenarios=scenarios,
         db_name=db_name,
         version=version,
-        scenario_list=scenario_list
+        scenario_list=scenario_list,
     )
 
     # remove unneeded columns "to unit"
