@@ -32,7 +32,7 @@ def package_files(directory):
 
 setup(
     name="premise",
-    version="1.7.6",
+    version="1.7.7",
     python_requires=">=3.9,<3.11",
     packages=packages,
     author="Romain Sacchi <romain.sacchi@psi.ch>, Alois Dirnaichner <dirnaichner@pik-potsdam.de>, Chris Mutel "
@@ -43,7 +43,6 @@ setup(
     install_requires=[
         "bottleneck",
         "bw2data",
-        # bw2io 0.8.7 or 0.8.10
         "bw2io >=0.8.10",
         "constructive_geometries>=0.8.2",
         "cryptography",
