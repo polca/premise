@@ -25,8 +25,8 @@ from wurst.linking import (
 from wurst.searching import equals, get_many
 
 from . import __version__
-from .filesystem_constants import DATA_DIR, VARIABLES_DIR, DIR_CACHED_DB
 from .data_collection import get_delimiter
+from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, VARIABLES_DIR
 from .geomap import Geomap
 
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
@@ -171,10 +171,7 @@ def clear_existing_cache(all_versions: Optional[bool] = False) -> None:
         f.unlink()
         for f in DIR_CACHED_DB.glob("*")
         if f.is_file()
-        and (
-            all_versions
-            or "".join(tuple(map(str, __version__))) not in f.name
-        )
+        and (all_versions or "".join(tuple(map(str, __version__))) not in f.name)
     ]
 
 

@@ -19,9 +19,9 @@ from bw2io import CSVImporter, ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
 
-from .filesystem_constants import DATA_DIR, INVENTORY_DIR, DIR_CACHED_DB
 from .clean_datasets import remove_categories, remove_uncertainty
 from .data_collection import get_delimiter
+from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, INVENTORY_DIR
 from .geomap import Geomap
 
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"

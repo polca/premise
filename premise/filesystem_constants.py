@@ -1,6 +1,6 @@
 from pathlib import Path
-import platformdirs
 
+import platformdirs
 
 # Directories for data which comes with Premise
 DATA_DIR = Path(__file__).resolve().parent / "data"

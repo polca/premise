@@ -20,6 +20,7 @@ import yaml
 
 from .data_collection import get_delimiter
 from .export import biosphere_flows_dictionary
+from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import create_logger
 from .transformation import (
     BaseTransformation,
@@ -35,7 +36,6 @@ from .transformation import (
     ws,
 )
 from .utils import eidb_label, get_efficiency_solar_photovoltaics
-from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"

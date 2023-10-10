@@ -9,8 +9,8 @@ from pathlib import Path
 import wurst
 import yaml
 
-from .logger import create_logger
 from .filesystem_constants import DATA_DIR
+from .logger import create_logger
 
 logger = create_logger("dac")
 

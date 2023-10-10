@@ -1,24 +1,24 @@
 """
 Implements external scenario data.
 """
-from collections import defaultdict
-from typing import Union, List
-from pathlib import Path
 import logging
-import yaml
 import uuid
+from collections import defaultdict
+from pathlib import Path
+from typing import List, Union
 
-import wurst
-from wurst import searching as ws
 import numpy as np
+import wurst
 import xarray as xr
+import yaml
+from wurst import searching as ws
 
 from .clean_datasets import get_biosphere_flow_uuid
-from .inventory_imports import generate_migration_maps, get_correspondence_bio_flows
-from .utils import eidb_label
-from .filesystem_constants import DATA_DIR
-from .transformation import get_shares_from_production_volume, BaseTransformation
 from .data_collection import IAMDataCollection
+from .filesystem_constants import DATA_DIR
+from .inventory_imports import generate_migration_maps, get_correspondence_bio_flows
+from .transformation import BaseTransformation, get_shares_from_production_volume
+from .utils import eidb_label
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 

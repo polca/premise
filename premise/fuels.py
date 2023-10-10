@@ -13,6 +13,7 @@ import xarray as xr
 import yaml
 from numpy import ndarray
 
+from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .inventory_imports import get_biosphere_code
 from .logger import create_logger
 from .transformation import (
@@ -29,7 +30,6 @@ from .transformation import (
     uuid,
     ws,
 )
-from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .utils import get_crops_properties
 
 logger = create_logger("fuel")

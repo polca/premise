@@ -34,6 +34,7 @@ from .export import (
 )
 from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
+from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .report import generate_change_report, generate_summary_report
@@ -50,7 +51,6 @@ from .utils import (
     warning_about_biogenic_co2,
     write_brightway2_database,
 )
-from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, INVENTORY_DIR, IAM_OUTPUT_DIR
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"

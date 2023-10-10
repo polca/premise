@@ -14,6 +14,7 @@ import xarray as xr
 import yaml
 from numpy import ndarray
 
+from .filesystem_constants import DATA_DIR
 from .logger import create_logger
 from .transformation import (
     BaseTransformation,
@@ -24,7 +25,6 @@ from .transformation import (
     Set,
     ws,
 )
-from .filesystem_constants import DATA_DIR
 
 logger = create_logger("emissions")
 

@@ -1,9 +1,9 @@
 # content of test_electricity.py
 import os
 
-from premise.filesystem_constants import DATA_DIR
 from premise.data_collection import IAMDataCollection
 from premise.electricity import Electricity
+from premise.filesystem_constants import DATA_DIR
 
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 LHV_FUELS = DATA_DIR / "fuels_lower_heating_value.txt"

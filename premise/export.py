@@ -25,8 +25,8 @@ from pandas import DataFrame
 from scipy import sparse as nsp
 
 from . import __version__
-from .filesystem_constants import DATA_DIR
 from .data_collection import get_delimiter
+from .filesystem_constants import DATA_DIR
 from .inventory_imports import get_correspondence_bio_flows
 from .transformation import BaseTransformation
 from .utils import check_database_name

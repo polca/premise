@@ -14,14 +14,12 @@ import yaml
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from .filesystem_constants import DATA_DIR, INVENTORY_DIR, IAM_OUTPUT_DIR
+from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import BaseTransformation, IAMDataCollection
 from .utils import eidb_label
 
-FILEPATH_FLEET_COMP = (
-    IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
-)
+FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
     IAM_OUTPUT_DIR / "fleet_files" / "image_fleet_trucks.csv"
 )
