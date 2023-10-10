@@ -11,10 +11,9 @@ import re
 import uuid
 from collections import defaultdict
 from functools import lru_cache
-from multiprocessing import Pool as ProcessPool
 from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
-from typing import Any, Dict, List, Set, Tuple, Union
+from typing import Any, Dict, List
 
 import numpy as np
 import pandas as pd
@@ -24,8 +23,9 @@ from datapackage import Package
 from pandas import DataFrame
 from scipy import sparse as nsp
 
-from . import DATA_DIR, __version__
+from . import __version__
 from .data_collection import get_delimiter
+from .filesystem_constants import DATA_DIR
 from .inventory_imports import get_correspondence_bio_flows
 from .transformation import BaseTransformation
 from .utils import check_database_name

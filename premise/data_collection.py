@@ -19,7 +19,7 @@ import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
 
-from . import DATA_DIR, VARIABLES_DIR
+from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, VARIABLES_DIR
 from .marginal_mixes import consequential_method
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
@@ -30,11 +30,9 @@ IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
 IAM_DAC_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
-FILEPATH_FLEET_COMP = (
-    DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
-)
+FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
-    DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
+    IAM_OUTPUT_DIR / "fleet_files" / "image_fleet_trucks.csv"
 )
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"

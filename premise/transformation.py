@@ -25,8 +25,9 @@ from wurst import transformations as wt
 
 from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
+from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
-from .utils import DATA_DIR, get_fuel_properties
+from .utils import get_fuel_properties
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 # directory for log files

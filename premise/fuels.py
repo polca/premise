@@ -3,9 +3,7 @@ Integrates projections regarding fuel production and supply.
 """
 
 import copy
-import logging.config
 from functools import lru_cache
-from pathlib import Path
 from typing import Union
 
 import wurst
@@ -13,7 +11,7 @@ import xarray as xr
 import yaml
 from numpy import ndarray
 
-from . import VARIABLES_DIR
+from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .inventory_imports import get_biosphere_code
 from .logger import create_logger
 from .transformation import (
@@ -30,7 +28,7 @@ from .transformation import (
     uuid,
     ws,
 )
-from .utils import DATA_DIR, get_crops_properties
+from .utils import get_crops_properties
 
 logger = create_logger("fuel")
 

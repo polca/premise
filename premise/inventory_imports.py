@@ -5,7 +5,6 @@ and those provided by the user.
 
 import csv
 import itertools
-import sys
 import uuid
 from functools import lru_cache
 from pathlib import Path
@@ -19,9 +18,9 @@ from bw2io import CSVImporter, ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
 
-from . import DATA_DIR, INVENTORY_DIR
 from .clean_datasets import remove_categories, remove_uncertainty
 from .data_collection import get_delimiter
+from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, INVENTORY_DIR
 from .geomap import Geomap
 
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
@@ -822,8 +821,7 @@ class AdditionalInventory(BaseInventoryImport):
             # online file
             # we need to save it locally first
             response = requests.get(path)
-            Path(DATA_DIR / "cache").mkdir(parents=True, exist_ok=True)
-            path = str(Path(DATA_DIR / "cache" / "temp.csv"))
+            path = DIR_CACHED_DB / "temp.csv"
             with open(path, "w", encoding="utf-8") as f:
                 writer = csv.writer(
                     f,
@@ -835,9 +833,9 @@ class AdditionalInventory(BaseInventoryImport):
                 for line in response.iter_lines():
                     writer.writerow(line.decode("utf-8").split(","))
 
-        if Path(path).suffix == ".xlsx":
+        if path.suffix == ".xlsx":
             return ExcelImporter(path)
-        elif Path(path).suffix == ".csv":
+        elif path.suffix == ".csv":
             return CSVImporter(path)
         else:
             raise ValueError(

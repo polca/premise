@@ -18,23 +18,24 @@ requirements:
     - python
     - setuptools
   run:
+    - bottleneck
+    - bw2data
+    - bw2io >=0.8.10
+    - constructive_geometries>=0.8.2
+    - cryptography
+    - datapackage
     - numpy
     - pandas
-    - bw2io >=0.8.10
-    - bw2data
+    - platformdirs
+    - prettytable
+    - pyarrow
+    - pycountry
+    - pyYaml
+    - requests
+    - schema
+    - sparse>=0.14.0
     - wurst
     - xarray
-    - prettytable
-    - pycountry
-    - cryptography
-    - pyYaml
-    - sparse>=0.14.0
-    - schema
-    - datapackage
-    - requests
-    - bottleneck
-    - constructive_geometries>=0.8.2
-    - pyarrow
 
 test:
   imports:

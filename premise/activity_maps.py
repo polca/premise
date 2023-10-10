@@ -3,7 +3,6 @@ activity_maps.py contains InventorySet, which is a class that provides all neces
 mapping between ``premise`` and ``ecoinvent`` terminology.
 """
 
-import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import List, Union
@@ -11,7 +10,7 @@ from typing import List, Union
 import yaml
 from wurst import searching as ws
 
-from . import DATA_DIR, VARIABLES_DIR
+from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
 FUELS_TECHS = VARIABLES_DIR / "fuels_variables.yaml"

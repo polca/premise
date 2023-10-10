@@ -13,14 +13,13 @@ import copy
 import re
 from collections import defaultdict
 from functools import lru_cache
-from pprint import pprint
 
 import wurst
 import yaml
 
-from . import VARIABLES_DIR
 from .data_collection import get_delimiter
 from .export import biosphere_flows_dictionary
+from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import create_logger
 from .transformation import (
     BaseTransformation,
@@ -35,7 +34,7 @@ from .transformation import (
     uuid,
     ws,
 )
-from .utils import DATA_DIR, eidb_label, get_efficiency_solar_photovoltaics
+from .utils import eidb_label, get_efficiency_solar_photovoltaics
 
 LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"

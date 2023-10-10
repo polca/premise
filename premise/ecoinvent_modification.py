@@ -18,7 +18,7 @@ from typing import List, Union
 import datapackage
 import yaml
 
-from . import DATA_DIR, INVENTORY_DIR, __version__
+from . import __version__
 from .cement import _update_cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
@@ -34,6 +34,7 @@ from .export import (
 )
 from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
+from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .report import generate_change_report, generate_summary_report
@@ -50,8 +51,6 @@ from .utils import (
     warning_about_biogenic_co2,
     write_brightway2_database,
 )
-
-DIR_CACHED_DB = DATA_DIR / "cache"
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -344,7 +343,8 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
         filepath = scenario["filepath"]
         scenario["filepath"] = check_filepath(filepath)
     else:
-        scenario["filepath"] = DATA_DIR / "iam_output_files"
+        # Note: A directory path, not a file path
+        scenario["filepath"] = IAM_OUTPUT_DIR
         if key is None:
             raise ValueError(
                 "You need to provide the encryption key to decrypt the IAM output files provided by `premise`."
@@ -633,13 +633,11 @@ class NewDatabase:
         :param db_name: database name
         :return: database
         """
-        # check that directory exists, otherwise create it
-        Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
         # build file path
         if db_name is None and self.source_type == "ecospold":
             db_name = f"ecospold_{self.system_model}_{self.version}"
 
-        file_name = Path(
+        file_name = (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}.pickle"
         )
@@ -663,13 +661,11 @@ class NewDatabase:
         :param db_name: database name
         :return: database
         """
-        # check that directory exists, otherwise create it
-        Path(DIR_CACHED_DB).mkdir(parents=True, exist_ok=True)
         # build file path
         if db_name is None and self.source_type == "ecospold":
             db_name = f"ecospold_{self.system_model}_{self.version}"
 
-        file_name = Path(
+        file_name = (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}_inventories.pickle"
         )
@@ -1602,7 +1598,7 @@ class NewDatabase:
         cached_inventories = self.__find_cached_inventories(self.source)
 
         if not cached_inventories:
-            cache_fp = DATA_DIR / "cache" / f"cached_{self.source}_inventories.pickle"
+            cache_fp = DIR_CACHED_DB / f"cached_{self.source}_inventories.pickle"
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
         cache = {}

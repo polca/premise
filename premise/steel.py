@@ -1,17 +1,13 @@
 """
 Integrates projections regarding steel production.
 """
-import logging.config
-from pathlib import Path
 from typing import Dict, List
 
 import wurst
-import yaml
 
 from .data_collection import IAMDataCollection
 from .logger import create_logger
 from .transformation import BaseTransformation, ws
-from .utils import DATA_DIR
 
 logger = create_logger("steel")
 

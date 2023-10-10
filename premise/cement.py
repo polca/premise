@@ -8,15 +8,10 @@ of the wurst database to the newly created cement markets.
 
 """
 
-import logging.config
 from collections import defaultdict
-from pathlib import Path
-
-import yaml
 
 from .logger import create_logger
 from .transformation import BaseTransformation, Dict, IAMDataCollection, List, np, ws
-from .utils import DATA_DIR
 
 logger = create_logger("cement")
 
