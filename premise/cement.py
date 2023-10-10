@@ -8,10 +8,7 @@ of the wurst database to the newly created cement markets.
 
 """
 
-import logging.config
 from collections import defaultdict
-
-import yaml
 
 from .logger import create_logger
 from .transformation import BaseTransformation, Dict, IAMDataCollection, List, np, ws

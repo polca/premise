@@ -3,9 +3,7 @@ Integrates projections regarding emissions of hot pollutants
 from GAINS.
 """
 
-import logging.config
 from functools import lru_cache
-from pathlib import Path
 from typing import Union
 
 import numpy as np

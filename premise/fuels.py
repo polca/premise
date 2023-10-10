@@ -3,9 +3,7 @@ Integrates projections regarding fuel production and supply.
 """
 
 import copy
-import logging.config
 from functools import lru_cache
-from pathlib import Path
 from typing import Union
 
 import wurst

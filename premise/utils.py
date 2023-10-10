@@ -16,12 +16,7 @@ from bw2data import databases
 from bw2io.importers.base_lci import LCIImporter
 from country_converter import CountryConverter
 from prettytable import ALL, PrettyTable
-from wurst.linking import (
-    change_db_name,
-    check_duplicate_codes,
-    check_internal_linking,
-    link_internal,
-)
+from wurst.linking import change_db_name, check_internal_linking, link_internal
 from wurst.searching import equals, get_many
 
 from . import __version__

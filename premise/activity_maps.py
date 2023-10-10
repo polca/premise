@@ -3,7 +3,6 @@ activity_maps.py contains InventorySet, which is a class that provides all neces
 mapping between ``premise`` and ``ecoinvent`` terminology.
 """
 
-import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import List, Union

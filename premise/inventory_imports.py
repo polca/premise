@@ -5,7 +5,6 @@ and those provided by the user.
 
 import csv
 import itertools
-import sys
 import uuid
 from functools import lru_cache
 from pathlib import Path

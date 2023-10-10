@@ -1,5 +1,4 @@
 import logging.config
-import multiprocessing
 from pathlib import Path
 
 import yaml

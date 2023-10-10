@@ -13,7 +13,6 @@ import copy
 import re
 from collections import defaultdict
 from functools import lru_cache
-from pprint import pprint
 
 import wurst
 import yaml
