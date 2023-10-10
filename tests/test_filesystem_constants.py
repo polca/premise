@@ -1,9 +1,13 @@
-from premise.filesystem_constants import (
-    DATA_DIR, INVENTORY_DIR, VARIABLES_DIR, IAM_OUTPUT_DIR,
-    DIR_CACHED_DB
-)
 import os
 from pathlib import Path
+
+from premise.filesystem_constants import (
+    DATA_DIR,
+    DIR_CACHED_DB,
+    IAM_OUTPUT_DIR,
+    INVENTORY_DIR,
+    VARIABLES_DIR,
+)
 
 dd_root = str(DATA_DIR.parent.parent)
 cd_root = str(DIR_CACHED_DB.parent.parent)
