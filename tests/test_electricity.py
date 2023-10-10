@@ -1,5 +1,8 @@
 # content of test_electricity.py
 import os
+from pathlib import Path
+
+import pytest
 
 from premise.data_collection import IAMDataCollection
 from premise.electricity import Electricity
@@ -40,38 +43,48 @@ def get_db():
     return dummy_db, version
 
 
+# This won't work with PRs because PRs from outside contributors don't have
+# access to secrets (for good reason).
 if "IAM_FILES_KEY" in os.environ:
     key = os.environ["IAM_FILES_KEY"]
 else:
-    with open("/Users/romain/Dropbox/Notebooks/key.txt") as f:
-        lines = f.readlines()
-    key = lines[0]
-
-rdc = IAMDataCollection(
-    model="remind",
-    pathway="SSP2-Base",
-    year=2012,
-    filepath_iam_files=DATA_DIR / "iam_output_files",
-    key=str.encode(key),
-)
-db, _ = get_db()
-el = Electricity(
-    database=db,
-    iam_data=rdc,
-    model="remind",
-    pathway="SSP2-Base",
-    year=2012,
-    version="3.5",
-    system_model="cutoff",
-    modified_datasets={},
-)
+    # This won't work on most computers :)
+    if Path("/Users/romain/Dropbox/Notebooks/key.txt").is_file():
+        with open("/Users/romain/Dropbox/Notebooks/key.txt") as f:
+            lines = f.readlines()
+        key = lines[0]
+    else:
+        key = None
 
 
+if key:
+    rdc = IAMDataCollection(
+        model="remind",
+        pathway="SSP2-Base",
+        year=2012,
+        filepath_iam_files=DATA_DIR / "iam_output_files",
+        key=str.encode(key),
+    )
+    db, _ = get_db()
+    el = Electricity(
+        database=db,
+        iam_data=rdc,
+        model="remind",
+        pathway="SSP2-Base",
+        year=2012,
+        version="3.5",
+        system_model="cutoff",
+        modified_datasets={},
+    )
+
+
+@pytest.mark.skipif(not key, reason="No access to decryption key")
 def test_losses():
     assert len(el.network_loss) == 13
     assert el.network_loss["CAZ"]["high"]["transf_loss"] == 0.035483703331573094
 
 
+@pytest.mark.skipif(not key, reason="No access to decryption key")
 def test_powerplant_map():
     s = el.powerplant_map["Biomass IGCC CCS"]
     assert isinstance(s, set)
