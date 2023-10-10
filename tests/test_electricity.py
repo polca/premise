@@ -1,7 +1,7 @@
 # content of test_electricity.py
 import os
 
-from premise import DATA_DIR
+from premise.filesystem_constants import DATA_DIR
 from premise.data_collection import IAMDataCollection
 from premise.electricity import Electricity
 

@@ -10,7 +10,7 @@ import wurst
 import yaml
 
 from .logger import create_logger
-from .utils import DATA_DIR
+from .filesystem_constants import DATA_DIR
 
 logger = create_logger("dac")
 

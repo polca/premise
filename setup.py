@@ -60,6 +60,7 @@ setup(
         "bottleneck",
         "constructive_geometries>=0.8.2",
         "pyarrow",
+        "platformdirs",
     ],
     url="https://github.com/polca/premise",
     description="Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA",

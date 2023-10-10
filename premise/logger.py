@@ -4,7 +4,7 @@ from pathlib import Path
 
 import yaml
 
-from . import DATA_DIR
+from .filesystem_constants import DATA_DIR
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 DIR_LOG_REPORT = Path.cwd() / "export" / "logs"

@@ -24,7 +24,7 @@ from .transformation import (
     Set,
     ws,
 )
-from .utils import DATA_DIR
+from .filesystem_constants import DATA_DIR
 
 logger = create_logger("emissions")
 

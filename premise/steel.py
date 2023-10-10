@@ -11,7 +11,6 @@ import yaml
 from .data_collection import IAMDataCollection
 from .logger import create_logger
 from .transformation import BaseTransformation, ws
-from .utils import DATA_DIR
 
 logger = create_logger("steel")
 

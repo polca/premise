@@ -7,7 +7,7 @@ import sys
 import uuid
 from functools import lru_cache
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 import pandas as pd
 import xarray as xr
@@ -24,7 +24,8 @@ from wurst.linking import (
 )
 from wurst.searching import equals, get_many
 
-from . import DATA_DIR, VARIABLES_DIR, __version__
+from . import __version__
+from .filesystem_constants import DATA_DIR, VARIABLES_DIR, DIR_CACHED_DB
 from .data_collection import get_delimiter
 from .geomap import Geomap
 
@@ -160,7 +161,7 @@ def get_regions_definition(model: str) -> None:
     print(table)
 
 
-def clear_existing_cache():
+def clear_existing_cache(all_versions: Optional[bool] = False) -> None:
     """Clears the cache folder, except for files which contain __version__ in name.
     Useful when updating `premise`
     or encountering issues with
@@ -168,14 +169,18 @@ def clear_existing_cache():
     """
     [
         f.unlink()
-        for f in Path(DATA_DIR / "cache").glob("*")
-        if f.is_file() and "".join(tuple(map(str, __version__))) not in f.name
+        for f in DIR_CACHED_DB.glob("*")
+        if f.is_file()
+        and (
+            all_versions
+            or "".join(tuple(map(str, __version__))) not in f.name
+        )
     ]
 
 
 # clear the cache folder
-def clear_cache():
-    [f.unlink() for f in Path(DATA_DIR / "cache").glob("*") if f.is_file()]
+def clear_cache() -> None:
+    clear_existing_cache(all_versions=True)
     print("Cache folder cleared!")
 
 

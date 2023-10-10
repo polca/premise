@@ -13,7 +13,7 @@ import xarray as xr
 import yaml
 from numpy import ndarray
 
-from premise import DATA_DIR
+from .filesystem_constants import DATA_DIR
 
 IAM_LEADTIMES = DATA_DIR / "consequential" / "leadtimes.yaml"
 IAM_LIFETIMES = DATA_DIR / "consequential" / "lifetimes.yaml"
