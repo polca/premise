@@ -9,10 +9,9 @@ from typing import Dict, List, Union
 import yaml
 from wurst import geomatcher
 
-from . import DATA_DIR, VARIABLES_DIR
+from .filesystem_constants import VARIABLES_DIR
 
 ECO_IAM_MAPPING = VARIABLES_DIR / "missing_geography_equivalences.yaml"
-IAM_TO_IAM_MAPPING = DATA_DIR / "geomap" / "mapping_regions_iam.yml"
 
 
 def load_constants():
@@ -58,8 +57,6 @@ class Geomap:
     def __init__(self, model: str) -> None:
         self.model = model
         self.geo = geomatcher
-        self.additional_mappings = get_additional_mapping()
-        self.rev_additional_mappings = {}
 
         if model not in ["remind", "image"]:
             if "EXTRA_TOPOLOGY" in constants:
@@ -76,6 +73,8 @@ class Geomap:
                     "REMIND or IMAGE."
                 )
 
+        self.additional_mappings = get_additional_mapping()
+        self.rev_additional_mappings = {}
         for key, val in self.additional_mappings.items():
             if (
                 self.model.upper(),

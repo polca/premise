@@ -26,11 +26,35 @@ Electricity - efficiency:
   label: Efficiency gains (2020 = 1)
   expl_text: Energy efficiency gains per (combustion-based) technology relative to 2020. Used to calibrate the efficiency of the electricity-producing datasets. The efficiency of renewables is calibrated separately.
   offset: 3
-Fuel - generation:
+Fuel (gasoline) - generation:
   label: Exajoules (EJ)
-  expl_text: Generated volumes of fuel, per technology. Used to calculate fuel supply mixes.
+  expl_text: Generated volumes of gasoline-like fuel, per technology. Used to calculate fuel supply mixes.
   offset: 5
-Fuel - efficiency:
+Fuel (gasoline) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Fuel (diesel) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of diesel-like fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (diesel) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Fuel (gas) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of gas-like fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (gas) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Fuel (hydrogen) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of hydrogen fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (hydrogen) - efficiency:
   label: Efficiency gains (2020 = 1)
   expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
   offset: 5

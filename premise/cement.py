@@ -8,28 +8,36 @@ of the wurst database to the newly created cement markets.
 
 """
 
-import logging.config
 from collections import defaultdict
-from pathlib import Path
 
-import yaml
-
+from .logger import create_logger
 from .transformation import BaseTransformation, Dict, IAMDataCollection, List, np, ws
-from .utils import DATA_DIR
 
-LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
-# directory for log files
-DIR_LOG_REPORT = Path.cwd() / "export" / "logs"
-# if DIR_LOG_REPORT folder does not exist
-# we create it
-if not Path(DIR_LOG_REPORT).exists():
-    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
+logger = create_logger("cement")
 
-with open(LOG_CONFIG, "r") as f:
-    config = yaml.safe_load(f.read())
-    logging.config.dictConfig(config)
 
-logger = logging.getLogger("cement")
+def _update_cement(scenario, version, system_model, modified_datasets, cache=None):
+    cement = Cement(
+        database=scenario["database"],
+        model=scenario["model"],
+        pathway=scenario["pathway"],
+        iam_data=scenario["iam data"],
+        year=scenario["year"],
+        version=version,
+        system_model=system_model,
+        modified_datasets=modified_datasets,
+        cache=cache,
+    )
+
+    if scenario["iam data"].cement_markets is not None:
+        cement.add_datasets_to_database()
+        scenario["database"] = cement.database
+        modified_datasets = cement.modified_datasets
+        cache = cement.cache
+    else:
+        print("No cement markets found in IAM data. Skipping.")
+
+    return scenario, modified_datasets, cache
 
 
 class Cement(BaseTransformation):
@@ -63,6 +71,7 @@ class Cement(BaseTransformation):
         version: str,
         system_model: str,
         modified_datasets: dict,
+        cache: dict = None,
     ):
         super().__init__(
             database,
@@ -73,6 +82,7 @@ class Cement(BaseTransformation):
             version,
             system_model,
             modified_datasets,
+            cache,
         )
         self.version = version
 
@@ -94,7 +104,7 @@ class Cement(BaseTransformation):
 
         for exc in dataset["exchanges"]:
             if (
-                exc["name"] in self.cement_fuels_map["cement"]
+                exc["name"] in self.cement_fuels_map["cement, dry feed rotary kiln"]
                 and exc["type"] == "technosphere"
             ):
                 if exc["name"] not in d_fuels:
@@ -171,7 +181,7 @@ class Cement(BaseTransformation):
     def rescale_fuel_inputs(self, dataset, scaling_factor, energy_details):
         if scaling_factor != 1:
             for exc in dataset["exchanges"]:
-                if exc["name"] in self.cement_fuels_map["cement"]:
+                if exc["name"] in self.cement_fuels_map["cement, dry feed rotary kiln"]:
                     exc["amount"] *= scaling_factor
 
                     # update energy_details
@@ -267,7 +277,7 @@ class Cement(BaseTransformation):
         d_act_clinker = self.fetch_proxies(
             name="clinker production",
             ref_prod="clinker",
-            production_variable="cement",
+            production_variable="cement, dry feed rotary kiln",
         )
 
         for region, dataset in d_act_clinker.items():
@@ -330,7 +340,9 @@ class Cement(BaseTransformation):
             # divided by the ratio fuel/output in 2020
 
             scaling_factor = 1 / self.find_iam_efficiency_change(
-                variable="cement", location=dataset["location"]
+                data=self.iam_data.cement_efficiencies,
+                variable="cement, dry feed rotary kiln",
+                location=dataset["location"],
             )
 
             # calculate new thermal energy
@@ -451,9 +463,9 @@ class Cement(BaseTransformation):
         :return: Does not return anything. Modifies in place.
         """
 
-        print("Start integration of cement data...")
+        # print("Start integration of cement data...")
 
-        print("Create new clinker production datasets and delete old datasets")
+        # print("Create new clinker production datasets and delete old datasets")
 
         clinker_prod_datasets = list(self.build_clinker_production_datasets().values())
         self.database.extend(clinker_prod_datasets)
@@ -473,12 +485,12 @@ class Cement(BaseTransformation):
                 )
             )
 
-        print("Create new clinker market datasets and delete old datasets")
+        # print("Create new clinker market datasets and delete old datasets")
         clinker_market_datasets = list(
             self.fetch_proxies(
                 name="market for clinker",
                 ref_prod="clinker",
-                production_variable="cement",
+                production_variable="cement, dry feed rotary kiln",
             ).values()
         )
 
@@ -499,7 +511,7 @@ class Cement(BaseTransformation):
                 )
             )
 
-        print("Create new cement market datasets")
+        # print("Create new cement market datasets")
 
         # cement markets
         markets = ws.get_many(
@@ -518,7 +530,7 @@ class Cement(BaseTransformation):
             new_cement_markets = self.fetch_proxies(
                 name=dataset[0],
                 ref_prod=dataset[1],
-                production_variable="cement",
+                production_variable="cement, dry feed rotary kiln",
             )
 
             # add to log
@@ -540,10 +552,10 @@ class Cement(BaseTransformation):
 
         self.database.extend(new_datasets)
 
-        print(
-            "Create new cement production datasets and "
-            "adjust electricity consumption"
-        )
+        # print(
+        #    "Create new cement production datasets and "
+        #    "adjust electricity consumption"
+        # )
         # cement production
         production = ws.get_many(
             self.database,
@@ -562,7 +574,7 @@ class Cement(BaseTransformation):
             new_cement_production = self.fetch_proxies(
                 name=dataset[0],
                 ref_prod=dataset[1],
-                production_variable="cement",
+                production_variable="cement, dry feed rotary kiln",
             )
 
             # add to log

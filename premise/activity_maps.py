@@ -3,15 +3,14 @@ activity_maps.py contains InventorySet, which is a class that provides all neces
 mapping between ``premise`` and ``ecoinvent`` terminology.
 """
 
-import csv
 from collections import defaultdict
 from pathlib import Path
-from pprint import pprint
 from typing import List, Union
 
 import yaml
+from wurst import searching as ws
 
-from . import DATA_DIR, VARIABLES_DIR
+from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
 FUELS_TECHS = VARIABLES_DIR / "fuels_variables.yaml"
@@ -24,23 +23,82 @@ GAINS_MAPPING = (
 )
 
 
-def get_mapping(filepath: Path, var: str) -> dict:
+def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
     """
     Loa a YAML file and return a dictionary given a variable.
     :param filepath: YAML file path
     :param var: variable to return the dictionary for.
+    :param model: if provided, only return the dictionary for this model.
     :return: a dictionary
     """
 
     with open(filepath, "r", encoding="utf-8") as stream:
-        techs = yaml.safe_load(stream)
+        techs = yaml.full_load(stream)
 
     mapping = {}
     for key, val in techs.items():
         if var in val:
-            mapping[key] = val[var]
+            if model is None:
+                mapping[key] = val[var]
+            else:
+                if model in val.get("iam_aliases", {}):
+                    mapping[key] = val[var]
 
     return mapping
+
+
+def act_fltr(
+    database: List[dict],
+    fltr: Union[str, List[str]] = None,
+    mask: Union[str, List[str]] = None,
+) -> List[dict]:
+    """Filter `database` for activities matching field contents given by `fltr` excluding strings in `mask`.
+    `fltr`: string, list of strings or dictionary.
+    If a string is provided, it is used to match the name field from the start (*startswith*).
+    If a list is provided, all strings in the lists are used and results are joined (*or*).
+    A dict can be given in the form <fieldname>: <str> to filter for <str> in <fieldname>.
+    `mask`: used in the same way as `fltr`, but filters add up with each other (*and*).
+    `filter_exact` and `mask_exact`: boolean, set `True` to only allow for exact matches.
+
+    :param database: A lice cycle inventory database
+    :type database: brightway2 database object
+    :param fltr: value(s) to filter with.
+    :type fltr: Union[str, lst, dict]
+    :param mask: value(s) to filter with.
+    :type mask: Union[str, lst, dict]
+    :return: list of activity data set names
+    :rtype: list
+
+    """
+    if fltr is None:
+        fltr = {}
+    if mask is None:
+        mask = {}
+
+    # default field is name
+    if isinstance(fltr, (list, str)):
+        fltr = {"name": fltr}
+    if isinstance(mask, (list, str)):
+        mask = {"name": mask}
+
+    assert len(fltr) > 0, "Filter dict must not be empty."
+
+    # find `act` in `database` that match `fltr`
+    # and do not match `mask`
+    filters = []
+    for field, value in fltr.items():
+        if isinstance(value, list):
+            filters.extend([ws.either(*[ws.contains(field, v) for v in value])])
+        else:
+            filters.append(ws.contains(field, value))
+
+    for field, value in mask.items():
+        if isinstance(value, list):
+            filters.extend([ws.exclude(ws.contains(field, v)) for v in value])
+        else:
+            filters.append(ws.exclude(ws.contains(field, value)))
+
+    return list(ws.get_many(database, *filters))
 
 
 class InventorySet:
@@ -61,11 +119,15 @@ class InventorySet:
     These functions return the result of applying :func:`act_fltr` to the filter dictionaries.
     """
 
-    def __init__(self, database: List[dict]) -> None:
+    def __init__(
+        self, database: List[dict], version: str = None, model: str = None
+    ) -> None:
         self.database = database
+        self.version = version
+        self.model = model
 
         self.powerplant_filters = get_mapping(
-            filepath=POWERPLANT_TECHS, var="ecoinvent_aliases"
+            filepath=POWERPLANT_TECHS, var="ecoinvent_aliases", model=self.model
         )
 
         self.powerplant_fuels_filters = get_mapping(
@@ -181,93 +243,33 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.materials_filters)
 
-    @staticmethod
-    def act_fltr(
-        database: List[dict],
-        fltr: Union[str, List[str]] = None,
-        mask: Union[str, List[str]] = None,
-        filter_exact: bool = False,
-        mask_exact: bool = False,
-    ) -> List[dict]:
-        """Filter `database` for activities matching field contents given by `fltr` excluding strings in `mask`.
-        `fltr`: string, list of strings or dictionary.
-        If a string is provided, it is used to match the name field from the start (*startswith*).
-        If a list is provided, all strings in the lists are used and results are joined (*or*).
-        A dict can be given in the form <fieldname>: <str> to filter for <str> in <fieldname>.
-        `mask`: used in the same way as `fltr`, but filters add up with each other (*and*).
-        `filter_exact` and `mask_exact`: boolean, set `True` to only allow for exact matches.
-
-        :param database: A lice cycle inventory database
-        :type database: brightway2 database object
-        :param fltr: value(s) to filter with.
-        :type fltr: Union[str, lst, dict]
-        :param mask: value(s) to filter with.
-        :type mask: Union[str, lst, dict]
-        :param filter_exact: requires exact match when true.
-        :type filter_exact: bool
-        :param mask_exact: requires exact match when true.
-        :type mask_exact: bool
-        :return: list of activity data set names
-        :rtype: list
-
-        """
-        if fltr is None:
-            fltr = {}
-        if mask is None:
-            mask = {}
-        result = []
-
-        # default field is name
-        if isinstance(fltr, (list, str)):
-            fltr = {"name": fltr}
-        if isinstance(mask, (list, str)):
-            mask = {"name": mask}
-
-        def like(item_a, item_b):
-            if filter_exact:
-                return item_a.lower() == item_b.lower()
-            return item_a.lower().startswith(item_b.lower())
-
-        def notlike(item_a, item_b):
-            if mask_exact:
-                return item_a.lower() != item_b.lower()
-            return item_b.lower() not in item_a.lower()
-
-        assert len(fltr) > 0, "Filter dict must not be empty."
-
-        for field in fltr:
-            conditions = fltr[field]
-            if isinstance(conditions, list):
-                for condition in conditions:
-                    # this is effectively connecting the statements by *or*
-                    result.extend(
-                        [act for act in database if like(act[field], condition)]
-                    )
-            else:
-                result.extend([act for act in database if like(act[field], conditions)])
-
-        for field in mask:
-            conditions = mask[field]
-            if isinstance(conditions, list):
-                for condition in conditions:
-                    # this is effectively connecting the statements by *and*
-                    result = [act for act in result if notlike(act[field], condition)]
-            else:
-                result = [act for act in result if notlike(act[field], conditions)]
-        return result
-
-    def generate_sets_from_filters(self, filtr: dict) -> dict:
+    def generate_sets_from_filters(self, filtr: dict, database=None) -> dict:
         """
         Generate a dictionary with sets of activity names for
         technologies from the filter specifications.
 
-            :param filtr:
-            :func:`activity_maps.InventorySet.act_fltr`.
+        :param filtr:
+        :func:`activity_maps.InventorySet.act_fltr`.
         :return: dictionary with the same keys as provided in filter
             and a set of activity data set names as values.
         :rtype: dict
         """
+
+        database = database or self.database
+
         techs = {
-            tech: self.act_fltr(self.database, **fltr) for tech, fltr in filtr.items()
+            tech: act_fltr(database, fltr.get("fltr"), fltr.get("mask"))
+            for tech, fltr in filtr.items()
         }
-        return {tech: {act["name"] for act in actlst} for tech, actlst in techs.items()}
+
+        mapping = {
+            tech: {act["name"] for act in actlst} for tech, actlst in techs.items()
+        }
+
+        # check if all keys have values
+        # if not, print warning
+        # for key, val in mapping.items():
+        #    if not val:
+        #        print(f"Warning: No activities found for {key} -- revise mapping.")
+
+        return mapping

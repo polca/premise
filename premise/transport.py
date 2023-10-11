@@ -14,16 +14,14 @@ import yaml
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from . import DATA_DIR, INVENTORY_DIR
+from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import BaseTransformation, IAMDataCollection
 from .utils import eidb_label
 
-FILEPATH_FLEET_COMP = (
-    DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
-)
+FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
-    DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
+    IAM_OUTPUT_DIR / "fleet_files" / "image_fleet_trucks.csv"
 )
 FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
@@ -31,6 +29,50 @@ FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
 FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
 FILEPATH_TRUCK_LOAD_FACTORS = DATA_DIR / "transport" / "avg_load_factors.yaml"
 FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
+
+
+def _update_vehicles(
+    scenario,
+    vehicle_type,
+    version,
+    system_model,
+    modified_datasets,
+    cache=None,
+):
+    trspt = Transport(
+        database=scenario["database"],
+        year=scenario["year"],
+        model=scenario["model"],
+        pathway=scenario["pathway"],
+        iam_data=scenario["iam data"],
+        version=version,
+        system_model=system_model,
+        vehicle_type=vehicle_type,
+        relink=False,
+        has_fleet=True,
+        modified_datasets=modified_datasets,
+    )
+
+    if vehicle_type == "car":
+        iam_data = scenario["iam data"].trsp_cars
+    elif vehicle_type == "truck":
+        iam_data = scenario["iam data"].trsp_trucks
+    elif vehicle_type == "bus":
+        iam_data = scenario["iam data"].trsp_buses
+    elif vehicle_type == "two wheeler":
+        iam_data = scenario["iam data"].trsp_two_wheelers
+    else:
+        raise ValueError("Unknown vehicle type.")
+
+    if iam_data is not None:
+        trspt.create_vehicle_markets()
+        scenario["database"] = trspt.database
+        modified_datasets = trspt.modified_datasets
+        cache = trspt.cache
+    else:
+        print(f"No markets found for {vehicle_type} in IAM data. Skipping.")
+
+    return scenario, modified_datasets, {} or cache
 
 
 def get_average_truck_load_factors() -> Dict[str, Dict[str, Dict[str, float]]]:
@@ -101,7 +143,7 @@ def create_fleet_vehicles(
     :param regions: IAM regions
     :return: list of fleet average vehicle datasets
     """
-    print("Create fleet average vehicles...")
+    # print("Create fleet average vehicles...")
 
     vehicles_map = get_vehicles_mapping()
 

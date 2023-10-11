@@ -112,7 +112,9 @@ indicate the database name in `source_db` and its version in `source_version`:
             ],
         source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
         source_version="3.7.1", # <-- this is NEW
-        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx',
+        use_multiprocessing=True, # True by default, set to False if multiprocessing is causing troubles
+        keep_uncertainty_data=False # False by default, set to True if you want to keep ecoinvent's uncertainty data
     )
 
 Note that a cache of the database will be created the first time and
@@ -529,6 +531,8 @@ Hydrogen
 * Coal gasification
 * Coal gasification, with Carbon Capture and Storage
 * Electrolysis
+* Thermochemical water splitting
+* Pyrolysis
 
 Inventories using Steam Methane Reforming are from Antonini_ et al. 2021.
 They can be consulted here: LCI_SMR_.
@@ -539,14 +543,20 @@ They can be consulted here: LCI_woody_.
 Inventories using coal gasification are from Wokaun_ et al. 2015, but updated
 with Li_ et al. 2022, which also provide an option with CCS.
 They can be consulted here: LCI_coal_.
-Inventories using electrolysis are from Bareiss_ et al. 2019.
+Inventories using electrolysis are from Niklas Gerloff_. 2021.
 They can be consulted here: LCI_electrolysis_.
+Inventories for thermochemical water splitting are from Zhang2_ et al. 2022.
+Inventories for pyrolysis are from Al-Qahtani_ et al. 2021, completed with
+data from Postels_ et al., 2016.
 
 .. _Antonini: https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00222d
 .. _Antonini2: https://pubs.rsc.org/en/Content/ArticleLanding/2021/SE/D0SE01637C
 .. _Wokaun: https://www.cambridge.org/core/books/transition-to-hydrogen/43144AF26ED80E7106B675A6E83B1579
 .. _Li: https://doi.org/10.1016/j.jclepro.2022.132514
-.. _Bareiss: https://www.sciencedirect.com/science/article/pii/S0306261919300017
+.. _Gerloff: https://doi.org/10.1016/j.est.2021.102759
+.. _Zhang2: https://doi.org/10.1016/j.ijhydene.2022.02.150
+.. _Al-Qahtani: https://doi.org/10.1016/j.apenergy.2020.115958
+.. _Postels: https://doi.org/10.1016/j.ijhydene.2016.09.167
 .. _LCI_SMR: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
 .. _LCI_ATR: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
 .. _LCI_woody: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
@@ -569,7 +579,12 @@ The new datasets introduced are listed in the table below (only production datas
   hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant    CH
   hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant              CH
   hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant                             RER
-  hydrogen production, gaseous, 25 bar, from electrolysis                                                                                 RER
+  hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity                                                      RER
+  hydrogen production, gaseous, 20 bar, from AEC electrolysis, from grid electricity                                                      RER
+  hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity                                                      RER
+  hydrogen production, gaseous, 1 bar, from SOEC electrolysis, with steam input, from grid electricity                                    RER
+  hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at solar tower                                               RER
+  hydrogen production, gaseous, 100 bar, from methane pyrolysis                                                                           RER
  ======================================================================================================================================= ===========
 
 Hydrogen storage and distribution
@@ -600,7 +615,7 @@ The datasets introduced are listed in the table below.
  ================================================================== ===========
   Hydrogen distribution                                              location
  ================================================================== ===========
-  Hydrogen refuelling station                                        GLO
+  hydrogen refuelling station                                        GLO
   high pressure hydrogen storage tank                                GLO
   distribution pipeline for hydrogen, dedicated hydrogen pipeline    RER
   transmission pipeline for hydrogen, dedicated hydrogen pipeline    RER
@@ -619,6 +634,19 @@ The datasets introduced are listed in the table below.
 .. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X
 .. _LCI_H2_distr: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-distribution.xlsx
 .. _Cerniauskas: https://doi.org/10.1016/j.ijhydene.2020.02.121
+
+
+Hydrogen turbine
+****************
+
+A dataset for a hydrogen turbine is also imported, to model the production of electricity
+from hydrogen, with an efficiency of 51%. The efficiency of the H2-fed gas turbine is based
+on the parameters of Ozawa_ et al. (2019), consulted here: LCI_H2_turbine_.
+
+.. _Ozawa: https://doi.org/10.1016/j.ijhydene.2019.02.230
+.. _LCI_H2_turbine: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-turbine.xlsx
+
+
 
 Biofuels
 --------
@@ -777,8 +805,8 @@ reflect the fact that part of the CO2 has not been emitted but has ended in the 
 in the fuel instead of being stored underground, which from a carbon accounting standpoint is
 similar.
 
-Direct Air Capture
-------------------
+Carbon Capture
+--------------
 
 Two sets of inventories for Direct Air Capture (DAC) are available in *premise*.
 One for a solvent-based system, and one for a sorbent-based system. The inventories
@@ -791,8 +819,14 @@ They can be consulted here: LCI_DAC_.
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 .. _LCI_DAC: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-direct-air-capture.xlsx
 
-They introduce the following datasets:
+Additional, two datasets for carbon capture at point sources are available:
+one at cement plant from Meunier_ et al, 2020, and another one at municipal solid waste incineration plant (MSWI)
+from Bisinella_ et al, 2021.
 
+.. _Meunier: https://doi.org/10.1016/j.renene.2019.07.010
+.. _Bisinella: https://doi.org/10.1016/j.wasman.2021.04.046
+
+They introduce the following datasets:
 
  =============================================================================================================== ===========
   Activity                                                                                                         Location
@@ -801,6 +835,8 @@ They introduce the following datasets:
   carbon dioxide, captured from atmosphere and stored, with a sorbent-based direct air capture system, 100ktCO2    RER
   carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2                 RER
   carbon dioxide, captured from atmosphere and stored, with a solvent-based direct air capture system, 1MtCO2      RER
+  carbon dioxide, captured at municipal solid waste incineration plant, for subsequent reuse                       RER
+  carbon dioxide, captured at cement production plant, for subsequent reuse                                        RER
  =============================================================================================================== ===========
 
 Using the transformation function `update_dac()`, *premise* creates various configurations of these processes,
@@ -921,6 +957,41 @@ These inventories can be found here: LCI_lithium_.
 .. _LCI_cobalt: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-cobalt.xlsx
 .. _LCI_lithium: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-lithium.xlsx
 
+Vanadium Redox Flow Batteries
+-----------------------------
+
+*premise* imports inventories for the production of a vanadium redox flow battery, used
+for grid-balancing, from the work of Weber_ et al. 2021.
+It is available under the following dataset:
+
+* vanadium-redox flow battery system assembly, 8.3 megawatt hour
+
+The dataset providing electricity is the following:
+
+* electricity supply, high voltage, from vanadium-redox flow battery system
+
+The power capacity for this application is 1MW and the net storage capacity 6 MWh.
+The net capacity considers the internal inefficiencies of the batteries and the
+min Sate-of-Charge, requiring a certain oversizing of the batteries.
+For providing net 6 MWh, a nominal capacity of 8.3 MWh is required for the
+VRFB with the assumed operation parameters. The assumed lifetime of the stack
+is 10 years. The lifetime of the system is 20 years or 8176
+cycle-life (49,000 MWh).
+
+.. _Weber: https://doi.org/10.1021/acs.est.8b02073
+
+These inventories can be found here: LCI_vanadium_redox_flow_batteries_.
+
+.. _LCI_vanadium_redox_flow_batteries: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-vanadium-redox-flow-battery.xlsx
+
+This publication also provides LCIs for Vanadium mining and refining from iron ore.
+The end product is vanadium pentoxide, which is available under the following dataset:
+
+* vanadium pentoxide production
+
+These inventories can be found here: LCI_vanadium_.
+
+.. _LCI_vanadium: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-vanadium.xlsx
 
 Road vehicles
 -------------

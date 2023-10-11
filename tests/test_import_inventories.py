@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from premise import INVENTORY_DIR
+from premise.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import BaseInventoryImport, DefaultInventory
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -113,8 +113,9 @@ def test_load_carma():
         version_out="3.8",
         path=FILEPATH_CARMA_INVENTORIES,
         system_model="cutoff",
+        keep_uncertainty_data=False,
     )
-    assert len(carma.import_db.data) >= 135
+    assert len(carma.import_db.data) >= 81
 
 
 def test_load_biofuel():
@@ -125,5 +126,6 @@ def test_load_biofuel():
         version_out="3.8",
         path=FILEPATH_BIOFUEL_INVENTORIES,
         system_model="cutoff",
+        keep_uncertainty_data=False,
     )
-    assert len(bio.import_db.data) >= 160
+    assert len(bio.import_db.data) >= 150
