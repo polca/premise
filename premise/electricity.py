@@ -1922,7 +1922,9 @@ class Electricity(BaseTransformation):
             if tech in self.powerplant_map:
                 datasets = ws.get_many(
                     self.database,
-                    ws.either(*[ws.contains("name", n) for n in self.powerplant_map[tech]]),
+                    ws.either(
+                        *[ws.contains("name", n) for n in self.powerplant_map[tech]]
+                    ),
                     ws.equals("unit", "kilowatt hour"),
                     ws.doesnt_contain_any("name", ["mine", "critical"]),
                 )
@@ -1956,8 +1958,11 @@ class Electricity(BaseTransformation):
                             dataset["log parameters"].update(
                                 {
                                     f"ecoinvent original efficiency": ei_eff,
-                                    f"Oberschelp et al. efficiency": new_eff.values.item(0),
-                                    f"efficiency change": ei_eff / new_eff.values.item(0),
+                                    f"Oberschelp et al. efficiency": new_eff.values.item(
+                                        0
+                                    ),
+                                    f"efficiency change": ei_eff
+                                    / new_eff.values.item(0),
                                 }
                             )
 
@@ -1983,7 +1988,9 @@ class Electricity(BaseTransformation):
                                 fuel="Anthracite coal"
                                 if "hard coal" in dataset["name"]
                                 else "Lignite coal",
-                                CHP=True if "co-generation" in dataset["name"] else False,
+                                CHP=True
+                                if "co-generation" in dataset["name"]
+                                else False,
                                 variable=species,
                             ) / (
                                 self.iam_data.coal_power_plants.sel(
@@ -2003,7 +2010,8 @@ class Electricity(BaseTransformation):
                                 for exc in ws.biosphere(dataset):
                                     if exc["name"] == flow:
                                         scaling_factor = (
-                                            emission_factor.values.item(0) / exc["amount"]
+                                            emission_factor.values.item(0)
+                                            / exc["amount"]
                                         )
                                         exc["amount"] = float(
                                             emission_factor.values.item(0)
