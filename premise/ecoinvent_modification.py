@@ -53,6 +53,7 @@ from .utils import (
 
 try:
     import bw_processing
+
     from .brightway25 import write_brightway_database
 except ImportError:
     from .brightway2 import write_brightway_database
