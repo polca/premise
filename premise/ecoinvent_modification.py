@@ -56,6 +56,7 @@ logger = logging.getLogger("module")
 
 try:
     import bw_processing
+
     from .brightway25 import write_brightway_database
     logger.info("Using Brightway 2.5")
 except ImportError:
