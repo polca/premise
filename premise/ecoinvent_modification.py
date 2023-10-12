@@ -5,6 +5,7 @@ as well as export it back.
 """
 
 import copy
+import logging
 import multiprocessing
 import os
 import pickle
@@ -14,7 +15,6 @@ from multiprocessing import Pool as ProcessPool
 from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import List, Union
-import logging
 
 import datapackage
 import yaml
@@ -58,9 +58,11 @@ try:
     import bw_processing
 
     from .brightway25 import write_brightway_database
+
     logger.info("Using Brightway 2.5")
 except ImportError:
     from .brightway2 import write_brightway_database
+
     logger.info("Using Brightway 2")
 
 
