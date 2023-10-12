@@ -12,11 +12,8 @@ from typing import List, Optional
 import pandas as pd
 import xarray as xr
 import yaml
-from bw2data import databases
-from bw2io.importers.base_lci import LCIImporter
 from country_converter import CountryConverter
 from prettytable import ALL, PrettyTable
-from wurst.linking import change_db_name, check_internal_linking, link_internal
 from wurst.searching import equals, get_many
 
 from . import __version__
@@ -265,22 +262,6 @@ def hide_messages():
     print("NewDatabase(..., quiet=True)")
 
 
-class PremiseImporter(LCIImporter):
-    def __init__(self, db_name, data):
-        self.db_name = db_name
-        self.data = data
-        for act in self.data:
-            act["database"] = self.db_name
-
-    # we override `write_database`
-    # to allow existing databases
-    # to be overwritten
-    def write_database(self):
-        if self.db_name in databases:
-            print(f"Database {self.db_name} already exists: " "it will be overwritten.")
-        super().write_database()
-
-
 def reset_all_codes(data):
     """
     Re-generate all codes in each dataset of a database
@@ -295,17 +276,6 @@ def reset_all_codes(data):
                     del exc["input"]
 
     return data
-
-
-def write_brightway2_database(data, name, reset_codes=False):
-    # Restore parameters to Brightway2 format
-    # which allows for uncertainty and comments
-    change_db_name(data, name)
-    if reset_codes:
-        reset_all_codes(data)
-    link_internal(data)
-    check_internal_linking(data)
-    PremiseImporter(name, data).write_database()
 
 
 def delete_log():
