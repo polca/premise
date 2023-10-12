@@ -817,7 +817,9 @@ class AdditionalInventory(BaseInventoryImport):
         super().__init__(database, version_in, version_out, path, system_model)
 
     def load_inventory(self, path):
-        if "http" in path:
+        path = Path(path)
+        # check if "http" in path
+        if "http" in str(path):
             # online file
             # we need to save it locally first
             response = requests.get(path)
@@ -835,8 +837,10 @@ class AdditionalInventory(BaseInventoryImport):
 
         if path.suffix == ".xlsx":
             return ExcelImporter(path)
+
         elif path.suffix == ".csv":
             return CSVImporter(path)
+
         else:
             raise ValueError(
                 "Incorrect filetype for inventories." "Should be either .xlsx or .csv"
