@@ -837,8 +837,10 @@ class AdditionalInventory(BaseInventoryImport):
 
         if path.suffix == ".xlsx":
             return ExcelImporter(path)
+
         elif path.suffix == ".csv":
             return CSVImporter(path)
+
         else:
             raise ValueError(
                 "Incorrect filetype for inventories." "Should be either .xlsx or .csv"
