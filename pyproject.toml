@@ -35,6 +35,7 @@ testing = [
     "setuptools",
     "pytest",
     "pytest-cov",
+    "coveralls"
 ]
 
 docs = [
