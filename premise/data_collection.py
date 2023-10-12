@@ -1105,7 +1105,9 @@ class IAMDataCollection:
             resource = dp.get_resource("scenario_data")
             # getting scenario data in binary format
             scenario_data = resource.raw_read()
-            df = pd.read_csv(BytesIO(scenario_data), encoding="latin1")
+            df = pd.read_csv(
+                BytesIO(scenario_data),
+            )
             # set headers from first row
             df.columns = resource.headers
 
