@@ -1,9 +1,11 @@
-from wurst.linking import change_db_name, check_internal_linking, link_internal
-from .utils import reset_all_codes
+import itertools
+from copy import copy
+
 from bw2data import Database, databases
 from bw2io.importers.base_lci import LCIImporter
-from copy import copy
-import itertools
+from wurst.linking import change_db_name, check_internal_linking, link_internal
+
+from .utils import reset_all_codes
 
 
 class BW25Importer(LCIImporter):
@@ -20,55 +22,64 @@ class BW25Importer(LCIImporter):
         def no_exchange_generator(data):
             for ds in data:
                 cp = copy(ds)
-                cp['exchanges'] = []
+                cp["exchanges"] = []
                 yield cp
 
         if self.db_name in databases:
             print(f"Database {self.db_name} already exists: " "it will be overwritten.")
-        super().write_database(list(no_exchange_generator(self.data)), backend="iotable")
+        super().write_database(
+            list(no_exchange_generator(self.data)), backend="iotable"
+        )
 
-        dependents = {exc['input'][0] for ds in self.data for exc in ds['exchanges']}
-        lookup = {obj.key: obj.id for obj in itertools.chain(*[Database(label) for label in dependents])}
+        dependents = {exc["input"][0] for ds in self.data for exc in ds["exchanges"]}
+        lookup = {
+            obj.key: obj.id
+            for obj in itertools.chain(*[Database(label) for label in dependents])
+        }
 
         def technosphere_generator(data, lookup):
             for ds in data:
-                target = lookup[(ds['database'], ds['code'])]
-                for exc in ds['exchanges']:
-                    if exc['type'] in ('substitution', 'production', 'generic production'):
+                target = lookup[(ds["database"], ds["code"])]
+                for exc in ds["exchanges"]:
+                    if exc["type"] in (
+                        "substitution",
+                        "production",
+                        "generic production",
+                    ):
                         yield {
-                            "row": lookup[exc['input']],
+                            "row": lookup[exc["input"]],
                             "col": target,
-                            "amount": exc['amount'],
-                            "flip": False
+                            "amount": exc["amount"],
+                            "flip": False,
                         }
-                    elif exc['type'] == 'technosphere':
+                    elif exc["type"] == "technosphere":
                         yield {
-                            "row": lookup[exc['input']],
+                            "row": lookup[exc["input"]],
                             "col": target,
-                            "amount": exc['amount'],
-                            "flip": True
+                            "amount": exc["amount"],
+                            "flip": True,
                         }
 
         def biosphere_generator(data, lookup):
             for ds in data:
-                target = lookup[(ds['database'], ds['code'])]
-                for exc in ds['exchanges']:
-                    if exc['type'] == 'biosphere':
+                target = lookup[(ds["database"], ds["code"])]
+                for exc in ds["exchanges"]:
+                    if exc["type"] == "biosphere":
                         yield {
-                            "row": lookup[exc['input']],
+                            "row": lookup[exc["input"]],
                             "col": target,
-                            "amount": exc['amount'],
-                            "flip": False
+                            "amount": exc["amount"],
+                            "flip": False,
                         }
 
         Database(self.db_name).write_exchanges(
             technosphere_generator(self.data, lookup),
             biosphere_generator(self.data, lookup),
-            list(dependents)
+            list(dependents),
         )
 
 
-def write_brightway25_database(data, name, reset_codes=False):
+def write_brightway_database(data, name, reset_codes=False):
     # Restore parameters to Brightway2 format
     # which allows for uncertainty and comments
     change_db_name(data, name)

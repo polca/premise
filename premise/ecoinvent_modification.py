@@ -49,8 +49,14 @@ from .utils import (
     load_constants,
     print_version,
     warning_about_biogenic_co2,
-    write_brightway2_database,
 )
+
+try:
+    import bw_processing
+    from .brightway25 import write_brightway_database
+except ImportError:
+    from .brightway2 import write_brightway_database
+
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -1358,7 +1364,7 @@ class NewDatabase:
             scenario_list=list_scenarios,
         )
 
-        write_brightway2_database(
+        write_brightway_database(
             data=self.database,
             name=name,
             reset_codes=True,
@@ -1371,7 +1377,7 @@ class NewDatabase:
 
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
-        Register the new database into an open brightway2 project.
+        Register the new database into an open brightway project.
         :param name: to give a (list) of custom name(s) to the database.
         Should either be a string if there's only one database to export.
         Or a list of strings if there are several databases.
@@ -1405,7 +1411,7 @@ class NewDatabase:
                 "The number of databases does not match the number of `name` given."
             )
 
-        print("Write new database(s) to Brightway2.")
+        print("Write new database(s) to Brightway.")
 
         cache = {}
 
@@ -1438,7 +1444,7 @@ class NewDatabase:
                 )
 
         for scen, scenario in enumerate(self.scenarios):
-            write_brightway2_database(
+            write_brightway_database(
                 scenario["database"],
                 name[scen],
             )
