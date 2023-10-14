@@ -858,49 +858,44 @@ def generate_scenario_difference_file(
 
     new_db, df = find_technosphere_keys(new_db, df)
 
-
     # return the dataframe and the new db
     return df, new_db, list_acts
 
-def find_technosphere_keys(db, df):
 
+def find_technosphere_keys(db, df):
     # erase keys for technosphere and production exchanges
     df.loc[df["flow type"].isin(["technosphere", "production"]), "from key"] = None
     df.loc[df["flow type"].isin(["technosphere", "production"]), "to key"] = None
-    df.loc[df["flow type"]=="biosphere", "to key"] = None
+    df.loc[df["flow type"] == "biosphere", "to key"] = None
 
     # reset all codes
     db = reset_all_codes(db)
 
     # create a dictionary of all activities
-    dict_act = {(a["name"], a["reference product"], a["location"]): (a["database"], a["code"]) for a in db}
+    dict_act = {
+        (a["name"], a["reference product"], a["location"]): (a["database"], a["code"])
+        for a in db
+    }
 
     # iterate through df
     # and fill "from key" and "to key" columns
     # if None
 
-    df.loc[df["from key"].isnull(), 'from key'] = pd.Series(
+    df.loc[df["from key"].isnull(), "from key"] = pd.Series(
         list(
             zip(
                 df["from activity name"],
                 df["from reference product"],
-                df["from location"]
+                df["from location"],
             )
         )
     ).map(dict_act)
 
-    df.loc[df["to key"].isnull(), 'to key'] = pd.Series(
-        list(
-            zip(
-                df["to activity name"],
-                df["to reference product"],
-                df["to location"]
-            )
-        )
+    df.loc[df["to key"].isnull(), "to key"] = pd.Series(
+        list(zip(df["to activity name"], df["to reference product"], df["to location"]))
     ).map(dict_act)
 
     return db, df
-
 
 
 def generate_superstructure_db(
