@@ -61,7 +61,7 @@ ecoinvent 3 to reflect projected energy policy trajectories.
 
 Requirements
 ------------
-* **Python 3.9**
+* **Python 3.9, 3.10 or 3.11**
 * License for [ecoinvent 3][1]
 * Some IAM output files come with the library and are located by default in the subdirectory "/data/iam_output_files". **If you wish to use
  those files, you need to request (by [email](mailto:romain.sacchi@psi.ch)) an encryption key from the developers**.

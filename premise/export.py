@@ -28,7 +28,7 @@ from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import get_correspondence_bio_flows
 from .transformation import BaseTransformation
-from .utils import check_database_name
+from .utils import check_database_name, reset_all_codes
 
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
@@ -523,7 +523,7 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
 
     # check that directory exists, otherwise create it
     Path(DIR_DATAPACKAGE_TEMP).mkdir(parents=True, exist_ok=True)
-    df.to_csv(DIR_DATAPACKAGE_TEMP / "scenario_data.csv", index=False)
+    df.to_csv(DIR_DATAPACKAGE_TEMP / "scenario_data.csv", index=False, encoding="utf-8")
     write_formatted_data(
         name=name, data=inventories, filepath=DIR_DATAPACKAGE_TEMP / "inventories.csv"
     )
@@ -856,8 +856,51 @@ def generate_scenario_difference_file(
     ] = None
     df.loc[df["flow type"] == "production", list_scenarios] = 1.0
 
+    new_db, df = find_technosphere_keys(new_db, df)
+
+
     # return the dataframe and the new db
     return df, new_db, list_acts
+
+def find_technosphere_keys(db, df):
+
+    # erase keys for technosphere and production exchanges
+    df.loc[df["flow type"].isin(["technosphere", "production"]), "from key"] = None
+    df.loc[df["flow type"].isin(["technosphere", "production"]), "to key"] = None
+    df.loc[df["flow type"]=="biosphere", "to key"] = None
+
+    # reset all codes
+    db = reset_all_codes(db)
+
+    # create a dictionary of all activities
+    dict_act = {(a["name"], a["reference product"], a["location"]): (a["database"], a["code"]) for a in db}
+
+    # iterate through df
+    # and fill "from key" and "to key" columns
+    # if None
+
+    df.loc[df["from key"].isnull(), 'from key'] = pd.Series(
+        list(
+            zip(
+                df["from activity name"],
+                df["from reference product"],
+                df["from location"]
+            )
+        )
+    ).map(dict_act)
+
+    df.loc[df["to key"].isnull(), 'to key'] = pd.Series(
+        list(
+            zip(
+                df["to activity name"],
+                df["to reference product"],
+                df["to location"]
+            )
+        )
+    ).map(dict_act)
+
+    return db, df
+
 
 
 def generate_superstructure_db(
@@ -917,10 +960,6 @@ def generate_superstructure_db(
     after = len(df)
     print(f"Dropped {before - after} duplicate(s).")
 
-    # remove content from "from key" and "to key"
-    df["from key"] = None
-    df["to key"] = None
-
     # if df is longer than the row limit of Excel,
     # the export to Excel is not an option
     if len(df) > 1048576:
@@ -934,7 +973,7 @@ def generate_superstructure_db(
         df.to_excel(filepath_sdf, index=False)
     elif format == "csv":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.csv"
-        df.to_csv(filepath_sdf, index=False, sep=";")
+        df.to_csv(filepath_sdf, index=False, sep=";", encoding="utf-8")
     elif format == "feather":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.feather"
         df.to_feather(filepath_sdf)
