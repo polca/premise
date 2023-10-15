@@ -868,7 +868,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])]
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_electricity(
@@ -906,7 +910,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])]
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_dac(
@@ -941,7 +949,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])]
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_fuels(
@@ -976,7 +988,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])] 
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_cement(
@@ -1011,7 +1027,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])] 
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_steel(
@@ -1047,7 +1067,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])] 
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_vehicles(
@@ -1084,7 +1108,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])] 
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_vehicles(
@@ -1123,7 +1151,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])] 
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_vehicles(
@@ -1161,7 +1193,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])] 
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets, _ = _update_vehicles(
@@ -1245,7 +1281,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])] 
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets = _update_emissions(
@@ -1289,7 +1329,11 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[(scenario["model"], scenario["pathway"], scenario["year"])] = results[s][1][(scenario["model"], scenario["pathway"], scenario["year"])] 
+                self.modified_datasets[
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ] = results[s][1][
+                    (scenario["model"], scenario["pathway"], scenario["year"])
+                ]
         else:
             for scenario in self.scenarios:
                 scenario, self.modified_datasets = _update_all(
@@ -1400,7 +1444,6 @@ class NewDatabase:
         print("Write new database(s) to Brightway.")
 
         cache = {}
-
 
         for scenario in self.scenarios:
             scenario, cache = _prepare_database(
