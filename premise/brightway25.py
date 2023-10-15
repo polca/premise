@@ -5,8 +5,6 @@ from bw2data import Database, databases
 from bw2io.importers.base_lci import LCIImporter
 from wurst.linking import change_db_name, check_internal_linking, link_internal
 
-from .utils import reset_all_codes
-
 
 class BW25Importer(LCIImporter):
     def __init__(self, db_name, data):
