@@ -523,7 +523,9 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
 
     # check that directory exists, otherwise create it
     Path(DIR_DATAPACKAGE_TEMP).mkdir(parents=True, exist_ok=True)
-    df.to_csv(DIR_DATAPACKAGE_TEMP / "scenario_data.csv", index=False, encoding="utf-8-sig")
+    df.to_csv(
+        DIR_DATAPACKAGE_TEMP / "scenario_data.csv", index=False, encoding="utf-8-sig"
+    )
     write_formatted_data(
         name=name, data=inventories, filepath=DIR_DATAPACKAGE_TEMP / "inventories.csv"
     )
