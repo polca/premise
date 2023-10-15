@@ -77,6 +77,7 @@ jobs:
         run: |
           pip install pathlib
           pip install -r requirements.txt --upgrade pip
+          pip install pytest
           pip install -e .[test]
 
       - name: Run tests
