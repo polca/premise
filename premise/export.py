@@ -523,7 +523,7 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
 
     # check that directory exists, otherwise create it
     Path(DIR_DATAPACKAGE_TEMP).mkdir(parents=True, exist_ok=True)
-    df.to_csv(DIR_DATAPACKAGE_TEMP / "scenario_data.csv", index=False, encoding="utf-8")
+    df.to_csv(DIR_DATAPACKAGE_TEMP / "scenario_data.csv", index=False, encoding="utf-8-sig")
     write_formatted_data(
         name=name, data=inventories, filepath=DIR_DATAPACKAGE_TEMP / "inventories.csv"
     )
@@ -769,6 +769,9 @@ def generate_scenario_difference_file(
         c_name, c_ref, c_cat, c_loc, c_unit, c_type = acts_ind[i[0]]
         s_name, s_ref, s_cat, s_loc, s_unit, s_type = acts_ind[i[1]]
 
+        database_name = db_name
+        exc_key_supplier = None
+
         if s_type == "biosphere":
             database_name = "biosphere3"
 
@@ -795,15 +798,6 @@ def generate_scenario_difference_file(
                     ],
                 )
 
-        else:
-            database_name = db_name
-            exc_key_supplier = (
-                db_name,
-                fetch_exchange_code(s_name, s_ref, s_loc, s_unit),
-            )
-
-        exc_key_consumer = (db_name, fetch_exchange_code(c_name, c_ref, c_loc, c_unit))
-
         row = [
             s_name,
             s_ref,
@@ -818,7 +812,7 @@ def generate_scenario_difference_file(
             c_cat,
             c_unit,
             db_name,
-            exc_key_consumer,
+            None,
             s_type,
         ]
 
@@ -965,13 +959,13 @@ def generate_superstructure_db(
 
     if format == "excel":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
-        df.to_excel(filepath_sdf, index=False)
+        df.to_excel(filepath_sdf, index=False, encoding="utf-8")
     elif format == "csv":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.csv"
-        df.to_csv(filepath_sdf, index=False, sep=";", encoding="utf-8")
+        df.to_csv(filepath_sdf, index=False, sep=";", encoding="utf-8-sig")
     elif format == "feather":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.feather"
-        df.to_feather(filepath_sdf)
+        df.to_feather(filepath_sdf, encoding="utf-8")
     else:
         raise ValueError(f"Unknown format {format}")
 
