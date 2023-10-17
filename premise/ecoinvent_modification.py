@@ -55,7 +55,7 @@ from .utils import (
 logger = logging.getLogger("module")
 
 try:
-    import bw_processing
+    import brightway25
 
     from .brightway25 import write_brightway_database
 
