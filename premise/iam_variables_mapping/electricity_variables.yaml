@@ -42,7 +42,7 @@ Biomass CHP (existing):
   ecoinvent_fuel_aliases:
     fltr:
       - market for wood chips, wet, measured as dry mass
-  exists in database: False
+  exists in database: True
   proxy:
     name: heat and power co-generation, wood chips, 6667 kW
     reference product: electricity, high voltage
