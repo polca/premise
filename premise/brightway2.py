@@ -21,7 +21,7 @@ class BW2Importer(LCIImporter):
         super().write_database()
 
 
-def write_brightway_database(data, name, reset_codes=False):
+def write_brightway_database(data, name):
     # Restore parameters to Brightway2 format
     # which allows for uncertainty and comments
     change_db_name(data, name)
