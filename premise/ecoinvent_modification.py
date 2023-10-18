@@ -55,12 +55,11 @@ from .utils import (
 logger = logging.getLogger("module")
 
 try:
-    import brightway25
-
+    import bw2data
+    assert bw2data.__version__[0] >= 4 
     from .brightway25 import write_brightway_database
 
     logger.info("Using Brightway 2.5")
-
 except ImportError:
     from .brightway2 import write_brightway_database
 
