@@ -54,16 +54,11 @@ from .utils import (
 
 logger = logging.getLogger("module")
 
-try:
-    import bw2data
-    
-    major_version = int(bw2data.__version__[0])
-    assert major_version >= 4
-    
+import bw2data
+if int(bw2data.__version__[0]) >= 4:
     from .brightway25 import write_brightway_database
     logger.info("Using Brightway 2.5")
-
-except AssertionError:
+else:
     from .brightway2 import write_brightway_database
     logger.info("Using Brightway 2")
 
