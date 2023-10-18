@@ -57,7 +57,7 @@ logger = logging.getLogger("module")
 try:
     import bw2data
     
-    major_version = int(bw2data.__version__.split('.')[0])
+    major_version = int(bw2data.__version__[0])
     assert major_version >= 4
     
     from .brightway25 import write_brightway_database
