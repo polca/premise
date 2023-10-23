@@ -460,6 +460,7 @@ Thiodicarb;soil;forestry;kilogram;a9f16b03-02bb-5f30-aa21-2516e6365b67
 Thorium-232;air;lower stratosphere + upper troposphere;kilo Becquerel;532d8b1e-14aa-45df-8f89-dd749c83635f
 Silver, 0.01% in crude ore;natural resource;in ground;kilogram;bc153c00-6c93-412f-aadc-750f2fc6f9c7
 Gas, mine, off-gas, process, coal mining;natural resource;in ground;standard cubic meter;3ed5f377-344f-423a-b5ec-9a9a1162b944
+Gas, mine, off-gas, process, coal mining;natural resource;in ground;Sm3;3ed5f377-344f-423a-b5ec-9a9a1162b944
 Cobalt II;water;ground-;kilogram;f0d1c319-249f-4a89-b0e7-3a5a90a54036
 Clofentezine;soil;agricultural;kilogram;e5d2097d-8edd-52d6-80fd-b449548e416f
 Strontium-89;water;ground-, long-term;kilo Becquerel;b06d062d-b979-415c-ab40-53b71298e3c7
