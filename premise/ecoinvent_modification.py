@@ -37,6 +37,7 @@ from .external import ExternalScenario
 from .external_data_validation import check_external_scenarios, check_inventories
 from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
+from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
@@ -154,6 +155,11 @@ FILEPATH_HOME_STORAGE_BATTERIES = INVENTORY_DIR / "lci-home-batteries.xlsx"
 FILEPATH_VANADIUM = INVENTORY_DIR / "lci-vanadium.xlsx"
 FILEPATH_VANADIUM_REDOX_BATTERY = INVENTORY_DIR / "lci-vanadium-redox-flow-battery.xlsx"
 FILEPATH_HYDROGEN_TURBINE = INVENTORY_DIR / "lci-hydrogen-turbine.xlsx"
+FILEPATH_HYDROGEN_HEATING = INVENTORY_DIR / "lci-hydrogen-heating.xlsx"
+FILEPATH_METHANOL_HEATING = INVENTORY_DIR / "lci-methanol-heating.xlsx"
+FILEPATH_GERMANIUM = INVENTORY_DIR / "lci-germanium.xlsx"
+FILEPATH_RHENIUM = INVENTORY_DIR / "lci-rhenium.xlsx"
+FILEPATH_PGM = INVENTORY_DIR / "lci-PGM.xlsx"
 
 config = load_constants()
 
@@ -429,59 +435,64 @@ def _update_all(
     scenario,
     version,
     system_model,
-    modified_datasets,
     use_absolute_efficiency,
     vehicle_type,
     gains_scenario,
 ):
-    scenario, modified_datasets, cache = _update_vehicles(
+    scenario, cache = _update_vehicles(
         scenario=scenario,
         vehicle_type=vehicle_type,
         version=version,
         system_model=system_model,
-        modified_datasets=modified_datasets,
     )
-    scenario, modified_datasets, cache = _update_electricity(
+    scenario, cache = _update_electricity(
         scenario=scenario,
         version=version,
         system_model=system_model,
-        modified_datasets=modified_datasets,
         use_absolute_efficiency=use_absolute_efficiency,
         cache=cache,
     )
-    scenario, modified_datasets, cache = _update_dac(
+    scenario, cache = _update_dac(
         scenario=scenario,
         version=version,
         system_model=system_model,
-        modified_datasets=modified_datasets,
         cache=cache,
     )
-    scenario, modified_datasets, cache = _update_cement(
+    scenario, cache = _update_cement(
         scenario=scenario,
         version=version,
         system_model=system_model,
-        modified_datasets=modified_datasets,
         cache=cache,
     )
-    scenario, modified_datasets, cache = _update_steel(
+    scenario, cache = _update_steel(
         scenario=scenario,
         version=version,
         system_model=system_model,
-        modified_datasets=modified_datasets,
         cache=cache,
-    )
-    scenario, modified_datasets, cache = _update_fuels(
-        scenario=scenario,
-        version=version,
-        system_model=system_model,
-        modified_datasets=modified_datasets,
-        cache=cache,
-    )
-    scenario, modified_datasets = _update_emissions(
-        scenario, version, system_model, gains_scenario, modified_datasets
     )
 
-    return scenario, modified_datasets
+    scenario, cache = _update_fuels(
+        scenario=scenario,
+        version=version,
+        system_model=system_model,
+        cache=cache,
+    )
+
+    scenario, cache = _update_heat(
+        scenario=scenario,
+        version=version,
+        system_model=system_model,
+        cache=cache,
+    )
+
+    scenario = _update_emissions(
+        scenario,
+        version,
+        system_model,
+        gains_scenario,
+    )
+
+    return scenario
 
 
 def _export_to_matrices(obj):
@@ -535,11 +546,15 @@ class NewDatabase:
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
         self.multiprocessing = use_multiprocessing
+        self.keep_uncertainty_data = keep_uncertainty_data
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
         # raise an error
-        if self.version not in ["3.8", "3.9"] and self.system_model == "consequential":
+        if (
+            self.version not in ["3.8", "3.9", "3.9.1"]
+            and self.system_model == "consequential"
+        ):
             raise ValueError(
                 "Consequential system model is only available for ecoinvent 3.8 or 3.9."
             )
@@ -554,12 +569,6 @@ class NewDatabase:
             self.source_file_path = None
 
         self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
-
-        # create dictionary that keeps track of emptied and created datasets
-        self.modified_datasets = {
-            (s["model"], s["pathway"], s["year"]): {"emptied": [], "created": []}
-            for s in self.scenarios
-        }
 
         # print some info
         if not quiet:
@@ -584,14 +593,10 @@ class NewDatabase:
 
         print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
         if use_cached_database:
-            self.database = self.__find_cached_db(
-                source_db, keep_uncertainty_data=keep_uncertainty_data
-            )
+            self.database = self.__find_cached_db(source_db)
             print("Done!")
         else:
-            self.database = self.__clean_database(
-                keep_uncertainty_data=keep_uncertainty_data
-            )
+            self.database = self.__clean_database()
 
         print("\n////////////////// IMPORTING DEFAULT INVENTORIES ///////////////////")
         if use_cached_inventories:
@@ -640,7 +645,7 @@ class NewDatabase:
 
         print("Done!")
 
-    def __find_cached_db(self, db_name: str, keep_uncertainty_data: bool) -> List[dict]:
+    def __find_cached_db(self, db_name: str) -> List[dict]:
         """
         If `use_cached_db` = True, then we look for a cached database.
         If cannot be found, we create a cache for next time.
@@ -651,9 +656,13 @@ class NewDatabase:
         if db_name is None and self.source_type == "ecospold":
             db_name = f"ecospold_{self.system_model}_{self.version}"
 
+        uncertainty_data = (
+            "w_uncertainty" if self.keep_uncertainty_data is True else "wo_uncertainty"
+        )
+
         file_name = (
             DIR_CACHED_DB
-            / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}.pickle"
+            / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}_{uncertainty_data}.pickle"
         )
 
         # check that file path leads to an existing file
@@ -664,7 +673,7 @@ class NewDatabase:
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
         clear_existing_cache()
-        database = self.__clean_database(keep_uncertainty_data=keep_uncertainty_data)
+        database = self.__clean_database()
         pickle.dump(database, open(file_name, "wb"))
         return database
 
@@ -679,9 +688,13 @@ class NewDatabase:
         if db_name is None and self.source_type == "ecospold":
             db_name = f"ecospold_{self.system_model}_{self.version}"
 
+        uncertainty_data = (
+            "w_uncertainty" if self.keep_uncertainty_data is True else "wo_uncertainty"
+        )
+
         file_name = (
             DIR_CACHED_DB
-            / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}_inventories.pickle"
+            / f"cached_{''.join(tuple(map( str , __version__ )))}_{db_name.strip().lower()}_{uncertainty_data}_inventories.pickle"
         )
 
         # check that file path leads to an existing file
@@ -700,7 +713,7 @@ class NewDatabase:
         )
         return None
 
-    def __clean_database(self, keep_uncertainty_data) -> List[dict]:
+    def __clean_database(self) -> List[dict]:
         """
         Extracts the ecoinvent database, loads it into a dictionary and does a little bit of housekeeping
         (adds missing locations, reference products, etc.).
@@ -708,9 +721,9 @@ class NewDatabase:
         """
         return DatabaseCleaner(
             self.source, self.source_type, self.source_file_path, self.version
-        ).prepare_datasets(keep_uncertainty_data)
+        ).prepare_datasets(self.keep_uncertainty_data)
 
-    def __import_inventories(self, keep_uncertainty_data: bool = False) -> List[dict]:
+    def __import_inventories(self) -> List[dict]:
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
@@ -778,6 +791,11 @@ class NewDatabase:
             (FILEPATH_CSP, "3.9"),
             (FILEPATH_VANADIUM, "3.8"),
             (FILEPATH_VANADIUM_REDOX_BATTERY, "3.9"),
+            (FILEPATH_HYDROGEN_HEATING, "3.9"),
+            (FILEPATH_METHANOL_HEATING, "3.9"),
+            (FILEPATH_GERMANIUM, "3.9"),
+            (FILEPATH_RHENIUM, "3.9"),
+            (FILEPATH_PGM, "3.8"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -791,11 +809,10 @@ class NewDatabase:
                 version_out=self.version,
                 path=filepath[0],
                 system_model=self.system_model,
-                keep_uncertainty_data=keep_uncertainty_data,
+                keep_uncertainty_data=self.keep_uncertainty_data,
             )
             datasets = inventory.merge_inventory()
             data.extend(datasets)
-
             self.database.extend(datasets)
 
         # print("Done!\n")
@@ -861,7 +878,6 @@ class NewDatabase:
                         scenario,
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                         self.use_absolute_efficiency,
                     )
                     for scenario in self.scenarios
@@ -870,18 +886,12 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_electricity(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_electricity(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                     use_absolute_efficiency=self.use_absolute_efficiency,
                 )
 
@@ -904,7 +914,6 @@ class NewDatabase:
                         scenario,
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                     )
                     for scenario in self.scenarios
                 ]
@@ -912,18 +921,13 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_dac(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_dac(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                 )
 
         print("Done!\n")
@@ -943,7 +947,6 @@ class NewDatabase:
                         scenario,
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                     )
                     for scenario in self.scenarios
                 ]
@@ -951,18 +954,46 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_fuels(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_fuels(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
+                )
+
+        print("Done!\n")
+
+    def update_heat(self) -> None:
+        """
+        This method will update the heat inventories
+        with the data from the IAM scenarios.
+        """
+        print("\n////////////////////////////// HEAT ///////////////////////////////")
+
+        # use multiprocessing to speed up the process
+        if self.multiprocessing:
+            with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
+                args = [
+                    (
+                        scenario,
+                        self.version,
+                        self.system_model,
+                    )
+                    for scenario in self.scenarios
+                ]
+                results = pool.starmap(_update_heat, args)
+
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s] = results[s][0]
+
+        else:
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_heat(
+                    scenario=scenario,
+                    version=self.version,
+                    system_model=self.system_model,
                 )
 
         print("Done!\n")
@@ -982,7 +1013,6 @@ class NewDatabase:
                         scenario,
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                     )
                     for scenario in self.scenarios
                 ]
@@ -990,18 +1020,13 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_cement(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_cement(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                 )
 
         print("Done!\n")
@@ -1021,7 +1046,6 @@ class NewDatabase:
                         scenario,
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                     )
                     for scenario in self.scenarios
                 ]
@@ -1029,18 +1053,13 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_steel(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_steel(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                 )
 
         print("Done!\n")
@@ -1061,7 +1080,6 @@ class NewDatabase:
                         "car",
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                     )
                     for scenario in self.scenarios
                 ]
@@ -1069,19 +1087,14 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_vehicles(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_vehicles(
                     scenario=scenario,
                     vehicle_type="car",
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                 )
 
         print("Done!\n")
@@ -1102,7 +1115,6 @@ class NewDatabase:
                         "two wheeler",
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                     )
                     for scenario in self.scenarios
                 ]
@@ -1110,19 +1122,14 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_vehicles(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_vehicles(
                     scenario=scenario,
                     vehicle_type="two wheeler",
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                 )
 
         print("Done!\n")
@@ -1141,7 +1148,6 @@ class NewDatabase:
                 "truck",
                 self.version,
                 self.system_model,
-                self.modified_datasets,
             )
             for scenario in self.scenarios
         ]
@@ -1153,19 +1159,14 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_vehicles(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_vehicles(
                     scenario=scenario,
                     vehicle_type="truck",
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                 )
 
         print("Done!\n")
@@ -1187,7 +1188,6 @@ class NewDatabase:
                         "bus",
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                     )
                     for scenario in self.scenarios
                 ]
@@ -1195,19 +1195,14 @@ class NewDatabase:
 
             for s, scenario in enumerate(self.scenarios):
                 self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets, _ = _update_vehicles(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_vehicles(
                     scenario=scenario,
                     vehicle_type="bus",
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                 )
 
         print("Done!\n")
@@ -1250,7 +1245,6 @@ class NewDatabase:
                         external_scenarios_data=scenario["external data"],
                         version=self.version,
                         system_model=self.system_model,
-                        modified_datasets=self.modified_datasets,
                     )
                     external_scenario.create_custom_markets()
                     scenario["database"] = external_scenario.database
@@ -1275,27 +1269,21 @@ class NewDatabase:
                         self.version,
                         self.system_model,
                         self.gains_scenario,
-                        self.modified_datasets,
                     )
                     for scenario in self.scenarios
                 ]
                 results = pool.starmap(_update_emissions, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+                self.scenarios[s] = results[s]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets = _update_emissions(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s] = _update_emissions(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
                     gains_scenario=self.gains_scenario,
-                    modified_datasets=self.modified_datasets,
                 )
 
         print("Done!\n")
@@ -1320,7 +1308,6 @@ class NewDatabase:
                         scenario,
                         self.version,
                         self.system_model,
-                        self.modified_datasets,
                         self.use_absolute_efficiency,
                         "truck",
                         self.gains_scenario,
@@ -1330,19 +1317,14 @@ class NewDatabase:
                 results = pool.starmap(_update_all, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
-                self.modified_datasets[
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ] = results[s][1][
-                    (scenario["model"], scenario["pathway"], scenario["year"])
-                ]
+                self.scenarios[s] = results[s]
+
         else:
-            for scenario in self.scenarios:
-                scenario, self.modified_datasets = _update_all(
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s] = _update_all(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
-                    modified_datasets=self.modified_datasets,
                     use_absolute_efficiency=self.use_absolute_efficiency,
                     vehicle_type="truck",
                     gains_scenario=self.gains_scenario,
@@ -1371,15 +1353,11 @@ class NewDatabase:
                 "create a super-structure database."
             )
 
-        cache = {}
-
         for scenario in self.scenarios:
-            scenario, cache = _prepare_database(
+            _prepare_database(
                 scenario=scenario,
-                scenario_cache=cache,
-                version=self.version,
-                system_model=self.system_model,
-                modified_datasets=self.modified_datasets,
+                db_name=name,
+                original_database=self.database,
             )
 
         if hasattr(self, "datapackages"):
@@ -1445,15 +1423,11 @@ class NewDatabase:
 
         print("Write new database(s) to Brightway.")
 
-        cache = {}
-
-        for scenario in self.scenarios:
-            scenario, cache = _prepare_database(
+        for s, scenario in enumerate(self.scenarios):
+            _prepare_database(
                 scenario=scenario,
-                scenario_cache=cache,
-                version=self.version,
-                system_model=self.system_model,
-                modified_datasets=self.modified_datasets,
+                db_name=name[s],
+                original_database=self.database,
             )
 
         for scen, scenario in enumerate(self.scenarios):
@@ -1506,19 +1480,40 @@ class NewDatabase:
         cache = {}
 
         # use multiprocessing to speed up the process
-        # use multiprocessing to speed up the process
 
-        for scenario in self.scenarios:
-            scenario, cache = _prepare_database(
-                scenario=scenario,
-                scenario_cache=cache,
-                version=self.version,
-                system_model=self.system_model,
-                modified_datasets=self.modified_datasets,
-            )
+        if self.multiprocessing:
+            with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
+                args = [
+                    (
+                        scenario,
+                        cache,
+                        self.version,
+                        self.system_model,
+                    )
+                    for scenario in self.scenarios
+                ]
+                results = pool.starmap(_prepare_database, args)
 
-        for scen, scenario in enumerate(self.scenarios):
-            Export(scenario, filepath[scen], self.version).export_db_to_matrices()
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s] = results[s][0]
+                cache.update(results[s][1])
+
+            with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
+                args = [
+                    Export(scenario, filepath[scen], self.version)
+                    for scen, scenario in enumerate(self.scenarios)
+                ]
+                pool.map(_export_to_matrices, args)
+        else:
+            for scenario in self.scenarios:
+                _prepare_database(
+                    scenario=scenario,
+                    db_name="database",
+                    original_database=self.database,
+                )
+
+            for scen, scenario in enumerate(self.scenarios):
+                Export(scenario, filepath[scen], self.version).export_db_to_matrices()
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1541,17 +1536,13 @@ class NewDatabase:
 
         print("Write Simapro import file(s).")
 
-        cache = {}
-
         # use multiprocessing to speed up the process
 
         for scenario in self.scenarios:
-            scenario, cache = _prepare_database(
+            _prepare_database(
                 scenario=scenario,
-                scenario_cache=cache,
-                version=self.version,
-                system_model=self.system_model,
-                modified_datasets=self.modified_datasets,
+                db_name="database",
+                original_database=self.database,
             )
 
         for scen, scenario in enumerate(self.scenarios):
@@ -1572,16 +1563,13 @@ class NewDatabase:
             cache_fp = DIR_CACHED_DB / f"cached_{self.source}_inventories.pickle"
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
-        cache = {}
         # use multiprocessing to speed up the process
 
         for scenario in self.scenarios:
-            scenario, cache = _prepare_database(
+            _prepare_database(
                 scenario=scenario,
-                scenario_cache=cache,
-                version=self.version,
-                system_model=self.system_model,
-                modified_datasets=self.modified_datasets,
+                db_name=name,
+                original_database=self.database,
             )
 
         if hasattr(self, "datapackages"):

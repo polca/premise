@@ -211,18 +211,6 @@ def info_on_utils_functions():
     print(table)
 
 
-def check_database_name(data: List[dict], name: str) -> List[dict]:
-    for ds in data:
-        ds["database"] = name
-
-        for exc in ds["exchanges"]:
-            if exc["type"] in ["production", "technosphere"]:
-                if "input" in exc:
-                    del exc["input"]
-
-    return data
-
-
 def warning_about_biogenic_co2() -> None:
     """
     Prints a simple warning about characterizing biogenic CO2 flows.

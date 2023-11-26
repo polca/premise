@@ -686,40 +686,10 @@ clinker production dataset, corresponding to their IAM region.
 Clinker-to-cement ratio
 +++++++++++++++++++++++
 
-Most cement datasets in ecoinvent have a determined composition in terms
-of clinker vs. supplementary cementitious materials (e.g., fly ash, blast
-furnace slag, limestone). The clinker-to-cement ratio cannot be altered
-for these cements, as it would render their label incorrect, but also
-the type of application they are meant to fulfill (e.g., precast, mortar,
-foundations).
-
-However, one dataset represents an "average" cement
-with an "average" composition. This dataset is called
-"market for cement, unspecified". This market dataset is composed
-of several types of cements, each having a clinker-to-cement ratio.
-*premise* alters the shares of each of these cement types with the
-"market for cement, unspecified" dataset so that the
-average clinker-to-cement ratio aligns with the GNR/IEA projections.
-
-GNR/IEA projections in terms of clinker-to-cement ratio are shown in the
-table below.
-
- ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
-  clinker-to-cement ratio    2005    2010    2015    2020    2025    2030    2035    2040    2045    2050    2055    2060    2065    2070    2075    2080    2085    2090    2095    2100
- ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
-  Canada                     81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
-  China                      58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%
-  Europe                     73%     72%     71%     71%     70%     69%     68%     67%     67%     66%     65%     64%     64%     63%     62%     61%     60%     60%     59%     58%
-  India                      71%     70%     70%     69%     68%     68%     67%     66%     66%     65%     64%     63%     63%     62%     61%     61%     60%     59%     59%     58%
-  Japan                      80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
-  Latin America              70%     69%     69%     68%     67%     67%     66%     66%     65%     64%     64%     63%     62%     62%     61%     61%     60%     59%     59%     58%
-  Middle East                81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
-  Norther Europe             81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
-  Other Asia                 80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
-  Russia                     80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
-  South Africa               77%     76%     75%     74%     73%     72%     71%     70%     69%     68%     67%     66%     65%     64%     63%     62%     61%     60%     59%     58%
-  United States              82%     81%     79%     78%     77%     76%     74%     73%     72%     71%     69%     68%     67%     66%     64%     63%     62%     61%     59%     58%
- ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
+*premise* used to modify the composition of cement markets to reflect
+a lower clinker content over time, based on external projections. This is
+no longer performed, as it is not an assumption stemming from the IAM model,
+but rather a projection of the cement industry.
 
 Original market datasets
 ________________________
@@ -1924,6 +1894,97 @@ respective production volume. If no adequate supplier is found for a given regio
 the regionalization process will select all the existing suppliers and
 allocate a supply share to each supplier based on their respective
 production volume.
+
+Here is the decision tree followed:
+
+.. _decision-tree:
+
+Decision Tree for Processing Datasets
+=====================================
+
+The process begins with a dataset that requires processing.
+
+.. contents::
+   :local:
+
+Decision: Is the Exchange in Cache?
+-----------------------------------
+
+- **Yes**
+
+  - Use :func:`process_cached_exchange`.
+
+    - Retrieve cached data.
+    - Update ``new_exchanges`` with cached data.
+
+- **No**
+
+  - Use :func:`process_uncached_exchange`.
+
+    Decision: Number of Possible Datasets
+    ------------------------------------
+
+    - **None**
+
+      - Print a warning and return.
+
+    - **One**
+
+      - Use :func:`handle_single_possible_dataset`.
+
+        - Use the single matched dataset.
+        - Update ``new_exchanges`` with this dataset information.
+
+    - **Multiple**
+
+      - Use :func:`handle_multiple_possible_datasets`.
+
+        Decision: Does Dataset Location Match Possible Dataset Locations?
+        -----------------------------------------------------------------
+
+        - **Yes**
+
+          - Use the matched dataset location.
+
+        - **No**
+
+          - Use :func:`process_complex_matching_and_allocation`.
+
+            Decision: Dataset Location Type
+            --------------------------------
+
+            - **IAM Region**
+
+              - Use :func:`handle_iam_region`.
+
+                - Match IAM region to ecoinvent locations.
+                - Update ``new_exchanges`` with IAM region-specific data.
+                - Cache the new entry.
+
+            - **Global ('GLO', 'RoW', 'World')**
+
+              - Use :func:`handle_global_and_row_scenarios`.
+
+                - Allocate inputs for global datasets.
+                - Update ``new_exchanges`` with global data.
+                - Cache the new entry.
+
+            - **Others**
+
+              - Perform GIS matching.
+
+                - Determine intersecting locations with GIS.
+                - Allocate inputs based on GIS matches.
+                - Update ``new_exchanges`` with GIS-specific data.
+                - Cache the new entry.
+
+Final Steps
+-----------
+
+- If no match is found, use :func:`handle_default_option`.
+
+  - Integrate new exchanges into the dataset.
+
 
 GAINS emission factors
 """"""""""""""""""""""

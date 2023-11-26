@@ -430,11 +430,14 @@ def generate_change_report(source, version, source_type, system_model):
         "premise_dac",
         "premise_electricity",
         "premise_fuel",
+        "premise_heat",
         "premise_transport",
         "premise_steel",
+        "premise_metal",
         "premise_cement",
         "premise_emissions",
         "premise_external_scenarios",
+        "premise_validation",
     ]
 
     # fetch YAML file containing the reporting metadata

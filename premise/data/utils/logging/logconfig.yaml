@@ -32,6 +32,14 @@ handlers:
     formatter: simple
     mode: w
 
+  file_metal:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_metal.log"
+    encoding: utf8
+    formatter: simple
+    mode: w
+
   file_cement:
     class: logging.FileHandler
     level: INFO
@@ -44,6 +52,14 @@ handlers:
     class: logging.FileHandler
     level: INFO
     filename: "export/logs/premise_fuel.log"
+    encoding: utf8
+    formatter: simple
+    mode: w
+
+  file_heat:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_heat.log"
     encoding: utf8
     formatter: simple
     mode: w
@@ -64,6 +80,14 @@ handlers:
     formatter: simple
     mode: w
 
+  file_validation:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_validation.log"
+    encoding: utf8
+    formatter: simple
+    mode: w
+
 loggers:
   dac:
     level: INFO
@@ -80,6 +104,11 @@ loggers:
     handlers: [ file_steel ]
     propagate: False
 
+  metal:
+    level: INFO
+    handlers: [ file_metal ]
+    propagate: False
+
   cement:
     level: INFO
     handlers: [ file_cement ]
@@ -90,6 +119,11 @@ loggers:
     handlers: [ file_fuel ]
     propagate: False
 
+  heat:
+    level: INFO
+    handlers: [ file_heat ]
+    propagate: False
+
   emissions:
     level: INFO
     handlers: [ file_emissions ]
@@ -98,4 +132,9 @@ loggers:
   external:
     level: INFO
     handlers: [ file_external ]
+    propagate: False
+
+  validation:
+    level: INFO
+    handlers: [ file_validation ]
     propagate: False

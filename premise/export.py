@@ -28,7 +28,8 @@ from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import get_correspondence_bio_flows
 from .transformation import BaseTransformation
-from .utils import check_database_name, reset_all_codes
+from .utils import reset_all_codes
+from .validation import BaseDatasetValidator
 
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
@@ -161,93 +162,6 @@ def get_simapro_biosphere_dictionnary():
         dict_bio[row[2]] = row[1]
 
     return dict_bio
-
-
-def check_for_duplicates(database):
-    """Check for the absence of duplicates before export"""
-
-    db_names = [
-        (x["name"].lower(), x["reference product"].lower(), x["location"])
-        for x in database
-    ]
-
-    if len(db_names) == len(set(db_names)):
-        return database
-
-    print("One or multiple duplicates detected. Removing them...")
-
-    seen = set()
-    return [
-        x
-        for x in database
-        if (x["name"].lower(), x["reference product"].lower(), x["location"])
-        not in seen
-        and not seen.add(
-            (x["name"].lower(), x["reference product"].lower(), x["location"])
-        )
-    ]
-
-
-def check_amount_format(database: list) -> list:
-    """
-    Check that the `amount` field is of type `float`.
-    :param database: database to check
-    :return: database with corrected amount field
-    """
-
-    for dataset in database:
-        for exc in dataset["exchanges"]:
-            if not isinstance(exc["amount"], float):
-                exc["amount"] = float(exc["amount"])
-
-            if isinstance(exc["amount"], (np.float64, np.ndarray)):
-                exc["amount"] = float(exc["amount"])
-
-        for k, v in dataset.items():
-            if isinstance(v, dict):
-                for i, j in v.items():
-                    if isinstance(j, (np.float64, np.ndarray)):
-                        v[i] = float(v[i])
-
-        for e in dataset["exchanges"]:
-            for k, v in e.items():
-                if isinstance(v, (np.float64, np.ndarray)):
-                    e[k] = float(e[k])
-
-    return database
-
-
-def remove_unused_fields(database: list) -> list:
-    """
-    Remove fields wich have no values from each dataset in database.
-    :param database: database to check
-    :return: database with unused fields removed
-    """
-
-    for dataset in database:
-        for key in list(dataset.keys()):
-            if not dataset[key]:
-                del dataset[key]
-
-    return database
-
-
-def correct_fields_format(database: list) -> list:
-    """
-    Correct the format of some fields.
-    :param database: database to check
-    :return: database with corrected fields
-    """
-
-    for dataset in database:
-        if "parameters" in dataset:
-            if not isinstance(dataset["parameters"], list):
-                dataset["parameters"] = [dataset["parameters"]]
-        if "categories" in dataset:
-            if not isinstance(dataset["categories"], tuple):
-                dataset["categories"] = tuple(dataset["categories"])
-
-    return database
 
 
 def create_index_of_A_matrix(database):
@@ -976,105 +890,32 @@ def generate_superstructure_db(
     return new_db
 
 
-def prepare_db_for_export(
-    scenario, cache, name, version, system_model, modified_datasets
-):
-    base = BaseTransformation(
-        database=scenario["database"],
-        iam_data=scenario["iam data"],
+def prepare_db_for_export(scenario, name, original_database):
+    """
+    Prepare a database for export.
+    """
+
+    # validate the database
+    validator = BaseDatasetValidator(
         model=scenario["model"],
-        pathway=scenario["pathway"],
+        scenario=scenario["pathway"],
         year=scenario["year"],
-        version=version,
-        system_model=system_model,
-        cache=cache,
-        modified_datasets=modified_datasets,
+        regions=scenario["iam data"].regions,
+        original_database=original_database,
+        database=scenario["database"],
+        db_name=name,
+    )
+    validator.run_all_checks()
+
+    return validator.database
+
+
+def _prepare_database(scenario, db_name, original_database):
+    scenario["database"] = prepare_db_for_export(
+        scenario, name=db_name, original_database=original_database
     )
 
-    # we ensure the absence of duplicate datasets
-    # print("- check for duplicates...")
-    base.database = check_for_duplicates(base.database)
-
-    # we check the format of numbers
-    # print("- check for values format...")
-    base.database = check_database_name(data=base.database, name=name)
-    base.database = remove_unused_fields(base.database)
-    base.database = correct_fields_format(base.database)
-    base.database = check_amount_format(base.database)
-
-    # we relink "dead" exchanges
-    base.relink_datasets(
-        excludes_datasets=["cobalt industry", "market group for electricity"],
-        alt_names=[
-            "market group for electricity, high voltage",
-            "market group for electricity, medium voltage",
-            "market group for electricity, low voltage",
-            "carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity",
-            "methane, from electrochemical methanation, with carbon from atmospheric carbon dioxide capture, using heat pump heat",
-            "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-        ],
-    )
-
-    for ds in base.database:
-        if "parameters" in ds:
-            if not isinstance(ds["parameters"], list):
-                if isinstance(ds["parameters"], dict):
-                    ds["parameters"] = [
-                        {"name": k, "amount": v} for k, v in ds["parameters"].items()
-                    ]
-                else:
-                    ds["parameters"] = [ds["parameters"]]
-            else:
-                ds["parameters"] = [
-                    {"name": k, "amount": v}
-                    for o in ds["parameters"]
-                    for k, v in o.items()
-                ]
-
-        for key, value in list(ds.items()):
-            if not value:
-                del ds[key]
-
-        ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
-
-    return base.database, base.cache
-
-
-def clean_up(exc):
-    """Remove keys from ``exc`` that are not in the schema."""
-
-    FORBIDDEN_FIELDS_TECH = [
-        "categories",
-    ]
-
-    FORBIDDEN_FIELDS_BIO = ["location", "product"]
-
-    for field in list(exc.keys()):
-        if exc[field] is None or exc[field] == "None":
-            del exc[field]
-            continue
-
-        if exc["type"] == "biosphere" and field in FORBIDDEN_FIELDS_BIO:
-            del exc[field]
-        if exc["type"] == "technosphere" and field in FORBIDDEN_FIELDS_TECH:
-            del exc[field]
-
-    return exc
-
-
-def _prepare_database(
-    scenario, scenario_cache, version, system_model, modified_datasets
-):
-    scenario["database"], scenario_cache = prepare_db_for_export(
-        scenario,
-        cache=scenario_cache,
-        name="database",
-        version=version,
-        system_model=system_model,
-        modified_datasets=modified_datasets,
-    )
-
-    return scenario, scenario_cache
+    return scenario
 
 
 class Export:

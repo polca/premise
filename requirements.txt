@@ -1,10 +1,10 @@
 bottleneck
 bw2data
 bw2io>=0.8.10
-constructive_geometries>=0.8.2
+constructive_geometries>=0.9.1
 cryptography
 datapackage
-numpy
+numpy<=1.26.2
 pandas
 platformdirs
 premise_gwp

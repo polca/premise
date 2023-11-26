@@ -8,11 +8,12 @@ import wurst
 from .data_collection import IAMDataCollection
 from .logger import create_logger
 from .transformation import BaseTransformation, ws
+from .validation import SteelValidation
 
 logger = create_logger("steel")
 
 
-def _update_steel(scenario, version, system_model, modified_datasets, cache=None):
+def _update_steel(scenario, version, system_model, cache=None):
     steel = Steel(
         database=scenario["database"],
         model=scenario["model"],
@@ -21,19 +22,30 @@ def _update_steel(scenario, version, system_model, modified_datasets, cache=None
         year=scenario["year"],
         version=version,
         system_model=system_model,
-        modified_datasets=modified_datasets,
         cache=cache,
     )
 
     if scenario["iam data"].steel_markets is not None:
         steel.generate_activities()
         scenario["database"] = steel.database
-        modified_datasets = steel.modified_datasets
         cache = steel.cache
     else:
         print("No steel markets found in IAM data. Skipping.")
 
-    return scenario, modified_datasets, cache
+    steel.relink_datasets()
+
+    validate = SteelValidation(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=steel.database,
+        iam_data=scenario["iam data"],
+    )
+
+    validate.run_steel_checks()
+
+    return scenario, cache
 
 
 class Steel(BaseTransformation):
@@ -56,7 +68,6 @@ class Steel(BaseTransformation):
         year: int,
         version: str,
         system_model: str,
-        modified_datasets: dict,
         cache: dict = None,
     ) -> None:
         super().__init__(
@@ -67,7 +78,6 @@ class Steel(BaseTransformation):
             year,
             version,
             system_model,
-            modified_datasets,
             cache,
         )
         self.version = version
@@ -82,8 +92,8 @@ class Steel(BaseTransformation):
 
         self.create_steel_markets()
         self.create_steel_production_activities()
-        self.create_pig_iron_markets()
         self.create_pig_iron_production_activities()
+        self.create_pig_iron_markets()
 
     def create_steel_markets(self):
         """
@@ -251,17 +261,7 @@ class Steel(BaseTransformation):
             # add to log
             for new_dataset in list(steel_markets.values()):
                 self.write_log(new_dataset)
-                # add it to list of created datasets
-                self.modified_datasets[(self.model, self.scenario, self.year)][
-                    "created"
-                ].append(
-                    (
-                        new_dataset["name"],
-                        new_dataset["reference product"],
-                        new_dataset["location"],
-                        new_dataset["unit"],
-                    )
-                )
+                self.add_to_index(new_dataset)
 
             list_new_steel_markets.extend(list(steel_markets.values()))
 
@@ -313,17 +313,7 @@ class Steel(BaseTransformation):
             # add to log
             for new_dataset in list(steel.values()):
                 self.write_log(new_dataset)
-                # add it to list of created datasets
-                self.modified_datasets[(self.model, self.scenario, self.year)][
-                    "created"
-                ].append(
-                    (
-                        new_dataset["name"],
-                        new_dataset["reference product"],
-                        new_dataset["location"],
-                        new_dataset["unit"],
-                    )
-                )
+                self.add_to_index(new_dataset)
 
         # adjust efficiency of secondary steel production
         # and add carbon capture and storage, if needed
@@ -338,17 +328,7 @@ class Steel(BaseTransformation):
             # add to log
             for new_dataset in list(steel.values()):
                 self.write_log(new_dataset)
-                # add it to list of created datasets
-                self.modified_datasets[(self.model, self.scenario, self.year)][
-                    "created"
-                ].append(
-                    (
-                        new_dataset["name"],
-                        new_dataset["reference product"],
-                        new_dataset["location"],
-                        new_dataset["unit"],
-                    )
-                )
+                self.add_to_index(new_dataset)
 
     def create_pig_iron_production_activities(self):
         """
@@ -375,17 +355,7 @@ class Steel(BaseTransformation):
         # add to log
         for new_dataset in list(pig_iron.values()):
             self.write_log(new_dataset)
-            # add it to list of created datasets
-            self.modified_datasets[(self.model, self.scenario, self.year)][
-                "created"
-            ].append(
-                (
-                    new_dataset["name"],
-                    new_dataset["reference product"],
-                    new_dataset["location"],
-                    new_dataset["unit"],
-                )
-            )
+            self.add_to_index(new_dataset)
 
     def create_pig_iron_markets(self):
         """
@@ -403,17 +373,7 @@ class Steel(BaseTransformation):
         # add to log
         for new_dataset in list(pig_iron_markets.values()):
             self.write_log(new_dataset)
-            # add it to list of created datasets
-            self.modified_datasets[(self.model, self.scenario, self.year)][
-                "created"
-            ].append(
-                (
-                    new_dataset["name"],
-                    new_dataset["reference product"],
-                    new_dataset["location"],
-                    new_dataset["unit"],
-                )
-            )
+            self.add_to_index(new_dataset)
 
     def adjust_process_efficiency(self, datasets):
         """
@@ -457,14 +417,58 @@ class Steel(BaseTransformation):
                 scaling_factor = 1
 
             if scaling_factor != 1:
-                # Update the comments
-                text = (
-                    f"This dataset has been modified by `premise`, according to the performance "
-                    f"for steel production indicated by the IAM model {self.model.upper()} for the IAM "
-                    f"region {region} in {self.year}, following the scenario {self.scenario}. "
-                    f"The energy efficiency of the process has been improved by {int((1 - scaling_factor) * 100)}%."
-                )
-                dataset["comment"] = text + dataset["comment"]
+                # when sector is steel - secondary, we want to make sure
+                # that the scaling down will not bring electricity consumption
+                # below the minimum value of 0.444 kWh/kg (1.6 MJ/kg)
+                # see Theoretical Minimum Energies To Produce Steel for Selected Conditions
+                # US Department of Energy, 2000
+
+                if sector == "steel - secondary":
+                    electricity = sum(
+                        [
+                            exc["amount"]
+                            for exc in ws.technosphere(dataset)
+                            if exc["unit"] == "kilowatt hour"
+                        ]
+                    )
+
+                    scaling_factor = max(0.444 / electricity, scaling_factor)
+
+                # if pig iron production, we want to make sure
+                # that the scaling down will not bring energy consumption
+                # below the minimum value of 9.0 MJ/kg
+                # see Theoretical Minimum Energies To Produce Steel for Selected Conditions
+                # US Department of Energy, 2000
+
+                if dataset["name"] == "pig iron production":
+                    energy = sum(
+                        [
+                            exc["amount"]
+                            for exc in ws.technosphere(dataset)
+                            if exc["unit"] == "megajoule"
+                        ]
+                    )
+
+                    # add input of coal
+                    energy += sum(
+                        [
+                            exc["amount"] * 26.4
+                            for exc in ws.technosphere(dataset)
+                            if "hard coal" in exc["name"] and exc["unit"] == "kilogram"
+                        ]
+                    )
+
+                    # add input of natural gas
+                    energy += sum(
+                        [
+                            exc["amount"] * 36
+                            for exc in ws.technosphere(dataset)
+                            if "natural gas" in exc["name"]
+                            and exc["unit"] == "cubic meter"
+                        ]
+                    )
+
+                    scaling_factor = max(9.0 / energy, scaling_factor)
 
                 # Scale down the fuel exchanges using the scaling factor
                 wurst.change_exchanges_by_constant_factor(
@@ -474,7 +478,17 @@ class Steel(BaseTransformation):
                         ws.either(*[ws.contains("name", x) for x in list_fuels])
                     ],
                     biosphere_filters=[ws.contains("name", "Carbon dioxide, fossil")],
+                    remove_uncertainty=False,
                 )
+
+                # Update the comments
+                text = (
+                    f"This dataset has been modified by `premise`, according to the performance "
+                    f"for steel production indicated by the IAM model {self.model.upper()} for the IAM "
+                    f"region {region} in {self.year}, following the scenario {self.scenario}. "
+                    f"The energy efficiency of the process has been improved by {int((1 - scaling_factor) * 100)}%."
+                )
+                dataset["comment"] = text + dataset["comment"]
 
                 if "log parameters" not in dataset:
                     dataset["log parameters"] = {}
@@ -496,7 +510,8 @@ class Steel(BaseTransformation):
         """
 
         for region, dataset in datasets.items():
-            # Check if carbon capture rate data is available for this region and sector
+            # Check if carbon capture rate data is available
+            # for this region and sector
             carbon_capture_rate = self.get_carbon_capture_rate(
                 loc=dataset["location"], sector="steel"
             )
@@ -511,6 +526,8 @@ class Steel(BaseTransformation):
                     dataset, ws.contains("name", "Carbon dioxide, fossil")
                 ):
                     co2_amount = co2_flow["amount"]
+                    # consider 90% capture efficiency
+                    carbon_capture_rate *= 0.9
                     co2_emitted = co2_amount * (1 - carbon_capture_rate)
                     co2_flow["amount"] = co2_emitted
 

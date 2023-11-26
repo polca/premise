@@ -264,12 +264,16 @@ def adjust_efficiency(dataset: dict) -> dict:
                             dataset,
                             ws.either(*[ws.contains("name", x) for x in filters]),
                         ):
-                            wurst.rescale_exchange(exc, scaling_factor)
+                            wurst.rescale_exchange(
+                                exc, scaling_factor, remove_uncertainty=False
+                            )
                     else:
                         for exc in ws.technosphere(
                             dataset,
                         ):
-                            wurst.rescale_exchange(exc, scaling_factor)
+                            wurst.rescale_exchange(
+                                exc, scaling_factor, remove_uncertainty=False
+                            )
 
                 else:
                     # adjust biosphere flows
@@ -280,12 +284,16 @@ def adjust_efficiency(dataset: dict) -> dict:
                             dataset,
                             ws.either(*[ws.contains("name", x) for x in filters]),
                         ):
-                            wurst.rescale_exchange(exc, scaling_factor)
+                            wurst.rescale_exchange(
+                                exc, scaling_factor, remove_uncertainty=False
+                            )
                     else:
                         for exc in ws.biosphere(
                             dataset,
                         ):
-                            wurst.rescale_exchange(exc, scaling_factor)
+                            wurst.rescale_exchange(
+                                exc, scaling_factor, remove_uncertainty=False
+                            )
 
     return dataset
 
@@ -346,7 +354,6 @@ class ExternalScenario(BaseTransformation):
         year: int,
         version: str,
         system_model: str,
-        modified_datasets: dict,
         cache: dict = None,
     ):
         """
@@ -367,7 +374,6 @@ class ExternalScenario(BaseTransformation):
             year,
             version,
             system_model,
-            modified_datasets,
         )
         self.datapackages = external_scenarios
         self.external_scenarios_data = external_scenarios_data
@@ -442,16 +448,7 @@ class ExternalScenario(BaseTransformation):
                 for _, act in new_acts.items():
                     # add to log
                     self.write_log(act)
-                    self.modified_datasets[(self.model, self.scenario, self.year)][
-                        "created"
-                    ].append(
-                        (
-                            act["name"],
-                            act["reference product"],
-                            act["location"],
-                            act["unit"],
-                        )
-                    )
+                    self.add_to_index(act)
 
             # remove "adjust efficiency" tag
             del ds["regionalize"]
@@ -868,7 +865,9 @@ class ExternalScenario(BaseTransformation):
             )
 
             if "includes" not in ineff:
-                wurst.change_exchanges_by_constant_factor(datatset, scaling_factor)
+                wurst.change_exchanges_by_constant_factor(
+                    datatset, scaling_factor, remove_uncertainty=False
+                )
 
             else:
                 if "technosphere" in ineff["includes"]:
@@ -878,7 +877,9 @@ class ExternalScenario(BaseTransformation):
                             fltr.append(wurst.contains(k, v))
 
                     for exc in ws.technosphere(datatset, *(fltr or [])):
-                        wurst.rescale_exchange(exc, scaling_factor)
+                        wurst.rescale_exchange(
+                            exc, scaling_factor, remove_uncertainty=False
+                        )
 
                 if "biosphere" in ineff["includes"]:
                     fltr = []
@@ -887,7 +888,9 @@ class ExternalScenario(BaseTransformation):
                             fltr.append(wurst.contains(k, v))
 
                     for exc in ws.biosphere(datatset, *(fltr or [])):
-                        wurst.rescale_exchange(exc, scaling_factor)
+                        wurst.rescale_exchange(
+                            exc, scaling_factor, remove_uncertainty=False
+                        )
         return datatset
 
     def get_region_for_non_null_production_volume(self, i, variables):
@@ -1058,16 +1061,7 @@ class ExternalScenario(BaseTransformation):
 
                             self.database.append(new_market)
                             self.write_log(new_market)
-                            self.modified_datasets[
-                                (self.model, self.scenario, self.year)
-                            ]["created"].append(
-                                (
-                                    new_market["name"],
-                                    new_market["reference product"],
-                                    new_market["location"],
-                                    new_market["unit"],
-                                )
-                            )
+                            self.add_to_index(new_market)
 
                         else:
                             regions.remove(region)
@@ -1091,16 +1085,7 @@ class ExternalScenario(BaseTransformation):
                         )
                         self.database.append(world_market)
                         self.write_log(world_market)
-                        self.modified_datasets[(self.model, self.scenario, self.year)][
-                            "created"
-                        ].append(
-                            (
-                                world_market["name"],
-                                world_market["reference product"],
-                                world_market["location"],
-                                world_market["unit"],
-                            )
-                        )
+                        self.add_to_index(world_market)
 
                         regions.append("World")
 

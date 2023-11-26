@@ -47,7 +47,7 @@ pulverised lignite:
             - clinker
 lignite:
   lhv: 8.7
-  co2: 0.101
+  co2: 0.115
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
@@ -105,8 +105,8 @@ wood chips:
       - market for wood chips
       - market for biomass, used as fuel
 natural gas:
-  lhv: 47.5
-  co2: 0.0564
+  lhv: 36
+  co2: 0.054
   biogenic_share: 0
   iam_aliases:
     remind: SE|Gases|Fossil|+|Natural Gas
@@ -190,7 +190,7 @@ biogas:
 
 biomethane:
   lhv: 47.5
-  co2: 0.058
+  co2: 0.054
   biogenic_share: 1
   iam_aliases:
     remind: SE|Gases|+|Biomass
@@ -205,8 +205,8 @@ biomethane:
         - burned
         - station
 waste:
-  lhv: 14
-  co2: 0.0917
+  lhv: 17
+  co2: 0.07
   biogenic_share: 0.34
   ecoinvent_aliases:
     fltr:
@@ -225,7 +225,7 @@ methane, biogenic:
   biogenic_share: 1
 methane, synthetic:
   lhv: 47.5
-  co2: 0.058
+  co2: 0.054
   biogenic_share: 1
   ecoinvent_fuels_aliases:
     fltr:

@@ -45,6 +45,7 @@ LIST_TRANSF_FUNC:
   - update_trucks
   - update_buses
   - update_fuels
+  - update_heat
   - update_external_scenario
   - update_emissions
 
@@ -125,6 +126,17 @@ LIST_TIAM_REGIONS:
   - WEU
   - World
 
-EXTRA_TOPOLOGY:
-  message: /Users/romain/GitHub/premise/premise/iam_variables_mapping/MESSAGE_iso2_map.json
-  tiam: /Users/romain/GitHub/premise/premise/iam_variables_mapping/TIAM_iso2_map.json
+PREFERRED_IAM_ORDER:
+  - NEU
+  - JPN
+  - CAZ
+  - IND
+  - CHA
+  - MEA
+  - REF
+  - EUR
+  - SSA
+  - LAM
+
+BLACKLIST:
+  - ME

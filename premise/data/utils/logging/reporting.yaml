@@ -186,6 +186,53 @@ premise_steel:
         unit: 0-1
     tab: Steel
 
+premise_metal:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      product:
+        name: reference product
+        description: Product
+      region:
+        name: region
+        description: Region name
+      post-allocation correction:
+        name: Post-allocation correction
+        description: Correction factor applied to the initial amount of metal produced
+        unit: kilogram
+      old amount:
+        name: Old amount
+        description: Amount of metal used before adjustment
+        unit: kilogram
+      new amount:
+        name: New amount
+        description: Amount of metal used after adjustment
+        unit: kilogram
+
+    tab: Metal
+
 premise_cement:
     columns:
       timestamp:
@@ -251,14 +298,7 @@ premise_cement:
         name: Electricity consumed
         description: Electricity consumed (kWh) per kg cement
         unit: kWh/kg
-      old clinker-to-cement ratio:
-        name: Old clinker-to-cement ratio
-        description: Clinker-to-cement ratio before adjustment
-        unit: 0-1
-      new clinker-to-cement ratio:
-        name: New clinker-to-cement ratio
-        description: Clinker-to-cement ratio after adjustment
-        unit: 0-1
+
     tab: Cement
 
 premise_fuel:
@@ -355,6 +395,54 @@ premise_fuel:
         description: Average lower heating value of the fuel blend (MJ/kg)
         unit: MJ/kg
     tab: Fuel
+
+premise_heat:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      initial amount of fossil CO2:
+        name: Initial amount of fossil CO2
+        description: Amount of fossil CO2 emitted per unit of activity before adjustment
+        unit: kg CO2/reference flow
+      new amount of fossil CO2:
+        name: New amount of fossil CO2
+        description: Amount of fossil CO2 emitted per unit of activity after adjustment
+        unit: kg CO2/reference flow
+      initial amount of biogenic CO2:
+        name: Initial amount of biogenic CO2
+        description: Amount of biogenic CO2 emitted per unit of activity before adjustment
+        unit: kg CO2/reference flow
+      new amount of biogenic CO2:
+        name: New amount of biogenic CO2
+        description: Amount of biogenic CO2 emitted per unit of activity after adjustment
+        unit: kg CO2/reference flow
+    tab: Heat
+
 premise_emissions:
     columns:
       timestamp:
@@ -462,3 +550,40 @@ premise_external_scenarios:
         name: region
         description: Region name
     tab: External scenarios
+
+premise_validation:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      model:
+          name: model
+          description: IAM model name
+      pathway:
+          name: pathway
+          description: Pathway name
+      year:
+          name: year
+          description: Year
+      name:
+          name: name
+          description: Name of the dataset
+      reference product:
+          name: reference product
+          description: Reference product
+      location:
+          name: location
+          description: Location
+      reason:
+          name: reason
+          description: Reason for anomaly
+      message:
+          name: message
+          description: Message
+    tab: Validation

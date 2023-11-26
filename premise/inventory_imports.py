@@ -232,6 +232,58 @@ def check_amount_format(database: list) -> list:
     return database
 
 
+def check_uncertainty_data(data, filename):
+    MANDATORY_UNCERTAINTY_FIELDS = {
+        2: {"loc", "scale"},
+        3: {"loc", "scale"},
+        4: {"minimum", "maximum"},
+        5: {"loc", "minimum", "maximum"},
+        6: {"loc", "minimum", "maximum"},
+        7: {"minimum", "maximum"},
+        8: {"loc", "scale", "shape"},
+        9: {"loc", "scale", "shape"},
+        10: {"loc", "scale", "shape"},
+        11: {"loc", "scale", "shape"},
+        12: {"loc", "scale", "shape"},
+    }
+
+    rows = []
+
+    for dataset in data:
+        for exc in dataset["exchanges"]:
+            if exc["type"] in ["technosphere", "biosphere"]:
+                if "uncertainty type" not in exc:
+                    exc["uncertainty type"] = 0
+
+                if exc["uncertainty type"] not in {0, 1}:
+                    if not all(
+                        f in exc
+                        for f in MANDATORY_UNCERTAINTY_FIELDS[exc["uncertainty type"]]
+                    ):
+                        rows.append(
+                            [
+                                dataset["name"][:30],
+                                exc["name"][:30],
+                                exc["uncertainty type"],
+                                [
+                                    f
+                                    for f in MANDATORY_UNCERTAINTY_FIELDS[
+                                        exc["uncertainty type"]
+                                    ]
+                                    if f not in exc
+                                ],
+                            ]
+                        )
+    if len(rows) > 0:
+        print(
+            f"the following exchanges from {filename} are missing uncertainty information:"
+        )
+        table = PrettyTable()
+        table.field_names = ["Name", "Exchange", "Uncertainty type", "Missing param."]
+        table.add_rows(rows)
+        print(table)
+
+
 class BaseInventoryImport:
     """
     Base class for inventories that are to be merged with the wurst database.
@@ -268,6 +320,7 @@ class BaseInventoryImport:
         self.consequential_blacklist = get_consequential_blacklist()
         self.list_unlinked = []
         self.keep_uncertainty_data = keep_uncertainty_data
+        self.path = path
 
         if "http" in str(path):
             r = requests.head(path)
@@ -346,7 +399,7 @@ class BaseInventoryImport:
                 name = self.path.name
 
             for dataset in already_exist:
-                table.add_row([dataset[0][:50], dataset[1][:30], dataset[2], name])
+                table.add_row([dataset[0][:30], dataset[1][:30], dataset[2], name[:30]])
 
             print(table)
 
@@ -724,6 +777,8 @@ class DefaultInventory(BaseInventoryImport):
         if not self.keep_uncertainty_data:
             print("Remove uncertainty data.")
             self.database = remove_uncertainty(self.database)
+        else:
+            check_uncertainty_data(self.import_db.data, filename=Path(self.path).stem)
 
         # Check for duplicates
         self.check_for_already_existing_datasets()

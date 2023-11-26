@@ -36,7 +36,6 @@ def _update_vehicles(
     vehicle_type,
     version,
     system_model,
-    modified_datasets,
     cache=None,
 ):
     trspt = Transport(
@@ -50,29 +49,32 @@ def _update_vehicles(
         vehicle_type=vehicle_type,
         relink=False,
         has_fleet=True,
-        modified_datasets=modified_datasets,
     )
 
+    iam_data = None
     if vehicle_type == "car":
-        iam_data = scenario["iam data"].trsp_cars
+        if hasattr(scenario["iam data"], "trsp_cars"):
+            iam_data = scenario["iam data"].trsp_cars
     elif vehicle_type == "truck":
-        iam_data = scenario["iam data"].trsp_trucks
+        if hasattr(scenario["iam data"], "trsp_trucks"):
+            iam_data = scenario["iam data"].trsp_trucks
     elif vehicle_type == "bus":
-        iam_data = scenario["iam data"].trsp_buses
+        if hasattr(scenario["iam data"], "trsp_buses"):
+            iam_data = scenario["iam data"].trsp_buses
     elif vehicle_type == "two wheeler":
-        iam_data = scenario["iam data"].trsp_two_wheelers
+        if hasattr(scenario["iam data"], "trsp_two_wheelers"):
+            iam_data = scenario["iam data"].trsp_two_wheelers
     else:
         raise ValueError("Unknown vehicle type.")
 
     if iam_data is not None:
         trspt.create_vehicle_markets()
         scenario["database"] = trspt.database
-        modified_datasets = trspt.modified_datasets
         cache = trspt.cache
     else:
         print(f"No markets found for {vehicle_type} in IAM data. Skipping.")
 
-    return scenario, modified_datasets, {} or cache
+    return scenario, {} or cache
 
 
 def get_average_truck_load_factors() -> Dict[str, Dict[str, Dict[str, float]]]:
@@ -470,7 +472,6 @@ class Transport(BaseTransformation):
         relink: bool,
         vehicle_type: str,
         has_fleet: bool,
-        modified_datasets: dict,
     ):
         super().__init__(
             database,
@@ -480,7 +481,6 @@ class Transport(BaseTransformation):
             year,
             version,
             system_model,
-            modified_datasets,
         )
         self.version = version
         self.relink = relink
