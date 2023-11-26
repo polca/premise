@@ -1,12 +1,14 @@
 """
 This module contains classes for validating datasets after they have been transformed.
 """
-from .logger import create_logger
-from .filesystem_constants import DATA_DIR
-from .geomap import Geomap
+import math
+
 import numpy as np
 import yaml
-import math
+
+from .filesystem_constants import DATA_DIR
+from .geomap import Geomap
+from .logger import create_logger
 
 logger = create_logger("validation")
 

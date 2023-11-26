@@ -5,12 +5,7 @@ import pprint
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import create_logger
-from .transformation import (
-    BaseTransformation,
-    IAMDataCollection,
-    List,
-    ws,
-)
+from .transformation import BaseTransformation, IAMDataCollection, List, ws
 
 logger = create_logger("heat")
 
