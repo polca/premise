@@ -277,20 +277,12 @@ class Cement(BaseTransformation):
                 "biogenic CO2": bio_CO2,
             }
 
-            if region == "RSAM":
-                from pprint import pprint
-
-                print(bio_CO2, energy_input_waste_fuel)
-                pprint(energy_details)
-
             # add the waste fuel energy input
             # to the total energy input
             current_energy_input_per_ton_clinker += energy_input_waste_fuel * 1000
 
             # add the waste fuel input to the dataset
             if amount_waste_fuel != 0:
-                if region == "RSAM":
-                    print("adding waste fuel input", amount_waste_fuel)
                 dataset["exchanges"].append(
                     {
                         "uncertainty type": 0,
