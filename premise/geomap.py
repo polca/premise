@@ -6,6 +6,7 @@ the IAM locations and ecoinvent locations.
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
+from collections import defaultdict
 
 import yaml
 from constructive_geometries import Geomatcher
@@ -82,10 +83,10 @@ class Geomap:
 
         assert (self.model.upper(), "World") in self.geo.keys(), list(self.geo.keys())
 
-        self.rev_additional_mappings = {
-            (self.model.upper(), val[self.model]): key
-            for key, val in self.additional_mappings.items()
-        }
+        self.rev_additional_mappings = defaultdict(list)
+        for ecoinvent, iam in self.additional_mappings.items():
+            for model, iam_region in iam.items():
+                self.rev_additional_mappings[iam_region].append(ecoinvent)
 
         self.iam_regions = [
             x[1]

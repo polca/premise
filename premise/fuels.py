@@ -553,6 +553,7 @@ class Fuels(BaseTransformation):
                     # set a floor value/kg H2
                     if new_energy_consumption < efficiency_floor_value:
                         new_energy_consumption = efficiency_floor_value
+
                 else:
                     if hydrogen_type == "from electrolysis":
                         # get the electricity consumption
@@ -562,37 +563,18 @@ class Fuels(BaseTransformation):
                     else:
                         new_energy_consumption = None
 
-                if new_energy_consumption:
-                    # remove energy inputs
-                    dataset["exchanges"] = [
-                        exc
-                        for exc in dataset["exchanges"]
-                        if not (
-                            exc["unit"] == hydrogen_feedstock_unit
-                            and hydrogen_feedstock_name in exc["name"]
-                            and exc["type"] == "technosphere"
-                        )
-                    ]
+                if new_energy_consumption is not None:
+                    # recalculate scaling factor
+                    scaling_factor = new_energy_consumption / initial_energy_consumption
 
-                    energy_suppliers = self.find_suppliers(
-                        name=hydrogen_feedstock_name,
-                        ref_prod=hydrogen_feedstock_name,
-                        unit=hydrogen_feedstock_unit,
-                        loc=region,
-                        exclude=["period", "production", "high voltage"],
-                    )
-
-                    dataset["exchanges"].extend(
-                        {
-                            "uncertainty type": 0,
-                            "amount": new_energy_consumption * share,
-                            "type": "technosphere",
-                            "product": supplier[2],
-                            "name": supplier[0],
-                            "unit": supplier[-1],
-                            "location": supplier[1],
-                        }
-                        for supplier, share in energy_suppliers.items()
+                    # rescale the fuel consumption exchange
+                    dataset = wurst.change_exchanges_by_constant_factor(
+                        dataset,
+                        scaling_factor,
+                        technosphere_filters=[
+                            ws.contains("name", hydrogen_activity_name),
+                            ws.equals("unit", hydrogen_feedstock_unit),
+                        ],
                     )
 
                     # add it to "log parameters"
@@ -621,7 +603,6 @@ class Fuels(BaseTransformation):
 
             self.database.extend(new_ds.values())
             self.add_to_index(new_ds.values())
-        # print("Generate region-specific hydrogen supply chains.")
 
         # loss coefficients for hydrogen supply
         losses = fetch_mapping(HYDROGEN_SUPPLY_LOSSES)
@@ -631,8 +612,6 @@ class Fuels(BaseTransformation):
         for act in [
             "hydrogen embrittlement inhibition",
             "geological hydrogen storage",
-            # "hydrogenation of hydrogen",
-            # "dehydrogenation of hydrogen",
             "hydrogen refuelling station",
         ]:
             new_ds = self.fetch_proxies(name=act, ref_prod=" ")

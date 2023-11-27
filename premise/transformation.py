@@ -251,7 +251,6 @@ class BaseTransformation:
         self.fuels_specs: dict = get_fuel_properties()
         mapping = InventorySet(self.database)
         self.cement_fuels_map: dict = mapping.generate_cement_fuels_map()
-        print("Cement fuels map", self.cement_fuels_map)
         self.fuel_map: Dict[str, Set] = mapping.generate_fuel_map()
         self.heat_techs = mapping.generate_heat_map()
         self.system_model: str = system_model
@@ -613,7 +612,10 @@ class BaseTransformation:
             if "GLO" in d_map.values():
                 fallback_loc = "GLO"
             else:
-                fallback_loc = list(d_map.values())[0]
+                try:
+                    fallback_loc = list(d_map.values())[0]
+                except IndexError:
+                    print(name, ref_prod, regions, d_map)
 
         return {region: d_map.get(region, fallback_loc) for region in regions}
 
@@ -948,20 +950,30 @@ class BaseTransformation:
                 e for e in ws.technosphere(act) if not self.is_in_index(e)
             ]
 
-            # Create a set of unique exchanges to relink based on certain attributes
-            unique_excs_to_relink = {
-                (exc["name"], exc["product"], exc["location"], exc["unit"])
-                for exc in excs_to_relink
-            }
+            if len(excs_to_relink) == 0:
+                continue
+            else:
+                # make a dictionary with the names and amounts
+                # of the technosphere exchanges to relink
+                # to compare with the new exchanges
+                excs_to_relink_dict = defaultdict(float)
+                for exc in excs_to_relink:
+                    excs_to_relink_dict[exc["product"]] += exc["amount"]
+
+            # Create a set of unique exchanges to relink
             # turn this into a list of dictionaries
             unique_excs_to_relink = [
                 {
-                    "name": exc[0],
-                    "product": exc[1],
-                    "location": exc[2],
-                    "unit": exc[3],
+                    "name": exc["name"],
+                    "product": exc["product"],
+                    "location": exc["location"],
+                    "unit": exc["unit"],
                 }
-                for exc in unique_excs_to_relink
+                for exc in excs_to_relink
+            ]
+            # remove duplicates items in the list
+            unique_excs_to_relink = [
+                dict(t) for t in {tuple(d.items()) for d in unique_excs_to_relink}
             ]
 
             # Process exchanges to relink
@@ -973,6 +985,20 @@ class BaseTransformation:
             act["exchanges"] = [e for e in act["exchanges"] if e not in excs_to_relink]
             # Update act["exchanges"] by adding new exchanges
             act["exchanges"].extend(new_exchanges)
+
+            new_exchanges_dict = defaultdict(float)
+            for exc in new_exchanges:
+                new_exchanges_dict[exc["product"]] += exc["amount"]
+
+            # compare with the original exchanges
+            # if the amount is different, add a log
+            for key in excs_to_relink_dict:
+                assert key in new_exchanges_dict
+                assert np.isclose(
+                    excs_to_relink_dict[key],
+                    new_exchanges_dict[key],
+                    rtol=0.001,
+                )
 
     def process_exchanges_to_relink(self, act, unique_excs_to_relink, alt_names):
         new_exchanges = []
@@ -1680,6 +1706,15 @@ class BaseTransformation:
 
         sum_before = sum([exc["amount"] for exc in dataset["exchanges"]])
 
+        # collect the name of exchange and the sum of amounts
+        # as a dictionary, for all technosphere exchanges
+        # in the dataset
+
+        exchanges_before = defaultdict(float)
+        for exc in dataset["exchanges"]:
+            if exc["type"] == "technosphere":
+                exchanges_before[exc["name"]] += exc["amount"]
+
         new_exchanges = self.find_candidates(
             dataset,
             exclusive=exclusive,
@@ -1718,6 +1753,23 @@ class BaseTransformation:
             f"Sum of exchanges before and after relinking is not the same: {sum_before} != {sum_after}"
             f"\n{dataset['name']}|{dataset['location']}"
         )
+
+        # compare new exchanges with exchanges before
+        exchanges_after = defaultdict(float)
+        for exc in dataset["exchanges"]:
+            if exc["type"] == "technosphere":
+                exchanges_after[exc["name"]] += exc["amount"]
+
+        assert set(exchanges_before.keys()) == set(exchanges_after.keys()), (
+            f"Exchanges before and after relinking are not the same: {set(exchanges_before.keys())} != {set(exchanges_after.keys())}"
+            f"\n{dataset['name']}|{dataset['location']}"
+        )
+
+        for key in exchanges_before.keys():
+            assert np.allclose(exchanges_before[key], exchanges_after[key]), (
+                f"Exchanges before and after relinking are not the same: {exchanges_before[key]} != {exchanges_after[key]}"
+                f"\n{dataset['name']}|{dataset['location']}"
+            )
 
         return dataset
 
