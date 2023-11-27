@@ -4,9 +4,9 @@ the IAM locations and ecoinvent locations.
 """
 
 import json
+from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
-from collections import defaultdict
 
 import yaml
 from constructive_geometries import Geomatcher
