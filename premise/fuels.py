@@ -4,8 +4,8 @@ Integrates projections regarding fuel production and supply.
 
 import copy
 from functools import lru_cache
-from typing import Union
 from pprint import pprint
+from typing import Union
 
 import wurst
 import xarray as xr

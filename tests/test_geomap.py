@@ -1,4 +1,5 @@
 import unittest
+
 from premise.geomap import Geomap
 
 
