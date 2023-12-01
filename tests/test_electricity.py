@@ -2,8 +2,8 @@
 import os
 from pathlib import Path
 
-import pytest
 import numpy as np
+import pytest
 
 from premise.data_collection import IAMDataCollection
 from premise.electricity import Electricity
