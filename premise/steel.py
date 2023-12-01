@@ -2,9 +2,10 @@
 Integrates projections regarding steel production.
 """
 from typing import Dict, List
+
 from .data_collection import IAMDataCollection
 from .logger import create_logger
-from .transformation import BaseTransformation, ws, rescale_exchanges
+from .transformation import BaseTransformation, rescale_exchanges, ws
 from .validation import SteelValidation
 
 logger = create_logger("steel")

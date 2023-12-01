@@ -15,9 +15,9 @@ from .transformation import (
     IAMDataCollection,
     InventorySet,
     List,
+    rescale_exchanges,
     uuid,
     ws,
-    rescale_exchanges,
 )
 
 logger = create_logger("dac")
