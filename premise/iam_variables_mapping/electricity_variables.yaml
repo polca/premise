@@ -351,6 +351,7 @@ Coal PC CCS:
   eff_aliases:
     message: Efficiency|Electricity|Coal|w/ CCS|2
     remind: Tech|Electricity|Coal|Pulverised Coal w/ CC|Efficiency
+    image: Efficiency|Electricity|Coal|w/ CCS|2
   iam_aliases:
     image: Secondary Energy|Electricity|Coal|w/ CCS|2
     message: Secondary Energy|Electricity|Coal|w/ CCS|2
@@ -597,6 +598,7 @@ Gas OC:
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
     tiam: Efficiency|Electricity|Existing gas generation|w/o CCS
   iam_aliases:
+    image: Secondary Energy|Electricity|Gas|w/o CCS|1
     message: Secondary Energy|Electricity|Gas|w/o CCS|3
     remind: SE|Electricity|Gas|++|Gas Turbine
     tiam: Secondary Energy|Electricity|Existing gas generation|w/o CCS
@@ -615,7 +617,6 @@ Gas ST:
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
   exists in database: false
   iam_aliases:
-    image: Secondary Energy|Electricity|Gas|w/o CCS|1
     message: Secondary Energy|Electricity|Gas|w/o CCS|2
     remind: SE|Electricity|Gas|++|Gas Turbine
   max_efficiency: 0.5
