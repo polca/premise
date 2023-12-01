@@ -9,12 +9,7 @@ cement - co2:
       - Emi|CO2|Energy|Demand|Industry|++|Cement
       - Carbon Management|Carbon Capture|Industry Energy|Cement
       - Carbon Management|Carbon Capture|+|Industry Process
-    image:
-      - Production|Industry|Cement|Dry feed rotary kiln
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln
+    image: Emissions|CO2|Industry|Cement|Gross
     message:
       - Carbon Sequestration|CCS|Industrial Processes
       - Emissions|CO2|Industrial Processes|Non-Metallic Minerals|Cement
@@ -24,10 +19,7 @@ cement - cco2:
     remind:
       - Carbon Management|Carbon Capture|Industry Energy|Cement
       - Carbon Management|Carbon Capture|+|Industry Process
-    image:
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS
-      - Production|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS
+    image: Emissions|CO2|Industry|Cement|Sequestered
     message:
       - CCS|Industry|Industrial Processes|Non-Metallic Minerals
 steel - co2:
@@ -35,23 +27,9 @@ steel - co2:
     remind:
       - Emi|CO2|Energy|Demand|Industry|++|Steel
       - Carbon Management|Carbon Capture|Industry Energy|Steel
-    image:
-      - Production|Industry|Iron and Steel|BF/ BOF Standard + CCS
-      - Production|Industry|Iron and Steel|BF/BOF Modernized
-      - Production|Industry|Iron and Steel|BF/BOF Standard
-      - Production|Industry|Iron and Steel|SR/BOF + CCS
-      - Production|Industry|Iron and Steel|SR/BOF
-      - Production|Industry|Iron and Steel|TGR BF/BOF BAT + CCS
-      - Production|Industry|Iron and Steel|TGR BF/BOF BAT
-      - Production|Industry|Iron and Steel|TGR BF/BOF
-#    message:
-#      - Emissions|CO2|Energy|Demand|Industry|Steel    # not in the model currently
+    image: Emissions|CO2|Industry|Steel|Gross
 steel - cco2:
   iam_aliases:
     remind:
       - Carbon Management|Carbon Capture|Industry Energy|Steel
-    image:
-      - Production|Industry|Iron and Steel|BF/ BOF Standard + CCS
-      - Production|Industry|Iron and Steel|DRI EAF + CCS
-      - Production|Industry|Iron and Steel|SR/BOF + CCS
-      - Production|Industry|Iron and Steel|TGR BF/BOF BAT + CCS
+    image: Emissions|CO2|Industry|Steel|Sequestered
