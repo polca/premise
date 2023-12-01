@@ -376,9 +376,6 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
     )
     scenario["year"] = check_year(scenario["year"])
 
-    if "exclude" in scenario:
-        scenario["exclude"] = check_exclude(scenario["exclude"])
-
     return scenario
 
 
@@ -1210,44 +1207,38 @@ class NewDatabase:
     def update_external_scenario(self):
         if self.datapackages:
             for i, scenario in enumerate(self.scenarios):
-                if (
-                    "exclude" not in scenario
-                    or "update_external_scenario" not in scenario["exclude"]
-                ):
-                    for d, datapackage in enumerate(self.datapackages):
-                        if "inventories" in [r.name for r in datapackage.resources]:
-                            inventories = self.__import_additional_inventories(
-                                datapackage
-                            )
-                        else:
-                            inventories = []
+                for d, datapackage in enumerate(self.datapackages):
+                    if "inventories" in [r.name for r in datapackage.resources]:
+                        inventories = self.__import_additional_inventories(datapackage)
+                    else:
+                        inventories = []
 
-                        resource = datapackage.get_resource("config")
-                        config_file = yaml.safe_load(resource.raw_read())
+                    resource = datapackage.get_resource("config")
+                    config_file = yaml.safe_load(resource.raw_read())
 
-                        checked_inventories, checked_database = check_inventories(
-                            config_file,
-                            inventories,
-                            scenario["external data"][d],
-                            scenario["database"],
-                            scenario["year"],
-                        )
-                        scenario["database"] = checked_database
-                        scenario["database"].extend(checked_inventories)
-
-                    external_scenario = ExternalScenario(
-                        database=scenario["database"],
-                        model=scenario["model"],
-                        pathway=scenario["pathway"],
-                        iam_data=scenario["iam data"],
-                        year=scenario["year"],
-                        external_scenarios=self.datapackages,
-                        external_scenarios_data=scenario["external data"],
-                        version=self.version,
-                        system_model=self.system_model,
+                    checked_inventories, checked_database = check_inventories(
+                        config_file,
+                        inventories,
+                        scenario["external data"][d],
+                        scenario["database"],
+                        scenario["year"],
                     )
-                    external_scenario.create_custom_markets()
-                    scenario["database"] = external_scenario.database
+                    scenario["database"] = checked_database
+                    scenario["database"].extend(checked_inventories)
+
+                external_scenario = ExternalScenario(
+                    database=scenario["database"],
+                    model=scenario["model"],
+                    pathway=scenario["pathway"],
+                    iam_data=scenario["iam data"],
+                    year=scenario["year"],
+                    external_scenarios=self.datapackages,
+                    external_scenarios_data=scenario["external data"],
+                    version=self.version,
+                    system_model=self.system_model,
+                )
+                external_scenario.create_custom_markets()
+                scenario["database"] = external_scenario.database
             print(f"Log file of exchanges saved under {DATA_DIR / 'logs'}.")
 
         print("Done!\n")
@@ -1358,6 +1349,7 @@ class NewDatabase:
                 scenario=scenario,
                 db_name=name,
                 original_database=self.database,
+                keep_uncertainty_data=self.keep_uncertainty_data,
             )
 
         if hasattr(self, "datapackages"):
@@ -1428,6 +1420,7 @@ class NewDatabase:
                 scenario=scenario,
                 db_name=name[s],
                 original_database=self.database,
+                keep_uncertainty_data=self.keep_uncertainty_data,
             )
 
         for scen, scenario in enumerate(self.scenarios):
@@ -1484,12 +1477,7 @@ class NewDatabase:
         if self.multiprocessing:
             with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
                 args = [
-                    (
-                        scenario,
-                        cache,
-                        self.version,
-                        self.system_model,
-                    )
+                    (scenario, "database", self.database, self.keep_uncertainty_data)
                     for scenario in self.scenarios
                 ]
                 results = pool.starmap(_prepare_database, args)
@@ -1510,6 +1498,7 @@ class NewDatabase:
                     scenario=scenario,
                     db_name="database",
                     original_database=self.database,
+                    keep_uncertainty_data=self.keep_uncertainty_data,
                 )
 
             for scen, scenario in enumerate(self.scenarios):
@@ -1543,6 +1532,7 @@ class NewDatabase:
                 scenario=scenario,
                 db_name="database",
                 original_database=self.database,
+                keep_uncertainty_data=self.keep_uncertainty_data,
             )
 
         for scen, scenario in enumerate(self.scenarios):
@@ -1570,6 +1560,7 @@ class NewDatabase:
                 scenario=scenario,
                 db_name=name,
                 original_database=self.database,
+                keep_uncertainty_data=self.keep_uncertainty_data,
             )
 
         if hasattr(self, "datapackages"):

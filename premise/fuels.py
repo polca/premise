@@ -28,6 +28,7 @@ from .transformation import (
     np,
     uuid,
     ws,
+    rescale_exchanges,
 )
 from .utils import get_crops_properties
 
@@ -567,26 +568,27 @@ class Fuels(BaseTransformation):
                     # recalculate scaling factor
                     scaling_factor = new_energy_consumption / initial_energy_consumption
 
-                    # rescale the fuel consumption exchange
-                    dataset = wurst.change_exchanges_by_constant_factor(
-                        dataset,
-                        scaling_factor,
-                        technosphere_filters=[
-                            ws.contains("name", hydrogen_activity_name),
-                            ws.equals("unit", hydrogen_feedstock_unit),
-                        ],
-                    )
+                    if not np.isnan(scaling_factor) and scaling_factor > 0.0:
+                        # rescale the fuel consumption exchange
+                        dataset = rescale_exchanges(
+                            dataset,
+                            scaling_factor,
+                            technosphere_filters=[
+                                ws.contains("name", hydrogen_activity_name),
+                                ws.equals("unit", hydrogen_feedstock_unit),
+                            ],
+                        )
 
-                    # add it to "log parameters"
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
+                        # add it to "log parameters"
+                        if "log parameters" not in dataset:
+                            dataset["log parameters"] = {}
 
-                    # add it to "log parameters"
-                    dataset["log parameters"].update(
-                        {
-                            "new energy input for hydrogen production": new_energy_consumption
-                        }
-                    )
+                        # add it to "log parameters"
+                        dataset["log parameters"].update(
+                            {
+                                "new energy input for hydrogen production": new_energy_consumption
+                            }
+                        )
 
                     self.write_log(dataset)
 
@@ -749,6 +751,7 @@ class Fuels(BaseTransformation):
             transport_name = transport["name"]
             transport_ref_prod = transport["reference product"]
             transport_unit = transport["unit"]
+
             suppliers = self.find_suppliers(
                 name=transport_name,
                 ref_prod=transport_ref_prod,
@@ -1314,6 +1317,7 @@ class Fuels(BaseTransformation):
                                             unit="kilogram",
                                             loc=region,
                                         )
+
                                     except IndexError:
                                         dac_suppliers = None
 
@@ -1421,6 +1425,7 @@ class Fuels(BaseTransformation):
                                     unit="kilogram",
                                     loc=region,
                                 )
+
                             except IndexError:
                                 dac_suppliers = None
 
@@ -1660,7 +1665,7 @@ class Fuels(BaseTransformation):
                         ws.contains("name", "Farming"), ws.contains("name", "Supply")
                     ),
                 ]
-                wurst.change_exchanges_by_constant_factor(
+                rescale_exchanges(
                     dataset, scaling_factor, biomass_inputs, remove_uncertainty=False
                 )
 

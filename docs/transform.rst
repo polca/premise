@@ -200,7 +200,6 @@ It can be re-scaled using the `update_emissions` function, which updates emissio
 to GAINS projections.
 
 
-
  =================================================== =========== =========== =======
   electricity production, natura gas, conventional    before      after       unit
  =================================================== =========== =========== =======
@@ -2056,8 +2055,10 @@ The table below shows the mapping between ecoinvent and GAINS emission flows.
 +-------------------------------------------------------------------+----------------+
 
 We consider emission factors in ecoinvent as representative of the current situation.
-Hence, we calculate a scaling factor from the GAINS emission factors for the year of
-the scenario relative to the year 2020.
+Hence, we calculate a *scaling factor* from the GAINS emission factors for the year of
+the scenario relative to the year 2020. note that premise prevents scaling factors to be
+inferior to 1 if the year is inferior to 2020. Inversely, scaling factors cannot be superior to 1
+if the year is superior to 2020.
 
 Two GAINS-IAM scenarios are available:
 
@@ -2093,5 +2094,9 @@ is automatically generated after database export.
 The report lists the datasets added, updated and emptied.
 It also gives a number of indicators relating to efficiency,
 emissions, etc. for each scenario.
+
+Finally, it also contains a "Validation" tab that lists datasets
+which potentially present erroneous values. These datasets are
+to be checked by the user.
 
 This report can also be generated manually using the `generate_change_report()` method.

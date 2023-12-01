@@ -165,6 +165,7 @@ heavy fuel oil:
         - import
         - synthetic
   biogenic_share: 0
+
 oil, crude, in ground:
   lhv: 38.5
   co2: 0.0739

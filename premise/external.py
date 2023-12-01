@@ -17,7 +17,11 @@ from .clean_datasets import get_biosphere_flow_uuid
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import generate_migration_maps, get_correspondence_bio_flows
-from .transformation import BaseTransformation, get_shares_from_production_volume
+from .transformation import (
+    BaseTransformation,
+    get_shares_from_production_volume,
+    rescale_exchanges,
+)
 from .utils import eidb_label
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
@@ -865,9 +869,7 @@ class ExternalScenario(BaseTransformation):
             )
 
             if "includes" not in ineff:
-                wurst.change_exchanges_by_constant_factor(
-                    datatset, scaling_factor, remove_uncertainty=False
-                )
+                rescale_exchanges(datatset, scaling_factor, remove_uncertainty=False)
 
             else:
                 if "technosphere" in ineff["includes"]:

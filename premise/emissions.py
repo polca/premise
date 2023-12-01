@@ -184,7 +184,7 @@ class Emissions(BaseTransformation):
                 model=model,
             )
 
-            if scaling_factor != 1.0:
+            if scaling_factor != 1.0 and scaling_factor > 0.0:
                 if f"{gains_pollutant} scaling factor" not in dataset.get(
                     "log parameters", {}
                 ):
@@ -240,9 +240,13 @@ class Emissions(BaseTransformation):
                 )
             ]
 
-            scaling_factor = np.clip(scaling_factor, 1 if self.year < 2020 else 0, None)
+            scaling_factor = np.clip(
+                scaling_factor,
+                1 if self.year < 2020 else 0,
+                1 if self.year > 2020 else 1e6,
+            )
 
-            if np.isnan(scaling_factor):
+            if np.isnan(scaling_factor) or scaling_factor == 0.0:
                 scaling_factor = 1.0
 
             return float(scaling_factor)

@@ -2,12 +2,9 @@
 Integrates projections regarding steel production.
 """
 from typing import Dict, List
-
-import wurst
-
 from .data_collection import IAMDataCollection
 from .logger import create_logger
-from .transformation import BaseTransformation, ws
+from .transformation import BaseTransformation, ws, rescale_exchanges
 from .validation import SteelValidation
 
 logger = create_logger("steel")
@@ -413,10 +410,11 @@ class Steel(BaseTransformation):
                     variable=sector,
                     location=dataset["location"],
                 )
+
             else:
                 scaling_factor = 1
 
-            if scaling_factor != 1:
+            if scaling_factor != 1 and scaling_factor > 0:
                 # when sector is steel - secondary, we want to make sure
                 # that the scaling down will not bring electricity consumption
                 # below the minimum value of 0.444 kWh/kg (1.6 MJ/kg)
@@ -471,7 +469,7 @@ class Steel(BaseTransformation):
                     scaling_factor = max(9.0 / energy, scaling_factor)
 
                 # Scale down the fuel exchanges using the scaling factor
-                wurst.change_exchanges_by_constant_factor(
+                rescale_exchanges(
                     dataset,
                     scaling_factor,
                     technosphere_filters=[

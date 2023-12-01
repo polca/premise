@@ -28,7 +28,7 @@ from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
-from .utils import get_fuel_properties
+from .utils import get_fuel_properties, rescale_exchanges
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 # directory for log files
@@ -819,7 +819,9 @@ class BaseTransformation:
                 locations = [self.ecoinvent_to_iam_loc[existing_ds["location"]]]
                 locations = [loc for loc in locations if loc in regions]
 
-            if locations == ["World"]:
+            if locations == [
+                "World",
+            ]:
                 locations = [r for r in regions if r != "World"]
 
             if len(locations) == 0:
@@ -856,7 +858,7 @@ class BaseTransformation:
                     }
                 )
 
-            elif isinstance(production_variable, str) and all(
+            elif isinstance(production_variable, list) and all(
                 i in self.iam_data.production_volumes.variables.values.tolist()
                 for i in production_variable
             ):
@@ -947,7 +949,9 @@ class BaseTransformation:
         ):
             # Filter out exchanges to relink
             excs_to_relink = [
-                e for e in ws.technosphere(act) if not self.is_in_index(e)
+                e
+                for e in ws.technosphere(act)
+                if (not self.is_in_index(e) and e["amount"] != 0)
             ]
 
             if len(excs_to_relink) == 0:
@@ -993,19 +997,24 @@ class BaseTransformation:
             # compare with the original exchanges
             # if the amount is different, add a log
             for key in excs_to_relink_dict:
-                assert key in new_exchanges_dict
+                assert (
+                    key in new_exchanges_dict
+                ), f"{key} not in {new_exchanges_dict} in dataset {act['name']}, {act['location']}"
                 assert np.isclose(
                     excs_to_relink_dict[key],
                     new_exchanges_dict[key],
                     rtol=0.001,
+                ), (
+                    f"{excs_to_relink_dict[key]} != {new_exchanges_dict[key]} in dataset {act['name']}, {act['location']}."
+                    f" Exchanges to relink: {excs_to_relink_dict}, new exchanges: {new_exchanges_dict}"
                 )
 
     def process_exchanges_to_relink(self, act, unique_excs_to_relink, alt_names):
         new_exchanges = []
         for exc in unique_excs_to_relink:
-            entry, amount = self.find_new_exchange_entry(act, exc, alt_names)
-            if amount > 0:
-                new_exchanges.extend(self.create_new_exchanges(entry, amount))
+            entries, amount = self.find_new_exchange_entries(act, exc, alt_names)
+            if amount != 0:
+                new_exchanges.extend(self.create_new_exchanges(entries, amount))
         # Make exchanges unique and sum amounts for duplicates
         return self.summarize_exchanges(new_exchanges)
 
@@ -1021,7 +1030,8 @@ class BaseTransformation:
 
     def find_alternative_locations(self, act, exc, alt_names):
         """
-        Find alternative locations for an exchange.
+        Find alternative locations for an exchange, trying "market for" and "market group for"
+        only if the initial search is unsuccessful.
 
         :param act: The activity dictionary.
         :param exc: A tuple representing the exchange (name, product, location, unit).
@@ -1029,10 +1039,74 @@ class BaseTransformation:
         :return: A list of new exchange entries or an empty list if none are found.
         """
         names_to_look_for = [exc["name"]] + alt_names
-        if exc["name"].startswith("market group for"):
-            names_to_look_for.append(
-                exc["name"].replace("market group for", "market for")
-            )
+
+        def allocate_inputs(lst):
+            """
+            Allocate the input exchanges in ``lst`` to ``exc``,
+            using production volumes where possible, and equal splitting otherwise.
+            Always uses equal splitting if ``RoW`` is present.
+            """
+
+            pvs = []
+            for o in lst:
+                ds = ws.get_one(
+                    self.database,
+                    ws.equals("name", o[0]),
+                    ws.equals("reference product", o[1]),
+                    ws.equals("location", o[2]),
+                )
+
+                for exc in ds["exchanges"]:
+                    if exc["type"] == "production":
+                        pvs.append(exc.get("production volume", 0))
+
+            if any((x > 0 for x in pvs)):
+                # Allocate using production volume
+                total = sum(pvs)
+            else:
+                # Allocate evenly
+                total = len(lst)
+                pvs = [1 for _ in range(total)]
+
+            return [p / total for p in pvs]
+
+        # Function to search for new exchanges
+        def search_for_new_exchanges(names):
+            entries = []
+            for name_to_look_for, alt_loc in product(
+                set(names), set(alternative_locations)
+            ):
+                if (name_to_look_for, alt_loc) != (act["name"], act["location"]):
+                    if self.is_in_index(
+                        {
+                            "name": name_to_look_for,
+                            "product": exc["product"],
+                            "location": alt_loc,
+                            "unit": exc["unit"],
+                        }
+                    ):
+                        entries.append(
+                            (
+                                name_to_look_for,
+                                exc["product"],
+                                alt_loc,
+                                exc["unit"],
+                                1.0,
+                            )
+                        )
+
+            if len(entries) > 1 and any(
+                x in ["World", "GLO", "RoW"] for x in [e[2] for e in entries]
+            ):
+                entries = [e for e in entries if e[2] not in ["World", "GLO", "RoW"]]
+
+            if len(entries) > 1:
+                shares = allocate_inputs(entries)
+                entries = [(e[0], e[1], e[2], e[3], s) for e, s in zip(entries, shares)]
+                # remove entries that have a share of 0
+                entries = [e for e in entries if e[-1] > 0]
+
+            return entries
 
         # Start with the activity's location
         alternative_locations = [
@@ -1046,60 +1120,48 @@ class BaseTransformation:
         # Always include 'RoW', 'World', and 'GLO' as last resort options
         alternative_locations.extend(["RoW", "World", "GLO"])
 
-        # Look for a new exchange in the alternative locations
-        for name_to_look_for, alt_loc in product(
-            set(names_to_look_for), set(alternative_locations)
-        ):
-            if self.is_in_index(
-                {
-                    "name": name_to_look_for,
-                    "product": exc["product"],
-                    "location": alt_loc,
-                    "unit": exc["unit"],
-                }
-            ):
-                # Found a new exchange, create an entry
-                new_entry = [
-                    (
-                        name_to_look_for,
-                        exc["product"],
-                        alt_loc,
-                        exc["unit"],
-                        1.0,
-                    ),
+        # Initial search with the provided names
+        new_entries = search_for_new_exchanges(names_to_look_for)
+        # check if the location of one of the entries matches with
+        # the location of the activity to relink
+
+        if len(new_entries) > 1:
+            if any(e[2] == act["location"] for e in new_entries):
+                new_entries = [e for e in new_entries if e[2] == act["location"]]
+                # re-normalize the shares
+                sum_shares = sum(e[-1] for e in new_entries)
+                new_entries = [
+                    (e[0], e[1], e[2], e[3], e[-1] / sum_shares) for e in new_entries
                 ]
 
-                # Optionally, update a cache here if used
-                self.add_new_entry_to_cache(
-                    act["location"],
-                    exc,
-                    [
-                        {
-                            "name": name_to_look_for,
-                            "product": exc["product"],
-                            "location": alt_loc,
-                            "unit": exc["unit"],
-                        }
-                    ],
-                    [1.0],
+        if new_entries:
+            return new_entries
+
+        # If initial search fails, try with "market for" and "market group for"
+        for prefix in ["market for", "market group for"]:
+            if exc["name"].startswith(prefix):
+                modified_name = exc["name"].replace(
+                    prefix,
+                    "market for"
+                    if prefix == "market group for"
+                    else "market group for",
                 )
+                names_to_look_for.append(modified_name)
 
-                return new_entry
+        # Second search with modified names
+        return search_for_new_exchanges(names_to_look_for)
 
-        # If no alternative location is found, return an empty list
-        return []
-
-    def find_new_exchange_entry(self, act, exc, alt_names):
-        entry = None
+    def find_new_exchange_entries(self, act, exc, alt_names):
+        entries = None
 
         if self.is_exchange_in_cache(exc, act["location"]):
-            entry = self.get_exchange_from_cache(exc, act["location"])
+            entries = self.get_exchange_from_cache(exc, act["location"])
 
-        if not entry:
-            entry = self.find_alternative_locations(act, exc, alt_names)
+        if not entries:
+            entries = self.find_alternative_locations(act, exc, alt_names)
 
-        if not entry:
-            entry = [
+        if not entries:
+            entries = [
                 (exc["name"], exc["product"], exc["location"], exc["unit"]) + (1.0,)
             ]
 
@@ -1110,9 +1172,9 @@ class BaseTransformation:
             == (exc["name"], exc["product"], exc["location"], exc["unit"])
         )
 
-        return entry, amount
+        return entries, amount
 
-    def create_new_exchanges(self, entry, amount):
+    def create_new_exchanges(self, entries, amount):
         return [
             {
                 "name": e[0],
@@ -1122,7 +1184,7 @@ class BaseTransformation:
                 "unit": e[3],
                 "location": e[2],
             }
-            for e in entry
+            for e in entries
         ]
 
     def summarize_exchanges(self, new_exchanges):
@@ -1715,6 +1777,11 @@ class BaseTransformation:
             if exc["type"] == "technosphere":
                 exchanges_before[exc["name"]] += exc["amount"]
 
+        if dataset["name"] == "market for clinker" and dataset["location"] == "RoW":
+            print("BEFORE")
+            for e in dataset["exchanges"]:
+                print(e["name"], e.get("location"), e["amount"])
+
         new_exchanges = self.find_candidates(
             dataset,
             exclusive=exclusive,
@@ -1742,6 +1809,11 @@ class BaseTransformation:
                 key=itemgetter("name", "product", "location", "unit"),
             )
         ]
+
+        if dataset["name"] == "market for clinker" and dataset["location"] == "RoW":
+            print("AFTER")
+            for e in new_exchanges:
+                print(e["name"], e.get("location"), e["amount"])
 
         dataset["exchanges"] = [
             exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"

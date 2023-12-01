@@ -153,7 +153,7 @@ class Cement(BaseTransformation):
         return bio_co2 / (bio_co2 + non_bio_co2)
 
     def rescale_fuel_inputs(self, dataset, scaling_factor, energy_details):
-        if scaling_factor != 1:
+        if scaling_factor != 1 and scaling_factor > 0:
             for exc in dataset["exchanges"]:
                 if exc["name"] in self.cement_fuels_map["cement, dry feed rotary kiln"]:
                     exc["amount"] *= scaling_factor
@@ -317,29 +317,35 @@ class Cement(BaseTransformation):
                 location=dataset["location"],
             )
 
-            # calculate new thermal energy
-            # consumption per kg clinker
-            new_energy_input_per_ton_clinker = (
-                current_energy_input_per_ton_clinker * scaling_factor
-            )
+            if not np.isnan(scaling_factor) and scaling_factor > 0.0:
+                # calculate new thermal energy
+                # consumption per kg clinker
+                new_energy_input_per_ton_clinker = (
+                    current_energy_input_per_ton_clinker * scaling_factor
+                )
 
-            # put a floor value of 3100 kj/kg clinker
-            if new_energy_input_per_ton_clinker < 3100:
-                new_energy_input_per_ton_clinker = 3100
-            # and a ceiling value of 5000 kj/kg clinker
-            elif new_energy_input_per_ton_clinker > 5000:
-                new_energy_input_per_ton_clinker = 5000
+                # put a floor value of 3100 kj/kg clinker
+                if new_energy_input_per_ton_clinker < 3100:
+                    new_energy_input_per_ton_clinker = 3100
+                # and a ceiling value of 5000 kj/kg clinker
+                elif new_energy_input_per_ton_clinker > 5000:
+                    new_energy_input_per_ton_clinker = 5000
 
-            scaling_factor = (
-                new_energy_input_per_ton_clinker / current_energy_input_per_ton_clinker
-            )
+                scaling_factor = (
+                    new_energy_input_per_ton_clinker
+                    / current_energy_input_per_ton_clinker
+                )
 
-            # rescale fuel consumption and emissions
-            # rescale the fuel and electricity input
-            dataset = self.rescale_fuel_inputs(dataset, scaling_factor, energy_details)
+                # rescale fuel consumption and emissions
+                # rescale the fuel and electricity input
+                dataset = self.rescale_fuel_inputs(
+                    dataset, scaling_factor, energy_details
+                )
 
-            # rescale combustion-related CO2 emissions
-            dataset = self.rescale_emissions(dataset, energy_details, scaling_factor)
+                # rescale combustion-related CO2 emissions
+                dataset = self.rescale_emissions(
+                    dataset, energy_details, scaling_factor
+                )
 
             # Carbon capture rate: share of capture of total CO2 emitted
             carbon_capture_rate = self.get_carbon_capture_rate(
@@ -356,7 +362,7 @@ class Cement(BaseTransformation):
             )
 
             # add CCS-related dataset
-            if carbon_capture_rate > 0:
+            if not np.isnan(carbon_capture_rate) and carbon_capture_rate > 0:
                 # total CO2 emissions = bio CO2 emissions
                 # + fossil CO2 emissions
                 # + calcination emissions

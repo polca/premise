@@ -33,6 +33,7 @@ from .transformation import (
     np,
     uuid,
     ws,
+    rescale_exchanges,
 )
 from .utils import eidb_label, get_efficiency_solar_photovoltaics
 from .validation import ElectricityValidation
@@ -207,16 +208,7 @@ def _update_electricity(
     else:
         print("No electricity efficiencies found in IAM data. Skipping.")
 
-    electricity.relink_datasets(
-        alt_names=[
-            "market group for electricity, high voltage",
-            "market group for electricity, medium voltage",
-            "market group for electricity, low voltage",
-            "carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity",
-            "methane, from electrochemical methanation, with carbon from atmosphere, using heat pump heat",
-            "Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat",
-        ],
-    )
+    electricity.relink_datasets()
 
     validate = ElectricityValidation(
         model=scenario["model"],
@@ -499,6 +491,13 @@ class Electricity(BaseTransformation):
                     f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
+                # fetch production volume
+                production_volume = self.iam_data.production_volumes.sel(
+                    region=region,
+                    year=self.year,
+                    variables=self.iam_data.electricity_markets.variables.values,
+                ).values.item(0)
+
                 # First, add the reference product exchange
                 new_exchanges = [
                     {
@@ -506,7 +505,7 @@ class Electricity(BaseTransformation):
                         "loc": 1,
                         "amount": 1,
                         "type": "production",
-                        "production volume": 0,
+                        "production volume": production_volume,
                         "product": "electricity, low voltage",
                         "name": "market group for electricity, low voltage",
                         "unit": "kilowatt hour",
@@ -537,7 +536,6 @@ class Electricity(BaseTransformation):
                             "loc": supplier[1],
                             "amount": 2.99e-9 * share,
                             "type": "technosphere",
-                            "production volume": 0,
                             "product": supplier[2],
                             "name": supplier[0],
                             "unit": supplier[-1],
@@ -582,7 +580,6 @@ class Electricity(BaseTransformation):
                             "loc": supplier[1],
                             "amount": 8.74e-8 * share,
                             "type": "technosphere",
-                            "production volume": 0,
                             "product": supplier[2],
                             "name": supplier[0],
                             "unit": supplier[-1],
@@ -609,7 +606,6 @@ class Electricity(BaseTransformation):
                                     "loc": (amount * share),
                                     "amount": (amount * share),
                                     "type": "technosphere",
-                                    "production volume": 0,
                                     "product": supplier["reference product"],
                                     "name": supplier["name"],
                                     "unit": supplier["unit"],
@@ -627,7 +623,6 @@ class Electricity(BaseTransformation):
                         "loc": 0,
                         "amount": (1 - solar_amount) * (1 + distr_loss),
                         "type": "technosphere",
-                        "production volume": 0,
                         "product": "electricity, medium voltage",
                         "name": "market group for electricity, medium voltage"
                         if period == 0
@@ -643,7 +638,6 @@ class Electricity(BaseTransformation):
                         "loc": 0,
                         "amount": transf_loss,
                         "type": "technosphere",
-                        "production volume": 0,
                         "product": "electricity, low voltage",
                         "name": "market group for electricity, low voltage"
                         if period == 0
@@ -719,6 +713,13 @@ class Electricity(BaseTransformation):
                     f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
+                # fetch production volume
+                production_volume = self.iam_data.production_volumes.sel(
+                    region=region,
+                    year=self.year,
+                    variables=self.iam_data.electricity_markets.variables.values,
+                ).values.item(0)
+
                 # First, add the reference product exchange
                 new_exchanges = [
                     {
@@ -726,7 +727,7 @@ class Electricity(BaseTransformation):
                         "loc": 1,
                         "amount": 1,
                         "type": "production",
-                        "production volume": 0,
+                        "production volume": production_volume,
                         "product": "electricity, medium voltage",
                         "name": "market group for electricity, medium voltage",
                         "unit": "kilowatt hour",
@@ -753,7 +754,6 @@ class Electricity(BaseTransformation):
                         "loc": 0,
                         "amount": 1 + distr_loss,
                         "type": "technosphere",
-                        "production volume": 0,
                         "product": "electricity, high voltage",
                         "name": "market group for electricity, high voltage"
                         if period == 0
@@ -769,7 +769,6 @@ class Electricity(BaseTransformation):
                         "loc": 0,
                         "amount": transf_loss,
                         "type": "technosphere",
-                        "production volume": 0,
                         "product": "electricity, medium voltage",
                         "name": "market group for electricity, medium voltage"
                         if period == 0
@@ -793,7 +792,6 @@ class Electricity(BaseTransformation):
                             "loc": supplier[1],
                             "amount": 5.4e-8 * share,
                             "type": "technosphere",
-                            "production volume": 0,
                             "product": supplier[2],
                             "name": supplier[0],
                             "unit": supplier[-1],
@@ -839,7 +837,6 @@ class Electricity(BaseTransformation):
                             "loc": supplier[1],
                             "amount": 1.8628e-8 * share,
                             "type": "technosphere",
-                            "production volume": 0,
                             "product": supplier[2],
                             "name": supplier[0],
                             "unit": supplier[-1],
@@ -1018,6 +1015,13 @@ class Electricity(BaseTransformation):
                     f" using the pathway {self.scenario} for the year {self.year}.",
                 }
 
+                # fetch production volume
+                production_volume = self.iam_data.production_volumes.sel(
+                    region=region,
+                    year=self.year,
+                    variables=self.iam_data.electricity_markets.variables.values,
+                ).values.item(0)
+
                 # First, add the reference product exchange
                 new_exchanges = [
                     {
@@ -1025,7 +1029,7 @@ class Electricity(BaseTransformation):
                         "loc": 1,
                         "amount": 1,
                         "type": "production",
-                        "production volume": 0,
+                        "production volume": float(production_volume),
                         "product": "electricity, high voltage",
                         "name": "market group for electricity, high voltage",
                         "unit": "kilowatt hour",
@@ -1039,7 +1043,6 @@ class Electricity(BaseTransformation):
                         "loc": 1,
                         "amount": transf_loss,
                         "type": "technosphere",
-                        "production volume": 0,
                         "product": "electricity, high voltage",
                         "name": "market group for electricity, high voltage",
                         "unit": "kilowatt hour",
@@ -1085,7 +1088,6 @@ class Electricity(BaseTransformation):
                                     "loc": (amount * share),
                                     "amount": (amount * share),
                                     "type": "technosphere",
-                                    "production volume": 0,
                                     "product": supplier["reference product"],
                                     "name": supplier["name"],
                                     "unit": supplier["unit"],
@@ -1820,7 +1822,13 @@ class Electricity(BaseTransformation):
                         ),
                     )
 
-                    if ei_eff != 1 and not np.isnan(new_efficiency):
+                    # if ei_eff is different from 1 and if the new efficiency
+                    # is not NaN or zero, we can rescale the exchanges
+                    if (
+                        ei_eff != 1
+                        and new_efficiency != 0
+                        and not np.isnan(new_efficiency)
+                    ):
                         scaling_factor = ei_eff / new_efficiency
                     else:
                         scaling_factor = 1
@@ -1847,9 +1855,7 @@ class Electricity(BaseTransformation):
                     # Rescale all the technosphere exchanges
                     # according to the change in efficiency between `year`
                     # and 2020 from the IAM efficiency values
-                    wurst.change_exchanges_by_constant_factor(
-                        dataset, scaling_factor, remove_uncertainty=False
-                    )
+                    rescale_exchanges(dataset, scaling_factor)
 
                     self.write_log(dataset=dataset, status="updated")
 
@@ -1909,7 +1915,7 @@ class Electricity(BaseTransformation):
 
                         if not np.isnan(new_eff.values.item(0)):
                             # Rescale all the exchanges except for a few biosphere exchanges
-                            wurst.change_exchanges_by_constant_factor(
+                            rescale_exchanges(
                                 dataset,
                                 ei_eff / new_eff.values.item(0),
                                 remove_uncertainty=False,
@@ -2037,7 +2043,7 @@ class Electricity(BaseTransformation):
                     ei_eff = self.find_fuel_efficiency(
                         new_dataset, self.powerplant_fuels_map[tech], 3.6
                     )
-                    wurst.change_exchanges_by_constant_factor(
+                    rescale_exchanges(
                         new_dataset, ei_eff / new_eff, remove_uncertainty=False
                     )
 

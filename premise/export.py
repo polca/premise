@@ -17,6 +17,7 @@ from typing import Any, Dict, List
 
 import numpy as np
 import pandas as pd
+import prettytable
 import sparse
 import yaml
 from datapackage import Package
@@ -890,7 +891,9 @@ def generate_superstructure_db(
     return new_db
 
 
-def prepare_db_for_export(scenario, name, original_database):
+def prepare_db_for_export(
+    scenario, name, original_database, keep_uncertainty_data=False
+):
     """
     Prepare a database for export.
     """
@@ -904,15 +907,19 @@ def prepare_db_for_export(scenario, name, original_database):
         original_database=original_database,
         database=scenario["database"],
         db_name=name,
+        keep_uncertainty_data=keep_uncertainty_data,
     )
     validator.run_all_checks()
 
     return validator.database
 
 
-def _prepare_database(scenario, db_name, original_database):
+def _prepare_database(scenario, db_name, original_database, keep_uncertainty_data):
     scenario["database"] = prepare_db_for_export(
-        scenario, name=db_name, original_database=original_database
+        scenario,
+        name=db_name,
+        original_database=original_database,
+        keep_uncertainty_data=keep_uncertainty_data,
     )
 
     return scenario
@@ -1264,6 +1271,8 @@ class Export:
         dict_cat = self.get_category_of_exchange()
         dict_refs = load_references()
 
+        unlinked_biosphere_flows = []
+
         with open(
             Path(self.filepath) / filename, "w", newline="", encoding="latin1"
         ) as csvFile:
@@ -1462,6 +1471,11 @@ class Export:
                                 e["type"] == "biosphere"
                                 and e["categories"][0] == "natural resource"
                             ):
+                                if e["name"] not in dict_bio:
+                                    unlinked_biosphere_flows.append(
+                                        [e["name"], " - ", e["categories"][0]]
+                                    )
+
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
@@ -1487,6 +1501,11 @@ class Export:
                                 if e["name"].lower() == "water":
                                     e["unit"] = "kilogram"
                                     e["amount"] /= 1000
+
+                                if e["name"] not in dict_bio:
+                                    unlinked_biosphere_flows.append(
+                                        [e["name"], " - ", e["categories"][0]]
+                                    )
 
                                 writer.writerow(
                                     [
@@ -1517,6 +1536,11 @@ class Export:
                                     e["unit"] = "kilogram"
                                     e["amount"] /= 1000
 
+                                if e["name"] not in dict_bio:
+                                    unlinked_biosphere_flows.append(
+                                        [e["name"], " - ", e["categories"][0]]
+                                    )
+
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
@@ -1541,6 +1565,11 @@ class Export:
                                     )
                                 else:
                                     sub_compartment = ""
+
+                                if e["name"] not in dict_bio:
+                                    unlinked_biosphere_flows.append(
+                                        [e["name"], " - ", e["categories"][0]]
+                                    )
 
                                 writer.writerow(
                                     [

@@ -29,6 +29,8 @@ CORRESPONDENCE_BIO_FLOWS = (
     DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
 )
 
+TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
+
 
 def get_correspondence_bio_flows():
     """
@@ -871,16 +873,13 @@ class AdditionalInventory(BaseInventoryImport):
     def __init__(self, database, version_in, version_out, path, system_model):
         super().__init__(database, version_in, version_out, path, system_model)
 
-    def load_inventory(self):
-        # check if "http" in path
-        if "http" in str(self.path):
-            # online file
-            # we need to save it locally first
-            response = requests.get(self.path)
-            path = DIR_CACHED_DB / "temp.csv"
-            with open(path, "w", encoding="utf-8") as f:
+    def download_file(self, url, local_path):
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            with open(local_path, "w", encoding="utf-8") as file:
                 writer = csv.writer(
-                    f,
+                    file,
                     quoting=csv.QUOTE_NONE,
                     delimiter=",",
                     quotechar="'",
@@ -888,16 +887,29 @@ class AdditionalInventory(BaseInventoryImport):
                 )
                 for line in response.iter_lines():
                     writer.writerow(line.decode("utf-8").split(","))
+        except requests.RequestException as e:
+            raise ConnectionError(f"Error downloading the file: {e}")
 
-        if self.path.suffix == ".xlsx":
-            return ExcelImporter(self.path)
+    def load_inventory(self):
+        path_str = str(self.path)
 
-        elif self.path.suffix == ".csv":
-            return CSVImporter(self.path)
+        if "http" in path_str:
+            if ":/" in path_str and "://" not in path_str:
+                path_str = path_str.replace(":/", "://")
 
+            print(f"Downloading datapackage from {path_str}")
+            self.download_file(path_str, TEMP_CSV_FILE)
+            file_path = TEMP_CSV_FILE
+        else:
+            file_path = self.path
+
+        if file_path.suffix == ".xlsx":
+            return ExcelImporter(file_path)
+        elif file_path.suffix == ".csv":
+            return CSVImporter(file_path)
         else:
             raise ValueError(
-                "Incorrect filetype for inventories." "Should be either .xlsx or .csv"
+                "Incorrect filetype for inventories. Should be either .xlsx or .csv"
             )
 
     def prepare_inventory(self):

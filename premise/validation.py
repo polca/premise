@@ -85,6 +85,7 @@ class BaseDatasetValidator:
         database,
         original_database=None,
         db_name=None,
+        keep_uncertainty_data=False,
     ):
         self.original_database = original_database
         self.database = database
@@ -95,6 +96,35 @@ class BaseDatasetValidator:
         self.db_name = db_name
         self.geo = Geomap(model)
         self.validation_log = []
+        self.keep_uncertainty_data = keep_uncertainty_data
+
+    def check_uncertainty(self):
+        MANDATORY_UNCERTAINTY_FIELDS = {
+            2: {"loc", "scale"},
+            3: {"loc", "scale"},
+            4: {"minimum", "maximum"},
+            5: {"loc", "minimum", "maximum"},
+            6: {"loc", "minimum", "maximum"},
+            7: {"minimum", "maximum"},
+            8: {"loc", "scale", "shape"},
+            9: {"loc", "scale", "shape"},
+            10: {"loc", "scale", "shape"},
+            11: {"loc", "scale", "shape"},
+            12: {"loc", "scale", "shape"},
+        }
+
+        if self.keep_uncertainty_data is True:
+            for ds in self.database:
+                for exc in ds["exchanges"]:
+                    if int(exc.get("uncertainty type", 0)) not in [0, 1]:
+                        if not all(
+                            f in exc
+                            for f in MANDATORY_UNCERTAINTY_FIELDS[
+                                int(exc["uncertainty type"])
+                            ]
+                        ):
+                            message = f"Exchange {exc['name']} has incomplete uncertainty data."
+                            self.write_log(ds, "incomplete uncertainty data", message)
 
     def check_datasets_integrity(self):
         # Verify no unintended loss of datasets
@@ -356,7 +386,7 @@ class BaseDatasetValidator:
     def save_log(self):
         # Save the validation log
         if self.validation_log:
-            print("Validation anomalies found: check the change report.")
+            print("Anomalies found: check the change report.")
             for entry in self.validation_log:
                 logger.info(
                     f"{self.model}|{self.scenario}|{self.year}|"
@@ -380,6 +410,7 @@ class BaseDatasetValidator:
         self.correct_fields_format()
         self.check_amount_format()
         self.reformat_parameters()
+        self.check_uncertainty()
 
         self.save_log()
 
@@ -855,9 +886,6 @@ class CementValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if ds["location"] == "RSAM":
-                    print("energy", energy)
-
                 # add input of coal
                 energy += sum(
                     [
@@ -869,9 +897,6 @@ class CementValidation(BaseDatasetValidator):
                         and exc["amount"] > 0
                     ]
                 )
-
-                if ds["location"] == "RSAM":
-                    print("+coal", energy)
 
                 # add input of heavy and light fuel oil
                 energy += sum(
@@ -885,9 +910,6 @@ class CementValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if ds["location"] == "RSAM":
-                    print("+fuel oil", energy)
-
                 # add lignite
                 energy += sum(
                     [
@@ -899,9 +921,6 @@ class CementValidation(BaseDatasetValidator):
                         and exc["amount"] > 0
                     ]
                 )
-
-                if ds["location"] == "RSAM":
-                    print("+lignite", energy)
 
                 # add petcoke
                 energy += sum(
@@ -915,9 +934,6 @@ class CementValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if ds["location"] == "RSAM":
-                    print("+petcoke", energy)
-
                 # add input of natural gas
                 energy += sum(
                     [
@@ -930,9 +946,6 @@ class CementValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if ds["location"] == "RSAM":
-                    print("+nat gas", energy)
-
                 # add input of waste plastic, mixture
                 energy += sum(
                     [
@@ -944,9 +957,6 @@ class CementValidation(BaseDatasetValidator):
                         and exc["amount"] < 0
                     ]
                 )
-
-                if ds["location"] == "RSAM":
-                    print("+RDF", energy)
 
                 if energy < 2.99:
                     message = f"Energy use for clinker production is too low: {energy}."

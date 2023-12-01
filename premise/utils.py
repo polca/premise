@@ -5,6 +5,7 @@ Various utils functions.
 import os
 import sys
 import uuid
+from numbers import Number
 from functools import lru_cache
 from pathlib import Path
 from typing import List, Optional
@@ -14,7 +15,8 @@ import xarray as xr
 import yaml
 from country_converter import CountryConverter
 from prettytable import ALL, PrettyTable
-from wurst.searching import equals, get_many
+from wurst.searching import equals, get_many, technosphere, biosphere
+from wurst import rescale_exchange
 
 from . import __version__
 from .data_collection import get_delimiter
@@ -24,6 +26,28 @@ from .geomap import Geomap
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
+
+
+def rescale_exchanges(
+    ds,
+    value,
+    technosphere_filters=None,
+    biosphere_filters=None,
+    remove_uncertainty=False,
+):
+    """
+    Adapted from wurst's change_exchanges_by_constant_factor
+    but adds the possibility to preserve uncertainty data.
+    """
+    assert isinstance(ds, dict), "Must pass dataset dictionary document"
+    assert isinstance(value, Number), "Constant factor ``value`` must be a number"
+
+    for exc in technosphere(ds, *(technosphere_filters or [])):
+        rescale_exchange(exc, value, remove_uncertainty)
+    for exc in biosphere(ds, *(biosphere_filters or [])):
+        rescale_exchange(exc, value, remove_uncertainty)
+
+    return ds
 
 
 class HiddenPrints:

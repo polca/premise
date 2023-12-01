@@ -506,7 +506,9 @@ class IAMDataCollection:
         )
 
         self.electricity_efficiencies = self.get_iam_efficiencies(
-            data=data, efficiency_labels=electricity_eff_vars
+            data=data,
+            efficiency_labels=electricity_eff_vars,
+            use_absolute_efficiency=self.use_absolute_efficiency,
         )
 
         self.cement_efficiencies = self.get_iam_efficiencies(
@@ -808,6 +810,7 @@ class IAMDataCollection:
         efficiency_labels: dict = None,
         production_labels: dict = None,
         energy_labels: dict = None,
+        use_absolute_efficiency: bool = False,
     ) -> [xr.DataArray, None]:
         """
         This method retrieves efficiency values for the specified sector,
@@ -875,7 +878,7 @@ class IAMDataCollection:
         else:
             return None
 
-        if not self.use_absolute_efficiency:
+        if use_absolute_efficiency is False:
             # efficiency expressed
             eff_data /= eff_data.sel(year=2020)
 

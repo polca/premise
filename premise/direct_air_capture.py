@@ -17,6 +17,7 @@ from .transformation import (
     List,
     uuid,
     ws,
+    rescale_exchanges,
 )
 
 logger = create_logger("dac")
@@ -152,9 +153,9 @@ class DirectAirCapture(BaseTransformation):
                     ):
                         continue
 
-                    # with solvent-based DAC, we cannot use waste heat
+                    # with liquid solvent-based DAC, we cannot use waste heat
                     # because the operational temperature required is 900C
-                    if technology in ["solvent_dac", "solvent_daccs"]:
+                    if technology in ["dac_solvent", "daccs_solvent"]:
                         if heat_type == "waste heat":
                             continue
 
@@ -310,7 +311,7 @@ class DirectAirCapture(BaseTransformation):
 
             if scaling_factor_operation != 1:
                 # Scale down the energy exchanges using the scaling factor
-                wurst.change_exchanges_by_constant_factor(
+                rescale_exchanges(
                     dataset,
                     scaling_factor_operation,
                     technosphere_filters=[
@@ -352,7 +353,7 @@ class DirectAirCapture(BaseTransformation):
 
             if scaling_factor_infra != 1:
                 # Scale down the infra and material exchanges using the scaling factor
-                wurst.change_exchanges_by_constant_factor(
+                rescale_exchanges(
                     dataset,
                     scaling_factor_infra,
                     technosphere_filters=[

@@ -276,8 +276,8 @@ The table below lists the names of the new activities (only high pressure datase
 
 .. note::
 
-    This import will be removed in the future, as the original
-    ecoinvent dataset will be updated (i.e., v3.9).
+    This import does not occur when using ecoinvent v.3.9
+    as those dataset updates are already included.
 
 Photovoltaic panels
 *******************
@@ -1689,6 +1689,10 @@ The production volumes considered for a given scenario can be consulted, like so
 
     ndb.scenarios[0]["iam data"].production_volumes
 
+To have an updated overview of the mapping concenring all sectors,
+refer to this file: mapping_.
+
+.. _mapping: https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/mapping_overview.xlsx
 
 Efficiencies
 ------------
