@@ -5,8 +5,8 @@ Various utils functions.
 import os
 import sys
 import uuid
-from numbers import Number
 from functools import lru_cache
+from numbers import Number
 from pathlib import Path
 from typing import List, Optional
 
@@ -15,8 +15,8 @@ import xarray as xr
 import yaml
 from country_converter import CountryConverter
 from prettytable import ALL, PrettyTable
-from wurst.searching import equals, get_many, technosphere, biosphere
 from wurst import rescale_exchange
+from wurst.searching import biosphere, equals, get_many, technosphere
 
 from . import __version__
 from .data_collection import get_delimiter

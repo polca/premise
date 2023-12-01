@@ -31,9 +31,9 @@ from .transformation import (
     get_shares_from_production_volume,
     get_suppliers_of_a_region,
     np,
+    rescale_exchanges,
     uuid,
     ws,
-    rescale_exchanges,
 )
 from .utils import eidb_label, get_efficiency_solar_photovoltaics
 from .validation import ElectricityValidation
