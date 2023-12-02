@@ -422,7 +422,9 @@ class IAMDataCollection:
             input_vars={
                 k: v
                 for k, v in fuel_prod_vars.items()
-                if any(x in k for x in ["gasoline", "ethanol", "methanol"])
+                if any(
+                    k.lower().startswith(x) for x in ["gasoline", "ethanol", "methanol"]
+                )
             },
             system_model=self.system_model,
         )
@@ -440,7 +442,7 @@ class IAMDataCollection:
                 k: v
                 for k, v in fuel_prod_vars.items()
                 if any(
-                    x in k
+                    k.lower().startswith(x)
                     for x in [
                         "diesel",
                     ]
@@ -461,7 +463,10 @@ class IAMDataCollection:
             input_vars={
                 k: v
                 for k, v in fuel_prod_vars.items()
-                if any(x in k for x in ["biogas", "methane", "natural gas"])
+                if any(
+                    k.lower().startswith(x)
+                    for x in ["biogas", "methane", "natural gas"]
+                )
             },
             system_model=self.system_model,
         )
@@ -472,7 +477,7 @@ class IAMDataCollection:
                 k: v
                 for k, v in fuel_prod_vars.items()
                 if any(
-                    x in k
+                    k.lower().startswith(x)
                     for x in [
                         "hydrogen",
                     ]

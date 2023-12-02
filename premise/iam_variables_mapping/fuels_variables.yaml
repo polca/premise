@@ -420,7 +420,7 @@ diesel, synthetic, from grass, with CCS:
 
 heat, from hydrogen:
   lhv: 1
-hydrogen, petroleum:
+hydrogen, from petroleum:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -428,7 +428,7 @@ hydrogen, petroleum:
     fltr:
       - hydrogen production, gaseous, petroleum refinery operation
 
-hydrogen, electrolysis:
+hydrogen, from electrolysis:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -441,7 +441,7 @@ hydrogen, electrolysis:
     fltr:
       - hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity
 
-hydrogen, solar:
+hydrogen, from solar:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -451,7 +451,7 @@ hydrogen, solar:
     fltr:
       - hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at solar tower
 
-hydrogen, pyrolysis:
+hydrogen, from pyrolysis:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -459,7 +459,7 @@ hydrogen, pyrolysis:
     fltr:
       - hydrogen production, gaseous, 100 bar, from methane pyrolysis
 
-hydrogen, biomass:
+hydrogen, from biomass:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -472,7 +472,7 @@ hydrogen, biomass:
     fltr:
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant
 
-hydrogen, biomass, with CCS:
+hydrogen, from biomass, with CCS:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -485,7 +485,7 @@ hydrogen, biomass, with CCS:
     fltr:
       - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant
 
-hydrogen, coal:
+hydrogen, from coal:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -497,7 +497,7 @@ hydrogen, coal:
   ecoinvent_aliases:
     fltr: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant
 
-hydrogen, coal, with CCS:
+hydrogen, from coal, with CCS:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -510,7 +510,7 @@ hydrogen, coal, with CCS:
     fltr: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, with CCS, at coal gasification plant
 
 
-hydrogen, nat. gas:
+hydrogen, from natural gas:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -522,7 +522,7 @@ hydrogen, nat. gas:
   ecoinvent_aliases:
     fltr: hydrogen production, steam methane reforming of natural gas, 25 bar
 
-hydrogen, nat. gas, with CCS:
+hydrogen, from natural gas, with CCS:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -534,7 +534,7 @@ hydrogen, nat. gas, with CCS:
   ecoinvent_aliases:
     fltr: hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar
 
-hydrogen, biogas:
+hydrogen, from biogas:
   lhv: 120
   co2: 0
   biogenic_share: 1
@@ -542,19 +542,20 @@ hydrogen, biogas:
     fltr:
       - hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar
 
-hydrogen, biogas, with CCS:
+hydrogen, from biogas, with CCS:
   lhv: 120
   co2: 0
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
       - hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar
+
 hydrogen:
   lhv: 120
   co2: 0
   biogenic_share: 1
 
-biodiesel, oil:
+biodiesel, from used cooking oil:
   lhv: 38
   co2: 0.0734
   biogenic_share: 1
@@ -575,7 +576,7 @@ biodiesel, oil:
         - capture
         - station
 
-biodiesel, oil, with CCS:
+biodiesel, from used cooking oil, with CCS:
   lhv: 38
   co2: 0.0734
   biogenic_share: 1
@@ -593,7 +594,7 @@ biodiesel, oil, with CCS:
         - economic
         - station
 
-bioethanol, wood:
+bioethanol, from wood:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -625,7 +626,7 @@ bioethanol, wood:
         - dewatering
         - hydration
 
-bioethanol, wood, with CCS:
+bioethanol, from wood, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -649,7 +650,7 @@ bioethanol, wood, with CCS:
         - processing
         - synthetic
 
-bioethanol, grass:
+bioethanol, from grass:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -682,7 +683,7 @@ bioethanol, grass:
         - dewatering
         - hydration
 
-bioethanol, grass, with CCS:
+bioethanol, from grass, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -704,7 +705,7 @@ bioethanol, grass, with CCS:
         - processing
         - synthetic
 
-bioethanol, grain:
+bioethanol, from grain:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -736,7 +737,7 @@ bioethanol, grain:
         - synthetic
         - hydration
 
-bioethanol, grain, with CCS:
+bioethanol, from grain, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -753,7 +754,7 @@ bioethanol, grain, with CCS:
         - economic
         - station
 
-bioethanol, sugar:
+bioethanol, from sugar:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -784,7 +785,7 @@ bioethanol, sugar:
         - dewatering
         - hydration
 
-bioethanol, sugar, with CCS:
+bioethanol, from sugar, with CCS:
   lhv: 26.5
   co2: 0.0739
   biogenic_share: 1
@@ -819,7 +820,8 @@ ethyl tert-butyl ether:
   ecoinvent_aliases:
     fltr:
       - ethyl tert-butyl ether
-methanol, wood:
+
+methanol, from wood:
   lhv: 19.9
   co2: 0.05477
   biogenic_share: 1
@@ -833,7 +835,7 @@ methanol, wood:
         - methanol production, from synthetic gas
 
 
-methanol, grass:
+methanol, from grass:
   lhv: 19.9
   co2: 0.05477
   biogenic_share: 1
@@ -846,7 +848,7 @@ methanol, grass:
       - methanol production, from synthetic gas
 
 
-methanol, wood, with CCS:
+methanol, from wood, with CCS:
   lhv: 19.9
   co2: 0.05477
   biogenic_share: 1
@@ -859,7 +861,7 @@ methanol, wood, with CCS:
       name:
         - methanol production, from synthetic gas
 
-methanol, grass, with CCS:
+methanol, from grass, with CCS:
   lhv: 19.9
   co2: 0.05477
   biogenic_share: 1
