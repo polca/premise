@@ -668,7 +668,7 @@ class ElectricityValidation(BaseDatasetValidator):
                         message = f"Current eff.: {efficiency}. Min: {eff['min']}. Max: {eff['max']}."
                         self.write_log(
                             ds,
-                            "electricity production efficiency incorrect",
+                            "electricity efficiency possibly incorrect",
                             message,
                         )
 
@@ -676,7 +676,7 @@ class ElectricityValidation(BaseDatasetValidator):
                     message = f"Current CO2: {actual_co2}. Expected: {co2}."
                     self.write_log(
                         ds,
-                        "electricity production CO2 emission incorrect",
+                        "CO2 emissions possibly incorrect",
                         message,
                     )
 
