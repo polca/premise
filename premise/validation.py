@@ -414,8 +414,6 @@ class BaseDatasetValidator:
 
         self.save_log()
 
-        print("Done.")
-
 
 class ElectricityValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
