@@ -831,9 +831,7 @@ methanol, wood:
     fltr:
       name:
         - methanol production, from synthetic gas
-      mask:
-        name:
-          - facility
+
 
 methanol, grass:
   lhv: 19.9
@@ -846,9 +844,7 @@ methanol, grass:
   ecoinvent_aliases:
     fltr:
       - methanol production, from synthetic gas
-    mask:
-      name:
-        - facility
+
 
 methanol, wood, with CCS:
   lhv: 19.9
@@ -862,9 +858,6 @@ methanol, wood, with CCS:
     fltr:
       name:
         - methanol production, from synthetic gas
-    mask:
-      name:
-        - facility
 
 methanol, grass, with CCS:
   lhv: 19.9
@@ -877,9 +870,7 @@ methanol, grass, with CCS:
   ecoinvent_aliases:
     fltr:
       - methanol production, from synthetic gas
-    mask:
-      name:
-        - facility
+
 
 liquefied petroleum gas:
   lhv: 45.5
