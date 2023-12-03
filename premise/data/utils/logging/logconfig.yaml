@@ -104,7 +104,7 @@ loggers:
 
   biomass:
     level: INFO
-    handlers: [ file_electricity ]
+    handlers: [ file_biomass ]
     propagate: False
 
   electricity:

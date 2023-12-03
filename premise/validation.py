@@ -990,7 +990,6 @@ class BiomassValidation(BaseDatasetValidator):
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere"
                         and x["unit"] == "kilogram"
-                        and "biomass" in x["name"].lower()
                     ]
                 )
                 if total < 0.99 or total > 1.1:
@@ -1001,6 +1000,48 @@ class BiomassValidation(BaseDatasetValidator):
                         message,
                     )
 
+    def check_residual_biomass_share(self):
+        # check that the share of residual biomass
+        # in the biomass market is equal to the IAM projections
+
+        for ds in self.database:
+            if (
+                ds["name"] == "market for biomass, used as fuel"
+                and ds["location"] in self.regions
+                and ds["location"] != "World"
+            ):
+
+                expected_share = self.iam_data.biomass_markets.sel(
+                    variables="biomass - residual", year=self.year, region=ds["location"]
+                ).values.item(0)
+
+                residual_biomass = sum(
+                    [
+                        x["amount"]
+                        for x in ds["exchanges"]
+                        if x["type"] == "technosphere"
+                        and x["unit"] == "kilogram"
+                        and "residue" in x["name"].lower()
+                    ]
+                )
+                total = sum(
+                    [
+                        x["amount"]
+                        for x in ds["exchanges"]
+                        if x["type"] == "technosphere"
+                        and x["unit"] == "kilogram"
+                    ]
+                )
+                # check that the total is roughly equal to the IAM projection
+                if math.isclose(residual_biomass / total, expected_share, rel_tol=0.01) is False:
+                    message = f"Residual biomass share incorrect: {residual_biomass / total} instead of {expected_share}."
+                    self.write_log(
+                        ds,
+                        "incorrect residual biomass share",
+                        message,
+                    )
+
     def run_biomass_checks(self):
         self.check_biomass_markets()
+        self.check_residual_biomass_share()
         self.save_log()

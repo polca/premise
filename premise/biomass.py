@@ -302,9 +302,6 @@ class Biomass(BaseTransformation):
                 else:
                     exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]]
 
-        mapping = InventorySet(self.database, model=self.model)
-        self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
-
     def write_log(self, dataset, status="created"):
         """
         Write log file.
@@ -313,20 +310,5 @@ class Biomass(BaseTransformation):
         logger.info(
             f"{status}|{self.model}|{self.scenario}|{self.year}|"
             f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('old efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('new efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('biomass share', '')}|"
-            f"{dataset.get('log parameters', {}).get('transformation loss', '')}|"
-            f"{dataset.get('log parameters', {}).get('distribution loss', '')}|"
-            f"{dataset.get('log parameters', {}).get('renewable share', '')}|"
-            f"{dataset.get('log parameters', {}).get('ecoinvent original efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('Oberschelp et al. efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('efficiency change', '')}|"
-            f"{dataset.get('log parameters', {}).get('CO2 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('SO2 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('CH4 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('NOx scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM <2.5 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM 10 - 2.5 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM > 10 scaling factor', '')}"
+            f"{dataset.get('log parameters', {}).get('biomass share', '')}"
         )
