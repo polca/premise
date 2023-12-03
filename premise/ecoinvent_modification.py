@@ -24,6 +24,7 @@ from .cement import _update_cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .direct_air_capture import _update_dac
+from .biomass import _update_biomass
 from .electricity import _update_electricity
 from .emissions import _update_emissions
 from .export import (
@@ -442,6 +443,13 @@ def _update_all(
         version=version,
         system_model=system_model,
     )
+    scenario, cache = _update_biomass(
+        scenario=scenario,
+        version=version,
+        system_model=system_model,
+        use_absolute_efficiency=use_absolute_efficiency,
+        cache=cache,
+    )
     scenario, cache = _update_electricity(
         scenario=scenario,
         version=version,
@@ -857,6 +865,42 @@ class NewDatabase:
             raise TypeError("Unknown data type for datapackage.")
 
         return data
+
+    def update_biomass(self) -> None:
+        """
+        This method will update the biomass markets
+        with the data from the IAM scenarios.
+
+        """
+
+        print("\n///////////////////////////// BIOMASS //////////////////////////////")
+
+        # use multiprocessing to speed up the process
+        if self.multiprocessing:
+            with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
+                args = [
+                    (
+                        scenario,
+                        self.version,
+                        self.system_model,
+                        self.use_absolute_efficiency,
+                    )
+                    for scenario in self.scenarios
+                ]
+                results = pool.starmap(_update_biomass, args)
+
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s] = results[s][0]
+        else:
+            for s, scenario in enumerate(self.scenarios):
+                self.scenarios[s], _ = _update_biomass(
+                    scenario=scenario,
+                    version=self.version,
+                    system_model=self.system_model,
+                    use_absolute_efficiency=self.use_absolute_efficiency,
+                )
+
+        print("Done!\n")
 
     def update_electricity(self) -> None:
         """

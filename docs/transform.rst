@@ -4,6 +4,67 @@ TRANSFORM
 A series of transformations are applied to the Life Cycle Inventory (LCI) database to align process performance
 and technology market shares with the outputs from the Integrated Assessment Model (IAM) scenario.
 
+Biomass
+"""""""
+
+Regional biomass markets
+------------------------
+
+*premise* creates regional markets for biomass which is meant to be used as fuel
+in biomass-fired powerplants or heat generators. Originally in ecoinvent, the biomass being supplied
+to biomass-fired powerplants is "purpose grown" biomass that originate forestry
+activities (called "market for wood chips" in ecoinvent). While this type of biomass
+is suitable for such purpose, it is considered a co-product of the forestry activity,
+and bears a share of the environmental burden of the process it originates from (notably
+the land footprint, emissions, potential use of chemicals, etc.).
+
+However, not all the biomass projected to be used in IAM scenarios is "purpose grown".
+In fact, significant shares are expected to originate from forestry residues. In such
+cases, the environmental burden of the forestry activity is entirely allocated to the
+determining product (e.g., timber), not to the residue, which comes "free of burden".
+
+Hence, *premise* creates average regional markets for biomass, which represents the
+average shares of "purpose grown" and "residual" biomass being fed to biomass-fired powerplants.
+
+The following market is created for each IAM region:
+
+ =================================== ==================
+  market name                         location
+ =================================== ==================
+  market for biomass, used as fuel    all IAM regions
+ =================================== ==================
+
+inside of which, the shares of "purpose grown" and "residual" biomass
+is represented by the following activities:
+
+========================== ===================================== ======================================= ===========================
+  name in premise            name in REMIND                         name in IMAGE                         name in LCI database
+========================== ===================================== ======================================= ===========================
+  biomass - purpose grown    SE|Electricity|Biomass|Energy Crops   Primary Energy|Biomass|Energy Crops    market for wood chips
+  biomass - residual         SE|Electricity|Biomass|Residues       Primary Energy|Biomass|Residues        supply of forest residue
+========================== ===================================== ======================================= ===========================
+
+The sum of those shares equal 1. The activity "supply of forest residue" includes
+the energy, embodied biogenic CO2, transport and associated emissions to chip the residual biomass
+and transport it to the powerplant, but no other forestry-related burden is included.
+
+.. note::
+
+    You can check the share of residual biomass used for power generation
+    assumed in your scenarios by generating a scenario summary report.
+
+.. note::
+
+    When running *premise* with the consequential method, the biomass market
+    is only composed of purpose-grown biomass. This is because the residual biomass
+    cannot be considered a marginal supplier for an increase in demand for biomass.
+
+
+.. code-block:: python
+
+    ndb.generate_scenario_report()
+
+
 Power generation
 """"""""""""""""
 
@@ -299,56 +360,6 @@ production pathway for a given commodity for a given scenario, year and region.
 Such datasets are called *regional markets*. Hence, a regional market for high voltage
 electricity contains the different technologies that supply electricity at high voltage
 in a given IAM region, in proportion to their respective production volumes.
-
-Regional biomass markets
-------------------------
-
-*premise* creates regional markets for biomass which is meant to be used as fuel
-in biomass-fired powerplants. Originally in ecoinvent, the biomass being supplied
-to biomass-fired powerplants is "purpose grown" biomass that originate forestry
-activities (called "market for wood chips" in ecoinvent). While this type of biomass
-is suitable for such purpose, it is considered a co-product of the forestry activity,
-and bears a share of the environmental burden of the process it originates from (notably
-the land footprint, emissions, potential use of chemicals, etc.).
-
-However, not all the biomass projected to be used in IAM scenarios is "purpose grown".
-In fact, significant shares are expected to originate from forestry residues. In such
-cases, the environmental burden of the forestry activity is entirely allocated to the
-determining product (e.g., timber), not to the residue, which comes "free of burden".
-
-Hence, *premise* creates average regional markets for biomass, which represents the
-average shares of "purpose grown" and "residual" biomass being fed to biomass-fired powerplants.
-
-The following market is created for each IAM region:
-
- =================================== ==================
-  market name                         location
- =================================== ==================
-  market for biomass, used as fuel    all IAM regions
- =================================== ==================
-
-inside of which, the shares of "purpose grown" and "residual" biomass
-is represented by the following activities:
-
-========================== ===================================== ======================================= ===========================
-  name in premise            name in REMIND                         name in IMAGE                         name in LCI database
-========================== ===================================== ======================================= ===========================
-  biomass - purpose grown    SE|Electricity|Biomass|Energy Crops   Primary Energy|Biomass|Energy Crops    market for wood chips
-  biomass - residual         SE|Electricity|Biomass|Residues       Primary Energy|Biomass|Residues        Supply of forest residue
-========================== ===================================== ======================================= ===========================
-
-The sum of those shares equal 1. The activity "Supply of forest residue" includes
-the energy, transport and associated emissions to chip the residual biomass
-and transport it to the powerplant, but no other forestry-related burden is included.
-
-.. note::
-
-    You can check the share of residual biomass used for power generation
-    assumed in your scenarios by generating a scenario summary report.
-
-.. code-block:: python
-
-    ndb.generate_scenario_report()
 
 
 Regional electricity markets
@@ -1506,6 +1517,32 @@ are modelled with the calorific value of conventional gasoline.
   Ethanol production, via fermentation, from poplar, with CCS         0.041     kilogram    WEU
   Ethanol production, via fermentation, from poplar                   0.041     kilogram    WEU
  =================================================================== ========= =========== ===========
+
+Heat
+++++
+
+Datasets that supply heat and steam via the combustion of natural gas and diesel
+are regionalized (made available for each region of the IAM model) and relinked
+to regional fuel markets. If the fuel market contains a share of non-fossil fuels,
+the CO2 emissions of the heat and steam production are split between fossil and
+non-fossil emissions. Once regionalized, the heat and steam production datasets
+relink to activities that require heat within the same region.
+
+Here is a list of the heat and steam production datasets that are regionalized:
+
+- diesel, burned in ...
+- steam production, as energy carrier, in chemical industry
+- heat production, natural gas, ...
+- heat and power co-generation, natural gas, ...
+- heat production, light fuel oil, ...
+- heat production, softwood chips from forest, ...
+- heat production, hardwood chips from forest, ...
+
+These datasets are relinked to the corresponding regionalized fuel market only
+if `.update_fuels()` has been run.
+Also, heat production datasets that use biomass as fuel input (e.g., softwood and
+hardwood chips) relink to the dataset `market for biomass, used as fuel` if
+`update_biomass()` has been run previously.
 
 
 CO2 emissions update

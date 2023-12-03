@@ -16,6 +16,14 @@ handlers:
     formatter: simple
     mode: w
 
+  file_biomass:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_biomass.log"
+    encoding: utf8
+    formatter: simple
+    mode: w
+
   file_electricity:
     class: logging.FileHandler
     level: INFO
@@ -92,6 +100,11 @@ loggers:
   dac:
     level: INFO
     handlers: [file_dac]
+    propagate: False
+
+  biomass:
+    level: INFO
+    handlers: [ file_electricity ]
     propagate: False
 
   electricity:

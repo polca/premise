@@ -968,3 +968,39 @@ class CementValidation(BaseDatasetValidator):
         self.check_cement_markets()
         self.check_clinker_energy_use()
         self.save_log()
+
+class BiomassValidation(BaseDatasetValidator):
+    def __init__(self, model, scenario, year, regions, database, iam_data):
+        super().__init__(model, scenario, year, regions, database)
+        self.iam_data = iam_data
+
+    def check_biomass_markets(self):
+        # check that the biomass markets inputs
+        # equal to 1
+
+        for ds in self.database:
+            if (
+                ds["name"].startswith("market for biomass, used as fuel")
+                and ds["location"] in self.regions
+                and ds["location"] != "World"
+            ):
+                total = sum(
+                    [
+                        x["amount"]
+                        for x in ds["exchanges"]
+                        if x["type"] == "technosphere"
+                        and x["unit"] == "kilogram"
+                        and "biomass" in x["name"].lower()
+                    ]
+                )
+                if total < 0.99 or total > 1.1:
+                    message = f"Biomass market inputs sum to {total}."
+                    self.write_log(
+                        ds,
+                        "biomass market inputs do not sum to 1",
+                        message,
+                    )
+
+    def run_biomass_checks(self):
+        self.check_biomass_markets()
+        self.save_log()

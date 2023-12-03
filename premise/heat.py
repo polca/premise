@@ -115,6 +115,11 @@ class Heat(BaseTransformation):
         self.carbon_intensity_markets.update(new_keys)
 
     def regionalize_heat_production(self):
+        """
+        Regionalize heat production.
+
+        """
+
         for technology, heat_datasets in self.heat_techs.items():
             for dataset in ws.get_many(
                 self.database,

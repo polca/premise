@@ -428,6 +428,7 @@ def generate_change_report(source, version, source_type, system_model):
 
     log_filepaths = [
         "premise_dac",
+        "premise_biomass",
         "premise_electricity",
         "premise_fuel",
         "premise_heat",

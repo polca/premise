@@ -36,6 +36,7 @@ SUPPORTED_PATHWAYS:
   - static
 
 LIST_TRANSF_FUNC:
+  - update_biomass
   - update_electricity
   - update_dac
   - update_cement
