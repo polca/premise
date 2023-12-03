@@ -2165,7 +2165,6 @@ class Fuels(BaseTransformation):
         string = ""
 
         # if the sum is zero, we need to select a provider
-
         if (
             self.iam_fuel_markets.sel(region=region, variables=prod_vars)
             .interp(year=self.year)
@@ -2174,7 +2173,7 @@ class Fuels(BaseTransformation):
         ):
             if "hydrogen" in dataset["name"].lower():
                 prod_vars = [
-                    "hydrogen, nat. gas",
+                    "hydrogen, from natural gas",
                 ]
 
         for prod_var in prod_vars:
@@ -2325,12 +2324,12 @@ class Fuels(BaseTransformation):
                 i
                 for e in self.iam_fuel_markets.variables.values
                 for i in vars_map[fuel]
-                if i in e
+                if e.startswith(i)
             ]:
                 prod_vars = [
                     v
                     for v in self.iam_fuel_markets.variables.values
-                    if any(i.lower() in v.lower() for i in vars_map[fuel])
+                    if any(v.lower().startswith(i.lower()) for i in vars_map[fuel])
                 ]
 
                 d_act = self.fetch_proxies(

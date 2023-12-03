@@ -103,8 +103,8 @@ the different fuels used in combustion-based power plants.
   hydrogen, biomass                                                  120
   hydrogen, biomass, with CCS                                        120
   hydrogen, coal                                                     120
-  hydrogen, nat. gas                                                 120
-  hydrogen, nat. gas, with CCS                                       120
+  hydrogen, from natural gas                                                 120
+  hydrogen, from natural gas, with CCS                                       120
   hydrogen, biogas                                                   120
   hydrogen, biogas, with CCS                                         120
   hydrogen                                                           120
@@ -1322,22 +1322,22 @@ Hence, for each IAM region, the following supply chains for hydrogen are built:
 
 - hydrogen supply, from electrolysis, by ship, as liquid, over 2000 km
 - hydrogen supply, from gasification of biomass by heatpipe reformer, by H2 pipeline, as gaseous, over 500 km
-- hydrogen supply, from ATR of nat. gas, by truck, as gaseous, over 500 km
+- hydrogen supply, from ATR of from natural gas, by truck, as gaseous, over 500 km
 - hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from SMR of nat. gas, with CCS, by ship, as liquid, over 2000 km
+- hydrogen supply, from SMR of from natural gas, with CCS, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from SMR of from natural gas, with CCS, by ship, as liquid, over 2000 km
 - hydrogen supply, from coal gasification, by CNG pipeline, as gaseous, over 500 km
-- hydrogen supply, from SMR of nat. gas, by ship, as liquid, over 2000 km
+- hydrogen supply, from SMR of from natural gas, by ship, as liquid, over 2000 km
 - hydrogen supply, from coal gasification, by truck, as liquid, over 500 km
 - hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as liquid, over 500 km
-- hydrogen supply, from ATR of nat. gas, with CCS, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as liquid, over 500 km
+- hydrogen supply, from ATR of from natural gas, with CCS, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from SMR of from natural gas, with CCS, by truck, as liquid, over 500 km
 - hydrogen supply, from electrolysis, by truck, as liquid organic compound, over 500 km
 - hydrogen supply, from gasification of biomass, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+- hydrogen supply, from SMR of from natural gas, with CCS, by truck, as gaseous, over 500 km
 - hydrogen supply, from SMR of biogas, with CCS, by CNG pipeline, as gaseous, over 500 km
-- hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
-- hydrogen supply, from SMR of nat. gas, by H2 pipeline, as gaseous, over 500 km
+- hydrogen supply, from SMR of from natural gas, by truck, as gaseous, over 500 km
+- hydrogen supply, from SMR of from natural gas, by H2 pipeline, as gaseous, over 500 km
 - hydrogen supply, from gasification of biomass, with CCS, by truck, as liquid organic compound, over 500 km
 - hydrogen supply, from gasification of biomass, by ship, as liquid, over 2000 km
 
@@ -1441,8 +1441,8 @@ liquid and gaseous secondary energy carriers:
   hydrogen, biomass                    SE|Hydrogen|Biomass|w/o CCS                                                                                               hydrogen supply, from gasification of biomass, by
   hydrogen, biomass, with CCS          SE|Hydrogen|Biomass|w/ CCS                                                                                                hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS
   hydrogen, coal                       SE|Hydrogen|Coal|w/o CCS                                                                                                  hydrogen supply, from coal gasification, by truck, as gaseous, over 500 km
-  hydrogen, nat. gas                   SE|Hydrogen|Gas|w/o CCS                                                                                                   hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
-  hydrogen, nat. gas, with CCS         SE|Hydrogen|Gas|w/ CCS                                                                                                    hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+  hydrogen, from natural gas                   SE|Hydrogen|Gas|w/o CCS                                                                                                   hydrogen supply, from SMR of from natural gas, by truck, as gaseous, over 500 km
+  hydrogen, from natural gas, with CCS         SE|Hydrogen|Gas|w/ CCS                                                                                                    hydrogen supply, from SMR of from natural gas, with CCS, by truck, as gaseous, over 500 km
   biodiesel, oil                       SE|Liquids|Biomass|Biofuel|Biodiesel|w/o CCS    Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS    biodiesel production, via transesterification
   biodiesel, oil, with CCS                                                             Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/CCS     biodiesel production, via transesterification
   bioethanol, wood                     SE|Liquids|Biomass|Cellulosic|w/o CCS           Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS         ethanol production, via fermentation, from forest
