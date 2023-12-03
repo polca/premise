@@ -989,8 +989,7 @@ class BiomassValidation(BaseDatasetValidator):
                     [
                         x["amount"]
                         for x in ds["exchanges"]
-                        if x["type"] == "technosphere"
-                        and x["unit"] == "kilogram"
+                        if x["type"] == "technosphere" and x["unit"] == "kilogram"
                     ]
                 )
                 if total < 0.99 or total > 1.1:
@@ -1011,9 +1010,10 @@ class BiomassValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
-
                 expected_share = self.iam_data.biomass_markets.sel(
-                    variables="biomass - residual", year=self.year, region=ds["location"]
+                    variables="biomass - residual",
+                    year=self.year,
+                    region=ds["location"],
                 ).values.item(0)
 
                 residual_biomass = sum(
@@ -1029,12 +1029,14 @@ class BiomassValidation(BaseDatasetValidator):
                     [
                         x["amount"]
                         for x in ds["exchanges"]
-                        if x["type"] == "technosphere"
-                        and x["unit"] == "kilogram"
+                        if x["type"] == "technosphere" and x["unit"] == "kilogram"
                     ]
                 )
                 # check that the total is roughly equal to the IAM projection
-                if math.isclose(residual_biomass / total, expected_share, rel_tol=0.01) is False:
+                if (
+                    math.isclose(residual_biomass / total, expected_share, rel_tol=0.01)
+                    is False
+                ):
                     message = f"Residual biomass share incorrect: {residual_biomass / total} instead of {expected_share}."
                     self.write_log(
                         ds,
