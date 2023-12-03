@@ -20,11 +20,11 @@ import datapackage
 import yaml
 
 from . import __version__
+from .biomass import _update_biomass
 from .cement import _update_cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .direct_air_capture import _update_dac
-from .biomass import _update_biomass
 from .electricity import _update_electricity
 from .emissions import _update_emissions
 from .export import (

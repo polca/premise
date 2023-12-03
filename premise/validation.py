@@ -969,6 +969,7 @@ class CementValidation(BaseDatasetValidator):
         self.check_clinker_energy_use()
         self.save_log()
 
+
 class BiomassValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
