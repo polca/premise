@@ -252,9 +252,10 @@ def adjust_efficiency(dataset: dict) -> dict:
                         scaling_factor = 1 / v[1][dataset["location"]]
                     except KeyError as err:
                         print(dataset["name"], dataset["location"], dataset["regions"])
-                        raise KeyError(
-                            f"No efficiency factor provided for region {dataset['location']}"
-                        ) from err
+                        print(
+                            f"No efficiency factor provided for dataset {dataset['name']} in {dataset['location']}"
+                        )
+                        scaling_factor = 1
                 else:
                     scaling_factor = 1 / v[1].get(dataset["regions"][0], 1)
                 filters = v[0]
