@@ -1908,9 +1908,11 @@ class Electricity(BaseTransformation):
             "renewable energy products",
             "for reuse in municipal waste incineration",
             "Swiss Federal Railways",
+            "to generic market for electricity"
         ]
 
-        # We first need to empty 'market for electricity' and 'market group for electricity' datasets
+        # We first need to empty 'market for electricity'
+        # and 'market group for electricity' datasets
         # print("Empty old electricity datasets")
 
         for dataset in ws.get_many(
