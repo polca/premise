@@ -367,9 +367,13 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
         # Note: A directory path, not a file path
         scenario["filepath"] = IAM_OUTPUT_DIR
         if key is None:
-            raise ValueError(
-                "You need to provide the encryption key to decrypt the IAM output files provided by `premise`."
-            )
+            print("Reading unencrypted IAM output files.")
+        else:
+            # make sure that the key is 44 bytes long
+            if len(key) != 44:
+                raise ValueError(
+                    f"The key must be 44 bytes long, not {len(key)} bytes."
+                )
 
     scenario["model"] = check_model_name(scenario["model"])
     scenario["pathway"] = check_pathway_name(

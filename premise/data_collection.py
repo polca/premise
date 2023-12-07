@@ -18,6 +18,7 @@ import pandas as pd
 import xarray as xr
 import yaml
 from cryptography.fernet import Fernet
+from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, VARIABLES_DIR
 from .marginal_mixes import consequential_method
@@ -39,6 +40,17 @@ IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
 GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions_mapping.yaml"
 COAL_POWER_PLANTS_DATA = DATA_DIR / "electricity" / "coal_power_emissions_2012_v1.csv"
+
+
+def print_missing_variables(missing_vars):
+    if missing_vars:
+        print(
+            f"The following variables are missing from the IAM file:"
+        )
+    table = PrettyTable(["Variable", ])
+    for v in missing_vars:
+        table.add_row([v])
+    print(table)
 
 
 def get_delimiter(data=None, filepath=None):
@@ -773,9 +785,7 @@ class IAMDataCollection:
         missing_vars = set(input_vars.values()) - set(data.variables.values)
 
         if missing_vars:
-            print(
-                f"The following variables are missing from the IAM file: {list(missing_vars)}"
-            )
+            print_missing_variables(missing_vars)
 
         available_vars = list(set(input_vars.values()) - missing_vars)
 
@@ -844,9 +854,7 @@ class IAMDataCollection:
         if efficiency_labels:
             missing_vars = set(efficiency_labels.values()) - set(data.variables.values)
             if missing_vars:
-                print(
-                    f"The following variables are missing from the IAM file: {list(missing_vars)}"
-                )
+                print_missing_variables(missing_vars)
 
             available_vars = list(set(efficiency_labels.values()) - missing_vars)
             rev_eff_labels = {v: k for k, v in efficiency_labels.items()}
@@ -1082,9 +1090,7 @@ class IAMDataCollection:
         missing_vars = set(input_vars.values()) - set(data.variables.values)
 
         if missing_vars:
-            print(
-                f"The following variables are missing from the IAM file: {list(missing_vars)}"
-            )
+            print_missing_variables(missing_vars)
 
         available_vars = list(set(input_vars.values()) - missing_vars)
 

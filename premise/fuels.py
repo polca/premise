@@ -519,7 +519,7 @@ class Fuels(BaseTransformation):
                     for exc in dataset["exchanges"]
                     if exc["unit"] == hydrogen_feedstock_unit
                     and hydrogen_feedstock_name in exc["name"]
-                    and exc["type"] == "technosphere"
+                    and exc["type"] != "production"
                 )
 
                 # add it to "log parameters"

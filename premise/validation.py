@@ -287,7 +287,7 @@ class BaseDatasetValidator:
                     == key
                 ):
                     if (
-                        exchange["amount"] >= 0.15
+                        exchange["amount"] >= 0.2
                         and dataset["name"] not in circular_exceptions
                     ):
                         message = f"Dataset {dataset['name']} potentially has a circular reference to itself."
@@ -442,14 +442,15 @@ class ElectricityValidation(BaseDatasetValidator):
                         for x in dataset["exchanges"]
                     ]
                 )
-                if total < 0.99 or total > 1.1:
+                if total < 0.99 or total > 1.15:
                     message = f"Electricity market inputs sum to {total}."
                     self.write_log(
                         dataset, "electricity market not summing to 1", message
                     )
 
     def check_old_datasets(self):
-        # ensure old electricity markets only have one technosphere exchange
+        # ensure old electricity markets only have
+        # one technosphere exchange
         # linking to the newly created markets
 
         for dataset in self.database:
@@ -505,7 +506,7 @@ class ElectricityValidation(BaseDatasetValidator):
         # matches the location of the dataset
         # according to the ecoinvent-IAM geo-linking rules
         if dataset_loc in ["RER", "Europe without Switzerland", "FR"]:
-            if exc_loc not in ["EUR", "WEU"]:
+            if exc_loc not in ["EUR", "WEU", "EU-15"]:
                 message = f"Electricity market input has incorrect location."
                 self.write_log(
                     {"location": dataset_loc},

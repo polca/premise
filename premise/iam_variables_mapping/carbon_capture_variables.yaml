@@ -14,6 +14,8 @@ cement - co2:
       - Carbon Sequestration|CCS|Industrial Processes
       - Emissions|CO2|Industrial Processes|Non-Metallic Minerals|Cement
       - Emissions|CO2|Energy|Demand|Industry|Non-Metallic Minerals|Cement
+    gcam:
+      - Emissions|CO2|Industry|Cement|Gross|Cement
 cement - cco2:
   iam_aliases:
     remind:
@@ -22,14 +24,31 @@ cement - cco2:
     image: Emissions|CO2|Industry|Cement|Sequestered
     message:
       - CCS|Industry|Industrial Processes|Non-Metallic Minerals
+    gcam:
+      - Emissions|CO2|Industry|Cement|Sequestered|Cement CCS
 steel - co2:
   iam_aliases:
     remind:
       - Emi|CO2|Energy|Demand|Industry|++|Steel
       - Carbon Management|Carbon Capture|Industry Energy|Steel
     image: Emissions|CO2|Industry|Steel|Gross
+    gcam:
+      - Emissions|CO2|Industry|Steel|Gross|BLASTFUR
+      - Emissions|CO2|Industry|Steel|Gross|BLASTFUR CCS
+      - Emissions|CO2|Industry|Steel|Gross|BLASTFUR CCS with hydrogen
+      - Emissions|CO2|Industry|Steel|Gross|BLASTFUR with hydrogen
+      - Emissions|CO2|Industry|Steel|Gross|Biomass-based
+      - Emissions|CO2|Industry|Steel|Gross|EAF with DRI
+      - Emissions|CO2|Industry|Steel|Gross|EAF with DRI CCS
+      - Emissions|CO2|Industry|Steel|Gross|EAF with scrap
+      - Emissions|CO2|Industry|Steel|Gross|EAF with scrap CCS
 steel - cco2:
   iam_aliases:
     remind:
       - Carbon Management|Carbon Capture|Industry Energy|Steel
     image: Emissions|CO2|Industry|Steel|Sequestered
+    gcam:
+      - Emissions|CO2|Industry|Steel|Sequestered|BLASTFUR CCS
+      - Emissions|CO2|Industry|Steel|Sequestered|BLASTFUR CCS with hydrogen
+      - Emissions|CO2|Industry|Steel|Sequestered|EAF with DRI CCS
+      - Emissions|CO2|Industry|Steel|Sequestered|EAF with scrap CCS

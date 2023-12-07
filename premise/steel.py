@@ -119,6 +119,16 @@ class Steel(BaseTransformation):
             if market == "market for steel, low-alloyed":
                 for loc, dataset in steel_markets.items():
                     if loc != "World":
+                        # check that the production volumes are positive
+                        # otherwise we skip the region
+                        if self.iam_data.production_volumes.sel(
+                            region=loc,
+                            variables=["steel - primary", "steel - secondary"]
+                        ).interp(year=self.year).sum(
+                            dim="variables"
+                        ) <= 0:
+                            continue
+
                         if self.system_model != "consequential":
                             try:
                                 primary_share = self.iam_data.production_volumes.sel(
@@ -182,6 +192,19 @@ class Steel(BaseTransformation):
                             "primary steel share": primary_share,
                             "secondary steel share": secondary_share,
                         }
+
+                # check that the production volumes are positive
+                # otherwise we remove the region dataset from steel_markets
+                steel_markets = {
+                    loc: dataset
+                    for loc, dataset in steel_markets.items()
+                    if self.iam_data.production_volumes.sel(
+                        region=loc,
+                        variables=["steel - primary", "steel - secondary"]
+                    ).interp(year=self.year).sum(
+                        dim="variables"
+                    ) > 0
+                }
             else:
                 for loc, dataset in steel_markets.items():
                     if loc != "World":
@@ -245,16 +268,17 @@ class Steel(BaseTransformation):
                     # equal share to all regions
                     share = 1 / len(regions)
 
-                steel_markets["World"]["exchanges"].append(
-                    {
-                        "name": market,
-                        "product": steel_product,
-                        "amount": share,
-                        "unit": "kilogram",
-                        "type": "technosphere",
-                        "location": region,
-                    }
-                )
+                if share > 0:
+                    steel_markets["World"]["exchanges"].append(
+                        {
+                            "name": market,
+                            "product": steel_product,
+                            "amount": share,
+                            "unit": "kilogram",
+                            "type": "technosphere",
+                            "location": region,
+                        }
+                    )
 
             # add to log
             for new_dataset in list(steel_markets.values()):

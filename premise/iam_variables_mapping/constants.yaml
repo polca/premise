@@ -14,6 +14,7 @@ SUPPORTED_MODELS:
   - image
   - message
   - tiam
+  - gcam
 
 SUPPORTED_PATHWAYS:
   - SSP2-Base
@@ -126,6 +127,42 @@ LIST_TIAM_REGIONS:
   - UK
   - WEU
   - World
+
+LIST_GCAM_REGIONS:
+  - Africa_Eastern
+  - Africa_Northern
+  - Africa_Southern
+  - Africa_Western
+  - Argentina
+  - Australia_NZ
+  - Brazil
+  - Canada
+  - Central America and Caribbean
+  - Central Asia
+  - China
+  - Colombia
+  - EU-12
+  - EU-15
+  - Europe_Eastern
+  - European Free Trade Association
+  - Europe_Non_EU
+  - India
+  - Indonesia
+  - Japan
+  - Mexico
+  - Middle East
+  - Pakistan
+  - Russia
+  - South Africa
+  - South America_Northern
+  - South America_Southern
+  - South Asia
+  - Southeast Asia
+  - South Korea
+  - Taiwan
+  - USA
+  - World
+
 
 PREFERRED_IAM_ORDER:
   - NEU

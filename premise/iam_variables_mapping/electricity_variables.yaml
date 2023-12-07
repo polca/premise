@@ -71,8 +71,10 @@ Biomass CHP CCS:
     fltr:
     - heat and power co-generation, wood chips, 6667 kW
   eff_aliases:
+    gcam: Efficiency|Electricity|biomass (conv CCS)
     image: Efficiency|Electricity|Biomass|w/ CCS|2
   iam_aliases:
+    gcam: Secondary Energy|Electricity|biomass (conv CCS)
     image: Secondary Energy|Electricity|Biomass|w/ CCS|2
 
 Biomass IGCC:
@@ -86,11 +88,13 @@ Biomass IGCC:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
   eff_aliases:
+    gcam: Efficiency|Electricity|biomass (IGCC)
     image: Efficiency|Electricity|Biomass|w/o CCS|2
     message: Efficiency|Electricity|Biomass|w/o CCS|1
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/o CC|Efficiency
     tiam: Efficiency|Electricity|Biomass gasification|w/o CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|biomass (IGCC)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|2
     message: Secondary Energy|Electricity|Biomass|w/o CCS|1
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/o CC
@@ -106,11 +110,13 @@ Biomass IGCC CCS:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
   eff_aliases:
+    gcam: Efficiency|Electricity|biomass (IGCC CCS)
     image: Efficiency|Electricity|Biomass|w/ CCS|1
     message: Efficiency|Electricity|Biomass|w/o CCS|1
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     tiam: Efficiency|Electricity|Biomass gasification|w CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|biomass (IGCC CCS)
     image: Secondary Energy|Electricity|Biomass|w/ CCS|1
     message: Secondary Energy|Electricity|Biomass|w/ CCS|1
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
@@ -141,10 +147,12 @@ Biomass ST:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
   eff_aliases:
+    gcam: Efficiency|Electricity|biomass (conv)
     image: Efficiency|Electricity|Biomass|w/o CCS|1
     message: Efficiency|Electricity|Biomass|w/o CCS|2
     tiam: Efficiency|Electricity|Biomass combustion|w/o CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|biomass (conv)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
     message: Secondary Energy|Electricity|Biomass|w/o CCS|2
     tiam: Secondary Energy|Electricity|Biomass combustion|w/o CCS
@@ -258,11 +266,13 @@ Coal IGCC:
       - briquettes
       - ash
   eff_aliases:
+    gcam: Efficiency|Electricity|coal (IGCC)
     image: Efficiency|Electricity|Coal|w/o CCS|2
     message: Efficiency|Electricity|Coal|w/o CCS|1
     remind: Tech|Electricity|Coal|Gasification Combined Cycle w/o CC|Efficiency
     tiam: Efficiency|Electricity|Coal IGCC|w/o CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|coal (IGCC)
     image: Secondary Energy|Electricity|Coal|w/o CCS|2
     message: Secondary Energy|Electricity|Coal|w/o CCS|1
     remind: SE|Electricity|Coal|++|Gasification Combined Cycle w/o CC
@@ -286,11 +296,13 @@ Coal IGCC CCS:
       - briquettes
       - ash
   eff_aliases:
+    gcam: Efficiency|Electricity|coal (IGCC CCS)
     image: Efficiency|Electricity|Coal|w/ CCS|1
     message: Efficiency|Electricity|Coal|w/ CCS|1
     remind: Tech|Electricity|Coal|Gasification Combined Cycle w/ CC|Efficiency
     tiam: Efficiency|Electricity|Coal IGCC|w CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|coal (IGCC CCS)
     image: Secondary Energy|Electricity|Coal|w/ CCS|1
     message: Secondary Energy|Electricity|Coal|w/ CCS|1
     remind: SE|Electricity|Coal|++|Gasification Combined Cycle w/ CC
@@ -317,11 +329,13 @@ Coal PC:
       - briquettes
       - ash
   eff_aliases:
+    gcam: Efficiency|Electricity|coal (conv pul)
     image: Efficiency|Electricity|Coal|w/o CCS|1
     message: Efficiency|Electricity|Coal|w/o CCS|3
     remind: Tech|Electricity|Coal|Pulverised Coal w/o CC|Efficiency
     tiam: Efficiency|Electricity|Existing coal generation|w/o CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|coal (conv pul)
     image: Secondary Energy|Electricity|Coal|w/o CCS|1
     message: Secondary Energy|Electricity|Coal|w/o CCS|3
     remind: SE|Electricity|Coal|++|Pulverised Coal w/o CC
@@ -349,11 +363,12 @@ Coal PC CCS:
       - briquettes
       - ash
   eff_aliases:
+    gcam: Efficiency|Electricity|coal (conv pul CCS)
     message: Efficiency|Electricity|Coal|w/ CCS|2
     remind: Tech|Electricity|Coal|Pulverised Coal w/ CC|Efficiency
     image: Efficiency|Electricity|Coal|w/ CCS|2
   iam_aliases:
-    image: Secondary Energy|Electricity|Coal|w/ CCS|2
+    gcam: Secondary Energy|Electricity|coal (conv pul CCS)
     message: Secondary Energy|Electricity|Coal|w/ CCS|2
     remind: SE|Electricity|Coal|++|Pulverised Coal w/ CC
   max_efficiency: 0.35
@@ -469,11 +484,13 @@ Gas CC:
     - vented
     - vehicle
   eff_aliases:
+    gcam: Efficiency|Electricity|gas (CC)
     image: Efficiency|Electricity|Gas|w/o CCS|2
     message: Efficiency|Electricity|Gas|w/o CCS|1
     remind: Tech|Electricity|Gas|Combined Cycle w/o CC|Efficiency
     tiam: Efficiency|Electricity|Gas CCGT|w/o CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|gas (CC)
     image: Secondary Energy|Electricity|Gas|w/o CCS|2
     message: Secondary Energy|Electricity|Gas|w/o CCS|1
     remind: SE|Electricity|Gas|++|Combined Cycle w/o CC
@@ -489,11 +506,13 @@ Gas CC CCS:
     - market group for natural gas
     - market for natural gas
   eff_aliases:
+    gcam: Efficiency|Electricity|gas (CC CCS)
     image: Efficiency|Electricity|Gas|w/ CCS|1
     message: Efficiency|Electricity|Gas|w/ CCS|1
     remind: Tech|Electricity|Gas|Combined Cycle w/ CC|Efficiency
     tiam: Efficiency|Electricity|Gas CCGT|w CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|gas (CC CCS)
     image: Secondary Energy|Electricity|Gas|w/ CCS|1
     message: Secondary Energy|Electricity|Gas|w/ CCS|1
     remind: SE|Electricity|Gas|++|Combined Cycle w/ CC
@@ -593,11 +612,13 @@ Gas OC:
     - vented
     - vehicle
   eff_aliases:
+    gcam: Efficiency|Electricity|gas (steam/CT)
     image: Efficiency|Electricity|Gas|w/o CCS|1
     message: Efficiency|Electricity|Gas|w/o CCS|3
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
     tiam: Efficiency|Electricity|Existing gas generation|w/o CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|gas (steam/CT)
     image: Secondary Energy|Electricity|Gas|w/o CCS|1
     message: Secondary Energy|Electricity|Gas|w/o CCS|3
     remind: SE|Electricity|Gas|++|Gas Turbine
@@ -630,6 +651,7 @@ Geothermal:
     fltr:
     - electricity production, deep geothermal
   iam_aliases:
+    gcam: Secondary Energy|Electricity|geothermal
     image: Secondary Energy|Electricity|Other
     message: Secondary Energy|Electricity|Geothermal
     remind: SE|Electricity|+|Geothermal
@@ -644,6 +666,7 @@ Hydro:
       - renewable
       - certified
   iam_aliases:
+    gcam: Secondary Energy|Electricity|hydro
     image: Secondary Energy|Electricity|Hydro
     message: Secondary Energy|Electricity|Hydro
     remind: SE|Electricity|+|Hydro
@@ -674,9 +697,11 @@ Nuclear:
     - market for nuclear fuel element, for boiling water reactor
     - market for uranium hexafluoride
   eff_aliases:
+    gcam: Efficiency|Electricity|Gen_II_LWR
     image: Efficiency|Electricity|Nuclear
     message: Efficiency|Electricity|Nuclear
   iam_aliases:
+    gcam: Secondary Energy|Electricity|Gen_II_LWR
     image: Secondary Energy|Electricity|Nuclear
     message: Secondary Energy|Electricity|Nuclear
     remind: SE|Electricity|+|Nuclear
@@ -715,10 +740,12 @@ Oil CC:
     mask:
       name: burned
   eff_aliases:
+    gcam: Efficiency|Electricity|refined liquids (CC)
     image: Efficiency|Electricity|Oil|w/o CCS|2
     message: Efficiency|Electricity|Oil|w/o CCS|1
     tiam: Efficiency|Electricity|Oil steam|w/o CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|refined liquids (CC)
     image: Secondary Energy|Electricity|Oil|w/o CCS|2
     message: Secondary Energy|Electricity|Oil|w/o CCS|1
     tiam: Secondary Energy|Electricity|Oil steam|w/o CCS
@@ -732,8 +759,10 @@ Oil CC CCS:
     fltr:
     - electricity production, oil
   eff_aliases:
+    gcam: Efficiency|Electricity|refined liquids (CC CCS)
     image: Efficiency|Electricity|Oil|w/ CCS|1
   iam_aliases:
+    gcam: Secondary Energy|Electricity|refined liquids (CC CCS)
     image: Secondary Energy|Electricity|Oil|w/ CCS|1
 
 Oil CHP:
@@ -787,11 +816,13 @@ Oil ST:
     mask:
       name: burned
   eff_aliases:
+    gcam: Efficiency|Electricity|refined liquids (steam/CT)
     image: Efficiency|Electricity|Oil|w/o CCS|1
     message: Efficiency|Electricity|Oil|w/o CCS|2
     remind: Tech|Electricity|Oil|DOT|Efficiency
     tiam: Efficiency|Electricity|Existing oil electric generation|w/o CCS
   iam_aliases:
+    gcam: Secondary Energy|Electricity|refined liquids (steam/CT)
     image: Secondary Energy|Electricity|Oil|w/o CCS|1
     message: Secondary Energy|Electricity|Oil|w/o CCS|2
     remind: SE|Electricity|Oil|w/o CC
@@ -803,6 +834,7 @@ Solar CSP:
     - electricity production, solar thermal parabolic trough, 50 MW
     - electricity production, solar tower power plant, 20 MW
   iam_aliases:
+    gcam: Secondary Energy|Electricity|CSP
     image: Secondary Energy|Electricity|Solar|CSP
     message: Secondary Energy|Electricity|Solar|CSP|1
     remind: SE|Electricity|Solar|+|CSP
@@ -819,6 +851,7 @@ Solar PV Centralized:
     fltr:
     - electricity production, photovoltaic, commercial
   iam_aliases:
+    gcam: Secondary Energy|Electricity|PV
     image: Secondary Energy|Electricity|Solar|PV|1
     message: Secondary Energy|Electricity|Solar|PV
     remind: SE|Electricity|Solar|+|PV
@@ -828,6 +861,7 @@ Solar PV Residential:
     fltr:
     - electricity production, photovoltaic, residential
   iam_aliases:
+    gcam: Secondary Energy|Electricity|rooftop_pv
     image: Secondary Energy|Electricity|Solar|PV|2
     tiam: Secondary Energy|Electricity|Concentrated Solar PV decentralised
 Storage, Flow Battery:
@@ -859,6 +893,7 @@ Wind Offshore:
       - label-certified
       - renewable
   iam_aliases:
+    gcam: Secondary Energy|Electricity|wind_offshore
     image: Secondary Energy|Electricity|Wind|2
     message: Secondary Energy|Electricity|Wind|Offshore
     remind: SE|Electricity|Wind|+|Offshore
@@ -874,6 +909,7 @@ Wind Onshore:
       - label-certified
       - renewable
   iam_aliases:
+    gcam: Secondary Energy|Electricity|wind
     image: Secondary Energy|Electricity|Wind|1
     message: Secondary Energy|Electricity|Wind|Onshore
     remind: SE|Electricity|Wind|+|Onshore
