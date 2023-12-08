@@ -4,7 +4,6 @@ Integrates projections regarding fuel production and supply.
 
 import copy
 from functools import lru_cache
-from pprint import pprint
 from typing import Union
 
 import wurst
@@ -2311,10 +2310,12 @@ class Fuels(BaseTransformation):
         d_fuels = self.get_fuel_mapping()
 
         vars_map = {
-            "petrol, low-sulfur": ["petrol", "ethanol", "methanol", "gasoline"],
+            "petrol, low-sulfur": ["petrol", "ethanol", "methanol", "gasoline", "bioethanol"],
             "diesel, low-sulfur": ["diesel", "biodiesel"],
             "natural gas": ["natural gas", "biomethane"],
             "hydrogen": ["hydrogen"],
+            "kerosene": ["kerosene"],
+            "liquefied petroleum gas": ["liquefied petroleum gas"],
         }
 
         new_datasets = []

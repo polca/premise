@@ -116,10 +116,6 @@ premise_electricity:
         name: New electrical efficiency
         description: Electrical efficiency after adjustment (1 / fuel energy input)
         unit: 0-1
-      biomass share:
-        name: Biomass share
-        description: Share of biomass from forestry residues vs. purpose-grown biomass
-        unit: 0-1
       transformation loss:
         name: Transformation loss
         description: Loss in transforming high to medium and low-voltage electricity
@@ -334,14 +330,6 @@ premise_cement:
         name: Electricity consumed
         description: Electricity consumed (kWh) per kg cement
         unit: kWh/kg
-      old clinker-to-cement ratio:
-        name: Old clinker-to-cement ratio
-        description: Clinker-to-cement ratio before adjustment
-        unit: 0-1
-      new clinker-to-cement ratio:
-        name: New clinker-to-cement ratio
-        description: Clinker-to-cement ratio after adjustment
-        unit: 0-1
     tab: Cement
 
 premise_fuel:

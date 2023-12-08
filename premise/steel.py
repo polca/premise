@@ -201,12 +201,12 @@ class Steel(BaseTransformation):
                 steel_markets = {
                     loc: dataset
                     for loc, dataset in steel_markets.items()
-                    if self.iam_data.production_volumes.sel(
+                    if (self.iam_data.production_volumes.sel(
                         region=loc, variables=["steel - primary", "steel - secondary"]
                     )
                     .interp(year=self.year)
                     .sum(dim="variables")
-                    > 0
+                    > 0 or loc == "World")
                 }
             else:
                 for loc, dataset in steel_markets.items():
