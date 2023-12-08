@@ -80,3 +80,20 @@ gcam:
   Southeast Asia: tropical
   Taiwan: tropical
   USA: temperate
+
+tiam:
+  AFR: tropical
+  AUS: tropical
+  CAN: temperate
+  CSA: tropical
+  CHI: temperate
+  EEU: temperate
+  FSU: temperate
+  IND: tropical
+  JPN: temperate
+  MEX: temperate
+  MEA: tropical
+  ODA: tropical
+  SKO: temperate
+  UK: temperate
+  WEU: temperate

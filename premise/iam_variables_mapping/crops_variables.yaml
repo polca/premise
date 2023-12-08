@@ -62,6 +62,7 @@ wood:
   land_use_change:
     image: Emission Factor|CO2|Energy|Supply|Biomass|Marginal|Woody
     gcam: Emission Factor|CO2|Land Use Change|Average|Biomass|Wood
+    tiam: Emission Factor|CO2|Energy|Supply|Biomass|Average|Energy crops
 grass:
   crop_type:
     image:
