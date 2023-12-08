@@ -2310,7 +2310,13 @@ class Fuels(BaseTransformation):
         d_fuels = self.get_fuel_mapping()
 
         vars_map = {
-            "petrol, low-sulfur": ["petrol", "ethanol", "methanol", "gasoline", "bioethanol"],
+            "petrol, low-sulfur": [
+                "petrol",
+                "ethanol",
+                "methanol",
+                "gasoline",
+                "bioethanol",
+            ],
             "diesel, low-sulfur": ["diesel", "biodiesel"],
             "natural gas": ["natural gas", "biomethane"],
             "hydrogen": ["hydrogen"],
