@@ -386,7 +386,6 @@ diesel, synthetic, from coal:
     - diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, energy allocation
     - diesel production, from methanol, hydrogen from coal gasification, energy allocation
 
-
 diesel, synthetic, from coal, with CCS:
   lhv: 43
   co2: 0.0732
