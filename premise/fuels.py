@@ -45,6 +45,7 @@ FUEL_MARKETS = DATA_DIR / "fuels" / "fuel_markets.yml"
 BIOFUEL_SOURCES = DATA_DIR / "fuels" / "biofuels_activities.yml"
 FUEL_GROUPS = DATA_DIR / "fuels" / "fuel_groups.yaml"
 
+
 def load_methane_correction_list():
     """
     Load biomethane_correction.yaml file and return a list
@@ -52,6 +53,7 @@ def load_methane_correction_list():
     with open(DATA_DIR / "fuels" / "biomethane_correction.yaml", "r") as f:
         methane_correction_list = yaml.safe_load(f)
     return methane_correction_list
+
 
 def fetch_mapping(filepath: str) -> dict:
     """Returns a dictionary from a YML file"""
@@ -395,8 +397,7 @@ class Fuels(BaseTransformation):
 
         # find datasets that have a name in the list
         filters = [
-            ws.either(*[ws.equals("name", name)
-                        for name in list_biogas_activities]),
+            ws.either(*[ws.equals("name", name) for name in list_biogas_activities]),
         ]
 
         biogas_datasets = ws.get_many(
@@ -436,7 +437,6 @@ class Fuels(BaseTransformation):
                         ),
                     }
                 )
-
 
     def find_transport_activity(
         self, items_to_look_for: List[str], items_to_exclude: List[str], loc: str
