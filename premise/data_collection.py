@@ -571,6 +571,7 @@ class IAMDataCollection:
                 if any(x in k for x in ["biogas", "methane", "natural gas"])
             },
         )
+
         self.hydrogen_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels={
@@ -866,6 +867,12 @@ class IAMDataCollection:
                 eff_data.coords["variables"] = [
                     rev_eff_labels[x] for x in eff_data.variables.values
                 ]
+                # convert zero values to nan
+                # and back-fill and forward-fill missing values with nearest available
+                eff_data = eff_data.where(eff_data != 0)
+                eff_data = eff_data.bfill(dim="year")
+                eff_data = eff_data.ffill(dim="year")
+
             else:
                 return None
 
@@ -883,6 +890,10 @@ class IAMDataCollection:
                         data.loc[:, energy_labels[k], :].sum(dim="variables")
                         / data.loc[:, v, :]
                     )
+                    # back-fill nans
+                    d = d.bfill(dim="year")
+                    # forward-fill nans
+                    d = d.ffill(dim="year")
 
                 else:
                     # fill d with ones
@@ -1016,6 +1027,7 @@ class IAMDataCollection:
                         .sum(dim=["variables", "region"])
                         .values
                     )
+
                 except ZeroDivisionError:
                     rate.loc[dict(region="World", variables="cement")] = 0
 
@@ -1033,6 +1045,7 @@ class IAMDataCollection:
                     ].sum(
                         dim=["variables", "region"]
                     )
+
                 except ZeroDivisionError:
                     rate.loc[dict(region="World", variables="steel")] = 0
 

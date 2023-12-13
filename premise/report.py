@@ -183,22 +183,24 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Fuel (gasoline) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": ["gasoline", "ethanol"],
+            "filter": ["gasoline", "ethanol", "bioethanol", "methanol"],
         },
         "Fuel (gasoline) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": ["gasoline", "ethanol"],
+            "filter": ["gasoline", "ethanol", "bioethanol", "methanol"],
         },
         "Fuel (diesel) - generation": {
             "filepath": IAM_FUELS_VARS,
             "filter": [
                 "diesel",
+                "biodiesel",
             ],
         },
         "Fuel (diesel) - efficiency": {
             "filepath": IAM_FUELS_VARS,
             "filter": [
                 "diesel",
+                "biodiesel",
             ],
         },
         "Fuel (gas) - generation": {
@@ -296,7 +298,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
             variables = get_variables(filepath["filepath"])
             if "filter" in filepath:
                 variables = [
-                    x for x in variables if any(y in x for y in filepath["filter"])
+                    x for x in variables if any(x.startswith(y) for y in filepath["filter"])
                 ]
 
         worksheet = workbook.create_sheet(sector)

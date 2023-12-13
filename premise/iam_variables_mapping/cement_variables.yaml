@@ -8,6 +8,7 @@ cement, dry feed rotary kiln:
     message: Production|Non-Metallic Minerals|Cement
     gcam: Production|Industry|Cement
     tiam: Production|Cement
+
   energy_use_aliases:
     remind: FE|Industry|+++|Cement
     image:
