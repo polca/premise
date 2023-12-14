@@ -2270,6 +2270,9 @@ class Fuels(BaseTransformation):
             if "low-sulfur" in dataset["name"]:
                 blacklist.append("unleaded")
 
+            if "petroleum gas" in dataset["name"]:
+                blacklist.remove("petroleum gas")
+
             possible_names = tuple(fuel_providers[prod_var]["fuel filters"])
 
             possible_suppliers = self.select_multiple_suppliers(
@@ -2379,11 +2382,11 @@ class Fuels(BaseTransformation):
                 "gasoline",
                 "bioethanol",
             ],
-            "diesel, low-sulfur": ["diesel", "biodiesel"],
-            "natural gas": ["natural gas", "biomethane"],
-            "hydrogen": ["hydrogen"],
-            "kerosene": ["kerosene"],
-            "liquefied petroleum gas": ["liquefied petroleum gas"],
+            "diesel, low-sulfur": ["diesel", "biodiesel",],
+            "natural gas": ["natural gas", "biomethane", ],
+            "hydrogen": ["hydrogen",],
+            "kerosene": ["kerosene",],
+            "liquefied petroleum gas": ["liquefied petroleum gas",],
         }
 
         new_datasets = []
@@ -2503,7 +2506,7 @@ class Fuels(BaseTransformation):
         # add to database
         self.database.extend(new_datasets)
 
-        # list `market group for diesel` as "emptied"
+        # list `market group for ` as "emptied"
         datasets_to_empty = {
             "market group for diesel",
             "market group for diesel, low-sulfur",
@@ -2511,6 +2514,8 @@ class Fuels(BaseTransformation):
             "market for diesel",
             "market for natural gas, high pressure",
             "market group for natural gas, high pressure",
+            "market for kerosene",
+            "market for liquefied petroleum gas",
         }
 
         for old_ds in datasets_to_empty:

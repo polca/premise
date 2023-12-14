@@ -389,13 +389,25 @@ class BaseTransformation:
                 )
                 counter += 1
         except IndexError:
-            raise IndexError(
-                "No supplier found for {} in {}, "
-                "looking for terms: {} "
-                "and with blacklist: {}".format(
-                    possible_names, possible_locations, look_for, blacklist
+
+            suppliers = list(
+                ws.get_many(
+                    self.database,
+                    ws.either(
+                        *[ws.contains("name", sup) for sup in possible_names]
+                    ),
+                    *extra_filters,
                 )
             )
+
+            if not suppliers:
+                raise IndexError(
+                    "No supplier found for {} in {}, "
+                    "looking for terms: {} "
+                    "and with blacklist: {}".format(
+                        possible_names, possible_locations, look_for, blacklist
+                    )
+                )
 
         suppliers = get_shares_from_production_volume(suppliers)
 

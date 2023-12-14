@@ -101,6 +101,10 @@ FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
 
+FILEPATH_SYNFUEL_INVENTORIES_FT_FROM_NG = (
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas.xlsx"
+)
+
 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
 )
@@ -775,6 +779,7 @@ class NewDatabase:
             (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
             (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
             (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
+            (FILEPATH_SYNFUEL_INVENTORIES_FT_FROM_NG, "3.7"),
             (
                 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
                 "3.7",

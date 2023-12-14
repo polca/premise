@@ -1844,9 +1844,7 @@ class Electricity(BaseTransformation):
                     ei_eff = self.find_fuel_efficiency(
                         new_dataset, self.powerplant_fuels_map[tech], 3.6
                     )
-                    rescale_exchanges(
-                        new_dataset, ei_eff / new_eff, remove_uncertainty=False
-                    )
+                    rescale_exchanges(new_dataset, ei_eff / new_eff)
 
                 self.database.append(new_dataset)
 

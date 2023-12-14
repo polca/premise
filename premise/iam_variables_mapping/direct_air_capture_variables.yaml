@@ -9,10 +9,12 @@ dac_solvent:
     remind: 'Emi|CO2|Cumulated|CDR|DACCS'
     image: Carbon Capture|Storage|Direct Air Capture|Cumulative
     tiam: Carbon Capture|Storage|Direct Air Capture
-  energy_use_aliases:
+  heat_use_aliases:
+    tiam:
+      - Secondary Energy|Consumption|Direct Air Capture|Heat
+  electricity_use_aliases:
     tiam:
       - Secondary Energy|Consumption|Direct Air Capture|Electricity
-      - Secondary Energy|Consumption|Direct Air Capture|Heat
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2

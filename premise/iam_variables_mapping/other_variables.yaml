@@ -10,7 +10,7 @@ population:
     message: Population
     remind: Population
     image: Population
-    tiam: Population
+    tiam: POP
 
 GMST:
   iam_aliases:

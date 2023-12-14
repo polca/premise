@@ -486,7 +486,7 @@ diesel, synthetic, from natural gas, with CCS:
     tiam: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha, ELC)|w CCS
   ecoinvent_aliases:
     fltr:
-      - diesel production, synthetic, Fischer Tropsch process, from natural gas, with CCS, energy allocation
+      - diesel production, synthetic, Fischer Tropsch process, from natural gas, energy allocation, with carbon capture and storage
 
 heat, from hydrogen:
   lhv: 1
@@ -985,6 +985,7 @@ liquefied petroleum gas:
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
+      - liquefied petroleum gas production, petroleum refinery operation
       - market for liquefied petroleum gas
   iam_aliases:
     tiam: Secondary Energy|Liquids|Oil|LPG
@@ -995,6 +996,11 @@ liquefied petroleum gas, synthetic, from natural gas:
   biogenic_share: 0
   iam_aliases:
     tiam: Secondary Energy|Liquids|Natural Gas|FT LPG|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - liquefied petroleum gas production, synthetic, Fischer Tropsch process, from natural gas, energy allocation
+  eff_aliases:
+    tiam: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
 
 liquefied petroleum gas, synthetic, from natural gas, with CCS:
   lhv: 45.5
@@ -1002,6 +1008,11 @@ liquefied petroleum gas, synthetic, from natural gas, with CCS:
   biogenic_share: 0
   iam_aliases:
     tiam: Secondary Energy|Liquids|Natural Gas|FT LPG|w CCS
+  ecoinvent_aliases:
+    fltr:
+      - liquefied petroleum gas production, synthetic, Fischer Tropsch process, from natural gas, energy allocation, with carbon capture and storage
+  eff_aliases:
+    tiam: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha, ELC)|w CCS
 
 liquefied petroleum gas, synthetic, from biomass:
   lhv: 45.5
@@ -1009,6 +1020,11 @@ liquefied petroleum gas, synthetic, from biomass:
   biogenic_share: 1
   iam_aliases:
     tiam: Secondary Energy|Liquids|Biomass|FT LPG|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation
+  eff_aliases:
+    tiam: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
 
 liquefied petroleum gas, synthetic, from biomass, with CCS:
   lhv: 45.5
@@ -1016,13 +1032,25 @@ liquefied petroleum gas, synthetic, from biomass, with CCS:
   biogenic_share: 1
   iam_aliases:
     tiam: Secondary Energy|Liquids|Biomass|FT LPG|w CCS
+  ecoinvent_aliases:
+    fltr:
+      - liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation, with carbon capture and storage
+  eff_aliases:
+    tiam: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w CCS
 
 liquefied petroleum gas, synthetic, from coal:
   lhv: 45.5
   co2: 0.0631
   biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      name: synthetic fuel production, from coal, high temperature Fisher-Tropsch operations
+      reference product: liquefied petroleum gas
   iam_aliases:
     tiam: Secondary Energy|Liquids|Coal|FT LPG|w/o CCS
+  eff_aliases:
+    tiam: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
+
 
 liquefied petroleum gas, synthetic, from coal, with CCS:
   lhv: 45.5
@@ -1030,6 +1058,12 @@ liquefied petroleum gas, synthetic, from coal, with CCS:
   biogenic_share: 0
   iam_aliases:
     tiam: Secondary Energy|Liquids|Coal|FT LPG|w CCS
+  ecoinvent_aliases:
+    fltr:
+      - liquefied petroleum gas production, synthetic, Fischer Tropsch process, from coal, energy allocation, with carbon capture and storage
+  eff_aliases:
+    tiam: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w CCS
+
 
 uranium, enriched 3.8%, in fuel element for light water reactor:
   lhv: 4199040
@@ -1212,7 +1246,6 @@ kerosene, synthetic, from electrolysis, economic allocation:
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation
       - kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, economic allocation
 
 kerosene, synthetic, from coal, energy allocation:
@@ -1221,7 +1254,6 @@ kerosene, synthetic, from coal, energy allocation:
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
-      - kerosene production, from methanol, hydrogen from coal gasification, energy allocation
       - kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, energy allocation
   iam_aliases:
     tiam: Secondary Energy|Liquids|Coal|FT Kerosene|w/o CCS
@@ -1234,7 +1266,6 @@ kerosene, synthetic, from coal, economic allocation:
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
-      - kerosene production, from methanol, hydrogen from coal gasification, economic allocation
       - kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, economic allocation
 
 kerosene, synthetic, from coal, energy allocation, with CCS:
@@ -1243,7 +1274,6 @@ kerosene, synthetic, from coal, energy allocation, with CCS:
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
-      - kerosene production, from methanol, hydrogen from coal gasification, with CCS, energy allocation
       - kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation
   iam_aliases:
     tiam: Secondary Energy|Liquids|Coal|FT Kerosene|w CCS
@@ -1269,15 +1299,7 @@ kerosene, synthetic, from biomass, energy allocation:
     tiam: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
   ecoinvent_aliases:
     fltr:
-      - kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation
-
-kerosene, synthetic, from biomass, economic allocation:
-  lhv: 43
-  co2: 0.0715
-  biogenic_share: 1
-  ecoinvent_aliases:
-    fltr:
-      - kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, economic allocation
+      - kerosene production, via Fischer-Tropsch, from forest product (non-residual), energy allocation
 
 kerosene, synthetic, from biomass, energy allocation, with CCS:
   lhv: 43
@@ -1289,12 +1311,29 @@ kerosene, synthetic, from biomass, energy allocation, with CCS:
     tiam: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w CCS
   ecoinvent_aliases:
     fltr:
-      - kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation
+      - kerosene production, via Fischer-Tropsch, from forest product (non-residual), with carbon capture and storage, energy allocation
 
-kerosene, synthetic, from biomass, economic allocation, with CCS:
+kerosene, synthetic, from natural gas, energy allocation:
   lhv: 43
   co2: 0.0715
   biogenic_share: 1
+  iam_aliases:
+    tiam: Secondary Energy|Liquids|Natural Gas|FT Kerosene|w/o CCS
+  eff_aliases:
+    tiam: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
   ecoinvent_aliases:
     fltr:
-      - kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS, economic allocation
+      - kerosene production, synthetic, Fischer Tropsch process, from natural gas, energy allocation
+
+kerosene, synthetic, from natural gas, energy allocation, with CCS:
+  lhv: 43
+  co2: 0.0715
+  biogenic_share: 1
+  iam_aliases:
+    tiam: Secondary Energy|Liquids|Natural Gas|FT Kerosene|w CCS
+  eff_aliases:
+    tiam: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha, ELC)|w CCS
+  ecoinvent_aliases:
+    fltr:
+      - kerosene production, synthetic, Fischer Tropsch process, from natural gas, energy allocation, with carbon capture and storage
+

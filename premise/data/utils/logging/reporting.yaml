@@ -27,20 +27,12 @@ premise_dac:
     region:
       name: region
       description: Region name
-    scaling factor operation:
-      name: Thermal and electrical scaling factor
-      description: Scaling factor the initial energy input related to operation is multiplied by
-    scaling factor infrastructure:
-      name: Infrastructure input scaling factor
-      description: Scaling factor the initial infrastructure and sorbent/solvent inputs are multiplied by
-    initial energy input per kg CO2:
-      name: Initial energy input per kg CO2 captured
-      description: Energy input per kg CO2 captured before adjustment
-      unit: MJ/kg
-    new energy input per kg CO2:
-      name: New energy input per kg CO2 captured
-      description: Energy input per kg CO2 captured after adjustment
-      unit: MJ/kg
+    electricity scaling factor:
+      name: Electrical scaling factor
+      description: Scaling factor the initial electricity input
+    heat scaling factor:
+      name: Heat scaling factor
+      description: Scaling factor the initial heat input
   tab: Direct Air Capture
 
 premise_biomass:

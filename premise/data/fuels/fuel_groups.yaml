@@ -48,7 +48,7 @@ hydrogen:
   - hydrogen, from biogas
   - hydrogen, from biogas, with CCS
 
-kerosen:
+kerosene:
   - kerosene, from petroleum
   - kerosene, synthetic, from electrolysis, energy allocation
   - kerosene, synthetic, from coal, energy allocation
@@ -61,8 +61,7 @@ kerosen:
 
 liquefied petroleum gas:
   - liquefied petroleum gas
-  - liquefied petroleum gas, synthetic, from natural gas
-  - liquefied petroleum gas, synthetic, from natural gas, with CCS
+  - liquefied petroleum gas, synthetic, from electrolysis, energy allocation
   - liquefied petroleum gas, synthetic, from biomass
   - liquefied petroleum gas, synthetic, from biomass, with CCS
   - liquefied petroleum gas, synthetic, from coal
