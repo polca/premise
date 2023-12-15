@@ -8,11 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Black formatting
-        uses: lgeiger/black-action@v1.0.1
-        with:
-          args: "./"
-
       - name: Run isort
         uses: jamescurtin/isort-action@master
         with:
