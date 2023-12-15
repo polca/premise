@@ -1291,6 +1291,7 @@ class NewDatabase:
                     system_model=self.system_model,
                 )
                 external_scenario.create_custom_markets()
+                external_scenario.relink_datasets()
                 scenario["database"] = external_scenario.database
             print(f"Log file of exchanges saved under {DATA_DIR / 'logs'}.")
 
