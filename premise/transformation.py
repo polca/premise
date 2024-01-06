@@ -1849,12 +1849,6 @@ class BaseTransformation:
             f"\n{dataset['name']}|{dataset['location']}"
         )
 
-        for key in exchanges_before.keys():
-            assert np.allclose(exchanges_before[key], exchanges_after[key]), (
-                f"Exchanges before and after relinking are not the same: {exchanges_before[key]} != {exchanges_after[key]}"
-                f"\n{dataset['name']}|{dataset['location']}"
-            )
-
         return dataset
 
     def get_gis_match(

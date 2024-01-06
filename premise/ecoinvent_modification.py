@@ -1537,8 +1537,7 @@ class NewDatabase:
                 results = pool.starmap(_prepare_database, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
-                cache.update(results[s][1])
+                self.scenarios[s] = results[s]
 
             with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
                 args = [
