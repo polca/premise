@@ -515,6 +515,9 @@ def _export_to_matrices(obj):
 def _export_to_simapro(obj):
     obj.export_db_to_simapro()
 
+def _export_to_olca(obj):
+    obj.export_db_to_simapro(olca_compartments=True)
+
 
 class NewDatabase:
     """
@@ -1590,6 +1593,40 @@ class NewDatabase:
 
         for scen, scenario in enumerate(self.scenarios):
             Export(scenario, filepath, self.version).export_db_to_simapro()
+
+        # generate scenario report
+        self.generate_scenario_report()
+        # generate change report from logs
+        self.generate_change_report()
+
+    def write_db_to_olca(self, filepath: str = None):
+        """
+        Exports database as a Simapro CSV file to be imported in OpenLCA
+
+        :param filepath: path provided by the user to store the exported import file
+        :type filepath: str
+
+        """
+
+        filepath = filepath or Path(Path.cwd() / "export" / "olca")
+
+        if not os.path.exists(filepath):
+            os.makedirs(filepath)
+
+        print("Write Simapro import file(s) for OpenLCA.")
+
+        # use multiprocessing to speed up the process
+
+        for scenario in self.scenarios:
+            _prepare_database(
+                scenario=scenario,
+                db_name="database",
+                original_database=self.database,
+                keep_uncertainty_data=self.keep_uncertainty_data,
+            )
+
+        for scen, scenario in enumerate(self.scenarios):
+            Export(scenario, filepath, self.version).export_db_to_simapro(olca_compartments=True)
 
         # generate scenario report
         self.generate_scenario_report()

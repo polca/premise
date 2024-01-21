@@ -1197,7 +1197,7 @@ class Export:
 
         return dict_categories
 
-    def export_db_to_simapro(self):
+    def export_db_to_simapro(self, olca_compartments=False):
         if not os.path.exists(self.filepath):
             os.makedirs(self.filepath)
 
@@ -1251,7 +1251,6 @@ class Export:
             "Emissions to air",
             "Emissions to water",
             "Emissions to soil",
-            "Final waste flows",
             "Non material emission",
             "Social issues",
             "Economic issues",
@@ -1263,7 +1262,10 @@ class Export:
         simapro_units = get_simapro_units()
 
         # mapping between BW2 and Simapro sub-compartments
-        simapro_subs = get_simapro_compartments()
+        if olca_compartments:
+            simapro_subs = {}
+        else:
+            simapro_subs = get_simapro_compartments()
 
         filename = f"simapro_export_{self.model}_{self.scenario}_{self.year}.csv"
 
@@ -1493,7 +1495,7 @@ class Export:
                             if e["type"] == "biosphere" and e["categories"][0] == "air":
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
-                                        e["categories"][1], ""
+                                        e["categories"][1], e["categories"][1]
                                     )
                                 else:
                                     sub_compartment = ""
@@ -1527,7 +1529,7 @@ class Export:
                             ):
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
-                                        e["categories"][1], ""
+                                        e["categories"][1], e["categories"][1]
                                     )
                                 else:
                                     sub_compartment = ""
@@ -1561,7 +1563,7 @@ class Export:
                             ):
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
-                                        e["categories"][1], ""
+                                        e["categories"][1], e["categories"][1]
                                     )
                                 else:
                                     sub_compartment = ""
