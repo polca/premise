@@ -165,11 +165,13 @@ This is done as follows:
     The categorization of imported activities may differ from OpenLCA's
     original classification.
 
+
 The Simapro CSV files can be imported in OpenLCA in a new database like so:
 
 .. image:: olca_fig1.png
    :width: 500pt
    :align: center
+
 
 You will need to select "SimaproCSV_Import.csv" as mapping file to use.
 
@@ -177,11 +179,13 @@ You will need to select "SimaproCSV_Import.csv" as mapping file to use.
    :width: 500pt
    :align: center
 
+
 Finally, once imported, unlinked flows remain. They can be found under these highlighted folders:
 
 .. image:: olca_fig3.png
    :width: 500pt
    :align: center
+
 
 To link them, you need to import an additional mapping flow that you can find here
 ("Tools" > "Flow mapping" > "Open file").
@@ -189,6 +193,7 @@ To link them, you need to import an additional mapping flow that you can find he
 .. image:: olca_fig4.png
    :width: 500pt
    :align: center
+
 
 And then go to "Flow mapping" > "Apply on database".
 A few dozens of unlinked flows will remain. You may fix that by manually mapping them.
