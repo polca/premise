@@ -33,7 +33,14 @@ def get_lifetime(list_tech: Tuple) -> np.ndarray:
 
     dict_ = {k: v for k, v in dict_.items() if k in list_tech}
 
-    return np.array(list(dict_.values()), dtype=float)
+    val = []
+    for tech in list_tech:
+        if tech in dict_.keys():
+            val.append(dict_[tech])
+        else:
+            print(f"WARNING: {tech} not found in lifetimes.yaml")
+
+    return np.array(val, dtype=float)
 
 
 @lru_cache
@@ -48,15 +55,16 @@ def get_leadtime(list_tech: Tuple) -> np.ndarray:
     with open(IAM_LEADTIMES, "r", encoding="utf-8") as stream:
         dict_ = yaml.safe_load(stream)
 
-    # check that all technologies have a lead-time
-    if not all([k in dict_.keys() for k in list_tech]):
-        raise ValueError(
-            f"Not all technologies have a lead-time. "
-            f"Missing technologies: {set(list_tech) - set(dict_.keys())}"
-        )
     dict_ = {k: dict_[k] for k in list(list_tech)}
 
-    return np.array(list(dict_.values()), dtype=float)
+    val = []
+    for tech in list_tech:
+        if tech in dict_.keys():
+            val.append(dict_[tech])
+        else:
+            print(f"WARNING: {tech} not found in leadtimes.yaml")
+
+    return np.array(val, dtype=float)
 
 
 def fetch_avg_leadtime(leadtime: np.ndarray, shares: [np.ndarray, xr.DataArray]) -> int:
@@ -187,6 +195,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
     techs = tuple(data_full.variables.values.tolist())
     leadtime = get_leadtime(techs)
+    lifetime = get_lifetime(techs)
 
     for region in data.coords["region"].values:
         # we don't yet know the exact start year
@@ -206,7 +215,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 "start": year,
                 "end": year + fetch_avg_leadtime(leadtime, shares),
                 "start_avg": year,
-                "end_avg": year + fetch_avg_lifetime(lifetime=leadtime, shares=shares),
+                "end_avg": year + fetch_avg_lifetime(lifetime=lifetime, shares=shares),
             },
             (False, False, True, False): {
                 "start": year - fetch_avg_leadtime(leadtime, shares),
@@ -218,13 +227,13 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 "start": year,
                 "end": year + fetch_avg_leadtime(leadtime, shares),
                 "start_avg": year,
-                "end_avg": year + fetch_avg_lifetime(lifetime=leadtime, shares=shares),
+                "end_avg": year + fetch_avg_lifetime(lifetime=lifetime, shares=shares),
             },
             (False, False, True, True): {
                 "start": year - fetch_avg_leadtime(leadtime, shares),
                 "end": year,
                 "start_avg": year
-                - fetch_avg_lifetime(lifetime=leadtime, shares=shares),
+                - fetch_avg_lifetime(lifetime=lifetime, shares=shares),
                 "end_avg": year,
             },
             (True, False, False, False): {
@@ -278,19 +287,14 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         }
 
         try:
-            start = time_parameters[
+            params = time_parameters[
                 (bool(range_time), bool(duration), foresight, lead_time)
-            ]["start"]
-            end = time_parameters[
-                (bool(range_time), bool(duration), foresight, lead_time)
-            ]["end"]
+            ]
+            start = params["start"]
+            end = params["end"]
 
-            avg_start = time_parameters[
-                (bool(range_time), bool(duration), foresight, lead_time)
-            ]["start_avg"]
-            avg_end = time_parameters[
-                (bool(range_time), bool(duration), foresight, lead_time)
-            ]["end_avg"]
+            avg_start = params["start_avg"]
+            avg_end = params["end_avg"]
 
         except KeyError:
             print(
@@ -308,7 +312,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
         # we first need to calculate the average capital replacement rate of the market
         # which is here defined as the inverse of the production-weighted average lifetime
-        lifetime = get_lifetime(techs)
+
 
         # again was put in to deal with Nan values in data
         avg_lifetime = fetch_avg_lifetime(lifetime, shares)
