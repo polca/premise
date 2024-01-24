@@ -1810,66 +1810,67 @@ class Electricity(BaseTransformation):
 
         for tech, vars in load_electricity_variables().items():
             if not vars.get("exists in database", True):
-                original = list(
-                    ws.get_many(
-                        self.database,
-                        ws.equals("name", vars["proxy"]["name"]),
-                        ws.equals(
-                            "reference product", vars["proxy"]["reference product"]
-                        ),
-                    )
-                )[0]
+                if self.powerplant_map.get(tech) is not None:
+                    original = list(
+                        ws.get_many(
+                            self.database,
+                            ws.equals("name", vars["proxy"]["name"]),
+                            ws.equals(
+                                "reference product", vars["proxy"]["reference product"]
+                            ),
+                        )
+                    )[0]
 
-                # make a copy
-                new_dataset = copy.deepcopy(original)
-                new_dataset["name"] = vars["proxy"]["new name"]
-                new_dataset["code"] = str(uuid.uuid4().hex)
-                for e in ws.production(new_dataset):
-                    e["name"] = vars["proxy"]["new name"]
-                    if "input" in e:
-                        del e["input"]
-
-                # if `parameters` in dataset, delete them
-                if "parameters" in new_dataset:
-                    del new_dataset["parameters"]
-
-                new_dataset["comment"] = (
-                    "This dataset is a proxy dataset for a power plant. "
-                    "It is used to create missing power plant datasets."
-                )
-
-                # update efficiency
-                if "new efficiency" in vars["proxy"]:
-                    new_eff = vars["proxy"]["new efficiency"]
-                    ei_eff = self.find_fuel_efficiency(
-                        new_dataset, self.powerplant_fuels_map[tech], 3.6
-                    )
-                    rescale_exchanges(new_dataset, ei_eff / new_eff)
-
-                self.database.append(new_dataset)
-
-                new_datasets = self.fetch_proxies(
-                    name=vars["proxy"]["new name"],
-                    ref_prod=vars["proxy"]["reference product"],
-                    empty_original_activity=False,
-                )
-
-                for loc, ds in new_datasets.items():
-                    ds["name"] = vars["proxy"]["new name"]
-                    ds["code"] = str(uuid.uuid4().hex)
-                    for e in ws.production(ds):
+                    # make a copy
+                    new_dataset = copy.deepcopy(original)
+                    new_dataset["name"] = vars["proxy"]["new name"]
+                    new_dataset["code"] = str(uuid.uuid4().hex)
+                    for e in ws.production(new_dataset):
                         e["name"] = vars["proxy"]["new name"]
                         if "input" in e:
                             del e["input"]
 
-                    ds["comment"] = (
+                    # if `parameters` in dataset, delete them
+                    if "parameters" in new_dataset:
+                        del new_dataset["parameters"]
+
+                    new_dataset["comment"] = (
                         "This dataset is a proxy dataset for a power plant. "
                         "It is used to create missing power plant datasets."
                     )
 
-                    self.add_to_index(ds)
+                    # update efficiency
+                    if "new efficiency" in vars["proxy"]:
+                        new_eff = vars["proxy"]["new efficiency"]
+                        ei_eff = self.find_fuel_efficiency(
+                            new_dataset, self.powerplant_fuels_map[tech], 3.6
+                        )
+                        rescale_exchanges(new_dataset, ei_eff / new_eff)
 
-                self.database.extend(new_datasets.values())
+                    self.database.append(new_dataset)
+
+                    new_datasets = self.fetch_proxies(
+                        name=vars["proxy"]["new name"],
+                        ref_prod=vars["proxy"]["reference product"],
+                        empty_original_activity=False,
+                    )
+
+                    for loc, ds in new_datasets.items():
+                        ds["name"] = vars["proxy"]["new name"]
+                        ds["code"] = str(uuid.uuid4().hex)
+                        for e in ws.production(ds):
+                            e["name"] = vars["proxy"]["new name"]
+                            if "input" in e:
+                                del e["input"]
+
+                        ds["comment"] = (
+                            "This dataset is a proxy dataset for a power plant. "
+                            "It is used to create missing power plant datasets."
+                        )
+
+                        self.add_to_index(ds)
+
+                    self.database.extend(new_datasets.values())
 
         mapping = InventorySet(self.database, model=self.model)
         self.powerplant_map = mapping.generate_powerplant_map()
