@@ -82,29 +82,13 @@ def flag_activities_to_adjust(
 
     # add potential technosphere or biosphere filters
     if "efficiency" in dataset_vars:
-        dataset["adjust efficiency"] = True
+        if dataset_vars["efficiency"] is not None:
 
-        d_tech_filters = {
-            k.get("variable"): [
-                k.get("includes").get("technosphere"),
-                {
-                    region: find_iam_efficiency_change(
-                        k["variable"],
-                        region,
-                        scenario_data["efficiency"],
-                        year,
-                    )
-                    for region in regions
-                },
-            ]
-            for k in dataset_vars["efficiency"]
-            if "technosphere" in k.get("includes", {})
-        }
+            dataset["adjust efficiency"] = True
 
-        d_tech_filters.update(
-            {
+            d_tech_filters = {
                 k.get("variable"): [
-                    None,
+                    k.get("includes").get("technosphere"),
                     {
                         region: find_iam_efficiency_change(
                             k["variable"],
@@ -116,31 +100,31 @@ def flag_activities_to_adjust(
                     },
                 ]
                 for k in dataset_vars["efficiency"]
-                if "includes" not in k
+                if "technosphere" in k.get("includes", {})
             }
-        )
 
-        d_bio_filters = {
-            k.get("variable"): [
-                k.get("includes").get("biosphere"),
+            d_tech_filters.update(
                 {
-                    region: find_iam_efficiency_change(
-                        k["variable"],
-                        region,
-                        scenario_data["efficiency"],
-                        year,
-                    )
-                    for region in regions
-                },
-            ]
-            for k in dataset_vars["efficiency"]
-            if "biosphere" in k.get("includes", {})
-        }
+                    k.get("variable"): [
+                        None,
+                        {
+                            region: find_iam_efficiency_change(
+                                k["variable"],
+                                region,
+                                scenario_data["efficiency"],
+                                year,
+                            )
+                            for region in regions
+                        },
+                    ]
+                    for k in dataset_vars["efficiency"]
+                    if "includes" not in k
+                }
+            )
 
-        d_bio_filters.update(
-            {
+            d_bio_filters = {
                 k.get("variable"): [
-                    None,
+                    k.get("includes").get("biosphere"),
                     {
                         region: find_iam_efficiency_change(
                             k["variable"],
@@ -152,15 +136,33 @@ def flag_activities_to_adjust(
                     },
                 ]
                 for k in dataset_vars["efficiency"]
-                if "includes" not in k
+                if "biosphere" in k.get("includes", {})
             }
-        )
 
-        if d_tech_filters:
-            dataset["technosphere filters"] = d_tech_filters
+            d_bio_filters.update(
+                {
+                    k.get("variable"): [
+                        None,
+                        {
+                            region: find_iam_efficiency_change(
+                                k["variable"],
+                                region,
+                                scenario_data["efficiency"],
+                                year,
+                            )
+                            for region in regions
+                        },
+                    ]
+                    for k in dataset_vars["efficiency"]
+                    if "includes" not in k
+                }
+            )
 
-        if d_bio_filters:
-            dataset["biosphere filters"] = d_bio_filters
+            if d_tech_filters:
+                dataset["technosphere filters"] = d_tech_filters
+
+            if d_bio_filters:
+                dataset["biosphere filters"] = d_bio_filters
 
     if dataset_vars["replaces"]:
         dataset["replaces"] = dataset_vars["replaces"]
@@ -251,7 +253,6 @@ def adjust_efficiency(dataset: dict) -> dict:
                     try:
                         scaling_factor = 1 / v[1][dataset["location"]]
                     except KeyError as err:
-                        print(dataset["name"], dataset["location"], dataset["regions"])
                         print(
                             f"No efficiency factor provided for dataset {dataset['name']} in {dataset['location']}"
                         )
@@ -454,9 +455,7 @@ class ExternalScenario(BaseTransformation):
                     self.write_log(act)
                     self.add_to_index(act)
 
-            # remove "adjust efficiency" tag
-            if "adjust efficiency" in ds:
-                del ds["adjust efficiency"]
+            # remove "regionalize" tag
             if "regionalize" in ds:
                 del ds["regionalize"]
 
@@ -651,10 +650,10 @@ class ExternalScenario(BaseTransformation):
                             possible_locations = [
                                 *regions,
                                 *ecoinvent_regions,
-                                "RER",
-                                "Europe without Switzerland",
                                 "RoW",
                                 "GLO",
+                                "RER",
+                                "Europe without Switzerland",
                                 # add all ecoinvent locations
                                 *[fetch_loc(loc) for loc in list(self.geo.geo.keys())],
                             ]
@@ -821,10 +820,10 @@ class ExternalScenario(BaseTransformation):
             possible_locations = [
                 region,
                 *ecoinvent_regions,
-                "RER",
-                "Europe without Switzerland",
                 "RoW",
                 "GLO",
+                "RER",
+                "Europe without Switzerland",
                 # add all ecoinvent locations
                 *[fetch_loc(loc) for loc in list(self.geo.geo.keys())],
             ]
@@ -996,10 +995,10 @@ class ExternalScenario(BaseTransformation):
                             possible_locations = [
                                 region,
                                 *ecoinvent_regions,
-                                "RER",
-                                "Europe without Switzerland",
                                 "RoW",
                                 "GLO",
+                                "RER",
+                                "Europe without Switzerland",
                                 # add all ecoinvent locations
                                 *[fetch_loc(loc) for loc in list(self.geo.geo.keys())],
                             ]
