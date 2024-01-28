@@ -22,7 +22,6 @@ from .transformation import (
     uuid,
     ws,
 )
-from .utils import eidb_label
 from .validation import BiomassValidation
 
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
@@ -148,13 +147,7 @@ class Biomass(BaseTransformation):
                 "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
                 "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
                 "unit": "kilogram",
-                "database": eidb_label(
-                    self.model,
-                    self.scenario,
-                    self.year,
-                    self.version,
-                    self.system_model,
-                ),
+                "database": "premise",
                 "code": str(uuid.uuid4().hex),
                 "exchanges": [
                     {

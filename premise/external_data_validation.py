@@ -279,6 +279,7 @@ def check_config_file(datapackages):
                                 Optional("operator"): str,
                             }
                         ],
+                        Optional("is fuel"): dict,
                         Optional("replacement ratio"): float,
                         Optional("waste market"): bool,
                         Optional("efficiency"): [

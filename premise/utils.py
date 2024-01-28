@@ -65,7 +65,7 @@ class HiddenPrints:
 
 
 def eidb_label(
-    model: str, scenario: str, year: int, version: str, system_model: str = "cutoff"
+    model: str, scenario: str, year: int, version: str, system_model: str = "cutoff", datapackages = None
 ) -> str:
     """
     Return a label to name a scenario.
@@ -76,7 +76,12 @@ def eidb_label(
     :param system_model: cutoff or consequential
     :return: scenario label, str.
     """
-    return f"ecoinvent_{system_model}_{version}_{model}_{scenario}_{year}"
+
+    if datapackages is None:
+        name = f"ecoinvent_{system_model}_{version}_{model}_{scenario}_{year}"
+    else:
+        name = f"ecoinvent_{system_model}_{version}_{model}_{scenario}_{year}_{'_'.join([dp.descriptor.get('name', 'External model') for dp in datapackages])}"
+    return name
 
 
 def load_constants():

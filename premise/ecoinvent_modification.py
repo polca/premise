@@ -1461,6 +1461,7 @@ class NewDatabase:
                     scenario["year"],
                     version=self.version,
                     system_model=self.system_model,
+                    datapackages=self.datapackages
                 )
                 for scenario in self.scenarios
             ]
@@ -1644,7 +1645,6 @@ class NewDatabase:
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
         # use multiprocessing to speed up the process
-
         for scenario in self.scenarios:
             _prepare_database(
                 scenario=scenario,

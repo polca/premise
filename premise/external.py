@@ -22,7 +22,6 @@ from .transformation import (
     get_shares_from_production_volume,
     rescale_exchanges,
 )
-from .utils import eidb_label
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -480,6 +479,7 @@ class ExternalScenario(BaseTransformation):
                 new_ref=ref_prod,
                 ratio=values.get("replacement ratio", 1),
                 regions=values.get("regions", regions),
+                isfuel=values.get("is fuel"),
             )
 
         # adjust efficiency of datasets
@@ -509,7 +509,7 @@ class ExternalScenario(BaseTransformation):
             "reference product": market["reference product"],
             "unit": market["unit"],
             "location": region,
-            "database": eidb_label(self.model, self.scenario, self.year, self.version),
+            "database": "premise",
             "code": str(uuid.uuid4().hex),
             "exchanges": [
                 {
@@ -942,6 +942,7 @@ class ExternalScenario(BaseTransformation):
                     pathways = market_vars["includes"]
                     variables = fetch_var(config_file, pathways)
                     waste_market = market_vars.get("waste market", False)
+                    isfuel = {}
 
                     # Check if there are regions we should not
                     # create a market for
@@ -1017,7 +1018,7 @@ class ExternalScenario(BaseTransformation):
 
                             except KeyError:
                                 print(
-                                    f"Could not fond suppliers for {name}, {ref_prod}, from {region}"
+                                    f"Could not find suppliers for {name}, {ref_prod}, from {region}"
                                 )
                                 continue
 
@@ -1031,6 +1032,21 @@ class ExternalScenario(BaseTransformation):
                                         suppliers, float(supply_share)
                                     )
                                 )
+
+                                if "is fuel" in market_vars:
+                                    if region not in isfuel:
+                                        isfuel[region] = {}
+                                    isfuel[region].update(
+                                        {
+                                                pathway: {
+                                                    f: val * supply_share
+                                                    for f, val in market_vars[
+                                                        "is fuel"
+                                                    ][pathway].items()
+                                                }
+                                            }
+                                    )
+
 
                         if len(new_excs) > 0:
                             total = 0
@@ -1106,6 +1122,7 @@ class ExternalScenario(BaseTransformation):
                             ratio=market_vars.get("replacement ratio", 1),
                             regions=regions,
                             waste_process=waste_market,
+                            isfuel=isfuel,
                         )
 
     def relink_to_new_datasets(
@@ -1117,6 +1134,7 @@ class ExternalScenario(BaseTransformation):
         ratio,
         regions: list,
         waste_process: bool = False,
+        isfuel: dict = None
     ) -> None:
         """
         Replaces exchanges that match `old_name` and `old_ref` with exchanges that
@@ -1126,11 +1144,17 @@ class ExternalScenario(BaseTransformation):
         :param new_name: `name`of the new provider
         :param new_ref: `product` of the new provider
         :param regions: list of IAM regions the new provider can originate from
+        :param ratio: ratio of the new provider to the old provider
+        :param replaces: list of dictionaries with `name`, `product`, `location`, `unit` of the old provider
+        :param replaces_in: list of dictionaries with `name`, `product`, `location`, `unit` of the datasets to replace
+        :param waste_process: True if the process is a waste process
+        :param isfuel: True if the process is a fuel process
 
         """
 
         datasets = []
         exchanges_replaced = []
+        fuel_amount = 0
 
         if replaces_in is not None:
             for k in replaces_in:
@@ -1145,7 +1169,6 @@ class ExternalScenario(BaseTransformation):
                                 list_fltr.append(ws.equals(field, k[field]))
                             else:
                                 list_fltr.append(ws.contains(field, k[field]))
-
                             list_fltr.append(ws.contains(field, k[field]))
                 datasets.extend(list(ws.get_many(self.database, *list_fltr)))
         else:
@@ -1182,7 +1205,8 @@ class ExternalScenario(BaseTransformation):
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
-                exc for exc in dataset["exchanges"] if exc not in filtered_exchanges
+                exc for exc in dataset["exchanges"]
+                if exc not in filtered_exchanges
             ]
 
             new_exchanges = []
@@ -1234,6 +1258,9 @@ class ExternalScenario(BaseTransformation):
                                 "product": new_ref,
                             }
                         )
+
+                        if isfuel:
+                            fuel_amount += (exc["amount"] * ratio * share)
                 else:
                     new_exchanges.append(exc)
 
@@ -1241,7 +1268,35 @@ class ExternalScenario(BaseTransformation):
                 # sum up exchanges with the same name, product, and location
                 new_exchanges = self.sum_exchanges(new_exchanges)
 
+            # if it is a fuel process, we need to modify biogenic and fossil CO2
+            # emissions of processes receiving that new fuel.
+            if isfuel:
+                if len(filtered_exchanges) > 0:
+                    if dataset["location"] in isfuel:
+                        bio_co2 = sum(
+                            x["Carbon dioxide, non-fossil"] * fuel_amount
+                            for x in isfuel[dataset["location"]].values()
+                        )
+                        if ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, non-fossil")) is None:
+                            dataset["exchanges"].append(
+                                {
+                                    "name": "Carbon dioxide, non-fossil",
+                                    "amount": bio_co2,
+                                    "unit": "kilogram",
+                                    "type": "biosphere",
+                                }
+                            )
+                        else:
+                            for exc in ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, non-fossil")):
+                                exc["amount"] += bio_co2
+
+                        for exc in ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, fossil")):
+                                exc["amount"] -= bio_co2
+
+
+
             dataset["exchanges"].extend(new_exchanges)
+            fuel_amount = 0
 
         # if no "replaces in" is given, we consider that the dataset to
         # be replaced should be emptied and a link to the new dataset
