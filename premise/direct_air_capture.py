@@ -3,6 +3,7 @@ Integrates projections regarding direct air capture and storage.
 """
 
 import copy
+
 import yaml
 
 from .filesystem_constants import DATA_DIR

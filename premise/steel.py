@@ -6,8 +6,8 @@ from typing import Dict, List
 from .data_collection import IAMDataCollection
 from .logger import create_logger
 from .transformation import BaseTransformation, ws
-from .validation import SteelValidation
 from .utils import rescale_exchanges
+from .validation import SteelValidation
 
 logger = create_logger("steel")
 

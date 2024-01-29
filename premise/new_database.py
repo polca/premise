@@ -16,10 +16,9 @@ from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import List, Union
 
+import bw2data
 import datapackage
 import yaml
-
-import bw2data
 
 from . import __version__
 from .biomass import _update_biomass

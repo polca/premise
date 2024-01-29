@@ -21,10 +21,7 @@ from .inventory_imports import (
     get_biosphere_code,
     get_correspondence_bio_flows,
 )
-from .transformation import (
-    BaseTransformation,
-    get_shares_from_production_volume,
-)
+from .transformation import BaseTransformation, get_shares_from_production_volume
 from .utils import rescale_exchanges
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
