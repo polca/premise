@@ -141,7 +141,7 @@ class BaseDatasetValidator:
         for ds in original_activities:
             if ds not in new_activities:
                 message = f"Dataset {ds} was lost during transformation"
-                self.write_log(ds, "lost dataset", message)
+                self.write_log({"name": ds[0], "reference product": ds[1], "location": ds[2]}, "lost dataset", message)
 
         # Ensure no datasets have null or empty values for required keys
         required_keys = ["name", "location", "reference product", "unit", "exchanges"]
