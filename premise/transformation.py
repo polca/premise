@@ -129,8 +129,11 @@ def get_shares_from_production_volume(
         ] = production_volume
         total_production_volume += production_volume
 
+    def nonzero(x):
+        return x if x != 0.0 else 1.0
+
     for dataset in dict_act:
-        dict_act[dataset] /= total_production_volume
+        dict_act[dataset] /= nonzero(total_production_volume)
 
     return dict_act
 
@@ -1061,12 +1064,18 @@ class BaseTransformation:
 
             pvs = []
             for o in lst:
-                ds = ws.get_one(
-                    self.database,
-                    ws.equals("name", o[0]),
-                    ws.equals("reference product", o[1]),
-                    ws.equals("location", o[2]),
-                )
+                try:
+                    ds = ws.get_one(
+                        self.database,
+                        ws.equals("name", o[0]),
+                        ws.equals("reference product", o[1]),
+                        ws.equals("location", o[2]),
+                    )
+
+                except ws.NoResults:
+                    raise ws.NoResults(
+                        f"Can't find {o[0]} {o[1]} {o[2]} in the database"
+                    )
 
                 for exc in ds["exchanges"]:
                     if exc["type"] == "production":
