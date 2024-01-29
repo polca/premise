@@ -16,7 +16,11 @@ from wurst import searching as ws
 from .clean_datasets import get_biosphere_flow_uuid
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
-from .inventory_imports import generate_migration_maps, get_correspondence_bio_flows, get_biosphere_code
+from .inventory_imports import (
+    generate_migration_maps,
+    get_biosphere_code,
+    get_correspondence_bio_flows,
+)
 from .transformation import (
     BaseTransformation,
     get_shares_from_production_volume,
