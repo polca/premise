@@ -16,7 +16,7 @@ from wurst import searching as ws
 from .clean_datasets import get_biosphere_flow_uuid
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
-from .inventory_imports import generate_migration_maps, get_correspondence_bio_flows
+from .inventory_imports import generate_migration_maps, get_correspondence_bio_flows, get_biosphere_code
 from .transformation import (
     BaseTransformation,
     get_shares_from_production_volume,
@@ -381,6 +381,7 @@ class ExternalScenario(BaseTransformation):
         )
         self.datapackages = external_scenarios
         self.external_scenarios_data = external_scenarios_data
+        self.biosphere_flows = get_biosphere_code(self.version)
 
         for datapackage_number, datapackage in enumerate(self.datapackages):
             external_scenario_regions = self.external_scenarios_data[
@@ -1284,6 +1285,12 @@ class ExternalScenario(BaseTransformation):
                                     "amount": bio_co2,
                                     "unit": "kilogram",
                                     "type": "biosphere",
+                                    "input": (
+                                        "biosphere3",
+                                        self.biosphere_flows[
+                                            ("Carbon dioxide, non-fossil", "air", "unspecified", "kilogram")
+                                        ],
+                                    ),
                                 }
                             )
                         else:
