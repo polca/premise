@@ -16,7 +16,7 @@ logger = create_logger("validation")
 def load_electricity_keys():
     # load electricity keys from data/utils/validation/electricity.yaml
 
-    with open(DATA_DIR / "utils/validation/electricity.yaml") as f:
+    with open(DATA_DIR / "utils/validation/electricity.yaml", encoding="utf-8") as f:
         electricity_keys = yaml.safe_load(f)
 
     return electricity_keys
@@ -25,7 +25,7 @@ def load_electricity_keys():
 def load_waste_keys():
     # load waste keys from data/utils/validation/waste flows.yaml
 
-    with open(DATA_DIR / "utils/validation/waste flows.yaml") as f:
+    with open(DATA_DIR / "utils/validation/waste flows.yaml", encoding="utf-8") as f:
         waste_keys = yaml.safe_load(f)
 
     return waste_keys
@@ -34,7 +34,7 @@ def load_waste_keys():
 def load_waste_flows_exceptions():
     # load waste flows exceptions.yaml from data/utils/validation/waste flows exceptions.yaml
 
-    with open(DATA_DIR / "utils/validation/waste flows exceptions.yaml") as f:
+    with open(DATA_DIR / "utils/validation/waste flows exceptions.yaml", encoding="utf-8") as f:
         waste_flows_exceptions = yaml.safe_load(f)
 
     return waste_flows_exceptions
@@ -43,7 +43,7 @@ def load_waste_flows_exceptions():
 def load_circular_exceptions():
     # load circular exceptions.yaml from data/utils/validation/circular exceptions.yaml.yaml
 
-    with open(DATA_DIR / "utils/validation/circular exceptions.yaml") as f:
+    with open(DATA_DIR / "utils/validation/circular exceptions.yaml", encoding="utf-8") as f:
         circular_exceptions = yaml.safe_load(f)
 
     return circular_exceptions
@@ -168,8 +168,8 @@ class BaseDatasetValidator:
                 self.write_log(dataset, "orphaned dataset", message)
 
     def check_new_location(self):
-        original_locations = set([ds["location"] for ds in self.original_database])
-        new_locations = set([ds["location"] for ds in self.database])
+        original_locations = set(ds["location"] for ds in self.original_database)
+        new_locations = set(ds["location"] for ds in self.database)
 
         for loc in new_locations:
             if loc not in original_locations:
@@ -204,9 +204,9 @@ class BaseDatasetValidator:
                 if exchange.get("amount", 0) < 0 and exchange["type"] == "production":
                     # check that `name` and `product` field of `exchange`
                     # do not contain substring in `WASTE_KEYS`
-                    if not any([x in exchange["name"].lower() for x in WASTE_KEYS]):
+                    if not any(x in exchange["name"].lower() for x in WASTE_KEYS):
                         if not any(
-                            [x in exchange["product"].lower() for x in WASTE_KEYS]
+                            x in exchange["product"].lower() for x in WASTE_KEYS
                         ):
                             message = f"Dataset {dataset['name']} has a negative production amount."
                             self.write_log(dataset, "negative production", message)
@@ -437,10 +437,10 @@ class ElectricityValidation(BaseDatasetValidator):
                 and dataset["location"] != "World"
             ):
                 total = sum(
-                    [
+
                         x["amount"] if _is_electricity(x, dataset) else 0
                         for x in dataset["exchanges"]
-                    ]
+
                 )
                 if total < 0.99 or total > 1.15:
                     message = f"Electricity market inputs sum to {total}."
@@ -489,7 +489,7 @@ class ElectricityValidation(BaseDatasetValidator):
                         )
                         or not input_exc[0]["location"] in self.regions
                     ):
-                        message = f"Electricity market input is incorrect."
+                        message = "Electricity market input is incorrect."
                         self.write_log(
                             dataset, "incorrect old electricity market input", message
                         )
@@ -507,14 +507,14 @@ class ElectricityValidation(BaseDatasetValidator):
         # according to the ecoinvent-IAM geo-linking rules
         if dataset_loc in ["RER", "Europe without Switzerland", "FR"]:
             if exc_loc not in ["EUR", "WEU", "EU-15"]:
-                message = f"Electricity market input has incorrect location."
+                message = "Electricity market input has incorrect location."
                 self.write_log(
                     {"location": dataset_loc},
                     "incorrect old electricity market input",
                     message,
                 )
         if exc_loc != self.geo.ecoinvent_to_iam_location(dataset_loc):
-            message = f"Electricity market input has incorrect location."
+            message = "Electricity market input has incorrect location."
             self.write_log(
                 {"location": dataset_loc},
                 "incorrect old electricity market input",
@@ -571,20 +571,20 @@ class ElectricityValidation(BaseDatasetValidator):
                 and ds["location"] != "World"
             ):
                 pv_sum = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["name"].startswith("electricity production, photovoltaic")
-                    ]
+
                 )
                 mv_sum = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["name"].startswith(
                             "market group for electricity, medium voltage"
                         )
-                    ]
+
                 )
 
                 if pv_sum + mv_sum < 1:
@@ -641,7 +641,7 @@ class ElectricityValidation(BaseDatasetValidator):
                         co2 -= e["amount"]
 
                 actual_co2 = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["name"].startswith("Carbon dioxide")
@@ -653,7 +653,7 @@ class ElectricityValidation(BaseDatasetValidator):
                             ],
                         )[0]
                         == "air"
-                    ]
+
                 )
 
                 if fuel_energy > 0:
@@ -703,11 +703,11 @@ class SteelValidation(BaseDatasetValidator):
                 and ds["location"] != "World"
             ):
                 total = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere" and x["unit"] == "kilogram"
-                    ]
+
                 )
                 if total < 0.99 or total > 1.1:
                     message = f"Steel market inputs sum to {total}."
@@ -730,13 +730,13 @@ class SteelValidation(BaseDatasetValidator):
                 ).values.item(0)
 
                 total = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere"
                         and x["unit"] == "kilogram"
                         and "electric" in x["name"]
-                    ]
+
                 )
                 # check that the total is roughly equal to the IAM projection
                 if math.isclose(total, eaf_steel, rel_tol=0.01) is False:
@@ -758,11 +758,11 @@ class SteelValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
             ):
                 electricity = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere" and x["unit"] == "kilowatt hour"
-                    ]
+
                 )
                 # if electricity use is inferior to 0.444 MWh/kg
                 # or superior to 0.8 MWh/kg, log a warning
@@ -791,32 +791,32 @@ class SteelValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
             ):
                 energy = sum(
-                    [
+
                         exc["amount"]
                         for exc in ds["exchanges"]
                         if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
-                    ]
+
                 )
                 # add input of coal
                 energy += sum(
-                    [
+
                         exc["amount"] * 26.4
                         for exc in ds["exchanges"]
                         if "hard coal" in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
-                    ]
+
                 )
 
                 # add input of natural gas
                 energy += sum(
-                    [
+
                         exc["amount"] * 36
                         for exc in ds["exchanges"]
                         if "natural gas" in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "cubic meter"
-                    ]
+
                 )
 
                 if energy < 8.99:
@@ -851,13 +851,13 @@ class CementValidation(BaseDatasetValidator):
                 and ds["location"] != "World"
             ):
                 total = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere"
                         and x["unit"] == "kilogram"
                         and "cement" in x["name"].lower()
-                    ]
+
                 )
                 if total < 0.99 or total > 1.1:
                     message = f"Cement market inputs sum to {total}."
@@ -878,83 +878,83 @@ class CementValidation(BaseDatasetValidator):
                 and "clinker" in ds["reference product"]
             ):
                 energy = sum(
-                    [
+
                         exc["amount"]
                         for exc in ds["exchanges"]
                         if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
-                    ]
+
                 )
 
                 # add input of coal
                 energy += sum(
-                    [
+
                         exc["amount"] * 26.4
                         for exc in ds["exchanges"]
                         if "hard coal" in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                         and exc["amount"] > 0
-                    ]
+
                 )
 
                 # add input of heavy and light fuel oil
                 energy += sum(
-                    [
+
                         exc["amount"] * 41.9
                         for exc in ds["exchanges"]
                         if "fuel oil" in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                         and exc["amount"] > 0
-                    ]
+
                 )
 
                 # add lignite
                 energy += sum(
-                    [
+
                         exc["amount"] * 10.5
                         for exc in ds["exchanges"]
                         if "lignite" in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                         and exc["amount"] > 0
-                    ]
+
                 )
 
                 # add petcoke
                 energy += sum(
-                    [
+
                         exc["amount"] * 35.2
                         for exc in ds["exchanges"]
                         if "petroleum coke" in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                         and exc["amount"] > 0
-                    ]
+
                 )
 
                 # add input of natural gas
                 energy += sum(
-                    [
+
                         exc["amount"] * 36
                         for exc in ds["exchanges"]
                         if "natural gas" in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "cubic meter"
                         and exc["amount"] > 0
-                    ]
+
                 )
 
                 # add input of waste plastic, mixture
                 energy += sum(
-                    [
+
                         exc["amount"] * 17 * -1
                         for exc in ds["exchanges"]
                         if exc.get("product") == "waste plastic, mixture"
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                         and exc["amount"] < 0
-                    ]
+
                 )
 
                 if energy < 2.99:
@@ -987,11 +987,11 @@ class BiomassValidation(BaseDatasetValidator):
                 and ds["location"] != "World"
             ):
                 total = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere" and x["unit"] == "kilogram"
-                    ]
+
                 )
                 if total < 0.99 or total > 1.1:
                     message = f"Biomass market inputs sum to {total}."
@@ -1018,20 +1018,20 @@ class BiomassValidation(BaseDatasetValidator):
                 ).values.item(0)
 
                 residual_biomass = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere"
                         and x["unit"] == "kilogram"
                         and "residue" in x["name"].lower()
-                    ]
+
                 )
                 total = sum(
-                    [
+
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere" and x["unit"] == "kilogram"
-                    ]
+
                 )
                 # check that the total is roughly equal to the IAM projection
                 if (

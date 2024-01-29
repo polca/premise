@@ -16,7 +16,7 @@ config = load_constants()
 
 
 def check_inventories(
-    config: dict,
+    configuration: dict,
     inventory_data: list,
     scenario_data: dict,
     database: list,
@@ -24,7 +24,7 @@ def check_inventories(
 ):
     """
     Check that the inventory data is valid.
-    :param config: config file
+    :param configuration: config file
     :param inventory_data: inventory data to check
     :param scenario_data: external scenario data
     :param year: scenario year
@@ -51,10 +51,10 @@ def check_inventories(
                 "variable"
             ),
         }
-        for val in config["production pathways"].values()
+        for val in configuration["production pathways"].values()
     }
 
-    if "regionalize" in config:
+    if "regionalize" in configuration:
         d_datasets.update(
             {
                 (val["name"], val["reference product"]): {
@@ -63,13 +63,13 @@ def check_inventories(
                     ),
                     "regionalize": True,
                     "new dataset": False,
-                    "except regions": config["regionalize"].get("except regions", []),
+                    "except regions": configuration["regionalize"].get("except regions", []),
                     "efficiency": val.get("efficiency", []),
                     "replaces": val.get("replaces", []),
                     "replaces in": val.get("replaces in", []),
                     "replacement ratio": val.get("replacement ratio", 1),
                 }
-                for val in config["regionalize"]["datasets"]
+                for val in configuration["regionalize"]["datasets"]
             }
         )
 
@@ -130,16 +130,16 @@ def check_datapackage(datapackages: list):
             i.name for i in datapackage.resources
         ] and "scenario_data" not in [i.name for i in datapackage.resources]:
             raise ValueError(
-                f"If the resource 'config' is present in the datapackage,"
-                f"so must the resource 'scenario_data'."
+                "If the resource 'config' is present in the datapackage,"
+                "so must the resource 'scenario_data'."
             )
 
         if "scenario_data" in [
             i.name for i in datapackage.resources
         ] and "config" not in [i.name for i in datapackage.resources]:
             raise ValueError(
-                f"If the resource 'scenario_data' is present in the datapackage,"
-                f" so must the resource 'config'."
+                "If the resource 'scenario_data' is present in the datapackage,"
+                " so must the resource 'config'."
             )
 
         assert (
@@ -161,16 +161,16 @@ def check_datapackage(datapackages: list):
             )
 
 
-def list_all_iam_regions(config):
+def list_all_iam_regions(configuration):
     """
     List all IAM regions in the config file.
-    :param config: config file
+    :param configuration: config file
     :return: list of IAM regions
     """
 
     list_regions = []
 
-    for k, v in config.items():
+    for k, v in configuration.items():
         if k.startswith("LIST_"):
             list_regions.extend(v)
 
@@ -337,11 +337,11 @@ def check_config_file(datapackages):
                         )
                         for a in market["includes"]
                     ]
-                except KeyError:
+                except KeyError as err:
                     raise ValueError(
                         "One of more providers listed under `markets/includes` is/are not listed "
                         "under `production pathways`."
-                    )
+                    ) from err
 
     needs_imported_inventories = [False for _ in datapackages]
 
@@ -381,13 +381,11 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                         f"{iam_scen} can be used with more than one external scenarios: {lst_ext_scen}."
                     )
                     print(
-                        f"Choose the scenario to associate {iam_scen} with: {[(i, j) for i, j in enumerate(lst_ext_scen)]}."
+                        f"Choose the scenario to associate {iam_scen} with: {list(enumerate(lst_ext_scen))}."
                     )
                     usr_input = ""
 
-                    while usr_input not in [
-                        str(i) for i in range(0, len(lst_ext_scen))
-                    ]:
+                    while usr_input not in list(enumerate(lst_ext_scen)):
                         usr_input = input("Scenario no.: ")
                     rev_scenarios[iam_scen] = [lst_ext_scen[int(usr_input)]]
 
@@ -430,7 +428,7 @@ def check_scenario_data_file(datapackages, iam_scenarios):
             )
 
         years_cols = []
-        for h, header in enumerate(scenario_headers):
+        for header in scenario_headers:
             try:
                 years_cols.append(int(header))
             except ValueError:
@@ -515,7 +513,7 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                 "The following scenarios listed in the json file "
                 "are not available in the scenario data file:"
             )
-            print(set([s for s in scenarios if s not in available_scenarios]))
+            print(set(s for s in scenarios if s not in available_scenarios))
             raise ValueError(
                 f"One or several scenarios are not available in the scenario file no. {i + 1}."
             )
@@ -597,7 +595,7 @@ def get_recursively(search_dict, field):
     return fields_found
 
 
-def check_external_scenarios(datapackage: list, iam_scenarios: list) -> list:
+def check_external_scenarios(datapackage: list, iam_scenarios: list) -> tuple:
     """
     Check that all required keys and values are found to add a custom scenario.
     :param datapackage: scenario dictionary
@@ -616,8 +614,8 @@ def check_external_scenarios(datapackage: list, iam_scenarios: list) -> list:
     return datapackage, iam_scenarios
 
 
-def fetch_dataset_description_from_production_pathways(config, item):
-    for p, v in config["production pathways"].items():
+def fetch_dataset_description_from_production_pathways(configuration: dict, item: str) -> tuple:
+    for p, v in configuration["production pathways"].items():
         if p == item:
             if "exists in original database" not in v["ecoinvent alias"]:
                 v["ecoinvent alias"].update({"exists in original database": True})
@@ -631,3 +629,4 @@ def fetch_dataset_description_from_production_pathways(config, item):
                 v["ecoinvent alias"]["exists in original database"],
                 v["ecoinvent alias"]["new dataset"],
             )
+    return None, None, None, None

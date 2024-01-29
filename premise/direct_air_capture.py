@@ -3,9 +3,6 @@ Integrates projections regarding direct air capture and storage.
 """
 
 import copy
-
-import numpy as np
-import wurst
 import yaml
 
 from .filesystem_constants import DATA_DIR
@@ -15,10 +12,10 @@ from .transformation import (
     IAMDataCollection,
     InventorySet,
     List,
-    rescale_exchanges,
     uuid,
     ws,
 )
+from .utils import rescale_exchanges
 
 logger = create_logger("dac")
 
@@ -188,7 +185,7 @@ class DirectAirCapture(BaseTransformation):
                         )
 
                     # adjust efficiency, if needed
-                    new_ds = self.adjust_dac_efficiency(new_ds, technology)
+                    new_ds = self.adjust_dac_efficiency(new_ds)
 
                     self.database.extend(new_ds.values())
 
@@ -198,7 +195,7 @@ class DirectAirCapture(BaseTransformation):
                         # add it to list of created datasets
                         self.add_to_index(dataset)
 
-    def adjust_dac_efficiency(self, datasets, technology):
+    def adjust_dac_efficiency(self, datasets):
         """
         Fetch the cumulated deployment of DAC from IAM file.
         Apply a learning rate -- see Qiu et al., 2022.

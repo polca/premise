@@ -24,8 +24,8 @@ from .inventory_imports import (
 from .transformation import (
     BaseTransformation,
     get_shares_from_production_volume,
-    rescale_exchanges,
 )
+from .utils import rescale_exchanges
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -36,7 +36,7 @@ DIR_LOGS = Path.cwd() / "export" / "logs"
 if not Path(DIR_LOGS).exists():
     Path(DIR_LOGS).mkdir(parents=True, exist_ok=True)
 
-with open(LOG_CONFIG, "r") as f:
+with open(LOG_CONFIG, encoding="utf-8") as f:
     config = yaml.safe_load(f.read())
     logging.config.dictConfig(config)
 
@@ -55,14 +55,13 @@ def get_mapping_between_ei_versions(version_in: str, version_out: str) -> dict:
     return m
 
 
-def fetch_loc(loc):
+def fetch_loc(loc: str) -> Union[str, None]:
     if isinstance(loc, str):
         return loc
-    elif isinstance(loc, tuple):
+    if isinstance(loc, tuple):
         if loc[0] == "ecoinvent":
             return loc[1]
-    else:
-        return None
+    return None
 
 
 def flag_activities_to_adjust(
@@ -250,12 +249,12 @@ def adjust_efficiency(dataset: dict) -> dict:
     # loop through the type of flows to adjust
     for eff_type in ["technosphere", "biosphere"]:
         if f"{eff_type} filters" in dataset:
-            for k, v in dataset[f"{eff_type} filters"].items():
+            for v in dataset[f"{eff_type} filters"].values():
                 # the scaling factor is the inverse of the efficiency change
                 if len(dataset["regions"]) > 1:
                     try:
                         scaling_factor = 1 / v[1][dataset["location"]]
-                    except KeyError as err:
+                    except KeyError:
                         print(
                             f"No efficiency factor provided for dataset {dataset['name']} in {dataset['location']}"
                         )
@@ -308,16 +307,16 @@ def adjust_efficiency(dataset: dict) -> dict:
 
 
 def fetch_dataset_description_from_production_pathways(
-    config: dict, item: str
-) -> tuple[str, str, bool, bool, bool]:
+    configuration: dict, item: str
+) -> Union[tuple, None]:
     """
     Fetch a few ecoinvent variables for a given production pathway
     in the config file, such as the name, reference product, etc.
-    :param config: config file
+    :param configuration: config file
     :param item: production pathway
     :return: dictionary with variables
     """
-    for p, v in config["production pathways"].items():
+    for p, v in configuration["production pathways"].items():
         if p == item:
             if "exists in original database" not in v["ecoinvent alias"]:
                 v["ecoinvent alias"].update({"exists in original database": True})
@@ -335,6 +334,7 @@ def fetch_dataset_description_from_production_pathways(
                 v["ecoinvent alias"]["new dataset"],
                 v["ecoinvent alias"]["regionalize"],
             )
+    return
 
 
 def fetch_var(config_file: dict, list_vars: list) -> list:
@@ -685,13 +685,13 @@ class ExternalScenario(BaseTransformation):
 
                                     counter += 1
 
-                            except IndexError:
+                            except IndexError as err:
                                 raise ValueError(
                                     f"Regionalized datasets for pathway {pathway_to_include} "
                                     f"with `name` {name} and `reference product` {ref_prod} "
                                     f"cannot be found in "
                                     f"locations {possible_locations}."
-                                )
+                                ) from err
 
                             if not exists_in_database or regionalize_dataset:
                                 for ds in suppliers:
@@ -839,41 +839,40 @@ class ExternalScenario(BaseTransformation):
 
             return self.write_suppliers_exchanges(suppliers, amount)
 
+        # this is a biosphere exchange
+        categories = tuple(categories.split("::"))
+        if len(categories) == 1:
+            key = (name, categories[0], "unspecified", unit)
         else:
-            # this is a biosphere exchange
-            categories = tuple(categories.split("::"))
-            if len(categories) == 1:
-                key = (name, categories[0], "unspecified", unit)
+            key = (name, categories[0], categories[1], unit)
+
+        if key not in self.dict_bio_flows:
+            if key[0] in self.outdated_flows:
+                key = (self.outdated_flows[key[0]], key[1], key[2], key[3])
             else:
-                key = (name, categories[0], categories[1], unit)
+                raise ValueError(
+                    f"Cannot find biosphere flow {key} in the biosphere database."
+                )
 
-            if key not in self.dict_bio_flows:
-                if key[0] in self.outdated_flows:
-                    key = (self.outdated_flows[key[0]], key[1], key[2], key[3])
-                else:
-                    raise ValueError(
-                        f"Cannot find biosphere flow {key} in the biosphere database."
-                    )
-
-            return [
-                {
-                    "name": name,
-                    "unit": unit,
-                    "categories": categories,
-                    "type": "biosphere",
-                    "amount": amount,
-                    "uncertainty type": 0,
-                    "input": (
-                        "biosphere3",
-                        self.dict_bio_flows[key],
-                    ),
-                }
-            ]
+        return [
+            {
+                "name": name,
+                "unit": unit,
+                "categories": categories,
+                "type": "biosphere",
+                "amount": amount,
+                "uncertainty type": 0,
+                "input": (
+                    "biosphere3",
+                    self.dict_bio_flows[key],
+                ),
+            }
+        ]
 
     def adjust_efficiency_of_new_markets(
-        self, datatset: dict, vars: dict, region: str, eff_data: xr.DataArray
+        self, datatset: dict, variables: dict, region: str, eff_data: xr.DataArray
     ) -> dict:
-        for ineff in vars["efficiency"]:
+        for ineff in variables["efficiency"]:
             scaling_factor = 1 / find_iam_efficiency_change(
                 ineff["variable"], region, eff_data, self.year
             )
@@ -977,8 +976,8 @@ class ExternalScenario(BaseTransformation):
                             (
                                 name,
                                 ref_prod,
-                                exists_in_database,
-                                new_dataset,
+                                _,
+                                _,
                                 _,
                             ) = fetch_dataset_description_from_production_pathways(
                                 config_file, pathway
@@ -1302,9 +1301,7 @@ class ExternalScenario(BaseTransformation):
                                 exc["amount"] += bio_co2
 
                         for exc in ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, fossil")):
-                                exc["amount"] -= bio_co2
-
-
+                            exc["amount"] -= bio_co2
 
             dataset["exchanges"].extend(new_exchanges)
             fuel_amount = 0

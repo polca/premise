@@ -6,7 +6,6 @@ import copy
 from functools import lru_cache
 from typing import Union
 
-import wurst
 import xarray as xr
 import yaml
 from numpy import ndarray
@@ -25,11 +24,10 @@ from .transformation import (
     get_shares_from_production_volume,
     get_suppliers_of_a_region,
     np,
-    rescale_exchanges,
     uuid,
     ws,
 )
-from .utils import get_crops_properties
+from .utils import get_crops_properties, rescale_exchanges
 
 logger = create_logger("fuel")
 
@@ -50,7 +48,7 @@ def load_methane_correction_list():
     """
     Load biomethane_correction.yaml file and return a list
     """
-    with open(DATA_DIR / "fuels" / "biomethane_correction.yaml", "r") as f:
+    with open(DATA_DIR / "fuels" / "biomethane_correction.yaml", encoding="utf-8") as f:
         methane_correction_list = yaml.safe_load(f)
     return methane_correction_list
 
@@ -58,7 +56,7 @@ def load_methane_correction_list():
 def fetch_mapping(filepath: str) -> dict:
     """Returns a dictionary from a YML file"""
 
-    with open(filepath, "r", encoding="utf-8") as stream:
+    with open(filepath, encoding="utf-8") as stream:
         mapping = yaml.safe_load(stream)
     return mapping
 
@@ -467,7 +465,7 @@ class Fuels(BaseTransformation):
         )
 
     def find_suppliers(
-        self, name: str, ref_prod: str, unit: str, loc: str, exclude: List[str] = []
+        self, name: str, ref_prod: str, unit: str, loc: str, exclude=None
     ) -> Dict[Tuple[Any, Any, Any, Any], float]:
         """
         Return a list of potential suppliers given a name, reference product,
@@ -482,6 +480,8 @@ class Fuels(BaseTransformation):
         """
 
         # if we find a result in the cache dictionary, return it
+        if exclude is None:
+            exclude = []
         key = (name, ref_prod, loc)
         if key in self.cached_suppliers:
             return self.cached_suppliers[key]
@@ -613,8 +613,7 @@ class Fuels(BaseTransformation):
                     new_energy_consumption = scaling_factor * initial_energy_consumption
 
                     # set a floor value/kg H2
-                    if new_energy_consumption < efficiency_floor_value:
-                        new_energy_consumption = efficiency_floor_value
+                    new_energy_consumption = max(new_energy_consumption, efficiency_floor_value)
 
                 else:
                     if hydrogen_type == "from electrolysis":
@@ -962,12 +961,12 @@ class Fuels(BaseTransformation):
                 ).keys()
             )[0]
 
-        except ws.NoResults:
-            raise ValueError(f"No hydrogenation activity found for region {region}")
-        except ws.MultipleResults:
+        except ws.NoResults as err_noresults:
+            raise ValueError(f"No hydrogenation activity found for region {region}") from err_noresults
+        except ws.MultipleResults as err_multipleresults:
             raise ValueError(
                 f"Multiple hydrogenation activities found for region {region}"
-            )
+            ) from err_multipleresults
 
         dataset["exchanges"].extend(
             [
@@ -1223,12 +1222,11 @@ class Fuels(BaseTransformation):
 
         return dataset
 
-    @lru_cache(maxsize=None)
+    @lru_cache()
     def add_h2_fuelling_station(self, region: str) -> dict:
         """
         Add the hydrogen fuelling station.
 
-        :param dataset: The dataset to modify.
         :param region: The region for which to add the activity.
         :return: The modified dataset.
 
@@ -1280,7 +1278,7 @@ class Fuels(BaseTransformation):
 
         t_amb = 25
         cap_util = np.interp(self.year, [2020, 2050, 2100], [10, 150, 150])
-        el_pre_cooling = get_pre_cooling_energy(t_amb, cap_util)
+        el_pre_cooling = get_pre_cooling_energy(t_amb, float(cap_util))
 
         suppliers = self.find_suppliers(
             name="market group for electricity, low voltage",
@@ -1693,8 +1691,7 @@ class Fuels(BaseTransformation):
 
         if len(crop_var) == 0:
             return dataset
-        else:
-            crop_var = crop_var[0]
+        crop_var = crop_var[0]
 
         if crop_var in self.fuel_efficiencies.variables.values:
             # Find scaling factor compared to 2020
@@ -1891,7 +1888,7 @@ class Fuels(BaseTransformation):
             for fuel in self.iam_fuel_markets.variables.values
         }
 
-    @lru_cache(maxsize=None)
+    @lru_cache()
     def fetch_fuel_share(
         self, fuel: str, relevant_fuel_types: Tuple[str], region: str, period: int
     ) -> float:

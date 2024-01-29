@@ -1,9 +1,6 @@
 """
 Integrates projections regarding heat production and supply.
 """
-import pprint
-
-from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import create_logger
 from .transformation import BaseTransformation, IAMDataCollection, List, ws
 
@@ -120,7 +117,7 @@ class Heat(BaseTransformation):
 
         """
 
-        for technology, heat_datasets in self.heat_techs.items():
+        for heat_datasets in self.heat_techs.values():
             for dataset in ws.get_many(
                 self.database,
                 ws.either(*[ws.contains("name", n) for n in heat_datasets]),
@@ -137,22 +134,22 @@ class Heat(BaseTransformation):
                 if len(new_ds) == 0:
                     continue
 
-                for region, ds in new_ds.items():
-                    fossil_CO2, non_fossil_CO2 = 0.0, 0.0
+                for  ds in new_ds.values():
+                    fossil_co2, non_fossil_co2 = 0.0, 0.0
 
                     for exc in ws.technosphere(ds):
                         if (
                             exc["name"],
                             exc["location"],
                         ) in self.carbon_intensity_markets:
-                            fossil_CO2 += exc[
+                            fossil_co2 += exc[
                                 "amount"
                             ] * self.carbon_intensity_markets.get(
                                 (exc["name"], exc["location"]), {}
                             ).get(
                                 "fossil", 0.0
                             )
-                            non_fossil_CO2 += exc[
+                            non_fossil_co2 += exc[
                                 "amount"
                             ] * self.carbon_intensity_markets.get(
                                 (exc["name"], exc["location"]), {}
@@ -164,7 +161,7 @@ class Heat(BaseTransformation):
                         ds["log parameters"] = {}
 
                     # replace current CO2 emissions with new ones
-                    if fossil_CO2 > 0:
+                    if fossil_co2 > 0:
                         for exc in ws.biosphere(
                             ds,
                             ws.equals("name", "Carbon dioxide, fossil"),
@@ -173,38 +170,38 @@ class Heat(BaseTransformation):
                                 "amount"
                             ]
                             ds["log parameters"]["new amount of fossil CO2"] = float(
-                                fossil_CO2
+                                fossil_co2
                             )
-                            exc["amount"] = float(fossil_CO2)
-                            fossil_CO2 = 0
+                            exc["amount"] = float(fossil_co2)
+                            fossil_co2 = 0
 
-                    if non_fossil_CO2 > 0:
-                        bio_CO2_flows = ws.biosphere(
+                    if non_fossil_co2 > 0:
+                        bio_co2_flows = ws.biosphere(
                             ds,
                             ws.equals("name", "Carbon dioxide, non-fossil"),
                         )
 
-                        for exc in bio_CO2_flows:
+                        for exc in bio_co2_flows:
                             ds["log parameters"][
                                 "initial amount of biogenic CO2"
                             ] = exc["amount"]
                             ds["log parameters"]["new amount of biogenic CO2"] = float(
-                                non_fossil_CO2
+                                non_fossil_co2
                             )
-                            exc["amount"] = float(non_fossil_CO2)
-                            non_fossil_CO2 = 0
+                            exc["amount"] = float(non_fossil_co2)
+                            non_fossil_co2 = 0
 
-                        if non_fossil_CO2 > 0 and fossil_CO2 == 0:
+                        if non_fossil_co2 > 0 and fossil_co2 == 0:
                             ds["log parameters"]["initial amount of biogenic CO2"] = 0.0
                             ds["log parameters"][
                                 "new amount of biogenic CO2"
-                            ] = non_fossil_CO2
+                            ] = non_fossil_co2
 
                             ds["exchanges"].append(
                                 {
                                     "uncertainty type": 0,
-                                    "loc": non_fossil_CO2,
-                                    "amount": non_fossil_CO2,
+                                    "loc": non_fossil_co2,
+                                    "amount": non_fossil_co2,
                                     "name": "Carbon dioxide, non-fossil",
                                     "categories": ("air",),
                                     "type": "biosphere",

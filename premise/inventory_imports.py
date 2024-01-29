@@ -354,7 +354,6 @@ class BaseInventoryImport:
     def load_inventory(self) -> None:
         """Load an inventory from a specified path.
         Sets the :attr:`import_db` attribute.
-        :param str path: Path to the inventory file
         :returns: Nothing.
         """
         return None
@@ -578,11 +577,10 @@ class BaseInventoryImport:
 
         return None
 
-    def add_biosphere_links(self, delete_missing: bool = False) -> None:
+    def add_biosphere_links(self) -> None:
         """Add links for biosphere exchanges to :attr:`import_db`
         Modifies the :attr:`import_db` attribute in place.
 
-        :param delete_missing: whether unlinked exchanges should be deleted or not.
         """
         for x in self.import_db.data:
             for y in x["exchanges"]:
@@ -636,12 +634,12 @@ class BaseInventoryImport:
             # only if they are not in the blacklist
             # and if the first word is not an acronym
             if (
-                not any([x in ds["name"] for x in blakclist])
+                not any(x in ds["name"] for x in blakclist)
                 and not ds["name"].split(" ")[0].isupper()
             ):
                 ds["name"] = ds["name"][0].lower() + ds["name"][1:]
             if (
-                not any([x in ds["reference product"] for x in blakclist])
+                not any(x in ds["reference product"] for x in blakclist)
                 and not ds["reference product"].split(" ")[0].isupper()
             ):
                 ds["reference product"] = (
@@ -651,14 +649,14 @@ class BaseInventoryImport:
             for exc in ds["exchanges"]:
                 if exc["type"] in ["technosphere", "production"]:
                     if (
-                        not any([x in exc["name"] for x in blakclist])
+                        not any(x in exc["name"] for x in blakclist)
                         and not exc["name"].split(" ")[0].isupper()
                     ):
                         exc["name"] = exc["name"][0].lower() + exc["name"][1:]
 
                     if (
                         not any(
-                            [x in exc.get("reference product", "") for x in blakclist]
+                            x in exc.get("reference product", "") for x in blakclist
                         )
                         and not exc.get("reference product", "").split(" ")[0].isupper()
                     ):
@@ -669,7 +667,7 @@ class BaseInventoryImport:
                             )
 
                     if (
-                        not any([x in exc.get("product", "") for x in blakclist])
+                        not any(x in exc.get("product", "") for x in blakclist)
                         and not exc.get("product", "").split(" ")[0].isupper()
                     ):
                         if exc.get("product") is not None:
@@ -888,7 +886,7 @@ class AdditionalInventory(BaseInventoryImport):
                 for line in response.iter_lines():
                     writer.writerow(line.decode("utf-8").split(","))
         except requests.RequestException as e:
-            raise ConnectionError(f"Error downloading the file: {e}")
+            raise ConnectionError(f"Error downloading the file: {e}") from e
 
     def load_inventory(self):
         path_str = str(self.path)
@@ -905,12 +903,12 @@ class AdditionalInventory(BaseInventoryImport):
 
         if file_path.suffix == ".xlsx":
             return ExcelImporter(file_path)
-        elif file_path.suffix == ".csv":
+        if file_path.suffix == ".csv":
             return CSVImporter(file_path)
-        else:
-            raise ValueError(
-                "Incorrect filetype for inventories. Should be either .xlsx or .csv"
-            )
+
+        raise ValueError(
+            "Incorrect filetype for inventories. Should be either .xlsx or .csv"
+        )
 
     def prepare_inventory(self):
         if str(self.version_in) != self.version_out:

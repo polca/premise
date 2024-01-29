@@ -28,7 +28,7 @@ from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
-from .utils import get_fuel_properties, rescale_exchanges
+from .utils import get_fuel_properties
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 # directory for log files
@@ -38,7 +38,7 @@ DIR_LOG_REPORT = Path.cwd() / "export" / "logs"
 if not Path(DIR_LOG_REPORT).exists():
     Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
-with open(LOG_CONFIG, "r") as f:
+with open(LOG_CONFIG, encoding="utf-8") as f:
     config = yaml.safe_load(f.read())
     logging.config.dictConfig(config)
 
@@ -158,11 +158,13 @@ def remove_exchanges(datasets_dict: Dict[str, dict], list_exc: List) -> Dict[str
     :param list_exc: list of names (e.g., ["coal", "lignite"]) which are checked against exchanges' names in the dataset
     :return: returns `datasets_dict` without the exchanges whose names check with `list_exc`
     """
-    keep = lambda x: {
-        key: value
-        for key, value in x.items()
-        if not any(ele in x.get("product", []) for ele in list_exc)
-    }
+
+    def keep(x):
+        return {
+            key: value
+            for key, value in x.items()
+            if not any(ele in x.get("product", []) for ele in list_exc)
+        }
 
     for region in datasets_dict:
         datasets_dict[region]["exchanges"] = [
@@ -300,11 +302,9 @@ class BaseTransformation:
     def is_in_index(self, ds, location=None):
         if not any(key in ds for key in ["reference product", "product"]):
             raise KeyError(
-                "Dataset {} does not have neither 'reference product' nor 'product' keys.".format(
-                    ds["name"]
-                )
+                f"Dataset {ds['name']} does not have neither 'reference product' nor 'product' keys."
             )
-        elif "reference product" in ds:
+        if "reference product" in ds:
             key = (ds["name"], ds["reference product"])
         else:
             key = (ds["name"], ds["product"])
@@ -388,7 +388,7 @@ class BaseTransformation:
                     )
                 )
                 counter += 1
-        except IndexError:
+        except IndexError as err:
 
             suppliers = list(
                 ws.get_many(
@@ -402,12 +402,10 @@ class BaseTransformation:
 
             if not suppliers:
                 raise IndexError(
-                    "No supplier found for {} in {}, "
-                    "looking for terms: {} "
-                    "and with blacklist: {}".format(
-                        possible_names, possible_locations, look_for, blacklist
-                    )
-                )
+                    f"No supplier found for {possible_names} in {possible_locations}, "
+                    f"looking for terms: {look_for} "
+                    f"and with blacklist: {blacklist}"
+                ) from err
 
         suppliers = get_shares_from_production_volume(suppliers)
 
@@ -421,7 +419,7 @@ class BaseTransformation:
         :rtype: list
         """
 
-        locs = list(set([a["location"] for a in self.database]))
+        locs = list(set(a["location"] for a in self.database))
 
         # add Laos
         if "LA" not in locs:
@@ -618,6 +616,7 @@ class BaseTransformation:
         if not regions:
             regions = self.regions
 
+        fallback_loc = None
         if "RoW" in d_map.values():
             fallback_loc = "RoW"
         else:
@@ -812,7 +811,7 @@ class BaseTransformation:
         mapping = {}
         if loc_map:
             mapping = defaultdict(set)
-            for k, v in loc_map.items():
+            for v in loc_map.values():
                 if self.geo.ecoinvent_to_iam_location(v) in loc_map.keys():
                     mapping[v].add(self.geo.ecoinvent_to_iam_location(v))
         existing_datasets = ws.get_many(
@@ -855,7 +854,8 @@ class BaseTransformation:
                     f"in {existing_ds['location']}"
                 )
 
-            _ = lambda x: x if x != 0.0 else 1.0
+            def _(x):
+                return x if x != 0.0 else 1.0
 
             if len(locations) == 1:
                 existing_ds["exchanges"].append(
@@ -968,13 +968,13 @@ class BaseTransformation:
 
             if len(excs_to_relink) == 0:
                 continue
-            else:
-                # make a dictionary with the names and amounts
-                # of the technosphere exchanges to relink
-                # to compare with the new exchanges
-                excs_to_relink_dict = defaultdict(float)
-                for exc in excs_to_relink:
-                    excs_to_relink_dict[exc["product"]] += exc["amount"]
+
+            # make a dictionary with the names and amounts
+            # of the technosphere exchanges to relink
+            # to compare with the new exchanges
+            excs_to_relink_dict = defaultdict(float)
+            for exc in excs_to_relink:
+                excs_to_relink_dict[exc["product"]] += exc["amount"]
 
             # Create a set of unique exchanges to relink
             # turn this into a list of dictionaries
@@ -1052,7 +1052,7 @@ class BaseTransformation:
         """
         names_to_look_for = [exc["name"]] + alt_names
 
-        def allocate_inputs(lst):
+        def allocate_exchanges(lst):
             """
             Allocate the input exchanges in ``lst`` to ``exc``,
             using production volumes where possible, and equal splitting otherwise.
@@ -1113,7 +1113,7 @@ class BaseTransformation:
                 entries = [e for e in entries if e[2] not in ["World", "GLO", "RoW"]]
 
             if len(entries) > 1:
-                shares = allocate_inputs(entries)
+                shares = allocate_exchanges(entries)
                 entries = [(e[0], e[1], e[2], e[3], s) for e, s in zip(entries, shares)]
                 # remove entries that have a share of 0
                 entries = [e for e in entries if e[-1] > 0]
@@ -1505,7 +1505,7 @@ class BaseTransformation:
 
         if len(possible_datasets) == 1:
             self.handle_single_possible_dataset(
-                exchange, dataset, possible_datasets, new_exchanges
+                exchange, possible_datasets, new_exchanges
             )
 
         else:
@@ -1520,7 +1520,7 @@ class BaseTransformation:
             )
 
     def handle_single_possible_dataset(
-        self, exchange, dataset, possible_datasets, new_exchanges
+        self, exchange, possible_datasets, new_exchanges
     ):
         # If there's only one possible dataset, we can just use it
         single_dataset = possible_datasets[0]
@@ -1563,19 +1563,19 @@ class BaseTransformation:
                 ds for ds in possible_datasets if ds["location"] == dataset["location"]
             ][0]
 
-            new_exchange = exchange.copy()
-            new_exchange["location"] = candidate["location"]
-            new_exchange["name"] = candidate["name"]
-            new_exchange["product"] = candidate["reference product"]
+            new_exc = exchange.copy()
+            new_exc["location"] = candidate["location"]
+            new_exc["name"] = candidate["name"]
+            new_exc["product"] = candidate["reference product"]
 
             self.add_new_entry_to_cache(
                 dataset["location"],
                 exchange,
-                [new_exchange],
+                [new_exc],
                 [1.0],
             )
 
-            new_exchanges.append(new_exchange)
+            new_exchanges.append(new_exc)
         else:
             # If more complex GIS matching or allocation is required,
             # we delegate to another function
@@ -1778,7 +1778,7 @@ class BaseTransformation:
             * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
         Modifies the dataset in place; returns the modified dataset."""
 
-        sum_before = sum([exc["amount"] for exc in dataset["exchanges"]])
+        sum_before = sum(exc["amount"] for exc in dataset["exchanges"])
 
         # collect the name of exchange and the sum of amounts
         # as a dictionary, for all technosphere exchanges
@@ -1812,7 +1812,7 @@ class BaseTransformation:
                 "location": location,
                 "unit": unit,
                 "type": "technosphere",
-                "amount": sum([exc["amount"] for exc in exchanges]),
+                "amount": sum(exc["amount"] for exc in exchanges),
             }
             for (name, prod, location, unit), exchanges in groupby(
                 sorted(
@@ -1831,7 +1831,7 @@ class BaseTransformation:
             exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
         ] + new_exchanges
 
-        sum_after = sum([exc["amount"] for exc in dataset["exchanges"]])
+        sum_after = sum(exc["amount"] for exc in dataset["exchanges"])
 
         assert np.allclose(sum_before, sum_after), (
             f"Sum of exchanges before and after relinking is not the same: {sum_before} != {sum_after}"

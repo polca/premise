@@ -8,7 +8,7 @@ import uuid
 from functools import lru_cache
 from numbers import Number
 from pathlib import Path
-from typing import List, Optional
+from typing import Optional
 
 import pandas as pd
 import xarray as xr
@@ -54,6 +54,9 @@ class HiddenPrints:
     """
     From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
     """
+
+    def __init__(self):
+        self._original_stdout = None
 
     def __enter__(self):
         self._original_stdout = sys.stdout

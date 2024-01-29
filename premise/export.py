@@ -17,7 +17,6 @@ from typing import Any, Dict, List
 
 import numpy as np
 import pandas as pd
-import prettytable
 import sparse
 import yaml
 from datapackage import Package
@@ -28,7 +27,6 @@ from . import __version__
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import get_correspondence_bio_flows
-from .transformation import BaseTransformation
 from .utils import reset_all_codes
 from .validation import BaseDatasetValidator
 
@@ -414,7 +412,7 @@ def write_formatted_data(name, data, filepath):
                             exc["amount"],
                             exc["unit"],
                             exc.get("location"),
-                            "::".join([x for x in exc.get("categories", [])])
+                            "::".join(list(exc.get('categories', [])))
                             if exc["type"] == "biosphere"
                             else None,
                             exc["type"],
@@ -683,7 +681,7 @@ def generate_scenario_difference_file(
     inds_std = sparse.argwhere((m[..., 1:] == m[..., 0, None]).all(axis=-1).T == False)
 
     for i in inds_std:
-        c_name, c_ref, c_cat, c_loc, c_unit, c_type = acts_ind[i[0]]
+        c_name, c_ref, c_cat, c_loc, c_unit, _ = acts_ind[i[0]]
         s_name, s_ref, s_cat, s_loc, s_unit, s_type = acts_ind[i[1]]
 
         database_name = db_name
@@ -816,7 +814,7 @@ def generate_superstructure_db(
     filepath,
     version,
     scenario_list,
-    format="excel",
+    file_format="excel",
 ) -> List[dict]:
     """
     Build a superstructure database from a list of databases
@@ -825,7 +823,7 @@ def generate_superstructure_db(
     :param db_name: the name of the new database
     :param filepath: the filepath of the new database
     :param version: the version of the new database
-    :param format: the format of the scenario difference file. Can be "excel", "csv" or "feather".
+    :param file_format: the format of the scenario difference file. Can be "excel", "csv" or "feather".
     :return: a superstructure database
     """
 
@@ -869,22 +867,22 @@ def generate_superstructure_db(
     # if df is longer than the row limit of Excel,
     # the export to Excel is not an option
     if len(df) > 1048576:
-        format = "csv"
+        file_format = "csv"
         print(
             "The scenario difference file is too long to be exported to Excel. Exporting to CSV instead."
         )
 
-    if format == "excel":
+    if file_format == "excel":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
         df.to_excel(filepath_sdf, index=False)
-    elif format == "csv":
+    elif file_format == "csv":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.csv"
         df.to_csv(filepath_sdf, index=False, sep=";", encoding="utf-8-sig")
-    elif format == "feather":
+    elif file_format == "feather":
         filepath_sdf = filepath / f"scenario_diff_{db_name}.feather"
         df.to_feather(filepath_sdf)
     else:
-        raise ValueError(f"Unknown format {format}")
+        raise ValueError(f"Unknown format {file_format}")
 
     print(f"Scenario difference file exported to {filepath}!")
 
@@ -1105,7 +1103,7 @@ class Export:
                 data = list(d) + [index_B[d]]
                 writer.writerow(data)
 
-        print("Matrices saved in {}.".format(self.filepath))
+        print(f"Matrices saved in {self.filepath}.")
 
     @staticmethod
     def create_rev_index_of_B_matrix(version):
@@ -1399,16 +1397,7 @@ class Export:
                     if item in ("Waste treatment", "Products"):
                         for e in ds["exchanges"]:
                             if e["type"] == "production":
-                                name = (
-                                    e["product"]
-                                    + " {"
-                                    + e.get("location", "GLO")
-                                    + "}"
-                                    + "| "
-                                    + e["name"]
-                                    + " "
-                                    + "| Cut-off, U"
-                                )
+                                name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
 
                                 if item == "Waste treatment":
                                     writer.writerow(
@@ -1445,22 +1434,13 @@ class Export:
                                     ].lower()
 
                                 if exc_cat != "waste treatment":
-                                    name = (
-                                        e["product"]
-                                        + " {"
-                                        + e.get("location", "GLO")
-                                        + "}"
-                                        + "| "
-                                        + e["name"]
-                                        + " "
-                                        + "| Cut-off, U"
-                                    )
+                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
 
                                     writer.writerow(
                                         [
                                             name,
                                             simapro_units[e["unit"]],
-                                            "{:.3E}".format(e["amount"]),
+                                            f"{e['amount']:.3E}",
                                             "undefined",
                                             0,
                                             0,
@@ -1483,7 +1463,7 @@ class Export:
                                         dict_bio.get(e["name"], e["name"]),
                                         "",
                                         simapro_units[e["unit"]],
-                                        "{:.3E}".format(e["amount"]),
+                                        f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
                                         0,
@@ -1514,7 +1494,7 @@ class Export:
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
                                         simapro_units[e["unit"]],
-                                        "{:.3E}".format(e["amount"]),
+                                        f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
                                         0,
@@ -1548,7 +1528,7 @@ class Export:
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
                                         simapro_units[e["unit"]],
-                                        "{:.3E}".format(e["amount"]),
+                                        f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
                                         0,
@@ -1578,7 +1558,7 @@ class Export:
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
                                         simapro_units[e["unit"]],
-                                        "{:.3E}".format(e["amount"]),
+                                        f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
                                         0,
@@ -1598,22 +1578,13 @@ class Export:
                                     ].lower()
 
                                 if exc_cat == "waste treatment":
-                                    name = (
-                                        e["product"]
-                                        + " {"
-                                        + e.get("location", "GLO")
-                                        + "}"
-                                        + "| "
-                                        + e["name"]
-                                        + " "
-                                        + "| Cut-off, U"
-                                    )
+                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
 
                                     writer.writerow(
                                         [
                                             name,
                                             simapro_units[e["unit"]],
-                                            "{:.3E}".format(e["amount"] * -1),
+                                            f"{e['amount'] * -1:.3E}",
                                             "undefined",
                                             0,
                                             0,
@@ -1673,7 +1644,7 @@ class Export:
 
         csvFile.close()
 
-        print("Simapro CSV files saved in {}.".format(self.filepath))
+        print(f"Simapro CSV file saved in {self.filepath}.")
 
     def rev_index(self, inds):
         return {v: k for k, v in inds.items()}

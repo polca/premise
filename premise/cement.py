@@ -65,9 +65,10 @@ class Cement(BaseTransformation):
     :ivar database: wurst database, which is a list of dictionaries
     :ivar iam_data: IAM data
     :ivar model: name of the IAM model (e.g., "remind", "image")
-    :ivar pathway: name of the IAM pathway (e.g., "SSP2-Base")
+    :ivar pathway: name of the IAM scenario (e.g., "SSP2-19")
     :ivar year: year of the pathway (e.g., 2030)
     :ivar version: version of ecoinvent database (e.g., "3.7")
+    :ivar system_model: name of the system model (e.g., "attributional", "consequential")
 
     """
 
@@ -137,18 +138,14 @@ class Cement(BaseTransformation):
         """
 
         bio_co2 = sum(
-            [
                 e["amount"]
                 for e in dataset["exchanges"]
                 if e["name"] == "Carbon dioxide, non-fossil"
-            ]
         )
         non_bio_co2 = sum(
-            [
                 e["amount"]
                 for e in dataset["exchanges"]
                 if e["name"] == "Carbon dioxide, fossil"
-            ]
         )
 
         return bio_co2 / (bio_co2 + non_bio_co2)
@@ -165,7 +162,7 @@ class Cement(BaseTransformation):
                     energy_details[exc["name"]]["fossil CO2"] *= scaling_factor
                     energy_details[exc["name"]]["biogenic CO2"] *= scaling_factor
 
-        new_energy_input = sum([d["energy"] for d in energy_details.values()])
+        new_energy_input = sum(d["energy"] for d in energy_details.values())
 
         dataset["log parameters"].update(
             {
@@ -175,7 +172,7 @@ class Cement(BaseTransformation):
 
         return dataset
 
-    def rescale_emissions(self, dataset, energy_details, scaling_factor):
+    def rescale_emissions(self, dataset: dict, energy_details: dict) -> dict:
         for exc in ws.biosphere(dataset, ws.contains("name", "Carbon dioxide")):
             if "non-fossil" in exc["name"].lower():
                 dataset["log parameters"].update(
@@ -236,17 +233,15 @@ class Cement(BaseTransformation):
             energy_details = self.fetch_current_energy_details(dataset)
 
             current_energy_input_per_ton_clinker = sum(
-                [d["energy"] for d in energy_details.values()]
+                d["energy"] for d in energy_details.values()
             )
 
             # fetch the amount of biogenic CO2 emissions
             bio_CO2 = sum(
-                [
                     e["amount"]
                     for e in ws.biosphere(
                         dataset, ws.contains("name", "Carbon dioxide, non-fossil")
                     )
-                ]
             )
 
             # back-calculate the amount of waste fuel from
@@ -318,6 +313,8 @@ class Cement(BaseTransformation):
                 location=dataset["location"],
             )
 
+            new_energy_input_per_ton_clinker = 0
+
             if not np.isnan(scaling_factor) and scaling_factor > 0.0:
                 # calculate new thermal energy
                 # consumption per kg clinker
@@ -345,7 +342,7 @@ class Cement(BaseTransformation):
 
                 # rescale combustion-related CO2 emissions
                 dataset = self.rescale_emissions(
-                    dataset, energy_details, scaling_factor
+                    dataset, energy_details
                 )
 
             # Carbon capture rate: share of capture of total CO2 emitted

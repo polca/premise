@@ -156,8 +156,8 @@ def fetch_data(
         return iam_data.sel(
             variables=[v for v in variable if v in iam_data.coords["variables"].values]
         )
-    else:
-        return None
+
+    return None
 
 
 def generate_summary_report(scenarios: list, filename: Path) -> None:
@@ -494,7 +494,7 @@ def generate_change_report(source, version, source_type, system_model):
     ]
 
     # fetch YAML file containing the reporting metadata
-    with open(LOG_REPORTING_FILEPATH, "r") as f:
+    with open(LOG_REPORTING_FILEPATH, encoding="utf-8") as f:
         metadata = yaml.load(f, Loader=yaml.FullLoader)
 
     # create a first tab
