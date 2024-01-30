@@ -1292,8 +1292,10 @@ class NewDatabase:
                 external_scenario.create_custom_markets()
                 external_scenario.relink_datasets()
                 scenario["database"] = external_scenario.database
-            print(f"Log of changes saved under 'External scenarios' tab "
-                  f"in change report: {DATA_DIR / 'export' / 'change reports'}.")
+            print(
+                f"Log of changes saved under 'External scenarios' tab "
+                f"in change report: {DATA_DIR / 'export' / 'change reports'}."
+            )
 
         print("Done!\n")
 
