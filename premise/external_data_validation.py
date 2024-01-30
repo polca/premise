@@ -383,9 +383,7 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                     print(
                         f"{iam_scen} can be used with more than one external scenarios: {lst_ext_scen}."
                     )
-                    print(
-                        f"Choose the scenario to associate {iam_scen} with:"
-                    )
+                    print(f"Choose the scenario to associate {iam_scen} with:")
                     for s, scen in enumerate(lst_ext_scen):
                         print(f"{s} - {scen}")
                     usr_input = ""
