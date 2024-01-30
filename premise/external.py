@@ -82,7 +82,7 @@ def flag_activities_to_adjust(
 
     # add potential technosphere or biosphere filters
     if "efficiency" in dataset_vars:
-        if dataset_vars["efficiency"] is not None:
+        if len(dataset_vars["efficiency"]) > 0:
 
             dataset["adjust efficiency"] = True
 
@@ -491,9 +491,11 @@ class ExternalScenario(BaseTransformation):
             ws.equals("adjust efficiency", True),
             ws.either(*[ws.contains("name", name) for name in ds_names]),
         ):
-            adjust_efficiency(dataset)
+            if len(dataset["location"]) > 1:
+                adjust_efficiency(dataset)
+                self.write_log(dataset, status="updated")
             del dataset["adjust efficiency"]
-            self.write_log(dataset, status="updated")
+
 
     def get_market_dictionary_structure(
         self, market: dict, region: str, waste_market: bool = False
