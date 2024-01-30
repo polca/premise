@@ -1316,7 +1316,13 @@ class IAMDataCollection:
                 BytesIO(scenario_data),
             )
             # set headers from first row
-            df.columns = resource.headers
+            try:
+                df.columns = resource.headers
+            except ValueError as err:
+                raise ValueError(
+                    f"The number of headers in scenario data file are not correct. {err}"
+                    f"Check that the values in the scenario data file are separated by commas, not semicolons."
+                ) from err
 
             resource = dp.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
