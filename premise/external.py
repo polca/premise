@@ -496,7 +496,6 @@ class ExternalScenario(BaseTransformation):
                 self.write_log(dataset, status="updated")
             del dataset["adjust efficiency"]
 
-
     def get_market_dictionary_structure(
         self, market: dict, region: str, waste_market: bool = False
     ) -> dict:
