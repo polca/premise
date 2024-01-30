@@ -68,7 +68,12 @@ class HiddenPrints:
 
 
 def eidb_label(
-    model: str, scenario: str, year: int, version: str, system_model: str = "cutoff", datapackages = None
+    model: str,
+    scenario: str,
+    year: int,
+    version: str,
+    system_model: str = "cutoff",
+    datapackages=None,
 ) -> str:
     """
     Return a label to name a scenario.

@@ -387,7 +387,7 @@ class Electricity(BaseTransformation):
             "unit": "kilowatt hour",
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                       f" using the pathway {self.scenario} for the year {self.year}.",
+            f" using the pathway {self.scenario} for the year {self.year}.",
             "exchanges": [],
         }
 
@@ -614,9 +614,11 @@ class Electricity(BaseTransformation):
                     "amount": (1 - solar_amount) * (1 + distr_loss),
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage"
-                    if period == 0
-                    else f"market group for electricity, medium voltage, {period}-year period",
+                    "name": (
+                        "market group for electricity, medium voltage"
+                        if period == 0
+                        else f"market group for electricity, medium voltage, {period}-year period"
+                    ),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -629,9 +631,11 @@ class Electricity(BaseTransformation):
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, low voltage",
-                    "name": "market group for electricity, low voltage"
-                    if period == 0
-                    else f"market group for electricity, low voltage, {period}-year period",
+                    "name": (
+                        "market group for electricity, low voltage"
+                        if period == 0
+                        else f"market group for electricity, low voltage, {period}-year period"
+                    ),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -666,7 +670,9 @@ class Electricity(BaseTransformation):
 
         for period in periods:
             new_world_dataset = self.generate_world_market(
-                dataset=copy.deepcopy(generic_dataset), regions=self.regions, period=period
+                dataset=copy.deepcopy(generic_dataset),
+                regions=self.regions,
+                period=period,
             )
             self.database.append(new_world_dataset)
             self.write_log(new_world_dataset)
@@ -686,7 +692,7 @@ class Electricity(BaseTransformation):
             "unit": "kilowatt hour",
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                       f" using the pathway {self.scenario} for the year {self.year}.",
+            f" using the pathway {self.scenario} for the year {self.year}.",
             "exchanges": [],
         }
 
@@ -711,7 +717,6 @@ class Electricity(BaseTransformation):
             # when `period` == 10, this is a market mix for the period `self.year` + 10
             # this is useful for systems that consume electricity
             # over a long period of time (e.g., buildings, BEVs, etc.)
-
 
             # fetch production volume
             production_volume = self.iam_data.production_volumes.sel(
@@ -755,9 +760,11 @@ class Electricity(BaseTransformation):
                     "amount": 1 + distr_loss,
                     "type": "technosphere",
                     "product": "electricity, high voltage",
-                    "name": "market group for electricity, high voltage"
-                    if period == 0
-                    else f"market group for electricity, high voltage, {period}-year period",
+                    "name": (
+                        "market group for electricity, high voltage"
+                        if period == 0
+                        else f"market group for electricity, high voltage, {period}-year period"
+                    ),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -770,9 +777,11 @@ class Electricity(BaseTransformation):
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage"
-                    if period == 0
-                    else f"market group for electricity, medium voltage, {period}-year period",
+                    "name": (
+                        "market group for electricity, medium voltage"
+                        if period == 0
+                        else f"market group for electricity, medium voltage, {period}-year period"
+                    ),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -876,7 +885,9 @@ class Electricity(BaseTransformation):
 
         for period in periods:
             new_world_dataset = self.generate_world_market(
-                dataset=copy.deepcopy(generic_dataset), regions=self.regions, period=period
+                dataset=copy.deepcopy(generic_dataset),
+                regions=self.regions,
+                period=period,
             )
             self.database.append(new_world_dataset)
             self.write_log(new_world_dataset)
@@ -906,7 +917,7 @@ class Electricity(BaseTransformation):
             "unit": "kilowatt hour",
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                       f" using the pathway {self.scenario} for the year {self.year}.",
+            f" using the pathway {self.scenario} for the year {self.year}.",
             "exchanges": [],
         }
 
@@ -987,7 +998,6 @@ class Electricity(BaseTransformation):
                     raise IndexError(
                         f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
                     ) from exc
-
 
             if self.system_model == "consequential":
                 electricity_mix = dict(
@@ -1113,8 +1123,7 @@ class Electricity(BaseTransformation):
                 {
                     "distribution loss": 0.0,
                     "transformation loss": transf_loss,
-                    "renewable share": renewable_share
-                    / sum(electricity_mix.values()),
+                    "renewable share": renewable_share / sum(electricity_mix.values()),
                 }
             )
 
@@ -1135,7 +1144,9 @@ class Electricity(BaseTransformation):
 
         for period in periods:
             new_world_dataset = self.generate_world_market(
-                dataset=copy.deepcopy(generic_dataset), regions=self.regions, period=period
+                dataset=copy.deepcopy(generic_dataset),
+                regions=self.regions,
+                period=period,
             )
             self.database.append(new_world_dataset)
             self.write_log(new_world_dataset)
@@ -1401,9 +1412,9 @@ class Electricity(BaseTransformation):
             to_remove = []
             for exc in dataset["exchanges"]:
                 if (
-                    any((i in exc['name'] for i in names))
-                    and exc['location'] in countries
-                    and exc['type'] == 'technosphere'
+                    any((i in exc["name"] for i in names))
+                    and exc["location"] in countries
+                    and exc["type"] == "technosphere"
                 ):
                     if exc["location"] in amount:
                         amount[exc["location"]] += exc["amount"]
@@ -1470,15 +1481,10 @@ class Electricity(BaseTransformation):
 
         list_datasets_to_duplicate = list(
             set(
-                    dataset["name"]
-                    for dataset in self.database
-                    if dataset["name"]
-                    in [
-                        y
-                        for k, v in self.powerplant_map.items()
-                        for y in v
-                        if k in techs
-                    ]
+                dataset["name"]
+                for dataset in self.database
+                if dataset["name"]
+                in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
             )
         )
 
@@ -1743,9 +1749,11 @@ class Electricity(BaseTransformation):
 
                         new_eff = self.iam_data.coal_power_plants.sel(
                             country=loc,
-                            fuel="Anthracite coal"
-                            if "hard coal" in dataset["name"]
-                            else "Lignite coal",
+                            fuel=(
+                                "Anthracite coal"
+                                if "hard coal" in dataset["name"]
+                                else "Lignite coal"
+                            ),
                             CHP="co-generation" in dataset["name"],
                             variable="efficiency",
                         )
@@ -1786,17 +1794,21 @@ class Electricity(BaseTransformation):
 
                             emission_factor = self.iam_data.coal_power_plants.sel(
                                 country=loc,
-                                fuel="Anthracite coal"
-                                if "hard coal" in dataset["name"]
-                                else "Lignite coal",
+                                fuel=(
+                                    "Anthracite coal"
+                                    if "hard coal" in dataset["name"]
+                                    else "Lignite coal"
+                                ),
                                 CHP="co-generation" in dataset["name"],
                                 variable=species,
                             ) / (
                                 self.iam_data.coal_power_plants.sel(
                                     country=loc,
-                                    fuel="Anthracite coal"
-                                    if "hard coal" in dataset["name"]
-                                    else "Lignite coal",
+                                    fuel=(
+                                        "Anthracite coal"
+                                        if "hard coal" in dataset["name"]
+                                        else "Lignite coal"
+                                    ),
                                     CHP="co-generation" in dataset["name"],
                                     variable="generation",
                                 )
@@ -1848,7 +1860,8 @@ class Electricity(BaseTransformation):
                             self.database,
                             ws.equals("name", variable["proxy"]["name"]),
                             ws.equals(
-                                "reference product", variable["proxy"]["reference product"]
+                                "reference product",
+                                variable["proxy"]["reference product"],
                             ),
                         )
                     )[0]

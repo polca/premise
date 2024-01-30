@@ -4,6 +4,7 @@ used by other classes (e.g. Transport, Electricity, Steel, Cement, etc.).
 It provides basic methods usually used for electricity, cement, steel sector transformation
 on the wurst database.
 """
+
 import copy
 import logging.config
 import uuid
@@ -379,14 +380,16 @@ class BaseTransformation:
                         ws.either(
                             *[ws.contains("name", sup) for sup in possible_names]
                         ),
-                        ws.either(
-                            *[
-                                ws.equals("location", item)
-                                for item in possible_locations[counter]
-                            ]
-                        )
-                        if isinstance(possible_locations[counter], list)
-                        else ws.equals("location", possible_locations[counter]),
+                        (
+                            ws.either(
+                                *[
+                                    ws.equals("location", item)
+                                    for item in possible_locations[counter]
+                                ]
+                            )
+                            if isinstance(possible_locations[counter], list)
+                            else ws.equals("location", possible_locations[counter])
+                        ),
                         *extra_filters,
                     )
                 )
@@ -396,9 +399,7 @@ class BaseTransformation:
             suppliers = list(
                 ws.get_many(
                     self.database,
-                    ws.either(
-                        *[ws.contains("name", sup) for sup in possible_names]
-                    ),
+                    ws.either(*[ws.contains("name", sup) for sup in possible_names]),
                     *extra_filters,
                 )
             )
@@ -1163,9 +1164,11 @@ class BaseTransformation:
             if exc["name"].startswith(prefix):
                 modified_name = exc["name"].replace(
                     prefix,
-                    "market for"
-                    if prefix == "market group for"
-                    else "market group for",
+                    (
+                        "market for"
+                        if prefix == "market group for"
+                        else "market group for"
+                    ),
                 )
                 names_to_look_for.append(modified_name)
 
@@ -1875,11 +1878,15 @@ class BaseTransformation:
         # are converted to tuples with ("ecoinvent", location).
 
         possible_locations = [
-            (self.model.upper(), loc)
-            if loc in self.regions
-            else ("ecoinvent", loc)
-            if (len(loc) > 2 and loc not in ["GLO", "RoW"])
-            else loc
+            (
+                (self.model.upper(), loc)
+                if loc in self.regions
+                else (
+                    ("ecoinvent", loc)
+                    if (len(loc) > 2 and loc not in ["GLO", "RoW"])
+                    else loc
+                )
+            )
             for loc in possible_locations
         ]
 

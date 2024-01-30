@@ -445,7 +445,8 @@ class IAMDataCollection:
                 k: v
                 for k, v in fuel_prod_vars.items()
                 if any(
-                    k.lower().startswith(x) for x in ["gasoline", "ethanol", "methanol", "bioethanol"]
+                    k.lower().startswith(x)
+                    for x in ["gasoline", "ethanol", "methanol", "bioethanol"]
                 )
             },
             system_model=self.system_model,
@@ -589,7 +590,8 @@ class IAMDataCollection:
                 k: v
                 for k, v in fuel_eff_vars.items()
                 if any(
-                    k.lower().startswith(x) for x in ["gasoline", "ethanol", "methanol", "bioethanol"]
+                    k.lower().startswith(x)
+                    for x in ["gasoline", "ethanol", "methanol", "bioethanol"]
                 )
             },
         )
@@ -850,7 +852,9 @@ class IAMDataCollection:
         )
 
         # add the unit as an attribute, as a dictionary with variables as keys
-        array.attrs["unit"] = dict(dataframe.groupby('variables')['unit'].first().to_dict().items())
+        array.attrs["unit"] = dict(
+            dataframe.groupby("variables")["unit"].first().to_dict().items()
+        )
 
         return array
 
@@ -892,11 +896,8 @@ class IAMDataCollection:
         else:
             return None
 
-
         if any(isinstance(x, list) for x in input_vars.values()):
-            rev_input_vars = {
-                x: k for k, v in input_vars.items() for x in v
-            }
+            rev_input_vars = {x: k for k, v in input_vars.items() for x in v}
         else:
             rev_input_vars = {v: k for k, v in input_vars.items()}
 
@@ -917,11 +918,7 @@ class IAMDataCollection:
             )
         else:
             if normalize is True:
-                market_data /= (
-                    market_data
-                    .groupby("region")
-                    .sum(dim="variables")
-                )
+                market_data /= market_data.groupby("region").sum(dim="variables")
 
         # back-fill nans
         market_data = market_data.bfill(dim="year")
@@ -995,21 +992,27 @@ class IAMDataCollection:
                 # check that each element of energy.values() is in data.variables.values
                 # knowing that energy.values() is a list of lists
                 # and that each element of prod.values() is in data.variables.values
-                _ = lambda x: x if isinstance(x, list) else [x,]
+                _ = lambda x: (
+                    x
+                    if isinstance(x, list)
+                    else [
+                        x,
+                    ]
+                )
 
-                if (
-                    all(var in data.variables.values for var in energy_labels[k])
-                    and all(x in data.variables.values for x in _(v))
-                ):
+                if all(
+                    var in data.variables.values for var in energy_labels[k]
+                ) and all(x in data.variables.values for x in _(v)):
                     if isinstance(v, list):
-                        d = (
-                                data.loc[:, energy_labels[k], :].sum(dim="variables")
-                                / data.loc[:, list(v), :].sum(dim="variables")
-                        )
+                        d = data.loc[:, energy_labels[k], :].sum(
+                            dim="variables"
+                        ) / data.loc[:, list(v), :].sum(dim="variables")
                         # add dimension "variables" to d
                         d = d.expand_dims(dim="variables")
                         # add a coordinate "variables" to d
-                        d.coords["variables"] = [k,]
+                        d.coords["variables"] = [
+                            k,
+                        ]
                     else:
                         d = (
                             data.loc[:, energy_labels[k], :].sum(dim="variables")
@@ -1087,7 +1090,9 @@ class IAMDataCollection:
         # and that none of the  CO2 emissions are captured
 
         if isinstance(dict_vars.get("cement - cco2", []), str):
-            dict_vars["cement - cco2"] = [dict_vars["cement - cco2"],]
+            dict_vars["cement - cco2"] = [
+                dict_vars["cement - cco2"],
+            ]
 
         if not any(
             x in data.variables.values.tolist()
@@ -1108,7 +1113,9 @@ class IAMDataCollection:
         cement_rate.coords["variables"] = "cement"
 
         if isinstance(dict_vars.get("steel - cco2", []), str):
-            dict_vars["steel - cco2"] = [dict_vars["steel - cco2"],]
+            dict_vars["steel - cco2"] = [
+                dict_vars["steel - cco2"],
+            ]
 
         if not any(
             x in data.variables.values.tolist()
@@ -1258,9 +1265,7 @@ class IAMDataCollection:
         available_vars = list(set(vars) - missing_vars)
 
         if available_vars:
-            data_to_return = data.loc[
-                :, available_vars, :
-            ]
+            data_to_return = data.loc[:, available_vars, :]
         else:
             return None
 
@@ -1282,7 +1287,7 @@ class IAMDataCollection:
         # if duplicates in market_data.coords["variables"]
         # we sum them
         if len(data_to_return.coords["variables"].values.tolist()) != len(
-                set(data_to_return.coords["variables"].values.tolist())
+            set(data_to_return.coords["variables"].values.tolist())
         ):
             data_to_return = data_to_return.groupby("variables").sum(dim="variables")
 

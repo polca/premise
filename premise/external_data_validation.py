@@ -1,6 +1,7 @@
 """
 Validates datapackages that contain external scenario data.
 """
+
 import numpy as np
 import pandas as pd
 import yaml
@@ -63,7 +64,9 @@ def check_inventories(
                     ),
                     "regionalize": True,
                     "new dataset": False,
-                    "except regions": configuration["regionalize"].get("except regions", []),
+                    "except regions": configuration["regionalize"].get(
+                        "except regions", []
+                    ),
                     "efficiency": val.get("efficiency", []),
                     "replaces": val.get("replaces", []),
                     "replaces in": val.get("replaces in", []),
@@ -381,12 +384,14 @@ def check_scenario_data_file(datapackages, iam_scenarios):
                         f"{iam_scen} can be used with more than one external scenarios: {lst_ext_scen}."
                     )
                     print(
-                        f"Choose the scenario to associate {iam_scen} with: {list(enumerate(lst_ext_scen))}."
+                        f"Choose the scenario to associate {iam_scen} with:"
                     )
+                    for s, scen in enumerate(lst_ext_scen):
+                        print(f"{s} - {scen}")
                     usr_input = ""
 
-                    while usr_input not in list(enumerate(lst_ext_scen)):
-                        usr_input = input("Scenario no.: ")
+                    while usr_input not in list(range(len(lst_ext_scen))):
+                        usr_input = int(input("Scenario no.: "))
                     rev_scenarios[iam_scen] = [lst_ext_scen[int(usr_input)]]
 
         for iam_scen in iam_scenarios:
@@ -614,7 +619,9 @@ def check_external_scenarios(datapackage: list, iam_scenarios: list) -> tuple:
     return datapackage, iam_scenarios
 
 
-def fetch_dataset_description_from_production_pathways(configuration: dict, item: str) -> tuple:
+def fetch_dataset_description_from_production_pathways(
+    configuration: dict, item: str
+) -> tuple:
     for p, v in configuration["production pathways"].items():
         if p == item:
             if "exists in original database" not in v["ecoinvent alias"]:

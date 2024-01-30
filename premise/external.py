@@ -1,6 +1,7 @@
 """
 Implements external scenario data.
 """
+
 import logging
 import uuid
 from collections import defaultdict
@@ -953,8 +954,7 @@ class ExternalScenario(BaseTransformation):
 
                     if "except regions" in market_vars:
                         regions = [
-                            r for r in regions
-                            if r not in market_vars["except regions"]
+                            r for r in regions if r not in market_vars["except regions"]
                         ]
 
                     # Loop through regions
@@ -1039,15 +1039,14 @@ class ExternalScenario(BaseTransformation):
                                         isfuel[region] = {}
                                     isfuel[region].update(
                                         {
-                                                pathway: {
-                                                    f: val * supply_share
-                                                    for f, val in market_vars[
-                                                        "is fuel"
-                                                    ][pathway].items()
-                                                }
+                                            pathway: {
+                                                f: val * supply_share
+                                                for f, val in market_vars["is fuel"][
+                                                    pathway
+                                                ].items()
                                             }
+                                        }
                                     )
-
 
                         if len(new_excs) > 0:
                             total = 0
@@ -1135,7 +1134,7 @@ class ExternalScenario(BaseTransformation):
         ratio,
         regions: list,
         waste_process: bool = False,
-        isfuel: dict = None
+        isfuel: dict = None,
     ) -> None:
         """
         Replaces exchanges that match `old_name` and `old_ref` with exchanges that
@@ -1206,8 +1205,7 @@ class ExternalScenario(BaseTransformation):
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
-                exc for exc in dataset["exchanges"]
-                if exc not in filtered_exchanges
+                exc for exc in dataset["exchanges"] if exc not in filtered_exchanges
             ]
 
             new_exchanges = []
@@ -1261,7 +1259,7 @@ class ExternalScenario(BaseTransformation):
                         )
 
                         if isfuel:
-                            fuel_amount += (exc["amount"] * ratio * share)
+                            fuel_amount += exc["amount"] * ratio * share
                 else:
                     new_exchanges.append(exc)
 
@@ -1278,7 +1276,12 @@ class ExternalScenario(BaseTransformation):
                             x["Carbon dioxide, non-fossil"] * fuel_amount
                             for x in isfuel[dataset["location"]].values()
                         )
-                        if ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, non-fossil")) is None:
+                        if (
+                            ws.biosphere(
+                                dataset, ws.equals("name", "Carbon dioxide, non-fossil")
+                            )
+                            is None
+                        ):
                             dataset["exchanges"].append(
                                 {
                                     "name": "Carbon dioxide, non-fossil",
@@ -1288,16 +1291,25 @@ class ExternalScenario(BaseTransformation):
                                     "input": (
                                         "biosphere3",
                                         self.biosphere_flows[
-                                            ("Carbon dioxide, non-fossil", "air", "unspecified", "kilogram")
+                                            (
+                                                "Carbon dioxide, non-fossil",
+                                                "air",
+                                                "unspecified",
+                                                "kilogram",
+                                            )
                                         ],
                                     ),
                                 }
                             )
                         else:
-                            for exc in ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, non-fossil")):
+                            for exc in ws.biosphere(
+                                dataset, ws.equals("name", "Carbon dioxide, non-fossil")
+                            ):
                                 exc["amount"] += bio_co2
 
-                        for exc in ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, fossil")):
+                        for exc in ws.biosphere(
+                            dataset, ws.equals("name", "Carbon dioxide, fossil")
+                        ):
                             exc["amount"] -= bio_co2
 
             dataset["exchanges"].extend(new_exchanges)

@@ -514,6 +514,7 @@ def _export_to_matrices(obj):
 def _export_to_simapro(obj):
     obj.export_db_to_simapro()
 
+
 def _export_to_olca(obj):
     obj.export_db_to_simapro(olca_compartments=True)
 
@@ -1456,7 +1457,7 @@ class NewDatabase:
                     scenario["year"],
                     version=self.version,
                     system_model=self.system_model,
-                    datapackages=self.datapackages
+                    datapackages=self.datapackages,
                 )
                 for scenario in self.scenarios
             ]
@@ -1620,7 +1621,9 @@ class NewDatabase:
             )
 
         for scenario in self.scenarios:
-            Export(scenario, filepath, self.version).export_db_to_simapro(olca_compartments=True)
+            Export(scenario, filepath, self.version).export_db_to_simapro(
+                olca_compartments=True
+            )
 
         # generate scenario report
         self.generate_scenario_report()

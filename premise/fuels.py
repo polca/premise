@@ -613,7 +613,9 @@ class Fuels(BaseTransformation):
                     new_energy_consumption = scaling_factor * initial_energy_consumption
 
                     # set a floor value/kg H2
-                    new_energy_consumption = max(new_energy_consumption, efficiency_floor_value)
+                    new_energy_consumption = max(
+                        new_energy_consumption, efficiency_floor_value
+                    )
 
                 else:
                     if hydrogen_type == "from electrolysis":
@@ -962,7 +964,9 @@ class Fuels(BaseTransformation):
             )[0]
 
         except ws.NoResults as err_noresults:
-            raise ValueError(f"No hydrogenation activity found for region {region}") from err_noresults
+            raise ValueError(
+                f"No hydrogenation activity found for region {region}"
+            ) from err_noresults
         except ws.MultipleResults as err_multipleresults:
             raise ValueError(
                 f"Multiple hydrogenation activities found for region {region}"
@@ -1836,31 +1840,37 @@ class Fuels(BaseTransformation):
 
                     # Adjust efficiency for fuel production activities
                     new_datasets = {
-                        region: self.adjust_biomass_conversion_efficiency(
-                            dataset=ds,
-                            region=region,
-                            crop_type=crop_type,
+                        region: (
+                            self.adjust_biomass_conversion_efficiency(
+                                dataset=ds,
+                                region=region,
+                                crop_type=crop_type,
+                            )
+                            if is_fuel_production(ds["name"])
+                            else ds
                         )
-                        if is_fuel_production(ds["name"])
-                        else ds
                         for region, ds in new_datasets.items()
                     }
 
                     # Adjust land use for farming activities
                     new_datasets = {
-                        region: self.adjust_land_use(ds, region, crop_type)
-                        if self.should_adjust_land_use(ds, crop_type)
-                        else ds
+                        region: (
+                            self.adjust_land_use(ds, region, crop_type)
+                            if self.should_adjust_land_use(ds, crop_type)
+                            else ds
+                        )
                         for region, ds in new_datasets.items()
                     }
 
                     # Adjust land use change emissions for farming activities
                     new_datasets = {
-                        region: self.adjust_land_use_change_emissions(
-                            ds, region, crop_type
+                        region: (
+                            self.adjust_land_use_change_emissions(ds, region, crop_type)
+                            if self.should_adjust_land_use_change_emissions(
+                                ds, crop_type
+                            )
+                            else ds
                         )
-                        if self.should_adjust_land_use_change_emissions(ds, crop_type)
-                        else ds
                         for region, ds in new_datasets.items()
                     }
 
@@ -1973,9 +1983,9 @@ class Fuels(BaseTransformation):
                 new_keys[("market for petrol", key[1])] = value
                 new_keys[("market for petrol, unleaded", key[1])] = value
             if key[0] == "market for natural gas, high pressure":
-                new_keys[
-                    ("market group for natural gas, high pressure", key[1])
-                ] = value
+                new_keys[("market group for natural gas, high pressure", key[1])] = (
+                    value
+                )
                 new_keys[("market for natural gas, low pressure", key[1])] = value
 
         self.new_fuel_markets.update(new_keys)
@@ -2379,11 +2389,23 @@ class Fuels(BaseTransformation):
                 "gasoline",
                 "bioethanol",
             ],
-            "diesel, low-sulfur": ["diesel", "biodiesel",],
-            "natural gas": ["natural gas", "biomethane", ],
-            "hydrogen": ["hydrogen",],
-            "kerosene": ["kerosene",],
-            "liquefied petroleum gas": ["liquefied petroleum gas",],
+            "diesel, low-sulfur": [
+                "diesel",
+                "biodiesel",
+            ],
+            "natural gas": [
+                "natural gas",
+                "biomethane",
+            ],
+            "hydrogen": [
+                "hydrogen",
+            ],
+            "kerosene": [
+                "kerosene",
+            ],
+            "liquefied petroleum gas": [
+                "liquefied petroleum gas",
+            ],
         }
 
         new_datasets = []

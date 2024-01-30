@@ -1,6 +1,7 @@
 """
 This module contains classes for validating datasets after they have been transformed.
 """
+
 import math
 
 import numpy as np
@@ -34,7 +35,9 @@ def load_waste_keys():
 def load_waste_flows_exceptions():
     # load waste flows exceptions.yaml from data/utils/validation/waste flows exceptions.yaml
 
-    with open(DATA_DIR / "utils/validation/waste flows exceptions.yaml", encoding="utf-8") as f:
+    with open(
+        DATA_DIR / "utils/validation/waste flows exceptions.yaml", encoding="utf-8"
+    ) as f:
         waste_flows_exceptions = yaml.safe_load(f)
 
     return waste_flows_exceptions
@@ -43,7 +46,9 @@ def load_waste_flows_exceptions():
 def load_circular_exceptions():
     # load circular exceptions.yaml from data/utils/validation/circular exceptions.yaml.yaml
 
-    with open(DATA_DIR / "utils/validation/circular exceptions.yaml", encoding="utf-8") as f:
+    with open(
+        DATA_DIR / "utils/validation/circular exceptions.yaml", encoding="utf-8"
+    ) as f:
         circular_exceptions = yaml.safe_load(f)
 
     return circular_exceptions
@@ -141,7 +146,11 @@ class BaseDatasetValidator:
         for ds in original_activities:
             if ds not in new_activities:
                 message = f"Dataset {ds} was lost during transformation"
-                self.write_log({"name": ds[0], "reference product": ds[1], "location": ds[2]}, "lost dataset", message)
+                self.write_log(
+                    {"name": ds[0], "reference product": ds[1], "location": ds[2]},
+                    "lost dataset",
+                    message,
+                )
 
         # Ensure no datasets have null or empty values for required keys
         required_keys = ["name", "location", "reference product", "unit", "exchanges"]
@@ -545,9 +554,9 @@ class ElectricityValidation(BaseDatasetValidator):
             ):
                 hydro_sum = sum(
                     [
-                    x["amount"]
-                    for x in ds["exchanges"]
-                    if x["name"].startswith("electricity production, hydro")
+                        x["amount"]
+                        for x in ds["exchanges"]
+                        if x["name"].startswith("electricity production, hydro")
                     ]
                 )
 
@@ -576,7 +585,7 @@ class ElectricityValidation(BaseDatasetValidator):
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["name"].startswith("electricity production, photovoltaic")
-                        ]
+                    ]
                 )
                 mv_sum = sum(
                     [
@@ -731,7 +740,7 @@ class SteelValidation(BaseDatasetValidator):
                 ).values.item(0)
 
                 total = sum(
-                        [
+                    [
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere"
@@ -759,7 +768,7 @@ class SteelValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
             ):
                 electricity = sum(
-                        [
+                    [
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere" and x["unit"] == "kilowatt hour"
@@ -879,11 +888,11 @@ class CementValidation(BaseDatasetValidator):
                 and "clinker" in ds["reference product"]
             ):
                 energy = sum(
-                        [
+                    [
                         exc["amount"]
                         for exc in ds["exchanges"]
                         if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
-                        ]
+                    ]
                 )
 
                 # add input of coal

@@ -1,6 +1,7 @@
 """
 Integrates projections regarding heat production and supply.
 """
+
 from .logger import create_logger
 from .transformation import BaseTransformation, IAMDataCollection, List, ws
 
@@ -104,9 +105,9 @@ class Heat(BaseTransformation):
                 new_keys[("market for petrol", key[1])] = value
                 new_keys[("market for petrol, unleaded", key[1])] = value
             if key[0] == "market for natural gas, high pressure":
-                new_keys[
-                    ("market group for natural gas, high pressure", key[1])
-                ] = value
+                new_keys[("market group for natural gas, high pressure", key[1])] = (
+                    value
+                )
                 new_keys[("market for natural gas, low pressure", key[1])] = value
 
         self.carbon_intensity_markets.update(new_keys)
@@ -134,7 +135,7 @@ class Heat(BaseTransformation):
                 if len(new_ds) == 0:
                     continue
 
-                for  ds in new_ds.values():
+                for ds in new_ds.values():
                     fossil_co2, non_fossil_co2 = 0.0, 0.0
 
                     for exc in ws.technosphere(ds):
@@ -182,9 +183,9 @@ class Heat(BaseTransformation):
                         )
 
                         for exc in bio_co2_flows:
-                            ds["log parameters"][
-                                "initial amount of biogenic CO2"
-                            ] = exc["amount"]
+                            ds["log parameters"]["initial amount of biogenic CO2"] = (
+                                exc["amount"]
+                            )
                             ds["log parameters"]["new amount of biogenic CO2"] = float(
                                 non_fossil_co2
                             )

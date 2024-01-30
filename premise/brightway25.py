@@ -14,6 +14,7 @@ class BW25Importer(LCIImporter):
     """
     Class to write a Brightway 2.5 database from a Wurst database.
     """
+
     def __init__(self, db_name: str, data: list) -> None:
         """
         :param db_name: Name of the database to write
@@ -34,6 +35,7 @@ class BW25Importer(LCIImporter):
         """
         Write a Brightway 2.5 database from a Wurst database.
         """
+
         def no_exchange_generator(data):
             """
             Remove exchanges from data.

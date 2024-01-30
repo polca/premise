@@ -313,7 +313,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         # we first need to calculate the average capital replacement rate of the market
         # which is here defined as the inverse of the production-weighted average lifetime
 
-
         # again was put in to deal with Nan values in data
         avg_lifetime = fetch_avg_lifetime(lifetime, shares)
 

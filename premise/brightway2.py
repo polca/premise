@@ -11,6 +11,7 @@ class BW2Importer(LCIImporter):
     """
     Class to write a Brightway2 database from a Wurst database.
     """
+
     def __init__(self, db_name: str, data: list) -> None:
         """
         :param db_name: Name of the database to write

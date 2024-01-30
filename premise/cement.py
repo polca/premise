@@ -138,14 +138,14 @@ class Cement(BaseTransformation):
         """
 
         bio_co2 = sum(
-                e["amount"]
-                for e in dataset["exchanges"]
-                if e["name"] == "Carbon dioxide, non-fossil"
+            e["amount"]
+            for e in dataset["exchanges"]
+            if e["name"] == "Carbon dioxide, non-fossil"
         )
         non_bio_co2 = sum(
-                e["amount"]
-                for e in dataset["exchanges"]
-                if e["name"] == "Carbon dioxide, fossil"
+            e["amount"]
+            for e in dataset["exchanges"]
+            if e["name"] == "Carbon dioxide, fossil"
         )
 
         return bio_co2 / (bio_co2 + non_bio_co2)
@@ -238,10 +238,10 @@ class Cement(BaseTransformation):
 
             # fetch the amount of biogenic CO2 emissions
             bio_CO2 = sum(
-                    e["amount"]
-                    for e in ws.biosphere(
-                        dataset, ws.contains("name", "Carbon dioxide, non-fossil")
-                    )
+                e["amount"]
+                for e in ws.biosphere(
+                    dataset, ws.contains("name", "Carbon dioxide, non-fossil")
+                )
             )
 
             # back-calculate the amount of waste fuel from
@@ -341,9 +341,7 @@ class Cement(BaseTransformation):
                 )
 
                 # rescale combustion-related CO2 emissions
-                dataset = self.rescale_emissions(
-                    dataset, energy_details
-                )
+                dataset = self.rescale_emissions(dataset, energy_details)
 
             # Carbon capture rate: share of capture of total CO2 emitted
             carbon_capture_rate = self.get_carbon_capture_rate(

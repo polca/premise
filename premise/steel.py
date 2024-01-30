@@ -1,6 +1,7 @@
 """
 Integrates projections regarding steel production.
 """
+
 from typing import Dict, List
 
 from .data_collection import IAMDataCollection
@@ -456,9 +457,9 @@ class Steel(BaseTransformation):
 
                 if sector == "steel - secondary":
                     electricity = sum(
-                            exc["amount"]
-                            for exc in ws.technosphere(dataset)
-                            if exc["unit"] == "kilowatt hour"
+                        exc["amount"]
+                        for exc in ws.technosphere(dataset)
+                        if exc["unit"] == "kilowatt hour"
                     )
 
                     scaling_factor = max(0.444 / electricity, scaling_factor)
@@ -471,24 +472,23 @@ class Steel(BaseTransformation):
 
                 if dataset["name"] == "pig iron production":
                     energy = sum(
-                            exc["amount"]
-                            for exc in ws.technosphere(dataset)
-                            if exc["unit"] == "megajoule"
+                        exc["amount"]
+                        for exc in ws.technosphere(dataset)
+                        if exc["unit"] == "megajoule"
                     )
 
                     # add input of coal
                     energy += sum(
-                            exc["amount"] * 26.4
-                            for exc in ws.technosphere(dataset)
-                            if "hard coal" in exc["name"] and exc["unit"] == "kilogram"
+                        exc["amount"] * 26.4
+                        for exc in ws.technosphere(dataset)
+                        if "hard coal" in exc["name"] and exc["unit"] == "kilogram"
                     )
 
                     # add input of natural gas
                     energy += sum(
-                            exc["amount"] * 36
-                            for exc in ws.technosphere(dataset)
-                            if "natural gas" in exc["name"]
-                            and exc["unit"] == "cubic meter"
+                        exc["amount"] * 36
+                        for exc in ws.technosphere(dataset)
+                        if "natural gas" in exc["name"] and exc["unit"] == "cubic meter"
                     )
 
                     scaling_factor = max(9.0 / energy, scaling_factor)
