@@ -636,7 +636,7 @@ class Fuels(BaseTransformation):
                             dataset,
                             scaling_factor,
                             technosphere_filters=[
-                                ws.contains("name", hydrogen_activity_name),
+                                ws.contains("name", hydrogen_feedstock_name),
                                 ws.equals("unit", hydrogen_feedstock_unit),
                             ],
                         )

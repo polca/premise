@@ -6,282 +6,282 @@ Europe without Austria:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 Europe without Switzerland and Austria:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 Europe without Switzerland:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 North America without Quebec:
   remind: USA
   image: USA
   message: NAM
-  tiam: USA
+  tiam-ucl: USA
   gcam: USA
 RER w/o RU:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 RER:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 RoW:
   remind: World
   image: World
   message: World
-  tiam: World
+  tiam-ucl: World
   gcam: World
 GLO:
   remind: World
   image: World
   message: World
-  tiam: World
+  tiam-ucl: World
   gcam: World
 RNA:
   remind: USA
   image: USA
   message: NAM
-  tiam: USA
+  tiam-ucl: USA
   gcam: USA
 SAS:
   remind: IND
   image: INDIA
   message: SAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: India
 IAI Area, EU27 & EFTA:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 UN-OCEANIA:
   remind: CAZ
   image: OCE
   message: PAO
-  tiam: AUS
+  tiam-ucl: AUS
   gcam: Australia_NZ
 UN-SEASIA:
   remind: OAS
   image: SEAS
   message: PAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: Southeast Asia
 RAF:
   remind: SSA
   image: RSAF
   message: AFR
-  tiam: AFR
+  tiam-ucl: AFR
   gcam: South Africa
 RAS:
   remind: CHA
   image: CHN
   message: CHN
-  tiam: CHI
+  tiam-ucl: CHI
   gcam: China
 IAI Area, Africa:
   remind: SSA
   image: RSAF
   message: AFR
-  tiam: AFR
+  tiam-ucl: AFR
   gcam: South Africa
 RER w/o CH+DE:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 RER w/o DE+NL+RU:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 IAI Area, Asia, without China and GCC:
   remind: OAS
   image: SEAS
   message: PAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: Southeast Asia
 Europe, without Russia and Turkey:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 WECC:
   remind: USA
   image: USA
   message: NAM
-  tiam: USA
+  tiam-ucl: USA
   gcam: USA
 WEU:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 UCTE:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 UCTE without Germany:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 NORDEL:
   remind: NEU
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 ENTSO-E:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 RLA:
   remind: LAM
   image: RSAM
   message: LAM
-  tiam: CSA
+  tiam-ucl: CSA
   gcam: South America_Southern
 IAI Area, South America:
   remind: LAM
   image: RSAM
   message: LAM
-  tiam: CSA
+  tiam-ucl: CSA
   gcam: South America_Southern
 IAI Area, Russia & RER w/o EU27 & EFTA:
   remind: REF
   image: RUS
   message: FSU
-  tiam: FSU
+  tiam-ucl: FSU
   gcam: Russia
 IAI Area, North America:
   remind: USA
   image: USA
   message: NAM
-  tiam: USA
+  tiam-ucl: USA
   gcam: USA
 OCE:
   remind: CAZ
   image: OCE
   message: PAO
-  tiam: AUS
+  tiam-ucl: AUS
   gcam: Australia_NZ
 US-PR:
   remind: USA
   image: USA
   message: NAM
-  tiam: USA
+  tiam-ucl: USA
   gcam: USA
 US only:
   remind: USA
   image: USA
   message: NAM
-  tiam: USA
+  tiam-ucl: USA
   gcam: USA
 APAC:
   remind: OAS
   image: SEAS
   message: PAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: Southeast Asia
 CN-NCGC:
   remind: CHA
   image: CHN
   message: CHN
-  tiam: CHI
+  tiam-ucl: CHI
   gcam: China
 
 CN-CSG:
   remind: CHA
   image: CHN
   message: CHN
-  tiam: CHI
+  tiam-ucl: CHI
   gcam: China
 
 CN-SWG:
   remind: CHA
   image: CHN
   message: CHN
-  tiam: CHI
+  tiam-ucl: CHI
   gcam: China
 CN-CCG:
   remind: CHA
   image: CHN
   message: CHN
-  tiam: CHI
+  tiam-ucl: CHI
   gcam: China
 CN-ECGC:
   remind: CHA
   image: CHN
   message: CHN
-  tiam: CHI
+  tiam-ucl: CHI
   gcam: China
 RoE:
   remind: EUR
   image: WEU
   message: WEU
-  tiam: WEU
+  tiam-ucl: WEU
   gcam: EU-15
 CN-NWG:
   remind: CHA
   image: CHN
   message: CHN
-  tiam: CHI
+  tiam-ucl: CHI
   gcam: China
 BR-South-eastern/Mid-western grid:
   remind: LAM
   image: RSAM
   message: LAM
-  tiam: CSA
+  tiam-ucl: CSA
   gcam: South America_Southern
 CN-NECG:
   remind: CHA
   image: CHN
   message: CHN
   gcam: China
-  tiam: CHI
+  tiam-ucl: CHI
 
 IN-DD:
   remind: IND
   image: INDIA
   message: SAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: India
 
 IN-DN:
   remind: IND
   image: INDIA
   message: SAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: India
 
 LA: # Laos
   remind: OAS
   image: SEAS
   message: PAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: Southeast Asia
 
 # Fiji
@@ -289,7 +289,7 @@ FJ:
   remind: OAS
   image: SEAS
   message: PAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: Southeast Asia
 
 # Guinea
@@ -297,7 +297,7 @@ GN:
   remind: SSA
   image: RSAF
   message: AFR
-  tiam: AFR
+  tiam-ucl: AFR
   gcam: South Africa
 
 # Guyana
@@ -305,7 +305,7 @@ GY:
   remind: LAM
   image: RSAM
   message: LAM
-  tiam: CSA
+  tiam-ucl: CSA
   gcam: South America_Southern
 
 # Sierra Leone
@@ -313,7 +313,7 @@ SL:
   remind: SSA
   image: RSAF
   message: AFR
-  tiam: AFR
+  tiam-ucl: AFR
   gcam: South Africa
 
 # add Solomon Islands
@@ -321,7 +321,7 @@ SB:
   remind: OAS
   image: SEAS
   message: PAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: Southeast Asia
 
 # add Uganda
@@ -329,7 +329,7 @@ UG:
   remind: SSA
   image: RSAF
   message: AFR
-  tiam: AFR
+  tiam-ucl: AFR
   gcam: South Africa
 
 # add Afghanistan
@@ -337,7 +337,7 @@ AF:
   remind: OAS
   image: SEAS
   message: PAS
-  tiam: ODA
+  tiam-ucl: ODA
   gcam: Southeast Asia
 
 # add Mauritius
@@ -345,5 +345,5 @@ MR:
   remind: SSA
   image: RSAF
   message: AFR
-  tiam: AFR
+  tiam-ucl: AFR
   gcam: South Africa
