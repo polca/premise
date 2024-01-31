@@ -164,7 +164,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     duration: int = args.get("duration", False)
     foresight: bool = args.get("foresight", False)
     lead_time: int = args.get("lead time", False)
-    capital_repl_rate: bool = args.get("capital replacement rate", False)
+    capital_repl_rate: bool = args.get("capital replacement rate", True)
     measurement: int = args.get("measurement", 0)
     weighted_slope_start: float = args.get("weighted slope start", 0.75)
     weighted_slope_end: float = args.get("weighted slope end", 1.0)
