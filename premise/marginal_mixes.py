@@ -79,7 +79,7 @@ def fetch_avg_capital_replacement_rate(avg_lifetime: int, data: xr.DataArray) ->
     """
     Calculate the average capital replacement rate of a market.
     """
-    return (-1 / avg_lifetime * data.sum(dim="variables").values).item(0) or 0.0
+    return (-1 / avg_lifetime) or 0.0
 
 
 def fetch_capital_replacement_rates(
@@ -756,6 +756,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             market_shares.loc[{"region": region}] /= market_shares.loc[
                 {"region": region}
             ].sum(dim="variables")
+
         # increasing market or
         # market decreasing slowlier than the
         # capital renewal rate

@@ -37,14 +37,14 @@ From the user viewpoint, the process is as follows:
 The parameters used to identify marginal suppliers that make up
 a market are:
 
-* range time
-* duration
-* foresight
-* lead time
-* capital replacement rate
-* measurement
-* weighted slope start
-* weighted slope end
+* range time (years, default = 0)
+* duration (years, default = 0)
+* foresight (True or False, default = False)
+* lead time (True or False, default = False)
+* capital replacement rate (True or False, default = False)
+* measurement (0 to 4, default = 0)
+* weighted slope start (default = 0.75)
+* weighted slope end (default = 1.00)
 
 Range time
 ^^^^^^^^^^
