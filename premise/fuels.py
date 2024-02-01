@@ -1681,10 +1681,7 @@ class Fuels(BaseTransformation):
 
         for fuel, activities in self.fuel_map.items():
             for activity in activities:
-                for ds in ws.get_many(
-                    self.database,
-                    ws.equals("name", activity)
-                ):
+                for ds in ws.get_many(self.database, ws.equals("name", activity)):
                     variable = self.rev_fuel_map.get(activity)
                     scaling_factor = 1.0
                     if variable in self.fuel_efficiencies.coords["variables"]:
@@ -1693,14 +1690,17 @@ class Fuels(BaseTransformation):
                         else:
                             region = self.ecoinvent_to_iam_loc[ds["location"]]
 
-                        scaling_factor = self.fuel_efficiencies.sel(
-                            variables=variable,
-                            region=region,
-                        ).interp(year=self.year).values
+                        scaling_factor = (
+                            self.fuel_efficiencies.sel(
+                                variables=variable,
+                                region=region,
+                            )
+                            .interp(year=self.year)
+                            .values
+                        )
                     if scaling_factor != 1.0:
                         print(ds["name"], ds["location"], "  --->  ", scaling_factor)
             print()
-
 
     def adjust_biomass_conversion_efficiency(
         self, dataset: dict, region: str, crop_type: str
