@@ -126,6 +126,9 @@ FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
 FILEPATH_METHANOL_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
+FILEPATH_METHANOL_FROM_WOOD = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-wood.xlsx"
+)
 FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-cement-plant.xlsx"
 )
@@ -776,6 +779,7 @@ class NewDatabase:
             (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_TURBINE, "3.9"),
             (FILEPATH_SYNGAS_INVENTORIES, "3.9"),
+            (FILEPATH_METHANOL_FROM_WOOD, "3.7"),
             (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
             (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
             (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),

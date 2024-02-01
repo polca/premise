@@ -421,6 +421,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                     variable=variables,
                 )
 
+                if "CCS" in sector and iam_data is not None:
+                    iam_data = iam_data * 100
+
                 if iam_data is None:
                     continue
 
@@ -441,7 +444,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 row += 2
 
                 for region in scenario["iam data"].regions:
-                    if sector == "GMST" and region != "World":
+                    if sector in ["GMST", "CO2"] and region != "World":
                         continue
 
                     worksheet.cell(column=col, row=row, value=region)

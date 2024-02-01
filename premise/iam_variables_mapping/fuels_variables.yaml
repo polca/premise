@@ -966,7 +966,7 @@ methanol, from wood, with CCS:
   ecoinvent_aliases:
     fltr:
       name:
-        - methanol production, from synthetic gas
+        - methanol distillation, from wood, with CCS
 
 methanol, from grass, with CCS:
   lhv: 19.9
@@ -978,7 +978,7 @@ methanol, from grass, with CCS:
     image: Efficiency|Liquids|Biomass|Methanol|Grassy|w/ CCS
   ecoinvent_aliases:
     fltr:
-      - methanol production, from synthetic gas
+      - methanol distillation, from wood, with CCS
 
 
 liquefied petroleum gas:
