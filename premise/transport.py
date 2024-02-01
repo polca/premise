@@ -14,7 +14,6 @@ import yaml
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from .utils import eidb_label
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import BaseTransformation, IAMDataCollection
