@@ -446,11 +446,12 @@ class IAMDataCollection:
                 for k, v in fuel_prod_vars.items()
                 if any(
                     k.lower().startswith(x)
-                    for x in ["gasoline", "ethanol", "methanol", "bioethanol"]
+                    for x in ["gasoline", "ethanol", "methanol", "bioethanol", "petrol,"]
                 )
             },
             system_model=self.system_model,
         )
+
         if self.petrol_markets is not None:
             # divide the volume of "gasoline" by 2
             self.petrol_markets.loc[dict(variables="gasoline")] /= 2
@@ -475,7 +476,7 @@ class IAMDataCollection:
             system_model=self.system_model,
         )
         if self.diesel_markets is not None:
-            # divide the volume of "gasoline" by 2
+            # divide the volume of "diesel" by 2
             self.diesel_markets.loc[dict(variables="diesel")] /= 2
             # normalize by the sum
             self.diesel_markets = self.diesel_markets / self.diesel_markets.sum(
@@ -704,6 +705,12 @@ class IAMDataCollection:
                 **biomass_prod_vars,
             },
         )
+
+        if "diesel" not in self.production_volumes.coords["variables"].values.tolist():
+            gasoline = self.production_volumes.sel(variables=["gasoline"])
+            # rename "gasoline" to "diesel"
+            gasoline.coords["variables"] = ["diesel",]
+            self.production_volumes = xr.concat([self.production_volumes, gasoline], dim="variables")
 
         self.coal_power_plants = self.fetch_external_data_coal_power_plants()
 

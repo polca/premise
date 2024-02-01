@@ -239,6 +239,7 @@ methane, synthetic:
     fltr:
       - methane, synthetic, gaseous
       - methane, from electrochemical methanation
+
 diesel:
   lhv: 43
   co2: 0.0732

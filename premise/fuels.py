@@ -309,6 +309,8 @@ def _update_fuels(scenario, version, system_model, cache=None):
     else:
         print("No fuel markets found in IAM data. Skipping.")
 
+    fuels.adjust_fuel_conversion_efficiency()
+
     fuels.relink_datasets()
 
     return scenario, cache
@@ -1672,6 +1674,34 @@ class Fuels(BaseTransformation):
 
         return dataset
 
+    def adjust_fuel_conversion_efficiency(self):
+        """
+        Adjust the input to output fuel conversion efficiency.
+        """
+
+        for fuel, activities in self.fuel_map.items():
+            for activity in activities:
+                for ds in ws.get_many(
+                    self.database,
+                    ws.equals("name", activity)
+                ):
+                    variable = self.rev_fuel_map.get(activity)
+                    scaling_factor = 1.0
+                    if variable in self.fuel_efficiencies.coords["variables"]:
+                        if ds["location"] in self.regions:
+                            region = ds["location"]
+                        else:
+                            region = self.ecoinvent_to_iam_loc[ds["location"]]
+
+                        scaling_factor = self.fuel_efficiencies.sel(
+                            variables=variable,
+                            region=region,
+                        ).interp(year=self.year).values
+                    if scaling_factor != 1.0:
+                        print(ds["name"], ds["location"], "  --->  ", scaling_factor)
+            print()
+
+
     def adjust_biomass_conversion_efficiency(
         self, dataset: dict, region: str, crop_type: str
     ) -> dict:
@@ -2379,6 +2409,12 @@ class Fuels(BaseTransformation):
         # as some have been created in the meanwhile
         mapping = InventorySet(self.database)
         self.fuel_map = mapping.generate_fuel_map()
+        # reverse fuel map
+        self.rev_fuel_map = {}
+        for fuel, activities in self.fuel_map.items():
+            for activity in activities:
+                self.rev_fuel_map[activity] = fuel
+
         d_fuels = self.get_fuel_mapping()
 
         vars_map = {
