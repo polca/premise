@@ -1510,7 +1510,10 @@ class BaseTransformation:
 
         if len(possible_datasets) == 0:
             if "market for" in exchange["name"]:
-                key = (exchange["name"].replace("market for", "market group for"), exchange["product"])
+                key = (
+                    exchange["name"].replace("market for", "market group for"),
+                    exchange["product"],
+                )
                 possible_datasets = self.index[key]
 
         if len(possible_datasets) == 0:

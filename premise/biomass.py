@@ -28,11 +28,7 @@ IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 logger = create_logger("biomass")
 
 
-def _update_biomass(
-    scenario,
-    version,
-    system_model
-):
+def _update_biomass(scenario, version, system_model):
     biomass = Biomass(
         database=scenario["database"],
         iam_data=scenario["iam data"],

@@ -455,9 +455,7 @@ def _update_all(
         system_model=system_model,
     )
     scenario = _update_biomass(
-        scenario=scenario,
-        version=version,
-        system_model=system_model
+        scenario=scenario, version=version, system_model=system_model
     )
     scenario = _update_electricity(
         scenario=scenario,
@@ -466,31 +464,21 @@ def _update_all(
         use_absolute_efficiency=use_absolute_efficiency,
     )
     scenario = _update_dac(
-        scenario=scenario,
-        version=version,
-        system_model=system_model
+        scenario=scenario, version=version, system_model=system_model
     )
     scenario = _update_cement(
-        scenario=scenario,
-        version=version,
-        system_model=system_model
+        scenario=scenario, version=version, system_model=system_model
     )
     scenario = _update_steel(
-        scenario=scenario,
-        version=version,
-        system_model=system_model
+        scenario=scenario, version=version, system_model=system_model
     )
 
     scenario = _update_fuels(
-        scenario=scenario,
-        version=version,
-        system_model=system_model
+        scenario=scenario, version=version, system_model=system_model
     )
 
     scenario = _update_heat(
-        scenario=scenario,
-        version=version,
-        system_model=system_model
+        scenario=scenario, version=version, system_model=system_model
     )
 
     scenario = _update_emissions(
