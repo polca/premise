@@ -31,7 +31,7 @@ def fetch_mapping(filepath: str) -> dict:
     return mapping
 
 
-def _update_dac(scenario, version, system_model, cache=None):
+def _update_dac(scenario, version, system_model):
     dac = DirectAirCapture(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -40,19 +40,20 @@ def _update_dac(scenario, version, system_model, cache=None):
         year=scenario["year"],
         version=version,
         system_model=system_model,
-        cache=cache,
+        cache=scenario.get("cache"),
+        index=scenario.get("index"),
     )
 
     if scenario["iam data"].dac_markets is not None:
         dac.generate_dac_activities()
+        dac.relink_datasets()
         scenario["database"] = dac.database
-        cache = dac.cache
+        scenario["cache"] = dac.cache
+        scenario["index"] = dac.index
     else:
         print("No DAC markets found in IAM data. Skipping.")
 
-    dac.relink_datasets()
-
-    return scenario, cache
+    return scenario
 
 
 class DirectAirCapture(BaseTransformation):
@@ -71,6 +72,7 @@ class DirectAirCapture(BaseTransformation):
         version: str,
         system_model: str,
         cache: dict = None,
+        index: dict = None,
     ):
         super().__init__(
             database,
@@ -81,6 +83,7 @@ class DirectAirCapture(BaseTransformation):
             version,
             system_model,
             cache,
+            index,
         )
         self.database = database
         self.iam_data = iam_data

@@ -448,63 +448,56 @@ def _update_all(
     vehicle_type,
     gains_scenario,
 ):
-    scenario, cache = _update_vehicles(
+    scenario = _update_vehicles(
         scenario=scenario,
         vehicle_type=vehicle_type,
         version=version,
         system_model=system_model,
     )
-    scenario, cache = _update_biomass(
+    scenario = _update_biomass(
         scenario=scenario,
         version=version,
-        system_model=system_model,
-        cache=cache,
+        system_model=system_model
     )
-    scenario, cache = _update_electricity(
+    scenario = _update_electricity(
         scenario=scenario,
         version=version,
         system_model=system_model,
         use_absolute_efficiency=use_absolute_efficiency,
-        cache=cache,
     )
-    scenario, cache = _update_dac(
+    scenario = _update_dac(
         scenario=scenario,
         version=version,
-        system_model=system_model,
-        cache=cache,
+        system_model=system_model
     )
-    scenario, cache = _update_cement(
+    scenario = _update_cement(
         scenario=scenario,
         version=version,
-        system_model=system_model,
-        cache=cache,
+        system_model=system_model
     )
-    scenario, cache = _update_steel(
+    scenario = _update_steel(
         scenario=scenario,
         version=version,
-        system_model=system_model,
-        cache=cache,
+        system_model=system_model
     )
 
-    scenario, cache = _update_fuels(
+    scenario = _update_fuels(
         scenario=scenario,
         version=version,
-        system_model=system_model,
-        cache=cache,
+        system_model=system_model
     )
 
-    scenario, cache = _update_heat(
+    scenario = _update_heat(
         scenario=scenario,
         version=version,
-        system_model=system_model,
-        cache=cache,
+        system_model=system_model
     )
 
     scenario = _update_emissions(
-        scenario,
-        version,
-        system_model,
-        gains_scenario,
+        scenario=scenario,
+        version=version,
+        system_model=system_model,
+        gains_scenario=gains_scenario,
     )
 
     return scenario
@@ -903,10 +896,10 @@ class NewDatabase:
                 results = pool.starmap(_update_biomass, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_biomass(
+                self.scenarios[s] = _update_biomass(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
@@ -938,10 +931,10 @@ class NewDatabase:
                 results = pool.starmap(_update_electricity, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_electricity(
+                self.scenarios[s] = _update_electricity(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
@@ -973,11 +966,11 @@ class NewDatabase:
                 results = pool.starmap(_update_dac, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_dac(
+                self.scenarios[s] = _update_dac(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
@@ -1006,11 +999,11 @@ class NewDatabase:
                 results = pool.starmap(_update_fuels, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_fuels(
+                self.scenarios[s] = _update_fuels(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
@@ -1039,11 +1032,11 @@ class NewDatabase:
                 results = pool.starmap(_update_heat, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_heat(
+                self.scenarios[s] = _update_heat(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
@@ -1072,11 +1065,11 @@ class NewDatabase:
                 results = pool.starmap(_update_cement, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_cement(
+                self.scenarios[s] = _update_cement(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
@@ -1105,11 +1098,11 @@ class NewDatabase:
                 results = pool.starmap(_update_steel, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_steel(
+                self.scenarios[s] = _update_steel(
                     scenario=scenario,
                     version=self.version,
                     system_model=self.system_model,
@@ -1139,11 +1132,11 @@ class NewDatabase:
                 results = pool.starmap(_update_vehicles, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_vehicles(
+                self.scenarios[s] = _update_vehicles(
                     scenario=scenario,
                     vehicle_type="car",
                     version=self.version,
@@ -1174,11 +1167,11 @@ class NewDatabase:
                 results = pool.starmap(_update_vehicles, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_vehicles(
+                self.scenarios[s] = _update_vehicles(
                     scenario=scenario,
                     vehicle_type="two wheeler",
                     version=self.version,
@@ -1211,11 +1204,11 @@ class NewDatabase:
                 results = pool.starmap(_update_vehicles, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_vehicles(
+                self.scenarios[s] = _update_vehicles(
                     scenario=scenario,
                     vehicle_type="truck",
                     version=self.version,
@@ -1247,11 +1240,11 @@ class NewDatabase:
                 results = pool.starmap(_update_vehicles, args)
 
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s][0]
+                self.scenarios[s] = results[s]
 
         else:
             for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s], _ = _update_vehicles(
+                self.scenarios[s] = _update_vehicles(
                     scenario=scenario,
                     vehicle_type="bus",
                     version=self.version,

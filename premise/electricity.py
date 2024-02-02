@@ -165,7 +165,6 @@ def _update_electricity(
     version,
     system_model,
     use_absolute_efficiency,
-    cache=None,
 ):
     electricity = Electricity(
         database=scenario["database"],
@@ -176,7 +175,8 @@ def _update_electricity(
         version=version,
         system_model=system_model,
         use_absolute_efficiency=use_absolute_efficiency,
-        cache=cache,
+        cache=scenario.get("cache"),
+        index=scenario.get("index"),
     )
 
     electricity.create_missing_power_plant_datasets()
@@ -202,6 +202,9 @@ def _update_electricity(
         print("No electricity efficiencies found in IAM data. Skipping.")
 
     electricity.relink_datasets()
+    scenario["database"] = electricity.database
+    scenario["index"] = electricity.index
+    scenario["cache"] = electricity.cache
 
     validate = ElectricityValidation(
         model=scenario["model"],
@@ -214,10 +217,7 @@ def _update_electricity(
 
     validate.run_electricity_checks()
 
-    scenario["database"] = electricity.database
-    cache = electricity.cache
-
-    return scenario, cache
+    return scenario
 
 
 class Electricity(BaseTransformation):
@@ -248,6 +248,7 @@ class Electricity(BaseTransformation):
         system_model: str,
         use_absolute_efficiency: bool = False,
         cache: dict = None,
+        index: dict = None,
     ) -> None:
         super().__init__(
             database,
@@ -258,6 +259,7 @@ class Electricity(BaseTransformation):
             version,
             system_model,
             cache,
+            index,
         )
         mapping = InventorySet(self.database, model=self.model)
         self.powerplant_map = mapping.generate_powerplant_map()
@@ -2011,6 +2013,8 @@ class Electricity(BaseTransformation):
                     1.0,
                 ],
             )
+
+
 
         # We then need to create high voltage IAM electricity markets
         # print("Create high voltage markets.")

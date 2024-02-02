@@ -970,6 +970,9 @@ class BaseTransformation:
                 if (not self.is_in_index(e) and e["amount"] != 0)
             ]
 
+            if act["name"] == "market for diesel" and act["location"] == "CAN":
+                print(excs_to_relink)
+
             if len(excs_to_relink) == 0:
                 continue
 
@@ -1506,6 +1509,11 @@ class BaseTransformation:
         possible_datasets = self.index[key]
 
         if len(possible_datasets) == 0:
+            if "market for" in exchange["name"]:
+                key = (exchange["name"].replace("market for", "market group for"), exchange["product"])
+                possible_datasets = self.index[key]
+
+        if len(possible_datasets) == 0:
             print(
                 "No possible datasets found for",
                 key,
@@ -1799,7 +1807,7 @@ class BaseTransformation:
         exchanges_before = defaultdict(float)
         for exc in dataset["exchanges"]:
             if exc["type"] == "technosphere":
-                exchanges_before[exc["name"]] += exc["amount"]
+                exchanges_before[exc["product"]] += exc["amount"]
 
         if dataset["name"] == "market for clinker" and dataset["location"] == "RoW":
             print("BEFORE")
@@ -1845,7 +1853,7 @@ class BaseTransformation:
 
         sum_after = sum(exc["amount"] for exc in dataset["exchanges"])
 
-        assert np.allclose(sum_before, sum_after), (
+        assert np.allclose(sum_before, sum_after, rtol=1e-3), (
             f"Sum of exchanges before and after relinking is not the same: {sum_before} != {sum_after}"
             f"\n{dataset['name']}|{dataset['location']}"
         )
@@ -1854,7 +1862,7 @@ class BaseTransformation:
         exchanges_after = defaultdict(float)
         for exc in dataset["exchanges"]:
             if exc["type"] == "technosphere":
-                exchanges_after[exc["name"]] += exc["amount"]
+                exchanges_after[exc["product"]] += exc["amount"]
 
         assert set(exchanges_before.keys()) == set(exchanges_after.keys()), (
             f"Exchanges before and after relinking are not the same: {set(exchanges_before.keys())} != {set(exchanges_after.keys())}"

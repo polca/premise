@@ -31,8 +31,7 @@ logger = create_logger("biomass")
 def _update_biomass(
     scenario,
     version,
-    system_model,
-    cache=None,
+    system_model
 ):
     biomass = Biomass(
         database=scenario["database"],
@@ -42,7 +41,8 @@ def _update_biomass(
         year=scenario["year"],
         version=version,
         system_model=system_model,
-        cache=cache,
+        cache=scenario.get("cache"),
+        index=scenario.get("index"),
     )
 
     if scenario["iam data"].biomass_markets is not None:
@@ -62,9 +62,10 @@ def _update_biomass(
     validate.run_biomass_checks()
 
     scenario["database"] = biomass.database
-    cache = biomass.cache
+    scenario["index"] = biomass.index
+    scenario["cache"] = biomass.cache
 
-    return scenario, cache
+    return scenario
 
 
 class Biomass(BaseTransformation):
@@ -94,6 +95,7 @@ class Biomass(BaseTransformation):
         version: str,
         system_model: str,
         cache: dict = None,
+        index: dict = None,
     ) -> None:
         super().__init__(
             database,
@@ -104,6 +106,7 @@ class Biomass(BaseTransformation):
             version,
             system_model,
             cache,
+            index,
         )
         self.system_model = system_model
         self.biosphere_dict = biosphere_flows_dictionary(self.version)

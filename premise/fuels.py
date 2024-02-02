@@ -281,7 +281,7 @@ def update_dataset(dataset, supplier_key, amount):
     return dataset
 
 
-def _update_fuels(scenario, version, system_model, cache=None):
+def _update_fuels(scenario, version, system_model):
     fuels = Fuels(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -290,7 +290,8 @@ def _update_fuels(scenario, version, system_model, cache=None):
         year=scenario["year"],
         version=version,
         system_model=system_model,
-        cache=cache,
+        cache=scenario.get("cache"),
+        index=scenario.get("index"),
     )
 
     if any(
@@ -304,16 +305,15 @@ def _update_fuels(scenario, version, system_model, cache=None):
     ):
         fuels.correct_biogas_activities()
         fuels.generate_fuel_markets()
+        fuels.adjust_fuel_conversion_efficiency()
+        fuels.relink_datasets()
         scenario["database"] = fuels.database
-        cache = fuels.cache
+        scenario["cache"] = fuels.cache
+        scenario["index"] = fuels.index
     else:
         print("No fuel markets found in IAM data. Skipping.")
 
-    fuels.adjust_fuel_conversion_efficiency()
-
-    fuels.relink_datasets()
-
-    return scenario, cache
+    return scenario
 
 
 class Fuels(BaseTransformation):
@@ -331,6 +331,7 @@ class Fuels(BaseTransformation):
         version: str,
         system_model: str,
         cache: dict = None,
+        index: dict = None,
     ):
         super().__init__(
             database,
@@ -341,6 +342,7 @@ class Fuels(BaseTransformation):
             version,
             system_model,
             cache,
+            index
         )
         # ecoinvent version
         self.version = version

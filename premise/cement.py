@@ -16,7 +16,7 @@ from .validation import CementValidation
 logger = create_logger("cement")
 
 
-def _update_cement(scenario, version, system_model, cache=None):
+def _update_cement(scenario, version, system_model):
     cement = Cement(
         database=scenario["database"],
         model=scenario["model"],
@@ -25,30 +25,31 @@ def _update_cement(scenario, version, system_model, cache=None):
         year=scenario["year"],
         version=version,
         system_model=system_model,
-        cache=cache,
+        cache=scenario.get("cache"),
+        index=scenario.get("index"),
     )
 
     if scenario["iam data"].cement_markets is not None:
         cement.add_datasets_to_database()
+        cement.relink_datasets()
         scenario["database"] = cement.database
-        cache = cement.cache
+        scenario["index"] = cement.index
+        scenario["cache"] = cement.cache
+
+        validate = CementValidation(
+            model=scenario["model"],
+            scenario=scenario["pathway"],
+            year=scenario["year"],
+            regions=scenario["iam data"].regions,
+            database=cement.database,
+            iam_data=scenario["iam data"],
+        )
+
+        validate.run_cement_checks()
     else:
         print("No cement markets found in IAM data. Skipping.")
 
-    cement.relink_datasets()
-
-    validate = CementValidation(
-        model=scenario["model"],
-        scenario=scenario["pathway"],
-        year=scenario["year"],
-        regions=scenario["iam data"].regions,
-        database=cement.database,
-        iam_data=scenario["iam data"],
-    )
-
-    validate.run_cement_checks()
-
-    return scenario, cache
+    return scenario
 
 
 class Cement(BaseTransformation):
@@ -82,6 +83,7 @@ class Cement(BaseTransformation):
         version: str,
         system_model: str,
         cache: dict = None,
+        index: dict = None,
     ):
         super().__init__(
             database,
@@ -92,6 +94,7 @@ class Cement(BaseTransformation):
             version,
             system_model,
             cache,
+            index
         )
         self.version = version
 

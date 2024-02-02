@@ -13,7 +13,7 @@ from .validation import SteelValidation
 logger = create_logger("steel")
 
 
-def _update_steel(scenario, version, system_model, cache=None):
+def _update_steel(scenario, version, system_model):
     steel = Steel(
         database=scenario["database"],
         model=scenario["model"],
@@ -22,30 +22,29 @@ def _update_steel(scenario, version, system_model, cache=None):
         year=scenario["year"],
         version=version,
         system_model=system_model,
-        cache=cache,
+        cache=scenario.get("cache"),
+        index=scenario.get("index"),
     )
 
     if scenario["iam data"].steel_markets is not None:
         steel.generate_activities()
+        steel.relink_datasets()
         scenario["database"] = steel.database
-        cache = steel.cache
+        scenario["cache"] = steel.cache
+        scenario["index"] = steel.index
+        validate = SteelValidation(
+            model=scenario["model"],
+            scenario=scenario["pathway"],
+            year=scenario["year"],
+            regions=scenario["iam data"].regions,
+            database=steel.database,
+            iam_data=scenario["iam data"],
+        )
+        validate.run_steel_checks()
     else:
         print("No steel markets found in IAM data. Skipping.")
 
-    steel.relink_datasets()
-
-    validate = SteelValidation(
-        model=scenario["model"],
-        scenario=scenario["pathway"],
-        year=scenario["year"],
-        regions=scenario["iam data"].regions,
-        database=steel.database,
-        iam_data=scenario["iam data"],
-    )
-
-    validate.run_steel_checks()
-
-    return scenario, cache
+    return scenario
 
 
 class Steel(BaseTransformation):
@@ -69,6 +68,7 @@ class Steel(BaseTransformation):
         version: str,
         system_model: str,
         cache: dict = None,
+        index: dict = None,
     ) -> None:
         super().__init__(
             database,
@@ -79,6 +79,7 @@ class Steel(BaseTransformation):
             version,
             system_model,
             cache,
+            index
         )
         self.version = version
 

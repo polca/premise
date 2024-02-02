@@ -8,7 +8,7 @@ from .transformation import BaseTransformation, IAMDataCollection, List, ws
 logger = create_logger("heat")
 
 
-def _update_heat(scenario, version, system_model, cache=None):
+def _update_heat(scenario, version, system_model):
     heat = Heat(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -17,17 +17,18 @@ def _update_heat(scenario, version, system_model, cache=None):
         year=scenario["year"],
         version=version,
         system_model=system_model,
-        cache=cache,
+        cache=scenario.get("cache"),
+        index=scenario.get("index"),
     )
 
     heat.fetch_fuel_market_co2_emissions()
     heat.regionalize_heat_production()
-    scenario["database"] = heat.database
-    cache = heat.cache
-
     heat.relink_datasets()
+    scenario["database"] = heat.database
+    scenario["cache"] = heat.cache
+    scenario["index"] = heat.index
 
-    return scenario, cache
+    return scenario
 
 
 class Heat(BaseTransformation):
@@ -46,6 +47,7 @@ class Heat(BaseTransformation):
         version: str,
         system_model: str,
         cache: dict = None,
+        index: dict = None,
     ):
         super().__init__(
             database,
@@ -56,6 +58,7 @@ class Heat(BaseTransformation):
             version,
             system_model,
             cache,
+            index,
         )
 
         self.carbon_intensity_markets = {}

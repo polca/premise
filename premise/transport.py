@@ -35,8 +35,7 @@ def _update_vehicles(
     scenario,
     vehicle_type,
     version,
-    system_model,
-    cache=None,
+    system_model
 ):
     trspt = Transport(
         database=scenario["database"],
@@ -70,11 +69,12 @@ def _update_vehicles(
     if iam_data is not None:
         trspt.create_vehicle_markets()
         scenario["database"] = trspt.database
-        cache = trspt.cache
+        scenario["cache"] = trspt.cache
+        scenario["index"] = trspt.index
     else:
         print(f"No markets found for {vehicle_type} in IAM data. Skipping.")
 
-    return scenario, {} or cache
+    return scenario
 
 
 def get_average_truck_load_factors() -> Dict[str, Dict[str, Dict[str, float]]]:
