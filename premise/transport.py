@@ -31,12 +31,7 @@ FILEPATH_TRUCK_LOAD_FACTORS = DATA_DIR / "transport" / "avg_load_factors.yaml"
 FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
 
-def _update_vehicles(
-    scenario,
-    vehicle_type,
-    version,
-    system_model
-):
+def _update_vehicles(scenario, vehicle_type, version, system_model):
     trspt = Transport(
         database=scenario["database"],
         year=scenario["year"],

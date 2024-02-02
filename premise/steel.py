@@ -79,7 +79,7 @@ class Steel(BaseTransformation):
             version,
             system_model,
             cache,
-            index
+            index,
         )
         self.version = version
 

@@ -342,7 +342,7 @@ class Fuels(BaseTransformation):
             version,
             system_model,
             cache,
-            index
+            index,
         )
         # ecoinvent version
         self.version = version

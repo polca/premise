@@ -2014,8 +2014,6 @@ class Electricity(BaseTransformation):
                 ],
             )
 
-
-
         # We then need to create high voltage IAM electricity markets
         # print("Create high voltage markets.")
         self.create_new_markets_high_voltage()
