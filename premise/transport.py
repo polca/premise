@@ -593,7 +593,6 @@ class Transport(BaseTransformation):
 
                 datasets.import_db.data.extend(fleet_act)
 
-
         else:
             datasets.import_db.data = [
                 dataset
