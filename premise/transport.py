@@ -48,6 +48,7 @@ def _update_vehicles(
         vehicle_type=vehicle_type,
         relink=False,
         has_fleet=True,
+        index=scenario.get("index"),
     )
 
     iam_data = None
@@ -470,6 +471,7 @@ class Transport(BaseTransformation):
         relink: bool,
         vehicle_type: str,
         has_fleet: bool,
+        index: dict = None,
     ):
         super().__init__(
             database,
@@ -479,6 +481,7 @@ class Transport(BaseTransformation):
             year,
             version,
             system_model,
+            index,
         )
         self.version = version
         self.relink = relink
@@ -595,6 +598,7 @@ class Transport(BaseTransformation):
 
                 datasets.import_db.data.extend(fleet_act)
 
+
         else:
             datasets.import_db.data = [
                 dataset
@@ -696,3 +700,6 @@ class Transport(BaseTransformation):
                     )
 
         self.database = datasets.merge_inventory()
+
+        for ds in datasets.import_db.data:
+            self.add_to_index(ds)
