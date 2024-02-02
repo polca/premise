@@ -240,16 +240,27 @@ methane, synthetic:
       - methane, synthetic, gaseous
       - methane, from electrochemical methanation
 
+liquid fossil fuels:
+  lhv: 43
+  co2: 0.0732
+  biogenic_share: 0
+  iam_aliases:
+    gcam: Secondary Energy|Production|Refined Liquids|Oil
+    remind: SE|Liquids|Fossil|+|Oil
+    image: Secondary Energy|Consumption|Liquids|Fossil
+    message: Secondary Energy|Liquids|Oil|Fuel
+
+
 diesel:
   lhv: 43
   co2: 0.0732
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Diesel
-    gcam: Secondary Energy|Production|Refined Liquids|Oil
-    remind: SE|Liquids|Fossil|+|Oil
-    image: Secondary Energy|Consumption|Liquids|Fossil
-    message: Secondary Energy|Liquids|Oil|Fuel
+    gcam: Secondary Energy|Production|Refined Liquids|Oil|Diesel
+    remind: SE|Liquids|Fossil|+|Oil|Diesel
+    image: Secondary Energy|Consumption|Liquids|Fossil|Diesel
+    message: Secondary Energy|Liquids|Oil|Fuel|Diesel
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Oil
     remind: Tech|Liquids|Fossil|Oil|Efficiency
@@ -273,16 +284,17 @@ diesel:
         - capture
         - CCS
         - period
+
 gasoline:
   lhv: 42.6
   co2: 0.0737
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Gasoline
-    gcam: Secondary Energy|Production|Refined Liquids|Oil
-    remind: SE|Liquids|Fossil|+|Oil
-    image: Secondary Energy|Consumption|Liquids|Fossil
-    message: Secondary Energy|Liquids|Oil|Fuel
+    gcam: Secondary Energy|Production|Refined Liquids|Oil|Gasoline
+    remind: SE|Liquids|Fossil|+|Oil|Gasoline
+    image: Secondary Energy|Consumption|Liquids|Fossil|Gasoline
+    message: Secondary Energy|Liquids|Oil|Fuel|Gasoline
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Oil
     remind: Tech|Liquids|Fossil|Oil|Efficiency

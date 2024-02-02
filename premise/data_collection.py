@@ -22,6 +22,7 @@ from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, VARIABLES_DIR
 from .marginal_mixes import consequential_method
+from .geomap import Geomap
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
@@ -33,7 +34,7 @@ IAM_DAC_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
 FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
-    IAM_OUTPUT_DIR / "fleet_files" / "image_fleet_trucks.csv"
+        IAM_OUTPUT_DIR / "fleet_files" / "image_fleet_trucks.csv"
 )
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
@@ -74,6 +75,30 @@ def get_crops_properties() -> dict:
         crop_props = yaml.safe_load(stream)
 
     return crop_props
+
+
+def get_oil_product_volumes(model) -> pd.DataFrame:
+    """
+    Load the file `oil_product_volumes.csv` that contains recent oil product volumes
+    consumed in each country. This file is used to estimate the split of gasoline, diesel, LPG and kerosene
+    from the `liquid fossil` category in the IAM data.
+    """
+    filepath = DATA_DIR / "fuels" / "oil_product_volumes.csv"
+    df = pd.read_csv(
+        filepath, delimiter=get_delimiter(filepath=filepath), low_memory=False, na_filter=False
+    )
+
+    geo = Geomap(model=model)
+
+    df["region"] = df.apply(lambda x: geo.ecoinvent_to_iam_location(x.country), axis=1)
+    df = df.drop("country", axis=1)
+    df = df.groupby(["region"]).sum()
+    # add the world
+    df.loc["World"] = df.sum()
+    # normalize by the sum
+    df = df.div(df.sum(axis=1), axis=0)
+
+    return df
 
 
 @lru_cache
@@ -299,17 +324,17 @@ class IAMDataCollection:
     """
 
     def __init__(
-        self,
-        model: str,
-        pathway: str,
-        year: int,
-        filepath_iam_files: Path,
-        key: bytes,
-        external_scenarios: dict = None,
-        system_model: str = "cutoff",
-        system_model_args: dict = None,
-        gains_scenario: str = "CLE",
-        use_absolute_efficiency: bool = False,
+            self,
+            model: str,
+            pathway: str,
+            year: int,
+            filepath_iam_files: Path,
+            key: bytes,
+            external_scenarios: dict = None,
+            system_model: str = "cutoff",
+            system_model_args: dict = None,
+            gains_scenario: str = "CLE",
+            use_absolute_efficiency: bool = False,
     ) -> None:
         self.model = model
         self.pathway = pathway
@@ -396,31 +421,36 @@ class IAMDataCollection:
         # new_vars is a list of all variables that are declared above
 
         new_vars = (
-            list(electricity_prod_vars.values())
-            + list(electricity_eff_vars.values())
-            + list(fuel_prod_vars.values())
-            + list(fuel_eff_vars.values())
-            + list(cement_prod_vars.values())
-            + list(cement_energy_vars.values())
-            + list(cement_eff_vars.values())
-            + list(steel_prod_vars.values())
-            + list(steel_energy_vars.values())
-            + list(dac_prod_vars.values())
-            + list(biomass_prod_vars.values())
-            + list(biomass_eff_vars.values())
-            + list(land_use_vars.values())
-            + list(land_use_change_vars.values())
-            + list(carbon_capture_vars.values())
-            + list(other_vars.values())
+                list(electricity_prod_vars.values())
+                + list(electricity_eff_vars.values())
+                + list(fuel_prod_vars.values())
+                + list(fuel_eff_vars.values())
+                + list(cement_prod_vars.values())
+                + list(cement_energy_vars.values())
+                + list(cement_eff_vars.values())
+                + list(steel_prod_vars.values())
+                + list(steel_energy_vars.values())
+                + list(dac_prod_vars.values())
+                + list(biomass_prod_vars.values())
+                + list(biomass_eff_vars.values())
+                + list(land_use_vars.values())
+                + list(land_use_change_vars.values())
+                + list(carbon_capture_vars.values())
+                + list(other_vars.values())
         )
+
 
         # flatten the list of lists
         new_vars = flatten(new_vars)
 
+        # if "liquid fossil fuels" is in the list of fuel variables
+        # we add the split of gasoline, diesel, LPG and kerosene
+        # to `data`, because it means it's not already in the IAM file.
         data = self.__get_iam_data(
             key=key,
             filedir=filepath_iam_files,
             variables=new_vars,
+            split_fossil_liquid_fuels=fuel_prod_vars if "liquid fossil fuels" in fuel_prod_vars else None,
         )
 
         self.data = data
@@ -458,13 +488,6 @@ class IAMDataCollection:
             system_model=self.system_model,
         )
 
-        if self.petrol_markets is not None:
-            # divide the volume of "gasoline" by 2
-            self.petrol_markets.loc[dict(variables="gasoline")] /= 2
-            # normalize by the sum
-            self.petrol_markets = self.petrol_markets / self.petrol_markets.sum(
-                dim="variables"
-            )
 
         self.diesel_markets = self.__fetch_market_data(
             data=data,
@@ -481,13 +504,6 @@ class IAMDataCollection:
             },
             system_model=self.system_model,
         )
-        if self.diesel_markets is not None:
-            # divide the volume of "diesel" by 2
-            self.diesel_markets.loc[dict(variables="diesel")] /= 2
-            # normalize by the sum
-            self.diesel_markets = self.diesel_markets / self.diesel_markets.sum(
-                dim="variables"
-            )
 
         self.gas_markets = self.__fetch_market_data(
             data=data,
@@ -712,20 +728,10 @@ class IAMDataCollection:
             },
         )
 
-        if "diesel" not in self.production_volumes.coords["variables"].values.tolist():
-            gasoline = self.production_volumes.sel(variables=["gasoline"])
-            # rename "gasoline" to "diesel"
-            gasoline.coords["variables"] = [
-                "diesel",
-            ]
-            self.production_volumes = xr.concat(
-                [self.production_volumes, gasoline], dim="variables"
-            )
-
         self.coal_power_plants = self.fetch_external_data_coal_power_plants()
 
     def __get_iam_variable_labels(
-        self, filepath: Path, variable: str
+            self, filepath: Path, variable: str
     ) -> Dict[str, Union[str, List[str]]]:
         """
         Loads a csv file into a dictionary.
@@ -749,7 +755,7 @@ class IAMDataCollection:
         return dict_vars
 
     def __get_iam_data(
-        self, key: bytes, filedir: Path, variables: List
+            self, key: bytes, filedir: Path, variables: List, split_fossil_liquid_fuels: dict = None
     ) -> xr.DataArray:
         """
         Read the IAM result file and return an `xarray` with dimensions:
@@ -847,7 +853,24 @@ class IAMDataCollection:
             x.lower() if isinstance(x, str) else x for x in dataframe.columns
         ]
 
-        # dataframe = dataframe.loc[dataframe["variable"].isin(variables)]
+        # if split_fossil_liquid_fuels is not None
+        # we add the split of gasoline, diesel, LPG and kerosene
+
+        if split_fossil_liquid_fuels is not None:
+            # get the split of gasoline, diesel, LPG and kerosene
+            df = get_oil_product_volumes(self.model)
+            variable_liquid_fuel = split_fossil_liquid_fuels["liquid fossil fuels"]
+
+            for fuel_var, iam_var in split_fossil_liquid_fuels.items():
+                if iam_var not in dataframe["variable"].unique():
+                    new_fuel_df = dataframe.loc[dataframe["variable"] == variable_liquid_fuel]
+                    fuel_share = df[fuel_var].reindex(new_fuel_df["region"])
+                    new_fuel_df.loc[:, "variable"] = iam_var
+                    new_fuel_df.loc[:, new_fuel_df.select_dtypes(include=['number']).columns[0]:] *= fuel_share.values[:, np.newaxis]
+                    dataframe = pd.concat([dataframe, new_fuel_df])
+
+        # filter out unused variables
+        dataframe = dataframe.loc[dataframe["variable"].isin(variables)]
 
         dataframe = dataframe.rename(columns={"variable": "variables"})
 
@@ -876,11 +899,11 @@ class IAMDataCollection:
         return array
 
     def __fetch_market_data(
-        self,
-        data: xr.DataArray,
-        input_vars: dict,
-        system_model: str,
-        normalize: bool = True,
+            self,
+            data: xr.DataArray,
+            input_vars: dict,
+            system_model: str,
+            normalize: bool = True,
     ) -> [xr.DataArray, None]:
         """
         This method retrieves the market share for each technology,
@@ -892,7 +915,7 @@ class IAMDataCollection:
 
         # Check if the year specified is within the range of years given by the IAM
         assert (
-            data.year.values.min() <= self.year <= data.year.values.max()
+                data.year.values.min() <= self.year <= data.year.values.max()
         ), f"{self.year} is outside of the boundaries of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
 
         # check if values of input_vars are strings or lists
@@ -925,7 +948,7 @@ class IAMDataCollection:
         # if duplicates in market_data.coords["variables"]
         # we sum them
         if len(market_data.coords["variables"].values.tolist()) != len(
-            set(market_data.coords["variables"].values.tolist())
+                set(market_data.coords["variables"].values.tolist())
         ):
             market_data = market_data.groupby("variables").sum(dim="variables")
 
@@ -945,12 +968,12 @@ class IAMDataCollection:
         return market_data
 
     def get_iam_efficiencies(
-        self,
-        data: xr.DataArray,
-        efficiency_labels: dict = None,
-        production_labels: dict = None,
-        energy_labels: dict = None,
-        use_absolute_efficiency: bool = False,
+            self,
+            data: xr.DataArray,
+            efficiency_labels: dict = None,
+            production_labels: dict = None,
+            energy_labels: dict = None,
+            use_absolute_efficiency: bool = False,
     ) -> [xr.DataArray, None]:
         """
         This method retrieves efficiency values for the specified sector,
@@ -1018,7 +1041,7 @@ class IAMDataCollection:
                 )
 
                 if all(
-                    var in data.variables.values for var in energy_labels[k]
+                        var in data.variables.values for var in energy_labels[k]
                 ) and all(x in data.variables.values for x in _(v)):
                     if isinstance(v, list):
                         d = data.loc[:, energy_labels[k], :].sum(
@@ -1032,8 +1055,8 @@ class IAMDataCollection:
                         ]
                     else:
                         d = (
-                            data.loc[:, energy_labels[k], :].sum(dim="variables")
-                            / data.loc[:, v, :]
+                                data.loc[:, energy_labels[k], :].sum(dim="variables")
+                                / data.loc[:, v, :]
                         )
                     # convert inf to Nan
                     d = d.where(d != np.inf)
@@ -1057,7 +1080,7 @@ class IAMDataCollection:
             eff_data /= eff_data.sel(year=2020)
 
             if len(efficiency_labels) == 0 or any(
-                "specific" in x.lower() for x in efficiency_labels.values()
+                    "specific" in x.lower() for x in efficiency_labels.values()
             ):
                 # we are dealing with specific energy consumption, not efficiencies
                 # we need to convert them to efficiencies
@@ -1083,7 +1106,7 @@ class IAMDataCollection:
         return eff_data
 
     def __get_carbon_capture_rate(
-        self, dict_vars: Dict[str, str], data: xr.DataArray
+            self, dict_vars: Dict[str, str], data: xr.DataArray
     ) -> xr.DataArray:
         """
         Returns a xarray with carbon capture rates for steel and cement production.
@@ -1112,8 +1135,8 @@ class IAMDataCollection:
             ]
 
         if not any(
-            x in data.variables.values.tolist()
-            for x in dict_vars.get("cement - cco2", [])
+                x in data.variables.values.tolist()
+                for x in dict_vars.get("cement - cco2", [])
         ):
             print("Cannot find variables for cement capture rate.")
             cement_rate = xr.DataArray(
@@ -1135,8 +1158,8 @@ class IAMDataCollection:
             ]
 
         if not any(
-            x in data.variables.values.tolist()
-            for x in dict_vars.get("steel - cco2", [])
+                x in data.variables.values.tolist()
+                for x in dict_vars.get("steel - cco2", [])
         ):
             print("Cannot find variables for steel capture rate.")
             steel_rate = xr.DataArray(
@@ -1164,29 +1187,29 @@ class IAMDataCollection:
 
         if "World" in rate.region.values.tolist():
             if not any(
-                x in data.variables.values.tolist()
-                for x in dict_vars.get("cement - cco2", [])
+                    x in data.variables.values.tolist()
+                    for x in dict_vars.get("cement - cco2", [])
             ):
                 rate.loc[dict(region="World", variables="cement")] = 0
             else:
                 try:
                     rate.loc[dict(region="World", variables="cement")] = (
-                        data.loc[
-                            dict(
-                                region=[r for r in self.regions if r != "World"],
-                                variables=dict_vars["cement - cco2"],
-                            )
-                        ]
-                        .sum(dim=["variables", "region"])
-                        .values
-                        / data.loc[
-                            dict(
-                                region=[r for r in self.regions if r != "World"],
-                                variables=dict_vars["cement - co2"],
-                            )
-                        ]
-                        .sum(dim=["variables", "region"])
-                        .values
+                            data.loc[
+                                dict(
+                                    region=[r for r in self.regions if r != "World"],
+                                    variables=dict_vars["cement - cco2"],
+                                )
+                            ]
+                            .sum(dim=["variables", "region"])
+                            .values
+                            / data.loc[
+                                dict(
+                                    region=[r for r in self.regions if r != "World"],
+                                    variables=dict_vars["cement - co2"],
+                                )
+                            ]
+                            .sum(dim=["variables", "region"])
+                            .values
                     )
 
                 except ZeroDivisionError:
@@ -1194,16 +1217,18 @@ class IAMDataCollection:
 
                 try:
                     rate.loc[dict(region="World", variables="steel")] = data.loc[
-                        dict(
-                            region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["steel - cco2"],
-                        )
-                    ].sum(dim=["variables", "region"]) / data.loc[
-                        dict(
-                            region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["steel - co2"],
-                        )
-                    ].sum(
+                                                                            dict(
+                                                                                region=[r for r in self.regions if
+                                                                                        r != "World"],
+                                                                                variables=dict_vars["steel - cco2"],
+                                                                            )
+                                                                        ].sum(dim=["variables", "region"]) / data.loc[
+                                                                            dict(
+                                                                                region=[r for r in self.regions if
+                                                                                        r != "World"],
+                                                                                variables=dict_vars["steel - co2"],
+                                                                            )
+                                                                        ].sum(
                         dim=["variables", "region"]
                     )
 
@@ -1211,28 +1236,28 @@ class IAMDataCollection:
                     rate.loc[dict(region="World", variables="steel")] = 0
 
             if not any(
-                x in data.variables.values.tolist()
-                for x in dict_vars.get("steel - cco2", [])
+                    x in data.variables.values.tolist()
+                    for x in dict_vars.get("steel - cco2", [])
             ):
                 rate.loc[dict(region="World", variables="steel")] = 0
             else:
                 rate.loc[dict(region="World", variables="steel")] = (
-                    data.loc[
-                        dict(
-                            region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["steel - cco2"],
-                        )
-                    ]
-                    .sum(dim=["variables", "region"])
-                    .values
-                    / data.loc[
-                        dict(
-                            region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["steel - co2"],
-                        )
-                    ]
-                    .sum(dim=["variables", "region"])
-                    .values
+                        data.loc[
+                            dict(
+                                region=[r for r in self.regions if r != "World"],
+                                variables=dict_vars["steel - cco2"],
+                            )
+                        ]
+                        .sum(dim=["variables", "region"])
+                        .values
+                        / data.loc[
+                            dict(
+                                region=[r for r in self.regions if r != "World"],
+                                variables=dict_vars["steel - co2"],
+                            )
+                        ]
+                        .sum(dim=["variables", "region"])
+                        .values
                 )
 
         # we ensure that the rate can only be between 0 and 1
@@ -1244,7 +1269,7 @@ class IAMDataCollection:
         return rate
 
     def __get_iam_production_volumes(
-        self, input_vars, data, fill: bool = False
+            self, input_vars, data, fill: bool = False
     ) -> [xr.DataArray, None]:
         """
         Returns n xarray with production volumes for different sectors:
@@ -1307,7 +1332,7 @@ class IAMDataCollection:
         # if duplicates in market_data.coords["variables"]
         # we sum them
         if len(data_to_return.coords["variables"].values.tolist()) != len(
-            set(data_to_return.coords["variables"].values.tolist())
+                set(data_to_return.coords["variables"].values.tolist())
         ):
             data_to_return = data_to_return.groupby("variables").sum(dim="variables")
 
@@ -1356,12 +1381,12 @@ class IAMDataCollection:
                         continue
 
                 subset = df.loc[
-                    (df["model"] == self.model)
-                    & (df["pathway"] == self.pathway)
-                    & (df["scenario"] == self.external_scenarios[i])
-                    & (df["variables"].isin(variables.values())),
-                    "region":,
-                ]
+                         (df["model"] == self.model)
+                         & (df["pathway"] == self.pathway)
+                         & (df["scenario"] == self.external_scenarios[i])
+                         & (df["variables"].isin(variables.values())),
+                         "region":,
+                         ]
 
                 array = (
                     subset.melt(
@@ -1402,12 +1427,12 @@ class IAMDataCollection:
 
                 if len(variables) > 0:
                     subset = df.loc[
-                        (df["model"] == self.model)
-                        & (df["pathway"] == self.pathway)
-                        & (df["scenario"] == self.external_scenarios[i])
-                        & (df["variables"].isin(list(chain(*variables.values())))),
-                        "region":,
-                    ]
+                             (df["model"] == self.model)
+                             & (df["pathway"] == self.pathway)
+                             & (df["scenario"] == self.external_scenarios[i])
+                             & (df["variables"].isin(list(chain(*variables.values())))),
+                             "region":,
+                             ]
 
                     array = (
                         subset.melt(
@@ -1451,8 +1476,8 @@ class IAMDataCollection:
 
                     for v, y in ref_years.items():
                         array.loc[{"variables": v}] = array.loc[
-                            {"variables": v}
-                        ] / array.loc[{"variables": v}].sel(year=int(y))
+                                                          {"variables": v}
+                                                      ] / array.loc[{"variables": v}].sel(year=int(y))
 
                     # convert NaNs to ones
                     array = array.fillna(1)
