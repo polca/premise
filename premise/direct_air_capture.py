@@ -199,7 +199,6 @@ class DirectAirCapture(BaseTransformation):
                         # add it to list of created datasets
                         self.add_to_index(dataset)
 
-
     def adjust_dac_efficiency(self, datasets):
         """
         Fetch the cumulated deployment of DAC from IAM file.

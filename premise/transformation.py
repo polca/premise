@@ -1526,7 +1526,9 @@ class BaseTransformation:
             ]
 
         if len(possible_datasets) == 0:
-            print(f"No possible datasets found for {key} in {dataset['name']} {dataset['location']}")
+            print(
+                f"No possible datasets found for {key} in {dataset['name']} {dataset['location']}"
+            )
             return [
                 {
                     "name": exchange["name"],
