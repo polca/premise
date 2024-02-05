@@ -1517,14 +1517,26 @@ class BaseTransformation:
                 possible_datasets = self.index[key]
 
         if len(possible_datasets) == 0:
-            print(
-                "No possible datasets found for",
-                key,
-                "in",
-                dataset["name"],
-                dataset["location"],
-            )
-            return
+            # search self.database for possible datasets
+            possible_datasets = [
+                ds
+                for ds in self.database
+                if ds["name"] == exchange["name"]
+                and ds["reference product"] == exchange["product"]
+            ]
+
+        if len(possible_datasets) == 0:
+            print(f"No possible datasets found for {key} in {dataset['name']} {dataset['location']}")
+            return [
+                {
+                    "name": exchange["name"],
+                    "product": exchange["product"],
+                    "unit": exchange["unit"],
+                    "location": dataset["location"],
+                    "type": "technosphere",
+                    "amount": exchange["amount"],
+                }
+            ]
 
         if len(possible_datasets) == 1:
             self.handle_single_possible_dataset(

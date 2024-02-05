@@ -1343,6 +1343,7 @@ class Fuels(BaseTransformation):
                         delete_original_dataset=False,
                         empty_original_activity=False,
                         exact_name_match=False,
+                        relink=False,
                     )
 
                     for co2_type in [
@@ -1472,6 +1473,7 @@ class Fuels(BaseTransformation):
                 new_ds = self.fetch_proxies(
                     name=activity,
                     ref_prod=" ",
+                    relink=False,
                 )
                 for region, dataset in new_ds.items():
                     for exc in ws.production(dataset):
