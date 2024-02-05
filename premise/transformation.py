@@ -970,9 +970,6 @@ class BaseTransformation:
                 if (not self.is_in_index(e) and e["amount"] != 0)
             ]
 
-            if act["name"] == "market for diesel" and act["location"] == "CAN":
-                print(excs_to_relink)
-
             if len(excs_to_relink) == 0:
                 continue
 
@@ -1826,11 +1823,6 @@ class BaseTransformation:
             if exc["type"] == "technosphere":
                 exchanges_before[exc["product"]] += exc["amount"]
 
-        if dataset["name"] == "market for clinker" and dataset["location"] == "RoW":
-            print("BEFORE")
-            for e in dataset["exchanges"]:
-                print(e["name"], e.get("location"), e["amount"])
-
         new_exchanges = self.find_candidates(
             dataset,
             exclusive=exclusive,
@@ -1858,11 +1850,6 @@ class BaseTransformation:
                 key=itemgetter("name", "product", "location", "unit"),
             )
         ]
-
-        if dataset["name"] == "market for clinker" and dataset["location"] == "RoW":
-            print("AFTER")
-            for e in new_exchanges:
-                print(e["name"], e.get("location"), e["amount"])
 
         dataset["exchanges"] = [
             exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
