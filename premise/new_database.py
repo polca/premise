@@ -11,6 +11,7 @@ import os
 import pickle
 import sys
 from datetime import date
+from functools import partial
 from multiprocessing import Pool as ProcessPool
 from multiprocessing import cpu_count
 from multiprocessing.pool import ThreadPool as Pool
@@ -21,7 +22,6 @@ import bw2data
 import datapackage
 import yaml
 from tqdm import tqdm
-from functools import partial
 
 from . import __version__
 from .biomass import _update_biomass
@@ -38,7 +38,7 @@ from .export import (
     generate_scenario_factor_file,
     generate_superstructure_db,
 )
-from .external import _update_external_scenarios, ExternalScenario
+from .external import ExternalScenario, _update_external_scenarios
 from .external_data_validation import check_external_scenarios, check_inventories
 from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
@@ -82,72 +82,72 @@ FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distributio
 
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
 FILEPATH_HYDROGEN_SOLAR_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-thermochemical-water-splitting.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-thermochemical-water-splitting.xlsx"
 )
 FILEPATH_HYDROGEN_PYROLYSIS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-pyrolysis.xlsx"
 
 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
 )
 FILEPATH_HYDROGEN_NATGAS_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-smr-atr-natgas.xlsx"
 )
 FILEPATH_HYDROGEN_WOODY_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-wood-gasification.xlsx"
 )
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
-        INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
+    INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
 
 FILEPATH_SYNFUEL_INVENTORIES_FT_FROM_NG = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-natural-gas.xlsx"
 )
 
 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_WITH_CCS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification.xlsx"
 )
 FILEPATH_SYNFUEL_FROM_FT_FROM_COAL_GASIFICATION_WITH_CCS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx"
 )
 
 FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
 )
 FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
 FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
 FILEPATH_METHANOL_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
 FILEPATH_METHANOL_FROM_WOOD = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-wood.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-wood.xlsx"
 )
 FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-cement-plant.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-cement-plant.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal.xlsx"
 )
 FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOMASS_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biomass.xlsx"
 )
 FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-biogas.xlsx"
 )
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
-        INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
+    INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
 FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
@@ -303,7 +303,7 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 )
 
         if not all(
-                i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
+            i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
         ):
             raise TypeError(
                 "Both `inventories` and `ecoinvent version` "
@@ -456,24 +456,24 @@ class NewDatabase:
     """
 
     def __init__(
-            self,
-            scenarios: List[dict],
-            source_version: str = "3.9",
-            source_type: str = "brightway",
-            key: bytes = None,
-            source_db: str = None,
-            source_file_path: str = None,
-            additional_inventories: List[dict] = None,
-            system_model: str = "cutoff",
-            system_args: dict = None,
-            use_cached_inventories: bool = True,
-            use_cached_database: bool = True,
-            external_scenarios: list = None,
-            quiet=False,
-            keep_uncertainty_data=False,
-            gains_scenario="CLE",
-            use_absolute_efficiency=False,
-            use_multiprocessing=True,
+        self,
+        scenarios: List[dict],
+        source_version: str = "3.9",
+        source_type: str = "brightway",
+        key: bytes = None,
+        source_db: str = None,
+        source_file_path: str = None,
+        additional_inventories: List[dict] = None,
+        system_model: str = "cutoff",
+        system_args: dict = None,
+        use_cached_inventories: bool = True,
+        use_cached_database: bool = True,
+        external_scenarios: list = None,
+        quiet=False,
+        keep_uncertainty_data=False,
+        gains_scenario="CLE",
+        use_absolute_efficiency=False,
+        use_multiprocessing=True,
     ) -> None:
         self.source = source_db
         self.version = check_db_version(source_version)
@@ -488,8 +488,8 @@ class NewDatabase:
         # and system_model is "consequential"
         # raise an error
         if (
-                self.version not in ["3.8", "3.9", "3.9.1"]
-                and self.system_model == "consequential"
+            self.version not in ["3.8", "3.9", "3.9.1"]
+            and self.system_model == "consequential"
         ):
             raise ValueError(
                 "Consequential system model is only available for ecoinvent 3.8 or 3.9."
@@ -596,8 +596,8 @@ class NewDatabase:
         )
 
         file_name = (
-                DIR_CACHED_DB
-                / f"cached_{''.join(tuple(map(str, __version__)))}_{db_name.strip().lower()}_{uncertainty_data}.pickle"
+            DIR_CACHED_DB
+            / f"cached_{''.join(tuple(map(str, __version__)))}_{db_name.strip().lower()}_{uncertainty_data}.pickle"
         )
 
         # check that file path leads to an existing file
@@ -629,8 +629,8 @@ class NewDatabase:
         )
 
         file_name = (
-                DIR_CACHED_DB
-                / f"cached_{''.join(tuple(map(str, __version__)))}_{db_name.strip().lower()}_{uncertainty_data}_inventories.pickle"
+            DIR_CACHED_DB
+            / f"cached_{''.join(tuple(map(str, __version__)))}_{db_name.strip().lower()}_{uncertainty_data}_inventories.pickle"
         )
 
         # check that file path leads to an existing file
@@ -757,7 +757,7 @@ class NewDatabase:
         return data
 
     def __import_additional_inventories(
-            self, data_package: [datapackage.DataPackage, list]
+        self, data_package: [datapackage.DataPackage, list]
     ) -> List[dict]:
         """
         This method will trigger the import of a number of inventories
@@ -804,41 +804,84 @@ class NewDatabase:
         Update a specific sector by name.
         """
         sector_update_methods = {
-            'biomass': {"func": _update_biomass, "args": (self.version, self.system_model)},
-            'electricity': {"func": _update_electricity,
-                            "args": (self.version, self.system_model, self.use_absolute_efficiency)},
-            'dac': {"func": _update_dac, "args": (self.version, self.system_model)},
-            'cement': {"func": _update_cement, "args": (self.version, self.system_model)},
-            'steel': {"func": _update_steel, "args": (self.version, self.system_model)},
-            'fuels': {"func": _update_fuels, "args": (self.version, self.system_model)},
-            'heat': {"func": _update_heat, "args": (self.version, self.system_model)},
-            'emissions': {"func": _update_emissions, "args": (self.version, self.system_model, self.gains_scenario)},
-            'cars': {"func": _update_vehicles, "args": ("car", self.version, self.system_model)},
-            'two_wheelers': {"func": _update_vehicles, "args": ("two wheeler", self.version, self.system_model)},
-            'trucks': {"func": _update_vehicles, "args": ("truck", self.version, self.system_model)},
-            'buses': {"func": _update_vehicles, "args": ("bus", self.version, self.system_model)},
-            'external': {"func": _update_external_scenarios, "args": (self.version, self.system_model, self.datapackages)},
+            "biomass": {
+                "func": _update_biomass,
+                "args": (self.version, self.system_model),
+            },
+            "electricity": {
+                "func": _update_electricity,
+                "args": (self.version, self.system_model, self.use_absolute_efficiency),
+            },
+            "dac": {"func": _update_dac, "args": (self.version, self.system_model)},
+            "cement": {
+                "func": _update_cement,
+                "args": (self.version, self.system_model),
+            },
+            "steel": {"func": _update_steel, "args": (self.version, self.system_model)},
+            "fuels": {"func": _update_fuels, "args": (self.version, self.system_model)},
+            "heat": {"func": _update_heat, "args": (self.version, self.system_model)},
+            "emissions": {
+                "func": _update_emissions,
+                "args": (self.version, self.system_model, self.gains_scenario),
+            },
+            "cars": {
+                "func": _update_vehicles,
+                "args": ("car", self.version, self.system_model),
+            },
+            "two_wheelers": {
+                "func": _update_vehicles,
+                "args": ("two wheeler", self.version, self.system_model),
+            },
+            "trucks": {
+                "func": _update_vehicles,
+                "args": ("truck", self.version, self.system_model),
+            },
+            "buses": {
+                "func": _update_vehicles,
+                "args": ("bus", self.version, self.system_model),
+            },
+            "external": {
+                "func": _update_external_scenarios,
+                "args": (self.version, self.system_model, self.datapackages),
+            },
         }
 
         if isinstance(sectors, str):
-            sectors = [sectors, ]
+            sectors = [
+                sectors,
+            ]
 
         if sectors is None:
-            sectors = [s for s in list(sector_update_methods.keys()) if s not in ["buses", "cars", "two_wheelers"]]
-            print("`update()` will skip the following sectors: 'buses', 'cars', 'two_wheelers'.")
-            print("If you want to update these sectors, please run them separately afterwards.")
+            sectors = [
+                s
+                for s in list(sector_update_methods.keys())
+                if s not in ["buses", "cars", "two_wheelers"]
+            ]
+            print(
+                "`update()` will skip the following sectors: 'buses', 'cars', 'two_wheelers'."
+            )
+            print(
+                "If you want to update these sectors, please run them separately afterwards."
+            )
 
         assert isinstance(sectors, list), "sector_name should be a list of strings"
-        assert all(isinstance(item, str) for item in sectors), "sector_name should be a list of strings"
-        assert all(item in sector_update_methods for item in sectors), "Unknown resource name(s): {}".format(
-            [item for item in sectors if item not in sector_update_methods])
+        assert all(
+            isinstance(item, str) for item in sectors
+        ), "sector_name should be a list of strings"
+        assert all(
+            item in sector_update_methods for item in sectors
+        ), "Unknown resource name(s): {}".format(
+            [item for item in sectors if item not in sector_update_methods]
+        )
 
         # Outer tqdm progress bar for sectors
         with tqdm(total=len(sectors), desc="Updating sectors") as pbar_outer:
             for sector in sectors:
 
-                if sector=="external" and self.datapackages is None:
-                    print("External scenarios (datapackages) are not provided. Skipped.")
+                if sector == "external" and self.datapackages is None:
+                    print(
+                        "External scenarios (datapackages) are not provided. Skipped."
+                    )
                     continue
 
                 # Prepare the function and arguments
@@ -849,7 +892,9 @@ class NewDatabase:
                     # Process scenarios in parallel for the current sector
                     with Pool(processes=cpu_count()) as pool:
                         # Prepare the tasks with all necessary arguments
-                        tasks = [(scenario,) + fixed_args for scenario in self.scenarios]
+                        tasks = [
+                            (scenario,) + fixed_args for scenario in self.scenarios
+                        ]
 
                         # Use starmap for preserving the order of tasks
                         results = pool.starmap(update_func, tasks)
@@ -863,10 +908,10 @@ class NewDatabase:
         print("Done!\n")
 
     def write_superstructure_db_to_brightway(
-            self,
-            name: str = f"super_db_{date.today()}",
-            filepath: str = None,
-            file_format: str = "excel",
+        self,
+        name: str = f"super_db_{date.today()}",
+        filepath: str = None,
+        file_format: str = "excel",
     ) -> None:
         """
         Register a super-structure database,
@@ -1166,9 +1211,9 @@ class NewDatabase:
         self.generate_change_report()
 
     def generate_scenario_report(
-            self,
-            filepath: [str, Path] = None,
-            name: str = f"scenario_report_{date.today()}.xlsx",
+        self,
+        filepath: [str, Path] = None,
+        name: str = f"scenario_report_{date.today()}.xlsx",
     ):
         """
         Generate a report of the scenarios.
