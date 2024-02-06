@@ -12,15 +12,15 @@ import pickle
 import sys
 from datetime import date
 from multiprocessing import Pool as ProcessPool
-from multiprocessing.pool import ThreadPool as Pool
 from multiprocessing import cpu_count
+from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import List, Union
-from tqdm import tqdm
 
 import bw2data
 import datapackage
 import yaml
+from tqdm import tqdm
 
 from . import __version__
 from .biomass import _update_biomass
@@ -1353,7 +1353,9 @@ class NewDatabase:
                     for scenario in self.scenarios
                 ]
 
-                results = list(tqdm(pool.imap(_update_all_wrapper, args), total=len(args)))
+                results = list(
+                    tqdm(pool.imap(_update_all_wrapper, args), total=len(args))
+                )
 
             for s, result in enumerate(results):
                 self.scenarios[s] = result
