@@ -15,17 +15,17 @@ import yaml
 from wurst import searching as ws
 
 from .clean_datasets import get_biosphere_flow_uuid
-from .inventory_imports import AdditionalInventory
 from .data_collection import IAMDataCollection
+from .external_data_validation import check_inventories, find_iam_efficiency_change
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import (
+    AdditionalInventory,
     generate_migration_maps,
     get_biosphere_code,
     get_correspondence_bio_flows,
 )
 from .transformation import BaseTransformation, get_shares_from_production_volume
 from .utils import rescale_exchanges
-from .external_data_validation import check_inventories, find_iam_efficiency_change
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -44,10 +44,10 @@ logger = logging.getLogger("external")
 
 
 def _update_external_scenarios(
-        scenario: dict,
-        version: str,
-        system_model: str,
-        datapackages: list,
+    scenario: dict,
+    version: str,
+    system_model: str,
+    datapackages: list,
 ) -> dict:
     for d, data_package in enumerate(datapackages):
         inventories = []
@@ -172,15 +172,15 @@ def adjust_efficiency(dataset: dict) -> dict:
 
                     if filters:
                         for exc in ws.technosphere(
-                                dataset,
-                                ws.either(*[ws.contains("name", x) for x in filters]),
+                            dataset,
+                            ws.either(*[ws.contains("name", x) for x in filters]),
                         ):
                             wurst.rescale_exchange(
                                 exc, scaling_factor, remove_uncertainty=False
                             )
                     else:
                         for exc in ws.technosphere(
-                                dataset,
+                            dataset,
                         ):
                             wurst.rescale_exchange(
                                 exc, scaling_factor, remove_uncertainty=False
@@ -192,15 +192,15 @@ def adjust_efficiency(dataset: dict) -> dict:
 
                     if filters:
                         for exc in ws.biosphere(
-                                dataset,
-                                ws.either(*[ws.contains("name", x) for x in filters]),
+                            dataset,
+                            ws.either(*[ws.contains("name", x) for x in filters]),
                         ):
                             wurst.rescale_exchange(
                                 exc, scaling_factor, remove_uncertainty=False
                             )
                     else:
                         for exc in ws.biosphere(
-                                dataset,
+                            dataset,
                         ):
                             wurst.rescale_exchange(
                                 exc, scaling_factor, remove_uncertainty=False
@@ -210,7 +210,7 @@ def adjust_efficiency(dataset: dict) -> dict:
 
 
 def fetch_dataset_description_from_production_pathways(
-        configuration: dict, item: str
+    configuration: dict, item: str
 ) -> Union[tuple, None]:
     """
     Fetch a few ecoinvent variables for a given production pathway
@@ -256,16 +256,16 @@ def fetch_var(config_file: dict, list_vars: list) -> list:
 
 class ExternalScenario(BaseTransformation):
     def __init__(
-            self,
-            database: List[dict],
-            iam_data: IAMDataCollection,
-            external_scenarios: list,
-            external_scenarios_data: dict,
-            model: str,
-            pathway: str,
-            year: int,
-            version: str,
-            system_model: str,
+        self,
+        database: List[dict],
+        iam_data: IAMDataCollection,
+        external_scenarios: list,
+        external_scenarios_data: dict,
+        model: str,
+        pathway: str,
+        year: int,
+        version: str,
+        system_model: str,
     ):
         """
         :param database: list of datasets representing teh database
@@ -305,7 +305,7 @@ class ExternalScenario(BaseTransformation):
         self.outdated_flows = get_correspondence_bio_flows()
 
     def regionalize_inventories(
-            self, ds_names, regions, datapackage_number: int
+        self, ds_names, regions, datapackage_number: int
     ) -> None:
         """
         Produce IAM region-specific version of the dataset.
@@ -314,9 +314,9 @@ class ExternalScenario(BaseTransformation):
         """
 
         for ds in ws.get_many(
-                self.database,
-                ws.equals("regionalize", True),
-                ws.either(*[ws.contains("name", name) for name in ds_names]),
+            self.database,
+            ws.equals("regionalize", True),
+            ws.either(*[ws.contains("name", name) for name in ds_names]),
         ):
             # Check if datasets already exist for IAM regions
             # if not, create them
@@ -330,17 +330,17 @@ class ExternalScenario(BaseTransformation):
                 # add production volume
                 if ds.get("production volume variable"):
                     if (
-                            ds["production volume variable"]
-                            in self.external_scenarios_data[datapackage_number][
-                        "production volume"
-                    ].variables.values
+                        ds["production volume variable"]
+                        in self.external_scenarios_data[datapackage_number][
+                            "production volume"
+                        ].variables.values
                     ):
                         for region, act in new_acts.items():
                             if (
-                                    region
-                                    in self.external_scenarios_data[datapackage_number][
-                                "production volume"
-                            ].region.values
+                                region
+                                in self.external_scenarios_data[datapackage_number][
+                                    "production volume"
+                                ].region.values
                             ):
                                 act["production volume"] = (
                                     self.external_scenarios_data[datapackage_number][
@@ -392,9 +392,9 @@ class ExternalScenario(BaseTransformation):
 
         # adjust efficiency of datasets
         for dataset in ws.get_many(
-                self.database,
-                ws.equals("adjust efficiency", True),
-                ws.either(*[ws.contains("name", name) for name in ds_names]),
+            self.database,
+            ws.equals("adjust efficiency", True),
+            ws.either(*[ws.contains("name", name) for name in ds_names]),
         ):
             if len(dataset["location"]) > 1:
                 adjust_efficiency(dataset)
@@ -402,7 +402,7 @@ class ExternalScenario(BaseTransformation):
             del dataset["adjust efficiency"]
 
     def get_market_dictionary_structure(
-            self, market: dict, region: str, waste_market: bool = False
+        self, market: dict, region: str, waste_market: bool = False
     ) -> dict:
         """
         Return a dictionary for market creation, given the location passed.
@@ -433,12 +433,12 @@ class ExternalScenario(BaseTransformation):
         }
 
     def fill_in_world_market(
-            self,
-            market: dict,
-            regions: list,
-            i: int,
-            pathways: list,
-            waste_market: bool = False,
+        self,
+        market: dict,
+        regions: list,
+        i: int,
+        pathways: list,
+        waste_market: bool = False,
     ) -> dict:
         """
         Fill in the world market with the supply of all regional markets
@@ -461,16 +461,16 @@ class ExternalScenario(BaseTransformation):
         for region in regions:
             supply_share = np.clip(
                 (
-                        self.external_scenarios_data[i]["production volume"]
-                        .sel(region=region, variables=pathways)
-                        .sum(dim="variables")
-                        .interp(year=self.year)
-                        / self.external_scenarios_data[i]["production volume"]
-                        .sel(
-                    variables=pathways, region=[r for r in regions if r != "World"]
-                )
-                        .sum(dim=["variables", "region"])
-                        .interp(year=self.year)
+                    self.external_scenarios_data[i]["production volume"]
+                    .sel(region=region, variables=pathways)
+                    .sum(dim="variables")
+                    .interp(year=self.year)
+                    / self.external_scenarios_data[i]["production volume"]
+                    .sel(
+                        variables=pathways, region=[r for r in regions if r != "World"]
+                    )
+                    .sum(dim=["variables", "region"])
+                    .interp(year=self.year)
                 ).values.item(0),
                 0,
                 1,
@@ -602,7 +602,7 @@ class ExternalScenario(BaseTransformation):
                                     ds["custom scenario dataset"] = True
 
     def fetch_supply_share(
-            self, i: int, region: str, var: str, variables: list
+        self, i: int, region: str, var: str, variables: list
     ) -> np.ndarray:
         """
         Return the supply share of a given variable in a given region.
@@ -615,26 +615,26 @@ class ExternalScenario(BaseTransformation):
 
         return np.clip(
             (
-                    self.external_scenarios_data[i]["production volume"]
-                    .sel(
-                        region=region,
-                        variables=var,
-                    )
-                    .interp(year=self.year)
-                    / self.external_scenarios_data[i]["production volume"]
-                    .sel(
-                region=region,
-                variables=variables,
-            )
-                    .interp(year=self.year)
-                    .sum(dim="variables")
+                self.external_scenarios_data[i]["production volume"]
+                .sel(
+                    region=region,
+                    variables=var,
+                )
+                .interp(year=self.year)
+                / self.external_scenarios_data[i]["production volume"]
+                .sel(
+                    region=region,
+                    variables=variables,
+                )
+                .interp(year=self.year)
+                .sum(dim="variables")
             ).values.item(0),
             0,
             1,
         )
 
     def fetch_potential_suppliers(
-            self, possible_locations: list, name: str, ref_prod: str
+        self, possible_locations: list, name: str, ref_prod: str
     ) -> list:
         """
         Fetch the potential suppliers for a given name and reference product.
@@ -693,7 +693,7 @@ class ExternalScenario(BaseTransformation):
         return new_excs
 
     def add_additional_exchanges(
-            self, additional_exc: dict, region: str, ei_version: str
+        self, additional_exc: dict, region: str, ei_version: str
     ) -> list:
         """
         Add additional exchanges to a dataset.
@@ -774,7 +774,7 @@ class ExternalScenario(BaseTransformation):
         ]
 
     def adjust_efficiency_of_new_markets(
-            self, datatset: dict, variables: dict, region: str, eff_data: xr.DataArray
+        self, datatset: dict, variables: dict, region: str, eff_data: xr.DataArray
     ) -> dict:
         for ineff in variables["efficiency"]:
             scaling_factor = 1 / find_iam_efficiency_change(
@@ -811,10 +811,10 @@ class ExternalScenario(BaseTransformation):
     def get_region_for_non_null_production_volume(self, i, variables):
         nz = np.argwhere(
             (
-                    self.external_scenarios_data[i]["production volume"]
-                    .sel(variables=variables)
-                    .sum(dim=["year", "variables"])
-                    > 0
+                self.external_scenarios_data[i]["production volume"]
+                .sel(variables=variables)
+                .sum(dim=["year", "variables"])
+                > 0
             ).values
         )
 
@@ -996,9 +996,9 @@ class ExternalScenario(BaseTransformation):
                     # if there's more than one region, we create a World region
                     create_world_region = True
                     if (
-                            "World" in regions
-                            or "World" in market_vars.get("except regions", [])
-                            or len(regions) == 1
+                        "World" in regions
+                        or "World" in market_vars.get("except regions", [])
+                        or len(regions) == 1
                     ):
                         create_world_region = False
 
@@ -1032,15 +1032,15 @@ class ExternalScenario(BaseTransformation):
                         )
 
     def relink_to_new_datasets(
-            self,
-            replaces: list,
-            replaces_in: list,
-            new_name: str,
-            new_ref: str,
-            ratio,
-            regions: list,
-            waste_process: bool = False,
-            isfuel: dict = None,
+        self,
+        replaces: list,
+        replaces_in: list,
+        new_name: str,
+        new_ref: str,
+        ratio,
+        regions: list,
+        waste_process: bool = False,
+        isfuel: dict = None,
     ) -> None:
         """
         Replaces exchanges that match `old_name` and `old_ref` with exchanges that
@@ -1118,9 +1118,9 @@ class ExternalScenario(BaseTransformation):
 
             for exc in filtered_exchanges:
                 if (
-                        exc["location"] in regions
-                        and new_name == exc["name"]
-                        and new_ref == exc["product"]
+                    exc["location"] in regions
+                    and new_name == exc["name"]
+                    and new_ref == exc["product"]
                 ):
                     new_exchanges.append(exc)
                     continue
@@ -1183,10 +1183,10 @@ class ExternalScenario(BaseTransformation):
                             for x in isfuel[dataset["location"]].values()
                         )
                         if (
-                                ws.biosphere(
-                                    dataset, ws.equals("name", "Carbon dioxide, non-fossil")
-                                )
-                                is None
+                            ws.biosphere(
+                                dataset, ws.equals("name", "Carbon dioxide, non-fossil")
+                            )
+                            is None
                         ):
                             dataset["exchanges"].append(
                                 {
@@ -1209,12 +1209,12 @@ class ExternalScenario(BaseTransformation):
                             )
                         else:
                             for exc in ws.biosphere(
-                                    dataset, ws.equals("name", "Carbon dioxide, non-fossil")
+                                dataset, ws.equals("name", "Carbon dioxide, non-fossil")
                             ):
                                 exc["amount"] += bio_co2
 
                         for exc in ws.biosphere(
-                                dataset, ws.equals("name", "Carbon dioxide, fossil")
+                            dataset, ws.equals("name", "Carbon dioxide, fossil")
                         ):
                             exc["amount"] -= bio_co2
 
@@ -1232,10 +1232,10 @@ class ExternalScenario(BaseTransformation):
             locs = [x[2] for x in unique_exchanges_replaced]
 
             for ds in ws.get_many(
-                    self.database,
-                    ws.equals("name", name),
-                    ws.equals("reference product", ref),
-                    ws.either(*[ws.equals("location", l) for l in locs]),
+                self.database,
+                ws.equals("name", name),
+                ws.equals("reference product", ref),
+                ws.either(*[ws.equals("location", l) for l in locs]),
             ):
                 # remove all exchanges except production exchanges
                 ds["exchanges"] = [
@@ -1260,9 +1260,9 @@ class ExternalScenario(BaseTransformation):
                     ds["exchanges"].append(
                         {
                             "amount": 1.0
-                                      * ratio
-                                      * share
-                                      * (-1.0 if waste_process else 1.0),
+                            * ratio
+                            * share
+                            * (-1.0 if waste_process else 1.0),
                             "type": "technosphere",
                             "unit": ds["unit"],
                             "location": loc,

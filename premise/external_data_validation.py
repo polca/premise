@@ -2,6 +2,8 @@
 Validates datapackages that contain external scenario data.
 """
 
+from typing import Union
+
 import numpy as np
 import pandas as pd
 import yaml
@@ -11,12 +13,12 @@ from wurst import searching as ws
 
 from .geomap import Geomap
 from .utils import load_constants
-from typing import Union
 
 config = load_constants()
 
+
 def find_iam_efficiency_change(
-        variable: Union[str, list], location: str, efficiency_data, year: int
+    variable: Union[str, list], location: str, efficiency_data, year: int
 ) -> float:
     """
     Return the relative change in efficiency for `variable` in `location`
@@ -38,8 +40,9 @@ def find_iam_efficiency_change(
 
     return scaling_factor
 
+
 def flag_activities_to_adjust(
-        dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
+    dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
 ) -> dict:
     """
     Flag datasets that will need to be adjusted.
@@ -161,11 +164,11 @@ def flag_activities_to_adjust(
 
 
 def check_inventories(
-        configuration: dict,
-        inventory_data: list,
-        scenario_data: dict,
-        database: list,
-        year: int,
+    configuration: dict,
+    inventory_data: list,
+    scenario_data: dict,
+    database: list,
+    year: int,
 ):
     """
     Check that the inventory data is valid.
@@ -233,8 +236,8 @@ def check_inventories(
             i[0]
             for i, v in d_datasets.items()
             if not v["exists in original database"]
-               and not v.get("new dataset")
-               and (i[0], i[1]) not in list_datasets
+            and not v.get("new dataset")
+            and (i[0], i[1]) not in list_datasets
         ]
 
         raise AssertionError(
@@ -255,9 +258,9 @@ def check_inventories(
     for key, val in d_datasets.items():
         if val.get("exists in original database"):
             for original_ds in ws.get_many(
-                    database,
-                    ws.equals("name", key[0]),
-                    ws.equals("reference product", key[1]),
+                database,
+                ws.equals("name", key[0]),
+                ws.equals("reference product", key[1]),
             ):
                 flag_activities_to_adjust(original_ds, scenario_data, year, val)
 
@@ -290,18 +293,18 @@ def check_datapackage(datapackages: list):
             )
 
         assert (
-                datapackage.descriptor["ecoinvent"]["version"]
-                in config["SUPPORTED_EI_VERSIONS"]
+            datapackage.descriptor["ecoinvent"]["version"]
+            in config["SUPPORTED_EI_VERSIONS"]
         ), f"The ecoinvent version in datapackage  {d + 1} is not supported. Must be one of {config['SUPPORTED_EI_VERSIONS']}."
 
         if (
-                sum(
-                    s.name == y.name
-                    for s in datapackage.resources
-                    for y in datapackage.resources
-                )
-                / len(datapackage.resources)
-                > 1
+            sum(
+                s.name == y.name
+                for s in datapackage.resources
+                for y in datapackage.resources
+            )
+            / len(datapackage.resources)
+            > 1
         ):
             raise ValueError(
                 f"Two or more resources in datapackage {d + 1} are similar."
@@ -497,9 +500,9 @@ def check_config_file(datapackages):
         config_file = yaml.safe_load(resource.raw_read())
 
         if len(list(config_file["production pathways"].keys())) != sum(
-                get_recursively(
-                    config_file["production pathways"], "exists in original database"
-                )
+            get_recursively(
+                config_file["production pathways"], "exists in original database"
+            )
         ):
             needs_imported_inventories[i] = True
 
@@ -588,8 +591,8 @@ def check_scenario_data_file(datapackages, iam_scenarios):
             )
 
         if not all(
-                min(years_cols) <= y <= max(years_cols)
-                for y in [s["year"] for s in iam_scenarios]
+            min(years_cols) <= y <= max(years_cols)
+            for y in [s["year"] for s in iam_scenarios]
         ):
             raise ValueError(
                 f"The list of years you wish to create a database for are not entirely covered"
@@ -603,7 +606,7 @@ def check_scenario_data_file(datapackages, iam_scenarios):
             )
 
         if any(
-                m not in df["model"].unique() for m in [s["model"] for s in iam_scenarios]
+            m not in df["model"].unique() for m in [s["model"] for s in iam_scenarios]
         ):
             raise ValueError(
                 f"One or several model name(s) in the list of scenarios to create "
@@ -611,8 +614,8 @@ def check_scenario_data_file(datapackages, iam_scenarios):
             )
 
         if any(
-                s not in df["pathway"].unique()
-                for s in [p["pathway"] for p in iam_scenarios]
+            s not in df["pathway"].unique()
+            for s in [p["pathway"] for p in iam_scenarios]
         ):
             raise ValueError(
                 f"One or several pathway name(s) in the scenario data file no. {i + 1} "
@@ -620,8 +623,8 @@ def check_scenario_data_file(datapackages, iam_scenarios):
             )
 
         if any(
-                m not in df["pathway"].unique()
-                for m in [s["pathway"] for s in iam_scenarios]
+            m not in df["pathway"].unique()
+            for m in [s["pathway"] for s in iam_scenarios]
         ):
             raise ValueError(
                 f"One or several pathway name(s) in the list of scenarios to create "
@@ -642,8 +645,8 @@ def check_scenario_data_file(datapackages, iam_scenarios):
 
         for irow, r in df.iterrows():
             if (
-                    r["region"] not in d_regions[r["model"]]
-                    and r["region"] not in list_ei_locs
+                r["region"] not in d_regions[r["model"]]
+                and r["region"] not in list_ei_locs
             ):
                 raise ValueError(
                     f"Region {r['region']} indicated "
@@ -654,7 +657,7 @@ def check_scenario_data_file(datapackages, iam_scenarios):
         available_scenarios = df["scenario"].unique()
 
         if not all(
-                s in available_scenarios for s in scenarios
+            s in available_scenarios for s in scenarios
         ):  # check that all scenarios are available in the scenario file
             print(
                 "The following scenarios listed in the json file "
@@ -668,17 +671,17 @@ def check_scenario_data_file(datapackages, iam_scenarios):
         # check that all scenarios in `iam_scenarios` are listed in `scenarios`
 
         if not any(
-                (iam_s["model"], iam_s["pathway"])
-                in [(t["model"], t["pathway"]) for s in scenarios.values() for t in s]
-                for iam_s in iam_scenarios
+            (iam_s["model"], iam_s["pathway"])
+            in [(t["model"], t["pathway"]) for s in scenarios.values() for t in s]
+            for iam_s in iam_scenarios
         ):
             raise ValueError(
                 f"One or several scenarios are not available in the external scenario file no. {i + 1}."
             )
 
         if not all(
-                v in df["variables"].unique()
-                for v in get_recursively(config_file, "variable")
+            v in df["variables"].unique()
+            for v in get_recursively(config_file, "variable")
         ):
             list_unfound_variables = [
                 p
@@ -692,8 +695,8 @@ def check_scenario_data_file(datapackages, iam_scenarios):
             )
 
         if not all(
-                v in df["variables"].unique()
-                for v in get_recursively(config_file, "variable")
+            v in df["variables"].unique()
+            for v in get_recursively(config_file, "variable")
         ):
             missing_variables = [
                 v
@@ -762,7 +765,7 @@ def check_external_scenarios(datapackage: list, iam_scenarios: list) -> tuple:
 
 
 def fetch_dataset_description_from_production_pathways(
-        configuration: dict, item: str
+    configuration: dict, item: str
 ) -> tuple:
     for p, v in configuration["production pathways"].items():
         if p == item:
