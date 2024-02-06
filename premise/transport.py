@@ -498,7 +498,7 @@ class Transport(BaseTransformation):
             filepath = FILEPATH_TWO_WHEELERS
 
 
-        blockPrint()
+        #blockPrint()
 
         # load carculator inventories
         various_veh = VariousVehicles(
@@ -516,7 +516,7 @@ class Transport(BaseTransformation):
         )
 
         various_veh.prepare_inventory()
-        enablePrint()
+        #enablePrint()
 
         return various_veh
 
