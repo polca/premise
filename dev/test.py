@@ -1,6 +1,7 @@
 import bw2data
-from premise import *
 from datapackage import Package
+
+from premise import *
 
 bw2data.projects.set_current("ei39")
 
