@@ -13,8 +13,10 @@ import sys
 from datetime import date
 from multiprocessing import Pool as ProcessPool
 from multiprocessing.pool import ThreadPool as Pool
+from multiprocessing import cpu_count
 from pathlib import Path
 from typing import List, Union
+from tqdm import tqdm
 
 import bw2data
 import datapackage
@@ -1334,7 +1336,11 @@ class NewDatabase:
 
         # use multiprocessing to speed up the process
         if self.multiprocessing:
-            with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
+
+            def _update_all_wrapper(args):
+                return _update_all(*args)
+
+            with Pool(processes=cpu_count()) as pool:
                 args = [
                     (
                         scenario,
@@ -1346,10 +1352,11 @@ class NewDatabase:
                     )
                     for scenario in self.scenarios
                 ]
-                results = pool.starmap(_update_all, args)
 
-            for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s]
+                results = list(tqdm(pool.imap(_update_all_wrapper, args), total=len(args)))
+
+            for s, result in enumerate(results):
+                self.scenarios[s] = result
 
         else:
             for s, scenario in enumerate(self.scenarios):
