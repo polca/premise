@@ -395,7 +395,6 @@ class BaseDatasetValidator:
     def save_log(self):
         # Save the validation log
         if self.validation_log:
-            print("Anomalies found: check the change report.")
             for entry in self.validation_log:
                 logger.info(
                     f"{self.model}|{self.scenario}|{self.year}|"
@@ -421,6 +420,8 @@ class BaseDatasetValidator:
         self.reformat_parameters()
         self.check_uncertainty()
         self.save_log()
+        if self.validation_log:
+            print("Anomalies found: check the change report.")
 
 
 class ElectricityValidation(BaseDatasetValidator):

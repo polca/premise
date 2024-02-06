@@ -17,7 +17,7 @@ from wurst import transformations as wt
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import BaseTransformation, IAMDataCollection
-from .utils import eidb_label
+from .utils import eidb_label, blockPrint, enablePrint
 
 FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
@@ -497,6 +497,9 @@ class Transport(BaseTransformation):
         else:
             filepath = FILEPATH_TWO_WHEELERS
 
+
+        blockPrint()
+
         # load carculator inventories
         various_veh = VariousVehicles(
             database=self.database,
@@ -513,6 +516,7 @@ class Transport(BaseTransformation):
         )
 
         various_veh.prepare_inventory()
+        enablePrint()
 
         return various_veh
 

@@ -2529,7 +2529,6 @@ class Fuels(BaseTransformation):
                 self.remove_from_index(ds)
 
         self.relink_activities_to_new_markets()
-        print("Done!")
 
     def write_log(self, dataset, status="created"):
         """

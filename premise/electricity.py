@@ -2022,8 +2022,6 @@ class Electricity(BaseTransformation):
         # print("Create low voltage markets.")
         self.create_new_markets_low_voltage()
 
-        # print("Done!")
-
     def write_log(self, dataset, status="created"):
         """
         Write log file.

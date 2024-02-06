@@ -858,8 +858,6 @@ class VariousVehicles(BaseInventoryImport):
     def merge_inventory(self):
         self.database.extend(self.import_db.data)
 
-        # print("Done!")
-
         return self.database
 
 

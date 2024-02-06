@@ -50,6 +50,17 @@ def rescale_exchanges(
     return ds
 
 
+# Disable printing
+def blockPrint():
+    with open(os.devnull, "w") as devnull:
+        sys.stdout = devnull
+
+
+# Restore printing
+def enablePrint():
+    sys.stdout = sys.__stdout__
+
+
 class HiddenPrints:
     """
     From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print

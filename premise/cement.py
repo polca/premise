@@ -529,8 +529,6 @@ class Cement(BaseTransformation):
 
         self.database.extend(new_datasets)
 
-        print("Done!")
-
     def write_log(self, dataset, status="created"):
         """
         Write log file.
