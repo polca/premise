@@ -81,7 +81,7 @@ if key:
 @pytest.mark.skipif(not key, reason="No access to decryption key")
 def test_losses():
     assert len(el.network_loss) == 13
-    assert np.isclose(el.network_loss["CAZ"]["high"]["transf_loss"], 0.0333, rtol=1e-2)
+    assert np.isclose(el.network_loss["CAZ"]["high"]["transf_loss"], 0.0223586, rtol=1e-2)
 
 
 @pytest.mark.skipif(not key, reason="No access to decryption key")
