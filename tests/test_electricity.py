@@ -44,8 +44,8 @@ def get_db():
     return dummy_db, version
 
 
-# This won't work with PRs because PRs from outside contributors
-# don't have access to secrets (for good reason).
+# This won't work with PRs because PRs from outside contributors don't have
+# access to secrets (for good reason).
 if "IAM_FILES_KEY" in os.environ:
     key = os.environ["IAM_FILES_KEY"]
 else:
@@ -76,6 +76,12 @@ if key:
         version="3.5",
         system_model="cutoff",
     )
+
+
+@pytest.mark.skipif(not key, reason="No access to decryption key")
+def test_losses():
+    assert len(el.network_loss) == 13
+    assert np.isclose(el.network_loss["CAZ"]["high"]["transf_loss"], 0.0223586, rtol=1e-2)
 
 
 @pytest.mark.skipif(not key, reason="No access to decryption key")
