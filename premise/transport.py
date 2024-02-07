@@ -17,7 +17,7 @@ from wurst import transformations as wt
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import BaseTransformation, IAMDataCollection
-from .utils import eidb_label, HiddenPrints
+from .utils import HiddenPrints, eidb_label
 
 FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
@@ -157,18 +157,18 @@ def create_fleet_vehicles(
     # fleet data does not go below 2015
     if year < 2015:
         year = 2015
-        #print(
+        # print(
         #    "Vehicle fleet data is not available before 2015. "
         #    "Hence, 2015 is used as fleet year."
-        #)
+        # )
 
     # fleet data does not go beyond 2050
     if year > 2050:
         year = 2050
-        #print(
+        # print(
         #    "Vehicle fleet data is not available beyond 2050. "
         #    "Hence, 2050 is used as fleet year."
-        #)
+        # )
 
     # We filter electric vehicles by year of manufacture
     available_years = np.arange(2000, 2055, 5)

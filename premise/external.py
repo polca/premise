@@ -12,8 +12,8 @@ import numpy as np
 import wurst
 import xarray as xr
 import yaml
-from wurst import searching as ws
 from datapackage import Package
+from wurst import searching as ws
 
 from .clean_datasets import get_biosphere_flow_uuid
 from .data_collection import IAMDataCollection
@@ -26,7 +26,7 @@ from .inventory_imports import (
     get_correspondence_bio_flows,
 )
 from .transformation import BaseTransformation, get_shares_from_production_volume
-from .utils import rescale_exchanges, HiddenPrints
+from .utils import HiddenPrints, rescale_exchanges
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -51,21 +51,22 @@ def _update_external_scenarios(
     datapackages: list,
 ) -> dict:
     datapackages = [
-        Package(f"{dp}/datapackage.json") if isinstance(dp, str) else dp for dp in datapackages
+        Package(f"{dp}/datapackage.json") if isinstance(dp, str) else dp
+        for dp in datapackages
     ]
     for d, data_package in enumerate(datapackages):
         inventories = []
         with HiddenPrints():
             if "inventories" in [r.name for r in data_package.resources]:
                 if data_package.get_resource("inventories"):
-                        additional = AdditionalInventory(
-                            database=scenario["database"],
-                            version_in=data_package.descriptor["ecoinvent"]["version"],
-                            version_out=version,
-                            path=data_package.get_resource("inventories").source,
-                            system_model=system_model,
-                        )
-                        inventories.extend(additional.merge_inventory())
+                    additional = AdditionalInventory(
+                        database=scenario["database"],
+                        version_in=data_package.descriptor["ecoinvent"]["version"],
+                        version_out=version,
+                        path=data_package.get_resource("inventories").source,
+                        system_model=system_model,
+                    )
+                    inventories.extend(additional.merge_inventory())
 
         resource = data_package.get_resource("config")
         config_file = yaml.safe_load(resource.raw_read())

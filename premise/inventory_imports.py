@@ -61,9 +61,7 @@ def get_biosphere_code(version) -> dict:
             file,
             delimiter=get_delimiter(filepath=fp),
         )
-        return {
-            (row[0], row[1], row[2], row[3]): row[4] for row in input_dict
-        }
+        return {(row[0], row[1], row[2], row[3]): row[4] for row in input_dict}
 
 
 def get_consequential_blacklist():

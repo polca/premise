@@ -47,6 +47,7 @@ from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
 from .utils import (
+    HiddenPrints,
     clear_existing_cache,
     create_scenario_list,
     eidb_label,
@@ -55,7 +56,6 @@ from .utils import (
     load_constants,
     print_version,
     warning_about_biogenic_co2,
-    HiddenPrints
 )
 
 logger = logging.getLogger("module")
@@ -488,8 +488,8 @@ class NewDatabase:
         # and system_model is "consequential"
         # raise an error
         if (
-                self.version not in ["3.8", "3.9", "3.9.1"]
-                and self.system_model == "consequential"
+            self.version not in ["3.8", "3.9", "3.9.1"]
+            and self.system_model == "consequential"
         ):
             raise ValueError(
                 "Consequential system model is only available for ecoinvent 3.8 or 3.9."
@@ -844,7 +844,15 @@ class NewDatabase:
             },
             "external": {
                 "func": _update_external_scenarios,
-                "args": (self.version, self.system_model, [x.base_path for x in self.datapackages] if self.datapackages else None),
+                "args": (
+                    self.version,
+                    self.system_model,
+                    (
+                        [x.base_path for x in self.datapackages]
+                        if self.datapackages
+                        else None
+                    ),
+                ),
             },
         }
 
@@ -909,9 +917,7 @@ class NewDatabase:
                 else:
                     # Process scenarios in sequence for the current sector
                     for s, scenario in enumerate(self.scenarios):
-                        self.scenarios[s] = update_func(
-                            scenario, *fixed_args
-                        )
+                        self.scenarios[s] = update_func(scenario, *fixed_args)
 
                 # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update(1)
