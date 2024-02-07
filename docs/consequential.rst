@@ -154,6 +154,6 @@ If not, the following default arguments value are used:
         system_args=args
     )
 
-    ndb.update_electricity()
+    ndb.update("electricity")
 
     ndb.write_db_to_brightway()
