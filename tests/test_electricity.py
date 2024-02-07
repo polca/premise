@@ -82,6 +82,7 @@ if key:
 def test_losses():
     assert len(el.network_loss) == 13
 
+
 @pytest.mark.skipif(not key, reason="No access to decryption key")
 def test_powerplant_map():
     s = el.powerplant_map["Biomass IGCC CCS"]
