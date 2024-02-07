@@ -18,7 +18,7 @@ ndb = NewDatabase(
         source_db="ecoinvent 3.9.1 cutoff",
         source_version="3.9.1",
         key=b'tUePmX_S5B8ieZkkM7WUU2CnO8SmShwmAeWK9x2rTFo=',
-        use_multiprocessing=True,
+        use_multiprocessing=False,
         keep_uncertainty_data=True,
         external_scenarios=[ep2050,],
 )

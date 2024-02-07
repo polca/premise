@@ -20,7 +20,6 @@ from typing import List, Union
 
 import bw2data
 import datapackage
-import yaml
 from tqdm import tqdm
 
 from . import __version__
@@ -56,6 +55,7 @@ from .utils import (
     load_constants,
     print_version,
     warning_about_biogenic_co2,
+    HiddenPrints
 )
 
 logger = logging.getLogger("module")
@@ -488,8 +488,8 @@ class NewDatabase:
         # and system_model is "consequential"
         # raise an error
         if (
-            self.version not in ["3.8", "3.9", "3.9.1"]
-            and self.system_model == "consequential"
+                self.version not in ["3.8", "3.9", "3.9.1"]
+                and self.system_model == "consequential"
         ):
             raise ValueError(
                 "Consequential system model is only available for ecoinvent 3.8 or 3.9."
@@ -527,29 +527,6 @@ class NewDatabase:
         else:
             self.datapackages = None
 
-        print("\n//////////////////// EXTRACTING SOURCE DATABASE ////////////////////")
-        if use_cached_database:
-            self.database = self.__find_cached_db(source_db)
-            print("Done!")
-        else:
-            self.database = self.__clean_database()
-
-        print("\n////////////////// IMPORTING DEFAULT INVENTORIES ///////////////////")
-        if use_cached_inventories:
-            data = self.__find_cached_inventories(source_db)
-            if data is not None:
-                self.database.extend(data)
-        else:
-            self.__import_inventories()
-
-        if self.additional_inventories:
-            data = self.__import_additional_inventories(self.additional_inventories)
-            self.database.extend(data)
-
-        print("Done!")
-
-        print("\n/////////////////////// EXTRACTING IAM DATA ////////////////////////")
-
         def _fetch_iam_data(scenario):
             data = IAMDataCollection(
                 model=scenario["model"],
@@ -570,15 +547,40 @@ class NewDatabase:
 
             scenario["database"] = copy.deepcopy(self.database)
 
-        # use multiprocessing to speed up the process
-        if self.multiprocessing:
-            with Pool(processes=multiprocessing.cpu_count()) as pool:
-                pool.map(_fetch_iam_data, self.scenarios)
-        else:
-            for scenario in self.scenarios:
-                _fetch_iam_data(scenario)
+        # tdqm progress bar for the extraction of database, import of inventories and IAM data
+        bar = tqdm(total=3, desc="Extracting source database", position=0, ncols=70)
+        with HiddenPrints():
+            if use_cached_database:
+                self.database = self.__find_cached_db(source_db)
+            else:
+                self.database = self.__clean_database()
+            bar.update(1)
+            bar.set_description("Importing default inventories")
 
-        print("Done!")
+            if use_cached_inventories:
+                data = self.__find_cached_inventories(source_db)
+                if data is not None:
+                    self.database.extend(data)
+            else:
+                self.__import_inventories()
+            bar.update(1)
+
+            if self.additional_inventories:
+                bar.set_description("Importing additional inventories")
+                data = self.__import_additional_inventories(self.additional_inventories)
+                self.database.extend(data)
+                bar.update(1)
+
+            bar.set_description("Extracting IAM data")
+            # use multiprocessing to speed up the process
+            if self.multiprocessing:
+                with Pool(processes=multiprocessing.cpu_count()) as pool:
+                    pool.map(_fetch_iam_data, self.scenarios)
+            else:
+                for scenario in self.scenarios:
+                    _fetch_iam_data(scenario)
+            bar.update(1)
+            bar.close()
 
     def __find_cached_db(self, db_name: str) -> List[dict]:
         """
@@ -842,7 +844,7 @@ class NewDatabase:
             },
             "external": {
                 "func": _update_external_scenarios,
-                "args": (self.version, self.system_model, self.datapackages),
+                "args": (self.version, self.system_model, [x.base_path for x in self.datapackages] if self.datapackages else None),
             },
         }
 
@@ -875,9 +877,9 @@ class NewDatabase:
         )
 
         # Outer tqdm progress bar for sectors
-        with tqdm(total=len(sectors), desc="Updating sectors") as pbar_outer:
+        with tqdm(total=len(sectors), desc="Updating sectors", ncols=70) as pbar_outer:
             for sector in sectors:
-
+                pbar_outer.set_description(f"Updating: {sector}")
                 if sector == "external" and self.datapackages is None:
                     print(
                         "External scenarios (datapackages) are not provided. Skipped."
@@ -889,8 +891,9 @@ class NewDatabase:
                 fixed_args = sector_update_methods[sector]["args"]
 
                 if self.multiprocessing:
+
                     # Process scenarios in parallel for the current sector
-                    with Pool(processes=cpu_count()) as pool:
+                    with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
                         # Prepare the tasks with all necessary arguments
                         tasks = [
                             (scenario,) + fixed_args for scenario in self.scenarios
@@ -902,6 +905,13 @@ class NewDatabase:
                         # Update self.scenarios based on the ordered results
                         for s, updated_scenario in enumerate(results):
                             self.scenarios[s] = updated_scenario
+
+                else:
+                    # Process scenarios in sequence for the current sector
+                    for s, scenario in enumerate(self.scenarios):
+                        self.scenarios[s] = update_func(
+                            scenario, *fixed_args
+                        )
 
                 # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update(1)

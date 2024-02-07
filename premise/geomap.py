@@ -134,6 +134,9 @@ class Geomap:
         if location_tuple != (self.model.upper(), "World"):
             ecoinvent_locations = [e for e in ecoinvent_locations if e != "GLO"]
 
+        # remove if ``location`` is in the list
+        ecoinvent_locations = [e for e in ecoinvent_locations if e != location]
+
         return ecoinvent_locations
 
     def ecoinvent_to_iam_location(self, location: str) -> str:

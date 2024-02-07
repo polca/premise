@@ -1,5 +1,5 @@
 __all__ = ("NewDatabase", "clear_cache", "get_regions_definition")
-__version__ = (1, 8, 2, "dev7")
+__version__ = (2, 0, 0, "dev0")
 
 
 from .new_database import NewDatabase

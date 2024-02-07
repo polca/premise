@@ -17,7 +17,7 @@ from wurst import transformations as wt
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
 from .transformation import BaseTransformation, IAMDataCollection
-from .utils import blockPrint, eidb_label, enablePrint
+from .utils import eidb_label, HiddenPrints
 
 FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
@@ -81,7 +81,7 @@ def get_average_truck_load_factors() -> Dict[str, Dict[str, Dict[str, float]]]:
     """
     with open(FILEPATH_TRUCK_LOAD_FACTORS, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
-    return out
+        return out
 
 
 def get_vehicles_mapping() -> Dict[str, dict]:
@@ -93,7 +93,7 @@ def get_vehicles_mapping() -> Dict[str, dict]:
     """
     with open(FILEPATH_VEHICLES_MAP, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
-    return out
+        return out
 
 
 def normalize_exchange_amounts(list_act: List[dict]) -> List[dict]:
@@ -141,7 +141,6 @@ def create_fleet_vehicles(
     :param regions: IAM regions
     :return: list of fleet average vehicle datasets
     """
-    # print("Create fleet average vehicles...")
 
     vehicles_map = get_vehicles_mapping()
 
@@ -158,18 +157,18 @@ def create_fleet_vehicles(
     # fleet data does not go below 2015
     if year < 2015:
         year = 2015
-        print(
-            "Vehicle fleet data is not available before 2015. "
-            "Hence, 2015 is used as fleet year."
-        )
+        #print(
+        #    "Vehicle fleet data is not available before 2015. "
+        #    "Hence, 2015 is used as fleet year."
+        #)
 
     # fleet data does not go beyond 2050
     if year > 2050:
         year = 2050
-        print(
-            "Vehicle fleet data is not available beyond 2050. "
-            "Hence, 2050 is used as fleet year."
-        )
+        #print(
+        #    "Vehicle fleet data is not available beyond 2050. "
+        #    "Hence, 2050 is used as fleet year."
+        #)
 
     # We filter electric vehicles by year of manufacture
     available_years = np.arange(2000, 2055, 5)
@@ -497,25 +496,23 @@ class Transport(BaseTransformation):
         else:
             filepath = FILEPATH_TWO_WHEELERS
 
-        # blockPrint()
-
         # load carculator inventories
-        various_veh = VariousVehicles(
-            database=self.database,
-            version_in="3.7",
-            version_out=self.version,
-            path=filepath,
-            year=self.year,
-            regions=self.regions,
-            model=self.model,
-            scenario=self.scenario,
-            vehicle_type=self.vehicle_type,
-            has_fleet=True,
-            system_model=self.system_model,
-        )
+        with HiddenPrints():
+            various_veh = VariousVehicles(
+                database=self.database,
+                version_in="3.7",
+                version_out=self.version,
+                path=filepath,
+                year=self.year,
+                regions=self.regions,
+                model=self.model,
+                scenario=self.scenario,
+                vehicle_type=self.vehicle_type,
+                has_fleet=True,
+                system_model=self.system_model,
+            )
 
-        various_veh.prepare_inventory()
-        # enablePrint()
+            various_veh.prepare_inventory()
 
         return various_veh
 
