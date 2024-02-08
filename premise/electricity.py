@@ -141,7 +141,7 @@ def get_production_weighted_losses(
         )
 
         transf_loss += (
-            dict_loss["Transformation loss high voltage"]
+            dict_loss.get("Transformation loss high voltage", 0)
             * dict_loss["Production volume"]
         )
 
@@ -169,12 +169,13 @@ def get_production_weighted_losses(
                 "Production volume": 0,
             },
         )
+
         transf_loss += (
-            dict_loss["Transformation loss medium voltage"]
+            dict_loss.get("Transformation loss medium voltage", 0)
             * dict_loss["Production volume"]
         )
         distr_loss += (
-            dict_loss["Transmission loss to medium voltage"]
+            dict_loss.get("Transmission loss to medium voltage", 0)
             * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]
@@ -195,11 +196,11 @@ def get_production_weighted_losses(
             },
         )
         transf_loss += (
-            dict_loss["Transformation loss low voltage"]
+            dict_loss.get("Transformation loss low voltage", 0)
             * dict_loss["Production volume"]
         )
         distr_loss += (
-            dict_loss["Transmission loss to low voltage"]
+            dict_loss.get("Transmission loss to low voltage", 0)
             * dict_loss["Production volume"]
         )
         cumul_prod += dict_loss["Production volume"]

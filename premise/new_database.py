@@ -9,11 +9,8 @@ import logging
 import multiprocessing
 import os
 import pickle
-import sys
 from datetime import date
-from functools import partial
 from multiprocessing import Pool as ProcessPool
-from multiprocessing import cpu_count
 from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import List, Union
