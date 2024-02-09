@@ -32,7 +32,6 @@ from .transformation import (
 from .utils import get_efficiency_solar_photovoltaics, rescale_exchanges
 from .validation import ElectricityValidation
 
-LOSS_PER_COUNTRY = DATA_DIR / "electricity" / "losses_per_country.csv"
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
 
 logger = create_logger("electricity")
