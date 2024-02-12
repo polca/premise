@@ -44,8 +44,6 @@ BIOFUEL_SOURCES = DATA_DIR / "fuels" / "biofuels_activities.yml"
 FUEL_GROUPS = DATA_DIR / "fuels" / "fuel_groups.yaml"
 
 
-
-
 def fetch_mapping(filepath: str) -> dict:
     """Returns a dictionary from a YML file"""
 
