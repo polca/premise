@@ -161,7 +161,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
 
     args = args or {}
 
-    range_time: int = args.get("range time", False)
+    range_time: int = args.get("range time", 2)
     duration: int = args.get("duration", False)
     foresight: bool = args.get("foresight", False)
     lead_time: int = args.get("lead time", False)
