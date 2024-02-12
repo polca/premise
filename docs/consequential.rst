@@ -37,7 +37,7 @@ From the user viewpoint, the process is as follows:
 The parameters used to identify marginal suppliers that make up
 a market are:
 
-* range time (years, default = 0)
+* range time (years, default = 2)
 * duration (years, default = 0)
 * foresight (True or False, default = False)
 * lead time (True or False, default = False)
@@ -46,20 +46,25 @@ a market are:
 * weighted slope start (default = 0.75)
 * weighted slope end (default = 1.00)
 
+.. image:: Time_interval.png
+
 Range time
 ^^^^^^^^^^
 
-Integer. Years. Used for single occurrences or short-lasting changed in demand (less than 3years).
+Integer. Years. Used for single occurrences or short-lasting changed in demand (less than 3 years).
 Since the duration of the change is too short to measure a trend, 
 the trend is instead measured around the point where the additional
 capital will be installed. A range of n years before and after the point
 is taken as the time interval. Note that if set to a value other than 0,
-the duration argument must be set to 0.
+the duration argument must be set to 0. 
+A default range of 2 years is chosen. 
+This value closely mirrors the recommended time interval in ecoinvent’s consequential database, which is 3-4 years.
 
 Duration
 ^^^^^^^^
 
-Integer. Years. Duration over which the change in demand should be measured.
+Integer. Years. Used for long-lasting changes in demand (3 years or more).
+Duration over which the change in demand occurs should be measured.
 Note that if set to a value other than 0, the range time argument must be set to 0.
 
 Foresight
