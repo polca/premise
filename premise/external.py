@@ -855,6 +855,7 @@ class ExternalScenario(BaseTransformation):
                     variables = fetch_var(config_file, pathways)
                     waste_market = market_vars.get("waste market", False)
                     isfuel = {}
+                    market_status = {}
 
                     # Check if there are regions we should not
                     # create a market for
@@ -957,7 +958,6 @@ class ExternalScenario(BaseTransformation):
                                             }
                                         }
                                     )
-
                         if len(new_excs) > 0:
                             total = 0
 
@@ -996,8 +996,17 @@ class ExternalScenario(BaseTransformation):
                             self.database.append(new_market)
                             self.write_log(new_market)
                             self.add_to_index(new_market)
+                            market_status[region] = True
 
-                    # if there's more than one region, we create a World region
+                        else:
+                            print(
+                                f"No suppliers found for {new_market['name']} in {region}. "
+                                "No market created. This may cause linking issue."
+                            )
+                            market_status[region] = False
+
+                    # if there's more than one region,
+                    # we create a World region
                     create_world_region = True
                     if (
                         "World" in regions
@@ -1033,6 +1042,7 @@ class ExternalScenario(BaseTransformation):
                             regions=regions,
                             waste_process=waste_market,
                             isfuel=isfuel,
+                            market_status=market_status,
                         )
 
     def relink_to_new_datasets(
@@ -1045,6 +1055,7 @@ class ExternalScenario(BaseTransformation):
         regions: list,
         waste_process: bool = False,
         isfuel: dict = None,
+        market_status: dict = None,
     ) -> None:
         """
         Replaces exchanges that match `old_name` and `old_ref` with exchanges that
@@ -1061,6 +1072,11 @@ class ExternalScenario(BaseTransformation):
         :param isfuel: True if the process is a fuel process
 
         """
+
+        # filter out regions from `regions`for which
+        # no market has been created
+        if market_status:
+            regions = [r for r in regions if market_status[r] is True]
 
         datasets = []
         exchanges_replaced = []
@@ -1115,7 +1131,8 @@ class ExternalScenario(BaseTransformation):
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
-                exc for exc in dataset["exchanges"] if exc not in filtered_exchanges
+                exc for exc in dataset["exchanges"]
+                if exc not in filtered_exchanges
             ]
 
             new_exchanges = []
@@ -1245,7 +1262,7 @@ class ExternalScenario(BaseTransformation):
                 ds["exchanges"] = [
                     exc for exc in ds["exchanges"] if exc["type"] == "production"
                 ]
-                # add ann exchange from new supplier
+                # add an exchange from a new supplier
                 if ds["location"] in ["GLO", "RoW"] and "World" in regions:
                     new_loc = "World"
                 elif ds["location"] in regions:

@@ -76,8 +76,7 @@ policy changes and prices) and will only act based on the information they can o
 In this case, the suppliers can answer to a change in demand only after it has occurred.
 In the perfect foresight approach, the future (within the studied time period) is fully
 known to all agents. In this case, the decision to invest can be made ahead of the change
-in demand. For suppliers with no foresight, capital
-will show up a lead time later.
+in demand. For suppliers with no foresight, capital will show up a lead time later.
 
 Lead time
 ^^^^^^^^^

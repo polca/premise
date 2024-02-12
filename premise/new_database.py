@@ -544,40 +544,40 @@ class NewDatabase:
 
             scenario["database"] = copy.deepcopy(self.database)
 
-        # tdqm progress bar for the extraction of database, import of inventories and IAM data
-        bar = tqdm(total=3, desc="Extracting source database", position=0, ncols=70)
-        with HiddenPrints():
-            if use_cached_database:
-                self.database = self.__find_cached_db(source_db)
-            else:
-                self.database = self.__clean_database()
-            bar.update(1)
-            bar.set_description("Importing default inventories")
+        print("\n")
+        print("- Extracting source database")
+        if use_cached_database:
+            self.database = self.__find_cached_db(source_db)
+        else:
+            self.database = self.__clean_database()
 
-            if use_cached_inventories:
-                data = self.__find_cached_inventories(source_db)
-                if data is not None:
-                    self.database.extend(data)
-            else:
-                self.__import_inventories()
-            bar.update(1)
-
-            if self.additional_inventories:
-                bar.set_description("Importing additional inventories")
-                data = self.__import_additional_inventories(self.additional_inventories)
+        print("\n")
+        print("- Extracting inventories")
+        if use_cached_inventories:
+            data = self.__find_cached_inventories(source_db)
+            if data is not None:
                 self.database.extend(data)
-                bar.update(1)
+        else:
+            self.__import_inventories()
 
-            bar.set_description("Extracting IAM data")
-            # use multiprocessing to speed up the process
-            if self.multiprocessing:
-                with Pool(processes=multiprocessing.cpu_count()) as pool:
-                    pool.map(_fetch_iam_data, self.scenarios)
-            else:
-                for scenario in self.scenarios:
-                    _fetch_iam_data(scenario)
-            bar.update(1)
-            bar.close()
+        if self.additional_inventories:
+            print("\n")
+            print("- Importing additional inventories")
+            data = self.__import_additional_inventories(self.additional_inventories)
+            self.database.extend(data)
+
+        print("\n")
+        print("- Fetching IAM data")
+        # use multiprocessing to speed up the process
+        if self.multiprocessing:
+            with Pool(processes=multiprocessing.cpu_count()) as pool:
+                pool.map(_fetch_iam_data, self.scenarios)
+        else:
+            for scenario in self.scenarios:
+                _fetch_iam_data(scenario)
+
+        print("\n")
+        print("Done!")
 
     def __find_cached_db(self, db_name: str) -> List[dict]:
         """
