@@ -49,8 +49,10 @@ a market are:
 Range time
 ^^^^^^^^^^
 
-Integer. Years. To measure the trend around the point where the additional
-capital will be installed, a range of n years before and after the point
+Integer. Years. Used for single occurrences or short-lasting changed in demand (less than 3years).
+Since the duration of the change is too short to measure a trend, 
+the trend is instead measured around the point where the additional
+capital will be installed. A range of n years before and after the point
 is taken as the time interval. Note that if set to a value other than 0,
 the duration argument must be set to 0.
 
