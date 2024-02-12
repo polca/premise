@@ -1131,8 +1131,7 @@ class ExternalScenario(BaseTransformation):
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
-                exc for exc in dataset["exchanges"]
-                if exc not in filtered_exchanges
+                exc for exc in dataset["exchanges"] if exc not in filtered_exchanges
             ]
 
             new_exchanges = []
