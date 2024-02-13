@@ -196,6 +196,8 @@ jobs:
           auto-update-conda: true
           activate-environment: test
 
+      - name: Pull distribution 📦 from Anaconda and test it if master branch
+
         run: |
           conda install -c romainsacchi premise
           conda update premise
