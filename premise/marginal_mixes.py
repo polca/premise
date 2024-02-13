@@ -754,11 +754,10 @@ def consequential_method(
             (
                 region,
                 measurement,
-                start,
-                end,
+                foresight,
+                duration,
                 avg_start,
                 avg_end,
-                avg_lifetime,
                 np.round(avg_cap_repl_rate, 2),
                 np.round(volume_change, 2),
             )
@@ -800,12 +799,11 @@ def consequential_method(
         [
             "Region",
             "Measurement method",
-            "Start",
-            "End",
-            "Avg start",
-            "Avg end",
-            "Avg lifetime",
-            "Avg capital repl. rate",
+            "Foresight?",
+            "Duration",
+            "Avg. start year",
+            "Avg. end year",
+            "Avg. capital repl. rate",
             "Volume change",
         ]
     )
@@ -814,14 +812,13 @@ def consequential_method(
 
     table._max_width = {
         "Region": 10,
-        "Measurement method": 10,
-        "Start": 10,
-        "End": 10,
-        "Avg start": 10,
-        "Avg end": 10,
-        "Avg lifetime": 10,
-        "Avg capital repl. rate": 10,
-        "Volume change": 10,
+        "Measurement method": 20,
+        "Foresight?": 10,
+        "Duration": 10,
+        "Avg. start year": 10,
+        "Avg. end year": 10,
+        "Avg. capital repl. rate": 20,
+        "Volume change": 20,
     }
     table.hrules = ALL
     print(table)
