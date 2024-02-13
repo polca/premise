@@ -8,15 +8,16 @@ import csv
 import pprint
 from pathlib import Path
 from typing import Dict, List, Tuple, Union
-import yaml
 
 import bw2io
 import wurst
+import yaml
 from bw2data.database import DatabaseChooser
 from wurst import searching as ws
 
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
+
 
 def load_methane_correction_list():
     """
@@ -438,9 +439,9 @@ class DatabaseCleaner:
 
             # Add primary energy flow
             if not any(
-                    exc
-                    for exc in ws.biosphere(ds)
-                    if exc["name"] == "Energy, gross calorific value, in biomass"
+                exc
+                for exc in ws.biosphere(ds)
+                if exc["name"] == "Energy, gross calorific value, in biomass"
             ):
                 ds["exchanges"].append(
                     {
