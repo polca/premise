@@ -509,9 +509,8 @@ class Electricity(BaseTransformation):
             # fetch production volume
             production_volume = self.iam_data.production_volumes.sel(
                 region=region,
-                year=self.year,
                 variables=self.iam_data.electricity_markets.variables.values,
-            ).values.item(0)
+            ).interp(year=self.year).values.item(0)
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -713,9 +712,8 @@ class Electricity(BaseTransformation):
             # fetch production volume
             production_volume = self.iam_data.production_volumes.sel(
                 region=region,
-                year=self.year,
                 variables=self.iam_data.electricity_markets.variables.values,
-            ).values.item(0)
+            ).interp(year=self.year).values.item(0)
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -988,9 +986,8 @@ class Electricity(BaseTransformation):
             # fetch production volume
             production_volume = self.iam_data.production_volumes.sel(
                 region=region,
-                year=self.year,
                 variables=self.iam_data.electricity_markets.variables.values,
-            ).values.item(0)
+            ).interp(year=self.year).values.item(0)
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -1126,9 +1123,9 @@ class Electricity(BaseTransformation):
                 "production volume": (
                     self.iam_data.production_volumes.sel(
                         region=regions,
-                        year=self.year,
                         variables=self.iam_data.electricity_markets.variables.values,
                     )
+                    .interp(year=self.year)
                     .sum(dim=["region", "variables"])
                     .values.item(0)
                 ),

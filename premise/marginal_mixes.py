@@ -12,6 +12,7 @@ import numpy as np
 import xarray as xr
 import yaml
 from numpy import ndarray
+from prettytable import PrettyTable, ALL
 
 from .filesystem_constants import DATA_DIR
 
@@ -132,7 +133,7 @@ def remove_constrained_suppliers(data: xr.DataArray) -> xr.DataArray:
     return data
 
 
-def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataArray:
+def consequential_method(data: xr.DataArray, year: int, args: dict, sector: str) -> xr.DataArray:
     """
     Used for consequential modeling only.
     Returns marginal market mixes
@@ -155,6 +156,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     :param data: IAM data
     :param year: year to calculate the mix for
     :param args: arguments for the method
+    :param sector: sector to calculate the mix for
 
     :return: marginal market mixes
     """
@@ -197,6 +199,11 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
     techs = tuple(data_full.variables.values.tolist())
     leadtime = get_leadtime(techs)
     lifetime = get_lifetime(techs)
+
+    # create a list to store variables values
+    # for each region
+    # to print a pretty table at the end
+    summary = []
 
     for region in data.coords["region"].values:
         # we don't yet know the exact start year
@@ -286,6 +293,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 "end_avg": year + duration,
             },
         }
+
 
         try:
             params = time_parameters[
@@ -715,7 +723,7 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
                 # and use their production volume as their indicator
                 market_shares.loc[{"region": region}] *= data_start.values[:, None]
             # increasing market or
-            # market decreasing slowlier than the
+            # market decreasing slower than the
             # capital renewal rate
             else:
                 # we remove suppliers with a negative growth
@@ -740,6 +748,20 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
         market_shares.loc[{"region": region}] = market_shares.loc[
             {"region": region}
         ].fillna(0)
+
+        summary.append(
+            (
+                region,
+                measurement,
+                start,
+                end,
+                avg_start,
+                avg_end,
+                avg_lifetime,
+                np.round(avg_cap_repl_rate, 2),
+                np.round(volume_change, 2),
+            )
+        )
 
         # market decreasing faster than the average capital renewal rate
         # in this case, the idea is that oldest/non-competitive technologies
@@ -769,5 +791,29 @@ def consequential_method(data: xr.DataArray, year: int, args: dict) -> xr.DataAr
             market_shares.loc[{"region": region}] /= market_shares.loc[
                 {"region": region}
             ].sum(dim="variables")
+
+
+    # print a summary of the results
+    print()
+    print(f"Summary of the {sector} marginal market mixes:")
+    table = PrettyTable(
+        [
+            "Region",
+            "Measurement method",
+            "Start",
+            "End",
+            "Avg start",
+            "Avg end",
+            "Avg lifetime",
+            "Avg capital repl. rate",
+            "Volume change",
+        ]
+    )
+    for row in summary:
+        table.add_row(row)
+
+    table._max_width = {"Region": 10, "Measurement method": 10, "Start": 10, "End": 10, "Avg start": 10, "Avg end": 10, "Avg lifetime": 10, "Avg capital repl. rate": 10, "Volume change": 10}
+    table.hrules = ALL
+    print(table)
 
     return market_shares
