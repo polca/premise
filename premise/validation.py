@@ -534,15 +534,17 @@ class ElectricityValidation(BaseDatasetValidator):
         # check that the electricity mix in teh market datasets
         # corresponds to the IAM scenario projection
 
-        hydro_share = self.iam_data.electricity_markets.sel(
-            variables="Hydro"
-        ).interp(year=self.year) / self.iam_data.electricity_markets.sel(
+        hydro_share = self.iam_data.electricity_markets.sel(variables="Hydro").interp(
+            year=self.year
+        ) / self.iam_data.electricity_markets.sel(
             variables=[
                 v
                 for v in self.iam_data.electricity_markets.variables.values
                 if v.lower() != "solar pv residential"
             ],
-        ).interp(year=self.year).sum(
+        ).interp(
+            year=self.year
+        ).sum(
             dim="variables"
         )
 
@@ -735,9 +737,13 @@ class SteelValidation(BaseDatasetValidator):
                 if ds["location"] == "World":
                     continue
 
-                eaf_steel = self.iam_data.steel_markets.sel(
-                    variables="steel - secondary", region=ds["location"]
-                ).interp(year=self.year).values.item(0)
+                eaf_steel = (
+                    self.iam_data.steel_markets.sel(
+                        variables="steel - secondary", region=ds["location"]
+                    )
+                    .interp(year=self.year)
+                    .values.item(0)
+                )
 
                 total = sum(
                     [
@@ -1021,10 +1027,14 @@ class BiomassValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
-                expected_share = self.iam_data.biomass_markets.sel(
-                    variables="biomass - residual",
-                    region=ds["location"],
-                ).interp(year=self.year).values.item(0)
+                expected_share = (
+                    self.iam_data.biomass_markets.sel(
+                        variables="biomass - residual",
+                        region=ds["location"],
+                    )
+                    .interp(year=self.year)
+                    .values.item(0)
+                )
 
                 residual_biomass = sum(
                     [

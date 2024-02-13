@@ -12,7 +12,7 @@ import numpy as np
 import xarray as xr
 import yaml
 from numpy import ndarray
-from prettytable import PrettyTable, ALL
+from prettytable import ALL, PrettyTable
 
 from .filesystem_constants import DATA_DIR
 
@@ -133,7 +133,9 @@ def remove_constrained_suppliers(data: xr.DataArray) -> xr.DataArray:
     return data
 
 
-def consequential_method(data: xr.DataArray, year: int, args: dict, sector: str) -> xr.DataArray:
+def consequential_method(
+    data: xr.DataArray, year: int, args: dict, sector: str
+) -> xr.DataArray:
     """
     Used for consequential modeling only.
     Returns marginal market mixes
@@ -293,7 +295,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict, sector: str)
                 "end_avg": year + duration,
             },
         }
-
 
         try:
             params = time_parameters[
@@ -792,7 +793,6 @@ def consequential_method(data: xr.DataArray, year: int, args: dict, sector: str)
                 {"region": region}
             ].sum(dim="variables")
 
-
     # print a summary of the results
     print()
     print(f"Summary of the {sector} marginal market mixes:")
@@ -812,7 +812,17 @@ def consequential_method(data: xr.DataArray, year: int, args: dict, sector: str)
     for row in summary:
         table.add_row(row)
 
-    table._max_width = {"Region": 10, "Measurement method": 10, "Start": 10, "End": 10, "Avg start": 10, "Avg end": 10, "Avg lifetime": 10, "Avg capital repl. rate": 10, "Volume change": 10}
+    table._max_width = {
+        "Region": 10,
+        "Measurement method": 10,
+        "Start": 10,
+        "End": 10,
+        "Avg start": 10,
+        "Avg end": 10,
+        "Avg lifetime": 10,
+        "Avg capital repl. rate": 10,
+        "Volume change": 10,
+    }
     table.hrules = ALL
     print(table)
 

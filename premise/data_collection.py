@@ -574,7 +574,10 @@ class IAMDataCollection:
         )
 
         self.cement_markets = self.__fetch_market_data(
-            data=data, input_vars=cement_prod_vars, system_model="cutoff", sector="cement"
+            data=data,
+            input_vars=cement_prod_vars,
+            system_model="cutoff",
+            sector="cement",
         )
         self.steel_markets = self.__fetch_market_data(
             data=data, input_vars=steel_prod_vars, system_model="cutoff", sector="steel"
@@ -583,18 +586,25 @@ class IAMDataCollection:
             data=data, input_vars=dac_prod_vars, system_model="cutoff", sector="dac"
         )
         self.biomass_markets = self.__fetch_market_data(
-            data=data, input_vars=biomass_prod_vars, system_model="cutoff", sector="biomass"
+            data=data,
+            input_vars=biomass_prod_vars,
+            system_model="cutoff",
+            sector="biomass",
         )
 
         self.carbon_capture_rate = self.__get_carbon_capture_rate(
             dict_vars=self.__get_iam_variable_labels(
-                IAM_CARBON_CAPTURE_VARS, variable="iam_aliases",
+                IAM_CARBON_CAPTURE_VARS,
+                variable="iam_aliases",
             ),
             data=data,
         )
 
         self.other_vars = self.__fetch_market_data(
-            data=data, input_vars=other_vars, normalize=False, system_model="cutoff",
+            data=data,
+            input_vars=other_vars,
+            normalize=False,
+            system_model="cutoff",
         )
 
         self.electricity_efficiencies = self.get_iam_efficiencies(

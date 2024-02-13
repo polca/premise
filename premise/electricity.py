@@ -507,10 +507,14 @@ class Electricity(BaseTransformation):
             )
 
             # fetch production volume
-            production_volume = self.iam_data.production_volumes.sel(
-                region=region,
-                variables=self.iam_data.electricity_markets.variables.values,
-            ).interp(year=self.year).values.item(0)
+            production_volume = (
+                self.iam_data.production_volumes.sel(
+                    region=region,
+                    variables=self.iam_data.electricity_markets.variables.values,
+                )
+                .interp(year=self.year)
+                .values.item(0)
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -710,10 +714,14 @@ class Electricity(BaseTransformation):
             distr_loss = self.network_loss[region]["medium"]["distr_loss"]
 
             # fetch production volume
-            production_volume = self.iam_data.production_volumes.sel(
-                region=region,
-                variables=self.iam_data.electricity_markets.variables.values,
-            ).interp(year=self.year).values.item(0)
+            production_volume = (
+                self.iam_data.production_volumes.sel(
+                    region=region,
+                    variables=self.iam_data.electricity_markets.variables.values,
+                )
+                .interp(year=self.year)
+                .values.item(0)
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -984,10 +992,14 @@ class Electricity(BaseTransformation):
             }
 
             # fetch production volume
-            production_volume = self.iam_data.production_volumes.sel(
-                region=region,
-                variables=self.iam_data.electricity_markets.variables.values,
-            ).interp(year=self.year).values.item(0)
+            production_volume = (
+                self.iam_data.production_volumes.sel(
+                    region=region,
+                    variables=self.iam_data.electricity_markets.variables.values,
+                )
+                .interp(year=self.year)
+                .values.item(0)
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
