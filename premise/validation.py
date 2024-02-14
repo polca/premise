@@ -168,7 +168,7 @@ class BaseDatasetValidator:
 
             # Making sure that every technosphere exchange has a `product` field
             for exc in dataset.get("exchanges", []):
-                if exc["type"] == "technosphere" and "product" not in exc:
+                if exc["type"] == "technosphere" and exc.get("product") is None:
                     # find it in new_activities based on the name and location
                     # of the exchange
                     candidate = [
