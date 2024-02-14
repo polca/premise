@@ -1076,7 +1076,7 @@ class ExternalScenario(BaseTransformation):
         # filter out regions from `regions`for which
         # no market has been created
         if market_status:
-            regions = [r for r in regions if market_status[r] is True]
+            regions = [r for r in regions if market_status.get(r) is True]
 
         datasets = []
         exchanges_replaced = []
