@@ -658,9 +658,11 @@ class Electricity(BaseTransformation):
                     "amount": (1 - solar_amount) * (1 + distr_loss),
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage"
-                    if period == 0
-                    else f"market group for electricity, medium voltage, {period}-year period",
+                    "name": (
+                        "market group for electricity, medium voltage"
+                        if period == 0
+                        else f"market group for electricity, medium voltage, {period}-year period"
+                    ),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -673,8 +675,11 @@ class Electricity(BaseTransformation):
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, low voltage",
-                    "name": "market group for electricity, low voltage"
-                    if period == 0 else f"market group for electricity, low voltage, {period}-year period",
+                    "name": (
+                        "market group for electricity, low voltage"
+                        if period == 0
+                        else f"market group for electricity, low voltage, {period}-year period"
+                    ),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -695,11 +700,14 @@ class Electricity(BaseTransformation):
             return new_dataset
 
         if self.system_model == "consequential":
-            periods = [0,]
+            periods = [
+                0,
+            ]
         else:
             periods = [0, 20, 40, 60]
 
-        new_datasets = [generate_regional_markets(region, period)
+        new_datasets = [
+            generate_regional_markets(region, period)
             for region in self.regions
             for period in periods
             if region != "World"
@@ -791,8 +799,11 @@ class Electricity(BaseTransformation):
                     "amount": 1 + distr_loss,
                     "type": "technosphere",
                     "product": "electricity, high voltage",
-                    "name": "market group for electricity, high voltage"
-                    if period == 0 else f"market group for electricity, high voltage, {period}-year period",
+                    "name": (
+                        "market group for electricity, high voltage"
+                        if period == 0
+                        else f"market group for electricity, high voltage, {period}-year period"
+                    ),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -805,9 +816,11 @@ class Electricity(BaseTransformation):
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
-                    "name": "market group for electricity, medium voltage"
-                    if period == 0
-                    else f"market group for electricity, medium voltage, {period}-year period",
+                    "name": (
+                        "market group for electricity, medium voltage"
+                        if period == 0
+                        else f"market group for electricity, medium voltage, {period}-year period"
+                    ),
                     "unit": "kilowatt hour",
                     "location": region,
                 }
@@ -897,11 +910,14 @@ class Electricity(BaseTransformation):
             return new_dataset
 
         if self.system_model == "consequential":
-            periods = [0,]
+            periods = [
+                0,
+            ]
         else:
             periods = [0, 20, 40, 60]
 
-        new_datasets = [generate_regional_markets(region, period)
+        new_datasets = [
+            generate_regional_markets(region, period)
             for region in self.regions
             for period in periods
             if region != "World"
@@ -1154,7 +1170,9 @@ class Electricity(BaseTransformation):
             return new_dataset
 
         if self.system_model == "consequential":
-            periods = [0,]
+            periods = [
+                0,
+            ]
         else:
             periods = [0, 20, 40, 60]
 
