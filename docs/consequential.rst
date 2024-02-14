@@ -51,7 +51,7 @@ a market are:
 Range time
 ^^^^^^^^^^
 
-Integer. Years. Used for single occurrences or short-lasting changed in demand (less than 3 years).
+Integer. Years. Used for single occurrences or short-lasting changes in demand (less than 3 years).
 Since the duration of the change is too short to measure a trend, 
 the trend is instead measured around the point where the additional
 capital will be installed. A range of n years before and after the point
@@ -100,6 +100,8 @@ If True, the capital replacement rate is used as baseline.
 The capital replacement rate is equal to -1 divided by
 the lifetime (in years) of the technology.
 
+.. image:: Baseline.png
+
 If you wish to modify the default lifetime values used for the different
 technologies, you can do so by modifying the file:
 
@@ -109,13 +111,19 @@ Measurement method
 ^^^^^^^^^^^^^^^^^
 
 0 to 4.
+method 0 and 1 are used if the production volume follows an almost linear pattern.
+method 2 to 4 are used if the production volume follows a non-linear pattern.
+Short-lasting changes tend to follow a linear pattern, whereas long-lasting changes often do not.
 
-* 0 = slope,
-* 1 = linear regression,
-* 2 = area under the curve,
-* 3 = weighted slope,
-* 4 = time interval is split in individual years and measured
+* 0 = slope: Default method, also used by ecoinvent,
+* 1 = linear regression: Outliers have less of an effect on the results than with method 0,
+* 2 = area under the curve: Used if there is an emphasis on the consequenses in the short term. e.g. if for the study it is important to also know “when” to best introduce the change,
+* 3 = weighted slope: Curvature is determined using two slopes. First, the slope used in method 0. Second, a shorter slope, which by default is placed at the end of the time interval.The ratio 
+of the short and long slope is used to adjust the calculated values of method 0. By placing the shorter slope at the end, exponential growth curves are favored. Used if there is an emphasis 
+on the consequences in the long term. e.g if the focus of the study is on reaching net zero 2050,
+* 4 = time interval is split in individual years and measured: The more balanced approach out of the three non-linear methods. Short, mid and long term developments are equally important
 
+.. image:: Measure_methods.png
 
 Weighted slope start
 ^^^^^^^^^^^^^^^^^^^^
