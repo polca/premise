@@ -46,7 +46,7 @@ Yes. You can share the results obtained with the modified ecoinvent database.
 Can I use the modified ecoinvent database for commercial purposes?
 __________________________________________________________________
 
-While premise's license allows it use for commercial purposes, you need to check the ecoinvent license to see
+While premise's license allows its use for commercial purposes, you need to check the ecoinvent license to see
 if it allows the use of the modified ecoinvent database for commercial purposes.
 
 How can I share modified ecoinvent databases?
