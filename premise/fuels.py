@@ -2466,7 +2466,6 @@ class Fuels(BaseTransformation):
             ):
                 self.remove_from_index(ds)
 
-
         # generate supply datasets for hydrogen
         hydrogen_supply = self.fetch_proxies(
             name="hydrogen supply, distributed by pipeline",
@@ -2488,7 +2487,6 @@ class Fuels(BaseTransformation):
             self.database.append(dataset)
 
         self.relink_activities_to_new_markets()
-
 
     def write_log(self, dataset, status="created"):
         """
