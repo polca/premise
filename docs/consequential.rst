@@ -104,9 +104,16 @@ Capital replacement rate
 True or False. If False, a horizontal baseline is used.
 If True, the capital replacement rate is used as baseline.
 The capital replacement rate is equal to -1 divided by
-the lifetime (in years) of the technology.
+the lifetime (in years) of the technology. It represents the rate
+at which the capital stock depreciates and must be replaced.
+Hence, it will be subtracted from the "growth" rate of the technology,
+to distinguish between the growth rate due to the change in demand
+and the growth rate due to the replacement of capital stock.
 
-.. image:: Baseline.png
+..  figure:: Baseline.png
+    (left). The capital replacement rate is not considered. (right) The capital replacement rate is subtracted from the growth rate to distinguish between the growth rate due to the change in demand and the growth rate due to the replacement of capital stock.
+
+
 
 If you wish to modify the default lifetime values used for the different
 technologies, you can do so by modifying the file:
@@ -126,7 +133,8 @@ Short-lasting changes tend to follow a linear pattern, whereas long-lasting chan
 * 3 = weighted slope: Curvature is determined using two slopes. First, the same slope as used in Method 0. Second, a shorter slope, which by default is placed at the end of the time interval. The ratio of the short and long slope is used to adjust the calculated values of Method 0. By placing the shorter slope at the end, exponential growth curves are favored. Used if there is an emphasis on the consequences in the long term, e.g., if the focus of the study is on reaching net zero emissions by 2050.
 * 4 = time interval is split in individual years and measured: The more balanced approach out of the three non-linear methods (i.e., 2, 3, and 4). Short-, mid- and long-term developments are equally important.
 
-.. image:: Measure_methods.png
+..  figure:: Measure_methods.png
+    Non-linear methods (2, 3 and 4) are used if the production volume follows a non-linear pattern. Short-lasting changes tend to follow a linear pattern, whereas long-lasting changes often do not.
 
 Weighted slope start
 ^^^^^^^^^^^^^^^^^^^^
