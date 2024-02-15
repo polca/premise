@@ -53,7 +53,8 @@ a market are:
 * weighted slope start (default = 0.75)
 * weighted slope end (default = 1.00)
 
-.. image:: Time_interval.png
+.. figure:: Time_interval.png
+
     Techniques to determine the time interval of a study considering the supplier’s foresight and the duration of the change.
 
 Range time
@@ -112,6 +113,7 @@ to distinguish between the growth rate due to the change in demand
 and the growth rate due to the replacement of capital stock.
 
 .. figure:: Baseline.png
+
     (left). The capital replacement rate is not considered. (right) The capital replacement rate is subtracted from the growth rate to distinguish between the growth rate due to the change in demand and the growth rate due to the replacement of capital stock.
 
 
@@ -134,6 +136,7 @@ Short-lasting changes tend to follow a linear pattern, whereas long-lasting chan
 * 4 = time interval is split in individual years and measured: The more balanced approach out of the three non-linear methods (i.e., 2, 3, and 4). Short-, mid- and long-term developments are equally important.
 
 .. figure:: Measure_methods.png
+
     Non-linear methods (2, 3 and 4) are used if the production volume follows a non-linear pattern. Short-lasting changes tend to follow a linear pattern, whereas long-lasting changes often do not.
 
 Weighted slope start
