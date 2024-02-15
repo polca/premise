@@ -157,8 +157,6 @@ jobs:
         run: echo running on branch ${GITHUB_REF##*/}
 
       - name: Publish distribution 📦 to Anaconda if Push from non-master branch
-        if: github.ref != 'refs/heads/master'
-        shell: bash -l {0}
 
         run: |
           PKG_NAME=premise
@@ -175,6 +173,7 @@ jobs:
           conda-verify $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
           ls $CONDA_BLD_PATH/noarch/
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
+
   testconda:
     name: (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
