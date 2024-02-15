@@ -54,6 +54,7 @@ a market are:
 * weighted slope end (default = 1.00)
 
 .. image:: Time_interval.png
+    Techniques to determine the time interval of a study considering the supplier’s foresight and the duration of the change.
 
 Range time
 ^^^^^^^^^^
@@ -112,7 +113,6 @@ and the growth rate due to the replacement of capital stock.
 
 ..  figure:: Baseline.png
     (left). The capital replacement rate is not considered. (right) The capital replacement rate is subtracted from the growth rate to distinguish between the growth rate due to the change in demand and the growth rate due to the replacement of capital stock.
-
 
 
 If you wish to modify the default lifetime values used for the different
