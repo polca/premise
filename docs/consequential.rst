@@ -159,7 +159,7 @@ If not, the following default arguments value are used:
 .. code-block:: python
 
     args = {
-        "range time":0,
+        "range time":2,
         "duration":0,
         "foresight":False,
         "lead time":False,
