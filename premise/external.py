@@ -92,7 +92,7 @@ def _update_external_scenarios(
         version=version,
         system_model=system_model,
     )
-    external_scenario.create_custom_markets()
+    external_scenario.create_markets()
     external_scenario.relink_datasets()
     scenario["database"] = external_scenario.database
     return scenario
@@ -463,6 +463,19 @@ class ExternalScenario(BaseTransformation):
         )
         new_excs = []
 
+        word_production_volume = (
+            self.external_scenarios_data[i]["production volume"].sel(
+                variables=pathways,
+                region=[r for r in regions if r != "World"]
+            ).sum(dim=["variables", "region"])
+            .interp(year=self.year)
+            .values.item(0)
+        )
+
+        # update production volume field in the world market
+        for e in ws.production(world_market):
+            e["production volume"] = word_production_volume
+
         # fetch the supply share for each regional market
         for region in regions:
             supply_share = np.clip(
@@ -831,9 +844,9 @@ class ExternalScenario(BaseTransformation):
             for x in nz
         ]
 
-    def create_custom_markets(self) -> None:
+    def create_markets(self) -> None:
         """
-        Create new custom markets, and create a `World` market
+        Create new markets, and create a `World` market
         if no data is provided for it.
 
         """
@@ -852,7 +865,7 @@ class ExternalScenario(BaseTransformation):
                     # fetch all scenario file variables that
                     # relate to this market
                     pathways = market_vars["includes"]
-                    variables = fetch_var(config_file, pathways)
+                    production_variables = fetch_var(config_file, pathways)
                     waste_market = market_vars.get("waste market", False)
                     isfuel = {}
                     market_status = {}
@@ -860,20 +873,36 @@ class ExternalScenario(BaseTransformation):
                     # Check if there are regions we should not
                     # create a market for
                     regions = self.get_region_for_non_null_production_volume(
-                        i=i, variables=variables
+                        i=i, variables=production_variables
                     )
 
                     if "except regions" in market_vars:
                         regions = [
-                            r for r in regions if r not in market_vars["except regions"]
+                            r for r in regions
+                            if r not in market_vars["except regions"]
                         ]
 
                     # Loop through regions
                     for region in regions:
                         # Create market dictionary
                         new_market = self.get_market_dictionary_structure(
-                            market=market_vars, region=region, waste_market=waste_market
+                            market=market_vars,
+                            region=region,
+                            waste_market=waste_market
                         )
+
+                        production_volume = (
+                            self.external_scenarios_data[i]["production volume"].sel(
+                                variables=production_variables,
+                                region=region
+                            ).sum(dim="variables")
+                            .interp(year=self.year)
+                            .values.item(0)
+                        )
+
+                        # Update production volume of the market
+                        for e in ws.production(new_market):
+                            e["production volume"] = production_volume
 
                         new_excs = []
                         for pathway in pathways:
@@ -891,7 +920,8 @@ class ExternalScenario(BaseTransformation):
                                 config_file, pathway
                             )
 
-                            # try to see if we find a provider with that region
+                            # try to see if we find a
+                            # provider with that region
                             if region in self.regions:
                                 ecoinvent_regions = []
 
@@ -925,7 +955,7 @@ class ExternalScenario(BaseTransformation):
 
                             try:
                                 supply_share = self.fetch_supply_share(
-                                    i, region, var, variables
+                                    i, region, var, production_variables
                                 )
 
                             except KeyError:
@@ -958,6 +988,7 @@ class ExternalScenario(BaseTransformation):
                                             }
                                         }
                                     )
+
                         if len(new_excs) > 0:
                             total = 0
 
@@ -1020,7 +1051,7 @@ class ExternalScenario(BaseTransformation):
                             market=market_vars,
                             regions=regions,
                             i=i,
-                            pathways=variables,
+                            pathways=production_variables,
                             waste_market=waste_market,
                         )
                         self.database.append(world_market)
@@ -1028,6 +1059,7 @@ class ExternalScenario(BaseTransformation):
                         self.add_to_index(world_market)
 
                         regions.append("World")
+                        market_status["World"] = True
 
                     # if the new markets are meant to replace for other
                     # providers in the database
@@ -1070,6 +1102,7 @@ class ExternalScenario(BaseTransformation):
         :param replaces_in: list of dictionaries with `name`, `product`, `location`, `unit` of the datasets to replace
         :param waste_process: True if the process is a waste process
         :param isfuel: True if the process is a fuel process
+        :param market_status: dictionary with regions as keys and True/False as values
 
         """
 
@@ -1106,7 +1139,10 @@ class ExternalScenario(BaseTransformation):
         datasets = [
             d
             for d in datasets
-            if not (d["name"] == new_name and d["reference product"] == new_ref)
+            if not (
+                    d["name"] == new_name
+                    and d["reference product"] == new_ref
+            )
         ]
 
         list_fltr = []
@@ -1155,13 +1191,17 @@ class ExternalScenario(BaseTransformation):
                 )
                 if len(regions) == 1:
                     new_loc = regions[0]
+
                 elif dataset["location"] in regions:
                     new_loc = dataset["location"]
+
                 elif self.geo.ecoinvent_to_iam_location(dataset["location"]) in regions:
                     new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
+
                 elif dataset["location"] in ["GLO", "RoW"]:
                     if "World" in regions:
                         new_loc = "World"
+
                     else:
                         new_loc = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
