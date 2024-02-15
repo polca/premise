@@ -151,17 +151,15 @@ jobs:
         shell: bash -l {0}
         run: conda info
 
-      - name: Git checkout
-        uses: actions/checkout@v1
-      - name: Branch name
+      - name: Publish distribution 📦 to Anaconda if Push
+        shell: bash -l {0}
 
         run: |
-          echo running on branch ${GITHUB_REF##*/}
+
           PKG_NAME=premise
           USER=romainsacchi
           conda install anaconda-client
           conda install conda-build
-          conda install pytest
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
           export CONDA_BLD_PATH=~/conda-bld
@@ -179,7 +177,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.10", "3.11"]
+        python-version: ["3.11",]
         solver: ["classic", "libmamba"]
     steps:
       - uses: actions/checkout@v2
