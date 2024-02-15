@@ -464,10 +464,9 @@ class ExternalScenario(BaseTransformation):
         new_excs = []
 
         word_production_volume = (
-            self.external_scenarios_data[i]["production volume"].sel(
-                variables=pathways,
-                region=[r for r in regions if r != "World"]
-            ).sum(dim=["variables", "region"])
+            self.external_scenarios_data[i]["production volume"]
+            .sel(variables=pathways, region=[r for r in regions if r != "World"])
+            .sum(dim=["variables", "region"])
             .interp(year=self.year)
             .values.item(0)
         )
@@ -878,24 +877,20 @@ class ExternalScenario(BaseTransformation):
 
                     if "except regions" in market_vars:
                         regions = [
-                            r for r in regions
-                            if r not in market_vars["except regions"]
+                            r for r in regions if r not in market_vars["except regions"]
                         ]
 
                     # Loop through regions
                     for region in regions:
                         # Create market dictionary
                         new_market = self.get_market_dictionary_structure(
-                            market=market_vars,
-                            region=region,
-                            waste_market=waste_market
+                            market=market_vars, region=region, waste_market=waste_market
                         )
 
                         production_volume = (
-                            self.external_scenarios_data[i]["production volume"].sel(
-                                variables=production_variables,
-                                region=region
-                            ).sum(dim="variables")
+                            self.external_scenarios_data[i]["production volume"]
+                            .sel(variables=production_variables, region=region)
+                            .sum(dim="variables")
                             .interp(year=self.year)
                             .values.item(0)
                         )
@@ -1139,10 +1134,7 @@ class ExternalScenario(BaseTransformation):
         datasets = [
             d
             for d in datasets
-            if not (
-                    d["name"] == new_name
-                    and d["reference product"] == new_ref
-            )
+            if not (d["name"] == new_name and d["reference product"] == new_ref)
         ]
 
         list_fltr = []
