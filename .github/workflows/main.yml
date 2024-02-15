@@ -95,7 +95,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ "ubuntu-latest" ]
-        python-version: [ "3.10", "3.11" ]
+        python-version: ["3.11" ]
 
     steps:
       - uses: actions/checkout@v2
@@ -156,7 +156,7 @@ jobs:
       - name: Branch name
         run: echo running on branch ${GITHUB_REF##*/}
 
-      - name: Publish distribution 📦 to Anaconda if Push from non-master branch
+      - name: Publish distribution 📦 to Anaconda
 
         run: |
           PKG_NAME=premise
