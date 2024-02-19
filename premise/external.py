@@ -159,6 +159,9 @@ def adjust_efficiency(dataset: dict) -> dict:
     for eff_type in ["technosphere", "biosphere"]:
         if f"{eff_type} filters" in dataset:
             for v in dataset[f"{eff_type} filters"].values():
+                if dataset["location"] not in v[1]:
+                    continue
+
                 # the scaling factor is the inverse of the efficiency change
                 if len(dataset["regions"]) > 1:
                     try:
@@ -169,49 +172,59 @@ def adjust_efficiency(dataset: dict) -> dict:
                         )
                         scaling_factor = 1
                 else:
-                    scaling_factor = 1 / v[1].get(dataset["regions"][0], 1)
+                    try:
+                        scaling_factor = 1 / v[1].get(dataset["regions"][0], 1)
+                    except ZeroDivisionError:
+                        scaling_factor = 1
                 filters = v[0]
 
-                if eff_type == "technosphere":
-                    # adjust technosphere flows
-                    # all of them if no filters are provided
+                if not np.isclose(scaling_factor, 1, rtol=1e-3):
+                    if "log parameters" not in dataset:
+                        dataset["log parameters"] = {}
 
-                    if filters:
-                        for exc in ws.technosphere(
-                            dataset,
-                            ws.either(*[ws.contains("name", x) for x in filters]),
-                        ):
-                            wurst.rescale_exchange(
-                                exc, scaling_factor, remove_uncertainty=False
-                            )
+                    if eff_type == "technosphere":
+                        # adjust technosphere flows
+                        # all of them if no filters are provided
+                        dataset["log parameters"][
+                            "technosphere scaling factor"
+                        ] = scaling_factor
+                        if filters:
+                            for exc in ws.technosphere(
+                                dataset,
+                                ws.either(*[ws.contains("name", x) for x in filters]),
+                            ):
+                                wurst.rescale_exchange(
+                                    exc, scaling_factor, remove_uncertainty=False
+                                )
+                        else:
+                            for exc in ws.technosphere(
+                                dataset,
+                            ):
+                                wurst.rescale_exchange(
+                                    exc, scaling_factor, remove_uncertainty=False
+                                )
                     else:
-                        for exc in ws.technosphere(
-                            dataset,
-                        ):
-                            wurst.rescale_exchange(
-                                exc, scaling_factor, remove_uncertainty=False
-                            )
+                        # adjust biosphere flows
+                        # all of them if a filter is not provided
+                        dataset["log parameters"][
+                            "biosphere scaling factor"
+                        ] = scaling_factor
 
-                else:
-                    # adjust biosphere flows
-                    # all of them if a filter is not provided
-
-                    if filters:
-                        for exc in ws.biosphere(
-                            dataset,
-                            ws.either(*[ws.contains("name", x) for x in filters]),
-                        ):
-                            wurst.rescale_exchange(
-                                exc, scaling_factor, remove_uncertainty=False
-                            )
-                    else:
-                        for exc in ws.biosphere(
-                            dataset,
-                        ):
-                            wurst.rescale_exchange(
-                                exc, scaling_factor, remove_uncertainty=False
-                            )
-
+                        if filters:
+                            for exc in ws.biosphere(
+                                dataset,
+                                ws.either(*[ws.contains("name", x) for x in filters]),
+                            ):
+                                wurst.rescale_exchange(
+                                    exc, scaling_factor, remove_uncertainty=False
+                                )
+                        else:
+                            for exc in ws.biosphere(
+                                dataset,
+                            ):
+                                wurst.rescale_exchange(
+                                    exc, scaling_factor, remove_uncertainty=False
+                                )
     return dataset
 
 
@@ -404,7 +417,10 @@ class ExternalScenario(BaseTransformation):
         ):
             if len(dataset["location"]) > 1:
                 adjust_efficiency(dataset)
-                self.write_log(dataset, status="updated")
+                if dataset.get("log parameters", {}).get(
+                    "technosphere scaling factor"
+                ) or dataset.get("log parameters", {}).get("biosphere scaling factor"):
+                    self.write_log(dataset, status="updated")
             del dataset["adjust efficiency"]
 
     def get_market_dictionary_structure(
@@ -1134,7 +1150,18 @@ class ExternalScenario(BaseTransformation):
         datasets = [
             d
             for d in datasets
-            if not (d["name"] == new_name and d["reference product"] == new_ref)
+            if not (
+                    d["name"] == new_name
+                    and d["reference product"] == new_ref
+            )
+        ]
+
+        datasets = [
+            d
+            for d in datasets
+            if (d["name"], d["reference product"]) not in [
+                (x["name"], x["product"]) for x in replaces
+            ]
         ]
 
         list_fltr = []
@@ -1235,10 +1262,15 @@ class ExternalScenario(BaseTransformation):
                             for x in isfuel[dataset["location"]].values()
                         )
                         if (
-                            ws.biosphere(
-                                dataset, ws.equals("name", "Carbon dioxide, non-fossil")
+                            len(
+                                list(
+                                    ws.biosphere(
+                                        dataset,
+                                        ws.equals("name", "Carbon dioxide, non-fossil"),
+                                    )
+                                )
                             )
-                            is None
+                            == 0
                         ):
                             dataset["exchanges"].append(
                                 {
@@ -1279,49 +1311,57 @@ class ExternalScenario(BaseTransformation):
 
         if not replaces_in and len(exchanges_replaced) > 0:
             unique_exchanges_replaced = list(set(exchanges_replaced))
-            name = unique_exchanges_replaced[0][0]
-            ref = unique_exchanges_replaced[0][1]
-            locs = [x[2] for x in unique_exchanges_replaced]
+            # keep tuples in the list
+            # whose third items returns True
+            # for market_status[item[2]]
+            unique_exchanges_replaced = [
+                x for x in unique_exchanges_replaced if market_status.get(x[2]) is True
+            ]
 
-            for ds in ws.get_many(
-                self.database,
-                ws.equals("name", name),
-                ws.equals("reference product", ref),
-                ws.either(*[ws.equals("location", l) for l in locs]),
-            ):
-                # remove all exchanges except production exchanges
-                ds["exchanges"] = [
-                    exc for exc in ds["exchanges"] if exc["type"] == "production"
-                ]
-                # add an exchange from a new supplier
-                if ds["location"] in ["GLO", "RoW"] and "World" in regions:
-                    new_loc = "World"
-                elif ds["location"] in regions:
-                    new_loc = ds["location"]
-                elif self.geo.ecoinvent_to_iam_location(ds["location"]) in regions:
-                    new_loc = self.geo.ecoinvent_to_iam_location(ds["location"])
-                else:
-                    new_loc = self.find_best_substitute_suppliers(
-                        new_name, new_ref, regions
-                    )
+            if len(unique_exchanges_replaced) > 0:
+                name = unique_exchanges_replaced[0][0]
+                ref = unique_exchanges_replaced[0][1]
+                locs = [x[2] for x in unique_exchanges_replaced]
 
-                if isinstance(new_loc, str):
-                    new_loc = [(new_loc, 1.0)]
+                for ds in ws.get_many(
+                    self.database,
+                    ws.equals("name", name),
+                    ws.equals("reference product", ref),
+                    ws.either(*[ws.equals("location", l) for l in locs]),
+                ):
+                    # remove all exchanges except production exchanges
+                    ds["exchanges"] = [
+                        exc for exc in ds["exchanges"] if exc["type"] == "production"
+                    ]
+                    # add an exchange from a new supplier
+                    if ds["location"] in ["GLO", "RoW"] and "World" in regions:
+                        new_loc = "World"
+                    elif ds["location"] in regions:
+                        new_loc = ds["location"]
+                    elif self.geo.ecoinvent_to_iam_location(ds["location"]) in regions:
+                        new_loc = self.geo.ecoinvent_to_iam_location(ds["location"])
+                    else:
+                        new_loc = self.find_best_substitute_suppliers(
+                            new_name, new_ref, regions
+                        )
 
-                for loc, share in new_loc:
-                    ds["exchanges"].append(
-                        {
-                            "amount": 1.0
-                            * ratio
-                            * share
-                            * (-1.0 if waste_process else 1.0),
-                            "type": "technosphere",
-                            "unit": ds["unit"],
-                            "location": loc,
-                            "name": new_name,
-                            "product": new_ref,
-                        }
-                    )
+                    if isinstance(new_loc, str):
+                        new_loc = [(new_loc, 1.0)]
+
+                    for loc, share in new_loc:
+                        ds["exchanges"].append(
+                            {
+                                "amount": 1.0
+                                * ratio
+                                * share
+                                * (-1.0 if waste_process else 1.0),
+                                "type": "technosphere",
+                                "unit": ds["unit"],
+                                "location": loc,
+                                "name": new_name,
+                                "product": new_ref,
+                            }
+                        )
 
     def sum_exchanges(self, dataset_exchanges):
         # sum up exchanges with the same name, product, and location
@@ -1383,5 +1423,7 @@ class ExternalScenario(BaseTransformation):
 
         logger.info(
             f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}"
+            f"{dataset['name']}|{dataset['location']}|"
+            f"{dataset.get('log parameters', {}).get('technosphere scaling factor')}|"
+            f"{dataset.get('log parameters', {}).get('biosphere scaling factor')}"
         )
