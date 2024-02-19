@@ -1150,18 +1150,14 @@ class ExternalScenario(BaseTransformation):
         datasets = [
             d
             for d in datasets
-            if not (
-                    d["name"] == new_name
-                    and d["reference product"] == new_ref
-            )
+            if not (d["name"] == new_name and d["reference product"] == new_ref)
         ]
 
         datasets = [
             d
             for d in datasets
-            if (d["name"], d["reference product"]) not in [
-                (x["name"], x["product"]) for x in replaces
-            ]
+            if (d["name"], d["reference product"])
+            not in [(x["name"], x["product"]) for x in replaces]
         ]
 
         list_fltr = []
