@@ -555,7 +555,7 @@ class ExternalScenario(BaseTransformation):
                             exists_in_database,
                             new_dataset,
                             regionalize_dataset,
-                            _
+                            _,
                         ) = fetch_dataset_description_from_production_pathways(
                             config_file, pathway_to_include
                         )
@@ -923,15 +923,10 @@ class ExternalScenario(BaseTransformation):
 
                             # fetch the dataset name/ref corresponding to this item
                             # under `production pathways`
-                            (
-                                name,
-                                ref_prod,
-                                _,
-                                _,
-                                _,
-                                ratio
-                            ) = fetch_dataset_description_from_production_pathways(
-                                config_file, pathway
+                            (name, ref_prod, _, _, _, ratio) = (
+                                fetch_dataset_description_from_production_pathways(
+                                    config_file, pathway
+                                )
                             )
 
                             # try to see if we find a
