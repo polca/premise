@@ -352,6 +352,7 @@ def check_config_file(datapackages):
                             Optional("exists in original database"): bool,
                             Optional("new dataset"): bool,
                             Optional("regionalize"): bool,
+                            Optional("ratio"): float,
                         },
                         Optional("efficiency"): [
                             {

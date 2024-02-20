@@ -255,6 +255,7 @@ def fetch_dataset_description_from_production_pathways(
                 v["ecoinvent alias"]["exists in original database"],
                 v["ecoinvent alias"]["new dataset"],
                 v["ecoinvent alias"]["regionalize"],
+                v["ecoinvent alias"].get("ratio", 1),
             )
     return
 
@@ -554,6 +555,7 @@ class ExternalScenario(BaseTransformation):
                             exists_in_database,
                             new_dataset,
                             regionalize_dataset,
+                            _
                         ) = fetch_dataset_description_from_production_pathways(
                             config_file, pathway_to_include
                         )
@@ -927,6 +929,7 @@ class ExternalScenario(BaseTransformation):
                                 _,
                                 _,
                                 _,
+                                ratio
                             ) = fetch_dataset_description_from_production_pathways(
                                 config_file, pathway
                             )
@@ -968,6 +971,7 @@ class ExternalScenario(BaseTransformation):
                                 supply_share = self.fetch_supply_share(
                                     i, region, var, production_variables
                                 )
+                                supply_share *= ratio
 
                             except KeyError:
                                 print(
