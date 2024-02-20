@@ -47,3 +47,11 @@ Fields `comment` and `source` are strongly recommended.
 ## Carbon, mass, energy, water and land balances
 
 1. Often neglected, check every dataset and make sure that mass, energy, carbon, water and land balances appear correct. If the datasets are allocated, mass and carbon flows cannot be balanced. But, for example, if water is consumed in the process, check that it is either evaporated (Water to air) or released (Water to water), unless embodied in the product. Same for land: if the dataset describes a plant, make sure you include land-related flows such as "Occupation, xxx" as well as "Transformation, from xxx" and "Transformation, to xxx".
+
+## Transport
+
+1. If not using "market" datasets, make sure transport operations are included.
+
+## Infrastructure
+
+1. Make sure infrastructure (factory, assembly hall, etc.) are properly represented (even if not present in the original publication). This is important for the consistency of the database and land use calculations.
