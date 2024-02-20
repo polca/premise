@@ -41,6 +41,8 @@ Fields `comment` and `source` are strongly recommended.
 4. Uncertainty-related fields (`uncertainty type`, `loc`, `scale`, `min`, `max`, etc.) are nice-to-have and should be added whenever possible.
 5. The `production` exchange should be first, then `technosphere` exchanges and finally `biosphere` exchanges.
 6. The `production` exchange's `name`, `reference product`, `unit` and `location` should be similar to the values given at the activity level.
+7. Try as much as possible to preserve the formula used to calculate the `amount` (i.e., avoid placing calculated values). This helps other users understanding how numbers are obtained. Also, describe the formula or values used in the `comment` section of the exchange.
+8. Try to add uncertainty data if available and if time permits. If not, follow ecoinvent quality guidelines (see Uncertainty chapter) to add uncertainty data.
 
 ## Carbon, mass, energy, water and land balances
 
