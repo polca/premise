@@ -72,12 +72,14 @@ def _update_external_scenarios(
         config_file = yaml.safe_load(resource.raw_read())
 
         checked_inventories, checked_database = check_inventories(
-            config_file,
-            inventories,
-            scenario["external data"][d],
-            scenario["database"],
-            scenario["year"],
+            configuration=config_file,
+            inventory_data=inventories,
+            scenario_data=scenario["external data"][d],
+            database=scenario["database"],
+            year=scenario["year"],
+            model=scenario["model"]
         )
+
         scenario["database"] = checked_database
         scenario["database"].extend(checked_inventories)
 
@@ -338,6 +340,7 @@ class ExternalScenario(BaseTransformation):
             ws.equals("regionalize", True),
             ws.either(*[ws.contains("name", name) for name in ds_names]),
         ):
+
             # Check if datasets already exist for IAM regions
             # if not, create them
             if ds["location"] not in regions:
