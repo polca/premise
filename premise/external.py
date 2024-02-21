@@ -77,7 +77,7 @@ def _update_external_scenarios(
             scenario_data=scenario["external data"][d],
             database=scenario["database"],
             year=scenario["year"],
-            model=scenario["model"]
+            model=scenario["model"],
         )
 
         scenario["database"] = checked_database
