@@ -161,7 +161,7 @@ def adjust_efficiency(dataset: dict) -> dict:
     filters = []
     for eff_type in ["technosphere", "biosphere"]:
         if f"{eff_type} filters" in dataset:
-            for v in dataset[f"{eff_type} filters"].values():
+            for k, v in dataset[f"{eff_type} filters"].items():
                 if dataset["location"] not in v[1]:
                     continue
 
@@ -180,14 +180,15 @@ def adjust_efficiency(dataset: dict) -> dict:
                     except ZeroDivisionError:
                         scaling_factor = 1
 
-                filters.append(ws.either(*[ws.contains("name", x) for x in v[0]]))
+                if v[0]:
+                    filters.append(ws.either(*[ws.contains("name", x) for x in v[0]]))
 
                 # check if "excludes" is in the filters
                 if f"excludes {eff_type}" in dataset:
-                    if v[1] in dataset[f"excludes {eff_type}"]:
+                    if k in dataset[f"excludes {eff_type}"]:
                         filters.append(
                             ws.doesnt_contain_any(
-                                "name", dataset[f"excludes {eff_type}"][v[1]]
+                                "name", dataset[f"excludes {eff_type}"][k]
                             )
                         )
 
@@ -399,6 +400,7 @@ class ExternalScenario(BaseTransformation):
             # remove "regionalize" tag
             if "regionalize" in ds:
                 del ds["regionalize"]
+
 
         # some datasets might be meant to replace the supply
         # of other datasets, so we need to adjust those
@@ -1323,9 +1325,10 @@ class ExternalScenario(BaseTransformation):
             # keep tuples in the list
             # whose third items returns True
             # for market_status[item[2]]
-            unique_exchanges_replaced = [
-                x for x in unique_exchanges_replaced if market_status.get(x[2]) is True
-            ]
+            if market_status is not None:
+                unique_exchanges_replaced = [
+                    x for x in unique_exchanges_replaced if market_status.get(x[2]) is True
+                ]
 
             if len(unique_exchanges_replaced) > 0:
                 name = unique_exchanges_replaced[0][0]
