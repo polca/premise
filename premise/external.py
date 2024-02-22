@@ -183,10 +183,10 @@ def adjust_efficiency(dataset: dict) -> dict:
                 filters.append(ws.either(*[ws.contains("name", x) for x in v[0]]))
 
                 # check if "excludes" is in the filters
-                if f"exclude {eff_type}" in dataset:
-                    if v[1] in dataset[f"exclude {eff_type}"]:
+                if f"excludes {eff_type}" in dataset:
+                    if v[1] in dataset[f"excludes {eff_type}"]:
                         filters.append(ws.doesnt_contain_any(
-                            "name", dataset[f"exclude {eff_type}"][v[1]]
+                            "name", dataset[f"excludes {eff_type}"][v[1]]
                         ))
 
                 if not np.isclose(scaling_factor, 1, rtol=1e-3):
