@@ -224,7 +224,7 @@ def adjust_efficiency(dataset: dict) -> dict:
                         if filters:
                             for exc in ws.biosphere(
                                 dataset,
-                              *filters,
+                                *filters,
                             ):
                                 wurst.rescale_exchange(
                                     exc, scaling_factor, remove_uncertainty=False
