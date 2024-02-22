@@ -158,6 +158,7 @@ def adjust_efficiency(dataset: dict) -> dict:
     """
 
     # loop through the type of flows to adjust
+    filters = []
     for eff_type in ["technosphere", "biosphere"]:
         if f"{eff_type} filters" in dataset:
             for v in dataset[f"{eff_type} filters"].values():
@@ -178,7 +179,15 @@ def adjust_efficiency(dataset: dict) -> dict:
                         scaling_factor = 1 / v[1].get(dataset["regions"][0], 1)
                     except ZeroDivisionError:
                         scaling_factor = 1
-                filters = v[0]
+
+                filters.append(ws.either(*[ws.contains("name", x) for x in v[0]]))
+
+                # check if "excludes" is in the filters
+                if f"exclude {eff_type}" in dataset:
+                    if v[1] in dataset[f"exclude {eff_type}"]:
+                        filters.append(ws.doesnt_contain_any(
+                            "name", dataset[f"exclude {eff_type}"][v[1]]
+                        ))
 
                 if not np.isclose(scaling_factor, 1, rtol=1e-3):
                     if "log parameters" not in dataset:
@@ -193,7 +202,7 @@ def adjust_efficiency(dataset: dict) -> dict:
                         if filters:
                             for exc in ws.technosphere(
                                 dataset,
-                                ws.either(*[ws.contains("name", x) for x in filters]),
+                                *filters,
                             ):
                                 wurst.rescale_exchange(
                                     exc, scaling_factor, remove_uncertainty=False
@@ -215,7 +224,7 @@ def adjust_efficiency(dataset: dict) -> dict:
                         if filters:
                             for exc in ws.biosphere(
                                 dataset,
-                                ws.either(*[ws.contains("name", x) for x in filters]),
+                              *filters,
                             ):
                                 wurst.rescale_exchange(
                                     exc, scaling_factor, remove_uncertainty=False
