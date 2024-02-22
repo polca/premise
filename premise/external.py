@@ -401,7 +401,6 @@ class ExternalScenario(BaseTransformation):
             if "regionalize" in ds:
                 del ds["regionalize"]
 
-
         # some datasets might be meant to replace the supply
         # of other datasets, so we need to adjust those
         replacing_acts = {
@@ -1327,7 +1326,9 @@ class ExternalScenario(BaseTransformation):
             # for market_status[item[2]]
             if market_status is not None:
                 unique_exchanges_replaced = [
-                    x for x in unique_exchanges_replaced if market_status.get(x[2]) is True
+                    x
+                    for x in unique_exchanges_replaced
+                    if market_status.get(x[2]) is True
                 ]
 
             if len(unique_exchanges_replaced) > 0:
