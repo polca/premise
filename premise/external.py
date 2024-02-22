@@ -185,9 +185,11 @@ def adjust_efficiency(dataset: dict) -> dict:
                 # check if "excludes" is in the filters
                 if f"exclude {eff_type}" in dataset:
                     if v[1] in dataset[f"exclude {eff_type}"]:
-                        filters.append(ws.doesnt_contain_any(
-                            "name", dataset[f"exclude {eff_type}"][v[1]]
-                        ))
+                        filters.append(
+                            ws.doesnt_contain_any(
+                                "name", dataset[f"exclude {eff_type}"][v[1]]
+                            )
+                        )
 
                 if not np.isclose(scaling_factor, 1, rtol=1e-3):
                     if "log parameters" not in dataset:
@@ -224,7 +226,7 @@ def adjust_efficiency(dataset: dict) -> dict:
                         if filters:
                             for exc in ws.biosphere(
                                 dataset,
-                              *filters,
+                                *filters,
                             ):
                                 wurst.rescale_exchange(
                                     exc, scaling_factor, remove_uncertainty=False
