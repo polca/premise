@@ -185,9 +185,11 @@ def adjust_efficiency(dataset: dict) -> dict:
                 # check if "excludes" is in the filters
                 if f"excludes {eff_type}" in dataset:
                     if v[1] in dataset[f"excludes {eff_type}"]:
-                        filters.append(ws.doesnt_contain_any(
-                            "name", dataset[f"excludes {eff_type}"][v[1]]
-                        ))
+                        filters.append(
+                            ws.doesnt_contain_any(
+                                "name", dataset[f"excludes {eff_type}"][v[1]]
+                            )
+                        )
 
                 if not np.isclose(scaling_factor, 1, rtol=1e-3):
                     if "log parameters" not in dataset:
