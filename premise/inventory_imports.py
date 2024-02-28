@@ -488,6 +488,7 @@ class BaseInventoryImport:
             "guest night",
             "Sm3",
             "standard cubic meter",
+            "hour",
         ]
 
         for dataset in self.import_db.data:
