@@ -14,20 +14,14 @@ import yaml
 from wurst import searching as ws
 from wurst import transformations as wt
 
-from . import DATA_DIR, INVENTORY_DIR
+from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .inventory_imports import VariousVehicles
-from .transformation import (
-    BaseTransformation,
-    IAMDataCollection,
-    relink_technosphere_exchanges,
-)
-from .utils import eidb_label
+from .transformation import BaseTransformation, IAMDataCollection
+from .utils import HiddenPrints, eidb_label
 
-FILEPATH_FLEET_COMP = (
-    DATA_DIR / "iam_output_files" / "fleet_files" / "fleet_all_vehicles.csv"
-)
+FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
-    DATA_DIR / "iam_output_files" / "fleet_files" / "image_fleet_trucks.csv"
+    IAM_OUTPUT_DIR / "fleet_files" / "image_fleet_trucks.csv"
 )
 FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
@@ -35,6 +29,48 @@ FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
 FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
 FILEPATH_TRUCK_LOAD_FACTORS = DATA_DIR / "transport" / "avg_load_factors.yaml"
 FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
+
+
+def _update_vehicles(scenario, vehicle_type, version, system_model):
+    trspt = Transport(
+        database=scenario["database"],
+        year=scenario["year"],
+        model=scenario["model"],
+        pathway=scenario["pathway"],
+        iam_data=scenario["iam data"],
+        version=version,
+        system_model=system_model,
+        vehicle_type=vehicle_type,
+        relink=False,
+        has_fleet=True,
+        index=scenario.get("index"),
+    )
+
+    iam_data = None
+    if vehicle_type == "car":
+        if hasattr(scenario["iam data"], "trsp_cars"):
+            iam_data = scenario["iam data"].trsp_cars
+    elif vehicle_type == "truck":
+        if hasattr(scenario["iam data"], "trsp_trucks"):
+            iam_data = scenario["iam data"].trsp_trucks
+    elif vehicle_type == "bus":
+        if hasattr(scenario["iam data"], "trsp_buses"):
+            iam_data = scenario["iam data"].trsp_buses
+    elif vehicle_type == "two wheeler":
+        if hasattr(scenario["iam data"], "trsp_two_wheelers"):
+            iam_data = scenario["iam data"].trsp_two_wheelers
+    else:
+        raise ValueError("Unknown vehicle type.")
+
+    if iam_data is not None:
+        trspt.create_vehicle_markets()
+        scenario["database"] = trspt.database
+        scenario["cache"] = trspt.cache
+        scenario["index"] = trspt.index
+    else:
+        print(f"No markets found for {vehicle_type} in IAM data. Skipping.")
+
+    return scenario
 
 
 def get_average_truck_load_factors() -> Dict[str, Dict[str, Dict[str, float]]]:
@@ -45,7 +81,7 @@ def get_average_truck_load_factors() -> Dict[str, Dict[str, Dict[str, float]]]:
     """
     with open(FILEPATH_TRUCK_LOAD_FACTORS, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
-    return out
+        return out
 
 
 def get_vehicles_mapping() -> Dict[str, dict]:
@@ -57,7 +93,7 @@ def get_vehicles_mapping() -> Dict[str, dict]:
     """
     with open(FILEPATH_VEHICLES_MAP, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
-    return out
+        return out
 
 
 def normalize_exchange_amounts(list_act: List[dict]) -> List[dict]:
@@ -89,6 +125,8 @@ def create_fleet_vehicles(
     year: int,
     model: str,
     scenario: str,
+    version: str,
+    system_model: str,
     regions: List[str],
     arr: xr.DataArray,
 ) -> List[dict[str, Union[Union[str, float], Any]]]:
@@ -96,7 +134,6 @@ def create_fleet_vehicles(
     Create datasets for fleet average vehicles based on IAM fleet data.
 
     :param datasets: vehicle datasets of all size, powertrain and construction years.
-    :param regions_mapping: mapping between two IAM location terminologies
     :param vehicle_type: "car", "truck"
     :param year: year for the fleet average vehicle
     :param model: IAM model
@@ -104,7 +141,6 @@ def create_fleet_vehicles(
     :param regions: IAM regions
     :return: list of fleet average vehicle datasets
     """
-    print("Create fleet average vehicles...")
 
     vehicles_map = get_vehicles_mapping()
 
@@ -121,18 +157,18 @@ def create_fleet_vehicles(
     # fleet data does not go below 2015
     if year < 2015:
         year = 2015
-        print(
-            "Vehicle fleet data is not available before 2015. "
-            "Hence, 2015 is used as fleet year."
-        )
+        # print(
+        #    "Vehicle fleet data is not available before 2015. "
+        #    "Hence, 2015 is used as fleet year."
+        # )
 
     # fleet data does not go beyond 2050
     if year > 2050:
         year = 2050
-        print(
-            "Vehicle fleet data is not available beyond 2050. "
-            "Hence, 2050 is used as fleet year."
-        )
+        # print(
+        #    "Vehicle fleet data is not available beyond 2050. "
+        #    "Hence, 2050 is used as fleet year."
+        # )
 
     # We filter electric vehicles by year of manufacture
     available_years = np.arange(2000, 2055, 5)
@@ -169,7 +205,6 @@ def create_fleet_vehicles(
                 size = size.replace(" gross weight", "")
 
             else:
-
                 if len(dataset["name"].split(", ")) == 6:
                     if dataset["name"].split(", ")[2] == "battery electric":
                         _, _, pwt, _, size, year = dataset["name"].split(", ")
@@ -238,7 +273,6 @@ def create_fleet_vehicles(
         total_km = sel.sum()
 
         if total_km > 0:
-
             if vehicle_type == "truck":
                 driving_cycles = ["regional delivery", "long haul"]
             else:
@@ -266,7 +300,7 @@ def create_fleet_vehicles(
                         }
                     ],
                     "code": str(uuid.uuid4().hex),
-                    "database": eidb_label(model, scenario, year),
+                    "database": "premise",
                     "comment": f"Fleet-average vehicle for the year {year}, "
                     f"for the region {region}.",
                 }
@@ -284,7 +318,6 @@ def create_fleet_vehicles(
                                 and (pwt, size, constr_year_map[construction_year])
                                 in available_ds
                             ):
-
                                 indiv_share = (indiv_km / total_km).values.item(0)
 
                                 if vehicle_type == "truck":
@@ -305,7 +338,6 @@ def create_fleet_vehicles(
                                     )
 
                                 if to_look_for in d_names:
-
                                     name, ref, unit = d_names[to_look_for]
 
                                     act["exchanges"].append(
@@ -328,7 +360,6 @@ def create_fleet_vehicles(
                         total_size_km = sel.sel(size=size).sum()
 
                         if total_size_km > 0:
-
                             name = (
                                 f"{vehicles_map[vehicle_type]['name']}, {size} gross weight, "
                                 f"unspecified powertrain, {driving_cycle}"
@@ -349,7 +380,9 @@ def create_fleet_vehicles(
                                     }
                                 ],
                                 "code": str(uuid.uuid4().hex),
-                                "database": eidb_label(model, scenario, year),
+                                "database": eidb_label(
+                                    model, scenario, year, version, system_model
+                                ),
                                 "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
                             }
 
@@ -384,7 +417,6 @@ def create_fleet_vehicles(
                                             driving_cycle,
                                         )
                                         if to_look_for in d_names:
-
                                             name, ref, unit = d_names[to_look_for]
 
                                             act["exchanges"].append(
@@ -429,11 +461,22 @@ class Transport(BaseTransformation):
         pathway: str,
         year: int,
         version: str,
+        system_model: str,
         relink: bool,
         vehicle_type: str,
         has_fleet: bool,
+        index: dict = None,
     ):
-        super().__init__(database, iam_data, model, pathway, year)
+        super().__init__(
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            index,
+        )
         self.version = version
         self.relink = relink
         self.vehicle_type = vehicle_type
@@ -454,21 +497,22 @@ class Transport(BaseTransformation):
             filepath = FILEPATH_TWO_WHEELERS
 
         # load carculator inventories
-        various_veh = VariousVehicles(
-            database=self.database,
-            version_in="3.7",
-            version_out=self.version,
-            path=filepath,
-            year=self.year,
-            regions=self.regions,
-            model=self.model,
-            scenario=self.scenario,
-            vehicle_type=self.vehicle_type,
-            relink=False,
-            has_fleet=True,
-        )
+        with HiddenPrints():
+            various_veh = VariousVehicles(
+                database=self.database,
+                version_in="3.7",
+                version_out=self.version,
+                path=filepath,
+                year=self.year,
+                regions=self.regions,
+                model=self.model,
+                scenario=self.scenario,
+                vehicle_type=self.vehicle_type,
+                has_fleet=True,
+                system_model=self.system_model,
+            )
 
-        various_veh.prepare_inventory()
+            various_veh.prepare_inventory()
 
         return various_veh
 
@@ -490,21 +534,12 @@ class Transport(BaseTransformation):
             "passenger bus",
         ]
 
-        # We filter  vehicles by year of manufacture
+        # We filter vehicles by year of manufacture
         available_years = [2020, 2030, 2040, 2050]
         closest_year = min(available_years, key=lambda x: abs(x - self.year))
         fleet_act = None
 
         if self.has_fleet:
-
-            datasets.import_db.data = [
-                dataset
-                for dataset in datasets.import_db.data
-                if not any(
-                    vehicle in dataset["name"].lower() for vehicle in list_vehicles
-                )
-            ]
-
             datasets.import_db.data = [
                 dataset
                 for dataset in datasets.import_db.data
@@ -527,12 +562,13 @@ class Transport(BaseTransformation):
                 arr = None
 
             if arr is not None:
-
                 fleet_act = create_fleet_vehicles(
                     datasets.import_db.data,
                     vehicle_type=self.vehicle_type,
                     year=self.year,
                     model=self.model,
+                    version=self.version,
+                    system_model=self.system_model,
                     scenario=self.scenario,
                     regions=self.regions,
                     arr=arr,
@@ -558,7 +594,6 @@ class Transport(BaseTransformation):
                 datasets.import_db.data.extend(fleet_act)
 
         else:
-
             datasets.import_db.data = [
                 dataset
                 for dataset in datasets.import_db.data
@@ -594,11 +629,8 @@ class Transport(BaseTransformation):
                             exc.pop("input")
 
                     if self.relink:
-                        self.cache, new_ds = relink_technosphere_exchanges(
+                        new_ds = self.relink_technosphere_exchanges(
                             new_ds,
-                            self.database,
-                            self.model,
-                            cache=self.cache,
                         )
 
                     list_new_ds.append(new_ds)
@@ -626,7 +658,6 @@ class Transport(BaseTransformation):
                     ws.contains("name", "transport, freight, lorry"),
                     ws.equals("unit", "ton kilometer"),
                 ):
-
                     key = [
                         k
                         for k in vehicles_map["truck"]["old_trucks"][self.model]
@@ -653,9 +684,9 @@ class Transport(BaseTransformation):
                                 "transport, freight, lorry, unspecified" + cycle
                             )
                     else:
-                        exc[
-                            "name"
-                        ] = "transport, freight, lorry, unspecified, long haul"
+                        exc["name"] = (
+                            "transport, freight, lorry, unspecified, long haul"
+                        )
 
                     exc["product"] = "transport, freight, lorry"
                     exc["location"] = self.geo.ecoinvent_to_iam_location(
@@ -663,3 +694,6 @@ class Transport(BaseTransformation):
                     )
 
         self.database = datasets.merge_inventory()
+
+        for ds in datasets.import_db.data:
+            self.add_to_index(ds)

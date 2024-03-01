@@ -11,13 +11,21 @@ from typing import Dict, List, Tuple, Union
 
 import bw2io
 import wurst
+import yaml
 from bw2data.database import DatabaseChooser
 from wurst import searching as ws
 
-from . import DATA_DIR
+from .data_collection import get_delimiter
+from .filesystem_constants import DATA_DIR
 
-FILEPATH_FIX_NAMES = DATA_DIR / "fix_names.csv"
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+def load_methane_correction_list():
+    """
+    Load biomethane_correction.yaml file and return a list
+    """
+    with open(DATA_DIR / "fuels" / "biomethane_correction.yaml", encoding="utf-8") as f:
+        methane_correction_list = yaml.safe_load(f)
+    return methane_correction_list
 
 
 def remove_uncertainty(database):
@@ -46,19 +54,7 @@ def remove_uncertainty(database):
     return database
 
 
-def get_fix_names_dict() -> Dict[str, str]:
-    """
-    Loads a csv file into a dictionary. This dictionary contains a few location names
-    that need correction in the wurst inventory database.
-
-    :return: dictionary that contains names equivalence
-    :rtype: dict
-    """
-    with open(FILEPATH_FIX_NAMES, encoding="utf-8") as file:
-        return dict(filter(None, csv.reader(file, delimiter=";")))
-
-
-def get_biosphere_flow_uuid() -> Dict[Tuple[str, str, str, str], str]:
+def get_biosphere_flow_uuid(version: str) -> Dict[Tuple[str, str, str, str], str]:
     """
     Retrieve a dictionary with biosphere flow (name, categories, unit) --> uuid.
 
@@ -66,20 +62,30 @@ def get_biosphere_flow_uuid() -> Dict[Tuple[str, str, str, str], str]:
     :rtype: dict
     """
 
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+    if version == "3.9":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    else:
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
+
+    if not Path(fp).is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
     csv_dict = {}
 
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
-        input_dict = csv.reader(file, delimiter=";")
+    with open(fp, encoding="utf-8") as file:
+        input_dict = csv.reader(
+            file,
+            delimiter=get_delimiter(filepath=fp),
+        )
         for row in input_dict:
             csv_dict[(row[0], row[1], row[2], row[3])] = row[-1]
 
     return csv_dict
 
 
-def get_biosphere_flow_categories() -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
+def get_biosphere_flow_categories(
+    version: str,
+) -> Dict[str, Union[Tuple[str], Tuple[str, str]]]:
     """
     Retrieve a dictionary with biosphere flow uuids and categories.
 
@@ -87,19 +93,11 @@ def get_biosphere_flow_categories() -> Dict[str, Union[Tuple[str], Tuple[str, st
     :rtype: dict
     """
 
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
-        raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
+    data = get_biosphere_flow_uuid(version)
 
-    csv_dict = {}
-
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
-        input_dict = csv.reader(file, delimiter=";")
-        for row in input_dict:
-            csv_dict[row[-1]] = (
-                (row[1], row[2]) if row[2] != "unspecified" else (row[1],)
-            )
-
-    return csv_dict
+    return {
+        v: (k[1], k[2]) if k[2] != "unspecified" else (k[1],) for k, v in data.items()
+    }
 
 
 def remove_nones(database: List[dict]) -> List[dict]:
@@ -111,7 +109,10 @@ def remove_nones(database: List[dict]) -> List[dict]:
     :type database: list
 
     """
-    exists = lambda x: {k: v for k, v in x.items() if v is not None}
+
+    def exists(x):
+        return {k: v for k, v in x.items() if v is not None}
+
     for dataset in database:
         dataset["exchanges"] = [exists(exc) for exc in dataset["exchanges"]]
 
@@ -153,9 +154,8 @@ class DatabaseCleaner:
     """
 
     def __init__(
-        self, source_db: str, source_type: str, source_file_path: Path
+        self, source_db: str, source_type: str, source_file_path: Path, version: str
     ) -> None:
-
         if source_type == "brightway":
             # Check that database exists
             if len(DatabaseChooser(source_db)) == 0:
@@ -167,7 +167,9 @@ class DatabaseCleaner:
 
         if source_type == "ecospold":
             # The ecospold data needs to be formatted
-            ecoinvent = bw2io.SingleOutputEcospold2Importer(source_file_path, source_db)
+            ecoinvent = bw2io.SingleOutputEcospold2Importer(
+                str(source_file_path), source_db
+            )
             ecoinvent.apply_strategies()
             self.database = ecoinvent.data
             # Location field is added to exchanges
@@ -176,15 +178,7 @@ class DatabaseCleaner:
             self.add_product_field_to_exchanges()
             # Parameter field is converted from a list to a dictionary
             self.transform_parameter_field()
-
-    def get_rev_fix_names_dict(self) -> Dict[str, str]:
-        """
-        Reverse the fix_names dictionary.
-
-        :return: dictionary that contains names equivalence
-        :rtype: dict
-        """
-        return {v: k for k, v in get_fix_names_dict().items()}
+        self.version = version
 
     def find_product_given_lookup_dict(self, lookup_dict: Dict[str, str]) -> List[str]:
         """
@@ -313,7 +307,6 @@ class DatabaseCleaner:
 
         """
         for dataset in self.database:
-
             # collect production exchanges that simply do not have a location key and set it to
             # the location of the dataset
             for exc in wurst.production(dataset):
@@ -336,15 +329,13 @@ class DatabaseCleaner:
         """Add a `categories` for biosphere flows if missing.
         This happens when importing directly from ecospold files"""
 
-        dict_bio_cat = get_biosphere_flow_categories()
-        dict_bio_uuid = get_biosphere_flow_uuid()
+        dict_bio_cat = get_biosphere_flow_categories(self.version)
+        dict_bio_uuid = get_biosphere_flow_uuid(self.version)
 
         for dataset in self.database:
             for exc in dataset["exchanges"]:
                 if exc["type"] == "biosphere":
-
                     if "categories" not in exc:
-
                         # from the uuid, fetch the flow category
                         if "input" in exc:
                             if exc["input"][1] in dict_bio_cat:
@@ -392,6 +383,88 @@ class DatabaseCleaner:
                 exc for exc in dataset["exchanges"] if "delete" not in exc
             ]
 
+    def correct_biogas_activities(self):
+        """
+        Some activities producing biogas are not given any
+        biogenic CO2 or energy input, leading to imbalanced carbon and energy flows
+        when combusted.
+        """
+
+        list_biogas_activities = load_methane_correction_list()
+        biosphere_codes = get_biosphere_flow_uuid(self.version)
+
+        # find datasets that have a name in the list
+        filters = [
+            ws.either(*[ws.equals("name", name) for name in list_biogas_activities]),
+        ]
+
+        biogas_datasets = ws.get_many(
+            self.database,
+            *filters,
+            ws.equals("reference product", "biogas"),
+            ws.equals("unit", "cubic meter"),
+        )
+
+        # add a flow of "Carbon dioxide, in air" to the dataset
+        # if not present. We add 1.96 kg CO2/m3 biogas.
+
+        for ds in biogas_datasets:
+            # Add CO2 uptake
+            if not any(
+                exc
+                for exc in ws.biosphere(ds)
+                if exc["name"] == "Carbon dioxide, in air"
+            ):
+                ds["exchanges"].append(
+                    {
+                        "uncertainty type": 0,
+                        "amount": 1.96,
+                        "type": "biosphere",
+                        "name": "Carbon dioxide, in air",
+                        "unit": "kilogram",
+                        "categories": ("natural resource", "in air"),
+                        "input": (
+                            "biosphere3",
+                            biosphere_codes[
+                                (
+                                    "Carbon dioxide, in air",
+                                    "natural resource",
+                                    "in air",
+                                    "kilogram",
+                                )
+                            ],
+                        ),
+                    }
+                )
+
+            # Add primary energy flow
+            if not any(
+                exc
+                for exc in ws.biosphere(ds)
+                if exc["name"] == "Energy, gross calorific value, in biomass"
+            ):
+                ds["exchanges"].append(
+                    {
+                        "uncertainty type": 0,
+                        "amount": 22.73,
+                        "type": "biosphere",
+                        "name": "Energy, gross calorific value, in biomass",
+                        "unit": "megajoule",
+                        "categories": ("natural resource", "biotic"),
+                        "input": (
+                            "biosphere3",
+                            biosphere_codes[
+                                (
+                                    "Energy, gross calorific value, in biomass",
+                                    "natural resource",
+                                    "biotic",
+                                    "megajoule",
+                                )
+                            ],
+                        ),
+                    }
+                )
+
     def prepare_datasets(self, keep_uncertainty_data) -> List[dict]:
         """
         Clean datasets for all databases listed in
@@ -416,6 +489,9 @@ class DatabaseCleaner:
         # Remove empty exchanges
         print("Remove empty exchanges.")
         remove_nones(self.database)
+
+        # correct carbon and energy balance
+        self.correct_biogas_activities()
 
         # Remove uncertainty data
         if not keep_uncertainty_data:

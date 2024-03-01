@@ -148,3 +148,78 @@ This is done as follows:
     *premise* relies on ISIC v.4 and CCP classifications to categorize activities.
     Also, a number of activities do not have a category and are found under *Meterials/Others*.
 
+As Simapro CSV files for OpenLCA
+--------------------------------
+
+*premise* can export the databases as a modified version
+of Simapro-CSV files compatible with OpenLCA.
+
+This is done as follows:
+
+.. code-block:: python
+
+    ndb.write_db_to_olca()
+
+.. note::
+
+    The categorization of imported activities may differ from OpenLCA's
+    original classification.
+
+
+The Simapro CSV files can be imported in OpenLCA in a new database like so:
+
+.. image:: olca_fig1.png
+   :width: 500pt
+   :align: center
+
+
+You will need to select "SimaproCSV_Import.csv" as mapping file to use.
+
+.. image:: olca_fig2.png
+   :width: 500pt
+   :align: center
+
+
+Finally, once imported, unlinked flows remain. They can be found under these highlighted folders:
+
+.. image:: olca_fig3.png
+   :width: 500pt
+   :align: center
+
+
+To link them, you need to import an additional mapping flow that you can find here
+("Tools" > "Flow mapping" > "Open file").
+
+.. image:: olca_fig4.png
+   :width: 500pt
+   :align: center
+
+
+And then go to "Flow mapping" > "Apply on database".
+A few dozens of unlinked flows will remain. You may fix that by manually mapping them.
+
+
+
+As a data package
+-----------------
+
+*premise* can export the databases as a data package, which is a standardized way of
+packaging data. This is useful when you want to share your databases with others,
+without sharing the source database (i.e., ecoinvent), which is under restrictive license.
+
+This is done as follows:
+
+.. code-block:: python
+
+    ndb.write_db_to_datapackage()
+
+This creates a zip file that contains the all the data necessary for
+other users to replicate the databases, provided they have access
+to the source database locally.
+
+See the library <``unfold`` https://github.com/polca/unfold/tree/main>_ for more information on data packages
+for sharing LCA databases. ``unfold`` can read these data packages and create
+brightway2 databases (or superstructure databases) from them.
+``unfold`` can also fold premise databases registered in your brightway2 project
+into data packages, to be shared with and recreated by others.
+

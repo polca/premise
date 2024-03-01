@@ -65,27 +65,24 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install python version
-        uses: gabrielfalcao/pyenv-action@v7
+        uses: gabrielfalcao/pyenv-action@v13
         with:
-          default: 3.9.0
+          default: 3.10.6
           command: pip install -U pip  # upgrade pip after installing python
 
       - name: create environment
-        run: pyenv local 3.9.0 && python -mvenv .venv390
+        run: pyenv local 3.10.6 && python -mvenv .venv390
 
       - name: Install dependencies
         run: |
           pip install pathlib
           pip install -r requirements.txt --upgrade pip
-          pip install -e .
           pip install pytest
-          pip install pytest-cov
-          pip install coveralls
+          pip install -e .[test]
 
       - name: Run tests
         run: |
-          pytest -m "not ecoinvent" -s --cov=premise
-          coveralls -v --service=github-actions
+          pytest -m "not ecoinvent" -s
         env:
           GITHUB_TOKEN: ${{ secrets.COVERALLS }}
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
@@ -98,7 +95,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ "ubuntu-latest" ]
-        python-version: [ "3.9", "3.10" ]
+        python-version: ["3.11" ]
 
     steps:
       - uses: actions/checkout@v2
@@ -114,26 +111,20 @@ jobs:
         run: >-
           python -m
           build
-          --sdist
-          --wheel
-          --outdir dist/
-          .
 
       - name: Publish distribution 📦 to PyPI if Release
         if: startsWith(github.ref, 'refs/tags')
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: ${{ secrets.PYPI_USER }}
-          password: ${{ secrets.PYPI_PASSWORD }}
-          skip_existing: true
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          skip-existing: true
 
       - name: Publish distribution 📦 to Test PyPI if Push
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: ${{ secrets.TEST_PYPI_USER }}
-          password: ${{ secrets.TEST_PYPI_PASSWORD }}
-          repository_url: https://test.pypi.org/legacy/
-          skip_existing: true
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
 
   conda:
     name: (${{ matrix.python-version }}, ubuntu-latest)
@@ -144,7 +135,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
@@ -160,16 +151,11 @@ jobs:
         shell: bash -l {0}
         run: conda info
 
-      - name: Git checkout
-        uses: actions/checkout@v1
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
-
       - name: Publish distribution 📦 to Anaconda if Push
-        if: github.ref == 'refs/heads/master'
         shell: bash -l {0}
 
         run: |
+
           PKG_NAME=premise
           USER=romainsacchi
           conda install anaconda-client
@@ -182,25 +168,6 @@ jobs:
           ls $CONDA_BLD_PATH/noarch/
           anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
 
-      - name: Publish distribution 📦 to Anaconda if Push from non-master branch
-        if: github.ref != 'refs/heads/master'
-        shell: bash -l {0}
-
-        run: |
-          PKG_NAME=premise
-          USER=romainsacchi
-          conda install anaconda-client
-          conda install conda-build
-          conda install conda-verify
-          conda install pytest
-          mkdir ~/conda-bld
-          conda config --set anaconda_upload no
-          export CONDA_BLD_PATH=~/conda-bld
-          export VERSION=`date +%Y.%m.%d`
-          conda build "conda/" --old-build-string
-          conda-verify $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2
-          ls $CONDA_BLD_PATH/noarch/
-          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
   testconda:
     name: (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -210,7 +177,8 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.11",]
+        solver: ["classic", "libmamba"]
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
@@ -220,29 +188,15 @@ jobs:
           allow-softlinks: true
           channel-priority: strict
           auto-update-conda: true
-          conda-build-version: 3.21.4
           activate-environment: test
 
       - name: Pull distribution 📦 from Anaconda and test it if master branch
-        if: github.ref == 'refs/heads/master'
-        shell: bash -l {0}
 
         run: |
           conda install -c romainsacchi premise
           conda update premise
           conda install pytest
-          pytest -m "not ecoinvent"
-        env:
-          IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
-
-      - name: Pull distribution 📦 from Anaconda and test it if non-master branch
-        if: github.ref != 'refs/heads/master'
-        shell: bash -l {0}
-
-        run: |
-          conda install -c romainsacchi premise-dev
-          conda update premise-dev
-          conda install pytest
+          conda install bottleneck
           pytest -m "not ecoinvent"
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}

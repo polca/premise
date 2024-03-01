@@ -1,8 +1,89 @@
 TRANSFORM
 =========
 
-A series of transformation are operation on the LCI database to align process performance
-and technology market shares with outputs from the IAM scenario.
+A series of transformations are applied to the Life Cycle Inventory (LCI) database to align process performance
+and technology market shares with the outputs from the Integrated Assessment Model (IAM) scenario.
+
+Biomass
+"""""""
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("biomass")
+
+
+Regional biomass markets
+------------------------
+
+*premise* creates regional markets for biomass which is meant to be used as fuel
+in biomass-fired powerplants or heat generators. Originally in ecoinvent, the biomass being supplied
+to biomass-fired powerplants is "purpose grown" biomass that originate forestry
+activities (called "market for wood chips" in ecoinvent). While this type of biomass
+is suitable for such purpose, it is considered a co-product of the forestry activity,
+and bears a share of the environmental burden of the process it originates from (notably
+the land footprint, emissions, potential use of chemicals, etc.).
+
+However, not all the biomass projected to be used in IAM scenarios is "purpose grown".
+In fact, significant shares are expected to originate from forestry residues. In such
+cases, the environmental burden of the forestry activity is entirely allocated to the
+determining product (e.g., timber), not to the residue, which comes "free of burden".
+
+Hence, *premise* creates average regional markets for biomass, which represents the
+average shares of "purpose grown" and "residual" biomass being fed to biomass-fired powerplants.
+
+The following market is created for each IAM region:
+
+ =================================== ==================
+  market name                         location
+ =================================== ==================
+  market for biomass, used as fuel    all IAM regions
+ =================================== ==================
+
+inside of which, the shares of "purpose grown" and "residual" biomass
+is represented by the following activities:
+
+========================== ===================================== ======================================= ===========================
+  name in premise            name in REMIND                         name in IMAGE                         name in LCI database
+========================== ===================================== ======================================= ===========================
+  biomass - purpose grown    SE|Electricity|Biomass|Energy Crops   Primary Energy|Biomass|Energy Crops    market for wood chips
+  biomass - residual         SE|Electricity|Biomass|Residues       Primary Energy|Biomass|Residues        supply of forest residue
+========================== ===================================== ======================================= ===========================
+
+The sum of those shares equal 1. The activity "supply of forest residue" includes
+the energy, embodied biogenic CO2, transport and associated emissions to chip the residual biomass
+and transport it to the powerplant, but no other forestry-related burden is included.
+
+.. note::
+
+    You can check the share of residual biomass used for power generation
+    assumed in your scenarios by generating a scenario summary report.
+
+.. note::
+
+    When running *premise* with the consequential method, the biomass market
+    is only composed of purpose-grown biomass. This is because the residual biomass
+    cannot be considered a marginal supplier for an increase in demand for biomass.
+
+
+.. code-block:: python
+
+    ndb.generate_scenario_report()
+
 
 Power generation
 """"""""""""""""
@@ -24,30 +105,52 @@ Run
         source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
-    ndb.update_electricity()
+    ndb.update("electricity")
 
 
 Efficiency adjustment
 +++++++++++++++++++++
 
-The energy conversion efficiency of powerplant datasets for a given technology
-is adjusted to align with the change in efficiency indicated by the IAM scenario.
+The energy conversion efficiency of power plant datasets for specific technologies is adjusted
+to align with the efficiency changes indicated by the IAM scenario.
+Two approaches are posisble:
+* application of a scaling factor to the inputs of the dataset relative to the current efficiency
+* application of a scaling factor to the inputs of the dataset to match the absolute efficiency given by the IAM scenario
+
+The first approach (default) preserves
 
 Combustion-based powerplants
 ----------------------------
 
-*premise* iterates through coal, lignite, natural gas, biogas and wood-fired powerplants
-datasets in the LCI database to calculate their current efficiency (i.e., the ratio between
-the primary fuel energy entering the process and the output energy produced, which is often 1 kWh).
-If the IAM scenario foresees a change in efficiency for these processes, the input of the datasets
-are scaled up or down by the *scaling factor* to effectively reflect a change in fuel input
-per kWh produced.
+First, *premise* adjust the efficiency of coal- and lignite-fired
+power plants on the basis of the excellent work done by Oberschelp_ et al. (2019),
+to update some datasets in ecoinvent, which are, for some of them, several decades
+old. More specifically, the data provides plant-specific efficiency
+and emissions factors. We average them by country and fuel type to obtain
+volume-weighted factors. The efficiency of the following datasets is updated:
 
-The origin of this *scaling factor* is explained in XXX.
+* electricity production, hard coal
+* electricity production, lignite
+* heat and power co-generation, hard coal
+* heat and power co-generation, lignite
+
+The data from Oberschelp_ et al. (2019) also allows us to update emissions of
+SO2, NOx, CH4, and PMs.
+
+.. _Oberschelp: https://www.nature.com/articles/s41893-019-0221-6
+
+Second, *premise* iterates through coal, lignite, natural gas, biogas, and wood-fired power plant datasets
+in the LCI database to calculate their current efficiency (i.e., the ratio between the primary fuel
+energy entering the process and the output energy produced, which is often 1 kWh).
+If the IAM scenario anticipates a change in efficiency for these processes, the inputs of the
+datasets are scaled up or down by the scaling factor to effectively reflect a change in
+fuel input per kWh produced.
+
+The origin of this scaling factor is the IAM scenario selected.
 
 To calculate the old and new efficiency of the dataset, it is necessary to know
-the net calorific content of the fuel. The table below shows the Lower Heating Value
-for the different fuels used in combustion-based powerplants.
+the net calorific content of the fuel. The table below shows the Lower Heating Value for
+the different fuels used in combustion-based power plants.
 
  ================================================================== ===========================
   name of fuel                                                       LHV [MJ/kg, as received]
@@ -86,8 +189,8 @@ for the different fuels used in combustion-based powerplants.
   hydrogen, biomass                                                  120
   hydrogen, biomass, with CCS                                        120
   hydrogen, coal                                                     120
-  hydrogen, nat. gas                                                 120
-  hydrogen, nat. gas, with CCS                                       120
+  hydrogen, from natural gas                                                 120
+  hydrogen, from natural gas, with CCS                                       120
   hydrogen, biogas                                                   120
   hydrogen, biogas, with CCS                                         120
   hydrogen                                                           120
@@ -168,21 +271,19 @@ for the different fuels used in combustion-based powerplants.
   kerosene, synthetic, from biomass, economic allocation             43
  ================================================================== ===========================
 
-Additionally, the biogenic and fossil CO2 emissions of the datasets are also scaled up or down
-by the same factor, as those are proportionate to the amount of fuel used.
+Additionally, the biogenic and fossil CO2 emissions of the datasets are also
+scaled up or down by the same factor, as they are proportional to the amount of fuel used.
 
-Finally, another *scaling factor* is used to scale emissions of non-CO2 substances (CO, VOCs, etc.),
-based on GAINS projections for the given technology, region and year.
+Below is an example of a natural gas power plant with a current (2020) conversion efficiency
+of 77%. If the IAM scenario indicates a scaling factor of 1.03 in 2030, this suggests
+that the efficiency increases by 3% relative to the current level. As shown in the table below,
+this would result in a new efficiency of 79%, where all inputs, as well as CO2
+emissions outputs, are re-scaled by 1/1.03 (=0.97).
 
-We provide below an example of a natural gas powerplant, with a current (2020)
-conversion efficiency of 77%. If the IAM scenario indicates a *scaling factor*
-of 1.03 in 2030, this indicates tha the efficiency increases by 3% relative to current.
-As shown in the table below, this would results in a new efficiency of 79%, where
-all inputs, as well as CO2 emissions outputs are re-scaled by 1/1.03 (=0.97).
-This excludes non-CO2 emissions, such as CO in this example, which are re-scaled separately,
-based on GAINS projections: such emissions, while partly correlated to fuel use,
-are mostly mitigated via investments in electrostatic precipitators,
-which is what GAINS scenarios model.
+While non-CO2 emissions (e.g., CO) are reduced because of the reduction in fuel consumption,
+the emission factor per energy unit remains the same (i.e., gCO/MJ natural gas)).
+It can be re-scaled using the `.update("emissions")` function, which updates emission factors according
+to GAINS projections.
 
 
  =================================================== =========== =========== =======
@@ -209,11 +310,13 @@ improving its performance in the past, relative to today.
 .. note::
 
     You can check the efficiencies assumed in your scenarios by generating
-    a scenario summary report.
+    a scenario summary report, or a report of changes. They are automatically
+    generated after each database export, but you can also generate them manually:
 
 .. code-block:: python
 
     ndb.generate_scenario_report()
+    ndb.generate_change_report()
 
 Photovoltaics panels
 --------------------
@@ -230,7 +333,9 @@ are considered for the different types of PV panels:
   2050                   12.5        26.7         24.4        23.4    23.4   21
  ====================== =========== ============ =========== ======= ====== =======
 
-The sources for these efficiencies are given in XXX.
+The sources for these efficiencies are given in the inventory file LCI_PV_:
+
+.. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
 
 Given a scenario year, *premise* iterates through the different PV panel installation
 datasets to update their efficiency accordingly.
@@ -280,56 +385,6 @@ production pathway for a given commodity for a given scenario, year and region.
 Such datasets are called *regional markets*. Hence, a regional market for high voltage
 electricity contains the different technologies that supply electricity at high voltage
 in a given IAM region, in proportion to their respective production volumes.
-
-Regional biomass markets
-------------------------
-
-*premise* creates regional markets for biomass which is meant to be used as fuel
-in biomass-fired powerplants. Originally in ecoinvent, the biomass being supplied
-to biomass-fired powerplants is "purpose grown" biomass that originate forestry
-activities (called "market for wood chips" in ecoinvent). While this type of biomass
-is suitable for such purpose, it is considered a co-product of the forestry activity,
-and bears a share of the environmental burden of the process it originates from (notably
-the land footprint, emissions, potential use of chemicals, etc.).
-
-However, not all the biomass projected to be used in IAM scenarios is "purpose grown".
-In fact, significant shares are expected to originate from forestry residues. In such
-cases, the environmental burden of the forestry activity is entirely allocated to the
-determining product (e.g., timber), not to the residue, which comes "free of burden".
-
-Hence, *premise* creates average regional markets for biomass, which represents the
-average shares of "purpose grown" and "residual" biomass being fed to biomass-fired powerplants.
-
-The following market is created for each IAM region:
-
- =================================== ==================
-  market name                         location
- =================================== ==================
-  market for biomass, used as fuel    all IAM regions
- =================================== ==================
-
-inside of which, the shares of "purpose grown" and "residual" biomass
-is represented by the following activities:
-
-========================== ===================================== ======================================= ===========================
-  name in premise            name in REMIND                         name in IMAGE                         name in LCI database
-========================== ===================================== ======================================= ===========================
-  biomass - purpose grown    SE|Electricity|Biomass|Energy Crops   Primary Energy|Biomass|Energy Crops    market for wood chips
-  biomass - residual         SE|Electricity|Biomass|Residues       Primary Energy|Biomass|Residues        Supply of forest residue
-========================== ===================================== ======================================= ===========================
-
-The sum of those shares equal 1. The activity "Supply of forest residue" includes
-the energy, transport and associated emissions to chip the residual biomass
-and transport it to the powerplant, but no other forestry-related burden is included.
-
-.. note::
-
-    You can check the share of residual biomass used for power generation
-    assumed in your scenarios by generating a scenario summary report.
-
-.. code-block:: python
-
-    ndb.generate_scenario_report()
 
 
 Regional electricity markets
@@ -396,6 +451,28 @@ IAM region with their respective current production volumes (also provided by
 ecoinvent). This is not ideal as it supposes that future country-specific
 production volumes will remain the same in respect to one another.
 
+Storage
+-------
+
+If the IAM scenario requires the use of storage, *premise* adds a storage
+dataset to the high voltage market. *premise* can add two types of storage:
+
+* storage via a large-scale flow battery (electricity supply, high voltage, from vanadium-redox flow battery system)
+* storage via the conversion of electricity to hydrogen and subsequent use in a gas turbine (electricity production, from hydrogen-fired one gigawatt gas turbine)
+
+The electricity storage via battery incurs a 33% loss. It is operated by a 8.3 MWh vanadium redox-based flow battery,
+with a lifetime of 20 years or 8176 cycle-lifes (i.e., 49,000 MWh).
+
+The storage of electricity via hydrogen is done in two steps: first, the electricity is converted to hydrogen
+via a 1MW PEM electrolyser, with an efficiency of 62%. The hydrogen is then stored in a geological cavity
+and used in a gas turbine, with an efficiency of 51%. Accounting for leakages and losses, the
+overall efficiency of the process is about 37% (i.e., 2.7 kWh necessary to deliver 1 kWh to the grid).
+
+The efficiency of the H2-fed gas turbine is based on the parameters of Ozawa_ et al. (2019).
+
+.. _Ozawa: https://doi.org/10.1016/j.ijhydene.2019.02.230
+
+
 Medium voltage regional markets
 _______________________________
 
@@ -461,7 +538,7 @@ regional "WEU".
 Long-term regional electricity markets
 --------------------------------------
 
-Long-term (i.e., 10, 20, 30, 40 and 50 years) regional markets are created
+Long-term (i.e., 20, 40 and 60 years) regional markets are created
 for modelling the lifetime-weighted burden associated to electricity supply
 for systems that have a long lifetime (e.g., battery electric vehicles, buildings).
 
@@ -508,6 +585,25 @@ Cement production
 The modelling of future improvements in the cement sector is relatively
 simple at the moment, and does not involve the emergence of new
 technologies (e.g., electric kilns).
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("cement")
 
 Dataset proxies
 +++++++++++++++
@@ -563,31 +659,17 @@ between today and the scenario year.
 
 .. _IEA: https://iea.blob.core.windows.net/assets/cbaa3da1-fd61-4c2a-8719-31538f59b54f/TechnologyRoadmapLowCarbonTransitionintheCementIndustry.pdf
 
-Then, *premise* determines
-the fuel mix required, here also based on the GNR/IEA data. Essentially,
-such fuel mix is composed of fossil fuel (i.e., coal), alternative fuel
-(i.e., refuse-derived fuel) and biomass (i.e., wood chips).
 
-Once the new ful mix is determined, *premise* modifies the fossil
-and biogenic CO2 emissions accordingly, based on the Lower Heating Value
-and CO2 emission factors for these fuels, shown in the table below.
 
- =============== =========================== ============== =====================
-  name of fuel    LHV [MJ/kg, as received]    CO2 [kg/MJ]    Share non-fossil C
- =============== =========================== ============== =====================
-  hard coal       26.7                        0.098          0
-  wood chips      18.9                        0.112          1
-  waste           14                          0.0917         0.34
- =============== =========================== ============== =====================
+Once the new energy input is determined, *premise* scales down the fuel,
+and the fossil and biogenic CO2 emissions accordingly, based on the Lower Heating Value
+and CO2 emission factors for these fuels.
 
 Note that the change in CO2 emissions only concerns the share
-that originates from the combustion of fuels. it does not
+that originates from the combustion of fuels. It does not
 concern the calcination emissions due to the production of
 calcium oxide (CaO) from calcium carbonate (CaCO3), which is set
 at a fix emission rate of 525 kg CO2/t clinker.
-
-Finally, another *scaling factor* is used to scale emissions of non-CO2 substances (CO, VOCs, etc.),
-based on GAINS projections for the cement sector, given a region and year.
 
 
 Carbon Capture and Storage
@@ -646,7 +728,7 @@ Run
         source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
-    ndb.update_cement()
+    ndb.update("cement")
 
 
 
@@ -658,40 +740,10 @@ clinker production dataset, corresponding to their IAM region.
 Clinker-to-cement ratio
 +++++++++++++++++++++++
 
-Most cement datasets in ecoinvent have a determined composition in terms
-of clinker vs. supplementary cementitious materials (e.g., fly ash, blast
-furnace slag, limestone). The clinker-to-cement ratio cannot be altered
-for these cements, as it would render their label incorrect, but also
-the type of application they are meant to fulfill (e.g., precast, mortar,
-foundations).
-
-However, one dataset represents an "average" cement
-with an "average" composition. This dataset is called
-"market for cement, unspecified". This market dataset is composed
-of several types of cements, each having a clinker-to-cement ratio.
-*premise* alters the shares of each of these cement types with the
-"market for cement, unspecified" dataset so that the
-average clinker-to-cement ratio aligns with the GNR/IEA projections.
-
-GNR/IEA projections in terms of clinker-to-cement ratio are shown in the
-table below.
-
- ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
-  clinker-to-cement ratio    2005    2010    2015    2020    2025    2030    2035    2040    2045    2050    2055    2060    2065    2070    2075    2080    2085    2090    2095    2100
- ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
-  Canada                     81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
-  China                      58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%     58%
-  Europe                     73%     72%     71%     71%     70%     69%     68%     67%     67%     66%     65%     64%     64%     63%     62%     61%     60%     60%     59%     58%
-  India                      71%     70%     70%     69%     68%     68%     67%     66%     66%     65%     64%     63%     63%     62%     61%     61%     60%     59%     59%     58%
-  Japan                      80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
-  Latin America              70%     69%     69%     68%     67%     67%     66%     66%     65%     64%     64%     63%     62%     62%     61%     61%     60%     59%     59%     58%
-  Middle East                81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
-  Norther Europe             81%     80%     79%     77%     76%     75%     74%     73%     71%     70%     69%     68%     66%     65%     64%     63%     62%     60%     59%     58%
-  Other Asia                 80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
-  Russia                     80%     79%     78%     77%     75%     74%     73%     72%     71%     70%     68%     67%     66%     65%     64%     63%     61%     60%     59%     58%
-  South Africa               77%     76%     75%     74%     73%     72%     71%     70%     69%     68%     67%     66%     65%     64%     63%     62%     61%     60%     59%     58%
-  United States              82%     81%     79%     78%     77%     76%     74%     73%     72%     71%     69%     68%     67%     66%     64%     63%     62%     61%     59%     58%
- ========================== ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= ======= =======
+*premise* used to modify the composition of cement markets to reflect
+a lower clinker content over time, based on external projections. This is
+no longer performed, as it is not an assumption stemming from the IAM model,
+but rather a projection of the cement industry.
 
 Original market datasets
 ________________________
@@ -744,7 +796,7 @@ Run
         source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
-    ndb.update_steel()
+    ndb.update("steel")"
 
 
 
@@ -783,12 +835,9 @@ Typical fuel inputs for these process are natural gas, coal, coal-based coke.
 Emissions of (fossil) CO2 are scaled accordingly.
 
 Regarding the production of secondary steel (using EAF),
-*premise* adjusts the input of electricity based on teh scaling factor
+*premise* adjusts the input of electricity based on the scaling factor
 provided by the IAM scenario.
 
-Finally, another *scaling factor* is used to scale emissions of non-CO2
-substances (CO, VOCs, etc.), based on GAINS projections for the steel sector,
-given a region and year.
 
 .. note::
 
@@ -818,7 +867,7 @@ from the steel sector in a given region and year is sequestered and stored,
 The datatset used to that effect is from Meunier_ et al., 2020.
 The dataset described the capture of CO2 from a cement plant, not a steel mill,
 but it is assumed to be an acceptable approximation since the CO2 concentration
-in teh flue gases should not be significantly different.
+in the flue gases should not be significantly different.
 
 To that dataset, *premise* adds another dataset that models the storage
 of the CO2 underground, from Volkart_ et al, 2013.
@@ -920,10 +969,10 @@ Run
         source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
-    ndb.update_two_wheelers()
-    ndb.update_cars()
-    ndb.update_trucks()
-    ndb.update_buses()
+    ndb.update("two_wheelers")
+    ndb.update("cars")
+    ndb.update("trucks")
+    ndb.update("buses")
 
 
 *premise* imports inventories for transport activity operated by:
@@ -1122,6 +1171,37 @@ of India.
   steel production, electric, low-alloyed                           0.34         kilogram         IND
  ================================================================= ============ ================ ===========
 
+Direct Air Capture
+""""""""""""""""""
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("dac")
+
+
+
+*premise* creates different region-specific Direct Air Capture (DAC)
+datasets, based on the inventories from Qiu_ et al., 2022.
+
+If provided by the IAM scenario, *premise* scales the inputs of electricity
+and heat of the DAC datasets to reflect changes in efficiency.
+
+.. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 
 Fuels
 """""
@@ -1143,7 +1223,7 @@ Run
         source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
-    ndb.update_fuels()
+    ndb.update("fuels")
 
 
 
@@ -1166,10 +1246,40 @@ that represents the change in efficiency relative to today (2020).
 Hydrogen
 ________
 
-The process of producing hydrogen by electrolysis is expected to improve in
-the future. Upon import, *premise* adjusts the amount of electricity needed
+Several pathways for hydrogen production are modeled in *premise*:
+
+- electrolysis
+- steam methane reforming of natural gas
+- steam methane reforming of biomethane
+- gasification of coal
+- gasification of woody biomass
+
+The last four pathways are modeled with and without CCS.
+
+Inventories for these pathways are available under:
+
+* premise/data/additional_inventories/lci-hydrogen-electrolysis.xlsx
+* premise/data/additional_inventories/lci-smr-atr-natgas.xlsx
+* premise/data/additional_inventories/lci-smr-atr-biogas.xlsx
+* premise/data/additional_inventories/lci-hydrogen-coal-gasification.xlsx
+* premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
+
+
+In case the IAM variable that relates to a given hydrogen pathway's
+efficiency is not available, the process' efficiency is not modified,
+with the exception of electrolysis, which is modified regardless.
+
+A scaling factor is calculated for each pathway, which is the ratio
+between the IAM variable value for the year in question
+and the current efficiency value (i.e., in 2020). *premise*
+uses this scaling factor to adjust the amount of feedstock
+input to produce 1 kg of hydrogen (e.g., m3 of natural gas per kg hydrogen).
+
+If the IAM variable that relates to the efficiency of
+the electrolysis hydrogen process is not available,
+*premise* adjusts the amount of electricity needed
 to produce 1 kg of hydrogen by electrolysis, on the basis of the following
-requirements, which are sourced from Bauer et al, 2022 (in review):
+requirements, which are sourced from Bauer_ et al, 2022:
 
  ==================== ======= ======= =======
   kWh/kg H2, 25 bar    2010    2020    2050
@@ -1177,6 +1287,7 @@ requirements, which are sourced from Bauer et al, 2022 (in review):
   electricity          58      55      44
  ==================== ======= ======= =======
 
+.. _Bauer: https://www.psi.ch/en/media/77703/download?attachment
 
 Land use and land use change
 ++++++++++++++++++++++++++++
@@ -1230,39 +1341,30 @@ ________
 * the transport mode: truck, hydrogen pipeline, re-assigned CNG pipeline, ship,
 * the distance: 500 km, 2000 km
 * the state of the hydrogen: gaseous, liquid, liquid organic compound,
-* the hydrogen production route: electrolysis, SMR, ATR, biomass gasifier (coal, woody biommas)
+* the hydrogen production route: electrolysis, SMR, biomass gasifier (coal, woody biomass)
 
 Hence, for each IAM region, the following supply chains for hydrogen are built:
 
 - hydrogen supply, from electrolysis, by ship, as liquid, over 2000 km
 - hydrogen supply, from gasification of biomass by heatpipe reformer, by H2 pipeline, as gaseous, over 500 km
-- hydrogen supply, from ATR of nat. gas, by truck, as gaseous, over 500 km
+- hydrogen supply, from ATR of from natural gas, by truck, as gaseous, over 500 km
 - hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from SMR of nat. gas, with CCS, by ship, as liquid, over 2000 km
+- hydrogen supply, from SMR of from natural gas, with CCS, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from SMR of from natural gas, with CCS, by ship, as liquid, over 2000 km
 - hydrogen supply, from coal gasification, by CNG pipeline, as gaseous, over 500 km
-- hydrogen supply, from SMR of nat. gas, by ship, as liquid, over 2000 km
+- hydrogen supply, from SMR of from natural gas, by ship, as liquid, over 2000 km
 - hydrogen supply, from coal gasification, by truck, as liquid, over 500 km
 - hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as liquid, over 500 km
-- hydrogen supply, from ATR of nat. gas, with CCS, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as liquid, over 500 km
+- hydrogen supply, from ATR of from natural gas, with CCS, by truck, as liquid organic compound, over 500 km
+- hydrogen supply, from SMR of from natural gas, with CCS, by truck, as liquid, over 500 km
 - hydrogen supply, from electrolysis, by truck, as liquid organic compound, over 500 km
 - hydrogen supply, from gasification of biomass, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from ATR of nat. gas, by CNG pipeline, as gaseous, over 500 km
-- hydrogen supply, from ATR of nat. gas, with CCS, by truck, as gaseous, over 500 km
-- hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+- hydrogen supply, from SMR of from natural gas, with CCS, by truck, as gaseous, over 500 km
 - hydrogen supply, from SMR of biogas, with CCS, by CNG pipeline, as gaseous, over 500 km
-- hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
-- hydrogen supply, from ATR of biogas, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from ATR of nat. gas, with CCS, by ship, as liquid, over 2000 km
-- hydrogen supply, from SMR of nat. gas, by H2 pipeline, as gaseous, over 500 km
+- hydrogen supply, from SMR of from natural gas, by truck, as gaseous, over 500 km
+- hydrogen supply, from SMR of from natural gas, by H2 pipeline, as gaseous, over 500 km
 - hydrogen supply, from gasification of biomass, with CCS, by truck, as liquid organic compound, over 500 km
 - hydrogen supply, from gasification of biomass, by ship, as liquid, over 2000 km
-- hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS, by truck, as liquid organic compound, over 500 km
-- hydrogen supply, from ATR of biogas, with CCS, by CNG pipeline, as gaseous, over 500 km
-- hydrogen supply, from ATR of biogas, with CCS, by truck, as gaseous, over 500 km
-- hydrogen supply, from ATR of nat. gas, by truck, as liquid, over 500 km
-- hydrogen supply, from gasification of biomass by heatpipe reformer, by truck, as gaseous, over 500 km
 
 Each supply route is associated with specific losses.
 Losses for the transport of H2 by truck and hydrogen pipelines, and losses
@@ -1364,8 +1466,8 @@ liquid and gaseous secondary energy carriers:
   hydrogen, biomass                    SE|Hydrogen|Biomass|w/o CCS                                                                                               hydrogen supply, from gasification of biomass, by
   hydrogen, biomass, with CCS          SE|Hydrogen|Biomass|w/ CCS                                                                                                hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS
   hydrogen, coal                       SE|Hydrogen|Coal|w/o CCS                                                                                                  hydrogen supply, from coal gasification, by truck, as gaseous, over 500 km
-  hydrogen, nat. gas                   SE|Hydrogen|Gas|w/o CCS                                                                                                   hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
-  hydrogen, nat. gas, with CCS         SE|Hydrogen|Gas|w/ CCS                                                                                                    hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+  hydrogen, from natural gas                   SE|Hydrogen|Gas|w/o CCS                                                                                                   hydrogen supply, from SMR of from natural gas, by truck, as gaseous, over 500 km
+  hydrogen, from natural gas, with CCS         SE|Hydrogen|Gas|w/ CCS                                                                                                    hydrogen supply, from SMR of from natural gas, with CCS, by truck, as gaseous, over 500 km
   biodiesel, oil                       SE|Liquids|Biomass|Biofuel|Biodiesel|w/o CCS    Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS    biodiesel production, via transesterification
   biodiesel, oil, with CCS                                                             Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/CCS     biodiesel production, via transesterification
   bioethanol, wood                     SE|Liquids|Biomass|Cellulosic|w/o CCS           Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS         ethanol production, via fermentation, from forest
@@ -1429,6 +1531,51 @@ are modelled with the calorific value of conventional gasoline.
   Ethanol production, via fermentation, from poplar, with CCS         0.041     kilogram    WEU
   Ethanol production, via fermentation, from poplar                   0.041     kilogram    WEU
  =================================================================== ========= =========== ===========
+
+Heat
+++++
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("heat")
+
+Datasets that supply heat and steam via the combustion of natural gas and diesel
+are regionalized (made available for each region of the IAM model) and relinked
+to regional fuel markets. If the fuel market contains a share of non-fossil fuels,
+the CO2 emissions of the heat and steam production are split between fossil and
+non-fossil emissions. Once regionalized, the heat and steam production datasets
+relink to activities that require heat within the same region.
+
+Here is a list of the heat and steam production datasets that are regionalized:
+
+- diesel, burned in ...
+- steam production, as energy carrier, in chemical industry
+- heat production, natural gas, ...
+- heat and power co-generation, natural gas, ...
+- heat production, light fuel oil, ...
+- heat production, softwood chips from forest, ...
+- heat production, hardwood chips from forest, ...
+
+These datasets are relinked to the corresponding regionalized fuel market only
+if `.update("fuels")` has been run.
+Also, heat production datasets that use biomass as fuel input (e.g., softwood and
+hardwood chips) relink to the dataset `market for biomass, used as fuel` if
+`update("biomass")` has been run previously.
 
 
 CO2 emissions update
@@ -1799,8 +1946,246 @@ implementation in the wurst_ library.
   ZW                                        SSA              RSAF
  ========================================= ================ ===============
 
+Regionalization
+"""""""""""""""
+
+Several of the integration steps described above involve the
+regionalization of datasets. It is the case, for example, when introducing
+datasets representing a process for each of the IAM regions.
+In such case, the datasets are regionalized by selecting the most
+representative suppliers of inputs for each region. If a dataset
+in a specific IAM region requires tap water, for example, the regionalization process will
+select the most representative water suppliers in that region.
+
+If more than one supplier is available, the regionalization process will
+allocated a supply share to each candidate supplier based on their
+respective production volume. If no adequate supplier is found for a given region,
+the regionalization process will select all the existing suppliers and
+allocate a supply share to each supplier based on their respective
+production volume.
+
+Here is the decision tree followed:
+
+.. _decision-tree:
+
+**Decision Tree for Processing Datasets**
+
+
+The process begins with a dataset that requires processing.
+
+.. contents::
+   :local:
+
+Decision: Is the Exchange in Cache?
+-----------------------------------
+
+- **Yes**
+
+  - Use :func:`process_cached_exchange`.
+
+    - Retrieve cached data.
+    - Update ``new_exchanges`` with cached data.
+
+- **No**
+
+  - Use :func:`process_uncached_exchange`.
+
+    Decision: Number of Possible Datasets
+    ------------------------------------
+
+    - **None**
+
+      - Print a warning and return.
+
+    - **One**
+
+      - Use :func:`handle_single_possible_dataset`.
+
+        - Use the single matched dataset.
+        - Update ``new_exchanges`` with this dataset information.
+
+    - **Multiple**
+
+      - Use :func:`handle_multiple_possible_datasets`.
+
+        Decision: Does Dataset Location Match Possible Dataset Locations?
+        -----------------------------------------------------------------
+
+        - **Yes**
+
+          - Use the matched dataset location.
+
+        - **No**
+
+          - Use :func:`process_complex_matching_and_allocation`.
+
+            Decision: Dataset Location Type
+            --------------------------------
+
+            - **IAM Region**
+
+              - Use :func:`handle_iam_region`.
+
+                - Match IAM region to ecoinvent locations.
+                - Update ``new_exchanges`` with IAM region-specific data.
+                - Cache the new entry.
+
+            - **Global ('GLO', 'RoW', 'World')**
+
+              - Use :func:`handle_global_and_row_scenarios`.
+
+                - Allocate inputs for global datasets.
+                - Update ``new_exchanges`` with global data.
+                - Cache the new entry.
+
+            - **Others**
+
+              - Perform GIS matching.
+
+                - Determine intersecting locations with GIS.
+                - Allocate inputs based on GIS matches.
+                - Update ``new_exchanges`` with GIS-specific data.
+                - Cache the new entry.
+
+Final Steps
+-----------
+
+- If no match is found, use :func:`handle_default_option`.
+
+  - Integrate new exchanges into the dataset.
+
+
+GAINS emission factors
+""""""""""""""""""""""
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("emissions")
+
+When using `update("emissions")`, emission factors from the GAINS-EU_ and GAINS-IAM_ models are used to scale
+non-CO2 emissions in various datasets.
+
+.. _GAINS-EU: https://gains.iiasa.ac.at/gains/EUN/index.login
+.. _GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
+
+The emission factors are available under
+https://github.com/polca/premise/tree/master/premise/data/GAINS_emission_factors
+
+Emission factors from GAINS-EU are applied to activities in European countries.
+Emission factors from GAINS-IAM are applied to activities in non-European countries,
+or to European activities if an emission facor from GAINS-EU has not been
+applied first.
+
+Emission factors are specific to:
+
+* an activity type,
+* a year,
+* a country (for GAINS-EU, otherwise a region),
+* a fuel type,
+* a technology type,
+* and a scenario.
+
+The mapping between GAINS and ecoinvent activities is available under the following file:
+https://github.com/polca/premise/blob/master/premise/data/GAINS_emission_factors/gains_ecoinvent_sectoral_mapping.yaml
+
+The table below shows the mapping between ecoinvent and GAINS emission flows.
+
++-------------------------------------------------------------------+----------------+
+| ecoinvent species                                                 | GAINS species  |
++===================================================================+================+
+| Sulfur dioxide                                                    |  SO2           |
++-------------------------------------------------------------------+----------------+
+| Sulfur oxides                                                     |  SO2           |
++-------------------------------------------------------------------+----------------+
+| Carbon monoxide, fossil                                           |  CO            |
++-------------------------------------------------------------------+----------------+
+| Carbon monoxide, non-fossil                                       |  CO            |
++-------------------------------------------------------------------+----------------+
+| Carbon monoxide, from soil or biomass stock                       |  CO            |
++-------------------------------------------------------------------+----------------+
+| Nitrogen oxides                                                   |  NOx           |
++-------------------------------------------------------------------+----------------+
+| Ammonia                                                           |  NH3           |
++-------------------------------------------------------------------+----------------+
+| NMVOC, non-methane volatile organic compounds, unspecified origin |  VOC           |
++-------------------------------------------------------------------+----------------+
+| VOC, volatile organic compounds, unspecified origin               |  VOC           |
++-------------------------------------------------------------------+----------------+
+| Methane                                                           |  CH4           |
++-------------------------------------------------------------------+----------------+
+| Methane, fossil                                                   |  CH4           |
++-------------------------------------------------------------------+----------------+
+| Methane, non-fossil                                               |  CH4           |
++-------------------------------------------------------------------+----------------+
+| Methane, from soil or biomass stock                               |  CH4           |
++-------------------------------------------------------------------+----------------+
+| Dinitrogen monoxide                                               |  N2O           |
++-------------------------------------------------------------------+----------------+
+| Particulates, > 10 um                                             |  PM10          |
++-------------------------------------------------------------------+----------------+
+| Particulates, > 2.5 um, and < 10um                                |  PM25          |
++-------------------------------------------------------------------+----------------+
+| Particulates, < 2.5 um                                            |  PM1           |
++-------------------------------------------------------------------+----------------+
+
+We consider emission factors in ecoinvent as representative of the current situation.
+Hence, we calculate a *scaling factor* from the GAINS emission factors for the year of
+the scenario relative to the year 2020. note that premise prevents scaling factors to be
+inferior to 1 if the year is inferior to 2020. Inversely, scaling factors cannot be superior to 1
+if the year is superior to 2020.
+
+Two GAINS-IAM scenarios are available:
+
+* **CLE**: **C**urrent **LE**gislation scenario
+* **MFR**: **M**aximum **F**easible **R**eduction scenario
+
+By default, the CLE scenario is used. To use the MFR scenario:
+
+.. code-block:: python
+
+    ndb = NewDatabase(
+        ...
+        gains_scenario="MFR",
+    )
+
+Finally, unlike GAINS-EU, GAINS-IAM uses IAM-like regions, not countries.
+The mapping between IAM regions and GAINS-IAM regions is available under the following file:
+
+https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/gains_regions_mapping.yaml
+
+For questions related to GAINS modelling, please contact the respective GAINS team:
+
+* GAINS-EU: https://gains.iiasa.ac.at/gains/EUN/index.login
+* GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
+
 Logs
 """"
 
-*premise* generates log files for each transformation function applied to the database.
-They are found in the library folder, under *premise/data/logs*.
+*premise* generates a spreadsheet report detailing changes made to the database
+for each scenario. The report is saved in the current working directory and
+is automatically generated after database export.
+
+The report lists the datasets added, updated and emptied.
+It also gives a number of indicators relating to efficiency,
+emissions, etc. for each scenario.
+
+Finally, it also contains a "Validation" tab that lists datasets
+which potentially present erroneous values. These datasets are
+to be checked by the user.
+
+This report can also be generated manually using the `generate_change_report()` method.

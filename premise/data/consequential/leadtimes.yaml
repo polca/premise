@@ -1,0 +1,83 @@
+# lead time between investment decision and capacity installation
+# in years
+---
+Biomass IGCC CCS: 4
+Biomass IGCC: 4
+Biomass CHP: 4
+Biomass CHP CCS: 4
+Biomass ST: 4
+Coal IGCC: 4
+Coal IGCC CCS: 5
+Coal PC: 4
+Coal PC CCS: 5
+Coal CHP: 4
+Coal CHP CCS: 5
+Gas OC: 3
+Gas CC: 3
+Gas CC CCS: 3
+Gas CHP: 3
+Gas CHP CCS: 3
+Gas ST: 3
+Oil ST: 3
+Oil CC CCS: 3
+Oil CC: 3
+Oil CHP CCS: 3
+Oil CHP: 3
+Foil ST: 3
+Geothermal: 3
+Hydro: 4
+Hydrogen: 3
+Nuclear: 7
+Nuclear_EPR: 7
+Nuclear_SMR: 7
+Solar CSP: 3
+Solar CSP autonomous: 3
+Solar PV Centralized: 2
+Solar PV Residential: 2
+Wind Onshore: 2
+Wind Offshore: 3
+Wave: 3
+Storage, Hydrogen: 3
+Storage, Flow Battery: 3
+diesel: 3
+gasoline: 3
+diesel, synthetic, from wood: 3
+diesel, synthetic, from wood, with CCS: 3
+diesel, synthetic, from grass: 3
+diesel, synthetic, from grass, with CCS: 3
+biodiesel, from used cooking oil: 3
+biodiesel, from used cooking oil, with CCS: 3
+bioethanol, from wood: 3
+bioethanol, from wood, with CCS: 3
+bioethanol, from grass: 3
+bioethanol, from grass, with CCS: 3
+bioethanol, from grain: 3
+bioethanol, from grain, with CCS: 3
+bioethanol, from sugar: 3
+bioethanol, from sugar, with CCS: 3
+methanol, from wood: 3
+methanol, from wood, with CCS: 3
+methanol, from grass: 3
+methanol, from grass, with CCS: 3
+natural gas: 3
+biomethane: 3
+petrol, synthetic, from electrolysis: 3
+petrol, synthetic, from coal: 3
+petrol, synthetic, from coal, with CCS: 3
+diesel, synthetic, from electrolysis: 3
+diesel, synthetic, from coal: 3
+diesel, synthetic, from coal, with CCS: 3
+hydrogen, from electrolysis: 3
+hydrogen, from biomass: 3
+hydrogen, from biomass, with CCS: 3
+hydrogen, from coal: 3
+hydrogen, from natural gas: 3
+hydrogen, from natural gas, with CCS: 3
+hydrogen, from coal, with CCS: 3
+hydrogen, from solar: 3
+cement, dry feed rotary kiln: 10
+steel - primary: 10
+steel - secondary: 10
+daccs_sorbent: 3
+biomass - residual: 3
+biomass crops - purpose grown: 3

@@ -18,8 +18,11 @@ person kilometer: personkm
 passenger-kilometer: personkm
 meter-year: my
 kilo Becquerel: kBq
+kilogram day: kg*day
 kg*day: kg*day
 hectare: ha
 kilometer-year: kmy
 litre: l
 guest night: guestnight
+Sm3: m3
+standard cubic meter: m3

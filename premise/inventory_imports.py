@@ -5,61 +5,72 @@ and those provided by the user.
 
 import csv
 import itertools
-import sys
-import urllib
 import uuid
+from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
 
 import bw2io
+import numpy as np
 import requests
 import yaml
 from bw2io import CSVImporter, ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
 
-from . import DATA_DIR, INVENTORY_DIR
-from .clean_datasets import remove_categories
-from .export import check_amount_format
+from .clean_datasets import remove_categories, remove_uncertainty
+from .data_collection import get_delimiter
+from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, INVENTORY_DIR
 from .geomap import Geomap
 
-FILEPATH_BIOSPHERE_FLOWS = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
+FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
+CORRESPONDENCE_BIO_FLOWS = (
+    DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
+)
 
-OUTDATED_FLOWS = DATA_DIR / "utils" / "export" / "outdated_flows.yaml"
+TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
 
 
-def get_outdated_flows():
+def get_correspondence_bio_flows():
     """
-    Retrieve a list of outdated flows from the outdated flows file.
+    Mapping between ei39 and ei<39 biosphere flows.
     """
 
-    with open(OUTDATED_FLOWS, "r", encoding="utf-8") as stream:
+    with open(CORRESPONDENCE_BIO_FLOWS, "r", encoding="utf-8") as stream:
         flows = yaml.safe_load(stream)
+        return flows
 
-    return flows
 
-
-def get_biosphere_code() -> dict:
+def get_biosphere_code(version) -> dict:
     """
     Retrieve a dictionary with biosphere flow names and uuid codes.
     :returns: dictionary with biosphere flow names as keys and uuid codes as values
 
     """
+    if version == "3.9":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    else:
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
-    if not FILEPATH_BIOSPHERE_FLOWS.is_file():
+    if not Path(fp).is_file():
         raise FileNotFoundError("The dictionary of biosphere flows could not be found.")
 
-    csv_dict = {}
-
-    with open(FILEPATH_BIOSPHERE_FLOWS, encoding="utf-8") as file:
-        input_dict = csv.reader(file, delimiter=";")
-        for row in input_dict:
-            csv_dict[(row[0], row[1], row[2], row[3])] = row[4]
-
-    return csv_dict
+    with open(fp, encoding="utf-8") as file:
+        input_dict = csv.reader(
+            file,
+            delimiter=get_delimiter(filepath=fp),
+        )
+        return {(row[0], row[1], row[2], row[3]): row[4] for row in input_dict}
 
 
+def get_consequential_blacklist():
+    with open(FILEPATH_CONSEQUENTIAL_BLACKLIST, "r", encoding="utf-8") as stream:
+        flows = yaml.safe_load(stream)
+        return flows
+
+
+@lru_cache
 def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
     """
     Generate mapping for ecoinvent datasets across different database versions.
@@ -71,7 +82,10 @@ def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
     response = {"fields": ["name", "reference product", "location"], "data": []}
 
     with open(FILEPATH_MIGRATION_MAP, "r", encoding="utf-8") as read_obj:
-        csv_reader = csv.reader(read_obj, delimiter=";")
+        csv_reader = csv.reader(
+            read_obj,
+            delimiter=get_delimiter(filepath=FILEPATH_MIGRATION_MAP),
+        )
         next(csv_reader)
         for row in csv_reader:
             if row[0] == origin and row[1] == destination:
@@ -83,7 +97,18 @@ def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
                 if row[7] != "":
                     data["location"] = row[7]
                 response["data"].append(((row[2], row[3], row[4]), data))
-    return response
+
+            if row[0] == destination and row[1] == origin:
+                data = {}
+                if row[2] != "":
+                    data["name"] = row[2]
+                if row[3] != "":
+                    data["reference product"] = row[3]
+                if row[4] != "":
+                    data["location"] = row[4]
+                response["data"].append(((row[5], row[6], row[7]), data))
+
+        return response
 
 
 def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
@@ -121,6 +146,138 @@ def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
     return data
 
 
+def check_for_datasets_compliance_with_consequential_database(
+    datasets: List[dict], blacklist: List[dict]
+):
+    """
+    Check whether the datasets to import are compliant with the consequential database.
+
+    :param datasets: list of datasets to import
+    :param blacklist: list of datasets that are not in the consequential database
+    :return: list of datasets that are compliant with the consequential database
+
+    """
+    # if system model is `consequential`` there is a
+    # number of datasets we do not want to import
+
+    tuples_of_blacklisted_datasets = [
+        (i["name"], i["reference product"], i["unit"]) for i in blacklist
+    ]
+
+    datasets = [
+        d
+        for d in datasets
+        if (d["name"], d["reference product"], d["unit"])
+        not in tuples_of_blacklisted_datasets
+    ]
+
+    # also, we want to change exchanges that do not
+    # exist in the consequential LCA database
+    # and change them for the consequential equivalent
+
+    for ds in datasets:
+        for exchange in ds["exchanges"]:
+            if exchange["type"] == "technosphere":
+                exc_id = (
+                    exchange["name"],
+                    exchange.get("reference product"),
+                    exchange["unit"],
+                )
+
+                if exc_id in tuples_of_blacklisted_datasets:
+                    for d in blacklist:
+                        if exc_id == (d["name"], d.get("reference product"), d["unit"]):
+                            if "replacement" in d:
+                                exchange["name"] = d["replacement"]["name"]
+                                exchange["reference product"] = d["replacement"][
+                                    "reference product"
+                                ]
+                                exchange["location"] = d["replacement"]["location"]
+
+    return datasets
+
+
+def check_amount_format(database: list) -> list:
+    """
+    Check that the `amount` field is of type `float`.
+    :param database: database to check
+    :return: database with corrected amount field
+    """
+
+    for dataset in database:
+        for exc in dataset["exchanges"]:
+            if not isinstance(exc["amount"], float):
+                exc["amount"] = float(exc["amount"])
+
+            if isinstance(exc["amount"], (np.float64, np.ndarray)):
+                exc["amount"] = float(exc["amount"])
+
+        for k, v in dataset.items():
+            if isinstance(v, dict):
+                for i, j in v.items():
+                    if isinstance(j, (np.float64, np.ndarray)):
+                        v[i] = float(v[i])
+
+        for e in dataset["exchanges"]:
+            for k, v in e.items():
+                if isinstance(v, (np.float64, np.ndarray)):
+                    e[k] = float(e[k])
+
+    return database
+
+
+def check_uncertainty_data(data, filename):
+    MANDATORY_UNCERTAINTY_FIELDS = {
+        2: {"loc", "scale"},
+        3: {"loc", "scale"},
+        4: {"minimum", "maximum"},
+        5: {"loc", "minimum", "maximum"},
+        6: {"loc", "minimum", "maximum"},
+        7: {"minimum", "maximum"},
+        8: {"loc", "scale", "shape"},
+        9: {"loc", "scale", "shape"},
+        10: {"loc", "scale", "shape"},
+        11: {"loc", "scale", "shape"},
+        12: {"loc", "scale", "shape"},
+    }
+
+    rows = []
+
+    for dataset in data:
+        for exc in dataset["exchanges"]:
+            if exc["type"] in ["technosphere", "biosphere"]:
+                if "uncertainty type" not in exc:
+                    exc["uncertainty type"] = 0
+
+                if exc["uncertainty type"] not in {0, 1}:
+                    if not all(
+                        f in exc
+                        for f in MANDATORY_UNCERTAINTY_FIELDS[exc["uncertainty type"]]
+                    ):
+                        rows.append(
+                            [
+                                dataset["name"][:30],
+                                exc["name"][:30],
+                                exc["uncertainty type"],
+                                [
+                                    f
+                                    for f in MANDATORY_UNCERTAINTY_FIELDS[
+                                        exc["uncertainty type"]
+                                    ]
+                                    if f not in exc
+                                ],
+                            ]
+                        )
+    if len(rows) > 0:
+        print(
+            f"the following exchanges from {filename} are missing uncertainty information:"
+        )
+        table = PrettyTable()
+        table.field_names = ["Name", "Exchange", "Uncertainty type", "Missing param."]
+        table.add_rows(rows)
+        print(table)
+
+
 class BaseInventoryImport:
     """
     Base class for inventories that are to be merged with the wurst database.
@@ -140,6 +297,8 @@ class BaseInventoryImport:
         version_in: str,
         version_out: str,
         path: Union[str, Path],
+        system_model: str,
+        keep_uncertainty_data: bool = False,
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
@@ -149,9 +308,13 @@ class BaseInventoryImport:
         ]
         self.version_in = version_in
         self.version_out = version_out
-        self.biosphere_dict = get_biosphere_code()
-        self.outdated_flows = get_outdated_flows()
+        self.biosphere_dict = get_biosphere_code(self.version_out)
+        self.correspondence_bio_flows = get_correspondence_bio_flows()
+        self.system_model = system_model
+        self.consequential_blacklist = get_consequential_blacklist()
         self.list_unlinked = []
+        self.keep_uncertainty_data = keep_uncertainty_data
+        self.path = path
 
         if "http" in str(path):
             r = requests.head(path)
@@ -163,13 +326,13 @@ class BaseInventoryImport:
                     f"The inventory file {path} could not be found."
                 )
 
-        self.path = path
-
-        self.import_db = self.load_inventory(path)
+        self.path = Path(path) if isinstance(path, str) else path
+        self.import_db = self.load_inventory()
 
         # register migration maps
-        # as imported inventories link to different ecoinvent versions
-        ei_versions = ["35", "36", "37", "38"]
+        # as imported inventories link
+        # to different ecoinvent versions
+        ei_versions = ["35", "36", "37", "38", "39"]
 
         for combination in itertools.product(ei_versions, ei_versions):
             if combination[0] != combination[1]:
@@ -180,10 +343,9 @@ class BaseInventoryImport:
                         description=f"Change technosphere names due to change from {combination[0]} to {combination[1]}",
                     )
 
-    def load_inventory(self, path: Union[str, Path]) -> None:
+    def load_inventory(self) -> None:
         """Load an inventory from a specified path.
         Sets the :attr:`import_db` attribute.
-        :param str path: Path to the inventory file
         :returns: Nothing.
         """
         return None
@@ -230,7 +392,7 @@ class BaseInventoryImport:
                 name = self.path.name
 
             for dataset in already_exist:
-                table.add_row([dataset[0][:50], dataset[1][:30], dataset[2], name])
+                table.add_row([dataset[0][:30], dataset[1][:30], dataset[2], name[:30]])
 
             print(table)
 
@@ -291,6 +453,52 @@ class BaseInventoryImport:
                         results.append(ex)
         return results
 
+    def check_units(self) -> None:
+        """
+        Check that the units of the exchanges are compliant
+        with the ecoinvent database.
+        :returns: Nothing
+        """
+
+        ALLOWED_UNITS = [
+            "kilogram",
+            "cubic meter",
+            "cubic meter-year",
+            "kilowatt hour",
+            "kilometer",
+            "ton kilometer",
+            "ton-kilometer",
+            "megajoule",
+            "unit",
+            "square meter",
+            "kilowatt hour",
+            "square meter-year",
+            "meter",
+            "vehicle-kilometer",
+            "person-kilometer",
+            "person kilometer",
+            "passenger-kilometer",
+            "meter-year",
+            "kilo Becquerel",
+            "kilogram day",
+            "kg*day",
+            "hectare",
+            "kilometer-year",
+            "litre",
+            "guest night",
+            "Sm3",
+            "standard cubic meter",
+            "hour",
+        ]
+
+        for dataset in self.import_db.data:
+            for exchange in dataset["exchanges"]:
+                if exchange["unit"] not in ALLOWED_UNITS:
+                    raise ValueError(
+                        f"The unit {exchange['unit']} is not allowed in the ecoinvent database."
+                        f"Please check the exchange {exchange} in the dataset {dataset['name']}."
+                    )
+
     def add_product_field_to_exchanges(self) -> None:
         """Add the `product` key to the production and
         technosphere exchanges in :attr:`import_db`.
@@ -303,7 +511,6 @@ class BaseInventoryImport:
         """
         # Add a `product` field to the production exchange
         for dataset in self.import_db.data:
-
             for exchange in dataset["exchanges"]:
                 if exchange["type"] == "production":
                     if "product" not in exchange:
@@ -314,12 +521,18 @@ class BaseInventoryImport:
 
         # Add a `product` field to technosphere exchanges
         for dataset in self.import_db.data:
-
             for exchange in dataset["exchanges"]:
                 if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
                     if not "product" in exchange:
-                        exchange["product"] = self.correct_product_field(exchange)
+                        exchange["product"] = self.correct_product_field(
+                            (
+                                exchange["name"],
+                                exchange["location"],
+                                exchange["unit"],
+                                exchange.get("reference product", None),
+                            )
+                        )
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
@@ -328,14 +541,22 @@ class BaseInventoryImport:
                         try:
                             assert exchange["product"] == exchange["reference product"]
                         except AssertionError:
-                            exchange["product"] = self.correct_product_field(exchange)
+                            exchange["product"] = self.correct_product_field(
+                                (
+                                    exchange["name"],
+                                    exchange["location"],
+                                    exchange["unit"],
+                                    exchange.get("reference product", None),
+                                )
+                            )
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:
             if "code" not in dataset:
                 dataset["code"] = str(uuid.uuid4().hex)
 
-    def correct_product_field(self, exc: dict) -> str:
+    @lru_cache
+    def correct_product_field(self, exc: tuple) -> [str, None]:
         """
         Find the correct name for the `product` field of the exchange
         :param exc: a dataset exchange
@@ -346,23 +567,23 @@ class BaseInventoryImport:
         candidate = next(
             ws.get_many(
                 self.import_db.data,
-                ws.equals("name", exc["name"]),
-                ws.equals("location", exc["location"]),
-                ws.equals("unit", exc["unit"]),
+                ws.equals("name", exc[0]),
+                ws.equals("location", exc[1]),
+                ws.equals("unit", exc[2]),
             ),
             None,
         )
 
         # If not, look in the ecoinvent inventories
         if candidate is None:
-            if "reference product" in exc:
+            if exc[-1] is not None:
                 candidate = next(
                     ws.get_many(
                         self.database,
-                        ws.equals("name", exc["name"]),
-                        ws.equals("reference product", exc["reference product"]),
-                        ws.equals("location", exc["location"]),
-                        ws.equals("unit", exc["unit"]),
+                        ws.equals("name", exc[0]),
+                        ws.equals("location", exc[1]),
+                        ws.equals("unit", exc[2]),
+                        ws.equals("reference product", exc[-1]),
                     ),
                     None,
                 )
@@ -370,9 +591,9 @@ class BaseInventoryImport:
                 candidate = next(
                     ws.get_many(
                         self.database,
-                        ws.equals("name", exc["name"]),
-                        ws.equals("location", exc["location"]),
-                        ws.equals("unit", exc["unit"]),
+                        ws.equals("name", exc[0]),
+                        ws.equals("location", exc[1]),
+                        ws.equals("unit", exc[2]),
                     ),
                     None,
                 )
@@ -382,87 +603,116 @@ class BaseInventoryImport:
 
         self.list_unlinked.append(
             (
-                exc["name"],
-                exc.get("reference product"),
-                exc.get("location"),
-                exc.get("categories"),
-                exc["unit"],
-                exc["type"],
+                exc[0],
+                exc[-1],
+                exc[1],
+                None,
+                exc[2],
+                "technosphere",
+                self.path.name,
             )
         )
 
-        return exc["reference product"]
+        return None
 
-    def add_biosphere_links(self, delete_missing: bool = False) -> None:
+    def add_biosphere_links(self) -> None:
         """Add links for biosphere exchanges to :attr:`import_db`
         Modifies the :attr:`import_db` attribute in place.
 
-        :param delete_missing: whether unlinked exchanges should be deleted or not.
         """
         for x in self.import_db.data:
             for y in x["exchanges"]:
                 if y["type"] == "biosphere":
                     if isinstance(y["categories"], str):
                         y["categories"] = tuple(y["categories"].split("::"))
-                    if len(y["categories"]) > 1:
-                        try:
-                            key = (
-                                y["name"],
-                                y["categories"][0],
-                                y["categories"][1],
-                                y["unit"],
-                            )
-                            if key in self.biosphere_dict:
-                                y["input"] = (
-                                    "biosphere3",
-                                    self.biosphere_dict[key],
-                                )
-                            else:
-                                if key[0] in self.outdated_flows:
-                                    new_key = list(key)
-                                    new_key[0] = self.outdated_flows[key[0]]
-                                    y["input"] = (
-                                        "biosphere3",
-                                        self.biosphere_dict[tuple(new_key)],
-                                    )
-                                else:
-                                    if delete_missing:
-                                        y["flag_deletion"] = True
-                                    else:
-                                        print(
-                                            f"Could not find a biosphere flow for {key}"
-                                        )
 
-                        except KeyError:
-                            if delete_missing:
-                                y["flag_deletion"] = True
-                            else:
-                                raise
+                    if len(y["categories"]) > 1:
+                        key = (
+                            y["name"],
+                            y["categories"][0],
+                            y["categories"][1],
+                            y["unit"],
+                        )
                     else:
-                        try:
-                            y["input"] = (
-                                "biosphere3",
-                                self.biosphere_dict[
-                                    (
-                                        y["name"].strip(),
-                                        y["categories"][0].strip(),
-                                        "unspecified",
-                                        y["unit"].strip(),
-                                    )
-                                ],
+                        key = (
+                            y["name"],
+                            y["categories"][0].strip(),
+                            "unspecified",
+                            y["unit"],
+                        )
+
+                    if key not in self.biosphere_dict:
+                        if self.correspondence_bio_flows.get(key[1], {}).get(key[0]):
+                            new_key = list(key)
+                            new_key[0] = self.correspondence_bio_flows[key[1]][key[0]]
+                            key = tuple(new_key)
+                            assert (
+                                key in self.biosphere_dict
+                            ), f"Could not find a biosphere flow for {key}."
+                            y["name"] = new_key[0]
+                        else:
+                            print(key)
+                            continue
+
+                    y["input"] = (
+                        "biosphere3",
+                        self.biosphere_dict[key],
+                    )
+
+    def lower_case_technosphere_exchanges(self) -> None:
+        blakclist = [
+            "NOx",
+            "SOx",
+            "N-",
+            "EUR",
+            "Mannheim",
+        ]
+
+        for ds in self.import_db.data:
+            # lower case name and reference product
+            # only if they are not in the blacklist
+            # and if the first word is not an acronym
+            if (
+                not any(x in ds["name"] for x in blakclist)
+                and not ds["name"].split(" ")[0].isupper()
+            ):
+                ds["name"] = ds["name"][0].lower() + ds["name"][1:]
+            if (
+                not any(x in ds["reference product"] for x in blakclist)
+                and not ds["reference product"].split(" ")[0].isupper()
+            ):
+                ds["reference product"] = (
+                    ds["reference product"][0].lower() + ds["reference product"][1:]
+                )
+
+            for exc in ds["exchanges"]:
+                if exc["type"] in ["technosphere", "production"]:
+                    if (
+                        not any(x in exc["name"] for x in blakclist)
+                        and not exc["name"].split(" ")[0].isupper()
+                    ):
+                        exc["name"] = exc["name"][0].lower() + exc["name"][1:]
+
+                    if (
+                        not any(
+                            x in exc.get("reference product", "") for x in blakclist
+                        )
+                        and not exc.get("reference product", "").split(" ")[0].isupper()
+                    ):
+                        if exc.get("reference product") is not None:
+                            exc["reference product"] = (
+                                exc["reference product"][0].lower()
+                                + exc["reference product"][1:]
                             )
-                        except KeyError:
-                            if delete_missing:
-                                print(
-                                    f"The following biosphere exchange: "
-                                    f"{y['name']}, {y['categories'][0]}, unspecified, {y['unit']} "
-                                    f"in {x['name']}, {x['location']}"
-                                    f" cannot be found and will be deleted."
-                                )
-                                y["flag_deletion"] = True
-                            else:
-                                raise
-            x["exchanges"] = [ex for ex in x["exchanges"] if "flag_deletion" not in ex]
+
+                    if (
+                        not any(x in exc.get("product", "") for x in blakclist)
+                        and not exc.get("product", "").split(" ")[0].isupper()
+                    ):
+                        if exc.get("product") is not None:
+                            exc["product"] = (
+                                exc["product"][0].lower() + exc["product"][1:]
+                            )
 
     def remove_ds_and_modifiy_exchanges(self, name: str, ex_data: dict) -> None:
         """
@@ -505,6 +755,7 @@ class BaseInventoryImport:
             "Categories",
             "Unit",
             "Type",
+            "File",
         ]
         table.add_rows(list(set(self.list_unlinked)))
         print(table)
@@ -516,22 +767,58 @@ class DefaultInventory(BaseInventoryImport):
 
     """
 
-    def __init__(self, database, version_in, version_out, path):
-        super().__init__(database, version_in, version_out, path)
+    def __init__(
+        self,
+        database,
+        version_in,
+        version_out,
+        path,
+        system_model,
+        keep_uncertainty_data,
+    ):
+        super().__init__(
+            database, version_in, version_out, path, system_model, keep_uncertainty_data
+        )
 
-    def load_inventory(self, path: Union[str, Path]) -> bw2io.ExcelImporter:
-        return ExcelImporter(path)
+    def load_inventory(self) -> bw2io.ExcelImporter:
+        return ExcelImporter(self.path)
 
     def prepare_inventory(self) -> None:
-
         if self.version_in != self.version_out:
+            # if version_out is 3.9, migrate towards 3.8 first, then 3.9
+            if self.version_out in ["3.9", "3.9.1"]:
+                print("Migrating to 3.8 first")
+                if self.version_in != "3.8":
+                    self.import_db.migrate(
+                        f"migration_{self.version_in.replace('.', '')}_38"
+                    )
+                self.import_db.migrate(
+                    f"migration_38_{self.version_out.replace('.', '')}"
+                )
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
             )
 
+        if self.system_model == "consequential":
+            self.import_db.data = (
+                check_for_datasets_compliance_with_consequential_database(
+                    self.import_db.data, self.consequential_blacklist
+                )
+            )
+
         self.import_db.data = remove_categories(self.import_db.data)
+
+        self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        self.check_units()
+
+        # Remove uncertainty data
+        if not self.keep_uncertainty_data:
+            print("Remove uncertainty data.")
+            self.database = remove_uncertainty(self.database)
+        else:
+            check_uncertainty_data(self.import_db.data, filename=Path(self.path).stem)
 
         # Check for duplicates
         self.check_for_already_existing_datasets()
@@ -571,8 +858,9 @@ class VariousVehicles(BaseInventoryImport):
         vehicle_type: str,
         relink: bool = False,
         has_fleet: bool = False,
+        system_model: str = "cutoff",
     ) -> None:
-        super().__init__(database, version_in, version_out, path)
+        super().__init__(database, version_in, version_out, path, system_model)
         self.year = year
         self.regions = regions
         self.model = model
@@ -582,26 +870,33 @@ class VariousVehicles(BaseInventoryImport):
         self.has_fleet = has_fleet
         self.geo = Geomap(model=model)
 
-    def load_inventory(self, path):
-        return ExcelImporter(path)
+    def load_inventory(self):
+        return ExcelImporter(self.path)
 
     def prepare_inventory(self):
-        # initially links to ei37
-        if self.version_in != self.version_out:
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
+        # if version_out is 3.9, migrate towards 3.8 first, then 3.9
+        if self.version_out in ["3.9", "3.9.1"]:
+            print("Migrating to 3.8 first")
+            if self.version_in != "3.8":
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_38"
+                )
+            self.import_db.migrate(f"migration_38_{self.version_out.replace('.', '')}")
+        self.import_db.migrate(
+            f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+        )
 
+        self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_already_existing_datasets()
 
+        if self.list_unlinked:
+            self.display_unlinked_exchanges()
+
     def merge_inventory(self):
-
         self.database.extend(self.import_db.data)
-
-        print("Done!")
 
         return self.database
 
@@ -611,20 +906,16 @@ class AdditionalInventory(BaseInventoryImport):
     Import additional inventories, if any.
     """
 
-    def __init__(self, database, version_in, version_out, path):
-        super().__init__(database, version_in, version_out, path)
+    def __init__(self, database, version_in, version_out, path, system_model):
+        super().__init__(database, version_in, version_out, path, system_model)
 
-    def load_inventory(self, path):
-
-        if "http" in path:
-            # online file
-            # we need to save it locally first
-            response = requests.get(path)
-            Path(DATA_DIR / "cache").mkdir(parents=True, exist_ok=True)
-            path = str(Path(DATA_DIR / "cache" / "temp.csv"))
-            with open(path, "w", encoding="utf-8") as f:
+    def download_file(self, url, local_path) -> None:
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            with open(local_path, "w", encoding="utf-8") as file:
                 writer = csv.writer(
-                    f,
+                    file,
                     quoting=csv.QUOTE_NONE,
                     delimiter=",",
                     quotechar="'",
@@ -632,95 +923,58 @@ class AdditionalInventory(BaseInventoryImport):
                 )
                 for line in response.iter_lines():
                     writer.writerow(line.decode("utf-8").split(","))
+        except requests.RequestException as e:
+            raise ConnectionError(f"Error downloading the file: {e}") from e
 
-        if Path(path).suffix == ".xlsx":
-            return ExcelImporter(path)
-        elif Path(path).suffix == ".csv":
-            return CSVImporter(path)
+    def load_inventory(self):
+        path_str = str(self.path)
+
+        if "http" in path_str:
+            if ":/" in path_str and "://" not in path_str:
+                path_str = path_str.replace(":/", "://")
+            self.download_file(path_str, TEMP_CSV_FILE)
+            file_path = TEMP_CSV_FILE
         else:
-            raise ValueError(
-                "Incorrect filetype for inventories." "Should be either .xlsx or .csv"
-            )
+            file_path = self.path
 
-    def remove_missing_fields(self):
-        """
-        Remove any field that does not have information.
-        """
+        if file_path.suffix == ".xlsx":
+            return ExcelImporter(file_path)
+        if file_path.suffix == ".csv":
+            return CSVImporter(file_path)
 
-        for dataset in self.import_db.data:
-            for key, value in list(dataset.items()):
-                if not value:
-                    del dataset[key]
+        raise ValueError(
+            "Incorrect filetype for inventories. Should be either .xlsx or .csv"
+        )
 
     def prepare_inventory(self):
+        if str(self.version_in) != self.version_out:
+            # if version_out is 3.9, migrate towards 3.8 first, then 3.9
+            if self.version_out in ["3.9", "3.9.1"]:
+                if str(self.version_in) != "3.8":
+                    print("Migrating to 3.8 first")
+                    self.import_db.migrate(
+                        f"migration_{self.version_in.replace('.', '')}_38"
+                    )
+                self.import_db.migrate(
+                    f"migration_38_{self.version_out.replace('.', '')}"
+                )
 
-        if self.version_in != self.version_out:
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
             )
-            print(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
 
-        list_missing_prod = self.search_missing_exchanges(
-            label="type", value="production"
-        )
-
-        if len(list_missing_prod) > 0:
-            print("The following datasets are missing a `production` exchange.")
-            print("You should fix those before proceeding further.\n")
-            table = PrettyTable(
-                ["Name", "Reference product", "Location", "Unit", "File"]
-            )
-            for dataset in list_missing_prod:
-                table.add_row(
-                    [
-                        dataset.get("name", "XXXX"),
-                        dataset.get("referece product", "XXXX"),
-                        dataset.get("location", "XXXX"),
-                        dataset.get("unit", "XXXX"),
-                        self.path.name,
-                    ]
+        if self.system_model == "consequential":
+            self.import_db.data = (
+                check_for_datasets_compliance_with_consequential_database(
+                    self.import_db.data, self.consequential_blacklist
                 )
-
-            print(table)
-
-            sys.exit()
-
-        self.add_biosphere_links(delete_missing=True)
-        list_missing_ref = self.search_missing_field(field="name")
-        list_missing_ref.extend(self.search_missing_field(field="reference product"))
-        list_missing_ref.extend(self.search_missing_field(field="location"))
-        list_missing_ref.extend(self.search_missing_field(field="unit"))
-
-        if len(list_missing_ref) > 0:
-            print(
-                "The following datasets are missing an important field "
-                "(`name`, `reference product`, `location` or `unit`).\n"
             )
 
-            print("You should fix those before proceeding further.\n")
-            table = PrettyTable(
-                ["Name", "Reference product", "Location", "Unit", "File"]
-            )
-            for dataset in list_missing_ref:
-                table.add_row(
-                    [
-                        dataset.get("name", "XXXX"),
-                        dataset.get("referece product", "XXXX"),
-                        dataset.get("location", "XXXX"),
-                        dataset.get("unit", "XXXX"),
-                        self.path.name,
-                    ]
-                )
-
-            print(table)
-
-        if len(list_missing_prod) > 0 or len(list_missing_ref) > 0:
-            sys.exit()
-
-        self.remove_missing_fields()
+        self.import_db.data = remove_categories(self.import_db.data)
+        self.lower_case_technosphere_exchanges()
+        self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+
         # Check for duplicates
         self.check_for_already_existing_datasets()
         self.import_db.data = check_for_duplicate_datasets(self.import_db.data)

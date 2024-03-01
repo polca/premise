@@ -1,57 +1,71 @@
 EXTRACT
 =======
 
-The EXTRACT phase consists of the following steps:
+The **EXTRACT** phase consists of the following steps:
 
-* extraction and cleaning of the ecoinvent database
-* import and cleaning of additional inventories
-* import and cleaning of user-provided inventories (optional)
-* loading of IAM data
+* Extraction and cleaning of the ecoinvent database
+* Import and cleaning of additional inventories
+* Import and cleaning of user-provided inventories (optional)
+* Caching, if these database and inventories are imported for the first time
+* Loading of IAM data
 
 Current IAM scenarios
 """""""""""""""""""""
 
-*premise* comes with a number of IAM scenarios. It is however
-possible to use other scenarios. Scenarios are defined in
-*premise" by their Shared Socio-economic Pathway (SSP), as well
-as their climate trajectory, often represented by a Representative
-Concentration Pathway (RCP).
+*premise* includes several Integrated Assessment Model (IAM) scenarios,
+but you can also use other scenarios.
+In *premise*, scenarios are defined by their Shared Socio-economic
+Pathway (SSP), a climate trajectory—often represented by a Representative
+Concentration Pathway (RCP)—and a year (e.g., SSP1, Base, 2035).
 
-**IMAGE** scenarios:
 
-* **SSP2-Base**: worst-case scenario. Reaching 6.5 W/m2 by 2100, translating into an atmospheric temperature increase of 3.5 C relative ot pre-industrial levels.
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP/RCP scenario | GMST increase by 2100 | Society/economy trend                                                              | Climate policy                              | REMIND          | IMAGE      |
++==================+=======================+====================================================================================+=============================================+=================+============+
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-None        | 2.3-2.8 °C            | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       | SSP1-Base  |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-None        | ~2.2 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | National Policies Implemented (NPI).        | SSP1-NPi        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-None        | ~1.9 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Nationally Determined Contributions (NDCs). | SSP1-NDC        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg1150 |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP1-RCP1.9      | ~1.3 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg500  |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-None        | ~3.5 °C               | Extrapolation from historical developments.                                        | None (eq. to RCP6)                          | SSP2-Base       | SSP2-Base  |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-None        | ~3.3 °C               | Extrapolation from historical developments.                                        | National Policies Implemented (NPI).        | SSP2-NPi        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-None        | ~2.5 °C               | Extrapolation from historical developments.                                        | Nationally Determined Contributions (NDCs). | SSP2-NDC        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-RCP2.6      | 1.6-1.8 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg1150 | SSP2-RCP26 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP2-RCP1.9      | 1.2-1.4 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg500  | SSP2-RCP19 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-None        | ~4.5 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | None                                        | SSP5-Base       |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-None        | ~4.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | National Policies Implemented (NPI).        | SSP5-NPi        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-None        | ~3.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Nationally Determined Contributions (NDCs). | SSP5-NDC        |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg1150 |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
+| SSP5-RCP1.9      | ~1.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg500  |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
 
-* **SSP2-RCP26**: compliant with the soft targets of the Paris Agreement, reaching 2.6 W/m2 by 2100, or an atmospheric temperature increase of 1.8-2 C relative to pre-industrial levels.
-
-* **SSP2-RCP19**: compliant with the hard targets of the Paris Agreement, reaching 1.9 W/m2 by 2100, or an atmospheric temperature increase of 1.5 C relative to pre-industrial levels.
-
-**REMIND** scenarios:
-
-* **SSP2-Base**: worst-case scenario, with a representative concentration pathway (RCP) equivalent to RCP6.5, or 6.5 W/m2, translating into an atmospheric temperature increase of 3.5 C relative to pre-industrial levels. This scenario is worst-case, which even witnesses a roll-back of renewables and should probably not be used as a baseline.
-
-* **SSP2-NDC**: Current Nationally-determined Contributions implemented by the parties of the Paris Agreement. Currently not enough to reach the soft targets of the Paris Agreement. Can be considered a **baseline**.
-
-* **SSP2-NPI**: National Policies implemented. This scenario describes energy, climate and economic projections for the period until 2030, and equivalent efforts thereafter.
-
-* **SSP2-PkBudg1150**: CO2 emissions peak at 1150 Gt. Scenario compliant with the soft targets of the Paris Agreement, with a representative concentration pathway (RCP) equivalent to RCP2.6, or 2.6 W/m2, or an atmospheric temperature increase of 1.8-2 C relative to pre-industrial levels.
-
-* **SSP2-PkBudg500**: CO2 emissions peak at 500 Gt. Scenario compliant with the hard targets of the Paris Agreement, with a representative concentration pathway (RCP) equivalent to RCP1.9, or 1.9 W/m2, or an atmospheric temperature increase of 1.5 C relative to pre-industrial levels.
 
 .. note::
 
-    After the extraction phase (NewDatabase()), the user can
-    generate a summary report of the main variables of the scenario
-    in the database. This report is generated by the function
+    A summary report of the main variables of the scenarios
+    selected is generated automatically after each database export.
+    There is also an `online dashboard <https://premisedash-6f5a0259c487.herokuapp.com/>`_.
+    You can also generate it manually:
 
 .. python::
 
     ndb = NewDatabase(...)
     ndb.generate_scenario_report()
-
-.. warning::
-
-    Starting v.1.2, scenarios from REMIND v.2.1 (e.g., PkBudg1300, PkBudg900) are no longer available.
-    From v.1.2 on, scenarios from REMIND v.3 are available instead.
 
 
 Supported versions of ecoinvent
@@ -63,10 +77,9 @@ Supported versions of ecoinvent
 * v.3.6, cut-off
 * v.3.7, cut-off
 * v.3.7.1, cut-off
-* v.3.8, cut-off
+* **v.3.8, cut-off and consequential**
+* **v.3.9/3.9.1, cut-off and consequential**
 
-Work is being carried out to develop compatibility with the *consequential*
-version of the ecoinvent database.
 
 Supported sources of ecoinvent
 """"""""""""""""""""""""""""""
@@ -79,6 +92,14 @@ Supported sources of ecoinvent
 .. _ecoinvent: https://ecoinvent.org
 .. _brightway2: https://brightway.dev/
 
+
+.. note::
+
+        The ecoinvent database is not included in *premise*.
+        You need to have a valid license to download and use it.
+        Also, please read carefully ecoinvent's EULA_ before using *premise*.
+
+.. _EULA: https://ecoinvent.org/app/uploads/2024/01/EULA_new_branding_08_11_2023.pdf
 
 
 From a brightway2 project
@@ -100,7 +121,9 @@ indicate the database name in `source_db` and its version in `source_version`:
             ],
         source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
         source_version="3.7.1", # <-- this is NEW
-        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx',
+        use_multiprocessing=True, # True by default, set to False if multiprocessing is causing troubles
+        keep_uncertainty_data=False # False by default, set to True if you want to keep ecoinvent's uncertainty data
     )
 
 Note that a cache of the database will be created the first time and
@@ -120,14 +143,16 @@ If you wish to clear that cache folder, do:
 
     It is recommended to restart your notebook once
     the data has been cached for the first time, so that
-    the remaining steps can be performed using the cached data.
+    the remaining steps can be performed using the
+    cached data (much faster).
 
 
 From ecospold2 files
 --------------------
 
-To extract from a set of ecospold2 files, you need to point to the location of those files
-in `source_file_path`, as well as indicate the database format in `source_type`:
+To extract from a set of ecospold2 files, you need to point to the location of
+those files in `source_file_path`, as well as indicate the database format in
+`source_type`:
 
 .. code-block:: python
 
@@ -145,7 +170,7 @@ in `source_file_path`, as well as indicate the database format in `source_type`:
 Import of additional inventories
 """"""""""""""""""""""""""""""""
 
-After the ecoinvent database is extracted and checked, a number of additional invenotries
+After the ecoinvent database is extracted and checked, a number of additional inventories
 are imported, regardless of the year of scenario that is being considered.
 
 
@@ -158,9 +183,9 @@ ecoinvent are imported. The next sub-sections lists such datasets.
 Power plants with CCS
 *********************
 
-Datasets for power generation with Carbon Capture and Storage are imported.
+Datasets for power generation with Carbon Capture and Storage (CCS) are imported.
 They originate from Volkart_ et al. 2013, and can be consulted here: LCI_Power_generation_.
-An exception to this are the inventories for biomass-based integrated gasification combined cycle power plants,
+An exception to this are the inventories for biomass-based integrated gasification combined cycle power plants (BIGCCS),
 which are from Briones-Hidrovo_ et al, 2020.
 
 .. _Volkart: https://doi.org/10.1016/j.ijggc.2013.03.003
@@ -259,6 +284,10 @@ The table below lists the names of the new activities (only high pressure datase
   natural gas, at production    US
  ============================= ===========
 
+.. note::
+
+    This import does not occur when using ecoinvent v.3.9
+    as those dataset updates are already included.
 
 Photovoltaic panels
 *******************
@@ -512,6 +541,8 @@ Hydrogen
 * Coal gasification
 * Coal gasification, with Carbon Capture and Storage
 * Electrolysis
+* Thermochemical water splitting
+* Pyrolysis
 
 Inventories using Steam Methane Reforming are from Antonini_ et al. 2021.
 They can be consulted here: LCI_SMR_.
@@ -522,14 +553,20 @@ They can be consulted here: LCI_woody_.
 Inventories using coal gasification are from Wokaun_ et al. 2015, but updated
 with Li_ et al. 2022, which also provide an option with CCS.
 They can be consulted here: LCI_coal_.
-Inventories using electrolysis are from Bareiss_ et al. 2019.
+Inventories using electrolysis are from Niklas Gerloff_. 2021.
 They can be consulted here: LCI_electrolysis_.
+Inventories for thermochemical water splitting are from Zhang2_ et al. 2022.
+Inventories for pyrolysis are from Al-Qahtani_ et al. 2021, completed with
+data from Postels_ et al., 2016.
 
 .. _Antonini: https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00222d
 .. _Antonini2: https://pubs.rsc.org/en/Content/ArticleLanding/2021/SE/D0SE01637C
 .. _Wokaun: https://www.cambridge.org/core/books/transition-to-hydrogen/43144AF26ED80E7106B675A6E83B1579
 .. _Li: https://doi.org/10.1016/j.jclepro.2022.132514
-.. _Bareiss: https://www.sciencedirect.com/science/article/pii/S0306261919300017
+.. _Gerloff: https://doi.org/10.1016/j.est.2021.102759
+.. _Zhang2: https://doi.org/10.1016/j.ijhydene.2022.02.150
+.. _Al-Qahtani: https://doi.org/10.1016/j.apenergy.2020.115958
+.. _Postels: https://doi.org/10.1016/j.ijhydene.2016.09.167
 .. _LCI_SMR: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
 .. _LCI_ATR: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-smr-atr-natgas.xlsx
 .. _LCI_woody: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
@@ -552,7 +589,12 @@ The new datasets introduced are listed in the table below (only production datas
   hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant    CH
   hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant              CH
   hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant                             RER
-  hydrogen production, gaseous, 25 bar, from electrolysis                                                                                 RER
+  hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity                                                      RER
+  hydrogen production, gaseous, 20 bar, from AEC electrolysis, from grid electricity                                                      RER
+  hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity                                                      RER
+  hydrogen production, gaseous, 1 bar, from SOEC electrolysis, with steam input, from grid electricity                                    RER
+  hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at solar tower                                               RER
+  hydrogen production, gaseous, 100 bar, from methane pyrolysis                                                                           RER
  ======================================================================================================================================= ===========
 
 Hydrogen storage and distribution
@@ -568,7 +610,6 @@ They are necessary to model the distribution of hydrogen:
 * via truck, in a liquid state
 * hydrogen refuelling station
 
-
 Small and large storage solutions are also provided:
 * high pressure hydrogen storage tank
 * geological storage tank
@@ -583,10 +624,11 @@ The datasets introduced are listed in the table below.
  ================================================================== ===========
   Hydrogen distribution                                              location
  ================================================================== ===========
-  Hydrogen refuelling station                                        GLO
+  hydrogen refuelling station                                        GLO
   high pressure hydrogen storage tank                                GLO
-  distribution pipeline for hydrogen, dedicated hydrogen pipeline    RER
-  transmission pipeline for hydrogen, dedicated hydrogen pipeline    RER
+  pipeline, hydrogen, low pressure distribution network              RER
+  compressor assembly for transmission hydrogen pipeline             RER
+  pipeline, hydrogen, high pressure transmission network             RER
   zinc coating for hydrogen pipeline                                 RER
   hydrogenation of hydrogen                                          RER
   dehydrogenation of hydrogen                                        RER
@@ -603,12 +645,24 @@ The datasets introduced are listed in the table below.
 .. _LCI_H2_distr: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-distribution.xlsx
 .. _Cerniauskas: https://doi.org/10.1016/j.ijhydene.2020.02.121
 
+
+Hydrogen turbine
+****************
+
+A dataset for a hydrogen turbine is also imported, to model the production of electricity
+from hydrogen, with an efficiency of 51%. The efficiency of the H2-fed gas turbine is based
+on the parameters of Ozawa_ et al. (2019), accessible here: LCI_H2_turbine_.
+
+.. _Ozawa: https://doi.org/10.1016/j.ijhydene.2019.02.230
+.. _LCI_H2_turbine: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-turbine.xlsx
+
+
 Biofuels
 --------
 
 Inventories for energy crops- and residues-based production of bioethanol and biodiesel
-are imported, and can be consulted here: LCI_biofuels_. They include the farming of the crop,
-the conversion of hte biomass to fuel, as well as its distribution. The conversion process
+are imported, and can be accessed here: LCI_biofuels_. They include the farming of the crop,
+the conversion of the biomass to fuel, as well as its distribution. The conversion process
 often leads to the production of co-products (dried distiller's grain, electricity, CO2, bagasse.).
 Hence, energy, economic and system expansion partitioning approaches are available.
 These inventories originate from several different sources
@@ -689,8 +743,8 @@ Synthetic fuels
 following two pathways:
 
 * *Fischer-Tropsch*: it uses hydrogen and CO (from CO2 via a reverse water gas
-  shift process) to produce syncrude, which is cracked into diesel, kerosene,
-  naphtha and lubricating oil. Inventories are from van der Giesen_ et al. 2014.
+  shift process) to produce "syncrude", which is distilled into diesel, kerosene,
+  naphtha and lubricating oil and waxes. Inventories are from van der Giesen_ et al. 2014.
 * *Methanol-to-liquids*: methanol is synthesized from hydrogen and CO2, and further
   distilled into gasoline, diesel, LGP and kerosene. Synthetic methanol inventories
   are from Hank_ et al. 2019. The methanol to fuel process specifications are from
@@ -760,38 +814,56 @@ reflect the fact that part of the CO2 has not been emitted but has ended in the 
 in the fuel instead of being stored underground, which from a carbon accounting standpoint is
 similar.
 
-Direct Air Capture
-------------------
+Carbon Capture
+--------------
 
-Inventories for direct air capture of CO2 using ClimeWork's low-temperature
-process are imported. They originate from the work of Terlouw_ et al. 2021.
+Two sets of inventories for Direct Air Capture (DAC) are available in *premise*.
+One for a solvent-based system, and one for a sorbent-based system. The inventories
+were developed by Qiu_ and are available in the LCI_DAC_ spreadsheet. For each,
+a variant including the subsequent compression, transport and storage of the
+captured CO2 is also available.
+
 They can be consulted here: LCI_DAC_.
 
-.. _Terlouw: https://pubs.acs.org/doi/10.1021/acs.est.1c03263
+.. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 .. _LCI_DAC: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-direct-air-capture.xlsx
+
+Additional, two datasets for carbon capture at point sources are available:
+one at cement plant from Meunier_ et al, 2020, and another one at municipal solid waste incineration plant (MSWI)
+from Bisinella_ et al, 2021.
+
+.. _Meunier: https://doi.org/10.1016/j.renene.2019.07.010
+.. _Bisinella: https://doi.org/10.1016/j.wasman.2021.04.046
 
 They introduce the following datasets:
 
+ =============================================================================================================== ===========
+  Activity                                                                                                         Location
+ =============================================================================================================== ===========
+  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2               RER
+  carbon dioxide, captured from atmosphere and stored, with a sorbent-based direct air capture system, 100ktCO2    RER
+  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2                 RER
+  carbon dioxide, captured from atmosphere and stored, with a solvent-based direct air capture system, 1MtCO2      RER
+  carbon dioxide, captured at municipal solid waste incineration plant, for subsequent reuse                       RER
+  carbon dioxide, captured at cement production plant, for subsequent reuse                                        RER
+ =============================================================================================================== ===========
 
- ================================================================================== ===========
-  Activity                                                                           Location
- ================================================================================== ===========
-  carbon dioxide, captured from the atmosphere                                       RER
- ================================================================================== ===========
+Using the transformation function `update("dac")`, *premise* creates various configurations of these processes,
+using different sources for heat (industrial steam heat, high-temp heat
+pump heat and excess heat), which are found under the following names, for each IAM region:
 
-In its default configuration, the DAC process uses "free of burden" excess heat
-and grid-supplied electricity. *premise* creates various configurations of that
-same process, using different sources for heat (industrial steam heat, high-temp heat
-pump heat), which are found under the following names, for each IAM region:
+ ======================================================================================================================================================= ==================
+  name                                                                                                                                                      location
+ ======================================================================================================================================================= ==================
+  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity       all IAM regions
+  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity              all IAM regions
+  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity                all IAM regions
+  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity     all IAM regions
+  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity            all IAM regions
+ ======================================================================================================================================================= ==================
 
- ============================================================================================= ==================
-  name                                                                                          location
- ============================================================================================= ==================
-  carbon dioxide, captured from atmosphere, with heat pump heat, and grid electricity           all IAM regions
-  carbon dioxide, captured from atmosphere, with industrial steam heat, and grid electricity    all IAM regions
-  carbon dioxide, captured from atmosphere, with waste heat, and grid electricity               all IAM regions
- ============================================================================================= ==================
-
+Note that only solid sorbent DAC can use waste heat, as the heat requirement for liquid solvent DAC
+is too high (~900 C)
 
 Li-ion batteries
 ----------------
@@ -894,6 +966,41 @@ These inventories can be found here: LCI_lithium_.
 .. _LCI_cobalt: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-cobalt.xlsx
 .. _LCI_lithium: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-lithium.xlsx
 
+Vanadium Redox Flow Batteries
+-----------------------------
+
+*premise* imports inventories for the production of a vanadium redox flow battery, used
+for grid-balancing, from the work of Weber_ et al. 2021.
+It is available under the following dataset:
+
+* vanadium-redox flow battery system assembly, 8.3 megawatt hour
+
+The dataset providing electricity is the following:
+
+* electricity supply, high voltage, from vanadium-redox flow battery system
+
+The power capacity for this application is 1MW and the net storage capacity 6 MWh.
+The net capacity considers the internal inefficiencies of the batteries and the
+min Sate-of-Charge, requiring a certain oversizing of the batteries.
+For providing net 6 MWh, a nominal capacity of 8.3 MWh is required for the
+VRFB with the assumed operation parameters. The assumed lifetime of the stack
+is 10 years. The lifetime of the system is 20 years or 8176
+cycle-life (49,000 MWh).
+
+.. _Weber: https://doi.org/10.1021/acs.est.8b02073
+
+These inventories can be found here: LCI_vanadium_redox_flow_batteries_.
+
+.. _LCI_vanadium_redox_flow_batteries: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-vanadium-redox-flow-battery.xlsx
+
+This publication also provides LCIs for Vanadium mining and refining from iron ore.
+The end product is vanadium pentoxide, which is available under the following dataset:
+
+* vanadium pentoxide production
+
+These inventories can be found here: LCI_vanadium_.
+
+.. _LCI_vanadium: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-vanadium.xlsx
 
 Road vehicles
 -------------
@@ -951,19 +1058,6 @@ here: LCItwowheelers_.
 These inventories do not supply inputs to other activities in the LCI database.
 As such, they are optional.
 
-They can be excluded upon database creation by specifying it in
-`exclude`, like so:
-
-.. code-block:: python
-
-    ndb = NewDatabase(
-                scenarios=[
-                    {"model":"image", "pathway":"SSP2-Base", "year":2029, "exclude": ["update_two_wheelers"]}
-                ],
-                source_db="ecoinvent 3.8 cutoff",
-                source_version="3.8",
-                key='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    )
 
 Passenger cars
 **************
@@ -1232,7 +1326,7 @@ The following datasets for passenger cars are imported.
   transport, passenger car, diesel hybrid, Van, EURO-6d                           all IAM regions
  =============================================================================== ==================
 
-Inventories are from Sacchi2_ et al. 2022 (in review). The vehicles are available
+Inventories are from Sacchi2_ et al. 2022. The vehicles are available
 for different years and emission standards and for each IAM region. *premise* will only
 import vehicles which production year is equal or inferior to
 the scenario year considered. *premise* will create fleet average vehicles
@@ -1245,19 +1339,6 @@ here: LCIpasscars_.
 At the moment. these inventories do not supply inputs to other activities in the LCI database.
 As such, they are optional.
 
-They can be excluded upon database creation by specifying it in
-`exclude`, like so:
-
-.. code-block:: python
-
-    ndb = NewDatabase(
-                scenarios=[
-                    {"model":"image", "pathway":"SSP2-Base", "year":2029, "exclude": ["update_cars"]}
-                ],
-                source_db="ecoinvent 3.8 cutoff",
-                source_version="3.8",
-                key='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    )
 
 Medium and heavy duty trucks
 ****************************
@@ -1353,20 +1434,6 @@ here: LCItrucks_.
 .. _Sacchi3: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
 
 
-While these inventories do provide inputs to other activities in the LCI database,
-they can be excluded upon database creation by specifying it in
-`exclude`, like so:
-
-.. code-block:: python
-
-    ndb = NewDatabase(
-                scenarios=[
-                    {"model":"image", "pathway":"SSP2-Base", "year":2029, "exclude": ["update_trucks"]}
-                ],
-                source_db="ecoinvent 3.8 cutoff",
-                source_version="3.8",
-                key='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    )
 
 Buses
 *****
@@ -1460,19 +1527,6 @@ here: LCIbuses_.
 At the moment. these inventories do not supply inputs to other activities in the LCI database.
 As such, they are optional.
 
-They can be excluded upon database creation by specifying it in
-`exclude`, like so:
-
-.. code-block:: python
-
-    ndb = NewDatabase(
-                scenarios=[
-                    {"model":"image", "pathway":"SSP2-Base", "year":2029, "exclude": ["update_buses"]}
-                ],
-                source_db="ecoinvent 3.8 cutoff",
-                source_version="3.8",
-                key='xxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    )
 
 Migration between ecoinvent versions
 ------------------------------------
@@ -1606,8 +1660,8 @@ available in the library root folder: mappingFuels_.
   hydrogen, biomass                    SE|Hydrogen|Biomass|w/o CCS                                                                                               hydrogen supply, from gasification of biomass, by
   hydrogen, biomass, with CCS          SE|Hydrogen|Biomass|w/ CCS                                                                                                hydrogen supply, from gasification of biomass by heatpipe reformer, with CCS
   hydrogen, coal                       SE|Hydrogen|Coal|w/o CCS                                                                                                  hydrogen supply, from coal gasification, by truck, as gaseous, over 500 km
-  hydrogen, nat. gas                   SE|Hydrogen|Gas|w/o CCS                                                                                                   hydrogen supply, from SMR of nat. gas, by truck, as gaseous, over 500 km
-  hydrogen, nat. gas, with CCS         SE|Hydrogen|Gas|w/ CCS                                                                                                    hydrogen supply, from SMR of nat. gas, with CCS, by truck, as gaseous, over 500 km
+  hydrogen, from natural gas                   SE|Hydrogen|Gas|w/o CCS                                                                                                   hydrogen supply, from SMR of from natural gas, by truck, as gaseous, over 500 km
+  hydrogen, from natural gas, with CCS         SE|Hydrogen|Gas|w/ CCS                                                                                                    hydrogen supply, from SMR of from natural gas, with CCS, by truck, as gaseous, over 500 km
   biodiesel, oil                       SE|Liquids|Biomass|Biofuel|Biodiesel|w/o CCS    Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS    biodiesel production, via transesterification
   biodiesel, oil, with CCS                                                             Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/CCS     biodiesel production, via transesterification
   bioethanol, wood                     SE|Liquids|Biomass|Cellulosic|w/o CCS           Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS         ethanol production, via fermentation, from forest
@@ -1643,6 +1697,10 @@ The production volumes considered for a given scenario can be consulted, like so
 
     ndb.scenarios[0]["iam data"].production_volumes
 
+To have an updated overview of the mapping concenring all sectors,
+refer to this file: mapping_.
+
+.. _mapping: https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/mapping_overview.xlsx
 
 Efficiencies
 ------------
@@ -1827,7 +1885,7 @@ for photovoltaic panels.
 Air emissions
 *************
 
-*premise* relies on projections from the air emissions model GAINS_
+*premise* relies on projections from the air emissions models GAINS-EU_ and GAINS-IAM_
 to adjust the emissions of pollutants for different sectors.
 As with efficiencies, *premise* stores the change in emissions (called *scaling factor*)
 of a given technology relative to 2020. This is based on the fact that the emissions of
@@ -1837,83 +1895,21 @@ this means that the corresponding ecoinvent dataset is adjusted so that its emis
 of a given substance is improved by 20%. In other words, *premise* does not use
 the emissions level given by GAINS, but rather its change over time relative to 2020.
 
-.. _GAINS: https://gains.iiasa.ac.at/models/
+For more information about this step, refer to sub-section "GAINS emission factors" in the
+EXTRACT section.
 
+.. _GAINS-EU: https://gains.iiasa.ac.at/gains/EUN/index.login
+.. _GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
 
-The equivalence between the technology terminology in *premise* and GAINS
-are shown in the table below.
-
- ================== =====================
-  name in premise    name in GAINS
- ================== =====================
-  Biomass CHP        Power_Gen_Bio_Trad
-  Biomass CHP CCS    Power_Gen_Bio_Trad
-  Biomass ST         Power_Gen_Bio_Trad
-  Biomass IGCC CCS   Power_Gen_Bio_Trad
-  Biomass IGCC       Power_Gen_Bio_Trad
-  Coal PC            Power_Gen_Coal
-  Coal IGCC          Power_Gen_Coal
-  Coal PC CCS        Power_Gen_Coal
-  Coal IGCC CCS      Power_Gen_Coal
-  Coal CHP           Power_Gen_Coal
-  Coal CHP CCS       Power_Gen_Coal
-  Gas OC             Power_Gen_NatGas
-  Gas CC             Power_Gen_NatGas
-  Gas CHP            Power_Gen_NatGas
-  Gas CHP CCS        Power_Gen_NatGas
-  Gas CC CCS         Power_Gen_NatGas
-  Oil ST             Power_Gen_LLF
-  Oil CC             Power_Gen_LLF
-  Oil CC CCS         Power_Gen_LLF
-  Oil CHP            Power_Gen_LLF
-  Oil CHP CCS        Power_Gen_LLF
-  cement             CEMENT
-  steel - primary    STEEL
-  steel - secondary  STEEL
- ================== =====================
-
-The equivalence between the substance variables in GAINS and in the LCA biosphere
-are shown in the table below.
-
- ================ ====================================================================
-  name in GAINS    name in biosphere
- ================ ====================================================================
-  SO2              Sulfur dioxide
-  CO               Carbon monoxide, fossil
-  NOx              Nitrogen oxides
-  NH3              Ammonia
-  VOC              NMVOC, non-methane volatile organic compounds, unspecified origin
- ================ ====================================================================
-
-The *scaling factors* for non-CO2 emissions considered for a given scenario
-can be consulted like so:
-
-.. code-block:: python
-
-    ndb.scenarios[0]["iam data"].emissions
 
 Cement production
 *****************
 
-A number of parameters to model future clinker/cement production is not sourced from the
-IAM file, but from data from the GCCA_ database "Getting the Numbers Right", as well as
-from the IEA_ roadmap report for the cement industry.
+A number of parameters to model future clinker/cement production is sourced from the
+IAM file, such as:
 
-.. _GCCA: https://gccassociation.org/sustainability-innovation/gnr-gcca-in-numbers/
-.. _IEA: https://www.wbcsd.org/contentwbc/download/4586/61682/1
+* The expected change in fuel efficiency for clinker production.
 
-These two sources are combined and used to derive the following parameters:
-
-* share of kiln technology (wet, dry, wet with pre-heater, etc.)
-* fuel mix
-* heat recovery rate
-* electricity use
-
-This data is available here: GNRdata_.
-
-The expected change in fuel efficiency is based on IAM scenario projections.
-
-.. _GNRdata: https://github.com/polca/premise/blob/master/premise/data/cement/additional_data_GNR.csv
 
 Photovoltaic panels
 *******************

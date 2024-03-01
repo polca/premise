@@ -19,12 +19,12 @@ sys.path.insert(0, os.path.abspath(".."))
 
 project = "premise"
 copyright = (
-    "2022, Paul Scherrer Institut, Potsdam Institute for Climate Impact Research"
+    "2023, Paul Scherrer Institut, Potsdam Institute for Climate Impact Research"
 )
 author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "1.3.0"
+release = "2.0.0"
 
 # -- General configuration ---------------------------------------------------
 
@@ -34,18 +34,17 @@ release = "1.3.0"
 extensions = [
     "sphinx.ext.autodoc",  # Core library for html generation from docstrings
     "sphinx.ext.autosummary",  # Create neat summary tables
+    "sphinx_rtd_theme",
 ]
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 master_doc = "index"
 
 autodoc_mock_imports = [
-    "brightway2",
     "numpy",
     "pandas",
-    "bw2io",
+    "bw2io >=0.8.10",
     "bw2data",
-    "bw2calc",
     "wurst",
     "xarray",
     "prettytable",
@@ -53,9 +52,14 @@ autodoc_mock_imports = [
     "cryptography",
     "premise_gwp",
     "pyYaml",
+    "sparse>=0.14.0",
     "schema",
     "datapackage",
-    # "premise"
+    "requests",
+    "bottleneck",
+    "constructive_geometries>=0.8.2",
+    "pyarrow",
+    "premise",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -76,6 +80,6 @@ html_theme = "sphinx_rtd_theme"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+html_static_path = []
 
 # html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }
