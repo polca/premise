@@ -10,6 +10,7 @@
 
 <p align="center">
   <a href="https://badge.fury.io/py/premise" target="_blank"><img src="https://badge.fury.io/py/premise.svg"></a>
+  <a href="https://anaconda.org/conda-forge/premise" target="_blank"><img src="https://img.shields.io/conda/vn/conda-forge/premise.svg"></a>
   <a href="https://github.com/polca/premise" target="_blank"><img src="https://github.com/polca/premise/actions/workflows/main.yml/badge.svg?branch=master"></a>
   <a href="https://coveralls.io/github/polca/premise" target="_blank"><img src="https://coveralls.io/repos/github/polca/premise/badge.svg"></a>
   <a href="https://premise.readthedocs.io/en/latest/" target="_blank"><img src="https://readthedocs.org/projects/premise/badge/?version=latest"></a>
@@ -89,8 +90,7 @@ Two options:
 A development version with the latest advancements (but with the risks of unseen bugs),
 is available from Anaconda Cloud:
 
-
-    conda install -c romainsacchi premise
+    conda install -c conda-forge premise
 
 
 For a more stable and proven version, from Pypi:
