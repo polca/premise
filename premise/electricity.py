@@ -2028,7 +2028,7 @@ class Electricity(BaseTransformation):
             # we do no longer do this, to avoid having unecessary flows
             # we leave the original inputs of electricity from the old electricity markets
             # and the old electricity markets relink to the new markets
-            #self.remove_from_index(dataset)
+            # self.remove_from_index(dataset)
 
             # add new regional datasets to cache
             self.add_new_entry_to_cache(
