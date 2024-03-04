@@ -897,7 +897,10 @@ class IAMDataCollection:
 
                     cols = [c for c in new_fuel_df.columns if isinstance(c, int)]
                     with pd.option_context("mode.copy_on_write", True):
-                        new_fuel_df.loc[:, cols] = new_fuel_df.loc[:, cols].astype(float) * fuel_share.values[:, np.newaxis]
+                        new_fuel_df.loc[:, cols] = (
+                            new_fuel_df.loc[:, cols].astype(float)
+                            * fuel_share.values[:, np.newaxis]
+                        )
                     dataframe = pd.concat([dataframe, new_fuel_df])
 
         # filter out unused variables
