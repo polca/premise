@@ -886,8 +886,6 @@ class IAMDataCollection:
             variable_liquid_fuel = split_fossil_liquid_fuels["liquid fossil fuels"]
 
             for fuel_var, iam_var in split_fossil_liquid_fuels.items():
-                print(variable_liquid_fuel)
-                print(fuel_var, iam_var)
                 if iam_var not in dataframe["variable"].unique():
                     new_fuel_df = dataframe.loc[
                         dataframe["variable"] == variable_liquid_fuel
