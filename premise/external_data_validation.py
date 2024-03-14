@@ -195,8 +195,8 @@ def check_inventories(
 
     d_datasets = {
         (
-            val["ecoinvent alias"]["name"].lower(),
-            val["ecoinvent alias"]["reference product"].lower(),
+            val["ecoinvent alias"]["name"],
+            val["ecoinvent alias"]["reference product"],
         ): {
             "exists in original database": val["ecoinvent alias"].get(
                 "exists in original database", True
@@ -225,7 +225,7 @@ def check_inventories(
     if "regionalize" in configuration:
         d_datasets.update(
             {
-                (val["name"].lower(), val["reference product"].lower()): {
+                (val["name"], val["reference product"]): {
                     "exists in original database": val.get(
                         "exists in original database", False
                     ),
@@ -266,12 +266,12 @@ def check_inventories(
 
     # flag imported inventories
     for i, dataset in enumerate(inventory_data):
-        key = (dataset["name"].lower(), dataset["reference product"].lower())
+        key = (dataset["name"], dataset["reference product"])
         if key in d_datasets:
             if d_datasets[key]["exists in original database"] is False:
                 dataset["custom scenario dataset"] = True
                 data_vars = d_datasets[
-                    (dataset["name"].lower(), dataset["reference product"].lower())
+                    (dataset["name"], dataset["reference product"])
                 ]
                 inventory_data[i] = flag_activities_to_adjust(
                     dataset, scenario_data, year, data_vars
@@ -282,9 +282,9 @@ def check_inventories(
         if val.get("exists in original database"):
             potential_candidates = [
                 ds
-                for ds in database
-                if ds["name"].lower() == key[0]
-                and ds["reference product"].lower() == key[1]
+                for ds in database + inventory_data
+                if ds["name"]== key[0]
+                   and ds["reference product"] == key[1]
             ]
 
             # if a mask is provided, we want to use it
@@ -296,15 +296,15 @@ def check_inventories(
             if len(potential_candidates) == 0:
                 # maybe it is in inventory_data
                 if (
-                    len(
-                        [
-                            d
-                            for d in inventory_data
-                            if d["name"].lower() == key[0]
-                            and d["reference product"].lower() == key[1]
-                        ]
-                    )
-                    == 0
+                        len(
+                            [
+                                d
+                                for d in inventory_data
+                                if d["name"] == key[0]
+                                   and d["reference product"] == key[1]
+                            ]
+                        )
+                        == 0
                 ):
                     raise ValueError(
                         f"Dataset {key[0]} and {key[1]} is not found in the original database."
@@ -324,8 +324,8 @@ def check_inventories(
                 }
                 for potential_candidate in potential_candidates:
                     if (
-                        potential_candidate["location"]
-                        in scenario_data["production volume"].region.values
+                            potential_candidate["location"]
+                            in scenario_data["production volume"].region.values
                     ):
                         short_listed[potential_candidate["location"]] = (
                             potential_candidate
@@ -336,14 +336,26 @@ def check_inventories(
                     for region in short_listed:
                         if short_listed[region] is None:
                             for potential_candidate in potential_candidates:
-                                if region in geo.geo.contained(
-                                    potential_candidate["location"]
-                                ):
-                                    short_listed[region] = potential_candidate
-                                    break
-                                if region in geo.geo.intersects(
-                                    potential_candidate["location"]
-                                ):
+
+                                try:
+                                    if region in geo.geo.contained(
+                                            potential_candidate["location"]
+                                    ):
+                                        short_listed[region] = potential_candidate
+                                        break
+                                except KeyError:
+                                    continue
+
+                                try:
+                                    if region in geo.geo.intersects(
+                                            potential_candidate["location"]
+                                    ):
+                                        short_listed[region] = potential_candidate
+                                        break
+                                except KeyError:
+                                    continue
+
+                                if region in geo.ecoinvent_to_iam_location(potential_candidate["location"]):
                                     short_listed[region] = potential_candidate
                                     break
 
@@ -353,7 +365,7 @@ def check_inventories(
                         if short_listed[region] is None:
                             for potential_candidate in potential_candidates:
                                 if region in geo.map_ecoinvent_to_iam(
-                                    potential_candidate["location"]
+                                        potential_candidate["location"]
                                 ):
                                     short_listed[region] = potential_candidate
                                     break
@@ -365,8 +377,8 @@ def check_inventories(
                             for fallback_location in ["GLO", "RoW", "World"]:
                                 for potential_candidate in potential_candidates:
                                     if (
-                                        potential_candidate["location"]
-                                        == fallback_location
+                                            potential_candidate["location"]
+                                            == fallback_location
                                     ):
                                         short_listed[region] = potential_candidate
                                         break

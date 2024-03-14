@@ -472,6 +472,9 @@ class BaseTransformation:
         parameters = dataset["parameters"]
         possibles = ["efficiency", "efficiency_oil_country", "efficiency_electrical"]
 
+        if dataset["name"] == "electricity production, at lignite-fired IGCC power plant, pre, pipeline 200km, storage 1000m":
+            print(old_ei_eff, new_eff, dataset["location"])
+
         if any(i in dataset for i in possibles):
             for key in possibles:
                 if key in parameters:
@@ -574,6 +577,10 @@ class BaseTransformation:
 
         if current_efficiency in (np.nan, np.inf):
             current_efficiency = 1
+
+        if energy_input == 0:
+            print(dataset["name"], dataset["location"], current_efficiency, energy_input, energy_out)
+            print(fuel_filters)
 
         if "parameters" in dataset:
             dataset["parameters"]["efficiency"] = current_efficiency
