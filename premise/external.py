@@ -347,7 +347,6 @@ class ExternalScenario(BaseTransformation):
 
         """
 
-
         for ds in ws.get_many(
             self.database,
             ws.equals("regionalize", True),

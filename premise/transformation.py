@@ -578,6 +578,10 @@ class BaseTransformation:
         if current_efficiency in (np.nan, np.inf):
             current_efficiency = 1
 
+        if energy_input == 0:
+            print(dataset["name"], dataset["location"], current_efficiency, energy_input, energy_out)
+            print(fuel_filters)
+
         if "parameters" in dataset:
             dataset["parameters"]["efficiency"] = current_efficiency
         else:
