@@ -472,9 +472,6 @@ class BaseTransformation:
         parameters = dataset["parameters"]
         possibles = ["efficiency", "efficiency_oil_country", "efficiency_electrical"]
 
-        if dataset["name"] == "electricity production, at lignite-fired IGCC power plant, pre, pipeline 200km, storage 1000m":
-            print(old_ei_eff, new_eff, dataset["location"])
-
         if any(i in dataset for i in possibles):
             for key in possibles:
                 if key in parameters:
