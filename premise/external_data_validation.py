@@ -262,6 +262,8 @@ def check_inventories(
 
         raise AssertionError(
             f"The following datasets are not in the inventory data: {list_missing_datasets}"
+            f"\n Available datasets are: \n"
+            f"{[list_datasets]}"
         ) from e
 
     # flag imported inventories
