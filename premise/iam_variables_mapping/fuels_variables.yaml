@@ -753,7 +753,7 @@ bioethanol, from wood, with CCS:
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Biomass|Ethanol|Cellulose|w/CCS
-    remind: SE|Liquids|Biomass|Cellulosic|+|w/o CC
+    remind: Tech|Liquids|Biomass|Cellulosic|w/o CC|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/ CCS
   ecoinvent_aliases:
     fltr:
