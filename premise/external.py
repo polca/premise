@@ -158,10 +158,10 @@ def adjust_efficiency(dataset: dict) -> dict:
     """
 
     # loop through the type of flows to adjust
-    filters = []
     for eff_type in ["technosphere", "biosphere"]:
         if f"{eff_type} filters" in dataset:
             for k, v in dataset[f"{eff_type} filters"].items():
+                filters = []
                 if dataset["location"] not in v[1]:
                     continue
 
