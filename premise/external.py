@@ -48,55 +48,58 @@ def _update_external_scenarios(
     scenario: dict,
     version: str,
     system_model: str,
-    datapackages: list,
 ) -> dict:
-    datapackages = [
-        Package(f"{dp}/datapackage.json") if isinstance(dp, str) else dp
-        for dp in datapackages
-    ]
-    for d, data_package in enumerate(datapackages):
-        inventories = []
-        with HiddenPrints():
-            if "inventories" in [r.name for r in data_package.resources]:
-                if data_package.get_resource("inventories"):
-                    additional = AdditionalInventory(
-                        database=scenario["database"],
-                        version_in=data_package.descriptor["ecoinvent"]["version"],
-                        version_out=version,
-                        path=data_package.get_resource("inventories").source,
-                        system_model=system_model,
-                    )
-                    inventories.extend(additional.merge_inventory())
 
-        resource = data_package.get_resource("config")
-        config_file = yaml.safe_load(resource.raw_read())
+    if "external scenarios" in scenario:
+        datapackages = [
+            Package(f"{dp['data']}/datapackage.json") if isinstance(dp['data'], str) else dp['data']
+            for dp in scenario["external scenarios"]
+        ]
 
-        checked_inventories, checked_database = check_inventories(
-            configuration=config_file,
-            inventory_data=inventories,
-            scenario_data=scenario["external data"][d],
+        for d, data_package in enumerate(datapackages):
+            inventories = []
+            with HiddenPrints():
+                if "inventories" in [r.name for r in data_package.resources]:
+                    if data_package.get_resource("inventories"):
+                        additional = AdditionalInventory(
+                            database=scenario["database"],
+                            version_in=data_package.descriptor["ecoinvent"]["version"],
+                            version_out=version,
+                            path=data_package.get_resource("inventories").source,
+                            system_model=system_model,
+                        )
+                        inventories.extend(additional.merge_inventory())
+
+            resource = data_package.get_resource("config")
+            config_file = yaml.safe_load(resource.raw_read())
+
+            checked_inventories, checked_database = check_inventories(
+                configuration=config_file,
+                inventory_data=inventories,
+                scenario_data=scenario["external data"][d],
+                database=scenario["database"],
+                year=scenario["year"],
+                model=scenario["model"],
+            )
+
+            scenario["database"] = checked_database
+            scenario["database"].extend(checked_inventories)
+
+        external_scenario = ExternalScenario(
             database=scenario["database"],
-            year=scenario["year"],
             model=scenario["model"],
+            pathway=scenario["pathway"],
+            iam_data=scenario["iam data"],
+            year=scenario["year"],
+            external_scenarios=datapackages,
+            external_scenarios_data=scenario["external data"],
+            version=version,
+            system_model=system_model,
         )
+        external_scenario.create_markets()
+        external_scenario.relink_datasets()
+        scenario["database"] = external_scenario.database
 
-        scenario["database"] = checked_database
-        scenario["database"].extend(checked_inventories)
-
-    external_scenario = ExternalScenario(
-        database=scenario["database"],
-        model=scenario["model"],
-        pathway=scenario["pathway"],
-        iam_data=scenario["iam data"],
-        year=scenario["year"],
-        external_scenarios=datapackages,
-        external_scenarios_data=scenario["external data"],
-        version=version,
-        system_model=system_model,
-    )
-    external_scenario.create_markets()
-    external_scenario.relink_datasets()
-    scenario["database"] = external_scenario.database
     return scenario
 
 
