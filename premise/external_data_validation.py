@@ -8,7 +8,7 @@ import datapackage
 import numpy as np
 import pandas as pd
 import yaml
-from datapackage import exceptions, validate, Package
+from datapackage import Package, exceptions, validate
 from schema import And, Optional, Schema, Use
 
 from .geomap import Geomap
@@ -463,18 +463,17 @@ def check_datapackage(datapackage: datapackage.Package):
     except exceptions.ValidationError as exception:
         raise exception
 
-
-    if "config" in [
+    if "config" in [i.name for i in datapackage.resources] and "scenario_data" not in [
         i.name for i in datapackage.resources
-    ] and "scenario_data" not in [i.name for i in datapackage.resources]:
+    ]:
         raise ValueError(
             "If the resource 'config' is present in the datapackage,"
             "so must the resource 'scenario_data'."
         )
 
-    if "scenario_data" in [
+    if "scenario_data" in [i.name for i in datapackage.resources] and "config" not in [
         i.name for i in datapackage.resources
-    ] and "config" not in [i.name for i in datapackage.resources]:
+    ]:
         raise ValueError(
             "If the resource 'scenario_data' is present in the datapackage,"
             " so must the resource 'config'."
@@ -494,9 +493,7 @@ def check_datapackage(datapackage: datapackage.Package):
         / len(datapackage.resources)
         > 1
     ):
-        raise ValueError(
-            f"Two or more resources in datapackage {d + 1} are similar."
-        )
+        raise ValueError(f"Two or more resources in datapackage {d + 1} are similar.")
 
 
 def list_all_iam_regions(configuration):
@@ -644,8 +641,7 @@ def check_config_file(datapackage: datapackage.Package) -> int:
                     Use(list),
                     lambda s: all(
                         i
-                        in config["LIST_REMIND_REGIONS"]
-                        + config["LIST_IMAGE_REGIONS"]
+                        in config["LIST_REMIND_REGIONS"] + config["LIST_IMAGE_REGIONS"]
                         for i in s
                     ),
                 ),
@@ -693,7 +689,9 @@ def check_config_file(datapackage: datapackage.Package) -> int:
     return needs_imported_inventories
 
 
-def check_scenario_data_file(datapackage: datapackage.Package, scenario: str) -> Package:
+def check_scenario_data_file(
+    datapackage: datapackage.Package, scenario: str
+) -> Package:
 
     scenarios = datapackage.descriptor["scenarios"]
     resource = datapackage.get_resource("scenario_data")
@@ -757,8 +755,7 @@ def check_scenario_data_file(datapackage: datapackage.Package, scenario: str) ->
         )
 
     if not all(
-        v in df["variables"].unique()
-        for v in get_recursively(config_file, "variable")
+        v in df["variables"].unique() for v in get_recursively(config_file, "variable")
     ):
         list_unfound_variables = [
             p
@@ -772,8 +769,7 @@ def check_scenario_data_file(datapackage: datapackage.Package, scenario: str) ->
         )
 
     if not all(
-        v in df["variables"].unique()
-        for v in get_recursively(config_file, "variable")
+        v in df["variables"].unique() for v in get_recursively(config_file, "variable")
     ):
         missing_variables = [
             v
@@ -838,7 +834,9 @@ def check_external_scenarios(external_scenarios: list) -> list:
         check_config_file(external_scenario["data"])
 
         # Validate scenario data
-        external_scenario["data"] = check_scenario_data_file(external_scenario["data"], external_scenario["scenario"])
+        external_scenario["data"] = check_scenario_data_file(
+            external_scenario["data"], external_scenario["scenario"]
+        )
 
     return external_scenarios
 

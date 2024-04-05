@@ -380,9 +380,7 @@ def create_fleet_vehicles(
                                     }
                                 ],
                                 "code": str(uuid.uuid4().hex),
-                                "database": eidb_label(
-                                    scenario, version, system_model
-                                ),
+                                "database": eidb_label(scenario, version, system_model),
                                 "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
                             }
 

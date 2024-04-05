@@ -52,7 +52,11 @@ def _update_external_scenarios(
 
     if "external scenarios" in scenario:
         datapackages = [
-            Package(f"{dp['data']}/datapackage.json") if isinstance(dp['data'], str) else dp['data']
+            (
+                Package(f"{dp['data']}/datapackage.json")
+                if isinstance(dp["data"], str)
+                else dp["data"]
+            )
             for dp in scenario["external scenarios"]
         ]
 

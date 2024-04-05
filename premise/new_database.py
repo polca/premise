@@ -382,7 +382,9 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
         for external_scenario in scenario["external scenarios"]:
             assert all(key in external_scenario for key in ["data", "scenario"])
 
-        scenario["external scenarios"] = check_external_scenarios(scenario["external scenarios"])
+        scenario["external scenarios"] = check_external_scenarios(
+            scenario["external scenarios"]
+        )
 
     return scenario
 
@@ -526,8 +528,10 @@ class NewDatabase:
             self.additional_inventories = None
 
         if external_scenarios:
-            print("External scenarios should now be given as part of the scenarios list. "
-                  "E.g., {'external scenarios': ['scenario': 'A', 'data': datapackage]}")
+            print(
+                "External scenarios should now be given as part of the scenarios list. "
+                "E.g., {'external scenarios': ['scenario': 'A', 'data': datapackage]}"
+            )
 
         def _fetch_iam_data(scenario):
             data = IAMDataCollection(
@@ -545,7 +549,9 @@ class NewDatabase:
             scenario["iam data"] = data
 
             if "external scenarios" in scenario:
-                scenario["external data"] = data.get_external_data(scenario["external scenarios"])
+                scenario["external data"] = data.get_external_data(
+                    scenario["external scenarios"]
+                )
 
             scenario["database"] = copy.deepcopy(self.database)
 
@@ -901,8 +907,12 @@ class NewDatabase:
                         if sector == "external":
                             for task in tasks:
                                 if "external scenarios" in task[0]:
-                                    for external_scenario in task[0]["external scenarios"]:
-                                        external_scenario["data"] = external_scenario["data"].base_path
+                                    for external_scenario in task[0][
+                                        "external scenarios"
+                                    ]:
+                                        external_scenario["data"] = external_scenario[
+                                            "data"
+                                        ].base_path
 
                         # Use starmap for preserving the order of tasks
                         results = pool.starmap(update_func, tasks)
