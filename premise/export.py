@@ -26,10 +26,10 @@ from scipy import sparse as nsp
 from . import __version__
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
+from .geomap import Geomap
 from .inventory_imports import get_correspondence_bio_flows
 from .utils import reset_all_codes
 from .validation import BaseDatasetValidator
-from .geomap import Geomap
 
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
@@ -898,9 +898,10 @@ def generate_superstructure_db(
 
     return new_db
 
+
 def check_geographical_linking(scenario, original_database):
 
-    #geo = Geomap(scenario["model"])
+    # geo = Geomap(scenario["model"])
 
     index = scenario["index"]
     database = scenario["database"]
@@ -909,16 +910,13 @@ def check_geographical_linking(scenario, original_database):
     ]
 
     datasets_to_check = [
-        ds for ds in database if (
-            ds["name"], ds["reference product"], ds["location"]
-        ) not in original_datasets
+        ds
+        for ds in database
+        if (ds["name"], ds["reference product"], ds["location"])
+        not in original_datasets
     ]
 
-    FORBIDDEN = [
-        "import",
-        "mix",
-        "transport"
-    ]
+    FORBIDDEN = ["import", "mix", "transport"]
 
     for ds in datasets_to_check:
         if ds["location"] not in ["GLO", "RoW", "World"]:
@@ -931,9 +929,14 @@ def check_geographical_linking(scenario, original_database):
                             if exc["location"] != ds["location"]:
                                 # check if exchange from the same location as the dataset is available
                                 key = (exc["name"], exc["product"])
-                                if ds["location"] in [k["location"] for k in index.get(key, [])]:
-                                    #if ds["location"] not in geo.iam_to_ecoinvent_location(exc["location"]):
-                                    if (exc["name"], exc["product"]) != (ds["name"], ds["reference product"]):
+                                if ds["location"] in [
+                                    k["location"] for k in index.get(key, [])
+                                ]:
+                                    # if ds["location"] not in geo.iam_to_ecoinvent_location(exc["location"]):
+                                    if (exc["name"], exc["product"]) != (
+                                        ds["name"],
+                                        ds["reference product"],
+                                    ):
                                         # there is a better match available
                                         exc["location"] = ds["location"]
 

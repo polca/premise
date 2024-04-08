@@ -417,7 +417,6 @@ def check_inventories(
                                 assign_candidate_if_empty(region, location)
                                 break
 
-
         return short_listed
 
     def short_list_candidates(candidates, scenario_data):
@@ -455,8 +454,6 @@ def check_inventories(
             adjust_candidates_or_raise_error(
                 potential_candidates, scenario_data, key, year, val, inventory_data
             )
-
-
 
     return inventory_data, database
 

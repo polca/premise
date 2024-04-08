@@ -370,24 +370,26 @@ class ExternalScenario(BaseTransformation):
                     name=ds["name"],
                     ref_prod=ds["reference product"],
                     regions=ds["regions"],
-                    geo_mapping=ds["region mapping"] if "region mapping" in ds else None,
+                    geo_mapping=(
+                        ds["region mapping"] if "region mapping" in ds else None
+                    ),
                     unlist=False,
                 )
 
                 # add production volume
                 if ds.get("production volume variable"):
                     if (
-                            ds["production volume variable"]
-                            in self.external_scenarios_data[datapackage_number][
-                        "production volume"
-                    ].variables.values
+                        ds["production volume variable"]
+                        in self.external_scenarios_data[datapackage_number][
+                            "production volume"
+                        ].variables.values
                     ):
                         for region, act in new_acts.items():
                             if (
-                                    region
-                                    in self.external_scenarios_data[datapackage_number][
-                                "production volume"
-                            ].region.values
+                                region
+                                in self.external_scenarios_data[datapackage_number][
+                                    "production volume"
+                                ].region.values
                             ):
                                 act["production volume"] = (
                                     self.external_scenarios_data[datapackage_number][
@@ -1247,7 +1249,6 @@ class ExternalScenario(BaseTransformation):
                     new_exchanges.append(exc)
                     continue
 
-
                 exchanges_replaced.append(
                     (
                         exc["name"],
@@ -1307,7 +1308,6 @@ class ExternalScenario(BaseTransformation):
                         x["Carbon dioxide, non-fossil"] * fuel_amount * share * ratio
                         for loc, share in new_loc
                         for x in isfuel[loc].values()
-
                     )
                     if (
                         len(

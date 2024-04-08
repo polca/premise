@@ -906,10 +906,11 @@ class NewDatabase:
 
                         for task in tasks:
                             if "external scenarios" in task[0]:
-                                for external_scenario in task[0][
-                                    "external scenarios"
-                                ]:
-                                    if isinstance(external_scenario["data"], datapackage.DataPackage):
+                                for external_scenario in task[0]["external scenarios"]:
+                                    if isinstance(
+                                        external_scenario["data"],
+                                        datapackage.DataPackage,
+                                    ):
                                         external_scenario["data"] = external_scenario[
                                             "data"
                                         ].base_path

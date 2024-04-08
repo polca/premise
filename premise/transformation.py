@@ -695,18 +695,15 @@ class BaseTransformation:
                     f"{name, ref_prod}, : {[(r['name'], r['reference product'], r['location']) for r in results]}",
                 )
 
-            #if not self.is_in_index(dataset, region):
+            # if not self.is_in_index(dataset, region):
             if self.is_in_index(dataset, region):
                 # delete original dataset from the database
                 self.database = [
-                    d for d in self.database
-                    if (
-                        d["name"], d["reference product"], d["location"]
-                    ) != (
-                        dataset["name"], dataset["reference product"], region
-                    )
+                    d
+                    for d in self.database
+                    if (d["name"], d["reference product"], d["location"])
+                    != (dataset["name"], dataset["reference product"], region)
                 ]
-
 
             d_act[region] = copy.deepcopy(dataset)
             d_act[region]["location"] = region
@@ -760,7 +757,6 @@ class BaseTransformation:
 
             ds_name = d_act[region]["name"]
             ds_ref_prod = d_act[region]["reference product"]
-
 
         if unlist is True:
             # remove dataset from index
