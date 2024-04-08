@@ -904,12 +904,12 @@ class NewDatabase:
                         # we cannot pickle the datapackage contained under "external scenarios" in each scenario
                         # so we replace it by the file path of the datapackage before processing
 
-                        if sector == "external":
-                            for task in tasks:
-                                if "external scenarios" in task[0]:
-                                    for external_scenario in task[0][
-                                        "external scenarios"
-                                    ]:
+                        for task in tasks:
+                            if "external scenarios" in task[0]:
+                                for external_scenario in task[0][
+                                    "external scenarios"
+                                ]:
+                                    if isinstance(external_scenario["data"], datapackage.DataPackage):
                                         external_scenario["data"] = external_scenario[
                                             "data"
                                         ].base_path
@@ -1030,6 +1030,7 @@ class NewDatabase:
                 scenario["database"],
                 name[scen],
             )
+
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs

@@ -329,9 +329,11 @@ def create_scenario_list(scenarios: list) -> list:
 
     for scenario in scenarios:
         name = f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
+
         if "external scenarios" in scenario:
-            name += f" - External model"
             for ext_scenario in scenario["external scenarios"]:
-                name += f" - {ext_scenario}"
+                name += f" - {ext_scenario['scenario']}"
+
+        list_scenarios.append(name)
 
     return list_scenarios

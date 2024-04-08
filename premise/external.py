@@ -61,18 +61,18 @@ def _update_external_scenarios(
         ]
 
         for d, data_package in enumerate(datapackages):
+
             inventories = []
-            with HiddenPrints():
-                if "inventories" in [r.name for r in data_package.resources]:
-                    if data_package.get_resource("inventories"):
-                        additional = AdditionalInventory(
-                            database=scenario["database"],
-                            version_in=data_package.descriptor["ecoinvent"]["version"],
-                            version_out=version,
-                            path=data_package.get_resource("inventories").source,
-                            system_model=system_model,
-                        )
-                        inventories.extend(additional.merge_inventory())
+            if "inventories" in [r.name for r in data_package.resources]:
+                if data_package.get_resource("inventories"):
+                    additional = AdditionalInventory(
+                        database=scenario["database"],
+                        version_in=data_package.descriptor["ecoinvent"]["version"],
+                        version_out=version,
+                        path=data_package.get_resource("inventories").source,
+                        system_model=system_model,
+                    )
+                    inventories.extend(additional.merge_inventory())
 
             resource = data_package.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
@@ -103,6 +103,8 @@ def _update_external_scenarios(
         external_scenario.create_markets()
         external_scenario.relink_datasets()
         scenario["database"] = external_scenario.database
+        scenario["index"] = external_scenario.index
+        scenario["cache"] = external_scenario.cache
 
     return scenario
 
@@ -360,29 +362,32 @@ class ExternalScenario(BaseTransformation):
             ws.either(*[ws.contains("name", name) for name in ds_names]),
         ):
 
-            # Check if datasets already exist for IAM regions
+            # Check if datasets already exist
             # if not, create them
             if ds["location"] not in regions:
+
                 new_acts = self.fetch_proxies(
                     name=ds["name"],
                     ref_prod=ds["reference product"],
                     regions=ds["regions"],
+                    geo_mapping=ds["region mapping"] if "region mapping" in ds else None,
+                    unlist=False,
                 )
 
                 # add production volume
                 if ds.get("production volume variable"):
                     if (
-                        ds["production volume variable"]
-                        in self.external_scenarios_data[datapackage_number][
-                            "production volume"
-                        ].variables.values
+                            ds["production volume variable"]
+                            in self.external_scenarios_data[datapackage_number][
+                        "production volume"
+                    ].variables.values
                     ):
                         for region, act in new_acts.items():
                             if (
-                                region
-                                in self.external_scenarios_data[datapackage_number][
-                                    "production volume"
-                                ].region.values
+                                    region
+                                    in self.external_scenarios_data[datapackage_number][
+                                "production volume"
+                            ].region.values
                             ):
                                 act["production volume"] = (
                                     self.external_scenarios_data[datapackage_number][
@@ -1013,6 +1018,7 @@ class ExternalScenario(BaseTransformation):
                                 if "is fuel" in market_vars:
                                     if region not in isfuel:
                                         isfuel[region] = {}
+
                                     isfuel[region].update(
                                         {
                                             pathway: {
@@ -1216,7 +1222,13 @@ class ExternalScenario(BaseTransformation):
         for dataset in datasets:
             filtered_exchanges = []
             for fltr in list_fltr:
-                filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
+                try:
+                    filtered_exchanges.extend(list(ws.technosphere(dataset, *fltr)))
+                except TypeError as err:
+                    raise ValueError(
+                        f"Cannot find exchanges for dataset {dataset['name']} "
+                        f"with filters {fltr}."
+                    ) from err
 
             # remove filtered exchanges from the dataset
             dataset["exchanges"] = [
@@ -1225,6 +1237,7 @@ class ExternalScenario(BaseTransformation):
 
             new_exchanges = []
 
+            new_loc = []
             for exc in filtered_exchanges:
                 if (
                     exc["location"] in regions
@@ -1234,7 +1247,7 @@ class ExternalScenario(BaseTransformation):
                     new_exchanges.append(exc)
                     continue
 
-                new_loc = None
+
                 exchanges_replaced.append(
                     (
                         exc["name"],
@@ -1263,7 +1276,7 @@ class ExternalScenario(BaseTransformation):
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
 
-                if new_loc:
+                if len(new_loc) > 0:
                     for loc, share in new_loc:
                         # add new exchange
                         new_exchanges.append(
@@ -1290,51 +1303,53 @@ class ExternalScenario(BaseTransformation):
             # emissions of processes receiving that new fuel.
             if isfuel:
                 if len(filtered_exchanges) > 0:
-                    if dataset["location"] in isfuel:
-                        bio_co2 = sum(
-                            x["Carbon dioxide, non-fossil"] * fuel_amount
-                            for x in isfuel[dataset["location"]].values()
-                        )
-                        if (
-                            len(
-                                list(
-                                    ws.biosphere(
-                                        dataset,
-                                        ws.equals("name", "Carbon dioxide, non-fossil"),
-                                    )
+                    bio_co2 = sum(
+                        x["Carbon dioxide, non-fossil"] * fuel_amount * share * ratio
+                        for loc, share in new_loc
+                        for x in isfuel[loc].values()
+
+                    )
+                    if (
+                        len(
+                            list(
+                                ws.biosphere(
+                                    dataset,
+                                    ws.equals("name", "Carbon dioxide, non-fossil"),
                                 )
                             )
-                            == 0
-                        ):
-                            dataset["exchanges"].append(
-                                {
-                                    "name": "Carbon dioxide, non-fossil",
-                                    "amount": bio_co2,
-                                    "unit": "kilogram",
-                                    "type": "biosphere",
-                                    "input": (
-                                        "biosphere3",
-                                        self.biosphere_flows[
-                                            (
-                                                "Carbon dioxide, non-fossil",
-                                                "air",
-                                                "unspecified",
-                                                "kilogram",
-                                            )
-                                        ],
-                                    ),
-                                }
-                            )
-                        else:
-                            for exc in ws.biosphere(
-                                dataset, ws.equals("name", "Carbon dioxide, non-fossil")
-                            ):
-                                exc["amount"] += bio_co2
-
+                        )
+                        == 0
+                    ):
+                        dataset["exchanges"].append(
+                            {
+                                "name": "Carbon dioxide, non-fossil",
+                                "categories": ("air",),
+                                "amount": bio_co2,
+                                "unit": "kilogram",
+                                "type": "biosphere",
+                                "input": (
+                                    "biosphere3",
+                                    self.biosphere_flows[
+                                        (
+                                            "Carbon dioxide, non-fossil",
+                                            "air",
+                                            "unspecified",
+                                            "kilogram",
+                                        )
+                                    ],
+                                ),
+                            }
+                        )
+                    else:
                         for exc in ws.biosphere(
-                            dataset, ws.equals("name", "Carbon dioxide, fossil")
+                            dataset, ws.equals("name", "Carbon dioxide, non-fossil")
                         ):
-                            exc["amount"] -= bio_co2
+                            exc["amount"] += bio_co2
+
+                    for exc in ws.biosphere(
+                        dataset, ws.equals("name", "Carbon dioxide, fossil")
+                    ):
+                        exc["amount"] -= bio_co2
 
             dataset["exchanges"].extend(new_exchanges)
             fuel_amount = 0

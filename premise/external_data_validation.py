@@ -42,7 +42,7 @@ def find_iam_efficiency_change(
 
 
 def flag_activities_to_adjust(
-    dataset: dict, scenario_data: dict, year: int, dataset_vars: dict
+    dataset: dict, scenario_data: dict, year: int, dataset_vars: dict, region=None
 ) -> dict:
     """
     Flag datasets that will need to be adjusted.
@@ -173,6 +173,12 @@ def flag_activities_to_adjust(
 
     if dataset_vars["regionalize"]:
         dataset["regionalize"] = dataset_vars["regionalize"]
+
+    if region is not None:
+        if "region mapping" not in dataset:
+            dataset["region mapping"] = {region: dataset["location"]}
+        else:
+            dataset["region mapping"].update({region: dataset["location"]})
 
     if "production volume variable" in dataset_vars:
         dataset["production volume variable"] = dataset_vars[
@@ -305,9 +311,9 @@ def check_inventories(
             candidates = filter_candidates_by_mask(candidates, mask)
         return candidates
 
-    def adjust_candidate(candidate, scenario_data, year, val):
+    def adjust_candidate(candidate, scenario_data, year, val, region=None):
         """Adjust a single candidate with scenario data."""
-        flag_activities_to_adjust(candidate, scenario_data, year, val)
+        flag_activities_to_adjust(candidate, scenario_data, year, val, region)
 
     def handle_single_candidate(candidates, scenario_data, year, val):
         """Handle case where there is exactly one candidate."""
@@ -399,7 +405,7 @@ def check_inventories(
 
         # Perform checks in order of preference
         for region in short_listed:
-            if short_listed[region] is None:
+            while short_listed[region] is None:
                 for location in sorted_candidate_locations:
                     for check_func in check_functions:
                         if check_func(region, location):
@@ -410,9 +416,7 @@ def check_inventories(
                             ):
                                 assign_candidate_if_empty(region, location)
                                 break
-                    else:
-                        continue
-                    break
+
 
         return short_listed
 
@@ -438,7 +442,7 @@ def check_inventories(
             short_listed = short_list_candidates(candidates, scenario_data)
             for region, ds in short_listed.items():
                 if ds is not None:
-                    adjust_candidate(ds, scenario_data, year, val)
+                    adjust_candidate(ds, scenario_data, year, val, region)
                 else:
                     print(f"No candidate found for {key[0]} and {key[1]} for {region}.")
 
@@ -451,6 +455,8 @@ def check_inventories(
             adjust_candidates_or_raise_error(
                 potential_candidates, scenario_data, key, year, val, inventory_data
             )
+
+
 
     return inventory_data, database
 

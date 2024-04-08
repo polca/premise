@@ -29,6 +29,7 @@ from .filesystem_constants import DATA_DIR
 from .inventory_imports import get_correspondence_bio_flows
 from .utils import reset_all_codes
 from .validation import BaseDatasetValidator
+from .geomap import Geomap
 
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
@@ -324,17 +325,22 @@ def correct_biosphere_flow(name, cat, unit, version):
 
     bio_dict = biosphere_flows_dictionary(version)
 
-    if len(cat) > 1:
-        main_cat = cat[0]
-        sub_cat = cat[1]
-    else:
-        main_cat = cat[0]
-        sub_cat = "unspecified"
+    try:
 
-    if (name, main_cat, sub_cat, unit) not in bio_dict:
-        if bio_flows_correspondence.get(main_cat, {}).get(name, {}):
-            name = bio_flows_correspondence[main_cat][name]
-            return bio_dict[(name, main_cat, sub_cat, unit)]
+        if len(cat) > 1:
+            main_cat = cat[0]
+            sub_cat = cat[1]
+        else:
+            main_cat = cat[0]
+            sub_cat = "unspecified"
+
+        if (name, main_cat, sub_cat, unit) not in bio_dict:
+            if bio_flows_correspondence.get(main_cat, {}).get(name, {}):
+                name = bio_flows_correspondence[main_cat][name]
+                return bio_dict[(name, main_cat, sub_cat, unit)]
+    except:
+        print(name, cat, unit, version)
+        raise
     return bio_dict[(name, main_cat, sub_cat, unit)]
 
 
@@ -892,6 +898,47 @@ def generate_superstructure_db(
 
     return new_db
 
+def check_geographical_linking(scenario, original_database):
+
+    #geo = Geomap(scenario["model"])
+
+    index = scenario["index"]
+    database = scenario["database"]
+    original_datasets = [
+        (a["name"], a["reference product"], a["location"]) for a in original_database
+    ]
+
+    datasets_to_check = [
+        ds for ds in database if (
+            ds["name"], ds["reference product"], ds["location"]
+        ) not in original_datasets
+    ]
+
+    FORBIDDEN = [
+        "import",
+        "mix",
+        "transport"
+    ]
+
+    for ds in datasets_to_check:
+        if ds["location"] not in ["GLO", "RoW", "World"]:
+            if "market" not in ds["name"]:
+                for exc in ds["exchanges"]:
+                    if exc["type"] == "technosphere":
+                        if not any(x in exc["name"] for x in FORBIDDEN) and not any(
+                            x in ds["name"] for x in FORBIDDEN
+                        ):
+                            if exc["location"] != ds["location"]:
+                                # check if exchange from the same location as the dataset is available
+                                key = (exc["name"], exc["product"])
+                                if ds["location"] in [k["location"] for k in index.get(key, [])]:
+                                    #if ds["location"] not in geo.iam_to_ecoinvent_location(exc["location"]):
+                                    if (exc["name"], exc["product"]) != (ds["name"], ds["reference product"]):
+                                        # there is a better match available
+                                        exc["location"] = ds["location"]
+
+    return scenario
+
 
 def prepare_db_for_export(
     scenario, name, original_database, keep_uncertainty_data=False
@@ -899,6 +946,9 @@ def prepare_db_for_export(
     """
     Prepare a database for export.
     """
+
+    # ensuring that all geographically appropriate exchanges are present
+    scenario = check_geographical_linking(scenario, original_database)
 
     # validate the database
     validator = BaseDatasetValidator(
