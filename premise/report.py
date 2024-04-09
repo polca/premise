@@ -4,6 +4,7 @@ This module export a summary of scenario to an Excel file.
 
 import os
 from datetime import datetime
+from .utils import generate_filename
 from pathlib import Path
 
 import openpyxl
@@ -520,7 +521,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     workbook.save(filename)
 
 
-def generate_change_report(source, version, source_type, system_model):
+def generate_change_report(
+    source, version, source_type, system_model, include_time=False
+):
     """
     Generate a change report of the scenarios from the log files.
     """
@@ -611,9 +614,9 @@ def generate_change_report(source, version, source_type, system_model):
 
     # save the workbook in the working directory
     # the file name is change_report with the current date
-    fp = Path(
-        DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx"
-    )
+    base_name = "change_report"
+    report_name = generate_filename(base_name, include_time, ".xlsx")
+    fp = Path(DIR_LOG_REPORT) / report_name
     workbook.save(fp)
 
 

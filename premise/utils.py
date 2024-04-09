@@ -9,6 +9,7 @@ from functools import lru_cache
 from numbers import Number
 from pathlib import Path
 from typing import Optional
+from datetime import datetime
 
 import pandas as pd
 import xarray as xr
@@ -26,6 +27,29 @@ from .geomap import Geomap
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
+
+
+def generate_filename(
+    base_name: str, include_time: bool = False, suffix: str = ""
+) -> str:
+    """
+    Generates a filename with optional inclusion of current time.
+
+    :param base_name: The base name of the file without date or time.
+    :param include_time: Whether to include the current time in the filename.
+    :param suffix: The file extension or suffix.
+    :return: A string representing the formatted filename.
+    """
+    date_format = "%Y-%m-%d"
+    time_format = "%H-%M-%S"
+    current_datetime = datetime.now()
+
+    if include_time:
+        filename = f"{base_name}_{current_datetime.strftime(f'{date_format}_{time_format}')}{suffix}"
+    else:
+        filename = f"{base_name}_{current_datetime.strftime(date_format)}{suffix}"
+
+    return filename
 
 
 def rescale_exchanges(

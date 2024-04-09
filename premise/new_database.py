@@ -52,6 +52,7 @@ from .utils import (
     load_constants,
     print_version,
     warning_about_biogenic_co2,
+    generate_filename,
 )
 
 logger = logging.getLogger("module")
@@ -936,6 +937,7 @@ class NewDatabase:
         name: str = f"super_db_{date.today()}",
         filepath: str = None,
         file_format: str = "excel",
+        include_time: bool = False,
     ) -> None:
         """
         Register a super-structure database,
@@ -978,11 +980,13 @@ class NewDatabase:
         )
 
         # generate scenario report
-        self.generate_scenario_report()
+        self.generate_scenario_report(include_time=include_time)
         # generate change report from logs
-        self.generate_change_report()
+        self.generate_change_report(include_time=include_time)
 
-    def write_db_to_brightway(self, name: [str, List[str]] = None):
+    def write_db_to_brightway(
+        self, name: [str, List[str]] = None, include_time: bool = False
+    ):
         """
         Register the new database into an open brightway project.
         :param name: to give a (list) of custom name(s) to the database.
@@ -1033,11 +1037,11 @@ class NewDatabase:
             )
 
         # generate scenario report
-        self.generate_scenario_report()
+        self.generate_scenario_report(include_time=include_time)
         # generate change report from logs
-        self.generate_change_report()
+        self.generate_change_report(include_time=include_time)
 
-    def write_db_to_matrices(self, filepath: str = None):
+    def write_db_to_matrices(self, filepath: str = None, include_time: bool = False):
         """
 
         Exports the new database as a sparse matrix representation in csv files.
@@ -1106,11 +1110,11 @@ class NewDatabase:
                 Export(scenario, filepath[scen], self.version).export_db_to_matrices()
 
         # generate scenario report
-        self.generate_scenario_report()
+        self.generate_scenario_report(include_time=include_time)
         # generate change report from logs
-        self.generate_change_report()
+        self.generate_change_report(include_time=include_time)
 
-    def write_db_to_simapro(self, filepath: str = None):
+    def write_db_to_simapro(self, filepath: str = None, include_time: bool = False):
         """
         Exports database as a CSV file to be imported in Simapro 9.x
 
@@ -1140,11 +1144,11 @@ class NewDatabase:
             Export(scenario, filepath, self.version).export_db_to_simapro()
 
         # generate scenario report
-        self.generate_scenario_report()
+        self.generate_scenario_report(include_time=include_time)
         # generate change report from logs
-        self.generate_change_report()
+        self.generate_change_report(include_time=include_time)
 
-    def write_db_to_olca(self, filepath: str = None):
+    def write_db_to_olca(self, filepath: str = None, include_time: bool = False):
         """
         Exports database as a Simapro CSV file to be imported in OpenLCA
 
@@ -1176,11 +1180,13 @@ class NewDatabase:
             )
 
         # generate scenario report
-        self.generate_scenario_report()
+        self.generate_scenario_report(include_time=include_time)
         # generate change report from logs
-        self.generate_change_report()
+        self.generate_change_report(include_time=include_time)
 
-    def write_datapackage(self, name: str = f"datapackage_{date.today()}"):
+    def write_datapackage(
+        self, name: str = f"datapackage_{date.today()}", include_time: bool = False
+    ):
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
 
@@ -1222,20 +1228,23 @@ class NewDatabase:
         )
 
         # generate scenario report
-        self.generate_scenario_report()
+        self.generate_scenario_report(include_time=include_time)
         # generate change report from logs
-        self.generate_change_report()
+        self.generate_change_report(include_time=include_time)
 
     def generate_scenario_report(
         self,
         filepath: [str, Path] = None,
-        name: str = f"scenario_report_{date.today()}.xlsx",
+        report_name: str = "scenario_report",
+        include_time: bool = False,
     ):
         """
         Generate a report of the scenarios.
         """
 
         print("Generate scenario report.")
+
+        name = generate_filename(report_name, include_time, ".xlsx")
 
         if filepath is not None:
             if isinstance(filepath, str):
@@ -1254,14 +1263,14 @@ class NewDatabase:
 
         print(f"Report saved under {filepath}.")
 
-    def generate_change_report(self):
+    def generate_change_report(self, include_time=False):
         """
         Generate a report of the changes between the original database and the scenarios.
         """
 
         print("Generate change report.")
         generate_change_report(
-            self.source, self.version, self.source_type, self.system_model
+            self.source, self.version, self.source_type, self.system_model, include_time
         )
         # saved under working directory
         print(f"Report saved under {os.getcwd()}.")
