@@ -883,7 +883,6 @@ class NewDatabase:
             [item for item in sectors if item not in sector_update_methods]
         )
 
-
         # Outer tqdm progress bar for sectors
         with tqdm(total=len(sectors), desc="Updating sectors", ncols=70) as pbar_outer:
             for sector in sectors:
