@@ -40,7 +40,7 @@ from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
-from .logger import get_loggers_list_from_config, load_logging_config, log_queue
+from .logger import empty_log_files
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
@@ -55,30 +55,7 @@ from .utils import (
     warning_about_biogenic_co2,
 )
 
-
-def start_listener():
-    load_logging_config()  # Load your YAML configuration
-
-    # Retrieve handlers from the configured loggers, assuming they're properly set in your YAML
-    # This is a simplified approach; you may need to adjust based on your specific handlers
-    handlers = []
-    for logger_name in get_loggers_list_from_config():  # Add all logger names you use
-        logger = logging.getLogger(logger_name)
-        for handler in logger.handlers:
-            if not isinstance(
-                handler, logging.handlers.QueueHandler
-            ):  # Exclude QueueHandlers
-                handlers.append(handler)
-
-    # Deduplicate handlers based on a unique property, e.g., handler's file path for FileHandlers
-    unique_handlers = list(
-        {handler.baseFilename: handler for handler in handlers}.values()
-    )
-
-    # Create and start the QueueListener with the unique handlers
-    listener = logging.handlers.QueueListener(log_queue, *unique_handlers)
-    listener.start()
-    return listener
+logger = logging.getLogger("module")
 
 
 if int(bw2data.__version__[0]) >= 4:
@@ -906,7 +883,6 @@ class NewDatabase:
             [item for item in sectors if item not in sector_update_methods]
         )
 
-        listener = start_listener()
 
         # Outer tqdm progress bar for sectors
         with tqdm(total=len(sectors), desc="Updating sectors", ncols=70) as pbar_outer:
@@ -954,8 +930,6 @@ class NewDatabase:
 
                 # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update(1)
-
-        listener.stop()
 
         print("Done!\n")
 
