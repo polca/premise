@@ -5,7 +5,6 @@ as well as export it back.
 """
 
 import copy
-import logging
 import multiprocessing
 import os
 import pickle
@@ -14,6 +13,8 @@ from multiprocessing import Pool as ProcessPool
 from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import List, Union
+import logging
+
 
 import bw2data
 import datapackage
@@ -53,17 +54,36 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
 )
+from .logger import log_queue, load_logging_config, get_loggers_list_from_config
 
-logger = logging.getLogger("module")
+
+def start_listener():
+    load_logging_config()  # Load your YAML configuration
+
+    # Retrieve handlers from the configured loggers, assuming they're properly set in your YAML
+    # This is a simplified approach; you may need to adjust based on your specific handlers
+    handlers = []
+    for logger_name in get_loggers_list_from_config():  # Add all logger names you use
+        logger = logging.getLogger(logger_name)
+        for handler in logger.handlers:
+            if not isinstance(handler, logging.handlers.QueueHandler):  # Exclude QueueHandlers
+                handlers.append(handler)
+
+    # Deduplicate handlers based on a unique property, e.g., handler's file path for FileHandlers
+    unique_handlers = list({handler.baseFilename: handler for handler in handlers}.values())
+
+    # Create and start the QueueListener with the unique handlers
+    listener = logging.handlers.QueueListener(log_queue, *unique_handlers)
+    listener.start()
+    return listener
+
 
 if int(bw2data.__version__[0]) >= 4:
     from .brightway25 import write_brightway_database
 
-    logger.info("Using Brightway 2.5")
 else:
     from .brightway2 import write_brightway_database
 
-    logger.info("Using Brightway 2")
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -883,6 +903,8 @@ class NewDatabase:
             [item for item in sectors if item not in sector_update_methods]
         )
 
+        listener = start_listener()
+
         # Outer tqdm progress bar for sectors
         with tqdm(total=len(sectors), desc="Updating sectors", ncols=70) as pbar_outer:
             for sector in sectors:
@@ -929,6 +951,9 @@ class NewDatabase:
 
                 # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update(1)
+
+        listener.stop()
+
         print("Done!\n")
 
     def write_superstructure_db_to_brightway(

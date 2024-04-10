@@ -607,6 +607,9 @@ premise_validation:
       location:
           name: location
           description: Location
+      severity:
+          name: severity
+          description: Severity of anomaly
       reason:
           name: reason
           description: Reason for anomaly

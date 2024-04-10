@@ -19,6 +19,7 @@ from pandas.errors import EmptyDataError
 
 from . import __version__
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
+from .logger import empty_log_files
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
@@ -615,6 +616,9 @@ def generate_change_report(source, version, source_type, system_model):
         DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx"
     )
     workbook.save(fp)
+    empty_log_files()
+
+
 
 
 def fetch_columns(variable):
