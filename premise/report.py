@@ -619,8 +619,6 @@ def generate_change_report(source, version, source_type, system_model):
     empty_log_files()
 
 
-
-
 def fetch_columns(variable):
     """
     Read reporting.yaml which return

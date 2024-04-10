@@ -182,10 +182,20 @@ class BaseDatasetValidator:
                         exc["product"] = candidate[0][1]
                     elif len(candidate) > 1:
                         message = f"Exchange {exc['name']} in {dataset['name']} has multiple possible products: {candidate}."
-                        self.log_issue(dataset, "multiple exchange products", message, issue_type="major")
+                        self.log_issue(
+                            dataset,
+                            "multiple exchange products",
+                            message,
+                            issue_type="major",
+                        )
                     else:
                         message = f"Exchange {exc['name']} in {dataset['name']} is missing the 'product' key."
-                        self.log_issue(dataset, "missing exchange product", message, issue_type="major")
+                        self.log_issue(
+                            dataset,
+                            "missing exchange product",
+                            message,
+                            issue_type="major",
+                        )
 
     def check_for_orphaned_datasets(self):
         # check the presence of orphan datasets
@@ -220,24 +230,35 @@ class BaseDatasetValidator:
                 message = (
                     f"Dataset {dataset['name']} does not have a list of exchanges."
                 )
-                self.log_issue(dataset, "missing exchanges", message, issue_type="major")
+                self.log_issue(
+                    dataset, "missing exchanges", message, issue_type="major"
+                )
 
             for exchange in dataset.get("exchanges", []):
                 if "type" not in exchange:
                     message = f"Exchange in dataset {dataset['name']} is missing the 'type' key."
-                    self.log_issue(dataset, "missing exchange type", message, issue_type="major")
+                    self.log_issue(
+                        dataset, "missing exchange type", message, issue_type="major"
+                    )
 
                 if not isinstance(exchange["amount"], float):
                     exchange["amount"] = float(exchange["amount"])
 
             # if list of exchanges is 2, and the two exchanges are identical
             if len(dataset.get("exchanges", [])) == 2:
-                if (dataset["exchanges"][0]["name"], dataset["exchanges"][0].get("product"), dataset["exchanges"][0].get("location")) == (
-                    dataset["exchanges"][1]["name"], dataset["exchanges"][1].get("product"), dataset["exchanges"][1].get("location")
-
+                if (
+                    dataset["exchanges"][0]["name"],
+                    dataset["exchanges"][0].get("product"),
+                    dataset["exchanges"][0].get("location"),
+                ) == (
+                    dataset["exchanges"][1]["name"],
+                    dataset["exchanges"][1].get("product"),
+                    dataset["exchanges"][1].get("location"),
                 ):
                     message = f"Dataset {dataset['name']} has two identical exchanges."
-                    self.log_issue(dataset, "identical exchanges", message, issue_type="major")
+                    self.log_issue(
+                        dataset, "identical exchanges", message, issue_type="major"
+                    )
 
     def verify_data_consistency(self):
         # Check for negative amounts in exchanges that should only have positive amounts
@@ -285,7 +306,9 @@ class BaseDatasetValidator:
                     not in dataset_names
                 ):
                     message = f"Dataset {dataset['name']} links to a non-existing dataset: {exchange['name']}."
-                    self.log_issue(dataset, "non-existing dataset", message, issue_type="major")
+                    self.log_issue(
+                        dataset, "non-existing dataset", message, issue_type="major"
+                    )
 
     def check_for_duplicates(self):
         """Check for the presence of duplicates"""
@@ -515,7 +538,10 @@ class ElectricityValidation(BaseDatasetValidator):
                 if total < 0.99 or total > 1.15:
                     message = f"Electricity market inputs sum to {total}."
                     self.log_issue(
-                        dataset, "electricity market not summing to 1", message, issue_type="major"
+                        dataset,
+                        "electricity market not summing to 1",
+                        message,
+                        issue_type="major",
                     )
 
     def check_old_datasets(self):
@@ -562,7 +588,10 @@ class ElectricityValidation(BaseDatasetValidator):
                     ):
                         message = "Electricity market input is incorrect."
                         self.log_issue(
-                            dataset, "incorrect old electricity market input", message, issue_type="major"
+                            dataset,
+                            "incorrect old electricity market input",
+                            message,
+                            issue_type="major",
                         )
 
                     # check the location of the input

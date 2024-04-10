@@ -3,9 +3,9 @@ Module to create a logger with the given handler.
 """
 
 import logging.config
-from pathlib import Path
 from logging.handlers import QueueHandler
 from multiprocessing import Queue
+from pathlib import Path
 
 import yaml
 
@@ -23,16 +23,18 @@ if not Path(DIR_LOG_REPORT).exists():
 log_queue = Queue()
 is_config_loaded = False  # Flag to track if the logging config has been loaded
 
+
 def get_loggers_list_from_config():
-    with open(LOG_CONFIG, 'r', encoding='utf-8') as file:
+    with open(LOG_CONFIG, "r", encoding="utf-8") as file:
         config = yaml.safe_load(file)
-        return list(config['loggers'].keys())
+        return list(config["loggers"].keys())
+
 
 def load_logging_config():
     global is_config_loaded
     # Check if the logging configuration has already been loaded
     if not is_config_loaded:
-        with open(LOG_CONFIG, 'r', encoding='utf-8') as file:
+        with open(LOG_CONFIG, "r", encoding="utf-8") as file:
             config = yaml.safe_load(file)
             logging.config.dictConfig(config)
         is_config_loaded = True  # Set the flag to True after loading the config
@@ -68,14 +70,14 @@ def empty_log_files():
     """
     Empties all log files specified in the logging configuration.
     """
-    with open(LOG_CONFIG, 'r', encoding='utf-8') as file:
+    with open(LOG_CONFIG, "r", encoding="utf-8") as file:
         config = yaml.safe_load(file)
-        handlers = config.get('handlers', {})
+        handlers = config.get("handlers", {})
 
         for handler_name, handler_config in handlers.items():
-            if handler_config.get('class') == 'logging.FileHandler':
-                filename = handler_config.get('filename')
+            if handler_config.get("class") == "logging.FileHandler":
+                filename = handler_config.get("filename")
                 if filename:
                     # Open the file in write mode with an empty string to clear it
-                    with open(filename, 'w', encoding='utf-8') as log_file:
-                        log_file.write('')
+                    with open(filename, "w", encoding="utf-8") as log_file:
+                        log_file.write("")

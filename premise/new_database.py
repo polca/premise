@@ -5,6 +5,7 @@ as well as export it back.
 """
 
 import copy
+import logging
 import multiprocessing
 import os
 import pickle
@@ -13,8 +14,6 @@ from multiprocessing import Pool as ProcessPool
 from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import List, Union
-import logging
-
 
 import bw2data
 import datapackage
@@ -41,6 +40,7 @@ from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
+from .logger import get_loggers_list_from_config, load_logging_config, log_queue
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
@@ -54,7 +54,6 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
 )
-from .logger import log_queue, load_logging_config, get_loggers_list_from_config
 
 
 def start_listener():
@@ -66,11 +65,15 @@ def start_listener():
     for logger_name in get_loggers_list_from_config():  # Add all logger names you use
         logger = logging.getLogger(logger_name)
         for handler in logger.handlers:
-            if not isinstance(handler, logging.handlers.QueueHandler):  # Exclude QueueHandlers
+            if not isinstance(
+                handler, logging.handlers.QueueHandler
+            ):  # Exclude QueueHandlers
                 handlers.append(handler)
 
     # Deduplicate handlers based on a unique property, e.g., handler's file path for FileHandlers
-    unique_handlers = list({handler.baseFilename: handler for handler in handlers}.values())
+    unique_handlers = list(
+        {handler.baseFilename: handler for handler in handlers}.values()
+    )
 
     # Create and start the QueueListener with the unique handlers
     listener = logging.handlers.QueueListener(log_queue, *unique_handlers)
