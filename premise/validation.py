@@ -502,9 +502,9 @@ class BaseDatasetValidator:
         self.reformat_parameters()
         self.check_uncertainty()
         self.save_log()
-        if self.minor_issues_log:
+        if len(self.minor_issues_log) > 0:
             print("Minor anomalies found: check the change report.")
-        if self.major_issues_log:
+        if len(self.major_issues_log) > 0:
             print("---> MAJOR anomalies found: check the change report.")
 
 
