@@ -884,13 +884,13 @@ def generate_superstructure_db(
         )
 
     if file_format == "excel":
-        filepath_sdf = filepath / f"scenario_diff_{db_name}_{datetime.now()}.xlsx"
+        filepath_sdf = filepath / f"scenario_diff_{db_name}.xlsx"
         df.to_excel(filepath_sdf, index=False)
     elif file_format == "csv":
-        filepath_sdf = filepath / f"scenario_diff_{db_name}_{datetime.now()}.csv"
+        filepath_sdf = filepath / f"scenario_diff_{db_name}.csv"
         df.to_csv(filepath_sdf, index=False, sep=";", encoding="utf-8-sig")
     elif file_format == "feather":
-        filepath_sdf = filepath / f"scenario_diff_{db_name}_{datetime.now()}.feather"
+        filepath_sdf = filepath / f"scenario_diff_{db_name}.feather"
         df.to_feather(filepath_sdf)
     else:
         raise ValueError(f"Unknown format {file_format}")

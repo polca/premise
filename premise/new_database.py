@@ -9,7 +9,7 @@ import logging
 import multiprocessing
 import os
 import pickle
-from datetime import date
+from datetime import date, datetime
 from multiprocessing import Pool as ProcessPool
 from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
@@ -934,7 +934,7 @@ class NewDatabase:
 
     def write_superstructure_db_to_brightway(
         self,
-        name: str = f"super_db_{date.today().strftime('%d-%m-%Y %H_%M')}",
+        name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y %H-%M')} (v.{str(__version__)})",
         filepath: str = None,
         file_format: str = "excel",
     ) -> None:
@@ -1182,7 +1182,7 @@ class NewDatabase:
         self.generate_change_report()
 
     def write_datapackage(
-        self, name: str = f"datapackage_{date.today().strftime('%d-%m-%Y %H_%M')}"
+        self, name: str = f"datapackage_{datetime.now().strftime('%d-%m-%Y %H-%M')} (v.{str(__version__)})"
     ):
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
@@ -1232,7 +1232,7 @@ class NewDatabase:
     def generate_scenario_report(
         self,
         filepath: [str, Path] = None,
-        name: str = f"scenario_report_{date.today().strftime('%d-%m-%Y %H_%M')}.xlsx",
+        name: str = f"scenario_report_{datetime.now().strftime('%d-%m-%Y %H-%M')} (v.{str(__version__)}).xlsx",
     ):
         """
         Generate a report of the scenarios.
