@@ -934,7 +934,7 @@ class NewDatabase:
 
     def write_superstructure_db_to_brightway(
         self,
-        name: str = f"super_db_{date.today()}",
+        name: str = f"super_db_{date.today().strftime('%d-%m-%Y %H_%M')}",
         filepath: str = None,
         file_format: str = "excel",
     ) -> None:
@@ -1181,7 +1181,7 @@ class NewDatabase:
         # generate change report from logs
         self.generate_change_report()
 
-    def write_datapackage(self, name: str = f"datapackage_{date.today()}"):
+    def write_datapackage(self, name: str = f"datapackage_{date.today().strftime('%d-%m-%Y %H_%M')}"):
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
 
@@ -1230,7 +1230,7 @@ class NewDatabase:
     def generate_scenario_report(
         self,
         filepath: [str, Path] = None,
-        name: str = f"scenario_report_{date.today()}.xlsx",
+        name: str = f"scenario_report_{date.today().strftime('%d-%m-%Y %H_%M')}.xlsx",
     ):
         """
         Generate a report of the scenarios.
