@@ -1181,7 +1181,9 @@ class NewDatabase:
         # generate change report from logs
         self.generate_change_report()
 
-    def write_datapackage(self, name: str = f"datapackage_{date.today().strftime('%d-%m-%Y %H_%M')}"):
+    def write_datapackage(
+        self, name: str = f"datapackage_{date.today().strftime('%d-%m-%Y %H_%M')}"
+    ):
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
 
