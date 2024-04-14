@@ -1182,7 +1182,8 @@ class NewDatabase:
         self.generate_change_report()
 
     def write_datapackage(
-        self, name: str = f"datapackage_{datetime.now().strftime('%d-%m-%Y %H-%M')} (v.{str(__version__)})"
+        self,
+        name: str = f"datapackage_{datetime.now().strftime('%d-%m-%Y %H-%M')} (v.{str(__version__)})",
     ):
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
