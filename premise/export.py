@@ -1337,7 +1337,7 @@ class Export:
         headers = [
             "{SimaPro 9.1.1.7}",
             "{processes}",
-            "{Project: premise import" + f"{datetime.datetime.today():%d.%m.%Y}" + "}",
+            "{Project: premise import" + f"{datetime.today():%d.%m.%Y}" + "}",
             "{CSV Format version: 9.0.0}",
             "{CSV separator: Semicolon}",
             "{Decimal separator: .}",
@@ -1480,7 +1480,7 @@ class Export:
                         writer.writerow([ds["location"]])
 
                     if item == "Date":
-                        writer.writerow([f"{datetime.datetime.today():%d.%m.%Y}"])
+                        writer.writerow([f"{datetime.today():%d.%m.%Y}"])
 
                     if item == "Comment":
                         if ds["name"] in dict_refs:
