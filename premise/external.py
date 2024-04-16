@@ -184,7 +184,9 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                 )
 
                 if absolute_efficiency is True:
-                    print("Absolute efficiency for", dataset["name"], dataset["location"])
+                    print(
+                        "Absolute efficiency for", dataset["name"], dataset["location"]
+                    )
                     print()
 
                     # first, fetch expected efficiency
@@ -202,9 +204,14 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
                         dataset["current efficiency"] = current_efficiency
 
-                    if expected_efficiency in [0.0, 1.0] or current_efficiency in [0.0, 1.0]:
-                        print(f"Stopping: Efficiency factor for {dataset['name']} in {dataset['location']} is {current_efficiency}"
-                              f"and expected efficiency is {expected_efficiency}.")
+                    if expected_efficiency in [0.0, 1.0] or current_efficiency in [
+                        0.0,
+                        1.0,
+                    ]:
+                        print(
+                            f"Stopping: Efficiency factor for {dataset['name']} in {dataset['location']} is {current_efficiency}"
+                            f"and expected efficiency is {expected_efficiency}."
+                        )
                         continue
 
                     # finally, calculate the scaling factor
@@ -222,7 +229,12 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     dataset["log parameters"][f"old efficiency"] = current_efficiency
                     dataset["log parameters"][f"new efficiency"] = expected_efficiency
 
-                    print("current efficiency", current_efficiency, "expected efficiency", expected_efficiency)
+                    print(
+                        "current efficiency",
+                        current_efficiency,
+                        "expected efficiency",
+                        expected_efficiency,
+                    )
 
                 else:
                     # the scaling factor is the inverse of the efficiency change
@@ -253,7 +265,9 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
 
                 if not np.isclose(scaling_factor, 1, rtol=1e-3):
-                    print("Adjusting efficiency for", dataset["name"], dataset["location"])
+                    print(
+                        "Adjusting efficiency for", dataset["name"], dataset["location"]
+                    )
                     if "log parameters" not in dataset:
                         dataset["log parameters"] = {}
 
@@ -512,7 +526,15 @@ class ExternalScenario(BaseTransformation):
                     fuel_map_reverse=self.fuel_map_reverse,
                 )
                 print(dataset["name"], dataset["location"])
-                if any(x in dataset for x in ["technosphere scaling factor", "biosphere scaling factor", "old efficiency", "new efficiency"]):
+                if any(
+                    x in dataset
+                    for x in [
+                        "technosphere scaling factor",
+                        "biosphere scaling factor",
+                        "old efficiency",
+                        "new efficiency",
+                    ]
+                ):
                     print(dataset["log parameters"])
                     print()
                     self.write_log(dataset, status="updated")
