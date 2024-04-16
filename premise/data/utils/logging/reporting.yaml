@@ -576,6 +576,14 @@ premise_external_scenarios:
         name: Biosphere scaling factor
         description: Scaling factor applied on the initial amount of biosphere flow inputs
         unit: unitless
+      old efficiency:
+        name: Old efficiency
+        description: Efficiency of the dataset before adjustment
+        unit: 0-1
+      new efficiency:
+        name: New efficiency
+        description: Efficiency of the dataset after adjustment
+        unit: 0-1
     tab: External scenarios
 
 premise_validation:

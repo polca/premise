@@ -452,28 +452,21 @@ class BaseDatasetValidator:
 
     def log_issue(self, dataset, reason, message, issue_type="minor"):
 
-        if issue_type == "major":
-            self.major_issues_log.append(
-                {
-                    "name": dataset.get("name"),
-                    "reference product": dataset.get("reference product"),
-                    "location": dataset.get("location"),
-                    "severity": "major",
-                    "reason": reason,
-                    "message": message,
-                }
-            )
+        if issue_type == "minor":
+            log = self.minor_issues_log
         else:
-            self.minor_issues_log.append(
-                {
-                    "name": dataset.get("name"),
-                    "reference product": dataset.get("reference product"),
-                    "location": dataset.get("location"),
-                    "severity": "minor",
-                    "reason": reason,
-                    "message": message,
-                }
-            )
+            log = self.major_issues_log
+
+        log.append(
+            {
+                "name": dataset.get("name"),
+                "reference product": dataset.get("reference product"),
+                "location": dataset.get("location"),
+                "severity": issue_type,
+                "reason": reason,
+                "message": message,
+            }
+        )
 
     def save_log(self):
         # Save the validation log
