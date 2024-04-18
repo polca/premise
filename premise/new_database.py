@@ -166,6 +166,8 @@ FILEPATH_GERMANIUM = INVENTORY_DIR / "lci-germanium.xlsx"
 FILEPATH_RHENIUM = INVENTORY_DIR / "lci-rhenium.xlsx"
 FILEPATH_PGM = INVENTORY_DIR / "lci-PGM.xlsx"
 
+FILEPATH_RAIL_FREIGHT = INVENTORY_DIR / "lci-rail-freight.xlsx"
+
 config = load_constants()
 
 
@@ -740,6 +742,7 @@ class NewDatabase:
             (FILEPATH_GERMANIUM, "3.9"),
             (FILEPATH_RHENIUM, "3.9"),
             (FILEPATH_PGM, "3.8"),
+            (FILEPATH_RAIL_FREIGHT, "3.9"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
