@@ -32,10 +32,13 @@ IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
 IAM_DAC_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
+IAM_TRANS_VARS = VARIABLES_DIR / "transport_variables.yaml"
+
 FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
     IAM_OUTPUT_DIR / "fleet_files" / "image_fleet_trucks.csv"
 )
+# TODO: use IAM_TRANS_VAR also for road transport. Delete _FLEET_COMP files afterwards.
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
@@ -214,6 +217,7 @@ def get_gains_EU_data() -> xr.DataArray:
 
 
 def get_vehicle_fleet_composition(model, vehicle_type) -> Union[xr.DataArray, None]:
+    # TODO: delete this function when all data is collected via IAM output files and not fleet comp files
     """
     Read the fleet composition csv file and return an `xarray` with dimensions:
     "region", "year", "powertrain", "construction_year", "size"
@@ -420,6 +424,14 @@ class IAMDataCollection:
         other_vars = self.__get_iam_variable_labels(
             IAM_OTHER_VARS, variable="iam_aliases"
         )
+        
+        transport_prod_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_VARS, variable="iam_aliases"
+        )
+        
+        transport_energy_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_VARS, variable="energy_use_aliases"
+        )
 
         # new_vars is a list of all variables that are declared above
 
@@ -440,6 +452,8 @@ class IAMDataCollection:
             + list(land_use_change_vars.values())
             + list(carbon_capture_vars.values())
             + list(other_vars.values())
+            + list(transport_prod_vars.values())
+            + list(transport_energy_vars.values())
         )
 
         # flatten the list of lists
@@ -606,6 +620,13 @@ class IAMDataCollection:
             normalize=False,
             system_model="cutoff",
         )
+        
+        self.transport_markets = self.__fetch_market_data(
+            data=data,
+            input_vars=transport_prod_vars,
+            system_model="cutoff", # TODO: check how to handle this for consequencial
+            sector="transport",
+        )
 
         self.electricity_efficiencies = self.get_iam_efficiencies(
             data=data,
@@ -719,6 +740,12 @@ class IAMDataCollection:
             production_labels=dac_prod_vars,
             energy_labels=dac_electricity_vars,
         )
+        
+        self.transport_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            production_labels=transport_prod_vars,
+            energy_labels=transport_energy_vars,
+        )
 
         self.land_use = self.__get_iam_production_volumes(
             data=data, input_vars=land_use_vars, fill=True
@@ -745,6 +772,7 @@ class IAMDataCollection:
                 **steel_prod_vars,
                 **dac_prod_vars,
                 **biomass_prod_vars,
+                **transport_prod_vars,
             },
         )
 
