@@ -365,7 +365,7 @@ class ExternalScenario(BaseTransformation):
         year: int,
         version: str,
         system_model: str,
-        configurations: dict = {},
+        configurations: dict = None,
     ):
         """
         :param database: list of datasets representing teh database
@@ -386,6 +386,8 @@ class ExternalScenario(BaseTransformation):
             version,
             system_model,
         )
+        if configurations is None:
+            configurations = {}
         self.datapackages = external_scenarios
         self.external_scenarios_data = external_scenarios_data
         self.biosphere_flows = get_biosphere_code(self.version)
@@ -408,6 +410,7 @@ class ExternalScenario(BaseTransformation):
             self.regionalize_inventories(ds_names, external_scenario_regions, data)
         self.dict_bio_flows = get_biosphere_flow_uuid(self.version)
         self.outdated_flows = get_correspondence_bio_flows()
+        self.configurations = configurations
 
     def regionalize_inventories(self, ds_names, regions, data: dict) -> None:
         """
@@ -422,7 +425,7 @@ class ExternalScenario(BaseTransformation):
             ws.either(*[ws.contains("name", name) for name in ds_names]),
         ):
 
-            # Check if datasets already exist for IAM regions
+            # Check if datasets already exist in regions
             # if not, create them
             if ds["location"] not in regions:
                 new_acts = self.fetch_proxies(

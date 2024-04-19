@@ -407,6 +407,7 @@ def check_inventories(
             if location in geo.iam_regions:
                 reasons[region] = "IAM match"
                 return region in geo.iam_to_ecoinvent_location(location)
+
             return False
 
         def contained_match(region, location):
@@ -460,8 +461,8 @@ def check_inventories(
                         if check_func(region, location):
                             # check the dataset was not previously emptied
                             if (
-                                candidates_by_location[location].get("emptied", False)
-                                is False
+                                    candidates_by_location[location].get("emptied", False)
+                                    is False
                             ):
                                 assign_candidate_if_empty(region, location)
                                 break
