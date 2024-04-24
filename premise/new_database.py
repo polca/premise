@@ -44,6 +44,7 @@ from .logger import empty_log_files
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
+from .transport_new import _update_transport
 from .utils import (
     clear_existing_cache,
     create_scenario_list,
@@ -847,6 +848,10 @@ class NewDatabase:
             "buses": {
                 "func": _update_vehicles,
                 "args": ("bus", self.version, self.system_model),
+            },
+            "transport": {
+                "func": _update_transport,
+                "args": (self.version, self.system_model),
             },
             "external": {
                 "func": _update_external_scenarios,
