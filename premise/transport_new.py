@@ -168,7 +168,7 @@ class Transport(BaseTransformation):
                         
                     # logger.info(f"Modified dataset: {dataset['name']} in {dataset['location']}")
                     
-                    # self.adjust_transport_efficiency(dataset)
+                    self.adjust_transport_efficiency(dataset)
 
         # code to be created: needs to create new inventories for missing IAM regions
         
@@ -232,10 +232,11 @@ class Transport(BaseTransformation):
         ]
         
         scaling_factor = 1 / self.find_iam_efficiency_change(
-            data=self.iam_data.transport_efficiencies,
+            data=self.iam_data.transport_efficiencies, # TODO: efficiencies are so far only 1.0 values, wait on response Romain
             variable=dataset["name"],
             location=dataset["location"],
         )
+        logger.info(f"Scaling factor: {scaling_factor} for dataset {dataset['name']} in {dataset['location']}")
         
         if scaling_factor is None:
             scaling_factor = 1
@@ -250,6 +251,7 @@ class Transport(BaseTransformation):
                 biosphere_filters=[ws.contains("name", x) for x in list_biosphere_flows],
                 remove_uncertainty=False,
             )
+            logger.info(f"Dataset {dataset['name']} in {dataset['location']} has been updated.")
             
             # Update the comments
             text = (
@@ -258,7 +260,7 @@ class Transport(BaseTransformation):
                 f"region {dataset['location']} in {self.year}, following the scenario {self.scenario}. "
                 f"The energy efficiency of the process has been improved by {int((1 - scaling_factor) * 100)}%."
             )
-            dataset["comment"] = text + dataset["comment"]
+            dataset["comment"] = text + (dataset["comment"] if dataset["comment"] is not None else "")
 
             if "log parameters" not in dataset:
                 dataset["log parameters"] = {}
