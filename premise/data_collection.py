@@ -24,6 +24,9 @@ from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, VARIABLES_DIR
 from .geomap import Geomap
 from .marginal_mixes import consequential_method
 
+from .logger import create_logger
+logger = create_logger("transport")
+
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
@@ -428,10 +431,12 @@ class IAMDataCollection:
         transport_prod_vars = self.__get_iam_variable_labels(
             IAM_TRANS_VARS, variable="iam_aliases"
         )
+        logger.info(f"Transport prod vars: {transport_prod_vars}")
         
         transport_energy_vars = self.__get_iam_variable_labels(
             IAM_TRANS_VARS, variable="energy_use_aliases"
         )
+        logger.info(f"Transport energy vars: {transport_energy_vars}")
 
         # new_vars is a list of all variables that are declared above
 
@@ -455,6 +460,7 @@ class IAMDataCollection:
             + list(transport_prod_vars.values())
             + list(transport_energy_vars.values())
         )
+        # logger.info(f"New vars: {new_vars}")
 
         # flatten the list of lists
         new_vars = flatten(new_vars)
@@ -470,7 +476,7 @@ class IAMDataCollection:
                 fuel_prod_vars if "liquid fossil fuels" in fuel_prod_vars else None
             ),
         )
-
+        
         self.data = data
 
         self.regions = data.region.values.tolist()
@@ -746,6 +752,12 @@ class IAMDataCollection:
             production_labels=transport_prod_vars,
             energy_labels=transport_energy_vars,
         )
+        
+        logger.info(f"Transport eff: {self.transport_efficiencies}")
+        specific_region = "World"
+        specific_year = 2050
+        specific_variable = "transport, freight train, electric"
+        logger.info(f"Transport eff for {specific_region}, {specific_year}, {specific_variable}: {self.transport_efficiencies.sel(region=specific_region, year=specific_year, variables=specific_variable)}")
 
         self.land_use = self.__get_iam_production_volumes(
             data=data, input_vars=land_use_vars, fill=True
