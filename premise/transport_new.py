@@ -36,7 +36,7 @@ def _update_transport(scenario, version, system_model):
     if scenario["iam data"].transport_markets is not None:
         logger.info("TESTING: transport markets found in IAM data")
         transport.generate_datasets()
-        # transport.generate_transport_markets()
+        transport.generate_transport_markets()
         transport.relink_datasets()
         scenario["database"] = transport.database 
         scenario["cache"] = transport.cache
@@ -143,15 +143,17 @@ class Transport(BaseTransformation):
             ws.contains("name", "transport, freight train"), # to be changed when including road freight transport
             ws.equals("unit", "ton kilometer"),
         )
-        freight_traindataset_names = [dataset['name'] for dataset in freight_train_datasets]
+        freight_train_dataset_names = list(set([dataset['name'] for dataset in freight_train_datasets]))
         
         # for d in freight_train_datasets:
         #     logger.info(f"Dataset name: {d['name']} in {d['location']}")
         
+        changed_datasets_location = []
         new_datasets = []
         
+        # change the location of the datasets to IAM regions
         for dataset in self.database:
-            if dataset["name"] in freight_traindataset_names:
+            if dataset["name"] in freight_train_dataset_names:
                 if dataset["location"] != "RoW":
                     region_mapping = self.region_to_proxy_dataset_mapping(
                         name=dataset["name"],
@@ -168,45 +170,45 @@ class Transport(BaseTransformation):
                         
                     # logger.info(f"Modified dataset: {dataset['name']} in {dataset['location']}")
                     
+                    changed_datasets_location.append(dataset["location"])
+                    # logger.info(f"Changedd dataset locations: {changed_datasets_location}")
+                    
                     self.adjust_transport_efficiency(dataset)
 
-        # code to be created: needs to create new inventories for missing IAM regions
-        
-        # for d in freight_train_datasets:
-        #     logger.info(f"Dataset name: {d['name']} in {d['location']}")
-            # for region in self.iam_data.regions:
-            #     if region is not 
-            #         new_dataset = dataset.copy()
-            #         new_dataset["location"] = region
-            #         new_dataset["code"] = str(uuid.uuid4().hex)
-            #         new_dataset["comment"] = f"Dataset for the region {region}. {dataset['comment']}"
+        # create new datasets for IAM regions that are not covered yet, based on the "RoW" dataset
+        for region in self.iam_data.regions:
+            if region not in changed_datasets_location and region != "World":
+                for freight_train in freight_train_dataset_names:
+                    new_dataset = copy.deepcopy(ws.get_one(self.database,
+                                                           ws.equals("name", freight_train), 
+                                                           ws.equals("location", "RoW"))
+                                                )
+                    new_dataset["location"] = region
+                    new_dataset["code"] = str(uuid.uuid4().hex)
+                    new_dataset["comment"] = f"Dataset for the region {region}. {new_dataset['comment']}"
                     
-            #         # add to log
-            #         self.write_log(dataset=new_dataset, status="updated")
-            #         # add it to list of created datasets
-            #         self.add_to_index(new_dataset)
+                    # add to log
+                    self.write_log(dataset=new_dataset, status="updated")
+                    # add it to list of created datasets
+                    self.add_to_index(new_dataset)
                     
-            #         logger.info(f"New dataset: {new_dataset['name']} in {new_dataset['location']}")
-            #         new_datasets.append(new_dataset)
-            
-            
-        # TODO: create add market inventories and add them to the freight
+                    # logger.info(f"New dataset: {new_dataset['name']} in {new_dataset['location']}")
+                    
+                    self.adjust_transport_efficiency(new_dataset)
+                    
+                    new_datasets.append(new_dataset)
+                    
+        self.database.extend(new_datasets)
         
-
-                # self.adjust_transport_efficiency(dataset)
-        
-        
-
-    
     def adjust_transport_efficiency(self, dataset):
         """
         The function updates the efficiencies of transport datasets
         using the transport_efficiencies, created in data_collection.py.
         """
-        logger.info("TESTING: adjust_transport_efficiency function is called")
+        # logger.info("TESTING: adjust_transport_efficiency function is called")
         
         # create a list that contains all biosphere flows that are related to the direct combustion of diesel
-        list_biosphere_flows = [
+        list_biosphere_flows = [ # to be added: biosphere fuel combustion emission from trucks
             "Ammonia",
             "Benzene",
             "Cadmium II",
@@ -232,11 +234,11 @@ class Transport(BaseTransformation):
         ]
         
         scaling_factor = 1 / self.find_iam_efficiency_change(
-            data=self.iam_data.transport_efficiencies, # TODO: efficiencies are so far only 1.0 values, wait on response Romain
+            data=self.iam_data.transport_efficiencies,
             variable=dataset["name"],
             location=dataset["location"],
         )
-        logger.info(f"Scaling factor: {scaling_factor} for dataset {dataset['name']} in {dataset['location']}")
+        # logger.info(f"Scaling factor: {scaling_factor} for dataset {dataset['name']} in {dataset['location']}")
         
         if scaling_factor is None:
             scaling_factor = 1
@@ -247,11 +249,12 @@ class Transport(BaseTransformation):
                 scaling_factor,
                 technosphere_filters=[
                     ws.either(*[ws.contains("name", x) for x in ["electricity", "diesel", "hydrogen"]]) # TODO: apply diesel efficiency increase to diesel shunting for electricity and hydrogen datasets
-                ],
+                ], # to be adapted for fuels that trucks use (make a fuel list out of it, maybe even yaml?)
                 biosphere_filters=[ws.contains("name", x) for x in list_biosphere_flows],
                 remove_uncertainty=False,
             )
-            logger.info(f"Dataset {dataset['name']} in {dataset['location']} has been updated.")
+            # logger.info(f"Dataset {dataset['name']} in {dataset['location']} has been updated.")
+            ########## how can there be a scaling factor for hydrogen if FE and ES variables are 0?
             
             # Update the comments
             text = (
@@ -265,11 +268,7 @@ class Transport(BaseTransformation):
             if "log parameters" not in dataset:
                 dataset["log parameters"] = {}
 
-            dataset["log parameters"].update(
-                {
-                    "efficiency change": scaling_factor,
-                }
-            )
+            dataset["log parameters"].update({"efficiency change": scaling_factor,})
             
     def generate_transport_markets(self):
         """
@@ -278,27 +277,22 @@ class Transport(BaseTransformation):
         creates the process by multiplying the share with the amount of reference product, 
         assigning it to the respective input.
         """
+        
+        logger.info("TESTING: generate_transport_markets function is called")
       
-        vehicle_types = [
-            "transport, freight train, diesel-electric",
-            "transport, freight train, diesel-electric",
-            "transport, freight train, electric",
-            "transport, freight train, fuel cell, hydrogen",
-        ]
+        freight_train_datasets = ws.get_many(
+            self.database,
+            ws.contains("name", "transport, freight train"), # to be changed when including road freight transport
+            ws.equals("unit", "ton kilometer"),
+        )
+        freight_train_dataset_names = list(set([dataset['name'] for dataset in freight_train_datasets]))
         
-        iam_variables = [
-            "ES|Transport|Freight|Rail|Liquids|Fossil",
-            "ES|Transport|Freight|Rail|Liquids|Biomass",
-            "ES|Transport|Freight|Rail|Electric",
-            "ES|Transport|Freight|Rail|Liquids|Hydrogen",
-        ]
-        
-        list_transport_vehicles = list(zip(vehicle_types, iam_variables)) # find a better way, and include road freight
+        # logger.info(f"Freight train datasets: {freight_train_dataset_names}")
         
         list_transport_markets = [] # create empty list to store the market processes
         
+        # create regional market processes
         for region in self.iam_data.regions:
-            # create regional market processes
             market = {
                 "name": "market for transport, freight train", # to be changed when making it mode agnostic
                 "reference product": "transport, freight train",
@@ -320,33 +314,86 @@ class Transport(BaseTransformation):
                 f"for the region {region}.",
             }
             
-            for vehicle, variable in list_transport_vehicles:
-                if vehicle == "transport, freight train, diesel-electric":
-                    amount1 = self.iam_data.transport_markets.sel(region=region, variable=variable, year=self.year).item()
-                    amount2 = self.iam_data.transport_markets.sel(region=region, variable=variable, year=self.year).item()
-                    amount = amount1 + amount2
-                else:
-                    amount = self.iam_data.transport_markets.sel(region=region, variable=variable, year=self.year).item()
+            if region != "World":
+                for vehicle in freight_train_dataset_names:
                     
-                market["exchanges"].append(
+                    market_share = self.iam_data.transport_markets.sel(region=region, variables=vehicle, year=self.year).item()
+                        
+                    # logger.info(f"Market share for {vehicle} in {region}: {market_share}")
+                    
+                    if market_share > 0:
+                        market["exchanges"].append(
+                            {
+                                "name": vehicle,
+                                "product": "transport, freight train",
+                                "unit": "ton kilometer",
+                                "location": region,
+                                "type": "technosphere",
+                                "amount": market_share,
+                            }
+                        )
+            
+            
+            # logger.info(f"Market: {market['name']} in {market['location']} with exchanges: {market['exchanges']}")
+
+            if len(market["exchanges"]) > 1:# not needed
+                list_transport_markets.append(market)
+        
+        self.database.extend(list_transport_markets)
+        
+        #list_transport_ES_var = ["ES|Transport|Freight|Rail"] #to be adapted for raod
+        dict_regional_shares = {}
+        
+        for region in self.iam_data.regions:
+            if region != "World":
+                dict_regional_shares[region] = (
+                    self.iam_data.data.sel(
+                        region=region, 
+                        variables="ES|Transport|Freight|Rail", 
+                        year=self.year).values
+                )/(
+                    self.iam_data.data.sel(
+                        region="World", 
+                        variables="ES|Transport|Freight|Rail", 
+                        year=self.year).item()
+                )
+        logger.info(f"Regional shares: {dict_regional_shares}")
+        
+        # create World market process
+        world_market = {
+            "name": "market for transport, freight train", # to be changed when making it mode agnostic
+            "reference product": "transport, freight train",
+            "unit": "ton kilometer",
+            "location": "World",
+            "exchanges": [
                     {
-                        "name": vehicle,
+                        "name": "market for transport, freight train",
+                        "product": "transport, freight train",
+                        "unit": "ton kilometer",
+                        "location": "World",
+                        "type": "production",
+                        "amount": 1,
+                    }
+                ],
+            "code": str(uuid.uuid4().hex),
+            "database": "premise",
+            "comment": f"Fleet-average vehicle for the year {self.year}, "
+            f"for the region World.",
+        }
+            
+        for region in self.iam_data.regions:
+            logger.info(f"Region: {region}")
+            if region != "World":
+                world_market["exchanges"].append(
+                    {
+                        "name": "market for transport, freight train",
                         "product": "transport, freight train",
                         "unit": "ton kilometer",
                         "location": region,
                         "type": "technosphere",
-                        "amount": amount,
+                        "amount": dict_regional_shares[region],
                     }
                 )
-            
-        if len(market["exchanges"]) > 1:# not needed
-            list_transport_markets.append(market)
-        
-        # Remove duplicate exchanges
-        list_transport_markets = [json.dumps(d) for d in list_transport_markets]
-        list_transport_markets = list(set(list_transport_markets))
-        list_transport_markets = [json.loads(d) for d in list_transport_markets]
-        
-        list_transport_markets = normalize_exchange_amounts(list_transport_markets)
-            
-        self.database.data.extend(list_transport_markets) # sure?
+        logger.info(f"World market: {world_market['name']} in {world_market['location']} with exchanges: {world_market['exchanges']}")
+
+        self.database.extend([world_market])
