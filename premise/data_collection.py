@@ -22,7 +22,10 @@ from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, VARIABLES_DIR
 from .geomap import Geomap
+from .logger import create_logger
 from .marginal_mixes import consequential_method
+
+logger = create_logger("transport")
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
@@ -428,6 +431,7 @@ class IAMDataCollection:
         transport_prod_vars = self.__get_iam_variable_labels(
             IAM_TRANS_VARS, variable="iam_aliases"
         )
+        logger.info(f"Transport production variables: {transport_prod_vars}")
         
         transport_energy_vars = self.__get_iam_variable_labels(
             IAM_TRANS_VARS, variable="energy_use_aliases"
@@ -472,6 +476,7 @@ class IAMDataCollection:
         )
         
         self.data = data
+        # logger.info(f"IAM Data: {self.data}")
 
         self.regions = data.region.values.tolist()
         self.system_model = system_model
