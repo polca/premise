@@ -891,6 +891,7 @@ class VariousVehicles(BaseInventoryImport):
         self.add_product_field_to_exchanges()
         # Check for duplicates
         self.check_for_already_existing_datasets()
+        self.check_units()
 
         if self.list_unlinked:
             self.display_unlinked_exchanges()

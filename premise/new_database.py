@@ -148,7 +148,8 @@ FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
 FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
 FILEPATH_GRAPHITE = INVENTORY_DIR / "lci-graphite.xlsx"
-FILEPATH_BATTERIES = INVENTORY_DIR / "lci-batteries.xlsx"
+FILEPATH_BATTERIES_NMC_NCA_LFP = INVENTORY_DIR / "lci-batteries-NMC111-811-NCA-LFP.xlsx"
+FILEPATH_BATTERIES_NMC622_LTO = INVENTORY_DIR / "lci-batteries-NMC622-LTO.xlsx"
 FILEPATH_LIO2_BATTERY = INVENTORY_DIR / "lci-batteries-LiO2.xlsx"
 FILEPATH_LIS_BATTERY = INVENTORY_DIR / "lci-batteries-LiS.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
@@ -168,6 +169,10 @@ FILEPATH_METHANOL_HEATING = INVENTORY_DIR / "lci-methanol-heating.xlsx"
 FILEPATH_GERMANIUM = INVENTORY_DIR / "lci-germanium.xlsx"
 FILEPATH_RHENIUM = INVENTORY_DIR / "lci-rhenium.xlsx"
 FILEPATH_PGM = INVENTORY_DIR / "lci-PGM.xlsx"
+FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
+FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
+FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
+FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
 
 config = load_constants()
 
@@ -691,9 +696,12 @@ class NewDatabase:
             (FILEPATH_LITHIUM, "3.8"),
             (FILEPATH_COBALT, "3.8"),
             (FILEPATH_GRAPHITE, "3.8"),
-            (FILEPATH_BATTERIES, "3.8"),
+            (FILEPATH_BATTERIES_NMC_NCA_LFP, "3.8"),
+            (FILEPATH_BATTERIES_NMC622_LTO, "3.8"),
             (FILEPATH_LIS_BATTERY, "3.9"),
             (FILEPATH_LIO2_BATTERY, "3.9"),
+            (FILEPATH_VANADIUM, "3.9"),
+            (FILEPATH_SIB_BATTERY, "3.9"),
             (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
             (FILEPATH_PHOTOVOLTAICS, "3.7"),
             (FILEPATH_HYDROGEN_INVENTORIES, "3.9"),
@@ -738,19 +746,27 @@ class NewDatabase:
             (FILEPATH_WAVE, "3.8"),
             (FILEPATH_FUEL_CELL, "3.9"),
             (FILEPATH_CSP, "3.9"),
-            (FILEPATH_VANADIUM, "3.9"),
             (FILEPATH_VANADIUM_REDOX_BATTERY, "3.9"),
-            (FILEPATH_SIB_BATTERY, "3.9"),
             (FILEPATH_HYDROGEN_HEATING, "3.9"),
             (FILEPATH_METHANOL_HEATING, "3.9"),
             (FILEPATH_GERMANIUM, "3.9"),
             (FILEPATH_RHENIUM, "3.9"),
             (FILEPATH_PGM, "3.8"),
+            (FILEPATH_TWO_WHEELERS, "3.7"),
+            (FILEPATH_TRUCKS, "3.7"),
+            (FILEPATH_BUSES, "3.7"),
+            (FILEPATH_PASS_CARS, "3.7"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
             # ecoinvent version is 3.9
-            if filepath[0] == FILEPATH_OIL_GAS_INVENTORIES and self.version == "3.9":
+            if (
+                    filepath[0] in [
+                FILEPATH_OIL_GAS_INVENTORIES,
+                FILEPATH_BATTERIES_NMC_NCA_LFP,
+            ]
+                    and self.version in ["3.9", "3.9.1",]
+            ):
                 continue
 
             inventory = DefaultInventory(
@@ -869,15 +885,7 @@ class NewDatabase:
             sectors = [
                 s
                 for s in list(sector_update_methods.keys())
-                if s not in ["buses", "cars", "two_wheelers"]
             ]
-
-            print(
-                "`update()` will skip the following sectors: 'buses', 'cars', 'two_wheelers'."
-            )
-            print(
-                "If you want to update these sectors, please run them separately afterwards."
-            )
 
         assert isinstance(sectors, list), "sector_name should be a list of strings"
         assert all(
