@@ -2,12 +2,12 @@
 This module contains classes for validating datasets after they have been transformed.
 """
 
-import math
 import csv
+import math
 
 import numpy as np
-import yaml
 import pandas as pd
+import yaml
 
 from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
@@ -60,7 +60,7 @@ def load_car_exhaust_pollutants():
     fp = DATA_DIR / "transport" / "car" / "EF_HBEFA42_exhaust.csv"
     nested_dict = {}
 
-    with open(str(fp), mode='r') as file:
+    with open(str(fp), mode="r") as file:
         # Create a CSV reader object
         csv_reader = csv.DictReader(file)
 
@@ -82,11 +82,12 @@ def load_car_exhaust_pollutants():
 
     return nested_dict
 
+
 def load_truck_exhaust_pollutants():
     fp = DATA_DIR / "transport" / "truck" / "EF_HBEFA42_exhaust.csv"
     nested_dict = {}
 
-    with open(str(fp), mode='r') as file:
+    with open(str(fp), mode="r") as file:
         # Create a CSV reader object
         csv_reader = csv.DictReader(file)
 
@@ -111,6 +112,7 @@ def load_truck_exhaust_pollutants():
             nested_dict[powertrain][euro_class][size][component] = value
 
     return nested_dict
+
 
 def clean_up(exc):
     """Remove keys from ``exc`` that are not in the schema."""
@@ -579,6 +581,7 @@ class BaseDatasetValidator:
         if len(self.major_issues_log) > 0:
             print("---> MAJOR anomalies found: check the change report.")
 
+
 class TransportValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
@@ -599,43 +602,59 @@ class TransportValidation(BaseDatasetValidator):
 
     def validate_and_normalize_exchanges(self):
         for act in [
-            a for a in self.database
-            if a["name"].startswith("transport, ")
-            and ", unspecified" in a["name"]
+            a
+            for a in self.database
+            if a["name"].startswith("transport, ") and ", unspecified" in a["name"]
         ]:
-            total = sum(exc["amount"] for exc in act["exchanges"] if exc["type"] == "technosphere")
+            total = sum(
+                exc["amount"]
+                for exc in act["exchanges"]
+                if exc["type"] == "technosphere"
+            )
             if not np.isclose(total, 1.0, rtol=1e-3):
                 message = f"Total exchange amount is {total}, not 1.0"
-                self.log_issue(act, "total exchange amount not 1.0", message, issue_type="major")
-
+                self.log_issue(
+                    act, "total exchange amount not 1.0", message, issue_type="major"
+                )
 
     def check_vehicles(self):
         for act in [
-            a for a in self.database
-            if a["name"].startswith("transport, ")
-               and ", unspecified" in a["name"]
+            a
+            for a in self.database
+            if a["name"].startswith("transport, ") and ", unspecified" in a["name"]
         ]:
             # check that all transport exchanges are differently named
-            names = [exc["name"] for exc in act["exchanges"] if exc["type"] == "technosphere"]
+            names = [
+                exc["name"] for exc in act["exchanges"] if exc["type"] == "technosphere"
+            ]
             if len(names) != len(set(names)):
                 message = "Duplicate transport exchanges"
-                self.log_issue(act, "duplicate transport exchanges", message, issue_type="major")
+                self.log_issue(
+                    act, "duplicate transport exchanges", message, issue_type="major"
+                )
 
     def calculate_fuel_consumption(self, ds):
         fuel_consumption = sum(
-            x["amount"] * 43 for x in ds["exchanges"] if
-            x["name"].startswith(("market for diesel", "market for petrol")) and x["unit"] == "kilogram"
+            x["amount"] * 43
+            for x in ds["exchanges"]
+            if x["name"].startswith(("market for diesel", "market for petrol"))
+            and x["unit"] == "kilogram"
         )
         if fuel_consumption == 0:
             fuel_consumption = sum(
-                x["amount"] * 47.5 for x in ds["exchanges"] if "natural gas" in x["name"] and x["unit"] == "kilogram"
+                x["amount"] * 47.5
+                for x in ds["exchanges"]
+                if "natural gas" in x["name"] and x["unit"] == "kilogram"
             )
         return fuel_consumption
 
     def calculate_actual_emission(self, ds, pollutant):
         return sum(
-            x["amount"] for x in ds["exchanges"] if
-            pollutant.lower() in x["name"].lower() and x["type"] == "biosphere" and x.get("categories", [None])[0] == "air"
+            x["amount"]
+            for x in ds["exchanges"]
+            if pollutant.lower() in x["name"].lower()
+            and x["type"] == "biosphere"
+            and x.get("categories", [None])[0] == "air"
         )
 
     def validate_emissions(self, ds, actual, expected, pollutant):
@@ -658,9 +677,13 @@ class TransportValidation(BaseDatasetValidator):
 
         # Pre-filter datasets
         relevant_ds = [
-            ds for ds in self.database
-            if ds["name"].startswith(vehicle_name) and ds["location"] in self.regions
-               and any(fuel in ds["name"] for fuel in ["gasoline", "diesel", "compressed gas"])
+            ds
+            for ds in self.database
+            if ds["name"].startswith(vehicle_name)
+            and ds["location"] in self.regions
+            and any(
+                fuel in ds["name"] for fuel in ["gasoline", "diesel", "compressed gas"]
+            )
         ]
 
         for ds in relevant_ds:
@@ -671,32 +694,46 @@ class TransportValidation(BaseDatasetValidator):
             if vehicle_name == "transport, freight, lorry":
                 size = ds["name"].split(", ")[4].replace(" gross weight", "")
 
-
-            fuel_consumption = self.calculate_fuel_consumption(ds)  # Implemented as a separate function
+            fuel_consumption = self.calculate_fuel_consumption(
+                ds
+            )  # Implemented as a separate function
 
             if powertrain in self.exhaust:
                 if str(self.euro_class_map[euro_class]) in self.exhaust[powertrain]:
                     if size is None:
-                        for pollutant, expected_value in self.exhaust[powertrain][str(self.euro_class_map[euro_class])].items():
+                        for pollutant, expected_value in self.exhaust[powertrain][
+                            str(self.euro_class_map[euro_class])
+                        ].items():
                             expected_value /= 1000  # g/MJ to kg/MJ
                             expected_value *= fuel_consumption
                             actual = self.calculate_actual_emission(ds, pollutant)
-                            self.validate_emissions(ds, actual, expected_value, pollutant)
+                            self.validate_emissions(
+                                ds, actual, expected_value, pollutant
+                            )
                     else:
-                        for pollutant, expected_value in self.exhaust[powertrain][str(self.euro_class_map[euro_class])][size].items():
+                        for pollutant, expected_value in self.exhaust[powertrain][
+                            str(self.euro_class_map[euro_class])
+                        ][size].items():
                             expected_value /= 1000
                             expected_value *= fuel_consumption
                             actual = self.calculate_actual_emission(ds, pollutant)
-                            self.validate_emissions(ds, actual, expected_value, pollutant)
-    def check_vehicle_efficiency(self, vehicle_name, fossil_minimum=0.0, fossil_maximum=0.5, elec_minimum=0.1, elec_maximum=0.35):
+                            self.validate_emissions(
+                                ds, actual, expected_value, pollutant
+                            )
+
+    def check_vehicle_efficiency(
+        self,
+        vehicle_name,
+        fossil_minimum=0.0,
+        fossil_maximum=0.5,
+        elec_minimum=0.1,
+        elec_maximum=0.35,
+    ):
         # check that the efficiency of the car production datasets
         # is within the expected range
 
         for ds in self.database:
-            if (
-                ds["name"].startswith(vehicle_name)
-                and ds["location"] in self.regions
-            ):
+            if ds["name"].startswith(vehicle_name) and ds["location"] in self.regions:
                 electricity_consumption = sum(
                     [
                         x["amount"]
@@ -707,7 +744,10 @@ class TransportValidation(BaseDatasetValidator):
                     ]
                 )
                 if electricity_consumption > 0:
-                    if electricity_consumption < elec_minimum or electricity_consumption > elec_maximum:
+                    if (
+                        electricity_consumption < elec_minimum
+                        or electricity_consumption > elec_maximum
+                    ):
                         message = f"Electricity consumption per 100 km is incorrect: {electricity_consumption * 100}."
                         self.log_issue(
                             ds,
@@ -730,7 +770,10 @@ class TransportValidation(BaseDatasetValidator):
                     if "plugin" in ds["name"]:
                         fossil_maximum = 0.05
                         fossil_minimum = 0.01
-                    if fuel_consumption < fossil_minimum or fuel_consumption > fossil_maximum:
+                    if (
+                        fuel_consumption < fossil_minimum
+                        or fuel_consumption > fossil_maximum
+                    ):
                         message = f"Fuel consumption per 100 km is incorrect: {fuel_consumption * 100}."
                         self.log_issue(
                             ds,
@@ -764,8 +807,8 @@ class TransportValidation(BaseDatasetValidator):
                         x["amount"]
                         for x in ds["exchanges"]
                         if x["name"].startswith("market for natural gas")
-                           or x["name"].startswith("market group for natural gas")
-                           and x["type"] == "technosphere"
+                        or x["name"].startswith("market group for natural gas")
+                        and x["type"] == "technosphere"
                     ]
                 )
 
@@ -786,8 +829,8 @@ class TransportValidation(BaseDatasetValidator):
                                 x["amount"]
                                 for x in ds["exchanges"]
                                 if x["name"].startswith("Carbon dioxide")
-                                   and x["type"] == "biosphere"
-                                   and x.get("categories", [None])[0] == "air"
+                                and x["type"] == "biosphere"
+                                and x.get("categories", [None])[0] == "air"
                             ]
                         )
                         if not math.isclose(co2, 1.95 * gas_consumption, rel_tol=0.1):
@@ -799,29 +842,30 @@ class TransportValidation(BaseDatasetValidator):
                                 issue_type="major",
                             )
 
-
     def run_transport_checks(self):
         self.validate_and_normalize_exchanges()
         self.check_vehicles()
         self.save_log()
 
+
 class TruckValidation(TransportValidation):
 
-        def __init__(self, model, scenario, year, regions, database, iam_data):
-            super().__init__(model, scenario, year, regions, database, iam_data)
-            self.exhaust = load_truck_exhaust_pollutants()
+    def __init__(self, model, scenario, year, regions, database, iam_data):
+        super().__init__(model, scenario, year, regions, database, iam_data)
+        self.exhaust = load_truck_exhaust_pollutants()
 
-        def run_truck_checks(self):
-            self.run_transport_checks()
-            self.check_vehicle_efficiency(
-                vehicle_name="transport, freight, lorry",
-                fossil_minimum=0.0,
-                fossil_maximum=0.5,
-                elec_minimum=0.1,
-                elec_maximum=0.35
-            )
-            self.check_pollutant_emissions(vehicle_name="transport, freight, lorry")
-            self.save_log()
+    def run_truck_checks(self):
+        self.run_transport_checks()
+        self.check_vehicle_efficiency(
+            vehicle_name="transport, freight, lorry",
+            fossil_minimum=0.0,
+            fossil_maximum=0.5,
+            elec_minimum=0.1,
+            elec_maximum=0.35,
+        )
+        self.check_pollutant_emissions(vehicle_name="transport, freight, lorry")
+        self.save_log()
+
 
 class CarValidation(TransportValidation):
 
@@ -837,7 +881,7 @@ class CarValidation(TransportValidation):
             fossil_minimum=0.02,
             fossil_maximum=0.1,
             elec_minimum=0.1,
-            elec_maximum=0.35
+            elec_maximum=0.35,
         )
         self.save_log()
 

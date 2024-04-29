@@ -760,13 +760,13 @@ class NewDatabase:
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
             # ecoinvent version is 3.9
-            if (
-                    filepath[0] in [
+            if filepath[0] in [
                 FILEPATH_OIL_GAS_INVENTORIES,
                 FILEPATH_BATTERIES_NMC_NCA_LFP,
-            ]
-                    and self.version in ["3.9", "3.9.1",]
-            ):
+            ] and self.version in [
+                "3.9",
+                "3.9.1",
+            ]:
                 continue
 
             inventory = DefaultInventory(
@@ -882,10 +882,7 @@ class NewDatabase:
             ]
 
         if sectors is None:
-            sectors = [
-                s
-                for s in list(sector_update_methods.keys())
-            ]
+            sectors = [s for s in list(sector_update_methods.keys())]
 
         assert isinstance(sectors, list), "sector_name should be a list of strings"
         assert all(

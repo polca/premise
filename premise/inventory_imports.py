@@ -651,7 +651,9 @@ class BaseInventoryImport:
                             ), f"Could not find a biosphere flow for {key}."
                             y["name"] = new_key[0]
                         else:
-                            print(f"Could not find a biosphere flow for {key} in {self.path}.")
+                            print(
+                                f"Could not find a biosphere flow for {key} in {self.path}."
+                            )
                             continue
 
                     y["input"] = (

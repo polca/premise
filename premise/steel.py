@@ -4,12 +4,12 @@ Integrates projections regarding steel production.
 
 from typing import Dict, List
 
+from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
 from .logger import create_logger
 from .transformation import BaseTransformation, ws
 from .utils import rescale_exchanges
 from .validation import SteelValidation
-from .activity_maps import InventorySet
 
 logger = create_logger("steel")
 

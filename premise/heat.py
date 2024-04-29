@@ -2,9 +2,9 @@
 Integrates projections regarding heat production and supply.
 """
 
+from .activity_maps import InventorySet
 from .logger import create_logger
 from .transformation import BaseTransformation, IAMDataCollection, List, ws
-from .activity_maps import InventorySet
 
 logger = create_logger("heat")
 

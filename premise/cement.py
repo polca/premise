@@ -496,15 +496,21 @@ class Cement(BaseTransformation):
             self.add_to_index(new_dataset)
 
         # cement markets
-        markets = list(ws.get_many(
-            self.database,
-            ws.contains("name", "market for cement"),
-            ws.contains("reference product", "cement"),
-            ws.doesnt_contain_any("name", ["factory", "tile", "sulphate", "plaster"]),
-            ws.doesnt_contain_any("location", self.regions),
-        ))
+        markets = list(
+            ws.get_many(
+                self.database,
+                ws.contains("name", "market for cement"),
+                ws.contains("reference product", "cement"),
+                ws.doesnt_contain_any(
+                    "name", ["factory", "tile", "sulphate", "plaster"]
+                ),
+                ws.doesnt_contain_any("location", self.regions),
+            )
+        )
 
-        unique_markets = list(set([(m["name"], m["reference product"]) for m in markets]))
+        unique_markets = list(
+            set([(m["name"], m["reference product"]) for m in markets])
+        )
 
         new_datasets = []
 
@@ -527,14 +533,20 @@ class Cement(BaseTransformation):
         self.database.extend(new_datasets)
 
         # cement production
-        production = list(ws.get_many(
-            self.database,
-            ws.contains("name", "cement production"),
-            ws.contains("reference product", "cement"),
-            ws.doesnt_contain_any("name", ["factory", "tile", "sulphate", "plaster"]),
-        ))
+        production = list(
+            ws.get_many(
+                self.database,
+                ws.contains("name", "cement production"),
+                ws.contains("reference product", "cement"),
+                ws.doesnt_contain_any(
+                    "name", ["factory", "tile", "sulphate", "plaster"]
+                ),
+            )
+        )
 
-        reduced_production = list(set([(p["name"], p["reference product"]) for p in production]))
+        reduced_production = list(
+            set([(p["name"], p["reference product"]) for p in production])
+        )
 
         new_datasets = []
 

@@ -197,9 +197,13 @@ def create_fleet_vehicles(
         ]
 
         if year in arr.coords["year"].values:
-            region_size_fleet = arr.sel(region=fleet_region, size=sizes, year=int(np.clip(year, 2005, 2050)))
+            region_size_fleet = arr.sel(
+                region=fleet_region, size=sizes, year=int(np.clip(year, 2005, 2050))
+            )
         else:
-            region_size_fleet = arr.sel(region=fleet_region, size=sizes).interp(year=int(np.clip(year, 2005, 2050)))
+            region_size_fleet = arr.sel(region=fleet_region, size=sizes).interp(
+                year=int(np.clip(year, 2005, 2050))
+            )
 
         total_km = region_size_fleet.sum()
 
@@ -236,9 +240,7 @@ def create_fleet_vehicles(
                         size=size,
                         powertrain=pwt,
                     )
-                    if (
-                        indiv_km > 0
-                    ):
+                    if indiv_km > 0:
                         indiv_share = (indiv_km / total_km).values.item(0)
 
                         load = 1
@@ -259,7 +261,7 @@ def create_fleet_vehicles(
                                 [
                                     ws.exclude(ws.contains("name", "plugin")),
                                     ws.exclude(ws.contains("name", "hybrid")),
-                                    ws.exclude(ws.contains("name", "ab"))
+                                    ws.exclude(ws.contains("name", "ab")),
                                 ]
                             )
 
@@ -278,40 +280,37 @@ def create_fleet_vehicles(
                                 ]
                             )
 
-                        if pwt not in ["battery electric", "fuel cell electric", "battery electric - overnight charging"]:
+                        if pwt not in [
+                            "battery electric",
+                            "fuel cell electric",
+                            "battery electric - overnight charging",
+                        ]:
                             if vehicle_type == "car":
-                                filters.append(
-                                    ws.contains("name", "EURO-6")
-                                )
+                                filters.append(ws.contains("name", "EURO-6"))
                             if vehicle_type in ["bus", "truck"]:
-                                filters.append(
-                                    ws.contains("name", "EURO-VI")
-                                )
+                                filters.append(ws.contains("name", "EURO-VI"))
 
                         if size in ["Medium", "Large"]:
-                            filters.append(
-                                ws.exclude(ws.contains("name", "SUV"))
-                            )
+                            filters.append(ws.exclude(ws.contains("name", "SUV")))
 
                         try:
-                            vehicle = ws.get_one(
-                                datasets,
-                                *filters
-                            )
+                            vehicle = ws.get_one(datasets, *filters)
 
                         except ws.MultipleResults:
-                            print("Multiple results for", size, vehicle_type, pwt, region)
-                            vehicles = ws.get_many(
-                                datasets,
-                                *filters
+                            print(
+                                "Multiple results for", size, vehicle_type, pwt, region
                             )
+                            vehicles = ws.get_many(datasets, *filters)
                             for vehicle in vehicles:
                                 print(vehicle["name"], vehicle["location"])
                             raise
                         except ws.NoResults:
                             print("No results for", size, vehicle_type, pwt, region)
-                            vehicle = {"name": "unknown", "reference product": "unknown", "unit": "unknown"}
-
+                            vehicle = {
+                                "name": "unknown",
+                                "reference product": "unknown",
+                                "unit": "unknown",
+                            }
 
                         act["exchanges"].append(
                             {
@@ -367,12 +366,8 @@ def create_fleet_vehicles(
                                 powertrain=pwt,
                             )
                             if indiv_km > 0:
-                                indiv_share = (
-                                    indiv_km / total_size_km
-                                ).values.item(0)
-                                load = avg_load[vehicle_type]["long haul"][
-                                    size
-                                ]
+                                indiv_share = (indiv_km / total_size_km).values.item(0)
+                                load = avg_load[vehicle_type]["long haul"][size]
 
                                 filters = [
                                     ws.contains("name", size),
@@ -388,7 +383,7 @@ def create_fleet_vehicles(
                                         [
                                             ws.exclude(ws.contains("name", "plugin")),
                                             ws.exclude(ws.contains("name", "hybrid")),
-                                            ws.exclude(ws.contains("name", "ab"))
+                                            ws.exclude(ws.contains("name", "ab")),
                                         ]
                                     )
 
@@ -400,39 +395,53 @@ def create_fleet_vehicles(
                                         ]
                                     )
 
-                                if pwt in ["plugin diesel hybrid", "plugin gasoline hybrid"]:
+                                if pwt in [
+                                    "plugin diesel hybrid",
+                                    "plugin gasoline hybrid",
+                                ]:
                                     filters.extend(
                                         [
                                             ws.exclude(ws.contains("name", "ab")),
                                         ]
                                     )
 
-                                if pwt not in ["battery electric", "fuel cell electric",
-                                               "battery electric - overnight charging"]:
+                                if pwt not in [
+                                    "battery electric",
+                                    "fuel cell electric",
+                                    "battery electric - overnight charging",
+                                ]:
                                     if vehicle_type in ["bus", "truck"]:
-                                        filters.append(
-                                            ws.contains("name", "EURO-VI")
-                                        )
+                                        filters.append(ws.contains("name", "EURO-VI"))
 
                                 try:
-                                    vehicle = ws.get_one(
-                                        datasets,
-                                        *filters
-                                    )
+                                    vehicle = ws.get_one(datasets, *filters)
 
                                 except ws.MultipleResults:
-                                    print("Multiple results for", size, vehicle_type, pwt, region)
-                                    vehicles = ws.get_many(
-                                        datasets,
-                                        *filters
+                                    print(
+                                        "Multiple results for",
+                                        size,
+                                        vehicle_type,
+                                        pwt,
+                                        region,
                                     )
+                                    vehicles = ws.get_many(datasets, *filters)
                                     for vehicle in vehicles:
                                         print(vehicle["name"], vehicle["location"])
                                     raise
 
                                 except ws.NoResults:
-                                    print("No results for SIZE", size, vehicle_type, pwt, region)
-                                    vehicle = {"name": "unknown", "reference product": "unknown", "unit": "unknown"}
+                                    print(
+                                        "No results for SIZE",
+                                        size,
+                                        vehicle_type,
+                                        pwt,
+                                        region,
+                                    )
+                                    vehicle = {
+                                        "name": "unknown",
+                                        "reference product": "unknown",
+                                        "unit": "unknown",
+                                    }
 
                                 act["exchanges"].append(
                                     {
@@ -530,23 +539,22 @@ class Transport(BaseTransformation):
 
         # create and regionalize transport datasets
         filters = [
-            ws.either(*[
-                ws.contains("name", size)
-                for size in self.mapping[self.vehicle_type]["sizes"]
-            ]),
-            ws.equals("unit", self.mapping[self.vehicle_type]["unit"])
+            ws.either(
+                *[
+                    ws.contains("name", size)
+                    for size in self.mapping[self.vehicle_type]["sizes"]
+                ]
+            ),
+            ws.equals("unit", self.mapping[self.vehicle_type]["unit"]),
         ]
         if self.vehicle_type != "truck":
             filters.append(ws.contains("name", self.vehicle_type))
 
-        vehicle_datasets = list(ws.get_many(
-            self.database,
-            *filters
-        ))
+        vehicle_datasets = list(ws.get_many(self.database, *filters))
 
-        reduced_vehicle_datasets = list(set([
-            (ds["name"], ds["reference product"]) for ds in vehicle_datasets
-        ]))
+        reduced_vehicle_datasets = list(
+            set([(ds["name"], ds["reference product"]) for ds in vehicle_datasets])
+        )
 
         for ds in reduced_vehicle_datasets:
             new_vehicle_datasets = self.fetch_proxies(
@@ -572,24 +580,25 @@ class Transport(BaseTransformation):
 
         # rename coordinates along the powertrian dimension
         rev_powertrain = {v: k for k, v in self.mapping["powertrain"].items()}
-        arr.coords["powertrain"] = [rev_powertrain[p] for p in arr.coords["powertrain"].values]
+        arr.coords["powertrain"] = [
+            rev_powertrain[p] for p in arr.coords["powertrain"].values
+        ]
 
-        vehicle_datasets = list(ws.get_many(
-            self.database,
-            *filters
-        ))
+        vehicle_datasets = list(ws.get_many(self.database, *filters))
 
-        fleet_act.extend(create_fleet_vehicles(
-            datasets=vehicle_datasets,
-            vehicle_type=self.vehicle_type,
-            year=self.year,
-            model=self.model,
-            version=self.version,
-            system_model=self.system_model,
-            scenario=self.scenario,
-            regions=self.regions,
-            arr=arr,
-        ))
+        fleet_act.extend(
+            create_fleet_vehicles(
+                datasets=vehicle_datasets,
+                vehicle_type=self.vehicle_type,
+                year=self.year,
+                model=self.model,
+                version=self.version,
+                system_model=self.system_model,
+                scenario=self.scenario,
+                regions=self.regions,
+                arr=arr,
+            )
+        )
 
         # if trucks, need to reconnect everything
         # loop through datasets that use truck transport
@@ -621,7 +630,9 @@ class Transport(BaseTransformation):
                         if (name, loc) in list_created_trucks:
                             exc["name"] = name
                         else:
-                            exc["name"] = f"transport, freight, lorry, unspecified, long haul"
+                            exc["name"] = (
+                                f"transport, freight, lorry, unspecified, long haul"
+                            )
 
                     else:
                         exc["name"] = (
@@ -634,5 +645,3 @@ class Transport(BaseTransformation):
                     )
 
         return fleet_act
-
-
