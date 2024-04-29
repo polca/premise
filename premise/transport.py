@@ -196,7 +196,11 @@ def create_fleet_vehicles(
             if s in arr.coords["size"].values
         ]
 
-        region_size_fleet = arr.sel(region=fleet_region, size=sizes, year=int(np.clip(year, 2005, 2050)))
+        if year in arr.coords["year"].values:
+            region_size_fleet = arr.sel(region=fleet_region, size=sizes, year=int(np.clip(year, 2005, 2050)))
+        else:
+            region_size_fleet = arr.sel(region=fleet_region, size=sizes).interp(year=int(np.clip(year, 2005, 2050)))
+
         total_km = region_size_fleet.sum()
 
         if total_km > 0:
@@ -504,25 +508,25 @@ class Transport(BaseTransformation):
         Create vehicle market (fleet average) datasets.
         """
 
-        # create and regionalize vehicle datasets
-        vehicle_datasets = list(ws.get_many(
-            self.database,
-            ws.either(*[
-                ws.contains("name", size)
-                for size in self.mapping[self.vehicle_type]["sizes"]
-            ]),
-            ws.contains("name", self.vehicle_type),
-            ws.equals("unit", "unit")
-        ))
-
-        for ds in vehicle_datasets:
-            new_vehicle_datasets = self.fetch_proxies(
-                subset = vehicle_datasets,
-                name=ds["name"],
-                ref_prod=ds["reference product"],
-            )
-
-            self.database.extend(new_vehicle_datasets.values())
+        # # create and regionalize vehicle datasets
+        # vehicle_datasets = list(ws.get_many(
+        #     self.database,
+        #     ws.either(*[
+        #         ws.contains("name", size)
+        #         for size in self.mapping[self.vehicle_type]["sizes"]
+        #     ]),
+        #     ws.contains("name", self.vehicle_type),
+        #     ws.equals("unit", "unit")
+        # ))
+        #
+        # for ds in vehicle_datasets:
+        #     new_vehicle_datasets = self.fetch_proxies(
+        #         subset = vehicle_datasets,
+        #         name=ds["name"],
+        #         ref_prod=ds["reference product"],
+        #     )
+        #
+        #     self.database.extend(new_vehicle_datasets.values())
 
         # create and regionalize transport datasets
         filters = [
@@ -540,11 +544,15 @@ class Transport(BaseTransformation):
             *filters
         ))
 
-        for ds in vehicle_datasets:
+        reduced_vehicle_datasets = list(set([
+            (ds["name"], ds["reference product"]) for ds in vehicle_datasets
+        ]))
+
+        for ds in reduced_vehicle_datasets:
             new_vehicle_datasets = self.fetch_proxies(
                 subset=vehicle_datasets,
-                name=ds["name"],
-                ref_prod=ds["reference product"],
+                name=ds[0],
+                ref_prod=ds[1],
             )
 
             self.database.extend(new_vehicle_datasets.values())
@@ -559,10 +567,12 @@ class Transport(BaseTransformation):
         if self.vehicle_type == "bus":
             arr = self.iam_data.trsp_buses
 
+        if arr is None:
+            return []
+
         # rename coordinates along the powertrian dimension
         rev_powertrain = {v: k for k, v in self.mapping["powertrain"].items()}
         arr.coords["powertrain"] = [rev_powertrain[p] for p in arr.coords["powertrain"].values]
-
 
         vehicle_datasets = list(ws.get_many(
             self.database,
@@ -606,7 +616,6 @@ class Transport(BaseTransformation):
 
                     if dataset["unit"] == "kilogram":
                         name = f"{self.mapping['truck']['old_trucks'][self.model][key]}, long haul"
-                        cycle = "long haul"
                         loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
 
                         if (name, loc) in list_created_trucks:

@@ -9,6 +9,7 @@ from .logger import create_logger
 from .transformation import BaseTransformation, ws
 from .utils import rescale_exchanges
 from .validation import SteelValidation
+from .activity_maps import InventorySet
 
 logger = create_logger("steel")
 
@@ -82,6 +83,8 @@ class Steel(BaseTransformation):
             index,
         )
         self.version = version
+        mapping = InventorySet(self.database)
+        self.material_map: dict = mapping.generate_material_map()
 
     def generate_activities(self):
         """

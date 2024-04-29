@@ -332,6 +332,16 @@ class Electricity(BaseTransformation):
                 self.powerplant_map_rev[pp] = k
 
         self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
+
+        mapping = InventorySet(self.database, model=self.model)
+        self.fuel_map = mapping.generate_fuel_map()
+        # reverse the fuel map to get a mapping from ecoinvent to premise
+        self.fuel_map_reverse: Dict = {}
+
+        for key, value in self.fuel_map.items():
+            for v in list(value):
+                self.fuel_map_reverse[v] = key
+
         self.production_per_tech = self.get_production_per_tech_dict()
         losses = get_losses_per_country(self.database)
         self.network_loss = {
@@ -1691,15 +1701,6 @@ class Electricity(BaseTransformation):
         """
 
         # print("Adjust efficiency of power plants...")
-
-        mapping = InventorySet(self.database, model=self.model)
-        self.fuel_map = mapping.generate_fuel_map()
-        # reverse the fuel map to get a mapping from ecoinvent to premise
-        self.fuel_map_reverse: Dict = {}
-
-        for key, value in self.fuel_map.items():
-            for v in list(value):
-                self.fuel_map_reverse[v] = key
 
         eff_labels = self.iam_data.electricity_efficiencies.variables.values
         all_techs = self.iam_data.electricity_markets.variables.values
