@@ -311,8 +311,15 @@ def find_fuel_efficiency(
                 f"Warning: {dataset['name'], dataset['location']} has no energy input"
             )
             for exc in dataset["exchanges"]:
-                print(exc["type"], exc["name"], exc["amount"], exc.get("product"), exc["unit"])
+                print(
+                    exc["type"],
+                    exc["name"],
+                    exc["amount"],
+                    exc.get("product"),
+                    exc["unit"],
+                )
             from pprint import pprint
+
             print()
             pprint(fuel_filters)
             print()

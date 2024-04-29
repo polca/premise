@@ -277,6 +277,7 @@ def _update_electricity(
 
     return scenario
 
+
 def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]:
     """
     Create a mapping between ecoinvent fuel names and IAM fuel names.
@@ -339,7 +340,9 @@ class Electricity(BaseTransformation):
             cache,
             index,
         )
-        mapping, self.fuel_map, self.fuel_map_reverse = create_fuel_map(self.database, self.version, self.model)
+        mapping, self.fuel_map, self.fuel_map_reverse = create_fuel_map(
+            self.database, self.version, self.model
+        )
         self.powerplant_map = mapping.generate_powerplant_map()
         # reverse dictionary of self.powerplant_map
         self.powerplant_map_rev = {}
