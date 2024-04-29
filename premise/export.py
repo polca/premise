@@ -340,8 +340,13 @@ def correct_biosphere_flow(name, cat, unit, version):
                 name = bio_flows_correspondence[main_cat][name]
                 return bio_dict[(name, main_cat, sub_cat, unit)]
     except:
-        print(name, cat, unit, version)
-        raise
+        print(f"{name, cat, unit, version} not found in biosphere dictionary.")
+        return None
+
+    if (name, main_cat, sub_cat, unit) not in bio_dict:
+        print(f"{name, cat, unit, version} not found in biosphere dictionary.")
+        return None
+
     return bio_dict[(name, main_cat, sub_cat, unit)]
 
 

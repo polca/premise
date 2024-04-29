@@ -310,6 +310,16 @@ def find_fuel_efficiency(
             print(
                 f"Warning: {dataset['name'], dataset['location']} has no energy input"
             )
+            for exc in dataset["exchanges"]:
+                print(exc["type"], exc["name"], exc["amount"], exc.get("product"), exc["unit"])
+            from pprint import pprint
+            print()
+            pprint(fuel_filters)
+            print()
+            pprint(fuel_specs)
+            print()
+            pprint(fuel_map_reverse)
+            print()
 
     if energy_input != 0 and float(energy_out) != 0:
         current_efficiency = float(energy_out) / energy_input

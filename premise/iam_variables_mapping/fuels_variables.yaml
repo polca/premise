@@ -127,6 +127,7 @@ natural gas:
         - market for natural gas
         - market group for natural gas
         - evaporation of natural gas
+        - natural gas, high pressure, at consumer
 
     mask:
       name:
