@@ -748,7 +748,9 @@ class HeatValidation(BaseDatasetValidator):
 
                 if efficiency > 1.1 and "co-generation" not in ds["name"]:
                     message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.1."
-                    self.log_issue(ds, "heat conversion efficiency", message, issue_type="major")
+                    self.log_issue(
+                        ds, "heat conversion efficiency", message, issue_type="major"
+                    )
 
                 if efficiency > 3.0 and "co-generation" in ds["name"]:
                     message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 3.0. Corrected to 3.0."
