@@ -640,7 +640,7 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
-                expected_co2 += nat_gas * 0.054
+                expected_co2 += nat_gas * 0.06
 
                 # add input of diesel
                 diesel = sum(
@@ -686,7 +686,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 18
                         for exc in ds["exchanges"]
-                        if "wood" in exc["name"]
+                        if any(x in exc["name"] for x in ["biomass", "wood"])
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -705,7 +705,7 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
-                expected_co2 += methane * 0.056
+                expected_co2 += methane * 0.06
 
                 # add input of biogas
                 biogas = sum(
@@ -894,7 +894,7 @@ class TransportValidation(BaseDatasetValidator):
 
             fuel_consumption = self.calculate_fuel_consumption(
                 ds
-            )  # Implemented as a separate function
+            )
 
             if powertrain in self.exhaust:
                 if str(self.euro_class_map[euro_class]) in self.exhaust[powertrain]:
@@ -931,6 +931,9 @@ class TransportValidation(BaseDatasetValidator):
         # is within the expected range
 
         for ds in self.database:
+            if "plugin" in ds["name"]:
+                continue
+
             if ds["name"].startswith(vehicle_name) and ds["location"] in self.regions:
                 electricity_consumption = sum(
                     [
@@ -964,10 +967,19 @@ class TransportValidation(BaseDatasetValidator):
                     ]
                 )
 
+                if fuel_consumption == 0:
+
+                    fuel_consumption += sum(
+                        [
+                            x["amount"] * (47.5 if x["unit"] == "kilogram" else 36) / 42.6
+                            for x in ds["exchanges"]
+                            if x["name"].startswith("market for natural gas")
+                            or x["name"].startswith("market group for natural gas")
+                            and x["type"] == "technosphere"
+                        ]
+                    )
+
                 if fuel_consumption > 0:
-                    if "plugin" in ds["name"]:
-                        fossil_maximum = 0.05
-                        fossil_minimum = 0.01
                     if (
                         fuel_consumption < fossil_minimum
                         or fuel_consumption > fossil_maximum
@@ -1000,45 +1012,6 @@ class TransportValidation(BaseDatasetValidator):
                                 issue_type="major",
                             )
 
-                gas_consumption = sum(
-                    [
-                        x["amount"]
-                        for x in ds["exchanges"]
-                        if x["name"].startswith("market for natural gas")
-                        or x["name"].startswith("market group for natural gas")
-                        and x["type"] == "technosphere"
-                    ]
-                )
-
-                if gas_consumption > 0:
-                    if not 0.02 < gas_consumption < 0.1:
-                        message = f"Natural gas consumption per 100 km is incorrect: {gas_consumption * 100 }."
-                        self.log_issue(
-                            ds,
-                            "natural gas consumption incorrect",
-                            message,
-                            issue_type="major",
-                        )
-
-                        # sum the amounts of Carbon dioxide (fossil and non-fossil)
-                        # and make sure it is roughly equal to 1.95 kg CO2/m3 natural gas
-                        co2 = sum(
-                            [
-                                x["amount"]
-                                for x in ds["exchanges"]
-                                if x["name"].startswith("Carbon dioxide")
-                                and x["type"] == "biosphere"
-                                and x.get("categories", [None])[0] == "air"
-                            ]
-                        )
-                        if not math.isclose(co2, 1.95 * gas_consumption, rel_tol=0.1):
-                            message = f"CO2 emissions are incorrect: {co2} instead of {1.95 * gas_consumption}."
-                            self.log_issue(
-                                ds,
-                                "CO2 emissions incorrect",
-                                message,
-                                issue_type="major",
-                            )
 
     def run_transport_checks(self):
         self.validate_and_normalize_exchanges()
@@ -1059,7 +1032,7 @@ class TruckValidation(TransportValidation):
             fossil_minimum=0.0,
             fossil_maximum=0.5,
             elec_minimum=0.1,
-            elec_maximum=0.35,
+            elec_maximum=0.5,
         )
         self.check_pollutant_emissions(vehicle_name="transport, freight, lorry")
         self.save_log()

@@ -132,10 +132,6 @@ class Heat(BaseTransformation):
 
         self.carbon_intensity_markets.update(new_keys)
 
-        from pprint import pprint
-
-        # pprint(self.carbon_intensity_markets)
-
     def regionalize_heat_production(self):
         """
         Regionalize heat production.

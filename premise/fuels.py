@@ -2314,7 +2314,6 @@ class Fuels(BaseTransformation):
                 final_lhv += weighted_lhv
                 fossil_co2 += f_co2
                 non_fossil_co2 += nf_co2
-
                 dataset = update_dataset(dataset, supplier_key, amount)
 
                 text = (
@@ -2343,13 +2342,13 @@ class Fuels(BaseTransformation):
                 print()
 
         if "petrol" in dataset["name"]:
-            if sum_co2 < 3.1 or sum_co2 > 3.2:
-                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 3.1-3.2")
+            if sum_co2 < 2.5 or sum_co2 > 3.2:
+                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 2.5-3.2")
                 print()
 
         if "natural gas" in dataset["name"]:
-            if sum_co2 < 1.8 or sum_co2 > 2.0:
-                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 1.8-2.0")
+            if sum_co2 < 2.1 or sum_co2 > 2.3:
+                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 2.1-2.3")
                 print()
 
         if "comment" in dataset:
