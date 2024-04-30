@@ -591,10 +591,18 @@ class HeatValidation(BaseDatasetValidator):
         # Check that the heat conversion efficiency is within the expected range
         for ds in self.database:
             if (
-                    "heat" in ds["name"]
-                    and ds["unit"] == "megajoule"
-                    and not any(x in ds["name"] for x in ["heat pump", "heat recovery", "heat storage", "treatment of"])
-                    and ds["location"] in self.regions
+                "heat" in ds["name"]
+                and ds["unit"] == "megajoule"
+                and not any(
+                    x in ds["name"]
+                    for x in [
+                        "heat pump",
+                        "heat recovery",
+                        "heat storage",
+                        "treatment of",
+                    ]
+                )
+                and ds["location"] in self.regions
             ):
                 energy = sum(
                     [
