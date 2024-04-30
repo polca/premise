@@ -35,7 +35,8 @@ IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
 IAM_DAC_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
-IAM_TRANS_VARS = VARIABLES_DIR / "transport_variables.yaml"
+IAM_TRANS_ROADFREIGHT_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
+IAM_TRANS_RAILFREIGHT_VARS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
 
 FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
 FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
@@ -428,13 +429,20 @@ class IAMDataCollection:
             IAM_OTHER_VARS, variable="iam_aliases"
         )
         
-        transport_prod_vars = self.__get_iam_variable_labels(
-            IAM_TRANS_VARS, variable="iam_aliases"
+        roadfreight_prod_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_ROADFREIGHT_VARS, variable="iam_aliases"
         )
-        logger.info(f"Transport production variables: {transport_prod_vars}")
         
-        transport_energy_vars = self.__get_iam_variable_labels(
-            IAM_TRANS_VARS, variable="energy_use_aliases"
+        roadfreight_energy_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_ROADFREIGHT_VARS, variable="energy_use_aliases"
+        )
+
+        railfreight_prod_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_RAILFREIGHT_VARS, variable="iam_aliases"
+        )
+        
+        railfreight_energy_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_RAILFREIGHT_VARS, variable="energy_use_aliases"
         )
 
         # new_vars is a list of all variables that are declared above
@@ -456,8 +464,10 @@ class IAMDataCollection:
             + list(land_use_change_vars.values())
             + list(carbon_capture_vars.values())
             + list(other_vars.values())
-            + list(transport_prod_vars.values())
-            + list(transport_energy_vars.values())
+            + list(roadfreight_prod_vars.values())
+            + list(roadfreight_energy_vars.values())
+            + list(railfreight_prod_vars.values())
+            + list(railfreight_energy_vars.values())
         )
 
         # flatten the list of lists
@@ -476,7 +486,6 @@ class IAMDataCollection:
         )
         
         self.data = data
-        # logger.info(f"IAM Data: {self.data}")
 
         self.regions = data.region.values.tolist()
         self.system_model = system_model
@@ -626,9 +635,16 @@ class IAMDataCollection:
             system_model="cutoff",
         )
         
-        self.transport_markets = self.__fetch_market_data(
+        self.roadfreight_markets = self.__fetch_market_data(
             data=data,
-            input_vars=transport_prod_vars,
+            input_vars=roadfreight_prod_vars,
+            system_model="cutoff", # TODO: check how to handle this for consequencial
+            sector="transport",
+        )
+        
+        self.railfreight_markets = self.__fetch_market_data(
+            data=data,
+            input_vars=railfreight_prod_vars,
             system_model="cutoff", # TODO: check how to handle this for consequencial
             sector="transport",
         )
@@ -746,10 +762,16 @@ class IAMDataCollection:
             energy_labels=dac_electricity_vars,
         )
         
-        self.transport_efficiencies = self.get_iam_efficiencies(
+        self.roadfreight_efficiencies = self.get_iam_efficiencies(
             data=data,
-            production_labels=transport_prod_vars,
-            energy_labels=transport_energy_vars,
+            production_labels=roadfreight_prod_vars,
+            energy_labels=roadfreight_energy_vars,
+        )
+        
+        self.railfreight_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            production_labels=railfreight_prod_vars,
+            energy_labels=roadfreight_energy_vars,
         )
 
         self.land_use = self.__get_iam_production_volumes(
@@ -777,7 +799,8 @@ class IAMDataCollection:
                 **steel_prod_vars,
                 **dac_prod_vars,
                 **biomass_prod_vars,
-                **transport_prod_vars,
+                **roadfreight_prod_vars,
+                **railfreight_prod_vars,
             },
         )
 
