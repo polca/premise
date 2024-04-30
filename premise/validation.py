@@ -904,9 +904,7 @@ class TransportValidation(BaseDatasetValidator):
             if vehicle_name == "transport, freight, lorry":
                 size = ds["name"].split(", ")[4].replace(" gross weight", "")
 
-            fuel_consumption = self.calculate_fuel_consumption(
-                ds
-            )
+            fuel_consumption = self.calculate_fuel_consumption(ds)
 
             if powertrain in self.exhaust:
                 if str(self.euro_class_map[euro_class]) in self.exhaust[powertrain]:
@@ -983,7 +981,9 @@ class TransportValidation(BaseDatasetValidator):
 
                     fuel_consumption += sum(
                         [
-                            x["amount"] * (47.5 if x["unit"] == "kilogram" else 36) / 42.6
+                            x["amount"]
+                            * (47.5 if x["unit"] == "kilogram" else 36)
+                            / 42.6
                             for x in ds["exchanges"]
                             if x["name"].startswith("market for natural gas")
                             or x["name"].startswith("market group for natural gas")
@@ -1023,7 +1023,6 @@ class TransportValidation(BaseDatasetValidator):
                                 message,
                                 issue_type="major",
                             )
-
 
     def run_transport_checks(self):
         self.validate_and_normalize_exchanges()

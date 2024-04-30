@@ -2346,12 +2346,16 @@ class Fuels(BaseTransformation):
 
         if "petrol" in dataset["name"]:
             if sum_co2 < 2.5 or sum_co2 > 3.2:
-                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 2.5-3.2")
+                print(
+                    f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 2.5-3.2"
+                )
                 print()
 
         if "natural gas" in dataset["name"]:
             if sum_co2 < 2.1 or sum_co2 > 2.3:
-                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 2.1-2.3")
+                print(
+                    f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 2.1-2.3"
+                )
                 print()
 
         if "comment" in dataset:
