@@ -109,6 +109,7 @@ class Heat(BaseTransformation):
                         }
                     )
 
+
         # add "market for diesel" to self.carbon_intensity_markets
         # by duplicating the "market for low-sulfur" entries
         # add "market for natural gas, low pressure" to self.carbon_intensity_markets

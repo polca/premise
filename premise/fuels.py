@@ -1882,7 +1882,6 @@ class Fuels(BaseTransformation):
             for fuel in self.iam_fuel_markets.variables.values
         }
 
-    @lru_cache()
     def fetch_fuel_share(
         self, fuel: str, relevant_fuel_types: Tuple[str], region: str, period: int
     ) -> float:
@@ -1898,7 +1897,7 @@ class Fuels(BaseTransformation):
         relevant_variables = [
             v
             for v in self.iam_fuel_markets.variables.values
-            if any(x.lower() in v.lower() for x in relevant_fuel_types)
+            if any(v.lower().startswith(x.lower()) for x in relevant_fuel_types)
         ]
 
         fuel_share = (
@@ -2190,7 +2189,6 @@ class Fuels(BaseTransformation):
         as well as the updated dataset with the regional fuel market exchanges.
 
         """
-
         # Initialize variables
         fossil_co2, non_fossil_co2, final_lhv = [0, 0, 0]
 
@@ -2231,14 +2229,17 @@ class Fuels(BaseTransformation):
                     "hydrogen, from natural gas",
                 ]
 
+        sum_share = 0
         for prod_var in prod_vars:
             if len(prod_vars) > 1:
                 share = fuel_providers[prod_var]["find_share"](
                     prod_var, tuple(vars_map[fuel_category]), region, period
                 )
+                sum_share += share
 
             else:
                 share = 1.0
+                sum_share = 1.0
 
             if np.isnan(share) or share <= 0:
                 continue
@@ -2298,17 +2299,12 @@ class Fuels(BaseTransformation):
                 # so that the overall composition maintains
                 # the same average LHV
                 amount = (
-                    supplier_share
-                    * (activity["lhv"] / self.fuels_specs[prod_var]["lhv"])
-                    * conversion_factor
+                        supplier_share
+                        * (activity["lhv"] / self.fuels_specs[prod_var]["lhv"])
                 )
 
-                lhv = self.fuels_specs[prod_var]["lhv"] * (
-                    0.735 if supplier_key[-1] == "cubic meter" else 1
-                )
-                co2_factor = self.fuels_specs[prod_var]["co2"] * (
-                    0.735 if supplier_key[-1] == "cubic meter" else 1
-                )
+                lhv = self.fuels_specs[prod_var]["lhv"]
+                co2_factor = self.fuels_specs[prod_var]["co2"]
                 biogenic_co2_share = self.fuels_specs[prod_var]["biogenic_share"]
 
                 f_co2, nf_co2, weighted_lhv = calculate_fuel_properties(
@@ -2328,16 +2324,33 @@ class Fuels(BaseTransformation):
                 if text not in string:
                     string += text
 
+        if not np.isclose(sum_share, 1.0, atol=1e-3):
+            print(f"WARNING: sum of shares for {dataset['name']} in {region} is {sum_share} instead of 1.0")
+
         if "log parameters" not in dataset:
             dataset["log parameters"] = {}
 
         dataset["log parameters"]["fossil CO2 per kg fuel"] = fossil_co2
-
         dataset["log parameters"]["non-fossil CO2 per kg fuel"] = non_fossil_co2
-
         dataset["log parameters"]["lower heating value"] = final_lhv
-
         string += f"Final average LHV of {final_lhv} MJ/kg."
+
+        # check validity of CO2 values
+        sum_co2 = sum([fossil_co2, non_fossil_co2])
+        if "diesel" in dataset["name"]:
+            if sum_co2 < 3.1 or sum_co2 > 3.2:
+                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 3.1-3.2")
+                print()
+
+        if "petrol" in dataset["name"]:
+            if sum_co2 < 3.1 or sum_co2 > 3.2:
+                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 3.1-3.2")
+                print()
+
+        if "natural gas" in dataset["name"]:
+            if sum_co2 < 1.8 or sum_co2 > 2.0:
+                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 1.8-2.0")
+                print()
 
         if "comment" in dataset:
             dataset["comment"] += string

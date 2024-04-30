@@ -600,10 +600,15 @@ class HeatValidation(BaseDatasetValidator):
                         "heat recovery",
                         "heat storage",
                         "treatment of",
+                        "market for",
+                        "market group for"
                     ]
                 )
                 and ds["location"] in self.regions
             ):
+
+                expected_co2 = 0.0
+
                 energy = sum(
                     [
                         exc["amount"]
@@ -612,7 +617,7 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
                 # add input of coal
-                energy += sum(
+                coal = sum(
                     [
                         exc["amount"] * 26.4
                         for exc in ds["exchanges"]
@@ -622,8 +627,10 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                expected_co2 += coal * 0.098
+
                 # add input of natural gas
-                energy += sum(
+                nat_gas = sum(
                     [
                         exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
                         for exc in ds["exchanges"]
@@ -633,8 +640,10 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                expected_co2 += nat_gas * 0.054
+
                 # add input of diesel
-                energy += sum(
+                diesel = sum(
                     [
                         exc["amount"] * 42.6
                         for exc in ds["exchanges"]
@@ -644,8 +653,10 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                expected_co2 += diesel * 0.0732
+
                 # add input of light fuel oil
-                energy += sum(
+                light_fue_oil = sum(
                     [
                         exc["amount"] * 41.8
                         for exc in ds["exchanges"]
@@ -655,8 +666,10 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                expected_co2 += light_fue_oil * 0.0686
+
                 # add input of heavy fuel oil
-                energy += sum(
+                heavy_fuel_oil = sum(
                     [
                         exc["amount"] * 41.8
                         for exc in ds["exchanges"]
@@ -666,8 +679,10 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                expected_co2 += heavy_fuel_oil * 0.0739
+
                 # add input of biomass
-                energy += sum(
+                biomass = sum(
                     [
                         exc["amount"] * 18
                         for exc in ds["exchanges"]
@@ -677,8 +692,10 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                expected_co2 += biomass * 0.112
+
                 # add input of methane
-                energy += sum(
+                methane = sum(
                     [
                         exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
                         for exc in ds["exchanges"]
@@ -688,8 +705,10 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                expected_co2 += methane * 0.056
+
                 # add input of biogas
-                energy += sum(
+                biogas = sum(
                     [
                         exc["amount"] * 22.7
                         for exc in ds["exchanges"]
@@ -699,8 +718,10 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                expected_co2 += biogas * 0.058
+
                 # add input of hydrogen
-                energy += sum(
+                hydrogen = sum(
                     [
                         exc["amount"] * 120
                         for exc in ds["exchanges"]
@@ -711,7 +732,7 @@ class HeatValidation(BaseDatasetValidator):
                 )
 
                 # add input of electricity
-                energy += sum(
+                electricity = sum(
                     [
                         exc["amount"] * 3.6
                         for exc in ds["exchanges"]
@@ -721,7 +742,9 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
-                efficiency = 1 / energy
+                energy_input = sum([energy, coal, nat_gas, diesel, light_fue_oil, heavy_fuel_oil, biomass, methane, biogas, hydrogen, electricity])
+
+                efficiency = 1 / energy_input
 
                 if efficiency > 1.1 and "co-generation" not in ds["name"]:
                     message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.1."
@@ -735,14 +758,20 @@ class HeatValidation(BaseDatasetValidator):
                     for exc in ds["exchanges"]:
                         exc["amount"] *= efficiency / 3.0
 
-                if efficiency > 7:
-                    # print exchanges
+                co2 = sum(
+                    [
+                        exc["amount"]
+                        for exc in ds["exchanges"]
+                        if exc["name"].startswith("Carbon dioxide")
+                        and exc["type"] == "biosphere"
+                    ]
+                )
 
-                    print(f"{ds['name']}: {efficiency:.2f}")
-                    for e in ds["exchanges"]:
-                        print(e["name"], e["unit"], e["amount"])
+                if not math.isclose(co2, expected_co2, rel_tol=0.2):
+                    message = f"CO2 emissions are {co2:.3f}, expected to be {expected_co2:.3f}."
+                    self.log_issue(ds, "CO2 emissions", message, issue_type="major")
 
-                    print()
+
 
     def run_heat_checks(self):
         self.check_heat_conversion_efficiency()
