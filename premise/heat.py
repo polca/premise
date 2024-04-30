@@ -5,6 +5,7 @@ Integrates projections regarding heat production and supply.
 from .activity_maps import InventorySet
 from .logger import create_logger
 from .transformation import BaseTransformation, IAMDataCollection, List, ws
+from .validation import HeatValidation
 
 logger = create_logger("heat")
 
@@ -25,6 +26,18 @@ def _update_heat(scenario, version, system_model):
     heat.fetch_fuel_market_co2_emissions()
     heat.regionalize_heat_production()
     heat.relink_datasets()
+
+    validate = HeatValidation(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=heat.database,
+        iam_data=scenario["iam data"],
+    )
+
+    validate.run_heat_checks()
+
     scenario["database"] = heat.database
     scenario["cache"] = heat.cache
     scenario["index"] = heat.index
@@ -117,6 +130,9 @@ class Heat(BaseTransformation):
                 new_keys[("market for natural gas, low pressure", key[1])] = value
 
         self.carbon_intensity_markets.update(new_keys)
+
+        from pprint import pprint
+        #pprint(self.carbon_intensity_markets)
 
     def regionalize_heat_production(self):
         """

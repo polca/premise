@@ -582,6 +582,153 @@ class BaseDatasetValidator:
             print("---> MAJOR anomalies found: check the change report.")
 
 
+class HeatValidation(BaseDatasetValidator):
+    def __init__(self, model, scenario, year, regions, database, iam_data):
+        super().__init__(model, scenario, year, regions, database)
+        self.iam_data = iam_data
+
+    def check_heat_conversion_efficiency(self):
+        # Check that the heat conversion efficiency is within the expected range
+        for ds in self.database:
+            if (
+                    "heat" in ds["name"]
+                    and ds["unit"] == "megajoule"
+                    and not any(x in ds["name"] for x in ["heat pump", "heat recovery", "heat storage", "treatment of"])
+                    and ds["location"] in self.regions
+            ):
+                energy = sum(
+                    [
+                        exc["amount"]
+                        for exc in ds["exchanges"]
+                        if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
+                    ]
+                )
+                # add input of coal
+                energy += sum(
+                    [
+                        exc["amount"] * 26.4
+                        for exc in ds["exchanges"]
+                        if "hard coal" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
+                )
+
+                # add input of natural gas
+                energy += sum(
+                    [
+                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        for exc in ds["exchanges"]
+                        if "natural gas" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] in ["cubic meter", "kilogram"]
+                    ]
+                )
+
+                # add input of diesel
+                energy += sum(
+                    [
+                        exc["amount"] * 42.6
+                        for exc in ds["exchanges"]
+                        if "diesel" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
+                )
+
+                # add input of light fuel oil
+                energy += sum(
+                    [
+                        exc["amount"] * 41.8
+                        for exc in ds["exchanges"]
+                        if "light fuel oil" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
+                )
+
+                # add input of heavy fuel oil
+                energy += sum(
+                    [
+                        exc["amount"] * 41.8
+                        for exc in ds["exchanges"]
+                        if "heavy fuel oil" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
+                )
+
+                # add input of biomass
+                energy += sum(
+                    [
+                        exc["amount"] * 18
+                        for exc in ds["exchanges"]
+                        if "wood" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
+                )
+
+                # add input of methane
+                energy += sum(
+                    [
+                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        for exc in ds["exchanges"]
+                        if "methane" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] in ["kilogram", "cubic meter"]
+                    ]
+                )
+
+                # add input of biogas
+                energy += sum(
+                    [
+                        exc["amount"] * 22.7
+                        for exc in ds["exchanges"]
+                        if "biogas" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "cubic meter"
+                    ]
+                )
+
+                # add input of hydrogen
+                energy += sum(
+                    [
+                        exc["amount"] * 120
+                        for exc in ds["exchanges"]
+                        if "hydrogen" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
+                )
+
+                # add input of electricity
+                energy += sum(
+                    [
+                        exc["amount"] * 3.6
+                        for exc in ds["exchanges"]
+                        if "electricity" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilowatt hour"
+                    ]
+                )
+
+                efficiency = 1 / energy
+
+                if efficiency > 7:
+                    # print exchanges
+
+                    print(f"{ds['name']}: {efficiency:.2f}")
+                    for e in ds["exchanges"]:
+                        print(e["name"], e["unit"], e["amount"])
+
+                    print()
+
+    def run_heat_checks(self):
+        self.check_heat_conversion_efficiency()
+        self.save_log()
+
+
 class TransportValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
