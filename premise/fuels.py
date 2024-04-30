@@ -2298,9 +2298,8 @@ class Fuels(BaseTransformation):
                 # Corrected by the LHV of the initial fuel
                 # so that the overall composition maintains
                 # the same average LHV
-                amount = (
-                        supplier_share
-                        * (activity["lhv"] / self.fuels_specs[prod_var]["lhv"])
+                amount = supplier_share * (
+                    activity["lhv"] / self.fuels_specs[prod_var]["lhv"]
                 )
 
                 lhv = self.fuels_specs[prod_var]["lhv"]
@@ -2324,7 +2323,9 @@ class Fuels(BaseTransformation):
                     string += text
 
         if not np.isclose(sum_share, 1.0, atol=1e-3):
-            print(f"WARNING: sum of shares for {dataset['name']} in {region} is {sum_share} instead of 1.0")
+            print(
+                f"WARNING: sum of shares for {dataset['name']} in {region} is {sum_share} instead of 1.0"
+            )
 
         if "log parameters" not in dataset:
             dataset["log parameters"] = {}
@@ -2338,7 +2339,9 @@ class Fuels(BaseTransformation):
         sum_co2 = sum([fossil_co2, non_fossil_co2])
         if "diesel" in dataset["name"]:
             if sum_co2 < 3.1 or sum_co2 > 3.2:
-                print(f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 3.1-3.2")
+                print(
+                    f"WARNING: CO2 emission factor for {dataset['name']} is {sum_co2} instead of 3.1-3.2"
+                )
                 print()
 
         if "petrol" in dataset["name"]:
