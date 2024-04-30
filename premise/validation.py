@@ -601,7 +601,7 @@ class HeatValidation(BaseDatasetValidator):
                         "heat storage",
                         "treatment of",
                         "market for",
-                        "market group for"
+                        "market group for",
                     ]
                 )
                 and ds["location"] in self.regions
@@ -742,7 +742,21 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
-                energy_input = sum([energy, coal, nat_gas, diesel, light_fue_oil, heavy_fuel_oil, biomass, methane, biogas, hydrogen, electricity])
+                energy_input = sum(
+                    [
+                        energy,
+                        coal,
+                        nat_gas,
+                        diesel,
+                        light_fue_oil,
+                        heavy_fuel_oil,
+                        biomass,
+                        methane,
+                        biogas,
+                        hydrogen,
+                        electricity,
+                    ]
+                )
 
                 efficiency = 1 / energy_input
 
@@ -772,8 +786,6 @@ class HeatValidation(BaseDatasetValidator):
                 if not math.isclose(co2, expected_co2, rel_tol=0.2):
                     message = f"CO2 emissions are {co2:.3f}, expected to be {expected_co2:.3f}."
                     self.log_issue(ds, "CO2 emissions", message, issue_type="major")
-
-
 
     def run_heat_checks(self):
         self.check_heat_conversion_efficiency()
