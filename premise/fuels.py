@@ -1903,7 +1903,9 @@ class Fuels(BaseTransformation):
         if period == 0:
             if self.year in self.iam_fuel_markets.coords["year"].values:
                 fuel_share = (
-                    self.iam_fuel_markets.sel(region=region, variables=fuel, year=self.year)
+                    self.iam_fuel_markets.sel(
+                        region=region, variables=fuel, year=self.year
+                    )
                     / self.iam_fuel_markets.sel(
                         region=region, variables=relevant_variables, year=self.year
                     ).sum(dim="variables")
@@ -1911,18 +1913,24 @@ class Fuels(BaseTransformation):
 
             else:
                 fuel_share = (
-                    self.iam_fuel_markets.sel(region=region, variables=fuel)
-                    / self.iam_fuel_markets.sel(
-                        region=region, variables=relevant_variables
-                    ).sum(dim="variables")
-                ).interp(
-                    year=self.year,
-                ).values
+                    (
+                        self.iam_fuel_markets.sel(region=region, variables=fuel)
+                        / self.iam_fuel_markets.sel(
+                            region=region, variables=relevant_variables
+                        ).sum(dim="variables")
+                    )
+                    .interp(
+                        year=self.year,
+                    )
+                    .values
+                )
         else:
             start_period = self.year
             end_period = self.year + period
             # make sure end_period is not greater than the last year in the dataset
-            end_period = min(end_period, self.iam_fuel_markets.coords["year"].values[-1])
+            end_period = min(
+                end_period, self.iam_fuel_markets.coords["year"].values[-1]
+            )
             fuel_share = (
                 (
                     self.iam_fuel_markets.sel(region=region, variables=fuel)
