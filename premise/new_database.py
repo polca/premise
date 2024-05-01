@@ -904,7 +904,9 @@ class NewDatabase:
                 pbar_outer.set_description(f"Updating: {sector}")
 
                 # skip "external" if no external scenarios are provided
-                if sector == "external" and not any("external scenarios" in scenario for scenario in self.scenarios):
+                if sector == "external" and not any(
+                    "external scenarios" in scenario for scenario in self.scenarios
+                ):
                     continue
 
                 # Prepare the function and arguments
