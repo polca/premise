@@ -1,0 +1,18 @@
+# This file maps newly created and imported transport LCIs to ecoinvnet transport LCIs to be replaced
+---
+
+freight transport:
+  remind: # TODO: check if list is complete
+    transport, freight, lorry, unspecified: market for transport, freight, lorry
+    transport, freight, lorry 3.5-7.5 metric ton: market for transport, freight, lorry, 3.5t gross weight
+    transport, freight, lorry 7.5-16 metric ton: transport, freight, lorry, 7.5t gross weight, unspecified powertrain
+    transport, freight, lorry 16-32 metric ton: market for transport, freight, lorry, 26t gross weight
+    transport, freight, lorry >32 metric ton: market for transport, freight, lorry, 40t gross weight
+    transport, freight, lorry, all sizes: market for transport, freight, lorry
+    transport, freight, lorry 28 metric ton, fatty acid methyl ester 100%: market for transport, freight, lorry, 26t gross weight
+    transport, freight, lorry with reefer, cooling: market for transport, freight, lorry
+    transport, freight, lorry with reefer, freezing: market for transport, freight, lorry
+    transport, freight, lorry with refrigeration machine, 3.5-7.5 ton: market for transport, freight, lorry, 3.5t gross weight
+    transport, freight, lorry with refrigeration machine, 7.5-16 ton: market for transport, freight, lorry, 7.5t gross weight
+    transport, freight, lorry with refrigeration machine, cooling: market for transport, freight, lorry
+    transport, freight, lorry with refrigeration machine, freezing: market for transport, freight, lorry
