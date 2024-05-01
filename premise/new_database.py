@@ -903,12 +903,15 @@ class NewDatabase:
             for sector in sectors:
                 pbar_outer.set_description(f"Updating: {sector}")
 
+                # skip "external" if no external scenarios are provided
+                if sector == "external" and not any("external scenarios" in scenario for scenario in self.scenarios):
+                    continue
+
                 # Prepare the function and arguments
                 update_func = sector_update_methods[sector]["func"]
                 fixed_args = sector_update_methods[sector]["args"]
 
                 if self.multiprocessing:
-
                     # Process scenarios in parallel for the current sector
                     with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
                         # Prepare the tasks with all necessary arguments
