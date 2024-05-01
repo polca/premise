@@ -771,7 +771,7 @@ class IAMDataCollection:
         self.railfreight_efficiencies = self.get_iam_efficiencies(
             data=data,
             production_labels=railfreight_prod_vars,
-            energy_labels=roadfreight_energy_vars,
+            energy_labels=railfreight_energy_vars,
         )
 
         self.land_use = self.__get_iam_production_volumes(
