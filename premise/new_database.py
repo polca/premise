@@ -561,8 +561,6 @@ class NewDatabase:
                     scenario["external scenarios"]
                 )
 
-            scenario["database"] = copy.deepcopy(self.database)
-
         print("- Extracting source database")
         if use_cached_database:
             self.database = self.__find_cached_db(source_db)
@@ -582,6 +580,8 @@ class NewDatabase:
             data = self.__import_additional_inventories(self.additional_inventories)
             self.database.extend(data)
 
+        data = pickle.dumps(self.database, -1)
+
         print("- Fetching IAM data")
         # use multiprocessing to speed up the process
         if self.multiprocessing:
@@ -590,6 +590,10 @@ class NewDatabase:
         else:
             for scenario in self.scenarios:
                 _fetch_iam_data(scenario)
+
+        # add database to scenarios
+        for scenario in self.scenarios:
+            scenario["database"] = pickle.loads(data)
 
         print("Done!")
 

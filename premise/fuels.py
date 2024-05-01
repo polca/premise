@@ -1900,21 +1900,43 @@ class Fuels(BaseTransformation):
             if any(v.lower().startswith(x.lower()) for x in relevant_fuel_types)
         ]
 
-        fuel_share = (
-            (
-                self.iam_fuel_markets.sel(region=region, variables=fuel)
-                / self.iam_fuel_markets.sel(
-                    region=region, variables=relevant_variables
-                ).sum(dim="variables")
+        if period == 0:
+            if self.year in self.iam_fuel_markets.coords["year"].values:
+                fuel_share = (
+                    self.iam_fuel_markets.sel(region=region, variables=fuel, year=self.year)
+                    / self.iam_fuel_markets.sel(
+                        region=region, variables=relevant_variables, year=self.year
+                    ).sum(dim="variables")
+                ).values
+
+            else:
+                fuel_share = (
+                    self.iam_fuel_markets.sel(region=region, variables=fuel)
+                    / self.iam_fuel_markets.sel(
+                        region=region, variables=relevant_variables
+                    ).sum(dim="variables")
+                ).interp(
+                    year=self.year,
+                ).values
+        else:
+            start_period = self.year
+            end_period = self.year + period
+            # make sure end_period is not greater than the last year in the dataset
+            end_period = min(end_period, self.iam_fuel_markets.coords["year"].values[-1])
+            fuel_share = (
+                (
+                    self.iam_fuel_markets.sel(region=region, variables=fuel)
+                    / self.iam_fuel_markets.sel(
+                        region=region, variables=relevant_variables
+                    ).sum(dim="variables")
+                )
+                .fillna(0)
+                .interp(
+                    year=np.arange(start_period, end_period + 1),
+                )
+                .mean(dim="year")
+                .values
             )
-            .fillna(0)
-            .interp(
-                year=np.arange(self.year, self.year + period + 1),
-                kwargs={"fill_value": "extrapolate"},
-            )
-            .mean(dim="year")
-            .values
-        )
 
         if np.isnan(fuel_share):
             print(
@@ -2322,9 +2344,14 @@ class Fuels(BaseTransformation):
                 if text not in string:
                     string += text
 
-        if not np.isclose(sum_share, 1.0, atol=1e-3):
+        if not np.isclose(sum_share, 1.0, rtol=1e-3):
             print(
                 f"WARNING: sum of shares for {dataset['name']} in {region} is {sum_share} instead of 1.0"
+            )
+
+        if not np.isclose(final_lhv, activity["lhv"], rtol=1e-2):
+            print(
+                f"WARNING: LHV for {dataset['name']} in {region} is {final_lhv} instead of {activity['lhv']}"
             )
 
         if "log parameters" not in dataset:

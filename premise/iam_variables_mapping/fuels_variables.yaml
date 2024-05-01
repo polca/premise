@@ -949,7 +949,7 @@ ethyl tert-butyl ether:
 
 methanol, from wood:
   lhv: 19.9
-  co2: 0.05477
+  co2: 0.069
   biogenic_share: 1
   iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/oCCS
@@ -963,7 +963,7 @@ methanol, from wood:
 
 methanol, from grass:
   lhv: 19.9
-  co2: 0.05477
+  co2: 0.069
   biogenic_share: 1
   iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/oCCS
@@ -976,7 +976,7 @@ methanol, from grass:
 
 methanol, from wood, with CCS:
   lhv: 19.9
-  co2: 0.05477
+  co2: 0.069
   biogenic_share: 1
   iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/CCS
@@ -989,7 +989,7 @@ methanol, from wood, with CCS:
 
 methanol, from grass, with CCS:
   lhv: 19.9
-  co2: 0.05477
+  co2: 0.069
   biogenic_share: 1
   iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/CCS
