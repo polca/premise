@@ -42,10 +42,10 @@ def _update_transport(scenario, version, system_model):
         logger.info("TESTING: transport markets found in IAM data")
         transport.generate_datasets()
         transport.generate_transport_markets()
-        transport.relink_datasets()
+        transport.relink_datasets() # is this correclty placed here?
         transport.generate_unspecified_transport_vehicles()
         transport.relink_exchanges()
-        # transport.relink_datasets() # TODO: understand what exactly this does?
+        transport.delete_inventory_datasets()
         scenario["database"] = transport.database 
         scenario["cache"] = transport.cache
         scenario["index"] = transport.index
@@ -65,38 +65,14 @@ def _update_transport(scenario, version, system_model):
     return scenario
 
 
-def delete_inventory_datasets(database):
-    """
-    The function specifies and deletes inventory datasets.
-    In this case transport datasets from ecoinvent, as they
-    are replaced by the additional LCI imports.
-    """
-    # TODO: this must be a rpelacment function? What does relink datasets do?
-    
-    ds_to_delete = [ # solve via .yaml? to include road
-        "transport, freight train",
-        "market for transport, freight train",
-        "market group for transport, freight train",
-        "transport, freight train, diesel",
-        "transport, freight train, electricity",
-        "transport, freight train, steam",
-        "transport, freight train, diesel, with particle filter",
-    ]
-
-    database = [
-        ds
-        for ds in database
-        if ds["name"] not in ds_to_delete
-    ]
-    
-    return database
-
 def get_vehicles_mapping() -> Dict[str, dict]:
     """
     Return a dictionary that contains mapping
     between `ecoinvent` terminology and `premise` terminology
     regarding size classes, powertrain types, etc.
+    
     :return: dictionary to map terminology between carculator and ecoinvent
+    
     """
     with open(FILEPATH_VEHICLES_MAP, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
@@ -162,10 +138,7 @@ class Transport(BaseTransformation):
         """
         
         logger.info("TESTING: generate_datasets function is called")
-        
-        ##### delete
-        # clean the database of ecoinvent datasets, so that only add. inventory imports remain
-        # self.database = delete_inventory_datasets(self.database)
+
         
         roadfreight_dataset_names = self.iam_data.roadfreight_markets.coords["variables"].values.tolist()
         railfreight_dataset_names = self.iam_data.railfreight_markets.coords["variables"].values.tolist()
@@ -249,45 +222,15 @@ class Transport(BaseTransformation):
         """
         # logger.info("TESTING: adjust_transport_efficiency function is called")
         
+        vehicles_map = get_vehicles_mapping()
+        
         # create a list that contains all energy carrier markets used in transport
-        energy_carriers = [
-            "market group for electricity",
-            "market for electricity",
-            "market group for diesel",
-            "market for diesel",
-            "market for hydrogen",
-            "market for natural gas",
-        ]
+        energy_carriers = vehicles_map["energy carriers"]
         
         # create a list that contains all biosphere flows that are related to the direct combustion of fuel
-        fuel_combustion_emissions = [
-            "Ammonia",
-            "Benzene",
-            "Cadmium",
-            "Carbon dioxide, fossil",
-            "Carbon monoxide, fossil",
-            "Chromium",
-            "Copper ion",
-            "Dinitrogen monoxide",
-            "Lead",
-            "Mercury",
-            "Methane, fossil",
-            "NMVOC, non-methane volatile organic compounds",
-            "NMVOC, non-methane volatile organic compounds, unspecified origin",
-            "Nickel",
-            "Nitrogen oxides",
-            "PAH, polycyclic aromatic hydrocarbons",
-            "Particulate Matter, < 2.5 um",
-            "Particulates, < 2.5 um",
-            "Particulate Matter, > 10 um",
-            "Particulate Matter, > 2.5 um and < 10um",
-            "Selenium",
-            "Sulfur dioxide",
-            "Toluene",
-            "Xylenes, unspecified",
-            "Zinc",
-        ]
+        fuel_combustion_emissions = vehicles_map["fuel combustion emissions"]
         
+        # calculate scaling factor 
         if "lorry" in dataset["name"]:
             scaling_factor = 1 / self.find_iam_efficiency_change(
                 data=self.iam_data.roadfreight_efficiencies,
@@ -305,7 +248,8 @@ class Transport(BaseTransformation):
         
         if scaling_factor is None:
             scaling_factor = 1
-            
+        
+        # rescale exchanges
         if scaling_factor != 1 and scaling_factor > 0:
             rescale_exchanges(
                 dataset,
@@ -342,9 +286,7 @@ class Transport(BaseTransformation):
         """
         
         logger.info("TESTING: generate_transport_markets function is called")
-
-        # freight_transport_dataset_names = self.iam_data.transport_markets.coords["variables"].values.tolist()
-        
+     
         # dict of transport markets to be created (keys) with inputs list (values)
         transport_markets_tbc = {
             "market for transport, freight, lorry": 
@@ -358,7 +300,6 @@ class Transport(BaseTransformation):
         new_transport_markets = []
         
         # create regional market processes
-        
         for markets, vehicles in transport_markets_tbc.items():
             for region in self.iam_data.regions:
                 market = {
@@ -382,6 +323,7 @@ class Transport(BaseTransformation):
                     f"for the region {region}.",
                 }
                 
+                # add exchanges
                 if region != "World":
                     for vehicle in vehicles:
                         if markets == "market for transport, freight, lorry":
@@ -407,13 +349,13 @@ class Transport(BaseTransformation):
 
                 new_transport_markets.append(market)
         
-        dict_transport_ES_var = {
-            "market for transport, freight, lorry": "ES|Transport|Freight|Road",
-            "market for transport, freight train": "ES|Transport|Freight|Rail",
-        }
+        vehicles_map = get_vehicles_mapping()
+        
+        dict_transport_ES_var = vehicles_map["energy service varibales"][self.model]["mode"]
         
         dict_regional_shares = {}
         
+        # create world amrket transport datasets
         for market, var in dict_transport_ES_var.items():
             for region in self.iam_data.regions:
                 if region != "World":
@@ -432,7 +374,8 @@ class Transport(BaseTransformation):
                         )
                     )
             # logger.info(f"Regional shares: {dict_regional_shares}")
-            
+        
+        # add exchanges    
         for ds in new_transport_markets:
             if ds["location"] == "World":
                 # logger.info(f"World market before exchanges added: {ds['name']} in {ds['location']} with exchanges: {[exchange['name'] for exchange in ds['exchanges']]}")
@@ -461,23 +404,15 @@ class Transport(BaseTransformation):
 
         logger.info("TESTING: generate_unspecified_transport_vehicles function is called")
         
-        dict_transport_ES_var = {
-            "market for transport, freight, lorry, 3.5t gross weight": "ES|Transport|Freight|Road|Truck (0-3.5t)",
-            "market for transport, freight, lorry, 7.5t gross weight": "ES|Transport|Freight|Road|Truck (7.5t)",
-            "market for transport, freight, lorry, 18t gross weight": "ES|Transport|Freight|Road|Truck (18t)",
-            "market for transport, freight, lorry, 26t gross weight": "ES|Transport|Freight|Road|Truck (26t)",
-            "market for transport, freight, lorry, 40t gross weight": "ES|Transport|Freight|Road|Truck (40t)",
-        }
+        vehicles_map = get_vehicles_mapping()
         
-        dict_vehicle_types = { 
-            "Electric": "transport, freight, lorry, battery electric, NMC-622 battery",
-            "Liquids": "transport, freight, lorry, diesel",
-            "Gases": "transport, freight, lorry, compressed gas",
-            "FCEV": "transport, freight, lorry, fuel cell electric",               
-        }
+        dict_transport_ES_var = vehicles_map["energy service varibales"][self.model]["size"]
+        
+        dict_vehicle_types = vehicles_map["vehicle types"]
 
         weight_specific_ds = []
         
+        # create regional size dependent technology-averag markets
         for region in self.iam_data.regions:
             if region != "World":
                 for market, var in dict_transport_ES_var.items():
@@ -502,6 +437,7 @@ class Transport(BaseTransformation):
                         f"for the region {region}.",
                     }
                     
+                    # add exchanges
                     for vehicle_types, names in dict_vehicle_types.items():
                         # if region not in dict_regional_weight_shares:
                         #     dict_regional_weight_shares[region] = {}
@@ -551,15 +487,13 @@ class Transport(BaseTransformation):
         
         vehicles_map = get_vehicles_mapping()
         
-        logger.info(f"Vehicles map: {vehicles_map}")
-        
         for dataset in ws.get_many(
             self.database,
             ws.doesnt_contain_any("name", "transport, freight"),
             ws.exclude(ws.equals("unit", "ton kilometer")),
             ):
             
-            logger.info(f"Dataset {dataset['name']} in {dataset['location']} is being checked for exchanges.")
+            # logger.info(f"Dataset {dataset['name']} in {dataset['location']} is being checked for exchanges.")
             
             for exc in ws.technosphere(
                 dataset,
@@ -567,14 +501,14 @@ class Transport(BaseTransformation):
                 ws.equals("unit", "ton kilometer"),
                 ):
                 
-                logger.info(f"Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
+                # logger.info(f"Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
                 
                 key = [
                     k for k in vehicles_map['freight transport'][self.model]
                     if k.lower() in exc["name"].lower()
                 ][0]
                 
-                logger.info(f"After calling of key: Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
+                # logger.info(f"After calling of key: Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
                 
                 if "input" in exc:
                     del exc["input"]
@@ -582,4 +516,24 @@ class Transport(BaseTransformation):
                 exc["name"] = f"{vehicles_map['freight transport'][self.model][key]}"
                 exc["location"] = self.geo.ecoinvent_to_iam_location(dataset["location"])
                 
-                logger.info(f"Exchanged updated for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
+                # logger.info(f"Exchanged updated for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
+                
+    def delete_inventory_datasets(self):
+        """
+        The function specifies and deletes inventory datasets.
+        In this case transport datasets from ecoinvent, as they
+        are replaced by the additional LCI imports.
+        """
+        # TODO: this must be a rpelacment function? What does relink datasets do?
+        
+        vehicles_map = get_vehicles_mapping()
+        
+        ds_to_delete = vehicles_map["ecoinvent freight transport"]
+        
+        # logger.info(f"Datasets to delete: {ds_to_delete}")
+
+        self.database = [
+            ds
+            for ds in self.database
+            if ds["name"] not in ds_to_delete
+        ]
