@@ -289,9 +289,9 @@ class Transport(BaseTransformation):
      
         # dict of transport markets to be created (keys) with inputs list (values)
         transport_markets_tbc = {
-            "market for transport, freight, lorry": 
+            "market for transport, freight, lorry, unspecified powertrain": 
                 self.iam_data.roadfreight_markets.coords["variables"].values.tolist(),
-            "market for transport, freight train": 
+            "market for transport, freight train, unspecified powertrain": 
                 self.iam_data.railfreight_markets.coords["variables"].values.tolist(),
         }
         # logger.info(f"Transport markets to be created: {transport_markets_tbc}")
@@ -326,9 +326,9 @@ class Transport(BaseTransformation):
                 # add exchanges
                 if region != "World":
                     for vehicle in vehicles:
-                        if markets == "market for transport, freight, lorry":
-                            market_share = self.iam_data.roadfreight_markets.sel(region=region, variables=vehicle, year=self.year).item() #TODO: check what the transport_markets are right now!
-                        elif markets == "market for transport, freight train":
+                        if markets == "market for transport, freight, lorry, unspecified powertrain":
+                            market_share = self.iam_data.roadfreight_markets.sel(region=region, variables=vehicle, year=self.year).item()
+                        elif markets == "market for transport, freight train, unspecified powertrain":
                             market_share = self.iam_data.railfreight_markets.sel(region=region, variables=vehicle, year=self.year).item()
                         # logger.info(f"Market share for {vehicle} in {region}: {market_share}")
                         
@@ -351,11 +351,11 @@ class Transport(BaseTransformation):
         
         vehicles_map = get_vehicles_mapping()
         
-        dict_transport_ES_var = vehicles_map["energy service varibales"][self.model]["mode"]
+        dict_transport_ES_var = vehicles_map["energy service variables"][self.model]["mode"]
         
         dict_regional_shares = {}
         
-        # create world amrket transport datasets
+        # create world market transport datasets
         for market, var in dict_transport_ES_var.items():
             for region in self.iam_data.regions:
                 if region != "World":
@@ -393,6 +393,8 @@ class Transport(BaseTransformation):
                         )
                 # logger.info(f"World market after exchanges added: {ds['name']} in {ds['location']} with exchanges: {[exchange['name'] for exchange in ds['exchanges']]} in excahnge location {[exchange['location'] for exchange in ds['exchanges']]}")
         
+        logger.info(f"New transport markets names created: {[market['name'] for market in new_transport_markets]} in region {[market['location'] for market in new_transport_markets]}")
+        
         self.database.extend(new_transport_markets)
             
     
@@ -406,7 +408,7 @@ class Transport(BaseTransformation):
         
         vehicles_map = get_vehicles_mapping()
         
-        dict_transport_ES_var = vehicles_map["energy service varibales"][self.model]["size"]
+        dict_transport_ES_var = vehicles_map["energy service variables"][self.model]["size"]
         
         dict_vehicle_types = vehicles_map["vehicle types"]
 
@@ -456,11 +458,11 @@ class Transport(BaseTransformation):
                                     year=self.year).item()
                                 )
                             )
-                            
+                            # TODO: maybe execute using .roadfreight_markets and .railfreightmarkets?
                             vehicle_unspecified["exchanges"].append(
                                 {
-                                    "name": "transport, freight, lorry, " + names + market.replace("market for transport, freight, lorry", "") + ", long haul",
-                                    "product": "transport, freight, lorry, " + names + market.replace("market for transport, freight, lorry", "") + ", long haul",
+                                    "name": "transport, freight, lorry, " + names + market.split(',')[3].strip() + ", long haul",
+                                    "product": "transport, freight, lorry, " + names + market.split(',')[3].strip() + ", long haul",
                                     "unit": "ton kilometer",
                                     "location": region,
                                     "type": "technosphere",
@@ -524,8 +526,7 @@ class Transport(BaseTransformation):
         In this case transport datasets from ecoinvent, as they
         are replaced by the additional LCI imports.
         """
-        # TODO: this must be a rpelacment function? What does relink datasets do?
-        
+
         vehicles_map = get_vehicles_mapping()
         
         ds_to_delete = vehicles_map["ecoinvent freight transport"]
@@ -535,5 +536,5 @@ class Transport(BaseTransformation):
         self.database = [
             ds
             for ds in self.database
-            if ds["name"] not in ds_to_delete
+            if ds["name"] not in ds_to_delete and ds["location"] in self.iam_data.regions
         ]
