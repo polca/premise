@@ -58,7 +58,7 @@ fuel combustion emissions:
 
 
 # Mapping of transport datasets to Energy Service (ES) IAM variables
-energy service varibales:
+energy service variables:
   remind:
     mode:
       market for transport, freight, lorry: ES|Transport|Freight|Road
