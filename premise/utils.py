@@ -3,6 +3,7 @@ Various utils functions.
 """
 
 import os
+import pickle
 import sys
 import uuid
 from datetime import datetime
@@ -21,7 +22,12 @@ from wurst.searching import biosphere, equals, get_many, technosphere
 
 from . import __version__
 from .data_collection import get_delimiter
-from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, VARIABLES_DIR
+from .filesystem_constants import (
+    DATA_DIR,
+    DIR_CACHED_DB,
+    DIR_CACHED_FILES,
+    VARIABLES_DIR,
+)
 from .geomap import Geomap
 
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
@@ -343,3 +349,47 @@ def create_scenario_list(scenarios: list) -> list:
         list_scenarios.append(name)
 
     return list_scenarios
+
+
+def dump_database(scenario):
+    """
+    Dump database to a pickle file.
+    :param scenario: scenario dictionary
+    """
+
+    # generate random name
+    name = f"{uuid.uuid4().hex}.pickle"
+    # dump as pickle
+    with open(DIR_CACHED_FILES / name, "wb") as f:
+        pickle.dump(scenario["database"], f)
+    scenario["database filepath"] = DIR_CACHED_FILES / name
+    del scenario["database"]
+
+    return scenario
+
+
+def load_database(scenario):
+    """
+    Load database from a pickle file.
+    :param scenario: scenario dictionary
+    """
+
+    filepath = scenario["database filepath"]
+
+    # load pickle
+    with open(filepath, "rb") as f:
+        scenario["database"] = pickle.load(f)
+    del scenario["database filepath"]
+    # delete the file
+    filepath.unlink()
+
+    return scenario
+
+
+def delete_all_pickles():
+    """
+    Delete all pickle files in the cache folder.
+    """
+
+    for file in DIR_CACHED_FILES.glob("*.pickle"):
+        file.unlink()

@@ -40,17 +40,19 @@ from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
-from .logger import empty_log_files
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
 from .utils import (
     clear_existing_cache,
     create_scenario_list,
+    delete_all_pickles,
+    dump_database,
     eidb_label,
     hide_messages,
     info_on_utils_functions,
     load_constants,
+    load_database,
     print_version,
     warning_about_biogenic_co2,
 )
@@ -580,8 +582,6 @@ class NewDatabase:
             data = self.__import_additional_inventories(self.additional_inventories)
             self.database.extend(data)
 
-        data = pickle.dumps(self.database, -1)
-
         print("- Fetching IAM data")
         # use multiprocessing to speed up the process
         if self.multiprocessing:
@@ -590,10 +590,6 @@ class NewDatabase:
         else:
             for scenario in self.scenarios:
                 _fetch_iam_data(scenario)
-
-        # add database to scenarios
-        for scenario in self.scenarios:
-            scenario["database"] = pickle.loads(data)
 
         print("Done!")
 
@@ -898,57 +894,25 @@ class NewDatabase:
             [item for item in sectors if item not in sector_update_methods]
         )
 
-        # Outer tqdm progress bar for sectors
-        with tqdm(total=len(sectors), desc="Updating sectors", ncols=70) as pbar_outer:
-            for sector in sectors:
-                pbar_outer.set_description(f"Updating: {sector}")
+        # unlink all files in the cache directory
+        delete_all_pickles()
 
-                # skip "external" if no external scenarios are provided
-                if sector == "external" and not any(
-                    "external scenarios" in scenario for scenario in self.scenarios
-                ):
-                    continue
+        with tqdm(
+            total=len(self.scenarios), desc="Processing scenarios", ncols=70
+        ) as pbar_outer:
+            for scenario in self.scenarios:
+                # add database to scenarios
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+                for sector in sectors:
+                    # Prepare the function and arguments
+                    update_func = sector_update_methods[sector]["func"]
+                    fixed_args = sector_update_methods[sector]["args"]
+                    scenario = update_func(scenario, *fixed_args)
 
-                # Prepare the function and arguments
-                update_func = sector_update_methods[sector]["func"]
-                fixed_args = sector_update_methods[sector]["args"]
-
-                if self.multiprocessing:
-                    # Process scenarios in parallel for the current sector
-                    with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
-                        # Prepare the tasks with all necessary arguments
-                        tasks = [
-                            (scenario,) + fixed_args for scenario in self.scenarios
-                        ]
-
-                        # we cannot pickle the datapackage contained under "external scenarios" in each scenario
-                        # so we replace it by the file path of the datapackage before processing
-
-                        for task in tasks:
-                            if "external scenarios" in task[0]:
-                                for external_scenario in task[0]["external scenarios"]:
-                                    if isinstance(
-                                        external_scenario["data"],
-                                        datapackage.DataPackage,
-                                    ):
-                                        external_scenario["data"] = external_scenario[
-                                            "data"
-                                        ].base_path
-
-                        # Use starmap for preserving the order of tasks
-                        results = pool.starmap(update_func, tasks)
-
-                        # Update self.scenarios based on the ordered results
-                        for s, updated_scenario in enumerate(results):
-                            self.scenarios[s] = updated_scenario
-
-                else:
-                    # Process scenarios in sequence for the current sector
-                    for s, scenario in enumerate(self.scenarios):
-                        self.scenarios[s] = update_func(scenario, *fixed_args)
-
+                # dump database
+                dump_database(scenario)
                 # Manually update the outer progress bar after each sector is completed
-                pbar_outer.update(1)
+                pbar_outer.update()
         print("Done!\n")
 
     def write_superstructure_db_to_brightway(
@@ -973,6 +937,7 @@ class NewDatabase:
             )
 
         for scenario in self.scenarios:
+            scenario = load_database(scenario)
             _prepare_database(
                 scenario=scenario,
                 db_name=name,
@@ -1001,6 +966,9 @@ class NewDatabase:
         self.generate_scenario_report()
         # generate change report from logs
         self.generate_change_report()
+
+        for scenario in self.scenarios:
+            del scenario["database"]
 
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
@@ -1039,18 +1007,19 @@ class NewDatabase:
         print("Write new database(s) to Brightway.")
 
         for s, scenario in enumerate(self.scenarios):
+            scenario = load_database(scenario)
             _prepare_database(
                 scenario=scenario,
                 db_name=name[s],
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
             )
-
-        for scen, scenario in enumerate(self.scenarios):
             write_brightway_database(
                 scenario["database"],
-                name[scen],
+                name[s],
             )
+            # delete the database from the scenario
+            del scenario["database"]
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1094,36 +1063,16 @@ class NewDatabase:
 
         print("Write new database(s) to matrix.")
 
-        # use multiprocessing to speed up the process
-
-        if self.multiprocessing:
-            with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
-                args = [
-                    (scenario, "database", self.database, self.keep_uncertainty_data)
-                    for scenario in self.scenarios
-                ]
-                results = pool.starmap(_prepare_database, args)
-
-            for s, scenario in enumerate(self.scenarios):
-                self.scenarios[s] = results[s]
-
-            with ProcessPool(processes=multiprocessing.cpu_count()) as pool:
-                args = [
-                    Export(scenario, filepath[scen], self.version)
-                    for scen, scenario in enumerate(self.scenarios)
-                ]
-                pool.map(_export_to_matrices, args)
-        else:
-            for scenario in self.scenarios:
-                _prepare_database(
-                    scenario=scenario,
-                    db_name="database",
-                    original_database=self.database,
-                    keep_uncertainty_data=self.keep_uncertainty_data,
-                )
-
-            for scen, scenario in enumerate(self.scenarios):
-                Export(scenario, filepath[scen], self.version).export_db_to_matrices()
+        for s, scenario in enumerate(self.scenarios):
+            scenario = load_database(scenario)
+            _prepare_database(
+                scenario=scenario,
+                db_name="database",
+                original_database=self.database,
+                keep_uncertainty_data=self.keep_uncertainty_data,
+            )
+            Export(scenario, filepath[s], self.version).export_db_to_matrices()
+            del scenario["database"]
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1149,15 +1098,15 @@ class NewDatabase:
         # use multiprocessing to speed up the process
 
         for scenario in self.scenarios:
+            scenario = load_database(scenario)
             _prepare_database(
                 scenario=scenario,
                 db_name="database",
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
             )
-
-        for scenario in self.scenarios:
             Export(scenario, filepath, self.version).export_db_to_simapro()
+            del scenario["database"]
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1183,17 +1132,17 @@ class NewDatabase:
         # use multiprocessing to speed up the process
 
         for scenario in self.scenarios:
+            scenario = load_database(scenario)
             _prepare_database(
                 scenario=scenario,
                 db_name="database",
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
             )
-
-        for scenario in self.scenarios:
             Export(scenario, filepath, self.version).export_db_to_simapro(
                 olca_compartments=True
             )
+            del scenario["database"]
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1215,6 +1164,7 @@ class NewDatabase:
 
         # use multiprocessing to speed up the process
         for scenario in self.scenarios:
+            scenario = load_database(scenario)
             _prepare_database(
                 scenario=scenario,
                 db_name=name,
@@ -1231,6 +1181,9 @@ class NewDatabase:
             version=self.version,
             scenario_list=list_scenarios,
         )
+
+        for scenario in self.scenarios:
+            del scenario["database"]
 
         cached_inventories.extend(extra_inventories)
 
