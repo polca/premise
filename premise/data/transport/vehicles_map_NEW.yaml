@@ -130,6 +130,34 @@ ecoinvent freight transport:
   - transport, freight, lorry >32 metric ton, EURO5
   - transport, freight, lorry >32 metric ton, EURO6
   - transport, freight, lorry >32 metric ton, unregulated
+  - market for transport, freight, lorry 3.5-7.5 metric ton, EURO1
+  - market for transport, freight, lorry 3.5-7.5 metric ton, EURO2
+  - market for transport, freight, lorry 3.5-7.5 metric ton, EURO3
+  - market for transport, freight, lorry 3.5-7.5 metric ton, EURO4
+  - market for transport, freight, lorry 3.5-7.5 metric ton, EURO5
+  - market for transport, freight, lorry 3.5-7.5 metric ton, EURO6
+  - market for transport, freight, lorry 3.5-7.5 metric ton, unregulated
+  - market for transport, freight, lorry 7.5-16 metric ton, EURO1
+  - market for transport, freight, lorry 7.5-16 metric ton, EURO2
+  - market for transport, freight, lorry 7.5-16 metric ton, EURO3
+  - market for transport, freight, lorry 7.5-16 metric ton, EURO4
+  - market for transport, freight, lorry 7.5-16 metric ton, EURO5
+  - market for transport, freight, lorry 7.5-16 metric ton, EURO6
+  - market for transport, freight, lorry 7.5-16 metric ton, unregulated
+  - market for transport, freight, lorry 16-32 metric ton, EURO1
+  - market for transport, freight, lorry 16-32 metric ton, EURO2
+  - market for transport, freight, lorry 16-32 metric ton, EURO3
+  - market for transport, freight, lorry 16-32 metric ton, EURO4
+  - market for transport, freight, lorry 16-32 metric ton, EURO5
+  - market for transport, freight, lorry 16-32 metric ton, EURO6
+  - market for transport, freight, lorry 16-32 metric ton, unregulated
+  - market for transport, freight, lorry >32 metric ton, EURO1
+  - market for transport, freight, lorry >32 metric ton, EURO2
+  - market for transport, freight, lorry >32 metric ton, EURO3
+  - market for transport, freight, lorry >32 metric ton, EURO4
+  - market for transport, freight, lorry >32 metric ton, EURO5
+  - market for transport, freight, lorry >32 metric ton, EURO6
+  - market for transport, freight, lorry >32 metric ton, unregulated
   - market group for transport, freight, lorry 28 metric ton, fatty acid methyl ester 100%
   - market for transport, freight, lorry 28 metric ton, fatty acid methyl ester 100%
   - transport, freight, lorry 28 metric ton, fatty acid methyl ester 100%
@@ -185,6 +213,20 @@ ecoinvent freight transport:
   - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, R134a refrigerant, freezing
   - market for transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO6, carbon dioxide, liquid refr(...)_11
   - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO6, carbon dioxide, liquid refr(...)_11
+  - market for transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO6, carbon dioxide, liquid refr(...)_13
+  - market for transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO6, carbon dioxide, liquid refri(...)_5
+  - market for transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO5, carbon dioxide, liquid refri(...)_3
+  - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO4, carbon dioxide, liquid refrig(...)_6
+  - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refri(...)_16
+  - market for transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO4, carbon dioxide, liquid refri(...)_2
+  - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO3, carbon dioxide, liquid refri(...)_14
+  - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrig(...)_8
+  - market for transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO5, carbon dioxide, liquid refri(...)_7
+  - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO6, carbon dioxide, liquid refri(...)_15
+  - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO3, carbon dioxide, liquid refrig(...)_4
+  - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO4, carbon dioxide, liquid refri(...)_12
+  - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO6, carbon dioxide, liquid refrig(...)_9
+  - market for transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO4, carbon dioxide, liquid refr(...)_10
   - market for transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO6, R134a refrigerant, freezing
   - market for transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO6, R134a refrigerant, freezing
   - transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO3, carbon dioxide, liquid refrigerant, cooling
@@ -215,6 +257,7 @@ ecoinvent freight transport:
   - transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, carbon dioxide, liquid refrigerant, freezing
   - transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO5, R134a refrigerant, freezing
   - transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO5, R134a refrigerant, freezing
+  - transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO6, carbon dioxide, liquid refrigerant, freezing
   - transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO6, carbon dioxide, liquid refrigerant, freezing
   - transport, freight, lorry with refrigeration machine, 7.5-16 ton, EURO6, carbon dioxide, liquid refrigerant, freezing
   - transport, freight, lorry with refrigeration machine, 3.5-7.5 ton, EURO6, R134a refrigerant, freezing

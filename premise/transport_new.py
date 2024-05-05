@@ -152,6 +152,7 @@ class Transport(BaseTransformation):
         
         changed_datasets_location = []
         new_datasets = []
+        dataset_old_list = []
         
         # change the location of the datasets to IAM regions
         for dataset in self.database:
@@ -197,9 +198,23 @@ class Transport(BaseTransformation):
                                                                 ws.equals("location", "RER")
                                                             )
                                                     )
+                        
+                    # Create a list that stores the dataset used for copy to later delete them from the database
+                    if not any(dataset["name"] == new_dataset["name"] and dataset["location"] == new_dataset["location"] for dataset in dataset_old_list):
+                        logger.info(f"Dataset to be deleted: {new_dataset['name']} in {new_dataset['location']}")
+                        dataset_old_list.append(copy.deepcopy(new_dataset))
+
+                        
                     new_dataset["location"] = region
                     new_dataset["code"] = str(uuid.uuid4().hex)
                     new_dataset["comment"] = f"Dataset for the region {region}. {new_dataset['comment']}"
+                    
+                    # logger.info(f"New dataset: {new_dataset['name']} in {new_dataset['location']}")
+                    
+                    # TODO: the RER and RoW datasets have to be removed from the database
+                    # # Create a list that stores the dataset used for copy to later delete them from the database
+                    # if not any(dataset["name"] == new_dataset["name"] and dataset["location"] == new_dataset["location"] for dataset in dataset_old_list):
+                    #     dataset_old_list.append({"name": new_dataset["name"], "location": new_dataset["location"]})
                     
                     # add to log
                     self.write_log(dataset=new_dataset, status="updated")
@@ -212,7 +227,18 @@ class Transport(BaseTransformation):
                     
                     new_datasets.append(new_dataset)
                     
+        # logger.info(f"Datasets to be removed from the database: {[{'name': dataset['name'], 'location': dataset['location']} for dataset in dataset_old_list]}")
+                    
         self.database.extend(new_datasets)
+        
+        # logger.info(f"Datasets to be removed from the database: {dataset_old_list}")
+        for dataset in dataset_old_list:
+            logger.info(f"Dataset in removal list: {dataset['name']} in {dataset['location']}")
+        
+        for dataset in list(self.database):  # Create a copy for iteration
+            if any(old_dataset["name"] == dataset["name"] and old_dataset["location"] == dataset["location"] for old_dataset in dataset_old_list):
+                logger.info(f"Dataset to be removed: {dataset['name']} in {dataset['location']}")
+                self.database.remove(dataset)
 
         
     def adjust_transport_efficiency(self, dataset):
@@ -393,7 +419,7 @@ class Transport(BaseTransformation):
                         )
                 # logger.info(f"World market after exchanges added: {ds['name']} in {ds['location']} with exchanges: {[exchange['name'] for exchange in ds['exchanges']]} in excahnge location {[exchange['location'] for exchange in ds['exchanges']]}")
         
-        logger.info(f"New transport markets names created: {[market['name'] for market in new_transport_markets]} in region {[market['location'] for market in new_transport_markets]}")
+        # logger.info(f"New transport markets names created: {[market['name'] for market in new_transport_markets]} in region {[market['location'] for market in new_transport_markets]}")
         
         self.database.extend(new_transport_markets)
             
@@ -489,36 +515,51 @@ class Transport(BaseTransformation):
         
         vehicles_map = get_vehicles_mapping()
         
-        for dataset in ws.get_many(
-            self.database,
-            ws.doesnt_contain_any("name", "transport, freight"),
-            ws.exclude(ws.equals("unit", "ton kilometer")),
-            ):
-            
-            # logger.info(f"Dataset {dataset['name']} in {dataset['location']} is being checked for exchanges.")
-            
-            for exc in ws.technosphere(
-                dataset,
-                ws.contains("name", "transport, freight"),
-                ws.equals("unit", "ton kilometer"),
-                ):
-                
-                # logger.info(f"Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
-                
-                key = [
-                    k for k in vehicles_map['freight transport'][self.model]
-                    if k.lower() in exc["name"].lower()
-                ][0]
-                
-                # logger.info(f"After calling of key: Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
-                
-                if "input" in exc:
-                    del exc["input"]
+        # logger.info(f"Vehicles map: {vehicles_map['freight transport'][self.model]}")
+        
+        for dataset in self.database:
+            if "transport, freight" not in dataset["name"]:
+                # logger.info(f"Dataset {dataset['name']} in {dataset['location']} is being checked for exchanges.")
+        
+        # for dataset in ws.get_many(
+        #     self.database,
+        #     ws.doesnt_contain_any("name", "transport, freight"),
+        #     ws.exclude(ws.equals("unit", "ton kilometer")),
+        #     ):
                     
-                exc["name"] = f"{vehicles_map['freight transport'][self.model][key]}"
-                exc["location"] = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                #     logger.info(f"Dataset {dataset['name']} in {dataset['location']} is being checked for exchanges.")
+            
+                for exc in ws.technosphere(
+                    dataset,
+                    ws.contains("name", "transport, freight"),
+                    ws.equals("unit", "ton kilometer"),
+                    ):
                 
-                # logger.info(f"Exchanged updated for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
+                    # for exc in dataset["exchanges"]:
+                    #     if exc["type"] == "technosphere" and "transport, freight" in exc["name"]:
+                        
+                    
+                    # logger.info(f"Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
+                    
+                    if any(key.lower() in exc["name"].lower() for key in vehicles_map['freight transport'][self.model]):                 
+                        key = [
+                            k 
+                            for k in vehicles_map['freight transport'][self.model]
+                            if k.lower() in exc["name"].lower()
+                        ][0]
+                        
+                        # logger.info(f"Key: {key} for dataset {dataset['name']} in {dataset['location']}")
+                        
+                        # logger.info(f"After calling of key: Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
+                        
+                        # if "input" in exc:
+                        #     del exc["input"]
+                            
+                        exc["name"] = f"{vehicles_map['freight transport'][self.model][key]}"
+                        exc["location"] = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                        exc["product"] = (f"{vehicles_map['freight transport'][self.model][key]}").replace("market for ", "")
+                        
+                        # logger.info(f"Exchanged updated for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
                 
     def delete_inventory_datasets(self):
         """
@@ -533,8 +574,12 @@ class Transport(BaseTransformation):
         
         # logger.info(f"Datasets to delete: {ds_to_delete}")
 
-        self.database = [
-            ds
-            for ds in self.database
-            if ds["name"] not in ds_to_delete and ds["location"] in self.iam_data.regions
-        ]
+        # self.database = [
+        #     ds
+        #     for ds in self.database
+        #     if ds["name"] not in ds_to_delete # and ds["location"] in self.iam_data.regions
+        # ]
+        
+        for dataset in self.database:
+            if dataset["name"] in ds_to_delete:
+                self.database.remove(dataset)
