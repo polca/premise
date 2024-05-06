@@ -146,19 +146,14 @@ class Transport(BaseTransformation):
         freight_transport_dataset_names = roadfreight_dataset_names + railfreight_dataset_names
         # logger.info(f"Freight transport datasets: {freight_transport_dataset_names}")
         
-        # test = ws.get_one(self.database, ws.equals("name", "transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, long haul"))
-        # logger.info(f"Test dataset: {test}")
-        # for d in freight_train_datasets:
-        #     logger.info(f"Dataset name: {d['name']} in {d['location']}")
-        
         changed_datasets_location = []
         new_datasets = []
         dataset_old_list = []
         
         # change the location of the datasets to IAM regions
         for dataset in self.database:
-            # the if statement that checks if "train" is in dataset["name"] needs to be changed if road freight transport contains more than 1 regional dataset (right noe only RER)
-            if "train" in dataset["name"] and dataset["name"] in freight_transport_dataset_names:
+            # the if statement that checks if "train" is in dataset["name"] needs to be changed if road freight transport contains more than 1 regional dataset (right now only RER)
+            if dataset["name"] in railfreight_dataset_names:
                 if dataset["location"] != "RoW":
                     region_mapping = self.region_to_proxy_dataset_mapping(
                         name=dataset["name"],
@@ -205,17 +200,15 @@ class Transport(BaseTransformation):
                         # logger.info(f"Dataset to be deleted: {new_dataset['name']} in {new_dataset['location']}")
                         dataset_old_list.append(copy.deepcopy(new_dataset))
 
-                        
+
                     new_dataset["location"] = region
                     new_dataset["code"] = str(uuid.uuid4().hex)
                     new_dataset["comment"] = f"Dataset for the region {region}. {new_dataset['comment']}"
+                    for exchange in new_dataset["exchanges"]:
+                        if exchange["type"] == "production":
+                            exchange["location"] = region
                     
                     # logger.info(f"New dataset: {new_dataset['name']} in {new_dataset['location']}")
-                    
-                    # TODO: the RER and RoW datasets have to be removed from the database
-                    # # Create a list that stores the dataset used for copy to later delete them from the database
-                    # if not any(dataset["name"] == new_dataset["name"] and dataset["location"] == new_dataset["location"] for dataset in dataset_old_list):
-                    #     dataset_old_list.append({"name": new_dataset["name"], "location": new_dataset["location"]})
                     
                     # add to log
                     self.write_log(dataset=new_dataset, status="updated")
@@ -230,7 +223,7 @@ class Transport(BaseTransformation):
                     
         # logger.info(f"Datasets to be removed from the database: {[{'name': dataset['name'], 'location': dataset['location']} for dataset in dataset_old_list]}")
         
-        logger.info(f"Datasets with changed location: {len(changed_datasets_location)} and newly created datasets: {len(new_datasets)}")
+        # logger.info(f"Datasets with changed location: {len(changed_datasets_location)} and newly created datasets: {len(new_datasets)}")
         
         self.database.extend(new_datasets)
         
