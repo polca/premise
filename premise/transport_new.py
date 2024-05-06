@@ -42,7 +42,7 @@ def _update_transport(scenario, version, system_model):
         logger.info("TESTING: transport markets found in IAM data")
         transport.generate_datasets()
         transport.generate_transport_markets()
-        transport.relink_datasets() # is this correclty placed here?
+        transport.relink_datasets() # is this correctly placed here?
         transport.generate_unspecified_transport_vehicles()
         # transport.relink_datasets() # or here?
         transport.relink_exchanges()
@@ -202,7 +202,7 @@ class Transport(BaseTransformation):
                         
                     # Create a list that stores the dataset used for copy to later delete them from the database
                     if not any(dataset["name"] == new_dataset["name"] and dataset["location"] == new_dataset["location"] for dataset in dataset_old_list):
-                        logger.info(f"Dataset to be deleted: {new_dataset['name']} in {new_dataset['location']}")
+                        # logger.info(f"Dataset to be deleted: {new_dataset['name']} in {new_dataset['location']}")
                         dataset_old_list.append(copy.deepcopy(new_dataset))
 
                         
@@ -229,7 +229,9 @@ class Transport(BaseTransformation):
                     new_datasets.append(new_dataset)
                     
         # logger.info(f"Datasets to be removed from the database: {[{'name': dataset['name'], 'location': dataset['location']} for dataset in dataset_old_list]}")
-                    
+        
+        logger.info(f"Datasets with changed location: {len(changed_datasets_location)} and newly created datasets: {len(new_datasets)}")
+        
         self.database.extend(new_datasets)
         
         # logger.info(f"Datasets to be removed from the database: {dataset_old_list}")
@@ -443,33 +445,32 @@ class Transport(BaseTransformation):
         
         # create regional size dependent technology-averag markets
         for region in self.iam_data.regions:
-            if region != "World":
-                for market, var in dict_transport_ES_var.items():
-                    vehicle_unspecified = {
-                        "name": market, 
-                        "reference product": market.replace("market for ", ""),
-                        "unit": "ton kilometer",
-                        "location": region,
-                        "exchanges": [
-                            {
-                                "name": market,
-                                "product": market.replace("market for ", ""),
-                                "unit": "ton kilometer",
-                                "location": region,
-                                "type": "production",
-                                "amount": 1,
-                            }
-                        ],
-                        "code": str(uuid.uuid4().hex),
-                        "database": "premise",
-                        "comment": f"Fleet-average vehicle for the year {self.year}, "
-                        f"for the region {region}.",
-                    }
-                    
-                    # add exchanges
+            for market, var in dict_transport_ES_var.items():
+                vehicle_unspecified = {
+                    "name": market, 
+                    "reference product": market.replace("market for ", ""),
+                    "unit": "ton kilometer",
+                    "location": region,
+                    "exchanges": [
+                        {
+                            "name": market,
+                            "product": market.replace("market for ", ""),
+                            "unit": "ton kilometer",
+                            "location": region,
+                            "type": "production",
+                            "amount": 1,
+                        }
+                    ],
+                    "code": str(uuid.uuid4().hex),
+                    "database": "premise",
+                    "comment": f"Fleet-average vehicle for the year {self.year}, "
+                    f"for the region {region}.",
+                }
+                
+
+                # add exchanges
+                if region != "World":
                     for vehicle_types, names in dict_vehicle_types.items():
-                        # if region not in dict_regional_weight_shares:
-                        #     dict_regional_weight_shares[region] = {}
                         variable_key = var + "|" + vehicle_types
                         if variable_key in self.iam_data.data.variables:
                             regional_weight_shares = (
@@ -502,11 +503,41 @@ class Transport(BaseTransformation):
                                         "amount": regional_weight_shares,
                                     }
                                 )
+                                       
+                elif region == "World":
+                    for region in self.iam_data.regions:
+                        regional_weight_shares = (
+                            ( 
+                            self.iam_data.data.sel(
+                                region=region, 
+                                variables=var, 
+                                year=self.year).values
+                            )/(
+                            self.iam_data.data.sel(
+                                region="World", 
+                                variables=var, 
+                                year=self.year).item()
+                            )
+                        )
+                        
+                        if regional_weight_shares > 0:
+                            vehicle_unspecified["exchanges"].append(
+                                {
+                                    "name": market,
+                                    "product": market.replace("market for ", ""),
+                                    "unit": "ton kilometer",
+                                    "location": region,
+                                    "type": "technosphere",
+                                    "amount": regional_weight_shares,
+                                }
+                            )
+                        
+                        # logger.info(f"Unspecified vehicle: {vehicle_unspecified['name']} in {vehicle_unspecified['location']} with exchanges: {[exchange['name'] for exchange in vehicle_unspecified['exchanges']]} created.")
                     
-                    weight_specific_ds.append(vehicle_unspecified)
+                weight_specific_ds.append(vehicle_unspecified)
                     
-                    # logger.info(f"Unspecified vehicle: {vehicle_unspecified['name']} in {vehicle_unspecified['location']} with exchanges: {[exchange['name'] for exchange in vehicle_unspecified['exchanges']]} created.")
-                    
+                # logger.info(f"Unspecified vehicle: {vehicle_unspecified['name']} in {vehicle_unspecified['location']} with exchanges: {[exchange['name'] for exchange in vehicle_unspecified['exchanges']]} created.")
+           
         self.database.extend(weight_specific_ds)
                                               
         #TODO: regional unspecified vehiels per driving cycle could have smae shares but are not used for markets?
@@ -514,7 +545,7 @@ class Transport(BaseTransformation):
     
     def relink_exchanges(self):
         """
-        This function goes through all datasets in the database that use transport, freight as one of their exchanges.
+        This function goes through all datasets in the database that use transport, freight (lorry or train) as one of their exchanges.
         It replaced those "old" transport exchanges with the new transport inventories and the newly created transport markets.
         """
         
@@ -559,8 +590,8 @@ class Transport(BaseTransformation):
                         
                         # logger.info(f"After calling of key: Exchanged found for dataset {dataset['name']} in {dataset['location']} with exchange {exc['name']} in {exc['location']}")
                         
-                        # if "input" in exc:
-                        #     del exc["input"]
+                        if "input" in exc:
+                            del exc["input"]
                             
                         exc["name"] = f"{vehicles_map['freight transport'][self.model][key]}"
                         exc["location"] = self.geo.ecoinvent_to_iam_location(dataset["location"])
@@ -580,13 +611,15 @@ class Transport(BaseTransformation):
         ds_to_delete = vehicles_map["ecoinvent freight transport"]
         
         # logger.info(f"Datasets to delete: {ds_to_delete}")
-
-        # self.database = [
-        #     ds
-        #     for ds in self.database
-        #     if ds["name"] not in ds_to_delete # and ds["location"] in self.iam_data.regions
-        # ]
         
-        for dataset in self.database:
-            if dataset["name"] in ds_to_delete:
-                self.database.remove(dataset)
+        # logger.info(f"Datasets to delete: {ds_to_delete}")
+
+        self.database = [
+            ds
+            for ds in self.database
+            if ds["name"] not in ds_to_delete
+        ]
+        
+        # for dataset in self.database:
+        #     if dataset["name"] in ds_to_delete:
+        #         self.database.remove(dataset)
