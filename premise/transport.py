@@ -517,26 +517,6 @@ class Transport(BaseTransformation):
         Create vehicle market (fleet average) datasets.
         """
 
-        # # create and regionalize vehicle datasets
-        # vehicle_datasets = list(ws.get_many(
-        #     self.database,
-        #     ws.either(*[
-        #         ws.contains("name", size)
-        #         for size in self.mapping[self.vehicle_type]["sizes"]
-        #     ]),
-        #     ws.contains("name", self.vehicle_type),
-        #     ws.equals("unit", "unit")
-        # ))
-        #
-        # for ds in vehicle_datasets:
-        #     new_vehicle_datasets = self.fetch_proxies(
-        #         subset = vehicle_datasets,
-        #         name=ds["name"],
-        #         ref_prod=ds["reference product"],
-        #     )
-        #
-        #     self.database.extend(new_vehicle_datasets.values())
-
         # create and regionalize transport datasets
         filters = [
             ws.either(

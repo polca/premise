@@ -357,6 +357,9 @@ def dump_database(scenario):
     :param scenario: scenario dictionary
     """
 
+    if "database filepath" in scenario:
+        return scenario
+
     # generate random name
     name = f"{uuid.uuid4().hex}.pickle"
     # dump as pickle
@@ -373,6 +376,9 @@ def load_database(scenario):
     Load database from a pickle file.
     :param scenario: scenario dictionary
     """
+
+    if "database" in scenario:
+        return scenario
 
     filepath = scenario["database filepath"]
 

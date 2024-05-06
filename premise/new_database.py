@@ -1042,10 +1042,18 @@ class NewDatabase:
 
         """
 
+        def scenario_name(scenario):
+            name = scenario["pathway"]
+
+            if "external scenarios" in scenario:
+                for external in scenario["external scenarios"]:
+                    name += f"-{external['scenario']}"
+            return name
+
         if filepath is not None:
             if isinstance(filepath, str):
                 filepath = [
-                    (Path(filepath) / s["model"] / s["pathway"] / str(s["year"]))
+                    (Path(filepath) / s["model"] / scenario_name(s) / str(s["year"]))
                     for s in self.scenarios
                 ]
             elif isinstance(filepath, list):
@@ -1072,7 +1080,6 @@ class NewDatabase:
                 keep_uncertainty_data=self.keep_uncertainty_data,
             )
             Export(scenario, filepath[s], self.version).export_db_to_matrices()
-            del scenario["database"]
 
         # generate scenario report
         self.generate_scenario_report()
