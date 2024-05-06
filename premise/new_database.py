@@ -905,7 +905,9 @@ class NewDatabase:
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 for sector in sectors:
                     if sector in scenario.get("applied functions", []):
-                        print(f"Function to update {sector} already applied to scenario.")
+                        print(
+                            f"Function to update {sector} already applied to scenario."
+                        )
                         continue
 
                     # Prepare the function and arguments
