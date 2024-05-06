@@ -44,6 +44,7 @@ def _update_transport(scenario, version, system_model):
         transport.generate_transport_markets()
         transport.relink_datasets() # is this correclty placed here?
         transport.generate_unspecified_transport_vehicles()
+        # transport.relink_datasets() # or here?
         transport.relink_exchanges()
         transport.delete_inventory_datasets()
         scenario["database"] = transport.database 
@@ -232,12 +233,12 @@ class Transport(BaseTransformation):
         self.database.extend(new_datasets)
         
         # logger.info(f"Datasets to be removed from the database: {dataset_old_list}")
-        for dataset in dataset_old_list:
-            logger.info(f"Dataset in removal list: {dataset['name']} in {dataset['location']}")
+        # for dataset in dataset_old_list:
+        #     logger.info(f"Dataset in removal list: {dataset['name']} in {dataset['location']}")
         
         for dataset in list(self.database):  # Create a copy for iteration
             if any(old_dataset["name"] == dataset["name"] and old_dataset["location"] == dataset["location"] for old_dataset in dataset_old_list):
-                logger.info(f"Dataset to be removed: {dataset['name']} in {dataset['location']}")
+                # logger.info(f"Dataset to be removed: {dataset['name']} in {dataset['location']}")
                 self.database.remove(dataset)
 
         
@@ -485,16 +486,22 @@ class Transport(BaseTransformation):
                                 )
                             )
                             # TODO: maybe execute using .roadfreight_markets and .railfreightmarkets?
-                            vehicle_unspecified["exchanges"].append(
-                                {
-                                    "name": "transport, freight, lorry, " + names + market.split(',')[3].strip() + ", long haul",
-                                    "product": "transport, freight, lorry, " + names + market.split(',')[3].strip() + ", long haul",
-                                    "unit": "ton kilometer",
-                                    "location": region,
-                                    "type": "technosphere",
-                                    "amount": regional_weight_shares,
-                                }
-                            )
+                            if regional_weight_shares > 0:
+                                if "diesel" in names or "compressed gas" in names:
+                                    euro = ", EURO-VI"
+                                else:
+                                    euro = ""
+                                    
+                                vehicle_unspecified["exchanges"].append(
+                                    {
+                                        "name": names + ", " + market.split(',')[3].strip() + euro + ", long haul",
+                                        "product": names + ", " + market.split(',')[3].strip() + euro + ", long haul",
+                                        "unit": "ton kilometer",
+                                        "location": region,
+                                        "type": "technosphere",
+                                        "amount": regional_weight_shares,
+                                    }
+                                )
                     
                     weight_specific_ds.append(vehicle_unspecified)
                     
