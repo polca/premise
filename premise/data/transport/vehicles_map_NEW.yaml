@@ -6,7 +6,7 @@ freight transport:
   remind:
     transport, freight, lorry, unspecified: market for transport, freight, lorry, unspecified powertrain
     transport, freight, lorry 3.5-7.5 metric ton: market for transport, freight, lorry, 3.5t gross weight, unspecified powertrain
-    transport, freight, lorry 7.5-16 metric ton: transport, freight, lorry, 7.5t gross weight, unspecified powertrain
+    transport, freight, lorry 7.5-16 metric ton: market for transport, freight, lorry, 7.5t gross weight, unspecified powertrain
     transport, freight, lorry 16-32 metric ton: market for transport, freight, lorry, 26t gross weight, unspecified powertrain
     transport, freight, lorry >32 metric ton: market for transport, freight, lorry, 40t gross weight, unspecified powertrain
     transport, freight, lorry, all sizes: market for transport, freight, lorry, unspecified powertrain
@@ -18,6 +18,9 @@ freight transport:
     transport, freight, lorry with refrigeration machine, cooling: market for transport, freight, lorry, unspecified powertrain
     transport, freight, lorry with refrigeration machine, freezing: market for transport, freight, lorry, unspecified powertrain
     transport, freight train: market for transport, freight train, unspecified powertrain
+    transport, freight, train with reefer, cooling: market for transport, freight train, unspecified powertrain
+    transport, freight, train with reefer, freezing: market for transport, freight train, unspecified powertrain
+
   image: # tbd
 
 # Mapping of energy carriers used as inputs to transport processes
