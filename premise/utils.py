@@ -108,7 +108,7 @@ def eidb_label(
 
     # add date and time
     name += (
-        f"_{datetime.now().strftime('%Y-%m-%d %H-%M')} v.{'.'.join(str(__version__))}"
+        f"_{datetime.now().strftime('%Y-%m-%d %H-%M')}"
     )
 
     return name
