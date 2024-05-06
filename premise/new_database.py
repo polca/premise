@@ -904,10 +904,18 @@ class NewDatabase:
                 # add database to scenarios
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 for sector in sectors:
+                    if sector in scenario.get("applied functions", []):
+                        print(f"Function to update {sector} already applied to scenario.")
+                        continue
+
                     # Prepare the function and arguments
                     update_func = sector_update_methods[sector]["func"]
                     fixed_args = sector_update_methods[sector]["args"]
                     scenario = update_func(scenario, *fixed_args)
+
+                    if "applied functions" not in scenario:
+                        scenario["applied functions"] = []
+                    scenario["applied functions"].append(sector)
 
                 # dump database
                 dump_database(scenario)
