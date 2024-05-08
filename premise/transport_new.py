@@ -17,6 +17,7 @@ from .filesystem_constants import DATA_DIR
 from .logger import create_logger
 from .transformation import BaseTransformation, IAMDataCollection
 from .utils import rescale_exchanges
+from .validation import TransportValidationNEW
 from wurst import searching as ws
 from wurst.errors import NoResults
 
@@ -24,6 +25,8 @@ FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map_NEW.yaml"
 
 logger = create_logger("transport")
 # TODO: work on logger (reporting.yaml & premise_transport.log)
+# TODO: work on change report
+# TODO: work on scenario report
 
 def _update_transport(scenario, version, system_model):
     transport = Transport(
@@ -48,7 +51,16 @@ def _update_transport(scenario, version, system_model):
         scenario["cache"] = transport.cache
         scenario["index"] = transport.index
         
-        # TODO: insert transport validation here?
+        validate = TransportValidationNEW(
+            model=scenario["model"],
+            scenario=scenario["pathway"],
+            year=scenario["year"],
+            regions=scenario["iam data"].regions,
+            database=transport.database,
+            iam_data=scenario["iam data"],
+        )
+        
+        validate.run_transport_checks()
     
     elif scenario["iam data"].roadfreight_markets is not None and scenario["iam data"].railfreight_markets is None:
         print("No railfreight markets found in IAM data. Skipping freight transport.")
@@ -171,6 +183,11 @@ class Transport(BaseTransformation):
                         
                     changed_datasets_location.append([dataset["name"],dataset["location"]])
                     
+                    # add to log
+                    self.write_log(dataset=dataset, status="updated")
+                    # add it to list of created datasets
+                    self.add_to_index(dataset)
+                    
                     self.adjust_transport_efficiency(dataset)
 
         # create new datasets for IAM regions that are not covered yet, based on the "RoW" or "RER" dataset
@@ -202,7 +219,7 @@ class Transport(BaseTransformation):
                             exchange["location"] = region
                     
                     # add to log
-                    self.write_log(dataset=new_dataset, status="updated")
+                    self.write_log(dataset=new_dataset, status="created")
                     # add it to list of created datasets
                     self.add_to_index(new_dataset)
                     
@@ -348,6 +365,11 @@ class Transport(BaseTransformation):
                                     "amount": market_share,
                                 }
                                 )
+                    
+                    # add to log
+                    self.write_log(dataset=market, status="created")
+                    # add it to list of created datasets
+                    self.add_to_index(market)
                             
                 new_transport_markets.append(market)
         
@@ -358,7 +380,7 @@ class Transport(BaseTransformation):
         
         dict_regional_shares = {}
         
-        # create world market transport datasets
+        # create world market transport datasets exchanges
         for market, var in dict_transport_ES_var.items():
             for region in self.iam_data.regions:
                 if region != "World":
@@ -474,34 +496,42 @@ class Transport(BaseTransformation):
                 # add exchanges for global dataset          
                 elif region == "World":
                     for region in self.iam_data.regions:
-                        regional_weight_shares = (
-                            ( 
-                            self.iam_data.data.sel(
-                                region=region, 
-                                variables=var, 
-                                year=self.year).values
-                            )/(
-                            self.iam_data.data.sel(
-                                region="World", 
-                                variables=var, 
-                                year=self.year).item()
+                        if region != "World":
+                            regional_weight_shares = (
+                                ( 
+                                self.iam_data.data.sel(
+                                    region=region, 
+                                    variables=var, 
+                                    year=self.year).values
+                                )/(
+                                self.iam_data.data.sel(
+                                    region="World", 
+                                    variables=var, 
+                                    year=self.year).item()
+                                )
                             )
-                        )
-                        
-                        if regional_weight_shares > 0:
-                            vehicle_unspecified["exchanges"].append(
-                                {
-                                    "name": market,
-                                    "product": market.replace("market for ", ""),
-                                    "unit": "ton kilometer",
-                                    "location": region,
-                                    "type": "technosphere",
-                                    "amount": regional_weight_shares,
-                                }
-                            )
-                        
-                weight_specific_ds.append(vehicle_unspecified)
-                    
+                            
+                            if regional_weight_shares > 0:
+                                vehicle_unspecified["exchanges"].append(
+                                    {
+                                        "name": market,
+                                        "product": market.replace("market for ", ""),
+                                        "unit": "ton kilometer",
+                                        "location": region,
+                                        "type": "technosphere",
+                                        "amount": regional_weight_shares,
+                                    }
+                                )
+                
+                # only add markets that have inputs
+                if len(vehicle_unspecified["exchanges"]) > 1:             
+                    weight_specific_ds.append(vehicle_unspecified)
+                
+                # add to log
+                self.write_log(dataset=vehicle_unspecified, status="created")
+                # add it to list of created datasets
+                self.add_to_index(vehicle_unspecified)
+                
         self.database.extend(weight_specific_ds)
                                               
         #TODO: regional unspecified vehicles per driving cycle could have same shares but are not used for markets?
