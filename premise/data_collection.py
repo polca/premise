@@ -1071,6 +1071,7 @@ class IAMDataCollection:
         :param efficiency_labels: The efficiency labels to use.
         :param production_labels: The production labels to use.
         :param energy_labels: The energy labels to use.
+        :param use_absolute_efficiency: If True, the efficiency is considered as absolute.
 
         :return: a multidimensional array with sector's technologies market
         share for a given year, for all regions.
