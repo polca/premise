@@ -43,7 +43,6 @@ from .inventory_imports import AdditionalInventory, DefaultInventory
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
-from .transport_new import _update_transport
 from .utils import (
     clear_existing_cache,
     create_scenario_list,
@@ -176,9 +175,7 @@ FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
 FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
-
 FILEPATH_RAIL_FREIGHT = INVENTORY_DIR / "lci-rail-freight.xlsx"
-FILEPATH_ROAD_FREIGHT = INVENTORY_DIR / "lci-trucks_NEW.xlsx"
 
 config = load_constants()
 
@@ -761,7 +758,6 @@ class NewDatabase:
             (FILEPATH_BUSES, "3.7"),
             (FILEPATH_PASS_CARS, "3.7"),
             (FILEPATH_RAIL_FREIGHT, "3.9"),
-            (FILEPATH_ROAD_FREIGHT, "3.9"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -873,8 +869,8 @@ class NewDatabase:
                 "func": _update_vehicles,
                 "args": ("bus", self.version, self.system_model),
             },
-            "transport": {
-                "func": _update_transport,
+            "trains": {
+                "func": _update_vehicles,
                 "args": (self.version, self.system_model),
             },
             "external": {

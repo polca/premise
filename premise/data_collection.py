@@ -22,10 +22,8 @@ from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, VARIABLES_DIR
 from .geomap import Geomap
-from .logger import create_logger
 from .marginal_mixes import consequential_method
 
-logger = create_logger("transport")
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
@@ -1051,6 +1049,9 @@ class IAMDataCollection:
         market_data = market_data.bfill(dim="year")
         # fill NaNs with zeros
         market_data = market_data.fillna(0)
+
+        # remove attrs
+        market_data.attrs = {}
 
         return market_data
 

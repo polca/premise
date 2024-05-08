@@ -1,10 +1,9 @@
 # mapping between premise and IAM terminology regarding rail freight transport
-# transport volumes and energy use
+# transport volumes (ES) and energy use (FE)
 ---
 
-# freight transport, train
 
-transport, freight train, electric:
+electric:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Rail|Electric
@@ -12,10 +11,13 @@ transport, freight train, electric:
     remind:
     - FE|Transport|Freight|Rail|Electricity
   ecoinvent_aliases:
-    transport, freight train, electricity
+    fltr:
+      - transport, freight train, electricity
   ecoinvent_fuel_aliases:
+    fltr:
+      - electricity
 
-transport, freight train, diesel-electric:
+diesel-electric:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Rail|Liquids|Fossil
@@ -25,10 +27,13 @@ transport, freight train, diesel-electric:
     - FE|Transport|Freight|Rail|Liquids|Fossil
     - FE|Transport|Freight|Rail|Liquids|Biomass
   ecoinvent_aliases:
-    transport, freight train, diesel
+    fltr:
+      - transport, freight train, diesel
   ecoinvent_fuel_aliases:
+    fltr:
+      - diesel
 
-transport, freight train, fuel cell, hydrogen:
+fuel cell:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Rail|Liquids|Hydrogen
@@ -36,6 +41,8 @@ transport, freight train, fuel cell, hydrogen:
     remind: 
     - FE|Transport|Freight|Rail|Liquids|Hydrogen
   ecoinvent_aliases:
+    fltr:
+      - transport, freight train, hydrogen
   ecoinvent_fuel_aliases:
-
-...
+    fltr:
+      - hydrogen

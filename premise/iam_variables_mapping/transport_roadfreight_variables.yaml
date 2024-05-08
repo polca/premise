@@ -1,10 +1,9 @@
 # mapping between premise and IAM terminology regarding road freight transport
-# transport volumes and energy use
+# transport volumes (ES) and energy use (FE)
 ---
 
-# freight transport, truck, 3.5t gross weight
 
-transport, freight, lorry, battery electric, NMC-622 battery, 3.5t gross weight, long haul:
+battery electric, 3.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (0-3.5t)|Electric
@@ -12,9 +11,13 @@ transport, freight, lorry, battery electric, NMC-622 battery, 3.5t gross weight,
     remind: 
     - FE|Transport|Freight|Road|Truck (0-3.5t)|Electricity
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, battery electric, NMC-622 battery, 3.5t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - electricity
 
-transport, freight, lorry, fuel cell electric, 3.5t gross weight, long haul:
+fuel cell electric, 3.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (0-3.5t)|FCEV
@@ -22,9 +25,13 @@ transport, freight, lorry, fuel cell electric, 3.5t gross weight, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (0-3.5t)|Hydrogen
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, fuel cell electric, 3.5t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - hydrogen
 
-transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI, long haul:
+diesel, 3.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (0-3.5t)|Liquids
@@ -32,9 +39,13 @@ transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (0-3.5t)|Liquids
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - diesel
 
-transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI, long haul:
+compressed gas, 3.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (0-3.5t)|Gases
@@ -42,11 +53,13 @@ transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI, long haul
     remind: 
     - FE|Transport|Freight|Road|Truck (0-3.5t)|Gases
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - natural gas
 
-# freight transport, truck, 7.5t gross weight
-
-transport, freight, lorry, battery electric, NMC-622 battery, 7.5t gross weight, long haul:
+battery electric, 7.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (7.5t)|Electric
@@ -54,9 +67,13 @@ transport, freight, lorry, battery electric, NMC-622 battery, 7.5t gross weight,
     remind: 
     - FE|Transport|Freight|Road|Truck (7.5t)|Electricity
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, battery electric, NMC-622 battery, 7.5t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - electricity
 
-transport, freight, lorry, fuel cell electric, 7.5t gross weight, long haul:
+fuel cell electric, 7.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (7.5t)|FCEV
@@ -64,9 +81,13 @@ transport, freight, lorry, fuel cell electric, 7.5t gross weight, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (7.5t)|Hydrogen
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, fuel cell electric, 7.5t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - hydrogen
 
-transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI, long haul:
+diesel, 7.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (7.5t)|Liquids
@@ -74,9 +95,13 @@ transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (7.5t)|Liquids
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - diesel
 
-transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI, long haul:
+compressed gas, 7.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (7.5t)|Gases
@@ -84,11 +109,13 @@ transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI, long haul
     remind: 
     - FE|Transport|Freight|Road|Truck (7.5t)|Gases
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - natural gas
 
-# freight transport, truck, 18t gross weight
-
-transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, long haul:
+battery electric, 18t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (18t)|Electric
@@ -96,9 +123,13 @@ transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, 
     remind: 
     - FE|Transport|Freight|Road|Truck (18t)|Electricity
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - electricity
 
-transport, freight, lorry, fuel cell electric, 18t gross weight, long haul:
+fuel cell electric, 18t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (18t)|FCEV
@@ -106,9 +137,13 @@ transport, freight, lorry, fuel cell electric, 18t gross weight, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (18t)|Hydrogen
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, fuel cell electric, 18t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - hydrogen
 
-transport, freight, lorry, diesel, 18t gross weight, EURO-VI, long haul:
+diesel, 18t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (18t)|Liquids
@@ -116,9 +151,13 @@ transport, freight, lorry, diesel, 18t gross weight, EURO-VI, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (18t)|Liquids
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, diesel, 18t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - diesel
 
-transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, long haul:
+compressed gas, 18t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (18t)|Gases
@@ -126,11 +165,13 @@ transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (18t)|Gases
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - natural gas
 
-# freight transport, truck, 26t gross weight
-
-transport, freight, lorry, battery electric, NMC-622 battery, 26t gross weight, long haul:
+battery electric, 26t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (26t)|Electric
@@ -138,9 +179,13 @@ transport, freight, lorry, battery electric, NMC-622 battery, 26t gross weight, 
     remind: 
     - FE|Transport|Freight|Road|Truck (26t)|Electricity
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, battery electric, NMC-622 battery, 26t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - electricity
 
-transport, freight, lorry, fuel cell electric, 26t gross weight, long haul:
+fuel cell electric, 26t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (26t)|FCEV
@@ -148,9 +193,13 @@ transport, freight, lorry, fuel cell electric, 26t gross weight, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (26t)|Hydrogen
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, fuel cell electric, 26t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - hydrogen
 
-transport, freight, lorry, diesel, 26t gross weight, EURO-VI, long haul:
+diesel, 26t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (26t)|Liquids
@@ -158,9 +207,13 @@ transport, freight, lorry, diesel, 26t gross weight, EURO-VI, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (26t)|Liquids
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, diesel, 26t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - diesel
 
-transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI, long haul:
+compressed gas, 26t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (26t)|Gases
@@ -168,11 +221,13 @@ transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (26t)|Gases
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - natural gas
 
-# freight transport, truck, 40t gross weight
-
-transport, freight, lorry, battery electric, NMC-622 battery, 40t gross weight, long haul:
+battery electric, 40t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (40t)|Electric
@@ -180,9 +235,13 @@ transport, freight, lorry, battery electric, NMC-622 battery, 40t gross weight, 
     remind: 
     - FE|Transport|Freight|Road|Truck (40t)|Electricity
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, battery electric, NMC-622 battery, 40t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - electricity
 
-transport, freight, lorry, fuel cell electric, 40t gross weight, long haul:
+fuel cell electric, 40t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (40t)|FCEV
@@ -190,9 +249,13 @@ transport, freight, lorry, fuel cell electric, 40t gross weight, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (40t)|Hydrogen
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, fuel cell electric, 40t gross weight, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - hydrogen
 
-transport, freight, lorry, diesel, 40t gross weight, EURO-VI, long haul:
+diesel, 40t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (40t)|Liquids
@@ -200,9 +263,13 @@ transport, freight, lorry, diesel, 40t gross weight, EURO-VI, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (40t)|Liquids
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, diesel, 40t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
+    fltr:
+      - diesel
 
-transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI, long haul:
+compressed gas, 40t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (40t)|Gases
@@ -210,8 +277,8 @@ transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI, long haul:
     remind: 
     - FE|Transport|Freight|Road|Truck (40t)|Gases
   ecoinvent_aliases:
+    fltr:
+      - transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI, long haul
   ecoinvent_fuel_aliases:
-
-
-#TODO: add for IMAGE and other IAMs
-...
+    fltr:
+      - natural gas
