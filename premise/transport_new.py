@@ -23,6 +23,7 @@ from wurst.errors import NoResults
 FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map_NEW.yaml"
 
 logger = create_logger("transport")
+# TODO: work on logger (reporting.yaml & premise_transport.log)
 
 def _update_transport(scenario, version, system_model):
     transport = Transport(
@@ -36,12 +37,9 @@ def _update_transport(scenario, version, system_model):
         index=scenario.get("index"),
     )
     
-    logger.info("TESTING: _update_transport is being called.")
-    
     if scenario["iam data"].roadfreight_markets is not None and scenario["iam data"].railfreight_markets is not None:
-        logger.info("TESTING: transport markets found in IAM data")
         transport.generate_datasets()
-        transport.relink_datasets() # correct placement?
+        transport.relink_datasets()
         transport.generate_transport_markets()
         transport.generate_unspecified_transport_vehicles()
         transport.relink_exchanges()
@@ -49,6 +47,7 @@ def _update_transport(scenario, version, system_model):
         scenario["database"] = transport.database 
         scenario["cache"] = transport.cache
         scenario["index"] = transport.index
+        
         # TODO: insert transport validation here?
     
     elif scenario["iam data"].roadfreight_markets is not None and scenario["iam data"].railfreight_markets is None:
@@ -105,8 +104,10 @@ def normalize_exchange_amounts(list_act: List[dict]) -> List[dict]:
 class Transport(BaseTransformation):
     """
     Class that modifies transport inventory datasets based on IAM data.
-    It updates efficiencies and creates fleet average vehicle inventories.
-    TODO: more description
+    It stores functions to generate transport datasets for all IAM regions,
+    based on newly imported LCIs, incl. adjusting their efficiencies for a given year.
+    It creates market processes for freight transport and relinks exchanges of
+    datasets using transport inventories. It deletes the old ecoinvent transport datasets.    
     """
     
     def __init__(
@@ -133,25 +134,24 @@ class Transport(BaseTransformation):
     
     def generate_datasets(self):
         """
-        Function that creates inventories for IAM regions
-        and deletes previous datasets with ecoinvent regions.
+        Function that creates inventories for IAM region based on
+        additional imported inventories.
         """
-        
-        logger.info("TESTING: generate_datasets function is called")
-
         
         roadfreight_dataset_names = self.iam_data.roadfreight_markets.coords["variables"].values.tolist()
         railfreight_dataset_names = self.iam_data.railfreight_markets.coords["variables"].values.tolist()
         freight_transport_dataset_names = roadfreight_dataset_names + railfreight_dataset_names
         
-        changed_datasets_location = []
         new_datasets = []
-        dataset_old_list = []
+        old_datasets = []
+        changed_datasets_location = []
         
         # change the location of the datasets to IAM regions
         for dataset in self.database:
+            # only applicable for freight train datasets as road freight only exist for the region of RER
             if dataset["name"] in railfreight_dataset_names:
                 if dataset["location"] != "RoW":
+                    
                     region_mapping = self.region_to_proxy_dataset_mapping(
                         name=dataset["name"],
                         ref_prod=dataset["reference product"],
@@ -159,9 +159,11 @@ class Transport(BaseTransformation):
                     
                     ecoinv_region = dataset["location"]
                     
+                    # change dataset location
                     for IAM_reg, eco_reg in region_mapping.items():
                         if eco_reg == ecoinv_region:
                             dataset["location"] = IAM_reg
+                            # change 'production' exchange location
                             for exchange in dataset['exchanges']:
                                 if exchange['name'] == dataset['name']:
                                     exchange['location'] = IAM_reg
@@ -189,8 +191,8 @@ class Transport(BaseTransformation):
                                                     )
                         
                     # Create a list that stores the dataset used for copy to later delete them from the database
-                    if not any(dataset["name"] == new_dataset["name"] and dataset["location"] == new_dataset["location"] for dataset in dataset_old_list):
-                        dataset_old_list.append(copy.deepcopy(new_dataset))
+                    if not any(dataset["name"] == new_dataset["name"] and dataset["location"] == new_dataset["location"] for dataset in old_datasets):
+                        old_datasets.append(copy.deepcopy(new_dataset))
 
                     new_dataset["location"] = region
                     new_dataset["code"] = str(uuid.uuid4().hex)
@@ -211,14 +213,14 @@ class Transport(BaseTransformation):
         self.database.extend(new_datasets)
 
         for dataset in list(self.database):  # Create a copy for iteration
-            if any(old_dataset["name"] == dataset["name"] and old_dataset["location"] == dataset["location"] for old_dataset in dataset_old_list):
+            if any(old_dataset["name"] == dataset["name"] and old_dataset["location"] == dataset["location"] for old_dataset in old_datasets):
                 self.database.remove(dataset)
 
         
     def adjust_transport_efficiency(self, dataset):
         """
         The function updates the efficiencies of transport datasets
-        using the transport_efficiencies, created in data_collection.py.
+        using the transport efficiencies, created in data_collection.py.
         """
         
         vehicles_map = get_vehicles_mapping()
@@ -279,19 +281,17 @@ class Transport(BaseTransformation):
         It calculates the share of inputs to each market process and 
         creates the process by multiplying the share with the amount of reference product, 
         assigning it to the respective input.
+        Regional market processes then make up the world market processes.
         """
-        
-        logger.info("TESTING: generate_transport_markets function is called")
      
-        # dict of transport markets to be created (keys) with inputs list (values)
+        # regional transport markets to be created (keys) with inputs list (values)
         transport_markets_tbc = {
             "market for transport, freight, lorry, unspecified powertrain": 
                 self.iam_data.roadfreight_markets.coords["variables"].values.tolist(),
             "market for transport, freight train, unspecified powertrain": 
                 self.iam_data.railfreight_markets.coords["variables"].values.tolist(),
         }
-        
-        # create empty list to store the newly created market processes
+
         new_transport_markets = []
         
         # create regional market processes
@@ -326,6 +326,7 @@ class Transport(BaseTransformation):
                         elif markets == "market for transport, freight train, unspecified powertrain":
                             market_share = self.iam_data.railfreight_markets.sel(region=region, variables=vehicle, year=self.year).item()
                         
+                        # determine the reference product
                         if "lorry" in vehicle:
                             product = "transport, freight, lorry"
                             if "diesel" in vehicle or "compressed gas" in vehicle:
@@ -335,7 +336,7 @@ class Transport(BaseTransformation):
                         elif "train" in vehicle:
                             product = "transport, freight train"
                             euro = ""
-                        
+
                         if market_share > 0:
                             market["exchanges"].append(
                                 {
@@ -350,8 +351,9 @@ class Transport(BaseTransformation):
                             
                 new_transport_markets.append(market)
         
-        vehicles_map = get_vehicles_mapping()
         
+        # world markets to be created
+        vehicles_map = get_vehicles_mapping()
         dict_transport_ES_var = vehicles_map["energy service variables"][self.model]["mode"]
         
         dict_regional_shares = {}
@@ -360,6 +362,7 @@ class Transport(BaseTransformation):
         for market, var in dict_transport_ES_var.items():
             for region in self.iam_data.regions:
                 if region != "World":
+                    # calculate regional shares
                     dict_regional_shares[region] = (
                         ( 
                          self.iam_data.data.sel(
@@ -390,31 +393,24 @@ class Transport(BaseTransformation):
                             }
                         )
                 
-        for market in new_transport_markets:
-            if "freight train" in market["name"]:
-                logger.info(f"New transport market: {market['name']} in {market['location']} with exchanges: {[exchange['name'] for exchange in market['exchanges']]} in location: {[exchange['location'] for exchange in market['exchanges']]}  created.")
-        
-        
         self.database.extend(new_transport_markets)
             
     
     def generate_unspecified_transport_vehicles(self):
         """
         This function generates unspecified transport vehicles for the IAM regions.
-        The unspecified datasets refer to a specific size of the vehicle but forms an average for powertrain technology.
+        The unspecified datasets refer to a specific size of the vehicle but represent
+        an average of powertrain technology for a specific region.
+        This only applies to freight lorries so far.
         """
-
-        logger.info("TESTING: generate_unspecified_transport_vehicles function is called")
         
         vehicles_map = get_vehicles_mapping()
-        
         dict_transport_ES_var = vehicles_map["energy service variables"][self.model]["size"]
-        
         dict_vehicle_types = vehicles_map["vehicle types"]
 
         weight_specific_ds = []
         
-        # create regional size dependent technology-averag markets
+        # create regional size dependent technology-average markets
         for region in self.iam_data.regions:
             for market, var in dict_transport_ES_var.items():
                 vehicle_unspecified = {
@@ -438,11 +434,12 @@ class Transport(BaseTransformation):
                     f"for the region {region}.",
                 }
                 
-                # add exchanges
+                # add exchanges for regional datasets
                 if region != "World":
                     for vehicle_types, names in dict_vehicle_types.items():
                         variable_key = var + "|" + vehicle_types
                         if variable_key in self.iam_data.data.variables:
+                            # calculate regional shares
                             regional_weight_shares = (
                                 ( 
                                 self.iam_data.data.sel(
@@ -473,7 +470,8 @@ class Transport(BaseTransformation):
                                         "amount": regional_weight_shares,
                                     }
                                 )
-                                       
+                
+                # add exchanges for global dataset          
                 elif region == "World":
                     for region in self.iam_data.regions:
                         regional_weight_shares = (
@@ -512,10 +510,8 @@ class Transport(BaseTransformation):
     def relink_exchanges(self):
         """
         This function goes through all datasets in the database that use transport, freight (lorry or train) as one of their exchanges.
-        It replaced those "old" transport exchanges with the new transport inventories and the newly created transport markets.
+        It replaced those ecoinvent transport exchanges with the new transport inventories and the newly created transport markets.
         """
-        
-        logger.info("TESTING: relink_exchanges function is called")
         
         vehicles_map = get_vehicles_mapping()
         
