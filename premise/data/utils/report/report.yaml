@@ -119,6 +119,18 @@ Transport (buses):
   expl_text: Number of vehicle-kilometers driven by buses. Used to calculate fleet-average vehicles.
   offset: 7
 Transport (trucks):
-  label: Vehicles-kilometers (million)
-  expl_text: Number of vehicle-kilometers driven by trucks. Used to calculate fleet-average vehicles.
+  label: Ton-kilometers (billion)
+  expl_text: Ton-kilometers (in billions) of transport service operated by trucks.
+  offset: 7
+Transport (trucks) - eff:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the truck-based transport datasets.
+  offset: 7
+Transport (trains):
+  label: Ton-kilometers (billion)
+  expl_text: Ton-kilometers (in billions) of transport service operated by trains.
+  offset: 7
+Transport (trains) - eff:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the train-based transport datasets.
   offset: 7

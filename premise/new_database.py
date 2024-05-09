@@ -1228,7 +1228,7 @@ class NewDatabase:
     def generate_scenario_report(
         self,
         filepath: [str, Path] = None,
-        name: str = f"scenario_report_{datetime.now().strftime('%d-%m-%Y %H-%M')} (v.{str(__version__)}).xlsx",
+        name: str = f"scenario_report_{datetime.now().strftime('%d-%m-%Y')}.xlsx",
     ):
         """
         Generate a report of the scenarios.

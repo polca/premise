@@ -27,6 +27,8 @@ IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
 IAM_DACCS_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
+IAM_TRSPT_TRUCKS_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
+IAM_TRSPT_TRAINS_VARS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
 IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
 REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
@@ -50,7 +52,7 @@ def get_variables(
     Get the variables from a yaml file.
     :param filepath: path to the yaml file
     """
-    with open(filepath, "r", encoding="utf-8") as stream:
+    with open(filepath, encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
 
     return list(out.keys())
@@ -189,16 +191,31 @@ def fetch_data(
             iam_data.trsp_buses if hasattr(iam_data, "trsp_buses") else None
         ),
         "Transport (trucks)": (
-            iam_data.trsp_trucks if hasattr(iam_data, "trsp_trucks") else None
+            iam_data.production_volumes if hasattr(iam_data, "roadfreight_markets") else None
         ),
+        "Transport (trucks) - eff": (
+            iam_data.roadfreight_efficiencies if hasattr(iam_data, "roadfreight_efficiencies") else None
+        ),
+        "Transport (trains)": (
+            iam_data.production_volumes if hasattr(iam_data, "railfreight_markets") else None
+        ),
+        "Transport (trains) - eff": (
+            iam_data.railfreight_efficiencies if hasattr(iam_data, "railfreight_efficiencies") else None
+        ),
+
     }
 
     if data[sector] is not None:
         iam_data = data[sector]
 
-        if any(x in sector for x in ["car", "bus", "truck"]):
+        if any(x in sector for x in ["car", "bus",]):
             iam_data = iam_data.sum(dim="size")
             iam_data = iam_data.rename({"powertrain": "variables"}).T
+
+        if sector == "Transport (trucks)":
+            print(iam_data.coords)
+            print(iam_data.variables)
+            print(iam_data.dims)
 
         return iam_data.sel(
             variables=[v for v in variable if v in iam_data.coords["variables"].values]
@@ -369,16 +386,16 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
             ],
         },
         "Transport (trucks)": {
-            "filepath": VEHICLES_MAP,
-            "variables": [
-                "BEV",
-                "FCEV",
-                "ICEV-d",
-                "ICEV-g",
-                "ICEV-p",
-                "PHEV-d",
-                "PHEV-p",
-            ],
+            "filepath": IAM_TRSPT_TRUCKS_VARS,
+        },
+        "Transport (trucks) - eff": {
+            "filepath": IAM_TRSPT_TRUCKS_VARS,
+        },
+        "Transport (trains)": {
+            "filepath": IAM_TRSPT_TRAINS_VARS,
+        },
+        "Transport (trains) - eff": {
+            "filepath": IAM_TRSPT_TRAINS_VARS,
         },
     }
 
@@ -423,7 +440,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 )
 
                 if "CCS" in sector and iam_data is not None:
-                    iam_data = iam_data * 100
+                    iam_data *= 100
 
                 if iam_data is None:
                     continue
@@ -500,7 +517,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                             chart = LineChart()
                         elif "CCS" in sector:
                             chart = AreaChart()
-                        elif "Transport" in sector:
+                        elif "Transport" in sector and "eff" not in sector:
                             chart = AreaChart(grouping="stacked")
                         else:
                             chart = LineChart()
