@@ -1,0 +1,423 @@
+# mapping between premise and IAM terminology regarding passenger cars
+# transport volumes (ES, vkm/y) and energy use (FE)
+---
+
+passenger car, battery electric, large:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Large|BEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Large|BEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, battery electric, large
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, fuel cell, large:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Large|FCEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Large|FCEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, fuel cell, large
+    ecoinvent_fuel_aliases:
+        fltr:
+        - hydrogen
+
+passenger car, compressed gas, large:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Large|Gases
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Large|Gases
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, compressed gas, large
+    ecoinvent_fuel_aliases:
+        fltr:
+        - natural gas
+
+passenger car, hybrid electric, large:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Large|Hybrid Electric
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Large|Hybrid Electric
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, hybrid electric, large
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, gasoline, large:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Large|Liquids
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Large|Liquids
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, gasoline, large
+    ecoinvent_fuel_aliases:
+        fltr:
+        - gasoline
+
+passenger car, battery electric, medium:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Medium|BEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Medium|BEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, battery electric, medium
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, fuel cell, medium:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Medium|FCEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Medium|FCEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, fuel cell, medium
+    ecoinvent_fuel_aliases:
+        fltr:
+        - hydrogen
+
+passenger car, compressed gas, medium:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Medium|Gases
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Medium|Gases
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, compressed gas, medium
+    ecoinvent_fuel_aliases:
+        fltr:
+        - natural gas
+
+passenger car, hybrid electric, medium:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Medium|Hybrid Electric
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Medium|Hybrid Electric
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, hybrid electric, medium
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, gasoline, medium:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Medium|Liquids
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Medium|Liquids
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, gasoline, medium
+    ecoinvent_fuel_aliases:
+        fltr:
+        - gasoline
+
+passenger car, battery electric, mini:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Mini|BEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Mini|BEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, battery electric, mini
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, fuel cell, mini:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Mini|FCEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Mini|FCEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, fuel cell, mini
+    ecoinvent_fuel_aliases:
+        fltr:
+        - hydrogen
+
+passenger car, compressed gas, mini:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Mini|Gases
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Mini|Gases
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, compressed gas, mini
+    ecoinvent_fuel_aliases:
+        fltr:
+        - natural gas
+
+passenger car, hybrid electric, mini:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Mini|Hybrid Electric
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Mini|Hybrid Electric
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, hybrid electric, mini
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, gasoline, mini:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Mini|Liquids
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Mini|Liquids
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, gasoline, mini
+    ecoinvent_fuel_aliases:
+        fltr:
+        - gasoline
+
+passenger car, battery electric, medium SUV:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|SUV|BEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|SUV|BEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, battery electric, medium SUV
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, fuel cell, medium SUV:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|SUV|FCEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|SUV|FCEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, fuel cell, medium SUV
+    ecoinvent_fuel_aliases:
+        fltr:
+        - hydrogen
+
+passenger car, compressed gas, medium SUV:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|SUV|Gases
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|SUV|Gases
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, compressed gas, medium SUV
+    ecoinvent_fuel_aliases:
+        fltr:
+        - natural gas
+
+passenger car, hybrid electric, medium SUV:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|SUV|Hybrid Electric
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|SUV|Hybrid Electric
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, hybrid electric, medium SUV
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, gasoline, medium SUV:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|SUV|Liquids
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|SUV|Liquids
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, gasoline, medium SUV
+    ecoinvent_fuel_aliases:
+        fltr:
+        - gasoline
+          
+passenger car, battery electric, small:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Small|BEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Small|BEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, battery electric, small
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, fuel cell, small:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Small|FCEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Small|FCEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, fuel cell, small
+    ecoinvent_fuel_aliases:
+        fltr:
+        - hydrogen
+
+passenger car, compressed gas, small:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Small|Gases
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Small|Gases
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, compressed gas, small
+    ecoinvent_fuel_aliases:
+        fltr:
+        - natural gas
+
+passenger car, hybrid electric, small:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Small|Hybrid Electric
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Small|Hybrid Electric
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, hybrid electric, small
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, gasoline, small:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Small|Liquids
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Small|Liquids
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, gasoline, small
+    ecoinvent_fuel_aliases:
+        fltr:
+        - gasoline
+          
+passenger car, battery electric, van:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Van|BEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Van|BEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, battery electric, van
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, fuel cell, van:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Van|FCEV
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Van|FCEV
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, fuel cell, van
+    ecoinvent_fuel_aliases:
+        fltr:
+        - hydrogen
+
+passenger car, compressed gas, van:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Van|Gases
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Van|Gases
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, compressed gas, van
+    ecoinvent_fuel_aliases:
+        fltr:
+        - natural gas
+
+passenger car, hybrid electric, van:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Van|Hybrid Electric
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Van|Hybrid Electric
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, hybrid electric, van
+    ecoinvent_fuel_aliases:
+        fltr:
+        - electricity
+
+passenger car, gasoline, van:
+    iam_aliases:
+        remind:
+        - ES|Transport|VKM|Pass|Road|LDV|Van|Liquids
+    energy_use_aliases:
+        remind:
+        - FE|Transport|VKM|Pass|Road|LDV|Van|Liquids
+    ecoinvent_aliases:
+        fltr:
+        - transport, passenger car, gasoline, van
+    ecoinvent_fuel_aliases:
+        fltr:
+        - gasoline

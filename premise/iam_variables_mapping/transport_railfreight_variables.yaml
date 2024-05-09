@@ -3,7 +3,7 @@
 ---
 
 
-electric:
+train, electric:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Rail|Electric
@@ -17,7 +17,7 @@ electric:
     fltr:
       - electricity
 
-diesel-electric:
+train, diesel-electric:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Rail|Liquids|Fossil
@@ -33,7 +33,7 @@ diesel-electric:
     fltr:
       - diesel
 
-fuel cell:
+train, fuel cell:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Rail|Liquids|Hydrogen

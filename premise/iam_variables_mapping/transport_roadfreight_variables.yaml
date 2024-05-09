@@ -3,7 +3,7 @@
 ---
 
 
-battery electric, 3.5t:
+truck, battery electric, 3.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (0-3.5t)|Electric
@@ -17,7 +17,7 @@ battery electric, 3.5t:
     fltr:
       - electricity
 
-fuel cell electric, 3.5t:
+truck, fuel cell electric, 3.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (0-3.5t)|FCEV
@@ -31,7 +31,7 @@ fuel cell electric, 3.5t:
     fltr:
       - hydrogen
 
-diesel, 3.5t:
+truck, diesel, 3.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (0-3.5t)|Liquids
@@ -45,7 +45,7 @@ diesel, 3.5t:
     fltr:
       - diesel
 
-compressed gas, 3.5t:
+truck, compressed gas, 3.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (0-3.5t)|Gases
@@ -59,7 +59,7 @@ compressed gas, 3.5t:
     fltr:
       - natural gas
 
-battery electric, 7.5t:
+truck, battery electric, 7.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (7.5t)|Electric
@@ -73,7 +73,7 @@ battery electric, 7.5t:
     fltr:
       - electricity
 
-fuel cell electric, 7.5t:
+truck, fuel cell electric, 7.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (7.5t)|FCEV
@@ -87,7 +87,7 @@ fuel cell electric, 7.5t:
     fltr:
       - hydrogen
 
-diesel, 7.5t:
+truck, diesel, 7.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (7.5t)|Liquids
@@ -101,7 +101,7 @@ diesel, 7.5t:
     fltr:
       - diesel
 
-compressed gas, 7.5t:
+truck, compressed gas, 7.5t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (7.5t)|Gases
@@ -115,7 +115,7 @@ compressed gas, 7.5t:
     fltr:
       - natural gas
 
-battery electric, 18t:
+truck, battery electric, 18t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (18t)|Electric
@@ -129,7 +129,7 @@ battery electric, 18t:
     fltr:
       - electricity
 
-fuel cell electric, 18t:
+truck, fuel cell electric, 18t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (18t)|FCEV
@@ -143,7 +143,7 @@ fuel cell electric, 18t:
     fltr:
       - hydrogen
 
-diesel, 18t:
+truck, diesel, 18t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (18t)|Liquids
@@ -157,7 +157,7 @@ diesel, 18t:
     fltr:
       - diesel
 
-compressed gas, 18t:
+truck, compressed gas, 18t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (18t)|Gases
@@ -171,7 +171,7 @@ compressed gas, 18t:
     fltr:
       - natural gas
 
-battery electric, 26t:
+truck, battery electric, 26t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (26t)|Electric
@@ -185,7 +185,7 @@ battery electric, 26t:
     fltr:
       - electricity
 
-fuel cell electric, 26t:
+truck, fuel cell electric, 26t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (26t)|FCEV
@@ -199,7 +199,7 @@ fuel cell electric, 26t:
     fltr:
       - hydrogen
 
-diesel, 26t:
+truck, diesel, 26t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (26t)|Liquids
@@ -213,7 +213,7 @@ diesel, 26t:
     fltr:
       - diesel
 
-compressed gas, 26t:
+truck, compressed gas, 26t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (26t)|Gases
@@ -227,7 +227,7 @@ compressed gas, 26t:
     fltr:
       - natural gas
 
-battery electric, 40t:
+truck, battery electric, 40t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (40t)|Electric
@@ -241,7 +241,7 @@ battery electric, 40t:
     fltr:
       - electricity
 
-fuel cell electric, 40t:
+truck, fuel cell electric, 40t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (40t)|FCEV
@@ -255,7 +255,7 @@ fuel cell electric, 40t:
     fltr:
       - hydrogen
 
-diesel, 40t:
+truck, diesel, 40t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (40t)|Liquids
@@ -269,7 +269,7 @@ diesel, 40t:
     fltr:
       - diesel
 
-compressed gas, 40t:
+truck, compressed gas, 40t:
   iam_aliases:
     remind: 
     - ES|Transport|Freight|Road|Truck (40t)|Gases
