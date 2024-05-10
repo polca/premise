@@ -1186,7 +1186,8 @@ class ElectricityValidation(BaseDatasetValidator):
         # check that the electricity mix in teh market datasets
         # corresponds to the IAM scenario projection
         vars = [
-            x for x in self.iam_data.electricity_markets.coords["variables"].values
+            x
+            for x in self.iam_data.electricity_markets.coords["variables"].values
             if x.lower().startswith("hydro")
         ]
 
@@ -1205,9 +1206,9 @@ class ElectricityValidation(BaseDatasetValidator):
                 dim="variables"
             )
         else:
-            hydro_share = self.iam_data.electricity_markets.sel(
-                variables=vars
-            ).interp(year=self.year).sum(dim="variables") / self.iam_data.electricity_markets.sel(
+            hydro_share = self.iam_data.electricity_markets.sel(variables=vars).interp(
+                year=self.year
+            ).sum(dim="variables") / self.iam_data.electricity_markets.sel(
                 variables=[
                     v
                     for v in self.iam_data.electricity_markets.variables.values
