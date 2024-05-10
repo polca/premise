@@ -542,14 +542,16 @@ class Steel(BaseTransformation):
                     energy += sum(
                         exc["amount"] * 26.4
                         for exc in ws.technosphere(dataset)
-                        if "hard coal" in exc["name"] and exc["unit"] == "kilogram"
+                        if "hard coal" in exc["name"]
+                        and exc["unit"] == "kilogram"
                     )
 
                     # add input of natural gas
                     energy += sum(
                         exc["amount"] * 36
                         for exc in ws.technosphere(dataset)
-                        if "natural gas" in exc["name"] and exc["unit"] == "cubic meter"
+                        if "natural gas" in exc["name"]
+                        and exc["unit"] == "cubic meter"
                     )
 
                     scaling_factor = max(9.0 / energy, scaling_factor)
@@ -562,7 +564,6 @@ class Steel(BaseTransformation):
                         ws.either(*[ws.contains("name", x) for x in list_fuels])
                     ],
                     biosphere_filters=[ws.contains("name", "Carbon dioxide, fossil")],
-                    remove_uncertainty=False,
                 )
 
                 # Update the comments

@@ -12,6 +12,7 @@ import yaml
 from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
 from .logger import create_logger
+from .utils import rescale_exchanges
 
 logger = create_logger("validation")
 
@@ -770,9 +771,9 @@ class HeatValidation(BaseDatasetValidator):
                     message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 3.0. Corrected to 3.0."
                     self.log_issue(ds, "heat conversion efficiency", message)
 
-                    # scale it back to 3
-                    for exc in ds["exchanges"]:
-                        exc["amount"] *= efficiency / 3.0
+                    scaling_factor = efficiency / 3.0
+                    rescale_exchanges(ds, scaling_factor)
+                    expected_co2 *= scaling_factor
 
                 co2 = sum(
                     [
@@ -1184,11 +1185,16 @@ class ElectricityValidation(BaseDatasetValidator):
     def check_electricity_mix(self):
         # check that the electricity mix in teh market datasets
         # corresponds to the IAM scenario projection
+        vars = [
+            x for x in self.iam_data.electricity_markets.coords["variables"].values
+            if x.lower().startswith("hydro")
+        ]
 
         if self.year in self.iam_data.electricity_markets.coords["year"].values:
+
             hydro_share = self.iam_data.electricity_markets.sel(
-                variables="Hydro", year=self.year
-            ) / self.iam_data.electricity_markets.sel(
+                variables=vars, year=self.year
+            ).sum(dim="variables") / self.iam_data.electricity_markets.sel(
                 variables=[
                     v
                     for v in self.iam_data.electricity_markets.variables.values
@@ -1200,8 +1206,8 @@ class ElectricityValidation(BaseDatasetValidator):
             )
         else:
             hydro_share = self.iam_data.electricity_markets.sel(
-                variables="Hydro"
-            ).interp(year=self.year) / self.iam_data.electricity_markets.sel(
+                variables=vars
+            ).interp(year=self.year).sum(dim="variables") / self.iam_data.electricity_markets.sel(
                 variables=[
                     v
                     for v in self.iam_data.electricity_markets.variables.values
