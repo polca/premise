@@ -217,22 +217,10 @@ def fetch_data(
         "Transport (trains) - eff": (
             iam_data.railfreight_efficiencies if hasattr(iam_data, "railfreight_efficiencies") else None
         ),
-
     }
 
     if data[sector] is not None:
         iam_data = data[sector]
-
-        if sector == "Transport (cars)":
-            print(iam_data.coords["variables"].values)
-            print("variables", variable)
-            print(
-                iam_data.sel(
-                    variables=[
-                        v for v in variable if v in iam_data.coords["variables"].values
-                    ]
-                )
-            )
 
         return iam_data.sel(
             variables=[v for v in variable if v in iam_data.coords["variables"].values]

@@ -4,14 +4,10 @@ as well as export it back.
 
 """
 
-import copy
 import logging
-import multiprocessing
 import os
 import pickle
 from datetime import datetime
-from multiprocessing import Pool as ProcessPool
-from multiprocessing.pool import ThreadPool as Pool
 from pathlib import Path
 from typing import List, Union
 
@@ -491,7 +487,6 @@ class NewDatabase:
         keep_uncertainty_data=False,
         gains_scenario="CLE",
         use_absolute_efficiency=False,
-        use_multiprocessing=True,
     ) -> None:
         self.source = source_db
         self.version = check_db_version(source_version)
@@ -499,7 +494,6 @@ class NewDatabase:
         self.system_model = check_system_model(system_model)
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
-        self.multiprocessing = use_multiprocessing
         self.keep_uncertainty_data = keep_uncertainty_data
 
         # if version is anything other than 3.8 or 3.9
@@ -584,13 +578,8 @@ class NewDatabase:
             self.database.extend(data)
 
         print("- Fetching IAM data")
-        # use multiprocessing to speed up the process
-        if self.multiprocessing:
-            with Pool(processes=multiprocessing.cpu_count()) as pool:
-                pool.map(_fetch_iam_data, self.scenarios)
-        else:
-            for scenario in self.scenarios:
-                _fetch_iam_data(scenario)
+        for scenario in self.scenarios:
+            _fetch_iam_data(scenario)
 
         print("Done!")
 
@@ -859,7 +848,7 @@ class NewDatabase:
             },
             "two_wheelers": {
                 "func": _update_vehicles,
-                "args": ("two wheeler", self.version, self.system_model),
+                "args": ("two-wheeler", self.version, self.system_model),
             },
             "trucks": {
                 "func": _update_vehicles,
@@ -871,7 +860,7 @@ class NewDatabase:
             },
             "trains": {
                 "func": _update_vehicles,
-                "args": (self.version, self.system_model),
+                "args": ("train", self.version, self.system_model),
             },
             "external": {
                 "func": _update_external_scenarios,
@@ -1118,8 +1107,6 @@ class NewDatabase:
 
         print("Write Simapro import file(s).")
 
-        # use multiprocessing to speed up the process
-
         for scenario in self.scenarios:
             scenario = load_database(scenario)
             _prepare_database(
@@ -1152,8 +1139,6 @@ class NewDatabase:
 
         print("Write Simapro import file(s) for OpenLCA.")
 
-        # use multiprocessing to speed up the process
-
         for scenario in self.scenarios:
             scenario = load_database(scenario)
             _prepare_database(
@@ -1185,7 +1170,6 @@ class NewDatabase:
             cache_fp = DIR_CACHED_DB / f"cached_{self.source}_inventories.pickle"
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
-        # use multiprocessing to speed up the process
         for scenario in self.scenarios:
             scenario = load_database(scenario)
             _prepare_database(

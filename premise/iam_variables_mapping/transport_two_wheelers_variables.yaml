@@ -5,27 +5,27 @@
 two-wheeler, gasoline:
     iam_aliases:
         remind:
-        - ES|Transport|Pass|Road|LDV|Two Wheelers|Liquids
+            - ES|Transport|Pass|Road|LDV|Two Wheelers|Liquids
     energy_use_aliases:
         remind:
-        - FE|Transport|Pass|Road|LDV|Two Wheelers|Liquids
+            - FE|Transport|Pass|Road|LDV|Two Wheelers|Liquids
     ecoinvent_aliases:
         fltr:
-        - transport, motorcycle, gasoline
+            - transport, motorbike, gasoline, 11-35kW, EURO-5
     ecoinvent_fuel_aliases:
         fltr:
-        - gasoline
+            - gasoline
 
 two-wheeler, battery electric:
     iam_aliases:
         remind:
-        - ES|Transport|Pass|Road|LDV|Two Wheelers|BEV
+            - ES|Transport|Pass|Road|LDV|Two Wheelers|BEV
     energy_use_aliases:
         remind:
-        - FE|Transport|Pass|Road|LDV|Two Wheelers|BEV
+            - FE|Transport|Pass|Road|LDV|Two Wheelers|BEV
     ecoinvent_aliases:
         fltr:
-        - transport, motorcycle, battery electric
+            - transport, motorbike, electric, 11-35kW, NMC battery
     ecoinvent_fuel_aliases:
         fltr:
-        - electricity
+            - electricity

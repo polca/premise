@@ -11,7 +11,7 @@ bus, diesel:
         - FE|Transport|Pass|Road|Bus|Liquids
     ecoinvent_aliases:
         fltr:
-        - transport, passenger bus, diesel, single deck
+        - transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
@@ -25,7 +25,7 @@ bus, compressed gas:
         - FE|Transport|Pass|Road|Bus|Gases
     ecoinvent_aliases:
         fltr:
-        - transport, passenger bus, compressed gas, single deck
+        - transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-VI
     ecoinvent_fuel_aliases:
         fltr:
         - natural gas
@@ -39,7 +39,7 @@ bus, fuel cell:
         - FE|Transport|Pass|Road|Bus|FCEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger bus, fuel cell, single deck
+        - transport, passenger bus, fuel cell electric, 13m single deck urban bus
     ecoinvent_fuel_aliases:
         fltr:
         - hydrogen
@@ -53,7 +53,7 @@ bus, battery electric:
         - FE|Transport|Pass|Road|Bus|Electric
     ecoinvent_aliases:
         fltr:
-        - transport, passenger bus, battery electric, single deck
+        - transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 13m single deck urban bus
     ecoinvent_fuel_aliases:
         fltr:
         - electricity

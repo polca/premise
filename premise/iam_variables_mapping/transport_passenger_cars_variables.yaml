@@ -11,12 +11,14 @@ passenger car, battery electric, large:
         - FE|Transport|VKM|Pass|Road|LDV|Large|BEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, battery electric, large
+        - transport, passenger car, battery electric, NMC-622 battery, large
+        mask:
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
 
-passenger car, fuel cell, large:
+passenger car, fuel cell electric, large:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Large|FCEV
@@ -25,7 +27,9 @@ passenger car, fuel cell, large:
         - FE|Transport|VKM|Pass|Road|LDV|Large|FCEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, fuel cell, large
+        - transport, passenger car, fuel cell electric, large
+        mask:
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - hydrogen
@@ -39,12 +43,15 @@ passenger car, compressed gas, large:
         - FE|Transport|VKM|Pass|Road|LDV|Large|Gases
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, compressed gas, large
+        - transport, passenger car, compressed gas, large, EURO-6
+        mask:
+            - ab
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - natural gas
 
-passenger car, hybrid electric, large:
+passenger car, plugin gasoline hybrid, large:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Large|Hybrid Electric
@@ -53,7 +60,10 @@ passenger car, hybrid electric, large:
         - FE|Transport|VKM|Pass|Road|LDV|Large|Hybrid Electric
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, hybrid electric, large
+        - transport, passenger car, plugin gasoline hybrid, large
+        mask:
+            - ab
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
@@ -67,7 +77,10 @@ passenger car, gasoline, large:
         - FE|Transport|VKM|Pass|Road|LDV|Large|Liquids
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, gasoline, large
+        - transport, passenger car, gasoline, large, EURO-6
+        mask:
+            - ab
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - gasoline
@@ -81,12 +94,14 @@ passenger car, battery electric, medium:
         - FE|Transport|VKM|Pass|Road|LDV|Medium|BEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, battery electric, medium
+        - transport, passenger car, battery electric, NMC-622 battery, medium
+        mask:
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
 
-passenger car, fuel cell, medium:
+passenger car, fuel cell electric, medium:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Medium|FCEV
@@ -95,7 +110,9 @@ passenger car, fuel cell, medium:
         - FE|Transport|VKM|Pass|Road|LDV|Medium|FCEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, fuel cell, medium
+        - transport, passenger car, fuel cell electric, medium
+        mask:
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - hydrogen
@@ -109,12 +126,15 @@ passenger car, compressed gas, medium:
         - FE|Transport|VKM|Pass|Road|LDV|Medium|Gases
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, compressed gas, medium
+        - transport, passenger car, compressed gas, medium, EURO-6
+        mask:
+            - ab
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - natural gas
 
-passenger car, hybrid electric, medium:
+passenger car, plugin gasoline hybrid, medium:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Medium|Hybrid Electric
@@ -123,7 +143,10 @@ passenger car, hybrid electric, medium:
         - FE|Transport|VKM|Pass|Road|LDV|Medium|Hybrid Electric
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, hybrid electric, medium
+        - transport, passenger car, plugin gasoline hybrid, medium
+        mask:
+            - ab
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
@@ -137,7 +160,10 @@ passenger car, gasoline, medium:
         - FE|Transport|VKM|Pass|Road|LDV|Medium|Liquids
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, gasoline, medium
+        - transport, passenger car, gasoline, medium, EURO-6
+        mask:
+            - ab
+            - SUV
     ecoinvent_fuel_aliases:
         fltr:
         - gasoline
@@ -151,12 +177,12 @@ passenger car, battery electric, mini:
         - FE|Transport|VKM|Pass|Road|LDV|Mini|BEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, battery electric, mini
+        - transport, passenger car, battery electric, NMC-622 battery, mini
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
 
-passenger car, fuel cell, mini:
+passenger car, fuel cell electric, mini:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Mini|FCEV
@@ -165,7 +191,7 @@ passenger car, fuel cell, mini:
         - FE|Transport|VKM|Pass|Road|LDV|Mini|FCEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, fuel cell, mini
+        - transport, passenger car, fuel cell electric, mini
     ecoinvent_fuel_aliases:
         fltr:
         - hydrogen
@@ -179,12 +205,14 @@ passenger car, compressed gas, mini:
         - FE|Transport|VKM|Pass|Road|LDV|Mini|Gases
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, compressed gas, mini
+        - transport, passenger car, compressed gas, mini, EURO-6
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - natural gas
 
-passenger car, hybrid electric, mini:
+passenger car, plugin gasoline hybrid, mini:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Mini|Hybrid Electric
@@ -193,7 +221,9 @@ passenger car, hybrid electric, mini:
         - FE|Transport|VKM|Pass|Road|LDV|Mini|Hybrid Electric
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, hybrid electric, mini
+        - transport, passenger car, plugin gasoline hybrid, mini
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
@@ -207,7 +237,9 @@ passenger car, gasoline, mini:
         - FE|Transport|VKM|Pass|Road|LDV|Mini|Liquids
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, gasoline, mini
+        - transport, passenger car, gasoline, mini, EURO-6
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - gasoline
@@ -221,12 +253,12 @@ passenger car, battery electric, medium SUV:
         - FE|Transport|VKM|Pass|Road|LDV|SUV|BEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, battery electric, medium SUV
+        - transport, passenger car, battery electric, NMC-622 battery, medium SUV
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
 
-passenger car, fuel cell, medium SUV:
+passenger car, fuel cell electric, medium SUV:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|SUV|FCEV
@@ -235,7 +267,7 @@ passenger car, fuel cell, medium SUV:
         - FE|Transport|VKM|Pass|Road|LDV|SUV|FCEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, fuel cell, medium SUV
+        - transport, passenger car, fuel cell electric, medium SUV
     ecoinvent_fuel_aliases:
         fltr:
         - hydrogen
@@ -249,12 +281,14 @@ passenger car, compressed gas, medium SUV:
         - FE|Transport|VKM|Pass|Road|LDV|SUV|Gases
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, compressed gas, medium SUV
+        - transport, passenger car, compressed gas, medium SUV, EURO-6
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - natural gas
 
-passenger car, hybrid electric, medium SUV:
+passenger car, plugin gasoline hybrid, medium SUV:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|SUV|Hybrid Electric
@@ -263,7 +297,9 @@ passenger car, hybrid electric, medium SUV:
         - FE|Transport|VKM|Pass|Road|LDV|SUV|Hybrid Electric
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, hybrid electric, medium SUV
+        - transport, passenger car, plugin gasoline hybrid, medium SUV
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
@@ -277,7 +313,9 @@ passenger car, gasoline, medium SUV:
         - FE|Transport|VKM|Pass|Road|LDV|SUV|Liquids
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, gasoline, medium SUV
+        - transport, passenger car, gasoline, medium SUV, EURO-6
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - gasoline
@@ -291,12 +329,12 @@ passenger car, battery electric, small:
         - FE|Transport|VKM|Pass|Road|LDV|Small|BEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, battery electric, small
+        - transport, passenger car, battery electric, NMC-622 battery, small
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
 
-passenger car, fuel cell, small:
+passenger car, fuel cell electric, small:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Small|FCEV
@@ -305,7 +343,7 @@ passenger car, fuel cell, small:
         - FE|Transport|VKM|Pass|Road|LDV|Small|FCEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, fuel cell, small
+        - transport, passenger car, fuel cell electric, small
     ecoinvent_fuel_aliases:
         fltr:
         - hydrogen
@@ -319,12 +357,14 @@ passenger car, compressed gas, small:
         - FE|Transport|VKM|Pass|Road|LDV|Small|Gases
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, compressed gas, small
+        - transport, passenger car, compressed gas, small, EURO-6
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - natural gas
 
-passenger car, hybrid electric, small:
+passenger car, plugin gasoline hybrid, small:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Small|Hybrid Electric
@@ -333,7 +373,9 @@ passenger car, hybrid electric, small:
         - FE|Transport|VKM|Pass|Road|LDV|Small|Hybrid Electric
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, hybrid electric, small
+        - transport, passenger car, plugin gasoline hybrid, small
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
@@ -347,7 +389,9 @@ passenger car, gasoline, small:
         - FE|Transport|VKM|Pass|Road|LDV|Small|Liquids
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, gasoline, small
+        - transport, passenger car, gasoline, small, EURO-6
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - gasoline
@@ -361,12 +405,12 @@ passenger car, battery electric, van:
         - FE|Transport|VKM|Pass|Road|LDV|Van|BEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, battery electric, van
+        - transport, passenger car, battery electric, NMC-622 battery, van
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
 
-passenger car, fuel cell, van:
+passenger car, fuel cell electric, van:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Van|FCEV
@@ -375,7 +419,7 @@ passenger car, fuel cell, van:
         - FE|Transport|VKM|Pass|Road|LDV|Van|FCEV
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, fuel cell, van
+        - transport, passenger car, fuel cell electric, van
     ecoinvent_fuel_aliases:
         fltr:
         - hydrogen
@@ -389,12 +433,14 @@ passenger car, compressed gas, van:
         - FE|Transport|VKM|Pass|Road|LDV|Van|Gases
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, compressed gas, van
+        - transport, passenger car, compressed gas, van, EURO-6
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - natural gas
 
-passenger car, hybrid electric, van:
+passenger car, plugin gasoline hybrid, van:
     iam_aliases:
         remind:
         - ES|Transport|VKM|Pass|Road|LDV|Van|Hybrid Electric
@@ -403,7 +449,9 @@ passenger car, hybrid electric, van:
         - FE|Transport|VKM|Pass|Road|LDV|Van|Hybrid Electric
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, hybrid electric, van
+        - transport, passenger car, plugin gasoline hybrid, van
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - electricity
@@ -417,7 +465,9 @@ passenger car, gasoline, van:
         - FE|Transport|VKM|Pass|Road|LDV|Van|Liquids
     ecoinvent_aliases:
         fltr:
-        - transport, passenger car, gasoline, van
+        - transport, passenger car, gasoline, van, EURO-6
+        mask:
+            - ab
     ecoinvent_fuel_aliases:
         fltr:
         - gasoline

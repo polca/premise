@@ -1024,7 +1024,7 @@ class TransportValidation(BaseDatasetValidator):
                                 issue_type="major",
                             )
 
-    def run_transport_checks(self):
+    def run_vehicle_checks(self):
         self.validate_and_normalize_exchanges()
         self.check_vehicles()
         self.save_log()
@@ -1036,8 +1036,8 @@ class TruckValidation(TransportValidation):
         super().__init__(model, scenario, year, regions, database, iam_data)
         self.exhaust = load_truck_exhaust_pollutants()
 
-    def run_truck_checks(self):
-        self.run_transport_checks()
+    def run_checks(self):
+        self.run_vehicle_checks()
         self.check_vehicle_efficiency(
             vehicle_name="transport, freight, lorry",
             fossil_minimum=0.0,
@@ -1055,8 +1055,8 @@ class CarValidation(TransportValidation):
         super().__init__(model, scenario, year, regions, database, iam_data)
         self.exhaust = load_car_exhaust_pollutants()
 
-    def run_car_checks(self):
-        self.run_transport_checks()
+    def run_checks(self):
+        self.run_vehicle_checks()
         self.check_pollutant_emissions(vehicle_name="transport, passenger car")
         self.check_vehicle_efficiency(
             vehicle_name="transport, passenger car",

@@ -28,7 +28,7 @@ train, diesel-electric:
     - FE|Transport|Freight|Rail|Liquids|Biomass
   ecoinvent_aliases:
     fltr:
-      - transport, freight train, diesel
+      - transport, freight train, diesel-electric
   ecoinvent_fuel_aliases:
     fltr:
       - diesel
@@ -42,7 +42,7 @@ train, fuel cell:
     - FE|Transport|Freight|Rail|Liquids|Hydrogen
   ecoinvent_aliases:
     fltr:
-      - transport, freight train, hydrogen
+      - transport, freight train, fuel cell, hydrogen
   ecoinvent_fuel_aliases:
     fltr:
       - hydrogen
