@@ -532,6 +532,9 @@ class NewDatabase:
         else:
             self.additional_inventories = None
 
+        # unlink all files in the cache directory
+        delete_all_pickles()
+
         if external_scenarios:
             print(
                 "External scenarios should now be given as part of the scenarios list. "
@@ -889,15 +892,15 @@ class NewDatabase:
             [item for item in sectors if item not in sector_update_methods]
         )
 
-        # unlink all files in the cache directory
-        delete_all_pickles()
-
         with tqdm(
             total=len(self.scenarios), desc="Processing scenarios", ncols=70
         ) as pbar_outer:
             for scenario in self.scenarios:
                 # add database to scenarios
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+                if "database filepath" in scenario:
+                    scenario = load_database(scenario)
+                else:
+                    scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 for sector in sectors:
                     if sector in scenario.get("applied functions", []):
                         print(

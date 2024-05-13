@@ -355,7 +355,7 @@ def dump_database(scenario):
     :param scenario: scenario dictionary
     """
 
-    if "database filepath" in scenario:
+    if scenario.get("database") is None:
         return scenario
 
     # generate random name
@@ -375,7 +375,7 @@ def load_database(scenario):
     :param scenario: scenario dictionary
     """
 
-    if "database" in scenario:
+    if scenario.get("database") is not None:
         return scenario
 
     filepath = scenario["database filepath"]
@@ -394,6 +394,5 @@ def delete_all_pickles():
     """
     Delete all pickle files in the cache folder.
     """
-
     for file in DIR_CACHED_FILES.glob("*.pickle"):
         file.unlink()

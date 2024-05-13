@@ -413,6 +413,7 @@ class Transport(BaseTransformation):
             if not self.is_in_index(new_ds):
                 self.add_to_index(new_ds)
                 self.database.append(new_ds)
+
             else:
                 print(f"Dataset {new_ds['name'], new_ds['location']} already in the database.")
 
