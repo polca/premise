@@ -908,7 +908,7 @@ def check_geographical_linking(scenario, original_database):
 
     # geo = Geomap(scenario["model"])
 
-    index = scenario["index"]
+    index = scenario.get("index") or {}
     database = scenario["database"]
     original_datasets = [
         (a["name"], a["reference product"], a["location"]) for a in original_database
