@@ -919,7 +919,7 @@ class NewDatabase:
 
     def write_superstructure_db_to_brightway(
         self,
-        name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y %H-%M')} (v.{str(__version__)})",
+        name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')} (v.{str(__version__)})",
         filepath: str = None,
         file_format: str = "excel",
     ) -> None:
@@ -1156,7 +1156,7 @@ class NewDatabase:
 
     def write_datapackage(
         self,
-        name: str = f"datapackage_{datetime.now().strftime('%d-%m-%Y %H-%M')} (v.{str(__version__)})",
+        name: str = f"datapackage_{datetime.now().strftime('%d-%m-%Y')} (v.{str(__version__)})",
     ):
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
