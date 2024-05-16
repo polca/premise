@@ -972,6 +972,9 @@ class NewDatabase:
         for scenario in self.scenarios:
             del scenario["database"]
 
+            if "applied functions" in scenario:
+                del scenario["applied functions"]
+
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
         Register the new database into an open brightway project.
@@ -1022,6 +1025,9 @@ class NewDatabase:
             )
             # delete the database from the scenario
             del scenario["database"]
+
+            if "applied functions" in scenario:
+                del scenario["applied functions"]
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1083,6 +1089,9 @@ class NewDatabase:
             )
             Export(scenario, filepath[s], self.version).export_db_to_matrices()
 
+            if "applied functions" in scenario:
+                del scenario["applied functions"]
+
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1114,6 +1123,9 @@ class NewDatabase:
             )
             Export(scenario, filepath, self.version).export_db_to_simapro()
             del scenario["database"]
+
+            if "applied functions" in scenario:
+                del scenario["applied functions"]
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1148,6 +1160,9 @@ class NewDatabase:
                 olca_compartments=True
             )
             del scenario["database"]
+
+            if "applied functions" in scenario:
+                del scenario["applied functions"]
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1188,6 +1203,9 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             del scenario["database"]
+
+            if "applied functions" in scenario:
+                del scenario["applied functions"]
 
         cached_inventories.extend(extra_inventories)
 
