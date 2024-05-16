@@ -55,7 +55,7 @@ def get_variables(
     Get the variables from a yaml file.
     :param filepath: path to the yaml file
     """
-    with open(filepath, encoding="utf-8") as stream:
+    with open(filepath, "r", encoding="utf-8") as stream:
         out = yaml.safe_load(stream)
 
     return list(out.keys())

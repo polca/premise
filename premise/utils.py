@@ -107,7 +107,7 @@ def eidb_label(
             name += f"_{ext_scenario['scenario']}"
 
     # add date and time
-    name += f"_{datetime.now().strftime('%Y-%m-%d %H-%M')}"
+    name += f" {datetime.now().strftime('%Y-%m-%d')}"
 
     return name
 

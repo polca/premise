@@ -286,7 +286,7 @@ def create_fleet_vehicles(
                             if indiv_km > 0:
                                 indiv_share = (indiv_km / total_size_km).values.item(0)
 
-                                name = mapping[vehicle]
+                                name = mapping[pwt]
                                 if isinstance(name, set):
                                     # check if length of set is 1
                                     if len(name) == 1:
@@ -453,6 +453,7 @@ class Transport(BaseTransformation):
         # loop through datasets that use truck transport
         if self.vehicle_type == "truck":
             list_created_trucks = [(a["name"], a["location"]) for a in fleet_act]
+
             for dataset in ws.get_many(
                 self.database,
                 ws.doesnt_contain_any("name", ["freight, lorry"]),

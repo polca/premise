@@ -1618,7 +1618,8 @@ class Export:
 
                                 if e["name"].lower() == "water":
                                     e["unit"] = "kilogram"
-                                    e["amount"] /= 1000
+                                    # going from cubic meters to kilograms
+                                    e["amount"] *= 1000
 
                                 if e["name"] not in dict_bio:
                                     unlinked_biosphere_flows.append(
