@@ -532,7 +532,7 @@ class Transport(BaseTransformation):
                 technosphere_filters=[ws.either(
                     *[
                         ws.contains("name", v)
-                        for v in self.vehicle_map[variable]
+                        for v in self.vehicle_fuel_map[variable]
                     ]
                 )],
             )
