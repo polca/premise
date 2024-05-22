@@ -92,6 +92,9 @@ FILEPATH_HYDROGEN_WOODY_INVENTORIES = (
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
 )
+FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-hydrogen-coal-gasification_CCS.xlsx"
+)
 FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
@@ -471,7 +474,7 @@ class NewDatabase:
     def __init__(
         self,
         scenarios: List[dict],
-        source_version: str = "3.9",
+        source_version: str = "3.10",
         source_type: str = "brightway",
         key: bytes = None,
         source_db: str = None,
@@ -499,11 +502,11 @@ class NewDatabase:
         # and system_model is "consequential"
         # raise an error
         if (
-            self.version not in ["3.8", "3.9", "3.9.1"]
+            self.version not in ["3.8", "3.9", "3.9.1", "3.10"]
             and self.system_model == "consequential"
         ):
             raise ValueError(
-                "Consequential system model is only available for ecoinvent 3.8 or 3.9."
+                "Consequential system model is only available for ecoinvent 3.8, 3.9 or 3.10."
             )
 
         if gains_scenario not in ["CLE", "MFR"]:
@@ -702,6 +705,7 @@ class NewDatabase:
             (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES, "3.7"),
             (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
@@ -758,6 +762,7 @@ class NewDatabase:
             ] and self.version in [
                 "3.9",
                 "3.9.1",
+                "3.10",
             ]:
                 continue
 
@@ -919,7 +924,7 @@ class NewDatabase:
 
     def write_superstructure_db_to_brightway(
         self,
-        name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')} (v.{str(__version__)})",
+        name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')}",
         filepath: str = None,
         file_format: str = "excel",
     ) -> None:

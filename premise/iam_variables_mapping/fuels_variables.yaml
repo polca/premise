@@ -626,7 +626,7 @@ hydrogen, from natural gas:
     gcam: Efficiency|Hydrogen|Gas|w/oCCS
     remind: Tech|Hydrogen|Gas|w/o CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, steam methane reforming of natural gas, 25 bar
+    fltr: hydrogen production, steam methane reforming
 
 hydrogen, from natural gas, with CCS:
   lhv: 120
@@ -640,7 +640,7 @@ hydrogen, from natural gas, with CCS:
     gcam: Efficiency|Hydrogen|Gas|w/CCS
     remind: Tech|Hydrogen|Gas|w/ CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar
+    fltr: hydrogen production, steam methane reforming, with CCS
 
 hydrogen, from biogas:
   lhv: 120
@@ -648,7 +648,7 @@ hydrogen, from biogas:
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar
+      - hydrogen production, steam methane reforming, from biomethane
 
 hydrogen, from biogas, with CCS:
   lhv: 120
@@ -656,7 +656,7 @@ hydrogen, from biogas, with CCS:
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar
+      - hydrogen production, steam methane reforming, from biomethane, with CCS
 
 hydrogen:
   lhv: 120
