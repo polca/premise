@@ -210,7 +210,7 @@ def get_regions_definition(model: str) -> None:
     print(table)
 
 
-def clear_existing_cache(all_versions: Optional[bool] = False, filter = None) -> None:
+def clear_existing_cache(all_versions: Optional[bool] = False, filter=None) -> None:
     """Clears the cache folder, except for files which contain __version__ in name.
     Useful when updating `premise`
     or encountering issues with
@@ -230,6 +230,7 @@ def clear_existing_cache(all_versions: Optional[bool] = False, filter = None) ->
 def clear_cache() -> None:
     clear_existing_cache(all_versions=True)
     print("Cache folder cleared!")
+
 
 def clear_inventory_cache() -> None:
     clear_existing_cache(

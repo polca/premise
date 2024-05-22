@@ -5,17 +5,16 @@ and those provided by the user.
 
 import csv
 import itertools
+import logging
 import uuid
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
 
-
 import bw2io
 import numpy as np
 import requests
 import yaml
-import logging
 from bw2io import CSVImporter, ExcelImporter, Migration
 from prettytable import PrettyTable
 from wurst import searching as ws
@@ -664,7 +663,9 @@ class BaseInventoryImport:
                                 new_key = list(key)
 
                                 try:
-                                    new_key[0] = self.correspondence_bio_flows[key[1]][key[0]]
+                                    new_key[0] = self.correspondence_bio_flows[key[1]][
+                                        key[0]
+                                    ]
                                     key = tuple(new_key)
                                 except KeyError:
                                     print(
@@ -673,7 +674,6 @@ class BaseInventoryImport:
                                     x["exchanges"].remove(y)
                                     continue
                             y["name"] = new_key[0]
-
 
                     try:
                         y["input"] = (

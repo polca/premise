@@ -885,9 +885,9 @@ class IAMDataCollection:
 
             for fuel_var, iam_var in split_fossil_liquid_fuels.items():
                 if iam_var not in dataframe["variable"].unique():
-                    new_fuel_df = copy.deepcopy(dataframe.loc[
-                        dataframe["variable"] == variable_liquid_fuel
-                    ])
+                    new_fuel_df = copy.deepcopy(
+                        dataframe.loc[dataframe["variable"] == variable_liquid_fuel]
+                    )
                     fuel_share = df[fuel_var].reindex(new_fuel_df["region"])
                     new_fuel_df.loc[:, "variable"] = iam_var
                     cols = [c for c in new_fuel_df.columns if isinstance(c, int)]
