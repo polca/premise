@@ -458,6 +458,7 @@ def _export_to_simapro(obj):
 def _export_to_olca(obj):
     obj.export_db_to_simapro(olca_compartments=True)
 
+
 def check_presence_biosphere_database() -> str:
     """
     Check that the biosphere database is present in the current project.
@@ -466,13 +467,13 @@ def check_presence_biosphere_database() -> str:
     biosphere_name = "biosphere3"
     if "biosphere3" not in bw2data.databases:
         print("premise requires the name of your biosphere database.")
-        print("Please enter the name of your biosphere database as it appears in your project.")
+        print(
+            "Please enter the name of your biosphere database as it appears in your project."
+        )
         print(bw2data.databases)
         biosphere_name = input("Name of the biosphere database: ")
 
     return biosphere_name
-
-
 
 
 class NewDatabase:

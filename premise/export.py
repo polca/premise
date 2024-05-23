@@ -977,7 +977,9 @@ def prepare_db_for_export(
     return validator.database
 
 
-def _prepare_database(scenario, db_name, original_database, keep_uncertainty_data, biosphere_name):
+def _prepare_database(
+    scenario, db_name, original_database, keep_uncertainty_data, biosphere_name
+):
 
     scenario["database"] = prepare_db_for_export(
         scenario,
