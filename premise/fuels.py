@@ -501,7 +501,7 @@ class Fuels(BaseTransformation):
                 name=hydrogen_activity_name,
                 ref_prod="hydrogen",
                 production_variable=hydrogen_efficiency_variable,
-                exact_name_match=False,
+                exact_name_match=True,
             )
 
             for region, dataset in new_ds.items():
@@ -2281,7 +2281,7 @@ class Fuels(BaseTransformation):
                 "petroleum coke",
                 "petroleum gas",
                 "wax",
-                "low pressure",
+                #"low pressure",
                 "pressure, vehicle grade",
                 "burned",
                 "market",
@@ -2483,7 +2483,7 @@ class Fuels(BaseTransformation):
                 ]
 
                 d_act = self.fetch_proxies(
-                    name=activity["name"],
+                    name=activity["name"] if isinstance(activity["name"], str) else activity["name"][self.version],
                     ref_prod=activity["reference product"],
                     production_variable=prod_vars,
                     exact_name_match=False,

@@ -458,6 +458,22 @@ def _export_to_simapro(obj):
 def _export_to_olca(obj):
     obj.export_db_to_simapro(olca_compartments=True)
 
+def check_presence_biosphere_database() -> str:
+    """
+    Check that the biosphere database is present in the current project.
+    """
+
+    biosphere_name = "biosphere3"
+    if "biosphere3" not in bw2data.databases:
+        print("premise requires the name of your biosphere database.")
+        print("Please enter the name of your biosphere database as it appears in your project.")
+        print(bw2data.databases)
+        biosphere_name = input("Name of the biosphere database: ")
+
+    return biosphere_name
+
+
+
 
 class NewDatabase:
     """
@@ -497,6 +513,7 @@ class NewDatabase:
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
         self.keep_uncertainty_data = keep_uncertainty_data
+        self.biosphere_name = check_presence_biosphere_database()
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
@@ -950,6 +967,7 @@ class NewDatabase:
                 db_name=name,
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
 
         list_scenarios = create_scenario_list(self.scenarios)
@@ -1023,6 +1041,7 @@ class NewDatabase:
                 db_name=name[s],
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
             write_brightway_database(
                 scenario["database"],
@@ -1091,6 +1110,7 @@ class NewDatabase:
                 db_name="database",
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
             Export(scenario, filepath[s], self.version).export_db_to_matrices()
 
@@ -1125,6 +1145,7 @@ class NewDatabase:
                 db_name="database",
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
             Export(scenario, filepath, self.version).export_db_to_simapro()
             del scenario["database"]
@@ -1160,6 +1181,7 @@ class NewDatabase:
                 db_name="database",
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
             Export(scenario, filepath, self.version).export_db_to_simapro(
                 olca_compartments=True
@@ -1194,6 +1216,7 @@ class NewDatabase:
                 db_name=name,
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
 
         list_scenarios = create_scenario_list(self.scenarios)

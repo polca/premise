@@ -242,6 +242,8 @@ def biosphere_flows_dictionary(version):
     """
     if version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    elif version == "3.10":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
     else:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
@@ -949,7 +951,7 @@ def check_geographical_linking(scenario, original_database):
 
 
 def prepare_db_for_export(
-    scenario, name, original_database, keep_uncertainty_data=False
+    scenario, name, original_database, keep_uncertainty_data=False, biosphere_name=None
 ):
     """
     Prepare a database for export.
@@ -968,19 +970,21 @@ def prepare_db_for_export(
         database=scenario["database"],
         db_name=name,
         keep_uncertainty_data=keep_uncertainty_data,
+        biosphere_name=biosphere_name,
     )
     validator.run_all_checks()
 
     return validator.database
 
 
-def _prepare_database(scenario, db_name, original_database, keep_uncertainty_data):
+def _prepare_database(scenario, db_name, original_database, keep_uncertainty_data, biosphere_name):
 
     scenario["database"] = prepare_db_for_export(
         scenario,
         name=db_name,
         original_database=original_database,
         keep_uncertainty_data=keep_uncertainty_data,
+        biosphere_name=biosphere_name,
     )
 
     return scenario

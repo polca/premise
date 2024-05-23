@@ -377,10 +377,9 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 35,39,"market for titanium, primary","titanium, primary",GLO,market for titanium,titanium,GLO
 36,39,"market for titanium, primary","titanium, primary",GLO,market for titanium,titanium,GLO
 37,39,"market for titanium, primary","titanium, primary",GLO,market for titanium,titanium,GLO
-35,39,"treatment of aluminium scrap, new, at refiner",aluminium oxide,RER,"treatment of aluminium scrap, new, at refiner","aluminium oxide, non-metallurgical",RER
-35,39,"ethylene production, average","ethylene, average",RER,"ethylene production, average",ethylene,RER
-36,39,"ethylene production, average","ethylene, average",RER,"ethylene production, average",ethylene,RER
-37,39,"ethylene production, average","ethylene, average",RER,"ethylene production, average",ethylene,RER
+37,310,"ethylene production, average","ethylene, average",RER,"market for ethylene",ethylene,RER
+38,310,"ethylene production, average","ethylene",RER,"market for ethylene",ethylene,RER
+39,310,"ethylene production, average","ethylene",RER,"market for ethylene",ethylene,RER
 35,39,esterification of rape oil,vegetable oil methyl ester,CH,esterification of rape oil,fatty acid methyl ester,CH
 36,39,esterification of rape oil,vegetable oil methyl ester,CH,esterification of rape oil,fatty acid methyl ester,CH
 37,39,esterification of rape oil,vegetable oil methyl ester,CH,esterification of rape oil,fatty acid methyl ester,CH
@@ -729,11 +728,6 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 36,310,"market for titanium, primary","titanium, primary",GLO,market for titanium,titanium,GLO
 37,310,"market for titanium, primary","titanium, primary",GLO,market for titanium,titanium,GLO
 35,310,"treatment of aluminium scrap, new, at refiner",aluminium oxide,RER,"treatment of aluminium scrap, new, at refiner","aluminium oxide, non-metallurgical",RER
-35,310,"ethylene production, average","ethylene",RER,market for ethylene,ethylene,RER
-36,310,"ethylene production, average","ethylene",RER,market for ethylene,ethylene,RER
-37,310,"ethylene production, average","ethylene",RER,market for ethylene,ethylene,RER
-38,310,"ethylene production, average","ethylene",RER,market for ethylene,ethylene,RER
-39,310,"ethylene production, average","ethylene",RER,market for ethylene,ethylene,RER
 35,310,esterification of rape oil,vegetable oil methyl ester,CH,esterification of rape oil,fatty acid methyl ester,CH
 36,310,esterification of rape oil,vegetable oil methyl ester,CH,esterification of rape oil,fatty acid methyl ester,CH
 37,310,esterification of rape oil,vegetable oil methyl ester,CH,esterification of rape oil,fatty acid methyl ester,CH
@@ -1137,7 +1131,6 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 37,310,"treatment of waste plastic, mixture, municipal incineration","waste plastic, mixture",CH,"treatment of waste plastic, mixture, municipal incineration FAE","waste plastic, mixture",CH
 38,310,"treatment of waste plastic, mixture, municipal incineration","waste plastic, mixture",CH,"treatment of waste plastic, mixture, municipal incineration FAE","waste plastic, mixture",CH
 39,310,"treatment of waste plastic, mixture, municipal incineration","waste plastic, mixture",CH,"treatment of waste plastic, mixture, municipal incineration FAE","waste plastic, mixture",CH
-35,310,"ethylene production, average",ethylene,RER,market for ethylene,ethylene,RER
 35,310,methanol production,methanol,GLO,"methanol production, natural gas reforming",methanol,RoW
 36,310,methanol production,methanol,GLO,"methanol production, natural gas reforming",methanol,RoW
 37,310,methanol production,methanol,GLO,"methanol production, natural gas reforming",methanol,RoW

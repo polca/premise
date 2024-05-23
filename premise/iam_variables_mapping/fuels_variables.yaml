@@ -595,7 +595,7 @@ hydrogen, from coal:
   eff_aliases:
     remind: Tech|Hydrogen|Coal|w/o CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant
+    fltr: hydrogen production, coal gasification
 
 hydrogen, from coal, with CCS:
   lhv: 120
@@ -610,7 +610,7 @@ hydrogen, from coal, with CCS:
     gcam: Efficiency|Hydrogen|Coal|w/CCS
     remind: Tech|Hydrogen|Coal|w/ CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, with CCS, at coal gasification plant
+    fltr: hydrogen production, coal gasification, with CCS
 
 
 hydrogen, from natural gas:
@@ -959,6 +959,7 @@ methanol, from wood:
     fltr:
       name:
         - methanol production, from synthetic gas
+        - methanol production, biomass gasification
 
 
 methanol, from grass:
@@ -972,6 +973,8 @@ methanol, from grass:
   ecoinvent_aliases:
     fltr:
       - methanol production, from synthetic gas
+      - methanol production, biomass gasification
+
 
 
 methanol, from wood, with CCS:
