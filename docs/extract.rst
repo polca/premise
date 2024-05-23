@@ -578,17 +578,17 @@ The new datasets introduced are listed in the table below (only production datas
  ======================================================================================================================================= ===========
   Hydrogen production                                                                                                                     location
  ======================================================================================================================================= ===========
-  hydrogen production, steam methane reforming of natural gas, 25 bar                                                                     CH
-  hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar                                          CH
-  hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar              CH
-  hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar                                         CH
-  hydrogen production, auto-thermal reforming, from biomethane, 25 bar                                                                    CH
-  hydrogen production, auto-thermal reforming, from biomethane, with CCS (MDEA, 98% eff.), 25 bar                                         CH
+  hydrogen production, steam methane reforming                                                                                            CH
+  hydrogen production, steam methane reforming, with CCS                                                                                  CH
+  hydrogen production, steam methane reforming, from biomethane                                                                           CH
+  hydrogen production, steam methane reforming, from biomethane, with CCS                                                                 CH
+  hydrogen production, auto-thermal reforming, from biomethane                                                                            CH
+  hydrogen production, auto-thermal reforming, from biomethane, with CCS                                                                  CH
   hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant              CH
   hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant                       CH
   hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant    CH
   hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant              CH
-  hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant                             RER
+  hydrogen production, coal gasification                                                                                                  RER
   hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity                                                      RER
   hydrogen production, gaseous, 20 bar, from AEC electrolysis, from grid electricity                                                      RER
   hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity                                                      RER
