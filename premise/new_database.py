@@ -459,13 +459,12 @@ def _export_to_olca(obj):
     obj.export_db_to_simapro(olca_compartments=True)
 
 
-def check_presence_biosphere_database() -> str:
+def check_presence_biosphere_database(biosphere_name: str) -> str:
     """
     Check that the biosphere database is present in the current project.
     """
 
-    biosphere_name = "biosphere3"
-    if "biosphere3" not in bw2data.databases:
+    if biosphere_name not in bw2data.databases:
         print("premise requires the name of your biosphere database.")
         print(
             "Please enter the name of your biosphere database as it appears in your project."
@@ -506,6 +505,7 @@ class NewDatabase:
         keep_uncertainty_data=False,
         gains_scenario="CLE",
         use_absolute_efficiency=False,
+        biosphere_name: str = "biosphere3",
     ) -> None:
         self.source = source_db
         self.version = check_db_version(source_version)
@@ -514,7 +514,7 @@ class NewDatabase:
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
         self.keep_uncertainty_data = keep_uncertainty_data
-        self.biosphere_name = check_presence_biosphere_database()
+        self.biosphere_name = check_presence_biosphere_database(biosphere_name)
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
