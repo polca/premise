@@ -29,6 +29,7 @@ from .export import (
     build_datapackage,
     generate_scenario_factor_file,
     generate_superstructure_db,
+    prepare_db_for_export
 )
 from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
@@ -979,10 +980,22 @@ class NewDatabase:
             origin_db=self.database,
             scenarios=self.scenarios,
             db_name=name,
+            biosphere_name=self.biosphere_name,
             filepath=filepath,
             version=self.version,
             file_format=file_format,
             scenario_list=list_scenarios,
+        )
+
+        tmp_scenario = self.scenarios[0]
+        tmp_scenario["database"] = self.database
+
+        self.database = prepare_db_for_export(
+            scenario=tmp_scenario,
+            name="database",
+            original_database=self.database,
+            keep_uncertainty_data=self.keep_uncertainty_data,
+            biosphere_name=self.biosphere_name
         )
 
         write_brightway_database(
@@ -1228,6 +1241,7 @@ class NewDatabase:
             origin_db=self.database,
             scenarios=self.scenarios,
             db_name=name,
+            biosphere_name=self.biosphere_name,
             version=self.version,
             scenario_list=list_scenarios,
         )
