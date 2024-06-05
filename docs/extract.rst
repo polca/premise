@@ -656,6 +656,30 @@ on the parameters of Ozawa_ et al. (2019), accessible here: LCI_H2_turbine_.
 .. _Ozawa: https://doi.org/10.1016/j.ijhydene.2019.02.230
 .. _LCI_H2_turbine: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-turbine.xlsx
 
+Ammonia
+-------
+
+*premise* imports inventories for ammonia production via the following pathways:
+
+* steam methane reforming (Haber-Bosch)
+* steam methane reforming (Haber-Bosch) with CCS of syngas
+* steam methane reforming (Haber-Bosch) with CCS of syngas and flue gas
+* coal gasification
+* coal gasification with CCS
+* partial oxidation of oil
+* hydrogen from electrolysis
+* hydrogen from natural gas pyrolysis
+
+These inventories are published in Boyce_ et al., 2023,
+and are largely based on Carlo d' Angelo_ et al., 2021.
+
+The supply of hydrogen in the ammonia production process
+(coal gasification, electrolysis, etc.) is represented by the
+inventories described in the sections above.
+
+.. _Boyce: https://doi.org/10.1016/j.heliyon.2024.e27547
+.. _Angelo: https://doi.org/10.1021/acssuschemeng.1c01915
+
 
 Biofuels
 --------

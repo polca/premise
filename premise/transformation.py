@@ -438,7 +438,7 @@ class BaseTransformation:
         possible_names: Tuple[str],
         dataset_location: str,
         look_for: Tuple[str] = None,
-        blacklist: Tuple[str] = None,
+        blacklist: Tuple[str,] = None,
         exclude_region: Tuple[str] = None,
         subset: List[str] = None,
     ):
