@@ -280,6 +280,12 @@ class BaseDatasetValidator:
                             issue_type="major",
                         )
 
+        # remove empty fields
+        self.database = [
+            {k: v for k, v in dataset.items() if v is not None}
+            for dataset in self.database
+        ]
+
     def check_for_orphaned_datasets(self):
         # check the presence of orphan datasets
         consumed_datasets = {

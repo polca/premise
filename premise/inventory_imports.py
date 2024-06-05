@@ -670,13 +670,13 @@ class BaseInventoryImport:
 
                                     if key not in self.biosphere_dict:
                                         print(
-                                            f"Could not find a biosphere flow for {key} in {self.path}. Exchange deleted."
+                                            f"Could not find a biosphere flow for {key} in {self.path.name}. Exchange deleted."
                                         )
                                         y["delete"] = True
 
                                 except KeyError:
                                     print(
-                                        f"Could not find a biosphere flow for {key} in {self.path}. Exchange deleted."
+                                        f"Could not find a biosphere flow for {key} in {self.path.name}. Exchange deleted."
                                     )
                                     y["delete"] = True
                             y["name"] = new_key[0]

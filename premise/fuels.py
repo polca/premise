@@ -2619,7 +2619,7 @@ class Fuels(BaseTransformation):
         for region, dataset in hydrogen_supply.items():
             # replace the input of hydrogen by an input of hydrogen market
             for exc in ws.technosphere(dataset):
-                if exc["name"] == "market for hydrogen, gaseous":
+                if exc["name"].startswith("market for hydrogen, gaseous"):
                     exc["location"] = region
 
             # add to log
