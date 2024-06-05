@@ -29,7 +29,7 @@ from .export import (
     build_datapackage,
     generate_scenario_factor_file,
     generate_superstructure_db,
-    prepare_db_for_export
+    prepare_db_for_export,
 )
 from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
@@ -995,7 +995,7 @@ class NewDatabase:
             name="database",
             original_database=self.database,
             keep_uncertainty_data=self.keep_uncertainty_data,
-            biosphere_name=self.biosphere_name
+            biosphere_name=self.biosphere_name,
         )
 
         write_brightway_database(

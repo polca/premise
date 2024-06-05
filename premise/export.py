@@ -785,16 +785,13 @@ def generate_scenario_difference_file(
     )
     df.loc[df["flow type"] == "production", list_scenarios] = 1.0
 
-    df.loc[
-        df["flow type"] == "biosphere", "from database"
-    ] = biosphere_name
+    df.loc[df["flow type"] == "biosphere", "from database"] = biosphere_name
 
     # update the tuples in `from key` to make sure the first element
     # is the biosphere database name
     df.loc[df["flow type"] == "biosphere", "from key"] = df.loc[
         df["flow type"] == "biosphere", "from key"
     ].map(lambda x: (biosphere_name, x[1]))
-
 
     new_db, df = find_technosphere_keys(new_db, df)
 
