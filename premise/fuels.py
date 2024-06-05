@@ -2285,7 +2285,7 @@ class Fuels(BaseTransformation):
                 "pressure, vehicle grade",
                 "burned",
                 "market",
-                "reduction"
+                "reduction",
             ]
 
             if "natural gas" in dataset["name"]:
