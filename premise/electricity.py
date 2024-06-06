@@ -1447,15 +1447,11 @@ class Electricity(BaseTransformation):
                 current_eff = power / max_power
 
                 if self.year in module_eff.coords["year"].values:
-                    new_eff = module_eff.sel(
-                        technology=pv_tech, year=self.year
-                    ).values
+                    new_eff = module_eff.sel(technology=pv_tech, year=self.year).values
                 else:
                     new_eff = (
                         module_eff.sel(technology=pv_tech)
-                        .interp(
-                            year=self.year, kwargs={"fill_value": "extrapolate"}
-                        )
+                        .interp(year=self.year, kwargs={"fill_value": "extrapolate"})
                         .values
                     )
 
@@ -1475,9 +1471,7 @@ class Electricity(BaseTransformation):
                     if "log parameters" not in dataset:
                         dataset["log parameters"] = {}
 
-                    dataset["log parameters"].update(
-                        {"old efficiency": current_eff}
-                    )
+                    dataset["log parameters"].update({"old efficiency": current_eff})
                     dataset["log parameters"].update({"new efficiency": new_eff})
 
                     # add to log
@@ -2009,7 +2003,9 @@ class Electricity(BaseTransformation):
         for dataset in ws.get_many(
             self.database,
             *[
-                ws.contains("name", "market for electricity, high voltage, aluminium industry"),
+                ws.contains(
+                    "name", "market for electricity, high voltage, aluminium industry"
+                ),
                 ws.equals("unit", "kilowatt hour"),
             ],
         ):
@@ -2027,7 +2023,9 @@ class Electricity(BaseTransformation):
                         "product": f"electricity, high voltage",
                         "amount": 1,
                         "uncertainty type": 0,
-                        "location": self.geo.ecoinvent_to_iam_location(dataset["location"]),
+                        "location": self.geo.ecoinvent_to_iam_location(
+                            dataset["location"]
+                        ),
                         "type": "technosphere",
                         "unit": "kilowatt hour",
                     }
