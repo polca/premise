@@ -503,7 +503,7 @@ regional mixes defined by the International Energy Agency (IEA).
 
 
 Storage
--------
+=======
 
 If the IAM scenario requires the use of storage, *premise* adds a storage
 dataset to the high voltage market. *premise* can add two types of storage:
