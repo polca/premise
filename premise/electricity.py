@@ -249,6 +249,9 @@ def _update_electricity(
 
     electricity.create_region_specific_power_plants()
 
+    if scenario["year"] >= 2020:
+        electricity.adjust_aluminium_electricity_markets()
+
     if scenario["iam data"].electricity_markets is not None:
         electricity.update_electricity_markets()
     else:
@@ -1966,6 +1969,73 @@ class Electricity(BaseTransformation):
         for k, v in self.powerplant_map.items():
             for pp in list(v):
                 self.powerplant_map_rev[pp] = k
+
+    def adjust_aluminium_electricity_markets(self) -> None:
+        """
+        Aluminium production is a major electricity consumer.
+        In Ecoinvent, aluminium producers have their own electricity markets.
+        In the IAM, aluminium production is part of the electricity market.
+        We need to adjust the electricity markets of aluminium producers by linking
+        them to the regional electricity markets. However, some aluminium electricity
+        markets are already deeply decarbonized because some smelters are powered by
+        hydroelectricity.
+        Hence, we choose to link aluminium producers to the regional electricity markets
+        but only those that are not already decarbonized, meaning from those regions:
+
+        * RoW
+        * IAI Area, Africa
+        * CN
+        * IAI Area, South America
+        * UN-OCEANIA
+        * IAI Area, Asia, without China and GCC
+        * IAI Area, Gulf Cooperation Council
+
+        while we leave untouched the following regions:
+
+        * IAI Area, Russia & RER w/o EU27 & EFTA
+        * CA
+        * IAI Area, EU27 & EFTA
+
+        """
+
+        LIST_AL_REGIONS = [
+            "RoW",
+            "IAI Area, Africa",
+            "CN",
+            "IAI Area, South America",
+            "UN-OCEANIA",
+            "IAI Area, Asia, without China and GCC",
+            "IAI Area, Gulf Cooperation Council",
+        ]
+
+        for dataset in ws.get_many(
+            self.database,
+            *[
+                ws.contains("name", "market for electricity, high voltage, aluminium industry"),
+                ws.equals("unit", "kilowatt hour"),
+            ],
+        ):
+
+            if dataset["location"] in LIST_AL_REGIONS:
+                # empty exchanges
+                dataset["exchanges"] = [
+                    e for e in dataset["exchanges"] if e["type"] == "production"
+                ]
+
+                # add the new electricity market
+                dataset["exchanges"].append(
+                    {
+                        "name": f"market group for electricity, high voltage",
+                        "product": f"electricity, high voltage",
+                        "amount": 1,
+                        "uncertainty type": 0,
+                        "location": self.geo.ecoinvent_to_iam_location(dataset["location"]),
+                        "type": "technosphere",
+                        "unit": "kilowatt hour",
+                    }
+                )
+
+                self.write_log(dataset=dataset, status="updated")
 
     def update_electricity_markets(self) -> None:
         """

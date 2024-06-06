@@ -659,14 +659,14 @@ on the parameters of Ozawa_ et al. (2019), accessible here: LCI_H2_turbine_.
 Ammonia
 -------
 
-*premise* imports inventories for ammonia production via the following pathways:
+*premise* imports inventories for ammonia production using the following routes:
 
 * steam methane reforming (Haber-Bosch)
 * steam methane reforming (Haber-Bosch) with CCS of syngas
 * steam methane reforming (Haber-Bosch) with CCS of syngas and flue gas
-* coal gasification
-* coal gasification with CCS
 * partial oxidation of oil
+* hydrogen from coal gasification
+* hydrogen from coal gasification with CCS
 * hydrogen from electrolysis
 * hydrogen from natural gas pyrolysis
 

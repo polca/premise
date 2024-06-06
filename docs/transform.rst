@@ -451,6 +451,57 @@ IAM region with their respective current production volumes (also provided by
 ecoinvent). This is not ideal as it supposes that future country-specific
 production volumes will remain the same in respect to one another.
 
+High voltage regional markets for aluminium smelters
+____________________________________________________
+
+Aluminium production is a significant consumer of electricity.
+In the ecoinvent database, aluminium smelters are represented by
+specific electricity markets. Conversely, Integrated Assessment Models
+(IAM) scenarios aggregate the electricity consumption of aluminium
+smelters with that of other electricity consumers.
+
+To improve accuracy, it is necessary to align the electricity markets
+of aluminium producers with regional electricity markets. However,
+certain aluminium electricity markets have already achieved substantial
+decarbonization, primarily due to the use of hydroelectric power in
+some smelters.
+
+Therefore, premise integrates aluminium smelters into regional electricity
+markets only for those regions that have not yet undergone significant
+decarbonization. The regions affected are:
+
+* Rest of World (RoW)
+* IAI Area, Africa
+* China (CN)
+* IAI Area, South America
+* United Nations Oceania (UN-OCEANIA)
+* IAI Area, Asia excluding China and Gulf Cooperation Council (GCC)
+* IAI Area, Gulf Cooperation Council (GCC)
+
+Meanwhile, premise maintains the current decarbonized electricity markets
+for aluminium smelters in the following regions:
+
+* IAI Area, Russia & Rest of Europe excluding EU27 & EFTA
+* Canada (CA)
+* IAI Area, EU27 & EFTA
+
+Although the future development of aluminium-specific electricity markets
+remains uncertain, it is reasonable to hypothesize that these markets
+will follow the decarbonization trends of their respective regions.
+Consequently, aligning the carbon-intensive electricity markets of
+aluminium smelters with regional electricity markets is likely more
+accurate than retaining the current setup.
+
+In fact, such approach has been used by the International Aluminium Industry
+association itself, in their Aluminium Sector Greenhouse Gas Pathways to 2050 Roadmap_, where
+they connected the electricity consumption of aluminium smelters to future
+regional mixes defined by the International Energy Agency (IEA).
+
+.. _IAI Beyond 2 Degrees Aluminium Roadmap: https://international-aluminium.org/resource/aluminium-sector-greenhouse-gas-pathways-to-2050-2021/
+
+
+
+
 Storage
 -------
 
