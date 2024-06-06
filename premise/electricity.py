@@ -242,11 +242,8 @@ def _update_electricity(
     )
 
     electricity.create_missing_power_plant_datasets()
-
     electricity.adjust_coal_power_plant_emissions()
-
     electricity.update_efficiency_of_solar_pv()
-
     electricity.create_region_specific_power_plants()
 
     if scenario["year"] >= 2020:
@@ -1398,6 +1395,15 @@ class Electricity(BaseTransformation):
 
         # print("Update efficiency of solar PV panels.")
 
+        possible_techs = [
+            "micro-Si",
+            "single-Si",
+            "multi-Si",
+            "CIGS",
+            "CIS",
+            "CdTe",
+        ]
+
         # TODO: check if IAM data provides efficiencies for PV panels and use them instead
 
         # efficiency of modules in the future
@@ -1422,6 +1428,13 @@ class Electricity(BaseTransformation):
             if "mwp" in dataset["name"].lower():
                 power *= 1000
 
+            pv_tech = [
+                i for i in possible_techs if i.lower() in dataset["name"].lower()
+            ]
+
+            if len(pv_tech) > 0:
+                pv_tech = pv_tech[0]
+
             for exc in ws.technosphere(
                 dataset,
                 *[
@@ -1433,57 +1446,42 @@ class Electricity(BaseTransformation):
                 max_power = surface  # in kW, since we assume a constant 1,000W/m^2
                 current_eff = power / max_power
 
-                possible_techs = [
-                    "micro-Si",
-                    "single-Si",
-                    "multi-Si",
-                    "CIGS",
-                    "CIS",
-                    "CdTe",
-                ]
-                pv_tech = [
-                    i for i in possible_techs if i.lower() in exc["name"].lower()
-                ]
-
-                if len(pv_tech) > 0:
-                    pv_tech = pv_tech[0]
-
-                    if self.year in module_eff.coords["year"].values:
-                        new_eff = module_eff.sel(
-                            technology=pv_tech, year=self.year
-                        ).values
-                    else:
-                        new_eff = (
-                            module_eff.sel(technology=pv_tech)
-                            .interp(
-                                year=self.year, kwargs={"fill_value": "extrapolate"}
-                            )
-                            .values
+                if self.year in module_eff.coords["year"].values:
+                    new_eff = module_eff.sel(
+                        technology=pv_tech, year=self.year
+                    ).values
+                else:
+                    new_eff = (
+                        module_eff.sel(technology=pv_tech)
+                        .interp(
+                            year=self.year, kwargs={"fill_value": "extrapolate"}
                         )
+                        .values
+                    )
 
-                    # in case self.year <10 or >2050
-                    new_eff = np.clip(new_eff, 0.1, 0.27)
+                # in case self.year <10 or >2050
+                new_eff = np.clip(new_eff, 0.1, 0.27)
 
-                    # We only update the efficiency if it is higher than the current one.
-                    if new_eff > current_eff:
-                        exc["amount"] *= float(current_eff / new_eff)
+                # We only update the efficiency if it is higher than the current one.
+                if new_eff > current_eff:
+                    exc["amount"] *= float(current_eff / new_eff)
 
-                        dataset["comment"] = (
-                            f"`premise` has changed the efficiency "
-                            f"of this photovoltaic installation "
-                            f"from {int(current_eff * 100)} pct. to {int(new_eff * 100)} pt."
-                        )
+                    dataset["comment"] = (
+                        f"`premise` has changed the efficiency "
+                        f"of this photovoltaic installation "
+                        f"from {int(current_eff * 100)} pct. to {int(new_eff * 100)} pt."
+                    )
 
-                        if "log parameters" not in dataset:
-                            dataset["log parameters"] = {}
+                    if "log parameters" not in dataset:
+                        dataset["log parameters"] = {}
 
-                        dataset["log parameters"].update(
-                            {"old efficiency": current_eff}
-                        )
-                        dataset["log parameters"].update({"new efficiency": new_eff})
+                    dataset["log parameters"].update(
+                        {"old efficiency": current_eff}
+                    )
+                    dataset["log parameters"].update({"new efficiency": new_eff})
 
-                        # add to log
-                        self.write_log(dataset=dataset, status="updated")
+                    # add to log
+                    self.write_log(dataset=dataset, status="updated")
 
     def create_region_specific_power_plants(self):
         """

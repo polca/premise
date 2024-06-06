@@ -478,7 +478,7 @@ decarbonization. The regions affected are:
 * IAI Area, Asia excluding China and Gulf Cooperation Council (GCC)
 * IAI Area, Gulf Cooperation Council (GCC)
 
-Meanwhile, premise maintains the current decarbonized electricity markets
+Meanwhile, *premise* maintains the current decarbonized electricity markets
 for aluminium smelters in the following regions:
 
 * IAI Area, Russia & Rest of Europe excluding EU27 & EFTA
