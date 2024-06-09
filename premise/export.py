@@ -22,8 +22,8 @@ import sparse
 import yaml
 from datapackage import Package
 from pandas import DataFrame
-from scipy import sparse as nsp
 from prettytable import PrettyTable
+from scipy import sparse as nsp
 
 from . import __version__
 from .data_collection import get_delimiter
@@ -105,7 +105,10 @@ def get_simapro_category_of_exchange():
         raise FileNotFoundError(
             "The dictionary of Simapro categories could not be found."
         )
-    with open(filepath, encoding="latin-1",) as file:
+    with open(
+        filepath,
+        encoding="latin-1",
+    ) as file:
         csv_reader = csv.DictReader(file)
 
         dict_cat = {}
@@ -1425,7 +1428,6 @@ class Export:
 
         unlinked_biosphere_flows = []
 
-
         with open(
             Path(self.filepath) / filename, "w", newline="", encoding="latin1"
         ) as csvFile:
@@ -1443,9 +1445,7 @@ class Export:
                         dict_cat_simapro[key]["sub_category"],
                     )
                 except KeyError:
-                    main_category, sub_category = (
-                        "material", "Others\Transformation"
-                    )
+                    main_category, sub_category = ("material", "Others\Transformation")
                     self.unmatched_category_flows.append(key)
 
                 for item in fields:
@@ -1769,9 +1769,19 @@ class Export:
         for ds in self.db:
             for e in ds["exchanges"]:
                 if "used" not in e:
-                    if [e["name"][:40], e.get("product", "")[:40], e.get("categories"), e.get("location")] not in unused_exchanges:
+                    if [
+                        e["name"][:40],
+                        e.get("product", "")[:40],
+                        e.get("categories"),
+                        e.get("location"),
+                    ] not in unused_exchanges:
                         unused_exchanges.append(
-                            [e["name"][:40], e.get("product", "")[:40], e.get("categories"), e.get("location")]
+                            [
+                                e["name"][:40],
+                                e.get("product", "")[:40],
+                                e.get("categories"),
+                                e.get("location"),
+                            ]
                         )
 
         if len(unused_exchanges) > 0:
