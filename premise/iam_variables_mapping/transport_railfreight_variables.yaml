@@ -1,15 +1,13 @@
 # mapping between premise and IAM terminology regarding rail freight transport
-# transport volumes (ES) and energy use (FE)
+# transport volumes (ES, in billion pkm/y) and energy use (FE)
 ---
 
 
 train, electric:
   iam_aliases:
-    remind: 
-    - ES|Transport|Freight|Rail|Electric
+    remind: ES|Transport|Freight|Rail|Electric
   energy_use_aliases:
-    remind:
-    - FE|Transport|Freight|Rail|Electricity
+    remind: FE|Transport|Freight|Rail|Electricity
   ecoinvent_aliases:
     fltr:
       - transport, freight train, electricity
@@ -35,11 +33,9 @@ train, diesel-electric:
 
 train, fuel cell:
   iam_aliases:
-    remind: 
-    - ES|Transport|Freight|Rail|Liquids|Hydrogen
+    remind: ES|Transport|Freight|Rail|Liquids|Hydrogen
   energy_use_aliases:
-    remind: 
-    - FE|Transport|Freight|Rail|Liquids|Hydrogen
+    remind: FE|Transport|Freight|Rail|Liquids|Hydrogen
   ecoinvent_aliases:
     fltr:
       - transport, freight train, fuel cell, hydrogen
