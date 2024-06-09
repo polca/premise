@@ -1163,7 +1163,12 @@ class NewDatabase:
                 keep_uncertainty_data=self.keep_uncertainty_data,
                 biosphere_name=self.biosphere_name,
             )
-            Export(scenario, filepath, self.version).export_db_to_simapro()
+            export = Export(scenario, filepath, self.version)
+            export.export_db_to_simapro()
+
+            if len(export.unmatched_category_flows) > 0:
+                scenario["unmatched category flows"] = export.unmatched_category_flows
+
             del scenario["database"]
 
             if "applied functions" in scenario:
