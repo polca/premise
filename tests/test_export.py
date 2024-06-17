@@ -14,7 +14,9 @@ def test_simapro_compartments():
 
 def test_simapro_exchange_categories():
     simapro_exchange_categories = get_simapro_category_of_exchange()
-    agr = simapro_exchange_categories[("2-butanol production by hydration of butene", "2-butanol")]
+    agr = simapro_exchange_categories[
+        ("2-butanol production by hydration of butene", "2-butanol")
+    ]
     assert agr["category"] == "material"
     assert agr["sub_category"] == "Chemicals\Organic\Transformation"
 
