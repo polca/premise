@@ -120,7 +120,7 @@ truck, fuel cell electric, 18t:
       - Energy Service|Transportation|Freight|Med Truck|Fuel Cell Vehicle|Hydrogen
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (18t)|Hydrogen
-  eff_fuel_aliases:
+  eff_aliases:
     image:
       - Efficiency|Transportation|Freight|Med Truck|Fuel Cell Vehicle|Biofuels
       - Efficiency|Transportation|Freight|Med Truck|Fuel Cell Vehicle|Gasoline
@@ -143,7 +143,7 @@ truck, diesel, 18t:
       - Energy Service|Transportation|Freight|Med Truck|Internal Combustion Engine|Hydrogen
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (18t)|Liquids
-  eff_fuel_aliases:
+  eff_aliases:
       image:
           - Efficiency|Transportation|Freight|Med Truck|Internal combustion engine efficienct|Gasoline
           - Efficiency|Transportation|Freight|Med Truck|Internal Combustion Engine|Biofuel
@@ -164,7 +164,7 @@ truck, diesel hybrid, 18t:
           - Energy Service|Transportation|Freight|Med Truck|Hybrid engine|Diesel
           - Energy Service|Transportation|Freight|Med Truck|Hybrid engine|Gasoline
           - Energy Service|Transportation|Freight|Med Truck|Hybrid engine|Hydrogen
-    eff_fuel_aliases:
+    eff_aliases:
         image:
           - Efficiency|Transportation|Freight|Med Truck|Hybrid engine|Biofuel
           - Efficiency|Transportation|Freight|Med Truck|Hybrid engine|Diesel
@@ -183,7 +183,7 @@ truck, compressed gas, 18t:
     image: Energy Service|Transportation|Freight|Med Truck|Hybrid engine|LNG
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (18t)|Gases
-  eff_fuel_aliases:
+  eff_aliases:
     image: Efficiency|Transportation|Freight|Med Truck|Hybrid engine|LNG
   ecoinvent_aliases:
     fltr:
@@ -201,7 +201,7 @@ truck, diesel plugin hybrid, 18t:
           - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 30km|Oil
           - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 60km|Biofuel
           - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 60km|Oil
-    eff_fuel_aliases:
+    eff_aliases:
         image:
           - Efficiency|Transportation|Freight|Med Truck|Plug-in electric vehicle 10km|Biofuel
           - Efficiency|Transportation|Freight|Med Truck|Plug-in electric vehicle 10km|Electricity
@@ -289,7 +289,7 @@ truck, fuel cell electric, 40t:
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (40t)|Hydrogen
     image: Final Energy|Transportation|Freight|Heavy Truck|H2
-  eff_fuel_aliases:
+  eff_aliases:
     image:
       - Efficiency|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Biofuels
       - Efficiency|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Gasoline
@@ -308,7 +308,7 @@ truck, diesel hybrid, 40t:
           - Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Diesel
           - Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Gasoline
           - Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Hydrogen
-    eff_fuel_aliases:
+    eff_aliases:
         image:
           - Efficiency|Transportation|Freight|Heavy Truck|Hybrid engine|Biofuel
           - Efficiency|Transportation|Freight|Heavy Truck|Hybrid engine|Diesel
@@ -332,7 +332,7 @@ truck, diesel, 40t:
       - Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Hydrogen
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (40t)|Liquids
-  eff_fuel_aliases:
+  eff_aliases:
     image:
       - Efficiency|Transportation|Freight|Heavy Truck|Internal combustion engine efficienct|Gasoline
       - Efficiency|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Biofuel
@@ -352,7 +352,7 @@ truck, compressed gas, 40t:
     image: Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|LNG
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (40t)|Gases
-  eff_fuel_aliases:
+  eff_aliases:
     image: Efficiency|Transportation|Freight|Heavy Truck|Hybrid engine|LNG
   ecoinvent_aliases:
     fltr:
@@ -370,7 +370,7 @@ truck, diesel plugin hybrid, 40t:
           - Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 30km|Oil
           - Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 60km|Biofuel
           - Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 60km|Oil
-    eff_fuel_aliases:
+    eff_aliases:
         image:
           - Efficiency|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 10km|Biofuel
           - Efficiency|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 10km|Electricity

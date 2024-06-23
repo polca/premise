@@ -135,7 +135,7 @@ for file in glob.glob("*.yaml"):
     dfs[file_name] = process_yaml(file)
 
 # Create a Pandas Excel writer
-excel_file = "mapping_overview_new.xlsx"
+excel_file = "mapping_overview.xlsx"
 with pd.ExcelWriter(excel_file, engine="xlsxwriter") as writer:
     for sheet_name, df in dfs.items():
         df.to_excel(writer, sheet_name=sheet_name, index=False)
@@ -176,7 +176,7 @@ def create_refined_pivot_v2(df):
     ]
     pivot_df.columns = pivot_df.columns.str.replace(r"\s+\|\s+$", "", regex=True)
 
-    return pivot_df
+    return pivot_df.T
 
 
 # Apply the refined function to each DataFrame and create pivot tables
@@ -186,7 +186,7 @@ for sheet, df in dfs.items():
         refined_pivot_tables_v2[sheet] = create_refined_pivot_v2(df)
 
 # Create a new Excel writer for the refined pivot tables
-refined_output_path_v2 = "mapping_overview_refined_pivot.xlsx"
+refined_output_path_v2 = "mapping_overview.xlsx"
 with pd.ExcelWriter(refined_output_path_v2) as writer:
     for sheet, pivot_df in refined_pivot_tables_v2.items():
         if not pivot_df.empty:
