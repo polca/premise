@@ -279,7 +279,7 @@ def check_inventories(
             "except regions": val.get(
                 "except regions",
                 [
-                    "World",
+                   # "World",
                 ],
             ),
             "efficiency": val.get("efficiency", []),
