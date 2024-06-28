@@ -493,7 +493,7 @@ class BaseTransformation:
                     ws.get_many(
                         subset or self.database,
                         ws.either(
-                            *[ws.contains("name", sup) for sup in possible_names]
+                            *[ws.equals("name", sup) for sup in possible_names]
                         ),
                         (
                             ws.either(
