@@ -1080,7 +1080,7 @@ class ExternalScenario(BaseTransformation):
                         ]
 
                     # remove World region from regions
-                    if "World" in regions:
+                    if "World" in regions and len(regions) > 1:
                         regions.remove("World")
 
                     # Loop through regions
