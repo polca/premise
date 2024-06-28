@@ -73,11 +73,12 @@ def flag_activities_to_adjust(
         regions = scenario_data["production volume"].region.values.tolist()
     else:
         data = scenario_data["production volume"].sel(
-                variables=dataset_vars["production volume variable"]
-            )
+            variables=dataset_vars["production volume variable"]
+        )
         # fetch regions which do not contain nan data
         regions = [
-            r for r in data.region.values.tolist()
+            r
+            for r in data.region.values.tolist()
             if not np.isnan(data.sel(region=r).values).all()
         ]
 
