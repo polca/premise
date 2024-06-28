@@ -2251,11 +2251,14 @@ class Fuels(BaseTransformation):
         if np.isclose(
             self.iam_fuel_markets.sel(region=region, variables=prod_vars)
             .interp(year=self.year)
-            .sum(dim=["variables"])
-            , 0, atol=1e-3
+            .sum(dim=["variables"]),
+            0,
+            atol=1e-3,
         ):
             if "hydrogen" in dataset["name"].lower():
-                prod_vars = ["hydrogen, from natural gas",]
+                prod_vars = [
+                    "hydrogen, from natural gas",
+                ]
 
         sum_share = 0
         for prod_var in prod_vars:
