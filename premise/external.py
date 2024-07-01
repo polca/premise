@@ -1080,7 +1080,7 @@ class ExternalScenario(BaseTransformation):
                         ]
 
                     # remove World region from regions
-                    if "World" in regions:
+                    if "World" in regions and len(regions) > 1:
                         regions.remove("World")
 
                     # Loop through regions
@@ -1277,7 +1277,9 @@ class ExternalScenario(BaseTransformation):
                     # if there's more than one region,
                     # we create a World region
                     create_world_region = True
-                    if len(regions) <= 1 or "World" in market_vars.get("except regions", []):
+                    if len(regions) <= 1 or "World" in market_vars.get(
+                        "except regions", []
+                    ):
                         create_world_region = False
 
                     if create_world_region is True:
