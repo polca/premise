@@ -152,6 +152,7 @@ class BaseDatasetValidator:
         original_database=None,
         db_name=None,
         keep_uncertainty_data=False,
+        biosphere_name=None,
     ):
         self.original_database = original_database
         self.database = database
@@ -164,6 +165,7 @@ class BaseDatasetValidator:
         self.minor_issues_log = []
         self.major_issues_log = []
         self.keep_uncertainty_data = keep_uncertainty_data
+        self.biosphere_name = biosphere_name
 
     def check_matrix_squareness(self):
         """
@@ -277,6 +279,12 @@ class BaseDatasetValidator:
                             message,
                             issue_type="major",
                         )
+
+        # remove empty fields
+        self.database = [
+            {k: v for k, v in dataset.items() if v is not None}
+            for dataset in self.database
+        ]
 
     def check_for_orphaned_datasets(self):
         # check the presence of orphan datasets
@@ -450,6 +458,11 @@ class BaseDatasetValidator:
                 if exc["type"] in ["production", "technosphere"]:
                     if "input" in exc:
                         del exc["input"]
+                if exc["type"] == "biosphere":
+                    # check that the first item of the code field
+                    # corresponds to biosphere_name
+                    if exc["input"][0] != self.biosphere_name:
+                        exc["input"] = (self.biosphere_name, exc["input"][1])
 
     def remove_unused_fields(self):
         """
@@ -482,6 +495,11 @@ class BaseDatasetValidator:
                     )
                 if not isinstance(exc["amount"], float):
                     exc["amount"] = float(exc["amount"])
+
+            # remove fields that are None
+            for key, value in list(dataset.items()):
+                if value is None:
+                    del dataset[key]
 
     def check_amount_format(self):
         """
@@ -1605,6 +1623,30 @@ class CementValidation(BaseDatasetValidator):
                     self.log_issue(
                         ds,
                         "cement market inputs do not sum to 1",
+                        message,
+                        issue_type="major",
+                    )
+
+        for ds in self.database:
+            if (
+                ds["name"].startswith("market for clinker, ")
+                and ds["location"] in self.regions
+                and ds["location"] != "World"
+            ):
+                total = sum(
+                    [
+                        x["amount"]
+                        for x in ds["exchanges"]
+                        if x["type"] == "technosphere"
+                        and x["unit"] == "kilogram"
+                        and "clinker" in x["name"].lower()
+                    ]
+                )
+                if total < 0.99 or total > 1.1:
+                    message = f"Clinker market inputs sum to {total}."
+                    self.log_issue(
+                        ds,
+                        "clinker market inputs do not sum to 1",
                         message,
                         issue_type="major",
                     )

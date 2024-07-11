@@ -54,7 +54,11 @@ def find_iam_efficiency_change(
 
 
 def flag_activities_to_adjust(
-    dataset: dict, scenario_data: dict, year: int, dataset_vars: dict, region=None
+    dataset: dict,
+    scenario_data: dict,
+    year: int,
+    dataset_vars: dict,
+    region_proxy_mapping=None,
 ) -> dict:
     """
     Flag datasets that will need to be adjusted.
@@ -65,7 +69,19 @@ def flag_activities_to_adjust(
     :return: dataset with additional info on variables to adjust
     """
 
-    regions = scenario_data["production volume"].region.values.tolist()
+    if "production volume variable" not in dataset_vars:
+        regions = scenario_data["production volume"].region.values.tolist()
+    else:
+        data = scenario_data["production volume"].sel(
+            variables=dataset_vars["production volume variable"]
+        )
+        # fetch regions which do not contain nan data
+        regions = [
+            r
+            for r in data.region.values.tolist()
+            if not np.isnan(data.sel(region=r).values).all()
+        ]
+
     if "except regions" in dataset_vars:
         regions = [r for r in regions if r not in dataset_vars["except regions"]]
 
@@ -186,11 +202,8 @@ def flag_activities_to_adjust(
     if dataset_vars["regionalize"]:
         dataset["regionalize"] = dataset_vars["regionalize"]
 
-    if region is not None:
-        if "region mapping" not in dataset:
-            dataset["region mapping"] = {region: dataset["location"]}
-        else:
-            dataset["region mapping"].update({region: dataset["location"]})
+    if region_proxy_mapping is not None:
+        dataset["region mapping"] = region_proxy_mapping
 
     if "production volume variable" in dataset_vars:
         dataset["production volume variable"] = dataset_vars[
@@ -278,7 +291,7 @@ def check_inventories(
             "except regions": val.get(
                 "except regions",
                 [
-                    "World",
+                    # "World",
                 ],
             ),
             "efficiency": val.get("efficiency", []),
@@ -463,17 +476,22 @@ def check_inventories(
 
         # Perform checks in order of preference
         for region in short_listed:
-            while short_listed[region] is None:
-                for location in sorted_candidate_locations:
-                    for check_func in check_functions:
-                        if check_func(region, location):
-                            # check the dataset was not previously emptied
-                            if (
-                                candidates_by_location[location].get("emptied", False)
-                                is False
-                            ):
-                                assign_candidate_if_empty(region, location)
-                                break
+            for location in sorted_candidate_locations:
+                for check_func in check_functions:
+                    if check_func(region, location):
+                        # check the dataset was not previously emptied
+                        if (
+                            candidates_by_location[location].get("emptied", False)
+                            is False
+                        ):
+                            assign_candidate_if_empty(region, location)
+                            break
+
+            if short_listed[region] is None:
+                if "RoW" in sorted_candidate_locations:
+                    assign_candidate_if_empty(region, "RoW")
+                else:
+                    assign_candidate_if_empty(region, location)
 
         return short_listed
 
@@ -489,7 +507,7 @@ def check_inventories(
         year,
         val,
         inventory_data,
-    ) -> None | list:
+    ) -> [None, list]:
         """Adjust candidates if possible or raise an error if no valid candidates are found."""
         if not candidates:
             if not find_candidates_by_key(inventory_data, key):
@@ -505,7 +523,13 @@ def check_inventories(
             short_listed = short_list_candidates(candidates, scenario_data)
             for region, ds in short_listed.items():
                 if ds is not None:
-                    adjust_candidate(ds, scenario_data, year, val, region)
+                    adjust_candidate(
+                        ds,
+                        scenario_data,
+                        year,
+                        val,
+                        {r: d["location"] for r, d in short_listed.items()},
+                    )
                 else:
                     print(f"No candidate found for {key[0]} and {key[1]} for {region}.")
             return list(short_listed.values())

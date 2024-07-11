@@ -595,7 +595,7 @@ hydrogen, from coal:
   eff_aliases:
     remind: Tech|Hydrogen|Coal|w/o CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, at coal gasification plant
+    fltr: hydrogen production, coal gasification
 
 hydrogen, from coal, with CCS:
   lhv: 120
@@ -610,7 +610,7 @@ hydrogen, from coal, with CCS:
     gcam: Efficiency|Hydrogen|Coal|w/CCS
     remind: Tech|Hydrogen|Coal|w/ CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, gaseous, 30 bar, from hard coal gasification and reforming, with CCS, at coal gasification plant
+    fltr: hydrogen production, coal gasification, with CCS
 
 
 hydrogen, from natural gas:
@@ -626,7 +626,11 @@ hydrogen, from natural gas:
     gcam: Efficiency|Hydrogen|Gas|w/oCCS
     remind: Tech|Hydrogen|Gas|w/o CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, steam methane reforming of natural gas, 25 bar
+    fltr: hydrogen production, steam methane reforming
+    mask:
+      name:
+        - biomethane
+        - CCS
 
 hydrogen, from natural gas, with CCS:
   lhv: 120
@@ -640,15 +644,17 @@ hydrogen, from natural gas, with CCS:
     gcam: Efficiency|Hydrogen|Gas|w/CCS
     remind: Tech|Hydrogen|Gas|w/ CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, steam methane reforming of natural gas, with CCS (MDEA, 98% eff.), 25 bar
+    fltr: hydrogen production, steam methane reforming, with CCS
 
 hydrogen, from biogas:
   lhv: 120
   co2: 0
   biogenic_share: 1
   ecoinvent_aliases:
-    fltr:
-      - hydrogen production, steam methane reforming, from biomethane, high and low temperature, 26 bar
+    fltr: hydrogen production, steam methane reforming, from biomethane
+    mask:
+      name:
+        - CCS
 
 hydrogen, from biogas, with CCS:
   lhv: 120
@@ -656,7 +662,7 @@ hydrogen, from biogas, with CCS:
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - hydrogen production, steam methane reforming, from biomethane, high and low temperature, with CCS (MDEA, 98% eff.), 26 bar
+      - hydrogen production, steam methane reforming, from biomethane, with CCS
 
 hydrogen:
   lhv: 120
@@ -959,6 +965,7 @@ methanol, from wood:
     fltr:
       name:
         - methanol production, from synthetic gas
+        - methanol production, biomass gasification
 
 
 methanol, from grass:
@@ -972,6 +979,8 @@ methanol, from grass:
   ecoinvent_aliases:
     fltr:
       - methanol production, from synthetic gas
+      - methanol production, biomass gasification
+
 
 
 methanol, from wood, with CCS:

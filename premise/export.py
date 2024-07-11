@@ -22,6 +22,7 @@ import sparse
 import yaml
 from datapackage import Package
 from pandas import DataFrame
+from prettytable import PrettyTable
 from scipy import sparse as nsp
 
 from . import __version__
@@ -104,20 +105,16 @@ def get_simapro_category_of_exchange():
         raise FileNotFoundError(
             "The dictionary of Simapro categories could not be found."
         )
-    with open(filepath, encoding="utf-8") as file:
-        csv_list = [
-            [val.strip() for val in r.split(get_delimiter(filepath=filepath))]
-            for r in file.readlines()
-        ]
-    _, *data = csv_list
+    with open(
+        filepath,
+        encoding="latin-1",
+    ) as file:
+        csv_reader = csv.DictReader(file)
 
-    dict_cat = {}
-    for row in data:
-        name, category_1, category_2 = row
-        dict_cat[name] = {
-            "main category": category_1,
-            "category": category_2,
-        }
+        dict_cat = {}
+        # first row are headers
+        for row in csv_reader:
+            dict_cat[(row["name"].lower(), row["product"].lower())] = dict(row)
 
     return dict_cat
 
@@ -242,6 +239,8 @@ def biosphere_flows_dictionary(version):
     """
     if version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
+    elif version == "3.10":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
     else:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
@@ -527,8 +526,9 @@ def build_datapackage(df, inventories, list_scenarios, ei_version, name):
 
 def generate_scenario_factor_file(
     origin_db: list,
-    scenarios: dict,
+    scenarios: list,
     db_name: str,
+    biosphere_name: str,
     version: str,
     scenario_list: list = None,
 ):
@@ -537,6 +537,7 @@ def generate_scenario_factor_file(
     :param origin_db: the original database
     :param scenarios: a list of databases
     :param db_name: the name of the database
+    :param biosphere_name: the name of the biosphere database
     :param version: the version of ecoinvent
     :param scenario_list: a list of external scenarios
     """
@@ -548,6 +549,7 @@ def generate_scenario_factor_file(
         origin_db=origin_db,
         scenarios=scenarios,
         db_name=db_name,
+        biosphere_name=biosphere_name,
         version=version,
         scenario_list=scenario_list,
     )
@@ -600,7 +602,7 @@ def generate_new_activities(args):
 
 
 def generate_scenario_difference_file(
-    db_name, origin_db, scenarios, version, scenario_list
+    db_name, origin_db, scenarios, version, scenario_list, biosphere_name
 ) -> tuple[DataFrame, list[dict], set[Any]]:
     """
     Generate a scenario difference file for a given list of databases
@@ -780,6 +782,14 @@ def generate_scenario_difference_file(
     )
     df.loc[df["flow type"] == "production", list_scenarios] = 1.0
 
+    df.loc[df["flow type"] == "biosphere", "from database"] = biosphere_name
+
+    # update the tuples in `from key` to make sure the first element
+    # is the biosphere database name
+    df.loc[df["flow type"] == "biosphere", "from key"] = df.loc[
+        df["flow type"] == "biosphere", "from key"
+    ].map(lambda x: (biosphere_name, x[1]))
+
     new_db, df = find_technosphere_keys(new_db, df)
 
     # return the dataframe and the new db
@@ -826,6 +836,7 @@ def generate_superstructure_db(
     origin_db,
     scenarios,
     db_name,
+    biosphere_name,
     filepath,
     version,
     scenario_list,
@@ -849,6 +860,7 @@ def generate_superstructure_db(
         origin_db=origin_db,
         scenarios=scenarios,
         db_name=db_name,
+        biosphere_name=biosphere_name,
         version=version,
         scenario_list=scenario_list,
     )
@@ -949,7 +961,7 @@ def check_geographical_linking(scenario, original_database):
 
 
 def prepare_db_for_export(
-    scenario, name, original_database, keep_uncertainty_data=False
+    scenario, name, original_database, keep_uncertainty_data=False, biosphere_name=None
 ):
     """
     Prepare a database for export.
@@ -968,19 +980,23 @@ def prepare_db_for_export(
         database=scenario["database"],
         db_name=name,
         keep_uncertainty_data=keep_uncertainty_data,
+        biosphere_name=biosphere_name,
     )
     validator.run_all_checks()
 
     return validator.database
 
 
-def _prepare_database(scenario, db_name, original_database, keep_uncertainty_data):
+def _prepare_database(
+    scenario, db_name, original_database, keep_uncertainty_data, biosphere_name
+):
 
     scenario["database"] = prepare_db_for_export(
         scenario,
         name=db_name,
         original_database=original_database,
         keep_uncertainty_data=keep_uncertainty_data,
+        biosphere_name=biosphere_name,
     )
 
     return scenario
@@ -1022,6 +1038,7 @@ class Export:
             create_codes_index_of_biosphere_flows_matrix(self.version)
         )
         self.bio_dict = biosphere_flows_dictionary(self.version)
+        self.unmatched_category_flows = []
 
     def create_A_matrix_coordinates(self) -> list:
         """
@@ -1420,37 +1437,16 @@ class Export:
             writer.writerow([])
 
             for ds in self.db:
-                main_category, category = ("", "")
+                key = (ds["name"].lower(), ds["reference product"].lower())
 
-                if ds["name"] in dict_cat_simapro:
-                    main_category, category = (
-                        dict_cat_simapro[ds["name"]]["main category"],
-                        dict_cat_simapro[ds["name"]]["category"],
+                try:
+                    main_category, sub_category = (
+                        dict_cat_simapro[key]["category"],
+                        dict_cat_simapro[key]["sub_category"],
                     )
-                else:
-                    if any(
-                        i in ds["name"]
-                        for i in (
-                            "transport, passenger car",
-                            "transport, heavy",
-                            "transport, medium",
-                        )
-                    ):
-                        main_category, category = ("transport", r"Road\Transformation")
-
-                    if any(
-                        i in ds["name"]
-                        for i in ("Passenger car", "Heavy duty", "Medium duty")
-                    ):
-                        main_category, category = ("transport", r"Road\Infrastructure")
-
-                    if main_category == "":
-                        main_category, category = (
-                            dict_cat[(ds["name"], ds["reference product"])][
-                                "main category"
-                            ],
-                            dict_cat[(ds["name"], ds["reference product"])]["category"],
-                        )
+                except KeyError:
+                    main_category, sub_category = ("material", "Others\Transformation")
+                    self.unmatched_category_flows.append(key)
 
                 for item in fields:
                     if (
@@ -1542,7 +1538,7 @@ class Export:
                                             simapro_units[e["unit"]],
                                             1.0,
                                             "not defined",
-                                            category,
+                                            sub_category,
                                         ]
                                     )
 
@@ -1554,20 +1550,18 @@ class Export:
                                             1.0,
                                             "100%",
                                             "not defined",
-                                            category,
+                                            sub_category,
                                         ]
                                     )
+                                e["used"] = True
                     if item == "Materials/fuels":
                         for e in ds["exchanges"]:
                             if e["type"] == "technosphere":
-                                if e["name"] in dict_cat_simapro:
-                                    exc_cat = dict_cat_simapro[e["name"]][
-                                        "main category"
-                                    ].lower()
+                                key = (e["name"].lower(), e["product"].lower())
+                                if key in dict_cat_simapro:
+                                    exc_cat = dict_cat_simapro.get(key)["category"]
                                 else:
-                                    exc_cat = dict_cat[e["name"], e["product"]][
-                                        "main category"
-                                    ].lower()
+                                    exc_cat = "material"
 
                                 if exc_cat != "waste treatment":
                                     name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
@@ -1583,6 +1577,7 @@ class Export:
                                             0,
                                         ]
                                     )
+                                    e["used"] = True
                     if item == "Resources":
                         for e in ds["exchanges"]:
                             if (
@@ -1594,10 +1589,18 @@ class Export:
                                         [e["name"], " - ", e["categories"][0]]
                                     )
 
+                                if len(e["categories"]) > 1:
+                                    if e["categories"][1] != "fossil well":
+                                        sub_compartment = simapro_subs.get(
+                                            e["categories"][1], e["categories"][1]
+                                        )
+                                    else:
+                                        sub_compartment = ""
+
                                 writer.writerow(
                                     [
                                         dict_bio.get(e["name"], e["name"]),
-                                        "",
+                                        sub_compartment,
                                         simapro_units[e["unit"]],
                                         f"{e['amount']:.3E}",
                                         "undefined",
@@ -1606,6 +1609,7 @@ class Export:
                                         0,
                                     ]
                                 )
+                                e["used"] = True
                     if item == "Emissions to air":
                         for e in ds["exchanges"]:
                             if e["type"] == "biosphere" and e["categories"][0] == "air":
@@ -1638,6 +1642,7 @@ class Export:
                                         0,
                                     ]
                                 )
+                                e["used"] = True
                     if item == "Emissions to water":
                         for e in ds["exchanges"]:
                             if (
@@ -1672,6 +1677,7 @@ class Export:
                                         0,
                                     ]
                                 )
+                                e["used"] = True
                     if item == "Emissions to soil":
                         for e in ds["exchanges"]:
                             if (
@@ -1702,17 +1708,15 @@ class Export:
                                         0,
                                     ]
                                 )
+                                e["used"] = True
                     if item == "Waste to treatment":
                         for e in ds["exchanges"]:
                             if e["type"] == "technosphere":
-                                if e["name"] in dict_cat_simapro:
-                                    exc_cat = dict_cat_simapro[e["name"]][
-                                        "main category"
-                                    ].lower()
+                                key = (e["name"].lower(), e["product"].lower())
+                                if key in dict_cat_simapro:
+                                    exc_cat = dict_cat_simapro.get(key)["category"]
                                 else:
-                                    exc_cat = dict_cat[e["name"], e["product"]][
-                                        "main category"
-                                    ].lower()
+                                    exc_cat = "material"
 
                                 if exc_cat == "waste treatment":
                                     name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
@@ -1728,6 +1732,7 @@ class Export:
                                             0,
                                         ]
                                     )
+                                    e["used"] = True
 
                     writer.writerow([])
 
@@ -1758,6 +1763,38 @@ class Export:
             writer.writerow([])
 
         csvFile.close()
+
+        # check that all exchanges have been used
+        unused_exchanges = []
+        for ds in self.db:
+            for e in ds["exchanges"]:
+                if "used" not in e:
+                    if [
+                        e["name"][:40],
+                        e.get("product", "")[:40],
+                        e.get("categories"),
+                        e.get("location"),
+                    ] not in unused_exchanges:
+                        unused_exchanges.append(
+                            [
+                                e["name"][:40],
+                                e.get("product", "")[:40],
+                                e.get("categories"),
+                                e.get("location"),
+                            ]
+                        )
+
+        if len(unused_exchanges) > 0:
+            print("The following exchanges have not been used in the Simapro export:")
+            # make prettytable
+            x = PrettyTable()
+            x.field_names = ["Name", "Product", "Categories", "Location"]
+            for i in unused_exchanges:
+                x.add_row(i)
+            print(x)
+
+        if len(self.unmatched_category_flows) > 0:
+            print(f"{len(self.unmatched_category_flows)} unmatched flow categories.")
 
         print(f"Simapro CSV file saved in {self.filepath}.")
 

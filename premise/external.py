@@ -5,6 +5,7 @@ Implements external scenario data.
 import logging
 import uuid
 from collections import defaultdict
+from functools import lru_cache
 from pathlib import Path
 from typing import List, Union
 
@@ -431,7 +432,7 @@ class ExternalScenario(BaseTransformation):
 
         external_scenario_regions = []
         for datapackage_number, datapackage in enumerate(self.datapackages):
-            external_scenario_regions.append(
+            external_scenario_regions.extend(
                 self.external_scenarios_data[datapackage_number]["regions"]
             )
 
@@ -451,15 +452,22 @@ class ExternalScenario(BaseTransformation):
 
         """
 
+        processed = []
+
         for ds in ws.get_many(
             self.database,
             ws.equals("regionalize", True),
-            ws.either(*[ws.contains("name", name) for name in ds_names]),
+            ws.either(*[ws.contains("name", name) for name in list(set(ds_names))]),
         ):
+            # remove "regionalize" tag
+            if "regionalize" in ds:
+                del ds["regionalize"]
 
-            # Check if datasets already exist for IAM regions
-            # if not, create them
-            if ds["location"] not in regions:
+            if ds["location"] not in regions and ds["name"] not in processed:
+                processed.append(ds["name"])
+
+                # Check if datasets already exist for IAM regions
+                # if not, create them
                 new_acts = self.fetch_proxies(
                     name=ds["name"],
                     ref_prod=ds["reference product"],
@@ -505,10 +513,6 @@ class ExternalScenario(BaseTransformation):
                     # add to log
                     self.write_log(act)
                     self.add_to_index(act)
-
-            # remove "regionalize" tag
-            if "regionalize" in ds:
-                del ds["regionalize"]
 
         # some datasets might be meant to replace the supply
         # of other datasets, so we need to adjust those
@@ -904,18 +908,20 @@ class ExternalScenario(BaseTransformation):
 
         return new_excs
 
+    @lru_cache()
     def add_additional_exchanges(
-        self, additional_exc: dict, region: str, ei_version: str
+        self,
+        name: str,
+        ref_prod: str,
+        categories: tuple,
+        unit: str,
+        amount: float,
+        region: str,
+        ei_version: str,
     ) -> list:
         """
         Add additional exchanges to a dataset.
         """
-
-        name = additional_exc["name"]
-        ref_prod = additional_exc.get("reference product")
-        categories = additional_exc.get("categories")
-        unit = additional_exc.get("unit")
-        amount = additional_exc["amount"]
 
         # we need to ensure that the dataset exists
         # to do so, we need to load migration.csv
@@ -928,7 +934,7 @@ class ExternalScenario(BaseTransformation):
             name = mapping[(name, ref_prod)]["name"]
             ref_prod = mapping[(name, ref_prod)]["reference product"]
 
-        if ref_prod:
+        if ref_prod is not None:
             # this is a technosphere exchange
             if region in self.geo.iam_regions:
                 ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
@@ -956,7 +962,8 @@ class ExternalScenario(BaseTransformation):
             return self.write_suppliers_exchanges(suppliers, amount)
 
         # this is a biosphere exchange
-        categories = tuple(categories.split("::"))
+        if not isinstance(categories, tuple):
+            categories = tuple(categories.split("::"))
         if len(categories) == 1:
             key = (name, categories[0], "unspecified", unit)
         else:
@@ -1071,6 +1078,10 @@ class ExternalScenario(BaseTransformation):
                         regions = [
                             r for r in regions if r not in market_vars["except regions"]
                         ]
+
+                    # remove World region from regions
+                    if "World" in regions and len(regions) > 1:
+                        regions.remove("World")
 
                     # Loop through regions
                     for region in regions:
@@ -1234,9 +1245,17 @@ class ExternalScenario(BaseTransformation):
                             if "add" in market_vars:
                                 for additional_exc in market_vars["add"]:
                                     add_excs = self.add_additional_exchanges(
-                                        additional_exc,
-                                        region,
-                                        dp.descriptor["ecoinvent"]["version"],
+                                        name=additional_exc["name"],
+                                        ref_prod=additional_exc.get(
+                                            "reference product"
+                                        ),
+                                        categories=additional_exc.get("categories"),
+                                        unit=additional_exc.get("unit"),
+                                        amount=additional_exc.get("amount"),
+                                        region=region,
+                                        ei_version=dp.descriptor["ecoinvent"][
+                                            "version"
+                                        ],
                                     )
                                     new_market["exchanges"].extend(add_excs)
 
@@ -1258,14 +1277,12 @@ class ExternalScenario(BaseTransformation):
                     # if there's more than one region,
                     # we create a World region
                     create_world_region = True
-                    if (
-                        "World" in regions
-                        or "World" in market_vars.get("except regions", [])
-                        or len(regions) == 1
+                    if len(regions) <= 1 or "World" in market_vars.get(
+                        "except regions", []
                     ):
                         create_world_region = False
 
-                    if create_world_region:
+                    if create_world_region is True:
                         world_market = self.fill_in_world_market(
                             market=market_vars,
                             regions=regions,

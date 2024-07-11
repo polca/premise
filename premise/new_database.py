@@ -29,6 +29,7 @@ from .export import (
     build_datapackage,
     generate_scenario_factor_file,
     generate_superstructure_db,
+    prepare_db_for_export,
 )
 from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
@@ -92,6 +93,9 @@ FILEPATH_HYDROGEN_WOODY_INVENTORIES = (
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
 )
+FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES = (
+    INVENTORY_DIR / "lci-hydrogen-coal-gasification_CCS.xlsx"
+)
 FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
@@ -143,6 +147,7 @@ FILEPATH_METHANOL_FROM_BIOGAS_FUELS_INVENTORIES = (
 FILEPATH_METHANOL_FROM_NATGAS_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-natural-gas.xlsx"
 )
+FILEPATH_AMMONIA = INVENTORY_DIR / "lci-ammonia.xlsx"
 FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
 FILEPATH_GRAPHITE = INVENTORY_DIR / "lci-graphite.xlsx"
@@ -457,6 +462,22 @@ def _export_to_olca(obj):
     obj.export_db_to_simapro(olca_compartments=True)
 
 
+def check_presence_biosphere_database(biosphere_name: str) -> str:
+    """
+    Check that the biosphere database is present in the current project.
+    """
+
+    if biosphere_name not in bw2data.databases:
+        print("premise requires the name of your biosphere database.")
+        print(
+            "Please enter the name of your biosphere database as it appears in your project."
+        )
+        print(bw2data.databases)
+        biosphere_name = input("Name of the biosphere database: ")
+
+    return biosphere_name
+
+
 class NewDatabase:
     """
     Class that represents a new wurst inventory database, modified according to IAM data.
@@ -472,7 +493,7 @@ class NewDatabase:
     def __init__(
         self,
         scenarios: List[dict],
-        source_version: str = "3.9",
+        source_version: str = "3.10",
         source_type: str = "brightway",
         key: bytes = None,
         source_db: str = None,
@@ -487,6 +508,7 @@ class NewDatabase:
         keep_uncertainty_data=False,
         gains_scenario="CLE",
         use_absolute_efficiency=False,
+        biosphere_name: str = "biosphere3",
     ) -> None:
         self.source = source_db
         self.version = check_db_version(source_version)
@@ -495,16 +517,17 @@ class NewDatabase:
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
         self.keep_uncertainty_data = keep_uncertainty_data
+        self.biosphere_name = check_presence_biosphere_database(biosphere_name)
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
         # raise an error
         if (
-            self.version not in ["3.8", "3.9", "3.9.1"]
+            self.version not in ["3.8", "3.9", "3.9.1", "3.10"]
             and self.system_model == "consequential"
         ):
             raise ValueError(
-                "Consequential system model is only available for ecoinvent 3.8 or 3.9."
+                "Consequential system model is only available for ecoinvent 3.8, 3.9 or 3.10."
             )
 
         if gains_scenario not in ["CLE", "MFR"]:
@@ -703,6 +726,7 @@ class NewDatabase:
             (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES, "3.7"),
             (FILEPATH_METHANOL_FROM_COAL_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_METHANOL_FROM_COAL_FUELS_WITH_CCS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_DISTRI_INVENTORIES, "3.7"),
@@ -712,6 +736,7 @@ class NewDatabase:
             (FILEPATH_HYDROGEN_TURBINE, "3.9"),
             (FILEPATH_SYNGAS_INVENTORIES, "3.9"),
             (FILEPATH_METHANOL_FROM_WOOD, "3.7"),
+            (FILEPATH_AMMONIA, "3.9"),
             (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
             (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
             (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
@@ -760,6 +785,7 @@ class NewDatabase:
             ] and self.version in [
                 "3.9",
                 "3.9.1",
+                "3.10",
             ]:
                 continue
 
@@ -925,7 +951,7 @@ class NewDatabase:
 
     def write_superstructure_db_to_brightway(
         self,
-        name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')} (v.{str(__version__)})",
+        name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')}",
         filepath: str = None,
         file_format: str = "excel",
     ) -> None:
@@ -951,6 +977,7 @@ class NewDatabase:
                 db_name=name,
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
 
         list_scenarios = create_scenario_list(self.scenarios)
@@ -959,10 +986,22 @@ class NewDatabase:
             origin_db=self.database,
             scenarios=self.scenarios,
             db_name=name,
+            biosphere_name=self.biosphere_name,
             filepath=filepath,
             version=self.version,
             file_format=file_format,
             scenario_list=list_scenarios,
+        )
+
+        tmp_scenario = self.scenarios[0]
+        tmp_scenario["database"] = self.database
+
+        self.database = prepare_db_for_export(
+            scenario=tmp_scenario,
+            name="database",
+            original_database=self.database,
+            keep_uncertainty_data=self.keep_uncertainty_data,
+            biosphere_name=self.biosphere_name,
         )
 
         write_brightway_database(
@@ -1024,6 +1063,7 @@ class NewDatabase:
                 db_name=name[s],
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
             write_brightway_database(
                 scenario["database"],
@@ -1092,6 +1132,7 @@ class NewDatabase:
                 db_name="database",
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
             Export(scenario, filepath[s], self.version).export_db_to_matrices()
 
@@ -1126,8 +1167,14 @@ class NewDatabase:
                 db_name="database",
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
-            Export(scenario, filepath, self.version).export_db_to_simapro()
+            export = Export(scenario, filepath, self.version)
+            export.export_db_to_simapro()
+
+            if len(export.unmatched_category_flows) > 0:
+                scenario["unmatched category flows"] = export.unmatched_category_flows
+
             del scenario["database"]
 
             if "applied functions" in scenario:
@@ -1161,6 +1208,7 @@ class NewDatabase:
                 db_name="database",
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
             Export(scenario, filepath, self.version).export_db_to_simapro(
                 olca_compartments=True
@@ -1195,6 +1243,7 @@ class NewDatabase:
                 db_name=name,
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
+                biosphere_name=self.biosphere_name,
             )
 
         list_scenarios = create_scenario_list(self.scenarios)
@@ -1203,6 +1252,7 @@ class NewDatabase:
             origin_db=self.database,
             scenarios=self.scenarios,
             db_name=name,
+            biosphere_name=self.biosphere_name,
             version=self.version,
             scenario_list=list_scenarios,
         )
