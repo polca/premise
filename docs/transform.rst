@@ -8,7 +8,7 @@ Battery
 """""""
 
 Inventories for several battery technologies are provided in *premise*.
-See
+See EXTRACT/Import of additional inventories/Li-ion batteries for additional information.
 
 *premise* adjusts the mass of battery packs throughout the database
 to reflect progress in specific energy density (kWh/kg cell).
