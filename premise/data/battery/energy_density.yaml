@@ -34,7 +34,7 @@ NCA:
      - market for battery cell, Li-ion, NCA
      - market for battery, Li-ion, NCA, rechargeable, prismatic
   target:
-      2020: 0.280
+      2020: 0.250
       2050: 0.350
 
 LFP:
@@ -48,7 +48,9 @@ LFP:
 
 LTO:
   ecoinvent_aliases:
-    name: market for battery cell, Li-ion, LTO
+    name:
+      - market for battery cell, Li-ion, LTO
+      - market for battery, Li-ion, LTO
   target:
       2020: 0.080
       2050: 0.150
@@ -67,12 +69,26 @@ Li-O2:
   ecoinvent_aliases:
     name: market for battery, Li-oxygen, Li-O2
   target:
-      2020: 0.24
-      2050: 0.50
+      2020: 0.240
+      2050: 0.500
+
+Li-S:
+  ecoinvent_aliases:
+      name: market for battery, Li-sulfur, Li-S
+  target:
+      2020: 0.150
+      2050: 0.500
+
+SiB:
+  ecoinvent_aliases:
+    name: market for battery, Sodium-ion, SiB
+  target:
+      2020: 0.160
+      2050: 0.220
 
 BoP:
   ecoinvent_aliases:
     name: market for battery management system
   target:
-      2020: 0.2
-      2050: 0.5
+      2020: 0.200
+      2050: 0.500

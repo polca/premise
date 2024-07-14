@@ -8,25 +8,44 @@ Battery
 """""""
 
 Inventories for several battery technologies are provided in *premise*.
+See
 
 *premise* adjusts the mass of battery packs throughout the database
-to reflect progress in cell energy density.
+to reflect progress in specific energy density (kWh/kg cell).
 
-| Battery Type | 2020 (kWh/kg)        | 2050 Target (kWh/kg) |
-|--------------|----------------------|----------------------|
-| NMC111       | 0.150                | 0.200                |
-| NMC622       | 0.200                | 0.350                |
-| NMC811       | 0.220                | 0.500                |
-| NCA          | 0.280                | 0.350                |
-| LFP          | 0.140                | 0.250                |
-| LTO          | 0.080                | 0.150                |
-| LMO          | 0.130                | 0.200                |
-| Li-O2        | 0.240                | 0.500                |
-| BoP          | 0.2                  | 0.5                  |
+The table below shows the **current** specific energy density of
+different battery technologies.
+
+| Type                                     | Specific energy density  (current) [kWh/kg cell] | BoP mass share [%] | Battery energy density [kWh/kg battery] | kg battery/kWh | kg CO2-eq./kWh |
+|------------------------------------------|--------------------------------------------------|--------------------|-----------------------------------------|----------------|----------------|
+| Li-ion, NMC111, rechargeable, prismatic  | 0.15                                             | 73%                | 0.11                                    | 9.2            | 177            |
+| Li-ion, NMC811, rechargeable, prismatic  | 0.22                                             | 71%                | 0.16                                    | 6.4            | 108            |
+| Li-ion, NCA, rechargeable, prismatic     | 0.25                                             | 71%                | 0.18                                    | 5.6            | 100            |
+| Li-ion, LFP, rechargeable, prismatic     | 0.14                                             | 73%                | 0.10                                    | 9.8            | 118            |
+| Li-ion, LiMn2O4, rechargeable, prismatic | 0.13                                             | 80%                | 0.10                                    | 9.6            | 92             |
+| Li-ion, LTO                              | 0.08                                             | 75%                | 0.06                                    | 16.7           | 430            |
+| Li-sulfur, Li-S                          | 0.15                                             | 75%                | 0.11                                    | 8.9            | 352            |
+| Li-oxygen, Li-O2                         | 0.31                                             | 64%                | 0.20                                    | 5.1            | 125            |
+| Sodium-ion, SiB                          | 0.16                                             | 75%                | 0.12                                    | 8.5            | 72             |
+
+And the table below shows the **projected** (2050) specific energy density of different
+battery technologies.
+
+| Type                                     | Specific energy density (2050) [kWh/kg cell] | BoP mass share [%] | Battery energy density [kWh/kg battery] | kg battery/kWh |
+|------------------------------------------|----------------------------------------------|--------------------|-----------------------------------------|----------------|
+| Li-ion, NMC111, rechargeable, prismatic  | 0.2                                          | 73%                | 0.15                                    | 6.9            |
+| Li-ion, NMC811, rechargeable, prismatic  | 0.5                                          | 71%                | 0.36                                    | 2.8            |
+| Li-ion, NCA, rechargeable, prismatic     | 0.35                                         | 71%                | 0.25                                    | 4.0            |
+| Li-ion, LFP, rechargeable, prismatic     | 0.25                                         | 73%                | 0.18                                    | 5.5            |
+| Li-ion, LiMn2O4, rechargeable, prismatic | 0.2                                          | 80%                | 0.16                                    | 6.3            |
+| Li-ion, LTO                              | 0.15                                         | 75%                | 0.11                                    | 8.9            |
+| Li-sulfur, Li-S                          | 0.5                                          | 75%                | 0.38                                    | 2.7            |
+| Li-oxygen, Li-O2                         | 0.50                                         | 64%                | 0.20                                    | 5.1            |
+| Sodium-ion, SiB                          | 0.22                                         | 75%                | 0.17                                    | 6.1            |
 
 For example, in 2050, the mass of NMC811 batteries (cells and Balance of Plant) is expected to
-be 2.3 times lower.
-The report of changes will show the new mass of battery packs in the database.
+be 0.5/0.22 = 2.3 times lower. The report of changes will show the new mass
+of battery packs in the database.
 
 The target values used for scaling can be modified by the user.
 The YAML file is located in the premise/data/battery/energy_density.yaml.
