@@ -13,6 +13,27 @@ See EXTRACT/Import of additional inventories/Li-ion batteries for additional inf
 *premise* adjusts the mass of battery packs throughout the database
 to reflect progress in specific energy density (kWh/kg cell).
 
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("battery")
+
+
 The table below shows the **current** specific energy density of
 different battery technologies.
 
@@ -57,7 +78,7 @@ be 0.5/0.22 = 2.3 times lower for a same energy capacity. The report of changes
 shows the new mass of battery packs for each activity using them.
 
 The target values used for scaling can be modified by the user.
-The YAML file is located in the premise/data/battery/energy_density.yaml.
+The YAML file is located under premise/data/battery/energy_density.yaml.
 
 Biomass
 """""""
