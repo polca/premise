@@ -53,8 +53,8 @@ Sodium-ion, SiB        0.22                                 75%                 
 
 
 For example, in 2050, the mass of NMC811 batteries (cells and Balance of Plant) is expected to
-be 0.5/0.22 = 2.3 times lower. The report of changes will show the new mass
-of battery packs in the database.
+be 0.5/0.22 = 2.3 times lower for a same energy capacity. The report of changes
+shows the new mass of battery packs for each activity using them.
 
 The target values used for scaling can be modified by the user.
 The YAML file is located in the premise/data/battery/energy_density.yaml.
