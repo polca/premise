@@ -18,8 +18,8 @@ different battery technologies.
 
 ====================== ==================================== ==================== ================== ================= ===================
 Type                   Specific energy density (current)    BoP mass share [%]   Battery energy     kg battery/kWh      kg CO2-eq./kWh
-                       [kWh/kg cell]                                              density [kWh/kg
-                                                                                  battery]
+                       [kWh/kg cell]                                             density [kWh/kg
+                                                                                 battery]
 ====================== ==================================== ==================== ================== ================= ===================
 Li-ion, NMC111         0.15                                 73%                  0.11               9.2               177
 Li-ion, NMC811         0.22                                 71%                  0.16               6.4               108
@@ -37,8 +37,8 @@ of different battery technologies.
 
 ====================== ==================================== ==================== ================== ================
 Type                   Specific energy density (2050)       BoP mass share [%]   Battery energy     kg battery/kWh
-                       [kWh/kg cell]                                              density [kWh/kg
-                                                                                  battery]
+                       [kWh/kg cell]                                             density [kWh/kg
+                                                                                 battery]
 ====================== ==================================== ==================== ================== ================
 Li-ion, NMC111         0.2                                  73%                  0.15               6.9
 Li-ion, NMC811         0.5                                  71%                  0.36               2.8
