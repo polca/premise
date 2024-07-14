@@ -139,6 +139,34 @@ class Battery(BaseTransformation):
 
                 self.write_log(ds, status="modified")
 
+        for ds in ws.get_many(
+            self.database,
+            ws.contains("name", "market for battery capacity"),
+        ):
+
+            for exc in ws.technosphere(ds, ws.either(*filters)):
+                name = [x for x in energy_density if x in exc["name"]][0]
+
+                scaling_factor = energy_density[name][2020] / np.clip(
+                    np.interp(
+                        self.year,
+                        list(energy_density[name].keys()),
+                        list(energy_density[name].values()),
+                    ),
+                    0.1,
+                    0.5,
+                )
+
+                if "log parameters" not in ds:
+                    ds["log parameters"] = {}
+
+                ds["log parameters"]["battery input"] = exc["name"]
+                ds["log parameters"]["old battery mass"] = exc["amount"]
+                exc["amount"] *= scaling_factor
+                ds["log parameters"]["new battery mass"] = exc["amount"]
+
+                self.write_log(ds, status="modified")
+
     def write_log(self, dataset, status="created"):
         """
         Write log file.

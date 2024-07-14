@@ -69,7 +69,7 @@ Li-O2:
   ecoinvent_aliases:
     name: market for battery, Li-oxygen, Li-O2
   target:
-      2020: 0.240
+      2020: 0.360
       2050: 0.500
 
 Li-S:

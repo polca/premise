@@ -916,6 +916,7 @@ They introduce the following datasets:
   market for battery, Li-sulfur, Li-S                             GLO         Wickerts et al. (2023)
   market for battery, Li-oxygen, Li-O2                            GLO         Wang et al. (2020)
   market for battery, Sodium-ion, SiB                             GLO         Zhang et al. (2024)
+  market for battery, NaCl, rechargeable, prismatic               GLO         Galloway & Dustmann (2003)
  ============================================================= =========== ======================================
 
 These battery inventories are mostly used by battery electric vehicles,
@@ -927,8 +928,8 @@ Li-S inventories can be found here: LCI_batteries3_.
 Li-O2 inventories can be found here: LCI_batteries4_.
 And SIB inventories can be found here: LCI_batteries5_.
 
-When using ecoinvent 3.9 and above, the NMC-111, NMC-811, LFP and NCA battery inventories are not imported
-(as are already present the ecoinvent database).
+When using ecoinvent 3.9 and above, the NMC-111, NMC-811, LFP and NCA battery inventories
+are not imported (as are already present the ecoinvent database).
 
 Graphite
 --------
