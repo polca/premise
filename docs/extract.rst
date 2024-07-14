@@ -896,9 +896,10 @@ When using ecoinvent 3.8 as a database, *premise* imports new inventories for li
 NMC-111, NMC-6222 NMC-811 and NCA Lithium-ion battery inventories are originally
 from Dai_ et al. 2019. They have been adapted to ecoinvent by Crenna_ et al, 2021.
 LFP and LTO Lithium-ion battery inventories are from  Schmidt_ et al. 2019.
-Li-S battery inventories are from Wickerts_ et al. 2023.
-Li-O2 battery inventories are from Wang_ et al. 2020.
-Finally, SIB battery inventories are from Zhang22_ et al. 2024.
+Li-S (Lithium-sulfur) battery inventories are from Wickerts_ et al. 2023.
+Li-O2 (Lithium-air) battery inventories are from Wang_ et al. 2020.
+Finally, SIB (Sodium-ion) battery inventories are from Zhang22_ et al. 2024.
+Ecoinvent provides also inventories for LMO (Lithium Maganese Oxide) batteries.
 
 They introduce the following datasets:
 

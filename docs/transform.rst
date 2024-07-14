@@ -4,6 +4,33 @@ TRANSFORM
 A series of transformations are applied to the Life Cycle Inventory (LCI) database to align process performance
 and technology market shares with the outputs from the Integrated Assessment Model (IAM) scenario.
 
+Battery
+"""""""
+
+Inventories for several battery technologies are provided in *premise*.
+
+*premise* adjusts the mass of battery packs throughout the database
+to reflect progress in cell energy density.
+
+| Battery Type | 2020 (kWh/kg)        | 2050 Target (kWh/kg) |
+|--------------|----------------------|----------------------|
+| NMC111       | 0.150                | 0.200                |
+| NMC622       | 0.200                | 0.350                |
+| NMC811       | 0.220                | 0.500                |
+| NCA          | 0.280                | 0.350                |
+| LFP          | 0.140                | 0.250                |
+| LTO          | 0.080                | 0.150                |
+| LMO          | 0.130                | 0.200                |
+| Li-O2        | 0.240                | 0.500                |
+| BoP          | 0.2                  | 0.5                  |
+
+For example, in 2050, the mass of NMC811 batteries (cells and Balance of Plant) is expected to
+be 2.3 times lower.
+The report of changes will show the new mass of battery packs in the database.
+
+The target values used for scaling can be modified by the user.
+The YAML file is located in the premise/data/battery/energy_density.yaml.
+
 Biomass
 """""""
 
