@@ -22,12 +22,12 @@ def load_cell_energy_density():
 
     result = {}
     for key, value in data.items():
-        names = value['ecoinvent_aliases']['name']
+        names = value["ecoinvent_aliases"]["name"]
         if isinstance(names, list):
             for name in names:
-                result[name] = value['target']
+                result[name] = value["target"]
         else:
-            result[names] = value['target']
+            result[names] = value["target"]
 
     return result
 
