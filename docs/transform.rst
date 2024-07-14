@@ -16,32 +16,41 @@ to reflect progress in specific energy density (kWh/kg cell).
 The table below shows the **current** specific energy density of
 different battery technologies.
 
-| Type                 | Specific energy density  (current) [kWh/kg cell] | BoP mass share [%] | Battery energy density [kWh/kg battery] | kg battery/kWh | kg CO2-eq./kWh |
-|----------------------|--------------------------------------------------|--------------------|-----------------------------------------|----------------|----------------|
-| Li-ion, NMC111       | 0.15                                             | 73%                | 0.11                                    | 9.2            | 177            |
-| Li-ion, NMC811       | 0.22                                             | 71%                | 0.16                                    | 6.4            | 108            |
-| Li-ion, NCA          | 0.25                                             | 71%                | 0.18                                    | 5.6            | 100            |
-| Li-ion, LFP          | 0.14                                             | 73%                | 0.10                                    | 9.8            | 118            |
-| Li-ion, LiMn2O4      | 0.13                                             | 80%                | 0.10                                    | 9.6            | 92             |
-| Li-ion, LTO          | 0.09                                             | 64%                | 0.06                                    | 18.8           | 450            |
-| Li-sulfur, Li-S      | 0.15                                             | 75%                | 0.11                                    | 8.9            | 352            |
-| Li-oxygen, Li-O2     | 0.31                                             | 64%                | 0.20                                    | 5.1            | 125            |
-| Sodium-ion, SiB      | 0.16                                             | 75%                | 0.12                                    | 8.5            | 72             |
+====================== ==================================== ==================== ================== ================= ===================
+Type                   Specific energy density (current)    BoP mass share [%]   Battery energy     kg battery/kWh      kg CO2-eq./kWh
+                       [kWh/kg cell]                                              density [kWh/kg
+                                                                                  battery]
+====================== ==================================== ==================== ================== ================= ===================
+Li-ion, NMC111         0.15                                 73%                  0.11               9.2               177
+Li-ion, NMC811         0.22                                 71%                  0.16               6.4               108
+Li-ion, NCA            0.25                                 71%                  0.18               5.6               100
+Li-ion, LFP            0.14                                 73%                  0.10               9.8               118
+Li-ion, LiMn2O4        0.13                                 80%                  0.10               9.6               92
+Li-ion, LTO            0.09                                 64%                  0.06               18.8              450
+Li-sulfur, Li-S        0.15                                 75%                  0.11               8.9               352
+Li-oxygen, Li-O2       0.31                                 64%                  0.20               5.1               125
+Sodium-ion, SiB        0.16                                 75%                  0.12               8.5               72
+====================== ==================================== ==================== ================== ================= ===================
 
 And the table below shows the **projected** (2050) specific energy density
 of different battery technologies.
 
-| Type                 | Specific energy density (2050) [kWh/kg cell] | BoP mass share [%] | Battery energy density [kWh/kg battery] | kg battery/kWh |
-|----------------------|----------------------------------------------|--------------------|-----------------------------------------|----------------|
-| Li-ion, NMC111       | 0.2                                          | 73%                | 0.15                                    | 6.9            |
-| Li-ion, NMC811       | 0.5                                          | 71%                | 0.36                                    | 2.8            |
-| Li-ion, NCA          | 0.35                                         | 71%                | 0.25                                    | 4.0            |
-| Li-ion, LFP          | 0.25                                         | 73%                | 0.18                                    | 5.5            |
-| Li-ion, LiMn2O4      | 0.2                                          | 80%                | 0.16                                    | 6.3            |
-| Li-ion, LTO          | 0.15                                         | 75%                | 0.11                                    | 8.9            |
-| Li-sulfur, Li-S      | 0.5                                          | 75%                | 0.38                                    | 2.7            |
-| Li-oxygen, Li-O2     | 0.50                                         | 64%                | 0.20                                    | 5.1            |
-| Sodium-ion, SiB      | 0.22                                         | 75%                | 0.17                                    | 6.1            |
+====================== ==================================== ==================== ================== ================
+Type                   Specific energy density (2050)       BoP mass share [%]   Battery energy     kg battery/kWh
+                       [kWh/kg cell]                                              density [kWh/kg
+                                                                                  battery]
+====================== ==================================== ==================== ================== ================
+Li-ion, NMC111         0.2                                  73%                  0.15               6.9
+Li-ion, NMC811         0.5                                  71%                  0.36               2.8
+Li-ion, NCA            0.35                                 71%                  0.25               4.0
+Li-ion, LFP            0.25                                 73%                  0.18               5.5
+Li-ion, LiMn2O4        0.2                                  80%                  0.16               6.3
+Li-ion, LTO            0.15                                 75%                  0.11               8.9
+Li-sulfur, Li-S        0.5                                  75%                  0.38               2.7
+Li-oxygen, Li-O2       0.50                                 64%                  0.20               5.1
+Sodium-ion, SiB        0.22                                 75%                  0.17               6.1
+====================== ==================================== ==================== ================== ================
+
 
 For example, in 2050, the mass of NMC811 batteries (cells and Balance of Plant) is expected to
 be 0.5/0.22 = 2.3 times lower. The report of changes will show the new mass
