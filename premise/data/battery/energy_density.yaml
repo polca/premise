@@ -6,6 +6,7 @@ NMC111:
     name:
      - market for battery cell, Li-ion, NMC111
      - market for battery, Li-ion, NMC111, rechargeable, prismatic
+     - market for battery capacity, Li-ion, NMC111
   target:
     2020: 0.150
     2050: 0.200
@@ -15,6 +16,7 @@ NMC622:
     name:
      - market for battery cell, Li-ion, NMC622
      - market for battery, Li-ion, NMC622, rechargeable, prismatic
+     - market for battery capacity, Li-ion, NMC622
   target:
     2020: 0.200
     2050: 0.350
@@ -24,6 +26,7 @@ NMC811:
     name:
     - market for battery cell, Li-ion, NMC811
     - market for battery, Li-ion, NMC811, rechargeable, prismatic
+    - market for battery capacity, Li-ion, NMC811
   target:
     2020: 0.220
     2050: 0.500
@@ -33,6 +36,7 @@ NCA:
     name:
      - market for battery cell, Li-ion, NCA
      - market for battery, Li-ion, NCA, rechargeable, prismatic
+     - market for battery capacity, Li-ion, NCA
   target:
       2020: 0.250
       2050: 0.350
@@ -42,6 +46,7 @@ LFP:
     name:
       - market for battery cell, Li-ion, LFP
       - market for battery, Li-ion, LFP, rechargeable, prismatic
+      - market for battery capacity, Li-ion, LFP
   target:
       2020: 0.140
       2050: 0.250
@@ -51,6 +56,7 @@ LTO:
     name:
       - market for battery cell, Li-ion, LTO
       - market for battery, Li-ion, LTO
+      - market for battery capacity, Li-ion, LTO
   target:
       2020: 0.080
       2050: 0.150
@@ -60,6 +66,7 @@ LMO:
     name:
       - market for battery cell, Li-ion, LiMn2O4
       - market for battery, Li-ion, LiMn2O4, rechargeable, prismatic
+      - market for battery capacity, Li-ion, LiMn2O4
 
   target:
       2020: 0.130
@@ -67,28 +74,35 @@ LMO:
 
 Li-O2:
   ecoinvent_aliases:
-    name: market for battery, Li-oxygen, Li-O2
+    name:
+     - market for battery, Li-oxygen, Li-O2
+     - market for battery capacity, Li-ion, Li-O2
   target:
       2020: 0.360
       2050: 0.500
 
 Li-S:
   ecoinvent_aliases:
-      name: market for battery, Li-sulfur, Li-S
+      name:
+       - market for battery, Li-sulfur, Li-S
+       - market for battery capacity, Li-sulfur, Li-S
   target:
       2020: 0.150
       2050: 0.500
 
 SiB:
   ecoinvent_aliases:
-    name: market for battery, Sodium-ion, SiB
+    name:
+     - market for battery, Sodium-ion, SiB
+     - market for battery capacity, Sodium-ion, SiB
   target:
       2020: 0.160
       2050: 0.220
 
 BoP:
   ecoinvent_aliases:
-    name: market for battery management system
+    name:
+     - market for battery management system
   target:
       2020: 0.200
       2050: 0.500

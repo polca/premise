@@ -9,6 +9,7 @@ import yaml
 from .filesystem_constants import DATA_DIR
 from .logger import create_logger
 from .transformation import BaseTransformation, IAMDataCollection, List, np, ws
+from .utils import rescale_exchanges
 
 logger = create_logger("battery")
 
@@ -97,7 +98,7 @@ class Battery(BaseTransformation):
 
         energy_density = load_cell_energy_density()
 
-        filters = [ws.contains("name", x) for x in energy_density]
+        filters = [ws.contains("name", x) for x in energy_density if "battery capacity" not in x]
 
         for ds in ws.get_many(
             self.database,
@@ -110,6 +111,7 @@ class Battery(BaseTransformation):
                             "battery production",
                             "battery cell production",
                             "cell module production",
+                            "battery capacity"
                         ]
                     ]
                 )
@@ -143,27 +145,29 @@ class Battery(BaseTransformation):
             self.database,
             ws.contains("name", "market for battery capacity"),
         ):
-
-            for exc in ws.technosphere(ds, ws.either(*filters)):
-                name = [x for x in energy_density if x in exc["name"]][0]
-
-                scaling_factor = energy_density[name][2020] / np.clip(
+            if ds["name"] in energy_density:
+                scaling_factor = energy_density[ds["name"]][2020] / np.clip(
                     np.interp(
                         self.year,
-                        list(energy_density[name].keys()),
-                        list(energy_density[name].values()),
+                        list(energy_density[ds["name"]].keys()),
+                        list(energy_density[ds["name"]].values()),
                     ),
-                    0.1,
+                    0,
                     0.5,
                 )
 
                 if "log parameters" not in ds:
                     ds["log parameters"] = {}
 
-                ds["log parameters"]["battery input"] = exc["name"]
-                ds["log parameters"]["old battery mass"] = exc["amount"]
-                exc["amount"] *= scaling_factor
-                ds["log parameters"]["new battery mass"] = exc["amount"]
+                ds["log parameters"]["battery input"] = [e["name"] for e in ws.technosphere(ds, ws.contains("name", "market for battery"))][0]
+                ds["log parameters"]["old battery mass"] = sum(e["amount"] for e in ws.technosphere(ds, ws.contains("name", "market for battery")))
+
+                rescale_exchanges(
+                    ds,
+                    scaling_factor
+                )
+
+                ds["log parameters"]["new battery mass"] = sum(e["amount"] for e in ws.technosphere(ds, ws.contains("name", "market for battery")))
 
                 self.write_log(ds, status="modified")
 
