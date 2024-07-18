@@ -125,7 +125,7 @@ Biomass IGCC CCS:
 Biomass MSW:
   ecoinvent_aliases:
     fltr:
-      name: treatment of municipal solid waste, incineration
+      name: treatment of municipal solid waste,
       reference product: electricity
   ecoinvent_fuel_aliases:
     fltr:
