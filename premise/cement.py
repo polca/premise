@@ -605,54 +605,44 @@ class Cement(BaseTransformation):
                             ):
                                 if exc["name"] == "Carbon dioxide, fossil":
                                     exc["amount"] *= 1 - carbon_capture_rate
-
-                                    dataset["log parameters"].update(
-                                        {
-                                            "new fossil CO2": exc["amount"],
-                                        }
-                                    )
+                                    dataset["log parameters"]["new fossil CO2"] = exc["amount"]
 
                                 if exc["name"] == "Carbon dioxide, non-fossil":
                                     exc["amount"] *= 1 - carbon_capture_rate
+                                    dataset["log parameters"]["new biogenic CO2"] = exc["amount"]
 
-                                    dataset["log parameters"].update(
-                                        {
-                                            "new biogenic CO2": exc["amount"],
-                                        }
-                                    )
-
-                                # add a flow of "Carbon dioxide, in air" to reflect
-                                # the permanent storage of biogenic CO2
-                                biogenic_CO2_reduction = (
-                                    dataset["log parameters"]["initial biogenic CO2"]
-                                    - dataset["log parameters"]["new biogenic CO2"]
-                                )
-                                dataset["exchanges"].append(
-                                    {
-                                        "uncertainty type": 0,
-                                        "loc": biogenic_CO2_reduction,
-                                        "amount": biogenic_CO2_reduction,
-                                        "type": "biosphere",
-                                        "name": "Carbon dioxide, in air",
-                                        "unit": "kilogram",
-                                        "categories": (
-                                            "natural resource",
-                                            "in air",
-                                        ),
-                                        "comment": "Permanent storage of biogenic CO2",
-                                        "input": (
-                                            "biosphere3",
-                                            self.biosphere_dict[
-                                                (
-                                                    "Carbon dioxide, in air",
-                                                    "natural resource",
-                                                    "in air",
-                                                    "kilogram",
-                                                )
-                                            ],
-                                        ),
-                                    }
-                                )
+                            # add a flow of "Carbon dioxide, in air" to reflect
+                            # the permanent storage of biogenic CO2
+                            biogenic_CO2_reduction = (
+                                dataset["log parameters"].get("initial biogenic CO2", 0.0)
+                                - dataset["log parameters"].get("new biogenic CO2", 0.0)
+                            )
+                            dataset["exchanges"].append(
+                                {
+                                    "uncertainty type": 0,
+                                    "loc": biogenic_CO2_reduction,
+                                    "amount": biogenic_CO2_reduction,
+                                    "type": "biosphere",
+                                    "name": "Carbon dioxide, in air",
+                                    "unit": "kilogram",
+                                    "categories": (
+                                        "natural resource",
+                                        "in air",
+                                    ),
+                                    "comment": "Permanent storage of biogenic CO2",
+                                    "input": (
+                                        "biosphere3",
+                                        self.biosphere_dict[
+                                            (
+                                                "Carbon dioxide, in air",
+                                                "natural resource",
+                                                "in air",
+                                                "kilogram",
+                                            )
+                                        ],
+                                    ),
+                                }
+                            )
 
                         dataset["exchanges"] = [v for v in dataset["exchanges"] if v]
 

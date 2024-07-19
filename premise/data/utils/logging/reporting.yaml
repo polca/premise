@@ -503,6 +503,46 @@ premise_battery:
         name: New battery mass
         description: Mass of the battery after adjustment
         unit: kg
+      NMC111 market share:
+        name: NMC111 market share
+        description: Market share of NMC111
+        unit: 0-1
+      NMC532 market share:
+        name: NMC532 market share
+        description: Market share of NMC532
+        unit: 0-1
+      NMC622 market share:
+        name: NMC622 market share
+        description: Market share of NMC622
+        unit: 0-1
+      NMC811 market share:
+        name: NMC811 market share
+        description: Market share of NMC811
+        unit: 0-1
+      NMC900-Si market share:
+        name: NMC900-Si market share
+        description: Market share of NMC900-Si
+        unit: 0-1
+      LFP market share:
+        name: LFP market share
+        description: Market share of LFP
+        unit: 0-1
+      NCA market share:
+        name: NCA market share
+        description: Market share of NCA
+        unit: 0-1
+      LAB market share:
+        name: LAB market share
+        description: Market share of LAB
+        unit: 0-1
+      LSB market share:
+        name: LSB market share
+        description: Market share of LSB
+        unit: 0-1
+      SIB market share:
+        name: SIB market share
+        description: Market share of SIB
+        unit: 0-1
     tab: Battery
 
 premise_emissions:

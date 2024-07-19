@@ -9,7 +9,10 @@ NMC111:
      - market for battery capacity, Li-ion, NMC111
   target:
     # values from https://doi.org/10.3390/batteries9070379.
-    2020: 0.180
+    2020:
+      mean: 0.180
+      minimum: 0.150
+      maximum: 0.190
     # max current is used for future mean
     # according to https://doi.org/10.3390/batteries9070379.
     2050:
@@ -24,7 +27,10 @@ NMC523:
      - market for battery capacity, Li-ion, NMC523
   target:
     # values from https://doi.org/10.3390/batteries9070379.
-    2020: 0.200
+    2020:
+      mean: 0.200
+      minimum: 0.170
+      maximum: 0.220
     # max current is used for future mean
     # according to https://doi.org/10.3390/batteries9070379.
     2050:
@@ -40,7 +46,10 @@ NMC622:
      - market for battery capacity, Li-ion, NMC622
   target:
     # values from https://doi.org/10.3390/batteries9070379.
-    2020: 0.240
+    2020:
+      mean: 0.240
+      minimum: 0.200
+      maximum: 0.280
     # max current is used for future mean
     # according to https://doi.org/10.3390/batteries9070379.
     2050:
@@ -56,7 +65,11 @@ NMC811:
     - market for battery capacity, Li-ion, NMC811
   target:
     # values from https://doi.org/10.3390/batteries9070379.
-    2020: 0.280
+    2020:
+      mean: 0.280
+      minimum: 0.240
+      maximum: 0.340
+
     # max current is used for future mean
     # according to https://doi.org/10.3390/batteries9070379.
     2050:
@@ -71,7 +84,10 @@ NMC955:
     - market for battery capacity, Li-ion, NMC955
   target:
     # values from https://doi.org/10.3390/batteries9070379.
-    2020: 0.340
+    2020:
+      mean: 0.340
+      minimum: 0.300
+      maximum: 0.380
     # max current is used for future mean
     # according to https://doi.org/10.3390/batteries9070379.
     2050:
@@ -87,7 +103,10 @@ NCA:
      - market for battery capacity, Li-ion, NCA
   target:
       # values from https://doi.org/10.3390/batteries9070379.
-      2020: 0.280
+      2020:
+        mean: 0.280
+        minimum: 0.240
+        maximum: 0.340
       # max current is used for future mean
       # according to https://doi.org/10.3390/batteries9070379.
       2050:
@@ -103,7 +122,10 @@ LFP:
       - market for battery capacity, Li-ion, LFP
   target:
       # values from https://doi.org/10.3390/batteries9070379.
-      2020: 0.160
+      2020:
+        mean: 0.160
+        minimum: 0.140
+        maximum: 0.190
       # values from https://doi.org/10.3390/batteries9070379.
       2050:
         mean: 0.220
@@ -117,10 +139,15 @@ LTO:
       - market for battery, Li-ion, LTO
       - market for battery capacity, Li-ion, LTO
   target:
-      2020: 0.050
+      2020:
+        mean: 0.050
+        minimum: 0.040
+        maximum: 0.060
       # no improvement considered for 2050
       2050:
         mean: 0.050
+        minimum: 0.040
+        maximum: 0.060
 
 LMO:
   ecoinvent_aliases:
@@ -130,10 +157,15 @@ LMO:
       - market for battery capacity, Li-ion, LiMn2O4
 
   target:
-      2020: 0.110
+      2020:
+        mean: 0.110
+        minimum: 0.100
+        maximum: 0.120
       # no improvement considered for 2050
       2050:
         mean: 0.110
+        minimum: 0.100
+        maximum: 0.120
 
 # excludes mass from O2 tanks
 Li-O2:
@@ -142,7 +174,10 @@ Li-O2:
      - market for battery, Li-oxygen, Li-O2
      - market for battery capacity, Li-ion, Li-O2
   target:
-      2020: 0.620
+      2020:
+        mean: 0.620
+        minimum: 0.500
+        maximum: 0.740
       # value for 2050 from https://www.nature.com/articles/s41560-020-00748-8/figures/1
       2050:
         mean: 0.93
@@ -156,7 +191,10 @@ Li-S:
        - market for battery capacity, Li-sulfur, Li-S
   target:
     # current value from https://doi.org/10.1021/acssuschemeng.3c00141
-      2020: 0.150
+      2020:
+        mean: 0.150
+        minimum: 0.120
+        maximum: 0.180
       # value for 2050 from https://www.nature.com/articles/s41560-020-00748-8/figures/1
       2050:
         mean: 0.340
@@ -170,17 +208,12 @@ SiB:
      - market for battery capacity, Sodium-ion, SiB
   target:
       # current value from https://doi.org/10.1016/j.resconrec.2023.107362
-      2020: 0.120
+      2020:
+        mean: 0.157
+        minimum: 0.120
+        maximum: 0.180
       # future values from https://doi.org/10.3390/batteries9070379.
       2050:
         mean: 0.200
         minimum: 0.160
         maximum: 0.220
-
-BoP:
-  ecoinvent_aliases:
-    name:
-     - market for battery management system
-  target:
-      2020: 0.250
-      2050: 0.500
