@@ -88,7 +88,6 @@ class Battery(BaseTransformation):
         )
         self.system_model = system_model
 
-
     def adjust_battery_market_shares(self) -> None:
         """
         Based on scenario data, adjust the shares within the datasets:
@@ -105,29 +104,26 @@ class Battery(BaseTransformation):
             "market for battery capacity (PLiB scenario)": "PLIB",
         }
 
-        datasets_mapping = {v: k for k, v in {
-            'LAB': "market for battery capacity, Li-ion, Li-O2",
-            'LFP': "market for battery capacity, Li-ion, LFP",
-            'LSB': "market for battery capacity, Li-sulfur, Li-S",
-            'NCA': "market for battery capacity, Li-ion, NCA",
-            'NMC111': "market for battery capacity, Li-ion, NMC111",
-            'NMC532': "market for battery capacity, Li-ion, NMC523",
-            'NMC622': "market for battery capacity, Li-ion, NMC622",
-            'NMC811': "market for battery capacity, Li-ion, NMC811",
-            'NMC900-Si': "market for battery capacity, Li-ion, NMC955",
-            'SIB': "market for battery capacity, Sodium-ion, SiB"
+        datasets_mapping = {
+            v: k
+            for k, v in {
+                "LAB": "market for battery capacity, Li-ion, Li-O2",
+                "LFP": "market for battery capacity, Li-ion, LFP",
+                "LSB": "market for battery capacity, Li-sulfur, Li-S",
+                "NCA": "market for battery capacity, Li-ion, NCA",
+                "NMC111": "market for battery capacity, Li-ion, NMC111",
+                "NMC532": "market for battery capacity, Li-ion, NMC523",
+                "NMC622": "market for battery capacity, Li-ion, NMC622",
+                "NMC811": "market for battery capacity, Li-ion, NMC811",
+                "NMC900-Si": "market for battery capacity, Li-ion, NMC955",
+                "SIB": "market for battery capacity, Sodium-ion, SiB",
             }.items()
         }
 
         for ds in ws.get_many(
             self.database,
-            ws.either(
-                *[
-                    ws.equals("name", name)
-                    for name in market_datasets
-                ]
-                ),
-            ):
+            ws.either(*[ws.equals("name", name) for name in market_datasets]),
+        ):
 
             if self.year in self.iam_data.battery_scenarios.year:
                 shares = self.iam_data.battery_scenarios.sel(
@@ -158,7 +154,9 @@ class Battery(BaseTransformation):
                         chemistry=datasets_mapping[exc["name"]]
                     ).values.item()
 
-                    ds["log parameters"][f"{datasets_mapping[exc['name']]} market share"] = exc["amount"]
+                    ds["log parameters"][
+                        f"{datasets_mapping[exc['name']]} market share"
+                    ] = exc["amount"]
 
             self.write_log(ds, status="modified")
 
@@ -180,17 +178,25 @@ class Battery(BaseTransformation):
             if ds["name"] in energy_density:
 
                 mean_2020_energy_density = energy_density[ds["name"]][2020]["mean"]
-                minimum_2020_energy_density = energy_density[ds["name"]][2020]["minimum"]
-                maximum_2020_energy_density = energy_density[ds["name"]][2020]["maximum"]
+                minimum_2020_energy_density = energy_density[ds["name"]][2020][
+                    "minimum"
+                ]
+                maximum_2020_energy_density = energy_density[ds["name"]][2020][
+                    "maximum"
+                ]
                 mean_2050_energy_density = energy_density[ds["name"]][2050]["mean"]
-                minimum_2050_energy_density = energy_density[ds["name"]][2050]["minimum"]
-                maximum_2050_energy_density = energy_density[ds["name"]][2050]["maximum"]
+                minimum_2050_energy_density = energy_density[ds["name"]][2050][
+                    "minimum"
+                ]
+                maximum_2050_energy_density = energy_density[ds["name"]][2050][
+                    "maximum"
+                ]
 
                 scaling_factor = mean_2020_energy_density / np.clip(
                     np.interp(
                         self.year,
                         [2020, 2050],
-                        [mean_2020_energy_density, mean_2050_energy_density]
+                        [mean_2020_energy_density, mean_2050_energy_density],
                     ),
                     0,
                     1,
@@ -200,7 +206,7 @@ class Battery(BaseTransformation):
                     np.interp(
                         self.year,
                         [2020, 2050],
-                        [minimum_2020_energy_density, minimum_2050_energy_density]
+                        [minimum_2020_energy_density, minimum_2050_energy_density],
                     ),
                     0,
                     1,
@@ -210,7 +216,7 @@ class Battery(BaseTransformation):
                     np.interp(
                         self.year,
                         [2020, 2050],
-                        [maximum_2020_energy_density, maximum_2050_energy_density]
+                        [maximum_2020_energy_density, maximum_2050_energy_density],
                     ),
                     0,
                     1,
@@ -233,10 +239,7 @@ class Battery(BaseTransformation):
                     )
                 )
 
-                for exc in ws.technosphere(
-                    ds,
-                    ws.equals("unit", "kilogram")
-                ):
+                for exc in ws.technosphere(ds, ws.equals("unit", "kilogram")):
                     exc["amount"] *= scaling_factor
                     exc["minimum"] *= scaling_factor_min
                     exc["maximum"] *= scaling_factor_max

@@ -605,18 +605,21 @@ class Cement(BaseTransformation):
                             ):
                                 if exc["name"] == "Carbon dioxide, fossil":
                                     exc["amount"] *= 1 - carbon_capture_rate
-                                    dataset["log parameters"]["new fossil CO2"] = exc["amount"]
+                                    dataset["log parameters"]["new fossil CO2"] = exc[
+                                        "amount"
+                                    ]
 
                                 if exc["name"] == "Carbon dioxide, non-fossil":
                                     exc["amount"] *= 1 - carbon_capture_rate
-                                    dataset["log parameters"]["new biogenic CO2"] = exc["amount"]
+                                    dataset["log parameters"]["new biogenic CO2"] = exc[
+                                        "amount"
+                                    ]
 
                             # add a flow of "Carbon dioxide, in air" to reflect
                             # the permanent storage of biogenic CO2
-                            biogenic_CO2_reduction = (
-                                dataset["log parameters"].get("initial biogenic CO2", 0.0)
-                                - dataset["log parameters"].get("new biogenic CO2", 0.0)
-                            )
+                            biogenic_CO2_reduction = dataset["log parameters"].get(
+                                "initial biogenic CO2", 0.0
+                            ) - dataset["log parameters"].get("new biogenic CO2", 0.0)
                             dataset["exchanges"].append(
                                 {
                                     "uncertainty type": 0,

@@ -191,7 +191,11 @@ def fetch_data(
         "Transport (trucks)": (
             iam_data.trsp_trucks if hasattr(iam_data, "trsp_trucks") else None
         ),
-        "Battery": iam_data.battery_scenarios if hasattr(iam_data, "battery_scenarios") else None,
+        "Battery": (
+            iam_data.battery_scenarios
+            if hasattr(iam_data, "battery_scenarios")
+            else None
+        ),
     }
 
     if data[sector] is not None:
@@ -203,7 +207,6 @@ def fetch_data(
 
         if sector == "Battery":
             iam_data = iam_data.rename({"chemistry": "variables"})
-
 
         return iam_data.sel(
             variables=[v for v in variable if v in iam_data.coords["variables"].values]
@@ -476,7 +479,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                         dataframe = iam_data.sel(
                             scenario=scen,
-                            year=[y for y in iam_data.coords["year"].values if y <= 2100],
+                            year=[
+                                y for y in iam_data.coords["year"].values if y <= 2100
+                            ],
                         )
 
                         if len(dataframe) > 0:
@@ -527,7 +532,14 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                 else:
                     for region in scenario["iam data"].regions:
-                        if sector in ["GMST", "CO2",] and region != "World":
+                        if (
+                            sector
+                            in [
+                                "GMST",
+                                "CO2",
+                            ]
+                            and region != "World"
+                        ):
                             continue
 
                         worksheet.cell(column=col, row=row, value=region)
@@ -539,7 +551,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                                 v for v in variables if v in iam_data.variables.values
                             ],
                             region=region,
-                            year=[y for y in iam_data.coords["year"].values if y <= 2100],
+                            year=[
+                                y for y in iam_data.coords["year"].values if y <= 2100
+                            ],
                         )
 
                         if len(dataframe) > 0:

@@ -780,11 +780,17 @@ class IAMDataCollection:
         # add NMC900 to NMC900-Si
         data.loc[data["chemistry"] == "NMC900", "chemistry"] = "NMC900-Si"
 
-        return data.groupby(
-            [
-                "scenario", "chemistry", "year",
-            ]
-        ).sum()["value"].to_xarray()
+        return (
+            data.groupby(
+                [
+                    "scenario",
+                    "chemistry",
+                    "year",
+                ]
+            )
+            .sum()["value"]
+            .to_xarray()
+        )
 
     def __get_iam_variable_labels(
         self, filepath: Path, variable: str
