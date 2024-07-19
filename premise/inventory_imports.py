@@ -240,10 +240,10 @@ def check_amount_format(database: list) -> list:
 
 def check_uncertainty_data(data, filename):
     MANDATORY_UNCERTAINTY_FIELDS = {
-        2: {"loc", "scale"}, # lognormal
-        3: {"loc", "scale"}, # normal
-        4: {"minimum", "maximum"}, # uniform
-        5: {"loc", "minimum", "maximum"}, # triangular
+        2: {"loc", "scale"},  # lognormal
+        3: {"loc", "scale"},  # normal
+        4: {"minimum", "maximum"},  # uniform
+        5: {"loc", "minimum", "maximum"},  # triangular
         6: {"loc", "minimum", "maximum"},
         7: {"minimum", "maximum"},
         8: {"loc", "scale", "shape"},
