@@ -240,10 +240,10 @@ def check_amount_format(database: list) -> list:
 
 def check_uncertainty_data(data, filename):
     MANDATORY_UNCERTAINTY_FIELDS = {
-        2: {"loc", "scale"},
-        3: {"loc", "scale"},
-        4: {"minimum", "maximum"},
-        5: {"loc", "minimum", "maximum"},
+        2: {"loc", "scale"}, # lognormal
+        3: {"loc", "scale"}, # normal
+        4: {"minimum", "maximum"}, # uniform
+        5: {"loc", "minimum", "maximum"}, # triangular
         6: {"loc", "minimum", "maximum"},
         7: {"minimum", "maximum"},
         8: {"loc", "scale", "shape"},
@@ -280,6 +280,30 @@ def check_uncertainty_data(data, filename):
                                 ],
                             ]
                         )
+
+                # if distribution is triangular, make sure that `minimum`
+                # and `maximum` are not equal and are comprising the `loc`
+                if exc["uncertainty type"] == 5:
+                    if exc["minimum"] == exc["maximum"]:
+                        rows.append(
+                            [
+                                dataset["name"][:30],
+                                exc["name"][:30],
+                                exc["uncertainty type"],
+                                "minimum and maximum are equal",
+                            ]
+                        )
+
+                    if not exc["minimum"] <= exc["loc"] <= exc["maximum"]:
+                        rows.append(
+                            [
+                                dataset["name"][:30],
+                                exc["name"][:30],
+                                exc["uncertainty type"],
+                                "loc not within minimum and maximum",
+                            ]
+                        )
+
     if len(rows) > 0:
         print(
             f"the following exchanges from {filename} are missing uncertainty information:"

@@ -1,5 +1,4 @@
 # Battery cell energy densities, in kWh/kg cell
-# Most current cell values are from https://www.nature.com/articles/s41560-023-01355-z#MOESM7
 ---
 
 NMC111:
@@ -9,12 +8,13 @@ NMC111:
      - market for battery, Li-ion, NMC111, rechargeable, prismatic
      - market for battery capacity, Li-ion, NMC111
   target:
-    2020: 0.200
-    # little to no improvement considered for 2050
-    # since this chemistry is expected to be phased out
+    # values from https://doi.org/10.3390/batteries9070379.
+    2020: 0.180
+    # max current is used for future mean
+    # according to https://doi.org/10.3390/batteries9070379.
     2050:
-      mean: 0.210
-      minimum: 0.200
+      mean: 0.200
+      minimum: 0.180
       maximum: 0.220
 
 NMC523:
@@ -23,13 +23,14 @@ NMC523:
      - market for battery, Li-ion, NMC523
      - market for battery capacity, Li-ion, NMC523
   target:
-    2020: 0.230
-    # little to no improvement considered for 2050
-    # since this chemistry is expected to be phased out
+    # values from https://doi.org/10.3390/batteries9070379.
+    2020: 0.200
+    # max current is used for future mean
+    # according to https://doi.org/10.3390/batteries9070379.
     2050:
-      mean: 0.250
-      minimum: 0.230
-      maximum: 0.250
+      mean: 0.220
+      minimum: 0.200
+      maximum: 0.240
 
 NMC622:
   ecoinvent_aliases:
@@ -38,13 +39,14 @@ NMC622:
      - market for battery, Li-ion, NMC622, rechargeable, prismatic
      - market for battery capacity, Li-ion, NMC622
   target:
+    # values from https://doi.org/10.3390/batteries9070379.
     2020: 0.240
-    # little to no improvement considered for 2050
-    # since this chemistry is expected to be phased out
+    # max current is used for future mean
+    # according to https://doi.org/10.3390/batteries9070379.
     2050:
       mean: 0.260
-      minimum: 0.250
-      maximum: 0.270
+      minimum: 0.240
+      maximum: 0.280
 
 NMC811:
   ecoinvent_aliases:
@@ -53,12 +55,14 @@ NMC811:
     - market for battery, Li-ion, NMC811, rechargeable, prismatic
     - market for battery capacity, Li-ion, NMC811
   target:
-    2020: 0.290
-    # value for 2050 from https://www.nature.com/articles/s41560-020-00748-8/figures/1
+    # values from https://doi.org/10.3390/batteries9070379.
+    2020: 0.280
+    # max current is used for future mean
+    # according to https://doi.org/10.3390/batteries9070379.
     2050:
-      mean: 0.435
-      minimum: 0.400
-      maximum: 0.450
+      mean: 0.340
+      minimum: 0.300
+      maximum: 0.360
 
 NMC955:
   ecoinvent_aliases:
@@ -66,12 +70,14 @@ NMC955:
     - market for battery, Li-ion, NMC955
     - market for battery capacity, Li-ion, NMC955
   target:
+    # values from https://doi.org/10.3390/batteries9070379.
     2020: 0.340
-    # value for 2050 from https://www.nature.com/articles/s41560-020-00748-8/figures/1
+    # max current is used for future mean
+    # according to https://doi.org/10.3390/batteries9070379.
     2050:
-      mean: 0.435
-      minimum: 0.400
-      maximum: 0.450
+      mean: 0.380
+      minimum: 0.340
+      maximum: 0.400
 
 NCA:
   ecoinvent_aliases:
@@ -80,12 +86,14 @@ NCA:
      - market for battery, Li-ion, NCA, rechargeable, prismatic
      - market for battery capacity, Li-ion, NCA
   target:
+      # values from https://doi.org/10.3390/batteries9070379.
       2020: 0.280
-    # value for 2050 from https://www.nature.com/articles/s41560-020-00748-8/figures/1
+      # max current is used for future mean
+      # according to https://doi.org/10.3390/batteries9070379.
       2050:
-        mean: 0.435
-        minimum: 0.400
-        maximum: 0.450
+        mean: 0.340
+        minimum: 0.280
+        maximum: 0.360
 
 LFP:
   ecoinvent_aliases:
@@ -94,9 +102,9 @@ LFP:
       - market for battery, Li-ion, LFP, rechargeable, prismatic
       - market for battery capacity, Li-ion, LFP
   target:
-      2020: 0.200
-      # little to no improvement considered for 2050
-      # since this chemistry is expected to be phased out
+      # values from https://doi.org/10.3390/batteries9070379.
+      2020: 0.160
+      # values from https://doi.org/10.3390/batteries9070379.
       2050:
         mean: 0.220
         minimum: 0.200
@@ -147,11 +155,12 @@ Li-S:
        - market for battery, Li-sulfur, Li-S
        - market for battery capacity, Li-sulfur, Li-S
   target:
-      2020: 0.185
+    # current value from https://doi.org/10.1021/acssuschemeng.3c00141
+      2020: 0.150
       # value for 2050 from https://www.nature.com/articles/s41560-020-00748-8/figures/1
       2050:
         mean: 0.340
-        minimum: 0.300
+        minimum: 0.185
         maximum: 0.500
 
 SiB:
@@ -160,10 +169,13 @@ SiB:
      - market for battery, Sodium-ion, SiB
      - market for battery capacity, Sodium-ion, SiB
   target:
+      # current value from https://doi.org/10.1016/j.resconrec.2023.107362
       2020: 0.120
-      # no improvement considered for 2050
+      # future values from https://doi.org/10.3390/batteries9070379.
       2050:
-        mean: 0.120
+        mean: 0.200
+        minimum: 0.160
+        maximum: 0.220
 
 BoP:
   ecoinvent_aliases:
