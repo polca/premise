@@ -1,5 +1,9 @@
 import os
-import bw2io, bw2data, bw2calc
+
+import bw2calc
+import bw2data
+import bw2io
+
 from premise import NewDatabase
 
 ei_user = os.environ["EI_USERNAME"]
@@ -10,9 +14,10 @@ key = key.encode()
 
 
 scenarios = [
-    {"model": "remind", "pathway":"SSP2-Base", "year": 2050},
-    {"model": "image", "pathway":"SSP2-RCP19", "year": 2050},
+    {"model": "remind", "pathway": "SSP2-Base", "year": 2050},
+    {"model": "image", "pathway": "SSP2-RCP19", "year": 2050},
 ]
+
 
 def test_brightway():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
@@ -45,18 +50,14 @@ def test_brightway():
                     ]
                 )
 
-                method = [
-                    m for m in bw2data.methods if "IPCC" in m[0]
-                ][0]
+                method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
 
-                lca = bw2calc.LCA(
-                    {bw2data.Database("test1").random(): 1},
-                    method
-                )
+                lca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method)
                 lca.lci()
                 lca.lcia()
                 assert isinstance(lca.score, float)
                 print(lca.score)
+
 
 def test_superstructure():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
@@ -84,18 +85,14 @@ def test_superstructure():
 
                 ndb.write_superstructure_db_to_brightway(name="super_test")
 
-                method = [
-                    m for m in bw2data.methods if "IPCC" in m[0]
-                ][0]
+                method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
 
-                lca = bw2calc.LCA(
-                    {bw2data.Database("super_test").random(): 1},
-                    method
-                )
+                lca = bw2calc.LCA({bw2data.Database("super_test").random(): 1}, method)
                 lca.lci()
                 lca.lcia()
                 assert isinstance(lca.score, float)
                 print(lca.score)
+
 
 def test_simapro_export():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
