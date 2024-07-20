@@ -1,4 +1,5 @@
 import os
+import gc
 
 import bw2calc
 import bw2data
@@ -62,6 +63,7 @@ def test_brightway():
             # destroy all objects
             del ndb
             del lca
+            gc.collect()
             delete_all_pickles()
 
 
@@ -94,6 +96,7 @@ def test_superstructure():
             # destroy all objects
             del ndb
             del lca
+            gc.collect()
             delete_all_pickles()
 
 
@@ -117,4 +120,5 @@ def test_simapro_export():
 
             # destroy all objects
             del ndb
+            gc.collect()
             delete_all_pickles()
