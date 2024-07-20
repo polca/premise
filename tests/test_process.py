@@ -5,6 +5,7 @@ import bw2data
 import bw2io
 
 from premise import NewDatabase
+from premise.utils import delete_all_pickles
 
 ei_user = os.environ["EI_USERNAME"]
 ei_pass = os.environ["EI_PASSWORD"]
@@ -61,6 +62,7 @@ def test_brightway():
             # destroy all objects
             del ndb
             del lca
+            delete_all_pickles()
 
 
 def test_superstructure():
@@ -92,6 +94,7 @@ def test_superstructure():
             # destroy all objects
             del ndb
             del lca
+            delete_all_pickles()
 
 
 def test_simapro_export():
@@ -114,4 +117,4 @@ def test_simapro_export():
 
             # destroy all objects
             del ndb
-            del lca
+            delete_all_pickles()
