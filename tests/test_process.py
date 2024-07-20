@@ -1,8 +1,11 @@
 import os
-import bw2io, bw2data
+
+import bw2data
+import bw2io
 
 ei_user = os.environ["EI_USERNAME"]
 ei_pass = os.environ["EI_PASSWORD"]
+
 
 def test_brightway():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
