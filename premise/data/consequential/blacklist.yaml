@@ -125,9 +125,9 @@
   unit: megajoule
   location: RoW
   replacement:
-      name: market for coal gas
-      reference product: coal gas
-      location: GLO
+    name: market for coal gas
+    reference product: coal gas
+    location: GLO
 
 - name: heat and power co-generation, natural gas, 1MW electrical, lean burn
   reference product: electricity, high voltage
@@ -290,3 +290,5 @@
     name: market for iron ore concentrate
     reference product: iron ore concentrate
     location: GLO
+
+
