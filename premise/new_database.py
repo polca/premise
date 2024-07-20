@@ -932,9 +932,9 @@ class NewDatabase:
                     scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 except FileNotFoundError:
                     scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
-                #if "database filepath" in scenario:
+                # if "database filepath" in scenario:
                 #    scenario = load_database(scenario)
-                #else:
+                # else:
                 #    scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 for sector in sectors:
                     if sector in scenario.get("applied functions", []):
