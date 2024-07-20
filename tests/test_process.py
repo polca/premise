@@ -1,5 +1,9 @@
 import os
-import bw2io, bw2data, bw2calc
+
+import bw2calc
+import bw2data
+import bw2io
+
 from premise import NewDatabase
 
 ei_user = os.environ["EI_USERNAME"]
@@ -10,9 +14,10 @@ key = key.encode()
 
 
 scenarios = [
-    {"model": "remind", "pathway":"SSP2-Base", "year": 2050},
-    {"model": "image", "pathway":"SSP2-RCP19", "year": 2050},
+    {"model": "remind", "pathway": "SSP2-Base", "year": 2050},
+    {"model": "image", "pathway": "SSP2-RCP19", "year": 2050},
 ]
+
 
 def test_brightway():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
@@ -58,6 +63,7 @@ def test_brightway():
             assert isinstance(lca.score, float)
             print(lca.score)
 
+
 def test_superstructure():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
         for system_model in ["cutoff", "consequential", "apos", "EN15804"]:
@@ -88,6 +94,7 @@ def test_superstructure():
             lca.lcia()
             assert isinstance(lca.score, float)
             print(lca.score)
+
 
 def test_simapro_export():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
