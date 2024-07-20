@@ -41,7 +41,7 @@ def test_brightway():
         source_db=f"ecoinvent-{ei_version}-cutoff",
         source_version=ei_version,
         key=key,
-        system_model=system_model,
+        system_model="cutoff",
         biosphere_name=f"ecoinvent-{ei_version}-biosphere",
     )
 
