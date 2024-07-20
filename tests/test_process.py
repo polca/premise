@@ -50,14 +50,9 @@ def test_brightway():
                 ]
             )
 
-            method = [
-                m for m in bw2data.methods if "IPCC" in m[0]
-            ][0]
+            method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
 
-            lca = bw2calc.LCA(
-                {bw2data.Database("test1").random(): 1},
-                method
-            )
+            lca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method)
             lca.lci()
             lca.lcia()
             assert isinstance(lca.score, float)
@@ -82,14 +77,9 @@ def test_superstructure():
 
             ndb.write_superstructure_db_to_brightway(name="super_test")
 
-            method = [
-                m for m in bw2data.methods if "IPCC" in m[0]
-            ][0]
+            method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
 
-            lca = bw2calc.LCA(
-                {bw2data.Database("super_test").random(): 1},
-                method
-            )
+            lca = bw2calc.LCA({bw2data.Database("super_test").random(): 1}, method)
             lca.lci()
             lca.lcia()
             assert isinstance(lca.score, float)
