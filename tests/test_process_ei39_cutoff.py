@@ -1,5 +1,5 @@
-import os
 import gc
+import os
 
 import bw2calc
 import bw2data
