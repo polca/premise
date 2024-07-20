@@ -63,7 +63,6 @@ def test_brightway():
             del lca
 
 
-
 def test_superstructure():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
         for system_model in ["cutoff", "consequential", "apos", "EN15804"]:
@@ -116,4 +115,3 @@ def test_simapro_export():
             # destroy all objects
             del ndb
             del lca
-
