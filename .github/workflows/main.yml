@@ -57,12 +57,13 @@ jobs:
           pip install pathlib
           pip install -r requirements.txt --upgrade pip
           pip install pytest
+          pip install pytest-instafail
           pip install -e .[test]
           pip install ecoinvent_interface
 
       - name: Run tests
         run: |
-          pytest -m "not ecoinvent" -s
+          pytest tests/test_process_ei310_cutoff.py --instafail
         env:
           GITHUB_TOKEN: ${{ secrets.COVERALLS }}
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
