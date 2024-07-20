@@ -224,7 +224,7 @@ class DirectAirCapture(BaseTransformation):
                             1
                             / self.iam_data.dac_electricity_efficiencies.sel(
                                 region=region, year=self.year
-                            ).values
+                            ).values.item()
                         )
                     else:
                         scaling_factor = float(
@@ -275,7 +275,7 @@ class DirectAirCapture(BaseTransformation):
                             1
                             / self.iam_data.dac_heat_efficiencies.sel(
                                 region=region, year=self.year
-                            ).values
+                            ).values.item()
                         )
                     else:
                         scaling_factor = float(
