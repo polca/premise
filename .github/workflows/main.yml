@@ -63,7 +63,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/test_process_ei310_cutoff.py --instafail
+          pytest tests/test_process_ei310_cutoff.py
         env:
           GITHUB_TOKEN: ${{ secrets.COVERALLS }}
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
