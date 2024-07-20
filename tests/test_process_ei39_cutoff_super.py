@@ -14,7 +14,7 @@ key = os.environ["IAM_FILES_KEY"]
 # convert to bytes
 key = key.encode()
 
-ei_version = "3.9.1"
+ei_version = "3.10"
 system_model = "cutoff"
 
 
