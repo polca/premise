@@ -988,7 +988,12 @@ def prepare_db_for_export(
 
 
 def _prepare_database(
-    scenario, db_name, original_database, keep_uncertainty_data, biosphere_name, ei_version
+    scenario,
+    db_name,
+    original_database,
+    keep_uncertainty_data,
+    biosphere_name,
+    ei_version,
 ):
 
     scenario["database"] = prepare_db_for_export(

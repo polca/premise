@@ -152,7 +152,6 @@ class BaseDatasetValidator:
         db_name=None,
         keep_uncertainty_data=False,
         biosphere_name=None,
-
     ):
         self.original_database = original_database
         self.database = database
@@ -463,7 +462,6 @@ class BaseDatasetValidator:
                     # corresponds to biosphere_name
                     if exc["input"][0] != self.biosphere_name:
                         exc["input"] = (self.biosphere_name, exc["input"][1])
-
 
     def remove_unused_fields(self):
         """
