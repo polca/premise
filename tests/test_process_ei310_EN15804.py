@@ -38,7 +38,7 @@ def test_brightway():
 
     ndb = NewDatabase(
         scenarios=scenarios,
-        source_db=f"ecoinvent-{ei_version}-cutoff",
+        source_db=f"ecoinvent-{ei_version}-{system_model}",
         source_version=ei_version,
         key=key,
         system_model="cutoff",
