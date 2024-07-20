@@ -926,10 +926,16 @@ class NewDatabase:
         ) as pbar_outer:
             for scenario in self.scenarios:
                 # add database to scenarios
-                if "database filepath" in scenario:
+                try:
                     scenario = load_database(scenario)
-                else:
+                except KeyError:
                     scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+                except FileNotFoundError:
+                    scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+                #if "database filepath" in scenario:
+                #    scenario = load_database(scenario)
+                #else:
+                #    scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 for sector in sectors:
                     if sector in scenario.get("applied functions", []):
                         print(
@@ -981,6 +987,7 @@ class NewDatabase:
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
                 biosphere_name=self.biosphere_name,
+                ei_version=self.version,
             )
 
         list_scenarios = create_scenario_list(self.scenarios)
@@ -1067,6 +1074,7 @@ class NewDatabase:
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
                 biosphere_name=self.biosphere_name,
+                ei_version=self.version,
             )
             write_brightway_database(
                 scenario["database"],
@@ -1136,6 +1144,7 @@ class NewDatabase:
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
                 biosphere_name=self.biosphere_name,
+                ei_version=self.version,
             )
             Export(scenario, filepath[s], self.version).export_db_to_matrices()
 
@@ -1171,6 +1180,7 @@ class NewDatabase:
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
                 biosphere_name=self.biosphere_name,
+                ei_version=self.version,
             )
             export = Export(scenario, filepath, self.version)
             export.export_db_to_simapro()
@@ -1212,6 +1222,7 @@ class NewDatabase:
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
                 biosphere_name=self.biosphere_name,
+                ei_version=self.version,
             )
             Export(scenario, filepath, self.version).export_db_to_simapro(
                 olca_compartments=True
@@ -1247,6 +1258,7 @@ class NewDatabase:
                 original_database=self.database,
                 keep_uncertainty_data=self.keep_uncertainty_data,
                 biosphere_name=self.biosphere_name,
+                ei_version=self.version,
             )
 
         list_scenarios = create_scenario_list(self.scenarios)

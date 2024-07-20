@@ -705,10 +705,13 @@ class BaseInventoryImport:
                                     y["delete"] = True
                             y["name"] = new_key[0]
 
-                    y["input"] = (
-                        "biosphere3",
-                        self.biosphere_dict.get(key),
-                    )
+                    try:
+                        y["input"] = (
+                            "biosphere3",
+                            self.biosphere_dict[key],
+                        )
+                    except KeyError:
+                        print(f"Could not find a biosphere flow for {key} in {self.path.name}. You need to fix this.")
             x["exchanges"] = [y for y in x["exchanges"] if "delete" not in y]
 
     def lower_case_technosphere_exchanges(self) -> None:

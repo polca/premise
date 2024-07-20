@@ -51,7 +51,7 @@ def _update_dac(scenario, version, system_model):
         scenario["cache"] = dac.cache
         scenario["index"] = dac.index
     else:
-        print("No DAC markets found in IAM data. Skipping.")
+        print("No DAC information found in IAM data. Skipping.")
 
     return scenario
 

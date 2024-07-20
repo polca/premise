@@ -47,7 +47,9 @@ def _update_battery(scenario, version, system_model):
     )
 
     battery.adjust_battery_mass()
-    battery.adjust_battery_market_shares()
+
+    if battery.iam_data.battery_scenarios is not None:
+        battery.adjust_battery_market_shares()
 
     scenario["database"] = battery.database
     scenario["index"] = battery.index

@@ -252,7 +252,7 @@ def _update_electricity(
     if scenario["iam data"].electricity_markets is not None:
         electricity.update_electricity_markets()
     else:
-        print("No electricity markets found in IAM data. Skipping.")
+        print("No electricity information found in IAM data. Skipping.")
 
     if scenario["iam data"].electricity_efficiencies is not None:
         electricity.update_electricity_efficiency()
