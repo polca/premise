@@ -58,6 +58,11 @@ def test_brightway():
             assert isinstance(lca.score, float)
             print(lca.score)
 
+            # destroy all objects
+            del ndb
+            del lca
+
+
 
 def test_superstructure():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
@@ -85,6 +90,10 @@ def test_superstructure():
             assert isinstance(lca.score, float)
             print(lca.score)
 
+            # destroy all objects
+            del ndb
+            del lca
+
 
 def test_simapro_export():
     for ei_version in ["3.8", "3.9.1", "3.10"]:
@@ -103,3 +112,8 @@ def test_simapro_export():
             ndb.update()
 
             ndb.write_db_to_simapro()
+
+            # destroy all objects
+            del ndb
+            del lca
+
