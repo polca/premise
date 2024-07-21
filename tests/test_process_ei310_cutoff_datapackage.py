@@ -1,9 +1,9 @@
 import gc
 import os
-import pytest
 
 import bw2data
 import bw2io
+import pytest
 from dotenv import load_dotenv
 
 from premise import NewDatabase, clear_inventory_cache
