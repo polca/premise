@@ -2,7 +2,6 @@ import gc
 import os
 import pytest
 
-import bw2calc
 import bw2data
 import bw2io
 from dotenv import load_dotenv
@@ -11,7 +10,6 @@ from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
 
 load_dotenv()
-
 
 ei_user = os.environ["EI_USERNAME"]
 ei_pass = os.environ["EI_PASSWORD"]
@@ -22,15 +20,14 @@ key = key.encode()
 ei_version = "3.10"
 system_model = "cutoff"
 
-
 scenarios = [
     {"model": "remind", "pathway": "SSP2-Base", "year": 2050},
     {"model": "image", "pathway": "SSP2-RCP19", "year": 2050},
 ]
 
+
 @pytest.mark.slow
 def test_brightway():
-
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
     clear_inventory_cache()
 
