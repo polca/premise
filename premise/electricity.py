@@ -1459,7 +1459,7 @@ class Electricity(BaseTransformation):
                 new_eff = np.clip(new_eff, 0.1, 0.27)
 
                 # We only update the efficiency if it is higher than the current one.
-                if float(new_eff) > float(current_eff):
+                if new_eff.sum() > current_eff:
                     exc["amount"] *= float(current_eff / new_eff)
 
                     dataset["comment"] = (

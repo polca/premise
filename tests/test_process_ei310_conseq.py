@@ -1,12 +1,16 @@
 import gc
 import os
+from dotenv import load_dotenv
 
 import bw2calc
 import bw2data
 import bw2io
 
-from premise import NewDatabase
+from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
+
+load_dotenv()
+
 
 ei_user = os.environ["EI_USERNAME"]
 ei_pass = os.environ["EI_PASSWORD"]
@@ -28,6 +32,8 @@ def test_brightway():
 
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
 
+    clear_inventory_cache()
+
     if f"ecoinvent-{ei_version}-{system_model}" not in bw2data.databases:
         bw2io.import_ecoinvent_release(
             version=ei_version,
@@ -35,6 +41,7 @@ def test_brightway():
             username=ei_user,
             password=ei_pass,
         )
+
 
     ndb = NewDatabase(
         scenarios=scenarios,
