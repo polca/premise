@@ -27,7 +27,7 @@ scenarios = [
 ]
 
 
-@pytest.mark.slow
+
 def test_brightway():
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
     clear_inventory_cache()

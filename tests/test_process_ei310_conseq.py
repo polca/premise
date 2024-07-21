@@ -1,5 +1,6 @@
 import gc
 import os
+import pytest
 
 import bw2calc
 import bw2data
@@ -27,7 +28,7 @@ scenarios = [
     {"model": "image", "pathway": "SSP2-RCP19", "year": 2050},
 ]
 
-
+@pytest.mark.slow
 def test_brightway():
 
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")

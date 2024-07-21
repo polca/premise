@@ -59,7 +59,6 @@ jobs:
           pip install pytest
           pip install pytest-instafail
           pip install -e .[test]
-          pip install ecoinvent_interface
 
       - name: Run tests
         run: |
@@ -161,7 +160,6 @@ jobs:
       matrix:
         os: ["ubuntu-latest"]
         python-version: ["3.11",]
-        solver: ["classic", "libmamba"]
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
@@ -176,10 +174,8 @@ jobs:
       - name: Pull distribution 📦 from Anaconda and test it if master branch
 
         run: |
-          conda install -c romainsacchi premise
+          conda install romainsacchi::premise
           conda update premise
-          conda install pytest
           conda install bottleneck
-          pytest -m "not ecoinvent"
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
