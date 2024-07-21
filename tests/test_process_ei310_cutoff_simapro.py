@@ -53,18 +53,12 @@ def test_brightway():
 
     ndb.update()
 
-    ndb.write_superstructure_db_to_brightway("superstructure")
+    ndb.write_db_to_simapro(filepath="simapro_export.csv")
 
-    method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
-
-    lca = bw2calc.LCA({bw2data.Database("superstructure").random(): 1}, method)
-    lca.lci()
-    lca.lcia()
-    assert isinstance(lca.score, float)
-    print(lca.score)
+    # check existence of files
+    assert os.path.exists("simapro_export.csv")
 
     # destroy all objects
     del ndb
-    del lca
     gc.collect()
     delete_all_pickles()

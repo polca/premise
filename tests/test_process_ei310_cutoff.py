@@ -5,6 +5,7 @@ import bw2calc
 import bw2data
 import bw2io
 from dotenv import load_dotenv
+import pytest
 
 from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
@@ -27,7 +28,7 @@ scenarios = [
     {"model": "image", "pathway": "SSP2-RCP19", "year": 2050},
 ]
 
-
+@pytest.mark.slow
 def test_brightway():
 
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
