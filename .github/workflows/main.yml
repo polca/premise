@@ -167,7 +167,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
           channels: conda-forge,cmutel,konstantinstadler,haasad,pascallesage,romainsacchi
           allow-softlinks: true
-          channel-priority: strict
           auto-update-conda: true
           activate-environment: test
 
