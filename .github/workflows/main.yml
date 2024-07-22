@@ -160,6 +160,7 @@ jobs:
       matrix:
         os: ["ubuntu-latest"]
         python-version: ["3.11",]
+        solver: ["classic"]
     steps:
       - uses: actions/checkout@v4
       - uses: conda-incubator/setup-miniconda@v3
@@ -169,6 +170,7 @@ jobs:
           allow-softlinks: true
           auto-update-conda: true
           activate-environment: test
+          conda-solver: ${{ matrix.solver }}
 
       - name: Pull distribution 📦 from Anaconda and test it if master branch
 
