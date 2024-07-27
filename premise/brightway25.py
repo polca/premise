@@ -6,6 +6,7 @@ import itertools
 from copy import copy
 
 from bw2data import Database, databases
+from bw2data.backends.iotable.backend import IOTableBackend
 from bw2io.importers.base_lci import LCIImporter
 from wurst.linking import change_db_name, check_internal_linking, link_internal
 
@@ -92,7 +93,8 @@ class BW25Importer(LCIImporter):
                             "flip": False,
                         }
 
-        Database(self.db_name).write_exchanges(
+        db = IOTableBackend(name=self.db_name)
+        db.write_exchanges(
             technosphere_generator(self.data, lookup),
             biosphere_generator(self.data, lookup),
             list(dependents),
