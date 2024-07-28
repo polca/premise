@@ -980,7 +980,13 @@ class NewDatabase:
             )
 
         for scenario in self.scenarios:
-            scenario = load_database(scenario)
+            try:
+                scenario = load_database(scenario)
+            except KeyError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            except FileNotFoundError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+
             _prepare_database(
                 scenario=scenario,
                 db_name=name,
@@ -1066,7 +1072,13 @@ class NewDatabase:
         print("Write new database(s) to Brightway.")
 
         for s, scenario in enumerate(self.scenarios):
-            scenario = load_database(scenario)
+            try:
+                scenario = load_database(scenario)
+            except KeyError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            except FileNotFoundError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+
             _prepare_database(
                 scenario=scenario,
                 db_name=name[s],
@@ -1135,7 +1147,13 @@ class NewDatabase:
         print("Write new database(s) to matrix.")
 
         for s, scenario in enumerate(self.scenarios):
-            scenario = load_database(scenario)
+            try:
+                scenario = load_database(scenario)
+            except KeyError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            except FileNotFoundError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+
             _prepare_database(
                 scenario=scenario,
                 db_name="database",
@@ -1170,7 +1188,13 @@ class NewDatabase:
         print("Write Simapro import file(s).")
 
         for scenario in self.scenarios:
-            scenario = load_database(scenario)
+            try:
+                scenario = load_database(scenario)
+            except KeyError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            except FileNotFoundError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+
             _prepare_database(
                 scenario=scenario,
                 db_name="database",
@@ -1211,7 +1235,13 @@ class NewDatabase:
         print("Write Simapro import file(s) for OpenLCA.")
 
         for scenario in self.scenarios:
-            scenario = load_database(scenario)
+            try:
+                scenario = load_database(scenario)
+            except KeyError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            except FileNotFoundError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+
             _prepare_database(
                 scenario=scenario,
                 db_name="database",
@@ -1246,7 +1276,13 @@ class NewDatabase:
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
         for scenario in self.scenarios:
-            scenario = load_database(scenario)
+            try:
+                scenario = load_database(scenario)
+            except KeyError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            except FileNotFoundError:
+                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+
             _prepare_database(
                 scenario=scenario,
                 db_name=name,
