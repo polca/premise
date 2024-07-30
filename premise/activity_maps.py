@@ -22,6 +22,11 @@ GAINS_MAPPING = (
     DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
 )
 HEAT_TECHS = VARIABLES_DIR / "heat_variables.yaml"
+PASSENGER_CARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
+TWO_WHEELERS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
+BUSES = VARIABLES_DIR / "transport_bus_variables.yaml"
+TRUCKS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
+TRAINS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
 
 
 def get_mapping(filepath: Path, var: str, model: str = None) -> dict:

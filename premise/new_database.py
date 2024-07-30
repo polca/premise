@@ -179,6 +179,7 @@ FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
 FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
+FILEPATH_RAIL_FREIGHT = INVENTORY_DIR / "lci-rail-freight.xlsx"
 
 config = load_constants()
 
@@ -778,6 +779,7 @@ class NewDatabase:
             (FILEPATH_TRUCKS, "3.7"),
             (FILEPATH_BUSES, "3.7"),
             (FILEPATH_PASS_CARS, "3.7"),
+            (FILEPATH_RAIL_FREIGHT, "3.9"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -884,7 +886,7 @@ class NewDatabase:
             },
             "two_wheelers": {
                 "func": _update_vehicles,
-                "args": ("two wheeler", self.version, self.system_model),
+                "args": ("two-wheeler", self.version, self.system_model),
             },
             "trucks": {
                 "func": _update_vehicles,
@@ -893,6 +895,10 @@ class NewDatabase:
             "buses": {
                 "func": _update_vehicles,
                 "args": ("bus", self.version, self.system_model),
+            },
+            "trains": {
+                "func": _update_vehicles,
+                "args": ("train", self.version, self.system_model),
             },
             "external": {
                 "func": _update_external_scenarios,
