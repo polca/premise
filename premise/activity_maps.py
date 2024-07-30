@@ -269,6 +269,76 @@ class InventorySet:
         """
         return self.generate_sets_from_filters(self.materials_filters)
 
+    def generate_transport_map(self, transport_type: str) -> dict:
+        """
+        Filter ecoinvent processes related to transport.
+        Rerurns a dictionary with transport type as keys (see below) and
+        a set of related ecoinvent activities' names as values.
+        """
+        mapping = {}
+        if transport_type == "car":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(
+                    filepath=PASSENGER_CARS, var="ecoinvent_aliases", model=self.model
+                )
+            )
+        elif transport_type == "two-wheeler":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(
+                    filepath=TWO_WHEELERS, var="ecoinvent_aliases", model=self.model
+                )
+            )
+        elif transport_type == "bus":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=BUSES, var="ecoinvent_aliases", model=self.model)
+            )
+        elif transport_type == "truck":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=TRUCKS, var="ecoinvent_aliases", model=self.model)
+            )
+        elif transport_type == "train":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=TRAINS, var="ecoinvent_aliases", model=self.model)
+            )
+
+        # remove empty values
+        mapping = {key: val for key, val in mapping.items() if len(val) > 0}
+
+        return mapping
+
+    def generate_vehicle_fuel_map(self, transport_type: str) -> dict:
+        """
+        Filter ecoinvent processes related to transport fuels.
+        Rerurns a dictionary with transport type as keys (see below) and
+        a set of related ecoinvent activities' names as values.
+        """
+        mapping = {}
+        if transport_type == "car":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=PASSENGER_CARS, var="ecoinvent_fuel_aliases")
+            )
+        elif transport_type == "two-wheeler":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=TWO_WHEELERS, var="ecoinvent_fuel_aliases")
+            )
+        elif transport_type == "bus":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=BUSES, var="ecoinvent_fuel_aliases")
+            )
+        elif transport_type == "truck":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=TRUCKS, var="ecoinvent_fuel_aliases")
+            )
+        elif transport_type == "train":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=TRAINS, var="ecoinvent_fuel_aliases")
+            )
+
+        # remove empty values
+        mapping = {key: val for key, val in mapping.items() if len(val) > 0}
+
+        return mapping
+
     def generate_sets_from_filters(self, filtr: dict, database=None) -> dict:
         """
         Generate a dictionary with sets of activity names for
@@ -313,8 +383,8 @@ class InventorySet:
 
         # check if all keys have values
         # if not, print warning
-        # for key, val in mapping.items():
-        #   if not val:
-        #       print(f"Warning: No activities found for {key} -- revise mapping.")
+        for key, val in mapping.items():
+          if not val:
+              print(f"Warning: No activities found for {key} -- revise mapping.")
 
         return mapping

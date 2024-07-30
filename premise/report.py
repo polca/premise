@@ -233,15 +233,15 @@ def fetch_data(
             if hasattr(iam_data, "railfreight_efficiencies")
             else None
         ),
+        "Battery": (
+            iam_data.battery_scenarios
+            if hasattr(iam_data, "battery_scenarios")
+            else None
+        ),
     }
 
     if data[sector] is not None:
         iam_data = data[sector]
-
-        if any(x in sector for x in ["car", "bus", "truck"]):
-            iam_data = iam_data.sum(dim="size")
-            iam_data = iam_data.rename({"powertrain": "variables"}).T
-
         if sector == "Battery":
             iam_data = iam_data.rename({"chemistry": "variables"})
 
@@ -473,11 +473,16 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
         for scenario_idx, scenario in enumerate(scenarios):
             if (scenario["model"], scenario["pathway"]) not in scenario_list:
+
+
                 iam_data = fetch_data(
                     iam_data=scenario["iam data"],
                     sector=sector,
                     variable=variables,
                 )
+
+                if iam_data is None:
+                    continue
 
                 if "CCS" in sector and iam_data is not None:
                     iam_data *= 100

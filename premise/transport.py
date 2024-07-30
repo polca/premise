@@ -203,7 +203,12 @@ def create_fleet_vehicles(
                 if indiv_km > 0:
                     indiv_share = (indiv_km / total_km).values.item(0)
 
-                    name = mapping[vehicle]
+                    try:
+                        name = mapping[vehicle]
+                    except KeyError:
+                        print(mapping)
+                        name = vehicle
+
                     if isinstance(name, set):
                         # check if length of set is 1
                         if len(name) == 1:
@@ -520,6 +525,9 @@ class Transport(BaseTransformation):
             data = self.iam_data.two_wheelers_efficiencies
         else:
             raise ValueError("Unknown vehicle type.")
+
+        if data is None:
+            return dataset
 
         variable = self.rev_map[dataset["name"]]
 
