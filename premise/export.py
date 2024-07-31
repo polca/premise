@@ -1798,7 +1798,9 @@ class Export:
             print(x)
 
         if len(self.unmatched_category_flows) > 0:
-            print(f"{len(self.unmatched_category_flows)} unmatched flow categories. Check unlinked.log.")
+            print(
+                f"{len(self.unmatched_category_flows)} unmatched flow categories. Check unlinked.log."
+            )
             # save the list of unmatched flow to unlinked.log
             with open("unlinked.log", "a") as f:
                 for item in self.unmatched_category_flows:
