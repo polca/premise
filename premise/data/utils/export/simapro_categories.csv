@@ -14665,3 +14665,57 @@ zucchini production,zucchini,material,Agricultural\Plant production\Vegetables\T
 "transport, bicycle, electric (<25 km/h)","transport, bicycle, electric (<25 km/h)",transport,Road\Transformation
 "bicycle, electric (<45 km/h)","bicycle, electric (<45 km/h)",transport,Road\Transformation\Infrastructure
 "transport, bicycle, electric (<45 km/h)","transport, bicycle, electric (<45 km/h)",transport,Road\Transformation
+'coating, drying, optical lithography','gaas wafer with resist patterned',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'electroplating','gaas wafer with resist and gold particles',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'wet etching','gaas wafer with gold particles',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'metal organic vapor phase epitaxy (movpe)','gaas wafer with nanowires',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'epitaxial lift-off (elo)','gaas wafer - re-polished for reuse',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'polycrystalline gaas boule production','polycrystalline gaas boule',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'7n gallium production','7n gallium',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'7n arsenic production','7n arsenic',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'single-crystal gaas boule production','single-crystal gaas boule',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'gaas ingot production - x-ray, cropping, grinding notch','single-crystal gaas ingot',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'diamond saw production','diamond saw',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'synthetic diamond production','synthetic diamond',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'raw gaas wafer production','raw gaas wafer',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'sawing slurry production','sawing slurry',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'etched gaas wafer production - cleaning, etching','etched gaas wafer',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'pre-polished gaas wafer production','pre-polished gaas wafer',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'double-polished gaas wafer production - chemical, mechanical polishing (cmp)','double-polished gaas wafer',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'cmp slurry production','cmp slurry',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'gaas wafer production - cleaning, quality control, packing','gaas wafer',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'trimethyl aluminum 99% pure production','trimethyl aluminum 99% pure',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'methyl aluminum sesquichloride production','methyl aluminum sesquichloride',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'trimethyl gallium 99% pure production','trimethyl gallium 99% pure',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'gallium chloride production','gallium chloride',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'photovoltaic installation, 0.28kwp, gaas','photovoltaic installation, gaas',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'electricity production, photovoltaic, 0.28kwp, gaas','electricity production, photovoltaic, 0.28kwp, gaas',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite wafer production','perovskite wafer',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite wafer packaging','perovskite wafer, packaged',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite wafer transport','perovskite wafer, transported',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite wafer cleaning','perovskite wafer, cleaned',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'pecvd of thin film layer, for perovskite','cell, perovskite, to sputter',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'sputter process 1, perovskite cell','perovskite cell, sputtered 1',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'sputter process 2, perovskite cell','perovskite cell, sputtered 2',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'spiro-ometad deposition of perovskite cell','spiro-ometad deposited perovskite cell',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite cell deposition','deposited perovskite cell',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite cell curing 1','cured perovskite cell 1',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite cell zinc oxide deposition','zinc oxide deposited perovskite cell',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'sputter process 3, perovskite cell','perovskite cell, sputtered 3',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite cell contact formation','metallized perovskite cell',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite cell curing 2','cured perovskite cell 2',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'photovoltaic cell production, perovskite','photovoltaic cell, perovskite',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'perovskite module assembly','assembled perovskite cell',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'photovoltaic panel production, 0.5kwp, perovskite','photovoltaic panel, perovskite',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'electricity production, photovoltaic, 0.5kwp, perovskite-on-silicon tandem','electricity production, photovoltaic, 0.5kwp, perovskite-on-silicon tandem',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'exhaust abatement, for perovskite','abated exhaust',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'tray cleaning, for perovskite','tray cleaning',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'ultrapure water system activity, for perovskite','ultra pure water',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'inhouse waste water treatment, for perovskite production','waste water',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'process cooling, water, for perovskite','cooling water, conditioned',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'process cooling, water, for perovskite','cooling water, used',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'air compressor activity, for perovskite','compressed air, 14 bar, low efficiency',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'process exhaust ventilators, general, for perovskite production','exhaust, general',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'process exhaust ventilators, acidic, for perovskite production','exhaust, acidic',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+'process exhaust ventilators, caustic, for perovskite production','exhaust, caustic',energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+
