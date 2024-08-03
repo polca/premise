@@ -414,6 +414,8 @@ The sources for these efficiencies are given in the inventory file LCI_PV_:
 
 .. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
 
+And the efficiency values are stored in the file premise/data/renewables/efficiency_solar_PV.csv.
+
 Given a scenario year, *premise* iterates through the different PV panel installation
 datasets to update their efficiency accordingly.
 To do so, the required surface of panel (in m2) per kW of capacity is

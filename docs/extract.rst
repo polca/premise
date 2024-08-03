@@ -486,6 +486,33 @@ being calculated as:
 Note that commercial PV mix datasets provide electricity at high voltage, unlike residential
 PV mix datasets, which supply at low voltage only.
 
+.. note:: 
+
+    These *current* production mixes are not modified over time.
+    This simplification is made because the data is not available for the future.
+    However, the efficiency of the panels is adjusted to reflect expected improvements (see Photovoltaics panels under Transform).
+
+Emerging technologies for photovoltaic panels are also imported, namely:
+
+* Gallium Arsenide (GaAs) panels, with a conversion efficiency of 28%, from Pallas_ et al., 2020.
+* Perovskite-on-silicon tandem panels, with a conversion efficiency of 25%, from Roffeis_ et al., 2022.
+
+They are available in the following locations:
+
+ ============================================================================================ ===========
+  Emerging PV technologies                                                                     location
+ ============================================================================================ ===========
+  electricity production, photovoltaic, 0.28kWp, GaAs                                          GLO
+  electricity production, photovoltaic, 0.5kWp, perovskite-on-silicon tandem                   RER
+ ============================================================================================ ===========
+
+.. _Pallas: https://doi.org/10.1007/s11367-020-01791-z
+.. _Roffeis: https://doi.org/10.1039/D2SE90051C
+
+.. note::
+
+    These two technologies are not included in the current country-specific production mix datasets.
+
 Geothermal
 **********
 
@@ -1073,25 +1100,13 @@ here: LCItwowheelers_.
   transport, Bicycle, electric (<25 km/h)           all IAM regions
   transport, Bicycle, electric (<45 km/h)           all IAM regions
   transport, Bicycle, electric, cargo bike          all IAM regions
-  transport, Moped, gasoline, <4kW, EURO-3          all IAM regions
-  transport, Moped, gasoline, <4kW, EURO-4          all IAM regions
   transport, Moped, gasoline, <4kW, EURO-5          all IAM regions
-  transport, Scooter, gasoline, <4kW, EURO-3        all IAM regions
-  transport, Scooter, gasoline, <4kW, EURO-4        all IAM regions
   transport, Scooter, gasoline, <4kW, EURO-5        all IAM regions
-  transport, Scooter, gasoline, 4-11kW, EURO-3      all IAM regions
-  transport, Scooter, gasoline, 4-11kW, EURO-4      all IAM regions
   transport, Scooter, gasoline, 4-11kW, EURO-5      all IAM regions
   transport, Scooter, electric, <4kW                all IAM regions
   transport, Scooter, electric, 4-11kW              all IAM regions
-  transport, Motorbike, gasoline, 4-11kW, EURO-3    all IAM regions
-  transport, Motorbike, gasoline, 4-11kW, EURO-4    all IAM regions
   transport, Motorbike, gasoline, 4-11kW, EURO-5    all IAM regions
-  transport, Motorbike, gasoline, 11-35kW, EURO-3   all IAM regions
-  transport, Motorbike, gasoline, 11-35kW, EURO-4   all IAM regions
   transport, Motorbike, gasoline, 11-35kW, EURO-5   all IAM regions
-  transport, Motorbike, gasoline, >35kW, EURO-3     all IAM regions
-  transport, Motorbike, gasoline, >35kW, EURO-4     all IAM regions
   transport, Motorbike, gasoline, >35kW, EURO-5     all IAM regions
   transport, Motorbike, electric, <4kW              all IAM regions
   transport, Motorbike, electric, 4-11kW            all IAM regions
@@ -1100,7 +1115,6 @@ here: LCItwowheelers_.
  ================================================= ==================
 
 These inventories do not supply inputs to other activities in the LCI database.
-As such, they are optional.
 
 
 Passenger cars
@@ -1111,277 +1125,96 @@ The following datasets for passenger cars are imported.
  =============================================================================== ==================
   Passenger car datasets                                                          location
  =============================================================================== ==================
-  transport, passenger car, gasoline, Large, EURO-2                               all IAM regions
-  transport, passenger car, gasoline, Large, EURO-3                               all IAM regions
-  transport, passenger car, gasoline, Large, EURO-4                               all IAM regions
-  transport, passenger car, gasoline, Large, EURO-6ab                             all IAM regions
-  transport, passenger car, gasoline, Large, EURO-6d-TEMP                         all IAM regions
-  transport, passenger car, gasoline, Large, EURO-6d                              all IAM regions
-  transport, passenger car, diesel, Large, EURO-2                                 all IAM regions
-  transport, passenger car, diesel, Large, EURO-3                                 all IAM regions
-  transport, passenger car, diesel, Large, EURO-4                                 all IAM regions
-  transport, passenger car, diesel, Large, EURO-6ab                               all IAM regions
-  transport, passenger car, diesel, Large, EURO-6d-TEMP                           all IAM regions
-  transport, passenger car, diesel, Large, EURO-6d                                all IAM regions
-  transport, passenger car, compressed gas, Large, EURO-2                         all IAM regions
-  transport, passenger car, compressed gas, Large, EURO-3                         all IAM regions
-  transport, passenger car, compressed gas, Large, EURO-4                         all IAM regions
-  transport, passenger car, compressed gas, Large, EURO-6ab                       all IAM regions
-  transport, passenger car, compressed gas, Large, EURO-6d-TEMP                   all IAM regions
-  transport, passenger car, compressed gas, Large, EURO-6d                        all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large, EURO-6ab               all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large, EURO-6d-TEMP           all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large, EURO-6d                all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large, EURO-6ab                 all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large, EURO-6d-TEMP             all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large, EURO-6d                  all IAM regions
+  transport, passenger car, gasoline, Large                                       all IAM regions
+  transport, passenger car, diesel, Large                                         all IAM regions
+  transport, passenger car, compressed gas, Large                                 all IAM regions
+  transport, passenger car, plugin gasoline hybrid, Large                         all IAM regions
+  transport, passenger car, plugin diesel hybrid, Large                           all IAM regions
   transport, passenger car, fuel cell electric, Large                             all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Large              all IAM regions
-  transport, passenger car, gasoline hybrid, Large, EURO-6ab                      all IAM regions
-  transport, passenger car, gasoline hybrid, Large, EURO-6d-TEMP                  all IAM regions
-  transport, passenger car, gasoline hybrid, Large, EURO-6d                       all IAM regions
-  transport, passenger car, diesel hybrid, Large, EURO-6ab                        all IAM regions
-  transport, passenger car, diesel hybrid, Large, EURO-6d-TEMP                    all IAM regions
-  transport, passenger car, diesel hybrid, Large, EURO-6d                         all IAM regions
-  transport, passenger car, gasoline, Large SUV, EURO-2                           all IAM regions
-  transport, passenger car, gasoline, Large SUV, EURO-3                           all IAM regions
-  transport, passenger car, gasoline, Large SUV, EURO-4                           all IAM regions
-  transport, passenger car, gasoline, Large SUV, EURO-6ab                         all IAM regions
-  transport, passenger car, gasoline, Large SUV, EURO-6d-TEMP                     all IAM regions
-  transport, passenger car, gasoline, Large SUV, EURO-6d                          all IAM regions
-  transport, passenger car, diesel, Large SUV, EURO-2                             all IAM regions
-  transport, passenger car, diesel, Large SUV, EURO-3                             all IAM regions
-  transport, passenger car, diesel, Large SUV, EURO-4                             all IAM regions
-  transport, passenger car, diesel, Large SUV, EURO-6ab                           all IAM regions
-  transport, passenger car, diesel, Large SUV, EURO-6d-TEMP                       all IAM regions
-  transport, passenger car, diesel, Large SUV, EURO-6d                            all IAM regions
-  transport, passenger car, compressed gas, Large SUV, EURO-2                     all IAM regions
-  transport, passenger car, compressed gas, Large SUV, EURO-3                     all IAM regions
-  transport, passenger car, compressed gas, Large SUV, EURO-4                     all IAM regions
-  transport, passenger car, compressed gas, Large SUV, EURO-6ab                   all IAM regions
-  transport, passenger car, compressed gas, Large SUV, EURO-6d-TEMP               all IAM regions
-  transport, passenger car, compressed gas, Large SUV, EURO-6d                    all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large SUV, EURO-6ab           all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large SUV, EURO-6d-TEMP       all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large SUV, EURO-6d            all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large SUV, EURO-6ab             all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large SUV, EURO-6d-TEMP         all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large SUV, EURO-6d              all IAM regions
+  transport, passenger car, battery electric Large                                all IAM regions
+  transport, passenger car, gasoline hybrid, Large                                all IAM regions
+  transport, passenger car, diesel hybrid, Large                                  all IAM regions
+  transport, passenger car, gasoline, Large SUV                                   all IAM regions
+  transport, passenger car, diesel, Large SUV                                     all IAM regions
+  transport, passenger car, compressed gas, Large SUV                             all IAM regions
+  transport, passenger car, plugin gasoline hybrid, Large SUV                     all IAM regions
+  transport, passenger car, plugin diesel hybrid, Large SUV                       all IAM regions
   transport, passenger car, fuel cell electric, Large SUV                         all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Large SUV          all IAM regions
-  transport, passenger car, gasoline hybrid, Large SUV, EURO-6ab                  all IAM regions
-  transport, passenger car, gasoline hybrid, Large SUV, EURO-6d-TEMP              all IAM regions
-  transport, passenger car, gasoline hybrid, Large SUV, EURO-6d                   all IAM regions
-  transport, passenger car, diesel hybrid, Large SUV, EURO-6ab                    all IAM regions
-  transport, passenger car, diesel hybrid, Large SUV, EURO-6d-TEMP                all IAM regions
-  transport, passenger car, diesel hybrid, Large SUV, EURO-6d                     all IAM regions
-  transport, passenger car, gasoline, Lower medium, EURO-2                        all IAM regions
-  transport, passenger car, gasoline, Lower medium, EURO-3                        all IAM regions
-  transport, passenger car, gasoline, Lower medium, EURO-4                        all IAM regions
-  transport, passenger car, gasoline, Lower medium, EURO-6ab                      all IAM regions
-  transport, passenger car, gasoline, Lower medium, EURO-6d-TEMP                  all IAM regions
-  transport, passenger car, gasoline, Lower medium, EURO-6d                       all IAM regions
-  transport, passenger car, diesel, Lower medium, EURO-2                          all IAM regions
-  transport, passenger car, diesel, Lower medium, EURO-3                          all IAM regions
-  transport, passenger car, diesel, Lower medium, EURO-4                          all IAM regions
-  transport, passenger car, diesel, Lower medium, EURO-6ab                        all IAM regions
-  transport, passenger car, diesel, Lower medium, EURO-6d-TEMP                    all IAM regions
-  transport, passenger car, diesel, Lower medium, EURO-6d                         all IAM regions
-  transport, passenger car, compressed gas, Lower medium, EURO-2                  all IAM regions
-  transport, passenger car, compressed gas, Lower medium, EURO-3                  all IAM regions
-  transport, passenger car, compressed gas, Lower medium, EURO-4                  all IAM regions
-  transport, passenger car, compressed gas, Lower medium, EURO-6ab                all IAM regions
-  transport, passenger car, compressed gas, Lower medium, EURO-6d-TEMP            all IAM regions
-  transport, passenger car, compressed gas, Lower medium, EURO-6d                 all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Lower medium, EURO-6ab        all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Lower medium, EURO-6d-TEMP    all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Lower medium, EURO-6d         all IAM regions
-  transport, passenger car, plugin diesel hybrid, Lower medium, EURO-6ab          all IAM regions
-  transport, passenger car, plugin diesel hybrid, Lower medium, EURO-6d-TEMP      all IAM regions
-  transport, passenger car, plugin diesel hybrid, Lower medium, EURO-6d           all IAM regions
+  transport, passenger car, battery electric Large SUV                            all IAM regions
+  transport, passenger car, gasoline hybrid, Large SUV                            all IAM regions
+  transport, passenger car, diesel hybrid, Large SUV                              all IAM regions
+  transport, passenger car, gasoline, Lower medium                                all IAM regions
+  transport, passenger car, diesel, Lower medium                                  all IAM regions
+  transport, passenger car, compressed gas, Lower medium                          all IAM regions
+  transport, passenger car, plugin gasoline hybrid, Lower medium                  all IAM regions
+  transport, passenger car, plugin diesel hybrid, Lower medium                    all IAM regions
   transport, passenger car, fuel cell electric, Lower medium                      all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Lower medium       all IAM regions
-  transport, passenger car, gasoline hybrid, Lower medium, EURO-6ab               all IAM regions
-  transport, passenger car, gasoline hybrid, Lower medium, EURO-6d-TEMP           all IAM regions
-  transport, passenger car, gasoline hybrid, Lower medium, EURO-6d                all IAM regions
-  transport, passenger car, diesel hybrid, Lower medium, EURO-6ab                 all IAM regions
-  transport, passenger car, diesel hybrid, Lower medium, EURO-6d-TEMP             all IAM regions
-  transport, passenger car, diesel hybrid, Lower medium, EURO-6d                  all IAM regions
-  transport, passenger car, gasoline, Medium, EURO-2                              all IAM regions
-  transport, passenger car, gasoline, Medium, EURO-3                              all IAM regions
-  transport, passenger car, gasoline, Medium, EURO-4                              all IAM regions
-  transport, passenger car, gasoline, Medium, EURO-6ab                            all IAM regions
-  transport, passenger car, gasoline, Medium, EURO-6d-TEMP                        all IAM regions
-  transport, passenger car, gasoline, Medium, EURO-6d                             all IAM regions
-  transport, passenger car, diesel, Medium, EURO-2                                all IAM regions
-  transport, passenger car, diesel, Medium, EURO-3                                all IAM regions
-  transport, passenger car, diesel, Medium, EURO-4                                all IAM regions
-  transport, passenger car, diesel, Medium, EURO-6ab                              all IAM regions
-  transport, passenger car, diesel, Medium, EURO-6d-TEMP                          all IAM regions
-  transport, passenger car, diesel, Medium, EURO-6d                               all IAM regions
-  transport, passenger car, compressed gas, Medium, EURO-2                        all IAM regions
-  transport, passenger car, compressed gas, Medium, EURO-3                        all IAM regions
-  transport, passenger car, compressed gas, Medium, EURO-4                        all IAM regions
-  transport, passenger car, compressed gas, Medium, EURO-6ab                      all IAM regions
-  transport, passenger car, compressed gas, Medium, EURO-6d-TEMP                  all IAM regions
-  transport, passenger car, compressed gas, Medium, EURO-6d                       all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium, EURO-6ab              all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium, EURO-6d-TEMP          all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium, EURO-6d               all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium, EURO-6ab                all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium, EURO-6d-TEMP            all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium, EURO-6d                 all IAM regions
+  transport, passenger car, battery electric Lower medium                         all IAM regions
+  transport, passenger car, gasoline hybrid, Lower medium                         all IAM regions
+  transport, passenger car, diesel hybrid, Lower medium                           all IAM regions
+  transport, passenger car, gasoline, Medium                                      all IAM regions
+  transport, passenger car, diesel, Medium                                        all IAM regions
+  transport, passenger car, compressed gas, Medium                                all IAM regions
+  transport, passenger car, plugin gasoline hybrid, Medium                        all IAM regions
+  transport, passenger car, plugin diesel hybrid, Medium                          all IAM regions
   transport, passenger car, fuel cell electric, Medium                            all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Medium             all IAM regions
-  transport, passenger car, gasoline hybrid, Medium, EURO-6ab                     all IAM regions
-  transport, passenger car, gasoline hybrid, Medium, EURO-6d-TEMP                 all IAM regions
-  transport, passenger car, gasoline hybrid, Medium, EURO-6d                      all IAM regions
-  transport, passenger car, diesel hybrid, Medium, EURO-6ab                       all IAM regions
-  transport, passenger car, diesel hybrid, Medium, EURO-6d-TEMP                   all IAM regions
-  transport, passenger car, diesel hybrid, Medium, EURO-6d                        all IAM regions
-  transport, passenger car, gasoline, Medium SUV, EURO-2                          all IAM regions
-  transport, passenger car, gasoline, Medium SUV, EURO-3                          all IAM regions
-  transport, passenger car, gasoline, Medium SUV, EURO-4                          all IAM regions
-  transport, passenger car, gasoline, Medium SUV, EURO-6ab                        all IAM regions
-  transport, passenger car, gasoline, Medium SUV, EURO-6d-TEMP                    all IAM regions
-  transport, passenger car, gasoline, Medium SUV, EURO-6d                         all IAM regions
-  transport, passenger car, diesel, Medium SUV, EURO-2                            all IAM regions
-  transport, passenger car, diesel, Medium SUV, EURO-3                            all IAM regions
-  transport, passenger car, diesel, Medium SUV, EURO-4                            all IAM regions
-  transport, passenger car, diesel, Medium SUV, EURO-6ab                          all IAM regions
-  transport, passenger car, diesel, Medium SUV, EURO-6d-TEMP                      all IAM regions
-  transport, passenger car, diesel, Medium SUV, EURO-6d                           all IAM regions
-  transport, passenger car, compressed gas, Medium SUV, EURO-2                    all IAM regions
-  transport, passenger car, compressed gas, Medium SUV, EURO-3                    all IAM regions
-  transport, passenger car, compressed gas, Medium SUV, EURO-4                    all IAM regions
-  transport, passenger car, compressed gas, Medium SUV, EURO-6ab                  all IAM regions
-  transport, passenger car, compressed gas, Medium SUV, EURO-6d-TEMP              all IAM regions
-  transport, passenger car, compressed gas, Medium SUV, EURO-6d                   all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium SUV, EURO-6ab          all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium SUV, EURO-6d-TEMP      all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium SUV, EURO-6d           all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium SUV, EURO-6ab            all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium SUV, EURO-6d-TEMP        all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium SUV, EURO-6d             all IAM regions
+  transport, passenger car, battery electric Medium                               all IAM regions
+  transport, passenger car, gasoline hybrid, Medium                               all IAM regions
+  transport, passenger car, diesel hybrid, Medium                                 all IAM regions
+  transport, passenger car, gasoline, Medium SUV                                  all IAM regions
+  transport, passenger car, diesel, Medium SUV                                    all IAM regions
+  transport, passenger car, compressed gas, Medium SUV                            all IAM regions
+  transport, passenger car, plugin gasoline hybrid, Medium SUV                    all IAM regions
+  transport, passenger car, plugin diesel hybrid, Medium SUV                      all IAM regions
   transport, passenger car, fuel cell electric, Medium SUV                        all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Medium SUV         all IAM regions
-  transport, passenger car, gasoline hybrid, Medium SUV, EURO-6ab                 all IAM regions
-  transport, passenger car, gasoline hybrid, Medium SUV, EURO-6d-TEMP             all IAM regions
-  transport, passenger car, gasoline hybrid, Medium SUV, EURO-6d                  all IAM regions
-  transport, passenger car, diesel hybrid, Medium SUV, EURO-6ab                   all IAM regions
-  transport, passenger car, diesel hybrid, Medium SUV, EURO-6d-TEMP               all IAM regions
-  transport, passenger car, diesel hybrid, Medium SUV, EURO-6d                    all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Micro              all IAM regions
-  transport, passenger car, gasoline, Mini, EURO-2                                all IAM regions
-  transport, passenger car, gasoline, Mini, EURO-3                                all IAM regions
-  transport, passenger car, gasoline, Mini, EURO-4                                all IAM regions
-  transport, passenger car, gasoline, Mini, EURO-6ab                              all IAM regions
-  transport, passenger car, gasoline, Mini, EURO-6d-TEMP                          all IAM regions
-  transport, passenger car, gasoline, Mini, EURO-6d                               all IAM regions
-  transport, passenger car, diesel, Mini, EURO-2                                  all IAM regions
-  transport, passenger car, diesel, Mini, EURO-3                                  all IAM regions
-  transport, passenger car, diesel, Mini, EURO-4                                  all IAM regions
-  transport, passenger car, diesel, Mini, EURO-6ab                                all IAM regions
-  transport, passenger car, diesel, Mini, EURO-6d-TEMP                            all IAM regions
-  transport, passenger car, diesel, Mini, EURO-6d                                 all IAM regions
-  transport, passenger car, compressed gas, Mini, EURO-2                          all IAM regions
-  transport, passenger car, compressed gas, Mini, EURO-3                          all IAM regions
-  transport, passenger car, compressed gas, Mini, EURO-4                          all IAM regions
-  transport, passenger car, compressed gas, Mini, EURO-6ab                        all IAM regions
-  transport, passenger car, compressed gas, Mini, EURO-6d-TEMP                    all IAM regions
-  transport, passenger car, compressed gas, Mini, EURO-6d                         all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Mini, EURO-6ab                all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Mini, EURO-6d-TEMP            all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Mini, EURO-6d                 all IAM regions
-  transport, passenger car, plugin diesel hybrid, Mini, EURO-6ab                  all IAM regions
-  transport, passenger car, plugin diesel hybrid, Mini, EURO-6d-TEMP              all IAM regions
-  transport, passenger car, plugin diesel hybrid, Mini, EURO-6d                   all IAM regions
+  transport, passenger car, battery electric Medium SUV                           all IAM regions
+  transport, passenger car, gasoline hybrid, Medium SUV                           all IAM regions
+  transport, passenger car, diesel hybrid, Medium SUV                             all IAM regions
+  transport, passenger car, battery electric Micro                                all IAM regions
+  transport, passenger car, gasoline, Mini                                        all IAM regions
+  transport, passenger car, diesel, Mini                                          all IAM regions
+  transport, passenger car, compressed gas, Mini                                  all IAM regions
+  transport, passenger car, plugin gasoline hybrid, Mini                          all IAM regions
+  transport, passenger car, plugin diesel hybrid, Mini                            all IAM regions
   transport, passenger car, fuel cell electric, Mini                              all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Mini               all IAM regions
-  transport, passenger car, gasoline hybrid, Mini, EURO-6ab                       all IAM regions
-  transport, passenger car, gasoline hybrid, Mini, EURO-6d-TEMP                   all IAM regions
-  transport, passenger car, gasoline hybrid, Mini, EURO-6d                        all IAM regions
-  transport, passenger car, diesel hybrid, Mini, EURO-6ab                         all IAM regions
-  transport, passenger car, diesel hybrid, Mini, EURO-6d-TEMP                     all IAM regions
-  transport, passenger car, diesel hybrid, Mini, EURO-6d                          all IAM regions
-  transport, passenger car, gasoline, Small, EURO-2                               all IAM regions
-  transport, passenger car, gasoline, Small, EURO-3                               all IAM regions
-  transport, passenger car, gasoline, Small, EURO-4                               all IAM regions
-  transport, passenger car, gasoline, Small, EURO-6ab                             all IAM regions
-  transport, passenger car, gasoline, Small, EURO-6d-TEMP                         all IAM regions
-  transport, passenger car, gasoline, Small, EURO-6d                              all IAM regions
-  transport, passenger car, diesel, Small, EURO-2                                 all IAM regions
-  transport, passenger car, diesel, Small, EURO-3                                 all IAM regions
-  transport, passenger car, diesel, Small, EURO-4                                 all IAM regions
-  transport, passenger car, diesel, Small, EURO-6ab                               all IAM regions
-  transport, passenger car, diesel, Small, EURO-6d-TEMP                           all IAM regions
-  transport, passenger car, diesel, Small, EURO-6d                                all IAM regions
-  transport, passenger car, compressed gas, Small, EURO-2                         all IAM regions
-  transport, passenger car, compressed gas, Small, EURO-3                         all IAM regions
-  transport, passenger car, compressed gas, Small, EURO-4                         all IAM regions
-  transport, passenger car, compressed gas, Small, EURO-6ab                       all IAM regions
-  transport, passenger car, compressed gas, Small, EURO-6d-TEMP                   all IAM regions
-  transport, passenger car, compressed gas, Small, EURO-6d                        all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Small, EURO-6ab               all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Small, EURO-6d-TEMP           all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Small, EURO-6d                all IAM regions
-  transport, passenger car, plugin diesel hybrid, Small, EURO-6ab                 all IAM regions
-  transport, passenger car, plugin diesel hybrid, Small, EURO-6d-TEMP             all IAM regions
-  transport, passenger car, plugin diesel hybrid, Small, EURO-6d                  all IAM regions
+  transport, passenger car, battery electric Mini                                 all IAM regions
+  transport, passenger car, gasoline hybrid, Mini                                 all IAM regions
+  transport, passenger car, diesel hybrid, Mini                                   all IAM regions
+  transport, passenger car, gasoline, Small                                       all IAM regions
+  transport, passenger car, diesel, Small                                         all IAM regions
+  transport, passenger car, compressed gas, Small                                 all IAM regions
+  transport, passenger car, plugin gasoline hybrid, Small                         all IAM regions
+  transport, passenger car, plugin diesel hybrid, Small                           all IAM regions
   transport, passenger car, fuel cell electric, Small                             all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Small              all IAM regions
-  transport, passenger car, gasoline hybrid, Small, EURO-6ab                      all IAM regions
-  transport, passenger car, gasoline hybrid, Small, EURO-6d-TEMP                  all IAM regions
-  transport, passenger car, gasoline hybrid, Small, EURO-6d                       all IAM regions
-  transport, passenger car, diesel hybrid, Small, EURO-6ab                        all IAM regions
-  transport, passenger car, diesel hybrid, Small, EURO-6d-TEMP                    all IAM regions
-  transport, passenger car, diesel hybrid, Small, EURO-6d                         all IAM regions
-  transport, passenger car, gasoline, Van, EURO-2                                 all IAM regions
-  transport, passenger car, gasoline, Van, EURO-3                                 all IAM regions
-  transport, passenger car, gasoline, Van, EURO-4                                 all IAM regions
-  transport, passenger car, gasoline, Van, EURO-6ab                               all IAM regions
-  transport, passenger car, gasoline, Van, EURO-6d-TEMP                           all IAM regions
-  transport, passenger car, gasoline, Van, EURO-6d                                all IAM regions
-  transport, passenger car, diesel, Van, EURO-2                                   all IAM regions
-  transport, passenger car, diesel, Van, EURO-3                                   all IAM regions
-  transport, passenger car, diesel, Van, EURO-4                                   all IAM regions
-  transport, passenger car, diesel, Van, EURO-6ab                                 all IAM regions
-  transport, passenger car, diesel, Van, EURO-6d-TEMP                             all IAM regions
-  transport, passenger car, diesel, Van, EURO-6d                                  all IAM regions
-  transport, passenger car, compressed gas, Van, EURO-2                           all IAM regions
-  transport, passenger car, compressed gas, Van, EURO-3                           all IAM regions
-  transport, passenger car, compressed gas, Van, EURO-4                           all IAM regions
-  transport, passenger car, compressed gas, Van, EURO-6ab                         all IAM regions
-  transport, passenger car, compressed gas, Van, EURO-6d-TEMP                     all IAM regions
-  transport, passenger car, compressed gas, Van, EURO-6d                          all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Van, EURO-6ab                 all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Van, EURO-6d-TEMP             all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Van, EURO-6d                  all IAM regions
-  transport, passenger car, plugin diesel hybrid, Van, EURO-6ab                   all IAM regions
-  transport, passenger car, plugin diesel hybrid, Van, EURO-6d-TEMP               all IAM regions
-  transport, passenger car, plugin diesel hybrid, Van, EURO-6d                    all IAM regions
+  transport, passenger car, battery electric Small                                all IAM regions
+  transport, passenger car, gasoline hybrid, Small                                all IAM regions
+  transport, passenger car, diesel hybrid, Small                                  all IAM regions
+  transport, passenger car, gasoline, Van                                         all IAM regions
+  transport, passenger car, diesel, Van                                           all IAM regions
+  transport, passenger car, compressed gas, Van                                   all IAM regions
+  transport, passenger car, plugin diesel hybrid, Van                             all IAM regions
   transport, passenger car, fuel cell electric, Van                               all IAM regions
-  transport, passenger car, battery electric, NMC-622 battery, Van                all IAM regions
-  transport, passenger car, gasoline hybrid, Van, EURO-6ab                        all IAM regions
-  transport, passenger car, gasoline hybrid, Van, EURO-6d-TEMP                    all IAM regions
-  transport, passenger car, gasoline hybrid, Van, EURO-6d                         all IAM regions
-  transport, passenger car, diesel hybrid, Van, EURO-6ab                          all IAM regions
-  transport, passenger car, diesel hybrid, Van, EURO-6d-TEMP                      all IAM regions
-  transport, passenger car, diesel hybrid, Van, EURO-6d                           all IAM regions
+  transport, passenger car, battery electric Van                                  all IAM regions
+  transport, passenger car, gasoline hybrid, Van                                  all IAM regions
+  transport, passenger car, diesel hybrid, Van                                    all IAM regions
  =============================================================================== ==================
 
 Inventories are from Sacchi2_ et al. 2022. The vehicles are available
-for different years and emission standards and for each IAM region. *premise* will only
-import vehicles which production year is equal or inferior to
-the scenario year considered. *premise* will create fleet average vehicles
-during the *Transport* transformation for each IAM region. The inventories can be consulted
+for different years and emission standards and for each IAM region.
+
+When doing:
+
+.. code-block:: python
+
+    update("cars")
+
+*premise* will create fleet average vehicles for each IAM region. The inventories can be consulted
 here: LCIpasscars_.
 
 .. _Sacchi2: https://www.psi.ch/en/media/72391/download
 .. _LCIpasscars: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx
 
-At the moment. these inventories do not supply inputs to other activities in the LCI database.
-As such, they are optional.
+At the moment, these inventories do not supply inputs to other activities in the LCI database.
 
 
 Medium and heavy duty trucks
@@ -1392,86 +1225,55 @@ The following datasets for medium and heavy-duty trucks are imported.
  ================================================================================== ==================
   Truck datasets                                                                     location
  ================================================================================== ==================
-  transport, freight, lorry, battery electric, NMC-622 battery, 3.5t gross weight    all IAM regions
+  transport, freight, lorry, battery electric 3.5t gross weight                      all IAM regions
   transport, freight, lorry, fuel cell electric, 3.5t gross weight                   all IAM regions
   transport, freight, lorry, diesel hybrid, 3.5t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, diesel, 3.5t gross weight, EURO-III                     all IAM regions
-  transport, freight, lorry, diesel, 3.5t gross weight, EURO-IV                      all IAM regions
-  transport, freight, lorry, diesel, 3.5t gross weight, EURO-V                       all IAM regions
   transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI                      all IAM regions
-  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-III             all IAM regions
-  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-IV              all IAM regions
-  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-V               all IAM regions
   transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI              all IAM regions
   transport, freight, lorry, plugin diesel hybrid, 3.5t gross weight, EURO-VI        all IAM regions
-  transport, freight, lorry, battery electric, NMC-622 battery, 7.5t gross weight    all IAM regions
+  transport, freight, lorry, battery electric 7.5t gross weight                      all IAM regions
   transport, freight, lorry, fuel cell electric, 7.5t gross weight                   all IAM regions
   transport, freight, lorry, diesel hybrid, 7.5t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, diesel, 7.5t gross weight, EURO-III                     all IAM regions
-  transport, freight, lorry, diesel, 7.5t gross weight, EURO-IV                      all IAM regions
-  transport, freight, lorry, diesel, 7.5t gross weight, EURO-V                       all IAM regions
   transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI                      all IAM regions
-  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-III             all IAM regions
-  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-IV              all IAM regions
-  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-V               all IAM regions
   transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI              all IAM regions
   transport, freight, lorry, plugin diesel hybrid, 7.5t gross weight, EURO-VI        all IAM regions
-  transport, freight, lorry, battery electric, NMC-622 battery, 18t gross weight     all IAM regions
+  transport, freight, lorry, battery electric 18t gross weight                       all IAM regions
   transport, freight, lorry, fuel cell electric, 18t gross weight                    all IAM regions
   transport, freight, lorry, diesel hybrid, 18t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 18t gross weight, EURO-III                      all IAM regions
-  transport, freight, lorry, diesel, 18t gross weight, EURO-IV                       all IAM regions
-  transport, freight, lorry, diesel, 18t gross weight, EURO-V                        all IAM regions
   transport, freight, lorry, diesel, 18t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 18t gross weight, EURO-III              all IAM regions
-  transport, freight, lorry, compressed gas, 18t gross weight, EURO-IV               all IAM regions
-  transport, freight, lorry, compressed gas, 18t gross weight, EURO-V                all IAM regions
   transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI               all IAM regions
   transport, freight, lorry, plugin diesel hybrid, 18t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric, NMC-622 battery, 26t gross weight     all IAM regions
+  transport, freight, lorry, battery electric 26t gross weight                       all IAM regions
   transport, freight, lorry, fuel cell electric, 26t gross weight                    all IAM regions
   transport, freight, lorry, diesel hybrid, 26t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 26t gross weight, EURO-III                      all IAM regions
-  transport, freight, lorry, diesel, 26t gross weight, EURO-IV                       all IAM regions
-  transport, freight, lorry, diesel, 26t gross weight, EURO-V                        all IAM regions
   transport, freight, lorry, diesel, 26t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 26t gross weight, EURO-III              all IAM regions
-  transport, freight, lorry, compressed gas, 26t gross weight, EURO-IV               all IAM regions
-  transport, freight, lorry, compressed gas, 26t gross weight, EURO-V                all IAM regions
   transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI               all IAM regions
   transport, freight, lorry, plugin diesel hybrid, 26t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric, NMC-622 battery, 32t gross weight     all IAM regions
+  transport, freight, lorry, battery electric 32t gross weight                       all IAM regions
   transport, freight, lorry, fuel cell electric, 32t gross weight                    all IAM regions
   transport, freight, lorry, diesel hybrid, 32t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 32t gross weight, EURO-III                      all IAM regions
-  transport, freight, lorry, diesel, 32t gross weight, EURO-IV                       all IAM regions
-  transport, freight, lorry, diesel, 32t gross weight, EURO-V                        all IAM regions
   transport, freight, lorry, diesel, 32t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 32t gross weight, EURO-III              all IAM regions
-  transport, freight, lorry, compressed gas, 32t gross weight, EURO-IV               all IAM regions
-  transport, freight, lorry, compressed gas, 32t gross weight, EURO-V                all IAM regions
   transport, freight, lorry, compressed gas, 32t gross weight, EURO-VI               all IAM regions
   transport, freight, lorry, plugin diesel hybrid, 32t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric, NMC-622 battery, 40t gross weight     all IAM regions
+  transport, freight, lorry, battery electric 40t gross weight                       all IAM regions
   transport, freight, lorry, fuel cell electric, 40t gross weight                    all IAM regions
   transport, freight, lorry, diesel hybrid, 40t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 40t gross weight, EURO-III                      all IAM regions
-  transport, freight, lorry, diesel, 40t gross weight, EURO-IV                       all IAM regions
-  transport, freight, lorry, diesel, 40t gross weight, EURO-V                        all IAM regions
   transport, freight, lorry, diesel, 40t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 40t gross weight, EURO-III              all IAM regions
-  transport, freight, lorry, compressed gas, 40t gross weight, EURO-IV               all IAM regions
-  transport, freight, lorry, compressed gas, 40t gross weight, EURO-V                all IAM regions
   transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI               all IAM regions
   transport, freight, lorry, plugin diesel hybrid, 40t gross weight, EURO-VI         all IAM regions
  ================================================================================== ==================
 
 
 Inventories are from Sacchi3_ et al. 2021. The vehicles are available
-for different years and emission standards and for each IAM region. *premise* will only
-import vehicles which production year is equal or inferior to
-the scenario year considered. *premise* will create fleet average vehicles
-during the *Transport* transformation for each IAM region. The inventories can be consulted
+for different years and emission standards and for each IAM region.
+
+When doing:
+
+.. code-block:: python
+
+    update("trucks")
+
+*premise* will create fleet average vehicles for each IAM region. The inventories can be consulted
 here: LCItrucks_.
 
 .. _LCItrucks: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx
@@ -1487,83 +1289,52 @@ The following datasets for city and coach buses are imported.
   =================================================================================================================== ==================
   Bus datasets                                                                                                        location
  =================================================================================================================== ==================
-  transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 9m midibus                        all IAM regions
+  transport, passenger bus, battery electric - overnight charging 9m midibus                                          all IAM regions
   transport, passenger bus, battery electric - opportunity charging, LTO battery, 9m midibus                          all IAM regions
   transport, passenger bus, fuel cell electric, 9m midibus                                                            all IAM regions
   transport, passenger bus, diesel hybrid, 9m midibus, EURO-VI                                                        all IAM regions
-  transport, passenger bus, diesel, 9m midibus, EURO-III                                                              all IAM regions
-  transport, passenger bus, diesel, 9m midibus, EURO-IV                                                               all IAM regions
-  transport, passenger bus, diesel, 9m midibus, EURO-V                                                                all IAM regions
   transport, passenger bus, diesel, 9m midibus, EURO-VI                                                               all IAM regions
-  transport, passenger bus, compressed gas, 9m midibus, EURO-III                                                      all IAM regions
-  transport, passenger bus, compressed gas, 9m midibus, EURO-IV                                                       all IAM regions
-  transport, passenger bus, compressed gas, 9m midibus, EURO-V                                                        all IAM regions
   transport, passenger bus, compressed gas, 9m midibus, EURO-VI                                                       all IAM regions
-  transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 13m single deck urban bus         all IAM regions
+  transport, passenger bus, battery electric - overnight charging 13m single deck urban bus                           all IAM regions
   transport, passenger bus, battery electric - battery-equipped trolleybus, LTO battery, 13m single deck urban bus    all IAM regions
   transport, passenger bus, battery electric - opportunity charging, LTO battery, 13m single deck urban bus           all IAM regions
   transport, passenger bus, fuel cell electric, 13m single deck urban bus                                             all IAM regions
   transport, passenger bus, diesel hybrid, 13m single deck urban bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 13m single deck urban bus, EURO-III                                               all IAM regions
-  transport, passenger bus, diesel, 13m single deck urban bus, EURO-IV                                                all IAM regions
-  transport, passenger bus, diesel, 13m single deck urban bus, EURO-V                                                 all IAM regions
   transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-III                                       all IAM regions
-  transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-IV                                        all IAM regions
-  transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-V                                         all IAM regions
   transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-VI                                        all IAM regions
   transport, passenger bus, fuel cell electric, 13m single deck coach bus                                             all IAM regions
   transport, passenger bus, diesel hybrid, 13m single deck coach bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 13m single deck coach bus, EURO-III                                               all IAM regions
-  transport, passenger bus, diesel, 13m single deck coach bus, EURO-IV                                                all IAM regions
-  transport, passenger bus, diesel, 13m single deck coach bus, EURO-V                                                 all IAM regions
   transport, passenger bus, diesel, 13m single deck coach bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-III                                       all IAM regions
-  transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-IV                                        all IAM regions
-  transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-V                                         all IAM regions
   transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-VI                                        all IAM regions
-  transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 13m double deck urban bus         all IAM regions
+  transport, passenger bus, battery electric - overnight charging 13m double deck urban bus                           all IAM regions
   transport, passenger bus, battery electric - opportunity charging, LTO battery, 13m double deck urban bus           all IAM regions
   transport, passenger bus, fuel cell electric, 13m double deck urban bus                                             all IAM regions
   transport, passenger bus, diesel hybrid, 13m double deck urban bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 13m double deck urban bus, EURO-III                                               all IAM regions
-  transport, passenger bus, diesel, 13m double deck urban bus, EURO-IV                                                all IAM regions
-  transport, passenger bus, diesel, 13m double deck urban bus, EURO-V                                                 all IAM regions
   transport, passenger bus, diesel, 13m double deck urban bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-III                                       all IAM regions
-  transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-IV                                        all IAM regions
-  transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-V                                         all IAM regions
   transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-VI                                        all IAM regions
   transport, passenger bus, fuel cell electric, 13m double deck coach bus                                             all IAM regions
   transport, passenger bus, diesel hybrid, 13m double deck coach bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 13m double deck coach bus, EURO-III                                               all IAM regions
-  transport, passenger bus, diesel, 13m double deck coach bus, EURO-IV                                                all IAM regions
-  transport, passenger bus, diesel, 13m double deck coach bus, EURO-V                                                 all IAM regions
   transport, passenger bus, diesel, 13m double deck coach bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-III                                       all IAM regions
-  transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-IV                                        all IAM regions
-  transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-V                                         all IAM regions
   transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-VI                                        all IAM regions
-  transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 18m articulated urban bus         all IAM regions
+  transport, passenger bus, battery electric - overnight charging 18m articulated urban bus                           all IAM regions
   transport, passenger bus, battery electric - battery-equipped trolleybus, LTO battery, 18m articulated urban bus    all IAM regions
   transport, passenger bus, battery electric - opportunity charging, LTO battery, 18m articulated urban bus           all IAM regions
   transport, passenger bus, fuel cell electric, 18m articulated urban bus                                             all IAM regions
   transport, passenger bus, diesel hybrid, 18m articulated urban bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 18m articulated urban bus, EURO-III                                               all IAM regions
-  transport, passenger bus, diesel, 18m articulated urban bus, EURO-IV                                                all IAM regions
-  transport, passenger bus, diesel, 18m articulated urban bus, EURO-V                                                 all IAM regions
   transport, passenger bus, diesel, 18m articulated urban bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-III                                       all IAM regions
-  transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-IV                                        all IAM regions
-  transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-V                                         all IAM regions
   transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-VI                                        all IAM regions
  =================================================================================================================== ==================
 
 Inventories are from Sacchi_ et al. 2021. The vehicles are available
-for different years and emission standards and for each IAM region. *premise* will only
-import vehicles which production year is equal or inferior to
-the scenario year considered. *premise* will create fleet average vehicles
-during the *Transport* transformation for each IAM region. The inventories can be consulted
+for different years and emission standards and for each IAM region.
+
+When doing:
+
+.. code-block:: python
+
+    update("buses")
+
+*premise* will create fleet average vehicles for each IAM region. The inventories can be consulted
 here: LCIbuses_.
 
 .. _LCIbuses: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-buses.xlsx
