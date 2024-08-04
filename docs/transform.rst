@@ -922,7 +922,6 @@ between today and the scenario year.
 .. _IEA: https://iea.blob.core.windows.net/assets/cbaa3da1-fd61-4c2a-8719-31538f59b54f/TechnologyRoadmapLowCarbonTransitionintheCementIndustry.pdf
 
 
-
 Once the new energy input is determined, *premise* scales down the fuel,
 and the fossil and biogenic CO2 emissions accordingly, based on the Lower Heating Value
 and CO2 emission factors for these fuels.
@@ -1151,14 +1150,9 @@ Steel markets
 *premise* create a dataset "market for steel, low-alloyed" for each IAM region.
 Within each dataset, the supply shares of primary and secondary steel
 are adjusted to reflect the projections from the IAM scenario, for a given region
-and year, based on the variables below.
+and year, based on the variables described in the steel_ mapping file.
 
- ==================== ====================================== ============================= ==============================
-  name in premise      name in REMIND                          name in IMAGE                name in LCI database
- ==================== ====================================== ============================= ==============================
-  steel - primary      Production|Industry|Steel|Primary      Production|Steel|Primary      steel production, converter
-  steel - secondary    Production|Industry|Steel|Secondary    Production|Steel|Secondary    steel production, electric
- ==================== ====================================== ============================= ==============================
+.. _steel: https://github.com/polca/premise/blob/master/premise/data/battery/scenario.csv
 
 The table below shows an example of the market for India, where 66% of the steel comes
 from an oxygen converter process (primary steel), while 34% comes from an electric arc
@@ -1235,6 +1229,7 @@ Run
     ndb.update("cars")
     ndb.update("trucks")
     ndb.update("buses")
+    ndb.update("trains")
 
 
 *premise* imports inventories for transport activity operated by:
@@ -1243,13 +1238,11 @@ Run
 * passenger cars
 * medium and heavy duty trucks
 * buses
+* trains
 
-These inventories are available for the construction year of 2000
-to 2050, by steps of 5 years, but *premise* only imports vehicles
-with a construction year inferior or equal to the scenario year
-(vehicle from 2050 will not be imported in a database for the
-scenario year of 2030, but vehicles from 2020 will, as they are
-necessary to build the fleet average vehicles).
+Inventories are available for current vehicles. Future vehicle inventories
+are obtained by scaling down the current inventories based on the
+vehicle efficiency improvements projected by the IAM scenario.
 
 Trucks
 ++++++
@@ -1295,13 +1288,6 @@ The truck vehicle model is from Sacchi_ et al, 2021.
     Not all powertrain types are available for regional and long haul driving cycles.
     This is specifically the case for battery electric trucks, for which the mass
     and size prevent them from completing the cycle, or surpasses the vehicle gross weight.
-
-.. warning::
-
-    A consequence of replacing original truck datasets with those provided by *premise*
-    may be a steep increase in CO2-eq. emissions, especially if the urban driving cycle
-    is chosen. Overall, considering and size classes, diesel truck datasets from ecoinvent
-    have lower fuel consumption and exhaust emissions.
 
 
 
@@ -1546,7 +1532,7 @@ requirements, which are sourced from Bauer_ et al, 2022:
  ==================== ======= ======= =======
   kWh/kg H2, 25 bar    2010    2020    2050
  ==================== ======= ======= =======
-  electricity          58      55      44
+  electricity          58      55      48
  ==================== ======= ======= =======
 
 .. _Bauer: https://www.psi.ch/en/media/77703/download?attachment
@@ -2339,6 +2325,9 @@ implementation in the wurst_ library.
 +----------------------+---------------------------------+---------------+------------------+
 | VI                   | nan                             | nan           | R12_NAM          |
 +----------------------+---------------------------------+---------------+------------------+
+
+The mapping between ecoinvent locations and IAM regions is available under the following directory:
+https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/topologies
 
 Regionalization
 """""""""""""""
