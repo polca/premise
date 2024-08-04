@@ -11,10 +11,6 @@ Inventories for several battery technologies for mobile applications are provide
 in *premise*. See EXTRACT/Import of additional inventories/Li-ion batteries for
 additional information.
 
-*premise* adjusts the mass of battery packs throughout the database
-to reflect progress in specific energy density (kWh/kg cell).
-
-
 Run
 
 .. code-block:: python
@@ -75,6 +71,9 @@ Sodium-ion, SiB        0.22                                 75%                 
 ====================== ==================================== ==================== ==================
 
 
+*premise* adjusts the mass of battery packs throughout the database
+to reflect progress in specific energy density (kWh/kg cell).
+
 For example, in 2050, the mass of NMC811 batteries (cells and Balance of Plant) is expected to
 be 0.5/0.22 = 2.3 times lower for a same energy capacity. The report of changes
 shows the new mass of battery packs for each activity using them.
@@ -107,6 +106,110 @@ market for battery capacity, Sodium-ion, SiB     GLO         8.33               
 
 Changing the target values in the YAML file will change the scaling factors
 and the mass of battery packs per kWh in the database.
+
+Finally, *premise* also create a technology-average dataset for mobile batteries
+according to four scenarios provided in Degen_ et al, 2023.:
+
+============================================= =========== ===================================================================
+ Name                                          Location    Description
+============================================= =========== ===================================================================
+market for battery capacity (LFP scenario)     GLO         LFP dominates the market for mobile batteries.
+market for battery capacity (NCx scenario)     GLO         NCA and NCM dominate the market for mobile batteries.
+market for battery capacity (PLiB scenario)    GLO         Post-lithium batteries dominate the market for mobile batteries.
+market for battery capacity (MIX scenario)     GLO         A mix of lithium and post-lithium batteries dominates the market.
+============================================= =========== ===================================================================
+
+These  datasets provide 1 kWh of battery capacity, and the technology
+shares are adjusted over time with values found
+under  https://github.com/polca/premise/blob/master/premise/data/battery/scenario.csv.
+
+.. _Degen: https://doi.org/10.1016/j.joule.2023.01.001
+
+
+Stationary batteries
+""""""""""""""""""""
+
+Inventories for several battery technologies for stationary applications are provided:
+
+* Lithium-ion batteries (NMC-111, NMC-622, NMC-811, LFP)
+* Lead-acid batteries
+* Vanadium redox flow batteries (VRFB)
+
+As for batteries for mobile applications, *premise* adjusts the mass of battery packs
+throughout the database to reflect progress in specific energy density (kWh/kg cell).
+The current specific energy densities are given in the table below.
+
+====================== ==================================== ==================== ==================
+Type                   Specific energy density (current)    BoP mass share [%]   Battery energy
+                       [kWh/kg cell]                                             density [kWh/kg
+                                                                                 battery]
+====================== ==================================== ==================== ==================
+Li-ion, NMC111         0.15                                 73%                  0.11
+Li-ion, NMC622         0.20                                 73%                  0.15
+Li-ion, NMC811         0.22                                 71%                  0.16
+Li-ion, LFP            0.14                                 73%                  0.10
+Sodium-ion, SiB        0.16                                 75%                  0.12
+Lead-acid              0.03                                 80%                  0.02
+VRFB                   0.02                                 75%                  0.02
+====================== ==================================== ==================== ==================
+
+The future specific energy densities are given in the table below.
+
+====================== ==================================== ==================== ==================
+Type                   Specific energy density (2050)       BoP mass share [%]   Battery energy
+                       [kWh/kg cell]                                             density [kWh/kg
+                                                                                 battery]
+====================== ==================================== ==================== ==================
+Li-ion, NMC111         0.2                                  73%                  0.15
+Li-ion, NMC811         0.5                                  71%                  0.36
+Li-ion, NCA            0.35                                 71%                  0.25
+Li-ion, LFP            0.25                                 73%                  0.18
+Sodium-ion, SiB        0.22                                 75%                  0.17
+Lead-acid              0.04                                 80%                  0.03
+VRFB                   0.04                                 75%                  0.03
+====================== ==================================== ==================== ==================
+
+The target values used for scaling can be modified by the user.
+The YAML file is located under premise/data/battery/energy_density.yaml.
+
+For each battery technology *premise* creates a market dataset that represents the
+supply of 1 kWh of electricity stored in a battery of the given technology.
+
+The table below shows the market for battery capacity datasets created by *premise*.
+
+========================================================================== =========== ============================= ===============================
+ Name                                                                       Location    Kg per kWh in 2020 (kg/kWh)   Kg per kWh in 2050 (kg/KWh)
+========================================================================== =========== ============================= ===============================
+market for battery capacity, Li-ion, LFP, stationary	                    GLO         8.6                           6.22
+market for battery capacity, Li-ion, NMC111, stationary	                    GLO         7.61                          6.85
+market for battery capacity, Li-ion, NMC523, stationary	                    GLO         6.85                          6.23
+market for battery capacity, Li-ion, NMC622, stationary	                    GLO         5.71                          5.27
+market for battery capacity, Li-ion, NMC811, stationary	                    GLO         5.03                          4.14
+market for battery capacity, Li-ion, NMC955, stationary	                    GLO         4.14                          3.71
+market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl, stationary	GLO         8.62                          8.62
+market for battery capacity, Sodium-ion, SiB, stationary	                GLO         8.33                          6.54
+market for battery capacity, lead acid, rechargeable, stationary	        GLO         33.33                         28.60
+market for battery capacity, redox-flow, Vanadium, stationary	            GLO         51.55                         25.00
+========================================================================== =========== ============================= ===============================
+
+Changing the target values in the YAML file will change the scaling factors
+and the mass of battery packs per kWh in the database.
+
+Finally, *premise* also create a technology-average dataset for stationary batteries
+according to three scenarios provided in Schlichenmaier_ & Naegler, 2022:
+
+======================================================== =========== =============================================================================
+ Name                                                     Location    Description
+======================================================== =========== =============================================================================
+market for battery capacity, stationary (CONT scenario)   GLO         LFP and NMC dominate the market for stationary batteries.
+market for battery capacity, stationary (TC scenario)     GLO         Vanadium Redox Flow batteries dominate the market for stationary batteries.
+======================================================== =========== =============================================================================
+
+.. _Schlichenmaier: https://doi.org/10.1016/j.egyr.2022.11.025
+
+
+`market for battery capacity, stationary (CONT scenario)` supplies any storage
+capacity needed in high voltage electricity markets.
 
 Biomass
 """""""
@@ -161,12 +264,9 @@ The following market is created for each IAM region:
 inside of which, the shares of "purpose grown" and "residual" biomass
 is represented by the following activities:
 
-========================== ===================================== ======================================= ===========================
-  name in premise            name in REMIND                         name in IMAGE                         name in LCI database
-========================== ===================================== ======================================= ===========================
-  biomass - purpose grown    SE|Electricity|Biomass|Energy Crops   Primary Energy|Biomass|Energy Crops    market for wood chips
-  biomass - residual         SE|Electricity|Biomass|Residues       Primary Energy|Biomass|Residues        supply of forest residue
-========================== ===================================== ======================================= ===========================
+* market for wood chips (for "purpose grown" biomass)
+* market for wood chips (for "purpose grown" woody biomass)
+* supply of forest residue (for "residual" biomass)
 
 The sum of those shares equal 1. The activity "supply of forest residue" includes
 the energy, embodied biogenic CO2, transport and associated emissions to chip the residual biomass
