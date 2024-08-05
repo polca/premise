@@ -53,7 +53,8 @@ def test_brightway():
     ndb.write_datapackage(name="datapackage")
 
     # check existence of files
-    assert os.path.exists("datapackage.zip")
+    # current working directory / export / datapackage
+    assert os.path.exists("export/datapackage/datapackage.zip")
 
     # destroy all objects
     del ndb
