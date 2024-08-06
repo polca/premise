@@ -155,7 +155,6 @@ class Heat(BaseTransformation):
 
                 created_datasets.append(dataset["name"])
 
-                print(heat_tech, dataset["name"])
                 geo_mapping = None
                 if heat_tech == "heat, from natural gas (market)":
                     geo_mapping = {
