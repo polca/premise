@@ -159,8 +159,7 @@ class Heat(BaseTransformation):
                 geo_mapping = None
                 if heat_tech == "heat, from natural gas (market)":
                     geo_mapping = {
-                        r: "Europe without Switzerland"
-                        for r in self.regions
+                        r: "Europe without Switzerland" for r in self.regions
                     }
 
                 new_ds = self.fetch_proxies(
