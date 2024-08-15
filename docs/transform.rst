@@ -5,7 +5,7 @@ A series of transformations are applied to the Life Cycle Inventory (LCI) databa
 and technology market shares with the outputs from the Integrated Assessment Model (IAM) scenario.
 
 Mobile batteries
-================
+++++++++++++++++
 
 Inventories for several battery technologies for mobile applications are provided
 in *premise*. See EXTRACT/Import of additional inventories/Li-ion batteries for
@@ -132,7 +132,7 @@ under  https://github.com/polca/premise/blob/master/premise/data/battery/scenari
 
 
 Stationary batteries
-====================
+++++++++++++++++++++
 
 Inventories for several battery technologies for stationary applications are provided:
 
@@ -217,7 +217,7 @@ market for battery capacity, stationary (TC scenario)     GLO         Vanadium R
 capacity needed in high voltage electricity markets.
 
 Biomass
-=======
++++++++
 
 Run
 
@@ -295,7 +295,7 @@ and transport it to the powerplant, but no other forestry-related burden is incl
 
 
 Power generation
-================
+++++++++++++++++
 
 Run
 
@@ -716,8 +716,6 @@ regional mixes defined by the International Energy Agency (IEA).
 .. _IAI Beyond 2 Degrees Aluminium Roadmap: https://international-aluminium.org/resource/aluminium-sector-greenhouse-gas-pathways-to-2050-2021/
 
 
-
-
 Storage
 -------
 
@@ -847,7 +845,7 @@ activities to the new regional markets. The regional market it re-links to
 depends on the location of the consumer.
 
 Cement production
-=================
++++++++++++++++++
 
 The modelling of future improvements in the cement sector is relatively
 simple at the moment, and does not involve the emergence of new
@@ -1043,7 +1041,7 @@ cement. The regional market it re-links to depends on the location
 of the consumer.
 
 Steel production
-================
+++++++++++++++++
 
 Run
 
@@ -1211,7 +1209,7 @@ steel. The regional market it re-links to depends on the location
 of the consumer.
 
 Transport
-=========
++++++++++
 
 Run
 
@@ -1425,7 +1423,7 @@ of India.
  ================================================================= ============ ================ ===========
 
 Direct Air Capture
-==================
+++++++++++++++++++
 
 Run
 
@@ -1457,7 +1455,7 @@ and heat of the DAC datasets to reflect changes in efficiency.
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 
 Fuels
-"""""
++++++
 
 Run
 
@@ -1488,59 +1486,13 @@ Efficiency adjustment
 ---------------------
 
 Biofuels
-========
+--------
 
 The biomass-to-fuel efficiency ratio of bioethanol and biodiesel
 production datasets is adjusted according to the IAM scenario projections.
 
 Inputs to the biofuel production datasets are multiplied by a *scaling factor*
 that represents the change in efficiency relative to today (2020).
-
-Hydrogen
-========
-
-Several pathways for hydrogen production are modeled in *premise*:
-
-- electrolysis
-- steam methane reforming of natural gas
-- steam methane reforming of biomethane
-- gasification of coal
-- gasification of woody biomass
-
-The last four pathways are modeled with and without CCS.
-
-Inventories for these pathways are available under:
-
-* premise/data/additional_inventories/lci-hydrogen-electrolysis.xlsx
-* premise/data/additional_inventories/lci-smr-atr-natgas.xlsx
-* premise/data/additional_inventories/lci-smr-atr-biogas.xlsx
-* premise/data/additional_inventories/lci-hydrogen-coal-gasification.xlsx
-* premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
-
-
-In case the IAM variable that relates to a given hydrogen pathway's
-efficiency is not available, the process' efficiency is not modified,
-with the exception of electrolysis, which is modified regardless.
-
-A scaling factor is calculated for each pathway, which is the ratio
-between the IAM variable value for the year in question
-and the current efficiency value (i.e., in 2020). *premise*
-uses this scaling factor to adjust the amount of feedstock
-input to produce 1 kg of hydrogen (e.g., m3 of natural gas per kg hydrogen).
-
-If the IAM variable that relates to the efficiency of
-the electrolysis hydrogen process is not available,
-*premise* adjusts the amount of electricity needed
-to produce 1 kg of hydrogen by electrolysis, on the basis of the following
-requirements, which are sourced from Bauer_ et al, 2022:
-
- ==================== ======= ======= =======
-  kWh/kg H2, 25 bar    2010    2020    2050
- ==================== ======= ======= =======
-  electricity          58      55      48
- ==================== ======= ======= =======
-
-.. _Bauer: https://www.psi.ch/en/media/77703/download?attachment
 
 Land use and land use change
 ----------------------------
@@ -1587,7 +1539,33 @@ a variety of hydrogen and CO2 sources. Additionally, hydrogen can be supplied
 by different means of transport, and in different states.
 
 Hydrogen
-========
+--------
+
+Several pathways for hydrogen production are modeled in *premise*:
+
+- electrolysis
+- steam methane reforming of natural gas
+- steam methane reforming of biomethane
+- gasification of coal
+- gasification of woody biomass
+- natural gas pyrolysis
+- thermochemical water splitting
+
+Each pathways are modeled with and without CCS,
+with the exception of electrolysis, natural gas pyrolysis
+and thermochemical water splitting.
+
+In case the IAM variable that relates to a given hydrogen pathway's
+efficiency is not available, the process' efficiency is not modified.
+
+A scaling factor is calculated for each pathway, which is the ratio
+between the IAM variable value for the year in question
+and the current efficiency value (i.e., in 2020). *premise*
+uses this scaling factor to adjust the amount of feedstock
+input to produce 1 kg of hydrogen (e.g., m3 of natural gas per kg hydrogen).
+
+Hydrogen supply chains
+----------------------
 
 *premise* starts by building different supply chains for hydrogen by varying:
 
@@ -1753,7 +1731,7 @@ are modelled with the calorific value of conventional gasoline.
  =================================================================== ========= =========== ===========
 
 Heat
-====
+++++
 
 Run
 
@@ -1833,7 +1811,7 @@ new diesel market of the REMIND region for India.
 
 
 Geographical mapping
-====================
+++++++++++++++++++++
 
 IAM models have slightly different geographical resolutions and definitions.
 
@@ -2068,7 +2046,7 @@ The mapping between ecoinvent locations and IAM regions is available under the f
 https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/topologies
 
 Regionalization
-===============
++++++++++++++++
 
 Several of the integration steps described above involve the
 regionalization of datasets. It is the case, for example, when introducing
@@ -2177,7 +2155,12 @@ Final Steps
 
 
 GAINS emission factors
-======================
+++++++++++++++++++++++
+
+Emissions factors from the air pollution model GAINS are used to scale
+non-CO2 emissions in various datasets. The emission factors are available under:
+
+premise/data/GAINS_emission_factors
 
 Run
 
@@ -2295,7 +2278,7 @@ For questions related to GAINS modelling, please contact the respective GAINS te
 * GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
 
 Logs
-====
+++++
 
 *premise* generates a spreadsheet report detailing changes made to the database
 for each scenario. The report is saved in the current working directory and
