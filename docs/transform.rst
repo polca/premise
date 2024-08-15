@@ -5,7 +5,7 @@ A series of transformations are applied to the Life Cycle Inventory (LCI) databa
 and technology market shares with the outputs from the Integrated Assessment Model (IAM) scenario.
 
 Mobile batteries
-""""""""""""""""
+================
 
 Inventories for several battery technologies for mobile applications are provided
 in *premise*. See EXTRACT/Import of additional inventories/Li-ion batteries for
@@ -132,7 +132,7 @@ under  https://github.com/polca/premise/blob/master/premise/data/battery/scenari
 
 
 Stationary batteries
-""""""""""""""""""""
+====================
 
 Inventories for several battery technologies for stationary applications are provided:
 
@@ -217,7 +217,7 @@ market for battery capacity, stationary (TC scenario)     GLO         Vanadium R
 capacity needed in high voltage electricity markets.
 
 Biomass
-"""""""
+=======
 
 Run
 
@@ -295,7 +295,7 @@ and transport it to the powerplant, but no other forestry-related burden is incl
 
 
 Power generation
-""""""""""""""""
+================
 
 Run
 
@@ -607,7 +607,7 @@ Regional electricity markets
 ----------------------------
 
 High voltage regional markets
-=============================
+-----------------------------
 
 *premise* creates high, medium and low-voltage electricity markets for each IAM region.
 It starts by creating high-voltage markets and define the share of each supplying technology
@@ -668,7 +668,7 @@ ecoinvent). This is not ideal as it supposes that future country-specific
 production volumes will remain the same in respect to one another.
 
 High voltage regional markets for aluminium smelters
-====================================================
+----------------------------------------------------
 
 Aluminium production is a significant consumer of electricity.
 In the ecoinvent database, aluminium smelters are represented by
@@ -719,7 +719,7 @@ regional mixes defined by the International Energy Agency (IEA).
 
 
 Storage
-=======
+-------
 
 If the IAM scenario requires the use of storage, *premise* adds a storage
 dataset to the high voltage market. *premise* can add two types of storage:
@@ -741,7 +741,7 @@ The efficiency of the H2-fed gas turbine is based on the parameters of Ozawa_ et
 
 
 Medium voltage regional markets
-===============================
+-------------------------------
 
 The workflow is not too different from that of high voltage markets.
 There are however only two possible providers of electricity in medium
@@ -753,7 +753,7 @@ market to itself. Distribution losses are modelled the same way as for
 high voltage markets and are added to the input from high voltage market.
 
 Low voltage regional markets
-============================
+----------------------------
 
 Low voltage regional markets receive an input from the medium voltage
 market, as well as from residential photovoltaic power.
@@ -818,7 +818,7 @@ The rest of the modelling is similar to that of regular regional electricity
 markets described above.
 
 Original market datasets
-========================
+------------------------
 
 Market datasets originally present in the ecoinvent LCI database are cleared
 from any inputs. Instead, an input from the newly created regional market
@@ -840,14 +840,14 @@ regional market, which "includes" it in terms of geography.
  ============================================ =========== ================ ===========
 
 Relinking
-=========
+---------
 
 Once the new markets are created, *premise* re-links all electricity-consuming
 activities to the new regional markets. The regional market it re-links to
 depends on the location of the consumer.
 
 Cement production
-"""""""""""""""""
+=================
 
 The modelling of future improvements in the cement sector is relatively
 simple at the moment, and does not involve the emergence of new
@@ -873,7 +873,7 @@ Run
     ndb.update("cement")
 
 Dataset proxies
-+++++++++++++++
+---------------
 
 *premise* duplicates clinker production datasets in ecoinvent (called
 "clinker production") so as to create a proxy dataset for each IAM region.
@@ -886,7 +886,7 @@ in different fields, such as that of *production volume*.
 
 
 Efficiency adjustment
-+++++++++++++++++++++
+---------------------
 
 *premise* then adjusts the thermal efficiency of the process.
 It does so by calculating the technology-weighted energy requirements
@@ -939,7 +939,7 @@ at a fix emission rate of 525 kg CO2/t clinker.
 
 
 Carbon Capture and Storage
-++++++++++++++++++++++++++
+--------------------------
 
 If the IAM scenario indicates that a share of the CO2 emissions
 for the cement sector in a given region and year is sequestered and stored,
@@ -975,7 +975,7 @@ the 2018 IEA_ cement roadmap report.
     ndb.generate_scenario_report()
 
 Cement markets
-++++++++++++++
+--------------
 
 Run
 
@@ -1004,7 +1004,7 @@ as well. These cement production datasets link the newly created
 clinker production dataset, corresponding to their IAM region.
 
 Clinker-to-cement ratio
-+++++++++++++++++++++++
+-----------------------
 
 *premise* used to modify the composition of cement markets to reflect
 a lower clinker content over time, based on external projections. This is
@@ -1012,7 +1012,7 @@ no longer performed, as it is not an assumption stemming from the IAM model,
 but rather a projection of the cement industry.
 
 Original market datasets
-========================
+------------------------
 
 Market datasets originally present in the ecoinvent LCI database are cleared
 from any inputs. Instead, an input from the newly created regional market
@@ -1035,7 +1035,7 @@ regional market, which "includes" it in terms of geography.
 
 
 Relinking
-+++++++++
+---------
 
 Once cement production and market datasets are created, *premise*
 re-links cement-consuming activities to the new regional markets for
@@ -1043,7 +1043,7 @@ cement. The regional market it re-links to depends on the location
 of the consumer.
 
 Steel production
-""""""""""""""""
+================
 
 Run
 
@@ -1071,7 +1071,7 @@ simple at the moment, and does not involve the emergence of new
 technologies (e.g., hydrogen-based DRI, electro-winning).
 
 Dataset proxies
-+++++++++++++++
+---------------
 
 *premise* duplicates steel production datasets in ecoinvent for the
 production of primary and secondary steel (called respectively
@@ -1086,7 +1086,7 @@ to using a rest-of-the-world (RoW) dataset to represent the IAM region.
 in different fields, such as that of *production volume*.
 
 Efficiency adjustment
-+++++++++++++++++++++
+---------------------
 
 Regarding primary steel production (using BO-BOF), *premise* adjusts
 the inputs of fuels found in:
@@ -1125,7 +1125,7 @@ provided by the IAM scenario.
     by *premise*. Therefore, there is a large modelling uncertainty.
 
 Carbon Capture and Storage
-++++++++++++++++++++++++++
+--------------------------
 
 If the IAM scenario indicates that a share of the CO2 emissions
 from the steel sector in a given region and year is sequestered and stored,
@@ -1150,7 +1150,7 @@ case of a steel mill.
 
 
 Steel markets
-+++++++++++++
+-------------
 
 *premise* create a dataset "market for steel, low-alloyed" for each IAM region.
 Within each dataset, the supply shares of primary and secondary steel
@@ -1180,7 +1180,7 @@ furnace process (secondary steel).
 
 
 Original market datasets
-========================
+------------------------
 
 Market datasets originally present in the ecoinvent LCI database are cleared
 from any inputs. Instead, an input from the newly created regional market
@@ -1203,7 +1203,7 @@ regional market, which "includes" it in terms of geography.
 
 
 Relinking
-+++++++++
+---------
 
 Once steel production and market datasets are created, *premise*
 re-links steel-consuming activities to the new regional markets for
@@ -1211,7 +1211,7 @@ steel. The regional market it re-links to depends on the location
 of the consumer.
 
 Transport
-"""""""""
+=========
 
 Run
 
@@ -1250,7 +1250,7 @@ are obtained by scaling down the current inventories based on the
 vehicle efficiency improvements projected by the IAM scenario.
 
 Trucks
-++++++
+------
 
 The following size classes of medium and heavy duty trucks are imported:
 
@@ -1425,7 +1425,7 @@ of India.
  ================================================================= ============ ================ ===========
 
 Direct Air Capture
-""""""""""""""""""
+==================
 
 Run
 
@@ -1485,7 +1485,7 @@ and fuel markets, based on data from the IAM scenario.
 
 
 Efficiency adjustment
-+++++++++++++++++++++
+---------------------
 
 Biofuels
 ========
@@ -1543,7 +1543,7 @@ requirements, which are sourced from Bauer_ et al, 2022:
 .. _Bauer: https://www.psi.ch/en/media/77703/download?attachment
 
 Land use and land use change
-++++++++++++++++++++++++++++
+----------------------------
 
 When building a database using IMAGE, land use and land use change emissions
 are available. Upon the import of crops farming datasets, *premise* adjusts
@@ -1579,7 +1579,7 @@ CO2 emissions per kg of crop farmed are calculated as::
     land_use_co2 = land_use_co2 [kg CO2/GJ] / 1000 [MJ/GJ] * LHV [MJ/kg]
 
 Regional supply chains
-++++++++++++++++++++++
+----------------------
 
 *premise* builds several supply chains for synthetic fuels, for each IAM
 region. THe reason for this is that synthetic fuels can be produced from
@@ -1686,7 +1686,7 @@ Also, in this same case, electricity is used:
 
 
 Fuel markets
-++++++++++++
+------------
 
 *premise* builds markets for the following fuels:
 
@@ -1716,7 +1716,7 @@ data and the fuel markets is described under: https://github.com/polca/premise/t
     the choice is made to supply it by truck over 500 km, in a gaseous state.
 
 Influence of differing LHV on fuel market composition
-=====================================================
+-----------------------------------------------------
 
 Because not all competing fuels of a same type have similar calorific values,
 some adjustments are made. The table below shows the example of the market for
@@ -1753,7 +1753,7 @@ are modelled with the calorific value of conventional gasoline.
  =================================================================== ========= =========== ===========
 
 Heat
-++++
+====
 
 Run
 
@@ -1799,7 +1799,7 @@ hardwood chips) relink to the dataset `market for biomass, used as fuel` if
 
 
 CO2 emissions update
-++++++++++++++++++++
+--------------------
 
 *premise* iterates through activities that consume any of the newly created
 fuel markets to update the way CO2 emissions are modelled. Based on the fuel
@@ -1833,7 +1833,7 @@ new diesel market of the REMIND region for India.
 
 
 Geographical mapping
-""""""""""""""""""""
+====================
 
 IAM models have slightly different geographical resolutions and definitions.
 
@@ -2060,7 +2060,7 @@ implementation in the wurst_ library.
   ZA              R12_AFR                            South Africa                    AFR                      SSA                         SAF
   ZM              R12_AFR                            Africa_Southern                 AFR                      SSA                         RSAF
   ZW              R12_AFR                            Africa_Southern                 AFR                      SSA                         RSAF
- =============== ================================= =============================== ======================== =========================== ========================
+ =============== ================================== =============================== ======================== =========================== ========================
 
 
 
@@ -2068,7 +2068,7 @@ The mapping between ecoinvent locations and IAM regions is available under the f
 https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/topologies
 
 Regionalization
-"""""""""""""""
+===============
 
 Several of the integration steps described above involve the
 regionalization of datasets. It is the case, for example, when introducing
@@ -2177,7 +2177,7 @@ Final Steps
 
 
 GAINS emission factors
-""""""""""""""""""""""
+======================
 
 Run
 
@@ -2295,7 +2295,7 @@ For questions related to GAINS modelling, please contact the respective GAINS te
 * GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
 
 Logs
-""""
+====
 
 *premise* generates a spreadsheet report detailing changes made to the database
 for each scenario. The report is saved in the current working directory and
