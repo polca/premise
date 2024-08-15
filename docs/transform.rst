@@ -1859,9 +1859,9 @@ implementation in the wurst_ library.
 .. _constructive_geometries: https://github.com/cmutel/constructive_geometries
 .. _wurst: https://github.com/polca/wurst
 
-=============== ================================= =============================== ======================== =========================== ========================
- Country Code    message-topology.json             gcam-topology.json              tiam-ucl-topology.json   remind-topology.json        image-topology.json
-==============  ================================= =============================== ======================== =========================== ========================
+ =============== ================================= =============================== ======================== =========================== ========================
+  Country Code    message-topology.json             gcam-topology.json              tiam-ucl-topology.json   remind-topology.json        image-topology.json
+ ==============  ================================= =============================== ======================== =========================== ========================
  AF              R12_SAS                            South Asia                      ODA                      OAS                         RSAS
  AG              R12_LAM                            Central America and Caribbean   CSA                      LAM                         N/A
  AI              R12_LAM                            Central America and Caribbean   CSA                      LAM                         RCAM
@@ -2060,7 +2060,7 @@ implementation in the wurst_ library.
  ZA              R12_AFR                            South Africa                    AFR                      SSA                         SAF
  ZM              R12_AFR                            Africa_Southern                 AFR                      SSA                         RSAF
  ZW              R12_AFR                            Africa_Southern                 AFR                      SSA                         RSAF
-=============== ================================= =============================== ======================== =========================== ========================
+ =============== ================================= =============================== ======================== =========================== ========================
 
 
 
