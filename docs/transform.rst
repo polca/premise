@@ -1841,8 +1841,8 @@ implementation in the wurst_ library.
 Country Code    message-topology.json     gcam-topology.json             tiam-ucl-topology.json       remind-topology.json      image-topology.json
 =============== ========================= ============================== =========================== ========================= ==========================
 AF              R12_SAS                   South Asia                     ODA                          OAS                       RSAS
-AG              R12_LAM                   Central America and Caribbean   CSA                          LAM                       N/A
-AI              R12_LAM                   Central America and Caribbean   CSA                          LAM                       RCAM
+AG              R12_LAM                   Central America and Caribbean  CSA                          LAM                       N/A
+AI              R12_LAM                   Central America and Caribbean  CSA                          LAM                       RCAM
 AL              R12_EEU                   Europe_Non_EU                  WEU                          NEU                       CEU
 AM              R12_FSU                   Central Asia                   FSU                          REF                       RUS
 AO              R12_AFR                   Africa_Southern                AFR                          SSA                       RSAF
