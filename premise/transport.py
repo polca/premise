@@ -630,26 +630,28 @@ class Transport(BaseTransformation):
         # detect size in name
         size = [s for s in self.battery_size["truck"] if s in ds["name"]][0]
 
-        if self.year < min(self.battery_size["truck"][size].keys()):
+        print(self.battery_size["truck"][size])
+
+        if self.year <= min(self.battery_size["truck"][size].keys()):
             mean_battery_size = self.battery_size["truck"][size][
-                min(self.battery_size["truck"][size]["mean"].keys())
-            ]
+                min(self.battery_size["truck"][size].keys())
+            ]["mean"]
             min_battery_size = self.battery_size["truck"][size][
-                min(self.battery_size["truck"][size]["min"].keys())
-            ]
+                min(self.battery_size["truck"][size].keys())
+            ]["min"]
             max_battery_size = self.battery_size["truck"][size][
-                min(self.battery_size["truck"][size]["max"].keys())
-            ]
-        elif self.year > max(self.battery_size["truck"][size].keys()):
+                min(self.battery_size["truck"][size].keys())
+            ]["max"]
+        elif self.year >= max(self.battery_size["truck"][size].keys()):
             mean_battery_size = self.battery_size["truck"][size][
-                max(self.battery_size["truck"][size]["mean"].keys())
-            ]
+                max(self.battery_size["truck"][size].keys())
+            ]["mean"]
             min_battery_size = self.battery_size["truck"][size][
-                max(self.battery_size["truck"][size]["min"].keys())
-            ]
+                max(self.battery_size["truck"][size].keys())
+            ]["min"]
             max_battery_size = self.battery_size["truck"][size][
-                max(self.battery_size["truck"][size]["max"].keys())
-            ]
+                max(self.battery_size["truck"][size].keys())
+            ]["max"]
         else:
             mean_battery_size = np.interp(
                 self.year,
@@ -674,7 +676,7 @@ class Transport(BaseTransformation):
             exc["minimum"] = min_battery_size
             exc["maximum"] = max_battery_size
 
-        ds["comment"] += f" Battery size adjusted to {battery_size} kWh."
+        ds["comment"] += f" Battery size adjusted to {mean_battery_size} kWh."
 
     def write_log(self, dataset, status="created"):
         """
