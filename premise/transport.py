@@ -92,9 +92,12 @@ def get_battery_size() -> dict:
     for each vehicle type and powertrain.
     :return: dictionary with battery sizes
     """
-    with open(DATA_DIR / "transport" / "battery_size.yaml", "r", encoding="utf-8") as stream:
+    with open(
+        DATA_DIR / "transport" / "battery_size.yaml", "r", encoding="utf-8"
+    ) as stream:
         out = yaml.safe_load(stream)
         return out
+
 
 def get_average_truck_load_factors() -> Dict[str, Dict[str, Dict[str, float]]]:
     """
@@ -503,7 +506,9 @@ class Transport(BaseTransformation):
                     ws.equals("unit", "ton kilometer"),
                 ):
 
-                    new_name = self.mapping["truck"]["old_trucks"][exc["name"]][self.model]
+                    new_name = self.mapping["truck"]["old_trucks"][exc["name"]][
+                        self.model
+                    ]
                     new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
 
                     if (new_name, new_loc) in list_created_vehicles:
@@ -512,26 +517,30 @@ class Transport(BaseTransformation):
                         exc["location"] = new_loc
                     else:
                         print(f"Could not find dataset for {new_name} in {new_loc}.")
-                        exc["name"] = "transport, freight, lorry, unspecified, long haul"
+                        exc["name"] = (
+                            "transport, freight, lorry, unspecified, long haul"
+                        )
                         exc["product"] = "transport, freight, lorry"
                         exc["location"] = "World"
-
 
             # also we need to empty the old transport datasets
             for dataset in ws.get_many(
                 self.database,
                 ws.either(
-                    *[
-                        ws.equals("name", v)
-                        for v in self.mapping["truck"]["old_trucks"]
-                    ]
+                    *[ws.equals("name", v) for v in self.mapping["truck"]["old_trucks"]]
                 ),
             ):
-                dataset["exchanges"] = [e for e in dataset["exchanges"] if e["type"] == "production"]
-                dataset["comment"] = "This dataset has been replaced by new fleet-average vehicles."
+                dataset["exchanges"] = [
+                    e for e in dataset["exchanges"] if e["type"] == "production"
+                ]
+                dataset["comment"] = (
+                    "This dataset has been replaced by new fleet-average vehicles."
+                )
 
                 # add new truck as exchange
-                new_name = self.mapping["truck"]["old_trucks"][dataset["name"]][self.model]
+                new_name = self.mapping["truck"]["old_trucks"][dataset["name"]][
+                    self.model
+                ]
                 new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
 
                 if (new_name, new_loc) in list_created_vehicles:
@@ -654,8 +663,6 @@ class Transport(BaseTransformation):
             exc["maximum"] = max_battery_size
 
         ds["comment"] += f" Battery size adjusted to {battery_size} kWh."
-
-
 
     def write_log(self, dataset, status="created"):
         """
