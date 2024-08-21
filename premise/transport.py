@@ -631,13 +631,25 @@ class Transport(BaseTransformation):
         size = [s for s in self.battery_size["truck"] if s in ds["name"]][0]
 
         if self.year < min(self.battery_size["truck"][size].keys()):
-            mean_battery_size = self.battery_size["truck"][size][min(self.battery_size["truck"][size]["mean"].keys())]
-            min_battery_size = self.battery_size["truck"][size][min(self.battery_size["truck"][size]["min"].keys())]
-            max_battery_size = self.battery_size["truck"][size][min(self.battery_size["truck"][size]["max"].keys())]
+            mean_battery_size = self.battery_size["truck"][size][
+                min(self.battery_size["truck"][size]["mean"].keys())
+            ]
+            min_battery_size = self.battery_size["truck"][size][
+                min(self.battery_size["truck"][size]["min"].keys())
+            ]
+            max_battery_size = self.battery_size["truck"][size][
+                min(self.battery_size["truck"][size]["max"].keys())
+            ]
         elif self.year > max(self.battery_size["truck"][size].keys()):
-            mean_battery_size = self.battery_size["truck"][size][max(self.battery_size["truck"][size]["mean"].keys())]
-            min_battery_size = self.battery_size["truck"][size][max(self.battery_size["truck"][size]["min"].keys())]
-            max_battery_size = self.battery_size["truck"][size][max(self.battery_size["truck"][size]["max"].keys())]
+            mean_battery_size = self.battery_size["truck"][size][
+                max(self.battery_size["truck"][size]["mean"].keys())
+            ]
+            min_battery_size = self.battery_size["truck"][size][
+                max(self.battery_size["truck"][size]["min"].keys())
+            ]
+            max_battery_size = self.battery_size["truck"][size][
+                max(self.battery_size["truck"][size]["max"].keys())
+            ]
         else:
             mean_battery_size = np.interp(
                 self.year,
