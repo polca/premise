@@ -622,18 +622,36 @@ class Transport(BaseTransformation):
         size = [s for s in self.battery_size["truck"] if s in ds["name"]][0]
 
         if self.year < min(self.battery_size["truck"][size].keys()):
-            battery_size = self.battery_size["truck"][size][min(self.battery_size["truck"][size].keys())]
+            mean_battery_size = self.battery_size["truck"][size][min(self.battery_size["truck"][size]["mean"].keys())]
+            min_battery_size = self.battery_size["truck"][size][min(self.battery_size["truck"][size]["min"].keys())]
+            max_battery_size = self.battery_size["truck"][size][min(self.battery_size["truck"][size]["max"].keys())]
         elif self.year > max(self.battery_size["truck"][size].keys()):
-            battery_size = self.battery_size["truck"][size][max(self.battery_size["truck"][size].keys())]
+            mean_battery_size = self.battery_size["truck"][size][max(self.battery_size["truck"][size]["mean"].keys())]
+            min_battery_size = self.battery_size["truck"][size][max(self.battery_size["truck"][size]["min"].keys())]
+            max_battery_size = self.battery_size["truck"][size][max(self.battery_size["truck"][size]["max"].keys())]
         else:
-            battery_size = np.interp(
+            mean_battery_size = np.interp(
                 self.year,
                 list(self.battery_size["truck"][size].keys()),
-                list(self.battery_size["truck"][size].values()),
+                [v["mean"] for v in self.battery_size["truck"][size].values()],
+            )
+            min_battery_size = np.interp(
+                self.year,
+                list(self.battery_size["truck"][size].keys()),
+                [v["min"] for v in self.battery_size["truck"][size].values()],
+            )
+            max_battery_size = np.interp(
+                self.year,
+                list(self.battery_size["truck"][size].keys()),
+                [v["max"] for v in self.battery_size["truck"][size].values()],
             )
 
         for exc in ws.technosphere(ds, ws.contains("name", "market for battery")):
-            exc["amount"] = battery_size
+            exc["amount"] = mean_battery_size
+            exc["uncertainty type"] = 5
+            exc["loc"] = exc["amount"]
+            exc["minimum"] = min_battery_size
+            exc["maximum"] = max_battery_size
 
         ds["comment"] += f" Battery size adjusted to {battery_size} kWh."
 
