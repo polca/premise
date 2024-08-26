@@ -561,8 +561,6 @@ def generate_scenario_factor_file(
     # remove the column `original`
     df = df.drop(columns=["original"])
 
-
-
     # fetch a list of activities not present in original_db
     list_original_acts = get_list_unique_acts([{"database": origin_db}])
 
