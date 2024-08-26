@@ -539,15 +539,26 @@ Photovoltaic panels are expected to improve over time. The following module effi
 are considered for the different types of PV panels:
 
 
- ====================== =========== ============ =========== ======= ====== =======
-  % module efficiency    micro-Si    single-Si    multi-Si    CIGS    CIS    CdTe
- ====================== =========== ============ =========== ======= ====== =======
-  2010                   10          15.1         14          11      11     10
-  2020                   11.9        17.9         16.8        14      14     16.8
-  2050                   12.5        26.7         24.4        23.4    23.4   21
- ====================== =========== ============ =========== ======= ====== =======
+========================================================================================================================================================
+  % module efficiency    micro-Si          single-Si         multi-Si         CIGS            CIS             CdTe           GaAs           perovskite    Source
+========================================================================================================================================================
+  2010                   10.0 (7.5-12.5)   15.0 (11.3-18.9)  14.0 (10.5-17.5) 11.0 (8.3-13.8) 11.0 (8.3-13.8) 10.0 (8.8-12.0) 28.0 (21.0-35.0) 25.0 (19.0-31.0)  [1], [2], [3], [4], [5], [6], [7], [8]
+  2020                   11.9 (9.0-15.0)   17.9 (13.0-22.0)  16.8 (12.0-21.0) 14.0 (10.5-18.0) 14.0 (10.5-18.0) 16.8 (13.0-21.0) 28.0 (21.0-35.0) 25.0 (19.0-31.0)  [1], [2], [3], [4], [5], [6], [7], [8]
+  2023                    -                22.0 (17.0-24.0)   -                15.0 (11.3-19.0) -               19.0 (15.0-20.0) -                  -             [2], [4], [6]
+  2050                   12.5 (9.0-16.0)   26.7 (20.0-34.0)  24.4 (16.0-30.0) 23.4 (17.3-29.0) 23.4 (17.3-29.0) 21.0 (17.5-25.0) 28.0 (25.0-28.0) 25.0 (22.0-31.0)  [1], [2], [3], [4], [5], [6], [7], [8]
+========================================================================================================================================================
 
-The sources for these efficiencies are given in the inventory file LCI_PV_:
+.. [1] https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf
+.. [2] https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf
+.. [3] https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf
+.. [4] https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf. For future efficiency: own assumption, -+25%.
+.. [5] Future eff: Fraunhofer ISE Photovoltaics Report 2019; Uncertainty: Own assumption: -+25%.
+.. [6] https://www.sciencedirect.com/science/article/pii/S0927024823001101
+.. [7] https://link.springer.com/article/10.1007/s11367-020-01791-z
+.. [8] https://pubs.rsc.org/en/content/articlelanding/2022/se/d2se00096b; https://www.csem.ch/en/news/photovoltaic-technology-breakthrough-achieving-31.25-efficiency/
+
+
+The sources for these efficiencies are also given in the inventory file LCI_PV_:
 
 .. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
 
