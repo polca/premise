@@ -561,6 +561,8 @@ def generate_scenario_factor_file(
     # remove the column `original`
     df = df.drop(columns=["original"])
 
+
+
     # fetch a list of activities not present in original_db
     list_original_acts = get_list_unique_acts([{"database": origin_db}])
 
@@ -888,6 +890,8 @@ def generate_superstructure_db(
     # should not be any, but just in case
     before = len(df)
     df = df.drop_duplicates()
+    # detect duplicate based on `from key` and `to key`
+    df = df.drop_duplicates(subset=["from key", "to key"])
     after = len(df)
     print(f"Dropped {before - after} duplicate(s).")
 
