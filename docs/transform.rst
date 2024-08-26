@@ -845,7 +845,7 @@ activities to the new regional markets. The regional market it re-links to
 depends on the location of the consumer.
 
 Cement production
-"""""""""""""""""
++++++++++++++++++
 
 The modelling of future improvements in the cement sector is dependent on the IAM model chosen.
 
@@ -863,15 +863,13 @@ Muller_ et al., 2024.
 
 We differ slightly from the implementation of Muller_ et al., 2024, in that:
 
-* the heat necessary for the regeneration of the MEA solvent is assumed to be provided by a natural gas boiler
-(instead of a fuel mix resembling that of the kiln itself), with up to 30% coming from recovered heat from the kiln by 2050,
+* the heat necessary for the regeneration of the MEA solvent is assumed to be provided by a natural gas boiler (instead of a fuel mix resembling that of the kiln itself), with up to 30% coming from recovered heat from the kiln by 2050,
 * the amount of heat needed for the regeneration of the MEA solvent goes from 3.76 GJ/ton CO2 in 2020, to 2.6 GJ/ton CO2 in 2050,
 * the provision of oxygen for the Direct Separation option comes from an existing air separation dataset from ecoinvent,
-* the fuel mix for the kiln is that of ecoinvent, further scaled down by the change of efficiency of the kiln
-(in Müller et al., 2024, they use directly the fuel mix provided by the IMAGE scenario, which we do not find representative,
-as it also includes the fuel used by other activities in the non-metallic minerals, notably a large share of natural gas).
+* the fuel mix for the kiln is that of ecoinvent, further scaled down by the change of efficiency of the kiln (in Müller et al., 2024, they use directly the fuel mix provided by the IMAGE scenario, which we do not find representative, as it also includes the fuel used by other activities in the non-metallic minerals, notably a large share of natural gas).
 
 In a nutshell, *premise*:
+
 * makes copies of the `clinker production` dataset,
 * adjusts the fuel consumption and related CO2 emissions,
 * adjusts specific hot pollutant emissions removed by the carbon capture process (Mercury, NOx, SOx),
