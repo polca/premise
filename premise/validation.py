@@ -185,7 +185,6 @@ class BaseDatasetValidator:
                 f"WARNING: matrix is not square: {len(list(set(activities)))} activities, {len(list(set(products)))} products."
             )
 
-
     def check_uncertainty(self):
         MANDATORY_UNCERTAINTY_FIELDS = {
             2: {"loc", "scale"},
