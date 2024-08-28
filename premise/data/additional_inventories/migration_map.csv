@@ -515,6 +515,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,39,"market for natural gas, burned in gas motor, for storage","natural gas, burned in gas motor, for storage",GLO,"market for natural gas, burned in gas turbine","natural gas, burned in gas turbine",GLO
 38,39,"market for polar fleece production, energy use only","polar fleece production, energy use only",GLO,"market for polar fleece, energy use only","polar fleece, energy use only",GLO
 38,39,"market for soda ash, light, crystalline, heptahydrate","soda ash, light, crystalline, heptahydrate",GLO,"market for soda ash, light","soda ash, light",GLO
+38,310,"market for soda ash, light, crystalline, heptahydrate","soda ash, light, crystalline, heptahydrate",GLO,"market for soda ash, light","soda ash, light",RoW
 37,39,"market for soda ash, light, crystalline, heptahydrate","soda ash, light, crystalline, heptahydrate",GLO,"market for soda ash, light","soda ash, light",GLO
 38,39,"market for stibnite ore, 70% stibnite","stibnite ore, 70% stibnite",GLO,market for stibnite concentrate,stibnite concentrate,GLO
 38,39,"market for zircon, 50% zirconium","zircon, 50% zirconium",GLO,market for zircon,zircon,GLO
@@ -843,8 +844,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,310,market for meta-phenylene diamine,meta-phenylene diamine,GLO,market for resorcinol,resorcinol,GLO
 38,310,"market for natural gas, burned in gas motor, for storage","natural gas, burned in gas motor, for storage",GLO,"market for natural gas, burned in gas turbine","natural gas, burned in gas turbine",GLO
 38,310,"market for polar fleece production, energy use only","polar fleece production, energy use only",GLO,"market for polar fleece, energy use only","polar fleece, energy use only",GLO
-38,310,"market for soda ash, light, crystalline, heptahydrate","soda ash, light, crystalline, heptahydrate",GLO,"market for soda ash, light","soda ash, light",GLO
-37,310,"market for soda ash, light, crystalline, heptahydrate","soda ash, light, crystalline, heptahydrate",GLO,"market for soda ash, light","soda ash, light",GLO
+37,310,"market for soda ash, light, crystalline, heptahydrate","soda ash, light, crystalline, heptahydrate",GLO,"market for soda ash, light","soda ash, light",RoW
 38,310,"market for stibnite ore, 70% stibnite","stibnite ore, 70% stibnite",GLO,market for stibnite concentrate,stibnite concentrate,GLO
 38,310,"market for zircon, 50% zirconium","zircon, 50% zirconium",GLO,market for zircon,zircon,GLO
 38,310,"market group for concrete, normal","concrete, normal",GLO,"market group for concrete, normal strength","concrete, normal strength",GLO
@@ -1308,4 +1308,5 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,39,"market for benzene","benzene","RER","market for benzene","benzene","GLO"
 310,38,"market for natural gas, low pressure","natural gas, low pressure",DE,"market for natural gas, low pressure","natural gas, low pressure",RoW
 310,38,"treatment of wastewater from PV cell production, wastewater treatment",wastewater from PV cell production,CH,"treatment of wastewater from PV cell production, capacity 5E9l/year",wastewater from PV cell production,CH
-310,39,"market for iron (III) chloride, without water, in 40% solution state","iron (III) chloride, without water, in 40% solution state",GLO,"market for iron(III) chloride, without water, in 40% solution state","iron (III) chloride, without water, in 40% solution state",GLO
+310,39,"market for iron(III) chloride, without water, in 40% solution state","iron(III) chloride, without water, in 40% solution state",GLO,"market for iron(III) chloride, without water, in 40% solution state","iron (III) chloride, without water, in 40% solution state",GLO
+310,38,"market for iron(III) chloride, without water, in 40% solution state","iron(III) chloride, without water, in 40% solution state",GLO,"market for iron (III) chloride, without water, in 40% solution state","iron (III) chloride, without water, in 40% solution state",GLO
