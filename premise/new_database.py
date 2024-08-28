@@ -779,7 +779,7 @@ class NewDatabase:
             (FILEPATH_NUCLEAR_EPR, "3.8"),
             (FILEPATH_NUCLEAR_SMR, "3.8"),
             (FILEPATH_WAVE, "3.8"),
-            (FILEPATH_FUEL_CELL, "3.9"),
+            (FILEPATH_FUEL_CELL, "3.10"),
             (FILEPATH_CSP, "3.9"),
             (FILEPATH_HYDROGEN_HEATING, "3.9"),
             (FILEPATH_METHANOL_HEATING, "3.9"),
