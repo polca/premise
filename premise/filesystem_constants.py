@@ -5,7 +5,6 @@ This module contains constants for the filesystem paths used by Premise.
 from pathlib import Path
 
 import platformdirs
-
 import yaml
 
 
@@ -17,6 +16,7 @@ def load_var_file():
             return yaml.safe_load(f)
     else:
         return None
+
 
 VARIABLES = load_var_file() or {}
 
