@@ -308,7 +308,7 @@ class Biomass(BaseTransformation):
                     f"Dataset {dataset['name']} has no technosphere exchanges."
                 )
 
-        self.database.append(dataset)
+            self.database.append(dataset)
 
             # add log
             self.write_log(dataset=dataset)
