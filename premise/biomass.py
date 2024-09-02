@@ -190,7 +190,10 @@ class Biomass(BaseTransformation):
 
             for biomass_type, biomass_act in biomass_map.items():
 
-                if total_prod_vol < 1e-5 and biomass_type != "biomass crops - purpose grown":
+                if (
+                    total_prod_vol < 1e-5
+                    and biomass_type != "biomass crops - purpose grown"
+                ):
                     continue
 
                 if biomass_type in available_biomass_vars:
@@ -231,8 +234,10 @@ class Biomass(BaseTransformation):
                 else:
                     share = 0
 
-
-                if total_prod_vol < 1e-5 and biomass_type == "biomass crops - purpose grown":
+                if (
+                    total_prod_vol < 1e-5
+                    and biomass_type == "biomass crops - purpose grown"
+                ):
                     share = 1
 
                 if share > 0:
@@ -286,9 +291,6 @@ class Biomass(BaseTransformation):
                                 "uncertainty type": 0,
                             }
                         )
-
-
-
 
                 if "log parameters" not in dataset:
                     dataset["log parameters"] = {}
