@@ -713,7 +713,7 @@ class NewDatabase:
         # with HiddenPrints():
         # Manual import
         # file path and original ecoinvent version
-        data = []
+        data, unlinked = [], []
         filepaths = [
             (FILEPATH_OIL_GAS_INVENTORIES, "3.7"),
             (FILEPATH_CARMA_INVENTORIES, "3.5"),
@@ -817,6 +817,10 @@ class NewDatabase:
             datasets = inventory.merge_inventory()
             data.extend(datasets)
             self.database.extend(datasets)
+            unlinked.extend(inventory.list_unlinked)
+
+        if len(unlinked) > 0:
+            raise ValueError("Fix the unlinked exchanges before proceeding")
 
         return data
 
