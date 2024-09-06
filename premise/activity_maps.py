@@ -383,7 +383,7 @@ class InventorySet:
 
         # check if all keys have values
         # if not, print warning
-        #for key, val in mapping.items():
+        # for key, val in mapping.items():
         #    if not val:
         #        pass
         #        print(f"Warning: No activities found for {key} -- revise mapping.")
