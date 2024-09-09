@@ -1496,13 +1496,23 @@ class ExternalScenario(BaseTransformation):
                                     ),
                                     "minimum": (
                                         exc.get("minimum", 0)
-                                        * (exc["amount"] * ratio * share / exc["amount"])
+                                        * (
+                                            exc["amount"]
+                                            * ratio
+                                            * share
+                                            / exc["amount"]
+                                        )
                                         if "minimum" in exc
                                         else None
                                     ),
                                     "maximum": (
                                         exc.get("maximum", 0)
-                                        * (exc["amount"] * ratio * share / exc["amount"])
+                                        * (
+                                            exc["amount"]
+                                            * ratio
+                                            * share
+                                            / exc["amount"]
+                                        )
                                         if "maximum" in exc
                                         else None
                                     ),
