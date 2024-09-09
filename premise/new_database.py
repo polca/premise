@@ -502,7 +502,7 @@ class NewDatabase:
         scenarios: List[dict],
         source_version: str = "3.10",
         source_type: str = "brightway",
-        key: bytes = None,
+        key: Union[bytes, str] = None,
         source_db: str = None,
         source_file_path: str = None,
         additional_inventories: List[dict] = None,
