@@ -946,9 +946,7 @@ class NewDatabase:
             [item for item in sectors if item not in sector_update_methods]
         )
 
-        with tqdm(
-            total=len(self.scenarios), desc=description, ncols=70
-        ) as pbar_outer:
+        with tqdm(total=len(self.scenarios), desc=description, ncols=70) as pbar_outer:
             for scenario in self.scenarios:
                 # add database to scenarios
                 try:
