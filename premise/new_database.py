@@ -926,11 +926,14 @@ class NewDatabase:
         }
 
         if isinstance(sectors, str):
+            description = f"Processing scenarios for sector '{sectors}'"
             sectors = [
                 sectors,
             ]
-
-        if sectors is None:
+        elif isinstance(sectors, list):
+            description = f"Processing scenarios for {len(sectors)} sectors"
+        elif sectors is None:
+            description = "Processing scenarios for all sectors"
             sectors = [s for s in list(sector_update_methods.keys())]
 
         assert isinstance(sectors, list), "sector_name should be a list of strings"
@@ -943,9 +946,7 @@ class NewDatabase:
             [item for item in sectors if item not in sector_update_methods]
         )
 
-        with tqdm(
-            total=len(self.scenarios), desc="Processing scenarios", ncols=70
-        ) as pbar_outer:
+        with tqdm(total=len(self.scenarios), desc=description, ncols=70) as pbar_outer:
             for scenario in self.scenarios:
                 # add database to scenarios
                 try:
