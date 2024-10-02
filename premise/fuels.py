@@ -560,7 +560,7 @@ class Fuels(BaseTransformation):
 
                     new_energy_use, min_energy_use, max_energy_use = None, None, None
 
-                    if fuel_type in self.fuel_efficiencies.variables.values:
+                    if fuel_type in self.fuel_efficiencies.variables.values.tolist():
                         # Find scaling factor compared to 2020
                         scaling_factor = 1 / self.find_iam_efficiency_change(
                             data=self.fuel_efficiencies,
