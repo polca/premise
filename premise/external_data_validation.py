@@ -343,7 +343,8 @@ def check_inventories(
             for i, v in d_datasets.items()
             if not v["exists in original database"]
             and not v.get("new dataset")
-            and (i[0].lower(), i[1].lower()) in [(x[0].lower(), x[1].lower()) for x in list_datasets]
+            and (i[0].lower(), i[1].lower())
+            in [(x[0].lower(), x[1].lower()) for x in list_datasets]
         ]
 
         raise AssertionError(

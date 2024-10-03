@@ -805,9 +805,11 @@ class ExternalScenario(BaseTransformation):
                                     # )
 
                                     suppliers = [
-                                        s for s in self.database
+                                        s
+                                        for s in self.database
                                         if s["name"].lower() == name.lower()
-                                        and s["reference product"].lower() == ref_prod.lower()
+                                        and s["reference product"].lower()
+                                        == ref_prod.lower()
                                         and s["location"] == possible_locations[counter]
                                     ]
 
@@ -884,7 +886,8 @@ class ExternalScenario(BaseTransformation):
                 # )
 
                 act = [
-                    a for a in self.database
+                    a
+                    for a in self.database
                     if a["name"].lower() == name.lower()
                     and a["reference product"].lower() == ref_prod.lower()
                     and a["location"] == possible_locations[counter]

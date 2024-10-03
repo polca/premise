@@ -611,8 +611,12 @@ class Fuels(BaseTransformation):
                                 exc["amount"] *= scaling_factor
                                 exc["uncertainty type"] = 5
                                 exc["loc"] = exc["amount"]
-                                exc["minimum"] = exc["amount"] * (min_energy_use / new_energy_use)
-                                exc["maximum"] = exc["amount"] * (max_energy_use / new_energy_use)
+                                exc["minimum"] = exc["amount"] * (
+                                    min_energy_use / new_energy_use
+                                )
+                                exc["maximum"] = exc["amount"] * (
+                                    max_energy_use / new_energy_use
+                                )
 
                         else:
                             # rescale the fuel consumption exchange
