@@ -780,7 +780,7 @@ def generate_scenario_difference_file(
     df.loc[df["flow type"].isin(["technosphere", "production"]), "from categories"] = (
         None
     )
-    df.loc[df["flow type"] == "production", list_scenarios] = 1.0
+    # df.loc[df["flow type"] == "production", list_scenarios] = 1.0
 
     df.loc[df["flow type"] == "biosphere", "from database"] = biosphere_name
 
