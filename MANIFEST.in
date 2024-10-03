@@ -45,6 +45,7 @@ include premise/data/GAINS_emission_factors/iam_data/MFR/*.csv
 include premise/data/geomap/*.yml
 include premise/data/geomap/*.yaml
 include premise/data/renewables/*.csv
+include premise/data/renewables/*.yaml
 include premise/data/direct_air_capture/*.yaml
 include premise/data/transport/car/*.csv
 include premise/data/transport/bus/*.csv
