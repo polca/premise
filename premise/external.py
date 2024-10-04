@@ -790,19 +790,28 @@ class ExternalScenario(BaseTransformation):
                             # by order of preference
                             try:
                                 while not suppliers:
-                                    suppliers = list(
-                                        ws.get_many(
-                                            self.database,
-                                            ws.equals("name", name),
-                                            ws.equals(
-                                                "reference product",
-                                                ref_prod,
-                                            ),
-                                            ws.equals(
-                                                "location", possible_locations[counter]
-                                            ),
-                                        )
-                                    )
+                                    # suppliers = list(
+                                    #     ws.get_many(
+                                    #         self.database,
+                                    #         ws.equals("name", name),
+                                    #         ws.equals(
+                                    #             "reference product",
+                                    #             ref_prod,
+                                    #         ),
+                                    #         ws.equals(
+                                    #             "location", possible_locations[counter]
+                                    #         ),
+                                    #     )
+                                    # )
+
+                                    suppliers = [
+                                        s
+                                        for s in self.database
+                                        if s["name"].lower() == name.lower()
+                                        and s["reference product"].lower()
+                                        == ref_prod.lower()
+                                        and s["location"] == possible_locations[counter]
+                                    ]
 
                                     counter += 1
 
@@ -864,17 +873,25 @@ class ExternalScenario(BaseTransformation):
         act, counter = [], 0
         try:
             while not act:
-                act = list(
-                    ws.get_many(
-                        self.database,
-                        ws.equals("name", name),
-                        ws.equals(
-                            "reference product",
-                            ref_prod,
-                        ),
-                        ws.equals("location", possible_locations[counter]),
-                    )
-                )
+                # act = list(
+                #     ws.get_many(
+                #         self.database,
+                #         ws.equals("name", name),
+                #         ws.equals(
+                #             "reference product",
+                #             ref_prod,
+                #         ),
+                #         ws.equals("location", possible_locations[counter]),
+                #     )
+                # )
+
+                act = [
+                    a
+                    for a in self.database
+                    if a["name"].lower() == name.lower()
+                    and a["reference product"].lower() == ref_prod.lower()
+                    and a["location"] == possible_locations[counter]
+                ]
 
                 counter += 1
         except IndexError:

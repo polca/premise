@@ -577,7 +577,6 @@ class Fuels(BaseTransformation):
 
                         else:
                             if "from electrolysis" in fuel_type:
-
                                 # get the electricity consumption
                                 new_energy_use, min_energy_use, max_energy_use = (
                                     adjust_electrolysis_electricity_requirement(
@@ -609,11 +608,15 @@ class Fuels(BaseTransformation):
                                 ws.contains("name", hydrogen_feedstock_name),
                                 ws.equals("unit", hydrogen_feedstock_unit),
                             ):
-                                exc["amount"] = new_energy_use
+                                exc["amount"] *= scaling_factor
                                 exc["uncertainty type"] = 5
-                                exc["loc"] = new_energy_use
-                                exc["minimum"] = min_energy_use
-                                exc["maximum"] = max_energy_use
+                                exc["loc"] = exc["amount"]
+                                exc["minimum"] = exc["amount"] * (
+                                    min_energy_use / new_energy_use
+                                )
+                                exc["maximum"] = exc["amount"] * (
+                                    max_energy_use / new_energy_use
+                                )
 
                         else:
                             # rescale the fuel consumption exchange
