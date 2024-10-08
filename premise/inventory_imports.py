@@ -726,8 +726,8 @@ class BaseInventoryImport:
                         print(
                             f"Could not find a biosphere flow for {key} in {self.path.name}. You need to fix this."
                         )
-                    # remove the exchange if it is not linked
-                    y["delete"] = True
+                        # remove the exchange if it is not linked
+                        y["delete"] = True
 
             x["exchanges"] = [y for y in x["exchanges"] if "delete" not in y]
 
