@@ -90,7 +90,6 @@
     remind: ES|Transport|VKM|Pass|Road|LDV|Medium|FCEV
     tiam-ucl:
       - Distance|Transport|Car|Hydrogen Fuel Cell|Car Hydrogen
-      - Distance|Transport|Car|Hydrogen Fuel Cell|Electricity
   energy_use_aliases:
     remind: FE|Transport|VKM|Pass|Road|LDV|Medium|FCEV
     tiam-ucl:

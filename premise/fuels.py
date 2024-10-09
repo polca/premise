@@ -4,11 +4,9 @@ Integrates projections regarding fuel production and supply.
 
 import copy
 from functools import lru_cache
-from typing import Union
 
 import xarray as xr
 import yaml
-from numpy import ndarray
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .inventory_imports import get_biosphere_code
@@ -539,9 +537,14 @@ class Fuels(BaseTransformation):
                     )
 
                     if initial_energy_use is None or initial_energy_use == 0:
-                        print(
-                            f"Initial energy consumption for {fuel_type} in {region} is None."
-                        )
+                        if "waste" not in fuel_type:
+                            print(
+                                f"Initial energy consumption for {fuel_type} in {region} is None."
+                            )
+                            print(f"List of exchanges:")
+                            for exc in dataset["exchanges"]:
+                                print(exc)
+                            print()
 
                     # add it to "log parameters"
                     if "log parameters" not in dataset:
@@ -2257,14 +2260,21 @@ class Fuels(BaseTransformation):
             .interp(year=self.year)
             .sum(dim=["variables"]),
             0,
-            atol=1e-3,
+            rtol=1e-3,
         ):
             if "hydrogen" in dataset["name"].lower():
                 prod_vars = [
                     "hydrogen, from natural gas",
                 ]
 
+            if "natural gas" in dataset["name"].lower():
+                prod_vars = [
+                    "natural gas",
+                ]
+
         sum_share = 0
+        shares = {}
+
         for prod_var in prod_vars:
             if len(prod_vars) > 1:
                 share = fuel_providers[prod_var]["find_share"](
@@ -2280,6 +2290,13 @@ class Fuels(BaseTransformation):
 
             if isinstance(share, np.ndarray):
                 share = share.item(0)
+
+            shares[prod_var] = share
+
+        # normalize shares
+        shares = {k: v / sum_share for k, v in shares.items()}
+
+        for prod_var, share in shares.items():
 
             blacklist = [
                 "petroleum coke",
@@ -2335,7 +2352,7 @@ class Fuels(BaseTransformation):
                 # so that the overall composition maintains
                 # the same average LHV
                 amount = supplier_share * (
-                    activity["lhv"] / self.fuels_specs[prod_var]["lhv"]
+                        activity["lhv"] / self.fuels_specs[prod_var]["lhv"]
                 )
 
                 lhv = self.fuels_specs[prod_var]["lhv"]
@@ -2358,7 +2375,7 @@ class Fuels(BaseTransformation):
                 if text not in string:
                     string += text
 
-        if not np.isclose(sum_share, 1.0, rtol=1e-3):
+        if not np.isclose(sum(e for e in shares.values()), 1.0, rtol=1e-3):
             print(
                 f"WARNING: sum of shares for {dataset['name']} in {region} is {sum_share} instead of 1.0"
             )
