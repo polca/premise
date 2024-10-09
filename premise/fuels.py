@@ -2352,7 +2352,7 @@ class Fuels(BaseTransformation):
                 # so that the overall composition maintains
                 # the same average LHV
                 amount = supplier_share * (
-                        activity["lhv"] / self.fuels_specs[prod_var]["lhv"]
+                    activity["lhv"] / self.fuels_specs[prod_var]["lhv"]
                 )
 
                 lhv = self.fuels_specs[prod_var]["lhv"]
