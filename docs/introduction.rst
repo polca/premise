@@ -5,15 +5,16 @@ Purpose
 -------
 
 *premise* enables the alignment of life cycle inventories within the ecoinvent_
-3.6-3.9.1 database, using either a "cut-off" or "consequential"
+3.6-3.10 database, using either a "cut-off" or "consequential"
 system model, to match the output results of Integrated
-Assessment Models (IAMs) such as REMIND_ or IMAGE_.
+Assessment Models (IAMs) such as REMIND_, IMAGE_ or TIAM-UCL_.
 This allows for the creation of life cycle inventory databases
 under future policy scenarios for any year between 2005 and 2100.
 
 .. _ecoinvent: https://ecoinvent.org/
 .. _REMIND: https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind
 .. _IMAGE: https://models.pbl.nl/image/index.php/Welcome_to_IMAGE_3.2_Documentation
+.. _TIAM-UCL: https://www.ucl.ac.uk/energy-models/models/tiam-ucl
 
 
 .. note::
@@ -35,6 +36,16 @@ Renewable and Sustainable Energy Reviews, 2022, https://doi.org/10.1016/j.rser.2
 .. note::
 
     If you use *premise* in your research, please cite the above publication.
+
+Additionally, you may want to cite the ecoinvent database:
+
+Wernet, G. et al. The ecoinvent database version 3 (part I): overview and methodology. Int. J. Life Cycle Assess. 21, 1218–1230 (2016) . http://link.springer.com/10.1007/s11367-016-1087-8.
+
+Finally, you may want to cite the IAM model used with *premise*:
+
+* REMIND: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
+* IMAGE: Stehfest, Elke, et al. Integrated assessment of global environmental change with IMAGE 3.0: Model description and policy applications. Netherlands Environmental Assessment Agency (PBL), 2014.
+* TIAM-UCL: L. Clarke, et al. International climate policy architectures: Overview of the EMF 22 International Scenarios, Energy Economics, 2009.
 
 
 Workflow
@@ -58,40 +69,40 @@ Default IAM scenarios
 
 Provided a decryption key (ask the maintainers_), the following IAM scenarios are available when installing *premise*:
 
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP/RCP scenario | GMST increase by 2100 | Society/economy trend                                                              | Climate policy                              | REMIND          | IMAGE      |
-+==================+=======================+====================================================================================+=============================================+=================+============+
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP1-None        | 2.3-2.8 °C            | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       | SSP1-Base  |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP1-None        | ~2.2 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | National Policies Implemented (NPI).        | SSP1-NPi        |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP1-None        | ~1.9 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Nationally Determined Contributions (NDCs). | SSP1-NDC        |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP1-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg1150 |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP1-RCP1.9      | ~1.3 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg500  |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP2-None        | ~3.5 °C               | Extrapolation from historical developments.                                        | None (eq. to RCP6)                          | SSP2-Base       | SSP2-Base  |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP2-None        | ~3.3 °C               | Extrapolation from historical developments.                                        | National Policies Implemented (NPI).        | SSP2-NPi        |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP2-None        | ~2.5 °C               | Extrapolation from historical developments.                                        | Nationally Determined Contributions (NDCs). | SSP2-NDC        |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP2-RCP2.6      | 1.6-1.8 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg1150 | SSP2-RCP26 |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP2-RCP1.9      | 1.2-1.4 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg500  | SSP2-RCP19 |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP5-None        | ~4.5 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | None                                        | SSP5-Base       |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP5-None        | ~4.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | National Policies Implemented (NPI).        | SSP5-NPi        |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP5-None        | ~3.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Nationally Determined Contributions (NDCs). | SSP5-NDC        |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP5-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg1150 |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
-| SSP5-RCP1.9      | ~1.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg500  |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP/RCP scenario | GMST increase by 2100 | Society/economy trend                                                              | Climate policy                              | REMIND          | IMAGE      | TIAM-UCL   |
++==================+=======================+====================================================================================+=============================================+=================+============+-===========+
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP1-None        | 2.3-2.8 °C            | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       | SSP1-Base  |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP1-None        | ~2.2 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | National Policies Implemented (NPI).        | SSP1-NPi        |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP1-None        | ~1.9 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Nationally Determined Contributions (NDCs). | SSP1-NDC        |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP1-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg1150 |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP1-RCP1.9      | ~1.3 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg500  |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP2-None        | ~3.5 °C               | Extrapolation from historical developments.                                        | None (eq. to RCP6)                          | SSP2-Base       | SSP2-Base  | SSP2-Base  |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP2-None        | ~3.3 °C               | Extrapolation from historical developments.                                        | National Policies Implemented (NPI).        | SSP2-NPi        |            | SSP2-RCP45 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP2-None        | ~2.5 °C               | Extrapolation from historical developments.                                        | Nationally Determined Contributions (NDCs). | SSP2-NDC        |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP2-RCP2.6      | 1.6-1.8 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg1150 | SSP2-RCP26 | SSP2-RCP26 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP2-RCP1.9      | 1.2-1.4 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg500  | SSP2-RCP19 | SSP2-RCP19 |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP5-None        | ~4.5 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | None                                        | SSP5-Base       |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP5-None        | ~4.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | National Policies Implemented (NPI).        | SSP5-NPi        |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP5-None        | ~3.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Nationally Determined Contributions (NDCs). | SSP5-NDC        |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP5-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg1150 |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
+| SSP5-RCP1.9      | ~1.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg500  |            |            |
++------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
 
 CarbonBrief_ wrote a good article explaining the meaning of the SSP/RCP system.
 
@@ -111,7 +122,7 @@ Requirements
 ------------
 * Python language interpreter **>=3.9**
 * License for ecoinvent 3
-* brightway2 (optional)
+* Brightway2 (optional)
 
 .. note::
 
@@ -152,11 +163,14 @@ There now exists a plugin for Activity Browser, called ScenarioLink, which allow
 directly download IAM scenario-based premise databases from the browser, without the use of premise.
 You can find it `here <https://github.com/polca/ScenarioLink>`_.
 
-
-Main contributors
------------------
+Active contributors
+-------------------
 
 * `Romain Sacchi <https://github.com/romainsacchi>`_
+
+Historical contributors
+-----------------------
+
 * `Alois Dirnaichner <https://github.com/Loisel>`_
 * `Chris Mutel <https://github.com/cmutel>`_
 * `Brian Cox <https://github.com/brianlcox>`_
