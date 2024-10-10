@@ -34,6 +34,17 @@ but also in other LCA software, such as SimaPro, OpenLCA, or directly in Python.
 The tool is described in the following scientific publication: [Sacchi et al, 2022](https://doi.org/10.1016/j.rser.2022.112311).
 If this tool helps you in your research, please consider citing this publication.
 
+Also, use the following references to cite the scenarios used in the tool:
+
+- REMIND scenarios: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
+- IMAGE scenarios: Stehfest, Elke, et al. Integrated assessment of global environmental change with IMAGE 3.0: Model description and policy applications. Netherlands Environmental Assessment Agency (PBL), 2014.
+- TIAM-UCL scenarios: []()
+
+What's new in 2.1.4?
+====================
+
+- Integration of TIAM-UCL scenarios
+
 
 What's new in 2.1.1?
 ====================

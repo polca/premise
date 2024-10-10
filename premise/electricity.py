@@ -1966,7 +1966,7 @@ class Electricity(BaseTransformation):
 
         for tech, variable in load_electricity_variables().items():
             if not variable.get("exists in database", True):
-                if self.powerplant_map.get(tech) is not None:
+                if self.powerplant_map.get(tech):
                     original = list(
                         ws.get_many(
                             self.database,
