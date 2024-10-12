@@ -26,6 +26,7 @@ from .transformation import (
     ws,
 )
 from .utils import get_crops_properties, rescale_exchanges
+from .validation import FuelsValidation
 
 logger = create_logger("fuel")
 
@@ -313,6 +314,17 @@ def _update_fuels(scenario, version, system_model):
 
     else:
         print("No fuel markets found in IAM data. Skipping.")
+
+    validate = FuelsValidation(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=fuels.database,
+        iam_data=scenario["iam data"],
+    )
+
+    validate.run_fuel_checks()
 
     return scenario
 
