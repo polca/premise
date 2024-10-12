@@ -187,6 +187,7 @@ Active contributors
 -------------------
 
 * `Romain Sacchi <https://github.com/romainsacchi>`_
+* `Alvaro Hahn Menacho <https://github.com/alvarojhahn>`_
 
 Historical contributors
 -----------------------
