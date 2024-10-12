@@ -1401,6 +1401,7 @@ class ElectricityValidation(BaseDatasetValidator):
         self.check_efficiency()
         self.save_log()
 
+
 class FuelsValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
@@ -1416,7 +1417,7 @@ class FuelsValidation(BaseDatasetValidator):
             "market for natural gas, high pressure",
             "market for hydrogen, gaseous",
             "market for kerosene",
-            "market for liquefied petroleum gas"
+            "market for liquefied petroleum gas",
         ]
 
         for ds in self.database:
@@ -1429,10 +1430,14 @@ class FuelsValidation(BaseDatasetValidator):
 
                     total = sum(
                         [
-                            x["amount"] if x["unit"] == "cubic meter" else x["amount"] / 0.74
+                            (
+                                x["amount"]
+                                if x["unit"] == "cubic meter"
+                                else x["amount"] / 0.74
+                            )
                             for x in ds["exchanges"]
                             if x["type"] == "technosphere"
-                           and x["unit"] in ("kilogram", "cubic meter")
+                            and x["unit"] in ("kilogram", "cubic meter")
                         ]
                     )
 
@@ -1441,7 +1446,8 @@ class FuelsValidation(BaseDatasetValidator):
                         [
                             x["amount"]
                             for x in ds["exchanges"]
-                            if x["type"] == "technosphere" and x["unit"] in ("kilogram", "cubic meter")
+                            if x["type"] == "technosphere"
+                            and x["unit"] in ("kilogram", "cubic meter")
                         ]
                     )
                 if total < 0.99 or total > 1.1:
@@ -1467,12 +1473,13 @@ class FuelsValidation(BaseDatasetValidator):
                     [
                         x["amount"]
                         for x in ds["exchanges"]
-                        if x["type"] == "technosphere"
-                        and x["unit"] == "kilowatt hour"
+                        if x["type"] == "technosphere" and x["unit"] == "kilowatt hour"
                     ]
                 )
                 if electricity < 40 or electricity > 60:
-                    message = f"Electricity use for hydrogen production is {electricity}."
+                    message = (
+                        f"Electricity use for hydrogen production is {electricity}."
+                    )
                     self.log_issue(
                         ds,
                         "electricity use for hydrogen production",
