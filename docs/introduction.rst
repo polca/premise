@@ -158,7 +158,7 @@ is available on Anaconda Cloud:
 
 .. code-block:: python
 
-    conda install -c romainsacchi premise
+    conda install -c conda-forge premise
 
 For a more stable and proven version, from Pypi:
 
