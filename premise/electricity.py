@@ -1966,16 +1966,19 @@ class Electricity(BaseTransformation):
 
         for tech, variable in load_electricity_variables().items():
             if not variable.get("exists in database", True):
-                original = list(
-                    ws.get_many(
-                        self.database,
-                        ws.equals("name", variable["proxy"]["name"]),
-                        ws.equals(
-                            "reference product",
-                            variable["proxy"]["reference product"],
-                        ),
-                    )
-                )[0]
+                try:
+                    original = list(
+                        ws.get_many(
+                            self.database,
+                            ws.equals("name", variable["proxy"]["name"]),
+                            ws.equals(
+                                "reference product",
+                                variable["proxy"]["reference product"],
+                            ),
+                        )
+                    )[0]
+                except IndexError:
+                    continue
 
                 # make a copy
                 new_dataset = copy.deepcopy(original)
