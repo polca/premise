@@ -372,12 +372,17 @@ def check_inventories(
         return [
             item
             for item in data
-            if item["name"].lower() == key[0].lower() and item["reference product"].lower() == key[1].lower()
+            if item["name"].lower() == key[0].lower()
+            and item["reference product"].lower() == key[1].lower()
         ]
 
     def filter_candidates_by_mask(candidates, mask):
         """Exclude candidates containing the mask in their name."""
-        return [candidate for candidate in candidates if mask.lower() not in candidate["name"].lower()]
+        return [
+            candidate
+            for candidate in candidates
+            if mask.lower() not in candidate["name"].lower()
+        ]
 
     def identify_potential_candidates(database, inventory_data, key, mask):
         """Identify and return potential candidates based on key and mask."""
@@ -550,8 +555,6 @@ def check_inventories(
             potential_candidates = identify_potential_candidates(
                 database, inventory_data, key, mask
             )
-
-
 
             try:
                 candidates = adjust_candidates_or_raise_error(
