@@ -25,12 +25,10 @@ SECTORS = {
     "fuels": ["fuels", "heat"],
     "battery": "battery",
     "transport": ["cars", "two_wheelers", "trucks", "buses", "trains"],
-    "others": [
-        "emissions",
-        "dac"
-    ],
+    "others": ["emissions", "dac"],
     "external": "external",
 }
+
 
 class IncrementalDatabase(NewDatabase):
     def update(self, sectors: [str, list, None] = None) -> None:
