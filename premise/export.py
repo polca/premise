@@ -893,11 +893,7 @@ def generate_superstructure_db(
     print(f"Dropped {before - after} duplicate(s).")
 
     for scenario in scenario_list:
-        df.loc[
-            (df["flow type"] == "production")
-            & (df[scenario] == 0),
-            scenario
-        ] = 1
+        df.loc[(df["flow type"] == "production") & (df[scenario] == 0), scenario] = 1
 
     # if df is longer than the row limit of Excel,
     # the export to Excel is not an option
