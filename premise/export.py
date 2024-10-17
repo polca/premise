@@ -780,7 +780,6 @@ def generate_scenario_difference_file(
     df.loc[df["flow type"].isin(["technosphere", "production"]), "from categories"] = (
         None
     )
-    # df.loc[df["flow type"] == "production", list_scenarios] = 1.0
 
     df.loc[df["flow type"] == "biosphere", "from database"] = biosphere_name
 
@@ -892,6 +891,13 @@ def generate_superstructure_db(
     df = df.drop_duplicates(subset=["from key", "to key"])
     after = len(df)
     print(f"Dropped {before - after} duplicate(s).")
+
+    for scenario in scenario_list:
+        df.loc[
+            (df["flow type"] == "production")
+            & (df[scenario] == 0),
+            scenario
+        ] = 1
 
     # if df is longer than the row limit of Excel,
     # the export to Excel is not an option
