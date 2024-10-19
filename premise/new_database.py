@@ -1026,7 +1026,7 @@ class NewDatabase:
             version=self.version,
             file_format=file_format,
             scenario_list=list_scenarios,
-            preserve_original_column=preserve_original_column
+            preserve_original_column=preserve_original_column,
         )
 
         tmp_scenario = self.scenarios[0]
