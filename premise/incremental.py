@@ -33,7 +33,18 @@ SECTORS = {
 
 
 class IncrementalDatabase(NewDatabase):
+    """
+    Class for creating an incremental database. Incremental databases allow measuring the
+    effects of sectoral updates. The class inherits from the NewDatabase class.
+    """
     def update(self, sectors: [str, list, None] = None) -> None:
+        """
+        Update the database with the specified sectors.
+
+        :param sectors: A list of sectors to update. If None, all sectors will be updated incrementally.
+        :type
+
+        """
 
         sector_update_methods = {
             "biomass": {
@@ -139,6 +150,9 @@ class IncrementalDatabase(NewDatabase):
         filepath: str = None,
         file_format: str = "excel",
     ) -> None:
+        """
+        Write the superstructure database to a Brightway2 database.
+        """
 
         self.write_superstructure_db_to_brightway(
             name, filepath, file_format, preserve_original_column=True
