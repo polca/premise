@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from .new_database import (
     NewDatabase,
     _update_biomass,
@@ -94,11 +96,10 @@ class IncrementalDatabase(NewDatabase):
 
         applied_sectors = []
         for scenario in self.scenarios:
-            label = ""
             scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             scenario_sectors = []
             for sector in sectors:
-                label += f"_{sector}"
+                label = f"(... + {sector})"
                 scenario_sectors.append(sector)
 
                 if sector == "external" and "external" not in scenario["pathway"]:
@@ -131,3 +132,14 @@ class IncrementalDatabase(NewDatabase):
                 pbar_outer.update()
 
         print("Done!\n")
+
+    def write_increment_db_to_brightway(
+        self,
+        name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')}",
+        filepath: str = None,
+        file_format: str = "excel",
+    ) -> None:
+
+        self.write_superstructure_db_to_brightway(name, filepath, file_format, preserve_original_column=True)
+
+

@@ -982,6 +982,7 @@ class NewDatabase:
         name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')}",
         filepath: str = None,
         file_format: str = "excel",
+        preserve_original_column: bool = False,
     ) -> None:
         """
         Register a super-structure database,
@@ -989,6 +990,7 @@ class NewDatabase:
         :param name: name of the super-structure database
         :param filepath: filepath of the "scenarios difference file"
         :param file_format: format of the "scenarios difference file" export. Can be "excel", "csv" or "feather".
+        :param preserve_original_column: if True, the original column names are preserved in the super-structure database.
         :return: filepath of the "scenarios difference file"
         """
 
@@ -1024,6 +1026,7 @@ class NewDatabase:
             version=self.version,
             file_format=file_format,
             scenario_list=list_scenarios,
+            preserve_original_column=preserve_original_column
         )
 
         tmp_scenario = self.scenarios[0]
