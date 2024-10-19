@@ -140,6 +140,6 @@ class IncrementalDatabase(NewDatabase):
         file_format: str = "excel",
     ) -> None:
 
-        self.write_superstructure_db_to_brightway(name, filepath, file_format, preserve_original_column=True)
-
-
+        self.write_superstructure_db_to_brightway(
+            name, filepath, file_format, preserve_original_column=True
+        )
