@@ -14,7 +14,7 @@ from .new_database import (
     _update_vehicles,
     _update_external_scenarios,
 )
-from .utils import dump_database
+from .utils import dump_database, load_database
 from copy import copy
 from tqdm import tqdm
 
@@ -37,7 +37,7 @@ class IncrementalDatabase(NewDatabase):
     Class for creating an incremental database. Incremental databases allow measuring the
     effects of sectoral updates. The class inherits from the NewDatabase class.
     """
-    def update(self, sectors: [str, list, None] = None) -> None:
+    def update(self, sectors: dict = None) -> None:
         """
         Update the database with the specified sectors.
 
@@ -101,45 +101,50 @@ class IncrementalDatabase(NewDatabase):
         }
 
         if sectors is None:
-            sectors = list(SECTORS.keys())
+            sectors = SECTORS
 
         new_scenarios = []
 
-        applied_sectors = []
+        updates_to_apply = []
         for scenario in self.scenarios:
-            scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             scenario_sectors = []
-            for sector in sectors:
-                label = f"(... + {sector})"
-                scenario_sectors.append(sector)
+            for updates, updates in sectors.items():
+                label = f"... + {updates}"
+                scenario_sectors.append(updates)
 
-                if sector == "external" and "external" not in scenario["pathway"]:
+                if updates == "external" and "external" not in scenario["pathway"]:
                     continue
 
                 new_scenario = scenario.copy()
                 new_scenario["pathway"] += label
                 new_scenarios.append(new_scenario)
-
-                applied_sectors.append(copy(scenario_sectors))
+                updates_to_apply.append(copy(scenario_sectors))
 
         self.scenarios = new_scenarios
 
         with tqdm(total=len(self.scenarios), ncols=70) as pbar_outer:
+            database_filepath = None
             for s, scenario in enumerate(self.scenarios):
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+                if s == 0:
+                    scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+                else:
+                    scenario["database filepath"] = database_filepath
+                    scenario = load_database(scenario, delete=False)
 
-                for sector in applied_sectors[s]:
-                    func_names = SECTORS[sector]
+                updates = updates_to_apply[s][-1]
 
-                    if isinstance(func_names, str):
-                        func_names = [func_names]
+                if isinstance(updates, str):
+                    updates = [updates]
 
-                    for func_name in func_names:
-                        # Prepare the function and arguments
-                        update_func = sector_update_methods[func_name]["func"]
-                        fixed_args = sector_update_methods[func_name]["args"]
-                        scenario = update_func(scenario, *fixed_args)
+                for update in updates:
+                    # Prepare the function and arguments
+                    update_func = sector_update_methods[update]["func"]
+                    fixed_args = sector_update_methods[update]["args"]
+                    scenario = update_func(scenario, *fixed_args)
+
                 dump_database(scenario)
+                if "database filepath" in scenario:
+                    database_filepath = scenario["database filepath"]
                 pbar_outer.update()
 
         print("Done!\n")
