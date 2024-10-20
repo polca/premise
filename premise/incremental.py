@@ -37,6 +37,7 @@ class IncrementalDatabase(NewDatabase):
     Class for creating an incremental database. Incremental databases allow measuring the
     effects of sectoral updates. The class inherits from the NewDatabase class.
     """
+
     def update(self, sectors: dict = None) -> None:
         """
         Update the database with the specified sectors.
