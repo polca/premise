@@ -939,6 +939,12 @@ US-SERC:
   message: NAM
   tiam-ucl: USA
   gcam: USA
+US-FRCC:
+  remind: USA
+  image: USA
+  message: NAM
+  tiam-ucl: USA
+  gcam: USA
 IN-WB:
   remind: IND
   image: INDIA
