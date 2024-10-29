@@ -52,12 +52,14 @@ jobs:
           default: 3.11
           command: pip install -U pip  # upgrade pip after installing python
 
-      - name: install pyenv-latest
+      - name: install pyenv
         run: |
-          pip install pyenv-latest
+          pip install pyenv
 
       - name: create environment
-        run: pyenv local 3.11.5 && python -mvenv .venv390
+        run: |
+          pyenv install -l
+          pyenv local 3.11.5 && python -mvenv .venv390
 
       - name: Install dependencies
         run: |
