@@ -55,7 +55,7 @@ jobs:
       - name: create environment
         run: |
           pyenv install -l
-          pyenv local 3.11.5 && python -mvenv .venv390
+          pyenv install 3.11.5 && python -mvenv .venv390
 
       - name: Install dependencies
         run: |
