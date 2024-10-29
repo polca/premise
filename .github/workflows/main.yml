@@ -53,7 +53,7 @@ jobs:
           command: pip install -U pip  # upgrade pip after installing python
 
       - name: create environment
-        run: pyenv local 3.11 && python -mvenv .venv390
+        run: pyenv local 3.11.0 && python -mvenv .venv390
 
       - name: Install dependencies
         run: |
