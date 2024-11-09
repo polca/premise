@@ -1589,7 +1589,7 @@ class ExternalScenario(BaseTransformation):
                         for exc in ws.biosphere(
                             dataset, ws.equals("name", "Carbon dioxide, non-fossil")
                         ):
-                            exc["amount"] += bio_co2
+                            exc["amount"] = bio_co2
 
                     for exc in ws.biosphere(
                         dataset, ws.equals("name", "Carbon dioxide, fossil")
