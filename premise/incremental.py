@@ -130,11 +130,16 @@ class IncrementalDatabase(NewDatabase):
                 if s == 0:
                     scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 else:
-                    if f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}" == scenario_id:
+                    if (
+                        f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
+                        == scenario_id
+                    ):
                         scenario["database filepath"] = database_filepath
                         scenario = load_database(scenario, delete=False)
                     else:
-                        scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+                        scenario["database"] = pickle.loads(
+                            pickle.dumps(self.database, -1)
+                        )
 
                 updates = updates_to_apply[s][-1]
 
@@ -151,7 +156,9 @@ class IncrementalDatabase(NewDatabase):
                 if "database filepath" in scenario:
                     database_filepath = scenario["database filepath"]
 
-                scenario_id = f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
+                scenario_id = (
+                    f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
+                )
 
                 pbar_outer.update()
 
