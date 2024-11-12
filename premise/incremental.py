@@ -123,6 +123,8 @@ class IncrementalDatabase(NewDatabase):
 
         self.scenarios = new_scenarios
 
+        print(updates_to_apply)
+
         with tqdm(total=len(self.scenarios), ncols=70) as pbar_outer:
             database_filepath, scenario_id = None, None
             for s, scenario in enumerate(self.scenarios):
@@ -130,7 +132,7 @@ class IncrementalDatabase(NewDatabase):
                 if s == 0:
                     scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 else:
-                    if f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}" == scenario_id:
+                    if f"{scenario['model']} - {scenario['pathway'].split('...')[0]} - {scenario['year']}" == scenario_id:
                         scenario["database filepath"] = database_filepath
                         scenario = load_database(scenario, delete=False)
                     else:
@@ -151,7 +153,7 @@ class IncrementalDatabase(NewDatabase):
                 if "database filepath" in scenario:
                     database_filepath = scenario["database filepath"]
 
-                scenario_id = f"{scenario['model']} - {scenario['pathway']} - {scenario['year']}"
+                scenario_id = f"{scenario['model']} - {scenario['pathway'].split('...')[0]} - {scenario['year']}"
 
                 pbar_outer.update()
 
