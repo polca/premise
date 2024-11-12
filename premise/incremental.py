@@ -123,8 +123,6 @@ class IncrementalDatabase(NewDatabase):
 
         self.scenarios = new_scenarios
 
-        print(updates_to_apply)
-
         with tqdm(total=len(self.scenarios), ncols=70) as pbar_outer:
             database_filepath, scenario_id = None, None
             for s, scenario in enumerate(self.scenarios):
