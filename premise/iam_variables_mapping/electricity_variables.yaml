@@ -385,13 +385,11 @@ Coal PC CCS:
     gcam: Efficiency|Electricity|coal (conv pul CCS)
     message: Efficiency|Electricity|Coal|w/ CCS|2
     remind: Tech|Electricity|Coal|Pulverised Coal w/ CC|Efficiency
-    remind-eu: Tech|Electricity|Coal|Pulverised Coal w/ CC|Efficiency
     image: Efficiency|Electricity|Coal|w/ CCS|2
   iam_aliases:
     gcam: Secondary Energy|Electricity|coal (conv pul CCS)
     message: Secondary Energy|Electricity|Coal|w/ CCS|2
     remind: SE|Electricity|Coal|++|Pulverised Coal w/ CC
-    remind-eu: SE|Electricity|Coal|++|Pulverised Coal w/ CC
   max_efficiency: 0.35
 Coal PCU:
   ecoinvent_aliases:
