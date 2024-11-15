@@ -1092,6 +1092,26 @@ class IAMDataCollection:
             dataframe.groupby("variables")["unit"].first().to_dict().items()
         )
 
+        # Salvar o dataframe como uma planilha Excel                                       ##### Inclui essa parte:
+        output_excel_path = filedir / f"{self.model}_{self.pathway}_data.xlsx"
+        dataframe.to_excel(output_excel_path, index=False)
+        print(f"Data saved to {output_excel_path}")
+
+        array = (
+            dataframe.melt(
+                id_vars=["region", "variables", "unit"],
+                var_name="year",
+                value_name="value",
+            )[["region", "variables", "year", "unit", "value"]]
+            .groupby(["region", "variables", "year"])["value"]
+            .mean()
+            .to_xarray()
+        )
+
+        array.attrs["unit"] = dict(
+            dataframe.groupby("variables")["unit"].first().to_dict().items()
+        )                                                                                 #### Termina Aqui
+
         return array
 
     def __fetch_market_data(

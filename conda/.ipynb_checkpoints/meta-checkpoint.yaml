@@ -1,0 +1,50 @@
+package:
+  name: premise
+  version: {{ environ['VERSION'] }}
+
+source:
+  path: ..
+
+build:
+  noarch: python
+  number: 0
+  script: python -m pip install --no-deps --ignore-installed .
+  script_env:
+    - VERSION
+    - CONDA_BLD_PATH
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - bottleneck
+    - bw2data
+    - bw2io >=0.8.10
+    - constructive_geometries>=0.9.5
+    - cryptography
+    - datapackage
+    - numpy
+    - pandas
+    - platformdirs
+    - prettytable
+    - pyarrow
+    - pycountry
+    - pyYaml
+    - requests
+    - schema
+    - sparse>=0.14.0
+    - wurst>=0.4
+    - xarray
+    - tqdm
+    - unfold
+
+test:
+  imports:
+    - premise
+
+about:
+  home: https://github.com/polca/premise
+  license: BSD License
+  summary: 'Coupling Integrated Assessment Models and Life Cycle Assessment.'
+license_family: BSD
