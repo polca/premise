@@ -1,5 +1,20 @@
+<<<<<<< HEAD
+=======
+# a mapping for a few ecoinvent locations
+# for which constructive_geometries
+# cannot find an IAM equivalent
+---
+Europe without Switzerland and Austria:
+  remind: EUR
+  remind-eu: DEU
+  image: WEU
+  message: WEU
+  tiam-ucl: WEU
+  gcam: EU-15
+>>>>>>> 1aee6371a9a3ff9d4d982b032d72af3c562ef0ea
 Europe without Austria:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -14,6 +29,7 @@ Europe without Switzerland and Austria:
   witch: europe
 Europe without Switzerland:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -21,6 +37,7 @@ Europe without Switzerland:
   witch: europe
 North America without Quebec:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -28,6 +45,7 @@ North America without Quebec:
   witch: usa
 RER w/o RU:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -35,6 +53,7 @@ RER w/o RU:
   witch: te
 RER:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -42,6 +61,7 @@ RER:
   witch: te
 RoW:
   remind: World
+  remind-eu: World
   image: World
   message: World
   tiam-ucl: World
@@ -49,6 +69,7 @@ RoW:
   witch: world
 GLO:
   remind: World
+  remind-eu: World
   image: World
   message: World
   tiam-ucl: World
@@ -56,6 +77,7 @@ GLO:
   witch: world
 RNA:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -63,6 +85,7 @@ RNA:
   witch: usa
 SAS:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -70,6 +93,7 @@ SAS:
   witch: india
 IAI Area, EU27 & EFTA:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -77,6 +101,7 @@ IAI Area, EU27 & EFTA:
   witch: europe
 UN-OCEANIA:
   remind: CAZ
+  remind-eu: AUS
   image: OCE
   message: PAO
   tiam-ucl: AUS
@@ -84,6 +109,7 @@ UN-OCEANIA:
   witch: oceania
 UN-SEASIA:
   remind: OAS
+  remind-eu: OAS
   image: SEAS
   message: PAS
   tiam-ucl: ODA
@@ -91,6 +117,7 @@ UN-SEASIA:
   witch: seasia
 RAF:
   remind: SSA
+  remind-eu: RSAF
   image: RSAF
   message: AFR
   tiam-ucl: AFR
@@ -98,6 +125,7 @@ RAF:
   witch: southafrica
 RAS:
   remind: CHA
+  remind-eu: CHN
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -105,6 +133,7 @@ RAS:
   witch: china
 IAI Area, Africa:
   remind: SSA
+  remind-eu: RSAF
   image: RSAF
   message: AFR
   tiam-ucl: AFR
@@ -112,6 +141,7 @@ IAI Area, Africa:
   witch: ssa
 RER w/o CH+DE:
   remind: EUR
+  remind-eu: FRA
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -119,6 +149,7 @@ RER w/o CH+DE:
   witch: europe
 RER w/o DE+NL+RU:
   remind: EUR
+  remind-eu: FRA
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -126,6 +157,7 @@ RER w/o DE+NL+RU:
   witch: europe
 IAI Area, Asia, without China and GCC:
   remind: OAS
+  remind-eu: OAS
   image: SEAS
   message: PAS
   tiam-ucl: ODA
@@ -133,6 +165,7 @@ IAI Area, Asia, without China and GCC:
   witch: seasia
 Europe, without Russia and Turkey:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -140,6 +173,7 @@ Europe, without Russia and Turkey:
   witch: europe
 WECC:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -147,6 +181,7 @@ WECC:
   witch: usa
 WEU:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -154,6 +189,7 @@ WEU:
   witch: europe
 UCTE:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -161,6 +197,7 @@ UCTE:
   witch: europe
 UCTE without Germany:
   remind: EUR
+  remind-eu: FRA
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -168,6 +205,7 @@ UCTE without Germany:
   witch: europe
 NORDEL:
   remind: NEU
+  remind-eu: NEN
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -175,6 +213,7 @@ NORDEL:
   witch: europe
 ENTSO-E:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -182,6 +221,7 @@ ENTSO-E:
   witch: europe
 RLA:
   remind: LAM
+  remind-eu: LAM
   image: RSAM
   message: LAM
   tiam-ucl: CSA
@@ -189,6 +229,7 @@ RLA:
   witch: laca
 IAI Area, South America:
   remind: LAM
+  remind-eu: RSAM
   image: RSAM
   message: LAM
   tiam-ucl: CSA
@@ -196,6 +237,7 @@ IAI Area, South America:
   witch: laca
 IAI Area, Russia & RER w/o EU27 & EFTA:
   remind: REF
+  remind-eu: REF
   image: RUS
   message: FSU
   tiam-ucl: FSU
@@ -203,6 +245,7 @@ IAI Area, Russia & RER w/o EU27 & EFTA:
   witch: te
 IAI Area, North America:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -210,6 +253,7 @@ IAI Area, North America:
   witch: usa
 OCE:
   remind: CAZ
+  remind-eu: CAZ
   image: OCE
   message: PAO
   tiam-ucl: AUS
@@ -217,6 +261,7 @@ OCE:
   witch: oceania
 US-PR:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -224,6 +269,7 @@ US-PR:
   witch: usa
 US only:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -231,6 +277,7 @@ US only:
   witch: usa
 APAC:
   remind: OAS
+  remind-eu: OAS
   image: SEAS
   message: PAS
   tiam-ucl: ODA
@@ -238,6 +285,7 @@ APAC:
   witch: seasia
 CN-NCGC:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -245,6 +293,7 @@ CN-NCGC:
   witch: china
 CN-CSG:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -252,6 +301,7 @@ CN-CSG:
   witch: china
 CN-SWG:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -259,6 +309,7 @@ CN-SWG:
   witch: china
 CN-CCG:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -266,6 +317,7 @@ CN-CCG:
   witch: china
 CN-ECGC:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -273,6 +325,7 @@ CN-ECGC:
   witch: china
 RoE:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -280,6 +333,7 @@ RoE:
   witch: china
 CN-NWG:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -287,6 +341,7 @@ CN-NWG:
   witch: china
 CN-NECG:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   gcam: China
@@ -294,6 +349,7 @@ CN-NECG:
   witch: china
 IN-DD:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -301,6 +357,7 @@ IN-DD:
   witch: india
 IN-DN:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -308,6 +365,7 @@ IN-DN:
   witch: india
 LA:
   remind: OAS
+  remind-eu: OAS
   image: SEAS
   message: PAS
   tiam-ucl: ODA
@@ -315,6 +373,7 @@ LA:
   witch: seasia
 FJ:
   remind: OAS
+  remind-eu: OAS
   image: SEAS
   message: PAS
   tiam-ucl: ODA
@@ -322,6 +381,7 @@ FJ:
   witch: seasia
 GN:
   remind: SSA
+  remind-eu: SSA
   image: RSAF
   message: AFR
   tiam-ucl: AFR
@@ -329,6 +389,7 @@ GN:
   witch: ssa
 GY:
   remind: LAM
+  remind-eu: LAM
   image: RSAM
   message: LAM
   tiam-ucl: CSA
@@ -336,6 +397,7 @@ GY:
   witch: laca
 SL:
   remind: SSA
+  remind-eu: SSA
   image: RSAF
   message: AFR
   tiam-ucl: AFR
@@ -343,6 +405,7 @@ SL:
   witch: ssa
 SB:
   remind: OAS
+  remind-eu: OAS
   image: SEAS
   message: PAS
   tiam-ucl: ODA
@@ -350,6 +413,7 @@ SB:
   witch: seasia
 UG:
   remind: SSA
+  remind-eu: SSA
   image: RSAF
   message: AFR
   tiam-ucl: AFR
@@ -357,6 +421,7 @@ UG:
   witch: ssa
 AF:
   remind: OAS
+  remind-eu: OAS
   image: SEAS
   message: PAS
   tiam-ucl: ODA
@@ -364,6 +429,7 @@ AF:
   witch: sasia
 MR:
   remind: SSA
+  remind-eu: SSA
   image: RSAF
   message: AFR
   tiam-ucl: AFR
@@ -371,6 +437,7 @@ MR:
   witch: ssa
 BR-North-eastern grid:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -378,6 +445,7 @@ BR-North-eastern grid:
   witch: brazil
 BR-Northern grid:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -385,6 +453,7 @@ BR-Northern grid:
   witch: brazil
 BR-South-eastern/Mid-western grid:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -392,6 +461,7 @@ BR-South-eastern/Mid-western grid:
   witch: brazil
 BR-Southern grid:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -399,6 +469,7 @@ BR-Southern grid:
   witch: brazil
 CN-JS:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -406,6 +477,7 @@ CN-JS:
   witch: china
 IN-OR:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -413,6 +485,7 @@ IN-OR:
   witch: india
 BR-TO:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -420,6 +493,7 @@ BR-TO:
   witch: brazil
 BR-BA:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -427,6 +501,7 @@ BR-BA:
   witch: brazil
 IN-UP:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -434,6 +509,7 @@ IN-UP:
   witch: india
 BR-PI:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -441,6 +517,7 @@ BR-PI:
   witch: brazil
 CN-ZJ:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -448,6 +525,7 @@ CN-ZJ:
   witch: china
 CA-NS:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -455,6 +533,7 @@ CA-NS:
   witch: canada
 BR-AP:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -462,6 +541,7 @@ BR-AP:
   witch: brazil
 BR-RS:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -469,6 +549,7 @@ BR-RS:
   witch: brazil
 CA-QC:
   remind: CAZ
+  remind-eu: CAZ
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -476,6 +557,7 @@ CA-QC:
   witch: canada
 US-TRE:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -483,6 +565,7 @@ US-TRE:
   witch: usa
 CN-NM:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -490,6 +573,7 @@ CN-NM:
   witch: china
 CA-SK:
   remind: CAZ
+  remind-eu: CAZ
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -497,6 +581,7 @@ CA-SK:
   witch: canada
 BR-PR:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -504,6 +589,7 @@ BR-PR:
   witch: brazil
 CN-GZ:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -511,6 +597,7 @@ CN-GZ:
   witch: china
 BR-MG:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -518,6 +605,7 @@ BR-MG:
   witch: brazil
 CA-NT:
   remind: CAZ
+  remind-eu: CAZ
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -525,6 +613,7 @@ CA-NT:
   witch: canada
 BR-SE:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -532,6 +621,7 @@ BR-SE:
   witch: brazil
 BR-PA:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -539,6 +629,7 @@ BR-PA:
   witch: brazil
 IN-TN:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -546,6 +637,7 @@ IN-TN:
   witch: india
 CN-HN:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -553,6 +645,7 @@ CN-HN:
   witch: china
 IN-PY:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -560,6 +653,7 @@ IN-PY:
   witch: india
 IN-Southern grid:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -567,6 +661,7 @@ IN-Southern grid:
   witch: india
 BR-PB:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -574,6 +669,7 @@ BR-PB:
   witch: brazil
 CA-MB:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -581,6 +677,7 @@ CA-MB:
   witch: canada
 IN-GJ:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -588,6 +685,7 @@ IN-GJ:
   witch: india
 CN-LN:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -595,6 +693,7 @@ CN-LN:
   witch: china
 IN-HR:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -602,6 +701,7 @@ IN-HR:
   witch: india
 BR-CE:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -609,6 +709,7 @@ BR-CE:
   witch: brazil
 IN-AS:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -616,6 +717,7 @@ IN-AS:
   witch: india
 BR-AM:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -623,6 +725,7 @@ BR-AM:
   witch: brazil
 CN-AH:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -630,6 +733,7 @@ CN-AH:
   witch: china
 CN-HE:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -637,6 +741,7 @@ CN-HE:
   witch: china
 CN-GX:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -644,6 +749,7 @@ CN-GX:
   witch: china
 CN-XJ:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -651,6 +757,7 @@ CN-XJ:
   witch: china
 CN-HL:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -658,6 +765,7 @@ CN-HL:
   witch: china
 CA-ON:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -665,6 +773,7 @@ CA-ON:
   witch: canada
 IN-DL:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -672,6 +781,7 @@ IN-DL:
   witch: india
 US-ASCC:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -679,6 +789,7 @@ US-ASCC:
   witch: india
 CA-PE:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -686,6 +797,7 @@ CA-PE:
   witch: canada
 BR-RO:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -693,6 +805,7 @@ BR-RO:
   witch: brazil
 CN-BJ:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -700,6 +813,7 @@ CN-BJ:
   witch: china
 IN-Northern grid:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -707,6 +821,7 @@ IN-Northern grid:
   witch: india
 BR-RJ:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -714,6 +829,7 @@ BR-RJ:
   witch: brazil
 CA-NB:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -721,6 +837,7 @@ CA-NB:
   witch: canada
 IN-HP:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -728,6 +845,7 @@ IN-HP:
   witch: india
 CN-GS:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -735,6 +853,7 @@ CN-GS:
   witch: china
 Canada without Quebec:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -742,6 +861,7 @@ Canada without Quebec:
   witch: canada
 US-NPCC:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -749,6 +869,7 @@ US-NPCC:
   witch: usa
 CN-XZ:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -756,6 +877,7 @@ CN-XZ:
   witch: china
 BR-DF:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -763,6 +885,7 @@ BR-DF:
   witch: brazil
 IN-KA:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -770,6 +893,7 @@ IN-KA:
   witch: india
 IN-MP:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -777,6 +901,7 @@ IN-MP:
   witch: india
 IN-Eastern grid:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -784,6 +909,7 @@ IN-Eastern grid:
   witch: india
 CA-NF:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -791,6 +917,7 @@ CA-NF:
   witch: canada
 US-HICC:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -798,6 +925,7 @@ US-HICC:
   witch: usa
 IN-KL:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -805,6 +933,7 @@ IN-KL:
   witch: india
 BR-AC:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -812,6 +941,7 @@ BR-AC:
   witch: brazil
 US-MRO:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -819,6 +949,7 @@ US-MRO:
   witch: usa
 US-RFC:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -826,6 +957,7 @@ US-RFC:
   witch: usa
 CN-SD:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -833,6 +965,7 @@ CN-SD:
   witch: china
 CN-SX:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -840,6 +973,7 @@ CN-SX:
   witch: china
 CN-SA:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -847,6 +981,7 @@ CN-SA:
   witch: china
 IN-MH:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -854,6 +989,7 @@ IN-MH:
   witch: india
 CN-FJ:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -861,6 +997,7 @@ CN-FJ:
   witch: china
 BR-SP:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -868,6 +1005,7 @@ BR-SP:
   witch: brazil
 CN-HB:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -875,6 +1013,7 @@ CN-HB:
   witch: china
 BR-SC:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -882,6 +1021,7 @@ BR-SC:
   witch: brazil
 CN-NX:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -889,6 +1029,7 @@ CN-NX:
   witch: china
 BR-MA:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -896,6 +1037,7 @@ BR-MA:
   witch: brazil
 CN-SC:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -903,6 +1045,7 @@ CN-SC:
   witch: china
 CN-CQ:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -910,6 +1053,7 @@ CN-CQ:
   witch: china
 CA-BC:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -917,6 +1061,7 @@ CA-BC:
   witch: canada
 CN-GD:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -924,6 +1069,7 @@ CN-GD:
   witch: china
 IN-Western grid:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -931,6 +1077,7 @@ IN-Western grid:
   witch: india
 BR-MS:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -938,6 +1085,7 @@ BR-MS:
   witch: brazil
 CN-YN:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -945,6 +1093,7 @@ CN-YN:
   witch: china
 CA-AB:
   remind: CAZ
+  remind-eu: CAN
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -952,6 +1101,7 @@ CA-AB:
   witch: canada
 IN-JH:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -959,6 +1109,7 @@ IN-JH:
   witch: india
 IN-TR:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -966,6 +1117,7 @@ IN-TR:
   witch: india
 IN-GA:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -973,6 +1125,7 @@ IN-GA:
   witch: india
 CA-YK:
   remind: CAZ
+  remind-eu: CAZ
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -980,6 +1133,7 @@ CA-YK:
   witch: canada
 US-WECC:
   remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -987,6 +1141,7 @@ US-WECC:
   witch: usa
 BR-MT:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -994,6 +1149,7 @@ BR-MT:
   witch: brazil
 CN-HA:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -1001,6 +1157,7 @@ CN-HA:
   witch: china
 IN-North-eastern grid:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1008,6 +1165,7 @@ IN-North-eastern grid:
   witch: india
 BR-PE:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -1015,6 +1173,7 @@ BR-PE:
   witch: brazil
 CN-JX:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -1022,6 +1181,7 @@ CN-JX:
   witch: china
 BR-ES:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -1029,6 +1189,7 @@ BR-ES:
   witch: brazil
 BR-RR:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -1036,6 +1197,7 @@ BR-RR:
   witch: brazil
 BR-RN:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -1043,6 +1205,7 @@ BR-RN:
   witch: brazil
 IN-RJ:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1050,6 +1213,7 @@ IN-RJ:
   witch: india
 IN-AR:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1057,6 +1221,14 @@ IN-AR:
   witch: india
 US-SERC:
   remind: USA
+  remind-eu: USA
+  image: USA
+  message: NAM
+  tiam-ucl: USA
+  gcam: USA
+US-FRCC:
+  remind: USA
+  remind-eu: USA
   image: USA
   message: NAM
   tiam-ucl: USA
@@ -1064,6 +1236,7 @@ US-SERC:
   witch: usa
 IN-WB:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1071,6 +1244,7 @@ IN-WB:
   witch: india
 CN-TJ:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -1078,6 +1252,7 @@ CN-TJ:
   witch: india
 IN-ML:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1085,6 +1260,7 @@ IN-ML:
   witch: india
 BR-GO:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -1092,6 +1268,7 @@ BR-GO:
   witch: brazil
 BR-AL:
   remind: LAM
+  remind-eu: LAM
   image: BRA
   message: LAM
   tiam-ucl: CSA
@@ -1099,6 +1276,7 @@ BR-AL:
   witch: brazil
 CN-JL:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -1106,6 +1284,7 @@ CN-JL:
   witch: china
 IN-JK:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1113,6 +1292,7 @@ IN-JK:
   witch: india
 CN-HU:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -1120,6 +1300,7 @@ CN-HU:
   witch: china
 IN-AP:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1127,6 +1308,7 @@ IN-AP:
   witch: india
 CN-SH:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -1134,6 +1316,7 @@ CN-SH:
   witch: china
 IN-UT:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1141,6 +1324,7 @@ IN-UT:
   witch: india
 RME:
   remind: EUR
+  remind-eu: DEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
@@ -1148,6 +1332,7 @@ RME:
   witch: india
 IN-PB:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1155,6 +1340,7 @@ IN-PB:
   witch: india
 CA-NU:
   remind: CAZ
+  remind-eu: CAZ
   image: CAN
   message: NAM
   tiam-ucl: CAN
@@ -1162,6 +1348,7 @@ CA-NU:
   witch: canada
 IN-CT:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1169,6 +1356,7 @@ IN-CT:
   witch: india
 IN-MZ:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1176,6 +1364,7 @@ IN-MZ:
   witch: india
 IN-MN:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1183,6 +1372,7 @@ IN-MN:
   witch: india
 IN-BR:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1190,6 +1380,7 @@ IN-BR:
   witch: india
 CN-QH:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -1197,6 +1388,7 @@ CN-QH:
   witch: china
 IN-SK:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1204,6 +1396,7 @@ IN-SK:
   witch: india
 CN-SGCC:
   remind: CHA
+  remind-eu: CHA
   image: CHN
   message: CHN
   tiam-ucl: CHI
@@ -1211,6 +1404,7 @@ CN-SGCC:
   witch: india
 IN-NL:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
@@ -1218,6 +1412,7 @@ IN-NL:
   witch: india
 IN-CH:
   remind: IND
+  remind-eu: IND
   image: INDIA
   message: SAS
   tiam-ucl: ODA
