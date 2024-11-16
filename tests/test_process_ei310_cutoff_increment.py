@@ -53,11 +53,7 @@ def test_increment():
     sectors = {
         "electricity": "electricity",
         "steel": "steel",
-        "others": [
-            "cement",
-            "cars",
-            "fuels"
-        ]
+        "others": ["cement", "cars", "fuels"],
     }
 
     ndb.update(sectors=sectors)

@@ -1387,7 +1387,6 @@ class Export:
 
         return dict_categories
 
-
     def export_db_to_simapro(self, olca_compartments=False):
         if not os.path.exists(self.filepath):
             os.makedirs(self.filepath)
@@ -1581,7 +1580,7 @@ class Export:
                                             1.0,
                                             "not defined",
                                             sub_category,
-                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'],e['product'],e['location'])]}"
+                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'],e['product'],e['location'])]}",
                                         ]
                                     )
 
@@ -1594,7 +1593,7 @@ class Export:
                                             "100%",
                                             "not defined",
                                             sub_category,
-                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}"
+                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                 e["used"] = True
@@ -1619,7 +1618,7 @@ class Export:
                                             0,
                                             0,
                                             0,
-                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}"
+                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                     e["used"] = True
@@ -1668,7 +1667,7 @@ class Export:
 
                                 if e["name"].lower() == "water":
                                     unit = "kilogram"
-                                    #e["unit"] = "kilogram"
+                                    # e["unit"] = "kilogram"
                                     # going from cubic meters to kilograms
                                     e["amount"] *= 1000
                                 else:
@@ -1708,7 +1707,7 @@ class Export:
 
                                 if e["name"].lower() == "water":
                                     unit = "kilogram"
-                                    #e["unit"] = "kilogram"
+                                    # e["unit"] = "kilogram"
                                     e["amount"] /= 1000
                                 else:
                                     unit = e["unit"]
@@ -1785,7 +1784,7 @@ class Export:
                                             0,
                                             0,
                                             0,
-                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}"
+                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                     e["used"] = True
