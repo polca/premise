@@ -55,7 +55,7 @@ The tool currently supports the following IAMs:
 What's new in 2.2.0?
 ====================
 
-- `IncrementalDatabase`: allows distinguishing the contirbution of each sector to the total impact.
+- `IncrementalDatabase`: allows distinguishing the contribution of each sector to the total impact.
 
 What's new in 2.1.4?
 ====================
