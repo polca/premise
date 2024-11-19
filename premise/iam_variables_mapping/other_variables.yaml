@@ -5,6 +5,7 @@ gdp:
     remind-eu: GDP|PPP
     image: GDP|PPP
     tiam-ucl: GDP|PPP
+    witch: gdp|PPP
 
 population:
   iam_aliases:
@@ -13,6 +14,7 @@ population:
     remind-eu: Population
     image: Population
     tiam-ucl: Population
+    witch: population
 
 GMST:
   iam_aliases:
@@ -20,6 +22,7 @@ GMST:
     remind-eu: Temperature|Global Mean
     image: Temperature|Global Mean
     tiam-ucl: Temperature|Global Mean
+    witch: Temperature|WITCH|Global Mean
 CO2:
   iam_aliases:
     remind: Emi|CO2
@@ -27,3 +30,4 @@ CO2:
     image: Emissions|CO2
     message: Emissions|CO2
     tiam-ucl: Emissions|CO2
+    witch: Emissions|co2

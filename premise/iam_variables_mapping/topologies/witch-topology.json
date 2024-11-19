@@ -1,9 +1,9 @@
 {
-    "USA": [
+    "usa": [
         "US",
         "PM"
     ],
-    "TE": [
+    "te": [
         "AM",
         "AZ",
         "BY",
@@ -17,7 +17,7 @@
         "UA",
         "UZ"
     ],
-    "SSA": [
+    "ssa": [
         "AO",
         "BI",
         "BJ",
@@ -68,10 +68,10 @@
         "ZM",
         "ZW"
     ],
-    "SOUTHAFRICA": [
+    "southafrica": [
         "ZA"
     ],
-    "SEASIA": [
+    "seasia": [
         "AS",
         "TF",
         "BN",
@@ -111,14 +111,14 @@
         "WS",
         "MO"
     ],
-    "OCEANIA": [
+    "oceania": [
         "AU",
         "NZ"
     ],
-    "MEXICO": [
+    "mexico": [
         "MX"
     ],
-    "MENA": [
+    "mena": [
         "AE",
         "BH",
         "DZ",
@@ -142,7 +142,7 @@
         "TR",
         "YE"
     ],
-    "LACA": [
+    "laca": [
         "AW",
         "AI",
         "AR",
@@ -195,17 +195,17 @@
         "VI",
         "RLA"
     ],
-    "JPNKOR": [
+    "jpnkor": [
         "JP",
         "KR"
     ],
-    "INDONESIA": [
+    "indonesia": [
         "ID"
     ],
-    "INDIA": [
+    "india": [
         "IN"
     ],
-    "EUROPE": [
+    "europe": [
         "AX",
         "AT",
         "BE",
@@ -255,18 +255,18 @@
         "RS",
         "VA"
     ],
-    "CHINA": [
+    "china": [
         "CN",
         "HK",
         "TW"
     ],
-    "CANADA": [
+    "canada": [
         "CA"
     ],
-    "BRAZIL": [
+    "brazil": [
         "BR"
     ],
-    "SASIA": [
+    "sasia": [
         "AF",
         "BD",
         "BT",
@@ -274,5 +274,6 @@
         "MV",
         "PK",
         "LK"
-    ]
+    ],
+    "World": ["GLO", "RoW"]
 }

@@ -17,6 +17,7 @@ SUPPORTED_MODELS:
   - message
   - tiam-ucl
   - gcam
+  - witch
 
 SUPPORTED_PATHWAYS:
   - SSP2-Base
@@ -171,6 +172,26 @@ LIST_GCAM_REGIONS:
   - South Korea
   - Taiwan
   - USA
+  - World
+
+LIST_WITCH_REGIONS:
+  - usa
+  - te
+  - ssa
+  - southafrica
+  - seasia
+  - oceania
+  - mexico
+  - mena
+  - laca
+  - jpnkor
+  - indonesia
+  - india
+  - europe
+  - china
+  - canada
+  - brazil
+  - sasia
   - World
 
 

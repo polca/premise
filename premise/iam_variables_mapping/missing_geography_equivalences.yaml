@@ -11,6 +11,7 @@ Europe without Switzerland and Austria:
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
+  witch: europe
 >>>>>>> 1aee6371a9a3ff9d4d982b032d72af3c562ef0ea
 Europe without Austria:
   remind: EUR
