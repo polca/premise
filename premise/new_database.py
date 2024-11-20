@@ -1039,21 +1039,21 @@ class NewDatabase:
             biosphere_name=self.biosphere_name,
         )
 
-        write_brightway_database(
-            data=self.database,
-            name=name,
-        )
+        #write_brightway_database(
+        #    data=self.database,
+        #    name=name,
+        #)
 
         # generate scenario report
-        self.generate_scenario_report()
+        #self.generate_scenario_report()
         # generate change report from logs
-        self.generate_change_report()
+        #self.generate_change_report()
 
-        for scenario in self.scenarios:
-            del scenario["database"]
+        #for scenario in self.scenarios:
+        #    del scenario["database"]
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+        #    if "applied functions" in scenario:
+        #        del scenario["applied functions"]
 
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
