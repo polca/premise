@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # a mapping for a few ecoinvent locations
 # for which constructive_geometries
 # cannot find an IAM equivalent
@@ -12,7 +10,6 @@ Europe without Switzerland and Austria:
   tiam-ucl: WEU
   gcam: EU-15
   witch: europe
->>>>>>> 1aee6371a9a3ff9d4d982b032d72af3c562ef0ea
 Europe without Austria:
   remind: EUR
   remind-eu: DEU
@@ -67,7 +64,7 @@ RoW:
   message: World
   tiam-ucl: World
   gcam: World
-  witch: world
+  witch: World
 GLO:
   remind: World
   remind-eu: World
@@ -75,7 +72,7 @@ GLO:
   message: World
   tiam-ucl: World
   gcam: World
-  witch: world
+  witch: World
 RNA:
   remind: USA
   remind-eu: USA
