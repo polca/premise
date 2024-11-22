@@ -206,6 +206,8 @@ PREFERRED_IAM_ORDER:
   - EUR
   - SSA
   - LAM
+  - brazil
+  - mexico
 
 BLACKLIST:
   - ME
