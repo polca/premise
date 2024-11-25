@@ -981,7 +981,7 @@ class NewDatabase:
         self,
         name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')}",
         filepath: str = None,
-        file_format: str = "excel",
+        file_format: str = "csv",
         preserve_original_column: bool = False,
     ) -> None:
         """
