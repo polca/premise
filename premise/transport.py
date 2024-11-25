@@ -618,6 +618,9 @@ class Transport(BaseTransformation):
 
             dataset["log parameters"].update({"efficiency change": scaling_factor})
 
+            txt = f" Fuel/energy efficiency adjusted by a factor of {scaling_factor} according to the scenario."
+            dataset["comment"] += txt
+
         self.write_log(dataset)
 
         return dataset
