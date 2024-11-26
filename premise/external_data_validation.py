@@ -78,7 +78,9 @@ def flag_activities_to_adjust(
             )
         except KeyError:
             print(list(scenario_data.keys()))
-            print(f"Variable {dataset_vars['production volume variable']} not found in scenario data for scenario.")
+            print(
+                f"Variable {dataset_vars['production volume variable']} not found in scenario data for scenario."
+            )
 
         # fetch regions which do not contain nan data
         regions = [
