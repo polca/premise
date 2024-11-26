@@ -871,30 +871,18 @@ class ExternalScenario(BaseTransformation):
         """
 
         act, counter = [], 0
-        try:
-            while not act:
-                # act = list(
-                #     ws.get_many(
-                #         self.database,
-                #         ws.equals("name", name),
-                #         ws.equals(
-                #             "reference product",
-                #             ref_prod,
-                #         ),
-                #         ws.equals("location", possible_locations[counter]),
-                #     )
-                # )
 
+        for loc in possible_locations:
+            if not act:
                 act = [
                     a
                     for a in self.database
                     if a["name"].lower() == name.lower()
                     and a["reference product"].lower() == ref_prod.lower()
-                    and a["location"] == possible_locations[counter]
+                    and a["location"] == loc
                 ]
 
-                counter += 1
-        except IndexError:
+        if not act:
             print("Cannot find -> ", name, ref_prod, possible_locations)
 
         return act
