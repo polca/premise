@@ -56,7 +56,9 @@ def get_biosphere_flow_uuid(version: str) -> Dict[Tuple[str, str, str, str], str
     :rtype: dict
     """
 
-    if version == "3.9":
+    if version == "3.10":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
+    elif version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     else:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
