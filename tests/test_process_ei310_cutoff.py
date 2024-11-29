@@ -68,8 +68,15 @@ def test_brightway():
     assert isinstance(lca.score, float)
     print(lca.score)
 
+    mclca = bw2calc.MonteCarloLCA({bw2data.Database("test1").random(): 1}, method)
+    results = [next(mclca) for _ in range(10)]
+    assert all(isinstance(result, float) for result in results)
+    print(results)
+
+
     # destroy all objects
     del ndb
     del lca
+    del mclca
     gc.collect()
     delete_all_pickles()
