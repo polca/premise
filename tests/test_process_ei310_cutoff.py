@@ -33,6 +33,9 @@ def test_brightway():
     clear_inventory_cache()
 
     #if f"ecoinvent-{ei_version}-{system_model}" not in bw2data.databases:
+    from bw2io import __version__
+    print(ei_version, system_model, __version__)
+
     bw2io.import_ecoinvent_release(
         version=ei_version,
         system_model=system_model,
