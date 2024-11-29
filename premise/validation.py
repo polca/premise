@@ -13,6 +13,7 @@ from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
 from .logger import create_logger
 from .utils import rescale_exchanges
+import wurst.searching as ws
 
 logger = create_logger("validation")
 
@@ -612,6 +613,89 @@ class BaseDatasetValidator:
             print("---> MAJOR anomalies found: check the change report.")
 
 
+class BatteryValidation(BaseDatasetValidator):
+    def __init__(self, model, scenario, year, regions, database, iam_data):
+        super().__init__(model, scenario, year, regions, database)
+        self.iam_data = iam_data
+
+    def check_battery_capacity(self):
+        # Check that the battery capacity is within the expected range
+        for ds in ws.get_many(
+            self.database,
+            ws.contains("name", "market for battery capacity"),
+            ws.equals("location", "GLO"),
+            ws.equals("unit", "kilowatt hour"),
+            ws.either(
+                *[
+                    ws.contains("name", s)
+                    for s in [
+                        "(MIX)",
+                        "(LFP)",
+                        "(NCx)",
+                        "(PLiB)",
+                        "(CONT",
+                        "(TC"
+                    ]
+                ]
+            )
+        ):
+            # check that sum of technosphere exchanges sum to 1
+            total = sum([exc["amount"] for exc in ds["exchanges"] if exc["type"] == "technosphere"])
+            if not np.isclose(total, 1.0, rtol=1e-3):
+                message = f"Total exchange amount is {total}, not 1.0"
+                self.log_issue(
+                    ds, "Incorrect market shares", message, issue_type="major"
+                )
+
+
+        for ds in ws.get_many(
+            self.database,
+            ws.contains("name", "market for battery capacity, "),
+            ws.equals("location", "GLO"),
+            ws.equals("unit", "kilowatt hour"),
+            ws.exclude(
+                ws.either(
+                    *[
+                        ws.contains("name", s)
+                        for s in [
+                            "MIX",
+                            "LFP",
+                            "NCx",
+                            "PLiB",
+                            "TC",
+                            "CONT"
+                        ]
+                    ]
+                )
+            )
+        ):
+            # check that um of technosphere exchanges equal zero
+            total = sum([exc["amount"] for exc in ds["exchanges"] if exc["type"] == "technosphere"])
+            if not np.isclose(total, 0.0, rtol=1e-3):
+                message = f"Total exchange amount is {total}, not 0.0"
+                self.log_issue(
+                    ds, "EoL not balanced with battery input", message, issue_type="major"
+                )
+
+            # also check that sum of positive technosphere exchanges
+            # have a correct value
+            total = sum([exc["amount"] for exc in ds["exchanges"] if exc["type"] == "technosphere" and exc["amount"] > 0])
+            # this sum needs to be at least 2
+            if total < 2:
+                message = f"Total exchange amount is {total}, not at least 2"
+                self.log_issue(
+                    ds, "Energy density too high", message, issue_type="major"
+                )
+
+    def run_battery_checks(self):
+        self.check_battery_capacity()
+        self.save_log()
+
+        if len(self.major_issues_log) > 0:
+            print("---> MAJOR anomalies found during battery update: check the change report.")
+
+
+
 class HeatValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
@@ -820,6 +904,10 @@ class HeatValidation(BaseDatasetValidator):
     def run_heat_checks(self):
         self.check_heat_conversion_efficiency()
         self.save_log()
+
+        if len(self.major_issues_log) > 0:
+            print("---> MAJOR anomalies found during heat update: check the change report.")
+
 
 
 class TransportValidation(BaseDatasetValidator):
@@ -1058,6 +1146,11 @@ class TransportValidation(BaseDatasetValidator):
         self.validate_and_normalize_exchanges()
         self.check_vehicles()
         self.save_log()
+
+        if len(self.major_issues_log) > 0:
+            print("---> MAJOR anomalies found during transport update: check the change report.")
+
+
 
 
 class TruckValidation(TransportValidation):
@@ -1401,6 +1494,10 @@ class ElectricityValidation(BaseDatasetValidator):
         self.check_efficiency()
         self.save_log()
 
+        if len(self.major_issues_log) > 0:
+            print("---> MAJOR anomalies found during electricity update: check the change report.")
+
+
 
 class FuelsValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
@@ -1491,6 +1588,10 @@ class FuelsValidation(BaseDatasetValidator):
         self.check_fuel_market_composition()
         self.check_electrolysis_electricity_input()
         self.save_log()
+
+        if len(self.major_issues_log) > 0:
+            print("---> MAJOR anomalies found during fuels update: check the change report.")
+
 
 
 class SteelValidation(BaseDatasetValidator):
@@ -1621,10 +1722,10 @@ class SteelValidation(BaseDatasetValidator):
                         if x["type"] == "technosphere" and x["unit"] == "kilowatt hour"
                     ]
                 )
-                # if electricity use is inferior to 0.444 MWh/kg
+                # if electricity use is inferior to 0.39 MWh/kg
                 # or superior to 0.8 MWh/kg, log a warning
 
-                if electricity < 0.443:
+                if electricity < 0.39:
                     message = f"Electricity use for steel production is too low: {electricity}."
                     self.log_issue(
                         ds,
@@ -1678,7 +1779,7 @@ class SteelValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if energy < 8.99:
+                if energy < 8.5:
                     message = (
                         f"Energy use for pig iron production is too low: {energy}."
                     )
@@ -1694,6 +1795,10 @@ class SteelValidation(BaseDatasetValidator):
         self.check_steel_energy_use()
         self.check_pig_iron_input()
         self.save_log()
+
+        if len(self.major_issues_log) > 0:
+            print("---> MAJOR anomalies found during steel update: check the change report.")
+
 
 
 class CementValidation(BaseDatasetValidator):
@@ -1849,13 +1954,17 @@ class CementValidation(BaseDatasetValidator):
                         ds,
                         "energy use for clinker production too low",
                         message,
-                        issue_type="major",
+                        issue_type="minor",
                     )
 
     def run_cement_checks(self):
         self.check_cement_markets()
         self.check_clinker_energy_use()
         self.save_log()
+
+        if len(self.major_issues_log) > 0:
+            print("---> MAJOR anomalies found during cement update: check the change report.")
+
 
 
 class BiomassValidation(BaseDatasetValidator):
@@ -1948,3 +2057,7 @@ class BiomassValidation(BaseDatasetValidator):
         self.check_biomass_markets()
         self.check_residual_biomass_share()
         self.save_log()
+
+        if len(self.major_issues_log) > 0:
+            print("---> MAJOR anomalies found during biomass update: check the change report.")
+

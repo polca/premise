@@ -9,6 +9,7 @@ import yaml
 from .filesystem_constants import DATA_DIR
 from .logger import create_logger
 from .transformation import BaseTransformation, IAMDataCollection, List, np, ws
+from .validation import BatteryValidation
 
 logger = create_logger("battery")
 
@@ -56,6 +57,16 @@ def _update_battery(scenario, version, system_model):
     scenario["database"] = battery.database
     scenario["index"] = battery.index
     scenario["cache"] = battery.cache
+
+    validation = BatteryValidation(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=battery.database,
+        iam_data=scenario["iam data"],
+    )
+    validation.run_battery_checks()
 
     return scenario
 
@@ -138,6 +149,7 @@ class Battery(BaseTransformation):
                 "NMC811": "market for battery capacity, Li-ion, NMC811, stationary",
                 "VRFB": "market for battery capacity, redox-flow, Vanadium, stationary",
                 "LEAD-ACID": "market for battery capacity, lead acid, rechargeable, stationary",
+                "NAS": "market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl, stationary"
             }.items()
         }
 
