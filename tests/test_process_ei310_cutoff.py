@@ -41,13 +41,18 @@ def test_brightway():
             biosphere_name=f"ecoinvent-{ei_version}-biosphere",
         )
 
+    bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
+
+    print(bw2data.projects.current)
+    print(bw2data.databases)
+
     ndb = NewDatabase(
         scenarios=scenarios,
         source_db=f"ecoinvent-{ei_version}-{system_model}",
         source_version=ei_version,
         key=key,
         system_model=system_model,
-        biosphere_name=f"ecoinvent-{ei_version}-biosphere",
+        biosphere_name=[db for db in bw2data.databases if "biosphere" in db][0],
     )
 
     ndb.update()

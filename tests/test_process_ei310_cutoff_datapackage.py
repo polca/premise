@@ -43,8 +43,6 @@ def test_brightway():
         )
 
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
-    print(bw2data.projects.current)
-    print(bw2data.databases)
 
     ndb = NewDatabase(
         scenarios=scenarios,
