@@ -149,7 +149,7 @@ class Battery(BaseTransformation):
                 "NMC811": "market for battery capacity, Li-ion, NMC811, stationary",
                 "VRFB": "market for battery capacity, redox-flow, Vanadium, stationary",
                 "LEAD-ACID": "market for battery capacity, lead acid, rechargeable, stationary",
-                "NAS": "market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl, stationary"
+                "NAS": "market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl, stationary",
             }.items()
         }
 

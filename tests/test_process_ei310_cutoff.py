@@ -73,7 +73,6 @@ def test_brightway():
     assert all(isinstance(result, float) for result in results)
     print(results)
 
-
     # destroy all objects
     del ndb
     del lca
