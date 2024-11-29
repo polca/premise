@@ -41,6 +41,8 @@ def test_brightway():
             biosphere_name=f"ecoinvent-{ei_version}-biosphere",
         )
 
+    print(bw2data.databases)
+
     ndb = NewDatabase(
         scenarios=scenarios,
         source_db=f"ecoinvent-{ei_version}-{system_model}",
