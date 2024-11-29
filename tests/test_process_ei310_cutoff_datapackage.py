@@ -49,7 +49,7 @@ def test_brightway():
         source_version=ei_version,
         key=key,
         system_model=system_model,
-        biosphere_name=f"ecoinvent-{ei_version}-biosphere",
+        biosphere_name=[db for db in bw2data.databases if "biosphere" in db][0],
     )
 
     ndb.update()
