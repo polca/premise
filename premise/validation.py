@@ -628,25 +628,23 @@ class BatteryValidation(BaseDatasetValidator):
             ws.either(
                 *[
                     ws.contains("name", s)
-                    for s in [
-                        "(MIX)",
-                        "(LFP)",
-                        "(NCx)",
-                        "(PLiB)",
-                        "(CONT",
-                        "(TC"
-                    ]
+                    for s in ["(MIX)", "(LFP)", "(NCx)", "(PLiB)", "(CONT", "(TC"]
                 ]
-            )
+            ),
         ):
             # check that sum of technosphere exchanges sum to 1
-            total = sum([exc["amount"] for exc in ds["exchanges"] if exc["type"] == "technosphere"])
+            total = sum(
+                [
+                    exc["amount"]
+                    for exc in ds["exchanges"]
+                    if exc["type"] == "technosphere"
+                ]
+            )
             if not np.isclose(total, 1.0, rtol=1e-3):
                 message = f"Total exchange amount is {total}, not 1.0"
                 self.log_issue(
                     ds, "Incorrect market shares", message, issue_type="major"
                 )
-
 
         for ds in ws.get_many(
             self.database,
@@ -657,29 +655,37 @@ class BatteryValidation(BaseDatasetValidator):
                 ws.either(
                     *[
                         ws.contains("name", s)
-                        for s in [
-                            "MIX",
-                            "LFP",
-                            "NCx",
-                            "PLiB",
-                            "TC",
-                            "CONT"
-                        ]
+                        for s in ["MIX", "LFP", "NCx", "PLiB", "TC", "CONT"]
                     ]
                 )
-            )
+            ),
         ):
             # check that um of technosphere exchanges equal zero
-            total = sum([exc["amount"] for exc in ds["exchanges"] if exc["type"] == "technosphere"])
+            total = sum(
+                [
+                    exc["amount"]
+                    for exc in ds["exchanges"]
+                    if exc["type"] == "technosphere"
+                ]
+            )
             if not np.isclose(total, 0.0, rtol=1e-3):
                 message = f"Total exchange amount is {total}, not 0.0"
                 self.log_issue(
-                    ds, "EoL not balanced with battery input", message, issue_type="major"
+                    ds,
+                    "EoL not balanced with battery input",
+                    message,
+                    issue_type="major",
                 )
 
             # also check that sum of positive technosphere exchanges
             # have a correct value
-            total = sum([exc["amount"] for exc in ds["exchanges"] if exc["type"] == "technosphere" and exc["amount"] > 0])
+            total = sum(
+                [
+                    exc["amount"]
+                    for exc in ds["exchanges"]
+                    if exc["type"] == "technosphere" and exc["amount"] > 0
+                ]
+            )
             # this sum needs to be at least 2
             if total < 2:
                 message = f"Total exchange amount is {total}, not at least 2"
@@ -692,8 +698,9 @@ class BatteryValidation(BaseDatasetValidator):
         self.save_log()
 
         if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found during battery update: check the change report.")
-
+            print(
+                "---> MAJOR anomalies found during battery update: check the change report."
+            )
 
 
 class HeatValidation(BaseDatasetValidator):
@@ -906,8 +913,9 @@ class HeatValidation(BaseDatasetValidator):
         self.save_log()
 
         if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found during heat update: check the change report.")
-
+            print(
+                "---> MAJOR anomalies found during heat update: check the change report."
+            )
 
 
 class TransportValidation(BaseDatasetValidator):
@@ -1148,9 +1156,9 @@ class TransportValidation(BaseDatasetValidator):
         self.save_log()
 
         if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found during transport update: check the change report.")
-
-
+            print(
+                "---> MAJOR anomalies found during transport update: check the change report."
+            )
 
 
 class TruckValidation(TransportValidation):
@@ -1495,8 +1503,9 @@ class ElectricityValidation(BaseDatasetValidator):
         self.save_log()
 
         if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found during electricity update: check the change report.")
-
+            print(
+                "---> MAJOR anomalies found during electricity update: check the change report."
+            )
 
 
 class FuelsValidation(BaseDatasetValidator):
@@ -1590,8 +1599,9 @@ class FuelsValidation(BaseDatasetValidator):
         self.save_log()
 
         if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found during fuels update: check the change report.")
-
+            print(
+                "---> MAJOR anomalies found during fuels update: check the change report."
+            )
 
 
 class SteelValidation(BaseDatasetValidator):
@@ -1797,8 +1807,9 @@ class SteelValidation(BaseDatasetValidator):
         self.save_log()
 
         if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found during steel update: check the change report.")
-
+            print(
+                "---> MAJOR anomalies found during steel update: check the change report."
+            )
 
 
 class CementValidation(BaseDatasetValidator):
@@ -1963,8 +1974,9 @@ class CementValidation(BaseDatasetValidator):
         self.save_log()
 
         if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found during cement update: check the change report.")
-
+            print(
+                "---> MAJOR anomalies found during cement update: check the change report."
+            )
 
 
 class BiomassValidation(BaseDatasetValidator):
@@ -2059,5 +2071,6 @@ class BiomassValidation(BaseDatasetValidator):
         self.save_log()
 
         if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found during biomass update: check the change report.")
-
+            print(
+                "---> MAJOR anomalies found during biomass update: check the change report."
+            )

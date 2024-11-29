@@ -2589,7 +2589,9 @@ class Fuels(BaseTransformation):
 
                             # we also need to add old fuel markets which now take an
                             # input for new fuel markets
-                            for location in self.iam_to_ecoinvent_loc[dataset["location"]]:
+                            for location in self.iam_to_ecoinvent_loc[
+                                dataset["location"]
+                            ]:
                                 self.new_fuel_markets.update(
                                     {
                                         (dataset["name"], location): {
@@ -2605,8 +2607,6 @@ class Fuels(BaseTransformation):
                                         }
                                     }
                                 )
-
-
 
                         # add to log
                         self.write_log(dataset)
@@ -2649,10 +2649,9 @@ class Fuels(BaseTransformation):
 
         for dataset in ws.get_many(
             self.database,
-            ws.either(*[
-                ws.equals("name", x[0])
-                for x in list(self.new_fuel_markets.keys())
-            ])
+            ws.either(
+                *[ws.equals("name", x[0]) for x in list(self.new_fuel_markets.keys())]
+            ),
         ):
             if "log parameters" not in dataset:
                 dataset["log parameters"] = {}
@@ -2669,8 +2668,6 @@ class Fuels(BaseTransformation):
                     ).get("LHV", 0),
                 }
             )
-
-
 
         # add to database
         self.database.extend(new_datasets)

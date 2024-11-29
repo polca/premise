@@ -184,13 +184,19 @@ class Heat(BaseTransformation):
                             exc["name"],
                             exc["location"],
                         ) in self.carbon_intensity_markets:
-                            fossil_co2 += exc[
-                                "amount"
-                            ] * self.carbon_intensity_markets[(exc["name"], exc["location"])]["fossil"]
+                            fossil_co2 += (
+                                exc["amount"]
+                                * self.carbon_intensity_markets[
+                                    (exc["name"], exc["location"])
+                                ]["fossil"]
+                            )
 
-                            non_fossil_co2 += exc[
-                                "amount"
-                            ] * self.carbon_intensity_markets[(exc["name"], exc["location"])]["non-fossil"]
+                            non_fossil_co2 += (
+                                exc["amount"]
+                                * self.carbon_intensity_markets[
+                                    (exc["name"], exc["location"])
+                                ]["non-fossil"]
+                            )
 
                     if fossil_co2 + non_fossil_co2 > 0:
 
@@ -210,8 +216,10 @@ class Heat(BaseTransformation):
                         )
 
                         ds["exchanges"] = [
-                            e for e in ds["exchanges"]
-                            if e["name"] not in (
+                            e
+                            for e in ds["exchanges"]
+                            if e["name"]
+                            not in (
                                 "Carbon dioxide, fossil",
                                 "Carbon dioxide, non-fossil",
                             )
@@ -234,7 +242,7 @@ class Heat(BaseTransformation):
                                                 "Carbon dioxide, fossil",
                                                 "air",
                                                 "unspecified",
-                                                "kilogram"
+                                                "kilogram",
                                             )
                                         ],
                                     ),
@@ -259,7 +267,7 @@ class Heat(BaseTransformation):
                                                 "Carbon dioxide, non-fossil",
                                                 "air",
                                                 "unspecified",
-                                                "kilogram"
+                                                "kilogram",
                                             )
                                         ],
                                     ),
@@ -269,11 +277,18 @@ class Heat(BaseTransformation):
                         if "log parameters" not in ds:
                             ds["log parameters"] = {}
 
-                        ds["log parameters"]["initial amount of fossil CO2"] = initial_fossil_co2
-                        ds["log parameters"]["new amount of fossil CO2"] = float(fossil_co2)
-                        ds["log parameters"]["initial amount of biogenic CO2"] = initial_non_fossil_co2
-                        ds["log parameters"]["new amount of biogenic CO2"] = float(non_fossil_co2)
-
+                        ds["log parameters"][
+                            "initial amount of fossil CO2"
+                        ] = initial_fossil_co2
+                        ds["log parameters"]["new amount of fossil CO2"] = float(
+                            fossil_co2
+                        )
+                        ds["log parameters"][
+                            "initial amount of biogenic CO2"
+                        ] = initial_non_fossil_co2
+                        ds["log parameters"]["new amount of biogenic CO2"] = float(
+                            non_fossil_co2
+                        )
 
                 for new_dataset in list(new_ds.values()):
                     self.write_log(new_dataset)
