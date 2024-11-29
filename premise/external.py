@@ -464,8 +464,9 @@ class ExternalScenario(BaseTransformation):
             if "regionalize" in ds:
                 del ds["regionalize"]
 
-            if ds["location"] not in regions and ds["name"] not in processed:
-                processed.append(ds["name"])
+            processed_key = (ds["name"], ds["reference product"], ds["unit"])
+            if ds["location"] not in regions and processed_key not in processed:
+                processed.append(processed_key)
 
                 # Check if datasets already exist for IAM regions
                 # if not, create them
