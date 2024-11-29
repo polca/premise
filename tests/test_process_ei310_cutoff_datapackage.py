@@ -33,6 +33,7 @@ def test_brightway():
     clear_inventory_cache()
 
     if f"ecoinvent-{ei_version}-{system_model}" not in bw2data.databases:
+        print("Importing ecoinvent")
         bw2io.import_ecoinvent_release(
             version=ei_version,
             system_model=system_model,
@@ -41,6 +42,8 @@ def test_brightway():
             biosphere_name=f"ecoinvent-{ei_version}-biosphere",
         )
 
+    bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
+    print(bw2data.projects.current)
     print(bw2data.databases)
 
     ndb = NewDatabase(
