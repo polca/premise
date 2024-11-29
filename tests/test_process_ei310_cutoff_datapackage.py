@@ -38,6 +38,7 @@ def test_brightway():
             system_model=system_model,
             username=ei_user,
             password=ei_pass,
+            biosphere_name=f"ecoinvent-{ei_version}-biosphere",
         )
 
     ndb = NewDatabase(
