@@ -70,7 +70,13 @@ def test_brightway():
     assert isinstance(lca.score, float)
     print(lca.score)
 
-    mclca = bw2calc.MonteCarloLCA({bw2data.Database("test1").random(): 1}, method)
+    try:
+        # uses BW2
+        mclca = bw2calc.MonteCarloLCA({bw2data.Database("test1").random(): 1}, method)
+    except AttributeError:
+        # uses BW25
+        mclca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method, use_distributions=True)
+
     results = [next(mclca) for _ in range(10)]
     assert all(isinstance(result, float) for result in results)
     print(results)
