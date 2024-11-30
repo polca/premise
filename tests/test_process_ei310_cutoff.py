@@ -75,7 +75,9 @@ def test_brightway():
         mclca = bw2calc.MonteCarloLCA({bw2data.Database("test1").random(): 1}, method)
     except AttributeError:
         # uses BW25
-        mclca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method, use_distributions=True)
+        mclca = bw2calc.LCA(
+            {bw2data.Database("test1").random(): 1}, method, use_distributions=True
+        )
 
     results = [lca.score for _ in zip(range(10), mclca)]
     assert all(isinstance(result, float) for result in results)
