@@ -77,7 +77,7 @@ def test_brightway():
         # uses BW25
         mclca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method, use_distributions=True)
 
-    results = [next(mclca) for _ in range(10)]
+    results = [lca.score for _ in zip(range(10), mclca)]
     assert all(isinstance(result, float) for result in results)
     print(results)
 
