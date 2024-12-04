@@ -668,6 +668,7 @@ def generate_change_report(source, version, source_type, system_model):
         "premise_fuel",
         "premise_heat",
         "premise_battery",
+        "premise_wind_turbine",
         "premise_transport",
         "premise_steel",
         "premise_metal",

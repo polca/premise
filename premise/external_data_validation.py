@@ -373,6 +373,8 @@ def check_inventories(
                 inventory_data[i] = flag_activities_to_adjust(
                     dataset, scenario_data, year, data_vars
                 )
+        else:
+            print(f"Dataset {key[0]} and {key[1]} is not found in the configuration.")
 
     def find_candidates_by_key(data, key):
         """Filter data for items matching the key (name and reference product)."""

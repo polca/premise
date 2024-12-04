@@ -38,6 +38,7 @@ from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
+from .metals import _update_metals
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
@@ -54,6 +55,7 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
 )
+from .renewables import _update_wind_turbines
 
 logger = logging.getLogger("module")
 
@@ -887,6 +889,14 @@ class NewDatabase:
             },
             "steel": {"func": _update_steel, "args": (self.version, self.system_model)},
             "fuels": {"func": _update_fuels, "args": (self.version, self.system_model)},
+            "renewable": {
+                "func": _update_wind_turbines,
+                "args": (self.version, self.system_model),
+            },
+            "metals": {
+                "func": _update_metals,
+                "args": (self.version, self.system_model),
+            },
             "heat": {"func": _update_heat, "args": (self.version, self.system_model)},
             "battery": {
                 "func": _update_battery,

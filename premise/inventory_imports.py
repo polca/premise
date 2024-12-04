@@ -360,7 +360,6 @@ class BaseInventoryImport:
         self.version_in = version_in
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code(self.version_out)
-        # print(self.biosphere_dict)
         self.correspondence_bio_flows = get_correspondence_bio_flows()
         self.system_model = system_model
         self.consequential_blacklist = get_consequential_blacklist()
