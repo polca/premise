@@ -53,6 +53,7 @@ from .utils import (
     load_database,
     print_version,
     warning_about_biogenic_co2,
+    end_of_process
 )
 
 logger = logging.getLogger("module")
@@ -1050,10 +1051,7 @@ class NewDatabase:
         self.generate_change_report()
 
         for scenario in self.scenarios:
-            del scenario["database"]
-
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
@@ -1109,11 +1107,8 @@ class NewDatabase:
                 scenario["database"],
                 name[s],
             )
-            # delete the database from the scenario
-            del scenario["database"]
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1181,8 +1176,7 @@ class NewDatabase:
             )
             Export(scenario, filepath[s], self.version).export_db_to_matrices()
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1225,10 +1219,7 @@ class NewDatabase:
             if len(export.unmatched_category_flows) > 0:
                 scenario["unmatched category flows"] = export.unmatched_category_flows
 
-            del scenario["database"]
-
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1268,10 +1259,8 @@ class NewDatabase:
             Export(scenario, filepath, self.version).export_db_to_simapro(
                 olca_compartments=True
             )
-            del scenario["database"]
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
         # generate scenario report
         self.generate_scenario_report()
@@ -1318,10 +1307,7 @@ class NewDatabase:
         )
 
         for scenario in self.scenarios:
-            del scenario["database"]
-
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
         cached_inventories.extend(extra_inventories)
 

@@ -434,3 +434,24 @@ def delete_all_pickles():
     """
     for file in DIR_CACHED_FILES.glob("*.pickle"):
         file.unlink()
+
+def end_of_process(scenario):
+    """
+    Delete all pickle files in the cache folder.
+    And all information not needed from the memory
+    """
+    # delete all pickle files
+    delete_all_pickles()
+
+    # delete the database from the scenario
+    del scenario["database"]
+
+    if "applied functions" in scenario:
+        del scenario["applied functions"]
+
+    if "cache" in scenario:
+        scenario["cache"] = {}
+    if "index" in scenario:
+        scenario["index"] = {}
+
+    return scenario
