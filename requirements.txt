@@ -20,4 +20,4 @@ wurst>=0.4
 xarray<=2024.2.0
 tqdm
 unfold
-python>=3.10,<3.12
+python>=3.10
