@@ -42,12 +42,15 @@ docs = [
     "sphinx-rtd-theme"
 ]
 bw25 = [
-    "bw2analyzer >=0.11.4",
-    "bw2calc >=2.0.dev13",
-    "bw2data >=4.0.dev31",
-    "bw2io >=0.9.dev23",
-    "bw_processing >=0.8.2",
-    "matrix_utils >=0.2.5"
+    "bw2calc >=2.0.1",
+    "bw2data >=4.3",
+    "bw2io >=0.9.4",
+]
+
+bw2 = [
+    "bw2calc ==1.8.2",
+    "bw2data == 3.6.6",
+    "bw2io ==0.8.12",
 ]
 
 [tool.setuptools]
