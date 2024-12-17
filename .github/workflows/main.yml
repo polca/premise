@@ -28,61 +28,54 @@ jobs:
           git commit -am "Black reformating"
           git push
 
-#  build:
-#    runs-on: ${{matrix.os}}
-#    strategy:
-#      matrix:
-#        os: [ubuntu-latest]
-#
-#    needs: clean
-#
-#    steps:
-#      - uses: actions/checkout@v2
-#
-#      - name: Install system dependencies for pyenv
-#        run: |
-#          sudo apt-get update
-#          sudo apt-get install build-essential zlib1g-dev libffi-dev libssl-dev \
-#                               libbz2-dev libreadline-dev libsqlite3-dev liblzma-dev \
-#                               libncurses-dev tk-dev
-#
-#      - name: Install python version
-#        uses: gabrielfalcao/pyenv-action@v18
-#        with:
-#          default: 3.11
-#          command: pip install -U pip  # upgrade pip after installing python
-#
-#
-#      - name: create environment
-#        run: |
-#          pyenv install 3.11 && python -mvenv .venv390
-#
-#
-#      - name: Activate pyenv Python
-#        run: |
-#          pyenv install -s 3.11
-#          pyenv global 3.11
-#          python --version
-#
-#      - name: Install dependencies
-#        run: |
-#          pip install --upgrade setuptools wheel
-#          pip install --upgrade pip
-#          pip install --force-reinstall setuptools
-#          pip install -r requirements.txt --upgrade pip
-#          pip install pytest
-#          pip install pytest-instafail
-#          pip install -e . --verbose
-#          pip check
-#
-#      - name: Run tests
-#        run: |
-#          pytest -m "not slow" --instafail
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.COVERALLS }}
-#          IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
-#          EI_USERNAME: ${{ secrets.EI_USERNAME }}
-#          EI_PASSWORD: ${{ secrets.EI_PASSWORD }}
+  build:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    needs: clean
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install system dependencies for pyenv
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential zlib1g-dev libffi-dev libssl-dev \
+                               libbz2-dev libreadline-dev libsqlite3-dev liblzma-dev \
+                               libncurses-dev tk-dev
+
+      - name: Install python version
+        uses: gabrielfalcao/pyenv-action@v18
+        with:
+          default: 3.11
+          command: pip install -U pip  # upgrade pip after installing python
+
+
+      - name: create environment
+        run: |
+          pyenv install 3.11 && python -mvenv .venv390
+          
+
+      - name: Activate pyenv Python
+        run: |
+          pyenv install -s 3.11
+          pyenv global 3.11
+          python --version
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade setuptools wheel
+          pip install --upgrade pip
+          pip install --force-reinstall setuptools
+          pip install -r requirements.txt --upgrade pip
+          pip install pytest
+          pip install pytest-instafail
+          pip install -e . --verbose
+          pip check
+
+      
 
   Pypi:
     runs-on: ubuntu-latest
