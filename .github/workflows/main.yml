@@ -58,6 +58,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install --upgrade setuptools wheel
+          pip install --upgrade pip
+          pip install --force-reinstall setuptools
+          pip install numpy==1.24.4 --only-binary=:all:
           pip install -r requirements.txt --upgrade pip
           pip install pytest
           pip install pytest-instafail
