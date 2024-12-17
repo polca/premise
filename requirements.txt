@@ -1,9 +1,9 @@
+numpy==1.24.4
 bottleneck
 bw2data
 bw2io
 ecoinvent_interface
-constructive-geometries>=0.9.5
-numpy==1.24.4
+constructive-geometries>=1.0.0
 cryptography
 datapackage
 pandas
@@ -20,4 +20,3 @@ wurst>=0.4
 xarray<=2024.2.0
 tqdm
 unfold
-python>=3.10
