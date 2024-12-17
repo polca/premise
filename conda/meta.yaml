@@ -11,13 +11,9 @@ source:
 build:
   noarch: python
   number: 0
-  script_env:
-    - VERSION
-    - CONDA_BLD_PATH
 
 outputs:
   - name: {{ name }}
-    script: "{{ python }} -m pip install --no-deps --ignore-installed ."
     requirements:
       host:
         - python
@@ -47,7 +43,6 @@ outputs:
         - unfold
 
   - name: {{ name }}-bw25
-    script: "{{ python }} -m pip install --no-deps --ignore-installed .[bw25]"
     requirements:
       host:
         - python
@@ -78,7 +73,6 @@ outputs:
         - unfold
 
   - name: {{ name }}-bw2
-    script: "{{ python }} -m pip install --no-deps --ignore-installed .[bw2]"
     requirements:
       host:
         - python
@@ -108,7 +102,6 @@ outputs:
         - tqdm
         - unfold
 
-
 test:
   imports:
     - premise
@@ -118,3 +111,4 @@ about:
   license: BSD License
   summary: 'Coupling Integrated Assessment Models and Life Cycle Assessment.'
 license_family: BSD
+license_file: LICENSE
