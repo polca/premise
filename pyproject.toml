@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=65.5", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -23,7 +23,7 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.12"
 
 [project.urls]
 source = "https://github.com/polca/premise"
@@ -42,9 +42,9 @@ bw25 = [
     "bottleneck",
     "ecoinvent_interface",
     "constructive-geometries>=0.9.5",
+    "numpy==1.24.4",
     "cryptography",
     "datapackage",
-    "numpy<2.0.0",
     "pandas",
     "platformdirs",
     "premise_gwp",
@@ -68,9 +68,9 @@ bw2 = [
     "bottleneck",
     "ecoinvent_interface",
     "constructive-geometries>=0.9.5",
+    "numpy==1.24.4",
     "cryptography",
     "datapackage",
-    "numpy<2.0.0",
     "pandas",
     "platformdirs",
     "premise_gwp",

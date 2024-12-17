@@ -49,12 +49,12 @@ jobs:
       - name: Install python version
         uses: gabrielfalcao/pyenv-action@v18
         with:
-          default: 3.12
+          default: 3.11
           command: pip install -U pip  # upgrade pip after installing python
 
       - name: create environment
         run: |
-          pyenv install 3.12 && python -mvenv .venv312
+          pyenv install 3.11 && python -mvenv .venv390
 
       - name: Install dependencies
         run: |
@@ -81,7 +81,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ "ubuntu-latest" ]
-        python-version: [ "3.12" ]
+        python-version: [ "3.11" ]
 
     steps:
       - uses: actions/checkout@v2
@@ -122,7 +122,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.12"]
+        python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v3
@@ -165,7 +165,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.12",]
+        python-version: ["3.11",]
         solver: ["classic"]
     steps:
       - uses: actions/checkout@v4

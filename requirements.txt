@@ -3,9 +3,9 @@ bw2data
 bw2io
 ecoinvent_interface
 constructive-geometries>=0.9.5
+numpy==1.24.4
 cryptography
 datapackage
-numpy<2.0.0
 pandas
 platformdirs
 premise_gwp
