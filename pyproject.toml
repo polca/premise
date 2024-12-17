@@ -23,7 +23,7 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering",
 ]
-requires-python = ">=3.10,<3.12"
+requires-python = ">=3.10"
 
 [project.urls]
 source = "https://github.com/polca/premise"
@@ -65,7 +65,6 @@ bw25 = [
     "xarray<=2024.2.0",
     "tqdm",
     "unfold",
-    "python>=3.10,<3.12"
 ]
 
 bw2 = [
@@ -92,7 +91,6 @@ bw2 = [
     "xarray<=2024.2.0",
     "tqdm",
     "unfold",
-    "python>=3.10,<3.12"
 ]
 
 [tool.setuptools]
