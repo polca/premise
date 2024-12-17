@@ -132,8 +132,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest"]
-        python-version: ["3.11"]
+        os: [ "ubuntu-latest" ]
+        python-version: [ "3.11" ]
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v3
@@ -149,12 +149,11 @@ jobs:
         shell: bash -l {0}
         run: conda info
 
-      - name: Publish distribution 📦 to Anaconda if Push and if master branch
+      - name: Publish all variants 📦 to Anaconda if Push and if master branch
         if: startsWith(github.ref, 'refs/heads/master')
         shell: bash -l {0}
 
         run: |
-
           PKG_NAME=premise
           USER=romainsacchi
           conda install anaconda-client
@@ -163,9 +162,14 @@ jobs:
           conda config --set anaconda_upload no
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
-          conda build "conda/" --old-build-string
-          ls $CONDA_BLD_PATH/noarch/
-          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
+
+          conda build conda/ --old-build-string
+
+          BUILT_PACKAGES=$(ls $CONDA_BLD_PATH/noarch/)
+
+          for PACKAGE in $BUILT_PACKAGES; do
+            anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PACKAGE --force
+          done
 
   testconda:
     name: (${{ matrix.python-version }}, ${{ matrix.os }})
