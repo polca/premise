@@ -58,11 +58,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pathlib
           pip install -r requirements.txt --upgrade pip
           pip install pytest
           pip install pytest-instafail
-          pip install -e .[test]
+          pip install -e .
+          pip check
 
       - name: Run tests
         run: |

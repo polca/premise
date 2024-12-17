@@ -31,12 +31,6 @@ homepage = "https://github.com/polca/premise"
 tracker = "https://github.com/polca/premise/issues"
 
 [project.optional-dependencies]
-testing = [
-    "setuptools",
-    "pytest",
-    "pytest-cov",
-    "coveralls"
-]
 
 docs = [
     "sphinx-rtd-theme"
