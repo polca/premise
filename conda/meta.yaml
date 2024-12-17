@@ -17,7 +17,7 @@ build:
 
 outputs:
   - name: {{ name }}
-    script: "{{ PYTHON }} -m pip install --no-deps --ignore-installed ."
+    script: "{{ python }} -m pip install --no-deps --ignore-installed ."
     requirements:
       host:
         - python
@@ -47,7 +47,7 @@ outputs:
         - unfold
 
   - name: {{ name }}-bw25
-    script: "{{ PYTHON }} -m pip install --no-deps --ignore-installed .[bw25]"
+    script: "{{ python }} -m pip install --no-deps --ignore-installed .[bw25]"
     requirements:
       host:
         - python
@@ -78,7 +78,7 @@ outputs:
         - unfold
 
   - name: {{ name }}-bw2
-    script: "{{ PYTHON }} -m pip install --no-deps --ignore-installed .[bw2]"
+    script: "{{ python }} -m pip install --no-deps --ignore-installed .[bw2]"
     requirements:
       host:
         - python
