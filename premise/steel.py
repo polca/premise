@@ -40,6 +40,7 @@ def _update_steel(scenario, version, system_model):
             regions=scenario["iam data"].regions,
             database=steel.database,
             iam_data=scenario["iam data"],
+            system_model=system_model,
         )
         validate.run_steel_checks()
     else:
