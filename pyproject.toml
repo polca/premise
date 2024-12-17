@@ -65,6 +65,7 @@ bw25 = [
     "xarray<=2024.2.0",
     "tqdm",
     "unfold",
+    "python>=3.10,<3.12"
 ]
 
 bw2 = [
@@ -91,6 +92,7 @@ bw2 = [
     "xarray<=2024.2.0",
     "tqdm",
     "unfold",
+    "python>=3.10,<3.12"
 ]
 
 [tool.setuptools]
