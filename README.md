@@ -152,11 +152,11 @@ This means that ``premise`` will output databases that are compatible with Brigh
 If you want to use the results in the Brightway 2 framework (e.g., to read them in ``activity-browser``), 
 you need to specify it in the installation command:
 
-    pip install premise[bw2]
+    pip install "premise[bw2]"
 
 You can also specify that you want to use Brightway 2.5:
 
-    pip install premise[bw25]
+    pip install "premise[bw25]"
 
 A development version with the latest advancements (but with the risks of unseen bugs),
 is available from Anaconda Cloud:

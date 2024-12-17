@@ -64,7 +64,7 @@ jobs:
           pip install -r requirements.txt --upgrade pip
           pip install pytest
           pip install pytest-instafail
-          pip install -e .
+          pip install -e . --verbose
           pip check
 
       - name: Run tests
