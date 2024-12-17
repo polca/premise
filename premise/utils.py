@@ -435,6 +435,7 @@ def delete_all_pickles():
     for file in DIR_CACHED_FILES.glob("*.pickle"):
         file.unlink()
 
+
 def end_of_process(scenario):
     """
     Delete all pickle files in the cache folder.

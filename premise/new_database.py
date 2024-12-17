@@ -53,7 +53,7 @@ from .utils import (
     load_database,
     print_version,
     warning_about_biogenic_co2,
-    end_of_process
+    end_of_process,
 )
 
 logger = logging.getLogger("module")
