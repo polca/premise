@@ -14,6 +14,8 @@ build:
 
 outputs:
   - name: {{ name }}
+    build:
+      noarch: python
     requirements:
       host:
         - python
@@ -43,6 +45,8 @@ outputs:
         - unfold
 
   - name: {{ name }}-bw25
+    build:
+      noarch: python
     requirements:
       host:
         - python
@@ -73,6 +77,8 @@ outputs:
         - unfold
 
   - name: {{ name }}-bw2
+    build:
+      noarch: python
     requirements:
       host:
         - python
