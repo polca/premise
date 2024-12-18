@@ -160,7 +160,7 @@ jobs:
           conda build conda/ --old-build-string
 
           # List built .tar.bz2 and .conda packages
-          BUILT_PACKAGES=$(find $CONDA_BLD_PATH/noarch/ -type f \( -name "*.tar.bz2" -o -name "*.conda" \))
+          BUILT_PACKAGES=$(find $CONDA_BLD_PATH -type f \( -name "*.tar.bz2" -o -name "*.conda" \))
 
           echo "Built packages:"
           echo $BUILT_PACKAGES
@@ -170,6 +170,7 @@ jobs:
             echo "Uploading $PACKAGE"
             anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $PACKAGE --force
           done
+  
   
 
   testconda:
