@@ -157,7 +157,7 @@ jobs:
           export VERSION=`date +%Y.%m.%d`
 
           # Build the package with all variants
-          conda build conda/ --old-build-string
+          conda build conda/ --noarch --old-build-string
 
           # List built .tar.bz2 and .conda packages
           BUILT_PACKAGES=$(find $CONDA_BLD_PATH -type f \( -name "*.tar.bz2" -o -name "*.conda" \))
