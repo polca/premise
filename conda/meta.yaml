@@ -1,116 +1,59 @@
 {% set name = "premise" %}
 {% set version = environ.get('VERSION', "0.0.0") %}
 
+
 package:
-  name: {{ name }}
+  name: {{ name }}-{{ bw }}
   version: {{ version }}
 
 source:
   path: ..
 
+
+{% set bw2data_versions = {
+    "bw2": "bw2data <4.0.0",
+    "bw25": "bw2data >=4.0.0"
+} %}
+
 build:
   noarch: python
+  script: python -m pip install --no-deps --ignore-installed ".[{{ bw }}]"
   number: 0
 
-outputs:
-  - name: {{ name }}
-    build:
-      noarch: python
-    requirements:
-      host:
-        - python
-        - setuptools
-      run:
-        - python
-        - bottleneck
-        - bw2data
-        - bw2io
-        - ecoinvent_interface
-        - constructive_geometries>=0.9.5
-        - cryptography
-        - datapackage
-        - numpy <2.0.0
-        - pandas
-        - platformdirs
-        - prettytable
-        - pyarrow
-        - pycountry
-        - pyYaml
-        - requests
-        - schema
-        - sparse>=0.14.0
-        - wurst>=0.4
-        - xarray<=2024.2.0
-        - tqdm
-        - unfold
 
-  - name: {{ name }}-bw25
-    build:
-      noarch: python
-    requirements:
-      host:
-        - python
-        - setuptools
-      run:
-        - python
-        - bottleneck
-        - bw2calc >=2.0.1
-        - bw2data >=4.0.3
-        - bw2io >=0.9.4
-        - ecoinvent_interface
-        - constructive_geometries>=0.9.5
-        - cryptography
-        - datapackage
-        - numpy <2.0.0
-        - pandas
-        - platformdirs
-        - prettytable
-        - pyarrow
-        - pycountry
-        - pyYaml
-        - requests
-        - schema
-        - sparse>=0.14.0
-        - wurst>=0.4
-        - xarray<=2024.2.0
-        - tqdm
-        - unfold
 
-  - name: {{ name }}-bw2
-    build:
-      noarch: python
-    requirements:
-      host:
-        - python
-        - setuptools
-      run:
-        - python
-        - bottleneck
-        - bw2calc ==1.8.2
-        - bw2data ==3.6.6
-        - bw2io ==0.8.12
-        - ecoinvent_interface
-        - constructive_geometries>=0.9.5
-        - cryptography
-        - datapackage
-        - numpy <2.0.0
-        - pandas
-        - platformdirs
-        - prettytable
-        - pyarrow
-        - pycountry
-        - pyYaml
-        - requests
-        - schema
-        - sparse>=0.14.0
-        - wurst>=0.4
-        - xarray<=2024.2.0
-        - tqdm
-        - unfold
+requirements:
+  host:
+    - python
+    - setuptools
+  run:
+    - {{ bw2data_versions[bw] }}
+    - python
+    - bottleneck
+    - bw2io
+    - ecoinvent_interface
+    - constructive_geometries>=0.9.5
+    - cryptography
+    - datapackage
+    - numpy <2.0.0
+    - pandas
+    - platformdirs
+    - prettytable
+    - pyarrow
+    - pycountry
+    - pyYaml
+    - requests
+    - schema
+    - sparse>=0.14.0
+    - wurst>=0.4
+    - xarray<=2024.2.0
+    - tqdm
+    - unfold
 
-test:
-  imports:
-    - premise
+  channels:
+    - conda-forge
+    - defaults
+
 
 about:
   home: https://github.com/polca/premise
