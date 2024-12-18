@@ -75,7 +75,14 @@ jobs:
           pip install -e . --verbose
           pip check
 
-      
+      - name: Run tests
+        run: |
+          pytest -m "not slow" --instafail
+        env:
+          GITHUB_TOKEN: ${{ secrets.COVERALLS }}
+          IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
+          EI_USERNAME: ${{ secrets.EI_USERNAME }}
+          EI_PASSWORD: ${{ secrets.EI_PASSWORD }}
 
   Pypi:
     runs-on: ubuntu-latest
