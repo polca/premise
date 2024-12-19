@@ -449,7 +449,6 @@ class ExternalScenario(BaseTransformation):
         self.dict_bio_flows = get_biosphere_flow_uuid(self.version)
         self.outdated_flows = get_correspondence_bio_flows()
 
-
     def regionalize_inventories(self, ds_names, regions, data: dict) -> None:
         """
         Produce IAM region-specific version of the dataset.
@@ -800,7 +799,8 @@ class ExternalScenario(BaseTransformation):
                                         s
                                         for s in self.database
                                         if s["name"].lower() == name.lower()
-                                        and s["reference product"].lower() == ref_prod.lower()
+                                        and s["reference product"].lower()
+                                        == ref_prod.lower()
                                         and s["location"] == possible_location
                                     ]
 
@@ -838,13 +838,25 @@ class ExternalScenario(BaseTransformation):
                         region=region,
                         variables=var,
                     )
-                    .interp(year=min(self.external_scenarios_data[i]["production volume"].coords["year"].values))
+                    .interp(
+                        year=min(
+                            self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
+                        )
+                    )
                     / self.external_scenarios_data[i]["production volume"]
                     .sel(
                         region=region,
                         variables=variables,
                     )
-                    .interp(year=min(self.external_scenarios_data[i]["production volume"].coords["year"].values))
+                    .interp(
+                        year=min(
+                            self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
+                        )
+                    )
                     .sum(dim="variables")
                 ).values.item(0),
                 0,
@@ -860,13 +872,25 @@ class ExternalScenario(BaseTransformation):
                         region=region,
                         variables=var,
                     )
-                    .interp(year=max(self.external_scenarios_data[i]["production volume"].coords["year"].values))
+                    .interp(
+                        year=max(
+                            self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
+                        )
+                    )
                     / self.external_scenarios_data[i]["production volume"]
                     .sel(
                         region=region,
                         variables=variables,
                     )
-                    .interp(year=max(self.external_scenarios_data[i]["production volume"].coords["year"].values))
+                    .interp(
+                        year=max(
+                            self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
+                        )
+                    )
                     .sum(dim="variables")
                 ).values.item(0),
                 0,
@@ -922,7 +946,7 @@ class ExternalScenario(BaseTransformation):
                 a
                 for a in self.database
                 if a["name"].lower() == name.lower()
-                   and a["reference product"].lower() == ref_prod.lower()
+                and a["reference product"].lower() == ref_prod.lower()
             ]
 
             if act:
@@ -1089,7 +1113,10 @@ class ExternalScenario(BaseTransformation):
     def get_region_for_non_null_production_volume(self, i, variables):
 
         if not any(
-            x in self.external_scenarios_data[i]["production volume"].coords["variables"].values
+            x
+            in self.external_scenarios_data[i]["production volume"]
+            .coords["variables"]
+            .values
             for x in variables
         ):
             return []
@@ -1174,27 +1201,43 @@ class ExternalScenario(BaseTransformation):
                             )
                         else:
                             if self.year < min(
-                                self.external_scenarios_data[i]["production volume"].coords[
-                                    "year"
-                                ].values
+                                self.external_scenarios_data[i]["production volume"]
+                                .coords["year"]
+                                .values
                             ):
                                 production_volume = (
                                     self.external_scenarios_data[i]["production volume"]
                                     .sel(variables=production_variables, region=region)
                                     .sum(dim="variables")
-                                    .interp(year=min(self.external_scenarios_data[i]["production volume"].coords["year"].values))
+                                    .interp(
+                                        year=min(
+                                            self.external_scenarios_data[i][
+                                                "production volume"
+                                            ]
+                                            .coords["year"]
+                                            .values
+                                        )
+                                    )
                                     .values.item(0)
                                 )
                             elif self.year > max(
-                                self.external_scenarios_data[i]["production volume"].coords[
-                                    "year"
-                                ].values
+                                self.external_scenarios_data[i]["production volume"]
+                                .coords["year"]
+                                .values
                             ):
                                 production_volume = (
                                     self.external_scenarios_data[i]["production volume"]
                                     .sel(variables=production_variables, region=region)
                                     .sum(dim="variables")
-                                    .interp(year=max(self.external_scenarios_data[i]["production volume"].coords["year"].values))
+                                    .interp(
+                                        year=max(
+                                            self.external_scenarios_data[i][
+                                                "production volume"
+                                            ]
+                                            .coords["year"]
+                                            .values
+                                        )
+                                    )
                                     .values.item(0)
                                 )
                             else:

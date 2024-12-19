@@ -412,8 +412,8 @@ class PathwaysDataPackage:
 
         # also, remove "pathways/" from the path of each resource
         for resource in data["resources"]:
-            resource["path"] = resource["path"].replace("pathways/", "").replace(
-                "pathways\\", ""
+            resource["path"] = (
+                resource["path"].replace("pathways/", "").replace("pathways\\", "")
             )
 
         # save it back as a json file
