@@ -555,7 +555,6 @@ def check_inventories(
     for key, val in d_datasets.items():
         if val.get("exists in original database"):
             mask = val.get("mask")
-
             duplicate_name = None
             if val.get("duplicate") is True:
                 duplicate_name = key[0]
