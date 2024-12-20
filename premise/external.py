@@ -109,7 +109,7 @@ def _update_external_scenarios(
             external_scenarios_data=scenario["external data"],
             version=version,
             system_model=system_model,
-            #configurations=configurations,
+            # configurations=configurations,
         )
         external_scenario.create_markets()
         external_scenario.relink_datasets()
@@ -493,7 +493,9 @@ class ExternalScenario(BaseTransformation):
                             ):
                                 print(region)
                                 print(ds["production volume variable"])
-                                print(data["production volume"].coords["variables"].values)
+                                print(
+                                    data["production volume"].coords["variables"].values
+                                )
                                 act["production volume"] = (
                                     data["production volume"]
                                     .sel(
