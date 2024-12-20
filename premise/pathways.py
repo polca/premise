@@ -321,7 +321,7 @@ class PathwaysDataPackage:
             if "external scenarios" in scenario:
                 for external in scenario["external scenarios"]:
                     name += f"-{external['scenario']}"
-                #self.scenario_names.append(name)
+                # self.scenario_names.append(name)
             self.scenario_names.append(name)
 
         array.coords["scenario"] = self.scenario_names
