@@ -334,7 +334,9 @@ def check_inventories(
             }
         )
 
-    list_datasets = list(set([(i["name"], i["reference product"]) for i in inventory_data]))
+    list_datasets = list(
+        set([(i["name"], i["reference product"]) for i in inventory_data])
+    )
 
     try:
         assert all(
@@ -375,7 +377,6 @@ def check_inventories(
                     dataset, scenario_data, year, data_vars
                 )
             processed_keys.append(key)
-
 
     def find_candidates_by_key(data, key):
         """Filter data for items matching the key (name and reference product)."""
