@@ -334,7 +334,7 @@ def check_inventories(
             }
         )
 
-    list_datasets = [(i["name"], i["reference product"]) for i in inventory_data]
+    list_datasets = list(set([(i["name"], i["reference product"]) for i in inventory_data]))
 
     try:
         assert all(
@@ -361,9 +361,10 @@ def check_inventories(
         ) from e
 
     # flag imported inventories
+    processed_keys = []
     for i, dataset in enumerate(inventory_data):
         key = (dataset["name"], dataset["reference product"])
-        if (key[0].lower(), key[1].lower()) in d_datasets:
+        if (key[0].lower(), key[1].lower()) in d_datasets and key not in processed_keys:
             # replace key in d_datasets with the key in the inventory data
             d_datasets[key] = d_datasets.pop((key[0].lower(), key[1].lower()))
 
@@ -373,8 +374,8 @@ def check_inventories(
                 inventory_data[i] = flag_activities_to_adjust(
                     dataset, scenario_data, year, data_vars
                 )
-        else:
-            print(f"Dataset {key[0]} and {key[1]} is not found in the configuration.")
+            processed_keys.append(key)
+
 
     def find_candidates_by_key(data, key):
         """Filter data for items matching the key (name and reference product)."""
