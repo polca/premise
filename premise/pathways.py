@@ -303,14 +303,14 @@ class PathwaysDataPackage:
                     data = xr.concat(
                         [
                             data,
-                            external["production volume"].interp(
-                                year=scenario["year"]
-                            ),
+                            external["production volume"].interp(year=scenario["year"]),
                         ],
                         dim="variables",
                     )
                     extra_units.update(external["production volume"].attrs["unit"])
-                    scenario_name += f" - {scenario['external scenarios'][ext]['scenario']}"
+                    scenario_name += (
+                        f" - {scenario['external scenarios'][ext]['scenario']}"
+                    )
 
             # add a scenario dimension
             data = data.expand_dims("scenario")
