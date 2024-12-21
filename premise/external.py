@@ -435,10 +435,11 @@ class ExternalScenario(BaseTransformation):
 
         external_scenario_regions = {}
         for datapackage_number, datapackage in enumerate(self.datapackages):
-            external_scenario_regions[datapackage_number] = self.external_scenarios_data[datapackage_number]["regions"]
+            external_scenario_regions[datapackage_number] = (
+                self.external_scenarios_data[datapackage_number]["regions"]
+            )
 
         self.configurations = configurations or []
-
 
         for d, data in self.external_scenarios_data.items():
             ds_names = get_recursively(self.configurations[d], "name")
