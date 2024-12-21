@@ -562,7 +562,7 @@ def check_inventories(
             duplicate_name = None
             if val.get("duplicate") is True:
                 duplicate_name = val["original name"]
-                #duplicate_name = key[0]
+                # duplicate_name = key[0]
                 key = (key[0].split("_")[0], key[1])
 
             potential_candidates = identify_potential_candidates(

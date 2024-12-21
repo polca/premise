@@ -270,9 +270,7 @@ class PathwaysDataPackage:
                                     print(f"Mask: {mask}")
                                     continue
 
-                                variables = list(
-                                    val["production pathways"].keys()
-                                )
+                                variables = list(val["production pathways"].keys())
                                 variables.remove(var)
                                 # remove datasets which names are in list of variables
                                 # except for the current variable
