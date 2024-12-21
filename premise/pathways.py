@@ -235,7 +235,6 @@ class PathwaysDataPackage:
                 configuration = scenario["configurations"]
                 if "production pathways" in configuration:
                     for var in configuration["production pathways"]:
-
                         if var not in mapping:
                             var_name = configuration["production pathways"][var][
                                 "production volume"
@@ -295,7 +294,7 @@ class PathwaysDataPackage:
 
         data_list, extra_units = [], {}
         for scenario in self.datapackage.scenarios:
-            data = scenario["iam data"].production_volumes.interp(year=scenario["year"])
+            data = scenario["iam data"].data.interp(year=scenario["year"])
             extra_units.update(scenario["iam data"].production_volumes.attrs["unit"])
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:
@@ -325,7 +324,6 @@ class PathwaysDataPackage:
         (Path.cwd() / "pathways" / "scenario_data").mkdir(parents=True, exist_ok=True)
         # save the xarray as csv
         df = array.to_dataframe().reset_index()
-        extra_units.update(array.attrs["unit"])
 
         # add a unit column
         # units are contained as an attribute of the xarray
