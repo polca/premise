@@ -293,6 +293,8 @@ def check_inventories(
             ),
             "new dataset": val["ecoinvent alias"].get("new dataset", False),
             "duplicate": val["ecoinvent alias"].get("duplicate", False),
+            "original name": val["ecoinvent alias"]["name"],
+            "original reference product": val["ecoinvent alias"]["reference product"],
             "regionalize": val["ecoinvent alias"].get("regionalize", False),
             "mask": val["ecoinvent alias"].get("mask", None),
             "except regions": val.get(
@@ -559,7 +561,8 @@ def check_inventories(
             mask = val.get("mask")
             duplicate_name = None
             if val.get("duplicate") is True:
-                duplicate_name = key[0]
+                duplicate_name = val["original name"]
+                #duplicate_name = key[0]
                 key = (key[0].split("_")[0], key[1])
 
             potential_candidates = identify_potential_candidates(

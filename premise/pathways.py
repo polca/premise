@@ -232,55 +232,55 @@ class PathwaysDataPackage:
         # if external scenarios, extend mapping with external data
         for scenario in self.datapackage.scenarios:
             if "configurations" in scenario:
-                configuration = scenario["configurations"]
-                if "production pathways" in configuration:
-                    for var in configuration["production pathways"]:
-                        if var not in mapping:
-                            var_name = configuration["production pathways"][var][
-                                "production volume"
-                            ]["variable"]
-                            mapping[var] = {"scenario variable": var_name}
-                            filters = configuration["production pathways"][var].get(
-                                "ecoinvent alias"
-                            )
-                            mask = (
-                                configuration["production pathways"][var]
-                                .get("ecoinvent alias")
-                                .get("mask")
-                            )
-                            mapping[var]["dataset"] = self.find_activities(
-                                filters=filters,
-                                database=scenario["database"],
-                                mask=mask,
-                            )
+                configurations = scenario["configurations"]
+                for key, val in configurations.items():
+                    if "production pathways" in val:
+                        for var in val["production pathways"]:
+                            if var not in mapping:
+                                var_name = val["production pathways"][var][
+                                    "production volume"
+                                ]["variable"]
+                                mapping[var] = {"scenario variable": var_name}
+                                filters = val["production pathways"][var].get(
+                                    "ecoinvent alias"
+                                )
+                                mask = (
+                                    val["production pathways"][var]
+                                    .get("ecoinvent alias")
+                                    .get("mask")
+                                )
 
-                            mapping[var]["dataset"] = [
-                                dict(t)
-                                for t in {
-                                    tuple(sorted(d.items()))
-                                    for d in mapping[var]["dataset"]
-                                }
-                            ]
+                                mapping[var]["dataset"] = self.find_activities(
+                                    filters=filters,
+                                    database=scenario["database"],
+                                    mask=mask,
+                                )
 
-                            if len(mapping[var]["dataset"]) == 0:
-                                print(f"No dataset found for {var} in {var_name}")
+                                mapping[var]["dataset"] = [
+                                    dict(t)
+                                    for t in {
+                                        tuple(sorted(d.items()))
+                                        for d in mapping[var]["dataset"]
+                                    }
+                                ]
 
-                            if isinstance(mapping[var]["dataset"], list):
                                 if len(mapping[var]["dataset"]) == 0:
                                     print(f"No dataset found for {var} in {var_name}")
+                                    print(f"Filters: {filters}")
+                                    print(f"Mask: {mask}")
+                                    continue
 
-                                if len(mapping[var]["dataset"]) > 1:
-                                    variables = list(
-                                        configuration["production pathways"].keys()
-                                    )
-                                    variables.remove(var)
-                                    # remove datasets which names are in list of variables
-                                    # except for the current variable
-                                    mapping[var]["dataset"] = [
-                                        d
-                                        for d in mapping[var]["dataset"]
-                                        if not any(v in d["name"] for v in variables)
-                                    ]
+                                variables = list(
+                                    val["production pathways"].keys()
+                                )
+                                variables.remove(var)
+                                # remove datasets which names are in list of variables
+                                # except for the current variable
+                                mapping[var]["dataset"] = [
+                                    d
+                                    for d in mapping[var]["dataset"]
+                                    if not any(v in d["name"] for v in variables)
+                                ]
 
         with open(Path.cwd() / "pathways" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mapping, f)

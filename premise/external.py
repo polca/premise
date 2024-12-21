@@ -1149,14 +1149,16 @@ class ExternalScenario(BaseTransformation):
         # Loop through custom scenarios
         for i, dp in enumerate(self.datapackages):
             # Open corresponding config file
+            configuration = self.configurations[i]
+
 
             # Check if information on market creation is provided
-            if "markets" in self.configurations:
-                for market_vars in self.configurations["markets"]:
+            if "markets" in configuration:
+                for market_vars in configuration["markets"]:
                     # fetch all scenario file variables that
                     # relate to this market
                     pathways = market_vars["includes"]
-                    production_variables = fetch_var(self.configurations, pathways)
+                    production_variables = fetch_var(configuration, pathways)
                     waste_market = market_vars.get("waste market", False)
                     isfuel = {}
                     market_status = {}
@@ -1255,13 +1257,13 @@ class ExternalScenario(BaseTransformation):
 
                         new_excs = []
                         for pathway in pathways:
-                            var = fetch_var(self.configurations, [pathway])[0]
+                            var = fetch_var(configuration, [pathway])[0]
 
                             # fetch the dataset name/ref corresponding to this item
                             # under `production pathways`
                             (name, ref_prod, _, _, _, ratio) = (
                                 fetch_dataset_description_from_production_pathways(
-                                    self.configurations, pathway
+                                    configuration, pathway
                                 )
                             )
 
@@ -1370,10 +1372,6 @@ class ExternalScenario(BaseTransformation):
                             # check if there are variables that
                             # relate to inefficiencies or losses
 
-                            self.database.append(new_market)
-                            self.write_log(new_market)
-                            self.add_to_index(new_market)
-                            market_status[region] = True
 
                             # check if we should add some additional exchanges
                             if "add" in market_vars:
@@ -1400,6 +1398,12 @@ class ExternalScenario(BaseTransformation):
                                 self.adjust_efficiency_of_new_markets(
                                     new_market, market_vars, region, efficiency_data
                                 )
+
+                            self.database.append(new_market)
+                            self.write_log(new_market)
+                            self.add_to_index(new_market)
+                            market_status[region] = True
+
 
                         else:
                             print(
