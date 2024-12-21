@@ -292,45 +292,39 @@ class PathwaysDataPackage:
 
         """
         # concatenate xarray across IAM scenarios
-        scenario_data = [
-            self.datapackage.scenarios[s]["iam data"].data
-            for s in range(len(self.scenarios))
-        ]
 
-        # add scenario data from external scenarios
-        extra_units = {}
+        data_list, extra_units = [], {}
         for scenario in self.datapackage.scenarios:
+            data = scenario["iam data"].production_volumes.interp(year=scenario["year"])
+            extra_units.update(scenario["iam data"].production_volumes.attrs["unit"])
+            scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:
-                for s in scenario["external data"].values():
-                    scenario_data.append(
-                        s["production volume"].interp(
-                            year=self.years,
-                            kwargs={"fill_value": "extrapolate"},
-                        )
+                for ext, external in scenario["external data"].items():
+                    data = xr.concat(
+                        [
+                            data,
+                            external["production volume"].interp(
+                                year=scenario["year"]
+                            ),
+                        ],
+                        dim="variables",
                     )
-                    extra_units.update(s["production volume"].attrs["unit"])
+                    extra_units.update(external["production volume"].attrs["unit"])
+                    scenario_name += f" - {scenario['external scenarios'][ext]['scenario']}"
 
-        array = xr.concat(scenario_data, dim="scenario")
+            # add a scenario dimension
+            data = data.expand_dims("scenario")
+            data.coords["scenario"] = [scenario_name]
+            self.scenario_names.append(scenario_name)
 
-        print(array.coords)
-        print(array.shape)
+            data_list.append(data)
 
-        # add scenario data to the xarray
-        for s, scenario in enumerate(self.datapackage.scenarios):
-            name = f"{scenario['model'].upper()} - {scenario['pathway']}"
-            if "external scenarios" in scenario:
-                for external in scenario["external scenarios"]:
-                    name += f"-{external['scenario']}"
-                # self.scenario_names.append(name)
-            self.scenario_names.append(name)
-
-        array.coords["scenario"] = self.scenario_names
+        array = xr.concat(data_list, dim="scenario")
 
         # make sure pathways/scenario_data directory exists
         (Path.cwd() / "pathways" / "scenario_data").mkdir(parents=True, exist_ok=True)
         # save the xarray as csv
         df = array.to_dataframe().reset_index()
-
         extra_units.update(array.attrs["unit"])
 
         # add a unit column
@@ -426,4 +420,4 @@ class PathwaysDataPackage:
         # zip the folder
         shutil.make_archive(name, "zip", str(Path.cwd() / "pathways"))
 
-        print(f"Data package saved at {str(Path.cwd() / 'pathways' / f'{name}.zip')}")
+        print(f"Data package saved at {str(Path.cwd() / f'{name}.zip')}")

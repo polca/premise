@@ -97,7 +97,7 @@ def _update_external_scenarios(
 
             scenario["database"] = checked_database
             scenario["database"].extend(checked_inventories)
-            configurations = dictionary_merge(configurations, configuration)
+            configurations[d] = configuration
 
         external_scenario = ExternalScenario(
             database=scenario["database"],
@@ -109,7 +109,7 @@ def _update_external_scenarios(
             external_scenarios_data=scenario["external data"],
             version=version,
             system_model=system_model,
-            # configurations=configurations,
+            configurations=configurations,
         )
         external_scenario.create_markets()
         external_scenario.relink_datasets()
@@ -433,18 +433,16 @@ class ExternalScenario(BaseTransformation):
             for v in list(value):
                 self.fuel_map_reverse[v] = key
 
-        external_scenario_regions = []
+        external_scenario_regions = {}
         for datapackage_number, datapackage in enumerate(self.datapackages):
-            external_scenario_regions.extend(
-                self.external_scenarios_data[datapackage_number]["regions"]
-            )
+            external_scenario_regions[datapackage_number] = self.external_scenarios_data[datapackage_number]["regions"]
 
-        self.configurations = configurations or {}
+        self.configurations = configurations or []
 
-        ds_names = get_recursively(self.configurations, "name")
 
-        for data in self.external_scenarios_data.values():
-            self.regionalize_inventories(ds_names, external_scenario_regions, data)
+        for d, data in self.external_scenarios_data.items():
+            ds_names = get_recursively(self.configurations[d], "name")
+            self.regionalize_inventories(ds_names, external_scenario_regions[d], data)
 
         self.dict_bio_flows = get_biosphere_flow_uuid(self.version)
         self.outdated_flows = get_correspondence_bio_flows()
@@ -463,9 +461,10 @@ class ExternalScenario(BaseTransformation):
             ws.equals("regionalize", True),
             ws.either(*[ws.contains("name", name) for name in list(set(ds_names))]),
         ):
-            # remove "regionalize" tag
-            if "regionalize" in ds:
-                del ds["regionalize"]
+            if ds.get("regionalize", False) is False:
+                continue
+
+            del ds["regionalize"]
 
             processed_key = (ds["name"], ds["reference product"], ds["unit"])
             if ds["location"] not in regions and processed_key not in processed:
@@ -491,11 +490,6 @@ class ExternalScenario(BaseTransformation):
                                 self.year
                                 in data["production volume"].coords["year"].values
                             ):
-                                print(region)
-                                print(ds["production volume variable"])
-                                print(
-                                    data["production volume"].coords["variables"].values
-                                )
                                 act["production volume"] = (
                                     data["production volume"]
                                     .sel(
