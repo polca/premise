@@ -1178,10 +1178,10 @@ class ExternalScenario(BaseTransformation):
                         )
 
                         if (
-                                self.year
-                                in self.external_scenarios_data[i]["production volume"]
-                                .coords["year"]
-                                .values
+                            self.year
+                            in self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
                         ):
                             production_volume = (
                                 self.external_scenarios_data[i]["production volume"]
@@ -1195,9 +1195,9 @@ class ExternalScenario(BaseTransformation):
                             )
                         else:
                             if self.year < min(
-                                    self.external_scenarios_data[i]["production volume"]
-                                            .coords["year"]
-                                            .values
+                                self.external_scenarios_data[i]["production volume"]
+                                .coords["year"]
+                                .values
                             ):
                                 production_volume = (
                                     self.external_scenarios_data[i]["production volume"]
@@ -1215,9 +1215,9 @@ class ExternalScenario(BaseTransformation):
                                     .values.item(0)
                                 )
                             elif self.year > max(
-                                    self.external_scenarios_data[i]["production volume"]
-                                            .coords["year"]
-                                            .values
+                                self.external_scenarios_data[i]["production volume"]
+                                .coords["year"]
+                                .values
                             ):
                                 production_volume = (
                                     self.external_scenarios_data[i]["production volume"]
@@ -1405,7 +1405,7 @@ class ExternalScenario(BaseTransformation):
                     # we create a World region
                     create_world_region = True
                     if len(regions) <= 1 or "World" in market_vars.get(
-                            "except regions", []
+                        "except regions", []
                     ):
                         create_world_region = False
 
