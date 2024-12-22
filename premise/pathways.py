@@ -234,10 +234,16 @@ class PathwaysDataPackage:
             if "configurations" in scenario:
                 configurations = scenario["configurations"]
                 for key, val in configurations.items():
-                    for variable, variable_details in val.get("production pathways", {}).items():
+                    for variable, variable_details in val.get(
+                        "production pathways", {}
+                    ).items():
                         if variable not in mapping:
-                            variable_scenario_name = variable_details.get("production volume", {}).get("variable", 0)
-                            mapping[variable] = {"scenario variable": variable_scenario_name}
+                            variable_scenario_name = variable_details.get(
+                                "production volume", {}
+                            ).get("variable", 0)
+                            mapping[variable] = {
+                                "scenario variable": variable_scenario_name
+                            }
                             filters = variable_details.get("ecoinvent alias")
                             mask = variable_details.get("ecoinvent alias").get("mask")
 
@@ -256,14 +262,14 @@ class PathwaysDataPackage:
                             ]
 
                             if len(mapping[variable]["dataset"]) == 0:
-                                print(f"No dataset found for {variable} in {variable_scenario_name}")
+                                print(
+                                    f"No dataset found for {variable} in {variable_scenario_name}"
+                                )
                                 print(f"Filters: {filters}")
                                 print(f"Mask: {mask}")
                                 continue
 
-                            variables = list(
-                                val["production pathways"].keys()
-                            )
+                            variables = list(val["production pathways"].keys())
                             variables.remove(variable)
                             # remove datasets which names are in list of variables
                             # except for the current variable
@@ -322,7 +328,7 @@ class PathwaysDataPackage:
         # split the columns "scenarios" into "model" and "pathway"
         df[["model", "pathway"]] = df["scenario"].str.split(" - ", n=1, expand=True)
         # remove any spaces in the "pathway" column
-        #df["pathway"] = df["pathway"].str.replace(" ", "")
+        # df["pathway"] = df["pathway"].str.replace(" ", "")
         df = df.drop(columns=["scenario"])
 
         self.scenario_names = df["pathway"].unique().tolist()
