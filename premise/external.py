@@ -1151,7 +1151,6 @@ class ExternalScenario(BaseTransformation):
             # Open corresponding config file
             configuration = self.configurations[i]
 
-
             # Check if information on market creation is provided
             if "markets" in configuration:
                 for market_vars in configuration["markets"]:
@@ -1372,7 +1371,6 @@ class ExternalScenario(BaseTransformation):
                             # check if there are variables that
                             # relate to inefficiencies or losses
 
-
                             # check if we should add some additional exchanges
                             if "add" in market_vars:
                                 for additional_exc in market_vars["add"]:
@@ -1403,7 +1401,6 @@ class ExternalScenario(BaseTransformation):
                             self.write_log(new_market)
                             self.add_to_index(new_market)
                             market_status[region] = True
-
 
                         else:
                             print(
