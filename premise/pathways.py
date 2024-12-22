@@ -234,45 +234,44 @@ class PathwaysDataPackage:
             if "configurations" in scenario:
                 configurations = scenario["configurations"]
                 for key, val in configurations.items():
-                    for variables in val.get("production pathways", {}).values():
-                        for variable in variables:
-                            if variable not in mapping:
-                                variable_name = variable["production volume"]["variable"]
-                                mapping[variable] = {"scenario variable": variable_name}
-                                filters = variable.get("ecoinvent alias")
-                                mask = variable.get("ecoinvent alias").get("mask")
+                    for variable, variable_details in val.get("production pathways", {}).items():
+                        if variable not in mapping:
+                            variable_scenario_name = variable_details.get("production volume", {}).get("variable", 0)
+                            mapping[variable] = {"scenario variable": variable_scenario_name}
+                            filters = variable_details.get("ecoinvent alias")
+                            mask = variable_details.get("ecoinvent alias").get("mask")
 
-                                mapping[variable]["dataset"] = self.find_activities(
-                                    filters=filters,
-                                    database=scenario["database"],
-                                    mask=mask,
-                                )
+                            mapping[variable]["dataset"] = self.find_activities(
+                                filters=filters,
+                                database=scenario["database"],
+                                mask=mask,
+                            )
 
-                                mapping[variable]["dataset"] = [
-                                    dict(t)
-                                    for t in {
-                                        tuple(sorted(d.items()))
-                                        for d in mapping[variable]["dataset"]
-                                    }
-                                ]
-
-                                if len(mapping[variable]["dataset"]) == 0:
-                                    print(f"No dataset found for {variable} in {variable_name}")
-                                    print(f"Filters: {filters}")
-                                    print(f"Mask: {mask}")
-                                    continue
-
-                                variables = list(
-                                    val["production pathways"].keys()
-                                )
-                                variables.remove(variable)
-                                # remove datasets which names are in list of variables
-                                # except for the current variable
-                                mapping[variable]["dataset"] = [
-                                    d
+                            mapping[variable]["dataset"] = [
+                                dict(t)
+                                for t in {
+                                    tuple(sorted(d.items()))
                                     for d in mapping[variable]["dataset"]
-                                    if not any(v in d["name"] for v in variables)
-                                ]
+                                }
+                            ]
+
+                            if len(mapping[variable]["dataset"]) == 0:
+                                print(f"No dataset found for {variable} in {variable_scenario_name}")
+                                print(f"Filters: {filters}")
+                                print(f"Mask: {mask}")
+                                continue
+
+                            variables = list(
+                                val["production pathways"].keys()
+                            )
+                            variables.remove(variable)
+                            # remove datasets which names are in list of variables
+                            # except for the current variable
+                            mapping[variable]["dataset"] = [
+                                d
+                                for d in mapping[variable]["dataset"]
+                                if not any(v in d["name"] for v in variables)
+                            ]
 
         with open(Path.cwd() / "pathways" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mapping, f)
@@ -306,7 +305,6 @@ class PathwaysDataPackage:
             # add a scenario dimension
             data = data.expand_dims("scenario")
             data.coords["scenario"] = [scenario_name]
-            self.scenario_names.append(scenario_name)
 
             data_list.append(data)
 
@@ -323,7 +321,11 @@ class PathwaysDataPackage:
 
         # split the columns "scenarios" into "model" and "pathway"
         df[["model", "pathway"]] = df["scenario"].str.split(" - ", n=1, expand=True)
+        # remove any spaces in the "pathway" column
+        #df["pathway"] = df["pathway"].str.replace(" ", "")
         df = df.drop(columns=["scenario"])
+
+        self.scenario_names = df["pathway"].unique().tolist()
 
         # remove rows with empty values under "value"
         df = df.dropna(subset=["value"])
@@ -351,7 +353,7 @@ class PathwaysDataPackage:
             f"Data package generated by premise {__version__}."
         )
         package.descriptor["premise version"] = str(__version__)
-        package.descriptor["scenarios"] = list(set(self.scenario_names))
+        package.descriptor["scenarios"] = self.scenario_names
         package.descriptor["keywords"] = [
             "ecoinvent",
             "scenario",
