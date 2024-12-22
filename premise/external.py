@@ -959,7 +959,9 @@ class ExternalScenario(BaseTransformation):
 
             else:
                 raise ValueError(
-                    f"Cannot find dataset with name {name} and reference product {ref_prod}."
+                    f"Cannot find dataset with name {name} and "
+                    f"reference product {ref_prod} "
+                    f"for location {possible_locations}."
                 )
 
         return act
@@ -1112,15 +1114,6 @@ class ExternalScenario(BaseTransformation):
 
     def get_region_for_non_null_production_volume(self, i, variables):
 
-        if not any(
-            x
-            in self.external_scenarios_data[i]["production volume"]
-            .coords["variables"]
-            .values
-            for x in variables
-        ):
-            return []
-
         nz = np.argwhere(
             (
                 self.external_scenarios_data[i]["production volume"]
@@ -1129,7 +1122,6 @@ class ExternalScenario(BaseTransformation):
                 > 0
             ).values
         )
-
         return [
             self.external_scenarios_data[i]["production volume"]
             .coords["region"][x[0]]
@@ -1164,6 +1156,7 @@ class ExternalScenario(BaseTransformation):
 
                     # Check if there are regions we should not
                     # create a market for
+
                     regions = self.get_region_for_non_null_production_volume(
                         i=i, variables=production_variables
                     )
@@ -1185,10 +1178,10 @@ class ExternalScenario(BaseTransformation):
                         )
 
                         if (
-                            self.year
-                            in self.external_scenarios_data[i]["production volume"]
-                            .coords["year"]
-                            .values
+                                self.year
+                                in self.external_scenarios_data[i]["production volume"]
+                                .coords["year"]
+                                .values
                         ):
                             production_volume = (
                                 self.external_scenarios_data[i]["production volume"]
@@ -1202,9 +1195,9 @@ class ExternalScenario(BaseTransformation):
                             )
                         else:
                             if self.year < min(
-                                self.external_scenarios_data[i]["production volume"]
-                                .coords["year"]
-                                .values
+                                    self.external_scenarios_data[i]["production volume"]
+                                            .coords["year"]
+                                            .values
                             ):
                                 production_volume = (
                                     self.external_scenarios_data[i]["production volume"]
@@ -1222,9 +1215,9 @@ class ExternalScenario(BaseTransformation):
                                     .values.item(0)
                                 )
                             elif self.year > max(
-                                self.external_scenarios_data[i]["production volume"]
-                                .coords["year"]
-                                .values
+                                    self.external_scenarios_data[i]["production volume"]
+                                            .coords["year"]
+                                            .values
                             ):
                                 production_volume = (
                                     self.external_scenarios_data[i]["production volume"]
@@ -1396,7 +1389,6 @@ class ExternalScenario(BaseTransformation):
                                 self.adjust_efficiency_of_new_markets(
                                     new_market, market_vars, region, efficiency_data
                                 )
-
                             self.database.append(new_market)
                             self.write_log(new_market)
                             self.add_to_index(new_market)
@@ -1413,7 +1405,7 @@ class ExternalScenario(BaseTransformation):
                     # we create a World region
                     create_world_region = True
                     if len(regions) <= 1 or "World" in market_vars.get(
-                        "except regions", []
+                            "except regions", []
                     ):
                         create_world_region = False
 
