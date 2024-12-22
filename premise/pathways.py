@@ -237,7 +237,9 @@ class PathwaysDataPackage:
                     for variables in val.get("production pathways", {}).values():
                         for variable in variables:
                             if variable not in mapping:
-                                variable_name = variable["production volume"]["variable"]
+                                variable_name = variable["production volume"][
+                                    "variable"
+                                ]
                                 mapping[variable] = {"scenario variable": variable_name}
                                 filters = variable.get("ecoinvent alias")
                                 mask = variable.get("ecoinvent alias").get("mask")
@@ -257,14 +259,14 @@ class PathwaysDataPackage:
                                 ]
 
                                 if len(mapping[variable]["dataset"]) == 0:
-                                    print(f"No dataset found for {variable} in {variable_name}")
+                                    print(
+                                        f"No dataset found for {variable} in {variable_name}"
+                                    )
                                     print(f"Filters: {filters}")
                                     print(f"Mask: {mask}")
                                     continue
 
-                                variables = list(
-                                    val["production pathways"].keys()
-                                )
+                                variables = list(val["production pathways"].keys())
                                 variables.remove(variable)
                                 # remove datasets which names are in list of variables
                                 # except for the current variable
