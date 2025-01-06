@@ -224,6 +224,13 @@ to reflect changes in material requirements. There is a focus on potentially cri
 Both current and future material intensities in technology datasets are updated
 (e.g., kg Molybdenum per MW wind power with permanent magnets).
 
+The workflow for updating material intensities in `premise` consists of the following steps:
+* *Data collection*: Material intensity data is sourced from literature and stored in structured files.
+* *Data processing*: The collected data is processed to align with the database, including unit conversions and mapping to relevant datasets.
+* *Inventories*: Additional inventories for metals production (e.g., Cobalt, Lithium, Vanadium) are added to the database.
+* *Markets creation*: Global supply markets for mined and refined metals are built, reflecting current and future regional contributions.
+* *Post-allocation correction*: Multifunctional processes (e.g., co-mining) are adjusted to ensure proper mass balance.
+
 To update the material intensities in the database, run the following code:
 
 .. code-block:: python
@@ -244,7 +251,7 @@ To update the material intensities in the database, run the following code:
     ndb.update("metals")
 
 
-Material intensities
+Data collection and processing
 --------------------
 
 Distributions for material intensities, derived from a comprehensive literature
@@ -259,9 +266,11 @@ To convert the units in `metals_db.csv <https://github.com/polca/premise/blob/ma
 to the units used in ecoinvent (e.g., converting [kg metal/kW] to [kg metal/kg battery]), *premise* uses
 the conversion factors found in `conversion_factors.csv <https://github.com/polca/premise/blob/master/premise/data/metals/conversion_factors.xlsx>`_.
 
-Finally, *premise* uses the data under premise/data/metals/activities_mapping.xlsx to
-refine the activity in ecoinvent to be updated and convert the intensities to the
-relevant compound (e.g., 1kg of Boron is converted to 86.19 kg of B2O3).
+Finally, *premise* uses the data under `metal_products.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metal_product.xlsx>`_
+to refine the activity in ecoinvent to be updated, select the specific metal
+product (e.g., boric oxide for boron used in wind turbine magnets)
+and convert the intensities to the relevant compound (e.g., 1kg of Boron is converted to 86.19 kg of B2O3).
+
 
 Inventories
 -----------
@@ -280,8 +289,8 @@ Inventories
 The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/master/premise/data/additional_inventories>`_
 
 
-Mining and refining markets
----------------------------
+Mining and refining markets creation
+------------------------------------
 
 *premise* builds global supply markets for several mined and refined metals.
 In these markets, the contribution of different mining and refining regions corresponds
@@ -298,6 +307,12 @@ forecast the market shares' evolution up to 2030.
 The file used to build the global supply markets for mined and refined metals is `mining_shares_mapping.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/mining_shares_mapping.xlsx>`_.
 
 .. _van den Brink: https://doi.org/10.1016/j.resconrec.2022.106586
+
+Additionally, 'World' metal markets modeled account for the average transport
+distances and modes of transport for the different metals from producer
+to consumer. These data are retrieved from `UNCTAD <https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf`_.
+
+Average transport distance and modes of transport for each producer can be found under: `transport_markets_data <https://github.com/polca/premise/blob/master/premise/data/metals/transport_markets_data.csv>`_.
 
 
 Post-allocation correction

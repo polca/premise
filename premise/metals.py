@@ -134,7 +134,7 @@ def load_activities_mapping():
     where filter was set to yes are considered.
     """
 
-    filepath = DATA_DIR / "metals" / "activities_mapping.xlsx"
+    filepath = DATA_DIR / "metals" / "metal_products.xlsx"
     df = pd.read_excel(filepath, sheet_name="activities_mapping")
     df = df.loc[(df["filter"] == "Yes") | (df["filter"] == "yes")]
 
