@@ -220,10 +220,11 @@ Metals
 ++++++
 
 Inventories for several energy and transport technologies are updated in *premise*
-to reflect changes in material requirements, with a focus on potentially critical raw materials.
-Both current and future material intensities are updated.
+to reflect changes in material requirements. There is a focus on potentially critical raw materials.
+Both current and future material intensities in technology datasets are updated
+(e.g., kg Molybdenum per MW wind power with permanent magnets).
 
-Run
+To update the material intensities in the database, run the following code:
 
 .. code-block:: python
 
@@ -246,74 +247,76 @@ Run
 Material intensities
 --------------------
 
-Distributions for material intensities, derived from a
-comprehensive literature collection, are provided in the file
-premise/data/metals/SI_2_Material_requirements.xlsx. Based on these
-data, *premise* uses metals_db.csv to update the material intensities for each
-technology.
+Distributions for material intensities, derived from a comprehensive literature
+collection, are provided in `SI_2_Material_requirements.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/SI_2_Material_requirements.xlsx>`_.
+From this database, `metals_db.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metals_db.csv>`_ is created,
+which `premise` uses to update the material intensities for each technology.
 
-The mapping file targeting the technologies to be updated can be found under
-premise/data/metals/activity_mapping.yml
+The mapping file that associate metal intensities to datasets to be
+updated can be found in `activity_mapping.yml <https://github.com/polca/premise/blob/master/premise/data/metals/activities_mapping.yml>`_.
 
-To convert the units in metals_db.csv to the units used in ecoinvent
-(e.g., converting [kg metal/kW] to [kg metal/kg battery]), *premise* uses
-the conversion factors found in the file premise/data/metals/conversion_factors.csv.
+To convert the units in `metals_db.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metals_db.csv>`_
+to the units used in ecoinvent (e.g., converting [kg metal/kW] to [kg metal/kg battery]), *premise* uses
+the conversion factors found in `conversion_factors.csv <https://github.com/polca/premise/blob/master/premise/data/metals/conversion_factors.xlsx>`_.
 
 Finally, *premise* uses the data under premise/data/metals/activities_mapping.xlsx to
 refine the activity in ecoinvent to be updated and convert the intensities to the
-relevant compound (e.g., 1kg of Boron is converted to 86.19kg of B2O3).
+relevant compound (e.g., 1kg of Boron is converted to 86.19 kg of B2O3).
 
 Inventories
 -----------
 
 *premise* provides inventories for the following metals:
-* Cobalt.
-* Germanium, as a co-product from zinc mine operation, based on the unallocated dataset in ecoinvent.
-* Graphite.
-* Iridium, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
-* Lithium.
-* Rhenium, as a co-product from copper mine operation, based on the unallocated dataset in ecoinvent.
-* Ruthenium, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
-* Vanadium.
 
-The inventories are provided under premise/data/additional_inventories
+* `Cobalt <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-cobalt.xlsx>`_.
+* `Germanium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-germanium.xlsx>`_, as a co-product from zinc mine operation, based on the unallocated dataset in ecoinvent.
+* `Graphite <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-graphite.xlsx>`_.
+* `Iridium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* `Lithium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-lithium.xlsx>`_.
+* `Rhenium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-rhenium.xlsx>`_, as a co-product from copper mine operation, based on the unallocated dataset in ecoinvent.
+* `Ruthenium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* and `Vanadium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-batteries-vanadium.xlsx>`_.
+
+The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/master/premise/data/additional_inventories>`_
 
 
 Mining and refining markets
 ---------------------------
 
-*premise* models mining and refining 'World' markets for various metals assessed.
+*premise* builds global supply markets for several mined and refined metals.
 In these markets, the contribution of different mining and refining regions corresponds
-to their current market shares. Following this approach, the supply from different
+to their *current* market shares. Following this approach, the supply from different
 regions for a specific metal will be directly proportional to the country-level
 contributions to the global market. These shares are derived from various sources,
-mainly BGS_ and USGS_, in addition to data from van den Brink_ et al. (2022) for
-Antimony refining. For certain markets where data was available, *premise*
-incorporates projections from BNEF_ regarding the development of future
-mining and refining projects to forecast the market shares' evolution up
-to 2030.
+mainly `BGS <https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html>`_
+and `USGS <https://doi.org/https://doi.org/10.3133/mcs2023>`_, in addition to data from
+van den Brink_ et al. (2022) for Antimony refining.
+For certain markets where data was available, *premise* incorporates projections
+from `BNEF <https://about.bnef.com/>`_ regarding the development of future mining and refining projects to
+forecast the market shares' evolution up to 2030.
 
-The file used to build the mining and refining 'World' markets is located under:
-premise/data/metals/mining_shares_mapping.xlsx
+The file used to build the global supply markets for mined and refined metals is `mining_shares_mapping.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/mining_shares_mapping.xlsx>`_.
 
-.. _BGS: https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html
-.. _USGS: https://doi.org/https://doi.org/10.3133/mcs2023
 .. _van den Brink: https://doi.org/10.1016/j.resconrec.2022.106586
 
 
 Post-allocation correction
 --------------------------
 
-Regarding the co-production of metals in multifunctional processes,
-*premise* modifies the database to allocate according to physical mass
-balances: extraction of individual elements in the ore is fully attributed
-to the production of the respective metal; while other elementary and
-intermediate flows follow an economic allocation, which is the default
-option to deal with multi-functionality in ecoinvent. As discussed in
+Regarding the co-production of metals in multifunctional processes
+(i.e., co-mining of metals), *premise* modifies the database to allocate
+according to physical mass balance: extraction of individual elements in the
+ore is fully attributed to the production of the respective metal; while other
+elementary and intermediate flows follow an economic allocation, which is the
+default option to deal with multi-functionality in ecoinvent. As discussed in
 Berger_ et al. (2023), this approach ensures a correct mass balance.
 
-The file used to apply this correction is located under:
-premise/data/metals/post_allocation correction/correctionss.yaml
+For example, the amount of platinum resource included in the dataset representing
+the mining of 1 kg of platinum is set to 1 kg, while the amount of other
+metals (e.g., palladium, rhodium) is set to zero. The same approach is applied
+to the datasets representing the mining of the other co-mined metals.
+
+The file used to apply this correction is `corrections.yaml <https://github.com/polca/premise/blob/2.3.0.dev/premise/data/metals/post-allocation_correction/corrections.yaml>`_.
 
 .. _Berger: https://doi.org/10.1007/s11367-020-01737-5
 
