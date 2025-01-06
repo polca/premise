@@ -219,18 +219,21 @@ capacity needed in high voltage electricity markets.
 Metals
 ++++++
 
-Inventories for several energy and transport technologies are updated in *premise*
-to reflect changes in material requirements. There is a focus on potentially critical raw materials.
-Both current and future material intensities in technology datasets are updated
-(e.g., kg Molybdenum per MW wind power with permanent magnets).
+*premise* updates the material intensities of energy and transport technologies,
+with a particular focus on critical raw materials. The goal is to ensure that
+both current and future datasets accurately reflect the evolving material
+requirements of key technologies, such as wind turbines and batteries.
+Key processes include collecting and processing material intensity data, adding
+new metal production inventories, applying post-allocation corrections for
+co-mined metals, and constructing global markets for mined and refined metals.
 
 The workflow for updating material intensities in *premise* consists of the following steps:
 
 * *Data collection*: Material intensity data is sourced from literature and stored in structured files.
 * *Data processing*: The collected data is processed to align with the database, including unit conversions and mapping to relevant datasets.
 * *Inventories*: Additional inventories for metals production (e.g., Cobalt, Lithium, Vanadium) are added to the database.
-* *Markets creation*: Global supply markets for mined and refined metals are built, reflecting current and future regional contributions.
 * *Post-allocation correction*: Multifunctional processes (e.g., co-mining) are adjusted to ensure proper mass balance.
+* *Markets creation*: Global supply markets for mined and refined metals are built, reflecting current and future regional contributions.
 
 To update the material intensities in the database, run the following code:
 
@@ -253,7 +256,7 @@ To update the material intensities in the database, run the following code:
 
 
 Data collection and processing
---------------------
+------------------------------
 
 Distributions for material intensities, derived from a comprehensive literature
 collection, are provided in `SI_2_Material_requirements.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/SI_2_Material_requirements.xlsx>`_.
@@ -289,6 +292,28 @@ Inventories
 
 The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/master/premise/data/additional_inventories>`_
 
+Post-allocation correction
+--------------------------
+
+Regarding the co-production of metals in multifunctional processes
+(i.e., co-mining of metals), *premise* modifies the database to allocate
+according to physical mass balance: extraction of individual elements in the
+ore is fully attributed to the production of the respective metal; while other
+elementary and intermediate flows follow an economic allocation, which is the
+default option to deal with multi-functionality in ecoinvent. As discussed in
+Berger_ et al. (2023), this approach ensures a correct mass balance.
+
+For example, the amount of platinum resource included in the dataset representing
+the mining of 1 kg of platinum is set to 1 kg, while the amount of other
+metals (e.g., palladium, rhodium) is set to zero. The same approach is applied
+to the datasets representing the mining of the other co-mined metals.
+
+The file used to apply this correction is `corrections.yaml <https://github.com/polca/premise/blob/master/premise/data/metals/post-allocation_correction/corrections.yaml>`_.
+
+The markets are relinked to metals-consuming activities throughout the database.
+
+.. _Berger: https://doi.org/10.1007/s11367-020-01737-5
+
 
 Mining and refining markets creation
 ------------------------------------
@@ -309,33 +334,11 @@ The file used to build the global supply markets for mined and refined metals is
 
 .. _van den Brink: https://doi.org/10.1016/j.resconrec.2022.106586
 
-Additionally, 'World' metal markets modeled account for the average transport
+Additionally, global metal supply markets modeled account for the average transport
 distances and modes of transport for the different metals from producer
 to consumer. These data are retrieved from `UNCTAD <https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf>`_.
 
 Average transport distance and modes of transport for each producer can be found under: `transport_markets_data <https://github.com/polca/premise/blob/master/premise/data/metals/transport_markets_data.csv>`_.
-
-
-Post-allocation correction
---------------------------
-
-Regarding the co-production of metals in multifunctional processes
-(i.e., co-mining of metals), *premise* modifies the database to allocate
-according to physical mass balance: extraction of individual elements in the
-ore is fully attributed to the production of the respective metal; while other
-elementary and intermediate flows follow an economic allocation, which is the
-default option to deal with multi-functionality in ecoinvent. As discussed in
-Berger_ et al. (2023), this approach ensures a correct mass balance.
-
-For example, the amount of platinum resource included in the dataset representing
-the mining of 1 kg of platinum is set to 1 kg, while the amount of other
-metals (e.g., palladium, rhodium) is set to zero. The same approach is applied
-to the datasets representing the mining of the other co-mined metals.
-
-The file used to apply this correction is `corrections.yaml <https://github.com/polca/premise/blob/master/premise/data/metals/post-allocation_correction/corrections.yaml>`_.
-
-.. _Berger: https://doi.org/10.1007/s11367-020-01737-5
-
 
 Biomass
 +++++++
