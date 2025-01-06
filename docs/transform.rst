@@ -216,6 +216,93 @@ market for battery capacity, stationary (TC scenario)     GLO         Vanadium R
 `market for battery capacity, stationary (CONT scenario)` supplies any storage
 capacity needed in high voltage electricity markets.
 
+Metals
+++++++
+
+Inventories for several energy and transport technologies are updated in *premise*
+to reflect changes in material requirements, with a focus on potentially critical raw materials.
+Both current and future material intensities are updated.
+
+Run
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("metals")
+
+
+Material intensities
+--------------------
+
+Distributions for material intensities, derived from a
+comprehensive literature collection, are provided in the file
+premise/data/metals/SI_2_Material_requirements.xlsx. Based on these
+data, *premise* uses metals_db.csv to update the material intensities for each
+technology.
+
+The mapping file targeting the technologies to be updated can be found under
+premise/data/metals/activity_mapping.yml
+
+To convert the units in metals_db.csv to the units used in ecoinvent
+(e.g., converting [kg metal/kW] to [kg metal/kg battery]), *premise* uses
+the conversion factors found in the file premise/data/metals/conversion_factors.csv.
+
+Finally, *premise* uses the data under premise/data/metals/activities_mapping.xlsx to
+refine the activity in ecoinvent to be updated and convert the intensities to the
+relevant compound (e.g., 1kg of Boron is converted to 86.19kg of B2O3).
+
+
+Mining and refining markets
+---------------------------
+
+*premise* models mining and refining 'World' markets for various metals assessed.
+In these markets, the contribution of different mining and refining regions corresponds
+to their current market shares. Following this approach, the supply from different
+regions for a specific metal will be directly proportional to the country-level
+contributions to the global market. These shares are derived from various sources,
+mainly BGS_ and USGS_, in addition to data from van den Brink_ et al. (2022) for
+Antimony refining. For certain markets where data was available, *premise*
+incorporates projections from BNEF_ regarding the development of future
+mining and refining projects to forecast the market shares' evolution up
+to 2030.
+
+The file used to build the mining and refining 'World' markets is located under:
+premise/data/metals/mining_shares_mapping.xlsx
+
+.. _BGS: https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html
+.. _USGS: https://doi.org/https://doi.org/10.3133/mcs2023
+.. _van den Brink: https://doi.org/10.1016/j.resconrec.2022.106586
+
+
+Post-allocation correction
+--------------------------
+
+Regarding the co-production of metals in multifunctional processes,
+*premise* modifies the database to allocate according to physical mass
+balances: extraction of individual elements in the ore is fully attributed
+to the production of the respective metal; while other elementary and
+intermediate flows follow an economic allocation, which is the default
+option to deal with multi-functionality in ecoinvent. As discussed in
+Berger_ et al. (2023), this approach ensures a correct mass balance.
+
+The file used to apply this correction is located under:
+premise/data/metals/post_allocation correction/correctionss.yaml
+
+.. _Berger: https://doi.org/10.1007/s11367-020-01737-5
+
+
 Biomass
 +++++++
 
