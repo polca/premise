@@ -190,11 +190,11 @@ def get_ecoinvent_metal_factors():
 
 def load_post_allocation_correction_factors():
     """
-    Load yaml file with post-allocation correction factors
+    Load yaml file with post-allocation_correction factors
 
     """
 
-    filepath = DATA_DIR / "metals" / "post-allocation correction" / "corrections.yaml"
+    filepath = DATA_DIR / "metals" / "post-allocation_correction" / "corrections.yaml"
     with open(filepath, "r", encoding="utf-8") as stream:
         factors = yaml.safe_load(stream)
     return factors
