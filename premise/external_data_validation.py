@@ -337,29 +337,30 @@ def check_inventories(
         )
 
     list_datasets = list(
-        set([(i["name"], i["reference product"]) for i in inventory_data])
+        set([(i["name"].lower(), i["reference product"].lower())
+             for i in inventory_data])
     )
 
     try:
         assert all(
-            (i[0], i[1]) in [(x[0].lower(), x[1].lower()) for x in list_datasets]
+            (i[0].lower(), i[1].lower()) in list_datasets
             for i, v in d_datasets.items()
-            if not v["exists in original database"]
-            and not v.get("new dataset")
-            and not v.get("duplicate")
+            if v.get("exists in original database", False) is False
+            and v.get("new dataset", False) is False
+            and v.get("duplicate", False) is False
         )
     except AssertionError as e:
         list_missing_datasets = [
-            i[0]
+            (i[0], i[1])
             for i, v in d_datasets.items()
-            if not v["exists in original database"]
-            and not v.get("new dataset")
-            and (i[0].lower(), i[1].lower())
-            in [(x[0].lower(), x[1].lower()) for x in list_datasets]
+            if v.get("exists in original database", False) is False
+            and v.get("new dataset", False) is False
+            and (i[0].lower(), i[1].lower()) not in list_datasets
         ]
 
         raise AssertionError(
-            f"The following datasets are not in the inventory data: {list_missing_datasets}"
+            "The following datasets are not in the inventory data:"
+            f"\n {list_missing_datasets}"
             f"\n Available datasets are: \n"
             f"{[list_datasets]}"
         ) from e
