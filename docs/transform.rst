@@ -263,6 +263,21 @@ Finally, *premise* uses the data under premise/data/metals/activities_mapping.xl
 refine the activity in ecoinvent to be updated and convert the intensities to the
 relevant compound (e.g., 1kg of Boron is converted to 86.19kg of B2O3).
 
+Inventories
+-----------
+
+*premise* provides inventories for the following metals:
+* Cobalt.
+* Germanium, as a co-product from zinc mine operation, based on the unallocated dataset in ecoinvent.
+* Graphite.
+* Iridium, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* Lithium.
+* Rhenium, as a co-product from copper mine operation, based on the unallocated dataset in ecoinvent.
+* Ruthenium, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* Vanadium.
+
+The inventories are provided under premise/data/additional_inventories
+
 
 Mining and refining markets
 ---------------------------
