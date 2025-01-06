@@ -337,8 +337,12 @@ def check_inventories(
         )
 
     list_datasets = list(
-        set([(i["name"].lower(), i["reference product"].lower())
-             for i in inventory_data])
+        set(
+            [
+                (i["name"].lower(), i["reference product"].lower())
+                for i in inventory_data
+            ]
+        )
     )
 
     try:
