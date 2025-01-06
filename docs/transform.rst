@@ -224,7 +224,8 @@ to reflect changes in material requirements. There is a focus on potentially cri
 Both current and future material intensities in technology datasets are updated
 (e.g., kg Molybdenum per MW wind power with permanent magnets).
 
-The workflow for updating material intensities in `premise` consists of the following steps:
+The workflow for updating material intensities in *premise* consists of the following steps:
+
 * *Data collection*: Material intensity data is sourced from literature and stored in structured files.
 * *Data processing*: The collected data is processed to align with the database, including unit conversions and mapping to relevant datasets.
 * *Inventories*: Additional inventories for metals production (e.g., Cobalt, Lithium, Vanadium) are added to the database.
@@ -257,7 +258,7 @@ Data collection and processing
 Distributions for material intensities, derived from a comprehensive literature
 collection, are provided in `SI_2_Material_requirements.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/SI_2_Material_requirements.xlsx>`_.
 From this database, `metals_db.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metals_db.csv>`_ is created,
-which `premise` uses to update the material intensities for each technology.
+which *premise* uses to update the material intensities for each technology.
 
 The mapping file that associate metal intensities to datasets to be
 updated can be found in `activity_mapping.yml <https://github.com/polca/premise/blob/master/premise/data/metals/activities_mapping.yml>`_.
@@ -310,7 +311,7 @@ The file used to build the global supply markets for mined and refined metals is
 
 Additionally, 'World' metal markets modeled account for the average transport
 distances and modes of transport for the different metals from producer
-to consumer. These data are retrieved from `UNCTAD <https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf`_.
+to consumer. These data are retrieved from `UNCTAD <https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf>`_.
 
 Average transport distance and modes of transport for each producer can be found under: `transport_markets_data <https://github.com/polca/premise/blob/master/premise/data/metals/transport_markets_data.csv>`_.
 
@@ -331,7 +332,7 @@ the mining of 1 kg of platinum is set to 1 kg, while the amount of other
 metals (e.g., palladium, rhodium) is set to zero. The same approach is applied
 to the datasets representing the mining of the other co-mined metals.
 
-The file used to apply this correction is `corrections.yaml <https://github.com/polca/premise/blob/2.3.0.dev/premise/data/metals/post-allocation_correction/corrections.yaml>`_.
+The file used to apply this correction is `corrections.yaml <https://github.com/polca/premise/blob/master/premise/data/metals/post-allocation_correction/corrections.yaml>`_.
 
 .. _Berger: https://doi.org/10.1007/s11367-020-01737-5
 
