@@ -1477,12 +1477,18 @@ class Export:
             for ds in self.db:
                 try:
                     main_category, sub_category = (
-                        dict_cat_simapro[(ds["name"].lower(), ds["reference product"].lower())]["category"],
-                        dict_cat_simapro[(ds["name"].lower(), ds["reference product"].lower())]["sub_category"],
+                        dict_cat_simapro[
+                            (ds["name"].lower(), ds["reference product"].lower())
+                        ]["category"],
+                        dict_cat_simapro[
+                            (ds["name"].lower(), ds["reference product"].lower())
+                        ]["sub_category"],
                     )
                 except KeyError:
                     main_category, sub_category = ("material", "Others\Transformation")
-                    self.unmatched_category_flows.append((ds["name"], ds["reference product"]))
+                    self.unmatched_category_flows.append(
+                        (ds["name"], ds["reference product"])
+                    )
 
                 for item in fields:
                     if (
