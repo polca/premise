@@ -1475,16 +1475,14 @@ class Export:
             writer.writerow([])
 
             for ds in self.db:
-                key = (ds["name"].lower(), ds["reference product"].lower())
-
                 try:
                     main_category, sub_category = (
-                        dict_cat_simapro[key]["category"],
-                        dict_cat_simapro[key]["sub_category"],
+                        dict_cat_simapro[(ds["name"].lower(), ds["reference product"].lower())]["category"],
+                        dict_cat_simapro[(ds["name"].lower(), ds["reference product"].lower())]["sub_category"],
                     )
                 except KeyError:
                     main_category, sub_category = ("material", "Others\Transformation")
-                    self.unmatched_category_flows.append(key)
+                    self.unmatched_category_flows.append((ds["name"], ds["reference product"]))
 
                 for item in fields:
                     if (
