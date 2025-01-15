@@ -273,11 +273,16 @@ class PathwaysDataPackage:
                             variables.remove(variable)
                             # remove datasets which names are in list of variables
                             # except for the current variable
-                            if len([
-                                d
-                                for d in mapping[variable]["dataset"]
-                                if not any(v in d["name"] for v in variables)
-                            ]) > 0:
+                            if (
+                                len(
+                                    [
+                                        d
+                                        for d in mapping[variable]["dataset"]
+                                        if not any(v in d["name"] for v in variables)
+                                    ]
+                                )
+                                > 0
+                            ):
                                 mapping[variable]["dataset"] = [
                                     d
                                     for d in mapping[variable]["dataset"]
