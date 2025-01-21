@@ -445,7 +445,7 @@ def end_of_process(scenario):
     delete_all_pickles()
 
     # delete the database from the scenario
-    del scenario["database"]
+    # del scenario["database"]
 
     if "applied functions" in scenario:
         del scenario["applied functions"]

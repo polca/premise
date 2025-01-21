@@ -1114,7 +1114,7 @@ class NewDatabase:
                 name[s],
             )
 
-            end_of_process(scenario)
+            # end_of_process(scenario)
 
         # generate scenario report
         self.generate_scenario_report()
