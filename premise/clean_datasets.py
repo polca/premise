@@ -14,6 +14,7 @@ import numpy as np
 import wurst
 import yaml
 from bw2data.database import DatabaseChooser
+from bw2io.errors import MultiprocessingError
 from wurst import searching as ws
 
 from .data_collection import get_delimiter
@@ -205,9 +206,15 @@ class DatabaseCleaner:
 
         if source_type == "ecospold":
             # The ecospold data needs to be formatted
-            ecoinvent = bw2io.SingleOutputEcospold2Importer(
-                str(source_file_path), source_db
-            )
+            try:
+                ecoinvent = bw2io.SingleOutputEcospold2Importer(
+                    str(source_file_path), source_db
+                )
+            except MultiprocessingError:
+                ecoinvent = bw2io.SingleOutputEcospold2Importer(
+                    str(source_file_path), source_db, use_mp=False
+                )
+
             ecoinvent.apply_strategies()
             self.database = ecoinvent.data
             # strip strings form spaces
