@@ -980,7 +980,8 @@ class NewDatabase:
 
                 # dump database
                 dump_database(scenario)
-                # Manually update the outer progress bar after each sector is completed
+                # Manually update the outer progress bar
+                # after each sector is completed
                 pbar_outer.update()
         print("Done!\n")
 
@@ -1059,6 +1060,8 @@ class NewDatabase:
         for scenario in self.scenarios:
             end_of_process(scenario)
 
+        delete_all_pickles()
+
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
         Register the new database into an open brightway project.
@@ -1099,8 +1102,10 @@ class NewDatabase:
             try:
                 scenario = load_database(scenario)
             except KeyError:
+                print("KeyError")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:
+                print("FileNotFoundError")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             _prepare_database(
@@ -1114,8 +1119,9 @@ class NewDatabase:
                 name[s],
             )
 
-            # end_of_process(scenario)
+            end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1184,6 +1190,7 @@ class NewDatabase:
 
             end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1227,6 +1234,7 @@ class NewDatabase:
 
             end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1268,6 +1276,7 @@ class NewDatabase:
 
             end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
