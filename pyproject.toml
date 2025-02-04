@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=65.5", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +7,7 @@ name = "premise"
 authors = [
   { name="Romain Sacchi", email="romain.sacchi@psi.ch" },
   { name="Alois Dirnaichner", email="dirnaichner@pik-potsdam.de" },
-  { name=" Chris Mutel", email="cmutel@gmail.com" }
+  { name="Chris Mutel", email="cmutel@gmail.com" }
 ]
 maintainers = [
   { name="Romain Sacchi", email="romain.sacchi@psi.ch" }
@@ -31,23 +31,60 @@ homepage = "https://github.com/polca/premise"
 tracker = "https://github.com/polca/premise/issues"
 
 [project.optional-dependencies]
-testing = [
-    "setuptools",
-    "pytest",
-    "pytest-cov",
-    "coveralls"
-]
 
 docs = [
     "sphinx-rtd-theme"
 ]
 bw25 = [
-    "bw2analyzer >=0.11.4",
-    "bw2calc >=2.0.dev13",
-    "bw2data >=4.0.dev31",
-    "bw2io >=0.9.dev23",
-    "bw_processing >=0.8.2",
-    "matrix_utils >=0.2.5"
+    "bw2calc >=2.0.1",
+    "bw2data >=4.3",
+    "bw2io >=0.9.4",
+    "bottleneck",
+    "ecoinvent_interface",
+    "constructive-geometries>=0.9.5",
+    "numpy <2.0.0",
+    "cryptography",
+    "datapackage",
+    "pandas",
+    "platformdirs",
+    "premise_gwp",
+    "prettytable",
+    "pyarrow",
+    "pycountry",
+    "pyYaml",
+    "requests",
+    "schema",
+    "sparse>=0.14.0",
+    "wurst>=0.4",
+    "xarray<=2024.2.0",
+    "tqdm",
+    "unfold",
+]
+
+bw2 = [
+    "bw2calc ==1.8.2",
+    "bw2data == 3.6.6",
+    "bw2io ==0.8.12",
+    "bottleneck",
+    "ecoinvent_interface",
+    "constructive-geometries>=0.9.5",
+    "numpy <2.0.0",
+    "cryptography",
+    "datapackage",
+    "pandas",
+    "platformdirs",
+    "premise_gwp",
+    "prettytable",
+    "pyarrow",
+    "pycountry",
+    "pyYaml",
+    "requests",
+    "schema",
+    "sparse>=0.14.0",
+    "wurst>=0.4",
+    "xarray<=2024.2.0",
+    "tqdm",
+    "unfold",
 ]
 
 [tool.setuptools]

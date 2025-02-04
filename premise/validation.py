@@ -1605,9 +1605,12 @@ class FuelsValidation(BaseDatasetValidator):
 
 
 class SteelValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data):
-        super().__init__(model, scenario, year, regions, database)
+    def __init__(
+        self, model, scenario, year, regions, database, iam_data, system_model
+    ):
+        super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
+        self.system_model = system_model
 
     def check_steel_markets(self):
         # check that the steel markets inputs
@@ -1669,15 +1672,27 @@ class SteelValidation(BaseDatasetValidator):
                         and "electric" in x["name"]
                     ]
                 )
-                # check that the total is roughly equal to the IAM projection
-                if math.isclose(total, eaf_steel, rel_tol=0.01) is False:
-                    message = f"Input of secondary steel incorrect: {total} instead of {eaf_steel}."
-                    self.log_issue(
-                        ds,
-                        "incorrect secondary steel market input",
-                        message,
-                        issue_type="major",
-                    )
+
+                if self.system_model != "consequential":
+                    # check that the total is roughly equal to the IAM projection
+                    if math.isclose(total, eaf_steel, rel_tol=0.01) is False:
+                        message = f"Input of secondary steel incorrect: {total} instead of {eaf_steel}."
+                        self.log_issue(
+                            ds,
+                            "incorrect secondary steel market input",
+                            message,
+                            issue_type="major",
+                        )
+                else:
+                    # make sure the amount of secondary steel is 0
+                    if total > 0.01:
+                        message = f"Input of secondary steel is {total}."
+                        self.log_issue(
+                            ds,
+                            "incorrect secondary steel market input. Should be zero.",
+                            message,
+                            issue_type="major",
+                        )
 
     def check_pig_iron_input(self):
         """

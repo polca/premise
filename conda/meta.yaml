@@ -1,26 +1,36 @@
+{% set name = "premise" %}
+{% set version = environ.get('VERSION', "0.0.0") %}
+
+
 package:
-  name: premise
-  version: {{ environ['VERSION'] }}
+  name: {{ name }}-{{ bw }}
+  version: {{ version }}
 
 source:
   path: ..
 
+
+{% set bw2data_versions = {
+    "bw2": "bw2data <4.0.0",
+    "bw25": "bw2data >=4.0.0"
+} %}
+
 build:
   noarch: python
+  script: python -m pip install --no-deps --ignore-installed ".[{{ bw }}]"
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
-  script_env:
-    - VERSION
-    - CONDA_BLD_PATH
+
+
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
   run:
+    - {{ bw2data_versions[bw] }}
+    - python
     - bottleneck
-    - bw2data
-    - bw2io >=0.8.12
+    - bw2io
     - ecoinvent_interface
     - constructive_geometries>=0.9.5
     - cryptography
@@ -40,12 +50,14 @@ requirements:
     - tqdm
     - unfold
 
-test:
-  imports:
-    - premise
+  channels:
+    - conda-forge
+    - defaults
+
 
 about:
   home: https://github.com/polca/premise
   license: BSD License
   summary: 'Coupling Integrated Assessment Models and Life Cycle Assessment.'
 license_family: BSD
+license_file: LICENSE

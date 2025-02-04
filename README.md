@@ -129,7 +129,7 @@ ecoinvent 3 to reflect projected energy policy trajectories.
 
 Requirements
 ------------
-* **Python 3.10 or 3.11**
+* **Python 3.10, 3.11 or 3.12**
 * License for [ecoinvent 3][1]. Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
 * Some IAM output files come with the library and are located by default in the subdirectory "/data/iam_output_files". **If you wish to use
  those files, you need to request (by [email](mailto:romain.sacchi@psi.ch)) an encryption key from the developers**.
@@ -147,10 +147,26 @@ From Pypi:
 
 will install the package and the required dependencies.
 
-A development version with the latest advancements (but with the risks of unseen bugs),
-is available from Anaconda Cloud:
+``premise`` comes with the latest version of ``brightway``, which is Brightway 2.5.
+This means that ``premise`` will output databases that are compatible with Brightway 2.5.
 
-    conda install -c conda-forge premise
+If you want to use the results in the Brightway 2 framework (e.g., to read them in ``activity-browser``), 
+you need to specify it in the installation command:
+
+    pip install "premise[bw2]"
+
+You can also specify that you want to use Brightway 2.5:
+
+    pip install "premise[bw25]"
+
+A development version with the latest advancements (but with the risks of unseen bugs),
+is available from Anaconda Cloud. Similarly, you should specify that you want to use Brightway 2.5:
+
+    conda install -c conda-forge premise-bw25
+
+Or rather use Brightway2:
+
+    conda install -c conda-forge premise-bw2
 
 
 How to use it?
