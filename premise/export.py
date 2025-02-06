@@ -1060,6 +1060,7 @@ class Export:
         scenario: dict = None,
         filepath: Path = None,
         version: str = None,
+        system_model: str = None,
     ):
         self.db = scenario["database"]
         self.model = scenario["model"]
@@ -1072,6 +1073,7 @@ class Export:
         )
         self.bio_dict = biosphere_flows_dictionary(self.version)
         self.unmatched_category_flows = []
+        self.system_model = system_model
 
     def create_A_matrix_coordinates(self) -> list:
         """
@@ -1394,6 +1396,7 @@ class Export:
         dict_bio = get_simapro_biosphere_dictionnary()
 
         uuids = get_uuids(self.db)
+        dataset_suffix = "Cut-off, U" if self.system_model == "cutoff" else "Conseq, U"
 
         headers = [
             "{SimaPro 9.1.1.7}",
@@ -1506,7 +1509,7 @@ class Export:
                     writer.writerow([item])
 
                     if item == "Process name":
-                        name = f"{ds['reference product']} {{{ds.get('location', 'GLO')}}}| {ds['name']} | Cut-off, U"
+                        name = f"{ds['reference product']} {{{ds.get('location', 'GLO')}}}| {ds['name']} | {dataset_suffix}"
 
                         writer.writerow([name])
 
@@ -1574,7 +1577,7 @@ class Export:
                     if item in ("Waste treatment", "Products"):
                         for e in ds["exchanges"]:
                             if e["type"] == "production":
-                                name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
+                                name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
 
                                 if item == "Waste treatment":
                                     writer.writerow(
@@ -1611,7 +1614,7 @@ class Export:
                                     exc_cat = "material"
 
                                 if exc_cat != "waste treatment":
-                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
+                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
 
                                     writer.writerow(
                                         [
@@ -1777,7 +1780,7 @@ class Export:
                                     exc_cat = "material"
 
                                 if exc_cat == "waste treatment":
-                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
+                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
 
                                     writer.writerow(
                                         [

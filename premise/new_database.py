@@ -1186,7 +1186,12 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            Export(scenario, filepath[s], self.version).export_db_to_matrices()
+            Export(
+                scenario=scenario,
+                filepath=filepath[s],
+                version=self.version,
+                system_model=self.system_model,
+            ).export_db_to_matrices()
 
             end_of_process(scenario)
 
@@ -1226,7 +1231,12 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            export = Export(scenario, filepath, self.version)
+            export = Export(
+                scenario=scenario,
+                filepath=filepath,
+                version=self.version,
+                system_model=self.system_model,
+            )
             export.export_db_to_simapro()
 
             if len(export.unmatched_category_flows) > 0:
@@ -1270,7 +1280,12 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            Export(scenario, filepath, self.version).export_db_to_simapro(
+            Export(
+                scenario=scenario,
+                filepath=filepath,
+                version=self.version,
+                system_model=self.system_model,
+            ).export_db_to_simapro(
                 olca_compartments=True
             )
 
