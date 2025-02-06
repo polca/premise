@@ -1715,7 +1715,7 @@ class Export:
                                 if e["name"].lower() == "water":
                                     unit = "kilogram"
                                     # e["unit"] = "kilogram"
-                                    e["amount"] /= 1000
+                                    e["amount"] *= 1000
                                 else:
                                     unit = e["unit"]
 
