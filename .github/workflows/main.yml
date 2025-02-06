@@ -76,7 +76,9 @@ jobs:
           pip check
 
       
-
+      - name: Run tests
+        run: |
+          pytest --instafail tests/
   Pypi:
     runs-on: ubuntu-latest
     needs: build
