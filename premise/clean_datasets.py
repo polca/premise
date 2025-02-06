@@ -206,14 +206,9 @@ class DatabaseCleaner:
 
         if source_type == "ecospold":
             # The ecospold data needs to be formatted
-            try:
-                ecoinvent = bw2io.SingleOutputEcospold2Importer(
-                    str(source_file_path), source_db
-                )
-            except MultiprocessingError:
-                ecoinvent = bw2io.SingleOutputEcospold2Importer(
-                    str(source_file_path), source_db, use_mp=False
-                )
+            ecoinvent = bw2io.SingleOutputEcospold2Importer(
+                str(source_file_path), source_db, use_mp=False
+            )
 
             ecoinvent.apply_strategies()
             self.database = ecoinvent.data
