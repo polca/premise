@@ -1285,9 +1285,7 @@ class NewDatabase:
                 filepath=filepath,
                 version=self.version,
                 system_model=self.system_model,
-            ).export_db_to_simapro(
-                olca_compartments=True
-            )
+            ).export_db_to_simapro(olca_compartments=True)
 
             end_of_process(scenario)
 
