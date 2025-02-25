@@ -564,40 +564,50 @@ They introduce the following datasets (only heat production datasets shown):
 Hydrogen
 --------
 
-*premise* imports inventories for hydrogen production via the following pathways:
+*premise* imports inventories for hydrogen production. The table below
+gives an overview of the different pathways and their assumed specific energy use
+in 2020 and 2050.
 
-* Steam Methane Reforming, using natural gas
-* Steam Methane Reforming, using natural gas, with Carbon Capture and Storage
-* Steam Methane Reforming, using bio-methane
-* Steam Methane Reforming, using bio-methane, with Carbon Capture and Storage
-* Auto Thermal Reforming, using natural gas
-* Auto Thermal Reforming, using natural gas, with Carbon Capture and Storage
-* Auto Thermal Reforming, using bio-methane
-* Auto Thermal Reforming, using bio-methane, with Carbon Capture and Storage
-* Woody biomass gasification, using a fluidized bed
-* Woody biomass gasification, using a fluidized bed, with Carbon Capture and Storage
-* Woody biomass gasification, using an entrained flow gasifier
-* Woody biomass gasification, using an entrained flow gasifier, with Carbon Capture and Storage
-* Coal gasification
-* Coal gasification, with Carbon Capture and Storage
-* Electrolysis
-* Thermochemical water splitting
-* Pyrolysis
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| Dataset                                                                                                           | Feedstock   | U   | 2020 avg | 2020 rng | 2050 avg | 2050 rng |Floor  |Loc  | Literature reference               |
++===================================================================================================================+=============+=====+==========+==========+==========+==========+=======+=====+====================================+
+| hydrogen production, steam methane reforming                                                                      | natural gas | m^3 |   N/A    |   N/A    |   N/A    |   N/A    |  3.5  | CH  | Antonini_ et al. 2021 [LCI_SMR_]   |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, steam methane reforming, with CCS                                                            | natural gas | m^3 |   N/A    |   N/A    |   N/A    |   N/A    |  3.5  | CH  | Antonini_ et al. 2021 [LCI_SMR_]   |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, steam methane reforming, from biomethane                                                     | biomethane  | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  3.2  | CH  | Antonini_ et al. 2021 [LCI_SMR_]   |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, steam methane reforming, from biomethane, with CCS                                           | biomethane  | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  3.2  | CH  | Antonini_ et al. 2021 [LCI_SMR_]   |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, auto-thermal reforming, from biomethane                                                      | biomethane  | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  3.2  | CH  | Antonini_ et al. 2021 [LCI_ATR_]   |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, auto-thermal reforming, from biomethane, with CCS                                            | biomethane  | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  3.2  | CH  | Antonini_ et al. 2021 [LCI_ATR_]   |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS               | wood chips  | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  7.0  | CH  | Antonini2_ et al. 2021 [LCI_woody_]|
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass                        | wood chips  | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  7.0  | CH  | Antonini2_ et al. 2021 [LCI_woody_]|
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS     | wood chips  | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  7.0  | CH  | Antonini2_ et al. 2021 [LCI_woody_]|
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier               | wood chips  | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  7.0  | CH  | Antonini2_ et al. 2021 [LCI_woody_]|
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, coal gasification                                                                            | hard coal   | kg  |   N/A    |   N/A    |   N/A    |   N/A    |  5.0  |RER  | Wokaun_, Li_ [LCI_coal_]           |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity                                | electricity | kWh |   54.0   |52.9–55.1 |  48.9    |45.3–52.5 | 45.3  |RER  | Gerloff_ 2021 [LCI_electrolysis_]  |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 20 bar, from AEC electrolysis, from grid electricity                                | electricity | kWh |   51.8   |48.7–54.9 |  48.5    |47.1–49.9 | 47.1  |RER  | Gerloff_ 2021 [LCI_electrolysis_]  |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity                                | electricity | kWh |   42.3   |41.2–43.4 |  40.6    |40.0–41.2 | 40.0  |RER  | Gerloff_ 2021 [LCI_electrolysis_]  |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 1 bar, from SOEC electrolysis, with steam input, from grid electricity              | electricity | kWh |  42.3*   |41.2–43.4 |  40.6    |40.0–41.2 | 40.0  |RER  | Gerloff_ 2021 [LCI_electrolysis_]  |
+| (same performance as SOEC, no separate data)                                                                                                                           |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at solar tower                         | solar       | MJ  |   N/A    |   N/A    |   N/A    |   N/A    | 180   |RER  | Zhang2_ 2022                       |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
+| hydrogen production, gaseous, 100 bar, from methane pyrolysis                                                     | natural gas | m^3 |   N/A    |   N/A    |   N/A    |   N/A    |  6.5  |RER  | Al-Qahtani_, Postels_              |
++-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
 
-Inventories using Steam Methane Reforming are from Antonini_ et al. 2021.
-They can be consulted here: LCI_SMR_.
-Inventories using Auto Thermal Reforming are from Antonini_ et al. 2021.
-They can be consulted here: LCI_ATR_.
-Inventories using Woody biomass gasification are from Antonini2_ et al. 2021.
-They can be consulted here: LCI_woody_.
-Inventories using coal gasification are from Wokaun_ et al. 2015, but updated
-with Li_ et al. 2022, which also provide an option with CCS.
-They can be consulted here: LCI_coal_.
-Inventories using electrolysis are from Niklas Gerloff_. 2021.
-They can be consulted here: LCI_electrolysis_.
-Inventories for thermochemical water splitting are from Zhang2_ et al. 2022.
-Inventories for pyrolysis are from Al-Qahtani_ et al. 2021, completed with
-data from Postels_ et al., 2016.
+Future efficiencies for electrolyzers are based on Studie IndWEDe_ (see p.176).
 
 .. _Antonini: https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00222d
 .. _Antonini2: https://pubs.rsc.org/en/Content/ArticleLanding/2021/SE/D0SE01637C
@@ -612,30 +622,7 @@ data from Postels_ et al., 2016.
 .. _LCI_woody: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-wood-gasification.xlsx
 .. _LCI_coal: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-coal-gasification.xlsx
 .. _LCI_electrolysis: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-electrolysis.xlsx
-
-The new datasets introduced are listed in the table below (only production datasets are shown).
-
- ======================================================================================================================================= ===========
-  Hydrogen production                                                                                                                     location
- ======================================================================================================================================= ===========
-  hydrogen production, steam methane reforming                                                                                            CH
-  hydrogen production, steam methane reforming, with CCS                                                                                  CH
-  hydrogen production, steam methane reforming, from biomethane                                                                           CH
-  hydrogen production, steam methane reforming, from biomethane, with CCS                                                                 CH
-  hydrogen production, auto-thermal reforming, from biomethane                                                                            CH
-  hydrogen production, auto-thermal reforming, from biomethane, with CCS                                                                  CH
-  hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass with CCS, at gasification plant              CH
-  hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant                       CH
-  hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, with CCS, at gasification plant    CH
-  hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant              CH
-  hydrogen production, coal gasification                                                                                                  RER
-  hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity                                                      RER
-  hydrogen production, gaseous, 20 bar, from AEC electrolysis, from grid electricity                                                      RER
-  hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity                                                      RER
-  hydrogen production, gaseous, 1 bar, from SOEC electrolysis, with steam input, from grid electricity                                    RER
-  hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at solar tower                                               RER
-  hydrogen production, gaseous, 100 bar, from methane pyrolysis                                                                           RER
- ======================================================================================================================================= ===========
+.. _IndWEDe: https://www.now-gmbh.de/wp-content/uploads/2020/09/indwede-studie_v04.1.pdf
 
 Hydrogen storage and distribution
 *********************************
