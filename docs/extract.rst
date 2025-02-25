@@ -564,9 +564,13 @@ They introduce the following datasets (only heat production datasets shown):
 Hydrogen
 --------
 
+Hydrogen production
+*******************
+
 *premise* imports inventories for hydrogen production. The table below
 gives an overview of the different pathways and their assumed specific energy use
 in 2020 and 2050.
+
 
 +-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
 | Dataset                                                                                                           | Feedstock   | U   | 2020 avg | 2020 rng | 2050 avg | 2050 rng |Floor  |Loc  | Literature reference               |
@@ -600,7 +604,7 @@ in 2020 and 2050.
 | hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity                                | electricity | kWh |   42.3   |41.2–43.4 |  40.6    |40.0–41.2 | 40.0  |RER  | Gerloff_ 2021 [LCI_electrolysis_]  |
 +-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
 | hydrogen production, gaseous, 1 bar, from SOEC electrolysis, with steam input, from grid electricity              | electricity | kWh |  42.3*   |41.2–43.4 |  40.6    |40.0–41.2 | 40.0  |RER  | Gerloff_ 2021 [LCI_electrolysis_]  |
-| (same performance as SOEC, no separate data)                                                                                                                           |
+| (same performance as SOEC, no separate data)                                                                                                                                                                                         |
 +-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
 | hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at solar tower                         | solar       | MJ  |   N/A    |   N/A    |   N/A    |   N/A    | 180   |RER  | Zhang2_ 2022                       |
 +-------------------------------------------------------------------------------------------------------------------+-------------+-----+----------+----------+----------+----------+-------+-----+------------------------------------+
