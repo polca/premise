@@ -186,6 +186,10 @@ Import of additional inventories
 After the ecoinvent database is extracted and checked, a number of additional inventories
 are imported, regardless of the year of scenario that is being considered.
 
+All inventories can be found in the `premise/data/additional_inventories`_ folder.
+
+.. _premise/data/additional_inventories: https://github.com/polca/premise/tree/master/premise/data/additional_inventories
+
 
 Power generation
 ----------------
