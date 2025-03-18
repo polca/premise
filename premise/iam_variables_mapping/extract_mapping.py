@@ -140,6 +140,13 @@ with pd.ExcelWriter(excel_file, engine="xlsxwriter") as writer:
     for sheet_name, df in dfs.items():
         df.to_excel(writer, sheet_name=sheet_name, index=False)
 
+# create a dataframe with all the data
+all_data = pd.concat(dfs.values(), ignore_index=True)
+
+excel_file = "mapping_overview_one_tab.xlsx"
+with pd.ExcelWriter(excel_file, engine="xlsxwriter") as writer:
+    all_data.to_excel(writer, sheet_name="All Data", index=False)
+
 
 def create_refined_pivot_v2(df):
     df = df.copy()

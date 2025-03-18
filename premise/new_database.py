@@ -1069,6 +1069,8 @@ class NewDatabase:
         for scenario in self.scenarios:
             end_of_process(scenario)
 
+        delete_all_pickles()
+
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
         Register the new database into an open brightway project.
@@ -1109,8 +1111,10 @@ class NewDatabase:
             try:
                 scenario = load_database(scenario)
             except KeyError:
+                print("KeyError")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:
+                print("FileNotFoundError")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             _prepare_database(
@@ -1126,6 +1130,7 @@ class NewDatabase:
 
             end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1190,10 +1195,16 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            Export(scenario, filepath[s], self.version).export_db_to_matrices()
+            Export(
+                scenario=scenario,
+                filepath=filepath[s],
+                version=self.version,
+                system_model=self.system_model,
+            ).export_db_to_matrices()
 
-            end_of_process(scenario)
+            # end_of_process(scenario)
 
+        # delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1229,7 +1240,12 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            export = Export(scenario, filepath, self.version)
+            export = Export(
+                scenario=scenario,
+                filepath=filepath,
+                version=self.version,
+                system_model=self.system_model,
+            )
             export.export_db_to_simapro()
 
             if len(export.unmatched_category_flows) > 0:
@@ -1237,6 +1253,7 @@ class NewDatabase:
 
             end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1272,12 +1289,16 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            Export(scenario, filepath, self.version).export_db_to_simapro(
-                olca_compartments=True
-            )
+            Export(
+                scenario=scenario,
+                filepath=filepath,
+                version=self.version,
+                system_model=self.system_model,
+            ).export_db_to_simapro(olca_compartments=True)
 
             end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs

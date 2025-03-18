@@ -91,6 +91,8 @@ class PathwaysDataPackage:
             energy.import_heating_inventories()
             scenario["database"] = energy.database
 
+            dump_database(scenario)
+
         self.export_datapackage(
             name=name,
             contributors=contributors,
@@ -101,6 +103,10 @@ class PathwaysDataPackage:
         name: str,
         contributors: list = None,
     ):
+
+        for scenario in self.datapackage.scenarios:
+            load_database(scenario)
+            print("database" in scenario)
 
         # first, delete the content of the "pathways" folder
         shutil.rmtree(Path.cwd() / "pathways", ignore_errors=True)

@@ -17,7 +17,7 @@ source:
 
 build:
   noarch: python
-  script: python -m pip install --no-deps --ignore-installed ".[{{ bw }}]"
+  script: python -m pip install --no-deps --ignore-installed .
   number: 0
 
 
