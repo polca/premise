@@ -145,7 +145,14 @@ all_data = pd.concat(
     [df.assign(file_name=name) for name, df in dfs.items()], ignore_index=True
 )
 # rename some columns
-all_data.rename(columns={"Key": "PREMISE variable", "Variable": "IAM variable", "file_name": "Sector"}, inplace=True)
+all_data.rename(
+    columns={
+        "Key": "PREMISE variable",
+        "Variable": "IAM variable",
+        "file_name": "Sector",
+    },
+    inplace=True,
+)
 
 excel_file = "mapping_overview_one_tab.xlsx"
 with pd.ExcelWriter(excel_file, engine="xlsxwriter") as writer:
@@ -209,4 +216,3 @@ with pd.ExcelWriter(refined_output_path_v2) as writer:
     for sheet, pivot_df in refined_pivot_tables_v2.items():
         if not pivot_df.empty:
             pivot_df.to_excel(writer, sheet_name=sheet)
-
