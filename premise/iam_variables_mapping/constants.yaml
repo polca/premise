@@ -17,6 +17,7 @@ SUPPORTED_MODELS:
   - message
   - tiam-ucl
   - gcam
+  - witch
 
 SUPPORTED_PATHWAYS:
   - SSP2-Base
@@ -173,6 +174,26 @@ LIST_GCAM_REGIONS:
   - USA
   - World
 
+LIST_WITCH_REGIONS:
+  - usa
+  - te
+  - ssa
+  - southafrica
+  - seasia
+  - oceania
+  - mexico
+  - mena
+  - laca
+  - jpnkor
+  - indonesia
+  - india
+  - europe
+  - china
+  - canada
+  - brazil
+  - sasia
+  - World
+
 
 PREFERRED_IAM_ORDER:
   - NEU
@@ -185,6 +206,8 @@ PREFERRED_IAM_ORDER:
   - EUR
   - SSA
   - LAM
+  - brazil
+  - mexico
 
 BLACKLIST:
   - ME
