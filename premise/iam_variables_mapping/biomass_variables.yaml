@@ -10,6 +10,7 @@ biomass crops - purpose grown:
     remind-eu: SE|Electricity|Biomass|Energy Crops
     tiam-ucl: Primary Energy|Biomass|Energy Crops
     gcam: Production|Energy|Biomass|Energy Crops
+    witch: Agricultural Production|Energy Crops
   ecoinvent_aliases:
     fltr:
       name: market for wood chips
@@ -32,6 +33,7 @@ biomass - residual:
     remind-eu: SE|Electricity|Biomass|Residues
     tiam-ucl: Primary Energy|Biomass|Residues
     gcam: Production|Energy|Biomass|Residues
+    witch: Agricultural Production|Energy|Crops|2nd generation
   ecoinvent_aliases:
     fltr:
       name: supply of forest residue

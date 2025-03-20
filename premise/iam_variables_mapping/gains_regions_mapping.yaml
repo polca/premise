@@ -7,6 +7,7 @@ AFRI_EAST:
   image: EAF
   tiam-ucl: AFR
   gcam: "South Africa"
+  witch: "mena"
 AFRI_NORT:
   message: AFR
   remind: MEA
@@ -14,6 +15,7 @@ AFRI_NORT:
   image: NAF
   tiam-ucl: AFR
   gcam: "South Africa"
+  witch: "mena"
 AFRI_WEST:
   message: AFR
   remind: SSA
@@ -21,6 +23,7 @@ AFRI_WEST:
   image: WAF
   tiam-ucl: AFR
   gcam: "South Africa"
+  witch: "mena"
 ASIA_STAN:
   message: PAS
   remind: OAS
@@ -28,6 +31,7 @@ ASIA_STAN:
   image: STAN
   tiam-ucl: ODA
   gcam: "Southeast Asia"
+  witch: "te"
 BRAZ_WHOL:
   message: LAM
   remind: LAM
@@ -35,6 +39,7 @@ BRAZ_WHOL:
   image: BRA
   tiam-ucl: CSA
   gcam: Brazil
+  witch: brazil
 CANA_WHOL:
   message: NAM
   remind: CAZ
@@ -42,6 +47,7 @@ CANA_WHOL:
   image: CAN
   tiam-ucl: CAN
   gcam: Canada
+  witch: canada
 CEAM_REST:
   message: LAM
   remind: LAM
@@ -49,6 +55,7 @@ CEAM_REST:
   image: RCAM
   tiam-ucl: CSA
   gcam: "Central America and Caribbean"
+  witch: laca
 CENT_EURO:
   message: EEU
   remind: EUR
@@ -56,6 +63,7 @@ CENT_EURO:
   image: CEU
   tiam-ucl: EEU
   gcam: EU-15
+  witch: "europe"
 CHIN_PLUS:
   message: CHN
   remind: CHA
@@ -63,6 +71,7 @@ CHIN_PLUS:
   image: CHN
   tiam-ucl: CHI
   gcam: China
+  witch: china
 INDI_WHOL:
   message: SAS
   remind: IND
@@ -70,6 +79,7 @@ INDI_WHOL:
   image: INDIA
   tiam-ucl: CHI
   gcam: India
+  witch: india
 INDO_PLUS:
   message: PAS
   remind: OAS
@@ -77,6 +87,7 @@ INDO_PLUS:
   image: INDO
   tiam-ucl: ODA
   gcam: Indonesia
+  witch: indonesia
 JAPA_WHOL:
   message: PAO
   remind: JPN
@@ -84,6 +95,7 @@ JAPA_WHOL:
   image: JAP
   tiam-ucl: JAP
   gcam: Japan
+  witch: jpnkor
 KORE_AALL:
   message: PAS
   remind: OAS
@@ -91,6 +103,7 @@ KORE_AALL:
   image: KOR
   tiam-ucl: SKO
   gcam: "South Korea"
+  witch: jpnkor
 LAME_REST:
   message: LAM
   remind: LAM
@@ -98,6 +111,7 @@ LAME_REST:
   image: RSAM
   tiam-ucl: CSA
   gcam: "South America_Southern"
+  witch: laca
 MEXI_WHOL:
   message: LAM
   remind: LAM
@@ -105,6 +119,7 @@ MEXI_WHOL:
   image: MEX
   tiam-ucl: MEX
   gcam: Mexico
+  witch: mexico
 MIDD_EAST:
   message: MEA
   remind: MEA
@@ -112,6 +127,7 @@ MIDD_EAST:
   image: ME
   tiam-ucl: MEA
   gcam: "Middle East"
+  witch: mena
 OCEA_WHOL:
   message: PAO
   remind: CAZ
@@ -119,6 +135,7 @@ OCEA_WHOL:
   image: OCE
   tiam-ucl: AUS
   gcam: Australia_NZ
+  witch: oceania
 RUSS_PLUS:
   message: FSU
   remind: REF
@@ -126,6 +143,7 @@ RUSS_PLUS:
   image: RUS
   tiam-ucl: FSU
   gcam: Russia
+  witch: te
 SAFR_WHOL:
   message: AFR
   remind: SSA
@@ -133,6 +151,7 @@ SAFR_WHOL:
   image: SAF
   tiam-ucl: AFR
   gcam: "South Africa"
+  witch: southafrica
 SOEA_ASIA:
   message: PAS
   remind: OAS
@@ -140,6 +159,7 @@ SOEA_ASIA:
   image: SEAS
   tiam-ucl: ODA
   gcam: "Southeast Asia"
+  witch: seasia
 SOUA_REST:
   message: SAS
   remind: OAS
@@ -147,6 +167,7 @@ SOUA_REST:
   image: RSAS
   tiam-ucl: ODA
   gcam: "Southeast Asia"
+  witch: seasia
 TURK_WHOL:
   message: WEU
   remind: MEA
@@ -154,6 +175,7 @@ TURK_WHOL:
   image: TUR
   tiam-ucl: MEA
   gcam: "Middle East"
+  witch: mena
 UKRA_PLUS:
   message: FSU
   remind: REF
@@ -161,6 +183,7 @@ UKRA_PLUS:
   image: UKR
   tiam-ucl: FSU
   gcam: EU-15
+  witch: te
 USAM_WHOL:
   message: NAM
   remind: USA
@@ -168,6 +191,7 @@ USAM_WHOL:
   image: USA
   tiam-ucl: USA
   gcam: USA
+  witch: usa
 WEST_EURO:
   message: WEU
   remind: NEU
@@ -175,3 +199,4 @@ WEST_EURO:
   image: WEU
   tiam-ucl: WEU
   gcam: EU-15
+  witch: europe
