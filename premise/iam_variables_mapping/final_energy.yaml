@@ -1,4 +1,4 @@
-Buildings - Heating and other - Electricity:
+Buildings - Heating and other - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -6,7 +6,7 @@ Buildings - Heating and other - Electricity:
   iam_aliases:
     remind: FE|Buildings|+|Electricity
 
-Buildings - Heating and other - Hydrogen:
+Buildings - Heating and other - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen burned, in residential boiler
@@ -30,7 +30,7 @@ Buildings - Heating and other - Solids:
   iam_aliases:
     remind: FE|Buildings|+|Solids
 
-Buildings - Heating and other - Biogas:
+Buildings - Heating and other - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in residential natural gas boiler <100kW
@@ -38,7 +38,7 @@ Buildings - Heating and other - Biogas:
   iam_aliases:
     remind: FE|Buildings|Gases|+|Biomass
 
-Buildings - Heating and other - Natural Gas:
+Buildings - Heating and other - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in residential natural gas boiler <100kW
@@ -46,7 +46,7 @@ Buildings - Heating and other - Natural Gas:
   iam_aliases:
     remind: FE|Buildings|Gases|Fossil|+|Natural Gas
 
-Buildings - Heating and other - Syngas hydrogen:
+Buildings - Heating and other - SNG:
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in residential natural gas boiler <100kW
@@ -94,7 +94,7 @@ Buildings - Heating - Gases:
   iam_aliases:
     remind: FE|Buildings|Heating|Gases
 
-Buildings - Heating - Hydrogen:
+Buildings - Heating - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen burned, in residential boiler
@@ -118,7 +118,7 @@ Buildings - Heating - Solids:
   iam_aliases:
     remind: FE|Buildings|Heating|Solids
 
-Buildings - Heating and other - Liquid biomass:
+Buildings - Heating and other - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -142,7 +142,7 @@ Buildings - Heating and other - Liquid coal:
   iam_aliases:
     remind: FE|Buildings|Liquids|Fossil|+|Coal
 
-Buildings - Heating and other - Liquid gas:
+Buildings - Heating and other - LPG:
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -190,7 +190,7 @@ Buildings - Heating and other - Solid biomass traditional:
   iam_aliases:
     remind: FE|Buildings|Solids|Biomass|+|Traditional
 
-Buildings - other - Electricity:
+Buildings - other - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -198,7 +198,7 @@ Buildings - other - Electricity:
   iam_aliases:
     remind: FE|Buildings|non-Heating|Electricity|Conventional
 
-CDR - DAC - Electricity:
+CDR - DAC - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -222,7 +222,7 @@ CDR - DAC - Heat:
   iam_aliases:
     remind: FE|CDR|DAC|+|Heat
 
-CDR - DAC - Hydrogen:
+CDR - DAC - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -238,7 +238,7 @@ CDR - Enhanced Weathering - Diesel:
   iam_aliases:
     remind: FE|CDR|EW|+|Diesel
 
-CDR - Enhanced Weathering - Electricity:
+CDR - Enhanced Weathering - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -254,7 +254,7 @@ CDR - OAE, electric calciner - Diesel:
   iam_aliases:
     remind: FE|CDR|OAE, electric calciner|+|Diesel
 
-CDR - OAE, electric calciner - Electricity:
+CDR - OAE, electric calciner - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -262,7 +262,7 @@ CDR - OAE, electric calciner - Electricity:
   iam_aliases:
     remind: FE|CDR|OAE, electric calciner|+|Electricity
 
-CDR - OAE, electric calciner - Hydrogen:
+CDR - OAE, electric calciner - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -278,7 +278,7 @@ CDR - OAE, traditional calciner - Diesel:
   iam_aliases:
     remind: FE|CDR|OAE, traditional calciner|+|Diesel
 
-CDR - OAE, traditional calciner - Electricity:
+CDR - OAE, traditional calciner - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -294,7 +294,7 @@ CDR - OAE, traditional calciner - Gases:
   iam_aliases:
     remind: FE|CDR|OAE, traditional calciner|+|Gases
 
-Industry - Cement - Electricity:
+Industry - Cement - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -302,7 +302,7 @@ Industry - Cement - Electricity:
   iam_aliases:
     remind: FE|Industry|Cement|+|Electricity
 
-Industry - Cement - Hydrogen:
+Industry - Cement - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -310,7 +310,7 @@ Industry - Cement - Hydrogen:
   iam_aliases:
     remind: FE|Industry|Cement|+|Hydrogen
 
-Industry - Cement - Biogas:
+Industry - Cement - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in residential natural gas boiler <100kW
@@ -318,7 +318,7 @@ Industry - Cement - Biogas:
   iam_aliases:
     remind: FE|Industry|Cement|Gases|+|Biomass
 
-Industry - Cement - Natural Gas:
+Industry - Cement - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -326,7 +326,7 @@ Industry - Cement - Natural Gas:
   iam_aliases:
     remind: FE|Industry|Cement|Gases|+|Fossil
 
-Industry - Cement - Gas hydrogen:
+Industry - Cement - SNG:
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in gas turbine
@@ -334,7 +334,7 @@ Industry - Cement - Gas hydrogen:
   iam_aliases:
     remind: FE|Industry|Cement|Gases|+|Hydrogen
 
-Industry - Cement - Liquid biomass:
+Industry - Cement - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -350,7 +350,7 @@ Industry - Cement - Oil:
   iam_aliases:
     remind: FE|Industry|Cement|Liquids|+|Fossil
 
-Industry - Cement - Liquid hydrogen:
+Industry - Cement - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
@@ -374,7 +374,7 @@ Industry - Cement - Solid coal:
   iam_aliases:
     remind: FE|Industry|Cement|Solids|+|Fossil
 
-Industry - Chemicals - Electricity:
+Industry - Chemicals - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -383,7 +383,7 @@ Industry - Chemicals - Electricity:
     remind: FE|Industry|Chemicals|+|Electricity
 
 
-Industry - Chemicals - Hydrogen:
+Industry - Chemicals - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -391,7 +391,7 @@ Industry - Chemicals - Hydrogen:
   iam_aliases:
     remind: FE|Industry|Chemicals|+|Hydrogen
 
-Industry - Chemicals - Electricity, high temperature:
+Industry - Chemicals - Elec, high temp:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -399,7 +399,7 @@ Industry - Chemicals - Electricity, high temperature:
   iam_aliases:
     remind: FE|Industry|Chemicals|Electricity|+|High-temperature heat
 
-Industry - Chemicals - Electricity, low temperature:
+Industry - Chemicals - Elec, low temp:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -407,7 +407,7 @@ Industry - Chemicals - Electricity, low temperature:
   iam_aliases:
     remind: FE|Industry|Chemicals|Electricity|+|Mechanical work and low-temperature heat
 
-Industry - Chemicals - Biogas:
+Industry - Chemicals - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in residential natural gas boiler <100kW
@@ -415,7 +415,7 @@ Industry - Chemicals - Biogas:
   iam_aliases:
     remind: FE|Industry|Chemicals|Gases|+|Biomass
 
-Industry - Chemicals - Natural Gas:
+Industry - Chemicals - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -423,7 +423,7 @@ Industry - Chemicals - Natural Gas:
   iam_aliases:
     remind: FE|Industry|Chemicals|Gases|+|Fossil
 
-Industry - Chemicals - Gas hydrogen:
+Industry - Chemicals - SNG:
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in gas turbine
@@ -431,7 +431,7 @@ Industry - Chemicals - Gas hydrogen:
   iam_aliases:
     remind: FE|Industry|Chemicals|Gases|+|Hydrogen
 
-Industry - Chemicals - Liquid biomass:
+Industry - Chemicals - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -447,7 +447,7 @@ Industry - Chemicals - Liquid fossil:
   iam_aliases:
     remind: FE|Industry|Chemicals|Liquids|+|Fossil
 
-Industry - Chemicals - Liquid hydrogen:
+Industry - Chemicals - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
@@ -471,7 +471,7 @@ Industry - Chemicals - Solid coal:
   iam_aliases:
     remind: FE|Industry|Chemicals|Solids|+|Fossil
 
-Industry - Other Industry - Electricity:
+Industry - Other - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -479,8 +479,7 @@ Industry - Other Industry - Electricity:
   iam_aliases:
     remind: FE|Industry|Other Industry|+|Electricity
 
-
-Industry - Other Industry - Heat:
+Industry - Other - Heat:
   ecoinvent_aliases:
     fltr:
       name: market for heat, district or industrial, natural gas
@@ -488,7 +487,7 @@ Industry - Other Industry - Heat:
   iam_aliases:
     remind: FE|Industry|Other Industry|+|Heat
 
-Industry - Other Industry - Hydrogen:
+Industry - Other - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -496,7 +495,7 @@ Industry - Other Industry - Hydrogen:
   iam_aliases:
     remind: FE|Industry|Other Industry|+|Hydrogen
 
-Industry - Other Industry - Electricity, high temperature:
+Industry - Other - Elec, high temp:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -504,7 +503,7 @@ Industry - Other Industry - Electricity, high temperature:
   iam_aliases:
     remind: FE|Industry|Other Industry|Electricity|+|High-temperature heat
 
-Industry - Other Industry - Electricity, low temperature:
+Industry - Other - Elec, low temp:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -513,7 +512,7 @@ Industry - Other Industry - Electricity, low temperature:
     remind: FE|Industry|Other Industry|Electricity|+|Mechanical work and low-temperature
       heat
 
-Industry - Other Industry - Biogas:
+Industry - Other - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: heat production, biomethane, at boiler condensing modulating <100kW
@@ -521,7 +520,7 @@ Industry - Other Industry - Biogas:
   iam_aliases:
     remind: FE|Industry|Other Industry|Gases|+|Biomass
 
-Industry - Other Industry - Natural Gas:
+Industry - Other - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -529,7 +528,7 @@ Industry - Other Industry - Natural Gas:
   iam_aliases:
     remind: FE|Industry|Other Industry|Gases|+|Fossil
 
-Industry - Other Industry - Gas hydrogen:
+Industry - Other - SNG:
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in gas turbine
@@ -537,7 +536,7 @@ Industry - Other Industry - Gas hydrogen:
   iam_aliases:
     remind: FE|Industry|Other Industry|Gases|+|Hydrogen
 
-Industry - Other Industry - Liquid biomass:
+Industry - Other - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -545,7 +544,7 @@ Industry - Other Industry - Liquid biomass:
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Biomass
 
-Industry - Other Industry - Liquid fossil:
+Industry - Other - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in industrial furnace 1MW
@@ -553,7 +552,7 @@ Industry - Other Industry - Liquid fossil:
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Fossil
 
-Industry - Other Industry - Liquid hydrogen:
+Industry - Other - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
@@ -561,7 +560,7 @@ Industry - Other Industry - Liquid hydrogen:
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Hydrogen
 
-Industry - Other Industry - Solid Biomass:
+Industry - Other - Solid Biomass:
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
@@ -569,7 +568,7 @@ Industry - Other Industry - Solid Biomass:
   iam_aliases:
     remind: FE|Industry|Other Industry|Solids|+|Biomass
 
-Industry - Other Industry - Solid coal:
+Industry - Other - Solid coal:
   ecoinvent_aliases:
     fltr:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
@@ -577,7 +576,7 @@ Industry - Other Industry - Solid coal:
   iam_aliases:
     remind: FE|Industry|Other Industry|Solids|+|Fossil
 
-Industry - Steel - Electricity:
+Industry - Steel - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -585,7 +584,7 @@ Industry - Steel - Electricity:
   iam_aliases:
     remind: FE|Industry|Steel|+|Electricity
 
-Industry - Steel - Hydrogen:
+Industry - Steel - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -593,7 +592,7 @@ Industry - Steel - Hydrogen:
   iam_aliases:
     remind: FE|Industry|Steel|+|Hydrogen
 
-Industry - Steel - Biogas:
+Industry - Steel - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: heat production, biomethane, at boiler condensing modulating <100kW
@@ -601,7 +600,7 @@ Industry - Steel - Biogas:
   iam_aliases:
     remind: FE|Industry|Steel|Gases|+|Biomass
 
-Industry - Steel - Natural Gas:
+Industry - Steel - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
@@ -609,7 +608,7 @@ Industry - Steel - Natural Gas:
   iam_aliases:
     remind: FE|Industry|Steel|Gases|+|Fossil
 
-Industry - Steel - Gas hydrogen:
+Industry - Steel - SNG:
   ecoinvent_aliases:
     fltr:
       name: natural gas, synthetic, burned in gas turbine
@@ -617,7 +616,7 @@ Industry - Steel - Gas hydrogen:
   iam_aliases:
     remind: FE|Industry|Steel|Gases|+|Hydrogen
 
-Industry - Steel - Liquid biomass:
+Industry - Steel - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -633,7 +632,7 @@ Industry - Steel - Liquid fossil:
   iam_aliases:
     remind: FE|Industry|Steel|Liquids|+|Fossil
 
-Industry - Steel - Liquid hydrogen:
+Industry - Steel - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
@@ -641,7 +640,7 @@ Industry - Steel - Liquid hydrogen:
   iam_aliases:
     remind: FE|Industry|Steel|Liquids|+|Hydrogen
 
-Industry - Steel, primary - Electricity:
+Industry - Steel, primary - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -649,7 +648,7 @@ Industry - Steel, primary - Electricity:
   iam_aliases:
     remind: FE|Industry|Steel|Primary|Electricity
 
-Industry - Steel, secondary - Electricity:
+Industry - Steel, secondary - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -673,7 +672,7 @@ Industry - Steel - Solid coal:
   iam_aliases:
     remind: FE|Industry|Steel|Solids|+|Fossil
 
-Transport - Freight|Domestic Shipping|Liquids - Liquid biomass:
+Transport - Freight - Domestic Shipping - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in container ship
@@ -681,7 +680,7 @@ Transport - Freight|Domestic Shipping|Liquids - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Freight|Domestic Shipping|Liquids|Biomass
 
-Transport - Freight|Domestic Shipping|Liquids - Liquid fossil:
+Transport - Freight - Domestic Shipping - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: heavy fuel oil, burned in container ship
@@ -689,7 +688,7 @@ Transport - Freight|Domestic Shipping|Liquids - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Freight|Domestic Shipping|Liquids|Fossil
 
-Transport - Freight|Domestic Shipping|Liquids - Liquid hydrogen:
+Transport - Freight - Domestic Shipping - LH2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -697,7 +696,7 @@ Transport - Freight|Domestic Shipping|Liquids - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Domestic Shipping|Liquids|Hydrogen
 
-Transport - Freight|International Shipping - Liquid biomass:
+Transport - Freight - Int. Shipping - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in container ship
@@ -705,7 +704,7 @@ Transport - Freight|International Shipping - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
 
-Transport - Freight|International Shipping - Liquid fossil:
+Transport - Freight - Int. Shipping - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: heavy fuel oil, burned in container ship
@@ -713,7 +712,7 @@ Transport - Freight|International Shipping - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
 
-Transport - Freight|International Shipping - Liquid hydrogen:
+Transport - Freight - Int. Shipping - LH2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -721,7 +720,7 @@ Transport - Freight|International Shipping - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
 
-Transport - Freight|Rail - Electricity:
+Transport - Freight - Rail - Elec:
   ecoinvent_aliases:
     fltr:
       name: market group for electricity, low voltage
@@ -729,7 +728,7 @@ Transport - Freight|Rail - Electricity:
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Electricity
 
-Transport - Freight|Rail - Liquid biomass:
+Transport - Freight - Rail - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger train
@@ -737,7 +736,7 @@ Transport - Freight|Rail - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Biomass
 
-Transport - Freight|Rail - Liquid fossil:
+Transport - Freight - Rail - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger train
@@ -745,7 +744,7 @@ Transport - Freight|Rail - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Fossil
 
-Transport - Freight|Rail - Liquid hydrogen:
+Transport - Freight - Rail - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger train
@@ -753,7 +752,7 @@ Transport - Freight|Rail - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Hydrogen
 
-Transport - Freight|Truck(18t) - Electricity:
+Transport - Freight - Truck(18t) - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in heavy duty vehicle
@@ -762,7 +761,7 @@ Transport - Freight|Truck(18t) - Electricity:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
 
 
-Transport - Freight|Truck(18t) - Biogas:
+Transport - Freight - Truck(18t) - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -770,7 +769,7 @@ Transport - Freight|Truck(18t) - Biogas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Biomass
 
-Transport - Freight|Truck(18t) - Natural Gas:
+Transport - Freight - Truck(18t) - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -778,7 +777,7 @@ Transport - Freight|Truck(18t) - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Fossil
 
-Transport - Freight|Truck(18t) - Gas hydrogen:
+Transport - Freight - Truck(18t) - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -786,7 +785,7 @@ Transport - Freight|Truck(18t) - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Hydrogen
 
-Transport - Freight|Truck(18t) - Hydrogen:
+Transport - Freight - Truck(18t) - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in heavy duty vehicle
@@ -795,7 +794,7 @@ Transport - Freight|Truck(18t) - Hydrogen:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
 
 
-Transport - Freight|Truck(18t) - Liquid biomass:
+Transport - Freight - Truck(18t) - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -803,7 +802,7 @@ Transport - Freight|Truck(18t) - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass
 
-Transport - Freight|Truck(18t) - Liquid fossil:
+Transport - Freight - Truck(18t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
@@ -811,7 +810,7 @@ Transport - Freight|Truck(18t) - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Fossil
 
-Transport - Freight|Truck(18t) - Liquid hydrogen:
+Transport - Freight - Truck(18t) - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -819,7 +818,7 @@ Transport - Freight|Truck(18t) - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Hydrogen
 
-Transport - Freight|Truck(26t) - Electricity:
+Transport - Freight - Truck(26t) - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in heavy-duty vehicle
@@ -827,7 +826,7 @@ Transport - Freight|Truck(26t) - Electricity:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Electricity
 
-Transport - Freight|Truck(26t) - Biogas:
+Transport - Freight - Truck(26t) - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -835,7 +834,7 @@ Transport - Freight|Truck(26t) - Biogas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Biomass
 
-Transport - Freight|Truck(26t) - Natural Gas:
+Transport - Freight - Truck(26t) - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -843,7 +842,7 @@ Transport - Freight|Truck(26t) - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Fossil
 
-Transport - Freight|Truck(26t) - Gas hydrogen:
+Transport - Freight - Truck(26t) - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -851,7 +850,7 @@ Transport - Freight|Truck(26t) - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Hydrogen
 
-Transport - Freight|Truck(26t) - Hydrogen:
+Transport - Freight - Truck(26t) - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in heavy duty vehicle
@@ -859,7 +858,7 @@ Transport - Freight|Truck(26t) - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Hydrogen
 
-Transport - Freight|Truck(26t) - Liquid biomass:
+Transport - Freight - Truck(26t) - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -867,7 +866,7 @@ Transport - Freight|Truck(26t) - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Biomass
 
-Transport - Freight|Truck(26t) - Liquid fossil:
+Transport - Freight - Truck(26t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
@@ -875,7 +874,7 @@ Transport - Freight|Truck(26t) - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Fossil
 
-Transport - Freight|Truck(26t) - Liquid hydrogen:
+Transport - Freight - Truck(26t) - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -883,7 +882,7 @@ Transport - Freight|Truck(26t) - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Hydrogen
 
-Transport - Freight|Truck(40t) - Electricity:
+Transport - Freight - Truck(40t) - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in heavy-duty vehicle
@@ -891,7 +890,7 @@ Transport - Freight|Truck(40t) - Electricity:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
 
-Transport - Freight|Truck(40t) - Biogas:
+Transport - Freight - Truck(40t) - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -899,7 +898,7 @@ Transport - Freight|Truck(40t) - Biogas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Biomass
 
-Transport - Freight|Truck(40t) - Natural Gas:
+Transport - Freight - Truck(40t) - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -907,7 +906,7 @@ Transport - Freight|Truck(40t) - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Fossil
 
-Transport - Freight|Truck(40t) - Gas hydrogen:
+Transport - Freight - Truck(40t) - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -915,7 +914,7 @@ Transport - Freight|Truck(40t) - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Hydrogen
 
-Transport - Freight|Truck(40t) - Hydrogen:
+Transport - Freight - Truck(40t) - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in heavy duty vehicle
@@ -923,7 +922,7 @@ Transport - Freight|Truck(40t) - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Hydrogen
 
-Transport - Freight|Truck(40t) - Liquid biomass:
+Transport - Freight - Truck(40t) - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -931,7 +930,7 @@ Transport - Freight|Truck(40t) - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Biomass
 
-Transport - Freight|Truck(40t) - Liquid fossil:
+Transport - Freight - Truck(40t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
@@ -939,7 +938,7 @@ Transport - Freight|Truck(40t) - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Fossil
 
-Transport - Freight|Truck(40t) - Liquid hydrogen:
+Transport - Freight - Truck(40t) - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -947,7 +946,7 @@ Transport - Freight|Truck(40t) - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Hydrogen
 
-Transport - Freight|Truck(0-3_5t) - Electricity:
+Transport - Freight - Truck(0-3_5t) - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -955,7 +954,7 @@ Transport - Freight|Truck(0-3_5t) - Electricity:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
 
-Transport - Freight|Truck(0-3_5t) - Biogas:
+Transport - Freight - Truck(0-3_5t) - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -963,7 +962,7 @@ Transport - Freight|Truck(0-3_5t) - Biogas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Biomass
 
-Transport - Freight|Truck(0-3_5t) - Natural Gas:
+Transport - Freight - Truck(0-3_5t) - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -971,7 +970,7 @@ Transport - Freight|Truck(0-3_5t) - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Fossil
 
-Transport - Freight|Truck(0-3_5t) - Gas hydrogen:
+Transport - Freight - Truck(0-3_5t) - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -979,7 +978,7 @@ Transport - Freight|Truck(0-3_5t) - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Hydrogen
 
-Transport - Freight|Truck(0-3_5t) - Hydrogen:
+Transport - Freight - Truck(0-3_5t) - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in heavy duty vehicle
@@ -987,7 +986,7 @@ Transport - Freight|Truck(0-3_5t) - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
 
-Transport - Freight|Truck(0-3_5t) - Liquid biomass:
+Transport - Freight - Truck(0-3_5t) - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -995,7 +994,7 @@ Transport - Freight|Truck(0-3_5t) - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass
 
-Transport - Freight|Truck(0-3_5t) - Liquid fossil:
+Transport - Freight - Truck(0-3_5t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -1003,7 +1002,7 @@ Transport - Freight|Truck(0-3_5t) - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Fossil
 
-Transport - Freight|Truck(0-3_5t) - Liquid hydrogen:
+Transport - Freight - Truck(0-3_5t) - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -1011,7 +1010,7 @@ Transport - Freight|Truck(0-3_5t) - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Hydrogen
 
-Transport - Freight|Truck(7_5t) - Electricity:
+Transport - Freight - Truck(7_5t) - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in heavy-duty vehicle
@@ -1019,7 +1018,7 @@ Transport - Freight|Truck(7_5t) - Electricity:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
 
-Transport - Freight|Truck(7_5t) - Biogas:
+Transport - Freight - Truck(7_5t) - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in heavy duty vehicle
@@ -1027,7 +1026,7 @@ Transport - Freight|Truck(7_5t) - Biogas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Biomass
 
-Transport - Freight|Truck(7_5t) - Natural Gas:
+Transport - Freight - Truck(7_5t) - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in heavy duty vehicle
@@ -1035,7 +1034,7 @@ Transport - Freight|Truck(7_5t) - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Fossil
 
-Transport - Freight|Truck(7_5t) - Gas hydrogen:
+Transport - Freight - Truck(7_5t) - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in heavy duty vehicle
@@ -1043,7 +1042,7 @@ Transport - Freight|Truck(7_5t) - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Hydrogen
 
-Transport - Freight|Truck(7_5t) - Hydrogen:
+Transport - Freight - Truck(7_5t) - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in heavy duty vehicle
@@ -1051,7 +1050,7 @@ Transport - Freight|Truck(7_5t) - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
 
-Transport - Freight|Truck(7_5t) - Liquid biomass:
+Transport - Freight - Truck(7_5t) - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in heavy-duty vehicle
@@ -1059,7 +1058,7 @@ Transport - Freight|Truck(7_5t) - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Biomass
 
-Transport - Freight|Truck(7_5t) - Liquid fossil:
+Transport - Freight - Truck(7_5t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
@@ -1067,7 +1066,7 @@ Transport - Freight|Truck(7_5t) - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Fossil
 
-Transport - Freight|Truck(7_5t) - Liquid hydrogen:
+Transport - Freight - Truck(7_5t) - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in heavy duty vehicle
@@ -1075,7 +1074,7 @@ Transport - Freight|Truck(7_5t) - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Hydrogen
 
-Transport - Pass|Aviation - Hydrogen:
+Transport - Pass - Aviation - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in heavy duty vehicle
@@ -1083,7 +1082,7 @@ Transport - Pass|Aviation - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Aviation|Hydrogen
 
-Transport - Pass|Aviation - Liquid biomass:
+Transport - Pass - Aviation - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: kerosene from biomass, burned in aircraft
@@ -1091,7 +1090,7 @@ Transport - Pass|Aviation - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Aviation|Liquids||Biomass
 
-Transport - Pass|Aviation - Liquid fossil:
+Transport - Pass - Aviation - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: kerosene, burned in aircraft
@@ -1099,7 +1098,7 @@ Transport - Pass|Aviation - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Aviation|Liquids||Fossil
 
-Transport - Pass|Aviation - Liquid hydrogen:
+Transport - Pass - Aviation - LH2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1107,7 +1106,7 @@ Transport - Pass|Aviation - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Aviation|Liquids||Hydrogen
 
-Transport - Pass|Domestic Aviation - Hydrogen:
+Transport - Pass - Domestic Aviation - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
@@ -1115,7 +1114,7 @@ Transport - Pass|Domestic Aviation - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Hydrogen
 
-Transport - Pass|Domestic Aviation - Liquid biomass:
+Transport - Pass - Domestic Aviation - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: kerosene from biomass, burned in aircraft
@@ -1123,7 +1122,7 @@ Transport - Pass|Domestic Aviation - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass
 
-Transport - Pass|Domestic Aviation - Liquid fossil:
+Transport - Pass - Domestic Aviation - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: kerosene, burned in aircraft
@@ -1131,7 +1130,7 @@ Transport - Pass|Domestic Aviation - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Fossil
 
-Transport - Pass|Domestic Aviation - Liquid hydrogen:
+Transport - Pass - Domestic Aviation - LH2:
   ecoinvent_aliases:
     fltr:
       name: kerosene, synthetic, burned in aircraft
@@ -1139,7 +1138,7 @@ Transport - Pass|Domestic Aviation - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Hydrogen
 
-Transport - Pass|Rail - Electricity:
+Transport - Pass - Rail - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger train
@@ -1147,7 +1146,7 @@ Transport - Pass|Rail - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Electricity
 
-Transport - Pass|Rail|HSR - Electricity:
+Transport - Pass - Rail - high speed - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger train
@@ -1155,7 +1154,7 @@ Transport - Pass|Rail|HSR - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|HSR|Electricity
 
-Transport - Pass|Rail - Liquid biomass:
+Transport - Pass - Rail - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger train
@@ -1163,7 +1162,7 @@ Transport - Pass|Rail - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Liquids|Biomass
 
-Transport - Pass|Rail - Liquid fossil:
+Transport - Pass - Rail - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger train
@@ -1171,7 +1170,7 @@ Transport - Pass|Rail - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Liquids|Fossil
 
-Transport - Pass|Rail - Liquid hydrogen:
+Transport - Pass - Rail - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger train
@@ -1179,7 +1178,7 @@ Transport - Pass|Rail - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Liquids|Hydrogen
 
-Transport - Pass|Rail|non-HSR - Electricity:
+Transport - Pass - Rail|non-HSR - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger train
@@ -1187,7 +1186,7 @@ Transport - Pass|Rail|non-HSR - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|non-HSR|Electricity
 
-Transport - Pass|Rail|non-HSR - Liquid biomass:
+Transport - Pass - Rail|non-HSR - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger train
@@ -1195,7 +1194,7 @@ Transport - Pass|Rail|non-HSR - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|non-HSR|Liquids|Biomass
 
-Transport - Pass|Rail|non-HSR - Liquid fossil:
+Transport - Pass - Rail|non-HSR - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger train
@@ -1203,7 +1202,7 @@ Transport - Pass|Rail|non-HSR - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|non-HSR|Liquids|Fossil
 
-Transport - Pass|Rail|non-HSR - Liquid hydrogen:
+Transport - Pass - Rail|non-HSR - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger train
@@ -1211,7 +1210,7 @@ Transport - Pass|Rail|non-HSR - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|non-HSR|Liquids|Hydrogen
 
-Transport - Pass|Bus - Electricity:
+Transport - Pass - Bus - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in single deck coach or urban bus
@@ -1219,7 +1218,7 @@ Transport - Pass|Bus - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Electricity
 
-Transport - Pass|Bus - Biogas:
+Transport - Pass - Bus - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in single deck coach or urban bus
@@ -1227,7 +1226,7 @@ Transport - Pass|Bus - Biogas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Gases|Biomass
 
-Transport - Pass|Bus - Natural Gas:
+Transport - Pass - Bus - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in single deck coach or urban bus
@@ -1235,7 +1234,7 @@ Transport - Pass|Bus - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Gases|Fossil
 
-Transport - Pass|Bus - Gas hydrogen:
+Transport - Pass - Bus - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in single deck coach or urban bus
@@ -1243,7 +1242,7 @@ Transport - Pass|Bus - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Gases|Hydrogen
 
-Transport - Pass|Bus - Hydrogen:
+Transport - Pass - Bus - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, converted in 1kWe fuel cell
@@ -1251,7 +1250,7 @@ Transport - Pass|Bus - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Hydrogen
 
-Transport - Pass|Bus - Liquid biomass:
+Transport - Pass - Bus - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in single deck coach or urban bus
@@ -1259,7 +1258,7 @@ Transport - Pass|Bus - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Biomass
 
-Transport - Pass|Bus - Liquid fossil:
+Transport - Pass - Bus - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in single deck coach or urban bus
@@ -1267,7 +1266,7 @@ Transport - Pass|Bus - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Fossil
 
-Transport - Pass|Bus - Liquid hydrogen:
+Transport - Pass - Bus - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in single deck coach or urban bus
@@ -1275,7 +1274,7 @@ Transport - Pass|Bus - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Hydrogen
 
-Transport - Pass|Large Car and SUV - Electricity:
+Transport - Pass - Large Car and SUV - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -1283,7 +1282,7 @@ Transport - Pass|Large Car and SUV - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Electricity
 
-Transport - Pass|Large Car and SUV - Biogas:
+Transport - Pass - Large Car and SUV - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -1291,7 +1290,7 @@ Transport - Pass|Large Car and SUV - Biogas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Biomass
 
-Transport - Pass|Large Car and SUV - Natural Gas:
+Transport - Pass - Large Car and SUV - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -1299,7 +1298,7 @@ Transport - Pass|Large Car and SUV - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Fossil
 
-Transport - Pass|Large Car and SUV - Gas hydrogen:
+Transport - Pass - Large Car and SUV - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -1307,7 +1306,7 @@ Transport - Pass|Large Car and SUV - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Hydrogen
 
-Transport - Pass|Large Car and SUV - Hydrogen:
+Transport - Pass - Large Car and SUV - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in passenger car
@@ -1315,7 +1314,7 @@ Transport - Pass|Large Car and SUV - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hydrogen
 
-Transport - Pass|Large Car and SUV - Liquid biomass:
+Transport - Pass - Large Car and SUV - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -1323,7 +1322,7 @@ Transport - Pass|Large Car and SUV - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Biomass
 
-Transport - Pass|Large Car and SUV - Liquid fossil:
+Transport - Pass - Large Car and SUV - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -1331,7 +1330,7 @@ Transport - Pass|Large Car and SUV - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Fossil
 
-Transport - Pass|Large Car and SUV - Liquid hydrogen:
+Transport - Pass - Large Car and SUV - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -1339,7 +1338,7 @@ Transport - Pass|Large Car and SUV - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Hydrogen
 
-Transport - Pass|Large Car - Electricity:
+Transport - Pass - Large Car - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -1347,7 +1346,7 @@ Transport - Pass|Large Car - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Electricity
 
-Transport - Pass|Large Car - Biogas:
+Transport - Pass - Large Car - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -1355,7 +1354,7 @@ Transport - Pass|Large Car - Biogas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Biomass
 
-Transport - Pass|Large Car - Natural Gas:
+Transport - Pass - Large Car - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -1363,7 +1362,7 @@ Transport - Pass|Large Car - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Fossil
 
-Transport - Pass|Large Car - Gas hydrogen:
+Transport - Pass - Large Car - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -1371,7 +1370,7 @@ Transport - Pass|Large Car - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Hydrogen
 
-Transport - Pass|Large Car - Hydrogen:
+Transport - Pass - Large Car - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in passenger car
@@ -1379,7 +1378,7 @@ Transport - Pass|Large Car - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hydrogen
 
-Transport - Pass|Large Car - Liquid biomass:
+Transport - Pass - Large Car - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -1387,7 +1386,7 @@ Transport - Pass|Large Car - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Biomass
 
-Transport - Pass|Large Car - Liquid fossil:
+Transport - Pass - Large Car - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -1395,7 +1394,7 @@ Transport - Pass|Large Car - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Fossil
 
-Transport - Pass|Large Car - Liquid hydrogen:
+Transport - Pass - Large Car - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -1403,7 +1402,7 @@ Transport - Pass|Large Car - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Hydrogen
 
-Transport - Pass|Van - Electricity:
+Transport - Pass - Van - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -1411,7 +1410,7 @@ Transport - Pass|Van - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Electricity
 
-Transport - Pass|Van - Biogas:
+Transport - Pass - Van - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -1419,7 +1418,7 @@ Transport - Pass|Van - Biogas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Biomass
 
-Transport - Pass|Van - Natural Gas:
+Transport - Pass - Van - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -1427,7 +1426,7 @@ Transport - Pass|Van - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Fossil
 
-Transport - Pass|Van - Gas hydrogen:
+Transport - Pass - Van - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -1435,7 +1434,7 @@ Transport - Pass|Van - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Hydrogen
 
-Transport - Pass|Van - Hydrogen:
+Transport - Pass - Van - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in passenger car
@@ -1443,7 +1442,7 @@ Transport - Pass|Van - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hydrogen
 
-Transport - Pass|Van - Liquid biomass:
+Transport - Pass - Van - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -1451,7 +1450,7 @@ Transport - Pass|Van - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Biomass
 
-Transport - Pass|Van - Liquid fossil:
+Transport - Pass - Van - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -1459,7 +1458,7 @@ Transport - Pass|Van - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Fossil
 
-Transport - Pass|Van - Liquid hydrogen:
+Transport - Pass - Van - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -1467,7 +1466,7 @@ Transport - Pass|Van - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Hydrogen
 
-Transport - Pass|Compact Car - Electricity:
+Transport - Pass - Compact Car - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -1475,7 +1474,7 @@ Transport - Pass|Compact Car - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Electricity
 
-Transport - Pass|Compact Car - Biogas:
+Transport - Pass - Compact Car - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -1483,7 +1482,7 @@ Transport - Pass|Compact Car - Biogas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Biomass
 
-Transport - Pass|Compact Car - Natural Gas:
+Transport - Pass - Compact Car - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -1491,7 +1490,7 @@ Transport - Pass|Compact Car - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Fossil
 
-Transport - Pass|Compact Car - Gas hydrogen:
+Transport - Pass - Compact Car - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -1499,7 +1498,7 @@ Transport - Pass|Compact Car - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Hydrogen
 
-Transport - Pass|Compact Car - Hydrogen:
+Transport - Pass - Compact Car - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in passenger car
@@ -1507,7 +1506,7 @@ Transport - Pass|Compact Car - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Hydrogen
 
-Transport - Pass|Compact Car - Liquid biomass:
+Transport - Pass - Compact Car - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -1515,7 +1514,7 @@ Transport - Pass|Compact Car - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Biomass
 
-Transport - Pass|Compact Car - Liquid fossil:
+Transport - Pass - Compact Car - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -1523,7 +1522,7 @@ Transport - Pass|Compact Car - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Fossil
 
-Transport - Pass|Compact Car - Liquid hydrogen:
+Transport - Pass - Compact Car - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -1531,7 +1530,7 @@ Transport - Pass|Compact Car - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Hydrogen
 
-Transport - Pass|Midsize Car - Electricity:
+Transport - Pass - Midsize Car - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -1539,7 +1538,7 @@ Transport - Pass|Midsize Car - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Electricity
 
-Transport - Pass|Midsize Car - Biogas:
+Transport - Pass - Midsize Car - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -1547,7 +1546,7 @@ Transport - Pass|Midsize Car - Biogas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Biomass
 
-Transport - Pass|Midsize Car - Natural Gas:
+Transport - Pass - Midsize Car - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -1555,7 +1554,7 @@ Transport - Pass|Midsize Car - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Fossil
 
-Transport - Pass|Midsize Car - Gas hydrogen:
+Transport - Pass - Midsize Car - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -1563,7 +1562,7 @@ Transport - Pass|Midsize Car - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Hydrogen
 
-Transport - Pass|Midsize Car - Hydrogen:
+Transport - Pass - Midsize Car - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in passenger car
@@ -1571,7 +1570,7 @@ Transport - Pass|Midsize Car - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hydrogen
 
-Transport - Pass|Midsize Car - Liquid biomass:
+Transport - Pass - Midsize Car - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -1579,7 +1578,7 @@ Transport - Pass|Midsize Car - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass
 
-Transport - Pass|Midsize Car - Liquid fossil:
+Transport - Pass - Midsize Car - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -1587,7 +1586,7 @@ Transport - Pass|Midsize Car - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Fossil
 
-Transport - Pass|Midsize Car - Liquid hydrogen:
+Transport - Pass - Midsize Car - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -1595,7 +1594,7 @@ Transport - Pass|Midsize Car - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Hydrogen
 
-Transport - Pass|Mini Car - Electricity:
+Transport - Pass - Mini Car - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -1603,7 +1602,7 @@ Transport - Pass|Mini Car - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Electricity
 
-Transport - Pass|Mini Car - Biogas:
+Transport - Pass - Mini Car - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -1611,7 +1610,7 @@ Transport - Pass|Mini Car - Biogas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Biomass
 
-Transport - Pass|Mini Car - Natural Gas:
+Transport - Pass - Mini Car - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -1619,7 +1618,7 @@ Transport - Pass|Mini Car - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Fossil
 
-Transport - Pass|Mini Car - Gas hydrogen:
+Transport - Pass - Mini Car - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -1627,7 +1626,7 @@ Transport - Pass|Mini Car - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Hydrogen
 
-Transport - Pass|Mini Car - Hydrogen:
+Transport - Pass - Mini Car - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in passenger car
@@ -1635,7 +1634,7 @@ Transport - Pass|Mini Car - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hydrogen
 
-Transport - Pass|Mini Car - Liquid biomass:
+Transport - Pass - Mini Car - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -1643,7 +1642,7 @@ Transport - Pass|Mini Car - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Biomass
 
-Transport - Pass|Mini Car - Liquid fossil:
+Transport - Pass - Mini Car - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -1651,7 +1650,7 @@ Transport - Pass|Mini Car - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Fossil
 
-Transport - Pass|Mini Car - Liquid hydrogen:
+Transport - Pass - Mini Car - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -1659,7 +1658,7 @@ Transport - Pass|Mini Car - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Hydrogen
 
-Transport - Pass|Subcompact Car - Electricity:
+Transport - Pass - Subcompact Car - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in passenger car
@@ -1667,7 +1666,7 @@ Transport - Pass|Subcompact Car - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Electricity
 
-Transport - Pass|Subcompact Car - Biogas:
+Transport - Pass - Subcompact Car - Bio CH4:
   ecoinvent_aliases:
     fltr:
       name: biomethane, burned in passenger car
@@ -1675,7 +1674,7 @@ Transport - Pass|Subcompact Car - Biogas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Biomass
 
-Transport - Pass|Subcompact Car - Natural Gas:
+Transport - Pass - Subcompact Car - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, burned in passenger car
@@ -1683,7 +1682,7 @@ Transport - Pass|Subcompact Car - Natural Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Fossil
 
-Transport - Pass|Subcompact Car - Gas hydrogen:
+Transport - Pass - Subcompact Car - SNG:
   ecoinvent_aliases:
     fltr:
       name: compressed gas, synthetic, burned in passenger car
@@ -1691,7 +1690,7 @@ Transport - Pass|Subcompact Car - Gas hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Hydrogen
 
-Transport - Pass|Subcompact Car - Hydrogen:
+Transport - Pass - Subcompact Car - H2:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, used in passenger car
@@ -1699,7 +1698,7 @@ Transport - Pass|Subcompact Car - Hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Hydrogen
 
-Transport - Pass|Subcompact Car - Liquid biomass:
+Transport - Pass - Subcompact Car - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: biodiesel, burned in passenger car
@@ -1707,7 +1706,7 @@ Transport - Pass|Subcompact Car - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Biomass
 
-Transport - Pass|Subcompact Car - Liquid fossil:
+Transport - Pass - Subcompact Car - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in passenger car
@@ -1715,7 +1714,7 @@ Transport - Pass|Subcompact Car - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Fossil
 
-Transport - Pass|Subcompact Car - Liquid hydrogen:
+Transport - Pass - Subcompact Car - LH2:
   ecoinvent_aliases:
     fltr:
       name: diesel, synthetic, burned in passenger car
@@ -1723,7 +1722,7 @@ Transport - Pass|Subcompact Car - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Hydrogen
 
-Transport - Pass|Moped - Electricity:
+Transport - Pass - Moped - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in battery electric motorcycle
@@ -1731,7 +1730,7 @@ Transport - Pass|Moped - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Electricity
 
-Transport - Pass|Moped - Liquid biomass:
+Transport - Pass - Moped - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: bioethanol, burned in motorcycle
@@ -1739,7 +1738,7 @@ Transport - Pass|Moped - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Biomass
 
-Transport - Pass|Moped - Liquid fossil:
+Transport - Pass - Moped - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in motorcycle
@@ -1747,7 +1746,7 @@ Transport - Pass|Moped - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Fossil
 
-Transport - Pass|Moped - Liquid hydrogen:
+Transport - Pass - Moped - LH2:
   ecoinvent_aliases:
     fltr:
       name: petrol, synthetic, burned in motorcycle
@@ -1755,7 +1754,7 @@ Transport - Pass|Moped - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Hydrogen
 
-Transport - Pass|Motorcycle(50-250cc) - Electricity:
+Transport - Pass - Motorcycle(50-250cc) - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in battery electric motorcycle
@@ -1763,7 +1762,7 @@ Transport - Pass|Motorcycle(50-250cc) - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Electricity
 
-Transport - Pass|Motorcycle(50-250cc) - Liquid biomass:
+Transport - Pass - Motorcycle(50-250cc) - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: bioethanol, burned in motorcycle
@@ -1771,7 +1770,7 @@ Transport - Pass|Motorcycle(50-250cc) - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Biomass
 
-Transport - Pass|Motorcycle(50-250cc) - Liquid fossil:
+Transport - Pass - Motorcycle(50-250cc) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in motorcycle
@@ -1779,7 +1778,7 @@ Transport - Pass|Motorcycle(50-250cc) - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Fossil
 
-Transport - Pass|Motorcycle(50-250cc) - Liquid hydrogen:
+Transport - Pass - Motorcycle(50-250cc) - LH2:
   ecoinvent_aliases:
     fltr:
       name: petrol, synthetic, burned in motorcycle
@@ -1787,7 +1786,7 @@ Transport - Pass|Motorcycle(50-250cc) - Liquid hydrogen:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Hydrogen
 
-Transport - Pass|Motorcycle(>250cc) - Electricity:
+Transport - Pass - Motorcycle(>250cc) - Elec:
   ecoinvent_aliases:
     fltr:
       name: electricity, used in battery electric motorcycle
@@ -1795,7 +1794,7 @@ Transport - Pass|Motorcycle(>250cc) - Electricity:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Electricity
 
-Transport - Pass|Motorcycle(>250cc) - Liquid biomass:
+Transport - Pass - Motorcycle(>250cc) - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: bioethanol, burned in motorcycle
@@ -1803,7 +1802,7 @@ Transport - Pass|Motorcycle(>250cc) - Liquid biomass:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Biomass
 
-Transport - Pass|Motorcycle(>250cc) - Liquid fossil:
+Transport - Pass - Motorcycle(>250cc) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: petrol, burned in motorcycle
@@ -1811,7 +1810,7 @@ Transport - Pass|Motorcycle(>250cc) - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Fossil
 
-Transport - Pass|Motorcycle(>250cc) - Liquid hydrogen:
+Transport - Pass - Motorcycle(>250cc) - LH2:
   ecoinvent_aliases:
     fltr:
       name: petrol, synthetic, burned in motorcycle
