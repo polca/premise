@@ -241,6 +241,38 @@ VRFB:
         minimum: 0.020
         maximum: 0.060
 
+ORFB:
+  ecoinvent_aliases:
+    name:
+      - market for battery, redox-flow, organic
+  target:
+    # current values from https://doi.org/10.1039/D4EB00027G
+      2020:
+        mean: 0.016
+        minimum: 0.008
+        maximum: 0.024
+    # We set the future equal to vanadium RFB
+      2050:
+        mean: 0.040
+        minimum: 0.020
+        maximum: 0.060
+
+HRFB:
+  ecoinvent_aliases:
+    name:
+      - market for battery, redox-flow, hybrid
+  target:
+    # current values from https://doi.org/10.1039/D4EB00027G
+      2020:
+        mean: 0.015
+        minimum: 0.0075
+        maximum: 0.0225
+    # We set the future equal to vanadium RFB
+      2050:
+        mean: 0.040
+        minimum: 0.020
+        maximum: 0.060
+
 LEAD-ACID:
   ecoinvent_aliases:
     name:

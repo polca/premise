@@ -1329,3 +1329,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,37,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,"market for aluminium, wrought alloy","aluminium, wrought alloy","GLO"
 38,37,"market for anode, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",RoW,"market for anode, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",GLO
 38,37,"market for anode, silicon coated graphite, for Li-ion battery","anode, silicon coated graphite, for Li-ion battery",CN,"market for anode, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",GLO
+310,39,"acrylonitrile production, Sohio process","acetonitrile",RER,"Sohio process","acetonitrile",RER
+310,39,"acrylonitrile production, Sohio process","acrylonitrile",RER,"Sohio process","acrylonitrile",RER
+310,39,"acrylonitrile production, Sohio process","hydrogen cyanide",RER,"Sohio process","hydrogen cyanide",RER
+310,39,"ethylenediaminetetraacetic acid production, alkaline cyanomethylation of ethylenediamine","EDTA, ethylenediaminetetraacetic acid",RER,"EDTA production","EDTA, ethylenediaminetetraacetic acid",RER

@@ -1,4 +1,5 @@
 # biosphere flow names have changed between ei <3.9 and ei 39
+# biosphere flow names have changed between ei 3.9.1 and ei 3.10
 ---
 
 air:
@@ -73,6 +74,16 @@ air:
   Methane, dichloro-, HCC-30: Dichloromethane
   Methane, tetrachloro-, R-10: Carbon tetrachloride
   Hydrogen-3, Tritium: Tritium
+  1,2-Dichlorobenzene: o-Dichlorobenzene
+  2-Methyl-1-propanol: Isobutanol
+  Dipropylamine: Dipropyl amine
+  Ethyne: Acetylene
+  Phenol, 2,4-dichloro: 2,4-Dichlorophenol
+  Toluene, 2-chloro: o-Chlorotoluene
+  t-Butylamine: t-Butyl amine
+  Chlorosilane, trimethyl-: Trimethylchlorosilane
+
+
 
 
 
@@ -250,5 +261,14 @@ water:
   Strontium: Strontium II
   Sodium: Sodium I
   Hydrogen-3, Tritium: Tritium
+  2-Methyl-1-propanol: Isobutanol
+  2-Propanol: Isopropanol
+  Benzene, chloro-: Monochlorobenzene
+  Propene: Propylene
+  Toluene, 2-chloro: o-Chlorotoluene
+  1,2-Dichlorobenzene: o-Dichlorobenzene
+  Dipropylamine: Dipropyl amine
+  t-Butylamine: t-Butyl amine
+
 
 

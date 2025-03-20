@@ -172,6 +172,9 @@ FILEPATH_VANADIUM = INVENTORY_DIR / "lci-batteries-vanadium.xlsx"
 FILEPATH_VANADIUM_REDOX_BATTERY = (
     INVENTORY_DIR / "lci-batteries-vanadium-redox-flow.xlsx"
 )
+FILEPATH_ORGANIC_REDOX_BATTERY = (
+    INVENTORY_DIR / "lci-batteries-organic-and-hybrid-redox-flow.xlsx"
+)
 FILEPATH_SIB_BATTERY = INVENTORY_DIR / "lci-batteries-SIB.xlsx"
 FILEPATH_HYDROGEN_TURBINE = INVENTORY_DIR / "lci-hydrogen-turbine.xlsx"
 FILEPATH_HYDROGEN_HEATING = INVENTORY_DIR / "lci-hydrogen-heating.xlsx"
@@ -738,6 +741,7 @@ class NewDatabase:
             (FILEPATH_LIO2_BATTERY, "3.9"),
             (FILEPATH_VANADIUM, "3.9"),
             (FILEPATH_VANADIUM_REDOX_BATTERY, "3.9"),
+            (FILEPATH_ORGANIC_REDOX_BATTERY, "3.9"),
             (FILEPATH_SIB_BATTERY, "3.9"),
             (FILEPATH_BATTERY_CAPACITY, "3.10"),
             (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
