@@ -29,6 +29,7 @@ TWO_WHEELERS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
 BUSES = VARIABLES_DIR / "transport_bus_variables.yaml"
 TRUCKS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
 TRAINS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
+FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
 
 
 def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
@@ -175,6 +176,10 @@ class InventorySet:
             filepath=ACTIVITIES_METALS_MAPPING, var="ecoinvent_aliases"
         )
 
+        self.final_energy_filters = get_mapping(
+            filepath=FINAL_ENERGY, var="ecoinvent_aliases"
+        )
+
     def generate_heat_map(self) -> dict:
         """
         Filter ecoinvent processes related to heat production.
@@ -274,6 +279,17 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.fuels_filters)
+
+    def generate_final_energy_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to final energy consumption.
+
+        :return: dictionary with final energy names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.final_energy_filters)
 
     def generate_material_map(self) -> dict:
         """

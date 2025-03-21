@@ -10,13 +10,35 @@ from wurst import searching as ws
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import DefaultInventory
-from .transformation import BaseTransformation
-
-LCI_HEAT = DATA_DIR / "additional_inventories" / "lci-final-energy.xlsx"
-FINAL_ENERGY_MAPPING = DATA_DIR / "energy" / "final_energy_mapping.xlsx"
+from .transformation import BaseTransformation, InventorySet
 
 
-class Energy(BaseTransformation):
+def _update_final_energy(
+    scenario,
+    version,
+    system_model,
+):
+    final_energy = FinalEnergy(
+        database=scenario["database"],
+        iam_data=scenario["iam data"],
+        model=scenario["model"],
+        pathway=scenario["pathway"],
+        year=scenario["year"],
+        version=version,
+        system_model=system_model,
+    )
+
+    final_energy.regionalize_heating_datasets()
+
+    final_energy.relink_datasets()
+    scenario["database"] = final_energy.database
+    scenario["index"] = final_energy.index
+    scenario["cache"] = final_energy.cache
+
+    return scenario
+
+
+class FinalEnergy(BaseTransformation):
     """
     Class that creates heating datasets based on IAM output data.
 
@@ -50,40 +72,20 @@ class Energy(BaseTransformation):
         )
         self.version = version
 
-    def import_heating_inventories(
-        self,
-    ):
-        """
-        Import final energy inventories into the database.
+        mapping = InventorySet(database=database, version=version, model=model)
+        self.final_energy_map = mapping.generate_final_energy_map()
+        from pprint import pprint
+        pprint(self.final_energy_map)
 
-        :param database: The database to import into.
-        :param system_model: The system model to import into.
-        :param version: The version of the inventories to import.
-        """
 
-        inventory = DefaultInventory(
-            database=self.database,
-            version_in="3.9",
-            version_out=self.version,
-            path=LCI_HEAT,
-            system_model=self.system_model,
-            keep_uncertainty_data=True,
-        )
-        datasets = inventory.merge_inventory()
-        self.database.extend(datasets)
-
-        dataset_names = [d["name"] for d in datasets]
-        self.regionalize_heating_datasets(dataset_names)
-
-    def regionalize_heating_datasets(self, dataset_names: list):
-        for ds in ws.get_many(
-            self.database,
-            ws.either(*[ws.equals("name", name) for name in dataset_names]),
-            ws.equals("location", "RER"),
-        ):
+    def regionalize_heating_datasets(self):
+        for ds in set(self.final_energy_map.values()):
+            print(ds)
             new_datasets = self.fetch_proxies(
-                ds["name"],
-                ds["reference product"],
+                ds
             )
+            for region, data in new_datasets.items():
+                print(region, data["name"], data["unit"])
+            print()
             self.database.extend(new_datasets.values())
             self.add_to_index(new_datasets.values())

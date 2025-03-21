@@ -24,6 +24,7 @@ from .data_collection import IAMDataCollection
 from .direct_air_capture import _update_dac
 from .electricity import _update_electricity
 from .emissions import _update_emissions
+from .final_energy import _update_final_energy
 from .export import (
     Export,
     _prepare_database,
@@ -193,6 +194,7 @@ FILEPATH_BATTERY_CAPACITY = INVENTORY_DIR / "lci-battery-capacity.xlsx"
 FILEPATH_BIOCHAR = INVENTORY_DIR / "lci-biochar-spruce.xlsx"
 FILEPATH_ENHANCED_WEATHERING = INVENTORY_DIR / "lci-coastal-enhanced-weathering.xlsx"
 FILEPATH_OCEAN_LIMING = INVENTORY_DIR / "lci-ocean-liming.xlsx"
+FILEPATH_FINAL_ENERGY = INVENTORY_DIR / "lci-final-energy.xlsx"
 
 config = load_constants()
 
@@ -805,6 +807,7 @@ class NewDatabase:
             (FILEPATH_BIOCHAR, "3.10"),
             (FILEPATH_OCEAN_LIMING, "3.10"),
             (FILEPATH_ENHANCED_WEATHERING, "3.10"),
+            (FILEPATH_FINAL_ENERGY, "3.10"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -936,6 +939,10 @@ class NewDatabase:
             "trains": {
                 "func": _update_vehicles,
                 "args": ("train", self.version, self.system_model),
+            },
+            "final energy": {
+                "func": _update_final_energy,
+                "args": (self.version, self.system_model),
             },
             "external": {
                 "func": _update_external_scenarios,

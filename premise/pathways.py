@@ -15,7 +15,7 @@ from datapackage import Package
 
 from . import __version__
 from .activity_maps import act_fltr
-from .final_energy import Energy
+from .final_energy import FinalEnergy
 from .new_database import NewDatabase
 from .utils import dump_database, load_database
 
@@ -79,7 +79,7 @@ class PathwaysDataPackage:
 
         for scenario in self.datapackage.scenarios:
             scenario = load_database(scenario)
-            energy = Energy(
+            energy = FinalEnergy(
                 database=scenario["database"],
                 iam_data=scenario["iam data"],
                 model=scenario["model"],
