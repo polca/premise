@@ -75,15 +75,13 @@ class FinalEnergy(BaseTransformation):
         mapping = InventorySet(database=database, version=version, model=model)
         self.final_energy_map = mapping.generate_final_energy_map()
         from pprint import pprint
-        pprint(self.final_energy_map)
 
+        pprint(self.final_energy_map)
 
     def regionalize_heating_datasets(self):
         for ds in self.final_energy_map.values():
             print(ds)
-            new_datasets = self.fetch_proxies(
-                name=ds, ref_prod=""
-            )
+            new_datasets = self.fetch_proxies(name=ds, ref_prod="")
             for region, data in new_datasets.items():
                 print(region, data["name"], data["unit"])
             print()
