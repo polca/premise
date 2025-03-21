@@ -79,10 +79,10 @@ class FinalEnergy(BaseTransformation):
 
 
     def regionalize_heating_datasets(self):
-        for ds in set(self.final_energy_map.values()):
+        for ds in self.final_energy_map.values():
             print(ds)
             new_datasets = self.fetch_proxies(
-                ds
+                name=ds, ref_prod=""
             )
             for region, data in new_datasets.items():
                 print(region, data["name"], data["unit"])
