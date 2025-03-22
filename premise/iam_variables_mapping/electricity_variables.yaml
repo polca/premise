@@ -131,7 +131,7 @@ Biomass IGCC CCS:
     remind-eu: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     tiam-ucl: Secondary Energy|Electricity|Biomass gasification|w CCS
     witch: Secondary Energy|Electricity|Biomass|w/ CCS|1
-  max_efficiency: '0.4'
+  max_efficiency: 0.4
 Biomass MSW:
   ecoinvent_aliases:
     fltr:
@@ -168,7 +168,7 @@ Biomass ST:
     message: Secondary Energy|Electricity|Biomass|w/o CCS|2
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
     witch: Secondary Energy|Electricity|Biomass|w/o CCS|1
-  max_efficiency: '0.3'
+  max_efficiency: 0.3
 Biomass ST CCS:
   ecoinvent_aliases:
     fltr:
@@ -329,7 +329,7 @@ Coal IGCC CCS:
     remind-eu: SE|Electricity|Coal|++|Gasification Combined Cycle w/ CC
     tiam-ucl: Secondary Energy|Electricity|Coal IGCC|w CCS
     witch: Secondary Energy|Electricity|Coal|w/ CCS|2
-  max_efficiency: '0.45'
+  max_efficiency: 0.45
 Coal PC:
   ecoinvent_aliases:
     fltr:
