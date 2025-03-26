@@ -1407,7 +1407,9 @@ class Fuels(BaseTransformation):
         for fuel, activities in fuel_activities.items():
             for activity in activities:
                 original_ds = self.fetch_proxies(
-                    name=activity["name"], ref_prod=activity["reference product"], exact_name_match=True
+                    name=activity["name"],
+                    ref_prod=activity["reference product"],
+                    exact_name_match=True,
                 )
                 new_ds = copy.deepcopy(original_ds)
 
