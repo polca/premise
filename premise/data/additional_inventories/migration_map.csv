@@ -1333,3 +1333,4 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,39,"acrylonitrile production, Sohio process","acrylonitrile",RER,"Sohio process","acrylonitrile",RER
 310,39,"acrylonitrile production, Sohio process","hydrogen cyanide",RER,"Sohio process","hydrogen cyanide",RER
 310,39,"ethylenediaminetetraacetic acid production, alkaline cyanomethylation of ethylenediamine","EDTA, ethylenediaminetetraacetic acid",RER,"EDTA production","EDTA, ethylenediaminetetraacetic acid",RER
+310,38,"cement production, blast furnace slag 70-100%","cement, blast furnace slag 70-100%",US,"cement production, type S","cement, type S",US
