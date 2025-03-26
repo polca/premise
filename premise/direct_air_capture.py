@@ -105,7 +105,6 @@ class DirectAirCapture(BaseTransformation):
         modifies the original datasets to include the heat source, and adds the modified datasets to the database.
 
         """
-        # print("Generate region-specific direct air capture processes.")
 
         # get original dataset
         for ds_list in self.carbon_storage.values():
@@ -114,6 +113,9 @@ class DirectAirCapture(BaseTransformation):
                     name=ds_name,
                     ref_prod="carbon dioxide, stored",
                 )
+
+                # adjust efficiency, if needed
+                new_ds = self.adjust_dac_efficiency(new_ds)
 
                 for k, dataset in new_ds.items():
                     # Add created dataset to cache
@@ -125,80 +127,14 @@ class DirectAirCapture(BaseTransformation):
                             1.0,
                         ],
                     )
+
+                    # add it to list of created datasets
                     self.write_log(dataset)
                     # add it to list of created datasets
                     self.add_to_index(dataset)
 
                 self.database.extend(new_ds.values())
 
-        # define heat sources
-        heat_map_ds = fetch_mapping(HEAT_SOURCES)
-
-        # get original dataset
-        for technology, ds_list in self.dac_plants.items():
-            for ds_name in ds_list:
-                original_ds = self.fetch_proxies(
-                    name=ds_name,
-                    ref_prod="carbon dioxide",
-                    relink=False,
-                    delete_original_dataset=False,
-                    empty_original_activity=False,
-                )
-
-                # loop through heat sources
-                for heat_type, activities in heat_map_ds.items():
-                    # with consequential modeling, waste heat is not available
-                    if (
-                        self.system_model == "consequential"
-                        and heat_type == "waste heat"
-                    ):
-                        continue
-
-                    # with liquid solvent-based DAC, we cannot use waste heat
-                    # because the operational temperature required is 900C
-                    if technology in ["dac_solvent", "daccs_solvent"]:
-                        if heat_type == "waste heat":
-                            continue
-
-                    new_ds = copy.deepcopy(original_ds)
-                    for k, dataset in new_ds.items():
-                        dataset["name"] += f", with {heat_type}, and grid electricity"
-                        dataset["code"] = str(uuid.uuid4().hex)
-                        dataset["comment"] += activities["description"]
-
-                        for exc in ws.production(dataset):
-                            exc["name"] = dataset["name"]
-                            if "input" in exc:
-                                del exc["input"]
-
-                        for exc in ws.technosphere(dataset):
-                            if "heat" in exc["name"]:
-                                exc["name"] = activities["name"]
-                                exc["product"] = activities["reference product"]
-                                exc["location"] = "RoW"
-
-                                if "input" in exc:
-                                    del exc["input"]
-
-                                if heat_type == "heat pump heat":
-                                    exc["unit"] = "kilowatt hour"
-                                    exc["location"] = "GLO"
-                                    exc["amount"] *= 1 / (2.9 * 3.6)
-
-                        new_ds[k] = self.relink_technosphere_exchanges(
-                            dataset,
-                        )
-
-                    # adjust efficiency, if needed
-                    new_ds = self.adjust_dac_efficiency(new_ds)
-
-                    self.database.extend(new_ds.values())
-
-                    # add to log
-                    for dataset in list(new_ds.values()):
-                        self.write_log(dataset)
-                        # add it to list of created datasets
-                        self.add_to_index(dataset)
 
     def adjust_dac_efficiency(self, datasets):
         """

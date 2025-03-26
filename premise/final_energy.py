@@ -76,14 +76,30 @@ class FinalEnergy(BaseTransformation):
         self.final_energy_map = mapping.generate_final_energy_map()
         from pprint import pprint
 
-        pprint(self.final_energy_map)
+        #pprint(self.final_energy_map)
 
     def regionalize_heating_datasets(self):
-        for ds in self.final_energy_map.values():
-            print(ds)
-            new_datasets = self.fetch_proxies(name=ds, ref_prod="")
+
+        #datasets_to_regionalize = [
+        #    "biodiesel production, via transesterification, from used cooking oil, energy allocation",
+        #]
+
+        #print(list(self.final_energy_map.values()))
+
+        #technosphere_excs = []
+
+        for dataset in ws.get_many(
+            self.database,
+            ws.either(
+                *[ws.contains("name", name) for name in list(set([", ".join(sorted(s)) for s in self.final_energy_map.values()]))]
+            ),
+        ):
+            new_datasets = self.fetch_proxies(
+                name=dataset["name"],
+                ref_prod=dataset["reference product"],
+            )
             for region, data in new_datasets.items():
                 print(region, data["name"], data["unit"])
-            print()
+                self.add_to_index(data)
             self.database.extend(new_datasets.values())
             self.add_to_index(new_datasets.values())
