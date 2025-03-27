@@ -74,19 +74,10 @@ class FinalEnergy(BaseTransformation):
 
         mapping = InventorySet(database=database, version=version, model=model)
         self.final_energy_map = mapping.generate_final_energy_map()
-        from pprint import pprint
-
-        # pprint(self.final_energy_map)
 
     def regionalize_heating_datasets(self):
 
-        # datasets_to_regionalize = [
-        #    "biodiesel production, via transesterification, from used cooking oil, energy allocation",
-        # ]
-
-        # print(list(self.final_energy_map.values()))
-
-        # technosphere_excs = []
+        new_datasets, processed_datasets = [], []
 
         for dataset in ws.get_many(
             self.database,
@@ -104,12 +95,21 @@ class FinalEnergy(BaseTransformation):
                 ]
             ),
         ):
-            new_datasets = self.fetch_proxies(
+
+
+            if dataset["name"] in processed_datasets:
+                continue
+            if dataset["location"] in self.regions:
+                continue
+
+            datasets = self.fetch_proxies(
                 name=dataset["name"],
                 ref_prod=dataset["reference product"],
             )
-            for region, data in new_datasets.items():
-                print(region, data["name"], data["unit"])
-                self.add_to_index(data)
-            self.database.extend(new_datasets.values())
-            self.add_to_index(new_datasets.values())
+            new_datasets.append(datasets)
+
+            processed_datasets.append(dataset["name"])
+
+        for datasets in new_datasets:
+            self.database.extend(datasets.values())
+            self.add_to_index(datasets.values())

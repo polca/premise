@@ -233,10 +233,7 @@ methane, fossil:
   lhv: 47.5
   co2: 0.06
   biogenic_share: 0
-methane, biogenic:
-  lhv: 47.5
-  co2: 0.06
-  biogenic_share: 1
+
 methane, synthetic:
   lhv: 47.5
   co2: 0.06
@@ -245,6 +242,14 @@ methane, synthetic:
     fltr:
       - methane, synthetic, gaseous
       - methane, from electrochemical methanation
+
+methane, from coal:
+  lhv: 47.5
+  co2: 0.06
+  biogenic_share: 1
+  ecoinvent_fuels_aliases:
+    fltr:
+      - methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
 
 liquid fossil fuels:
   lhv: 43

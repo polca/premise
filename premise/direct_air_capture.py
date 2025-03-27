@@ -107,11 +107,11 @@ class DirectAirCapture(BaseTransformation):
         """
 
         # get original dataset
-        for ds_list in self.carbon_storage.values():
+        for ds_list in self.dac_plants.values():
             for ds_name in ds_list:
                 new_ds = self.fetch_proxies(
                     name=ds_name,
-                    ref_prod="carbon dioxide, stored",
+                    ref_prod="carbon dioxide, captured from atmosphere",
                 )
 
                 # adjust efficiency, if needed

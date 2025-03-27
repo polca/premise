@@ -21,3 +21,7 @@ methane, synthetic:
   - name: methane, from biological methanation, with carbon from atmosphere
     reference product: methane, from biological methanation
 
+  - name: methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
+    reference product: methane, high pressure
+
+
