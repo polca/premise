@@ -52,17 +52,29 @@ jobs:
           default: 3.11
           command: pip install -U pip  # upgrade pip after installing python
 
+
       - name: create environment
         run: |
-          pyenv install 3.11.5 && python -mvenv .venv390
+          pyenv install 3.11 && python -mvenv .venv390
+          
+
+      - name: Activate pyenv Python
+        run: |
+          pyenv install -s 3.11
+          pyenv global 3.11
+          python --version
 
       - name: Install dependencies
         run: |
-          pip install pathlib
+          pip install --upgrade setuptools wheel
+          pip install --upgrade pip
+          pip install --force-reinstall setuptools
           pip install -r requirements.txt --upgrade pip
           pip install pytest
           pip install pytest-instafail
-          pip install -e .[test]
+          pip install -e . --verbose
+          pip check
+
 
       - name: Run tests
         run: |
@@ -72,7 +84,6 @@ jobs:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
           EI_USERNAME: ${{ secrets.EI_USERNAME }}
           EI_PASSWORD: ${{ secrets.EI_PASSWORD }}
-
   Pypi:
     runs-on: ubuntu-latest
     needs: build
@@ -81,7 +92,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ "ubuntu-latest" ]
-        python-version: ["3.11" ]
+        python-version: [ "3.11" ]
 
     steps:
       - uses: actions/checkout@v2
@@ -121,8 +132,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest"]
-        python-version: ["3.11"]
+        os: [ "ubuntu-latest" ]
+        python-version: [ "3.11" ]
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v3
@@ -138,12 +149,11 @@ jobs:
         shell: bash -l {0}
         run: conda info
 
-      - name: Publish distribution 📦 to Anaconda if Push and if master branch
+      - name: Publish all variants 📦 to Anaconda if Push and if master branch
         if: startsWith(github.ref, 'refs/heads/master')
         shell: bash -l {0}
 
         run: |
-
           PKG_NAME=premise
           USER=romainsacchi
           conda install anaconda-client
@@ -152,9 +162,23 @@ jobs:
           conda config --set anaconda_upload no
           export CONDA_BLD_PATH=~/conda-bld
           export VERSION=`date +%Y.%m.%d`
-          conda build "conda/" --old-build-string
-          ls $CONDA_BLD_PATH/noarch/
-          anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $CONDA_BLD_PATH/noarch/$PKG_NAME-$VERSION-py_0.tar.bz2 --force
+
+          # Build the package with all variants
+          conda build conda/ --old-build-string
+
+          # List built .tar.bz2 and .conda packages
+          BUILT_PACKAGES=$(find $CONDA_BLD_PATH -type f \( -name "*.tar.bz2" -o -name "*.conda" \))
+
+          echo "Built packages:"
+          echo $BUILT_PACKAGES
+
+          # Upload each valid package
+          for PACKAGE in $BUILT_PACKAGES; do
+            echo "Uploading $PACKAGE"
+            anaconda -t ${{ secrets.ANACONDA_CLOUD }} upload -u $USER $PACKAGE --force
+          done
+  
+  
 
   testconda:
     name: (${{ matrix.python-version }}, ${{ matrix.os }})

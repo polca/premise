@@ -72,9 +72,16 @@ def flag_activities_to_adjust(
     if "production volume variable" not in dataset_vars:
         regions = scenario_data["production volume"].region.values.tolist()
     else:
-        data = scenario_data["production volume"].sel(
-            variables=dataset_vars["production volume variable"]
-        )
+        try:
+            data = scenario_data["production volume"].sel(
+                variables=dataset_vars["production volume variable"]
+            )
+        except KeyError:
+            print(list(scenario_data.keys()))
+            print(
+                f"Variable {dataset_vars['production volume variable']} not found in scenario data for scenario."
+            )
+
         # fetch regions which do not contain nan data
         regions = [
             r

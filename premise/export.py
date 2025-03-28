@@ -24,6 +24,7 @@ from datapackage import Package
 from pandas import DataFrame
 from prettytable import PrettyTable
 from scipy import sparse as nsp
+from wurst.filesystem import get_uuid
 
 from . import __version__
 from .data_collection import get_delimiter
@@ -43,6 +44,16 @@ CORRESPONDENCE_BIO_FLOWS = (
 # current working directory
 DIR_DATAPACKAGE = Path.cwd() / "export" / "datapackage"
 DIR_DATAPACKAGE_TEMP = Path.cwd() / "export" / "temp"
+
+
+def replace_unsupported_characters(text):
+    if text:
+        if isinstance(text, str):
+            return text.encode("latin-1", errors="replace").decode("latin-1")
+        else:
+            return text
+    else:
+        return ""
 
 
 def get_simapro_units() -> Dict[str, str]:
@@ -1018,6 +1029,12 @@ def _prepare_database(
     return scenario
 
 
+def get_uuids(db):
+    return {
+        (ds["name"], ds["reference product"], ds["location"]): ds["code"] for ds in db
+    }
+
+
 class Export:
     """
     Class that exports the transformed data into matrices:
@@ -1043,6 +1060,7 @@ class Export:
         scenario: dict = None,
         filepath: Path = None,
         version: str = None,
+        system_model: str = None,
     ):
         self.db = scenario["database"]
         self.model = scenario["model"]
@@ -1055,6 +1073,7 @@ class Export:
         )
         self.bio_dict = biosphere_flows_dictionary(self.version)
         self.unmatched_category_flows = []
+        self.system_model = system_model
 
     def create_A_matrix_coordinates(self) -> list:
         """
@@ -1376,6 +1395,9 @@ class Export:
 
         dict_bio = get_simapro_biosphere_dictionnary()
 
+        uuids = get_uuids(self.db)
+        dataset_suffix = "Cut-off, U" if self.system_model == "cutoff" else "Conseq, U"
+
         headers = [
             "{SimaPro 9.1.1.7}",
             "{processes}",
@@ -1443,7 +1465,6 @@ class Export:
         filename = f"simapro_export_{self.model}_{self.scenario}_{self.year}.csv"
 
         dict_cat_simapro = get_simapro_category_of_exchange()
-        dict_cat = self.get_category_of_exchange()
         dict_refs = load_references()
 
         unlinked_biosphere_flows = []
@@ -1457,16 +1478,20 @@ class Export:
             writer.writerow([])
 
             for ds in self.db:
-                key = (ds["name"].lower(), ds["reference product"].lower())
-
                 try:
                     main_category, sub_category = (
-                        dict_cat_simapro[key]["category"],
-                        dict_cat_simapro[key]["sub_category"],
+                        dict_cat_simapro[
+                            (ds["name"].lower(), ds["reference product"].lower())
+                        ]["category"],
+                        dict_cat_simapro[
+                            (ds["name"].lower(), ds["reference product"].lower())
+                        ]["sub_category"],
                     )
                 except KeyError:
                     main_category, sub_category = ("material", "Others\Transformation")
-                    self.unmatched_category_flows.append(key)
+                    self.unmatched_category_flows.append(
+                        (ds["name"], ds["reference product"])
+                    )
 
                 for item in fields:
                     if (
@@ -1484,7 +1509,7 @@ class Export:
                     writer.writerow([item])
 
                     if item == "Process name":
-                        name = f"{ds['reference product']} {{{ds.get('location', 'GLO')}}}| {ds['name']} | Cut-off, U"
+                        name = f"{ds['reference product']} {{{ds.get('location', 'GLO')}}}| {ds['name']} | {dataset_suffix}"
 
                         writer.writerow([name])
 
@@ -1516,11 +1541,14 @@ class Export:
                                     dict_refs[ds["name"]]["description"],
                                 )
 
-                            writer.writerow([string])
                         else:
                             if "comment" in ds:
                                 string = re.sub("[^a-zA-Z0-9 .,]", "", ds["comment"])
-                                writer.writerow([string])
+
+                        # Add dataset UUID to comment filed
+                        string += f" | ID: {ds['code']}"
+
+                        writer.writerow([string])
 
                     if item in (
                         "Cut off rules",
@@ -1549,7 +1577,7 @@ class Export:
                     if item in ("Waste treatment", "Products"):
                         for e in ds["exchanges"]:
                             if e["type"] == "production":
-                                name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
+                                name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
 
                                 if item == "Waste treatment":
                                     writer.writerow(
@@ -1559,6 +1587,7 @@ class Export:
                                             1.0,
                                             "not defined",
                                             sub_category,
+                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'],e['product'],e['location'])]}",
                                         ]
                                     )
 
@@ -1571,6 +1600,7 @@ class Export:
                                             "100%",
                                             "not defined",
                                             sub_category,
+                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                 e["used"] = True
@@ -1584,7 +1614,7 @@ class Export:
                                     exc_cat = "material"
 
                                 if exc_cat != "waste treatment":
-                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
+                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
 
                                     writer.writerow(
                                         [
@@ -1595,6 +1625,7 @@ class Export:
                                             0,
                                             0,
                                             0,
+                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                     e["used"] = True
@@ -1627,6 +1658,7 @@ class Export:
                                         0,
                                         0,
                                         0,
+                                        f"{replace_unsupported_characters(e.get('comment'))} | ID = {self.bio_dict.get((e['name'],e['categories'][0],'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
                                     ]
                                 )
                                 e["used"] = True
@@ -1641,9 +1673,12 @@ class Export:
                                     sub_compartment = ""
 
                                 if e["name"].lower() == "water":
-                                    e["unit"] = "kilogram"
+                                    unit = "kilogram"
+                                    # e["unit"] = "kilogram"
                                     # going from cubic meters to kilograms
                                     e["amount"] *= 1000
+                                else:
+                                    unit = e["unit"]
 
                                 if e["name"] not in dict_bio:
                                     unlinked_biosphere_flows.append(
@@ -1654,12 +1689,13 @@ class Export:
                                     [
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
-                                        simapro_units[e["unit"]],
+                                        simapro_units[unit],
                                         f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
                                         0,
                                         0,
+                                        f"{replace_unsupported_characters(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
                                     ]
                                 )
                                 e["used"] = True
@@ -1677,8 +1713,11 @@ class Export:
                                     sub_compartment = ""
 
                                 if e["name"].lower() == "water":
-                                    e["unit"] = "kilogram"
-                                    e["amount"] /= 1000
+                                    unit = "kilogram"
+                                    # e["unit"] = "kilogram"
+                                    e["amount"] *= 1000
+                                else:
+                                    unit = e["unit"]
 
                                 if e["name"] not in dict_bio:
                                     unlinked_biosphere_flows.append(
@@ -1689,12 +1728,13 @@ class Export:
                                     [
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
-                                        simapro_units[e["unit"]],
+                                        simapro_units[unit],
                                         f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
                                         0,
                                         0,
+                                        f"{replace_unsupported_characters(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
                                     ]
                                 )
                                 e["used"] = True
@@ -1726,6 +1766,7 @@ class Export:
                                         0,
                                         0,
                                         0,
+                                        f"{replace_unsupported_characters(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
                                     ]
                                 )
                                 e["used"] = True
@@ -1739,7 +1780,7 @@ class Export:
                                     exc_cat = "material"
 
                                 if exc_cat == "waste treatment":
-                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | Cut-off, U"
+                                    name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
 
                                     writer.writerow(
                                         [
@@ -1750,6 +1791,7 @@ class Export:
                                             0,
                                             0,
                                             0,
+                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                     e["used"] = True

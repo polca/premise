@@ -1591,28 +1591,17 @@ by different means of transport, and in different states.
 Hydrogen
 --------
 
-Several pathways for hydrogen production are modeled in *premise*:
+Several pathways for hydrogen production are modeled in *premise* (see Hydrogen section under EXTRACT>Import of additional inventories).
 
-- electrolysis
-- steam methane reforming of natural gas
-- steam methane reforming of biomethane
-- gasification of coal
-- gasification of woody biomass
-- natural gas pyrolysis
-- thermochemical water splitting
-
-Each pathways are modeled with and without CCS,
-with the exception of electrolysis, natural gas pyrolysis
-and thermochemical water splitting.
-
-In case the IAM variable that relates to a given hydrogen pathway's
-efficiency is not available, the process' efficiency is not modified.
-
+The efficiency of hydrogen production pathways is adjusted according to the IAM scenario projections, if available.
 A scaling factor is calculated for each pathway, which is the ratio
 between the IAM variable value for the year in question
 and the current efficiency value (i.e., in 2020). *premise*
 uses this scaling factor to adjust the amount of feedstock
 input to produce 1 kg of hydrogen (e.g., m3 of natural gas per kg hydrogen).
+
+If not available, external projection data is used to adjust future efficiencies (see Hydrogen section under EXTRACT>Import of additional inventories).
+
 
 Hydrogen supply chains
 ----------------------

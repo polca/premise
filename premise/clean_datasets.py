@@ -14,6 +14,7 @@ import numpy as np
 import wurst
 import yaml
 from bw2data.database import DatabaseChooser
+from bw2io.errors import MultiprocessingError
 from wurst import searching as ws
 
 from .data_collection import get_delimiter
@@ -56,7 +57,9 @@ def get_biosphere_flow_uuid(version: str) -> Dict[Tuple[str, str, str, str], str
     :rtype: dict
     """
 
-    if version == "3.9":
+    if version == "3.10":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
+    elif version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     else:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
@@ -204,8 +207,9 @@ class DatabaseCleaner:
         if source_type == "ecospold":
             # The ecospold data needs to be formatted
             ecoinvent = bw2io.SingleOutputEcospold2Importer(
-                str(source_file_path), source_db
+                str(source_file_path), source_db, use_mp=False
             )
+
             ecoinvent.apply_strategies()
             self.database = ecoinvent.data
             # strip strings form spaces

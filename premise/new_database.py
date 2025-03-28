@@ -53,6 +53,7 @@ from .utils import (
     load_database,
     print_version,
     warning_about_biogenic_co2,
+    end_of_process,
 )
 
 logger = logging.getLogger("module")
@@ -184,6 +185,9 @@ FILEPATH_RAIL_FREIGHT = INVENTORY_DIR / "lci-rail-freight.xlsx"
 FILEPATH_PV_GAAS = INVENTORY_DIR / "lci-PV-GaAs.xlsx"
 FILEPATH_PV_PEROVSKITE = INVENTORY_DIR / "lci-PV-perovskite.xlsx"
 FILEPATH_BATTERY_CAPACITY = INVENTORY_DIR / "lci-battery-capacity.xlsx"
+FILEPATH_BIOCHAR = INVENTORY_DIR / "lci-biochar-spruce.xlsx"
+FILEPATH_ENHANCED_WEATHERING = INVENTORY_DIR / "lci-coastal-enhanced-weathering.xlsx"
+FILEPATH_OCEAN_LIMING = INVENTORY_DIR / "lci-ocean-liming.xlsx"
 
 config = load_constants()
 
@@ -792,6 +796,9 @@ class NewDatabase:
             (FILEPATH_RAIL_FREIGHT, "3.9"),
             (FILEPATH_PV_GAAS, "3.10"),
             (FILEPATH_PV_PEROVSKITE, "3.10"),
+            (FILEPATH_BIOCHAR, "3.10"),
+            (FILEPATH_OCEAN_LIMING, "3.10"),
+            (FILEPATH_ENHANCED_WEATHERING, "3.10"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -973,7 +980,8 @@ class NewDatabase:
 
                 # dump database
                 dump_database(scenario)
-                # Manually update the outer progress bar after each sector is completed
+                # Manually update the outer progress bar
+                # after each sector is completed
                 pbar_outer.update()
         print("Done!\n")
 
@@ -981,7 +989,7 @@ class NewDatabase:
         self,
         name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')}",
         filepath: str = None,
-        file_format: str = "excel",
+        file_format: str = "csv",
         preserve_original_column: bool = False,
     ) -> None:
         """
@@ -1050,10 +1058,9 @@ class NewDatabase:
         self.generate_change_report()
 
         for scenario in self.scenarios:
-            del scenario["database"]
+            end_of_process(scenario)
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+        delete_all_pickles()
 
     def write_db_to_brightway(self, name: [str, List[str]] = None):
         """
@@ -1095,8 +1102,10 @@ class NewDatabase:
             try:
                 scenario = load_database(scenario)
             except KeyError:
+                print("KeyError")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:
+                print("FileNotFoundError")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             _prepare_database(
@@ -1109,12 +1118,10 @@ class NewDatabase:
                 scenario["database"],
                 name[s],
             )
-            # delete the database from the scenario
-            del scenario["database"]
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1179,11 +1186,16 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            Export(scenario, filepath[s], self.version).export_db_to_matrices()
+            Export(
+                scenario=scenario,
+                filepath=filepath[s],
+                version=self.version,
+                system_model=self.system_model,
+            ).export_db_to_matrices()
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1219,17 +1231,20 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            export = Export(scenario, filepath, self.version)
+            export = Export(
+                scenario=scenario,
+                filepath=filepath,
+                version=self.version,
+                system_model=self.system_model,
+            )
             export.export_db_to_simapro()
 
             if len(export.unmatched_category_flows) > 0:
                 scenario["unmatched category flows"] = export.unmatched_category_flows
 
-            del scenario["database"]
+            end_of_process(scenario)
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
-
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1265,14 +1280,16 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
-            Export(scenario, filepath, self.version).export_db_to_simapro(
-                olca_compartments=True
-            )
-            del scenario["database"]
+            Export(
+                scenario=scenario,
+                filepath=filepath,
+                version=self.version,
+                system_model=self.system_model,
+            ).export_db_to_simapro(olca_compartments=True)
 
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
+        delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs
@@ -1318,10 +1335,7 @@ class NewDatabase:
         )
 
         for scenario in self.scenarios:
-            del scenario["database"]
-
-            if "applied functions" in scenario:
-                del scenario["applied functions"]
+            end_of_process(scenario)
 
         cached_inventories.extend(extra_inventories)
 

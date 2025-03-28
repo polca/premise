@@ -1392,7 +1392,7 @@ class Electricity(BaseTransformation):
     def correct_hydropower_water_emissions(self) -> None:
         """
         Correct the emissions of water for hydropower plants.
-        In Swiss datasets, water evaoporation is too high.
+        In Swiss datasets, water evaporation is too high.
         We use a new factor from Flury and Frischknecht (2021) to correct this.
         https://treeze.ch/fileadmin/user_upload/downloads/Publications/Case_Studies/Energy/flury-2012-hydroelectric-power-generation.pdf
         """

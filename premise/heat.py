@@ -6,6 +6,7 @@ from .activity_maps import InventorySet
 from .logger import create_logger
 from .transformation import BaseTransformation, IAMDataCollection, List, ws
 from .validation import HeatValidation
+from .inventory_imports import get_biosphere_code
 
 logger = create_logger("heat")
 
@@ -78,6 +79,7 @@ class Heat(BaseTransformation):
         self.carbon_intensity_markets = {}
         mapping = InventorySet(self.database)
         self.heat_techs = mapping.generate_heat_map()
+        self.biosphere_flows = get_biosphere_code(self.version)
 
     def fetch_fuel_market_co2_emissions(self):
         """
@@ -174,6 +176,7 @@ class Heat(BaseTransformation):
                     continue
 
                 for ds in new_ds.values():
+
                     fossil_co2, non_fossil_co2 = 0.0, 0.0
 
                     for exc in ws.technosphere(ds):
@@ -181,60 +184,72 @@ class Heat(BaseTransformation):
                             exc["name"],
                             exc["location"],
                         ) in self.carbon_intensity_markets:
-                            fossil_co2 += exc[
-                                "amount"
-                            ] * self.carbon_intensity_markets.get(
-                                (exc["name"], exc["location"]), {}
-                            ).get(
-                                "fossil", 0.0
-                            )
-                            non_fossil_co2 += exc[
-                                "amount"
-                            ] * self.carbon_intensity_markets.get(
-                                (exc["name"], exc["location"]), {}
-                            ).get(
-                                "non-fossil", 0.0
+                            fossil_co2 += (
+                                exc["amount"]
+                                * self.carbon_intensity_markets[
+                                    (exc["name"], exc["location"])
+                                ]["fossil"]
                             )
 
-                    if "log parameters" not in ds:
-                        ds["log parameters"] = {}
+                            non_fossil_co2 += (
+                                exc["amount"]
+                                * self.carbon_intensity_markets[
+                                    (exc["name"], exc["location"])
+                                ]["non-fossil"]
+                            )
 
-                    # replace current CO2 emissions with new ones
-                    if fossil_co2 > 0:
-                        for exc in ws.biosphere(
-                            ds,
-                            ws.equals("name", "Carbon dioxide, fossil"),
-                        ):
-                            ds["log parameters"]["initial amount of fossil CO2"] = exc[
-                                "amount"
+                    if fossil_co2 + non_fossil_co2 > 0:
+
+                        initial_fossil_co2 = sum(
+                            [
+                                exc["amount"]
+                                for exc in ws.biosphere(ds)
+                                if exc["name"] == "Carbon dioxide, fossil"
                             ]
-                            ds["log parameters"]["new amount of fossil CO2"] = float(
-                                fossil_co2
-                            )
-                            exc["amount"] = float(fossil_co2)
-                            fossil_co2 = 0
-
-                    if non_fossil_co2 > 0:
-                        bio_co2_flows = ws.biosphere(
-                            ds,
-                            ws.equals("name", "Carbon dioxide, non-fossil"),
+                        )
+                        initial_non_fossil_co2 = sum(
+                            [
+                                exc["amount"]
+                                for exc in ws.biosphere(ds)
+                                if exc["name"] == "Carbon dioxide, non-fossil"
+                            ]
                         )
 
-                        for exc in bio_co2_flows:
-                            ds["log parameters"]["initial amount of biogenic CO2"] = (
-                                exc["amount"]
+                        ds["exchanges"] = [
+                            e
+                            for e in ds["exchanges"]
+                            if e["name"]
+                            not in (
+                                "Carbon dioxide, fossil",
+                                "Carbon dioxide, non-fossil",
                             )
-                            ds["log parameters"]["new amount of biogenic CO2"] = float(
-                                non_fossil_co2
-                            )
-                            exc["amount"] = float(non_fossil_co2)
-                            non_fossil_co2 = 0
+                        ]
 
-                        if non_fossil_co2 > 0 and fossil_co2 == 0:
-                            ds["log parameters"]["initial amount of biogenic CO2"] = 0.0
-                            ds["log parameters"][
-                                "new amount of biogenic CO2"
-                            ] = non_fossil_co2
+                        if fossil_co2 > 0:
+                            ds["exchanges"].append(
+                                {
+                                    "uncertainty type": 0,
+                                    "loc": fossil_co2,
+                                    "amount": fossil_co2,
+                                    "name": "Carbon dioxide, fossil",
+                                    "categories": ("air",),
+                                    "type": "biosphere",
+                                    "unit": "kilogram",
+                                    "input": (
+                                        "biosphere3",
+                                        self.biosphere_flows[
+                                            (
+                                                "Carbon dioxide, fossil",
+                                                "air",
+                                                "unspecified",
+                                                "kilogram",
+                                            )
+                                        ],
+                                    ),
+                                }
+                            )
+
+                        if non_fossil_co2 > 0:
 
                             ds["exchanges"].append(
                                 {
@@ -245,9 +260,35 @@ class Heat(BaseTransformation):
                                     "categories": ("air",),
                                     "type": "biosphere",
                                     "unit": "kilogram",
-                                    "tag": "air",
+                                    "input": (
+                                        "biosphere3",
+                                        self.biosphere_flows[
+                                            (
+                                                "Carbon dioxide, non-fossil",
+                                                "air",
+                                                "unspecified",
+                                                "kilogram",
+                                            )
+                                        ],
+                                    ),
                                 }
                             )
+
+                        if "log parameters" not in ds:
+                            ds["log parameters"] = {}
+
+                        ds["log parameters"][
+                            "initial amount of fossil CO2"
+                        ] = initial_fossil_co2
+                        ds["log parameters"]["new amount of fossil CO2"] = float(
+                            fossil_co2
+                        )
+                        ds["log parameters"][
+                            "initial amount of biogenic CO2"
+                        ] = initial_non_fossil_co2
+                        ds["log parameters"]["new amount of biogenic CO2"] = float(
+                            non_fossil_co2
+                        )
 
                 for new_dataset in list(new_ds.values()):
                     self.write_log(new_dataset)

@@ -2403,7 +2403,10 @@ class Fuels(BaseTransformation):
         dataset["log parameters"]["fossil CO2 per kg fuel"] = fossil_co2
         dataset["log parameters"]["non-fossil CO2 per kg fuel"] = non_fossil_co2
         dataset["log parameters"]["lower heating value"] = final_lhv
-        string += f"Final average LHV of {final_lhv} MJ/kg."
+        if "natural gas" in dataset["name"]:
+            string += f"Final average LHV of {final_lhv} MJ/m3."
+        else:
+            string += f"Final average LHV of {final_lhv} MJ/kg."
 
         # check validity of CO2 values
         sum_co2 = sum([fossil_co2, non_fossil_co2])
@@ -2584,6 +2587,27 @@ class Fuels(BaseTransformation):
                                 }
                             )
 
+                            # we also need to add old fuel markets which now take an
+                            # input for new fuel markets
+                            for location in self.iam_to_ecoinvent_loc[
+                                dataset["location"]
+                            ]:
+                                self.new_fuel_markets.update(
+                                    {
+                                        (dataset["name"], location): {
+                                            "fossil CO2": dataset["log parameters"][
+                                                "fossil CO2 per kg fuel"
+                                            ],
+                                            "non-fossil CO2": dataset["log parameters"][
+                                                "non-fossil CO2 per kg fuel"
+                                            ],
+                                            "LHV": dataset["log parameters"][
+                                                "lower heating value"
+                                            ],
+                                        }
+                                    }
+                                )
+
                         # add to log
                         self.write_log(dataset)
                         # add it to list of created datasets
@@ -2620,6 +2644,30 @@ class Fuels(BaseTransformation):
                             self.add_to_index(new_dataset)
 
                             new_datasets.append(new_dataset)
+
+        # update old fuel market datasets with CO2 and LHV info
+
+        for dataset in ws.get_many(
+            self.database,
+            ws.either(
+                *[ws.equals("name", x[0]) for x in list(self.new_fuel_markets.keys())]
+            ),
+        ):
+            if "log parameters" not in dataset:
+                dataset["log parameters"] = {}
+            dataset["log parameters"].update(
+                {
+                    "fossil CO2 per kg fuel": self.new_fuel_markets.get(
+                        (dataset["name"], dataset["location"]), {}
+                    ).get("fossil CO2", 0),
+                    "non-fossil CO2 per kg fuel": self.new_fuel_markets.get(
+                        (dataset["name"], dataset["location"]), {}
+                    ).get("non-fossil CO2", 0),
+                    "lower heating value": self.new_fuel_markets.get(
+                        (dataset["name"], dataset["location"]), {}
+                    ).get("LHV", 0),
+                }
+            )
 
         # add to database
         self.database.extend(new_datasets)

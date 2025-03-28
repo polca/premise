@@ -52,6 +52,10 @@ The tool currently supports the following IAMs:
 | TIAM-UCL | TIAM-UCL (TIMES Integrated Assessment Model by University College London) is a global energy system model based on the TIMES (The Integrated MARKAL-EFOM System) framework, developed to evaluate long-term decarbonization pathways for global energy systems. It provides detailed insights into energy technology options, resource availability, and emission reduction strategies under various climate policy scenarios. The model focuses on the trade-offs and synergies between energy security, economic costs, and environmental outcomes. TIAM-UCL is frequently used to analyze scenarios consistent with the Paris Agreement and examine technological innovation's role in mitigating climate change globally. |
 
 
+What's new in 2.2.0?
+====================
+
+- `IncrementalDatabase`: allows distinguishing the contribution of each sector to the total impact.
 
 What's new in 2.1.4?
 ====================
@@ -125,12 +129,17 @@ ecoinvent 3 to reflect projected energy policy trajectories.
 
 Requirements
 ------------
-* **Python 3.10 or 3.11**
+* **Python 3.10, 3.11 or 3.12**
 * License for [ecoinvent 3][1]. Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
-* Some IAM output files come with the library and are located by default in the subdirectory "/data/iam_output_files". **If you wish to use
- those files, you need to request (by [email](mailto:romain.sacchi@psi.ch)) an encryption key from the developers**.
+* Some IAM output files come with the library and are located by default in the subdirectory "/data/iam_output_files". 
  A file path can be specified to fetch IAM output files elsewhere on your computer.
  * [brightway2][2] (optional). If you want to use the results in the Brightway 2 framework 8and Activity Browser), you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`.
+
+> [!NOTE]
+> Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
+
+> [!WARNING]
+> If you wish to use standard IAM scenarios, you need to request (by [email](mailto:romain.sacchi@psi.ch)) an encryption key from the developers.
 
 How to install this package?
 ----------------------------
@@ -143,10 +152,26 @@ From Pypi:
 
 will install the package and the required dependencies.
 
-A development version with the latest advancements (but with the risks of unseen bugs),
-is available from Anaconda Cloud:
+``premise`` comes with the latest version of ``brightway``, which is Brightway 2.5.
+This means that ``premise`` will output databases that are compatible with Brightway 2.5.
 
-    conda install -c conda-forge premise
+If you want to use the results in the Brightway 2 framework (e.g., to read them in ``activity-browser``), 
+you need to specify it in the installation command:
+
+    pip install "premise[bw2]"
+
+You can also specify that you want to use Brightway 2.5:
+
+    pip install "premise[bw25]"
+
+A development version with the latest advancements (but with the risks of unseen bugs),
+is available from Anaconda Cloud. Similarly, you should specify that you want to use Brightway 2.5:
+
+    conda install -c conda-forge premise-bw25
+
+Or rather use Brightway2 (for Activity Browser-compatibility):
+
+    conda install -c conda-forge premise-bw2
 
 
 How to use it?

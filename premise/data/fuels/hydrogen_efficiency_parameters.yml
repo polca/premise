@@ -1,3 +1,6 @@
+# efficiency values from p. 176 from
+# https://www.now-gmbh.de/wp-content/uploads/2020/09/indwede-studie_v04.1.pdf
+# min from progressive scenario, max from conservative scenario
 hydrogen, from electrolysis, PEM:
   feedstock name: electricity, low voltage
   feedstock unit: kilowatt hour

@@ -869,7 +869,7 @@ class IAMDataCollection:
         )
 
     def fetch_external_data_battery_stationary_scenarios(
-        self, exclude_chemistries=["NAS"]
+        self, exclude_chemistries: List[str] = None
     ):
         """
         Fetch external data on stationary battery scenarios.

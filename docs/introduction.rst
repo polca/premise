@@ -153,20 +153,32 @@ How to install this package?
 
 Two options:
 
-A development version with the latest advancements (but with the risks of unseen bugs),
-is available on Anaconda Cloud:
-
-.. code-block:: python
-
-    conda install -c conda-forge premise
-
-For a more stable and proven version, from Pypi:
-
-.. code-block:: python
+From Pypi:
 
     pip install premise
 
-This will install the package and the required dependencies.
+will install the package and the required dependencies.
+
+``premise`` comes with the latest version of ``brightway``, which is Brightway 2.5.
+This means that ``premise`` will output databases that are compatible with Brightway 2.5.
+
+If you want to use the results in the Brightway 2 framework (e.g., to read them in ``activity-browser``),
+you need to specify it in the installation command:
+
+    pip install "premise[bw2]"
+
+You can also specify that you want to use Brightway 2.5:
+
+    pip install "premise[bw25]"
+
+A development version with the latest advancements (but with the risks of unseen bugs),
+is available from Anaconda Cloud. Similarly, you should specify that you want to use Brightway 2.5:
+
+    conda install -c conda-forge premise-bw25
+
+Or rather use Brightway2 (for Activity Browser-compatibility):
+
+    conda install -c conda-forge premise-bw2
 
 How to use it?
 --------------

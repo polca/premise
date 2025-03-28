@@ -33,11 +33,13 @@ def test_brightway():
     clear_inventory_cache()
 
     if f"ecoinvent-{ei_version}-{system_model}" not in bw2data.databases:
+
         bw2io.import_ecoinvent_release(
             version=ei_version,
             system_model=system_model,
             username=ei_user,
             password=ei_pass,
+            biosphere_name=f"ecoinvent-{ei_version}-biosphere",
         )
 
     ndb = NewDatabase(
@@ -46,7 +48,7 @@ def test_brightway():
         source_version=ei_version,
         key=key,
         system_model=system_model,
-        biosphere_name=f"ecoinvent-{ei_version}-biosphere",
+        biosphere_name=[db for db in bw2data.databases if "biosphere" in db][0],
     )
 
     ndb.update()
@@ -60,7 +62,7 @@ def test_brightway():
 
     ndb.write_db_to_brightway(["test1", "test2", "test3"])
 
-    method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
+    method = [m for m in bw2data.methods if "IPCC" in str(m)][0]
 
     lca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method)
     lca.lci()
@@ -68,8 +70,22 @@ def test_brightway():
     assert isinstance(lca.score, float)
     print(lca.score)
 
+    try:
+        # uses BW2
+        mclca = bw2calc.MonteCarloLCA({bw2data.Database("test1").random(): 1}, method)
+    except AttributeError:
+        # uses BW25
+        mclca = bw2calc.LCA(
+            {bw2data.Database("test1").random(): 1}, method, use_distributions=True
+        )
+
+    results = [lca.score for _ in zip(range(10), mclca)]
+    assert all(isinstance(result, float) for result in results)
+    print(results)
+
     # destroy all objects
     del ndb
     del lca
+    del mclca
     gc.collect()
     delete_all_pickles()
