@@ -110,3 +110,16 @@ steel - secondary: 10
 daccs_sorbent: 3
 biomass - residual: 3
 biomass crops - purpose grown: 3
+heat, residential, from district heating: 3
+heat, residential, from hydrogen boiler: 3
+heat, residential, from natural gas: 3
+heat, residential, from LPG boiler: 3
+heat, residential, from biomass-based methanol boiler: 3
+heat, residential, from coal-based methanol boiler: 3
+heat, residential, from coal stove: 3
+heat, residential, from wood logs heater: 3
+heat, residential, from wood pellets heater: 3
+heat, residential, from heat pump: 3
+heat, residential, from electric heater: 3
+heat, residential, from light fuel oil boiler: 3
+

@@ -216,12 +216,12 @@ def get_production_weighted_losses(
     return {"high": high, "medium": medium, "low": low}
 
 
-def filter_technology(dataset_names, database):
+def filter_technology(dataset_names, database, unit="kilowatt hour"):
     return list(
         ws.get_many(
             database,
             ws.either(*[ws.equals("name", name) for name in dataset_names]),
-            ws.equals("unit", "kilowatt hour"),
+            ws.equals("unit", unit),
         )
     )
 

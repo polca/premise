@@ -27,6 +27,7 @@ IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
 IAM_DACCS_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
+IAM_HEATING_VARS = VARIABLES_DIR / "heat_variables.yaml"
 IAM_TRSPT_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
 IAM_TRSPT_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
 IAM_TRSPT_BUSES_VARS = VARIABLES_DIR / "transport_bus_variables.yaml"
@@ -82,6 +83,11 @@ def fetch_data(
         "Electricity - efficiency": (
             iam_data.electricity_efficiencies
             if hasattr(iam_data, "electricity_efficiencies")
+            else None
+        ),
+        "Heat (residential) - generation": (
+            iam_data.production_volumes
+            if hasattr(iam_data, "production_volumes")
             else None
         ),
         "Fuel (gasoline) - generation": (
@@ -290,6 +296,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Electricity - efficiency": {
             "filepath": IAM_ELEC_VARS,
+        },
+        "Heat (residential) - generation": {
+            "filepath": IAM_HEATING_VARS,
         },
         "Fuel (gasoline) - generation": {
             "filepath": IAM_FUELS_VARS,

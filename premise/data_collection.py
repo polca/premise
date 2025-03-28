@@ -31,6 +31,7 @@ IAM_CROPS_VARS = VARIABLES_DIR / "crops_variables.yaml"
 IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
 IAM_DAC_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
+IAM_HEATING_VARS = VARIABLES_DIR / "heat_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
 IAM_TRANS_ROADFREIGHT_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
 IAM_TRANS_RAILFREIGHT_VARS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
@@ -408,6 +409,10 @@ class IAMDataCollection:
             IAM_CARBON_CAPTURE_VARS, variable="iam_aliases"
         )
 
+        buildings_heat_vars = self.__get_iam_variable_labels(
+            IAM_HEATING_VARS, variable="iam_aliases"
+        )
+
         other_vars = self.__get_iam_variable_labels(
             IAM_OTHER_VARS, variable="iam_aliases"
         )
@@ -470,6 +475,7 @@ class IAMDataCollection:
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
             + list(carbon_capture_vars.values())
+            + list(buildings_heat_vars.values())
             + list(other_vars.values())
             + list(roadfreight_prod_vars.values())
             + list(roadfreight_energy_vars.values())
@@ -676,6 +682,13 @@ class IAMDataCollection:
             sector="transport",
         )
 
+        self.building_heating_markets = self.__fetch_market_data(
+            data=data,
+            input_vars=buildings_heat_vars,
+            system_model=self.system_model,
+            sector="building_heating",
+        )
+
         self.two_wheelers_markets = self.__fetch_market_data(
             data=data,
             input_vars=two_wheelers_prod_vars,
@@ -845,6 +858,7 @@ class IAMDataCollection:
                 **steel_prod_vars,
                 **dac_prod_vars,
                 **biomass_prod_vars,
+                **buildings_heat_vars,
                 **roadfreight_prod_vars,
                 **railfreight_prod_vars,
                 **passenger_cars_prod_vars,
