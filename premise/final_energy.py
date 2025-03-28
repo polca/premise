@@ -96,7 +96,6 @@ class FinalEnergy(BaseTransformation):
             ),
         ):
 
-
             if dataset["name"] in processed_datasets:
                 continue
             if dataset["location"] in self.regions:
