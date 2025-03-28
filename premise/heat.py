@@ -4,7 +4,13 @@ Integrates projections regarding heat production and supply.
 
 from .activity_maps import InventorySet
 from .logger import create_logger
-from .transformation import BaseTransformation, IAMDataCollection, List, ws, get_suppliers_of_a_region
+from .transformation import (
+    BaseTransformation,
+    IAMDataCollection,
+    List,
+    ws,
+    get_suppliers_of_a_region,
+)
 from .validation import HeatValidation
 from .inventory_imports import get_biosphere_code
 from .electricity import filter_technology
@@ -306,7 +312,6 @@ class Heat(BaseTransformation):
                     self.add_to_index(new_dataset)
                     self.database.append(new_dataset)
 
-
     def generate_world_market(
         self,
         dataset: dict,
@@ -438,7 +443,6 @@ class Heat(BaseTransformation):
 
         return dataset
 
-
     def create_heat_markets(self):
 
         # Loop through the technologies
@@ -459,7 +463,7 @@ class Heat(BaseTransformation):
             "unit": "megajoule",
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-                       f" using the pathway {self.scenario} for the year {self.year}.",
+            f" using the pathway {self.scenario} for the year {self.year}.",
             "exchanges": [],
         }
 
@@ -542,9 +546,7 @@ class Heat(BaseTransformation):
 
             # normalize the mix to 1
             total = sum(heat_mix.values())
-            heat_mix = {
-                tech: heat_mix[tech] / total for tech in heat_mix
-            }
+            heat_mix = {tech: heat_mix[tech] / total for tech in heat_mix}
 
             # fetch production volume
             if self.year in self.iam_data.production_volumes.coords["year"].values:
@@ -598,7 +600,7 @@ class Heat(BaseTransformation):
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
-                                "loc": amount ,
+                                "loc": amount,
                                 "amount": amount,
                                 "type": "technosphere",
                                 "product": supplier["reference product"],
@@ -630,7 +632,6 @@ class Heat(BaseTransformation):
             database=self.database,
             unit="megajoule",
         )
-
 
         new_datasets = [
             generate_regional_markets(region, period, subset)
