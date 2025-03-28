@@ -180,6 +180,7 @@ FILEPATH_SIB_BATTERY = INVENTORY_DIR / "lci-batteries-SIB.xlsx"
 FILEPATH_HYDROGEN_TURBINE = INVENTORY_DIR / "lci-hydrogen-turbine.xlsx"
 FILEPATH_HYDROGEN_HEATING = INVENTORY_DIR / "lci-hydrogen-heating.xlsx"
 FILEPATH_METHANOL_HEATING = INVENTORY_DIR / "lci-methanol-heating.xlsx"
+FILEPATH_ELECTRIC_HEATING = INVENTORY_DIR / "lci-electric-heating.xlsx"
 FILEPATH_GERMANIUM = INVENTORY_DIR / "lci-germanium.xlsx"
 FILEPATH_RHENIUM = INVENTORY_DIR / "lci-rhenium.xlsx"
 FILEPATH_PGM = INVENTORY_DIR / "lci-PGM.xlsx"
@@ -796,6 +797,7 @@ class NewDatabase:
             (FILEPATH_CSP, "3.9"),
             (FILEPATH_HYDROGEN_HEATING, "3.9"),
             (FILEPATH_METHANOL_HEATING, "3.9"),
+            (FILEPATH_ELECTRIC_HEATING, "3.10"),
             (FILEPATH_GERMANIUM, "3.9"),
             (FILEPATH_RHENIUM, "3.9"),
             (FILEPATH_TWO_WHEELERS, "3.7"),

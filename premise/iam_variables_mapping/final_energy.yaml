@@ -1,67 +1,3 @@
-Buildings - Heating and other - Elec:
-  ecoinvent_aliases:
-    fltr:
-      name: market group for electricity, low voltage
-      reference product: electricity, low voltage
-  iam_aliases:
-    remind: FE|Buildings|+|Electricity
-
-Buildings - Heating and other - H2:
-  ecoinvent_aliases:
-    fltr:
-      name: hydrogen burned, in residential boiler
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Liquids|+|Hydrogen
-
-Buildings - Heating and other - Liquids:
-  ecoinvent_aliases:
-    fltr:
-      name: light fuel oil, burned in residential boiler 10kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|+|Liquids
-
-Buildings - Heating and other - Solids:
-  ecoinvent_aliases:
-    fltr:
-      name: wood pellet, burned in residential stove 9kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|+|Solids
-
-Buildings - Heating and other - Bio CH4:
-  ecoinvent_aliases:
-    fltr:
-      name: biomethane, burned in residential natural gas boiler <100kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Gases|+|Biomass
-
-Buildings - Heating and other - Nat Gas:
-  ecoinvent_aliases:
-    fltr:
-      name: natural gas, burned in residential natural gas boiler <100kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Gases|Fossil|+|Natural Gas
-
-Buildings - Heating and other - SNG:
-  ecoinvent_aliases:
-    fltr:
-      name: natural gas, synthetic, burned in residential natural gas boiler <100kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Gases|+|Hydrogen
-
-Buildings - Heating and other - Coalgas:
-  ecoinvent_aliases:
-    fltr:
-      name: natural gas, coal-based, burned in residential natural gas boiler <100kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Gases|Fossil|+|Coal
-
 Buildings - Heating - District Heating:
   ecoinvent_aliases:
     fltr:
@@ -102,22 +38,6 @@ Buildings - Heating - H2:
   iam_aliases:
     remind: FE|Buildings|Heating|Hydrogen
 
-Buildings - Heating - Liquids:
-  ecoinvent_aliases:
-    fltr:
-      name: light fuel oil, burned in residential boiler 10kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Heating|Liquids
-
-Buildings - Heating - Solids:
-  ecoinvent_aliases:
-    fltr:
-      name: wood pellet, burned in residential stove 9kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Heating|Solids
-
 Buildings - Heating and other - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -125,14 +45,6 @@ Buildings - Heating and other - Biofuel:
       reference product: heat
   iam_aliases:
     remind: FE|Buildings|Liquids|+|Biomass
-
-Buildings - Heating and other - Liquid fossil:
-  ecoinvent_aliases:
-    fltr:
-      name: light fuel oil, burned in residential boiler 10kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Liquids|+|Fossil
 
 Buildings - Heating and other - Liquid coal:
   ecoinvent_aliases:
@@ -157,14 +69,6 @@ Buildings - Heating and other - Oil:
       reference product: heat
   iam_aliases:
     remind: FE|Buildings|Liquids|Fossil|+|Oil
-
-Buildings - Heating and other - Solid biomass:
-  ecoinvent_aliases:
-    fltr:
-      name: wood pellet, burned in residential stove 9kW
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Solids|+|Biomass
 
 Buildings - Heating and other - Solid Coal:
   ecoinvent_aliases:

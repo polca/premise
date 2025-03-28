@@ -49,58 +49,102 @@ heat, from wood chips:
       - heat production, hardwood chips
     mask: market
 
-heat, from hydrogen turbine:
-  ecoinvent_aliases:
-    fltr: heat production, from hydrogen-fired one gigawatt gas turbine
-
-heat, from hydrogen boiler:
-  ecoinvent_aliases:
-    fltr: heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
-
-heat, from hydrogen CHP:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of hydrogen using CHP, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
-
-heat, from hydrogen fuel cell:
-    ecoinvent_aliases:
-        fltr: heat, residential, by conversion of hydrogen using fuel cell, PEM, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
-
-heat, from synthetic natural gas boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of synthetic natural gas from catalytic methanation using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid and carbon sourced from DAC
-
-heat, from coal-based natural gas boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of coal-based natural gas using boiler, distributed by pipeline
-
-heat, from biomethane boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
-
-heat, from LPG boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
-
-heat, from biomass-based methanol boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
-
-heat, from coal-based methanol boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
-
-heat, from coal stove:
-    ecoinvent_aliases:
-        fltr: heat production, hard coal briquette, stove 5-15kW
-
 heat, from coal furnace:
     ecoinvent_aliases:
         fltr: heat production, at hard coal industrial furnace 1-10MW
 
-heat, from wood logs heater:
+heat, from hydrogen turbine:
+  ecoinvent_aliases:
+    fltr: heat production, from hydrogen-fired one gigawatt gas turbine
+
+heat, residential, from district heating:
+    ecoinvent_aliases:
+        fltr: heat, district or industrial, other than natural gas
+    iam_aliases:
+      remind: FE|Buildings|Heating|District Heating
+
+heat, residential, from hydrogen boiler:
+  ecoinvent_aliases:
+    fltr: heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+  iam_aliases:
+    remind: FE|Buildings|Heating|Hydrogen
+
+heat, residential, from hydrogen CHP:
+    ecoinvent_aliases:
+        fltr: heat, residential, by combustion of hydrogen using CHP, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+
+heat, residential, from hydrogen fuel cell:
+    ecoinvent_aliases:
+        fltr: heat, residential, by conversion of hydrogen using fuel cell, PEM, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+
+heat, residential, from synthetic natural gas boiler:
+    ecoinvent_aliases:
+        fltr: heat, residential, by combustion of synthetic natural gas from catalytic methanation using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid and carbon sourced from DAC
+
+heat, residential, from coal-based natural gas boiler:
+    ecoinvent_aliases:
+        fltr: heat, residential, by combustion of coal-based natural gas using boiler, distributed by pipeline
+
+heat, residential, from natural gas:
+    ecoinvent_aliases:
+        fltr: heat production, natural gas, at boiler condensing modulating <100kW
+    iam_aliases:
+      remind: FE|Buildings|Heating|Gases
+
+heat, residential, from biomethane boiler:
+    ecoinvent_aliases:
+        fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
+
+heat, residential, from LPG boiler:
+    ecoinvent_aliases:
+        fltr: heat, residential, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
+    iam_aliases:
+      remind: FE|Buildings|Liquids|Fossil|+|Gas
+
+heat, residential, from biomass-based methanol boiler:
+    ecoinvent_aliases:
+        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
+    iam_aliases:
+      remind: FE|Buildings|Liquids|+|Biomass
+
+heat, residential, from coal-based methanol boiler:
+    ecoinvent_aliases:
+        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
+    iam_aliases:
+      remind: FE|Buildings|Liquids|Fossil|+|Coal
+
+heat, residential, from coal stove:
+    ecoinvent_aliases:
+        fltr: heat production, hard coal briquette, stove 5-15kW
+    iam_aliases:
+      remind: FE|Buildings|Solids|Coal
+
+heat, residential, from wood logs heater:
     ecoinvent_aliases:
         fltr: heat production, mixed logs, at wood heater 6kW
+    iam_aliases:
+      remind: FE|Buildings|Solids|Biomass|+|Traditional
 
-heat, from heat pump:
+heat, residential, from wood pellets heater:
+    ecoinvent_aliases:
+        fltr: heat production, wood pellet, at furnace 9kW
+    iam_aliases:
+      remind: FE|Buildings|Solids|Biomass|+|Modern
+
+heat, residential, from heat pump:
     ecoinvent_aliases:
         fltr: heat production, air-water heat pump 10kW
+    iam_aliases:
+      remind: FE|Buildings|Heating|Electricity|Heat pump
+
+heat, residential, from electric heater:
+    ecoinvent_aliases:
+        fltr: heat, residential, electric storage heater, using electricity from grid
+    iam_aliases:
+      remind: FE|Buildings|Heating|Electricity|Resistance
+
+heat, residential, from light fuel oil boiler:
+    ecoinvent_aliases:
+        fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
+    iam_aliases:
+      remind: FE|Buildings|Liquids|Fossil|+|Oil
