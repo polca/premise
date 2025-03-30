@@ -19,6 +19,7 @@ import copy
 import uuid
 import numpy as np
 from collections import defaultdict
+import xarray as xr
 
 logger = create_logger("heat")
 
@@ -39,8 +40,35 @@ def _update_heat(scenario, version, system_model):
     heat.fetch_fuel_market_co2_emissions()
     heat.regionalize_heat_production()
 
-    if scenario["iam data"].building_heating_markets is not None:
-        heat.create_heat_markets()
+    if scenario["iam data"].residential_heating_mix is not None:
+        heat.create_heat_markets(
+            technologies=[
+                tech
+                for tech in heat.iam_data.residential_heating_mix.variables.values
+                if "residential" in tech.lower()
+            ],
+            name="market for heat, residential",
+            energy_use_volumes=heat.iam_data.residential_heating_mix,
+            production_volumes=heat.iam_data.production_volumes,
+        )
+
+        heat.create_heat_markets(
+            technologies=[
+                tech for tech in heat.iam_data.daccs_energy_use.variables.values
+            ],
+            name="market for energy, for direct air capture and storage",
+            energy_use_volumes=heat.iam_data.daccs_energy_use,
+            production_volumes=heat.iam_data.production_volumes,
+        )
+
+        heat.create_heat_markets(
+            technologies=[
+                tech for tech in heat.iam_data.ewr_energy_use.variables.values
+            ],
+            name="market for energy, for enhanced rock weathering",
+            energy_use_volumes=heat.iam_data.ewr_energy_use,
+            production_volumes=heat.iam_data.production_volumes,
+        )
 
     heat.relink_datasets()
 
@@ -316,6 +344,7 @@ class Heat(BaseTransformation):
         self,
         dataset: dict,
         regions: List[str],
+        production_volumes: xr.DataArray,
     ) -> dict:
         """
         Generate the world market for a given dataset and product variables.
@@ -339,11 +368,11 @@ class Heat(BaseTransformation):
             exc for exc in dataset["exchanges"] if exc["type"] != "production"
         ]
 
-        if self.year in self.iam_data.production_volumes.coords["year"].values:
+        if self.year in production_volumes.coords["year"].values:
             production_volume = (
-                self.iam_data.production_volumes.sel(
+                production_volumes.sel(
                     region=regions,
-                    variables=self.iam_data.building_heating_markets.variables.values,
+                    variables=production_volumes.variables.values,
                     year=self.year,
                 )
                 .sum(dim=["region", "variables"])
@@ -351,9 +380,9 @@ class Heat(BaseTransformation):
             )
         else:
             production_volume = (
-                self.iam_data.production_volumes.sel(
+                production_volumes.sel(
                     region=regions,
-                    variables=self.iam_data.building_heating_markets.variables.values,
+                    variables=production_volumes.variables.values,
                 )
                 .interp(year=self.year)
                 .sum(dim=["region", "variables"])
@@ -385,37 +414,35 @@ class Heat(BaseTransformation):
             if r == "World":
                 continue
 
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
+            if self.year in production_volumes.coords["year"].values:
                 share = (
-                    self.iam_data.production_volumes.sel(
+                    production_volumes.sel(
                         region=r,
-                        variables=self.iam_data.building_heating_markets.variables.values,
+                        variables=production_volumes.variables.values,
                         year=self.year,
                     ).sum(dim="variables")
-                    / self.iam_data.production_volumes.sel(
+                    / production_volumes.sel(
                         region=[
-                            x
-                            for x in self.iam_data.production_volumes.region.values
-                            if x != "World"
+                            x for x in production_volumes.region.values if x != "World"
                         ],
-                        variables=self.iam_data.building_heating_markets.variables.values,
+                        variables=production_volumes.variables.values,
                         year=self.year,
                     ).sum(dim=["variables", "region"])
                 ).values
             else:
                 share = (
                     (
-                        self.iam_data.production_volumes.sel(
+                        production_volumes.sel(
                             region=r,
-                            variables=self.iam_data.building_heating_markets.variables.values,
+                            variables=production_volumes.variables.values,
                         ).sum(dim="variables")
-                        / self.iam_data.production_volumes.sel(
+                        / production_volumes.sel(
                             region=[
                                 x
-                                for x in self.iam_data.production_volumes.region.values
+                                for x in production_volumes.region.values
                                 if x != "World"
                             ],
-                            variables=self.iam_data.building_heating_markets.variables.values,
+                            variables=production_volumes.variables.values,
                         ).sum(dim=["variables", "region"])
                     )
                     .interp(
@@ -443,14 +470,9 @@ class Heat(BaseTransformation):
 
         return dataset
 
-    def create_heat_markets(self):
-
-        # Loop through the technologies
-        technologies = [
-            tech
-            for tech in self.iam_data.building_heating_markets.variables.values
-            if "residential" in tech.lower()
-        ]
+    def create_heat_markets(
+        self, technologies, name, energy_use_volumes, production_volumes
+    ):
 
         # Get the possible names of ecoinvent datasets
         ecoinvent_technologies = {
@@ -458,7 +480,7 @@ class Heat(BaseTransformation):
         }
 
         generic_dataset = {
-            "name": "market group for heat, residential",
+            "name": name,
             "reference product": "heat, central or small-scale",
             "unit": "megajoule",
             "database": self.database[1]["database"],
@@ -467,7 +489,9 @@ class Heat(BaseTransformation):
             "exchanges": [],
         }
 
-        def generate_regional_markets(region: str, period: int, subset: list) -> dict:
+        def generate_regional_markets(
+            region: str, period: int, subset: list, production_volumes: xr.DataArray
+        ) -> dict:
 
             new_dataset = copy.deepcopy(generic_dataset)
             new_dataset["location"] = region
@@ -521,18 +545,16 @@ class Heat(BaseTransformation):
             if self.system_model == "consequential":
                 heat_mix = dict(
                     zip(
-                        self.iam_data.building_heating_markets.variables.values,
-                        self.iam_data.building_heating_markets.sel(
-                            region=region, year=self.year
-                        ).values,
+                        production_volumes.variables.values,
+                        production_volumes.sel(region=region, year=self.year).values,
                     )
                 )
 
             else:
                 heat_mix = dict(
                     zip(
-                        self.iam_data.building_heating_markets.variables.values,
-                        self.iam_data.building_heating_markets.sel(
+                        production_volumes.variables.values,
+                        production_volumes.sel(
                             region=region,
                         )
                         .interp(
@@ -549,17 +571,17 @@ class Heat(BaseTransformation):
             heat_mix = {tech: heat_mix[tech] / total for tech in heat_mix}
 
             # fetch production volume
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
-                production_volume = self.iam_data.production_volumes.sel(
+            if self.year in production_volumes.coords["year"].values:
+                production_volume = production_volumes.sel(
                     region=region,
-                    variables=self.iam_data.building_heating_markets.variables.values,
+                    variables=production_volumes.variables.values,
                     year=self.year,
                 ).values.item(0)
             else:
                 production_volume = (
-                    self.iam_data.production_volumes.sel(
+                    production_volumes.sel(
                         region=region,
-                        variables=self.iam_data.building_heating_markets.variables.values,
+                        variables=production_volumes.variables.values,
                     )
                     .interp(year=self.year)
                     .values.item(0)
@@ -634,10 +656,11 @@ class Heat(BaseTransformation):
         )
 
         new_datasets = [
-            generate_regional_markets(region, period, subset)
+            generate_regional_markets(region, period, subset, energy_use_volumes)
             for period in periods
             for region in self.regions
             if region != "World"
+            and energy_use_volumes.sel(region=region, year=self.year).sum() > 0
         ]
 
         self.database.extend(new_datasets)
@@ -646,12 +669,14 @@ class Heat(BaseTransformation):
             self.write_log(ds)
             self.add_to_index(ds)
 
-        new_world_dataset = self.generate_world_market(
-            dataset=copy.deepcopy(generic_dataset),
-            regions=self.regions,
-        )
-        self.database.append(new_world_dataset)
-        self.write_log(new_world_dataset)
+        if energy_use_volumes.sel(year=self.year).sum() > 0:
+            new_world_dataset = self.generate_world_market(
+                dataset=copy.deepcopy(generic_dataset),
+                regions=self.regions,
+                production_volumes=production_volumes,
+            )
+            self.database.append(new_world_dataset)
+            self.write_log(new_world_dataset)
 
     def write_log(self, dataset, status="created"):
         """

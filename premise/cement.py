@@ -38,7 +38,7 @@ def _update_cement(scenario, version, system_model):
         index=scenario.get("index"),
     )
 
-    if scenario["iam data"].cement_markets is not None:
+    if scenario["iam data"].cement_technology_mix is not None:
         cement.replace_clinker_production_with_markets()
         cement.add_datasets_to_database()
         cement.relink_datasets()
@@ -224,7 +224,10 @@ class Cement(BaseTransformation):
         )
 
         for variable in variables:
-            if variable in self.iam_data.cement_markets.coords["variables"].values:
+            if (
+                variable
+                in self.iam_data.cement_technology_mix.coords["variables"].values
+            ):
 
                 d_act_clinker = copy.deepcopy(clinker)
                 # remove `code` field
@@ -258,7 +261,7 @@ class Cement(BaseTransformation):
                     # affect hard coal use
 
                     scaling_factor = 1 / self.find_iam_efficiency_change(
-                        data=self.iam_data.cement_efficiencies,
+                        data=self.iam_data.cement_technology_efficiencies,
                         variable=variable,
                         location=dataset["location"],
                     )
@@ -712,14 +715,14 @@ class Cement(BaseTransformation):
             production_variable=[
                 v
                 for v in variables
-                if v in self.iam_data.cement_markets.coords["variables"].values
+                if v in self.iam_data.cement_technology_mix.coords["variables"].values
             ],
         )
 
         clinker_market_datasets = {
             k: v
             for k, v in clinker_market_datasets.items()
-            if self.iam_data.cement_markets.sel(region=k)
+            if self.iam_data.cement_technology_mix.sel(region=k)
             .sum(dim="variables")
             .interp(year=self.year)
             > 0
@@ -732,14 +735,20 @@ class Cement(BaseTransformation):
                 if v["type"] == "production" or v["unit"] == "ton kilometer"
             ]
             for variable in variables:
-                if variable in self.iam_data.cement_markets.coords["variables"].values:
-                    if self.year in self.iam_data.cement_markets.coords["year"].values:
-                        share = self.iam_data.cement_markets.sel(
+                if (
+                    variable
+                    in self.iam_data.cement_technology_mix.coords["variables"].values
+                ):
+                    if (
+                        self.year
+                        in self.iam_data.cement_technology_mix.coords["year"].values
+                    ):
+                        share = self.iam_data.cement_technology_mix.sel(
                             variables=variable, region=region, year=self.year
                         ).values
                     else:
                         share = (
-                            self.iam_data.cement_markets.sel(
+                            self.iam_data.cement_technology_mix.sel(
                                 variables=variable, region=region
                             )
                             .interp(year=self.year)

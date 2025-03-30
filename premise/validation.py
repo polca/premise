@@ -1317,18 +1317,18 @@ class ElectricityValidation(BaseDatasetValidator):
         # corresponds to the IAM scenario projection
         vars = [
             x
-            for x in self.iam_data.electricity_markets.coords["variables"].values
+            for x in self.iam_data.electricity_mix.coords["variables"].values
             if x.lower().startswith("hydro")
         ]
 
-        if self.year in self.iam_data.electricity_markets.coords["year"].values:
+        if self.year in self.iam_data.electricity_mix.coords["year"].values:
 
-            hydro_share = self.iam_data.electricity_markets.sel(
+            hydro_share = self.iam_data.electricity_mix.sel(
                 variables=vars, year=self.year
-            ).sum(dim="variables") / self.iam_data.electricity_markets.sel(
+            ).sum(dim="variables") / self.iam_data.electricity_mix.sel(
                 variables=[
                     v
-                    for v in self.iam_data.electricity_markets.variables.values
+                    for v in self.iam_data.electricity_mix.variables.values
                     if v.lower() != "solar pv residential"
                 ],
                 year=self.year,
@@ -1336,12 +1336,12 @@ class ElectricityValidation(BaseDatasetValidator):
                 dim="variables"
             )
         else:
-            hydro_share = self.iam_data.electricity_markets.sel(variables=vars).interp(
+            hydro_share = self.iam_data.electricity_mix.sel(variables=vars).interp(
                 year=self.year
-            ).sum(dim="variables") / self.iam_data.electricity_markets.sel(
+            ).sum(dim="variables") / self.iam_data.electricity_mix.sel(
                 variables=[
                     v
-                    for v in self.iam_data.electricity_markets.variables.values
+                    for v in self.iam_data.electricity_mix.variables.values
                     if v.lower() != "solar pv residential"
                 ],
             ).interp(
@@ -1646,9 +1646,12 @@ class SteelValidation(BaseDatasetValidator):
                 if ds["location"] == "World":
                     continue
 
-                if self.year in self.iam_data.steel_markets.coords["year"].values:
+                if (
+                    self.year
+                    in self.iam_data.steel_technology_mix.coords["year"].values
+                ):
                     eaf_steel = (
-                        self.iam_data.steel_markets.sel(
+                        self.iam_data.steel_technology_mix.sel(
                             variables="steel - secondary",
                             region=ds["location"],
                             year=self.year,
@@ -1656,7 +1659,7 @@ class SteelValidation(BaseDatasetValidator):
                     ).values.item(0)
                 else:
                     eaf_steel = (
-                        self.iam_data.steel_markets.sel(
+                        self.iam_data.steel_technology_mix.sel(
                             variables="steel - secondary", region=ds["location"]
                         )
                         .interp(year=self.year)
@@ -2035,15 +2038,15 @@ class BiomassValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
-                if self.year in self.iam_data.biomass_markets.coords["year"].values:
-                    expected_share = self.iam_data.biomass_markets.sel(
+                if self.year in self.iam_data.biomass_mix.coords["year"].values:
+                    expected_share = self.iam_data.biomass_mix.sel(
                         variables="biomass - residual",
                         region=ds["location"],
                         year=self.year,
                     ).values.item(0)
                 else:
                     expected_share = (
-                        self.iam_data.biomass_markets.sel(
+                        self.iam_data.biomass_mix.sel(
                             variables="biomass - residual",
                             region=ds["location"],
                         )

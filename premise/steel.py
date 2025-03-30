@@ -27,7 +27,7 @@ def _update_steel(scenario, version, system_model):
         index=scenario.get("index"),
     )
 
-    if scenario["iam data"].steel_markets is not None:
+    if scenario["iam data"].steel_technology_mix is not None:
         steel.generate_activities()
         steel.relink_datasets()
         scenario["database"] = steel.database
@@ -499,10 +499,10 @@ class Steel(BaseTransformation):
             else:
                 sector = "steel - secondary"
 
-            if sector in self.iam_data.steel_efficiencies.variables.values:
+            if sector in self.iam_data.steel_technology_efficiencies.variables.values:
                 # Calculate the scaling factor based on the efficiency change from 2020 to the current year
                 scaling_factor = 1 / self.find_iam_efficiency_change(
-                    data=self.iam_data.steel_efficiencies,
+                    data=self.iam_data.steel_technology_efficiencies,
                     variable=sector,
                     location=dataset["location"],
                 )

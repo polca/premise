@@ -26,7 +26,7 @@ IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
-IAM_DACCS_VARS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
+IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
 IAM_HEATING_VARS = VARIABLES_DIR / "heat_variables.yaml"
 IAM_TRSPT_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
 IAM_TRSPT_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
@@ -178,7 +178,7 @@ def fetch_data(
             if hasattr(iam_data, "carbon_capture_rate")
             else None
         ),
-        "Direct Air Capture - generation": (
+        "CDR - generation": (
             iam_data.production_volumes
             if hasattr(iam_data, "production_volumes")
             else None
@@ -386,16 +386,15 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
             "filepath": IAM_CARBON_CAPTURE_VARS,
             "variables": ["steel"],
         },
-        "Direct Air Capture - generation": {
-            "filepath": IAM_DACCS_VARS,
-            "variables": ["dac_solvent"],
+        "CDR - generation": {
+            "filepath": IAM_CDR_VARS,
         },
         "Direct Air Capture - heat eff.": {
-            "filepath": IAM_DACCS_VARS,
+            "filepath": IAM_CDR_VARS,
             "variables": ["dac_solvent"],
         },
         "Direct Air Capture - elec eff.": {
-            "filepath": IAM_DACCS_VARS,
+            "filepath": IAM_CDR_VARS,
             "variables": ["dac_solvent"],
         },
         "Transport (two-wheelers)": {
@@ -494,6 +493,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                 if "CCS" in sector and iam_data is not None:
                     iam_data *= 100
+
+                if sector == "CDR - generation":
+                    iam_data *= -1
 
                 if iam_data is None:
                     continue

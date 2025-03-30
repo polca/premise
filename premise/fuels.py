@@ -300,10 +300,10 @@ def _update_fuels(scenario, version, system_model):
     if any(
         x is not None
         for x in (
-            scenario["iam data"].petrol_markets,
-            scenario["iam data"].diesel_markets,
-            scenario["iam data"].gas_markets,
-            scenario["iam data"].hydrogen_markets,
+            scenario["iam data"].petrol_blend,
+            scenario["iam data"].diesel_blend,
+            scenario["iam data"].natural_gas_blend,
+            scenario["iam data"].hydrogen_blend,
         )
     ):
         fuels.generate_fuel_markets()
@@ -399,10 +399,10 @@ class Fuels(BaseTransformation):
             dims=["variables"], coords={"variables": []}
         )
         for efficiency in [
-            self.iam_data.petrol_efficiencies,
-            self.iam_data.diesel_efficiencies,
-            self.iam_data.gas_efficiencies,
-            self.iam_data.hydrogen_efficiencies,
+            self.iam_data.petrol_technology_efficiencies,
+            self.iam_data.diesel_technology_efficiencies,
+            self.iam_data.gas_technology_efficiencies,
+            self.iam_data.hydrogen_technology_efficiencies,
         ]:
             if efficiency is not None:
                 self.fuel_efficiencies = xr.concat(

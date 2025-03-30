@@ -148,3 +148,63 @@ heat, residential, from light fuel oil boiler:
         fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Oil
+
+energy, for DACCS, from hydrogen turbine:
+  ecoinvent_aliases:
+    fltr: heat production, from hydrogen-fired one gigawatt gas turbine
+  iam_aliases:
+    remind: FE|CDR|DAC|+|Hydrogen
+    remind-eu: FE|CDR|DAC|+|Hydrogen
+    image:
+      - Carbon Capture|Storage|Biomass|Energy|Supply|Hydrogen
+      - Carbon Capture|Storage|Fossil|Energy|Supply|Hydrogen
+
+energy, for DACCS, from gas boiler:
+  ecoinvent_aliases:
+    fltr: heat production, natural gas, at boiler condensing modulating >100kW
+  iam_aliases:
+    remind: FE|CDR|DAC|+|Gases
+    remind-eu: FE|CDR|DAC|+|Gases
+    image: Carbon Capture|Storage|Fossil|Energy|Supply|Gases
+
+energy, for DACCS, from other:
+  ecoinvent_aliases:
+    fltr: steam production, as energy carrier, in chemical industry
+  iam_aliases:
+    remind: FE|CDR|DAC|+|Heat
+    remind-eu: FE|CDR|DAC|+|Heat
+    tiam-ucl:
+      - Secondary Energy|Consumption|Direct Air Capture|Heat
+    image:
+      - Carbon Capture|Storage|Biomass|Energy|Supply|Liquids
+      - Carbon Capture|Storage|Biomass|Energy|Supply|Other
+      - Carbon Capture|Storage|Fossil|Energy|Supply|Liquids
+      - Carbon Capture|Storage|Fossil|Energy|Supply|Other
+
+energy, for DACCS, from electricity:
+  ecoinvent_aliases:
+    fltr: electricity, medium-voltage, used as final energy
+  iam_aliases:
+    remind: FE|CDR|DAC|+|Electricity
+    remind-eu: FE|CDR|DAC|+|Electricity
+    tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Electricity
+    image:
+      - Carbon Capture|Storage|Biomass|Energy|Supply|Electricity
+      - Carbon Capture|Storage|Fossil|Energy|Supply|Electricity
+
+energy, for EWR, from electricity:
+    ecoinvent_aliases:
+        fltr: electricity, medium-voltage, used as final energy
+    iam_aliases:
+      remind: FE|CDR|EW|+|Electricity
+      remind-eu: FE|CDR|EW|+|Electricity
+
+energy, from EWR, from diesel:
+    ecoinvent_aliases:
+        fltr: diesel, burned in
+        mask:
+          - market
+          - biodiesel
+    iam_aliases:
+      remind: FE|CDR|EW|+|Diesel
+      remind-eu: FE|CDR|EW|+|Diesel

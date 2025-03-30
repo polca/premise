@@ -20,7 +20,7 @@ import yaml
 from cryptography.fernet import Fernet
 from prettytable import PrettyTable
 
-from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR, VARIABLES_DIR
+from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .geomap import Geomap
 from .marginal_mixes import consequential_method
 
@@ -30,7 +30,7 @@ IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 IAM_CROPS_VARS = VARIABLES_DIR / "crops_variables.yaml"
 IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
-IAM_DAC_VARS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
+IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
 IAM_HEATING_VARS = VARIABLES_DIR / "heat_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
 IAM_TRANS_ROADFREIGHT_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
@@ -379,16 +379,16 @@ class IAMDataCollection:
             IAM_STEEL_VARS, variable="eff_aliases"
         )
 
-        dac_prod_vars = self.__get_iam_variable_labels(
-            IAM_DAC_VARS, variable="iam_aliases"
+        cdr_prod_vars = self.__get_iam_variable_labels(
+            IAM_CDR_VARS, variable="iam_aliases"
         )
 
-        dac_heat_vars = self.__get_iam_variable_labels(
-            IAM_DAC_VARS, variable="heat_use_aliases"
-        )
-        dac_electricity_vars = self.__get_iam_variable_labels(
-            IAM_DAC_VARS, variable="electricity_use_aliases"
-        )
+        cdr_energy_vars = {
+            k: v
+            for k, v in self.__get_iam_variable_labels(
+                IAM_CDR_VARS, variable="energy_use_aliases"
+            ).items()
+        }
 
         biomass_prod_vars = self.__get_iam_variable_labels(
             IAM_BIOMASS_VARS, variable="iam_aliases"
@@ -409,9 +409,29 @@ class IAMDataCollection:
             IAM_CARBON_CAPTURE_VARS, variable="iam_aliases"
         )
 
-        buildings_heat_vars = self.__get_iam_variable_labels(
-            IAM_HEATING_VARS, variable="iam_aliases"
-        )
+        buildings_heat_vars = {
+            k: v
+            for k, v in self.__get_iam_variable_labels(
+                IAM_HEATING_VARS, variable="iam_aliases"
+            ).items()
+            if "residential" in k
+        }
+
+        daccs_heat_vars = {
+            k: v
+            for k, v in self.__get_iam_variable_labels(
+                IAM_HEATING_VARS, variable="iam_aliases"
+            ).items()
+            if "DACCS" in k
+        }
+
+        ewr_heat_vars = {
+            k: v
+            for k, v in self.__get_iam_variable_labels(
+                IAM_HEATING_VARS, variable="iam_aliases"
+            ).items()
+            if "EWR" in k
+        }
 
         other_vars = self.__get_iam_variable_labels(
             IAM_OTHER_VARS, variable="iam_aliases"
@@ -469,13 +489,16 @@ class IAMDataCollection:
             + list(cement_eff_vars.values())
             + list(steel_prod_vars.values())
             + list(steel_energy_vars.values())
-            + list(dac_prod_vars.values())
+            + list(cdr_prod_vars.values())
+            + list(cdr_energy_vars.values())
             + list(biomass_prod_vars.values())
             + list(biomass_eff_vars.values())
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
             + list(carbon_capture_vars.values())
             + list(buildings_heat_vars.values())
+            + list(daccs_heat_vars.values())
+            + list(ewr_heat_vars.values())
             + list(other_vars.values())
             + list(roadfreight_prod_vars.values())
             + list(roadfreight_energy_vars.values())
@@ -514,14 +537,14 @@ class IAMDataCollection:
             self.model, gains_scenario=gains_scenario
         )
 
-        self.electricity_markets = self.__fetch_market_data(
+        self.electricity_mix = self.__fetch_market_data(
             data=data,
             input_vars=electricity_prod_vars,
             system_model=self.system_model,
             sector="electricity",
         )
 
-        self.petrol_markets = self.__fetch_market_data(
+        self.petrol_blend = self.__fetch_market_data(
             data=data,
             input_vars={
                 k: v
@@ -541,7 +564,7 @@ class IAMDataCollection:
             sector="petrol",
         )
 
-        self.diesel_markets = self.__fetch_market_data(
+        self.diesel_blend = self.__fetch_market_data(
             data=data,
             input_vars={
                 k: v
@@ -558,7 +581,7 @@ class IAMDataCollection:
             sector="diesel",
         )
 
-        self.gas_markets = self.__fetch_market_data(
+        self.natural_gas_blend = self.__fetch_market_data(
             data=data,
             input_vars={
                 k: v
@@ -572,7 +595,7 @@ class IAMDataCollection:
             sector="gas",
         )
 
-        self.hydrogen_markets = self.__fetch_market_data(
+        self.hydrogen_blend = self.__fetch_market_data(
             data=data,
             input_vars={
                 k: v
@@ -588,7 +611,7 @@ class IAMDataCollection:
             sector="hydrogen",
         )
 
-        self.kerosene_markets = self.__fetch_market_data(
+        self.kerosene_blend = self.__fetch_market_data(
             data=data,
             input_vars={
                 k: v
@@ -604,7 +627,7 @@ class IAMDataCollection:
             sector="kerosene",
         )
 
-        self.lpg_markets = self.__fetch_market_data(
+        self.lpg_blend = self.__fetch_market_data(
             data=data,
             input_vars={
                 k: v
@@ -620,19 +643,19 @@ class IAMDataCollection:
             sector="lpg",
         )
 
-        self.cement_markets = self.__fetch_market_data(
+        self.cement_technology_mix = self.__fetch_market_data(
             data=data,
             input_vars=cement_prod_vars,
             system_model="cutoff",
             sector="cement",
         )
-        self.steel_markets = self.__fetch_market_data(
+        self.steel_technology_mix = self.__fetch_market_data(
             data=data, input_vars=steel_prod_vars, system_model="cutoff", sector="steel"
         )
-        self.dac_markets = self.__fetch_market_data(
-            data=data, input_vars=dac_prod_vars, system_model="cutoff", sector="dac"
+        self.cdr_technology_mix = self.__fetch_market_data(
+            data=data, input_vars=cdr_prod_vars, system_model="cutoff", sector="dac"
         )
-        self.biomass_markets = self.__fetch_market_data(
+        self.biomass_mix = self.__fetch_market_data(
             data=data,
             input_vars=biomass_prod_vars,
             system_model="cutoff",
@@ -654,69 +677,80 @@ class IAMDataCollection:
             system_model="cutoff",
         )
 
-        self.roadfreight_markets = self.__fetch_market_data(
+        self.road_freight_fleet = self.__fetch_market_data(
             data=data,
             input_vars=roadfreight_prod_vars,
-            system_model="cutoff",  # TODO: check how to handle this for consequencial
+            system_model="cutoff",
             sector="transport",
         )
 
-        self.railfreight_markets = self.__fetch_market_data(
+        self.rail_freight_fleet = self.__fetch_market_data(
             data=data,
             input_vars=railfreight_prod_vars,
             system_model="cutoff",  # TODO: check how to handle this for consequencial
             sector="transport",
         )
 
-        self.passenger_car_markets = self.__fetch_market_data(
+        self.passenger_car_fleet = self.__fetch_market_data(
             data=data,
             input_vars=passenger_cars_prod_vars,
-            system_model="cutoff",  # TODO: check how to handle this for consequencial
+            system_model="cutoff",
             sector="transport",
         )
 
-        self.bus_markets = self.__fetch_market_data(
+        self.bus_fleet = self.__fetch_market_data(
             data=data,
             input_vars=bus_prod_vars,
-            system_model="cutoff",  # TODO: check how to handle this for consequencial
+            system_model="cutoff",
             sector="transport",
         )
 
-        self.building_heating_markets = self.__fetch_market_data(
-            data=data,
-            input_vars=buildings_heat_vars,
-            system_model=self.system_model,
-            sector="building_heating",
-        )
-
-        self.two_wheelers_markets = self.__fetch_market_data(
+        self.two_wheelers_fleet = self.__fetch_market_data(
             data=data,
             input_vars=two_wheelers_prod_vars,
             system_model="cutoff",  # TODO: check how to handle this for consequencial
             sector="transport",
         )
 
-        self.electricity_efficiencies = self.get_iam_efficiencies(
+        self.residential_heating_mix = self.__fetch_market_data(
+            data=data,
+            input_vars=buildings_heat_vars,
+            system_model=self.system_model,
+        )
+
+        self.daccs_energy_use = self.__fetch_market_data(
+            data=data,
+            input_vars=daccs_heat_vars,
+            system_model=self.system_model,
+        )
+
+        self.ewr_energy_use = self.__fetch_market_data(
+            data=data,
+            input_vars=ewr_heat_vars,
+            system_model=self.system_model,
+        )
+
+        self.electricity_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels=electricity_eff_vars,
             use_absolute_efficiency=self.use_absolute_efficiency,
         )
 
-        self.cement_efficiencies = self.get_iam_efficiencies(
+        self.cement_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels=cement_eff_vars,
             energy_labels=cement_energy_vars,
             production_labels=cement_prod_vars,
         )
 
-        self.steel_efficiencies = self.get_iam_efficiencies(
+        self.steel_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             production_labels=steel_prod_vars,
             energy_labels=steel_energy_vars,
             efficiency_labels=steel_eff_vars,
         )
 
-        self.petrol_efficiencies = self.get_iam_efficiencies(
+        self.petrol_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels={
                 k: v
@@ -728,7 +762,7 @@ class IAMDataCollection:
             },
         )
 
-        self.diesel_efficiencies = self.get_iam_efficiencies(
+        self.diesel_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels={
                 k: v
@@ -743,7 +777,7 @@ class IAMDataCollection:
             },
         )
 
-        self.gas_efficiencies = self.get_iam_efficiencies(
+        self.gas_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels={
                 k: v
@@ -755,7 +789,7 @@ class IAMDataCollection:
             },
         )
 
-        self.hydrogen_efficiencies = self.get_iam_efficiencies(
+        self.hydrogen_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels={
                 k: v
@@ -769,7 +803,7 @@ class IAMDataCollection:
             },
         )
 
-        self.kerosene_efficiencies = self.get_iam_efficiencies(
+        self.kerosene_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels={
                 k: v
@@ -783,7 +817,7 @@ class IAMDataCollection:
             },
         )
 
-        self.lpg_efficiencies = self.get_iam_efficiencies(
+        self.lpg_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
             efficiency_labels={
                 k: v
@@ -797,25 +831,19 @@ class IAMDataCollection:
             },
         )
 
-        self.dac_heat_efficiencies = self.get_iam_efficiencies(
+        self.cdr_technology_efficiencies = self.get_iam_efficiencies(
             data=data,
-            production_labels=dac_prod_vars,
-            energy_labels=dac_heat_vars,
+            production_labels=cdr_prod_vars,
+            energy_labels=cdr_energy_vars,
         )
 
-        self.dac_electricity_efficiencies = self.get_iam_efficiencies(
-            data=data,
-            production_labels=dac_prod_vars,
-            energy_labels=dac_electricity_vars,
-        )
-
-        self.roadfreight_efficiencies = self.get_iam_efficiencies(
+        self.road_freight_efficiencies = self.get_iam_efficiencies(
             data=data,
             production_labels=roadfreight_prod_vars,
             energy_labels=roadfreight_energy_vars,
         )
 
-        self.railfreight_efficiencies = self.get_iam_efficiencies(
+        self.rail_freight_efficiencies = self.get_iam_efficiencies(
             data=data,
             production_labels=railfreight_prod_vars,
             energy_labels=railfreight_energy_vars,
@@ -847,7 +875,7 @@ class IAMDataCollection:
             data=data, input_vars=land_use_change_vars, fill=True
         )
 
-        self.metals = get_metals_intensity_factors_data()
+        self.metals_intensity_factors = get_metals_intensity_factors_data()
 
         self.production_volumes = self.__get_iam_production_volumes(
             data=data,
@@ -856,7 +884,7 @@ class IAMDataCollection:
                 **fuel_prod_vars,
                 **cement_prod_vars,
                 **steel_prod_vars,
-                **dac_prod_vars,
+                **cdr_prod_vars,
                 **biomass_prod_vars,
                 **buildings_heat_vars,
                 **roadfreight_prod_vars,
@@ -1300,12 +1328,14 @@ class IAMDataCollection:
                 )
 
                 if all(
-                    var in data.variables.values for var in energy_labels[k]
+                    var in data.variables.values for var in energy_labels.get(k, [])
                 ) and all(x in data.variables.values for x in _(v)):
                     if isinstance(v, list):
-                        d = data.loc[:, energy_labels[k], :].sum(
-                            dim="variables"
-                        ) / data.loc[:, list(v), :].sum(dim="variables")
+                        d = abs(
+                            data.loc[:, energy_labels.get(k, []), :].sum(
+                                dim="variables"
+                            )
+                        ) / abs(data.loc[:, list(v), :].sum(dim="variables"))
                         # add dimension "variables" to d
                         d = d.expand_dims(dim="variables")
                         # add a coordinate "variables" to d
@@ -1313,10 +1343,11 @@ class IAMDataCollection:
                             k,
                         ]
                     else:
-                        d = (
-                            data.loc[:, energy_labels[k], :].sum(dim="variables")
-                            / data.loc[:, v, :]
-                        )
+                        d = abs(
+                            data.loc[:, energy_labels.get(k, []), :].sum(
+                                dim="variables"
+                            )
+                        ) / abs(data.loc[:, v, :])
                     # convert inf to Nan
                     d = d.where(d != np.inf)
                     # back-fill nans

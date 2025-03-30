@@ -308,7 +308,7 @@ class PathwaysDataPackage:
         data_list, extra_units = [], {}
         for scenario in self.datapackage.scenarios:
             data = scenario["iam data"].data.interp(year=scenario["year"])
-            extra_units.update(scenario["iam data"].production_volumes.attrs["unit"])
+            extra_units.update(scenario["iam data"].energy_use_volumes.attrs["unit"])
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:
                 for ext, external in scenario["external data"].items():

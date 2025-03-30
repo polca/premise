@@ -340,7 +340,7 @@ class Metals(BaseTransformation):
         self.country_codes = {}
         self.version = version
 
-        self.metals = iam_data.metals  # 1
+        self.metals = iam_data.metals_intensity_factors  # 1
         # Precompute the median values for each metal and origin_var for the year 2020
         if self.year in self.metals.coords["year"].values:
             self.precomputed_medians = self.metals.sel(year=self.year)

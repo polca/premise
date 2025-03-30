@@ -98,9 +98,9 @@ Steel - CCS:
   label: Share of emissions captured [%]
   expl_text: Share of steel emissions captured by CCS. Used to adjust the use of CCS in steel-producing datasets.
   offset: 10
-Direct Air Capture - generation:
-  label: Millions of tons of CO2 (Mt CO2, cumul.)
-  expl_text: Cumulated mass of CO2 removed by direct air capture. Used to calculate the learning rate of DAC systems. Assumes that sorbent- and solvent-based DAC systems are equally used.
+CDR - generation:
+  label: Millions of tons of CO2 (Mt CO2, cumul.) removed
+  expl_text: Cumulated mass of CO2 removed from the atmosphere.
   offset: 10
 Direct Air Capture - heat eff.:
   label: Efficiency gains (2020 = 1)

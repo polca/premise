@@ -21,7 +21,7 @@ from .biomass import _update_biomass
 from .cement import _update_cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
-from .direct_air_capture import _update_dac
+from .carbon_dioxide_removal import _update_cdr
 from .electricity import _update_electricity
 from .emissions import _update_emissions
 from .final_energy import _update_final_energy
@@ -102,6 +102,7 @@ FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
 FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification_CCS.xlsx"
 )
+FILEPATH_HYDROGEN_OIL = INVENTORY_DIR / "lci-hydrogen-oil.xlsx"
 FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
@@ -764,6 +765,7 @@ class NewDatabase:
             (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_OIL, "3.10"),
             (FILEPATH_HYDROGEN_TURBINE, "3.9"),
             (FILEPATH_SYNGAS_INVENTORIES, "3.9"),
             (FILEPATH_METHANOL_FROM_WOOD, "3.7"),
@@ -900,7 +902,7 @@ class NewDatabase:
                 "func": _update_electricity,
                 "args": (self.version, self.system_model, self.use_absolute_efficiency),
             },
-            "dac": {"func": _update_dac, "args": (self.version, self.system_model)},
+            "cdr": {"func": _update_cdr, "args": (self.version, self.system_model)},
             "cement": {
                 "func": _update_cement,
                 "args": (self.version, self.system_model),
