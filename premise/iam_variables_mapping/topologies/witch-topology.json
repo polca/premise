@@ -195,9 +195,11 @@
         "VI",
         "RLA"
     ],
-    "jpnkor": [
-        "JP",
+    "korea": [
         "KR"
+    ],
+    "japan": [
+        "JP"
     ],
     "indonesia": [
         "ID"
@@ -205,31 +207,25 @@
     "india": [
         "IN"
     ],
-    "europe": [
-        "AX",
+    "eu27": [
         "AT",
         "BE",
         "BG",
+        "HR",
         "CY",
         "CZ",
-        "DE",
         "DK",
-        "ES",
         "EE",
         "FI",
         "FR",
-        "FO",
-        "GB",
-        "GI",
+        "DE",
         "GR",
-        "HR",
         "HU",
-        "IM",
         "IE",
         "IT",
+        "LV",
         "LT",
         "LU",
-        "LV",
         "MT",
         "NL",
         "PL",
@@ -237,23 +233,31 @@
         "RO",
         "SK",
         "SI",
-        "SE",
-        "XK",
-        "AL",
-        "AD",
-        "BA",
-        "CH",
-        "GL",
+        "ES",
+        "SE"
+    ],
+    "othereurope": [
+        "AX",
+        "FO",
+        "GB",
+        "GI",
+        "IM",
         "IS",
         "LI",
         "MC",
-        "MK",
-        "ME",
         "NO",
-        "SJ",
         "SM",
+        "CH",
+        "AL",
+        "AD",
+        "BA",
+        "XK",
+        "ME",
+        "MK",
         "RS",
-        "VA"
+        "VA",
+        "SJ",
+        "GL"
     ],
     "china": [
         "CN",
@@ -275,5 +279,15 @@
         "PK",
         "LK"
     ],
-    "World": ["GLO", "RoW"]
+    "ccasia": [
+        "TM",
+        "TJ",
+        "KG",
+        "KZ",
+        "UZ",
+        "MN",
+        "AM",
+        "AZ",
+        "GE"
+    ]
 }

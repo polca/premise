@@ -8,21 +8,21 @@ Europe without Austria:
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 Europe without Switzerland and Austria:
   remind: EUR
   image: WEU
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 Europe without Switzerland:
   remind: EUR
   image: WEU
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 North America without Quebec:
   remind: USA
   image: USA
@@ -78,7 +78,7 @@ IAI Area, EU27 & EFTA:
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPRE
+  witch: EU27
 UN-OCEANIA:
   remind: CAZ
   image: OCE
@@ -120,14 +120,14 @@ RER w/o CH+DE:
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 RER w/o DE+NL+RU:
   remind: EUR
   image: WEU
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 IAI Area, Asia, without China and GCC:
   remind: OAS
   image: SEAS
@@ -141,7 +141,7 @@ Europe, without Russia and Turkey:
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 WECC:
   remind: USA
   image: USA
@@ -155,35 +155,35 @@ WEU:
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 UCTE:
   remind: EUR
   image: WEU
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 UCTE without Germany:
   remind: EUR
   image: WEU
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 NORDEL:
   remind: NEU
   image: WEU
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 ENTSO-E:
   remind: EUR
   image: WEU
   message: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: EUROPE
+  witch: EU27
 RLA:
   remind: LAM
   image: RSAM
