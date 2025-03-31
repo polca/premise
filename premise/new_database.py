@@ -902,7 +902,6 @@ class NewDatabase:
                 "func": _update_electricity,
                 "args": (self.version, self.system_model, self.use_absolute_efficiency),
             },
-            "cdr": {"func": _update_cdr, "args": (self.version, self.system_model)},
             "cement": {
                 "func": _update_cement,
                 "args": (self.version, self.system_model),
@@ -918,6 +917,7 @@ class NewDatabase:
                 "args": (self.version, self.system_model),
             },
             "heat": {"func": _update_heat, "args": (self.version, self.system_model)},
+            "cdr": {"func": _update_cdr, "args": (self.version, self.system_model)},
             "battery": {
                 "func": _update_battery,
                 "args": (self.version, self.system_model),

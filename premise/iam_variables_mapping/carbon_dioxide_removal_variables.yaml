@@ -39,7 +39,7 @@ direct air capture (solvent) with storage:
 
   ecoinvent_aliases:
     fltr:
-      - carbon dioxide, captured from atmosphere and stored, with a solvent-based direct air capture system, 1MtCO2
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2
 
     mask:
       - waste
@@ -74,7 +74,7 @@ direct air capture (sorbent) with storage:
 
   ecoinvent_aliases:
     fltr:
-      - carbon dioxide, captured from atmosphere and stored, with a sorbent-based direct air capture system, 100ktCO2
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
 
 direct air capture (solvent):
   energy_use_aliases:
@@ -104,7 +104,7 @@ direct air capture (solvent):
 
   ecoinvent_aliases:
     fltr:
-      - carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2
+      - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2
 
 direct air capture (sorbent):
   energy_use_aliases:
@@ -134,7 +134,7 @@ direct air capture (sorbent):
 
   ecoinvent_aliases:
     fltr:
-      - carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2
+      - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2
 
 enhanced rock weathering:
     iam_aliases:
@@ -148,15 +148,15 @@ enhanced rock weathering:
           - FE|CDR|EW|+|Diesel
           - FE|CDR|EW|+|Electricity
     ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored by olivine spreading on coastline
+        fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
 
 ocean liming:
     ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored by ocean liming
+        fltr: carbon dioxide, captured and stored, by ocean liming
 
 biochar:
     ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored by biochar application on mineral soil
+        fltr: carbon dioxide, captured and stored, by biochar application on mineral soil
 
 bioenergy, with CCS:
   iam_aliases:
@@ -181,4 +181,4 @@ land-use change:
       remind: Emi|CO2|CDR|Land-Use Change
       remind-eu: Emi|CO2|CDR|Land-Use Change
   ecoinvent_aliases:
-      fltr: carbon dioxide, captured and stored by land-use change
+      fltr: carbon dioxide, captured and stored, by land-use change

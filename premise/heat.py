@@ -609,8 +609,7 @@ class Heat(BaseTransformation):
                     f" Average heat mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
-                new_exchanges[0]["name"] += f", {period}-year period"
-                new_exchanges[-1]["name"] += f", {period}-year period"
+                new_exchanges[0]["name"] = new_dataset["name"]
 
             for technology in technologies:
                 # If the given technology contributes to the mix

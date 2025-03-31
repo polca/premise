@@ -115,7 +115,6 @@ class CarbonDioxideRemoval(BaseTransformation):
 
         # get original dataset
         for technology, datasets in self.cdr_activities.items():
-            print(technology)
             for ds_name in datasets:
                 new_ds = self.fetch_proxies(
                     name=ds_name,
@@ -265,18 +264,18 @@ class CarbonDioxideRemoval(BaseTransformation):
         ]
 
         # Calculate share of production volume for each region
-        for r in regions:
-            if r == "World":
+        for region in regions:
+            if region == "World":
                 continue
 
-            if self.year in self.iam_data.cdr_technology_mix.coords["year"].values:
+            if self.year in self.iam_data.production_volumes.coords["year"].values:
                 share = (
-                    self.iam_data.cdr_technology_mix.sel(
-                        region=r,
+                    self.iam_data.production_volumes.sel(
+                        region=region,
                         variables=self.iam_data.cdr_technology_mix.variables.values,
                         year=self.year,
                     ).sum(dim="variables")
-                    / self.iam_data.cdr_technology_mix.sel(
+                    / self.iam_data.production_volumes.sel(
                         region=[
                             x
                             for x in self.iam_data.cdr_technology_mix.region.values
@@ -289,11 +288,11 @@ class CarbonDioxideRemoval(BaseTransformation):
             else:
                 share = (
                     (
-                        self.iam_data.cdr_technology_mix.sel(
-                            region=r,
+                        self.iam_data.production_volumes.sel(
+                            region=region,
                             variables=self.iam_data.cdr_technology_mix.variables.values,
                         ).sum(dim="variables")
-                        / self.iam_data.cdr_technology_mix.sel(
+                        / self.iam_data.production_volumes.sel(
                             region=[
                                 x
                                 for x in self.iam_data.cdr_technology_mix.region.values
@@ -310,7 +309,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                 )
 
             if np.isnan(share):
-                print("Incorrect market share for", dataset["name"], "in", r)
+                print("Incorrect market share for", dataset["name"], "in", region)
 
             if share > 0:
                 # Add exchange for the region
@@ -321,7 +320,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                     "product": dataset["reference product"],
                     "name": dataset["name"],
                     "unit": dataset["unit"],
-                    "location": r,
+                    "location": region,
                 }
                 dataset["exchanges"].append(exchange)
 

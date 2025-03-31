@@ -125,16 +125,16 @@ class Cement(BaseTransformation):
     def build_CCS_datasets(self):
         ccs_datasets = {
             "cement, dry feed rotary kiln, efficient, with on-site CCS": {
-                "name": "carbon dioxide, captured at cement production plant, using direct separation",
-                "reference product": "carbon dioxide, captured at cement plant",
+                "name": "carbon dioxide, captured, at cement production plant, using direct separation",
+                "reference product": "carbon dioxide, captured",
             },
             "cement, dry feed rotary kiln, efficient, with oxyfuel CCS": {
-                "name": "carbon dioxide, captured at cement production plant, using oxyfuel",
-                "reference product": "carbon dioxide, captured at cement plant",
+                "name": "carbon dioxide, captured, at cement production plant, using oxyfuel",
+                "reference product": "carbon dioxide, captured",
             },
             "cement, dry feed rotary kiln, efficient, with MEA CCS": {
-                "name": "carbon dioxide, captured at cement production plant, using monoethanolamine",
-                "reference product": "carbon dioxide, captured at cement plant",
+                "name": "carbon dioxide, captured, at cement production plant, using monoethanolamine",
+                "reference product": "carbon dioxide, captured",
             },
         }
 
@@ -409,18 +409,18 @@ class Cement(BaseTransformation):
                         # add CCS datasets
                         ccs_datasets = {
                             "cement, dry feed rotary kiln, efficient, with on-site CCS": {
-                                "name": "carbon dioxide, captured at cement production plant, using direct separation",
-                                "reference product": "carbon dioxide, captured at cement plant",
+                                "name": "carbon dioxide, captured, at cement production plant, using direct separation",
+                                "reference product": "carbon dioxide, captured",
                                 "capture share": 0.95,  # 95% of process emissions (calcination) are captured
                             },
                             "cement, dry feed rotary kiln, efficient, with oxyfuel CCS": {
-                                "name": "carbon dioxide, captured at cement production plant, using oxyfuel",
-                                "reference product": "carbon dioxide, captured at cement plant",
+                                "name": "carbon dioxide, captured, at cement production plant, using oxyfuel",
+                                "reference product": "carbon dioxide, captured",
                                 "capture share": 0.9,
                             },
                             "cement, dry feed rotary kiln, efficient, with MEA CCS": {
-                                "name": "carbon dioxide, captured at cement production plant, using monoethanolamine",
-                                "reference product": "carbon dioxide, captured at cement plant",
+                                "name": "carbon dioxide, captured, at cement production plant, using monoethanolamine",
+                                "reference product": "carbon dioxide, captured",
                                 "capture share": 0.9,
                             },
                         }
@@ -592,10 +592,10 @@ class Cement(BaseTransformation):
                                 ),
                                 "type": "technosphere",
                                 "production volume": 0,
-                                "name": "carbon dioxide, captured at cement production plant, using monoethanolamine",
+                                "name": "carbon dioxide, captured, at cement production plant, using monoethanolamine",
                                 "unit": "kilogram",
                                 "location": dataset["location"],
-                                "product": "carbon dioxide, captured at cement plant",
+                                "product": "carbon dioxide, captured",
                             }
 
                             # add an input from the CCS dataset in the clinker dataset
