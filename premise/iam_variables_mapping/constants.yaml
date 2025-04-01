@@ -184,14 +184,17 @@ LIST_WITCH_REGIONS:
   - mexico
   - mena
   - laca
-  - jpnkor
+  - japan
+  - korea
   - indonesia
   - india
-  - europe
+  - eu27
+  - othereurope
   - china
   - canada
   - brazil
   - sasia
+  - ccasia
   - World
 
 

@@ -118,11 +118,14 @@ witch:
   mexico: temperate
   mena: temperate
   laca: tropical
-  jpnkor: temperate
+  korea: temperate
+  japan: temperate
   indonesia: tropical
   india: tropical
-  europe: temperate
+  eu27: temperate
+  othereurope: temperate
   china: temperate
   canada: temperate
   brazil: tropical
   sasia: tropical
+  ccasia: temperate

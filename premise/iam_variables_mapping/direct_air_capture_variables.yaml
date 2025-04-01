@@ -12,9 +12,12 @@ dac_solvent:
     remind-eu: 'Emi|CO2|Cumulated|CDR|DACCS'
     image: Carbon Capture|Storage|Direct Air Capture|Cumulative
     tiam-ucl: Carbon Capture|Storage|Direct Air Capture
+    witch: Carbon Sequestration|Direct Air Capture|Solvent
   heat_use_aliases:
     tiam-ucl:
       - Secondary Energy|Consumption|Direct Air Capture|Heat
+    witch:
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Heat|Gases
     image:
       - Carbon Capture|Storage|Biomass|Energy|Supply|Hydrogen
       - Carbon Capture|Storage|Biomass|Energy|Supply|Liquids
@@ -24,15 +27,36 @@ dac_solvent:
       - Carbon Capture|Storage|Fossil|Energy|Supply|Liquids
       - Carbon Capture|Storage|Fossil|Energy|Supply|Other
   electricity_use_aliases:
-    tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Electricity
+    tiam-ucl: Final energy|Carbon Management|Direct Air Capture|Electricity
     image:
       - Carbon Capture|Storage|Biomass|Energy|Supply|Electricity
       - Carbon Capture|Storage|Fossil|Energy|Supply|Electricity
+    witch:
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Coal
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Biomass
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Gas
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Nuclear
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Wind
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2
 
 dac_sorbent:
+  iam_aliases:
+    witch: Carbon Sequestration|Direct Air Capture|Sorbent
+  heat_uses:
+    witch: Final energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
+  electricity_uses:
+    witch: 
+    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Coal
+    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Biomass
+    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Gas
+    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Nuclear
+    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Wind
+    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|PV
+    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2
