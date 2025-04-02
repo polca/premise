@@ -66,12 +66,14 @@ truck, battery electric, 7.5t:
     tiam-ucl:
       - Distance|Transport|Truck|Light|Electric|Electricity
       - Distance|Transport|Truck|Commercial|Electric|Electricity
+    witch: Energy Service|Transportation|Freight|Truck|Battery-Electric
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (7.5t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Truck (7.5t)|Electricity
     tiam-ucl:
       - Final Energy|Transport|Truck|Light|Electric|Electricity
       - Final Energy|Transport|Truck|Commercial|Electric|Electricity
+    witch: Final Energy|Transportation|Freight|Truck|Battery-Electric|Electricity
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, battery electric, 7.5t gross weight, long haul
@@ -86,12 +88,14 @@ truck, fuel cell electric, 7.5t:
     tiam-ucl:
       - Distance|Transport|Truck|Commercial|Hydrogen Fuel Cell|Electricity
       - Distance|Transport|Truck|Commercial|Hydrogen Fuel Cell|Truck Hydrogen
+    witch: Energy Service|Transportation|Freight|Truck|Fuel-Cell-Electric
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (7.5t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Truck (7.5t)|Hydrogen
     tiam-ucl:
       - Final Energy|Transport|Truck|Commercial|Hydrogen Fuel Cell|Electricity
       - Final Energy|Transport|Truck|Commercial|Hydrogen Fuel Cell|Truck Hydrogen
+    witch: Final Energy|Transportation|Freight|Truck|Fuel-Cell-Electric|Hydrogen
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, fuel cell electric, 7.5t gross weight, long haul
@@ -143,12 +147,16 @@ truck, diesel, 7.5t:
     tiam-ucl:
       - Distance|Transport|Truck|Light|Diesel|Diesel
       - Distance|Transport|Truck|Commercial|Diesel|Diesel
+    witch: Energy Service|Transportation|Freight|Truck|Internal Combustion
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (7.5t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Truck (7.5t)|Liquids
     tiam-ucl:
       - Final Energy|Transport|Truck|Light|Diesel|Diesel
       - Final Energy|Transport|Truck|Commercial|Diesel|Diesel
+    witch: 
+      - Final Energy|Transportation|Freight|Truck|Internal Combustion|Liquids|Oil
+      - Final Energy|Transportation|Freight|Truck|Internal Combustion|Liquids|Biomass
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI, long haul
