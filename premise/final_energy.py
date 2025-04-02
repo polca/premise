@@ -101,6 +101,8 @@ class FinalEnergy(BaseTransformation):
             if dataset["location"] in self.regions:
                 continue
 
+            print(dataset["name"], dataset["location"])
+
             datasets = self.fetch_proxies(
                 name=dataset["name"],
                 ref_prod=dataset["reference product"],

@@ -38,7 +38,7 @@ def _update_heat(scenario, version, system_model):
     )
 
     heat.fetch_fuel_market_co2_emissions()
-    heat.regionalize_heat_production()
+    heat.regionalize_heat_production_datasets()
 
     if scenario["iam data"].residential_heating_mix is not None:
         heat.create_heat_markets(
@@ -125,6 +125,10 @@ class Heat(BaseTransformation):
         self.heat_techs = mapping.generate_heat_map()
         self.biosphere_flows = get_biosphere_code(self.version)
 
+        from pprint import pprint
+
+        pprint(self.heat_techs)
+
     def fetch_fuel_market_co2_emissions(self):
         """
         Fetch CO2 emissions from fuel markets.
@@ -177,7 +181,7 @@ class Heat(BaseTransformation):
 
         self.carbon_intensity_markets.update(new_keys)
 
-    def regionalize_heat_production(self):
+    def regionalize_heat_production_datasets(self):
         """
         Regionalize heat production.
 

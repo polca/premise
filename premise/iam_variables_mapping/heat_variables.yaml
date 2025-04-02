@@ -4,11 +4,10 @@ heat, from diesel:
     mask:
       - market
       - biodiesel
-
-heat, from biodiesel:
-  ecoinvent_aliases:
-    fltr: biodiesel, burned in
-    mask: market
+      - car
+      - train
+      - bus
+      - heavy-duty
 
 heat, from diesel (market):
   ecoinvent_aliases:
@@ -169,7 +168,7 @@ energy, for DACCS, from gas boiler:
 
 energy, for DACCS, from other:
   ecoinvent_aliases:
-    fltr: steam production, as energy carrier, in chemical industry
+    fltr: heat production, natural gas, at boiler condensing modulating >100kW
   iam_aliases:
     remind: FE|CDR|DAC|+|Heat
     remind-eu: FE|CDR|DAC|+|Heat
@@ -201,10 +200,11 @@ energy, for EWR, from electricity:
 
 energy, from EWR, from diesel:
     ecoinvent_aliases:
-        fltr: diesel, burned in
+        fltr: diesel, burned in diesel-electric generating set, 10MW
         mask:
           - market
           - biodiesel
+          - oil
     iam_aliases:
       remind: FE|CDR|EW|+|Diesel
       remind-eu: FE|CDR|EW|+|Diesel
