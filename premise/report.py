@@ -183,6 +183,9 @@ def fetch_data(
             if hasattr(iam_data, "production_volumes")
             else None
         ),
+        "Direct Air Capture - energy mix": (
+            iam_data.daccs_energy_use if hasattr(iam_data, "daccs_energy_use") else None
+        ),
         "Direct Air Capture - heat eff.": (
             iam_data.dac_heat_efficiencies
             if hasattr(iam_data, "dac_heat_efficiencies")
@@ -388,6 +391,15 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "CDR - generation": {
             "filepath": IAM_CDR_VARS,
+        },
+        "Direct Air Capture - energy mix": {
+            "filepath": IAM_HEATING_VARS,
+            "variables": [
+                "energy, for DACCS, from hydrogen turbine",
+                "energy, for DACCS, from gas boiler",
+                "energy, for DACCS, from other",
+                "energy, for DACCS, from electricity",
+            ],
         },
         "Direct Air Capture - heat eff.": {
             "filepath": IAM_CDR_VARS,
@@ -636,7 +648,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                                 max_row=row + counter - 1,
                             )
 
-                            if "generation" in sector:
+                            if any(x in sector for x in ("generation", "mix")):
                                 chart = AreaChart(grouping="stacked")
                             elif "efficiency" in sector:
                                 chart = LineChart()

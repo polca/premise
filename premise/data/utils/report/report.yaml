@@ -102,6 +102,10 @@ CDR - generation:
   label: Millions of tons of CO2 (Mt CO2, cumul.) removed
   expl_text: Cumulated mass of CO2 removed from the atmosphere.
   offset: 10
+Direct Air Capture - energy mix:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of energy used by DAC, per technology. Used to calculate the energy supply mix of DAC.
+  offset: 10
 Direct Air Capture - heat eff.:
   label: Efficiency gains (2020 = 1)
   expl_text: Heat efficiency gains relative to 2020. Used to calibrate the efficiency of the DAC datasets.

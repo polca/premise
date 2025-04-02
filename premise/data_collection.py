@@ -653,7 +653,9 @@ class IAMDataCollection:
             data=data, input_vars=steel_prod_vars, system_model="cutoff", sector="steel"
         )
         self.cdr_technology_mix = self.__fetch_market_data(
-            data=data, input_vars=cdr_prod_vars, system_model="cutoff", sector="dac"
+            data=data,
+            input_vars=cdr_prod_vars,
+            system_model="cutoff",
         )
         self.biomass_mix = self.__fetch_market_data(
             data=data,
