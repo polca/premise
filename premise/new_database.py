@@ -917,7 +917,7 @@ class NewDatabase:
                 "func": _update_metals,
                 "args": (self.version, self.system_model),
             },
-            "mining":{
+            "mining": {
                 "func": _update_mining,
                 "args": (self.version, self.system_model),
             },
