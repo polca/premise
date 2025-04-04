@@ -1,0 +1,46 @@
+sulfidic tailings:
+  GLO:
+    backfill:
+      name:
+        fltr:
+          - treatment of sulfidic tailings, generic, backfilling
+        mask:
+          - impoundment
+          - market
+      reference product:
+        fltr:
+          - sulfidic tailings, generic
+      share:
+        2020:
+          min: 0
+          max: 0.10
+          mean: 0.05
+        2050:
+          min: 0.10
+          max: 0.50
+          mean: 0.30
+    impoundment:
+      name:
+        fltr:
+          - treatment of sulfidic tailings
+          - tailings impoundment
+        mask:
+          - backfilling
+          - market
+      reference product:
+          fltr:
+            - sulfidic tailings
+          mask:
+              - backfilling
+              - non-sulfidic
+      share:
+        2020:
+          min: 0.90
+          max: 1.00
+          mean: 0.95
+        2050:
+          min: 0.50
+          max: 0.90
+          mean: 0.70
+
+
