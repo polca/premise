@@ -38,7 +38,7 @@ Buildings - Heating - H2:
   iam_aliases:
     remind: FE|Buildings|Heating|Hydrogen
 
-Buildings - Heating and other - Biofuel:
+Buildings - Heating - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: methanol from biomass, burned in residential boiler
@@ -46,7 +46,7 @@ Buildings - Heating and other - Biofuel:
   iam_aliases:
     remind: FE|Buildings|Liquids|+|Biomass
 
-Buildings - Heating and other - Liquid coal:
+Buildings - Heating - Liquid coal:
   ecoinvent_aliases:
     fltr:
       name: methanol from coal, burned in residential boiler
@@ -54,7 +54,7 @@ Buildings - Heating and other - Liquid coal:
   iam_aliases:
     remind: FE|Buildings|Liquids|Fossil|+|Coal
 
-Buildings - Heating and other - LPG:
+Buildings - Heating - LPG:
   ecoinvent_aliases:
     fltr:
       name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
@@ -62,7 +62,7 @@ Buildings - Heating and other - LPG:
   iam_aliases:
     remind: FE|Buildings|Liquids|Fossil|+|Gas
 
-Buildings - Heating and other - Oil:
+Buildings - Heating - Oil:
   ecoinvent_aliases:
     fltr:
       name: light fuel oil, burned in residential boiler 10kW
@@ -70,7 +70,15 @@ Buildings - Heating and other - Oil:
   iam_aliases:
     remind: FE|Buildings|Liquids|Fossil|+|Oil
 
-Buildings - Heating and other - Solid Coal:
+Buildings - Heating - Syn Fuel:
+  ecoinvent_aliases:
+    fltr:
+      name: diesel, synthetic, burned in residential boiler
+      reference product: heat
+  iam_aliases:
+    remind: FE|Buildings|Liquids|+|Hydrogen
+
+Buildings - Heating - Solid Coal:
   ecoinvent_aliases:
     fltr:
       name: hard coal briquettes, burned in stove 5-15kW
@@ -78,7 +86,7 @@ Buildings - Heating and other - Solid Coal:
   iam_aliases:
     remind: FE|Buildings|Solids|Coal
 
-Buildings - Heating and other - Solid biomass modern:
+Buildings - Heating - Solid biomass modern:
   ecoinvent_aliases:
     fltr:
       name: wood pellet, burned in residential stove 9kW
@@ -86,7 +94,7 @@ Buildings - Heating and other - Solid biomass modern:
   iam_aliases:
     remind: FE|Buildings|Solids|Biomass|+|Modern
 
-Buildings - Heating and other - Solid biomass traditional:
+Buildings - Heating - Solid biomass traditional:
   ecoinvent_aliases:
     fltr:
       name: wood logs, burned in wood stove 6kW
@@ -197,6 +205,14 @@ CDR - OAE, traditional calciner - Gases:
       reference product: natural gas, burned in gas turbine
   iam_aliases:
     remind: FE|CDR|OAE, traditional calciner|+|Gases
+
+CDR - OAE, traditional calciner - Hydrogen:
+    ecoinvent_aliases:
+        fltr:
+        name: hydrogen, burned in gas turbine 1GW
+        reference product: heat
+    iam_aliases:
+        remind: FE|CDR|OAE, traditional calciner|+|Hydrogen
 
 Industry - Cement - Elec:
   ecoinvent_aliases:
@@ -575,6 +591,71 @@ Industry - Steel - Solid coal:
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Steel|Solids|+|Fossil
+
+Industry - Non-energy use - Solid coal:
+  ecoinvent_aliases:
+    fltr:
+      name: market for hard coal
+      reference product: hard coal
+  iam_aliases:
+    remind: FE|Non-energy Use|Industry|Solids|+|Fossil
+
+
+Industry - Non-energy use - Biomass:
+  ecoinvent_aliases:
+    fltr:
+      name: market for plywood
+      reference product: plywood
+  iam_aliases:
+    remind: FE|Non-energy Use|Industry|Solids|+|Biomass
+
+Industry - Non-energy use - Bio CH4:
+  ecoinvent_aliases:
+    fltr:
+      name: biomethane production, from biogas upgrading, using amine scrubbing
+      reference product: biomethane, from biogas upgrading, using amine scrubbing
+  iam_aliases:
+    remind: FE|Non-energy Use|Industry|Gases|+|Biomass
+
+Industry - Non-energy use - Nat Gas:
+  ecoinvent_aliases:
+    fltr:
+      name: market for natural gas, high pressure
+      reference product: natural gas, high pressure
+  iam_aliases:
+    remind: FE|Non-energy Use|Industry|Gases|+|Fossil
+
+Industry - Non-energy use - Hydrogen:
+  ecoinvent_aliases:
+    fltr:
+      name: market for hydrogen, gaseous, low pressure
+      reference product: hydrogen, gaseous, low pressure
+  iam_aliases:
+    remind: FE|Non-energy Use|Industry|Gases|+|Hydrogen
+
+Industry - Non-energy use - Biofuel:
+  ecoinvent_aliases:
+    fltr:
+      name: market for methanol
+      reference product: methanol
+  iam_aliases:
+    remind: FE|Non-energy Use|Industry|Liquids|+|Biomass
+
+Industry - Non-energy use - Liquid fossil:
+  ecoinvent_aliases:
+    fltr:
+      name: market for light fuel oil
+      reference product: light fuel oil
+  iam_aliases:
+    remind: FE|Non-energy Use|Industry|Liquids|+|Fossil
+
+Industry - Non-energy use - Syn Fuel:
+  ecoinvent_aliases:
+    fltr:
+      name: diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation
+      reference product: diesel, synthetic
+  iam_aliases:
+    remind: FE|Non-energy Use|Industry|Liquids|+|Hydrogen
 
 Transport - Freight - Domestic Shipping - Biofuel:
   ecoinvent_aliases:
@@ -978,37 +1059,30 @@ Transport - Freight - Truck(7_5t) - Syn Fuel:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Hydrogen
 
-Transport - Pass - Aviation - H2:
-  ecoinvent_aliases:
-    fltr:
-      name: hydrogen, used in a fuel cell in a heavy duty vehicle
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Pass|Aviation|Hydrogen
 
-Transport - Pass - Aviation - Biofuel:
+Transport - Pass - Int Aviation - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: kerosene, from biomass, burned in aircraft
       reference product: heat
   iam_aliases:
-    remind: FE|Transport|Pass|Aviation|Liquids||Biomass
+    remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass
 
-Transport - Pass - Aviation - Liquid fossil:
+Transport - Pass - Int Aviation - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: kerosene, burned in aircraft
       reference product: heat
   iam_aliases:
-    remind: FE|Transport|Pass|Aviation|Liquids||Fossil
+    remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Fossil
 
-Transport - Pass - Aviation - Syn Fuel:
+Transport - Pass - Int Aviation - Syn Fuel:
   ecoinvent_aliases:
     fltr:
       name: hydrogen, burned in gas turbine 1GW
       reference product: heat
   iam_aliases:
-    remind: FE|Transport|Pass|Aviation|Liquids||Hydrogen
+    remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Hydrogen
 
 Transport - Pass - Domestic Aviation - H2:
   ecoinvent_aliases:
