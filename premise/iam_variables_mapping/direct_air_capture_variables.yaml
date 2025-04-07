@@ -43,18 +43,12 @@ dac_solvent:
       - carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2
 
 dac_sorbent:
-  iam_aliases:
-    witch: Carbon Sequestration|Direct Air Capture|Sorbent
+
   heat_uses:
-    witch: Final energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
+
   electricity_uses:
-    witch: 
-    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Coal
-    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Biomass
-    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Gas
-    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Wind
-    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|PV
-    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
+
+
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2
