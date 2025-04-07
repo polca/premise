@@ -1966,7 +1966,7 @@ Industry - Non-energy use - Syn Fuel:
 Transport - Freight - Domestic Shipping - Elec:
   ecoinvent_aliases:
     fltr:
-      name: market group for electricity, low voltage #TODO: find better dataset
+      name: electricity, used in container ship
       reference product: electricity, low voltage
   iam_aliases:
     image: Final Energy|Transportation|Freight|National Shipping|Electricity
@@ -2034,7 +2034,7 @@ Transport - Freight - Int. Shipping - Syn Fuel:
 Transport - Freight - Int. Shipping - Elec:
   ecoinvent_aliases:
     fltr:
-      name: market group for electricity, low voltage #TODO: find better dataset
+      name: electricity, used in container ship
       reference product: electricity, low voltage
   iam_aliases:
     image: Final Energy|Transportation|Freight|International Shipping|Electricity
@@ -2085,7 +2085,7 @@ Transport - Freight - Rail - Syn Fuel:
 Transport - Freight - Rail - H2:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, burned in gas turbine 1GW # TODO: find better dataset
+      name: hydrogen, used in passenger train
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|Train|Hydrogen
@@ -2425,7 +2425,7 @@ Transport - Freight - Truck(7_5t) - Syn Fuel:
 Transport - Freight - Aviation - Elec:
     ecoinvent_aliases:
         fltr:
-        name: electricity, used in passenger car #TODO: find better dataset
+        name: electricity, used in aircraft
         reference product: electricity, low voltage
     iam_aliases:
         image: Final Energy|Transportation|Freight|Air|Electricity
@@ -2433,7 +2433,7 @@ Transport - Freight - Aviation - Elec:
 Transport - Freight - Aviation - H2:
     ecoinvent_aliases:
         fltr:
-        name: hydrogen, burned in gas turbine 1GW #TODO: find better dataset
+        name: hydrogen, used in aircraft
         reference product: heat
     iam_aliases:
         image: Final Energy|Transportation|Freight|Air|Hydrogen
@@ -2475,7 +2475,7 @@ Transport - Pass - Int Aviation - Liquid fossil:
 Transport - Pass - Int Aviation - H2:
     ecoinvent_aliases:
         fltr:
-        name: hydrogen, burned in gas turbine 1GW #TODO: find better dataset
+        name: hydrogen, used in aircraft
         reference product: heat
     iam_aliases:
         image: Final Energy|Transportation|Passenger|International Aviation|Hydrogen
@@ -2483,7 +2483,7 @@ Transport - Pass - Int Aviation - H2:
 Transport - Pass - Int Aviation - Elec:
     ecoinvent_aliases:
         fltr:
-        name: electricity, used in passenger car #TODO: find better dataset
+        name: electricity, used in aircraft
         reference product: electricity, low voltage
     iam_aliases:
         image: Final Energy|Transportation|Passenger|International Aviation|Electricity
@@ -2491,7 +2491,7 @@ Transport - Pass - Int Aviation - Elec:
 Transport - Pass - Int Aviation - Syn Fuel:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, burned in gas turbine 1GW #TODO: find better dataset
+      name: kerosene, synthetic, burned in aircraft
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Hydrogen
@@ -2499,7 +2499,7 @@ Transport - Pass - Int Aviation - Syn Fuel:
 Transport - Pass - Domestic Aviation - H2:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, burned in gas turbine 1GW #TODO: find better dataset
+      name: hydrogen, used in aircraft
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Hydrogen
@@ -2534,7 +2534,7 @@ Transport - Pass - Domestic Aviation - Syn Fuel:
 Transport - Pass - Domestic Aviation - Elec:
     ecoinvent_aliases:
         fltr:
-        name: electricity, used in passenger car #TODO: find better dataset
+        name: electricity, used in aircraft
         reference product: electricity, low voltage
     iam_aliases:
         image: Final Energy|Transportation|Passenger|Domestic Aviation|Electricity
@@ -2584,7 +2584,7 @@ Transport - Pass - Rail - Syn Fuel:
 Transport - Pass - Rail - H2:
     ecoinvent_aliases:
         fltr:
-        name: hydrogen, burned in gas turbine 1GW #TODO: find better dataset
+        name: hydrogen, used in passenger train
         reference product: heat
     iam_aliases:
         image:
@@ -2628,7 +2628,7 @@ Transport - Pass - Bus - SNG:
 Transport - Pass - Bus - H2:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, converted in 1kWe fuel cell #TODO: find better dataset
+      name: hydrogen, used in a fuel cell in a single deck coach or urban bus
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Hydrogen
