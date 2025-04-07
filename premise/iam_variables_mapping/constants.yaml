@@ -211,6 +211,8 @@ PREFERRED_IAM_ORDER:
   - LAM
   - brazil
   - mexico
+  - te
+  - ccasia
 
 BLACKLIST:
   - ME

@@ -35,7 +35,6 @@ dac_solvent:
       - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Coal
       - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Biomass
       - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Gas
-      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Nuclear
       - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Wind
       - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
       - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
@@ -53,7 +52,6 @@ dac_sorbent:
     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Coal
     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Biomass
     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Gas
-    - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Nuclear
     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Wind
     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|PV
     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP

@@ -22,11 +22,13 @@ Biomass CHP:
     remind: Tech|Electricity|Biomass|Combined Heat and Power w/o CC|Efficiency
     remind-eu: Tech|Electricity|Biomass|Combined Heat and Power w/o CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Biomass CHP|w/o CCS
+    witch: Efficiency|Electricity|Biomass|w/o CCS
   iam_aliases:
     image: Secondary Energy|Electricity|Biomass|w/o CCS|3
     remind: SE|Electricity|Biomass|++|Combined Heat and Power w/o CC
     remind-eu: SE|Electricity|Biomass|++|Combined Heat and Power w/o CC
     tiam-ucl: Secondary Energy|Electricity|Biomass CHP|w/o CCS
+    witch: Secondary Energy|Electricity|Biomass|w/o CCS
   max_efficiency: '0.3'
 Biomass CHP (existing):
   ecoinvent_aliases:
@@ -92,7 +94,7 @@ Biomass IGCC CCS:
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     remind-eu: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Biomass gasification|w CCS
-    witch: Efficiency|Electricity|Biomass|w/o CCS|1
+    witch: Efficiency|Electricity|Biomass|w/ CCS
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (IGCC CCS)
     image: Secondary Energy|Electricity|Biomass|w/ CCS|1
@@ -100,7 +102,7 @@ Biomass IGCC CCS:
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     remind-eu: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     tiam-ucl: Secondary Energy|Electricity|Biomass gasification|w CCS
-    witch: Secondary Energy|Electricity|Biomass|w/ CCS|1
+    witch: Secondary Energy|Electricity|Biomass|w/ CCS
   max_efficiency: '0.4'
 Biomass MSW:
   fltr:
@@ -125,13 +127,11 @@ Biomass ST:
     image: Efficiency|Electricity|Biomass|w/o CCS|1
     message: Efficiency|Electricity|Biomass|w/o CCS|2
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w/o CCS
-    witch: Efficiency|Electricity|Biomass|w/o CCS|1
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (conv)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
     message: Secondary Energy|Electricity|Biomass|w/o CCS|2
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
-    witch: Secondary Energy|Electricity|Biomass|w/o CCS|1
   max_efficiency: '0.3'
 Biomass ST CCS:
   ecoinvent_aliases:
@@ -233,7 +233,7 @@ Coal IGCC CCS:
     remind: Tech|Electricity|Coal|Gasification Combined Cycle w/ CC|Efficiency
     remind-eu: Tech|Electricity|Coal|Gasification Combined Cycle w/ CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Coal IGCC|w CCS
-    witch: Efficiency|Electricity|Coal|w/ CCS|2
+    witch: Efficiency|Electricity|Coal|w/ CCS|1
   iam_aliases:
     gcam: Secondary Energy|Electricity|coal (IGCC CCS)
     image: Secondary Energy|Electricity|Coal|w/ CCS|1
@@ -642,7 +642,7 @@ Oil ST:
     remind: Tech|Electricity|Oil|DOT|Efficiency
     remind-eu: Tech|Electricity|Oil|DOT|Efficiency
     tiam-ucl: Efficiency|Electricity|Existing oil electric generation|w/o CCS
-    witch: Efficiency|Electricity|Oil|w/o CCS|1
+
   iam_aliases:
     gcam: Secondary Energy|Electricity|refined liquids (steam/CT)
     image: Secondary Energy|Electricity|Oil|w/o CCS|1
@@ -717,7 +717,7 @@ Wind Offshore:
     remind: SE|Electricity|Wind|+|Offshore
     remind-eu: SE|Electricity|Wind|+|Offshore
     tiam-ucl: Secondary Energy|Electricity|Offshore wind centralised
-    witch: Secondary Energy|Electricity|Offshore
+    witch: Secondary Energy|Electricity|Wind|Offshore
 Wind Onshore:
   ecoinvent_aliases:
     fltr: electricity production, wind, 1-3MW turbine, onshore
@@ -730,4 +730,4 @@ Wind Onshore:
     remind: SE|Electricity|Wind|+|Onshore
     remind-eu: SE|Electricity|Wind|+|Onshore
     tiam-ucl: Secondary Energy|Electricity|Onshore wind centralised
-    witch: Secondary Energy|Electricity|Onshore
+    witch: Secondary Energy|Electricity|Wind|Onshore
