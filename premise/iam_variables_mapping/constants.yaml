@@ -213,6 +213,22 @@ PREFERRED_IAM_ORDER:
   - mexico
   - te
   - ccasia
+  - othereurope
+  - mena
+  - ssa
+  - laca
+  - oceania
+  - eu27
+  - sasia
+  - seasia
+  - canada
+  - usa
+  - china
+  - india
+  - indonesia
+  - japan
+  - southafrica
+  - korea
 
 BLACKLIST:
   - ME
