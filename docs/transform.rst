@@ -216,6 +216,130 @@ market for battery capacity, stationary (TC scenario)     GLO         Vanadium R
 `market for battery capacity, stationary (CONT scenario)` supplies any storage
 capacity needed in high voltage electricity markets.
 
+Metals
+++++++
+
+*premise* updates the material intensities of energy and transport technologies,
+with a particular focus on critical raw materials. The goal is to ensure that
+both current and future datasets accurately reflect the evolving material
+requirements of key technologies, such as wind turbines and batteries.
+Key processes include collecting and processing material intensity data, adding
+new metal production inventories, applying post-allocation corrections for
+co-mined metals, and constructing global markets for mined and refined metals.
+
+The workflow for updating material intensities in *premise* consists of the following steps:
+
+* *Data collection*: Material intensity data is sourced from literature and stored in structured files.
+* *Data processing*: The collected data is processed to align with the database, including unit conversions and mapping to relevant datasets.
+* *Inventories*: Additional inventories for metals production (e.g., Cobalt, Lithium, Vanadium) are added to the database.
+* *Post-allocation correction*: Multifunctional processes (e.g., co-mining) are adjusted to ensure proper mass balance.
+* *Markets creation*: Global supply markets for mined and refined metals are built, reflecting current and future regional contributions.
+
+To update the material intensities in the database, run the following code:
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("metals")
+
+
+Data collection and processing
+------------------------------
+
+Distributions for material intensities, derived from a comprehensive literature
+collection, are provided in `SI_2_Material_requirements.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/SI_2_Material_requirements.xlsx>`_.
+From this database, `metals_db.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metals_db.csv>`_ is created,
+which *premise* uses to update the material intensities for each technology.
+
+The mapping file that associate metal intensities to datasets to be
+updated can be found in `activity_mapping.yml <https://github.com/polca/premise/blob/master/premise/data/metals/activities_mapping.yml>`_.
+
+To convert the units in `metals_db.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metals_db.csv>`_
+to the units used in ecoinvent (e.g., converting [kg metal/kW] to [kg metal/kg battery]), *premise* uses
+the conversion factors found in `conversion_factors.csv <https://github.com/polca/premise/blob/master/premise/data/metals/conversion_factors.xlsx>`_.
+
+Finally, *premise* uses the data under `metal_products.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metal_product.xlsx>`_
+to refine the activity in ecoinvent to be updated, select the specific metal
+product (e.g., boric oxide for boron used in wind turbine magnets)
+and convert the intensities to the relevant compound (e.g., 1kg of Boron is converted to 86.19 kg of B2O3).
+
+
+Inventories
+-----------
+
+*premise* provides inventories for the following metals:
+
+* `Cobalt <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-cobalt.xlsx>`_.
+* `Germanium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-germanium.xlsx>`_, as a co-product from zinc mine operation, based on the unallocated dataset in ecoinvent.
+* `Graphite <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-graphite.xlsx>`_.
+* `Iridium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* `Lithium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-lithium.xlsx>`_.
+* `Rhenium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-rhenium.xlsx>`_, as a co-product from copper mine operation, based on the unallocated dataset in ecoinvent.
+* `Ruthenium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* and `Vanadium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-batteries-vanadium.xlsx>`_.
+
+The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/master/premise/data/additional_inventories>`_
+
+Post-allocation correction
+--------------------------
+
+Regarding the co-production of metals in multifunctional processes
+(i.e., co-mining of metals), *premise* modifies the database to allocate
+according to physical mass balance: extraction of individual elements in the
+ore is fully attributed to the production of the respective metal; while other
+elementary and intermediate flows follow an economic allocation, which is the
+default option to deal with multi-functionality in ecoinvent. As discussed in
+Berger_ et al. (2023), this approach ensures a correct mass balance.
+
+For example, the amount of platinum resource included in the dataset representing
+the mining of 1 kg of platinum is set to 1 kg, while the amount of other
+metals (e.g., palladium, rhodium) is set to zero. The same approach is applied
+to the datasets representing the mining of the other co-mined metals.
+
+The file used to apply this correction is `corrections.yaml <https://github.com/polca/premise/blob/master/premise/data/metals/post-allocation_correction/corrections.yaml>`_.
+
+The markets are relinked to metals-consuming activities throughout the database.
+
+.. _Berger: https://doi.org/10.1007/s11367-020-01737-5
+
+
+Mining and refining markets creation
+------------------------------------
+
+*premise* builds global supply markets for several mined and refined metals.
+In these markets, the contribution of different mining and refining regions corresponds
+to their *current* market shares. Following this approach, the supply from different
+regions for a specific metal will be directly proportional to the country-level
+contributions to the global market. These shares are derived from various sources,
+mainly `BGS <https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html>`_
+and `USGS <https://doi.org/https://doi.org/10.3133/mcs2023>`_, in addition to data from
+van den Brink_ et al. (2022) for Antimony refining.
+For certain markets where data was available, *premise* incorporates projections
+from `BNEF <https://about.bnef.com/>`_ regarding the development of future mining and refining projects to
+forecast the market shares' evolution up to 2030.
+
+The file used to build the global supply markets for mined and refined metals is `mining_shares_mapping.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/mining_shares_mapping.xlsx>`_.
+
+.. _van den Brink: https://doi.org/10.1016/j.resconrec.2022.106586
+
+Additionally, global metal supply markets modeled account for the average transport
+distances and modes of transport for the different metals from producer
+to consumer. These data are retrieved from `UNCTAD <https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf>`_.
+
+Average transport distance and modes of transport for each producer can be found under: `transport_markets_data <https://github.com/polca/premise/blob/master/premise/data/metals/transport_markets_data.csv>`_.
+
 Biomass
 +++++++
 

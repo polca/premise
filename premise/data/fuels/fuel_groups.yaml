@@ -15,7 +15,7 @@ gasoline:
   - petrol, synthetic, from coal
   - petrol, synthetic, from coal, with CCS
   - petrol, synthetic, from electrolysis
-  -
+
 diesel:
   - diesel
   - diesel, synthetic, from electrolysis
@@ -33,6 +33,8 @@ diesel:
 gas:
   - natural gas
   - biomethane
+  - methane, synthetic
+  - methane, from coal
 
 hydrogen:
   - hydrogen, from petroleum

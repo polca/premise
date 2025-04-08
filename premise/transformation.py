@@ -137,7 +137,7 @@ def get_suppliers_of_a_region(
     :param exclude: list of terms to exclude
     """
 
-    if exact_match:
+    if exact_match is True:
         filters = [
             ws.either(*[ws.equals("name", supplier) for supplier in names]),
         ]

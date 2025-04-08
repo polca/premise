@@ -54,10 +54,12 @@ wood:
     - supply of forest residue
     - ethanol production, via fermentation, from forest residue, economic allocation
     - ethanol production, via fermentation, from forest residue, energy allocation
+
   eucalyptus:
     - farming and supply of eucalyptus
     - ethanol production, via fermentation, from eucalyptus
     - ethanol production, via fermentation, from eucalyptus, with carbon capture and storage
+
 
 sugar:
   sugarcane:

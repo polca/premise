@@ -21,9 +21,10 @@ from .biomass import _update_biomass
 from .cement import _update_cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
-from .direct_air_capture import _update_dac
+from .carbon_dioxide_removal import _update_cdr
 from .electricity import _update_electricity
 from .emissions import _update_emissions
+from .final_energy import _update_final_energy
 from .export import (
     Export,
     _prepare_database,
@@ -38,6 +39,7 @@ from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
+from .metals import _update_metals
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
@@ -55,6 +57,7 @@ from .utils import (
     warning_about_biogenic_co2,
     end_of_process,
 )
+from .renewables import _update_wind_turbines
 
 logger = logging.getLogger("module")
 
@@ -99,6 +102,7 @@ FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
 FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification_CCS.xlsx"
 )
+FILEPATH_HYDROGEN_OIL = INVENTORY_DIR / "lci-hydrogen-oil.xlsx"
 FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
@@ -170,10 +174,14 @@ FILEPATH_VANADIUM = INVENTORY_DIR / "lci-batteries-vanadium.xlsx"
 FILEPATH_VANADIUM_REDOX_BATTERY = (
     INVENTORY_DIR / "lci-batteries-vanadium-redox-flow.xlsx"
 )
+FILEPATH_ORGANIC_REDOX_BATTERY = (
+    INVENTORY_DIR / "lci-batteries-organic-and-hybrid-redox-flow.xlsx"
+)
 FILEPATH_SIB_BATTERY = INVENTORY_DIR / "lci-batteries-SIB.xlsx"
 FILEPATH_HYDROGEN_TURBINE = INVENTORY_DIR / "lci-hydrogen-turbine.xlsx"
 FILEPATH_HYDROGEN_HEATING = INVENTORY_DIR / "lci-hydrogen-heating.xlsx"
 FILEPATH_METHANOL_HEATING = INVENTORY_DIR / "lci-methanol-heating.xlsx"
+FILEPATH_ELECTRIC_HEATING = INVENTORY_DIR / "lci-electric-heating.xlsx"
 FILEPATH_GERMANIUM = INVENTORY_DIR / "lci-germanium.xlsx"
 FILEPATH_RHENIUM = INVENTORY_DIR / "lci-rhenium.xlsx"
 FILEPATH_PGM = INVENTORY_DIR / "lci-PGM.xlsx"
@@ -188,6 +196,8 @@ FILEPATH_BATTERY_CAPACITY = INVENTORY_DIR / "lci-battery-capacity.xlsx"
 FILEPATH_BIOCHAR = INVENTORY_DIR / "lci-biochar-spruce.xlsx"
 FILEPATH_ENHANCED_WEATHERING = INVENTORY_DIR / "lci-coastal-enhanced-weathering.xlsx"
 FILEPATH_OCEAN_LIMING = INVENTORY_DIR / "lci-ocean-liming.xlsx"
+FILEPATH_FINAL_ENERGY = INVENTORY_DIR / "lci-final-energy.xlsx"
+FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 
 config = load_constants()
 
@@ -736,6 +746,7 @@ class NewDatabase:
             (FILEPATH_LIO2_BATTERY, "3.9"),
             (FILEPATH_VANADIUM, "3.9"),
             (FILEPATH_VANADIUM_REDOX_BATTERY, "3.9"),
+            (FILEPATH_ORGANIC_REDOX_BATTERY, "3.9"),
             (FILEPATH_SIB_BATTERY, "3.9"),
             (FILEPATH_BATTERY_CAPACITY, "3.10"),
             (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
@@ -754,6 +765,7 @@ class NewDatabase:
             (FILEPATH_HYDROGEN_BIOGAS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_NATGAS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_WOODY_INVENTORIES, "3.7"),
+            (FILEPATH_HYDROGEN_OIL, "3.10"),
             (FILEPATH_HYDROGEN_TURBINE, "3.9"),
             (FILEPATH_SYNGAS_INVENTORIES, "3.9"),
             (FILEPATH_METHANOL_FROM_WOOD, "3.7"),
@@ -787,6 +799,7 @@ class NewDatabase:
             (FILEPATH_CSP, "3.9"),
             (FILEPATH_HYDROGEN_HEATING, "3.9"),
             (FILEPATH_METHANOL_HEATING, "3.9"),
+            (FILEPATH_ELECTRIC_HEATING, "3.10"),
             (FILEPATH_GERMANIUM, "3.9"),
             (FILEPATH_RHENIUM, "3.9"),
             (FILEPATH_TWO_WHEELERS, "3.7"),
@@ -799,6 +812,8 @@ class NewDatabase:
             (FILEPATH_BIOCHAR, "3.10"),
             (FILEPATH_OCEAN_LIMING, "3.10"),
             (FILEPATH_ENHANCED_WEATHERING, "3.10"),
+            (FILEPATH_FINAL_ENERGY, "3.10"),
+            (FILEPATH_SULFIDIC_TAILINGS, "3.8"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -887,14 +902,22 @@ class NewDatabase:
                 "func": _update_electricity,
                 "args": (self.version, self.system_model, self.use_absolute_efficiency),
             },
-            "dac": {"func": _update_dac, "args": (self.version, self.system_model)},
             "cement": {
                 "func": _update_cement,
                 "args": (self.version, self.system_model),
             },
             "steel": {"func": _update_steel, "args": (self.version, self.system_model)},
             "fuels": {"func": _update_fuels, "args": (self.version, self.system_model)},
+            "renewable": {
+                "func": _update_wind_turbines,
+                "args": (self.version, self.system_model),
+            },
+            "metals": {
+                "func": _update_metals,
+                "args": (self.version, self.system_model),
+            },
             "heat": {"func": _update_heat, "args": (self.version, self.system_model)},
+            "cdr": {"func": _update_cdr, "args": (self.version, self.system_model)},
             "battery": {
                 "func": _update_battery,
                 "args": (self.version, self.system_model),
@@ -922,6 +945,10 @@ class NewDatabase:
             "trains": {
                 "func": _update_vehicles,
                 "args": ("train", self.version, self.system_model),
+            },
+            "final energy": {
+                "func": _update_final_energy,
+                "args": (self.version, self.system_model),
             },
             "external": {
                 "func": _update_external_scenarios,
@@ -980,8 +1007,7 @@ class NewDatabase:
 
                 # dump database
                 dump_database(scenario)
-                # Manually update the outer progress bar
-                # after each sector is completed
+                # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update()
         print("Done!\n")
 
@@ -1193,9 +1219,9 @@ class NewDatabase:
                 system_model=self.system_model,
             ).export_db_to_matrices()
 
-            end_of_process(scenario)
+            # end_of_process(scenario)
 
-        delete_all_pickles()
+        # delete_all_pickles()
         # generate scenario report
         self.generate_scenario_report()
         # generate change report from logs

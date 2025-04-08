@@ -111,3 +111,15 @@ biomass - residual: 35
 biomass crops - purpose grown: 35
 Storage, Hydrogen: 20
 Storage, Battery: 20
+heat, residential, from district heating: 20
+heat, residential, from hydrogen boiler: 20
+heat, residential, from natural gas: 20
+heat, residential, from LPG boiler: 20
+heat, residential, from biomass-based methanol boiler: 20
+heat, residential, from coal-based methanol boiler: 20
+heat, residential, from coal stove: 20
+heat, residential, from wood logs heater: 20
+heat, residential, from wood pellets heater: 20
+heat, residential, from heat pump: 20
+heat, residential, from electric heater: 20
+heat, residential, from light fuel oil boiler: 20

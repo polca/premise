@@ -446,15 +446,15 @@ class Transport(BaseTransformation):
 
         arr = None
         if self.vehicle_type == "two-wheeler":
-            arr = self.iam_data.two_wheelers_markets
+            arr = self.iam_data.two_wheelers_fleet
         if self.vehicle_type == "car":
-            arr = self.iam_data.passenger_car_markets
+            arr = self.iam_data.passenger_car_fleet
         if self.vehicle_type == "truck":
-            arr = self.iam_data.roadfreight_markets
+            arr = self.iam_data.road_freight_fleet
         if self.vehicle_type == "bus":
-            arr = self.iam_data.bus_markets
+            arr = self.iam_data.bus_fleet
         if self.vehicle_type == "train":
-            arr = self.iam_data.railfreight_markets
+            arr = self.iam_data.rail_freight_fleet
 
         if arr is None:
             return []
@@ -579,11 +579,11 @@ class Transport(BaseTransformation):
         if self.vehicle_type == "car":
             data = self.iam_data.passenger_car_efficiencies
         elif self.vehicle_type == "truck":
-            data = self.iam_data.roadfreight_efficiencies
+            data = self.iam_data.road_freight_efficiencies
         elif self.vehicle_type == "bus":
             data = self.iam_data.bus_efficiencies
         elif self.vehicle_type == "train":
-            data = self.iam_data.railfreight_efficiencies
+            data = self.iam_data.rail_freight_efficiencies
         elif self.vehicle_type == "two-wheeler":
             data = self.iam_data.two_wheelers_efficiencies
         else:

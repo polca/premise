@@ -141,6 +141,31 @@ with pd.ExcelWriter(excel_file, engine="xlsxwriter") as writer:
     for sheet_name, df in dfs.items():
         df.to_excel(writer, sheet_name=sheet_name, index=False)
 
+# create a dataframe with all the data, plus a column for the file name
+all_data = pd.concat(
+    [df.assign(file_name=name) for name, df in dfs.items()], ignore_index=True
+)
+# rename some columns
+all_data.rename(
+    columns={
+        "Key": "PREMISE variable",
+        "Variable": "IAM variable",
+        "file_name": "Sector",
+    },
+    inplace=True,
+)
+
+excel_file = "mapping_overview_one_tab.xlsx"
+with pd.ExcelWriter(excel_file, engine="xlsxwriter") as writer:
+    all_data.to_excel(writer, sheet_name="All Data", index=False)
+
+# Create another Excel file where we have instead one tab per IAM model
+refined_output_path_v2 = "mapping_overview_one_tab_per_model.xlsx"
+with pd.ExcelWriter(refined_output_path_v2) as writer:
+    for model in all_data["IAM Model"].unique():
+        model_data = all_data[all_data["IAM Model"] == model]
+        model_data.to_excel(writer, sheet_name=model, index=False)
+
 
 def create_refined_pivot_v2(df):
     df = df.copy()

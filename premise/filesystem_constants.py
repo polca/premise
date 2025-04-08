@@ -12,6 +12,7 @@ def load_var_file():
     """Check if the variable file exists and load it."""
     var_file = Path.cwd() / "variables.yaml"
     if var_file.exists():
+        print(f"Loading variables from {var_file}")
         with open(var_file, "r") as f:
             return yaml.safe_load(f)
     else:
